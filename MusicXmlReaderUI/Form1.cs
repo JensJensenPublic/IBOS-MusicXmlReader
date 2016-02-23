@@ -18,11 +18,12 @@ namespace MusicXmlReaderUI
         bool showRaw = false;
         Model model;
 
-        string fileName = @"C:\temp\MusicXML\La Mer.xml"; // The sample XML file to read from
+        // string fullFileName = @"C:\temp\MusicXML\La Mer.xml"; // The sample XML file to read from
 
         public Form1()
         {
             InitializeComponent();
+            buttonStart.Select();
             if (!showRaw)  listBoxRaw.Hide();
             model = new Model(listBoxFiltered);        
             listBoxFiltered.SelectedIndexChanged += new EventHandler(SelectedIndexChanged);          
@@ -77,13 +78,18 @@ namespace MusicXmlReaderUI
         {
             string executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
-            fileName = System.IO.Path.Combine(executingDirectory, "Node.xml");
+            string fileName = "Node.xml";
+            textBoxMessage.Focus();
+            textBoxMessage.Text = string.Format("Indlæser {0}",fileName);
+            fileName = System.IO.Path.Combine(executingDirectory, fileName);
             XmlDocument doc = new XmlDocument();   
             XmlTextReader reader = new XmlTextReader(fileName);
             reader.WhitespaceHandling = WhitespaceHandling.None;
             doc.Load(reader);
             model.Recurse(doc.ChildNodes);
-            model.LoadListBox();   
+            model.LoadListBox();
+            listBoxFiltered.Focus();
+            listBoxFiltered.SelectedIndex = 0;  
         }
 
         private void Play_Click(object sender, EventArgs e)
@@ -94,6 +100,11 @@ namespace MusicXmlReaderUI
         private void Stop_Click(object sender, EventArgs e)
         {
             model.musicPlayer.StopPlaying();
+        }
+
+        private void numericUpDownPlaySpeed_ValueChanged(object sender, EventArgs e)
+        {
+            model.musicPlayer.PlaySpeedChanged(sender, e);
         }
     }
 }
