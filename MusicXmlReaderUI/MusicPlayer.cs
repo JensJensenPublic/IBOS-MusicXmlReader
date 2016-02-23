@@ -46,6 +46,22 @@ namespace MusicXmlReaderUI
             new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
         }
 
+        /// <summary>
+        /// Simple timing-implementation:
+        /// </summary>
+        /// <param name="noteElement"></param>
+        /// <returns></returns>
+        private int Duration(NoteElement noteElement)
+        {
+            float duration = noteElement.GetDuration();
+            float divisions = int.Parse(noteElement.Divisions);
+            float tempo = this.tempo;
+            float durasionInUnitOfMeasures = duration / divisions;
+            float durationInUnitOfMilliSeconds = userSlowDown * 60 * 1000 * durasionInUnitOfMeasures / tempo;
+            return (int)durationInUnitOfMilliSeconds;
+        }
+
+
 
         /// <summary>
         /// Used when playing automatically. The user just starts a thread for playing.
@@ -85,41 +101,9 @@ namespace MusicXmlReaderUI
                         latestNotePlayed = new MidiNote(nodeElement.Step, nodeElement.Alter, nodeElement.Octave, 127, midiOut);
                     }
                 }
-
-                // Simple timing-implementation:
-                float duration = nodeElement.GetDuration();
-                float divisions = int.Parse(nodeElement.Divisions);
-                float tempo = this.tempo;
-                float durasionInUnitOfMeasures = duration / divisions;
-                float durationInUnitOfMilliSeconds = userSlowDown * 60 * 1000 * durasionInUnitOfMeasures / tempo;
-                nextActionTime += (int)durationInUnitOfMilliSeconds;
-                // System.Threading.Thread.Sleep((int)(durationInUnitOfMilliSeconds));
-                //if (null != latestNotePlayed)
-                //{
-                //    latestNotePlayed.StopPlaying(midiOut);
-                //}
-                //
+                nextActionTime += Duration(nodeElement);
                 return;
             }
-            //else if (selectedObject is MeasureElement)
-            //{
-            //    MeasureElement measureElement = selectedObject as MeasureElement;
-
-            //    // Same code as above !!
-            //    if (0 == nextActionTime)
-            //    {
-            //        // We  play the first note or pause immediately but remember when we did it.
-            //        nextActionTime = stopWatch.ElapsedMilliseconds;
-            //    }
-            //    else
-            //    {
-            //        long sleep = nextActionTime - stopWatch.ElapsedMilliseconds;
-            //        sleep -= 200; // Show the Measure 200 mS before the first beat in the meeasure to please the screenreader.
-            //        sleep = Math.Max(0, sleep); // Hack to avoid crash 
-            //        System.Threading.Thread.Sleep((int)sleep);
-            //    }
-            //
-            //}
             else if (selectedObject is SoundElement)
             {
                 this.tempo = (selectedObject as SoundElement).GetTempo();
@@ -178,14 +162,12 @@ namespace MusicXmlReaderUI
             for (int i = 0; ((i < listBox.Items.Count) && (playing)); i++)
             {
                 object o = listBox.Items[i]; 
-                AutoPlay(o); // Play the next note, using the correct timing! 
-                //System.Threading.Thread.Sleep(10); // Allow the UI thread to do its work immediately.
+                AutoPlay(o); // Play the next note, using the correct timing!
                 if (o is NoteElement)
                 {
                     // Only select notes (and pauses) to allow for correct timing!
                     SetSelectedIndex(i); // Select the corresponding line in the Listbox,  handling Cross-thread issue
-                }
-                //System.Threading.Thread.Sleep(10); // Allow the UI thread to do its work immediately.          
+                }    
             }
         }
 
