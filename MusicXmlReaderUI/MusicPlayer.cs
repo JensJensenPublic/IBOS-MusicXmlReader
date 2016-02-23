@@ -200,5 +200,13 @@ namespace MusicXmlReaderUI
         {
             playing = false;
         }
+
+        public void PlaySpeedChanged(object sender, EventArgs e)
+        {
+            NumericUpDown numericUpDown = sender as NumericUpDown;
+            float value = (float)numericUpDown.Value;
+            this.userSlowDown = 100F / value;
+        }
+
     }
 }
