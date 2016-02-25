@@ -53,8 +53,8 @@ namespace MusicXmlReaderUI
         /// <returns></returns>
         private int Duration(NoteElement noteElement)
         {
-            float duration = noteElement.GetDuration();
-            float divisions = int.Parse(noteElement.Divisions);
+            float duration = noteElement.Duration;
+            float divisions = noteElement.Divisions;
             float tempo = this.tempo;
             float durasionInUnitOfMeasures = duration / divisions;
             float durationInUnitOfMilliSeconds = userSlowDown * 60 * 1000 * durasionInUnitOfMeasures / tempo;

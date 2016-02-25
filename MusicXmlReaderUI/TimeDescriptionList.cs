@@ -40,7 +40,7 @@ namespace MusicXmlReaderUI
                         NoteElement noteElement = e as NoteElement;
                         times.Add(noteElement);
                         noteElement.StartTime = nextStartTime;
-                        nextStartTime += int.Parse(noteElement.Duration); // To DO: Also use divisions in this equation !!!!!!!!!!!!!!!!!!!!!!!!
+                        nextStartTime += noteElement.DurationInCommonDivisions;
                     }
                 }
             }

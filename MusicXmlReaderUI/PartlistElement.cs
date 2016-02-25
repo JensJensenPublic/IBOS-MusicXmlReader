@@ -8,7 +8,7 @@ namespace MusicXmlReaderUI
 
         List<ScorePartElement> scorePartElements = new List<ScorePartElement>();
 
-        public int NumberOfScores()
+        public int NumberOfParts()
         {
             return scorePartElements.Count;
         }
@@ -84,5 +84,6 @@ namespace MusicXmlReaderUI
             }
             return strings;            
         }
+        
     }
 }

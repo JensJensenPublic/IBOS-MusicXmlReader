@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBoxRaw = new System.Windows.Forms.ListBox();
+            this.listBoxTimes = new System.Windows.Forms.ListBox();
             this.listBoxFiltered = new System.Windows.Forms.ListBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.Play = new System.Windows.Forms.Button();
@@ -38,13 +38,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
-            // listBoxRaw
+            // listBoxTimes
             // 
-            this.listBoxRaw.FormattingEnabled = true;
-            this.listBoxRaw.Location = new System.Drawing.Point(321, 276);
-            this.listBoxRaw.Name = "listBoxRaw";
-            this.listBoxRaw.Size = new System.Drawing.Size(275, 186);
-            this.listBoxRaw.TabIndex = 1;
+            this.listBoxTimes.FormattingEnabled = true;
+            this.listBoxTimes.Location = new System.Drawing.Point(321, 55);
+            this.listBoxTimes.Name = "listBoxTimes";
+            this.listBoxTimes.Size = new System.Drawing.Size(275, 407);
+            this.listBoxTimes.TabIndex = 1;
             // 
             // listBoxFiltered
             // 
@@ -76,7 +76,7 @@
             // 
             // Stop
             // 
-            this.Stop.Location = new System.Drawing.Point(420, 11);
+            this.Stop.Location = new System.Drawing.Point(533, 12);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(75, 23);
             this.Stop.TabIndex = 5;
@@ -98,7 +98,7 @@
             0,
             0,
             0});
-            this.numericUpDownPlaySpeed.Location = new System.Drawing.Point(328, 58);
+            this.numericUpDownPlaySpeed.Location = new System.Drawing.Point(404, 15);
             this.numericUpDownPlaySpeed.Maximum = new decimal(new int[] {
             200,
             0,
@@ -130,7 +130,7 @@
             this.Controls.Add(this.Play);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.listBoxFiltered);
-            this.Controls.Add(this.listBoxRaw);
+            this.Controls.Add(this.listBoxTimes);
             this.Name = "Form1";
             this.Text = "MusikLæser";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).EndInit();
@@ -140,7 +140,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.ListBox listBoxRaw;
+        private System.Windows.Forms.ListBox listBoxTimes;
         private System.Windows.Forms.ListBox listBoxFiltered;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Button Play;

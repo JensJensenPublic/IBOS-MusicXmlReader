@@ -4,16 +4,21 @@ using System.Xml;
 namespace MusicXmlReaderUI
 {
 
+
     public class NoteElement : Element
     {
+        // Allows for representing the following subdivisions of a quarter node:
+        // 2,3,4,5,6,7,8,9,10 
+        private const int commonDivisions = 1260;
+
         string step = "";
         string alter = ""; // Represents the number of semitones the note is altered.
         string octave = "";
-        string duration = "";
+        int duration = 0;
         string type = "";
         string voice = "";
         bool dot = false;
-        string divisions = ""; 
+        int divisions = 0; 
         TieElement tieElement;
         string tieType = ""; // Is this note tied to another note
         bool tieStop = false;
@@ -21,6 +26,9 @@ namespace MusicXmlReaderUI
         string localizedTie = "";
         Pitch pitch;
         int measureNumber;
+//        int partNumber;
+        string partId;
+        int startTime;
         
         public string Step
         {
@@ -46,7 +54,7 @@ namespace MusicXmlReaderUI
             }   
         }
 
-        public string Duration
+        public int Duration
         {
             get
             {
@@ -62,7 +70,7 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public string Divisions
+        public int Divisions
         {
             get
             {
@@ -93,6 +101,33 @@ namespace MusicXmlReaderUI
                 return tieStop;
             }
         }
+
+        /// <summary>
+        /// Unit is milliSeconds. Is 0 at start of part.
+        /// </summary>
+        public int StartTime
+        {
+            get
+            {
+                return startTime;
+            }
+
+            set
+            {
+                startTime = value;
+            }
+        }
+
+        public int DurationInCommonDivisions
+        {
+            get
+            {
+                return duration * commonDivisions / divisions;
+            }
+
+
+        }
+        
 
         /// <summary>
         /// To force the use of the Create() method
@@ -151,9 +186,10 @@ namespace MusicXmlReaderUI
         /// Private constructor, used by the Crate() method
         /// </summary>
         /// <param name="node"></param>
-        private NoteElement(XmlNode xmlNode,int divisions,int measureNumber)
+        private NoteElement(XmlNode xmlNode,int divisions,int measureNumber, string partId)
         {
             this.measureNumber = measureNumber;
+            this.partId = partId;
             foreach (XmlNode child in xmlNode.ChildNodes)
             {
                 switch (child.Name)
@@ -166,7 +202,7 @@ namespace MusicXmlReaderUI
                          octave = GetChildValue(child, "octave");
                          pitch = Pitch.Create(step, alter, octave);
                          break;                
-                    case "duration": duration = child.InnerText; break;
+                    case "duration": duration = int.Parse(child.InnerText); break;
                     case "type": type = child.InnerText; break;
                     case "voice": voice = child.InnerText; break;
                     case "dot": dot = true; break;
@@ -178,13 +214,13 @@ namespace MusicXmlReaderUI
             }
             localizedType = LocalizeType(Type, dot);
             localizedTie  = LocalizeTie(tieType); 
-            this.divisions = divisions.ToString();
+            this.divisions = divisions;
             // Model.GetNoteTiming(out this.startTime, out this.endTime, int.Parse(this.duration)); 
         }
 
-        public static NoteElement Create(XmlNode node, int divisions, int measureNumber)
+        public static NoteElement Create(XmlNode node, int divisions, int measureNumber, string partId)
         {
-            return new NoteElement(node, divisions, measureNumber);
+            return new NoteElement(node, divisions, measureNumber, partId);
         }
 
         public override string ToString()
@@ -196,21 +232,23 @@ namespace MusicXmlReaderUI
                 measureString = string.Format("Takt {0}", measureNumber);
             }
 
+            // Primarily for debugging
+            string partString = string.Format("{0} ", partId);
+            string timeString = string.Format("{0}:", startTime);
+
             if (!String.IsNullOrEmpty(Step))
             {
                 // This is a note.
-                return String.Format("{0} {1} {2} {3} {4}", measureString, pitch.Name, pitch.Octave, localizedType, localizedTie);
+                return String.Format("{0}{1}{2} {3} {4} {5} {6}", timeString, partString, measureString, pitch.Name, pitch.Octave, localizedType, localizedTie);
             }
             else
             {      
                 // This is a pause,not a note.     
-                return(String.Format("{0} {1}",measureString, LocalizePause(Type)));
+                return(String.Format("{0}{1}{2} {3}", timeString, partString, measureString, LocalizePause(Type)));
             }         
         }
 
-        public int GetDuration()
-        {
-            return int.Parse(duration);
-        }
+
+
     }    
 }

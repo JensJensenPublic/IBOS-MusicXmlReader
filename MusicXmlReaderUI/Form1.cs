@@ -15,7 +15,7 @@ namespace MusicXmlReaderUI
 {
      public partial class Form1 : Form
     {
-        bool showRaw = false;
+        bool showTimes = true;
         Model model;
 
         // string fullFileName = @"C:\temp\MusicXML\La Mer.xml"; // The sample XML file to read from
@@ -24,8 +24,8 @@ namespace MusicXmlReaderUI
         {
             InitializeComponent();
             buttonStart.Select();
-            if (!showRaw)  listBoxRaw.Hide();
-            model = new Model(listBoxFiltered);        
+            if (!showTimes)  listBoxTimes.Hide();
+            model = new Model(listBoxFiltered,listBoxTimes);        
             listBoxFiltered.SelectedIndexChanged += new EventHandler(SelectedIndexChanged);          
         }
 
@@ -87,7 +87,9 @@ namespace MusicXmlReaderUI
             reader.WhitespaceHandling = WhitespaceHandling.None;
             doc.Load(reader);
             model.Recurse(doc.ChildNodes);
+            model.Init(); // Experimental code !!
             model.LoadListBox();
+            model.LoadListBoxTimes();
             listBoxFiltered.Focus();
             listBoxFiltered.SelectedIndex = 0;  
         }

@@ -9,24 +9,29 @@ namespace MusicXmlReaderUI
     {
         List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
         MidiOut midiOut;
-        ListBox listBox;
+        ListBox listBoxParts; // Lists elements grouped per part
+        ListBox listBoxTimes; // Lists elements grouped per time
         public MusicPlayer musicPlayer;
-        public PartlistElement partitionList;
+        public PartlistElement partList;
         int divisions; // Current number of divisions of a quarternode
         int tempo;     // Current tempo in beats pr minute
         int currentMeasureNumber = 0 ; // Current measure number
         int latestMeasureNumber = 0;
+        int numberOfParts; // Number of parts
+        //int currentPartitionNumber = -1;
+        string currentPartitionId = "";
 
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public Model(ListBox listBox)
+        public Model(ListBox listBox, ListBox listBoxTimes)
         {
             allMusicXmlObjecsts = new List<MusicXmlObject>();
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBox, midiOut);
-            this.listBox = listBox;
+            this.listBoxParts = listBox;
+            this.listBoxTimes = listBoxTimes;
         }
  
         public bool WriteElement(XmlNode node)
@@ -42,13 +47,14 @@ namespace MusicXmlReaderUI
                         this.latestMeasureNumber = this.currentMeasureNumber;
                         tempMeasureNumber = this.currentMeasureNumber;
                     }
-                    allMusicXmlObjecsts.Add(NoteElement.Create(node, this.divisions, tempMeasureNumber));
+                    allMusicXmlObjecsts.Add(NoteElement.Create(node, this.divisions, tempMeasureNumber, this.currentPartitionId));
                     continueRecursion = false;
                     break;
                 case "part-list":
-                    // We also save the prrtitionlist in the model fpr later reference.
-                    partitionList = PartlistElement.Create(node);
-                    allMusicXmlObjecsts.Add(partitionList);
+                    // We also save the partitionlist in the model fpr later reference.
+                    partList = PartlistElement.Create(node);
+                    allMusicXmlObjecsts.Add(partList);
+                    this.numberOfParts = partList.NumberOfParts();
                     // allMusicXmlObjecsts.AddRange(   (partitionList.ToStrings());
                     continueRecursion = false;
                     break;
@@ -62,7 +68,9 @@ namespace MusicXmlReaderUI
                     continueRecursion = false;
                     break;
                 case "part":
-                    allMusicXmlObjecsts.Add(PartElement.Create(node));
+                    PartElement partElement = PartElement.Create(node);
+                    allMusicXmlObjecsts.Add(partElement);
+                    this.currentPartitionId = partElement.PartId; 
                     break;
                 case "software":
                 case "encoding-date":
@@ -179,6 +187,19 @@ namespace MusicXmlReaderUI
             }
         }
 
+        // The following 2 lists contain references into allMusicXmlObjecsts where the decoded information is kept! 
+        private PartDescriptionList partDescriptionList;
+        private TimeDescriptionList timeDescriptionList;
+        //private MeasureDescriptionList measureDescriptionList;
+
+        public void Init()
+        {
+            partDescriptionList = PartDescriptionList.Create(allMusicXmlObjecsts,numberOfParts);
+            divisions = 24; // TODO compute!
+            timeDescriptionList = TimeDescriptionList.Create(partDescriptionList, divisions);
+            //measureDescriptionList = MeasureDescriptionList.Create(allMusicXmlObjecsts);
+        }
+
         public void LoadListBox()
         {
             foreach (MusicXmlObject musicXmlObject in allMusicXmlObjecsts)
@@ -186,9 +207,15 @@ namespace MusicXmlReaderUI
                 {
                     // Add ALL objects to make it possible to browse manually through them
                     // During auto-play only node items (including pauses) will be selected to allow for correct timing!
-                    listBox.Items.Add(musicXmlObject);
+                    listBoxParts.Items.Add(musicXmlObject);
                 }
             }
-        }        
+        }
+
+        public void LoadListBoxTimes()
+        {
+            timeDescriptionList.LoadListBox(listBoxTimes);
+        }
+
     }
 }

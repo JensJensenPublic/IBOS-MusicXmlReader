@@ -5,7 +5,7 @@ namespace MusicXmlReaderUI
 
     public class PartElement : Element
     {
-        string partNumber = "";
+        string partId = "";
 
         /// <summary>
         /// To force the use of the Create() method
@@ -27,10 +27,18 @@ namespace MusicXmlReaderUI
                 switch (a.Name)
                 {
                     case "id":
-                        partNumber = a.Value;
+                        partId = a.Value;
                         break;
                 }
             }            
+        }
+
+        public string PartId
+        {
+            get
+            {
+                return partId;
+            }
         }
 
         public static PartElement Create(XmlNode node)
@@ -40,7 +48,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return string.Format("Stemme {0}", partNumber);
+            return string.Format("Stemme {0}", partId);
         }
     }
 }
