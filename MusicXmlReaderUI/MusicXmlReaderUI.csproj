@@ -68,6 +68,7 @@
     <Compile Include="MusicPlayer.cs" />
     <Compile Include="MusicXmlObject.cs" />
     <Compile Include="NodeElement.cs" />
+    <Compile Include="PartDescriptionList.cs" />
     <Compile Include="PartElement.cs" />
     <Compile Include="PartlistElement.cs" />
     <Compile Include="Pitch.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="SimpleTextElement.cs" />
     <Compile Include="SoundElement.cs" />
     <Compile Include="TieElement.cs" />
+    <Compile Include="TimeDescriptionList.cs" />
     <Compile Include="TimeElement.cs" />
     <Compile Include="UnimplementedElement.cs" />
     <EmbeddedResource Include="Form1.resx">
