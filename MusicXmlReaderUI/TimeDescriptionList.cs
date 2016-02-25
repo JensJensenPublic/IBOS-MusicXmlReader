@@ -1,0 +1,81 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace MusicXmlReaderUI
+{
+
+    public class TimeDescriptionList:  IComparer<Element>
+    {
+
+        /// <summary>
+        /// To force the use of the Create() method
+        /// </summary>
+        private TimeDescriptionList()
+        {
+        }
+
+        // The list of times ,each containing a list of elements        
+        private List<Element> times;
+
+        /// <summary>
+        /// Private constructor, used by the Crate() method
+        /// </summary>
+        /// <param name="node"></param>
+        private TimeDescriptionList(PartDescriptionList partDescriptionList, int divisions)
+        {
+            int numberOfParts = partDescriptionList.NumberOfParts;
+            times = new List<Element>();
+
+            foreach (List<Element> elementList in partDescriptionList.parts)
+            {
+                int nextStartTime = 0; // Each part starts at time = 0 MilliSeconds
+                foreach (Element e in elementList)
+                {
+                    if (e is NoteElement)
+                    {
+                        NoteElement noteElement = e as NoteElement;
+                        times.Add(noteElement);
+                        noteElement.StartTime = nextStartTime;
+                        nextStartTime += int.Parse(noteElement.Duration); // To DO: Also use divisions in this equation !!!!!!!!!!!!!!!!!!!!!!!!
+                    }
+                }
+            }
+
+            if (0 == (times.Count))
+            {
+                return;
+            }
+
+            times.Sort(Compare);
+
+        }
+
+        public static TimeDescriptionList Create(PartDescriptionList partDescriptionList, int divisions)
+        {
+            return new TimeDescriptionList(partDescriptionList, divisions);
+        }
+
+        public int Compare(Element x, Element y)
+        {
+            if ((x is NoteElement) && (y is NoteElement))
+            {
+                return ((x as NoteElement).StartTime - (y as NoteElement).StartTime);
+            }
+            return 0;
+        }
+
+        public void LoadListBox(ListBox listBox)
+        {
+            foreach (Element e in times)
+            {
+                listBox.Items.Add(e);
+            }
+        }
+
+    }
+}
+
