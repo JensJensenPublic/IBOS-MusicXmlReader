@@ -35,13 +35,14 @@
             this.Stop = new System.Windows.Forms.Button();
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.numericUpDownPlaySpeed = new System.Windows.Forms.NumericUpDown();
+            this.butonPlayPoly = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxTimes
             // 
             this.listBoxTimes.FormattingEnabled = true;
-            this.listBoxTimes.Location = new System.Drawing.Point(321, 55);
+            this.listBoxTimes.Location = new System.Drawing.Point(321, 77);
             this.listBoxTimes.Name = "listBoxTimes";
             this.listBoxTimes.Size = new System.Drawing.Size(275, 407);
             this.listBoxTimes.TabIndex = 1;
@@ -50,7 +51,7 @@
             // listBoxFiltered
             // 
             this.listBoxFiltered.FormattingEnabled = true;
-            this.listBoxFiltered.Location = new System.Drawing.Point(12, 57);
+            this.listBoxFiltered.Location = new System.Drawing.Point(12, 77);
             this.listBoxFiltered.Name = "listBoxFiltered";
             this.listBoxFiltered.Size = new System.Drawing.Size(303, 407);
             this.listBoxFiltered.TabIndex = 2;
@@ -67,17 +68,17 @@
             // 
             // Play
             // 
-            this.Play.Location = new System.Drawing.Point(323, 11);
+            this.Play.Location = new System.Drawing.Point(12, 41);
             this.Play.Name = "Play";
             this.Play.Size = new System.Drawing.Size(75, 23);
             this.Play.TabIndex = 4;
-            this.Play.Text = "Spil";
+            this.Play.Text = "Spil enstemmigt";
             this.Play.UseVisualStyleBackColor = true;
             this.Play.Click += new System.EventHandler(this.Play_Click);
             // 
             // Stop
             // 
-            this.Stop.Location = new System.Drawing.Point(533, 12);
+            this.Stop.Location = new System.Drawing.Point(157, 38);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(75, 23);
             this.Stop.TabIndex = 5;
@@ -120,11 +121,22 @@
             0});
             this.numericUpDownPlaySpeed.ValueChanged += new System.EventHandler(this.numericUpDownPlaySpeed_ValueChanged);
             // 
+            // butonPlayPoly
+            // 
+            this.butonPlayPoly.Location = new System.Drawing.Point(321, 38);
+            this.butonPlayPoly.Name = "butonPlayPoly";
+            this.butonPlayPoly.Size = new System.Drawing.Size(75, 23);
+            this.butonPlayPoly.TabIndex = 8;
+            this.butonPlayPoly.Text = "Spil flerstemmigt";
+            this.butonPlayPoly.UseVisualStyleBackColor = true;
+            this.butonPlayPoly.Click += new System.EventHandler(this.butonPlayPoly_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(610, 496);
+            this.Controls.Add(this.butonPlayPoly);
             this.Controls.Add(this.numericUpDownPlaySpeed);
             this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.Stop);
@@ -148,6 +160,7 @@
         private System.Windows.Forms.Button Stop;
         private System.Windows.Forms.TextBox textBoxMessage;
         private System.Windows.Forms.NumericUpDown numericUpDownPlaySpeed;
+        private System.Windows.Forms.Button butonPlayPoly;
     }
 }
 

@@ -11,7 +11,7 @@ namespace MusicXmlReaderUI
     
     public class EventDescription
     {
-        int time;
+        int duration;
         int numberOfParts;
 
         /// <summary>
@@ -27,6 +27,14 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public int Duration
+        {
+            get
+            {
+                return duration;
+            }
+        }
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
@@ -36,7 +44,7 @@ namespace MusicXmlReaderUI
 
         private EventDescription(int time, int numberOfParts)
         {
-            this.time = time;
+            this.duration = time;
             this.numberOfParts = numberOfParts;
             this.notes = new List<NoteElement>(numberOfParts);
         }
@@ -53,7 +61,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder(string.Format("{0}: ", time));
+            StringBuilder sb = new StringBuilder(string.Format("{0}: ", duration));
             foreach (NoteElement noteElement in notes)
             {
                 sb.Append( string.Format("{0} ", noteElement.PartId));

@@ -12,6 +12,7 @@ namespace MusicXmlReaderUI
         MidiNote latestNotePlayed = null;
         MidiOut midiOut = null;
         ListBox listBox = null;
+        ListBox listBoxPoly = null;
         System.Diagnostics.Stopwatch stopWatch = null;
         long nextActionTime;
         int tempo;
@@ -22,10 +23,11 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// Constructor
         /// </summary>
-        public MusicPlayer(ListBox listBox, MidiOut midiOut)
+        public MusicPlayer(ListBox listBox, ListBox listBoxPoly, MidiOut midiOut)
         {
             this.midiOut = midiOut;
             this.listBox = listBox;
+            this.listBoxPoly = listBoxPoly;
             // this.userSlowdown = 1.0F;
             this.userSlowDown = 1.0F;
         }
@@ -74,23 +76,63 @@ namespace MusicXmlReaderUI
         }
 
 
+        /// <summary>
+        /// Play a single, nonophonic note
+        /// </summary>
+        /// <param name="noteElement"></param>
+        private void Play(NoteElement noteElement)
+        {
+
+            if (0 == nextActionTime)
+            {
+                // We  play the first note or pause immediately but remember when we did it.
+                nextActionTime = stopWatch.ElapsedMilliseconds;
+            }
+            else
+            {
+                long sleep = nextActionTime - stopWatch.ElapsedMilliseconds;
+                sleep = Math.Max(0, sleep); // Hack to avoid crash 
+                System.Threading.Thread.Sleep((int)sleep);
+            }
+
+            if (!noteElement.TieStop)
+            {
+                if (null != latestNotePlayed)
+                {
+                    latestNotePlayed.StopPlaying(midiOut);
+                }
+
+                if ("" != noteElement.Step)
+                {
+                    // This is a playable note, not a pause !
+                    latestNotePlayed = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                }
+            }
+            nextActionTime += Duration(noteElement);
+        }
+
 
         /// <summary>
         /// Used when playing automatically. The user just starts a thread for playing.
         /// </summary>
         /// <param name="selectedObject"></param>
         internal void AutoPlay(object selectedObject)
-        {             
+        {
             if (null == selectedObject) return;
 
             // We can't switch on selectedObject.GetType() because it is not an integral type.
             if (selectedObject is NoteElement)
             {
-                NoteElement nodeElement = selectedObject as NoteElement;
-
+                NoteElement noteElement = selectedObject as NoteElement;
+                Play(noteElement);
+                return;
+            }
+            else if (selectedObject is EventDescription)
+            {
+                // TO DO: Complete this code !!****************************************************************************************
                 if (0 == nextActionTime)
                 {
-                    // We  play the first note or pause immediately but remember when we did it.
+                    // We  play the first polyphonic set of notes or pauses immediately but remember when we did it.
                     nextActionTime = stopWatch.ElapsedMilliseconds;
                 }
                 else
@@ -99,21 +141,21 @@ namespace MusicXmlReaderUI
                     sleep = Math.Max(0, sleep); // Hack to avoid crash 
                     System.Threading.Thread.Sleep((int)sleep);
                 }
-                
-                if (! nodeElement.TieStop)
-                {
-                    if (null != latestNotePlayed)
-                    {
-                        latestNotePlayed.StopPlaying(midiOut);
-                    }
 
-                    if ("" != nodeElement.Step)
+                EventDescription eventDescription = selectedObject as EventDescription;
+                {
+                    foreach (NoteElement noteElement in eventDescription.Notes)
                     {
-                        // This is a playable note, not a pause !
-                        latestNotePlayed = new MidiNote(nodeElement.Step, nodeElement.Alter, nodeElement.Octave, 127, midiOut);
+                        if ("" != noteElement.Step)
+                        {
+                            // This is a playable note, not a pause !
+                            new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                        }                       
                     }
                 }
-                nextActionTime += Duration(nodeElement);
+                //nextActionTime += (eventDescription.Duration * 1); // Needs some scaling
+                //nextActionTime += (eventDescription.Duration / 2); // Needs some scaling
+                nextActionTime = (eventDescription.Duration / 2); // Needs some scaling
                 return;
             }
             else if (selectedObject is SoundElement)
@@ -144,28 +186,51 @@ namespace MusicXmlReaderUI
         private System.Threading.Thread playerThread;
         private bool playing = false;
 
-        delegate void SetSelectedIndexCallback(int index);
-        private void SetSelectedIndex(int index)
+        //delegate void SetSelectedIndexCallback(int index);
+        //private void SetSelectedIndex(int index)
+        //{
+        //    // InvokeRequired required compares the thread ID of the
+        //    // calling thread to the thread ID of the creating thread.
+        //    // If these threads are different, it returns true.
+        //    if (this.listBox.InvokeRequired)
+        //    {
+        //        SetSelectedIndexCallback d = new SetSelectedIndexCallback(SetSelectedIndex);
+        //        listBox.Invoke(d, new object[] { index });
+        //    }
+        //    else
+        //    {
+        //        listBox.Focus(); // Maybe not needed. How can we force the Screeen-reader to read the selected line? 
+        //        listBox.SelectedIndex = index;
+        //        // System.Threading.Thread.Sleep(100); // HACK Pause the UI thread and let the Screenreader get a chance
+
+        //    }
+        //}
+
+
+        delegate void SetSelectedIndexCallback(ListBox listBox,int index);
+        private void SetSelectedIndex(ListBox listBox, int index)
         {
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
-            if (this.listBox.InvokeRequired)
+            if (listBox.InvokeRequired)
             {
                 SetSelectedIndexCallback d = new SetSelectedIndexCallback(SetSelectedIndex);
-                listBox.Invoke(d, new object[] { index });
+                listBox.Invoke(d, new object[] { listBox, index });
             }
             else
             {
                 listBox.Focus(); // Maybe not needed. How can we force the Screeen-reader to read the selected line? 
                 listBox.SelectedIndex = index;
                 // System.Threading.Thread.Sleep(100); // HACK Pause the UI thread and let the Screenreader get a chance
-                                       
+
             }
         }
 
 
-        private void PlayerThreadStart()
+
+
+        private void PlayerThreadStartMono()
         {
             System.Threading.Thread.Sleep(1000); // Allow Screanreader to complete initial actions
             this.stopWatch = new System.Diagnostics.Stopwatch();
@@ -178,17 +243,44 @@ namespace MusicXmlReaderUI
                 if (o is NoteElement)
                 {
                     // Only select notes (and pauses) to allow for correct timing!
-                    SetSelectedIndex(i); // Select the corresponding line in the Listbox,  handling Cross-thread issue
+                    SetSelectedIndex(listBox,i); // Select the corresponding line in the Listbox,  handling Cross-thread issue
                 }    
             }
         }
 
-        public void StartPlaying()
+        public void StartPlayingMono()
         {
             playing = true;
-            playerThread = new System.Threading.Thread(new System.Threading.ThreadStart(PlayerThreadStart));
+            playerThread = new System.Threading.Thread(new System.Threading.ThreadStart(PlayerThreadStartMono));
             playerThread.Start();
         }
+
+        public void StartPlayingPoly()
+        {
+            playing = true;
+            playerThread = new System.Threading.Thread(new System.Threading.ThreadStart(PlayerThreadStartPoly));
+            playerThread.Start();
+        }
+
+        private void PlayerThreadStartPoly()
+        {
+            System.Threading.Thread.Sleep(1000); // Allow Screanreader to complete initial actions
+            this.stopWatch = new System.Diagnostics.Stopwatch();
+            this.stopWatch.Start();
+            this.nextActionTime = 0;
+            for (int i = 0; ((i < listBoxPoly.Items.Count) && (playing)); i++)
+            {
+                object o = listBoxPoly.Items[i];
+                AutoPlay(o); // Play the next note, using the correct timing!
+                if (o is EventDescription)
+                {
+                    // Only select notes (and pauses) to allow for correct timing!
+                    SetSelectedIndex(listBoxPoly,i); // Select the corresponding line in the Listbox,  handling Cross-thread issue
+                }
+            }
+        }
+
+
 
         public void StopPlaying()
         {

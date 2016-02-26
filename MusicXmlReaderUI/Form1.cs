@@ -96,7 +96,7 @@ namespace MusicXmlReaderUI
 
         private void Play_Click(object sender, EventArgs e)
         {
-            model.musicPlayer.StartPlaying();
+            model.musicPlayer.StartPlayingMono();
         }
 
         private void Stop_Click(object sender, EventArgs e)
@@ -114,6 +114,11 @@ namespace MusicXmlReaderUI
             object o = listBoxTimes.Items[listBoxTimes.SelectedIndex];
             model.musicPlayer.SelectedIndexChanged(listBoxTimes.SelectedIndex, o);
 
+        }
+
+        private void butonPlayPoly_Click(object sender, EventArgs e)
+        {
+            model.musicPlayer.StartPlayingPoly();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace MusicXmlReaderUI
         List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
         MidiOut midiOut;
         ListBox listBoxParts; // Lists elements grouped per part
-        ListBox listBoxTimes; // Lists elements grouped per time
+        ListBox listBoxPoly; // Lists elements grouped per time
         public MusicPlayer musicPlayer;
         public PartlistElement partList;
         int divisions; // Current number of divisions of a quarternode
@@ -25,13 +25,13 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// Constructor
         /// </summary>
-        public Model(ListBox listBox, ListBox listBoxTimes)
+        public Model(ListBox listBox, ListBox listBoxPoly)
         {
             allMusicXmlObjecsts = new List<MusicXmlObject>();
             midiOut = new MidiOut(0);
-            musicPlayer = new MusicPlayer(listBox, midiOut);
+            musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
             this.listBoxParts = listBox;
-            this.listBoxTimes = listBoxTimes;
+            this.listBoxPoly = listBoxPoly;
         }
  
         public bool WriteElement(XmlNode node)
@@ -216,7 +216,7 @@ namespace MusicXmlReaderUI
 
         public void LoadListBoxTimes()
         {
-            eventDescriptionList.LoadListBox(listBoxTimes);
+            eventDescriptionList.LoadListBox(listBoxPoly);
             //timeDescriptionList.LoadListBox(listBoxTimes);
         }
 
