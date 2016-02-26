@@ -5,8 +5,9 @@ namespace MusicXmlReaderUI
     public class ScorePartElement : Element
     {
 
-        public string partNumber = "";
-        public string partName = "";
+        public string partId = ""; // For instance "P1"
+        public string partName = ""; // For instance "Soprano"
+        public int partNumber; // A unique artificial index  for this part.
         public ScoreInstrumentElement scoreInstrumentElement;
         public MidiInstrumentElement midiInstrumentElement;
 
@@ -26,13 +27,15 @@ namespace MusicXmlReaderUI
         private ScorePartElement(XmlNode node)
         {
 
+            int i = 0;
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
                 switch (a.Name)
                 {
                     case "id":
-                        partNumber = a.Value;
+                        partId = a.Value;
+                        partNumber = i++; 
                         break;
                 }
             }
@@ -61,7 +64,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return string.Format("Stemme {0} = {1} TODO: Fill in the rest!", partNumber, partName);  
+            return string.Format("Stemme {0} = {1} TODO: Fill in the rest!", partId, partName);  
         }
     }
 }

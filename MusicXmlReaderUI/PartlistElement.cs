@@ -72,7 +72,7 @@ namespace MusicXmlReaderUI
             List<string> list = new List<string>();
             foreach (ScorePartElement spe in scorePartElements)
             {
-                list.Add(string.Format("Stemme: {0} ({1})",spe.partName,spe.partNumber));
+                list.Add(string.Format("Stemme: {0} ({1})",spe.partName,spe.partId));
                 list.Add(string.Format("   {0}",spe.scoreInstrumentElement.ToString()));
                 list.Add(string.Format("   {0}",spe.midiInstrumentElement.ToString()));
             }

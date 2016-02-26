@@ -54,7 +54,7 @@ namespace MusicXmlReaderUI
                     // We also save the partitionlist in the model fpr later reference.
                     partList = PartlistElement.Create(node);
                     allMusicXmlObjecsts.Add(partList);
-                    this.numberOfParts = partList.NumberOfParts();
+                    this.numberOfParts = partList.NumberOfParts();    
                     // allMusicXmlObjecsts.AddRange(   (partitionList.ToStrings());
                     continueRecursion = false;
                     break;
@@ -188,8 +188,9 @@ namespace MusicXmlReaderUI
         }
 
         // The following 2 lists contain references into allMusicXmlObjecsts where the decoded information is kept! 
-        private PartDescriptionList partDescriptionList;
-        private TimeDescriptionList timeDescriptionList;
+        private PartDescriptionList  partDescriptionList;
+        private TimeDescriptionList  timeDescriptionList;
+        private EventDescriptionList eventDescriptionList;
         //private MeasureDescriptionList measureDescriptionList;
 
         public void Init()
@@ -197,6 +198,7 @@ namespace MusicXmlReaderUI
             partDescriptionList = PartDescriptionList.Create(allMusicXmlObjecsts,numberOfParts);
             divisions = 24; // TODO compute!
             timeDescriptionList = TimeDescriptionList.Create(partDescriptionList, divisions);
+            eventDescriptionList = EventDescriptionList.Create(timeDescriptionList, numberOfParts);
             //measureDescriptionList = MeasureDescriptionList.Create(allMusicXmlObjecsts);
         }
 
@@ -214,7 +216,8 @@ namespace MusicXmlReaderUI
 
         public void LoadListBoxTimes()
         {
-            timeDescriptionList.LoadListBox(listBoxTimes);
+            eventDescriptionList.LoadListBox(listBoxTimes);
+            //timeDescriptionList.LoadListBox(listBoxTimes);
         }
 
     }

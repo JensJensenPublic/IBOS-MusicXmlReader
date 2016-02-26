@@ -55,6 +55,7 @@
     <Compile Include="ClefElement.cs" />
     <Compile Include="DivisionsElement.cs" />
     <Compile Include="Element.cs" />
+    <Compile Include="EventDescriptionList.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +81,7 @@
     <Compile Include="SimpleTextElement.cs" />
     <Compile Include="SoundElement.cs" />
     <Compile Include="TieElement.cs" />
+    <Compile Include="EventDescription.cs" />
     <Compile Include="TimeDescriptionList.cs" />
     <Compile Include="TimeElement.cs" />
     <Compile Include="UnimplementedElement.cs" />

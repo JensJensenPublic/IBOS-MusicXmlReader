@@ -19,7 +19,7 @@ namespace MusicXmlReaderUI
         }
 
         // The list of times ,each containing a list of elements        
-        private List<Element> times;
+        public List<Element> times;
 
         /// <summary>
         /// Private constructor, used by the Crate() method
@@ -52,7 +52,20 @@ namespace MusicXmlReaderUI
 
             times.Sort(Compare);
 
-        }
+            //List<EventDescription> events = new List<EventDescription>();
+            //int currentStartTime = -1;
+            //EventDescription currentEventDescription = null;
+            //foreach (NoteElement note in times)
+            //{
+            //    if (note.StartTime != currentStartTime)
+            //    {
+            //        currentEventDescription = EventDescription.Create(currentStartTime, numberOfParts);
+            //        events.Add(currentEventDescription);
+            //    }
+            //    currentEventDescription.AddNote(note);
+            }
+
+        
 
         public static TimeDescriptionList Create(PartDescriptionList partDescriptionList, int divisions)
         {

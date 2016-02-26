@@ -8,9 +8,11 @@ namespace MusicXmlReaderUI
     public class NoteElement : Element
     {
         // Allows for representing the following subdivisions of a quarter node:
-        // 2,3,4,5,6,7,8,9,10 
+        // 2,3,4,5,6,7,8,9,10. 
+        // 1260 can be divided by 2,3,4,5,6,7,8,9 and 10 !
         private const int commonDivisions = 1260;
 
+        // Values found in MusicXml file, possibly after a minor type conversion, typically fromstring to int.
         string step = "";
         string alter = ""; // Represents the number of semitones the note is altered.
         string octave = "";
@@ -127,7 +129,15 @@ namespace MusicXmlReaderUI
 
 
         }
-        
+
+        public string PartId
+        {
+            get
+            {
+                return partId;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
