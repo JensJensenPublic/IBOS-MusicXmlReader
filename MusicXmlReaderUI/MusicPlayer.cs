@@ -232,20 +232,7 @@ namespace MusicXmlReaderUI
 
         private void PlayerThreadStartMono()
         {
-            System.Threading.Thread.Sleep(1000); // Allow Screanreader to complete initial actions
-            this.stopWatch = new System.Diagnostics.Stopwatch();
-            this.stopWatch.Start();
-            this.nextActionTime = 0;
-            for (int i = 0; ((i < listBox.Items.Count) && (playing)); i++)
-            {
-                object o = listBox.Items[i]; 
-                AutoPlay(o); // Play the next note, using the correct timing!
-                if (o is NoteElement)
-                {
-                    // Only select notes (and pauses) to allow for correct timing!
-                    SetSelectedIndex(listBox,i); // Select the corresponding line in the Listbox,  handling Cross-thread issue
-                }    
-            }
+            PlayerThreadStart(listBox, typeof(NoteElement));
         }
 
         public void StartPlayingMono()
@@ -264,18 +251,23 @@ namespace MusicXmlReaderUI
 
         private void PlayerThreadStartPoly()
         {
+            PlayerThreadStart(listBoxPoly, typeof(EventDescription));
+        }
+
+        private void PlayerThreadStart(ListBox listBox, Type type)
+        {
             System.Threading.Thread.Sleep(1000); // Allow Screanreader to complete initial actions
             this.stopWatch = new System.Diagnostics.Stopwatch();
             this.stopWatch.Start();
             this.nextActionTime = 0;
-            for (int i = 0; ((i < listBoxPoly.Items.Count) && (playing)); i++)
+            for (int i = 0; ((i < listBox.Items.Count) && (playing)); i++)
             {
-                object o = listBoxPoly.Items[i];
+                object o = listBox.Items[i];
                 AutoPlay(o); // Play the next note, using the correct timing!
-                if (o is EventDescription)
+                if (o.GetType() == type)
                 {
                     // Only select notes (and pauses) to allow for correct timing!
-                    SetSelectedIndex(listBoxPoly,i); // Select the corresponding line in the Listbox,  handling Cross-thread issue
+                    SetSelectedIndex(listBox, i); // Select the corresponding line in the Listbox,  handling Cross-thread issue
                 }
             }
         }
