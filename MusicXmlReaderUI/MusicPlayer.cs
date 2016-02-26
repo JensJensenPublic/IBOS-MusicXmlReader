@@ -40,10 +40,22 @@ namespace MusicXmlReaderUI
         {
             if (playing) return;
             if (null == selectedObject) return;
-            if (!(selectedObject is NoteElement)) return;
-            NoteElement noteElement = selectedObject as NoteElement;
-            if (string.IsNullOrEmpty(noteElement.Step)) return; // This is a pause
-            new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+            if ((selectedObject is NoteElement))
+            {
+                NoteElement noteElement = selectedObject as NoteElement;
+                if (string.IsNullOrEmpty(noteElement.Step)) return; // This is a pause
+                new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+            }
+            else if ((selectedObject is EventDescription))
+            {
+                EventDescription eventDescription = selectedObject as EventDescription;
+                foreach (NoteElement noteElement in eventDescription.Notes)
+                {
+                    if (string.IsNullOrEmpty(noteElement.Step)) break; // This is a pause
+                    new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                }         
+            }
+            return;
         }
 
         /// <summary>

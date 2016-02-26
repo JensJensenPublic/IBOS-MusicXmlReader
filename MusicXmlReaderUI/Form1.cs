@@ -108,5 +108,12 @@ namespace MusicXmlReaderUI
         {
             model.musicPlayer.PlaySpeedChanged(sender, e);
         }
+
+        private void listBoxTimes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            object o = listBoxTimes.Items[listBoxTimes.SelectedIndex];
+            model.musicPlayer.SelectedIndexChanged(listBoxTimes.SelectedIndex, o);
+
+        }
     }
 }

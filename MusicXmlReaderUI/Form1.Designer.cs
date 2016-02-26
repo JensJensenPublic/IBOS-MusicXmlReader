@@ -45,6 +45,7 @@
             this.listBoxTimes.Name = "listBoxTimes";
             this.listBoxTimes.Size = new System.Drawing.Size(275, 407);
             this.listBoxTimes.TabIndex = 1;
+            this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
             // 
             // listBoxFiltered
             // 

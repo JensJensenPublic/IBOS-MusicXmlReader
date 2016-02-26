@@ -17,7 +17,15 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// Notes to be played at this time
         /// </summary>
-        List<NoteElement> notes;
+        private List<NoteElement> notes;
+
+        public List<NoteElement> Notes
+        {
+            get
+            {
+                return notes;
+            }
+        }
 
         /// <summary>
         /// To force the use of the Create() method
