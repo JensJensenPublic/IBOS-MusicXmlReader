@@ -66,19 +66,23 @@ namespace MusicXmlReaderUI
                     this.currentMeasureNumber = int.Parse(measureElement.Number);
                     break;
                 case "score-part":
+                    // Describes the meta-data related to a part.
+                    // This includes "part-name", "score-instrument" and "midi-instrument".
+                    // (The notes and pauses are described in "part")
                     scorePartElement = ScorePartElement.Create(node);
                     allMusicXmlObjecsts.Add(scorePartElement);
                     continueRecursion = false;
                     break;
                 case "part": 
-                    // Start the description of notes (and pauses) of a part.               
+                    // Description the notes (and pauses) of a part.
+                    // (The mata-data is described in "score-part")               
                     PartElement partElement = PartElement.Create(node);
                     allMusicXmlObjecsts.Add(partElement);
                     // Save the current part Id
                     this.currentPartId = partElement.PartId;
                     // Look up the partition in the partList
                     ScorePartElement currentScorePartElement = partList.GetPartFromId(partElement.PartId);
-                    // Save the part number as the current part number  
+                    // Save the part number as the current part number. This will be saved with each note!  
                     this.currentPartNumber = currentScorePartElement.partNumber;        
                     break;
                 case "software":
