@@ -64,7 +64,8 @@ namespace MusicXmlReaderUI
             StringBuilder sb = new StringBuilder(string.Format("{0}: ", duration));
             foreach (NoteElement noteElement in notes)
             {
-                sb.Append( string.Format("{0} ", noteElement.PartId));
+  //              sb.Append(string.Format("{0} ", noteElement.PartId));
+                sb.Append(string.Format("[{0}] ", noteElement.PartNumber));
             }
             return sb.ToString();           
         }

@@ -27,15 +27,14 @@ namespace MusicXmlReaderUI
         private ScorePartElement(XmlNode node)
         {
 
-            int i = 0;
+            //this.partNumber = partNumber;
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
                 switch (a.Name)
                 {
                     case "id":
-                        partId = a.Value;
-                        partNumber = i++; 
+                        partId = a.Value;                       
                         break;
                 }
             }
@@ -64,7 +63,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return string.Format("Stemme {0} = {1} TODO: Fill in the rest!", partId, partName);  
+            return string.Format("Stemme[{0}] {1} = {2} TODO: Fill in the rest!", partNumber, partId, partName);  
         }
     }
 }

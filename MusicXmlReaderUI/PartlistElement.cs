@@ -6,7 +6,12 @@ namespace MusicXmlReaderUI
     class PartlistElement : Element
     {
 
-        List<ScorePartElement> scorePartElements = new List<ScorePartElement>();
+        /// <summary>
+        ///  Allows for identifying each part through a unique integer index.
+        /// </summary>
+        private ScorePartElement[] partArray;
+
+        List<ScorePartElement> scorePartElements = new List<ScorePartElement>();   
 
         public int NumberOfParts()
         {
@@ -18,6 +23,8 @@ namespace MusicXmlReaderUI
         /// </summary>
         private PartlistElement()
         { }
+
+      
         
 
         /// <summary>
@@ -35,7 +42,7 @@ namespace MusicXmlReaderUI
                 throw new System.ArgumentException();
             }
 
-            // Dig out elements
+            // Dig out elements      
             foreach (XmlNode n in node.ChildNodes)
             {
                 switch (n.Name)
@@ -55,6 +62,39 @@ namespace MusicXmlReaderUI
                 }
             }
 
+            // Now we know the number of parts. Create an array of them.
+            partArray = new ScorePartElement[scorePartElements.Count];
+            // Insert a reference to each part at the relevant index.
+            int partIndex = 0;      
+            foreach (ScorePartElement scorePartElement in scorePartElements)
+            {             
+                partArray[partIndex] = scorePartElement;
+                scorePartElement.partNumber = partIndex++; // Each part knows its own index! 
+            }
+        }
+
+        public ScorePartElement GetPartFromNumber(int number)
+        {
+            if (number < partArray.Length) return partArray[number];
+            return null;
+        }
+
+        public ScorePartElement GetPartFromId(string id)
+        {
+            foreach (ScorePartElement scorePartElement in partArray)
+            {
+                if (id == scorePartElement.partId) return scorePartElement;
+            }
+            return null;
+        }
+
+        public ScorePartElement GetPartFromName(string name)
+        {
+            foreach (ScorePartElement scorePartElement in partArray)
+            {
+                if (name == scorePartElement.partName) return scorePartElement;
+            }
+            return null;
         }
 
         public static PartlistElement Create(XmlNode node)
@@ -70,12 +110,20 @@ namespace MusicXmlReaderUI
         public string[] ToStrings()
         {
             List<string> list = new List<string>();
-            foreach (ScorePartElement spe in scorePartElements)
+            //foreach (ScorePartElement spe in scorePartElements)
+            //{
+            //    list.Add(string.Format("Stemme: {0} ({1})",spe.partName,spe.partId));
+            //    list.Add(string.Format("   {0}",spe.scoreInstrumentElement.ToString()));
+            //    list.Add(string.Format("   {0}",spe.midiInstrumentElement.ToString()));
+            //}
+            foreach (ScorePartElement scorePartElement in partArray)
             {
-                list.Add(string.Format("Stemme: {0} ({1})",spe.partName,spe.partId));
-                list.Add(string.Format("   {0}",spe.scoreInstrumentElement.ToString()));
-                list.Add(string.Format("   {0}",spe.midiInstrumentElement.ToString()));
+                list.Add(string.Format("Stemme[{0}]: {1} ({2})", scorePartElement.partNumber, scorePartElement.partName, scorePartElement.partId));
+                list.Add(string.Format("   {0}", scorePartElement.scoreInstrumentElement.ToString()));
+                list.Add(string.Format("   {0}", scorePartElement.midiInstrumentElement.ToString()));
+
             }
+            
             // Convert from List to Array:
             string[] strings = new string[list.Count];
             for (int i = 0; (i < list.Count); i++)

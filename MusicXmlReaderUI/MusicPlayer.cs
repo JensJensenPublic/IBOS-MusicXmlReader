@@ -77,7 +77,7 @@ namespace MusicXmlReaderUI
 
 
         /// <summary>
-        /// Play a single, nonophonic note
+        /// Play a single, monophonic note
         /// </summary>
         /// <param name="noteElement"></param>
         private void Play(NoteElement noteElement)
@@ -153,8 +153,6 @@ namespace MusicXmlReaderUI
                         }                       
                     }
                 }
-                //nextActionTime += (eventDescription.Duration * 1); // Needs some scaling
-                //nextActionTime += (eventDescription.Duration / 2); // Needs some scaling
                 nextActionTime = (eventDescription.Duration / 2); // Needs some scaling
                 return;
             }
@@ -185,27 +183,6 @@ namespace MusicXmlReaderUI
 
         private System.Threading.Thread playerThread;
         private bool playing = false;
-
-        //delegate void SetSelectedIndexCallback(int index);
-        //private void SetSelectedIndex(int index)
-        //{
-        //    // InvokeRequired required compares the thread ID of the
-        //    // calling thread to the thread ID of the creating thread.
-        //    // If these threads are different, it returns true.
-        //    if (this.listBox.InvokeRequired)
-        //    {
-        //        SetSelectedIndexCallback d = new SetSelectedIndexCallback(SetSelectedIndex);
-        //        listBox.Invoke(d, new object[] { index });
-        //    }
-        //    else
-        //    {
-        //        listBox.Focus(); // Maybe not needed. How can we force the Screeen-reader to read the selected line? 
-        //        listBox.SelectedIndex = index;
-        //        // System.Threading.Thread.Sleep(100); // HACK Pause the UI thread and let the Screenreader get a chance
-
-        //    }
-        //}
-
 
         delegate void SetSelectedIndexCallback(ListBox listBox,int index);
         private void SetSelectedIndex(ListBox listBox, int index)

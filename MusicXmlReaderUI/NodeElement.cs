@@ -28,8 +28,8 @@ namespace MusicXmlReaderUI
         string localizedTie = "";
         Pitch pitch;
         int measureNumber;
-//        int partNumber;
         string partId;
+        int partNumber;
         int startTime;
         
         public string Step
@@ -130,11 +130,27 @@ namespace MusicXmlReaderUI
 
         }
 
+        /// <summary>
+        /// The Id of the part to which this note belongs
+        /// Example: "P1"
+        /// </summary>
         public string PartId
         {
             get
             {
                 return partId;
+            }
+        }
+
+        /// <summary>
+        /// The number of the part to which this note belongs
+        /// Example 0
+        /// </summary>
+        public int PartNumber
+        {
+            get
+            {
+                return partNumber;
             }
         }
 
@@ -196,10 +212,11 @@ namespace MusicXmlReaderUI
         /// Private constructor, used by the Crate() method
         /// </summary>
         /// <param name="node"></param>
-        private NoteElement(XmlNode xmlNode,int divisions,int measureNumber, string partId)
+        private NoteElement(XmlNode xmlNode,int divisions,int measureNumber, string partId,int partNumber)
         {
             this.measureNumber = measureNumber;
             this.partId = partId;
+            this.partNumber = partNumber;
             foreach (XmlNode child in xmlNode.ChildNodes)
             {
                 switch (child.Name)
@@ -228,9 +245,9 @@ namespace MusicXmlReaderUI
             // Model.GetNoteTiming(out this.startTime, out this.endTime, int.Parse(this.duration)); 
         }
 
-        public static NoteElement Create(XmlNode node, int divisions, int measureNumber, string partId)
+        public static NoteElement Create(XmlNode node, int divisions, int measureNumber, string partId, int partNumber)
         {
-            return new NoteElement(node, divisions, measureNumber, partId);
+            return new NoteElement(node, divisions, measureNumber, partId, partNumber);
         }
 
         public override string ToString()

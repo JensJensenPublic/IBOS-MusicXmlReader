@@ -19,7 +19,9 @@ namespace MusicXmlReaderUI
         int latestMeasureNumber = 0;
         int numberOfParts; // Number of parts
         //int currentPartitionNumber = -1;
-        string currentPartitionId = "";
+        string currentPartId = "";
+        int currentPartNumber = 0;
+        ScorePartElement scorePartElement = null;
 
 
         /// <summary>
@@ -40,18 +42,18 @@ namespace MusicXmlReaderUI
             switch (node.Name)
             {
                 case "note":
-                    // If the measure number has changed ann the new measure number to the node
+                    // If the measure number has changed add the new measure number to the node
                     int tempMeasureNumber = 0;
                     if (this.currentMeasureNumber != this.latestMeasureNumber)
                     {
                         this.latestMeasureNumber = this.currentMeasureNumber;
                         tempMeasureNumber = this.currentMeasureNumber;
                     }
-                    allMusicXmlObjecsts.Add(NoteElement.Create(node, this.divisions, tempMeasureNumber, this.currentPartitionId));
+                    allMusicXmlObjecsts.Add(NoteElement.Create(node, this.divisions, tempMeasureNumber, this.currentPartId, this.currentPartNumber));
                     continueRecursion = false;
                     break;
                 case "part-list":
-                    // We also save the partitionlist in the model fpr later reference.
+                    // We also save the part-list in the model fpr later reference.
                     partList = PartlistElement.Create(node);
                     allMusicXmlObjecsts.Add(partList);
                     this.numberOfParts = partList.NumberOfParts();    
@@ -64,13 +66,20 @@ namespace MusicXmlReaderUI
                     this.currentMeasureNumber = int.Parse(measureElement.Number);
                     break;
                 case "score-part":
-                    allMusicXmlObjecsts.Add(ScorePartElement.Create(node));
+                    scorePartElement = ScorePartElement.Create(node);
+                    allMusicXmlObjecsts.Add(scorePartElement);
                     continueRecursion = false;
                     break;
-                case "part":
+                case "part": 
+                    // Start the description of notes (and pauses) of a part.               
                     PartElement partElement = PartElement.Create(node);
                     allMusicXmlObjecsts.Add(partElement);
-                    this.currentPartitionId = partElement.PartId; 
+                    // Save the current part Id
+                    this.currentPartId = partElement.PartId;
+                    // Look up the partition in the partList
+                    ScorePartElement currentScorePartElement = partList.GetPartFromId(partElement.PartId);
+                    // Save the part number as the current part number  
+                    this.currentPartNumber = currentScorePartElement.partNumber;        
                     break;
                 case "software":
                 case "encoding-date":
