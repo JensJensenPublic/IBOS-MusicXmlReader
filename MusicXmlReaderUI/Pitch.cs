@@ -10,7 +10,7 @@ namespace MusicXmlReaderUI
         public static string[,] names =
         { { "Bb ","C  ","D  ","Es ","F  ","G  ","A  " }, // Alter = -2
           { "B  ","Des","Es ","E  ","Ges","As ","Bb " }, // Alter = -1
-          { "C  ","D",  "E  ","F  ","G  ","A  ","B  " }, // Alter =  0
+          { "C  ","D  ","E  ","F  ","G  ","A  ","B  " }, // Alter =  0
           { "Cis","Dis","Eis","Fis","Gis","Ais","C  " }, // Alter = +1   
           { "D",  "E",  "Fis","G  ","A  ","B  ","Cis" }};// Alter= +2
 
