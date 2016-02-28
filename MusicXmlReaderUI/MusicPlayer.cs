@@ -17,7 +17,7 @@ namespace MusicXmlReaderUI
         System.Diagnostics.Stopwatch stopWatch = null;
         long   nextActionTime;    // For autoplaying monophonic music 
         int tempo;
-        int numberOfParts;
+ 
 
         float userSlowDown;
 
@@ -131,6 +131,7 @@ namespace MusicXmlReaderUI
             {
                 throw new ArgumentException("Mitchmatch between number of parts");
             }
+                       
 
             // Wait for the time to play:
 
@@ -146,29 +147,28 @@ namespace MusicXmlReaderUI
                 System.Threading.Thread.Sleep((int)sleep);
             }
 
-            
+
             // Itetrate through all parts:
             for (int i = 0; (i < numberOfParts); i++)
-            {
+            { 
                 NoteElement noteElement = eventDescription.Notes[i];
+                if (null == noteElement) continue; // Nothing happens in this part.
+                if (noteElement.TieStop) continue; // Let the note continue
 
-                if ((null != noteElement) && (!noteElement.TieStop))
+                if (null != latestNotesPlayed[i])
                 {
-                    if (null != latestNotesPlayed[i])
-                    {
-                        latestNotesPlayed[i].StopPlaying(midiOut);
-                    }
+                    latestNotesPlayed[i].StopPlaying(midiOut);
+                }
 
-                    if ("" != noteElement.Step)
-                    {
-                        // This is a playable note, not a pause !
-                        latestNotesPlayed[i] = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);                        
-                    }
+                if ("" != noteElement.Step)
+                {
+                    // This is a playable note, not a pause !
+                    latestNotesPlayed[i] = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
                 }
             }
-            nextActionTime = (eventDescription.Duration * 1); // Needs some scaling        
+            nextActionTime = (eventDescription.Duration / 2); // Needs some scaling        
         }
-        
+
 
         /// <summary>
         /// Used when playing automatically. The user just starts a thread for playing.
