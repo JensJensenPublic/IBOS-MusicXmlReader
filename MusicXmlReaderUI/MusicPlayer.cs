@@ -55,9 +55,11 @@ namespace MusicXmlReaderUI
                 EventDescription eventDescription = selectedObject as EventDescription;
                 foreach (NoteElement noteElement in eventDescription.Notes)
                 {
-                    if (string.IsNullOrEmpty(noteElement.Step)) break; // This is a pause
-                    new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
-                }         
+                    if ((null != noteElement)  &&  (!noteElement.IsPause))
+                    { // This is a real note, not a pause
+                        new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                    }
+                }
             }
             return;
         }

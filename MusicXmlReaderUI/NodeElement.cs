@@ -154,6 +154,14 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public bool IsPause
+        {
+            get
+            {
+                return string.IsNullOrEmpty(step);
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
