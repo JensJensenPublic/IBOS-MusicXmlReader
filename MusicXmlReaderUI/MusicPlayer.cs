@@ -146,8 +146,7 @@ namespace MusicXmlReaderUI
                 System.Threading.Thread.Sleep((int)sleep);
             }
 
-            System.Threading.Thread.Sleep(1000); // eventDescription.Duration must be used here
-
+            
             // Itetrate through all parts:
             for (int i = 0; (i < numberOfParts); i++)
             {
