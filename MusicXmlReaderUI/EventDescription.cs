@@ -11,7 +11,7 @@ namespace MusicXmlReaderUI
     
     public class EventDescription
     {
-        int duration;
+        int startTime;
         int numberOfParts;
 
         /// <summary>
@@ -27,11 +27,11 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public int Duration
+        public int StartTime
         {
             get
             {
-                return duration;
+                return startTime;
             }
         }
 
@@ -44,7 +44,7 @@ namespace MusicXmlReaderUI
 
         private EventDescription(int time, int numberOfParts)
         {
-            this.duration = time;
+            this.startTime = time;
             this.numberOfParts = numberOfParts;
             this.notes = new NoteElement[numberOfParts];
         }
@@ -61,7 +61,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder(string.Format("{0}: ", duration));
+            StringBuilder sb = new StringBuilder(string.Format("{0}: ", startTime));
             foreach (NoteElement noteElement in notes)
             {
                 //              sb.Append(string.Format("{0} ", noteElement.PartId));

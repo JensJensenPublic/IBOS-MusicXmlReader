@@ -15,7 +15,8 @@ namespace MusicXmlReaderUI
         ListBox listBox = null;
         ListBox listBoxPoly = null;
         System.Diagnostics.Stopwatch stopWatch = null;
-        long   nextActionTime;    // For autoplaying monophonic music 
+        long nextActionTime;    // For autoplaying monophonic music 
+        long firstStopWatchTime = -1;    // For autoplaying polyphonic music 
         int tempo;
  
 
@@ -132,27 +133,27 @@ namespace MusicXmlReaderUI
             else if (numberOfParts != latestNotesPlayed.GetLength(0))
             {
                 throw new ArgumentException("Mitchmatch between number of parts");
-            }
-                       
+            }   
 
             // Wait for the time to play:
 
-            if (0 == nextActionTime)
+            if (-1 == firstStopWatchTime)
             {
-                // We  play the first note or pause immediately but remember when we did it.
-                nextActionTime = stopWatch.ElapsedMilliseconds;
+                // We  play the first note or pause immediately but remember when we did it
+                // and use this as a base for later timing.
+                firstStopWatchTime = stopWatch.ElapsedMilliseconds;
             }
             else
             {
-                long sleep = nextActionTime - stopWatch.ElapsedMilliseconds;
+                long sleep = (eventDescription.StartTime / 2) - (stopWatch.ElapsedMilliseconds - firstStopWatchTime);
                 sleep = Math.Max(0, sleep); // Hack to avoid crash 
                 System.Threading.Thread.Sleep((int)sleep);
             }
 
 
-            // Itetrate through all parts:
+            // Itetrate through all parts: 
             for (int i = 0; (i < numberOfParts); i++)
-            { 
+            {
                 NoteElement noteElement = eventDescription.Notes[i];
                 if (null == noteElement) continue; // Nothing happens in this part.
                 if (noteElement.TieStop) continue; // Let the note continue
@@ -168,7 +169,7 @@ namespace MusicXmlReaderUI
                     latestNotesPlayed[i] = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
                 }
             }
-            nextActionTime = (eventDescription.Duration / 2); // Needs some scaling        
+                  
         }
 
 
