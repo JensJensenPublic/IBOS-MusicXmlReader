@@ -74,7 +74,7 @@ namespace MusicXmlReaderUI
                     continueRecursion = false;
                     break;
                 case "part": 
-                    // Description the notes (and pauses) of a part.
+                    // Describes the notes (and pauses) of a part.
                     // (The mata-data is described in "score-part")               
                     PartElement partElement = PartElement.Create(node);
                     allMusicXmlObjecsts.Add(partElement);

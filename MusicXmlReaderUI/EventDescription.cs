@@ -17,9 +17,9 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// Notes to be played at this time
         /// </summary>
-        private List<NoteElement> notes;
+        private NoteElement[] notes;
 
-        public List<NoteElement> Notes
+        public NoteElement[] Notes
         {
             get
             {
@@ -46,7 +46,7 @@ namespace MusicXmlReaderUI
         {
             this.duration = time;
             this.numberOfParts = numberOfParts;
-            this.notes = new List<NoteElement>(numberOfParts);
+            this.notes = new NoteElement[numberOfParts];
         }
 
         public static EventDescription Create(int time, int numberOfParts)
@@ -56,7 +56,7 @@ namespace MusicXmlReaderUI
 
         public void AddNote(NoteElement noteElement)
         {
-            notes.Add(noteElement);
+            notes[noteElement.PartNumber] = noteElement;
         }
 
         public override string ToString()
@@ -64,8 +64,13 @@ namespace MusicXmlReaderUI
             StringBuilder sb = new StringBuilder(string.Format("{0}: ", duration));
             foreach (NoteElement noteElement in notes)
             {
-  //              sb.Append(string.Format("{0} ", noteElement.PartId));
-                sb.Append(string.Format("[{0}] ", noteElement.PartNumber));
+                //              sb.Append(string.Format("{0} ", noteElement.PartId));
+                string s = "-";
+                if (null != noteElement)
+                {
+                    s = string.IsNullOrEmpty(noteElement.Step) ? "P" : noteElement.Step;
+                }
+                sb.Append(string.Format("[{0}] ",s));
             }
             return sb.ToString();           
         }

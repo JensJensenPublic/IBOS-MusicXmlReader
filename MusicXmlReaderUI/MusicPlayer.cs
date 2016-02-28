@@ -9,13 +9,15 @@ namespace MusicXmlReaderUI
     public class MusicPlayer
     {
 
-        MidiNote latestNotePlayed = null;
+        MidiNote   latestNotePlayed = null;
+        MidiNote[] latestNotesPlayed = null;
         MidiOut midiOut = null;
         ListBox listBox = null;
         ListBox listBoxPoly = null;
         System.Diagnostics.Stopwatch stopWatch = null;
-        long nextActionTime;
+        long   nextActionTime;    // For autoplaying monophonic music 
         int tempo;
+        int numberOfParts;
 
         float userSlowDown;
 
@@ -27,7 +29,7 @@ namespace MusicXmlReaderUI
         {
             this.midiOut = midiOut;
             this.listBox = listBox;
-            this.listBoxPoly = listBoxPoly;
+            this.listBoxPoly = listBoxPoly;     
             // this.userSlowdown = 1.0F;
             this.userSlowDown = 1.0F;
         }
@@ -111,6 +113,63 @@ namespace MusicXmlReaderUI
             nextActionTime += Duration(noteElement);
         }
 
+        /// <summary>
+        /// Used for playing polyphonic music.
+        /// The EventDescription contains a set of noteElements to be handled simultaneously
+        /// </summary>
+        /// <param name=""></param>
+        /// <param name=""></param>
+        private void Play(EventDescription eventDescription)
+        {
+            // Be sure that the list of latest played notes is initialized:
+            int numberOfParts = eventDescription.Notes.GetLength(0);
+            if (null == latestNotesPlayed)
+            {
+                latestNotesPlayed = new MidiNote[numberOfParts];
+            }
+            else if (numberOfParts != latestNotesPlayed.GetLength(0))
+            {
+                throw new ArgumentException("Mitchmatch between number of parts");
+            }
+
+            // Wait for the time to play:
+
+            if (0 == nextActionTime)
+            {
+                // We  play the first note or pause immediately but remember when we did it.
+                nextActionTime = stopWatch.ElapsedMilliseconds;
+            }
+            else
+            {
+                long sleep = nextActionTime - stopWatch.ElapsedMilliseconds;
+                sleep = Math.Max(0, sleep); // Hack to avoid crash 
+                System.Threading.Thread.Sleep((int)sleep);
+            }
+
+            System.Threading.Thread.Sleep(1000); // eventDescription.Duration must be used here
+
+            // Itetrate through all parts:
+            for (int i = 0; (i < numberOfParts); i++)
+            {
+                NoteElement noteElement = eventDescription.Notes[i];
+
+                if ((null != noteElement) && (!noteElement.TieStop))
+                {
+                    if (null != latestNotesPlayed[i])
+                    {
+                        latestNotesPlayed[i].StopPlaying(midiOut);
+                    }
+
+                    if ("" != noteElement.Step)
+                    {
+                        // This is a playable note, not a pause !
+                        latestNotesPlayed[i] = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);                        
+                    }
+                }
+            }
+            nextActionTime = (eventDescription.Duration * 1); // Needs some scaling        
+        }
+        
 
         /// <summary>
         /// Used when playing automatically. The user just starts a thread for playing.
@@ -123,37 +182,12 @@ namespace MusicXmlReaderUI
             // We can't switch on selectedObject.GetType() because it is not an integral type.
             if (selectedObject is NoteElement)
             {
-                NoteElement noteElement = selectedObject as NoteElement;
-                Play(noteElement);
+                Play(selectedObject as NoteElement);
                 return;
             }
             else if (selectedObject is EventDescription)
             {
-                // TO DO: Complete this code !!****************************************************************************************
-                if (0 == nextActionTime)
-                {
-                    // We  play the first polyphonic set of notes or pauses immediately but remember when we did it.
-                    nextActionTime = stopWatch.ElapsedMilliseconds;
-                }
-                else
-                {
-                    long sleep = nextActionTime - stopWatch.ElapsedMilliseconds;
-                    sleep = Math.Max(0, sleep); // Hack to avoid crash 
-                    System.Threading.Thread.Sleep((int)sleep);
-                }
-
-                EventDescription eventDescription = selectedObject as EventDescription;
-                {
-                    foreach (NoteElement noteElement in eventDescription.Notes)
-                    {
-                        if ("" != noteElement.Step)
-                        {
-                            // This is a playable note, not a pause !
-                            new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
-                        }                       
-                    }
-                }
-                nextActionTime = (eventDescription.Duration / 2); // Needs some scaling
+                Play(selectedObject as EventDescription);
                 return;
             }
             else if (selectedObject is SoundElement)
