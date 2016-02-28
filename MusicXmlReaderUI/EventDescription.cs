@@ -68,9 +68,9 @@ namespace MusicXmlReaderUI
                 string s = "-";
                 if (null != noteElement)
                 {
-                    s = string.IsNullOrEmpty(noteElement.Step) ? "P" : noteElement.Step;
-                }
-                sb.Append(string.Format("[{0}] ",s));
+                    s = string.IsNullOrEmpty(noteElement.Step) ? "P" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave;
+                }              
+                sb.Append(string.Format("{0} ", s.Replace(" ", "")));  // Remove any blanks
             }
             return sb.ToString();           
         }

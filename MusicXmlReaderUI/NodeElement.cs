@@ -26,7 +26,7 @@ namespace MusicXmlReaderUI
         bool tieStop = false;
         string localizedType = "";
         string localizedTie = "";
-        Pitch pitch;
+        Pitch pitchValue;
         int measureNumber;
         string partId;
         int partNumber;
@@ -162,6 +162,15 @@ namespace MusicXmlReaderUI
             }
         }
 
+        internal Pitch PitchValue
+        {
+            get
+            {
+                return pitchValue;
+            }
+            
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -235,7 +244,7 @@ namespace MusicXmlReaderUI
                          step = GetChildValue(child, "step");
                          alter = GetChildValue(child, "alter");
                          octave = GetChildValue(child, "octave");
-                         pitch = Pitch.Create(step, alter, octave);
+                         pitchValue = Pitch.Create(step, alter, octave);
                          break;                
                     case "duration": duration = int.Parse(child.InnerText); break;
                     case "type": type = child.InnerText; break;
@@ -274,7 +283,7 @@ namespace MusicXmlReaderUI
             if (!String.IsNullOrEmpty(Step))
             {
                 // This is a note.
-                return String.Format("{0}{1}{2} {3} {4} {5} {6}", timeString, partString, measureString, pitch.Name, pitch.Octave, localizedType, localizedTie);
+                return String.Format("{0}{1}{2} {3} {4} {5} {6}", timeString, partString, measureString, pitchValue.Name, pitchValue.Octave, localizedType, localizedTie);
             }
             else
             {      
