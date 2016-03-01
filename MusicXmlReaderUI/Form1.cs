@@ -91,7 +91,8 @@ namespace MusicXmlReaderUI
             model.LoadListBox();
             model.LoadListBoxTimes();
             listBoxFiltered.Focus();
-            listBoxFiltered.SelectedIndex = 0;  
+            listBoxFiltered.SelectedIndex = 0;
+            model.LoadListBoxParts(checkedListBoxPartsToPlay); 
         }
 
         private void Play_Click(object sender, EventArgs e)

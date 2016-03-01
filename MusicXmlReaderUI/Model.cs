@@ -245,5 +245,16 @@ namespace MusicXmlReaderUI
             //timeDescriptionList.LoadListBox(listBoxTimes);
         }
 
+        public void LoadListBoxParts(CheckedListBox checkedListBoxPartsToPlay)
+        {
+            for (int i = 0; (i < numberOfParts); i++)
+            {
+                ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
+                checkedListBoxPartsToPlay.Items.Add(string.Format("{0} {1}", scorePartElement.partId, scorePartElement.partName));
+                checkedListBoxPartsToPlay.SetItemChecked(i, true); 
+
+            }
+        }
+
     }
 }

@@ -36,11 +36,13 @@
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.numericUpDownPlaySpeed = new System.Windows.Forms.NumericUpDown();
             this.butonPlayPoly = new System.Windows.Forms.Button();
+            this.checkedListBoxPartsToPlay = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxTimes
             // 
+            this.listBoxTimes.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxTimes.FormattingEnabled = true;
             this.listBoxTimes.Location = new System.Drawing.Point(321, 77);
             this.listBoxTimes.Name = "listBoxTimes";
@@ -131,11 +133,20 @@
             this.butonPlayPoly.UseVisualStyleBackColor = true;
             this.butonPlayPoly.Click += new System.EventHandler(this.butonPlayPoly_Click);
             // 
+            // checkedListBoxPartsToPlay
+            // 
+            this.checkedListBoxPartsToPlay.FormattingEnabled = true;
+            this.checkedListBoxPartsToPlay.Location = new System.Drawing.Point(602, 72);
+            this.checkedListBoxPartsToPlay.Name = "checkedListBoxPartsToPlay";
+            this.checkedListBoxPartsToPlay.Size = new System.Drawing.Size(120, 184);
+            this.checkedListBoxPartsToPlay.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(610, 496);
+            this.ClientSize = new System.Drawing.Size(821, 496);
+            this.Controls.Add(this.checkedListBoxPartsToPlay);
             this.Controls.Add(this.butonPlayPoly);
             this.Controls.Add(this.numericUpDownPlaySpeed);
             this.Controls.Add(this.textBoxMessage);
@@ -161,6 +172,7 @@
         private System.Windows.Forms.TextBox textBoxMessage;
         private System.Windows.Forms.NumericUpDown numericUpDownPlaySpeed;
         private System.Windows.Forms.Button butonPlayPoly;
+        private System.Windows.Forms.CheckedListBox checkedListBoxPartsToPlay;
     }
 }
 
