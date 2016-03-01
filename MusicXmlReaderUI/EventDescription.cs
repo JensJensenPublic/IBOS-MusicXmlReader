@@ -61,7 +61,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder(string.Format("{0}: ", startTime));
+            StringBuilder sb = new StringBuilder(string.Format("{0,6}: ", startTime));
             foreach (NoteElement noteElement in notes)
             {
                 //              sb.Append(string.Format("{0} ", noteElement.PartId));
@@ -70,7 +70,7 @@ namespace MusicXmlReaderUI
                 {
                     s = string.IsNullOrEmpty(noteElement.Step) ? "P" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave;
                 }              
-                sb.Append(string.Format("{0} ", s.Replace(" ", "")));  // Remove any blanks
+                sb.Append(string.Format("{0,4} ", s.Replace(" ", "")));  // Remove any blanks
             }
             return sb.ToString();           
         }

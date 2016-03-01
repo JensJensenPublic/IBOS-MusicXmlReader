@@ -227,6 +227,18 @@ namespace MusicXmlReaderUI
             }
         }
 
+
+        public void StartPlayingMono()
+        {
+            musicPlayer.StartPlayingMono();
+        }
+
+        public void StartPlayingPoly()
+        {
+            musicPlayer.Reset(numberOfParts);
+            musicPlayer.StartPlayingPoly();
+        }
+
         public void LoadListBoxTimes()
         {
             eventDescriptionList.LoadListBox(listBoxPoly);

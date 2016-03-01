@@ -96,7 +96,7 @@ namespace MusicXmlReaderUI
 
         private void Play_Click(object sender, EventArgs e)
         {
-            model.musicPlayer.StartPlayingMono();
+            model.StartPlayingMono();
         }
 
         private void Stop_Click(object sender, EventArgs e)
@@ -118,7 +118,7 @@ namespace MusicXmlReaderUI
 
         private void butonPlayPoly_Click(object sender, EventArgs e)
         {
-            model.musicPlayer.StartPlayingPoly();
+            model.StartPlayingPoly();
         }
     }
 }

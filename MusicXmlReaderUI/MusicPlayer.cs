@@ -18,6 +18,7 @@ namespace MusicXmlReaderUI
         long nextActionTime;    // For autoplaying monophonic music 
         long firstStopWatchTime = -1;    // For autoplaying polyphonic music 
         int tempo;
+        int numberOfParts;
  
 
         float userSlowDown;
@@ -30,7 +31,7 @@ namespace MusicXmlReaderUI
         {
             this.midiOut = midiOut;
             this.listBox = listBox;
-            this.listBoxPoly = listBoxPoly;     
+            this.listBoxPoly = listBoxPoly;    
             // this.userSlowdown = 1.0F;
             this.userSlowDown = 1.0F;
         }
@@ -116,6 +117,14 @@ namespace MusicXmlReaderUI
             nextActionTime += Duration(noteElement);
         }
 
+
+        public void Reset(int numberOfParts)
+        {
+            this.numberOfParts = numberOfParts;
+            // Initialize list of latest played notes.
+            latestNotesPlayed = new MidiNote[numberOfParts];
+        }
+
         /// <summary>
         /// Used for playing polyphonic music.
         /// The EventDescription contains a set of noteElements to be handled simultaneously
@@ -124,17 +133,6 @@ namespace MusicXmlReaderUI
         /// <param name=""></param>
         private void Play(EventDescription eventDescription)
         {
-            // Be sure that the list of latest played notes is initialized:
-            int numberOfParts = eventDescription.Notes.GetLength(0);
-            if (null == latestNotesPlayed)
-            {
-                latestNotesPlayed = new MidiNote[numberOfParts];
-            }
-            else if (numberOfParts != latestNotesPlayed.GetLength(0))
-            {
-                throw new ArgumentException("Mitchmatch between number of parts");
-            }   
-
             // Wait for the time to play:
 
             if (-1 == firstStopWatchTime)
@@ -250,6 +248,7 @@ namespace MusicXmlReaderUI
 
         public void StartPlayingMono()
         {
+            this.numberOfParts = 1;
             playing = true;
             playerThread = new System.Threading.Thread(new System.Threading.ThreadStart(PlayerThreadStartMono));
             playerThread.Start();
