@@ -123,6 +123,7 @@ namespace MusicXmlReaderUI
             this.numberOfParts = numberOfParts;
             // Initialize list of latest played notes.
             latestNotesPlayed = new MidiNote[numberOfParts];
+            //firstStopWatchTime = stopWatch.ElapsedMilliseconds;
         }
 
         /// <summary>
@@ -134,20 +135,8 @@ namespace MusicXmlReaderUI
         private void Play(EventDescription eventDescription)
         {
             // Wait for the time to play:
-
-            if (-1 == firstStopWatchTime)
-            {
-                // We  play the first note or pause immediately but remember when we did it
-                // and use this as a base for later timing.
-                firstStopWatchTime = stopWatch.ElapsedMilliseconds;
-            }
-            else
-            {
-                long sleep = (eventDescription.StartTime / 2) - (stopWatch.ElapsedMilliseconds - firstStopWatchTime);
-                sleep = Math.Max(0, sleep); // Hack to avoid crash 
-                System.Threading.Thread.Sleep((int)sleep);
-            }
-
+            long sleep = (eventDescription.StartTime / 2) - (stopWatch.ElapsedMilliseconds - firstStopWatchTime);
+            System.Threading.Thread.Sleep((int)Math.Max(0, sleep));
 
             // Itetrate through all parts: 
             for (int i = 0; (i < numberOfParts); i++)
@@ -167,7 +156,6 @@ namespace MusicXmlReaderUI
                     latestNotesPlayed[i] = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
                 }
             }
-                  
         }
 
 
@@ -272,6 +260,7 @@ namespace MusicXmlReaderUI
             this.stopWatch = new System.Diagnostics.Stopwatch();
             this.stopWatch.Start();
             this.nextActionTime = 0;
+            this.firstStopWatchTime = stopWatch.ElapsedMilliseconds;
             for (int i = 0; ((i < listBox.Items.Count) && (playing)); i++)
             {
                 object o = listBox.Items[i];
