@@ -140,6 +140,7 @@
             this.checkedListBoxPartsToPlay.Name = "checkedListBoxPartsToPlay";
             this.checkedListBoxPartsToPlay.Size = new System.Drawing.Size(120, 184);
             this.checkedListBoxPartsToPlay.TabIndex = 9;
+            this.checkedListBoxPartsToPlay.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPartsToPlay_ItemCheck);
             // 
             // Form1
             // 

@@ -121,5 +121,17 @@ namespace MusicXmlReaderUI
         {
             model.StartPlayingPoly();
         }
+
+
+        /// <summary>
+        /// Occurs whenever the state of any of the checkboxes changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkedListBoxPartsToPlay_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            model.SetPartsToPlay(e.Index, (CheckState.Checked == e.NewValue));
+        }
     }
+
 }

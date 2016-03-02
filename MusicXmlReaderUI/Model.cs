@@ -18,6 +18,7 @@ namespace MusicXmlReaderUI
         int currentMeasureNumber = 0 ; // Current measure number
         int latestMeasureNumber = 0;
         int numberOfParts; // Number of parts
+        bool[] partsToPlay;
         //int currentPartitionNumber = -1;
         string currentPartId = "";
         int currentPartNumber = 0;
@@ -56,7 +57,9 @@ namespace MusicXmlReaderUI
                     // We also save the part-list in the model fpr later reference.
                     partList = PartlistElement.Create(node);
                     allMusicXmlObjecsts.Add(partList);
-                    this.numberOfParts = partList.NumberOfParts();    
+                    this.numberOfParts = partList.NumberOfParts();
+                    this.partsToPlay = new bool[this.numberOfParts];                                  
+                    musicPlayer.PartsToPlay = this.partsToPlay;
                     // allMusicXmlObjecsts.AddRange(   (partitionList.ToStrings());
                     continueRecursion = false;
                     break;
@@ -215,6 +218,10 @@ namespace MusicXmlReaderUI
             //measureDescriptionList = MeasureDescriptionList.Create(allMusicXmlObjecsts);
         }
 
+        //*****************************************************************************************
+        // Event handlers called directly from the GUI and distributing control to other objects.
+        //*****************************************************************************************
+
         public void LoadListBox()
         {
             foreach (MusicXmlObject musicXmlObject in allMusicXmlObjecsts)
@@ -230,6 +237,7 @@ namespace MusicXmlReaderUI
 
         public void StartPlayingMono()
         {
+            musicPlayer.Reset(numberOfParts);
             musicPlayer.StartPlayingMono();
         }
 
@@ -251,9 +259,15 @@ namespace MusicXmlReaderUI
             {
                 ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
                 checkedListBoxPartsToPlay.Items.Add(string.Format("{0} {1}", scorePartElement.partId, scorePartElement.partName));
-                checkedListBoxPartsToPlay.SetItemChecked(i, true); 
-
+                checkedListBoxPartsToPlay.SetItemChecked(i, true);
             }
+            checkedListBoxPartsToPlay.CheckOnClick = true;
+        }
+
+        public void SetPartsToPlay(int partNumber, bool value)
+        {
+            this.partsToPlay[partNumber] = value;
+            musicPlayer.PartsToPlay = this.partsToPlay;
         }
 
     }

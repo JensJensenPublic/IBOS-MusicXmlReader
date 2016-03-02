@@ -19,8 +19,11 @@ namespace MusicXmlReaderUI
         long firstStopWatchTime = -1;    // For autoplaying polyphonic music 
         int tempo;
         int numberOfParts;
- 
 
+
+        // User settings
+        bool[] partsToPlay;
+        bool[] partsToSay; 
         float userSlowDown;
 
 
@@ -123,7 +126,6 @@ namespace MusicXmlReaderUI
             this.numberOfParts = numberOfParts;
             // Initialize list of latest played notes.
             latestNotesPlayed = new MidiNote[numberOfParts];
-            //firstStopWatchTime = stopWatch.ElapsedMilliseconds;
         }
 
         /// <summary>
@@ -153,7 +155,11 @@ namespace MusicXmlReaderUI
                 if ("" != noteElement.Step)
                 {
                     // This is a playable note, not a pause !
-                    latestNotesPlayed[i] = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                    if (partsToPlay[i])
+                    {
+                        // This part is selected to be played (for instance from the GUI)
+                        latestNotesPlayed[i] = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                    }
                 }
             }
         }
@@ -206,6 +212,19 @@ namespace MusicXmlReaderUI
         private System.Threading.Thread playerThread;
         private bool playing = false;
 
+        public bool[] PartsToPlay
+        {
+            get
+            {
+                return partsToPlay;
+            }
+
+            set
+            {
+                partsToPlay = value;
+            }
+        }
+
         delegate void SetSelectedIndexCallback(ListBox listBox,int index);
         private void SetSelectedIndex(ListBox listBox, int index)
         {
@@ -229,7 +248,7 @@ namespace MusicXmlReaderUI
 
 
 
-        private void PlayerThreadStartMono()
+        private void  PlayerThreadStartMono()
         {
             PlayerThreadStart(listBox, typeof(NoteElement));
         }
@@ -286,6 +305,6 @@ namespace MusicXmlReaderUI
             float value = (float)numericUpDown.Value;
             this.userSlowDown = 100F / value;
         }
-
+        
     }
 }
