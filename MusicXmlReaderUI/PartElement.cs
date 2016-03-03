@@ -5,8 +5,7 @@ namespace MusicXmlReaderUI
 
     public class PartElement : Element
     {
-        string partId = "";
-        int partNumber = 0;
+        string partId = ""; 
 
         /// <summary>
         /// To force the use of the Create() method

@@ -24,6 +24,7 @@ namespace MusicXmlReaderUI
         string currentPartId = "";
         int currentPartNumber = 0;
         ScorePartElement scorePartElement = null;
+        UserSettings userSettings;
 
 
         /// <summary>
@@ -59,6 +60,8 @@ namespace MusicXmlReaderUI
                     partList = PartlistElement.Create(node);
                     allMusicXmlObjecsts.Add(partList);
                     this.numberOfParts = partList.NumberOfParts();
+                    // Now we know the number of parts.
+                    userSettings = UserSettings.Create(this.numberOfParts);
                     this.partsToRead = new bool[this.numberOfParts];
                     this.partsToPlay = new bool[this.numberOfParts];
                     musicPlayer.PartsToPlay = this.partsToPlay;
