@@ -19,6 +19,7 @@ namespace MusicXmlReaderUI
         int latestMeasureNumber = 0;
         int numberOfParts; // Number of parts
         bool[] partsToPlay;
+        bool[] partsToRead;
         //int currentPartitionNumber = -1;
         string currentPartId = "";
         int currentPartNumber = 0;
@@ -58,7 +59,8 @@ namespace MusicXmlReaderUI
                     partList = PartlistElement.Create(node);
                     allMusicXmlObjecsts.Add(partList);
                     this.numberOfParts = partList.NumberOfParts();
-                    this.partsToPlay = new bool[this.numberOfParts];                                  
+                    this.partsToRead = new bool[this.numberOfParts];
+                    this.partsToPlay = new bool[this.numberOfParts];
                     musicPlayer.PartsToPlay = this.partsToPlay;
                     // allMusicXmlObjecsts.AddRange(   (partitionList.ToStrings());
                     continueRecursion = false;
@@ -214,7 +216,7 @@ namespace MusicXmlReaderUI
             partDescriptionList = PartDescriptionList.Create(allMusicXmlObjecsts,numberOfParts);
             divisions = 24; // TODO compute!
             timeDescriptionList = TimeDescriptionList.Create(partDescriptionList, divisions);
-            eventDescriptionList = EventDescriptionList.Create(timeDescriptionList, numberOfParts);
+            eventDescriptionList = EventDescriptionList.Create(timeDescriptionList, numberOfParts,partsToRead);
             //measureDescriptionList = MeasureDescriptionList.Create(allMusicXmlObjecsts);
         }
 
@@ -253,21 +255,42 @@ namespace MusicXmlReaderUI
             //timeDescriptionList.LoadListBox(listBoxTimes);
         }
 
-        public void LoadListBoxParts(CheckedListBox checkedListBoxPartsToPlay)
+        public void LoadListBoxOfParts(CheckedListBox checkedListBox)
         {
             for (int i = 0; (i < numberOfParts); i++)
             {
                 ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
-                checkedListBoxPartsToPlay.Items.Add(string.Format("{0} {1}", scorePartElement.partId, scorePartElement.partName));
-                checkedListBoxPartsToPlay.SetItemChecked(i, true);
+                checkedListBox.Items.Add(string.Format("{0} {1}", scorePartElement.partId, scorePartElement.partName));
+                checkedListBox.SetItemChecked(i, true);
             }
-            checkedListBoxPartsToPlay.CheckOnClick = true;
+            checkedListBox.CheckOnClick = true;
         }
+
+        //public void LoadListBoxPartsToPlay(CheckedListBox checkedListBoxPartsToPlay)
+        //{
+        //    for (int i = 0; (i < numberOfParts); i++)
+        //    {
+        //        ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
+        //        checkedListBoxPartsToPlay.Items.Add(string.Format("{0} {1}", scorePartElement.partId, scorePartElement.partName));
+        //        checkedListBoxPartsToPlay.SetItemChecked(i, true);
+        //    }
+        //    checkedListBoxPartsToPlay.CheckOnClick = true;
+        //}
+
+        public void LoadListBoxPartsToRead(CheckedListBox checkedListBoxPartsToPlay)
+        {
+        }
+
 
         public void SetPartsToPlay(int partNumber, bool value)
         {
             this.partsToPlay[partNumber] = value;
             musicPlayer.PartsToPlay = this.partsToPlay;
+        }
+
+        public void SetPartsToRead(int partNumber, bool value)
+        {
+            this.partsToRead[partNumber] = value;
         }
 
     }

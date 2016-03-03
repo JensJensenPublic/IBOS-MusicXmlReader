@@ -92,7 +92,8 @@ namespace MusicXmlReaderUI
             model.LoadListBoxTimes();
             listBoxFiltered.Focus();
             listBoxFiltered.SelectedIndex = 0;
-            model.LoadListBoxParts(checkedListBoxPartsToPlay); 
+            model.LoadListBoxOfParts(checkedListBoxPartsToPlay);
+            model.LoadListBoxOfParts(checkedListBoxPartsToRead);
         }
 
         private void Play_Click(object sender, EventArgs e)
@@ -131,6 +132,18 @@ namespace MusicXmlReaderUI
         private void checkedListBoxPartsToPlay_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             model.SetPartsToPlay(e.Index, (CheckState.Checked == e.NewValue));
+        }
+
+        /// <summary>
+        /// Occurs whenever the state of any of the checkboxes changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkedListBoxPartsToRead_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            model.SetPartsToRead(e.Index, (CheckState.Checked == e.NewValue));
+            // This has changed the way ToString() works the notes are drawn in listBoxTimes, so it must be redrawn
+            model.LoadListBoxTimes();
         }
     }
 

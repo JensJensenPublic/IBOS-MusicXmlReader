@@ -37,6 +37,7 @@
             this.numericUpDownPlaySpeed = new System.Windows.Forms.NumericUpDown();
             this.butonPlayPoly = new System.Windows.Forms.Button();
             this.checkedListBoxPartsToPlay = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBoxPartsToRead = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,6 +136,8 @@
             // 
             // checkedListBoxPartsToPlay
             // 
+            this.checkedListBoxPartsToPlay.AccessibleDescription = "En checkbox for hver stemme. Hvis checked spilles stemmen";
+            this.checkedListBoxPartsToPlay.AccessibleName = "Stemmer som spilles";
             this.checkedListBoxPartsToPlay.FormattingEnabled = true;
             this.checkedListBoxPartsToPlay.Location = new System.Drawing.Point(602, 72);
             this.checkedListBoxPartsToPlay.Name = "checkedListBoxPartsToPlay";
@@ -142,11 +145,22 @@
             this.checkedListBoxPartsToPlay.TabIndex = 9;
             this.checkedListBoxPartsToPlay.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPartsToPlay_ItemCheck);
             // 
+            // checkedListBoxPartsToRead
+            // 
+            this.checkedListBoxPartsToRead.AccessibleName = "Stemmer som oplæses";
+            this.checkedListBoxPartsToRead.FormattingEnabled = true;
+            this.checkedListBoxPartsToRead.Location = new System.Drawing.Point(764, 72);
+            this.checkedListBoxPartsToRead.Name = "checkedListBoxPartsToRead";
+            this.checkedListBoxPartsToRead.Size = new System.Drawing.Size(120, 184);
+            this.checkedListBoxPartsToRead.TabIndex = 10;
+            this.checkedListBoxPartsToRead.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPartsToRead_ItemCheck);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 496);
+            this.ClientSize = new System.Drawing.Size(928, 496);
+            this.Controls.Add(this.checkedListBoxPartsToRead);
             this.Controls.Add(this.checkedListBoxPartsToPlay);
             this.Controls.Add(this.butonPlayPoly);
             this.Controls.Add(this.numericUpDownPlaySpeed);
@@ -174,6 +188,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDownPlaySpeed;
         private System.Windows.Forms.Button butonPlayPoly;
         private System.Windows.Forms.CheckedListBox checkedListBoxPartsToPlay;
+        private System.Windows.Forms.CheckedListBox checkedListBoxPartsToRead;
     }
 }
 

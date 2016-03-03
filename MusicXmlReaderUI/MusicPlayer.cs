@@ -23,7 +23,7 @@ namespace MusicXmlReaderUI
 
         // User settings
         bool[] partsToPlay;
-        bool[] partsToSay; 
+        bool[] partsToRead; 
         float userSlowDown;
 
 

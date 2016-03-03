@@ -11,6 +11,8 @@ namespace MusicXmlReaderUI
     public class EventDescriptionList
     {
 
+        bool[] partsToRead;
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
@@ -32,8 +34,9 @@ namespace MusicXmlReaderUI
         /// Private constructor, used by the Crate() method
         /// </summary>
         /// <param name="node"></param>
-        private EventDescriptionList(TimeDescriptionList timeDescriptionList, int numberOfParts)
+        private EventDescriptionList(TimeDescriptionList timeDescriptionList, int numberOfParts,bool[] partsToRead)
         {
+            this.partsToRead = partsToRead;
             events = new List<EventDescription>();
             int currentStartTime = -1;
             EventDescription currentEventDescription = null;
@@ -42,7 +45,7 @@ namespace MusicXmlReaderUI
                 if (note.StartTime != currentStartTime)
                 {
                     currentStartTime = note.StartTime;
-                    currentEventDescription = EventDescription.Create(currentStartTime, numberOfParts);       
+                    currentEventDescription = EventDescription.Create(currentStartTime, numberOfParts, this.partsToRead);       
                     events.Add(currentEventDescription);
                 }
                 currentEventDescription.AddNote(note);
@@ -50,14 +53,15 @@ namespace MusicXmlReaderUI
 
         }
 
-        public static EventDescriptionList Create(TimeDescriptionList timeDescriptionList, int numberOfParts)
+        public static EventDescriptionList Create(TimeDescriptionList timeDescriptionList, int numberOfParts, bool[] partsToRead)
         {
-            return new EventDescriptionList(timeDescriptionList, numberOfParts);
+            return new EventDescriptionList(timeDescriptionList, numberOfParts,partsToRead);
         }
 
 
         public void LoadListBox(ListBox listBox)
         {
+            listBox.Items.Clear();
             foreach (EventDescription eventDescription in events)
             {
                 listBox.Items.Add(eventDescription);
