@@ -17,6 +17,7 @@ namespace MusicXmlReaderUI
     {
         bool showTimes = true;
         Model model;
+        bool autoReload;
 
         // string fullFileName = @"C:\temp\MusicXML\La Mer.xml"; // The sample XML file to read from
 
@@ -88,12 +89,19 @@ namespace MusicXmlReaderUI
             doc.Load(reader);
             model.Recurse(doc.ChildNodes);
             model.Init(); // Experimental code !!
+
+            // Load the ListBox showing the filtered values
             model.LoadListBox();
-            model.LoadListBoxTimes();
             listBoxFiltered.Focus();
             listBoxFiltered.SelectedIndex = 0;
+
+            // Load the Checked Listboxes controlling the user settings
             model.LoadListBoxOfParts(checkedListBoxPartsToPlay);
             model.LoadListBoxOfParts(checkedListBoxPartsToRead);
+            autoReload = true;
+ 
+            //Liad the listbox showing the Event Descriptors
+            model.LoadListBoxTimes();
         }
 
         private void Play_Click(object sender, EventArgs e)
@@ -146,7 +154,7 @@ namespace MusicXmlReaderUI
         {
             model.SetPartsToRead(e.Index, (CheckState.Checked == e.NewValue));
             // This has changed the way ToString() works the notes are drawn in listBoxTimes, so it must be redrawn
-            model.LoadListBoxTimes();
+            if (autoReload) model.LoadListBoxTimes();
         }
     }
 
