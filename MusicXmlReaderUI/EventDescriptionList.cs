@@ -11,7 +11,7 @@ namespace MusicXmlReaderUI
     public class EventDescriptionList
     {
 
-        bool[] partsToRead;
+        UserSettings userSettings;
 
         /// <summary>
         /// To force the use of the Create() method
@@ -34,9 +34,9 @@ namespace MusicXmlReaderUI
         /// Private constructor, used by the Crate() method
         /// </summary>
         /// <param name="node"></param>
-        private EventDescriptionList(TimeDescriptionList timeDescriptionList, int numberOfParts,bool[] partsToRead)
+        private EventDescriptionList(TimeDescriptionList timeDescriptionList, int numberOfParts,UserSettings userSettings)
         {
-            this.partsToRead = partsToRead;
+            this.userSettings = userSettings;
             events = new List<EventDescription>();
             int currentStartTime = -1;
             EventDescription currentEventDescription = null;
@@ -45,7 +45,7 @@ namespace MusicXmlReaderUI
                 if (note.StartTime != currentStartTime)
                 {
                     currentStartTime = note.StartTime;
-                    currentEventDescription = EventDescription.Create(currentStartTime, numberOfParts, this.partsToRead);       
+                    currentEventDescription = EventDescription.Create(currentStartTime, numberOfParts, this.userSettings);       
                     events.Add(currentEventDescription);
                 }
                 currentEventDescription.AddNote(note);
@@ -53,9 +53,9 @@ namespace MusicXmlReaderUI
 
         }
 
-        public static EventDescriptionList Create(TimeDescriptionList timeDescriptionList, int numberOfParts, bool[] partsToRead)
+        public static EventDescriptionList Create(TimeDescriptionList timeDescriptionList, int numberOfParts, UserSettings userSettings)
         {
-            return new EventDescriptionList(timeDescriptionList, numberOfParts,partsToRead);
+            return new EventDescriptionList(timeDescriptionList, numberOfParts,userSettings);
         }
 
 

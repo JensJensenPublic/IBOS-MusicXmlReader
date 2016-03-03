@@ -22,7 +22,8 @@ namespace MusicXmlReaderUI
 
 
         // User settings
-        bool[] partsToPlay;
+        UserSettings userSettings;
+   
         float userSlowDown;
 
 
@@ -154,7 +155,7 @@ namespace MusicXmlReaderUI
                 if ("" != noteElement.Step)
                 {
                     // This is a playable note, not a pause !
-                    if (partsToPlay[i])
+                    if (userSettings.partsToPlay[i])
                     {
                         // This part is selected to be played (for instance from the GUI)
                         latestNotesPlayed[i] = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
@@ -211,18 +212,26 @@ namespace MusicXmlReaderUI
         private System.Threading.Thread playerThread;
         private bool playing = false;
 
-        public bool[] PartsToPlay
+        public UserSettings UserSettings
         {
-            get
-            {
-                return partsToPlay;
-            }
-
             set
             {
-                partsToPlay = value;
+                userSettings = value;
             }
         }
+
+        //public bool[] PartsToPlay
+        //{
+        //    get
+        //    {
+        //        return partsToPlay;
+        //    }
+
+        //    set
+        //    {
+        //        partsToPlay = value;
+        //    }
+        //}
 
         delegate void SetSelectedIndexCallback(ListBox listBox,int index);
         private void SetSelectedIndex(ListBox listBox, int index)

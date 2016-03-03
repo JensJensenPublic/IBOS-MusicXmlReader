@@ -10,7 +10,7 @@ namespace MusicXmlReaderUI
     /// Holds all user defined settings, such as the set of parts to play and read.
     /// Also allows for changing settings for development purposes.
     /// </summary>
-    class UserSettings
+    public class UserSettings
     {
 
         // All of these settings are just for exchanging simple information.

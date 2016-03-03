@@ -18,8 +18,6 @@ namespace MusicXmlReaderUI
         int currentMeasureNumber = 0 ; // Current measure number
         int latestMeasureNumber = 0;
         int numberOfParts; // Number of parts
-        bool[] partsToPlay;
-        bool[] partsToRead;
         //int currentPartitionNumber = -1;
         string currentPartId = "";
         int currentPartNumber = 0;
@@ -62,9 +60,6 @@ namespace MusicXmlReaderUI
                     this.numberOfParts = partList.NumberOfParts();
                     // Now we know the number of parts.
                     userSettings = UserSettings.Create(this.numberOfParts);
-                    this.partsToRead = new bool[this.numberOfParts];
-                    this.partsToPlay = new bool[this.numberOfParts];
-                    musicPlayer.PartsToPlay = this.partsToPlay;
                     // allMusicXmlObjecsts.AddRange(   (partitionList.ToStrings());
                     continueRecursion = false;
                     break;
@@ -219,7 +214,7 @@ namespace MusicXmlReaderUI
             partDescriptionList = PartDescriptionList.Create(allMusicXmlObjecsts,numberOfParts);
             divisions = 24; // TODO compute!
             timeDescriptionList = TimeDescriptionList.Create(partDescriptionList, divisions);
-            eventDescriptionList = EventDescriptionList.Create(timeDescriptionList, numberOfParts,partsToRead);
+            eventDescriptionList = EventDescriptionList.Create(timeDescriptionList, numberOfParts,userSettings);
             //measureDescriptionList = MeasureDescriptionList.Create(allMusicXmlObjecsts);
         }
 
@@ -287,13 +282,14 @@ namespace MusicXmlReaderUI
 
         public void SetPartsToPlay(int partNumber, bool value)
         {
-            this.partsToPlay[partNumber] = value;
-            musicPlayer.PartsToPlay = this.partsToPlay;
+            this.userSettings.partsToPlay[partNumber] = value;
+            //musicPlayer.PartsToPlay = this.userSettings.partsToPlay;
+            musicPlayer.UserSettings = this.userSettings;
         }
 
         public void SetPartsToRead(int partNumber, bool value)
         {
-            this.partsToRead[partNumber] = value;
+            this.userSettings.partsToRead[partNumber] = value;
         }
 
     }

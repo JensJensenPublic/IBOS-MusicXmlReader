@@ -13,7 +13,7 @@ namespace MusicXmlReaderUI
     {
         int startTime;
         int numberOfParts;
-        bool[] partsToRead;
+        UserSettings userSettings;
 
         /// <summary>
         /// Notes to be played at this time
@@ -43,17 +43,17 @@ namespace MusicXmlReaderUI
         {
         }
 
-        private EventDescription(int time, int numberOfParts, bool[] partsToRead)
+        private EventDescription(int time, int numberOfParts, UserSettings userSettings)
         {
             this.startTime = time;
             this.numberOfParts = numberOfParts;
             this.notes = new NoteElement[numberOfParts];
-            this.partsToRead = partsToRead;
+            this.userSettings = userSettings;
         }
 
-        public static EventDescription Create(int time, int numberOfParts,  bool[] partsToRead)
+        public static EventDescription Create(int time, int numberOfParts,  UserSettings userSettings)
         {
-            return new EventDescription(time, numberOfParts, partsToRead);
+            return new EventDescription(time, numberOfParts, userSettings);
         }
 
         public void AddNote(NoteElement noteElement)
@@ -70,7 +70,7 @@ namespace MusicXmlReaderUI
               
 
                 string s = "-";
-                if ((null != noteElement) && (partsToRead[noteElement.PartNumber]))
+                if ((null != noteElement) && (userSettings.partsToRead[noteElement.PartNumber]))
                 {
                     s = string.IsNullOrEmpty(noteElement.Step) ? "P" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave;
                 }              
