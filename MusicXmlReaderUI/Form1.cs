@@ -108,8 +108,11 @@ namespace MusicXmlReaderUI
 
         private void numericUpDownPlaySpeed_ValueChanged(object sender, EventArgs e)
         {
-            model.musicPlayer.PlaySpeedChanged(sender, e);
+            NumericUpDown numericUpDown = sender as NumericUpDown;
+            float value = (float)numericUpDown.Value;
+            model.PlaySpeedChanged(100F / value);
         }
+        
 
         private void listBoxTimes_SelectedIndexChanged(object sender, EventArgs e)
         {

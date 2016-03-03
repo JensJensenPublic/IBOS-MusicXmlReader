@@ -25,6 +25,9 @@ namespace MusicXmlReaderUI
         public bool readMeasureNumbers;
         public bool playBeats;
 
+
+        public float userSlowDown;
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
@@ -40,6 +43,7 @@ namespace MusicXmlReaderUI
         {
             partsToPlay = new bool[numberOfParts];
             partsToRead = new bool[numberOfParts];
+            userSlowDown = 1.0F;
         }
 
         public static UserSettings Create(int numberOfParts)

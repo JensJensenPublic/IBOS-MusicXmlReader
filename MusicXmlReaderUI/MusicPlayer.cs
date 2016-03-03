@@ -24,7 +24,7 @@ namespace MusicXmlReaderUI
         // User settings
         UserSettings userSettings;
    
-        float userSlowDown;
+        //float userSlowDown;
 
 
         /// <summary>
@@ -34,9 +34,7 @@ namespace MusicXmlReaderUI
         {
             this.midiOut = midiOut;
             this.listBox = listBox;
-            this.listBoxPoly = listBoxPoly;    
-            // this.userSlowdown = 1.0F;
-            this.userSlowDown = 1.0F;
+            this.listBoxPoly = listBoxPoly;  
         }
 
 
@@ -80,7 +78,7 @@ namespace MusicXmlReaderUI
             float divisions = noteElement.Divisions;
             float tempo = this.tempo;
             float durasionInUnitOfMeasures = duration / divisions;
-            float durationInUnitOfMilliSeconds = userSlowDown * 60 * 1000 * durasionInUnitOfMeasures / tempo;
+            float durationInUnitOfMilliSeconds = userSettings.userSlowDown * 60 * 1000 * durasionInUnitOfMeasures / tempo;
             return (int)durationInUnitOfMilliSeconds;
         }
 
@@ -307,12 +305,5 @@ namespace MusicXmlReaderUI
             playing = false;
         }
 
-        public void PlaySpeedChanged(object sender, EventArgs e)
-        {
-            NumericUpDown numericUpDown = sender as NumericUpDown;
-            float value = (float)numericUpDown.Value;
-            this.userSlowDown = 100F / value;
-        }
-        
     }
 }
