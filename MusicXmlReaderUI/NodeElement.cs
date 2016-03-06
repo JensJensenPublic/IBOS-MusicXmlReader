@@ -188,8 +188,11 @@ namespace MusicXmlReaderUI
                 case "half": return (modifier ? punctured : "") + "halvnode";
                 case "quarter": return (modifier ? punctured : "") + "fjerdedel";
                 case "eighth": return (modifier ? punctured : "") + "ottendedel";
+                case "16th": return (modifier ? punctured : "") + "sekstendedel";
+                case "32nd": return (modifier ? punctured : "") + "toogtredivtedel";
+                case "64nd": return (modifier ? punctured : "") + "fireogtredsindstyvendedel";
             }
-            return s; // 
+            return (modifier ? punctured : "") + s; // 
         }
 
         private string LocalizePause(string s)
