@@ -57,6 +57,10 @@ namespace MusicXmlReaderUI
                     //case "midi-instrument":
                     //    // TO DO: Fill in
                     //    break;
+                    case "part-group":
+                        // This is pure graphic information!
+                        break;
+
                     default:
                         throw new System.ArgumentException();
                 }
