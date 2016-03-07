@@ -104,6 +104,10 @@ namespace MusicXmlReaderUI
                     allMusicXmlObjecsts.Add(KeyElement.Create(node));
                     continueRecursion = false;
                     break;
+                case "harmony":
+                    allMusicXmlObjecsts.Add(HarmonyElement.Create(node));
+                    continueRecursion = false;
+                    break;
                 case "sound":
                     SoundElement soundElement = SoundElement.Create(node);
                     allMusicXmlObjecsts.Add(soundElement);
