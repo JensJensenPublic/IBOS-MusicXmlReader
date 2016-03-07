@@ -33,14 +33,24 @@ namespace MusicXmlReaderUI
             foreach (List<Element> elementList in partDescriptionList.parts)
             {
                 int nextStartTime = 0; // Each part starts at time = 0 MilliSeconds
+                int previousStartTime = 0; 
                 foreach (Element e in elementList)
                 {
                     if (e is NoteElement)
                     {
                         NoteElement noteElement = e as NoteElement;
                         times.Add(noteElement);
-                        noteElement.StartTime = nextStartTime;
-                        nextStartTime += noteElement.DurationInCommonDivisions;
+                        if (noteElement.Chord)
+                        {   // Start at the beginning of the previous note
+                            noteElement.StartTime = previousStartTime; 
+                        }
+                        else
+                        {
+                            // Default: Start after the previous note
+                            noteElement.StartTime = nextStartTime;
+                            previousStartTime = nextStartTime; // Needed if the following note has the "chord" elemenn
+                            nextStartTime += noteElement.DurationInCommonDivisions;
+                        }
                     }
                 }
             }

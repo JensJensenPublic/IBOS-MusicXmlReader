@@ -17,6 +17,7 @@ namespace MusicXmlReaderUI
         string alter = ""; // Represents the number of semitones the note is altered.
         string octave = "";
         int duration = 0;
+        bool chord = false; // Means that this note starts at the same time as the previous note, not after the previous note.
         string type = "";
         string voice = "";
         bool dot = false;
@@ -171,6 +172,14 @@ namespace MusicXmlReaderUI
             
         }
 
+        public bool Chord
+        {
+            get
+            {
+                return chord;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -250,6 +259,7 @@ namespace MusicXmlReaderUI
                          pitchValue = Pitch.Create(step, alter, octave);
                          break;                
                     case "duration": duration = int.Parse(child.InnerText); break;
+                    case "chord": chord = true; break;
                     case "type": type = child.InnerText; break;
                     case "voice": voice = child.InnerText; break;
                     case "dot": dot = true; break;
