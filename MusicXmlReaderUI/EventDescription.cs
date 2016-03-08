@@ -64,19 +64,30 @@ namespace MusicXmlReaderUI
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder(string.Format("{0,6}: ", startTime));
+            StringBuilder sbText = new StringBuilder();
             foreach (NoteElement noteElement in notes)
             {
                 //              sb.Append(string.Format("{0} ", noteElement.PartId));
-              
-
                 string s = "-";
-                if ((null != noteElement) && (userSettings.partsToRead[noteElement.PartNumber]))
+                if (null != noteElement)
                 {
-                    s = string.IsNullOrEmpty(noteElement.Step) ? "P" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave;
-                }              
+                    // Add pitch information
+               
+                    if (userSettings.partsToRead[noteElement.PartNumber])
+                    {
+                        s = string.IsNullOrEmpty(noteElement.Step) ? "P" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave;
+                    }
+                
+
+                    // Add any lyrics
+                    if (!string.IsNullOrEmpty(noteElement.Text))
+                    {
+                        sbText.Append(noteElement.Text);
+                    }
+                }
                 sb.Append(string.Format("{0,4} ", s.Replace(" ", "")));  // Remove any blanks
             }
-            return sb.ToString();           
+            return sb.ToString() + sbText.ToString();           
         }
     }
 }

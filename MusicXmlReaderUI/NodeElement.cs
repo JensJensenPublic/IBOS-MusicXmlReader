@@ -32,7 +32,10 @@ namespace MusicXmlReaderUI
         string partId;
         int partNumber;
         int startTime;
-        
+        string syllabic; // Child of lyric
+        string text;     // Child of lyric
+
+
         public string Step
         {
             get
@@ -180,6 +183,22 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public string Syllabic
+        {
+            get
+            {
+                return syllabic;
+            }
+                    }
+
+        public string Text
+        {
+            get
+            {
+                return text;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -266,7 +285,11 @@ namespace MusicXmlReaderUI
                     case "tie": tieElement = TieElement.Create(child);
                           tieType = tieElement.TieType;
                           tieStop = ("stop" == tieType);
-                          break; 
+                          break;
+                    case "lyric":
+                          text = GetChildValue(child, "text");
+                          syllabic = GetChildValue(child, "syllabic");
+                          break;
                 }
             }
             localizedType = LocalizeType(Type, dot);
