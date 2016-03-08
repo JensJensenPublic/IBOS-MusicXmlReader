@@ -10,7 +10,7 @@ namespace MusicXmlReaderUI
         // Allows for representing the following subdivisions of a quarter node:
         // 2,3,4,5,6,7,8,9,10. 
         // 1260 can be divided by 2,3,4,5,6,7,8,9 and 10 !
-        private const int commonDivisions = 1260;
+        public const int commonDivisions = 1260;
 
         // Values found in MusicXml file, possibly after a minor type conversion, typically fromstring to int.
         string step = "";
