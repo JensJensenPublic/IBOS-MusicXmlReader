@@ -18,9 +18,11 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// Notes to be played at this time
         /// </summary>
-        private NoteElement[] notes;
+        private NoteElement[] notes; // TO DO: Remove notes. Use noteLists instead!!
 
-        public NoteElement[] Notes
+        private List<NoteElement>[] noteLists; // An array of lists of notes
+
+        public NoteElement[] Notes // TO DO: Remove Notes. Use NoteLists instead!!
         {
             get
             {
@@ -48,6 +50,12 @@ namespace MusicXmlReaderUI
             this.startTime = time;
             this.numberOfParts = numberOfParts;
             this.notes = new NoteElement[numberOfParts];
+            // For each part a list is needed to handle to handle multiple notes within the same part!
+            this.noteLists = new List<NoteElement>[numberOfParts];
+            for (int i = 0; (i < numberOfParts); i++)
+            {
+                noteLists[i] = new List<NoteElement>();
+            } 
             this.userSettings = userSettings;
         }
 
@@ -59,35 +67,55 @@ namespace MusicXmlReaderUI
         public void AddNote(NoteElement noteElement)
         {
             notes[noteElement.PartNumber] = noteElement;
+            noteLists[noteElement.PartNumber].Add(noteElement);
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder(string.Format("{0,6}: ", startTime));
             StringBuilder sbText = new StringBuilder();
-            foreach (NoteElement noteElement in notes)
+            // foreach (NoteElement noteElement in notes)
+            foreach (List<NoteElement> noteElementList in noteLists) // Iterate over the fixed number of parts.
             {
-                //              sb.Append(string.Format("{0} ", noteElement.PartId));
+                //if (2 == noteElementList.Count)
+                //{
+                //    System.Threading.Thread.Sleep(0); // Only for settitn a bp
+                //}
                 string s = "-";
-                if (null != noteElement)
+                if (0 == noteElementList.Count)
                 {
-                    // Add pitch information
-               
-                    if (userSettings.partsToRead[noteElement.PartNumber])
+                    // Nothing happens in this part
+                    sb.Append("   - ");
+                }
+                else
+                {
+                    foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
                     {
-                        s = string.IsNullOrEmpty(noteElement.Step) ? "P" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave;
-                    }
-                
+                        //              sb.Append(string.Format("{0} ", noteElement.PartId));
 
-                    // Add any lyrics
-                    if (!string.IsNullOrEmpty(noteElement.Text))
-                    {
-                        sbText.Append(noteElement.Text);
+
+                        // Add pitch information
+
+                        if (userSettings.partsToRead[noteElement.PartNumber])
+                        {
+                            s = string.IsNullOrEmpty(noteElement.Step) ? "P" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave;
+                        }
+
+
+                        // Add any lyrics
+                        if (userSettings.partsToRead[noteElement.PartNumber]) // TODO use userSettings.textPartsToRead instead!
+                        {
+                            if (!string.IsNullOrEmpty(noteElement.Text))
+                            {
+                                sbText.Append(noteElement.Text);
+                            }
+                        }
+
+                        sb.Append(string.Format("{0,4} ", s.Replace(" ", "")));  // Remove any blanks   
                     }
                 }
-                sb.Append(string.Format("{0,4} ", s.Replace(" ", "")));  // Remove any blanks
             }
-            return sb.ToString() + sbText.ToString();           
+            return sb.ToString() + " " + sbText.ToString();
         }
     }
 }
