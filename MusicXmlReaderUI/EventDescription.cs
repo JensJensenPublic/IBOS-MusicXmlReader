@@ -78,52 +78,65 @@ namespace MusicXmlReaderUI
             noteLists[noteElement.PartNumber].Add(noteElement);
         }
 
-        public override string ToString()
+        /// <summary>
+        /// Generate a string representing the (possibly multiple) notes of a single part
+        /// </summary>
+        /// <param name="noteElementList"></param>
+        /// <returns></returns>
+        private string PartNotes(List<NoteElement> noteElementList)
         {
-            StringBuilder sb = new StringBuilder(string.Format("{0,6}: ", startTime));
-            StringBuilder sbText = new StringBuilder();
-            // foreach (NoteElement noteElement in notes)
-            foreach (List<NoteElement> noteElementList in noteLists) // Iterate over the fixed number of parts.
+            if (0 == noteElementList.Count()) return "-"; // Nothing happened in this part 
+            string s = "";
+            foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
             {
-                //if (2 == noteElementList.Count)
-                //{
-                //    System.Threading.Thread.Sleep(0); // Only for settitn a bp
-                //}
-                string s = "-";
-                if (0 == noteElementList.Count)
+                string delimiter = string.IsNullOrEmpty(s) ? "" : "+"; // Use this string te separate notes within one part
+                // Add pitch information
+                if (userSettings.partsToRead[noteElement.PartNumber]) // Might later look at subparts S1/S2 ? 
                 {
-                    // Nothing happens in this part
-                    sb.Append("   - ");
-                }
-                else
-                {
-                    foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
-                    {
-                        //              sb.Append(string.Format("{0} ", noteElement.PartId));
-
-
-                        // Add pitch information
-
-                        if (userSettings.partsToRead[noteElement.PartNumber])
-                        {
-                            s = string.IsNullOrEmpty(noteElement.Step) ? "P" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave;
-                        }
-
-
-                        // Add any lyrics
-                        if (userSettings.partsToRead[noteElement.PartNumber]) // TODO use userSettings.textPartsToRead instead!
-                        {
-                            if (!string.IsNullOrEmpty(noteElement.Text))
-                            {
-                                sbText.Append(noteElement.Text);
-                            }
-                        }
-
-                        sb.Append(string.Format("{0,4} ", s.Replace(" ", "")));  // Remove any blanks   
-                    }
+                    string note = string.IsNullOrEmpty(noteElement.Step) ? "P" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave;
+                    s = s + delimiter + note;
                 }
             }
-            return sb.ToString() + " " + sbText.ToString();
+            return s;
+        }
+
+        /// <summary>
+        /// Generate a string representing the (possibly multiple) texts of a single part
+        /// </summary>
+        /// <param name="noteElementList"></param>
+        /// <returns></returns>
+        private string PartTexts(List<NoteElement> noteElementList)
+        {
+            if (0 == noteElementList.Count()) return ""; // Nothing happened in this part 
+            string s = "";
+            foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
+            {
+                string delimiter = string.IsNullOrEmpty(s) ? "" : "+"; // Use this string te separate notes within one part
+                // Add pitch information
+                if (userSettings.partsToRead[noteElement.PartNumber]) // Might later look at subparts S1/S2 ? 
+                {
+                    string text = string.IsNullOrEmpty(noteElement.Text) ? "" : noteElement.Text;
+                    s = s + delimiter + text;
+                }
+            }
+            return s;
+        }
+
+
+        public override string ToString()
+        {
+            StringBuilder sbNotes = new StringBuilder(string.Format("{0,6}: ", startTime));
+            StringBuilder sbTexts = new StringBuilder();
+            // Iterate over the parts and build a complete representation of all notes and of all texts
+            foreach (List<NoteElement> noteElementList in noteLists) // Iterate over the fixed number of parts.
+            {
+                string partNotes = PartNotes(noteElementList); // Represents all notes for all parts
+                string partTexts = PartTexts(noteElementList); // Represents all texts for all parts
+                // Assume that: The step is described with 3 characters. The octave with 1 character and max 2 notes per part !
+                sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
+                sbTexts.Append(string.Format("{0} ", partTexts));
+            }
+            return sbNotes.ToString() + " " + sbTexts.ToString();
         }
     }
 }
