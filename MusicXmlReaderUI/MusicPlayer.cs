@@ -57,13 +57,19 @@ namespace MusicXmlReaderUI
             else if ((selectedObject is EventDescription))
             {
                 EventDescription eventDescription = selectedObject as EventDescription;
-                foreach (List<NoteElement> noteElementList in eventDescription.NoteLists)
+                //foreach (List<NoteElement> noteElementList in eventDescription.NoteLists)
+                // Itetrate through all parts: We need the index "I" to look up UserSettings
+                for (int i = 0; (i < numberOfParts); i++)
                 {
+                    List<NoteElement> noteElementList = eventDescription.NoteLists[i];
                     foreach (NoteElement noteElement in noteElementList)
                     {
                         if (!noteElement.IsPause)
                         { // This is a real note, not a pause
-                            new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                            if (userSettings.partsToPlay[i])
+                            {
+                                new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                            }
                         }
                     }
                 }
