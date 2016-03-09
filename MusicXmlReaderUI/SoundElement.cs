@@ -43,7 +43,7 @@ namespace MusicXmlReaderUI
 
         public int GetTempo()
         {
-            return int.Parse(tempo);
+            return string.IsNullOrEmpty(tempo) ? 60 : int.Parse(tempo); // Use 60 beats per second as default
         }
     }
 }

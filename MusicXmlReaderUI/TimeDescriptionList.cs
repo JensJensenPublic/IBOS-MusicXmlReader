@@ -42,7 +42,7 @@ namespace MusicXmlReaderUI
                         times.Add(noteElement);
                         if (noteElement.Chord)
                         {   // Start at the beginning of the previous note
-                            noteElement.StartTime = previousStartTime; 
+                            noteElement.StartTime = previousStartTime;
                         }
                         else
                         {
@@ -52,6 +52,22 @@ namespace MusicXmlReaderUI
                             nextStartTime += noteElement.DurationInCommonDivisions;
                         }
                     }
+                    else if (e is ForwardElement)
+                    {
+                        // Move the MusciXml program counter without playing anything
+                        ForwardElement forwardElement = e as ForwardElement;
+                        nextStartTime += forwardElement.DurationInCommonDivisions; /////////////////////////////// FIX THIS TO DO
+                        //previousStartTime = nextStartTime; // ??????????????????????????????????????????
+                    }
+
+                    else if (e is BackupElement)
+                    {
+                        // Move the MusciXml program counter without playing anything
+                        BackupElement backupElement = e as BackupElement;
+                        nextStartTime -= backupElement.DurationInCommonDivisions; /////////////////////////////// FIX THIS TO DO
+                        //previousStartTime = nextStartTime; // ??????????????????????????????????????????
+                    }
+
                 }
             }
 

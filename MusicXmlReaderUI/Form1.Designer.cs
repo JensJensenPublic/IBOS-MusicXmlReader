@@ -45,9 +45,9 @@
             // 
             this.listBoxTimes.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxTimes.FormattingEnabled = true;
-            this.listBoxTimes.Location = new System.Drawing.Point(321, 77);
+            this.listBoxTimes.Location = new System.Drawing.Point(257, 77);
             this.listBoxTimes.Name = "listBoxTimes";
-            this.listBoxTimes.Size = new System.Drawing.Size(275, 407);
+            this.listBoxTimes.Size = new System.Drawing.Size(540, 407);
             this.listBoxTimes.TabIndex = 1;
             this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
             // 
@@ -56,7 +56,7 @@
             this.listBoxFiltered.FormattingEnabled = true;
             this.listBoxFiltered.Location = new System.Drawing.Point(12, 77);
             this.listBoxFiltered.Name = "listBoxFiltered";
-            this.listBoxFiltered.Size = new System.Drawing.Size(303, 407);
+            this.listBoxFiltered.Size = new System.Drawing.Size(239, 407);
             this.listBoxFiltered.TabIndex = 2;
             // 
             // buttonStart
@@ -139,7 +139,7 @@
             this.checkedListBoxPartsToPlay.AccessibleDescription = "En checkbox for hver stemme. Hvis checked spilles stemmen";
             this.checkedListBoxPartsToPlay.AccessibleName = "Stemmer som spilles";
             this.checkedListBoxPartsToPlay.FormattingEnabled = true;
-            this.checkedListBoxPartsToPlay.Location = new System.Drawing.Point(602, 72);
+            this.checkedListBoxPartsToPlay.Location = new System.Drawing.Point(856, 72);
             this.checkedListBoxPartsToPlay.Name = "checkedListBoxPartsToPlay";
             this.checkedListBoxPartsToPlay.Size = new System.Drawing.Size(120, 184);
             this.checkedListBoxPartsToPlay.TabIndex = 9;
@@ -149,7 +149,7 @@
             // 
             this.checkedListBoxPartsToRead.AccessibleName = "Stemmer som oplæses";
             this.checkedListBoxPartsToRead.FormattingEnabled = true;
-            this.checkedListBoxPartsToRead.Location = new System.Drawing.Point(764, 72);
+            this.checkedListBoxPartsToRead.Location = new System.Drawing.Point(982, 72);
             this.checkedListBoxPartsToRead.Name = "checkedListBoxPartsToRead";
             this.checkedListBoxPartsToRead.Size = new System.Drawing.Size(120, 184);
             this.checkedListBoxPartsToRead.TabIndex = 10;
@@ -159,7 +159,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(928, 496);
+            this.ClientSize = new System.Drawing.Size(1114, 496);
             this.Controls.Add(this.checkedListBoxPartsToRead);
             this.Controls.Add(this.checkedListBoxPartsToPlay);
             this.Controls.Add(this.butonPlayPoly);

@@ -44,6 +44,16 @@ namespace MusicXmlReaderUI
                 {
                     currentPart.Add(o as NoteElement);
                 }
+
+                if (o is BackupElement)
+                {
+                    currentPart.Add(o as BackupElement);
+                }
+
+                if (o is ForwardElement)
+                {
+                    currentPart.Add(o as ForwardElement);
+                }
             }
 
             // Only for inspection during debugging:

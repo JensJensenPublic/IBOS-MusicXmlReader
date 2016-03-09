@@ -133,6 +133,16 @@ namespace MusicXmlReaderUI
                 case "attributes":
                      // Ignore until we need them
                      break;
+                case "backup":
+                    // Needed soon!
+                    allMusicXmlObjecsts.Add(BackupElement.Create(node, divisions));
+                    continueRecursion = false;
+                    break;
+                case "forward":
+                    // Needed soon!
+                    allMusicXmlObjecsts.Add(ForwardElement.Create(node, divisions));
+                    continueRecursion = false;
+                    break;
                 case "scaling":
                 case "millimeters":
                 case "tenths":

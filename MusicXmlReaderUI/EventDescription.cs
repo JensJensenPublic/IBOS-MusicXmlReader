@@ -125,6 +125,10 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
+            if (87570 == startTime)
+            {
+                System.Threading.Thread.Sleep(0); // Only sor setting a breakpoint !!!!
+            }
             StringBuilder sbNotes = new StringBuilder(string.Format("{0,6}: ", startTime));
             StringBuilder sbTexts = new StringBuilder();
             // Iterate over the parts and build a complete representation of all notes and of all texts
