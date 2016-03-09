@@ -18,23 +18,31 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// Notes to be played at this time
         /// </summary>
-        private NoteElement[] notes; // TO DO: Remove notes. Use noteLists instead!!
+//        private NoteElement[] notes; // TO DO: Remove notes. Use noteLists instead!!
 
         private List<NoteElement>[] noteLists; // An array of lists of notes
 
-        public NoteElement[] Notes // TO DO: Remove Notes. Use NoteLists instead!!
-        {
-            get
-            {
-                return notes;
-            }
-        }
+        //public NoteElement[] Notes // TO DO: Remove Notes. Use NoteLists instead!!
+        //{
+        //    get
+        //    {
+        //        return notes;
+        //    }
+        //}
 
         public int StartTime
         {
             get
             {
                 return startTime;
+            }
+        }
+
+        public List<NoteElement>[] NoteLists
+        {
+            get
+            {
+                return noteLists;
             }
         }
 
@@ -49,7 +57,7 @@ namespace MusicXmlReaderUI
         {
             this.startTime = time;
             this.numberOfParts = numberOfParts;
-            this.notes = new NoteElement[numberOfParts];
+//            this.notes = new NoteElement[numberOfParts];
             // For each part a list is needed to handle to handle multiple notes within the same part!
             this.noteLists = new List<NoteElement>[numberOfParts];
             for (int i = 0; (i < numberOfParts); i++)
@@ -66,7 +74,7 @@ namespace MusicXmlReaderUI
 
         public void AddNote(NoteElement noteElement)
         {
-            notes[noteElement.PartNumber] = noteElement;
+//            notes[noteElement.PartNumber] = noteElement;
             noteLists[noteElement.PartNumber].Add(noteElement);
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using JSJ.MusicSynthesis;
 using System.Windows.Forms;
 using NAudio.Midi;
@@ -56,13 +57,24 @@ namespace MusicXmlReaderUI
             else if ((selectedObject is EventDescription))
             {
                 EventDescription eventDescription = selectedObject as EventDescription;
-                foreach (NoteElement noteElement in eventDescription.Notes)
+                foreach (List<NoteElement> noteElementList in eventDescription.NoteLists)
                 {
-                    if ((null != noteElement)  &&  (!noteElement.IsPause))
-                    { // This is a real note, not a pause
-                        new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                    foreach (NoteElement noteElement in noteElementList)
+                    {
+                        if (!noteElement.IsPause)
+                        { // This is a real note, not a pause
+                            new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                        }
                     }
                 }
+
+                //foreach (NoteElement noteElement in eventDescription.Notes)
+                //{
+                //    if ((null != noteElement)  &&  (!noteElement.IsPause))
+                //    { // This is a real note, not a pause
+                //        new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                //    }
+                //}
             }
             return;
         }
@@ -135,28 +147,34 @@ namespace MusicXmlReaderUI
         private void Play(EventDescription eventDescription)
         {
             // Wait for the time to play:
-            long sleep = (eventDescription.StartTime / 2) - (stopWatch.ElapsedMilliseconds - firstStopWatchTime);
+            int factor = 1;
+            long sleep = (eventDescription.StartTime / factor) - (stopWatch.ElapsedMilliseconds - firstStopWatchTime);
             System.Threading.Thread.Sleep((int)Math.Max(0, sleep));
 
             // Itetrate through all parts: 
             for (int i = 0; (i < numberOfParts); i++)
             {
-                NoteElement noteElement = eventDescription.Notes[i];
-                if (null == noteElement) continue; // Nothing happens in this part.
-                if (noteElement.TieStop) continue; // Let the note continue
-
-                if (null != latestNotesPlayed[i])
+                List<NoteElement> noteElementList = eventDescription.NoteLists[i];
+                foreach (NoteElement noteElement in noteElementList)
                 {
-                    latestNotesPlayed[i].StopPlaying(midiOut);
-                }
 
-                if ("" != noteElement.Step)
-                {
-                    // This is a playable note, not a pause !
-                    if (userSettings.partsToPlay[i])
+                    //NoteElement noteElement = eventDescription.Notes[i];
+                    //if (null == noteElement) continue; // Nothing happens in this part.
+                    if (noteElement.TieStop) continue; // Let the note continue
+
+                    if (null != latestNotesPlayed[i])
                     {
-                        // This part is selected to be played (for instance from the GUI)
-                        latestNotesPlayed[i] = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                        latestNotesPlayed[i].StopPlaying(midiOut);
+                    }
+
+                    if ("" != noteElement.Step)
+                    {
+                        // This is a playable note, not a pause !
+                        if (userSettings.partsToPlay[i])
+                        {
+                            // This part is selected to be played (for instance from the GUI)
+                            latestNotesPlayed[i] = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                        }
                     }
                 }
             }
@@ -217,20 +235,7 @@ namespace MusicXmlReaderUI
                 userSettings = value;
             }
         }
-
-        //public bool[] PartsToPlay
-        //{
-        //    get
-        //    {
-        //        return partsToPlay;
-        //    }
-
-        //    set
-        //    {
-        //        partsToPlay = value;
-        //    }
-        //}
-
+ 
         delegate void SetSelectedIndexCallback(ListBox listBox,int index);
         private void SetSelectedIndex(ListBox listBox, int index)
         {
