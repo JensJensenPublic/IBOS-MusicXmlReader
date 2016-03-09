@@ -67,7 +67,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return string.Format("Backup {0} ********************************",DurationInCommonDivisions);
+            return string.Format("Backup {0} <--------------------------------", DurationInCommonDivisions);
 
         }
     }
