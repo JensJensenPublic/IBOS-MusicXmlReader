@@ -7343,17 +7343,6 @@
     <type>half</type>
     <staff>1</staff>
    </note>
-   <backup>
-    <duration>1024</duration>
-   </backup>
-   <note print-object="no" default-x="15">
-    <rest />
-    <duration>512</duration>
-    <instrument id="P2-I1" />
-    <voice>2</voice>
-    <type>half</type>
-    <staff>1</staff>
-   </note>
   </measure>
   <measure number="19" width="263">
    <note color="#000000" default-x="17">
@@ -8022,17 +8011,6 @@
     <instrument id="P2-I1" />
     <type>half</type>
     <accidental>natural</accidental>
-    <staff>1</staff>
-   </note>
-   <backup>
-    <duration>1024</duration>
-   </backup>
-   <note default-x="15">
-    <rest />
-    <duration>512</duration>
-    <instrument id="P2-I1" />
-    <voice>2</voice>
-    <type>half</type>
     <staff>1</staff>
    </note>
   </measure>
