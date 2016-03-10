@@ -57,6 +57,7 @@
     <Compile Include="DivisionsElement.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="EventDescriptionList.cs" />
+    <Compile Include="EventElement.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +114,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="MusicXmlSamples\Node.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

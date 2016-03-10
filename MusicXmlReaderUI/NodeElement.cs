@@ -5,7 +5,7 @@ namespace MusicXmlReaderUI
 {
 
 
-    public class NoteElement : Element
+    public class NoteElement : EventElement
     {
         // Allows for representing the following subdivisions of a quarter node:
         // 2,3,4,5,6,7,8,9,10. 
@@ -31,7 +31,7 @@ namespace MusicXmlReaderUI
         int measureNumber;
         string partId;
         int partNumber;
-        int startTime;
+        //int startTime;
         string syllabic; // Child of lyric
         string text;     // Child of lyric
 
@@ -108,21 +108,21 @@ namespace MusicXmlReaderUI
             }
         }
 
-        /// <summary>
-        /// Unit is milliSeconds. Is 0 at start of part.
-        /// </summary>
-        public int StartTime
-        {
-            get
-            {
-                return startTime;
-            }
+        ///// <summary>
+        ///// Unit is milliSeconds. Is 0 at start of part.
+        ///// </summary>
+        //public int StartTime
+        //{
+        //    get
+        //    {
+        //        return startTime;
+        //    }
 
-            set
-            {
-                startTime = value;
-            }
-        }
+        //    set
+        //    {
+        //        startTime = value;
+        //    }
+        //}
 
         public int DurationInCommonDivisions
         {

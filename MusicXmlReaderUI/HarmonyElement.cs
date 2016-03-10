@@ -9,7 +9,7 @@ using System.Xml;
 namespace MusicXmlReaderUI
 {
 
-    public class HarmonyElement : Element
+    public class HarmonyElement : EventElement
     {
 
         string kind;
