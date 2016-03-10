@@ -39,6 +39,8 @@
             this.checkedListBoxPartsToPlay = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxPartsToRead = new System.Windows.Forms.CheckedListBox();
             this.checkBoxShowStartTime = new System.Windows.Forms.CheckBox();
+            this.labelPartsPlayed = new System.Windows.Forms.Label();
+            this.labelPartsRead = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -144,6 +146,7 @@
             this.checkedListBoxPartsToPlay.Name = "checkedListBoxPartsToPlay";
             this.checkedListBoxPartsToPlay.Size = new System.Drawing.Size(120, 184);
             this.checkedListBoxPartsToPlay.TabIndex = 9;
+            this.checkedListBoxPartsToPlay.Tag = "";
             this.checkedListBoxPartsToPlay.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPartsToPlay_ItemCheck);
             // 
             // checkedListBoxPartsToRead
@@ -167,11 +170,31 @@
             this.checkBoxShowStartTime.UseVisualStyleBackColor = true;
             this.checkBoxShowStartTime.CheckedChanged += new System.EventHandler(this.checkBoxShowStartTime_CheckedChanged);
             // 
+            // labelPartsPlayed
+            // 
+            this.labelPartsPlayed.AutoSize = true;
+            this.labelPartsPlayed.Location = new System.Drawing.Point(856, 53);
+            this.labelPartsPlayed.Name = "labelPartsPlayed";
+            this.labelPartsPlayed.Size = new System.Drawing.Size(101, 13);
+            this.labelPartsPlayed.TabIndex = 12;
+            this.labelPartsPlayed.Text = "Stemmer som spilles";
+            // 
+            // labelPartsRead
+            // 
+            this.labelPartsRead.AutoSize = true;
+            this.labelPartsRead.Location = new System.Drawing.Point(983, 53);
+            this.labelPartsRead.Name = "labelPartsRead";
+            this.labelPartsRead.Size = new System.Drawing.Size(113, 13);
+            this.labelPartsRead.TabIndex = 13;
+            this.labelPartsRead.Text = "Stemmer som oplæses";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1114, 496);
+            this.Controls.Add(this.labelPartsRead);
+            this.Controls.Add(this.labelPartsPlayed);
             this.Controls.Add(this.checkBoxShowStartTime);
             this.Controls.Add(this.checkedListBoxPartsToRead);
             this.Controls.Add(this.checkedListBoxPartsToPlay);
@@ -203,6 +226,8 @@
         private System.Windows.Forms.CheckedListBox checkedListBoxPartsToPlay;
         private System.Windows.Forms.CheckedListBox checkedListBoxPartsToRead;
         private System.Windows.Forms.CheckBox checkBoxShowStartTime;
+        private System.Windows.Forms.Label labelPartsPlayed;
+        private System.Windows.Forms.Label labelPartsRead;
     }
 }
 
