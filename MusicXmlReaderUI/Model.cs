@@ -339,5 +339,11 @@ namespace MusicXmlReaderUI
             userSettings.userSlowDown = newValue;
         }
 
+
+        public void SetShowStartTime(bool value)
+        {
+            userSettings.readDivisions = value;
+        }
+
     }
 }

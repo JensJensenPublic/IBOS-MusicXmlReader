@@ -111,7 +111,7 @@ namespace MusicXmlReaderUI
             string s = "";
             foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
             {
-                string delimiter = string.IsNullOrEmpty(s) ? "" : "+"; // Use this string te separate notes within one part
+                string delimiter = string.IsNullOrEmpty(s) ? "" : " "; // Use this string te separate notes within one part
                 // Add pitch information
                 if (userSettings.partsToRead[noteElement.PartNumber]) // Might later look at subparts S1/S2 ? 
                 {
@@ -125,11 +125,8 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            if (87570 == startTime)
-            {
-                System.Threading.Thread.Sleep(0); // Only sor setting a breakpoint !!!!
-            }
-            StringBuilder sbNotes = new StringBuilder(string.Format("{0,6}: ", startTime));
+            string divisions = userSettings.readDivisions ? string.Format("{0,6}: ", startTime,""):"";
+            StringBuilder sbNotes = new StringBuilder();
             StringBuilder sbTexts = new StringBuilder();
             // Iterate over the parts and build a complete representation of all notes and of all texts
             foreach (List<NoteElement> noteElementList in noteLists) // Iterate over the fixed number of parts.
@@ -140,7 +137,7 @@ namespace MusicXmlReaderUI
                 sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
                 sbTexts.Append(string.Format("{0} ", partTexts));
             }
-            return sbNotes.ToString() + " " + sbTexts.ToString();
+            return divisions + sbNotes.ToString() + " " + sbTexts.ToString();
         }
     }
 }

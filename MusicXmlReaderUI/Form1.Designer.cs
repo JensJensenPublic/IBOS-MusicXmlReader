@@ -38,6 +38,7 @@
             this.butonPlayPoly = new System.Windows.Forms.Button();
             this.checkedListBoxPartsToPlay = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxPartsToRead = new System.Windows.Forms.CheckedListBox();
+            this.checkBoxShowStartTime = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -155,11 +156,23 @@
             this.checkedListBoxPartsToRead.TabIndex = 10;
             this.checkedListBoxPartsToRead.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPartsToRead_ItemCheck);
             // 
+            // checkBoxShowStartTime
+            // 
+            this.checkBoxShowStartTime.AutoSize = true;
+            this.checkBoxShowStartTime.Location = new System.Drawing.Point(856, 277);
+            this.checkBoxShowStartTime.Name = "checkBoxShowStartTime";
+            this.checkBoxShowStartTime.Size = new System.Drawing.Size(74, 17);
+            this.checkBoxShowStartTime.TabIndex = 11;
+            this.checkBoxShowStartTime.Text = "Vis starttid";
+            this.checkBoxShowStartTime.UseVisualStyleBackColor = true;
+            this.checkBoxShowStartTime.CheckedChanged += new System.EventHandler(this.checkBoxShowStartTime_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1114, 496);
+            this.Controls.Add(this.checkBoxShowStartTime);
             this.Controls.Add(this.checkedListBoxPartsToRead);
             this.Controls.Add(this.checkedListBoxPartsToPlay);
             this.Controls.Add(this.butonPlayPoly);
@@ -189,6 +202,7 @@
         private System.Windows.Forms.Button butonPlayPoly;
         private System.Windows.Forms.CheckedListBox checkedListBoxPartsToPlay;
         private System.Windows.Forms.CheckedListBox checkedListBoxPartsToRead;
+        private System.Windows.Forms.CheckBox checkBoxShowStartTime;
     }
 }
 
