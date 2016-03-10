@@ -77,31 +77,22 @@ namespace MusicXmlReaderUI
 
         private void buttonStartUsingDOM_Click(object sender, EventArgs e)
         {
-            string executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            string executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
-            string fileName = "Node.xml";
+            model.LoadMusicXmlFile(); // Load the .xml file into the Model and build all internal data structures.
+
             textBoxMessage.Focus();
-            textBoxMessage.Text = string.Format("Indlæser {0}",fileName);
-            fileName = System.IO.Path.Combine(executingDirectory, fileName);
-            XmlDocument doc = new XmlDocument();   
-            XmlTextReader reader = new XmlTextReader(fileName);
-            reader.WhitespaceHandling = WhitespaceHandling.None;
-            doc.Load(reader);
-            model.Recurse(doc.ChildNodes);
-            model.Init(); // Experimental code !!
-
-            // Load the ListBox showing the filtered values
-            model.LoadListBox();
-            listBoxFiltered.Focus();
-            listBoxFiltered.SelectedIndex = 0;
-
+            textBoxMessage.Text = string.Format("Indlæser {0}",model.FullXmlFileName); 
+ 
             // Load the Checked Listboxes controlling the user settings
             model.LoadListBoxOfParts(checkedListBoxPartsToPlay);
             model.LoadListBoxOfParts(checkedListBoxPartsToRead);
             autoReload = true;
- 
-            //Liad the listbox showing the Event Descriptors
-            model.LoadListBoxTimes();
+
+            // Load the ListBox showing the filtered values 
+            listBoxFiltered.Focus();
+            listBoxFiltered.SelectedIndex = 0;
+
+            // Let the Model do the hard work of transforming to e timed representation.
+            model.LoadListBoxTimes(); 
         }
 
         private void Play_Click(object sender, EventArgs e)

@@ -23,8 +23,27 @@ namespace MusicXmlReaderUI
         int currentPartNumber = 0;
         ScorePartElement scorePartElement = null;
         UserSettings userSettings;
+        string fullXmlFileName;
 
 
+        public void LoadMusicXmlFile()
+        {
+            {
+                string executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
+                string fileName = "Node.xml";
+                fullXmlFileName = System.IO.Path.Combine(executingDirectory, fileName);
+                XmlDocument doc = new XmlDocument();
+                XmlTextReader reader = new XmlTextReader(fullXmlFileName);
+                reader.WhitespaceHandling = WhitespaceHandling.None;
+                doc.Load(reader);
+                Recurse(doc.ChildNodes);
+                Init(); // Experimental code !! 
+                LoadListBox();
+            }
+        }
+
+        
         /// <summary>
         /// Constructor
         /// </summary>
@@ -221,6 +240,15 @@ namespace MusicXmlReaderUI
         private PartDescriptionList  partDescriptionList;
         private TimeDescriptionList  timeDescriptionList;
         private EventDescriptionList eventDescriptionList;
+
+        public string FullXmlFileName
+        {
+            get
+            {
+                return fullXmlFileName;
+            }
+        }
+
         //private MeasureDescriptionList measureDescriptionList;
 
         public void Init()
@@ -264,7 +292,7 @@ namespace MusicXmlReaderUI
         public void LoadListBoxTimes()
         {
             eventDescriptionList.LoadListBox(listBoxPoly);
-            //timeDescriptionList.LoadListBox(listBoxTimes);
+            //timeDescriptionList.LoadListBox(listBoxTimes); 
         }
 
         public void LoadListBoxOfParts(CheckedListBox checkedListBox)
