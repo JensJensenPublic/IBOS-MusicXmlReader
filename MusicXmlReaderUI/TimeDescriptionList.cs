@@ -33,7 +33,7 @@ namespace MusicXmlReaderUI
             foreach (List<Element> elementList in partDescriptionList.parts)
             {
                 int nextStartTime = 0; // Each part starts at time = 0 MilliSeconds
-                int previousStartTime = 0; 
+                int previousStartTime = 0;
                 foreach (Element e in elementList)
                 {
                     if (e is NoteElement)
@@ -68,30 +68,35 @@ namespace MusicXmlReaderUI
                         //previousStartTime = nextStartTime; // ??????????????????????????????????????????
                     }
 
+                    if (e is HarmonyElement)
+                    {
+                        HarmonyElement harmonyElement = e as HarmonyElement;
+                        harmonyElement.StartTime = nextStartTime;
+                        times.Add(harmonyElement);
+                    }
                 }
+
+                if (0 == (times.Count))
+                {
+                    return;
+                }
+
+                times.Sort(Compare);
+
+                //List<EventDescription> events = new List<EventDescription>();
+                //int currentStartTime = -1;
+                //EventDescription currentEventDescription = null;
+                //foreach (NoteElement note in times)
+                //{
+                //    if (note.StartTime != currentStartTime)
+                //    {
+                //        currentEventDescription = EventDescription.Create(currentStartTime, numberOfParts);
+                //        events.Add(currentEventDescription);
+                //    }
+                //    currentEventDescription.AddNote(note);
             }
 
-            if (0 == (times.Count))
-            {
-                return;
-            }
-
-            times.Sort(Compare);
-
-            //List<EventDescription> events = new List<EventDescription>();
-            //int currentStartTime = -1;
-            //EventDescription currentEventDescription = null;
-            //foreach (NoteElement note in times)
-            //{
-            //    if (note.StartTime != currentStartTime)
-            //    {
-            //        currentEventDescription = EventDescription.Create(currentStartTime, numberOfParts);
-            //        events.Add(currentEventDescription);
-            //    }
-            //    currentEventDescription.AddNote(note);
-            }
-
-        
+        }
 
         public static TimeDescriptionList Create(PartDescriptionList partDescriptionList, int divisions)
         {
@@ -100,9 +105,9 @@ namespace MusicXmlReaderUI
 
         public int Compare(Element x, Element y)
         {
-            if ((x is NoteElement) && (y is NoteElement))
+            if ((x is EventElement) && (y is EventElement))
             {
-                return ((x as NoteElement).StartTime - (y as NoteElement).StartTime);
+                return ((x as EventElement).StartTime - (y as EventElement).StartTime);
             }
             return 0;
         }

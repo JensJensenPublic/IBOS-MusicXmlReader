@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace MusicXmlReaderUI
 {
-    
+
     public class EventDescription
     {
         int startTime;
@@ -21,6 +21,10 @@ namespace MusicXmlReaderUI
 //        private NoteElement[] notes; // TO DO: Remove notes. Use noteLists instead!!
 
         private List<NoteElement>[] noteLists; // An array of lists of notes
+
+        private HarmonyElement harmonyElement; // The harmony related to this event, if any.
+
+        private int MeasureNumber = -1; // The measure Number if this event falls on a measure border.
 
         //public NoteElement[] Notes // TO DO: Remove Notes. Use NoteLists instead!!
         //{
@@ -57,26 +61,36 @@ namespace MusicXmlReaderUI
         {
             this.startTime = time;
             this.numberOfParts = numberOfParts;
-//            this.notes = new NoteElement[numberOfParts];
+            //            this.notes = new NoteElement[numberOfParts];
             // For each part a list is needed to handle to handle multiple notes within the same part!
             this.noteLists = new List<NoteElement>[numberOfParts];
             for (int i = 0; (i < numberOfParts); i++)
             {
                 noteLists[i] = new List<NoteElement>();
-            } 
+            }
             this.userSettings = userSettings;
         }
 
-        public static EventDescription Create(int time, int numberOfParts,  UserSettings userSettings)
+        public static EventDescription Create(int time, int numberOfParts, UserSettings userSettings)
         {
             return new EventDescription(time, numberOfParts, userSettings);
         }
 
-        public void AddNote(NoteElement noteElement)
+        public void AddNote(EventElement eventElement)
         {
-//            notes[noteElement.PartNumber] = noteElement;
-            noteLists[noteElement.PartNumber].Add(noteElement);
+            //            notes[noteElement.PartNumber] = noteElement;
+            if (eventElement is NoteElement)
+            {
+                NoteElement noteElement = eventElement as NoteElement;
+                noteLists[noteElement.PartNumber].Add(noteElement);
+            }
+            else if (eventElement is HarmonyElement)
+            {
+                // Assuming only one harmony starts at one time.
+                harmonyElement = eventElement as HarmonyElement; // Assume only one harmony per event!
+            }
         }
+
 
         /// <summary>
         /// Generate a string representing the (possibly multiple) notes of a single part
@@ -125,7 +139,8 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            string divisions = userSettings.readDivisions ? string.Format("{0,6}: ", startTime,""):"";
+            string divisions = userSettings.readDivisions ? string.Format("{0,6}: ", startTime, "") : "";
+            string harmony = (null == harmonyElement) ? "" : string.Format(" {0} {1} {2}",harmonyElement.Kind, harmonyElement.RootStep, harmonyElement.RootAlter); 
             StringBuilder sbNotes = new StringBuilder();
             StringBuilder sbTexts = new StringBuilder();
             // Iterate over the parts and build a complete representation of all notes and of all texts
@@ -137,7 +152,8 @@ namespace MusicXmlReaderUI
                 sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
                 sbTexts.Append(string.Format("{0} ", partTexts));
             }
-            return divisions + sbNotes.ToString() + " " + sbTexts.ToString();
+            return divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmony;
         }
     }
 }
+

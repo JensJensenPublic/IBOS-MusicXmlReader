@@ -16,6 +16,30 @@ namespace MusicXmlReaderUI
         string rootStep;
         string rootAlter;
 
+        public string Kind
+        {
+            get
+            {
+                return kind;
+            }
+        }
+
+        public string RootStep
+        {
+            get
+            {
+                return rootStep;
+            }
+        }
+
+        public string RootAlter
+        {
+            get
+            {
+                return rootAlter;
+            }
+        }
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
@@ -58,7 +82,8 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return string.Format("Akkord: {0} {1} {2}",
+            return string.Format("{0}: Akkord: {1} {2} {3}",
+                startTime,
                 string.IsNullOrEmpty(kind) ? "" : kind,
                 string.IsNullOrEmpty(rootStep) ? "" : rootStep,
                 string.IsNullOrEmpty(rootAlter) ? "" : rootAlter);

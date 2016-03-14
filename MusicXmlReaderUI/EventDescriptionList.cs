@@ -40,15 +40,15 @@ namespace MusicXmlReaderUI
             events = new List<EventDescription>();
             int currentStartTime = -1;
             EventDescription currentEventDescription = null;
-            foreach (NoteElement note in timeDescriptionList.times)
+            foreach (EventElement eventElement in timeDescriptionList.times)
             {
-                if (note.StartTime != currentStartTime)
+                if (eventElement.StartTime != currentStartTime)
                 {
-                    currentStartTime = note.StartTime;
+                    currentStartTime = eventElement.StartTime;
                     currentEventDescription = EventDescription.Create(currentStartTime, numberOfParts, this.userSettings);       
                     events.Add(currentEventDescription);
                 }
-                currentEventDescription.AddNote(note);
+                currentEventDescription.AddNote(eventElement);
             }
 
         }

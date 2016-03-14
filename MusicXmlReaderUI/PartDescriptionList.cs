@@ -45,6 +45,12 @@ namespace MusicXmlReaderUI
                     currentPart.Add(o as NoteElement);
                 }
 
+                if (o is HarmonyElement)
+                {
+                    currentPart.Add(o as HarmonyElement);
+                }
+
+
                 if (o is BackupElement)
                 {
                     currentPart.Add(o as BackupElement);
