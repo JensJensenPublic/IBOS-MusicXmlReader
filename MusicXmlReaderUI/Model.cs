@@ -345,5 +345,14 @@ namespace MusicXmlReaderUI
             userSettings.readDivisions = value;
         }
 
+        public void SetShowHarmonies(bool value)
+        {
+            userSettings.readHarmonies = value;
+        }
+
+        public void SetPlayHarmonies(bool value)
+        {
+            userSettings.playHarmonies = value;
+        }
     }
 }

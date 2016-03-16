@@ -41,6 +41,8 @@
             this.checkBoxShowStartTime = new System.Windows.Forms.CheckBox();
             this.labelPartsPlayed = new System.Windows.Forms.Label();
             this.labelPartsRead = new System.Windows.Forms.Label();
+            this.checkBoxShowHarmonies = new System.Windows.Forms.CheckBox();
+            this.checkBoxPlayHarmonies = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,7 +142,7 @@
             // checkedListBoxPartsToPlay
             // 
             this.checkedListBoxPartsToPlay.AccessibleDescription = "En checkbox for hver stemme. Hvis checked spilles stemmen";
-            this.checkedListBoxPartsToPlay.AccessibleName = "Stemmer som spilles";
+            this.checkedListBoxPartsToPlay.AccessibleName = "Spil stemmer";
             this.checkedListBoxPartsToPlay.FormattingEnabled = true;
             this.checkedListBoxPartsToPlay.Location = new System.Drawing.Point(856, 72);
             this.checkedListBoxPartsToPlay.Name = "checkedListBoxPartsToPlay";
@@ -151,7 +153,7 @@
             // 
             // checkedListBoxPartsToRead
             // 
-            this.checkedListBoxPartsToRead.AccessibleName = "Stemmer som oplæses";
+            this.checkedListBoxPartsToRead.AccessibleName = "Oplæs stemmer";
             this.checkedListBoxPartsToRead.FormattingEnabled = true;
             this.checkedListBoxPartsToRead.Location = new System.Drawing.Point(982, 72);
             this.checkedListBoxPartsToRead.Name = "checkedListBoxPartsToRead";
@@ -161,12 +163,13 @@
             // 
             // checkBoxShowStartTime
             // 
+            this.checkBoxShowStartTime.AccessibleName = "Oplæs starttid";
             this.checkBoxShowStartTime.AutoSize = true;
-            this.checkBoxShowStartTime.Location = new System.Drawing.Point(856, 277);
+            this.checkBoxShowStartTime.Location = new System.Drawing.Point(982, 286);
             this.checkBoxShowStartTime.Name = "checkBoxShowStartTime";
-            this.checkBoxShowStartTime.Size = new System.Drawing.Size(74, 17);
+            this.checkBoxShowStartTime.Size = new System.Drawing.Size(91, 17);
             this.checkBoxShowStartTime.TabIndex = 11;
-            this.checkBoxShowStartTime.Text = "Vis starttid";
+            this.checkBoxShowStartTime.Text = "Oplæs starttid";
             this.checkBoxShowStartTime.UseVisualStyleBackColor = true;
             this.checkBoxShowStartTime.CheckedChanged += new System.EventHandler(this.checkBoxShowStartTime_CheckedChanged);
             // 
@@ -175,24 +178,50 @@
             this.labelPartsPlayed.AutoSize = true;
             this.labelPartsPlayed.Location = new System.Drawing.Point(856, 53);
             this.labelPartsPlayed.Name = "labelPartsPlayed";
-            this.labelPartsPlayed.Size = new System.Drawing.Size(101, 13);
+            this.labelPartsPlayed.Size = new System.Drawing.Size(66, 13);
             this.labelPartsPlayed.TabIndex = 12;
-            this.labelPartsPlayed.Text = "Stemmer som spilles";
+            this.labelPartsPlayed.Text = "Spil stemmer";
             // 
             // labelPartsRead
             // 
             this.labelPartsRead.AutoSize = true;
             this.labelPartsRead.Location = new System.Drawing.Point(983, 53);
             this.labelPartsRead.Name = "labelPartsRead";
-            this.labelPartsRead.Size = new System.Drawing.Size(113, 13);
+            this.labelPartsRead.Size = new System.Drawing.Size(80, 13);
             this.labelPartsRead.TabIndex = 13;
-            this.labelPartsRead.Text = "Stemmer som oplæses";
+            this.labelPartsRead.Text = "Oplæs stemmer";
+            // 
+            // checkBoxShowHarmonies
+            // 
+            this.checkBoxShowHarmonies.AccessibleName = "Oplæs becifringer";
+            this.checkBoxShowHarmonies.AutoSize = true;
+            this.checkBoxShowHarmonies.Location = new System.Drawing.Point(982, 263);
+            this.checkBoxShowHarmonies.Name = "checkBoxShowHarmonies";
+            this.checkBoxShowHarmonies.Size = new System.Drawing.Size(109, 17);
+            this.checkBoxShowHarmonies.TabIndex = 14;
+            this.checkBoxShowHarmonies.Text = "Oplæs becifringer";
+            this.checkBoxShowHarmonies.UseVisualStyleBackColor = true;
+            this.checkBoxShowHarmonies.CheckedChanged += new System.EventHandler(this.checkBoxShowHarmonies_CheckedChanged);
+            // 
+            // checkBoxPlayHarmonies
+            // 
+            this.checkBoxPlayHarmonies.AccessibleName = "Spil becifringer";
+            this.checkBoxPlayHarmonies.AutoSize = true;
+            this.checkBoxPlayHarmonies.Location = new System.Drawing.Point(856, 263);
+            this.checkBoxPlayHarmonies.Name = "checkBoxPlayHarmonies";
+            this.checkBoxPlayHarmonies.Size = new System.Drawing.Size(95, 17);
+            this.checkBoxPlayHarmonies.TabIndex = 15;
+            this.checkBoxPlayHarmonies.Text = "Spil becifringer";
+            this.checkBoxPlayHarmonies.UseVisualStyleBackColor = true;
+            this.checkBoxPlayHarmonies.CheckedChanged += new System.EventHandler(this.checkBoxPlayHarmonies_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1114, 496);
+            this.Controls.Add(this.checkBoxPlayHarmonies);
+            this.Controls.Add(this.checkBoxShowHarmonies);
             this.Controls.Add(this.labelPartsRead);
             this.Controls.Add(this.labelPartsPlayed);
             this.Controls.Add(this.checkBoxShowStartTime);
@@ -228,6 +257,8 @@
         private System.Windows.Forms.CheckBox checkBoxShowStartTime;
         private System.Windows.Forms.Label labelPartsPlayed;
         private System.Windows.Forms.Label labelPartsRead;
+        private System.Windows.Forms.CheckBox checkBoxShowHarmonies;
+        private System.Windows.Forms.CheckBox checkBoxPlayHarmonies;
     }
 }
 

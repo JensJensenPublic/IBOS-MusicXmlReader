@@ -154,6 +154,20 @@ namespace MusicXmlReaderUI
             model.SetShowStartTime(checkBoxShowStartTime.Checked);
             if (autoReload) model.LoadListBoxTimes();
         }
+
+        private void checkBoxPlayHarmonies_CheckedChanged(object sender, EventArgs e)
+        {
+            model.SetPlayHarmonies(checkBoxPlayHarmonies.Checked);
+            if (autoReload) model.LoadListBoxTimes();
+        }
+
+        private void checkBoxShowHarmonies_CheckedChanged(object sender, EventArgs e)
+        {
+            model.SetShowHarmonies(checkBoxShowHarmonies.Checked);
+            if (autoReload) model.LoadListBoxTimes();
+        }
+
+
     }
 
 }

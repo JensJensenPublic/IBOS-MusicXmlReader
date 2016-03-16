@@ -24,6 +24,8 @@ namespace MusicXmlReaderUI
         public bool readDivisions;
         public bool readMeasureNumbers;
         public bool playBeats;
+        public bool readHarmonies;
+        public bool playHarmonies;
 
 
         public float userSlowDown;

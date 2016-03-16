@@ -50,6 +50,14 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public HarmonyElement HarmonyElement
+        {
+            get
+            {
+                return harmonyElement;
+            }
+        }
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
@@ -140,7 +148,7 @@ namespace MusicXmlReaderUI
         public override string ToString()
         {
             string divisions = userSettings.readDivisions ? string.Format("{0,6}: ", startTime, "") : "";
-            string harmony = (null == harmonyElement) ? "" : string.Format(" {0} {1} {2}",harmonyElement.Kind, harmonyElement.RootStep, harmonyElement.RootAlter); 
+            string harmony  = (userSettings.readHarmonies) && (null != harmonyElement) ? string.Format(" {0} {1} {2}", harmonyElement.Kind, harmonyElement.RootStep, harmonyElement.RootAlter) : ""; 
             StringBuilder sbNotes = new StringBuilder();
             StringBuilder sbTexts = new StringBuilder();
             // Iterate over the parts and build a complete representation of all notes and of all texts

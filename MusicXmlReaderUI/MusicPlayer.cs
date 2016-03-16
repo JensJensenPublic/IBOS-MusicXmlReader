@@ -12,6 +12,7 @@ namespace MusicXmlReaderUI
 
         MidiNote   latestNotePlayed = null;
         MidiNote[] latestNotesPlayed = null;
+        MidiChord latestHarmonyPlayed = null;
         MidiOut midiOut = null;
         ListBox listBox = null;
         ListBox listBoxPoly = null;
@@ -173,6 +174,25 @@ namespace MusicXmlReaderUI
                     }
                 }
             }
+
+            // Handle harmonies 
+            if (null != eventDescription.HarmonyElement)
+            {
+                if (null != latestHarmonyPlayed)
+                {
+                    latestHarmonyPlayed.StopPlaying(midiOut);
+                    latestHarmonyPlayed = null;
+                }
+
+                if (userSettings.playHarmonies)
+                {
+                    // Play the harmony related to this event
+                    HarmonyElement h = eventDescription.HarmonyElement;
+                    latestHarmonyPlayed = new MidiChord(ChromaticStep.Bb, 4, 127, ChordType.Major7maj);
+                    latestHarmonyPlayed.StartPlaying(midiOut);
+                }
+            }
+
         }
 
 
