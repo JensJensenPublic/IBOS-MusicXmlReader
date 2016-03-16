@@ -152,10 +152,10 @@ namespace MusicXmlReaderUI
             string harmony = "";
             if ((userSettings.readHarmonies) && (null != harmonyElement))
             {
-                ChromaticStep chromaticStep = MidiNote.GetChromaticStep(harmonyElement.RootStep, harmonyElement.RootAlter);
-                ChordType chordType = MidiChord.GetChordType(harmonyElement.Kind);
-                harmony = string.Format(" {0} {1} {2} : {3} {4}",
-                harmonyElement.Kind, harmonyElement.RootStep, harmonyElement.RootAlter,chromaticStep,chordType);
+                //ChromaticStep chromaticStep = MidiNote.GetChromaticStep(harmonyElement.RootStep, harmonyElement.RootAlter);
+                //ChordType chordType = MidiChord.GetChordType(harmonyElement.Kind);
+                harmony = string.Format(" {0} {1} {2} : {3}{4}",
+                harmonyElement.Kind, harmonyElement.RootStep, harmonyElement.RootAlter, harmonyElement.ChromaticStep, harmonyElement.LocalizedChordType);
             }
             StringBuilder sbNotes = new StringBuilder();
             StringBuilder sbTexts = new StringBuilder();

@@ -188,11 +188,9 @@ namespace MusicXmlReaderUI
                 {
                     // Play the harmony related to this event
                     HarmonyElement h = eventDescription.HarmonyElement;
-                    ChromaticStep chromaticStep = MidiNote.GetChromaticStep(h.RootStep,h.RootAlter);
-                    ChordType chordType = MidiChord.GetChordType(h.Kind);
-                    if (ChordType.UnImplemented != chordType)
+                    if (ChordType.UnImplemented != h.ChordType)
                     {
-                        latestHarmonyPlayed = new MidiChord(chromaticStep, 4, 127, chordType);
+                        latestHarmonyPlayed = new MidiChord(h.ChromaticStep, 4, 127, h.ChordType);
                         latestHarmonyPlayed.StartPlaying(midiOut);
                     }
                     else

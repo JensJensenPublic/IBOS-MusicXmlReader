@@ -11,11 +11,13 @@ namespace JSJ.MusicSynthesis
 
     public enum Interval
     {
-        Unison = 0, MinorSecond = 1, MajorSecond = 2, MinorThird = 3, MajorThird = 4, Fourth = 4,
-        Tritone = 6, Fifth = 7, MinorSixth = 8, MajorSixth = 9, MinorSeventh = 10, MajorSeventh = 11, Octave = 12
+        Unison = 0, MinorSecond = 1, MajorSecond = 2, MinorThird = 3, MajorThird = 4, Fourth = 5,
+        Tritone = 6, Fifth = 7, MinorSixth = 8, MajorSixth = 9, MinorSeventh = 10, MajorSeventh = 11, Octave = 12, MinorNinth = 13, Ninth = 14, // ??
+        Eleventh = 17,  // ??
+        Thirteenth = 21 // ??
     };
 
-    public enum ChordType { Major, Minor, Major7, Minor7, Major7maj, Minor7maj, Dim, Sus4, UnImplemented };
+    public enum ChordType { Major, Minor, Major6, Minor6, Major7, Minor7, Major7maj, Minor7maj, Major9, Minor9, Major11, Minor11, Major13, Minor13, Dim, Dim7, Sus4, UnImplemented };
 
     public class MidiNote
     {

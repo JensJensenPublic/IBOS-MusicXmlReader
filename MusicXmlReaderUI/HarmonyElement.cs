@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using JSJ.MusicSynthesis;
 
 
 namespace MusicXmlReaderUI
@@ -11,10 +12,15 @@ namespace MusicXmlReaderUI
 
     public class HarmonyElement : EventElement
     {
-
+        // Variables read directly fromthe MusucXml file
         string kind;
         string rootStep;
         string rootAlter;
+
+        // Derived variables
+        ChromaticStep chromaticStep;
+        ChordType chordType;
+        string localizedChordType;
 
         public string Kind
         {
@@ -37,6 +43,30 @@ namespace MusicXmlReaderUI
             get
             {
                 return rootAlter;
+            }
+        }
+
+        public ChromaticStep ChromaticStep
+        {
+            get
+            {
+                return chromaticStep;
+            }
+        }
+
+        public ChordType ChordType
+        {
+            get
+            {
+                return chordType;
+            }
+        }
+
+        public string LocalizedChordType
+        {
+            get
+            {
+                return localizedChordType;
             }
         }
 
@@ -73,6 +103,11 @@ namespace MusicXmlReaderUI
                     case "kind": kind = n.InnerText; break;
                 }
             }
+
+            // Fill in derived values
+            chromaticStep = MidiNote.GetChromaticStep(rootStep, rootAlter);
+            chordType = MidiChord.GetChordType(kind);
+            localizedChordType = MidiChord.LocalizeChordType(chordType);
         }
 
         public static HarmonyElement Create(XmlNode node)
