@@ -188,11 +188,19 @@ namespace MusicXmlReaderUI
                 {
                     // Play the harmony related to this event
                     HarmonyElement h = eventDescription.HarmonyElement;
-                    latestHarmonyPlayed = new MidiChord(ChromaticStep.Bb, 4, 127, ChordType.Major7maj);
-                    latestHarmonyPlayed.StartPlaying(midiOut);
+                    ChromaticStep chromaticStep = MidiNote.GetChromaticStep(h.RootStep,h.RootAlter);
+                    ChordType chordType = MidiChord.GetChordType(h.Kind);
+                    if (ChordType.UnImplemented != chordType)
+                    {
+                        latestHarmonyPlayed = new MidiChord(chromaticStep, 4, 127, chordType);
+                        latestHarmonyPlayed.StartPlaying(midiOut);
+                    }
+                    else
+                    {
+                        // throw new System.Exception(string.Format("Becifring {0} er ikke implementeret", h.Kind));
+                    }
                 }
             }
-
         }
 
 

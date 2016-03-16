@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JSJ.MusicSynthesis;
 using System.Threading.Tasks;
 using System.Collections;
 
@@ -148,7 +149,14 @@ namespace MusicXmlReaderUI
         public override string ToString()
         {
             string divisions = userSettings.readDivisions ? string.Format("{0,6}: ", startTime, "") : "";
-            string harmony  = (userSettings.readHarmonies) && (null != harmonyElement) ? string.Format(" {0} {1} {2}", harmonyElement.Kind, harmonyElement.RootStep, harmonyElement.RootAlter) : ""; 
+            string harmony = "";
+            if ((userSettings.readHarmonies) && (null != harmonyElement))
+            {
+                ChromaticStep chromaticStep = MidiNote.GetChromaticStep(harmonyElement.RootStep, harmonyElement.RootAlter);
+                ChordType chordType = MidiChord.GetChordType(harmonyElement.Kind);
+                harmony = string.Format(" {0} {1} {2} : {3} {4}",
+                harmonyElement.Kind, harmonyElement.RootStep, harmonyElement.RootAlter,chromaticStep,chordType);
+            }
             StringBuilder sbNotes = new StringBuilder();
             StringBuilder sbTexts = new StringBuilder();
             // Iterate over the parts and build a complete representation of all notes and of all texts

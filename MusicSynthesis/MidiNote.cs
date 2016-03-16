@@ -7,7 +7,7 @@ namespace JSJ.MusicSynthesis
     // http://www.midi.org/techspecs/gm1sound.php
 
 
-    public enum ChromaticStep { C = 0, Cis = 1, D = 2, Dis = 3, E = 4, F = 5, Fis = 6, G = 7, Gis = 8, A = 9, Bb = 10, B = 11 };   
+    public enum ChromaticStep { C = 0, Cis = 1, D = 2, Dis = 3, E = 4, F = 5, Fis = 6, G = 7, Gis = 8, A = 9, Bb = 10, B = 11, NumberOfSteps = 12 };   
 
     public enum Interval
     {
@@ -15,7 +15,7 @@ namespace JSJ.MusicSynthesis
         Tritone = 6, Fifth = 7, MinorSixth = 8, MajorSixth = 9, MinorSeventh = 10, MajorSeventh = 11, Octave = 12
     };
 
-    public enum ChordType { Major, Minor, Major7, Minor7, Major7maj, Minor7maj, Dim, Sus4 };
+    public enum ChordType { Major, Minor, Major7, Minor7, Major7maj, Minor7maj, Dim, Sus4, UnImplemented };
 
     public class MidiNote
     {
@@ -46,8 +46,24 @@ namespace JSJ.MusicSynthesis
             CommonConstructor(step, 0, octave, velocity, interval, null); // Default: MidiOut = null
         }
 
+        /// <summary>
+        /// Convert from the string representation step/alter to ChromaticStep representation
+        /// </summary>
+        /// <param name="step"></param>
+        /// <param name="alter"></param>
+        /// <returns></returns>
+        public static ChromaticStep GetChromaticStep(string step, string alter)
+        {
+            ChromaticStep chromaticStep = GetChromaticStep(step);
+            int alterValue = GetAlterValue(alter);
+            // Map "C", "-1" to B
+            // Map "B", "+1" to C
+            int alteredStep = ((int)chromaticStep + alterValue) % (int) ChromaticStep.NumberOfSteps;
+            return (ChromaticStep)alteredStep;
+        }
+
         // New code
-        private ChromaticStep GetChromaticStep(string s)
+        public static ChromaticStep GetChromaticStep(string s)
         {
             switch (s)
             {
@@ -69,7 +85,7 @@ namespace JSJ.MusicSynthesis
         }
 
         // New code
-        private int GetAlterValue(string alter)
+        private static int GetAlterValue(string alter)
         {
             if (string.IsNullOrEmpty(alter))
                 return 0;

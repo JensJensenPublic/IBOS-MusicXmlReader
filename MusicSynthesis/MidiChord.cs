@@ -8,6 +8,24 @@ namespace JSJ.MusicSynthesis
 
         private List<MidiNote> midinotes = new List<MidiNote>();
 
+        public static ChordType GetChordType(string chordString)
+        {
+            switch (chordString)
+            {
+                case "minor": return ChordType.Minor;
+                case "major": return ChordType.Major;
+                //case "minor - ninth" ; return ChordType. .;
+                case "major - seventh":  return ChordType.Major7;
+                //case "half - diminished" ; return ChordType.;
+                //case "dominant" ; return ChordType.;
+                case "suspended - fourth": return ChordType.Sus4;
+                //case "" ; return ChordType.;
+                //case "" ; return ChordType.;
+                //case "" ; return ChordType.;
+                default: return ChordType.UnImplemented;
+            }
+        }
+        
         /// <summary>
         /// Constructor
         /// Does NOT start playing the chord.
