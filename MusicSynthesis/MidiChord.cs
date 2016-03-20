@@ -117,9 +117,45 @@ namespace JSJ.MusicSynthesis
         /// </summary>
         /// <param name="chordType"></param>
         /// <returns></returns>
-        public static List<Interval> GetChordIntervals(ChordType chordType)
+        public static Interval[] GetChordIntervals(ChordType chordType)
         {
-            return null; // TO DO: Implement!
+            switch (chordType)
+            {
+                // Triads:
+                case ChordType.Major: return MajorChordIntervals;
+                case ChordType.Minor: return MinorChordIntervals;
+                case ChordType.Dim: return DimChordIntervals;
+                case ChordType.Aug: return AugChordIntervals;
+                case ChordType.Major6: return Major6ChordIntervals;
+                case ChordType.Minor6: return Minor6ChordIntervals;
+                // Sevenths:
+                case ChordType.Dom7: return Dom7ChordIntervals;
+                case ChordType.Major7: return Major7ChordIntervals;
+                case ChordType.Minor7: return Minor7ChordIntervals;
+                case ChordType.MinorMajor: return MinorMajorChordIntervals;
+                case ChordType.Aug7: return Aug7ChordIntervals;
+                case ChordType.HalfDim7: return HalfDim7ChordIntervals;
+                case ChordType.FullDim7: return FullDim7ChordIntervals;
+                // Ninths
+                case ChordType.Dom9: return Dom9ChordIntervals;
+                case ChordType.Major9: return Major9ChordIntervals;
+                case ChordType.Minor9: return Minor9ChordIntervals;
+                // Elevenths
+                case ChordType.Dom11: return Dom11ChordIntervals;
+                case ChordType.Major11: return Major11ChordIntervals;
+                case ChordType.Minor11: return Minor11ChordIntervals;
+                // Thirteenths:
+                case ChordType.Dom13: return Dom13ChordIntervals;
+                case ChordType.Major13: return Major13ChordIntervals;
+                case ChordType.Minor13: return Minor13ChordIntervals;
+                // Sustained:
+                case ChordType.Sus2: return Sus2ChordIntervals;
+                case ChordType.Sus4: return Sus4ChordIntervals;
+                // Undefined
+                default:
+                    throw new System.ArgumentException(string.Format("Chordtype {0} is not supported", chordType.ToString()));
+            }
+    
         }
 
 
@@ -160,13 +196,14 @@ namespace JSJ.MusicSynthesis
         }
 
 
-        private void AddChord(ChromaticStep step, int octave, int velocity, Interval[] intervals)
-        {
-            foreach (Interval interval in intervals)
-            {
-                midinotes.Add(new MidiNote(step,octave,velocity,interval));
-            }
-        }
+        //private void AddChord(ChromaticStep step, int octave, int velocity, Interval[] intervals)
+        //{
+
+        //    foreach (Interval interval in intervals)
+        //    {
+        //        midinotes.Add(new MidiNote(step,octave,velocity,interval));
+        //    }
+        //}
 
 
         /// <summary>
@@ -178,43 +215,11 @@ namespace JSJ.MusicSynthesis
         /// <param name="velocity"></param>
         /// <param name="chordType"></param>
         public MidiChord(ChromaticStep step, int octave,  int velocity, ChordType chordType)
-        {     
-            byte midicode = (byte)(12 * (octave + 1) + (byte)step);
-            switch (chordType)
+        {
+            Interval[] intervals = GetChordIntervals(chordType);
+            foreach (Interval interval in intervals)
             {
-                // Triads:
-                case ChordType.Major: AddChord(step, octave, velocity, MajorChordIntervals);  break;
-                case ChordType.Minor: AddChord(step, octave, velocity, MinorChordIntervals);  break;
-                case ChordType.Dim:   AddChord(step, octave, velocity, DimChordIntervals);    break;
-                case ChordType.Aug:   AddChord(step, octave, velocity, AugChordIntervals);    break;
-                case ChordType.Major6:AddChord(step, octave, velocity, Major6ChordIntervals); break;
-                case ChordType.Minor6:AddChord(step, octave, velocity, Minor6ChordIntervals); break;
-                // Sevenths:
-                case ChordType.Dom7: AddChord(step, octave, velocity, Dom7ChordIntervals); break;                    
-                case ChordType.Major7:AddChord(step, octave, velocity, Major7ChordIntervals); break; 
-                case ChordType.Minor7:AddChord(step, octave, velocity, Minor7ChordIntervals); break;
-                case ChordType.MinorMajor: AddChord(step, octave, velocity, MinorMajorChordIntervals); break;
-                case ChordType.Aug7:AddChord(step, octave, velocity, Aug7ChordIntervals); break;
-                case ChordType.HalfDim7: AddChord(step, octave, velocity, HalfDim7ChordIntervals); break;
-                case ChordType.FullDim7: AddChord(step, octave, velocity, FullDim7ChordIntervals); break;
-                // Ninths
-                case ChordType.Dom9: AddChord(step, octave, velocity, Dom9ChordIntervals); break;
-                case ChordType.Major9: AddChord(step, octave, velocity, Major9ChordIntervals); break;
-                case ChordType.Minor9: AddChord(step, octave, velocity, Minor9ChordIntervals); break;
-                // Elevenths
-                case ChordType.Dom11: AddChord(step, octave, velocity, Dom11ChordIntervals); break;
-                case ChordType.Major11: AddChord(step, octave, velocity, Major11ChordIntervals); break;
-                case ChordType.Minor11: AddChord(step, octave, velocity, Minor11ChordIntervals); break;
-                // Thirteenths:
-                case ChordType.Dom13: AddChord(step, octave, velocity, Dom13ChordIntervals); break;
-                case ChordType.Major13: AddChord(step, octave, velocity, Major13ChordIntervals); break;
-                case ChordType.Minor13: AddChord(step, octave, velocity, Minor13ChordIntervals); break;
-                // Sustained:
-                case ChordType.Sus2: AddChord(step, octave, velocity, Sus2ChordIntervals); break;
-                case ChordType.Sus4: AddChord(step, octave, velocity, Sus4ChordIntervals); break;
-                // Undefined
-                default:
-                    throw new System.ArgumentException(string.Format("Chordtype {0} is not supported", chordType.ToString()));  
+                midinotes.Add(new MidiNote(step, octave, velocity, interval));
             }
         }
 
