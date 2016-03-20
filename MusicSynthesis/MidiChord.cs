@@ -10,7 +10,7 @@ namespace JSJ.MusicSynthesis
         // Sixths
         Major6, Minor6,
         // Sevenths
-        Major7, Minor7, Aug7, FullDim7, HalfDim7, Major7maj, MinorMajor,
+        Dom7, Major7, Minor7, Aug7, FullDim7, HalfDim7, Major7maj, MinorMajor,
         // Ninths
         Dom9, Major9, Minor9,
         // Elevenths
@@ -46,7 +46,7 @@ namespace JSJ.MusicSynthesis
                 case "diminished":; return ChordType.Dim; // (minor third, diminished fifth)
 
                 // Sevenths:
-                case "dominant": return ChordType.Major7; // (major triad, minor seventh)
+                case "dominant": return ChordType.Dom7; // (major triad, minor seventh) (0,4,7,10)
                 case "major-seventh": return ChordType.Major7maj; // (major triad, major seventh)
                 case "minor-seventh": return ChordType.Minor7; // (minor triad, minor seventh)
                 case "diminished-seventh": return ChordType.FullDim7; //(diminished triad, diminished seventh)  (0,3,6,9)
@@ -110,6 +110,7 @@ namespace JSJ.MusicSynthesis
                 // Major
                 case ChordType.Major: return ""; // Implicitly "dur"
                 case ChordType.Major6: return "6";
+                case ChordType.Dom7:   return "dom";
                 case ChordType.Major7: return "7";
                 case ChordType.Major7maj: return "maj7";
                 case ChordType.Major9: return "9";
@@ -167,6 +168,12 @@ namespace JSJ.MusicSynthesis
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorThird));
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorSixth));
                     break;
+                case ChordType.Dom7:
+                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
+                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
+                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
+                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorSeventh));
+                    break;
                 case ChordType.Major7:
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
@@ -201,7 +208,7 @@ namespace JSJ.MusicSynthesis
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorSeventh));
+                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorSeventh));
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.Ninth));
                     break;
                 case ChordType.Major9:
@@ -220,7 +227,7 @@ namespace JSJ.MusicSynthesis
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorSeventh));
+                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorSeventh));
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.Ninth));
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.Eleventh));
                     break;
@@ -240,7 +247,7 @@ namespace JSJ.MusicSynthesis
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorSeventh));
+                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorSeventh));
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.Ninth));
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.Eleventh));
                     midinotes.Add(new MidiNote(step, octave, velocity, Interval.Thirteenth));
