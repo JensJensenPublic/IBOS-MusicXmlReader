@@ -17,7 +17,7 @@ namespace JSJ.MusicSynthesis
         Thirteenth = 21 // ??
     };
 
-    public enum ChordType { Major, Minor, Augmented, Major6, Minor6, Major7, Minor7, Aug7, FullDim7, Major7maj, MinorMajor, Dom9, Major9, Minor9, Dom11, Major11, Minor11, Dom13,Major13, Minor13, Dim, HalfDim7, Sus2, Sus4, UnImplemented };
+    //public enum ChordType { Major, Minor, Augmented, Major6, Minor6, Major7, Minor7, Aug7, FullDim7, Major7maj, MinorMajor, Dom9, Major9, Minor9, Dom11, Major11, Minor11, Dom13,Major13, Minor13, Dim, HalfDim7, Sus2, Sus4, UnImplemented };
 
     public class MidiNote
     {

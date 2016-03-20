@@ -3,9 +3,30 @@ using NAudio.Midi;
 
 namespace JSJ.MusicSynthesis
 {
+
+    public enum ChordType {
+        // Triads
+        Major, Minor, Augmented, Dim,
+        // Sixths
+        Major6, Minor6,
+        // Sevenths
+        Major7, Minor7, Aug7, FullDim7, HalfDim7, Major7maj, MinorMajor,
+        // Ninths
+        Dom9, Major9, Minor9,
+        // Elevenths
+        Dom11, Major11, Minor11,
+        // Thirteenths
+        Dom13, Major13, Minor13,
+        // Suspended
+        Sus2, Sus4,
+        // Unimplemented
+        UnImplemented };
+
+
     public class MidiChord
     {
         // http://www.musicxml.com/UserManuals/MusicXML/Content/ST-MusicXML-kind-value.htm
+
 
         private List<MidiNote> midinotes = new List<MidiNote>();
 
