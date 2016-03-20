@@ -6,7 +6,7 @@ namespace JSJ.MusicSynthesis
 
     public enum ChordType {
         // Triads
-        Major, Minor, Augmented, Dim,
+        Major, Minor, Aug, Dim,
         // Sixths
         Major6, Minor6,
         // Sevenths
@@ -25,8 +25,38 @@ namespace JSJ.MusicSynthesis
 
     public class MidiChord
     {
-        // http://www.musicxml.com/UserManuals/MusicXML/Content/ST-MusicXML-kind-value.htm
-
+        // The following static arrays describe the intervals found in the varions chords as described in
+        // http://www.musicxml.com/UserManuals/MusicXML/Content/ST-MusicXML-kind-value.htm 
+        // Triads:  
+        static readonly Interval[] MajorChordIntervals  = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth };
+        static readonly Interval[] MinorChordIntervals  = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth };
+        static readonly Interval[] DimChordIntervals    = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.Fourth };
+        static readonly Interval[] AugChordIntervals    = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.AugmentedFifth };
+        static readonly Interval[] Major6ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.MajorSixth };
+        static readonly Interval[] Minor6ChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.MajorSixth };
+        // Sevenths:
+        static readonly Interval[] Dom7ChordIntervals   = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh };
+        static readonly Interval[] Major7ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MajorSeventh };
+        static readonly Interval[] Minor7ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh };
+        static readonly Interval[] MinorMajorChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.MajorSeventh };
+        static readonly Interval[] Aug7ChordIntervals    = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.AugmentedFifth, Interval.MinorSeventh };
+        static readonly Interval[] HalfDim7ChordIntervals= new Interval[] { Interval.Unison, Interval.MinorThird, Interval.Fourth, Interval.MinorSeventh };
+        static readonly Interval[] FullDim7ChordIntervals= new Interval[] { Interval.Unison, Interval.MinorThird, Interval.Fourth, Interval.DiminishedSeventh };
+        // Ninths:
+        static readonly Interval[] Dom9ChordIntervals    = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth };
+        static readonly Interval[] Major9ChordIntervals  = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.Ninth };
+        static readonly Interval[] Minor9ChordIntervals  = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.Ninth };
+        // Elevenths:
+        static readonly Interval[] Dom11ChordIntervals   = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth,Interval.Eleventh };
+        static readonly Interval[] Major11ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.Eleventh };
+        static readonly Interval[] Minor11ChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.Eleventh };
+        // Thirteenths:
+        static readonly Interval[] Dom13ChordIntervals   = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth, Interval.Eleventh, Interval.Thirteenth };
+        static readonly Interval[] Major13ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.Thirteenth };
+        static readonly Interval[] Minor13ChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.Thirteenth};
+        // Sustained 
+        static readonly Interval[] Sus2ChordIntervals    = new Interval[] { Interval.Unison, Interval.MajorSecond, Interval.MajorSeventh };
+        static readonly Interval[] Sus4ChordIntervals    = new Interval[] { Interval.Unison, Interval.Fourth, Interval.MinorSeventh };
 
         private List<MidiNote> midinotes = new List<MidiNote>();
 
@@ -42,12 +72,12 @@ namespace JSJ.MusicSynthesis
                 // Triads:
                 case "major": return ChordType.Major; // (major third, perfect fifth)
                 case "minor": return ChordType.Minor; // (minor third, perfect fifth)
-                case "augmented": return ChordType.Augmented; // (major third, augmented fifth)
+                case "augmented": return ChordType.Aug; // (major third, augmented fifth)
                 case "diminished":; return ChordType.Dim; // (minor third, diminished fifth)
 
                 // Sevenths:
                 case "dominant": return ChordType.Dom7; // (major triad, minor seventh) (0,4,7,10)
-                case "major-seventh": return ChordType.Major7maj; // (major triad, major seventh)
+                case "major-seventh": return ChordType.Major7; // (major triad, major seventh)
                 case "minor-seventh": return ChordType.Minor7; // (minor triad, minor seventh)
                 case "diminished-seventh": return ChordType.FullDim7; //(diminished triad, diminished seventh)  (0,3,6,9)
                 case "augmented-seventh":  return ChordType.Aug7;//(augmented triad, minor seventh) (0,4,8,10)
@@ -128,7 +158,16 @@ namespace JSJ.MusicSynthesis
                 default: return "Ikke implementeret";
             }
         }
-        
+
+
+        private void AddChord(ChromaticStep step, int octave, int velocity, Interval[] intervals)
+        {
+            foreach (Interval interval in intervals)
+            {
+                midinotes.Add(new MidiNote(step,octave,velocity,interval));
+            }
+        }
+
 
         /// <summary>
         /// Constructor
@@ -143,154 +182,37 @@ namespace JSJ.MusicSynthesis
             byte midicode = (byte)(12 * (octave + 1) + (byte)step);
             switch (chordType)
             {
-                case ChordType.Major: 
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    break;
-                case ChordType.Minor:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    break;
-                case ChordType.Augmented:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.AugmentedFifth));
-                    break;
-                case ChordType.Major6:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorSixth));
-                    break;
-                case ChordType.Minor6:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorSixth));
-                    break;
-                case ChordType.Dom7:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorSeventh));
-                    break;
-                case ChordType.Major7:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorSeventh));
-                    break;
-                case ChordType.Minor7:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorSeventh));
-                    break;
-                case ChordType.Major7maj:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorSeventh));
-                    break;
-                case ChordType.MinorMajor:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorSeventh));
-                    break;
-                case ChordType.Aug7:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.AugmentedFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorSeventh));
-                    break;
-                case ChordType.Dom9:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorSeventh));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Ninth));
-                    break;
-                case ChordType.Major9:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Ninth));
-                    break;
-                case ChordType.Minor9:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Ninth));
-                    break;
-                case ChordType.Dom11:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorSeventh));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Ninth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Eleventh));
-                    break;
-                case ChordType.Major11:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Eleventh));
-                    break;
-                case ChordType.Minor11:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Eleventh));
-                    break;
-                case ChordType.Dom13:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorSeventh));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Ninth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Eleventh));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Thirteenth));
-                    break;
-                case ChordType.Major13:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Thirteenth));
-                    break;
-                case ChordType.Minor13:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.PerfectFifth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Thirteenth));
-                    break;
-                case ChordType.Dim:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Fourth));
-                    break;
-                case ChordType.HalfDim7:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Fourth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorSeventh));
-                    break;
-                case ChordType.FullDim7:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorThird));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Fourth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.DiminishedSeventh));
-                    break;
-                case ChordType.Sus2:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MajorSecond));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorSeventh));
-                    break;
-                case ChordType.Sus4:
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Unison));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.Fourth));
-                    midinotes.Add(new MidiNote(step, octave, velocity, Interval.MinorSeventh));
-                    break;
+                // Triads:
+                case ChordType.Major: AddChord(step, octave, velocity, MajorChordIntervals);  break;
+                case ChordType.Minor: AddChord(step, octave, velocity, MinorChordIntervals);  break;
+                case ChordType.Dim:   AddChord(step, octave, velocity, DimChordIntervals);    break;
+                case ChordType.Aug:   AddChord(step, octave, velocity, AugChordIntervals);    break;
+                case ChordType.Major6:AddChord(step, octave, velocity, Major6ChordIntervals); break;
+                case ChordType.Minor6:AddChord(step, octave, velocity, Minor6ChordIntervals); break;
+                // Sevenths:
+                case ChordType.Dom7: AddChord(step, octave, velocity, Dom7ChordIntervals); break;                    
+                case ChordType.Major7:AddChord(step, octave, velocity, Major7ChordIntervals); break; 
+                case ChordType.Minor7:AddChord(step, octave, velocity, Minor7ChordIntervals); break;
+                case ChordType.MinorMajor: AddChord(step, octave, velocity, MinorMajorChordIntervals); break;
+                case ChordType.Aug7:AddChord(step, octave, velocity, Aug7ChordIntervals); break;
+                case ChordType.HalfDim7: AddChord(step, octave, velocity, HalfDim7ChordIntervals); break;
+                case ChordType.FullDim7: AddChord(step, octave, velocity, FullDim7ChordIntervals); break;
+                // Ninths
+                case ChordType.Dom9: AddChord(step, octave, velocity, Dom9ChordIntervals); break;
+                case ChordType.Major9: AddChord(step, octave, velocity, Major9ChordIntervals); break;
+                case ChordType.Minor9: AddChord(step, octave, velocity, Minor9ChordIntervals); break;
+                // Elevenths
+                case ChordType.Dom11: AddChord(step, octave, velocity, Dom11ChordIntervals); break;
+                case ChordType.Major11: AddChord(step, octave, velocity, Major11ChordIntervals); break;
+                case ChordType.Minor11: AddChord(step, octave, velocity, Minor11ChordIntervals); break;
+                // Thirteenths:
+                case ChordType.Dom13: AddChord(step, octave, velocity, Dom13ChordIntervals); break;
+                case ChordType.Major13: AddChord(step, octave, velocity, Major13ChordIntervals); break;
+                case ChordType.Minor13: AddChord(step, octave, velocity, Minor13ChordIntervals); break;
+                // Sustained:
+                case ChordType.Sus2: AddChord(step, octave, velocity, Sus2ChordIntervals); break;
+                case ChordType.Sus4: AddChord(step, octave, velocity, Sus4ChordIntervals); break;
+                // Undefined
                 default:
                     throw new System.ArgumentException(string.Format("Chordtype {0} is not supported", chordType.ToString()));  
             }
