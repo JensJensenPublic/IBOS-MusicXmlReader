@@ -166,34 +166,41 @@ namespace JSJ.MusicSynthesis
 
                 // Triads
 
-                // Minor
-                case ChordType.Minor: return "mol";
-                case ChordType.Minor6: return "mol6";
-                case ChordType.Minor7: return "mol7";
+                case ChordType.Major:   return "dur"; // Or just ""
+                case ChordType.Minor:   return "mol";
+                case ChordType.Dim:     return "dim";
+                case ChordType.Aug:     return "aug";
+                case ChordType.Major6:  return "dur6";
+                case ChordType.Minor6:  return "mol6";
+
+                // Sevenths:
+                case ChordType.Dom7:    return "dom7";
+                case ChordType.Major7maj: return "maj7"; // ??
+                case ChordType.Major7:  return "dur7";
+                case ChordType.Minor7:  return "mol7";
                 case ChordType.MinorMajor: return "molmaj";
-                case ChordType.Minor9: return "mol9";
+                case ChordType.Aug7:    return "aug7";
+                case ChordType.HalfDim7:return "ø7"; // ??
+                case ChordType.FullDim7:return "dim7"; // ??
+
+                // Ninths
+                case ChordType.Dom9:    return "dom9";
+                case ChordType.Major9:  return "dur9"; // Or just "9"
+                case ChordType.Minor9:  return "mol9";
+
+                // Elevenths
+                case ChordType.Dom11:   return "dom11";
+                case ChordType.Major11: return "dur11"; // Or just "11"
                 case ChordType.Minor11: return "mol11";
+
+                // Thirteenths
+                case ChordType.Dom13:   return "dom13";
+                case ChordType.Major13: return "dur13"; // Or just "13"
                 case ChordType.Minor13: return "mol13";
 
-
-                // Major
-                case ChordType.Major: return ""; // Implicitly "dur"
-                case ChordType.Major6: return "6";
-                case ChordType.Dom7:   return "dom";
-                case ChordType.Major7: return "7";
-                case ChordType.Major7maj: return "maj7";
-                case ChordType.Major9: return "9";
-                case ChordType.Major11: return "11";
-                case ChordType.Major13: return "13";
-
-                // Diminished
-                case ChordType.Dim: return "ø";
-                case ChordType.HalfDim7: return "ø7"; // ??
-                case ChordType.FullDim7: return "ø7"; // ??
-
                 // Suspended
-                case ChordType.Sus2: return "sus2";
-                case ChordType.Sus4: return "sus4";
+                case ChordType.Sus2:    return "sus2";
+                case ChordType.Sus4:    return "sus4";
 
                 default: return "Ikke implementeret";
             }
