@@ -163,14 +163,17 @@ namespace JSJ.MusicSynthesis
         {
             switch (chordType)
             {
+
+                // Triads
+
                 // Minor
-                case ChordType.Minor: return "m";
-                case ChordType.Minor6: return "m6";
-                case ChordType.Minor7: return "m7";
+                case ChordType.Minor: return "mol";
+                case ChordType.Minor6: return "mol6";
+                case ChordType.Minor7: return "mol7";
                 case ChordType.MinorMajor: return "molmaj";
-                case ChordType.Minor9: return "m9";
-                case ChordType.Minor11: return "m11";
-                case ChordType.Minor13: return "m13";
+                case ChordType.Minor9: return "mol9";
+                case ChordType.Minor11: return "mol11";
+                case ChordType.Minor13: return "mol13";
 
 
                 // Major
@@ -189,6 +192,7 @@ namespace JSJ.MusicSynthesis
                 case ChordType.FullDim7: return "ø7"; // ??
 
                 // Suspended
+                case ChordType.Sus2: return "sus2";
                 case ChordType.Sus4: return "sus4";
 
                 default: return "Ikke implementeret";
