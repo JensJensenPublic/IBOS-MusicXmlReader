@@ -60,6 +60,10 @@ namespace JSJ.MusicSynthesis
 
         /// <summary>
         /// Maps from the text found in the MusicXml file to an enum identifying the chord
+        /// The first coloumn in the comment is the MusicXml definition of the chord.
+        /// The URL is the corresponding Wikipedia article.
+        /// The {a,b,c} notation is the integer notation, if found in Wikipedia.
+        /// In case of doubt it is probably best to use the MusicXml definition !!!
         /// </summary>
         /// <param name="chordString"></param>
         /// <returns></returns>
@@ -68,43 +72,45 @@ namespace JSJ.MusicSynthesis
             switch (chordString)
             {
                 // Triads:
-                case "major": return ChordType.Major; // (major third, perfect fifth)
-                case "minor": return ChordType.Minor; // (minor third, perfect fifth)
-                case "augmented": return ChordType.Aug; // (major third, augmented fifth)
-                case "diminished":; return ChordType.Dim; // (minor third, diminished fifth)
+                case "major": return ChordType.Major;                   // (major third, perfect fifth)     https://en.wikipedia.org/wiki/Major_chord                       {0,4,7}
+                case "minor": return ChordType.Minor;                   // (minor third, perfect fifth)     https://en.wikipedia.org/wiki/Minor_chord                       {0,3,7}
+                case "augmented": return ChordType.Aug;                 // (major third, augmented fifth)   https://en.wikipedia.org/wiki/Augmented_triad                   {0,4,8}
+                case "diminished":; return ChordType.Dim;               // (minor third, diminished fifth)  https://en.wikipedia.org/wiki/Diminished_triad                  {0,3,6}
 
                 // Sevenths:
-                case "dominant": return ChordType.Dom7; // (major triad, minor seventh) (0,4,7,10)
-                case "major-seventh": return ChordType.Major7; // (major triad, major seventh)
-                case "minor-seventh": return ChordType.Minor7; // (minor triad, minor seventh)
-                case "diminished-seventh": return ChordType.FullDim7; //(diminished triad, diminished seventh)  (0,3,6,9)
-                case "augmented-seventh":  return ChordType.Aug7;//(augmented triad, minor seventh) (0,4,8,10)
-                case "half-diminished":; return ChordType.HalfDim7; // (diminished triad, minor seventh) (0,3,6,10)
-                case "major-minor": return ChordType.MinorMajor;//(minor triad, major seventh) //  (minor triad, major seventh) (0,3,7,11)
+                case "dominant": return ChordType.Dom7;                 // (major triad, minor seventh)     https://en.wikipedia.org/wiki/Dominant_seventh_chord            {0,4,7,10}
+                case "major-seventh": return ChordType.Major7;          // (major triad, major seventh)     https://en.wikipedia.org/wiki/Major_seventh_chord               {0,4,7,11}
+                case "minor-seventh": return ChordType.Minor7;          // (minor triad, minor seventh)     https://en.wikipedia.org/wiki/Minor_seventh_chord               {0,3,7,10}
+                case "diminished-seventh": return ChordType.FullDim7;   // (diminished triad, diminished seventh) https://en.wikipedia.org/wiki/Diminished_seventh_chord    {0,3,6,9}
+                case "augmented-seventh":  return ChordType.Aug7;       // (augmented triad, minor seventh) JSJ: Do they mean {0,4,8,10} or {0,4,8,11} (see below!!)
+                                                                        // (augmentedminor seventh:         https://en.wikipedia.org/wiki/Augmented_seventh_chord           {0,4,8,10}  
+                                                                        // (augmentedmajor seventh:         https://en.wikipedia.org/wiki/Augmented_major_seventh_chord     {0,4,8,11}
+                case "half-diminished":; return ChordType.HalfDim7;     // (diminished triad, minor seventh) https://en.wikipedia.org/wiki/Half-diminished_seventh_chord    {0,3,6,10}
+                case "minor-major": return ChordType.MinorMajor;        // (minor triad, major seventh)     https://en.wikipedia.org/wiki/Minor_major_seventh_chord         {0,3,7,11}
 
                 // Sixths
-                case "major-sixth": return ChordType.Major6; // (major triad, added sixth)
-                case "minor-sixth": return ChordType.Minor6; // (minor triad, added sixth)
+                case "major-sixth": return ChordType.Major6;            // (major triad, added sixth)       https://en.wikipedia.org/wiki/Major_6th_chord  
+                case "minor-sixth": return ChordType.Minor6;            // (minor triad, added sixth)       Not found in Wikipedia
 
                 // Ninths
-                case "dominant-ninth": return ChordType.Dom9; //  (dominant-seventh, major ninth)
-                case "major-ninth": return ChordType.Major9; // (major-seventh, major ninth)
-                case "minor-ninth": return ChordType.Minor9; // (minor-seventh, major ninth)
+                case "dominant-ninth": return ChordType.Dom9;           // (dominant-seventh, major ninth)  https://en.wikipedia.org/wiki/Ninth_chord#Dominant_ninth 
+                case "major-ninth": return ChordType.Major9;            // (major-seventh, major ninth)     https://en.wikipedia.org/wiki/Ninth_chord#Major_ninth      
+                case "minor-ninth": return ChordType.Minor9;            // (minor-seventh, major ninth)     https://en.wikipedia.org/wiki/Ninth_chord#Minor_ninth      
 
                 // 11ths (usually as the basis for alteration)
-                case "dominant-11th": return ChordType.Dom11; // (dominant - ninth, perfect 11th)
-                case "major-11th": return ChordType.Major11; // (major - ninth, perfect 11th)
-                case "minor-11th": return ChordType.Minor11; // (minor-ninth, perfect 11th)
+                case "dominant-11th": return ChordType.Dom11;           // (dominant - ninth, perfect 11th) https://en.wikipedia.org/wiki/Eleventh_chord
+                case "major-11th": return ChordType.Major11;            // (major - ninth, perfect 11th)    https://en.wikipedia.org/wiki/Eleventh_chord
+                case "minor-11th": return ChordType.Minor11;            // (minor-ninth, perfect 11th)      https://en.wikipedia.org/wiki/Eleventh_chord
 
 
                 // 13ths(usually as the basis for alteration):
-                case "dominant-13th": return ChordType.Dom13; //(dominant-11th, major 13th)
-                case "major-13th": return ChordType.Major13; // (major-11th, major 13th)
-                case "minor-13th": return ChordType.Minor13; // (minor-11th, major 13th)
+                case "dominant-13th": return ChordType.Dom13;           // (dominant-11th, major 13th)     https://en.wikipedia.org/wiki/Thirteenth
+                case "major-13th": return ChordType.Major13;            // (major-11th, major 13th)        https://en.wikipedia.org/wiki/Thirteenth
+                case "minor-13th": return ChordType.Minor13;            // (minor-11th, major 13th)        https://en.wikipedia.org/wiki/Thirteenth
 
                 // Suspended
-                case "suspended-second": return ChordType.Sus2; // (major second, perfect fifth) (0,2,7)
-                case "suspended-fourth": return ChordType.Sus4; // (perfect fourth, perfect fifth) (0,4,7)
+                case "suspended-second": return ChordType.Sus2;         // (major second, perfect fifth)    https://en.wikipedia.org/wiki/Suspended_chord {0,2,7}
+                case "suspended-fourth": return ChordType.Sus4;         // (perfect fourth, perfect fifth)  https://en.wikipedia.org/wiki/Suspended_chord {0,5,7}
 
                 default: return ChordType.UnImplemented;
             }
@@ -173,7 +179,6 @@ namespace JSJ.MusicSynthesis
 
                 // Sevenths:
                 case ChordType.Dom7:    return "dom7";
-                case ChordType.Major7maj: return "maj7"; // ??
                 case ChordType.Major7:  return "dur7";
                 case ChordType.Minor7:  return "mol7";
                 case ChordType.MinorMajor: return "molmaj";
