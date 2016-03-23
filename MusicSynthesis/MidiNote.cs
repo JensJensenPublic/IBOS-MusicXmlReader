@@ -7,7 +7,7 @@ namespace JSJ.MusicSynthesis
     // http://www.midi.org/techspecs/gm1sound.php
 
 
-    public enum ChromaticStep { C = 0, Cis = 1, D = 2, Dis = 3, E = 4, F = 5, Fis = 6, G = 7, Gis = 8, A = 9, Bb = 10, B = 11, NumberOfSteps = 12 };   
+    public enum ChromaticStep { C = 0, Cis = 1, Des=1 ,D = 2, Dis = 3, Es = 3, E = 4, F = 5, Fis = 6, Ges=6, G = 7, Gis = 8, As=8,  A = 9, Bb = 10, B = 11, NumberOfSteps = 12 };   
 
     public enum Interval
     {
@@ -60,9 +60,64 @@ namespace JSJ.MusicSynthesis
             int alterValue = GetAlterValue(alter);
             // Map "C", "-1" to B
             // Map "B", "+1" to C
-            int alteredStep = ((int)chromaticStep + alterValue) % (int) ChromaticStep.NumberOfSteps;
+            int alteredStep = ((int)chromaticStep + alterValue) % (int)ChromaticStep.NumberOfSteps;
             return (ChromaticStep)alteredStep;
         }
+
+        private const string invalidArgumentFormat = "{0}={1} is an invalid argument";
+
+        static private string GetFlatString(string step)
+        {
+            switch (step)
+            {
+                case "C": return "Ces";
+                case "D": return "Des";
+                case "E": return "Es";
+                case "F": return "Fes";
+                case "G": return "Ges";
+                case "A": return "As";
+                case "B": return "Bb";
+                default:
+                    throw new System.ArgumentException(string.Format(invalidArgumentFormat,"step",step));
+            }
+        }
+
+        static private string GetSharpString(string step)
+        {
+            switch (step)
+            {
+                case "C": return "Cis";
+                case "D": return "Dis";
+                case "E": return "Eis";
+                case "F": return "Fis";
+                case "G": return "Gis";
+                case "A": return "Ais";
+                case "B": return "Bis"; // TO DO Check!!
+                default:
+                    throw new System.ArgumentException(string.Format(invalidArgumentFormat, "step", step));
+            }
+        }
+
+
+        /// <summary>
+        /// Returns the musically corrrect altered value for alter values in {-1,0, +1}
+        /// </summary>
+        /// <param name="step"></param>
+        /// <param name="alter"></param>
+        /// <returns></returns>
+        public static string GetChromaticString(string step, string alter)
+        {
+            int alterValue = GetAlterValue(alter);
+            switch (alterValue)
+            {  
+                case -1: return GetFlatString(step);
+                case  0: return step;
+                case +1: return GetSharpString(step);
+                default:
+                    throw new System.ArgumentException(string.Format(string.Format(invalidArgumentFormat, "alter", alter)));
+            }     
+        }
+        
 
         // New code
         public static ChromaticStep GetChromaticStep(string s)

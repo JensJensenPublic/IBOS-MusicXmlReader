@@ -34,7 +34,7 @@ namespace MusicXmlReaderUI
         //        return notes;
         //    }
         //}
-
+        
         public int StartTime
         {
             get
