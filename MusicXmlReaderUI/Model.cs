@@ -107,12 +107,28 @@ namespace MusicXmlReaderUI
                     // Save the part number as the current part number. This will be saved with each note!  
                     this.currentPartNumber = currentScorePartElement.partNumber;        
                     break;
+                // We know the existance of the following elements, but for the time being we ignore them.
+                case "work":
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Titel"));
+                    continueRecursion = false;
+                    break;
                 case "software":
                 case "encoding-date":
                 case "rights":
                 case "encoding":
                 case "identification":
+
+                case "creator":
+                case "encoder":
+                case "encoding-description":
                     allMusicXmlObjecsts.Add(SimpleTextElement.Create(node));
+                    continueRecursion = false;
+                    break;
+                case "direction":
+                    continueRecursion = false;
+                    break;
+                case "transpose":
+                    continueRecursion = false;
                     break;
                 case "divisions":
                     DivisionsElement divisionsElement = DivisionsElement.Create(node);
@@ -162,6 +178,9 @@ namespace MusicXmlReaderUI
                     allMusicXmlObjecsts.Add(ForwardElement.Create(node, divisions));
                     continueRecursion = false;
                     break;
+
+                case "staves":
+                case "staff-details":
                 case "scaling":
                 case "millimeters":
                 case "tenths":

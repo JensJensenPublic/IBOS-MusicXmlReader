@@ -21,20 +21,25 @@ namespace MusicXmlReaderUI
         /// Private constructor, used by the Crate() method
         /// </summary>
         /// <param name="node"></param>
-        private SimpleTextElement(XmlNode node)
+        private SimpleTextElement(XmlNode node,string name)
         {
+            this.name = (null == name) ? node.InnerText : name;
             text = node.InnerText;
-            name = node.Name;
         }
 
         public static SimpleTextElement Create(XmlNode node)
         {
-            return new SimpleTextElement(node);
+            return new SimpleTextElement(node,null);
+        }
+
+        public static SimpleTextElement Create(XmlNode node,string text)
+        {
+            return new SimpleTextElement(node,text);
         }
 
         public override string ToString()
         {
-            return string.Format("{0}={1}", name, text);
+            return string.Format("{0}:{1}", name, text);
         }
     }
 }
