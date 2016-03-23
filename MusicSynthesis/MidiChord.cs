@@ -6,19 +6,17 @@ namespace JSJ.MusicSynthesis
 
     public enum ChordType {
         // Triads
-        Major, Minor, Aug, Dim,
-        // Sixths
-        Major6, Minor6,
+        Major, Minor, Aug, Dim, Major6, Minor6,                     // 6 triads
         // Sevenths
-        Dom7, Major7, Minor7, Aug7, FullDim7, HalfDim7, Major7maj, MinorMajor,
+        Dom7, Major7, Minor7, Aug7, FullDim7, HalfDim7, MinorMajor, // 7 sevenths
         // Ninths
-        Dom9, Major9, Minor9,
+        Dom9, Major9, Minor9,                                       // 3 ninths
         // Elevenths
-        Dom11, Major11, Minor11,
+        Dom11, Major11, Minor11,                                    // 3 elevenths
         // Thirteenths
-        Dom13, Major13, Minor13,
+        Dom13, Major13, Minor13,                                    // 3 thirteenths
         // Suspended
-        Sus2, Sus4,
+        Sus2, Sus4,                                                 // 2 sus
         // Unimplemented
         UnImplemented };
 
