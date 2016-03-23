@@ -112,16 +112,39 @@ namespace MusicXmlReaderUI
                     allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Titel"));
                     continueRecursion = false;
                     break;
-                case "software":
-                case "encoding-date":
-                case "rights":
-                case "encoding":
                 case "identification":
-
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Identifikation"));          
+                    break;
                 case "creator":
+                    allMusicXmlObjecsts.Add(CreatorElement.Create(node));
+                    continueRecursion = false;
+                    break;
+                case "rights":
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Rettigheder"));
+                    continueRecursion = false;
+                    break;
+                case "encoding":
+                    // Is described in "software", "encoding-date", "encoder", "encoding-description"
+                    //allMusicXmlObjecsts.Add(SimpleTextElement.Create(node));         
+                    break;
+                case "software":
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Software"));
+                    continueRecursion = false;
+                    break;
+                case "encoding-date":
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Arrangements dato"));
+                    continueRecursion = false;
+                    break;
                 case "encoder":
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Arrangement"));
+                    continueRecursion = false;
+                    break;
                 case "encoding-description":
-                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node));
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Kodnings-beskrivelse"));
+                    continueRecursion = false;
+                    break;
+                case "supports":
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Understøtter"));
                     continueRecursion = false;
                     break;
                 case "direction":

@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="ForwardElement.cs" />
     <Compile Include="HarmonyElement.cs" />
+    <Compile Include="CreatorElement.cs" />
     <Compile Include="KeyElement.cs" />
     <Compile Include="MeasureElement.cs" />
     <Compile Include="MidiInstrumentElement.cs" />
