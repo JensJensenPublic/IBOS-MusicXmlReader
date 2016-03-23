@@ -24,7 +24,8 @@ namespace MusicXmlReaderUI
         public bool readDivisions;
         public bool readMeasureNumbers;
         public bool playBeats;
-        public bool readHarmonies;
+        public bool readHarmonyCodes; // As found in the MusicXml file
+        public bool readHarmonies;    // After localisation  
         public bool playHarmonies;
 
 

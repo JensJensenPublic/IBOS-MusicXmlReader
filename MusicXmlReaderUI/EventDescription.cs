@@ -149,14 +149,26 @@ namespace MusicXmlReaderUI
         public override string ToString()
         {
             string divisions = userSettings.readDivisions ? string.Format("{0,6}: ", startTime, "") : "";
+
+            string harmonyCode = "";
+            if ((userSettings.readHarmonyCodes) && (null != harmonyElement))
+            {
+                harmonyCode = string.Format(" {0} {1} {2} : ",harmonyElement.Kind, harmonyElement.RootStep, harmonyElement.RootAlter);
+            }
+
+
             string harmony = "";
             if ((userSettings.readHarmonies) && (null != harmonyElement))
             {
                 //ChromaticStep chromaticStep = MidiNote.GetChromaticStep(harmonyElement.RootStep, harmonyElement.RootAlter);
                 //ChordType chordType = MidiChord.GetChordType(harmonyElement.Kind);
-                harmony = string.Format(" {0} {1} {2} : {3}{4}",
-                harmonyElement.Kind, harmonyElement.RootStep, harmonyElement.RootAlter, harmonyElement.ChromaticStep, harmonyElement.LocalizedChordType);
+                harmony = string.Format("{0}-{1}",harmonyElement.ChromaticStep, harmonyElement.LocalizedChordType);
             }
+
+
+
+
+
             StringBuilder sbNotes = new StringBuilder();
             StringBuilder sbTexts = new StringBuilder();
             // Iterate over the parts and build a complete representation of all notes and of all texts
@@ -168,7 +180,7 @@ namespace MusicXmlReaderUI
                 sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
                 sbTexts.Append(string.Format("{0} ", partTexts));
             }
-            return divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmony;
+            return divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony;
         }
     }
 }

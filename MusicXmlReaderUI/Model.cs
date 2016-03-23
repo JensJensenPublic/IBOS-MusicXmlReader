@@ -350,6 +350,12 @@ namespace MusicXmlReaderUI
             userSettings.readHarmonies = value;
         }
 
+
+        public void SetShowHarmonyCodes(bool value)
+        {
+            userSettings.readHarmonyCodes = value;
+        }
+
         public void SetPlayHarmonies(bool value)
         {
             userSettings.playHarmonies = value;

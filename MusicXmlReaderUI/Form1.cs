@@ -167,7 +167,11 @@ namespace MusicXmlReaderUI
             if (autoReload) model.LoadListBoxTimes();
         }
 
-
+        private void checkBoxOplæsBecifringskoder_CheckedChanged(object sender, EventArgs e)
+        {
+            model.SetShowHarmonyCodes(checkBoxShowHarmonies.Checked);
+            if (autoReload) model.LoadListBoxTimes();
+        }
     }
 
 }

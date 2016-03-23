@@ -43,6 +43,7 @@
             this.labelPartsRead = new System.Windows.Forms.Label();
             this.checkBoxShowHarmonies = new System.Windows.Forms.CheckBox();
             this.checkBoxPlayHarmonies = new System.Windows.Forms.CheckBox();
+            this.checkBoxOplæsBecifringskoder = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -215,11 +216,23 @@
             this.checkBoxPlayHarmonies.UseVisualStyleBackColor = true;
             this.checkBoxPlayHarmonies.CheckedChanged += new System.EventHandler(this.checkBoxPlayHarmonies_CheckedChanged);
             // 
+            // checkBoxOplæsBecifringskoder
+            // 
+            this.checkBoxOplæsBecifringskoder.AutoSize = true;
+            this.checkBoxOplæsBecifringskoder.Location = new System.Drawing.Point(982, 310);
+            this.checkBoxOplæsBecifringskoder.Name = "checkBoxOplæsBecifringskoder";
+            this.checkBoxOplæsBecifringskoder.Size = new System.Drawing.Size(132, 17);
+            this.checkBoxOplæsBecifringskoder.TabIndex = 16;
+            this.checkBoxOplæsBecifringskoder.Text = "Oplæs becifringskoder";
+            this.checkBoxOplæsBecifringskoder.UseVisualStyleBackColor = true;
+            this.checkBoxOplæsBecifringskoder.CheckedChanged += new System.EventHandler(this.checkBoxOplæsBecifringskoder_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1114, 496);
+            this.Controls.Add(this.checkBoxOplæsBecifringskoder);
             this.Controls.Add(this.checkBoxPlayHarmonies);
             this.Controls.Add(this.checkBoxShowHarmonies);
             this.Controls.Add(this.labelPartsRead);
@@ -259,6 +272,7 @@
         private System.Windows.Forms.Label labelPartsRead;
         private System.Windows.Forms.CheckBox checkBoxShowHarmonies;
         private System.Windows.Forms.CheckBox checkBoxPlayHarmonies;
+        private System.Windows.Forms.CheckBox checkBoxOplæsBecifringskoder;
     }
 }
 
