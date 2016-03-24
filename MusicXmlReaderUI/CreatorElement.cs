@@ -20,7 +20,9 @@ namespace MusicXmlReaderUI
             switch (s)
             {
                 case "composer": return "Komponist";
+                case "poet":
                 case "lyricist": return "Tekstforfatter";
+                case "arranger": return "Arrangør";
                 default: return s;
             }
         }
