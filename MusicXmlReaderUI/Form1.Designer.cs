@@ -44,6 +44,8 @@
             this.checkBoxShowHarmonies = new System.Windows.Forms.CheckBox();
             this.checkBoxPlayHarmonies = new System.Windows.Forms.CheckBox();
             this.checkBoxOplæsBecifringskoder = new System.Windows.Forms.CheckBox();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.menuStripFile = new System.Windows.Forms.MenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -227,6 +229,18 @@
             this.checkBoxOplæsBecifringskoder.UseVisualStyleBackColor = true;
             this.checkBoxOplæsBecifringskoder.CheckedChanged += new System.EventHandler(this.checkBoxOplæsBecifringskoder_CheckedChanged);
             // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
+            // menuStripFile
+            // 
+            this.menuStripFile.Location = new System.Drawing.Point(0, 0);
+            this.menuStripFile.Name = "menuStripFile";
+            this.menuStripFile.Size = new System.Drawing.Size(1114, 24);
+            this.menuStripFile.TabIndex = 17;
+            this.menuStripFile.Text = "Filer";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,6 +262,8 @@
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.listBoxFiltered);
             this.Controls.Add(this.listBoxTimes);
+            this.Controls.Add(this.menuStripFile);
+            this.MainMenuStrip = this.menuStripFile;
             this.Name = "Form1";
             this.Text = "MusikLæser";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).EndInit();
@@ -273,6 +289,8 @@
         private System.Windows.Forms.CheckBox checkBoxShowHarmonies;
         private System.Windows.Forms.CheckBox checkBoxPlayHarmonies;
         private System.Windows.Forms.CheckBox checkBoxOplæsBecifringskoder;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.MenuStrip menuStripFile;
     }
 }
 

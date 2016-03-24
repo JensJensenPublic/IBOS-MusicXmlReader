@@ -77,7 +77,12 @@ namespace MusicXmlReaderUI
 
         private void buttonStartUsingDOM_Click(object sender, EventArgs e)
         {
-            model.LoadMusicXmlFile(); // Load the .xml file into the Model and build all internal data structures.
+            openFileDialog.FileName = "Node.xml"; // Use this sample file as a default
+            openFileDialog.Filter = "MusicXml filer|*.xml"; // Only present .xml files
+            openFileDialog.InitialDirectory = model.InitialDirectory;
+            openFileDialog.ShowDialog();
+
+            model.LoadMusicXmlFile(openFileDialog.FileName); // Load the selected .xml file into the Model and build all internal data structures.
 
             textBoxMessage.Focus();
             textBoxMessage.Text = string.Format("Indlæser {0}",model.FullXmlFileName); 

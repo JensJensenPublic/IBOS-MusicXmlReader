@@ -24,15 +24,21 @@ namespace MusicXmlReaderUI
         ScorePartElement scorePartElement = null;
         UserSettings userSettings;
         string fullXmlFileName;
+        string initialDirectory;
+
+        string executingAssembly;
+        string executingDirectory; 
 
 
-        public void LoadMusicXmlFile()
+
+        public void LoadMusicXmlFile(string fullXmlFileName)
         {
             {
-                string executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                string executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
-                string fileName = "Node.xml";
-                fullXmlFileName = System.IO.Path.Combine(executingDirectory, fileName);
+                if (string.IsNullOrEmpty(fullXmlFileName))
+                {
+                    string fileName = "Node.xml";
+                    fullXmlFileName = System.IO.Path.Combine(executingDirectory, fileName);
+                }
                 XmlDocument doc = new XmlDocument();
                 XmlTextReader reader = new XmlTextReader(fullXmlFileName);
                 reader.WhitespaceHandling = WhitespaceHandling.None;
@@ -49,6 +55,8 @@ namespace MusicXmlReaderUI
         /// </summary>
         public Model(ListBox listBox, ListBox listBoxPoly)
         {
+            executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
             allMusicXmlObjecsts = new List<MusicXmlObject>();
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
@@ -286,6 +294,15 @@ namespace MusicXmlReaderUI
             get
             {
                 return fullXmlFileName;
+            }
+        }
+
+        public string InitialDirectory
+        {
+            get
+            {
+                // For now we expect to find the musicxml files here.
+                return executingDirectory;
             }
         }
 
