@@ -8,6 +8,7 @@ namespace MusicXmlReaderUI
         string id = "";
         string instrumentSound = "";
         string instrumentName = "";
+        string instrumentAbbreviation = "";
 
 
         /// <summary>
@@ -47,6 +48,9 @@ namespace MusicXmlReaderUI
                     case "instrument-sound":
                         instrumentSound = n.InnerText;
                         break;
+                    case "instrument-abbreviation":
+                        instrumentAbbreviation = n.InnerText;
+                        break;
 
                     default:
                         throw new System.ArgumentException();
@@ -61,7 +65,7 @@ namespace MusicXmlReaderUI
         
         public override string ToString()
         {
-            return (string.Format("Node: {0} {1} {2}", id, instrumentSound, instrumentName));    
+            return (string.Format("Node: {0} {1} {2} {3}", id, instrumentSound, instrumentName, instrumentAbbreviation));    
         }
     }
 }
