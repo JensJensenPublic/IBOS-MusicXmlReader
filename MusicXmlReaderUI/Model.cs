@@ -53,7 +53,7 @@ namespace MusicXmlReaderUI
         public bool LoadMusicXmlFile(string fullXmlFileName)
         {
             bool ok = true;
-            try
+ //           try
             {
                 if (string.IsNullOrEmpty(fullXmlFileName))
                 {
@@ -72,10 +72,10 @@ namespace MusicXmlReaderUI
                     LoadListBox();
                 }
             }
-            catch (System.Exception e)
-            {
-                ok = false;
-            }
+            //catch (System.Exception e)
+            //{
+            //    ok = false;
+            //}
 
             return ok;
 
@@ -246,7 +246,9 @@ namespace MusicXmlReaderUI
                     continueRecursion = false;
                     break;
 
-                    // The following elements are ignored for the time being, as they describe graphical properties only!
+
+                // The following elements are ignored for the time being, as they describe graphical properties only!
+                case "offset":
                 case "supports":
                 case "staves":
                 case "staff-details":
