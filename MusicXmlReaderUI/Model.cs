@@ -27,12 +27,33 @@ namespace MusicXmlReaderUI
         string initialDirectory;
 
         string executingAssembly;
-        string executingDirectory; 
+        string executingDirectory;
 
-
-
-        public void LoadMusicXmlFile(string fullXmlFileName)
+        /// <summary>
+        /// Quick and dirty check to reject obvious unusable Xml files
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <returns></returns>
+        private bool CheckMusicXmlSyntax(XmlDocument doc)
         {
+            bool ok = true;
+            ok = ok && doc.HasChildNodes;
+            ok = ok && (doc.ChildNodes.Count >= 3);
+            //ok = ok && (doc.ChildNodes[0].InnerXml.Contains(""));
+            ok = ok && (doc.ChildNodes[1].Name.Contains("score-partwise"));
+            //ok = ok && (doc.ChildNodes[2].InnerXml.Contains("score-partwise"));
+            return ok;
+        }
+
+        /// <summary>
+        /// Stops on any error and returns false
+        /// </summary>
+        /// <param name="fullXmlFileName"></param>
+        /// <returns></returns>
+        public bool LoadMusicXmlFile(string fullXmlFileName)
+        {
+            bool ok = true;
+            try
             {
                 if (string.IsNullOrEmpty(fullXmlFileName))
                 {
@@ -43,13 +64,24 @@ namespace MusicXmlReaderUI
                 XmlTextReader reader = new XmlTextReader(fullXmlFileName);
                 reader.WhitespaceHandling = WhitespaceHandling.None;
                 doc.Load(reader);
-                Recurse(doc.ChildNodes);
-                Init(); // Experimental code !! 
-                LoadListBox();
+                ok = ok && CheckMusicXmlSyntax(doc);
+                if (ok)
+                {
+                    Recurse(doc.ChildNodes);
+                    Init(); // Experimental code !! 
+                    LoadListBox();
+                }
             }
+            catch (System.Exception e)
+            {
+                ok = false;
+            }
+
+            return ok;
+
         }
 
-        
+
         /// <summary>
         /// Constructor
         /// </summary>

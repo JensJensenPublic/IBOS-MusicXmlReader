@@ -82,11 +82,16 @@ namespace MusicXmlReaderUI
             openFileDialog.InitialDirectory = model.InitialDirectory;
             openFileDialog.ShowDialog();
 
-            model.LoadMusicXmlFile(openFileDialog.FileName); // Load the selected .xml file into the Model and build all internal data structures.
-
             textBoxMessage.Focus();
-            textBoxMessage.Text = string.Format("Indlæser {0}",model.FullXmlFileName); 
- 
+            textBoxMessage.Text = string.Format("Indlæser {0}", openFileDialog.FileName);
+
+            if (!model.LoadMusicXmlFile(openFileDialog.FileName)) // Load the selected .xml file into the Model and build all internal data structures.
+            {
+                // Simple error handling
+                textBoxMessage.Text = string.Format("Kunne ikke indlæse {0}", openFileDialog.FileName);
+                return; 
+            }
+             
             // Load the Checked Listboxes controlling the user settings
             model.LoadListBoxOfParts(checkedListBoxPartsToPlay);
             model.LoadListBoxOfParts(checkedListBoxPartsToRead);

@@ -69,7 +69,7 @@
             // 
             // buttonStart
             // 
-            this.buttonStart.Location = new System.Drawing.Point(13, 12);
+            this.buttonStart.Location = new System.Drawing.Point(12, 24);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(67, 23);
             this.buttonStart.TabIndex = 3;
@@ -79,7 +79,7 @@
             // 
             // Play
             // 
-            this.Play.Location = new System.Drawing.Point(12, 41);
+            this.Play.Location = new System.Drawing.Point(12, 53);
             this.Play.Name = "Play";
             this.Play.Size = new System.Drawing.Size(75, 23);
             this.Play.TabIndex = 4;
@@ -89,7 +89,7 @@
             // 
             // Stop
             // 
-            this.Stop.Location = new System.Drawing.Point(157, 38);
+            this.Stop.Location = new System.Drawing.Point(157, 53);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(75, 23);
             this.Stop.TabIndex = 5;
@@ -99,9 +99,9 @@
             // 
             // textBoxMessage
             // 
-            this.textBoxMessage.Location = new System.Drawing.Point(101, 12);
+            this.textBoxMessage.Location = new System.Drawing.Point(101, 24);
             this.textBoxMessage.Name = "textBoxMessage";
-            this.textBoxMessage.Size = new System.Drawing.Size(214, 20);
+            this.textBoxMessage.Size = new System.Drawing.Size(1001, 20);
             this.textBoxMessage.TabIndex = 6;
             // 
             // numericUpDownPlaySpeed
@@ -111,7 +111,7 @@
             0,
             0,
             0});
-            this.numericUpDownPlaySpeed.Location = new System.Drawing.Point(404, 15);
+            this.numericUpDownPlaySpeed.Location = new System.Drawing.Point(411, 56);
             this.numericUpDownPlaySpeed.Maximum = new decimal(new int[] {
             200,
             0,
@@ -134,7 +134,7 @@
             // 
             // butonPlayPoly
             // 
-            this.butonPlayPoly.Location = new System.Drawing.Point(321, 38);
+            this.butonPlayPoly.Location = new System.Drawing.Point(321, 53);
             this.butonPlayPoly.Name = "butonPlayPoly";
             this.butonPlayPoly.Size = new System.Drawing.Size(75, 23);
             this.butonPlayPoly.TabIndex = 8;
