@@ -15,6 +15,17 @@ namespace MusicXmlReaderUI
         { }
 
 
+        private string LocalizeCreatorType(string s)
+        {
+            switch (s)
+            {
+                case "composer": return "Komponist";
+                case "lyricist": return "Tekstforfatter";
+                default: return s;
+            }
+        }
+
+
         /// <summary>
         /// Private constructor, used by the Crate() method
         /// </summary>
@@ -28,22 +39,12 @@ namespace MusicXmlReaderUI
                 switch (a.Name)
                 {
                     case "type":
-                        this.typeValue = a.Value;                  
+                        this.typeValue = LocalizeCreatorType(a.Value);                  
                         break;
                 }
             }
 
             this.value = node.InnerText;
-            //// Dig out elements
-            //foreach (XmlNode n in node.ChildNodes)
-            //{
-            //    switch (n.Name)
-            //    {
-            //        case "creator": break;
-            //        case "rights": break;
-            //        case "encoding": break;
-            //    }
-            //}
         }
 
         public static CreatorElement Create(XmlNode node)
@@ -53,7 +54,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return string.Format("{0}:{1}",typeValue,value );
+            return string.Format("{0}: {1}",typeValue,value );
         }
 
 

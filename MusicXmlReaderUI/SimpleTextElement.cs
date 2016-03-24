@@ -39,7 +39,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return string.Format("{0}:{1}", name, text);
+            return string.Format("{0}: {1}", name, text);
         }
     }
 }

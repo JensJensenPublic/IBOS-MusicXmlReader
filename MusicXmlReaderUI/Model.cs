@@ -113,7 +113,7 @@ namespace MusicXmlReaderUI
                     continueRecursion = false;
                     break;
                 case "identification":
-                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Identifikation"));          
+                    // allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Identifikation"));          
                     break;
                 case "creator":
                     allMusicXmlObjecsts.Add(CreatorElement.Create(node));
@@ -141,10 +141,6 @@ namespace MusicXmlReaderUI
                     break;
                 case "encoding-description":
                     allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Kodnings-beskrivelse"));
-                    continueRecursion = false;
-                    break;
-                case "supports":
-                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Understøtter"));
                     continueRecursion = false;
                     break;
                 case "direction":
@@ -202,6 +198,8 @@ namespace MusicXmlReaderUI
                     continueRecursion = false;
                     break;
 
+                    // The following elements are ignored for the time being, as they describe graphical properties only!
+                case "supports":
                 case "staves":
                 case "staff-details":
                 case "scaling":
