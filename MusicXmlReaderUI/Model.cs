@@ -120,6 +120,14 @@ namespace MusicXmlReaderUI
                     allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Titel"));
                     continueRecursion = false;
                     break;
+                case "movement-title":
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node, "Opus"));
+                    continueRecursion = false;
+                    break;
+                case "movement-number":
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node, "Nummer"));
+                    continueRecursion = false;
+                    break;
                 case "identification":
                     // allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Identifikation"));          
                     break;
