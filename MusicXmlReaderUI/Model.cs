@@ -461,5 +461,11 @@ namespace MusicXmlReaderUI
         {
             userSettings.playHarmonies = value;
         }
+
+
+        public void SetReadMeasureNumbers(bool value)
+        {
+            userSettings.ReadMeasureNumbers = value;
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace MusicXmlReaderUI
 
         // For controlling other user properties
         public bool readDivisions;
-        public bool readMeasureNumbers;
+        private bool readMeasureNumbers;
         public bool playBeats;
         public bool readHarmonyCodes; // As found in the MusicXml file
         public bool readHarmonies;    // After localisation  
@@ -30,6 +30,18 @@ namespace MusicXmlReaderUI
 
 
         public float userSlowDown;
+
+        public bool ReadMeasureNumbers
+        {
+            get
+            {
+                return readMeasureNumbers;
+            }
+            set
+            {
+                readMeasureNumbers = value;
+            }
+        }
 
         /// <summary>
         /// To force the use of the Create() method

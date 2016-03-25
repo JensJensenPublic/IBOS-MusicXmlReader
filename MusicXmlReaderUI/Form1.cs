@@ -182,6 +182,12 @@ namespace MusicXmlReaderUI
             model.SetShowHarmonyCodes(checkBoxShowHarmonies.Checked);
             if (autoReload) model.LoadListBoxTimes();
         }
+
+        private void checkBoxReadMeasureNumbers_CheckedChanged(object sender, EventArgs e)
+        {
+            model.SetReadMeasureNumbers(checkBoxReadMeasureNumbers.Checked);
+            if (autoReload) model.LoadListBoxTimes();
+        }
     }
 
 }

@@ -158,12 +158,12 @@ namespace MusicXmlReaderUI
         {
             string divisions = userSettings.readDivisions ? string.Format("{0,6}: ", startTime, "") : "";
 
-            string measure = "       ";
-            if (null != measureElement)
+            string measure = "";
+            if (userSettings.ReadMeasureNumbers)
             {
-                measure = string.Format("Takt {0}", measureElement.Number);
+                measure = (null != measureElement) ? string.Format("Takt {0,4}", measureElement.Number) : "         "; // Up to 10000 measures
             }
-
+            
             string harmonyCode = "";
             if ((userSettings.readHarmonyCodes) && (null != harmonyElement))
             {

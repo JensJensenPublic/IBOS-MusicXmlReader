@@ -46,6 +46,7 @@
             this.checkBoxOplæsBecifringskoder = new System.Windows.Forms.CheckBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuStripFile = new System.Windows.Forms.MenuStrip();
+            this.checkBoxReadMeasureNumbers = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -241,11 +242,23 @@
             this.menuStripFile.TabIndex = 17;
             this.menuStripFile.Text = "Filer";
             // 
+            // checkBoxReadMeasureNumbers
+            // 
+            this.checkBoxReadMeasureNumbers.AutoSize = true;
+            this.checkBoxReadMeasureNumbers.Location = new System.Drawing.Point(982, 334);
+            this.checkBoxReadMeasureNumbers.Name = "checkBoxReadMeasureNumbers";
+            this.checkBoxReadMeasureNumbers.Size = new System.Drawing.Size(107, 17);
+            this.checkBoxReadMeasureNumbers.TabIndex = 18;
+            this.checkBoxReadMeasureNumbers.Text = "Oplæs taktnumre";
+            this.checkBoxReadMeasureNumbers.UseVisualStyleBackColor = true;
+            this.checkBoxReadMeasureNumbers.CheckedChanged += new System.EventHandler(this.checkBoxReadMeasureNumbers_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1114, 496);
+            this.Controls.Add(this.checkBoxReadMeasureNumbers);
             this.Controls.Add(this.checkBoxOplæsBecifringskoder);
             this.Controls.Add(this.checkBoxPlayHarmonies);
             this.Controls.Add(this.checkBoxShowHarmonies);
@@ -291,6 +304,7 @@
         private System.Windows.Forms.CheckBox checkBoxOplæsBecifringskoder;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.MenuStrip menuStripFile;
+        private System.Windows.Forms.CheckBox checkBoxReadMeasureNumbers;
     }
 }
 
