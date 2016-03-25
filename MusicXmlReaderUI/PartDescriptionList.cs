@@ -60,6 +60,11 @@ namespace MusicXmlReaderUI
                 {
                     currentPart.Add(o as ForwardElement);
                 }
+
+                if (o is MeasureElement)
+                {
+                    currentPart.Add(o as MeasureElement);
+                }
             }
 
             // Only for inspection during debugging:

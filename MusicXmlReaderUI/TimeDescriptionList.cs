@@ -68,13 +68,22 @@ namespace MusicXmlReaderUI
                         //previousStartTime = nextStartTime; // ??????????????????????????????????????????
                     }
 
-                    if (e is HarmonyElement)
+                    else if (e is HarmonyElement)
                     {
                         HarmonyElement harmonyElement = e as HarmonyElement;
                         harmonyElement.StartTime = nextStartTime;
                         times.Add(harmonyElement);
                     }
+
+                    else if (e is MeasureElement)
+                    {
+                        MeasureElement measureElement = e as MeasureElement;
+                        measureElement.StartTime = nextStartTime;
+                        times.Add(measureElement);
+                    }
+
                 }
+
 
                 if (0 == (times.Count))
                 {

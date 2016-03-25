@@ -25,7 +25,8 @@ namespace MusicXmlReaderUI
 
         private HarmonyElement harmonyElement; // The harmony related to this event, if any.
 
-        private int MeasureNumber = -1; // The measure Number if this event falls on a measure border.
+        private MeasureElement measureElement; //The  measure related to this event, if any.
+        //private int MeasureNumber = -1; // The measure Number if this event falls on a measure border.
 
         //public NoteElement[] Notes // TO DO: Remove Notes. Use NoteLists instead!!
         //{
@@ -98,6 +99,13 @@ namespace MusicXmlReaderUI
                 // Assuming only one harmony starts at one time.
                 harmonyElement = eventElement as HarmonyElement; // Assume only one harmony per event!
             }
+            else if (eventElement is MeasureElement)
+            {
+                // Assuming only one harmony starts at one time.
+                measureElement = eventElement as MeasureElement; // Assume only one measure per event!
+            }
+
+
         }
 
 
@@ -150,6 +158,12 @@ namespace MusicXmlReaderUI
         {
             string divisions = userSettings.readDivisions ? string.Format("{0,6}: ", startTime, "") : "";
 
+            string measure = "       ";
+            if (null != measureElement)
+            {
+                measure = string.Format("Takt {0}", measureElement.Number);
+            }
+
             string harmonyCode = "";
             if ((userSettings.readHarmonyCodes) && (null != harmonyElement))
             {
@@ -180,7 +194,7 @@ namespace MusicXmlReaderUI
                 sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
                 sbTexts.Append(string.Format("{0} ", partTexts));
             }
-            return divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony;
+            return measure + divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony;
         }
     }
 }

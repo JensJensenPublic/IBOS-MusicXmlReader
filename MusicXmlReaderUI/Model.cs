@@ -24,7 +24,6 @@ namespace MusicXmlReaderUI
         ScorePartElement scorePartElement = null;
         UserSettings userSettings;
         string fullXmlFileName;
-        string initialDirectory;
 
         string executingAssembly;
         string executingDirectory;
@@ -124,7 +123,7 @@ namespace MusicXmlReaderUI
                     break;
                 case "measure":
                     MeasureElement measureElement = MeasureElement.Create(node);
-                    // allMusicXmlObjecsts.Add(measureElement); // Avoid the "Ikke VAlgt" error message from screenreader
+                    allMusicXmlObjecsts.Add(measureElement); // Avoid the "Ikke VAlgt" error message from screenreader
                     this.currentMeasureNumber = int.Parse(measureElement.Number);
                     break;
                 case "score-part":
@@ -370,7 +369,10 @@ namespace MusicXmlReaderUI
                 {
                     // Add ALL objects to make it possible to browse manually through them
                     // During auto-play only node items (including pauses) will be selected to allow for correct timing!
-                    listBoxParts.Items.Add(musicXmlObject);
+                    if (!(musicXmlObject is MeasureElement))
+                    {
+                        listBoxParts.Items.Add(musicXmlObject);
+                    }
                 }
             }
         }

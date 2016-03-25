@@ -2,7 +2,7 @@
 
 namespace MusicXmlReaderUI
 {
-    public class MeasureElement : Element
+    public class MeasureElement : EventElement
     {
 
         private string number = "";
