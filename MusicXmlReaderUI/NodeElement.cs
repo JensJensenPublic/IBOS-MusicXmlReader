@@ -34,6 +34,9 @@ namespace MusicXmlReaderUI
         //int startTime;
         string syllabic; // Child of lyric
         string text;     // Child of lyric
+        string staffString = "";
+        int staff = 0;
+        string articulations = "";
 
 
         public string Step
@@ -199,6 +202,14 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public int Staff
+        {
+            get
+            {
+                return staff;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -290,6 +301,24 @@ namespace MusicXmlReaderUI
                           text = GetChildValue(child, "text");
                           syllabic = GetChildValue(child, "syllabic");
                           break;
+                    case "staff": staffString= child.InnerText;
+                        staff = int.Parse(staffString);
+                        break;
+                    case "notations": // TO DO: Find out what to do here                                                
+                        break;
+                    case "beam": // TO DO: Find out what to do here                                                
+                        break;
+                    case "rest": // TO DO: Find out what to do here                                                
+                        break;
+                    case "accidental": // TO DO: Find out what to do here                                                
+                        break;
+                    case "time-modification": // TO DO: Find out what to do here                                                
+                        break;
+                    case "instrument": // TO DO: Find out what to do here                                                
+                        break;
+                    case "stem": // TO DO: Find out what to do here                                                
+                        break;
+                    default:  throw new ArgumentException();
                 }
             }
             localizedType = LocalizeType(Type, dot);
