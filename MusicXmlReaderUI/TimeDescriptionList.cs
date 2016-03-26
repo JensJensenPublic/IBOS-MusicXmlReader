@@ -51,6 +51,10 @@ namespace MusicXmlReaderUI
                             previousStartTime = nextStartTime; // Needed if the following note has the "chord" elemenn
                             nextStartTime += noteElement.DurationInCommonDivisions;
                         }
+                        // Create an EndEventElement to mark the end of this NoteElement                            
+                        EndEventElement endEventElement = EndEventElement.Create(noteElement, noteElement.StartTime + noteElement.DurationInCommonDivisions);
+                        times.Add(endEventElement);
+
                     }
                     else if (e is ForwardElement)
                     {

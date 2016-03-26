@@ -28,6 +28,8 @@ namespace MusicXmlReaderUI
         private MeasureElement measureElement; //The  measure related to this event, if any.
         //private int MeasureNumber = -1; // The measure Number if this event falls on a measure border.
 
+        private List<EndEventElement> endEventElements; // Elements (for instance NoteElements) to end at this time
+
         //public NoteElement[] Notes // TO DO: Remove Notes. Use NoteLists instead!!
         //{
         //    get
@@ -35,7 +37,7 @@ namespace MusicXmlReaderUI
         //        return notes;
         //    }
         //}
-        
+
         public int StartTime
         {
             get
@@ -57,6 +59,14 @@ namespace MusicXmlReaderUI
             get
             {
                 return harmonyElement;
+            }
+        }
+
+        public List<EndEventElement> EndEventElements
+        {
+            get
+            {
+                return endEventElements;
             }
         }
 
@@ -104,8 +114,14 @@ namespace MusicXmlReaderUI
                 // Assuming only one harmony starts at one time.
                 measureElement = eventElement as MeasureElement; // Assume only one measure per event!
             }
-
-
+            else if (eventElement is EndEventElement)
+            {
+                if (null == endEventElements)
+                {
+                    endEventElements = new List<EndEventElement>();
+                }
+                endEventElements.Add(eventElement as EndEventElement);
+            }
         }
 
 
@@ -180,7 +196,17 @@ namespace MusicXmlReaderUI
             }
 
 
-
+            string endEventString = "";
+            if (null != endEventElements)
+            {
+                endEventString += "(";
+                foreach (EndEventElement endEventElement in endEventElements)
+                {
+                    // Get the starttime for the Element that this EndEventElement represents
+                    endEventString += " " + endEventElement.StartElement.StartTime.ToString();
+                }
+                endEventString += ")";
+            }
 
 
             StringBuilder sbNotes = new StringBuilder();
@@ -194,7 +220,7 @@ namespace MusicXmlReaderUI
                 sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
                 sbTexts.Append(string.Format("{0} ", partTexts));
             }
-            return measure + divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony;
+            return measure + divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString;
         }
     }
 }

@@ -147,6 +147,21 @@ namespace MusicXmlReaderUI
             long sleep = (eventDescription.StartTime / factor) - (stopWatch.ElapsedMilliseconds - firstStopWatchTime);
             System.Threading.Thread.Sleep((int)Math.Max(0, sleep));
 
+            //Start new ********************************************************************************************
+            if (null != eventDescription.EndEventElements)
+            {
+                foreach (EndEventElement endEventElement in eventDescription.EndEventElements)
+                {
+                    MidiNote midiNote = (endEventElement.StartElement as NoteElement).MidiNote;
+                    if (null != midiNote)
+                    {
+                        midiNote.StopPlaying(midiOut);
+                    }
+                }
+
+            }
+            // End new *****************************************************************************************************
+
             // Itetrate through all parts: 
             for (int i = 0; (i < numberOfParts); i++)
             {
@@ -158,10 +173,12 @@ namespace MusicXmlReaderUI
                     //if (null == noteElement) continue; // Nothing happens in this part.
                     if (noteElement.TieStop) continue; // Let the note continue
 
-                    if (null != latestNotesPlayed[i])
-                    {
-                        latestNotesPlayed[i].StopPlaying(midiOut);
-                    }
+                    // Start Newly removed*********************************************************************
+                    //if (null != latestNotesPlayed[i])
+                    //{
+                    //    latestNotesPlayed[i].StopPlaying(midiOut);
+                    //}
+                    // End Newly removed*********************************************************************
 
                     if ("" != noteElement.Step)
                     {
@@ -170,6 +187,7 @@ namespace MusicXmlReaderUI
                         {
                             // This part is selected to be played (for instance from the GUI)
                             latestNotesPlayed[i] = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                            noteElement.MidiNote = latestNotesPlayed[i]; // Later do not use LatestNotePlayed !!
                         }
                     }
                 }

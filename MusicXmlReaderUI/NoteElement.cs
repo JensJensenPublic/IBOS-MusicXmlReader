@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml;
+using JSJ.MusicSynthesis;
 
 namespace MusicXmlReaderUI
 {
@@ -37,6 +38,8 @@ namespace MusicXmlReaderUI
         string staffString = "";
         int staff = 0;
         string articulations = "";
+
+        MidiNote midiNote = null; // If !null holds a MidiNote curently being played and representing this NoteElement
 
 
         public string Step
@@ -207,6 +210,19 @@ namespace MusicXmlReaderUI
             get
             {
                 return staff;
+            }
+        }
+
+        public MidiNote MidiNote
+        {
+            get
+            {
+                return midiNote;
+            }
+
+            set
+            {
+                midiNote = value;
             }
         }
 
