@@ -11,7 +11,6 @@ namespace MusicXmlReaderUI
     {
 
         MidiNote   latestNotePlayed = null;
-        MidiNote[] latestNotesPlayed = null;
         MidiChord latestHarmonyPlayed = null;
         MidiOut midiOut = null;
         ListBox listBox = null;
@@ -130,8 +129,6 @@ namespace MusicXmlReaderUI
         public void Reset(int numberOfParts)
         {
             this.numberOfParts = numberOfParts;
-            // Initialize list of latest played notes.
-            latestNotesPlayed = new MidiNote[numberOfParts];
         }
 
         /// <summary>
@@ -176,8 +173,7 @@ namespace MusicXmlReaderUI
                         if (userSettings.partsToPlay[i])
                         {
                             // This part is selected to be played (for instance from the GUI)
-                            latestNotesPlayed[i] = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
-                            noteElement.MidiNote = latestNotesPlayed[i]; // Later do not use LatestNotePlayed !!
+                            noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
                         }
                     }
                 }
