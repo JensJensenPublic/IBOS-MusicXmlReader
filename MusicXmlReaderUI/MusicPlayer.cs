@@ -147,7 +147,7 @@ namespace MusicXmlReaderUI
             long sleep = (eventDescription.StartTime / factor) - (stopWatch.ElapsedMilliseconds - firstStopWatchTime);
             System.Threading.Thread.Sleep((int)Math.Max(0, sleep));
 
-            //Start new ********************************************************************************************
+            // Stop playing these notes: 
             if (null != eventDescription.EndEventElements)
             {
                 foreach (EndEventElement endEventElement in eventDescription.EndEventElements)
@@ -160,26 +160,16 @@ namespace MusicXmlReaderUI
                 }
 
             }
-            // End new *****************************************************************************************************
 
+
+            // Start playing these notes:
             // Itetrate through all parts: 
             for (int i = 0; (i < numberOfParts); i++)
             {
                 List<NoteElement> noteElementList = eventDescription.NoteLists[i];
                 foreach (NoteElement noteElement in noteElementList)
                 {
-
-                    //NoteElement noteElement = eventDescription.Notes[i];
-                    //if (null == noteElement) continue; // Nothing happens in this part.
                     if (noteElement.TieStop) continue; // Let the note continue
-
-                    // Start Newly removed*********************************************************************
-                    //if (null != latestNotesPlayed[i])
-                    //{
-                    //    latestNotesPlayed[i].StopPlaying(midiOut);
-                    //}
-                    // End Newly removed*********************************************************************
-
                     if ("" != noteElement.Step)
                     {
                         // This is a playable note, not a pause !
@@ -228,39 +218,18 @@ namespace MusicXmlReaderUI
         {
             if (null == selectedObject) return;
 
-            // We can't switch on selectedObject.GetType() because it is not an integral type.
-            if (selectedObject is NoteElement)
+            string typeName = selectedObject.GetType().Name;
+            switch (typeName)
             {
-                Play(selectedObject as NoteElement);
-                return;
+                case "NoteElement":     Play(selectedObject as NoteElement); break;
+                case "EventDescription":Play(selectedObject as EventDescription); break;
+                case "SoundElement":    this.tempo = (selectedObject as SoundElement).GetTempo(); break;
+                case "MeasureElement":
+                case "ScorePartElement":
+                case "PartElement":
+                case "SimpleTextElement":
+                    break;
             }
-            else if (selectedObject is EventDescription)
-            {
-                Play(selectedObject as EventDescription);
-                return;
-            }
-            else if (selectedObject is SoundElement)
-            {
-                this.tempo = (selectedObject as SoundElement).GetTempo();
-                //System.Threading.Thread.Sleep(1000); ;
-            }
-            else
-            {
-                string typeName = selectedObject.GetType().Name;
-                switch (typeName)
-                {
-                    case "MeasureElement":
-                    case "ScorePartElement":
-                    case "PartElement":
-                    case "SimpleTextElement":
-                        break;
-                }
-                //System.Threading.Thread.Sleep(1000) ;
-            }
-            // Allow the Screen-reader a short time to catch up in order to make it stop complaining !!
-            //System.Threading.Thread.Sleep(100);
-
-
             return;
         }
 
