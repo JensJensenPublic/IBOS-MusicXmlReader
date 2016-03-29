@@ -27,6 +27,12 @@ namespace MusicXmlReaderUI
         string executingAssembly;
         string executingDirectory;
 
+        public static void Log(string s)
+        {
+            System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), "MusicXmlReader.Log"), s+"\r\n");
+        }
+
+
         /// <summary>
         /// Quick and dirty check to reject obvious unusable Xml files
         /// </summary>
@@ -84,7 +90,8 @@ namespace MusicXmlReaderUI
         /// Constructor
         /// </summary>
         public Model(ListBox listBox, ListBox listBoxPoly)
-        {
+        {          
+            Log("Started");
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
             allMusicXmlObjecsts = new List<MusicXmlObject>();
@@ -285,7 +292,6 @@ namespace MusicXmlReaderUI
             }
             return continueRecursion;
         }
-
 
         public void Recurse(XmlNodeList childrenNodes)
         {
