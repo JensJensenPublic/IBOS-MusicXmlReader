@@ -49,6 +49,7 @@
             this.checkBoxReadMeasureNumbers = new System.Windows.Forms.CheckBox();
             this.checkBoxPlayMeasureNumbers = new System.Windows.Forms.CheckBox();
             this.checkBoxReadEndEvents = new System.Windows.Forms.CheckBox();
+            this.checkedListBoxPartsToReadLyrics = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -240,7 +241,7 @@
             // 
             this.menuStripFile.Location = new System.Drawing.Point(0, 0);
             this.menuStripFile.Name = "menuStripFile";
-            this.menuStripFile.Size = new System.Drawing.Size(1114, 24);
+            this.menuStripFile.Size = new System.Drawing.Size(1276, 24);
             this.menuStripFile.TabIndex = 17;
             this.menuStripFile.Text = "Filer";
             // 
@@ -276,11 +277,22 @@
             this.checkBoxReadEndEvents.UseVisualStyleBackColor = true;
             this.checkBoxReadEndEvents.CheckedChanged += new System.EventHandler(this.checkBoxReadEndEvents_CheckedChanged);
             // 
+            // checkedListBoxPartsToReadLyrics
+            // 
+            this.checkedListBoxPartsToReadLyrics.AccessibleName = "Oplæs lyrik";
+            this.checkedListBoxPartsToReadLyrics.FormattingEnabled = true;
+            this.checkedListBoxPartsToReadLyrics.Location = new System.Drawing.Point(1119, 72);
+            this.checkedListBoxPartsToReadLyrics.Name = "checkedListBoxPartsToReadLyrics";
+            this.checkedListBoxPartsToReadLyrics.Size = new System.Drawing.Size(120, 184);
+            this.checkedListBoxPartsToReadLyrics.TabIndex = 21;
+            this.checkedListBoxPartsToReadLyrics.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPartsToReadLyrics_ItemCheck);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1114, 496);
+            this.ClientSize = new System.Drawing.Size(1276, 496);
+            this.Controls.Add(this.checkedListBoxPartsToReadLyrics);
             this.Controls.Add(this.checkBoxReadEndEvents);
             this.Controls.Add(this.checkBoxPlayMeasureNumbers);
             this.Controls.Add(this.checkBoxReadMeasureNumbers);
@@ -334,6 +346,7 @@
         private System.Windows.Forms.CheckBox checkBoxReadMeasureNumbers;
         private System.Windows.Forms.CheckBox checkBoxPlayMeasureNumbers;
         private System.Windows.Forms.CheckBox checkBoxReadEndEvents;
+        private System.Windows.Forms.CheckedListBox checkedListBoxPartsToReadLyrics;
     }
 }
 

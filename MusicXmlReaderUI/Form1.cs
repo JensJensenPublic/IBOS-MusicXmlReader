@@ -95,6 +95,7 @@ namespace MusicXmlReaderUI
             // Load the Checked Listboxes controlling the user settings
             model.LoadListBoxOfParts(checkedListBoxPartsToPlay);
             model.LoadListBoxOfParts(checkedListBoxPartsToRead);
+            model.LoadListBoxOfParts(checkedListBoxPartsToReadLyrics);
             autoReload = true;
 
             // Load the ListBox showing the filtered values 
@@ -263,8 +264,9 @@ namespace MusicXmlReaderUI
             }
             if (isNumberKey) 
             {
-                if (e.Control) SetCheckBox(checkedListBoxPartsToPlay, number, checkState);
-                if (e.Alt) SetCheckBox(checkedListBoxPartsToRead, number, checkState);
+                if ((e.Control) && !(e.Alt)) SetCheckBox(checkedListBoxPartsToPlay, number, checkState);
+                if ((e.Alt) && !(e.Control)) SetCheckBox(checkedListBoxPartsToRead, number, checkState);
+                if ((e.Alt) && (e.Control)) SetCheckBox(checkedListBoxPartsToReadLyrics, number, checkState);
             }
             
             e.Handled = true;
@@ -273,6 +275,12 @@ namespace MusicXmlReaderUI
             //checkedListBoxPartsToPlay.SetItemCheckState(index, checkState);
         }
 
+        private void checkedListBoxPartsToReadLyrics_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            model.SetPartsToReadLyrics(e.Index, (CheckState.Checked == e.NewValue));
+            // This has changed the way ToString() works the notes are drawn in listBoxTimes, so it must be redrawn
+            if (autoReload) model.LoadListBoxTimes();
+        }
     }
 
 }

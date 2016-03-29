@@ -435,6 +435,11 @@ namespace MusicXmlReaderUI
             this.userSettings.partsToRead[partNumber] = value;
         }
 
+        public void SetPartsToReadLyrics(int partNumber, bool value)
+        {
+            this.userSettings.partsToReadLyrics[partNumber] = value;
+        }
+        
         public void PlaySpeedChanged(float newValue)
         {
             userSettings.userSlowDown = newValue;

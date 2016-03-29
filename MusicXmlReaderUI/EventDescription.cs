@@ -152,7 +152,7 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="noteElementList"></param>
         /// <returns></returns>
-        private string PartTexts(List<NoteElement> noteElementList)
+        private string PartLyrics(List<NoteElement> noteElementList)
         {
             if (0 == noteElementList.Count()) return ""; // Nothing happened in this part 
             string s = "";
@@ -160,7 +160,7 @@ namespace MusicXmlReaderUI
             {
                 string delimiter = string.IsNullOrEmpty(s) ? "" : " "; // Use this string te separate notes within one part
                 // Add pitch information
-                if (userSettings.partsToRead[noteElement.PartNumber]) // Might later look at subparts S1/S2 ? 
+                if (userSettings.partsToReadLyrics[noteElement.PartNumber]) // Might later look at subparts S1/S2 ? 
                 {
                     string text = string.IsNullOrEmpty(noteElement.Text) ? "" : noteElement.Text;
                     s = s + delimiter + text;
@@ -215,10 +215,10 @@ namespace MusicXmlReaderUI
             foreach (List<NoteElement> noteElementList in noteLists) // Iterate over the fixed number of parts.
             {
                 string partNotes = PartNotes(noteElementList); // Represents all notes for all parts
-                string partTexts = PartTexts(noteElementList); // Represents all texts for all parts
+                string partLyrics = PartLyrics(noteElementList); // Represents all texts for all parts
                 // Assume that: The step is described with 3 characters. The octave with 1 character and max 2 notes per part !
                 sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
-                sbTexts.Append(string.Format("{0} ", partTexts));
+                sbTexts.Append(string.Format("{0} ", partLyrics));
             }
             return measure + divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString;
         }

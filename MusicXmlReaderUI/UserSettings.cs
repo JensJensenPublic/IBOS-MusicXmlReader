@@ -53,6 +53,7 @@ namespace MusicXmlReaderUI
         {
             partsToPlay = new bool[numberOfParts];
             partsToRead = new bool[numberOfParts];
+            partsToReadLyrics = new bool[numberOfParts];
             userSlowDown = 1.0F;
         }
 
