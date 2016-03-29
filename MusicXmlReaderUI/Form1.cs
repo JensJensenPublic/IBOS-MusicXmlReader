@@ -163,37 +163,37 @@ namespace MusicXmlReaderUI
 
         private void checkBoxShowStartTime_CheckedChanged(object sender, EventArgs e)
         {
-            model.SetShowStartTime(checkBoxShowStartTime.Checked);
+            model.UserSettings.readDivisions = checkBoxShowStartTime.Checked;
             if (autoReload) model.LoadListBoxTimes();
         }
 
         private void checkBoxPlayHarmonies_CheckedChanged(object sender, EventArgs e)
         {
-            model.SetPlayHarmonies(checkBoxPlayHarmonies.Checked);
+            model.UserSettings.playHarmonies = checkBoxPlayHarmonies.Checked;
             // No reload needed for "Play" options
         }
 
         private void checkBoxShowHarmonies_CheckedChanged(object sender, EventArgs e)
         {
-            model.SetShowHarmonies(checkBoxShowHarmonies.Checked);
+            model.UserSettings.readHarmonies = checkBoxShowHarmonies.Checked;
             if (autoReload) model.LoadListBoxTimes();
         }
 
         private void checkBoxOplæsBecifringskoder_CheckedChanged(object sender, EventArgs e)
         {
-            model.SetShowHarmonyCodes(checkBoxOplæsBecifringskoder.Checked);
+            model.UserSettings.readHarmonyCodes = checkBoxOplæsBecifringskoder.Checked;
             if (autoReload) model.LoadListBoxTimes();
         }
 
         private void checkBoxReadMeasureNumbers_CheckedChanged(object sender, EventArgs e)
         {
-            model.SetReadMeasureNumbers(checkBoxReadMeasureNumbers.Checked);
+            model.UserSettings.readMeasureNumbers = checkBoxReadMeasureNumbers.Checked;
             if (autoReload) model.LoadListBoxTimes();
         }
 
         private void checkBoxReadEndEvents_CheckedChanged(object sender, EventArgs e)
         {
-            model.SetReadEndEvents(checkBoxReadEndEvents.Checked);
+            model.UserSettings.readEndEvents = checkBoxReadEndEvents.Checked;
             if (autoReload) model.LoadListBoxTimes();
         }
 

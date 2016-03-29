@@ -23,8 +23,7 @@ namespace MusicXmlReaderUI
         int currentPartNumber = 0;
         ScorePartElement scorePartElement = null;
         UserSettings userSettings;
-        string fullXmlFileName;
-
+ 
         string executingAssembly;
         string executingDirectory;
 
@@ -330,13 +329,6 @@ namespace MusicXmlReaderUI
         private TimeDescriptionList  timeDescriptionList;
         private EventDescriptionList eventDescriptionList;
 
-        public string FullXmlFileName
-        {
-            get
-            {
-                return fullXmlFileName;
-            }
-        }
 
         public string InitialDirectory
         {
@@ -344,6 +336,14 @@ namespace MusicXmlReaderUI
             {
                 // For now we expect to find the musicxml files here.
                 return executingDirectory;
+            }
+        }
+
+        public UserSettings UserSettings
+        {
+            get
+            {
+                return userSettings;
             }
         }
 
@@ -444,40 +444,6 @@ namespace MusicXmlReaderUI
         {
             userSettings.userSlowDown = newValue;
         }
-
-
-        public void SetShowStartTime(bool value)
-        {
-            userSettings.readDivisions = value;
-        }
-
-        public void SetShowHarmonies(bool value)
-        {
-            userSettings.readHarmonies = value;
-        }
-
-
-        public void SetShowHarmonyCodes(bool value)
-        {
-            userSettings.readHarmonyCodes = value;
-        }
-
-        public void SetPlayHarmonies(bool value)
-        {
-            userSettings.playHarmonies = value;
-        }
-
-
-        public void SetReadMeasureNumbers(bool value)
-        {
-            userSettings.readMeasureNumbers = value;
-        }
-
-        public void SetReadEndEvents(bool value)
-        {
-            userSettings.readEndEvents = value;
-        }
-              
+        
     }
-
 }
