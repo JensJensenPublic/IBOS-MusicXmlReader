@@ -47,6 +47,7 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuStripFile = new System.Windows.Forms.MenuStrip();
             this.checkBoxReadMeasureNumbers = new System.Windows.Forms.CheckBox();
+            this.checkBoxPlayMeasureNumbers = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -169,7 +170,7 @@
             // 
             this.checkBoxShowStartTime.AccessibleName = "Oplæs starttid";
             this.checkBoxShowStartTime.AutoSize = true;
-            this.checkBoxShowStartTime.Location = new System.Drawing.Point(982, 286);
+            this.checkBoxShowStartTime.Location = new System.Drawing.Point(982, 423);
             this.checkBoxShowStartTime.Name = "checkBoxShowStartTime";
             this.checkBoxShowStartTime.Size = new System.Drawing.Size(91, 17);
             this.checkBoxShowStartTime.TabIndex = 11;
@@ -201,9 +202,9 @@
             this.checkBoxShowHarmonies.AutoSize = true;
             this.checkBoxShowHarmonies.Location = new System.Drawing.Point(982, 263);
             this.checkBoxShowHarmonies.Name = "checkBoxShowHarmonies";
-            this.checkBoxShowHarmonies.Size = new System.Drawing.Size(109, 17);
+            this.checkBoxShowHarmonies.Size = new System.Drawing.Size(110, 17);
             this.checkBoxShowHarmonies.TabIndex = 14;
-            this.checkBoxShowHarmonies.Text = "Oplæs becifringer";
+            this.checkBoxShowHarmonies.Text = "Oplæs Becifringer";
             this.checkBoxShowHarmonies.UseVisualStyleBackColor = true;
             this.checkBoxShowHarmonies.CheckedChanged += new System.EventHandler(this.checkBoxShowHarmonies_CheckedChanged);
             // 
@@ -213,16 +214,16 @@
             this.checkBoxPlayHarmonies.AutoSize = true;
             this.checkBoxPlayHarmonies.Location = new System.Drawing.Point(856, 263);
             this.checkBoxPlayHarmonies.Name = "checkBoxPlayHarmonies";
-            this.checkBoxPlayHarmonies.Size = new System.Drawing.Size(95, 17);
+            this.checkBoxPlayHarmonies.Size = new System.Drawing.Size(96, 17);
             this.checkBoxPlayHarmonies.TabIndex = 15;
-            this.checkBoxPlayHarmonies.Text = "Spil becifringer";
+            this.checkBoxPlayHarmonies.Text = "Spil Becifringer";
             this.checkBoxPlayHarmonies.UseVisualStyleBackColor = true;
             this.checkBoxPlayHarmonies.CheckedChanged += new System.EventHandler(this.checkBoxPlayHarmonies_CheckedChanged);
             // 
             // checkBoxOplæsBecifringskoder
             // 
             this.checkBoxOplæsBecifringskoder.AutoSize = true;
-            this.checkBoxOplæsBecifringskoder.Location = new System.Drawing.Point(982, 310);
+            this.checkBoxOplæsBecifringskoder.Location = new System.Drawing.Point(982, 446);
             this.checkBoxOplæsBecifringskoder.Name = "checkBoxOplæsBecifringskoder";
             this.checkBoxOplæsBecifringskoder.Size = new System.Drawing.Size(132, 17);
             this.checkBoxOplæsBecifringskoder.TabIndex = 16;
@@ -245,19 +246,30 @@
             // checkBoxReadMeasureNumbers
             // 
             this.checkBoxReadMeasureNumbers.AutoSize = true;
-            this.checkBoxReadMeasureNumbers.Location = new System.Drawing.Point(982, 334);
+            this.checkBoxReadMeasureNumbers.Location = new System.Drawing.Point(982, 286);
             this.checkBoxReadMeasureNumbers.Name = "checkBoxReadMeasureNumbers";
-            this.checkBoxReadMeasureNumbers.Size = new System.Drawing.Size(107, 17);
+            this.checkBoxReadMeasureNumbers.Size = new System.Drawing.Size(111, 17);
             this.checkBoxReadMeasureNumbers.TabIndex = 18;
-            this.checkBoxReadMeasureNumbers.Text = "Oplæs taktnumre";
+            this.checkBoxReadMeasureNumbers.Text = "Oplæs Taktnumre";
             this.checkBoxReadMeasureNumbers.UseVisualStyleBackColor = true;
             this.checkBoxReadMeasureNumbers.CheckedChanged += new System.EventHandler(this.checkBoxReadMeasureNumbers_CheckedChanged);
+            // 
+            // checkBoxPlayMeasureNumbers
+            // 
+            this.checkBoxPlayMeasureNumbers.AutoSize = true;
+            this.checkBoxPlayMeasureNumbers.Location = new System.Drawing.Point(856, 286);
+            this.checkBoxPlayMeasureNumbers.Name = "checkBoxPlayMeasureNumbers";
+            this.checkBoxPlayMeasureNumbers.Size = new System.Drawing.Size(87, 17);
+            this.checkBoxPlayMeasureNumbers.TabIndex = 19;
+            this.checkBoxPlayMeasureNumbers.Text = "Spil Taktslag";
+            this.checkBoxPlayMeasureNumbers.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1114, 496);
+            this.Controls.Add(this.checkBoxPlayMeasureNumbers);
             this.Controls.Add(this.checkBoxReadMeasureNumbers);
             this.Controls.Add(this.checkBoxOplæsBecifringskoder);
             this.Controls.Add(this.checkBoxPlayHarmonies);
@@ -276,9 +288,11 @@
             this.Controls.Add(this.listBoxFiltered);
             this.Controls.Add(this.listBoxTimes);
             this.Controls.Add(this.menuStripFile);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStripFile;
             this.Name = "Form1";
             this.Text = "MusikLæser";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -305,6 +319,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.MenuStrip menuStripFile;
         private System.Windows.Forms.CheckBox checkBoxReadMeasureNumbers;
+        private System.Windows.Forms.CheckBox checkBoxPlayMeasureNumbers;
     }
 }
 

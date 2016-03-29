@@ -17,31 +17,22 @@ namespace MusicXmlReaderUI
         // No need to make the coad less readable by making them private etc:
 
         // Arrays for controlling individual parts
-        public bool[] partsToPlay;
-        public bool[] partsToRead;
+        public bool[] partsToPlay; // Play the note values from these partitions
+        public bool[] partsToRead; // Read the note values from these partitions
+        public bool[] partsToReadLyrics; // Read the lyrics from these partitions
 
         // For controlling other user properties
         public bool readDivisions;
-        private bool readMeasureNumbers;
-        public bool playBeats;
+        public bool readMeasureNumbers;
+        public bool playMeasureBeats; // Not implemented yet.
         public bool readHarmonyCodes; // As found in the MusicXml file
         public bool readHarmonies;    // After localisation  
         public bool playHarmonies;
-
+        
 
         public float userSlowDown;
 
-        public bool ReadMeasureNumbers
-        {
-            get
-            {
-                return readMeasureNumbers;
-            }
-            set
-            {
-                readMeasureNumbers = value;
-            }
-        }
+
 
         /// <summary>
         /// To force the use of the Create() method

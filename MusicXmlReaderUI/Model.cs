@@ -465,7 +465,9 @@ namespace MusicXmlReaderUI
 
         public void SetReadMeasureNumbers(bool value)
         {
-            userSettings.ReadMeasureNumbers = value;
+            userSettings.readMeasureNumbers = value;
         }
+        
     }
+
 }

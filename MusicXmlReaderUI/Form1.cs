@@ -13,7 +13,7 @@ using JSJ.MusicSynthesis;
 
 namespace MusicXmlReaderUI
 {
-     public partial class Form1 : Form
+    public partial class Form1 : Form
     {
         bool showTimes = true;
         Model model;
@@ -25,18 +25,18 @@ namespace MusicXmlReaderUI
         {
             InitializeComponent();
             buttonStart.Select();
-            if (!showTimes)  listBoxTimes.Hide();
-            model = new Model(listBoxFiltered,listBoxTimes);        
-            listBoxFiltered.SelectedIndexChanged += new EventHandler(SelectedIndexChanged);          
+            if (!showTimes) listBoxTimes.Hide();
+            model = new Model(listBoxFiltered, listBoxTimes);
+            listBoxFiltered.SelectedIndexChanged += new EventHandler(SelectedIndexChanged);
         }
 
-   
-        private  void SelectedIndexChanged(object sender, System.EventArgs e)
+
+        private void SelectedIndexChanged(object sender, System.EventArgs e)
         {
             object o = listBoxFiltered.Items[listBoxFiltered.SelectedIndex];
-            model.musicPlayer.SelectedIndexChanged(listBoxFiltered.SelectedIndex,o);
+            model.musicPlayer.SelectedIndexChanged(listBoxFiltered.SelectedIndex, o);
         }
-        
+
 
         //private void Recurse(XmlNodeList childrenNodes)
         //{  
@@ -89,9 +89,9 @@ namespace MusicXmlReaderUI
             {
                 // Simple error handling
                 textBoxMessage.Text = string.Format("Kunne ikke indlæse {0}", openFileDialog.FileName);
-                return; 
+                return;
             }
-             
+
             // Load the Checked Listboxes controlling the user settings
             model.LoadListBoxOfParts(checkedListBoxPartsToPlay);
             model.LoadListBoxOfParts(checkedListBoxPartsToRead);
@@ -102,7 +102,7 @@ namespace MusicXmlReaderUI
             listBoxFiltered.SelectedIndex = 0;
 
             // Let the Model do the hard work of transforming to e timed representation.
-            model.LoadListBoxTimes(); 
+            model.LoadListBoxTimes();
         }
 
         private void Play_Click(object sender, EventArgs e)
@@ -121,7 +121,7 @@ namespace MusicXmlReaderUI
             float value = (float)numericUpDown.Value;
             model.PlaySpeedChanged(100F / value);
         }
-        
+
 
         private void listBoxTimes_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -188,6 +188,82 @@ namespace MusicXmlReaderUI
             model.SetReadMeasureNumbers(checkBoxReadMeasureNumbers.Checked);
             if (autoReload) model.LoadListBoxTimes();
         }
+
+        /// <summary>
+        /// Control checkbox for one spscific part
+        /// </summary>
+        /// <param name="checkedListBox"></param>
+        /// <param name="number"></param>
+        /// <param name="checkState"></param>
+        private void SetCheckBox(CheckedListBox checkedListBox, int number, CheckState checkState)
+        {
+            int index = number - 1;  // Voices are numbered from 1 and up
+            if ((index >= 0) && (index < checkedListBox.Items.Count))
+            {
+                checkedListBox.SetItemCheckState(index, checkState);
+            }
+        }
+
+        /// <summary>
+        /// Control checkboxes for all parts
+        /// </summary>
+        /// <param name="checkedListBox"></param>
+        /// <param name="checkState"></param>
+        private void SetCheckBoxes(CheckedListBox checkedListBox, CheckState checkState)
+        {
+            for (int part = 1; (part <= checkedListBox.Items.Count); part++)
+            {
+                SetCheckBox(checkedListBox, part, checkState);
+            }
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            CheckState checkState = e.Shift ? CheckState.Unchecked : CheckState.Checked;
+            
+            bool check = !e.Shift;
+            bool control = e.Control;
+            bool alt = e.Alt;
+            int number = 0;
+            bool isNumberKey = false;
+            switch (e.KeyCode)
+            {
+                case Keys.D0: // Set or clear all voices:
+                    if (e.Control) SetCheckBoxes(checkedListBoxPartsToPlay,checkState);
+                    if (e.Alt) SetCheckBoxes(checkedListBoxPartsToRead, checkState);
+                    break;
+
+                case Keys.D1:
+                case Keys.D2:
+                case Keys.D3:
+                case Keys.D4:
+                case Keys.D5:
+                case Keys.D6:
+                case Keys.D7:
+                case Keys.D8:
+                case Keys.D9: number = e.KeyCode - Keys.D0; isNumberKey = true; break; // Set or clear one voice
+                case Keys.B: // "Becifringer" TO DO Handle localisation issue here!
+                    if (e.Control) checkBoxShowHarmonies.Checked = check;
+                    if (e.Alt) checkBoxPlayHarmonies.Checked = check;
+                    break;
+                case Keys.T: // "Takter" TO DO Handle localisation issue here!
+                    if (e.Control) checkBoxReadMeasureNumbers.Checked = check;
+                    if (e.Alt)     checkBoxPlayMeasureNumbers.Checked = check;
+                    break;
+                default: break;
+            }
+            if (isNumberKey) 
+            {
+                if (e.Control) SetCheckBox(checkedListBoxPartsToPlay, number, checkState);
+                if (e.Alt) SetCheckBox(checkedListBoxPartsToRead, number, checkState);
+            }
+            
+            e.Handled = true;
+            //string item = (checkedListBoxPartsToPlay.Items[1]).ToString();
+            //bool b = checkedListBoxPartsToPlay.GetItemChecked(1);
+            //checkedListBoxPartsToPlay.SetItemCheckState(index, checkState);
+        }
+
     }
 
 }

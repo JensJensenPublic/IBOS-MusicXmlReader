@@ -175,7 +175,7 @@ namespace MusicXmlReaderUI
             string divisions = userSettings.readDivisions ? string.Format("{0,6}: ", startTime, "") : "";
 
             string measure = "";
-            if (userSettings.ReadMeasureNumbers)
+            if (userSettings.readMeasureNumbers)
             {
                 measure = (null != measureElement) ? string.Format("Takt {0,4}", measureElement.Number) : "         "; // Up to 10000 measures
             }
