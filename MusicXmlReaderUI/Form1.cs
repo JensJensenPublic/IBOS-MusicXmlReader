@@ -236,6 +236,7 @@ namespace MusicXmlReaderUI
             bool alt = e.Alt;
             int number = 0;
             bool isNumberKey = false;
+            bool isHandled = false;
             switch (e.KeyCode)
             {
                 case Keys.D0: // Set or clear all voices:
@@ -255,10 +256,12 @@ namespace MusicXmlReaderUI
                 case Keys.B: // "Becifringer" TO DO Handle localisation issue here!
                     if (e.Control) checkBoxShowHarmonies.Checked = check;
                     if (e.Alt) checkBoxPlayHarmonies.Checked = check;
+                    isHandled = true;
                     break;
                 case Keys.T: // "Takter" TO DO Handle localisation issue here!
                     if (e.Control) checkBoxReadMeasureNumbers.Checked = check;
                     if (e.Alt)     checkBoxPlayMeasureNumbers.Checked = check;
+                    isHandled = true;
                     break;
                 default: break;
             }
@@ -267,9 +270,10 @@ namespace MusicXmlReaderUI
                 if ((e.Control) && !(e.Alt)) SetCheckBox(checkedListBoxPartsToPlay, number, checkState);
                 if ((e.Alt) && !(e.Control)) SetCheckBox(checkedListBoxPartsToRead, number, checkState);
                 if ((e.Alt) && (e.Control)) SetCheckBox(checkedListBoxPartsToReadLyrics, number, checkState);
+                isHandled = true;
             }
-            
-            e.Handled = true;
+
+            e.Handled = isHandled; // Do not pass this key on
             //string item = (checkedListBoxPartsToPlay.Items[1]).ToString();
             //bool b = checkedListBoxPartsToPlay.GetItemChecked(1);
             //checkedListBoxPartsToPlay.SetItemCheckState(index, checkState);
