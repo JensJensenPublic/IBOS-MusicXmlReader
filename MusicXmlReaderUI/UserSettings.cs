@@ -22,15 +22,19 @@ namespace MusicXmlReaderUI
         public bool[] partsToReadLyrics; // Read the lyrics from these partitions
 
         // For controlling other user properties
-        public bool readDivisions;
         public bool readMeasureNumbers;
         public bool playMeasureBeats; // Not implemented yet.
-        public bool readHarmonyCodes; // As found in the MusicXml file
         public bool readHarmonies;    // After localisation  
         public bool playHarmonies;
-        
-
         public float userSlowDown;
+
+        // For controlling other DEVELOPER properties
+        public bool readDivisions;      
+        public bool readHarmonyCodes; // As found in the MusicXml file
+        public bool readEndEvents;
+
+
+
 
 
 

@@ -197,7 +197,7 @@ namespace MusicXmlReaderUI
 
 
             string endEventString = "";
-            if (null != endEventElements)
+            if ((userSettings.readEndEvents) && (null != endEventElements))
             {
                 endEventString += "(";
                 foreach (EndEventElement endEventElement in endEventElements)

@@ -144,6 +144,7 @@ namespace MusicXmlReaderUI
         private void checkedListBoxPartsToPlay_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             model.SetPartsToPlay(e.Index, (CheckState.Checked == e.NewValue));
+            // No reload needed for "Play" options
         }
 
         /// <summary>
@@ -168,7 +169,7 @@ namespace MusicXmlReaderUI
         private void checkBoxPlayHarmonies_CheckedChanged(object sender, EventArgs e)
         {
             model.SetPlayHarmonies(checkBoxPlayHarmonies.Checked);
-            if (autoReload) model.LoadListBoxTimes();
+            // No reload needed for "Play" options
         }
 
         private void checkBoxShowHarmonies_CheckedChanged(object sender, EventArgs e)
@@ -179,7 +180,7 @@ namespace MusicXmlReaderUI
 
         private void checkBoxOplæsBecifringskoder_CheckedChanged(object sender, EventArgs e)
         {
-            model.SetShowHarmonyCodes(checkBoxShowHarmonies.Checked);
+            model.SetShowHarmonyCodes(checkBoxOplæsBecifringskoder.Checked);
             if (autoReload) model.LoadListBoxTimes();
         }
 
@@ -188,6 +189,14 @@ namespace MusicXmlReaderUI
             model.SetReadMeasureNumbers(checkBoxReadMeasureNumbers.Checked);
             if (autoReload) model.LoadListBoxTimes();
         }
+
+        private void checkBoxReadEndEvents_CheckedChanged(object sender, EventArgs e)
+        {
+            model.SetReadEndEvents(checkBoxReadEndEvents.Checked);
+            if (autoReload) model.LoadListBoxTimes();
+        }
+
+
 
         /// <summary>
         /// Control checkbox for one spscific part

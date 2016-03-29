@@ -48,6 +48,7 @@
             this.menuStripFile = new System.Windows.Forms.MenuStrip();
             this.checkBoxReadMeasureNumbers = new System.Windows.Forms.CheckBox();
             this.checkBoxPlayMeasureNumbers = new System.Windows.Forms.CheckBox();
+            this.checkBoxReadEndEvents = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -264,11 +265,23 @@
             this.checkBoxPlayMeasureNumbers.Text = "Spil Taktslag";
             this.checkBoxPlayMeasureNumbers.UseVisualStyleBackColor = true;
             // 
+            // checkBoxReadEndEvents
+            // 
+            this.checkBoxReadEndEvents.AutoSize = true;
+            this.checkBoxReadEndEvents.Location = new System.Drawing.Point(982, 466);
+            this.checkBoxReadEndEvents.Name = "checkBoxReadEndEvents";
+            this.checkBoxReadEndEvents.Size = new System.Drawing.Size(112, 17);
+            this.checkBoxReadEndEvents.TabIndex = 20;
+            this.checkBoxReadEndEvents.Text = "Oplæs EndEvents";
+            this.checkBoxReadEndEvents.UseVisualStyleBackColor = true;
+            this.checkBoxReadEndEvents.CheckedChanged += new System.EventHandler(this.checkBoxReadEndEvents_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1114, 496);
+            this.Controls.Add(this.checkBoxReadEndEvents);
             this.Controls.Add(this.checkBoxPlayMeasureNumbers);
             this.Controls.Add(this.checkBoxReadMeasureNumbers);
             this.Controls.Add(this.checkBoxOplæsBecifringskoder);
@@ -320,6 +333,7 @@
         private System.Windows.Forms.MenuStrip menuStripFile;
         private System.Windows.Forms.CheckBox checkBoxReadMeasureNumbers;
         private System.Windows.Forms.CheckBox checkBoxPlayMeasureNumbers;
+        private System.Windows.Forms.CheckBox checkBoxReadEndEvents;
     }
 }
 

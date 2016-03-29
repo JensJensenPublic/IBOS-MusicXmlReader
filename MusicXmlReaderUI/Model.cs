@@ -467,7 +467,12 @@ namespace MusicXmlReaderUI
         {
             userSettings.readMeasureNumbers = value;
         }
-        
+
+        public void SetReadEndEvents(bool value)
+        {
+            userSettings.readEndEvents = value;
+        }
+              
     }
 
 }
