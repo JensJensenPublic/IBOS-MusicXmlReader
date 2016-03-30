@@ -35,6 +35,18 @@ namespace MusicXmlReaderUI
             System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName), time+" "+s+"\r\n");
         }
 
+        public void ReadLogFile()
+        {
+            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
+            pProcess.StartInfo.FileName = @"NotePad.exe";
+            pProcess.StartInfo.Arguments = System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName); //argument
+            pProcess.StartInfo.UseShellExecute = false;
+            pProcess.StartInfo.RedirectStandardOutput = true;
+            pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+            pProcess.Start();
+        }
+
+
 
         /// <summary>
         /// Quick and dirty check to reject obvious unusable Xml files

@@ -285,6 +285,11 @@ namespace MusicXmlReaderUI
             // This has changed the way ToString() works the notes are drawn in listBoxTimes, so it must be redrawn
             if (autoReload) model.LoadListBoxTimes();
         }
+
+        private void buttonReadLogFile_Click(object sender, EventArgs e)
+        {
+            model.ReadLogFile();
+        }
     }
 
 }

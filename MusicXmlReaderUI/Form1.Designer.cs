@@ -50,6 +50,7 @@
             this.checkBoxPlayMeasureNumbers = new System.Windows.Forms.CheckBox();
             this.checkBoxReadEndEvents = new System.Windows.Forms.CheckBox();
             this.checkedListBoxPartsToReadLyrics = new System.Windows.Forms.CheckedListBox();
+            this.buttonReadLogFile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -287,11 +288,22 @@
             this.checkedListBoxPartsToReadLyrics.TabIndex = 21;
             this.checkedListBoxPartsToReadLyrics.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPartsToReadLyrics_ItemCheck);
             // 
+            // buttonReadLogFile
+            // 
+            this.buttonReadLogFile.Location = new System.Drawing.Point(856, 417);
+            this.buttonReadLogFile.Name = "buttonReadLogFile";
+            this.buttonReadLogFile.Size = new System.Drawing.Size(75, 23);
+            this.buttonReadLogFile.TabIndex = 22;
+            this.buttonReadLogFile.Text = "Oplæs logfil";
+            this.buttonReadLogFile.UseVisualStyleBackColor = true;
+            this.buttonReadLogFile.Click += new System.EventHandler(this.buttonReadLogFile_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 496);
+            this.Controls.Add(this.buttonReadLogFile);
             this.Controls.Add(this.checkedListBoxPartsToReadLyrics);
             this.Controls.Add(this.checkBoxReadEndEvents);
             this.Controls.Add(this.checkBoxPlayMeasureNumbers);
@@ -347,6 +359,7 @@
         private System.Windows.Forms.CheckBox checkBoxPlayMeasureNumbers;
         private System.Windows.Forms.CheckBox checkBoxReadEndEvents;
         private System.Windows.Forms.CheckedListBox checkedListBoxPartsToReadLyrics;
+        private System.Windows.Forms.Button buttonReadLogFile;
     }
 }
 
