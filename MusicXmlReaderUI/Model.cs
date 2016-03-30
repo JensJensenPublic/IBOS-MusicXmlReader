@@ -29,7 +29,9 @@ namespace MusicXmlReaderUI
 
         public static void Log(string s)
         {
-            System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), "MusicXmlReader.Log"), s+"\r\n");
+            System.DateTime now = System.DateTime.Now;
+            string time = string.Format("{0}.{1:3}", now.ToLongTimeString(), now.Millisecond.ToString());
+            System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), "MusicXmlReader.Log"), time+" "+s+"\r\n");
         }
 
 
@@ -90,10 +92,10 @@ namespace MusicXmlReaderUI
         /// Constructor
         /// </summary>
         public Model(ListBox listBox, ListBox listBoxPoly)
-        {          
-            Log("Started");
+        { 
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
+            Log(string.Format("{0} started in {1} on {2}", System.IO.Path.GetFileName(executingAssembly), executingDirectory, System.DateTime.Now.ToLongDateString()));                 
             allMusicXmlObjecsts = new List<MusicXmlObject>();
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
