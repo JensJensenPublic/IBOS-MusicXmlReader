@@ -27,11 +27,12 @@ namespace MusicXmlReaderUI
         string executingAssembly;
         string executingDirectory;
 
+        public static string LogFileName = "MusicXmlReader.Log";
         public static void Log(string s)
         {
             System.DateTime now = System.DateTime.Now;
-            string time = string.Format("{0}.{1:3}", now.ToLongTimeString(), now.Millisecond.ToString());
-            System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), "MusicXmlReader.Log"), time+" "+s+"\r\n");
+            string time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
+            System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName), time+" "+s+"\r\n");
         }
 
 
@@ -59,13 +60,16 @@ namespace MusicXmlReaderUI
         public bool LoadMusicXmlFile(string fullXmlFileName)
         {
             bool ok = true;
- //           try
+            string xmlFileName = ""; // Must be outside the try clause
+            try
             {
+                string defaultFileName = "Node.xml";
                 if (string.IsNullOrEmpty(fullXmlFileName))
-                {
-                    string fileName = "Node.xml";
-                    fullXmlFileName = System.IO.Path.Combine(executingDirectory, fileName);
+                {     
+                    // Use a default value             
+                    fullXmlFileName = System.IO.Path.Combine(executingDirectory, defaultFileName);
                 }
+                xmlFileName = System.IO.Path.GetFileName(fullXmlFileName);
                 XmlDocument doc = new XmlDocument();
                 XmlTextReader reader = new XmlTextReader(fullXmlFileName);
                 reader.WhitespaceHandling = WhitespaceHandling.None;
@@ -73,18 +77,24 @@ namespace MusicXmlReaderUI
                 ok = ok && CheckMusicXmlSyntax(doc);
                 if (ok)
                 {
+                    Log(string.Format("Loaded {0}", fullXmlFileName));                
                     Recurse(doc.ChildNodes);
+                    Log(string.Format("Parsed {0}", xmlFileName));
                     Init(); // Experimental code !! 
+                    Log(string.Format("Initialized all components"));
                     LoadListBox();
                 }
+                else
+                {
+                    Log(string.Format("Failed to load {0} because it not a valid MusicXml file",xmlFileName));
+                }
             }
-            //catch (System.Exception e)
-            //{
-            //    ok = false;
-            //}
-
+            catch (System.Exception e)
+            {
+                Log(string.Format("Failed to load {0} ({1})",xmlFileName,e.Message));
+                ok = false;
+            }
             return ok;
-
         }
 
 
