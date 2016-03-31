@@ -12,6 +12,7 @@ namespace MusicXmlReaderUI
         // 2,3,4,5,6,7,8,9,10. 
         // 1260 can be divided by 2,3,4,5,6,7,8,9 and 10 !
         public const int commonDivisions = 1260;
+        string punctured = "punkteret ";
 
         // Values found in MusicXml file, possibly after a minor type conversion, typically fromstring to int.
         string step = "";
@@ -253,28 +254,31 @@ namespace MusicXmlReaderUI
 
         private string LocalizeType(string s, bool modifier)
         {
-            string punctured = "punkteret ";
+
             switch (s)
             {
-                case "whole": return (modifier ? punctured : "") + "helnode";
-                case "half": return (modifier ? punctured : "") + "halvnode";
+                case "whole":   return (modifier ? punctured : "") + "helnode";
+                case "half":    return (modifier ? punctured : "") + "halvnode";
                 case "quarter": return (modifier ? punctured : "") + "fjerdedel";
-                case "eighth": return (modifier ? punctured : "") + "ottendedel";
-                case "16th": return (modifier ? punctured : "") + "sekstendedel";
-                case "32nd": return (modifier ? punctured : "") + "toogtredivtedel";
-                case "64nd": return (modifier ? punctured : "") + "fireogtredsindstyvendedel";
+                case "eighth":  return (modifier ? punctured : "") + "ottendedel";
+                case "16th":    return (modifier ? punctured : "") + "sekstendedel";
+                case "32nd":    return (modifier ? punctured : "") + "toogtredivtedel";
+                case "64nd":    return (modifier ? punctured : "") + "fireogtredsindstyvendedel";
             }
             return (modifier ? punctured : "") + s; // 
         }
 
-        private string LocalizePause(string s)
+        private string LocalizePause(string s, bool modifier)
         {
             switch (s)
             {
-                case "whole": return "helnodepause";
-                case "half": return "halvnodepause";
-                case "quarter": return "fjerdedelspause";
-                case "eighth": return "ottendedelspause";
+                case "whole":   return (modifier ? punctured : "") + "helnodepause";
+                case "half":    return (modifier ? punctured : "") + "halvnodepause";
+                case "quarter": return (modifier ? punctured : "") + "fjerdedelspause";
+                case "eighth":  return (modifier ? punctured : "") + "ottendedelspause";
+                case "16th":    return (modifier ? punctured : "") + "sekstendedelspause";
+                case "32nd":    return (modifier ? punctured : "") + "toogtredivtedelspause";
+                case "64nd":    return (modifier ? punctured : "") + "fireogtredsindstyvendedelspause";
             }
             return "pause " + LocalizeType(s, false);
         }
@@ -355,7 +359,7 @@ namespace MusicXmlReaderUI
                 }
             }
             localizedType = LocalizeType(Type, dot);
-            localizedPauseType = (string.IsNullOrEmpty(step)) ? LocalizePause(Type) : ""; 
+            localizedPauseType = (string.IsNullOrEmpty(step)) ? LocalizePause(Type,dot) : ""; 
             localizedTie  = LocalizeTie(tieType); 
             this.divisions = divisions;
             // Model.GetNoteTiming(out this.startTime, out this.endTime, int.Parse(this.duration)); 
@@ -387,7 +391,7 @@ namespace MusicXmlReaderUI
             else
             {      
                 // This is a pause,not a note.     
-                return(String.Format("{0}{1}{2} {3}", timeString, partString, measureString, LocalizePause(Type)));
+                return(String.Format("{0}{1}{2} {3}", timeString, partString, measureString, LocalizePause(Type,dot)));
             }         
         }
 
