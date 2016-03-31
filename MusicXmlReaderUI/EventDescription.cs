@@ -149,7 +149,7 @@ namespace MusicXmlReaderUI
                     {
                         // This is a pause
                         // Here the type and the word "pause" are cocatenated such as "punkteret halvnodepause"
-                        string type = userSettings.readNoteTypes ? noteElement.LocalizedType : "pause"; 
+                        string type = userSettings.readNoteTypes ? noteElement.LocalizedPauseType : "pause"; 
                         note = string.Format("{0}",type);
                     }
                     else
@@ -159,7 +159,9 @@ namespace MusicXmlReaderUI
                         string pitch    = noteElement.PitchValue.Name; // Always use the name of the note
                         string octave   = userSettings.readNoteOctaves ? noteElement.PitchValue.Octave : "";
                         string type     = userSettings.readNoteTypes ? noteElement.LocalizedType : "";
-                        note = string.Format("{0}{1} {2}",pitch, octave, type);
+                        string pitchAndOctave = string.Format("{0}{1}", pitch, octave);
+//                      note = string.Format("{0,-4} {1}", pitchAndOctave, type); // Always use 4 chars for pitch and Octave. Examples: "C   ","Cis4"
+                        note = string.Format("{0} {1}", pitchAndOctave, type);    // Do not use extra chars for Pitch and Octave. Examples: "C","Cis4"
                     }
 
                     // string note = string.IsNullOrEmpty(noteElement.Step) ? "Pause" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave + " " +noteElement.LocalizedType;

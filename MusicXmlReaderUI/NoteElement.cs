@@ -26,7 +26,8 @@ namespace MusicXmlReaderUI
         TieElement tieElement;
         string tieType = ""; // Is this note tied to another note
         bool tieStop = false;
-        string localizedType = "";
+        string localizedType = "";      //  If this is n note,  not a pause
+        string localizedPauseType = ""; //  If this is a pause, not a note
         string localizedTie = "";
         Pitch pitchValue;
         int measureNumber;
@@ -234,6 +235,14 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public string LocalizedPauseType
+        {
+            get
+            {
+                return localizedPauseType;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -346,6 +355,7 @@ namespace MusicXmlReaderUI
                 }
             }
             localizedType = LocalizeType(Type, dot);
+            localizedPauseType = (string.IsNullOrEmpty(step)) ? LocalizePause(Type) : ""; 
             localizedTie  = LocalizeTie(tieType); 
             this.divisions = divisions;
             // Model.GetNoteTiming(out this.startTime, out this.endTime, int.Parse(this.duration)); 
