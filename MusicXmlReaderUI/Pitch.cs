@@ -8,11 +8,11 @@ namespace MusicXmlReaderUI
         // Note that the octave may be changed in some rare cases!
 
         public static string[,] names =
-        { { "Bb ","C  ","D  ","Es ","F  ","G  ","A  " }, // Alter = -2
-          { "B  ","Des","Es ","E  ","Ges","As ","Bb " }, // Alter = -1
-          { "C  ","D  ","E  ","F  ","G  ","A  ","B  " }, // Alter =  0
-          { "Cis","Dis","Eis","Fis","Gis","Ais","C  " }, // Alter = +1   
-          { "D",  "E",  "Fis","G  ","A  ","B  ","Cis" }};// Alter= +2
+        { { "Bb" ,"C"  ,"D"  ,"Es" ,"F"  ,"G"  ,"A"  }, // Alter = -2
+          { "B"  ,"Des","Es" ,"E"  ,"Ges","As" ,"Bb" }, // Alter = -1
+          { "C"  ,"D"  ,"E"  ,"F"  ,"G"  ,"A"  ,"B"  }, // Alter =  0
+          { "Cis","Dis","Eis","Fis","Gis","Ais","C"  }, // Alter = +1   
+          { "D"  ,"E"  ,"Fis","G"  ,"A"  ,"B"  ,"Cis"}};// Alter= +2
 
         public static int[,] carries =
         { { -1,+0,+0,+0,+0,+0,+0 }, // Alter = -2
