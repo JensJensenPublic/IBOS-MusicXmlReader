@@ -307,9 +307,10 @@ namespace MusicXmlReaderUI
         {
             switch (tieType)
             {
-                case "start" : return "bue start";
-                case "stop"  : return "bue slut";
-                default:       return "";     
+                case "start": return "bue start";
+                case "stop" : return "bue slut";
+                case ""     :  return "";
+                default: Model.Log(string.Format("LocalizeTie({0}) Unknown tieType '{1}'", tieType, tieType)); return "";     
             }
         }
 
@@ -375,7 +376,8 @@ namespace MusicXmlReaderUI
                         break;
                     case "stem": // TO DO: Find out what to do here                                                
                         break;
-                    default:  throw new ArgumentException();
+                    //default:  throw new ArgumentException();
+                    default: Model.Log(string.Format("NoteElement() Unknown child.Name '{0}'", child.Name)); break;
                 }
             }
             localizedType = LocalizeType(Type, dot);
