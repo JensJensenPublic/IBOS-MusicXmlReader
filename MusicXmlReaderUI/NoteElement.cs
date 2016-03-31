@@ -255,14 +255,14 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// Attempt to localize note types
         /// </summary>
-        /// <param name="s"></param>
+        /// <param name="typeString"></param>
         /// <param name="modifier"></param>
         /// <returns></returns>
-        private string LocalizeType(string s, bool modifier)
+        private string LocalizeType(string typeString, bool modifier)
         {
             string modif = (modifier ? punctured : "");
             string value = "";
-            switch (s)
+            switch (typeString)
             {
                 case "whole":   value = "helnode"; break;
                 case "half":    value = "halvnode"; ; break;
@@ -271,6 +271,8 @@ namespace MusicXmlReaderUI
                 case "16th":    value = "sekstendedel"; break;
                 case "32nd":    value = "toogtredivtedel"; break;
                 case "64nd":    value = "fireogtredsindstyvendedel"; break;
+                default:
+                    Model.Log(string.Format("LocalizeType({0},{1}) Unknown typeString '{2}'", typeString, modifier, typeString)); break;
             }
             return modif + value; // 
         }
@@ -279,14 +281,14 @@ namespace MusicXmlReaderUI
         /// Attempt to localize names of pauses seperately.
         /// Note that in Danish an "s" is sometimes, sometimes not used as glue!!!
         /// </summary>
-        /// <param name="s"></param>
+        /// <param name="typeString"></param>
         /// <param name="modifier"></param>
         /// <returns></returns>
-        private string LocalizePause(string s, bool modifier)
+        private string LocalizePause(string typeString, bool modifier)
         {
             string modif = (modifier ? punctured : "");
             string value = "";
-            switch (s)
+            switch (typeString)
             {
                 case "whole":   value = "helnodepause"; break;
                 case "half":    value = "halvnodepause"; ; break;
@@ -295,6 +297,8 @@ namespace MusicXmlReaderUI
                 case "16th":    value = "sekstendedelspause"; break;
                 case "32nd":    value = "toogtredivtedelspause"; break;
                 case "64nd":    value = "fireogtredsindstyvendedelspause"; break;
+                default:
+                    Model.Log(string.Format("LocalizePause({0},{1}) Unknown typeString '{2}'", typeString, modifier, typeString)); break;
             }
             return modif + value;
         }
