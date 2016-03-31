@@ -203,7 +203,7 @@ namespace MusicXmlReaderUI
             string measure = "";
             if (userSettings.readMeasureNumbers)
             {
-                measure = (null != measureElement) ? string.Format("Takt {0,4} ", measureElement.Number) : "         "; // Up to 10000 measures
+                measure = (null != measureElement) ? string.Format("Takt {0,3} ", measureElement.Number) : "         "; // Up to 1000 measures
             }
             
             string harmonyCode = "";
