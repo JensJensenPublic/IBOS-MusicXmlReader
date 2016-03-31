@@ -51,6 +51,9 @@
             this.checkBoxReadEndEvents = new System.Windows.Forms.CheckBox();
             this.checkedListBoxPartsToReadLyrics = new System.Windows.Forms.CheckedListBox();
             this.buttonReadLogFile = new System.Windows.Forms.Button();
+            this.checkBoxReadPitch = new System.Windows.Forms.CheckBox();
+            this.checkBoxReadOctave = new System.Windows.Forms.CheckBox();
+            this.checkBoxReadDuration = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,6 +77,8 @@
             // 
             // buttonStart
             // 
+            this.buttonStart.AccessibleDescription = "Tryk enter for at vælge MusicXml fil.";
+            this.buttonStart.AccessibleName = "Startknap";
             this.buttonStart.Location = new System.Drawing.Point(12, 24);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(67, 23);
@@ -298,11 +303,53 @@
             this.buttonReadLogFile.UseVisualStyleBackColor = true;
             this.buttonReadLogFile.Click += new System.EventHandler(this.buttonReadLogFile_Click);
             // 
+            // checkBoxReadPitch
+            // 
+            this.checkBoxReadPitch.AutoSize = true;
+            this.checkBoxReadPitch.Checked = true;
+            this.checkBoxReadPitch.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxReadPitch.Location = new System.Drawing.Point(982, 310);
+            this.checkBoxReadPitch.Name = "checkBoxReadPitch";
+            this.checkBoxReadPitch.Size = new System.Drawing.Size(81, 17);
+            this.checkBoxReadPitch.TabIndex = 23;
+            this.checkBoxReadPitch.Text = "Oplæs tone";
+            this.checkBoxReadPitch.UseVisualStyleBackColor = true;
+            this.checkBoxReadPitch.CheckedChanged += new System.EventHandler(this.checkBoxReadPitch_CheckedChanged);
+            // 
+            // checkBoxReadOctave
+            // 
+            this.checkBoxReadOctave.AutoSize = true;
+            this.checkBoxReadOctave.Checked = true;
+            this.checkBoxReadOctave.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxReadOctave.Location = new System.Drawing.Point(982, 334);
+            this.checkBoxReadOctave.Name = "checkBoxReadOctave";
+            this.checkBoxReadOctave.Size = new System.Drawing.Size(87, 17);
+            this.checkBoxReadOctave.TabIndex = 24;
+            this.checkBoxReadOctave.Text = "Oplæs oktav";
+            this.checkBoxReadOctave.UseVisualStyleBackColor = true;
+            this.checkBoxReadOctave.CheckedChanged += new System.EventHandler(this.checkBoxReadOctave_CheckedChanged);
+            // 
+            // checkBoxReadDuration
+            // 
+            this.checkBoxReadDuration.AutoSize = true;
+            this.checkBoxReadDuration.Checked = true;
+            this.checkBoxReadDuration.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxReadDuration.Location = new System.Drawing.Point(982, 358);
+            this.checkBoxReadDuration.Name = "checkBoxReadDuration";
+            this.checkBoxReadDuration.Size = new System.Drawing.Size(101, 17);
+            this.checkBoxReadDuration.TabIndex = 25;
+            this.checkBoxReadDuration.Text = "Oplæs varighed";
+            this.checkBoxReadDuration.UseVisualStyleBackColor = true;
+            this.checkBoxReadDuration.CheckedChanged += new System.EventHandler(this.checkBoxReadDuration_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 496);
+            this.Controls.Add(this.checkBoxReadDuration);
+            this.Controls.Add(this.checkBoxReadOctave);
+            this.Controls.Add(this.checkBoxReadPitch);
             this.Controls.Add(this.buttonReadLogFile);
             this.Controls.Add(this.checkedListBoxPartsToReadLyrics);
             this.Controls.Add(this.checkBoxReadEndEvents);
@@ -360,6 +407,9 @@
         private System.Windows.Forms.CheckBox checkBoxReadEndEvents;
         private System.Windows.Forms.CheckedListBox checkedListBoxPartsToReadLyrics;
         private System.Windows.Forms.Button buttonReadLogFile;
+        private System.Windows.Forms.CheckBox checkBoxReadPitch;
+        private System.Windows.Forms.CheckBox checkBoxReadOctave;
+        private System.Windows.Forms.CheckBox checkBoxReadDuration;
     }
 }
 

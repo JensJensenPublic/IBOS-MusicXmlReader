@@ -26,7 +26,10 @@ namespace MusicXmlReaderUI
         public bool playMeasureBeats; // Not implemented yet.
         public bool readHarmonies;    // After localisation  
         public bool playHarmonies;
-        public float userSlowDown;
+        public bool readNotes;      // Common for all selected voices. Example: Cis
+        public bool readNoteOctaves;  // Common for all selected voices. Example: 4
+        public bool readNoteTypes;   // Common for all selected voices. Example: Eight
+        public float userSlowDown;      // Percentage of the speed described in the MusicXml file
 
         // For controlling other DEVELOPER properties
         public bool readDivisions;      

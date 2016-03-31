@@ -226,6 +226,14 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public string LocalizedType
+        {
+            get
+            {
+                return localizedType;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method

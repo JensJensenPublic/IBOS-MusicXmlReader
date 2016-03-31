@@ -127,24 +127,48 @@ namespace MusicXmlReaderUI
 
         /// <summary>
         /// Generate a string representing the (possibly multiple) notes of a single part
+        /// This function is where we can really differentiate ourselves from mainstream products such as MuseScore
         /// </summary>
         /// <param name="noteElementList"></param>
         /// <returns></returns>
         private string PartNotes(List<NoteElement> noteElementList)
         {
+            if (!userSettings.readNotes) return ""; // User completely turned off reading of notes
             if (0 == noteElementList.Count()) return "-"; // Nothing happened in this part 
-            string s = "";
+            StringBuilder sb = new StringBuilder();
             foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
             {
-                string delimiter = string.IsNullOrEmpty(s) ? "" : "+"; // Use this string te separate notes within one part
+                //string delimiter = string.IsNullOrEmpty(sb) ? "" : "+"; // Use this string to separate notes within one part
                 // Add pitch information
                 if (userSettings.partsToRead[noteElement.PartNumber]) // Might later look at subparts S1/S2 ? 
                 {
-                    string note = string.IsNullOrEmpty(noteElement.Step) ? "P" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave;
-                    s = s + delimiter + note;
+
+                    string note = "";
+                    // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)
+                    if (string.IsNullOrEmpty(noteElement.Step))
+                    {
+                        // This is a pause
+                        // Here the type and the word "pause" are cocatenated such as "punkteret halvnodepause"
+                        string type = userSettings.readNoteTypes ? noteElement.LocalizedType : "pause"; 
+                        note = string.Format("{0}",type);
+                    }
+                    else
+                    {
+                        // This is a note
+                        // Here the sequence is pitch,octave,type such af "Cis4 punkteret halvnode"
+                        string pitch    = noteElement.PitchValue.Name; // Always use the name of the note
+                        string octave   = userSettings.readNoteOctaves ? noteElement.PitchValue.Octave : "";
+                        string type     = userSettings.readNoteTypes ? noteElement.LocalizedType : "";
+                        note = string.Format("{0}{1} {2}",pitch, octave, type);
+                    }
+
+                    // string note = string.IsNullOrEmpty(noteElement.Step) ? "Pause" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave + " " +noteElement.LocalizedType;
+                    //s = s + delimiter + note;
+                    if (sb.Length > 0)  sb.Append("+"); // Separate the notes with "+"
+                    sb.Append(note);
                 }
             }
-            return s;
+            return sb.ToString();
         }
 
         /// <summary>
@@ -177,7 +201,7 @@ namespace MusicXmlReaderUI
             string measure = "";
             if (userSettings.readMeasureNumbers)
             {
-                measure = (null != measureElement) ? string.Format("Takt {0,4}", measureElement.Number) : "         "; // Up to 10000 measures
+                measure = (null != measureElement) ? string.Format("Takt {0,4} ", measureElement.Number) : "         "; // Up to 10000 measures
             }
             
             string harmonyCode = "";
@@ -217,7 +241,8 @@ namespace MusicXmlReaderUI
                 string partNotes = PartNotes(noteElementList); // Represents all notes for all parts
                 string partLyrics = PartLyrics(noteElementList); // Represents all texts for all parts
                 // Assume that: The step is described with 3 characters. The octave with 1 character and max 2 notes per part !
-                sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
+                //sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
+                sbNotes.Append(string.Format("{0,9} ", partNotes));  //  fix width to 9 
                 sbTexts.Append(string.Format("{0} ", partLyrics));
             }
             return measure + divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString;

@@ -27,6 +27,7 @@ namespace MusicXmlReaderUI
         string executingAssembly;
         string executingDirectory;
 
+        #region LogFile
         public static string LogFileName = "MusicXmlReader.Log";
         public static void Log(string s)
         {
@@ -45,8 +46,8 @@ namespace MusicXmlReaderUI
             pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
             pProcess.Start();
         }
-
-
+        #endregion
+        
 
         /// <summary>
         /// Quick and dirty check to reject obvious unusable Xml files

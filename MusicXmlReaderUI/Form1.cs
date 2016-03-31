@@ -26,7 +26,7 @@ namespace MusicXmlReaderUI
             InitializeComponent();
             buttonStart.Select();
             if (!showTimes) listBoxTimes.Hide();
-            model = new Model(listBoxFiltered, listBoxTimes);
+            model = new Model(listBoxFiltered, listBoxTimes);      
             listBoxFiltered.SelectedIndexChanged += new EventHandler(SelectedIndexChanged);
         }
 
@@ -37,7 +37,24 @@ namespace MusicXmlReaderUI
             model.musicPlayer.SelectedIndexChanged(listBoxFiltered.SelectedIndex, o);
         }
 
-
+        /// <summary>
+        /// Simple way to assure that the usersettings reflect the UI
+        /// More lines must be added when addinge more controls tothe UI
+        /// </summary>
+        /// <param name="userSettings"></param>
+        private void InitUserSettings(UserSettings userSettings)
+        {
+            userSettings.readDivisions = checkBoxShowStartTime.Checked;
+            userSettings.playHarmonies = checkBoxPlayHarmonies.Checked;
+            userSettings.readHarmonies = checkBoxShowHarmonies.Checked;
+            userSettings.readHarmonyCodes = checkBoxOplæsBecifringskoder.Checked;
+            userSettings.readMeasureNumbers = checkBoxReadMeasureNumbers.Checked;
+            userSettings.readEndEvents = checkBoxReadEndEvents.Checked;
+            userSettings.readNotes = checkBoxReadPitch.Checked;
+            userSettings.readNoteOctaves = checkBoxReadOctave.Checked;
+            userSettings.readNoteTypes = checkBoxReadDuration.Checked;
+        }
+                
         //private void Recurse(XmlNodeList childrenNodes)
         //{  
         //    foreach (XmlNode childNode in childrenNodes)
@@ -92,6 +109,9 @@ namespace MusicXmlReaderUI
                 return;
             }
 
+            // Reflect the UI values of the UserSettings to the model
+            InitUserSettings(model.UserSettings);
+
             // Load the Checked Listboxes controlling the user settings
             model.LoadListBoxOfParts(checkedListBoxPartsToPlay);
             model.LoadListBoxOfParts(checkedListBoxPartsToRead);
@@ -106,6 +126,7 @@ namespace MusicXmlReaderUI
             model.LoadListBoxTimes();
         }
 
+        #region Buttons
         private void Play_Click(object sender, EventArgs e)
         {
             model.StartPlayingMono();
@@ -115,6 +136,14 @@ namespace MusicXmlReaderUI
         {
             model.musicPlayer.StopPlaying();
         }
+
+        private void butonPlayPoly_Click(object sender, EventArgs e)
+        {
+            model.StartPlayingPoly();
+        }
+
+
+        #endregion //Buttons
 
         private void numericUpDownPlaySpeed_ValueChanged(object sender, EventArgs e)
         {
@@ -131,12 +160,7 @@ namespace MusicXmlReaderUI
 
         }
 
-        private void butonPlayPoly_Click(object sender, EventArgs e)
-        {
-            model.StartPlayingPoly();
-        }
-
-
+        #region Checked Listboxes
         /// <summary>
         /// Occurs whenever the state of any of the checkboxes changes
         /// </summary>
@@ -160,7 +184,16 @@ namespace MusicXmlReaderUI
             if (autoReload) model.LoadListBoxTimes();
         }
 
+        private void checkedListBoxPartsToReadLyrics_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            model.SetPartsToReadLyrics(e.Index, (CheckState.Checked == e.NewValue));
+            // This has changed the way ToString() works the notes are drawn in listBoxTimes, so it must be redrawn
+            if (autoReload) model.LoadListBoxTimes();
+        }
 
+        #endregion // Checked Listboxes
+
+        #region CheckBoxes
         private void checkBoxShowStartTime_CheckedChanged(object sender, EventArgs e)
         {
             model.UserSettings.readDivisions = checkBoxShowStartTime.Checked;
@@ -198,6 +231,25 @@ namespace MusicXmlReaderUI
         }
 
 
+        private void checkBoxReadPitch_CheckedChanged(object sender, EventArgs e)
+        {
+            model.UserSettings.readNotes = checkBoxReadPitch.Checked;
+            if (autoReload) model.LoadListBoxTimes();
+        }
+
+        private void checkBoxReadOctave_CheckedChanged(object sender, EventArgs e)
+        {
+            model.UserSettings.readNoteOctaves = checkBoxReadOctave.Checked;
+            if (autoReload) model.LoadListBoxTimes();
+        }
+
+        private void checkBoxReadDuration_CheckedChanged(object sender, EventArgs e)
+        {
+            model.UserSettings.readNoteTypes = checkBoxReadDuration.Checked;
+            if (autoReload) model.LoadListBoxTimes();
+        }
+
+        #endregion // CheckBoxes
 
         /// <summary>
         /// Control checkbox for one spscific part
@@ -227,6 +279,11 @@ namespace MusicXmlReaderUI
             }
         }
 
+        /// <summary>
+        /// Use special keyboard keys instead of clicking the mouse
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             CheckState checkState = e.Shift ? CheckState.Unchecked : CheckState.Checked;
@@ -279,17 +336,12 @@ namespace MusicXmlReaderUI
             //checkedListBoxPartsToPlay.SetItemCheckState(index, checkState);
         }
 
-        private void checkedListBoxPartsToReadLyrics_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            model.SetPartsToReadLyrics(e.Index, (CheckState.Checked == e.NewValue));
-            // This has changed the way ToString() works the notes are drawn in listBoxTimes, so it must be redrawn
-            if (autoReload) model.LoadListBoxTimes();
-        }
 
         private void buttonReadLogFile_Click(object sender, EventArgs e)
         {
             model.ReadLogFile();
         }
+
     }
 
 }
