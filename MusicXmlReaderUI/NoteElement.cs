@@ -252,35 +252,51 @@ namespace MusicXmlReaderUI
         { }
 
 
+        /// <summary>
+        /// Attempt to localize note types
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="modifier"></param>
+        /// <returns></returns>
         private string LocalizeType(string s, bool modifier)
         {
-
+            string modif = (modifier ? punctured : "");
+            string value = "";
             switch (s)
             {
-                case "whole":   return (modifier ? punctured : "") + "helnode";
-                case "half":    return (modifier ? punctured : "") + "halvnode";
-                case "quarter": return (modifier ? punctured : "") + "fjerdedel";
-                case "eighth":  return (modifier ? punctured : "") + "ottendedel";
-                case "16th":    return (modifier ? punctured : "") + "sekstendedel";
-                case "32nd":    return (modifier ? punctured : "") + "toogtredivtedel";
-                case "64nd":    return (modifier ? punctured : "") + "fireogtredsindstyvendedel";
+                case "whole":   value = "helnode"; break;
+                case "half":    value = "halvnode"; ; break;
+                case "quarter": value = "fjerdedel"; break;
+                case "eighth":  value = "ottendedel"; break;
+                case "16th":    value = "sekstendedel"; break;
+                case "32nd":    value = "toogtredivtedel"; break;
+                case "64nd":    value = "fireogtredsindstyvendedel"; break;
             }
-            return (modifier ? punctured : "") + s; // 
+            return modif + value; // 
         }
 
+        /// <summary>
+        /// Attempt to localize names of pauses seperately.
+        /// Note that in Danish an "s" is sometimes, sometimes not used as glue!!!
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="modifier"></param>
+        /// <returns></returns>
         private string LocalizePause(string s, bool modifier)
         {
+            string modif = (modifier ? punctured : "");
+            string value = "";
             switch (s)
             {
-                case "whole":   return (modifier ? punctured : "") + "helnodepause";
-                case "half":    return (modifier ? punctured : "") + "halvnodepause";
-                case "quarter": return (modifier ? punctured : "") + "fjerdedelspause";
-                case "eighth":  return (modifier ? punctured : "") + "ottendedelspause";
-                case "16th":    return (modifier ? punctured : "") + "sekstendedelspause";
-                case "32nd":    return (modifier ? punctured : "") + "toogtredivtedelspause";
-                case "64nd":    return (modifier ? punctured : "") + "fireogtredsindstyvendedelspause";
+                case "whole":   value = "helnodepause"; break;
+                case "half":    value = "halvnodepause"; ; break;
+                case "quarter": value = "fjerdedelspause"; break;
+                case "eighth":  value = "ottendedelspause"; break;
+                case "16th":    value = "sekstendedelspause"; break;
+                case "32nd":    value = "toogtredivtedelspause"; break;
+                case "64nd":    value = "fireogtredsindstyvendedelspause"; break;
             }
-            return "pause " + LocalizeType(s, false);
+            return modif + value;
         }
 
         private string LocalizeTie(string tieType)
