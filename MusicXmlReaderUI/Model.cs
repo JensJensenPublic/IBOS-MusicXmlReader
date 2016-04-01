@@ -7,6 +7,7 @@ namespace MusicXmlReaderUI
 {
     class Model
     {
+        string theMusicXmlFileName = "";
         List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
         MidiOut midiOut;
         ListBox listBoxParts; // Lists elements grouped per part
@@ -84,6 +85,16 @@ namespace MusicXmlReaderUI
         }
         #endregion
 
+        #region MusicXmlFile
+        public void ReadMusicXmlFile()
+        {
+            if (System.IO.File.Exists(theMusicXmlFileName))
+            {
+                ReadTempFileByNotepad(theMusicXmlFileName);
+            }
+        }
+        #endregion
+
 
         /// <summary>
         /// Quick and dirty check to reject obvious unusable Xml files
@@ -109,7 +120,7 @@ namespace MusicXmlReaderUI
         public bool LoadMusicXmlFile(string fullXmlFileName)
         {
             bool ok = true;
-            string xmlFileName = ""; // Must be outside the try clause
+            string xmlFileName = ""; // The MusicXml file currently handled       
             try
             {
                 string defaultFileName = "Node.xml";
@@ -132,10 +143,12 @@ namespace MusicXmlReaderUI
                     Init(); // Experimental code !! 
                     Log(string.Format("Initialized all components"));
                     LoadListBox();
+                    theMusicXmlFileName = fullXmlFileName;
                 }
                 else
                 {
                     Log(string.Format("Failed to load {0} because it not a valid MusicXml file",xmlFileName));
+                    theMusicXmlFileName = "";
                 }
             }
             catch (System.Exception e)
