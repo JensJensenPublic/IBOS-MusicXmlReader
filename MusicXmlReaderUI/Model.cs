@@ -27,6 +27,18 @@ namespace MusicXmlReaderUI
         string executingAssembly;
         string executingDirectory;
 
+        private void ReadTempFileByNotepad(string fullFileName)
+        {
+            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
+            pProcess.StartInfo.FileName = @"NotePad.exe";
+            pProcess.StartInfo.Arguments = System.IO.Path.Combine(System.IO.Path.GetTempPath(), fullFileName); //argument
+            pProcess.StartInfo.UseShellExecute = false;
+            pProcess.StartInfo.RedirectStandardOutput = true;
+            pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+            pProcess.Start();
+        }
+        
+
         #region LogFile
         public static string LogFileName = "MusicXmlReader.Log";
         public static void Log(string s)
@@ -36,18 +48,42 @@ namespace MusicXmlReaderUI
             System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName), time+" "+s+"\r\n");
         }
 
+
         public void ReadLogFile()
         {
-            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
-            pProcess.StartInfo.FileName = @"NotePad.exe";
-            pProcess.StartInfo.Arguments = System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName); //argument
-            pProcess.StartInfo.UseShellExecute = false;
-            pProcess.StartInfo.RedirectStandardOutput = true;
-            pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-            pProcess.Start();
+            ReadTempFileByNotepad(LogFileName);
         }
         #endregion
-        
+
+
+        #region InterpretationFile
+        public static string InterpretationFileName = "MusicReader.txt";
+        public void ReadInterpretation()
+        {
+            string fileName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), InterpretationFileName);
+            //System.IO.FileStream  fileStream = System.IO.File.OpenWrite(InterpretationFileName);
+
+            // Create contents
+            System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(fileName);
+            if (allMusicXmlObjecsts.Count > 0)
+            {
+                foreach (object o in allMusicXmlObjecsts)
+                {
+                    streamWriter.WriteLine(o.ToString());
+                }
+
+            }
+            else
+            {
+                streamWriter.WriteLine("No MusicXml objects found");
+            }
+
+            streamWriter.Close();
+
+            ReadTempFileByNotepad(fileName);
+        }
+        #endregion
+
 
         /// <summary>
         /// Quick and dirty check to reject obvious unusable Xml files

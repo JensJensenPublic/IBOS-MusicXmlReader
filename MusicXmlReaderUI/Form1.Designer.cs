@@ -54,6 +54,8 @@
             this.checkBoxReadPitch = new System.Windows.Forms.CheckBox();
             this.checkBoxReadOctave = new System.Windows.Forms.CheckBox();
             this.checkBoxReadDuration = new System.Windows.Forms.CheckBox();
+            this.buttonReadMusicXmlFile = new System.Windows.Forms.Button();
+            this.buttonReadInterpretation = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -297,7 +299,7 @@
             // 
             this.buttonReadLogFile.Location = new System.Drawing.Point(856, 417);
             this.buttonReadLogFile.Name = "buttonReadLogFile";
-            this.buttonReadLogFile.Size = new System.Drawing.Size(75, 23);
+            this.buttonReadLogFile.Size = new System.Drawing.Size(120, 23);
             this.buttonReadLogFile.TabIndex = 22;
             this.buttonReadLogFile.Text = "Oplæs logfil";
             this.buttonReadLogFile.UseVisualStyleBackColor = true;
@@ -342,11 +344,33 @@
             this.checkBoxReadDuration.UseVisualStyleBackColor = true;
             this.checkBoxReadDuration.CheckedChanged += new System.EventHandler(this.checkBoxReadDuration_CheckedChanged);
             // 
+            // buttonReadMusicXmlFile
+            // 
+            this.buttonReadMusicXmlFile.Location = new System.Drawing.Point(856, 446);
+            this.buttonReadMusicXmlFile.Name = "buttonReadMusicXmlFile";
+            this.buttonReadMusicXmlFile.Size = new System.Drawing.Size(120, 23);
+            this.buttonReadMusicXmlFile.TabIndex = 26;
+            this.buttonReadMusicXmlFile.Text = "Oplæs MusicXml fil";
+            this.buttonReadMusicXmlFile.UseVisualStyleBackColor = true;
+            this.buttonReadMusicXmlFile.Click += new System.EventHandler(this.buttonReadMusicXmlFile_Click);
+            // 
+            // buttonReadInterpretation
+            // 
+            this.buttonReadInterpretation.Location = new System.Drawing.Point(856, 476);
+            this.buttonReadInterpretation.Name = "buttonReadInterpretation";
+            this.buttonReadInterpretation.Size = new System.Drawing.Size(120, 23);
+            this.buttonReadInterpretation.TabIndex = 27;
+            this.buttonReadInterpretation.Text = "Oplæs fortolkning";
+            this.buttonReadInterpretation.UseVisualStyleBackColor = true;
+            this.buttonReadInterpretation.Click += new System.EventHandler(this.buttonReadInterpretation_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 496);
+            this.Controls.Add(this.buttonReadInterpretation);
+            this.Controls.Add(this.buttonReadMusicXmlFile);
             this.Controls.Add(this.checkBoxReadDuration);
             this.Controls.Add(this.checkBoxReadOctave);
             this.Controls.Add(this.checkBoxReadPitch);
@@ -410,6 +434,8 @@
         private System.Windows.Forms.CheckBox checkBoxReadPitch;
         private System.Windows.Forms.CheckBox checkBoxReadOctave;
         private System.Windows.Forms.CheckBox checkBoxReadDuration;
+        private System.Windows.Forms.Button buttonReadMusicXmlFile;
+        private System.Windows.Forms.Button buttonReadInterpretation;
     }
 }
 

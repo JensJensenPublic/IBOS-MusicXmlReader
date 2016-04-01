@@ -342,6 +342,15 @@ namespace MusicXmlReaderUI
             model.ReadLogFile();
         }
 
+        private void buttonReadMusicXmlFile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonReadInterpretation_Click(object sender, EventArgs e)
+        {
+            model.ReadInterpretation();
+        }
     }
 
 }
