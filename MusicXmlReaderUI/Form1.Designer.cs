@@ -57,6 +57,8 @@
             this.buttonReadMusicXmlFile = new System.Windows.Forms.Button();
             this.buttonReadInterpretation = new System.Windows.Forms.Button();
             this.labelReadLyrics = new System.Windows.Forms.Label();
+            this.checkedListBoxParts = new System.Windows.Forms.CheckedListBox();
+            this.labelSelectParts = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +70,7 @@
             this.listBoxTimes.FormattingEnabled = true;
             this.listBoxTimes.Location = new System.Drawing.Point(257, 77);
             this.listBoxTimes.Name = "listBoxTimes";
-            this.listBoxTimes.Size = new System.Drawing.Size(540, 407);
+            this.listBoxTimes.Size = new System.Drawing.Size(574, 407);
             this.listBoxTimes.TabIndex = 6;
             this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
             // 
@@ -84,13 +86,13 @@
             // 
             // buttonStart
             // 
-            this.buttonStart.AccessibleDescription = "Tryk enter for at vælge MusicXml fil.";
-            this.buttonStart.AccessibleName = "Startknap";
+            this.buttonStart.AccessibleDescription = "Tryk Enter for at vælge MusicXml fil.";
+            this.buttonStart.AccessibleName = "VælgMusicXmlFile";
             this.buttonStart.Location = new System.Drawing.Point(12, 24);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(67, 23);
+            this.buttonStart.Size = new System.Drawing.Size(110, 23);
             this.buttonStart.TabIndex = 1;
-            this.buttonStart.Text = "Start";
+            this.buttonStart.Text = "Vælg MusicXml fil";
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStartUsingDOM_Click);
             // 
@@ -117,7 +119,7 @@
             // 
             // textBoxMessage
             // 
-            this.textBoxMessage.Location = new System.Drawing.Point(101, 24);
+            this.textBoxMessage.Location = new System.Drawing.Point(128, 24);
             this.textBoxMessage.Name = "textBoxMessage";
             this.textBoxMessage.Size = new System.Drawing.Size(1001, 20);
             this.textBoxMessage.TabIndex = 6;
@@ -166,10 +168,11 @@
             this.checkedListBoxPartsToPlay.AccessibleDescription = "En checkbox for hver stemme. Hvis checked spilles stemmen";
             this.checkedListBoxPartsToPlay.AccessibleName = "Spil stemmer";
             this.checkedListBoxPartsToPlay.FormattingEnabled = true;
-            this.checkedListBoxPartsToPlay.Location = new System.Drawing.Point(856, 72);
+            this.checkedListBoxPartsToPlay.Location = new System.Drawing.Point(963, 72);
             this.checkedListBoxPartsToPlay.Name = "checkedListBoxPartsToPlay";
-            this.checkedListBoxPartsToPlay.Size = new System.Drawing.Size(120, 184);
-            this.checkedListBoxPartsToPlay.TabIndex = 3;
+            this.checkedListBoxPartsToPlay.Size = new System.Drawing.Size(100, 184);
+            this.checkedListBoxPartsToPlay.TabIndex = 4;
+            this.checkedListBoxPartsToPlay.TabStop = false;
             this.checkedListBoxPartsToPlay.Tag = "";
             this.checkedListBoxPartsToPlay.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPartsToPlay_ItemCheck);
             // 
@@ -177,10 +180,11 @@
             // 
             this.checkedListBoxPartsToRead.AccessibleName = "Oplæs stemmer";
             this.checkedListBoxPartsToRead.FormattingEnabled = true;
-            this.checkedListBoxPartsToRead.Location = new System.Drawing.Point(982, 72);
+            this.checkedListBoxPartsToRead.Location = new System.Drawing.Point(1066, 72);
             this.checkedListBoxPartsToRead.Name = "checkedListBoxPartsToRead";
-            this.checkedListBoxPartsToRead.Size = new System.Drawing.Size(120, 184);
+            this.checkedListBoxPartsToRead.Size = new System.Drawing.Size(100, 184);
             this.checkedListBoxPartsToRead.TabIndex = 4;
+            this.checkedListBoxPartsToRead.TabStop = false;
             this.checkedListBoxPartsToRead.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPartsToRead_ItemCheck);
             // 
             // checkBoxShowStartTime
@@ -198,7 +202,7 @@
             // labelPartsPlayed
             // 
             this.labelPartsPlayed.AutoSize = true;
-            this.labelPartsPlayed.Location = new System.Drawing.Point(856, 53);
+            this.labelPartsPlayed.Location = new System.Drawing.Point(889, 53);
             this.labelPartsPlayed.Name = "labelPartsPlayed";
             this.labelPartsPlayed.Size = new System.Drawing.Size(66, 13);
             this.labelPartsPlayed.TabIndex = 12;
@@ -207,7 +211,7 @@
             // labelPartsRead
             // 
             this.labelPartsRead.AutoSize = true;
-            this.labelPartsRead.Location = new System.Drawing.Point(983, 53);
+            this.labelPartsRead.Location = new System.Drawing.Point(1015, 53);
             this.labelPartsRead.Name = "labelPartsRead";
             this.labelPartsRead.Size = new System.Drawing.Size(80, 13);
             this.labelPartsRead.TabIndex = 13;
@@ -302,10 +306,11 @@
             // 
             this.checkedListBoxPartsToReadLyrics.AccessibleName = "Oplæs lyrik";
             this.checkedListBoxPartsToReadLyrics.FormattingEnabled = true;
-            this.checkedListBoxPartsToReadLyrics.Location = new System.Drawing.Point(1119, 72);
+            this.checkedListBoxPartsToReadLyrics.Location = new System.Drawing.Point(1172, 72);
             this.checkedListBoxPartsToReadLyrics.Name = "checkedListBoxPartsToReadLyrics";
-            this.checkedListBoxPartsToReadLyrics.Size = new System.Drawing.Size(120, 184);
+            this.checkedListBoxPartsToReadLyrics.Size = new System.Drawing.Size(100, 184);
             this.checkedListBoxPartsToReadLyrics.TabIndex = 5;
+            this.checkedListBoxPartsToReadLyrics.TabStop = false;
             this.checkedListBoxPartsToReadLyrics.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPartsToReadLyrics_ItemCheck);
             // 
             // buttonReadLogFile
@@ -383,17 +388,37 @@
             // labelReadLyrics
             // 
             this.labelReadLyrics.AutoSize = true;
-            this.labelReadLyrics.Location = new System.Drawing.Point(1119, 52);
+            this.labelReadLyrics.Location = new System.Drawing.Point(1141, 53);
             this.labelReadLyrics.Name = "labelReadLyrics";
             this.labelReadLyrics.Size = new System.Drawing.Size(59, 13);
             this.labelReadLyrics.TabIndex = 28;
             this.labelReadLyrics.Text = "Oplæs lyrik";
+            // 
+            // checkedListBoxParts
+            // 
+            this.checkedListBoxParts.FormattingEnabled = true;
+            this.checkedListBoxParts.Location = new System.Drawing.Point(837, 73);
+            this.checkedListBoxParts.Name = "checkedListBoxParts";
+            this.checkedListBoxParts.Size = new System.Drawing.Size(120, 184);
+            this.checkedListBoxParts.TabIndex = 3;
+            this.checkedListBoxParts.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxParts_ItemCheck);
+            // 
+            // labelSelectParts
+            // 
+            this.labelSelectParts.AutoSize = true;
+            this.labelSelectParts.Location = new System.Drawing.Point(767, 52);
+            this.labelSelectParts.Name = "labelSelectParts";
+            this.labelSelectParts.Size = new System.Drawing.Size(74, 13);
+            this.labelSelectParts.TabIndex = 29;
+            this.labelSelectParts.Text = "Vælg stemmer";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 496);
+            this.Controls.Add(this.labelSelectParts);
+            this.Controls.Add(this.checkedListBoxParts);
             this.Controls.Add(this.labelReadLyrics);
             this.Controls.Add(this.buttonReadInterpretation);
             this.Controls.Add(this.buttonReadMusicXmlFile);
@@ -463,6 +488,8 @@
         private System.Windows.Forms.Button buttonReadMusicXmlFile;
         private System.Windows.Forms.Button buttonReadInterpretation;
         private System.Windows.Forms.Label labelReadLyrics;
+        private System.Windows.Forms.CheckedListBox checkedListBoxParts;
+        private System.Windows.Forms.Label labelSelectParts;
     }
 }
 

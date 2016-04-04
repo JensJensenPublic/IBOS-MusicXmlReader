@@ -502,6 +502,12 @@ namespace MusicXmlReaderUI
         {
         }
 
+        public void SetParts(int partNumber, bool value)
+        {
+            // For the time being handled in the UI
+        }
+
+
 
         public void SetPartsToPlay(int partNumber, bool value)
         {

@@ -113,11 +113,14 @@ namespace MusicXmlReaderUI
             InitUserSettings(model.UserSettings);
 
             // Load the Checked Listboxes controlling the user settings
+
             model.LoadListBoxOfParts(checkedListBoxPartsToPlay);
             model.LoadListBoxOfParts(checkedListBoxPartsToRead);
             model.LoadListBoxOfParts(checkedListBoxPartsToReadLyrics);
-            autoReload = true;
-
+            model.LoadListBoxOfParts(checkedListBoxParts); // The over all checked listbox
+            
+            autoReload = true; // From now on all changes are  made by user and must be handled
+      
             // Load the ListBox showing the filtered values 
             listBoxFiltered.Focus();
             listBoxFiltered.SelectedIndex = 0;
@@ -161,6 +164,19 @@ namespace MusicXmlReaderUI
         }
 
         #region Checked Listboxes
+
+
+        private void checkedListBoxParts_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            //model.SetParts(e.Index, (CheckState.Checked == e.NewValue));
+            // Copy the new value into all of the 3 listboxes
+            checkedListBoxPartsToPlay.SetItemChecked(e.Index, (CheckState.Checked == e.NewValue));
+            checkedListBoxPartsToRead.SetItemChecked(e.Index, (CheckState.Checked == e.NewValue));
+            checkedListBoxPartsToReadLyrics.SetItemChecked(e.Index, (CheckState.Checked == e.NewValue));
+        }
+
+
+
         /// <summary>
         /// Occurs whenever the state of any of the checkboxes changes
         /// </summary>
@@ -351,6 +367,7 @@ namespace MusicXmlReaderUI
         {
             model.ReadInterpretation();
         }
+
     }
 
 }
