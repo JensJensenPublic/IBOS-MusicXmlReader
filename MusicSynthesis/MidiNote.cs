@@ -7,7 +7,16 @@ namespace JSJ.MusicSynthesis
     // http://www.midi.org/techspecs/gm1sound.php
 
 
-    public enum ChromaticStep { C = 0, Cis = 1, Des=1 ,D = 2, Dis = 3, Es = 3, E = 4, F = 5, Fis = 6, Ges=6, G = 7, Gis = 8, As=8,  A = 9, Bb = 10, B = 11, NumberOfSteps = 12 };   
+    /// <summary>
+    /// Represents a language-neutral representation of the 12 chromativ steps in an octave
+    /// </summary>
+    public enum ChromaticStep { C = 0, Cis = 1, Des = 1, D = 2, Dis = 3, Es = 3, E = 4, F = 5, Fis = 6, Ges = 6, G = 7, Gis = 8, As = 8, A = 9, Bb = 10, B = 11, NumberOfSteps = 12 };
+
+    /// <summary>
+    /// Represents a language-neutral representation of the 7 tones in an octave
+    /// </summary>
+    public enum FullToneStep  { C = 0,                   D = 2,                  E = 4, F = 5,                   G = 7,                  A = 9,          B = 11 };
+
 
     public enum Interval
     {

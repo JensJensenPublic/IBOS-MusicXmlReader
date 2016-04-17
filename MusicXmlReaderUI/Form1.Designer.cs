@@ -202,7 +202,7 @@
             // labelPartsPlayed
             // 
             this.labelPartsPlayed.AutoSize = true;
-            this.labelPartsPlayed.Location = new System.Drawing.Point(889, 53);
+            this.labelPartsPlayed.Location = new System.Drawing.Point(960, 53);
             this.labelPartsPlayed.Name = "labelPartsPlayed";
             this.labelPartsPlayed.Size = new System.Drawing.Size(66, 13);
             this.labelPartsPlayed.TabIndex = 12;
@@ -211,7 +211,7 @@
             // labelPartsRead
             // 
             this.labelPartsRead.AutoSize = true;
-            this.labelPartsRead.Location = new System.Drawing.Point(1015, 53);
+            this.labelPartsRead.Location = new System.Drawing.Point(1063, 53);
             this.labelPartsRead.Name = "labelPartsRead";
             this.labelPartsRead.Size = new System.Drawing.Size(80, 13);
             this.labelPartsRead.TabIndex = 13;
@@ -388,7 +388,7 @@
             // labelReadLyrics
             // 
             this.labelReadLyrics.AutoSize = true;
-            this.labelReadLyrics.Location = new System.Drawing.Point(1141, 53);
+            this.labelReadLyrics.Location = new System.Drawing.Point(1169, 52);
             this.labelReadLyrics.Name = "labelReadLyrics";
             this.labelReadLyrics.Size = new System.Drawing.Size(59, 13);
             this.labelReadLyrics.TabIndex = 28;
@@ -406,7 +406,7 @@
             // labelSelectParts
             // 
             this.labelSelectParts.AutoSize = true;
-            this.labelSelectParts.Location = new System.Drawing.Point(767, 52);
+            this.labelSelectParts.Location = new System.Drawing.Point(834, 53);
             this.labelSelectParts.Name = "labelSelectParts";
             this.labelSelectParts.Size = new System.Drawing.Size(74, 13);
             this.labelSelectParts.TabIndex = 29;
