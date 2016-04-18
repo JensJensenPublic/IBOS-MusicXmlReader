@@ -12,14 +12,37 @@ namespace MusicXmlReaderUI
  
         // https://en.wikipedia.org/wiki/Braille_music
 
+            public enum Constant {FourMeasureRest,DoubleBar};
+            public enum Hand { Undefined,Left,Right};
 
-        static readonly private int[][] notes = 
-        new int[][]   // C, D, E, F, G, A, B, REST 
-        {   new int[] { 25,17,11,27,19,10,26,45 } , // 8th, 128th
-            new int[] { 57,49,43,59,51,42,26,39 } , // quarter,64th
-            new int[] { 29,21,15,31,55,14,30,37 } , // half,32th
-            new int[] { 61,53,47,63,55,46,62,13 } };// whole,16th
+        private List<byte> braille;
 
+        /// <summary>
+        /// To force the use of the Create() method
+        /// </summary>
+        private BrailleBuilder()
+        {
+            braille = new List<byte>();
+        }
+
+        public static BrailleBuilder Create()
+        {
+            return new BrailleBuilder();
+        }
+
+
+        //static readonly private int[][] notes =
+        //new int[][]   // C, D, E, F, G, A, B, REST 
+        //{   new int[] { 25,17,11,27,19,10,26,45 } , // 8th, 128th
+        //    new int[] { 57,49,43,59,51,42,26,39 } , // quarter,64th
+        //    new int[] { 29,21,15,31,55,14,30,37 } , // half,32th
+        //    new int[] { 61,53,47,63,55,46,62,13 } };// whole,16th
+
+        static readonly private byte[,] notes = new byte[,] {
+            { 25, 17, 11, 27, 19, 10, 26, 45 },     // 8th, 128th
+            { 57, 49, 43, 59, 51, 42, 26, 39 },     // quarter,64th
+            { 29, 21, 15, 31, 55, 14, 30, 37 },     // half,32th
+            { 61, 53, 47, 63, 55, 46, 62, 13 } };   // whole,16th
 
         /// <summary>
         /// For looking op in the notes array 
@@ -61,6 +84,25 @@ namespace MusicXmlReaderUI
             }
         }
 
+        private byte[] GetOctaveMark(int octave)
+        {
+            switch (octave)
+            {
+                case 1: return new byte[] {  8 };
+                case 2: return new byte[] { 24 };
+                case 3: return new byte[] { 56 };
+                case 4: return new byte[] { 16 };
+                case 5: return new byte[] { 40 };
+                case 6: return new byte[] { 48 };
+                case 7: return new byte[] { 32 };
+            }
+            if (octave < 1) return new byte[] { 8, 8 };
+            if (octave > 7) return new byte[] { 32, 32 };
+            // This is an error. Log it an return something hopefully harmles
+            Model.Log(string.Format("Getoctavemark({0}) was called with illegal parametervalue octave={0}", octave));
+            return new byte[] { 8, 8 };
+        }
+
 
 
         /// <summary>
@@ -73,41 +115,96 @@ namespace MusicXmlReaderUI
         /// <param name="punctured">A puncture added</param>
         public void AddNote(FullToneStep step, int alter,int octave, string type, bool punctured)
         {
+            const byte sharp = (byte)41;
+            const byte flat = (byte)35;
+            const byte dot = (byte)4;
 
-            int stepIndex = GetStepIndex(step); 
-            // byte byte0 =  
+            int stepIndex = GetStepIndex(step);
+            int typeIndex = GetTypeIndex(type);        
+            byte note = notes[typeIndex,stepIndex]; // Represents pitch within an octave
+            byte[] octaveMark = GetOctaveMark(octave);
+            braille.Add(note);
+            if (0 != alter) braille.Add((alter > 0) ? sharp : flat);
+            braille.AddRange(octaveMark);
+            if (punctured) braille.Add(dot); 
+        }
 
-            switch (type)
+  
+
+
+        public void AddFinger(Hand hand, int finger)
+        {
+            const byte left = 56;
+            const byte right = 40;
+            const byte handConst = 28;
+
+            const byte finger1 = 1;
+            const byte finger2 = 3;
+            const byte finger3 = 7;
+            const byte finger4 = 2;
+            const byte finger5 = 5;
+
+            switch (hand)
             {
-                case "whole": break;
-                case "half":  ; break;
-                case "quarter":  break;
-                case "eighth":  break;
-                case "16th":  break;
-                case "32nd":  break;
-                case "64nd":  break;
-                default:
-                    // Model.Log(string.Format("LocalizeType({0},{1}) Unknown typeString '{2}'", typeString, modifier, typeString));
-                    break;
+                case Hand.Left: braille.Add(left); braille.Add(handConst); break;
+                case Hand.Right: braille.Add(right); braille.Add(handConst); break;
+                case Hand.Undefined:
+                    Model.Log(string.Format("AddFinger() was called with illegal parameter hand={0}", hand.ToString())); break;
             }
+
+            switch (finger)
+            {
+                case 1: braille.Add(finger1); break;
+                case 2: braille.Add(finger2); break;
+                case 3: braille.Add(finger3); break;
+                case 4: braille.Add(finger4); break;
+                case 5: braille.Add(finger5); break;
+                default:
+                    Model.Log(string.Format("AddFinger() was called with illegal parameter finger={0}", finger.ToString())); break;
+            }
+
+        }
+
+
+
+
+        public void AddInterval(int size)
+        {
+            const byte second   = 12;
+            const byte third    = 44;
+            const byte fourth   = 60;
+            const byte fifth    = 20;
+            const byte sixth    = 52;
+            const byte seventh  = 18;
+            const byte eight    = 36;
+
+            switch (size)
+            {
+                case 2: braille.Add(second); break;
+                case 3: braille.Add(third); break;
+                case 4: braille.Add(fourth); break;
+                case 5: braille.Add(fifth); break;
+                case 6: braille.Add(sixth); break;
+                case 7: braille.Add(seventh); break;
+                case 8: braille.Add(eight); break;
+                default:
+                    Model.Log(string.Format("AddInterval() was called with illegal parameter size={0}", size.ToString())); break;
+            }
+
 
         }
 
         // TO DO: ********************************************************
 
-        public void AddOctaveMark(int value)
-        { }
-        public void AddFinger()
-        { }
-        public void AddInterval()
-        { }
-        public void AddConstant()
+        public void AddConstant(Constant constant)
         { }
 
 
         /// <summary>
         /// Converts the internal contents from Music-Braille to a Litterary-Braille with the samme 
         /// Braille representation.
+        /// This is needed to cheat the Braille ReaderList to represent MusicBraille values
+        /// iven if it does not know of their existance.
         /// </summary>
         public override string ToString()
         {
