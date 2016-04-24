@@ -113,26 +113,32 @@ namespace MusicXmlReaderUI
         }
 
         /// <summary>
-        /// Loge som interesting system parameters
+        /// Log som interesting system parameters
         /// </summary>
         private void LogSystemParameters()
         {
             bool screenReaderRunning;
-            if (SystemParametersiInfo.GetScreenReader(out screenReaderRunning))
+            int lastWin32Error;
+            string name = "SystemParametersiInfo.GetScreenReader";
+            bool ok = SystemParametersiInfo.GetScreenReader(out screenReaderRunning, out lastWin32Error);
+            if (ok)
             {
-                Log(string.Format("SystemParametersiInfo.GetScreenReader returned {0}", screenReaderRunning));
+                Log(string.Format("{0} reported {1}",name, screenReaderRunning));
             }
-
+            else
+            {
+                Log(string.Format("{0} failed. LastWin32Error = {1}", name, lastWin32Error));
+            }
         }
 
 
 
-    /// <summary>
-    /// Stops on any error and returns false
-    /// </summary>
-    /// <param name="fullXmlFileName"></param>
-    /// <returns></returns>
-    public bool LoadMusicXmlFile(string fullXmlFileName)
+        /// <summary>
+        /// Stops on any error and returns false
+        /// </summary>
+        /// <param name="fullXmlFileName"></param>
+        /// <returns></returns>
+        public bool LoadMusicXmlFile(string fullXmlFileName)
         {
             bool ok = true;
             string xmlFileName = ""; // The MusicXml file currently handled       

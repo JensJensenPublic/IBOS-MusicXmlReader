@@ -37,17 +37,14 @@ namespace MusicXmlReaderUI
         // [return: MarshalAs(UnmanagedType.Bool)]
         // static extern bool SystemParametersInfo(uint uiAction, uint uiParam, StringBuilder pvParam, SPIF fWinIni);
 
-        static public unsafe bool GetScreenReader(out bool value)
+        static public unsafe bool GetScreenReader(out bool bScreenReader, out int lastWin32Error)
         {
-            const uint SPI_GETSCREENREADER = 0x0046;
-            int  bScreenReader = 0;
-            bool success = SystemParametersInfo(SPI_GETSCREENREADER, 0, ref bScreenReader, 0);
-            value = (bScreenReader != 0);
-            if (!success)
-            {
-                int lastError = Marshal.GetLastWin32Error();    // TODO: Add error handling 
-            }
-            return success;
+            const uint SPI_GETSCREENREADER = 0x0046;           
+            int  iScreenReader = 0;
+            bool ok = SystemParametersInfo(SPI_GETSCREENREADER, 0, ref iScreenReader, 0);
+            bScreenReader  = ok ? (iScreenReader != 0) : false;
+            lastWin32Error = ok ? 0 : Marshal.GetLastWin32Error();
+            return ok;
         }   
 
         //[DllImport("user32.dll", SetLastError = true)]
