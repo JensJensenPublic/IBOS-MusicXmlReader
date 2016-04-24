@@ -113,11 +113,26 @@ namespace MusicXmlReaderUI
         }
 
         /// <summary>
-        /// Stops on any error and returns false
+        /// Loge som interesting system parameters
         /// </summary>
-        /// <param name="fullXmlFileName"></param>
-        /// <returns></returns>
-        public bool LoadMusicXmlFile(string fullXmlFileName)
+        private void LogSystemParameters()
+        {
+            bool screenReaderRunning;
+            if (SystemParametersiInfo.GetScreenReader(out screenReaderRunning))
+            {
+                Log(string.Format("SystemParametersiInfo.GetScreenReader returned {0}", screenReaderRunning));
+            }
+
+        }
+
+
+
+    /// <summary>
+    /// Stops on any error and returns false
+    /// </summary>
+    /// <param name="fullXmlFileName"></param>
+    /// <returns></returns>
+    public bool LoadMusicXmlFile(string fullXmlFileName)
         {
             bool ok = true;
             string xmlFileName = ""; // The MusicXml file currently handled       
@@ -173,6 +188,9 @@ namespace MusicXmlReaderUI
             musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
             this.listBoxParts = listBox;
             this.listBoxPoly = listBoxPoly;
+
+            // Log some global system parameters
+            LogSystemParameters();
         }
  
         public bool WriteElement(XmlNode node)

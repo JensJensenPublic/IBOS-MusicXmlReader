@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -87,6 +88,7 @@
     <Compile Include="ScorePartwiseElement.cs" />
     <Compile Include="SimpleTextElement.cs" />
     <Compile Include="SoundElement.cs" />
+    <Compile Include="SystemParametersiInfo.cs" />
     <Compile Include="TieElement.cs" />
     <Compile Include="EventDescription.cs" />
     <Compile Include="TimeDescriptionList.cs" />

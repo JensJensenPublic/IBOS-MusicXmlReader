@@ -5,15 +5,35 @@ using System.Text;
 using System.Threading.Tasks;
 using JSJ.MusicSynthesis;
 
+
+
 namespace MusicXmlReaderUI
 {
     class BrailleBuilder
     {
- 
-        // https://en.wikipedia.org/wiki/Braille_music
 
-            public enum Constant {FourMeasureRest,DoubleBar};
-            public enum Hand { Undefined,Left,Right};
+        // https://en.wikipedia.org/wiki/Braille_music
+        // https://www.rnib.org.uk/sites/default/files/New%20International%20Manual.pdf
+
+        public enum Constant
+        {
+            FourMeasureRest,
+            DoubleBar,
+            Dot,
+            MusicHyphen,
+            Triplet,
+            RepeatSign,
+            Slur,
+            Tie,
+        };
+
+
+
+
+
+        public enum Hand { Undefined, Left, Right };
+
+
 
         private List<byte> braille;
 
@@ -143,6 +163,8 @@ namespace MusicXmlReaderUI
             const byte finger3 = 7;
             const byte finger4 = 2;
             const byte finger5 = 5;
+
+          
 
             switch (hand)
             {
