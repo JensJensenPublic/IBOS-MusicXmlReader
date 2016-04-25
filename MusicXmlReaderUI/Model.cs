@@ -131,6 +131,13 @@ namespace MusicXmlReaderUI
             }
         }
 
+        private void LogNvdaInterface()
+        {
+            // First check if the nvdaControllerClient32.dll is found in the execution directory. TODO
+            int res0 = NvdaControllerClientWrapper.nvdaController_testIfRunning();
+            int res1 = NvdaControllerClientWrapper.nvdaController_speakText("text");
+            int res2 = NvdaControllerClientWrapper.nvdaController_brailleMessage("braille");
+        }         
 
 
         /// <summary>
@@ -195,8 +202,10 @@ namespace MusicXmlReaderUI
             this.listBoxParts = listBox;
             this.listBoxPoly = listBoxPoly;
 
-            // Log some global system parameters
+            // Log some global system parameters.
             LogSystemParameters();
+            // Log availability of NVDA interface.
+            LogNvdaInterface();
         }
  
         public bool WriteElement(XmlNode node)
