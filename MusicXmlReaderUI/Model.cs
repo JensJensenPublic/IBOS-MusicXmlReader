@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
 using NAudio.Midi;
 using System.Windows.Forms;
 using System.Xml;
@@ -131,12 +133,52 @@ namespace MusicXmlReaderUI
             }
         }
 
-        private void LogNvdaInterface()
+        /// <summary>
+        /// Checks the functionality of NVDA nvdaControllerClient
+        /// All entries in the logfile are in English
+        /// All speach must be localized! TODO
+        /// </summary>
+        /// <returns>false on first failure, true if everything succeds</returns>
+        private bool LogNvdaInterface()
         {
-            // First check if the nvdaControllerClient32.dll is found in the execution directory. TODO
-            int res0 = NvdaControllerClientWrapper.nvdaController_testIfRunning();
-            int res1 = NvdaControllerClientWrapper.nvdaController_speakText("text");
-            int res2 = NvdaControllerClientWrapper.nvdaController_brailleMessage("braille");
+            try
+            {
+                // First check if the nvdaControllerClient32.dll is found in the execution directory. TODO
+                string fileName = "nvdaControllerClient32.dll";
+                string fullFileName = Path.Combine(Environment.CurrentDirectory, fileName);
+                if (!File.Exists(fullFileName))
+                {
+                    Log(string.Format("{0} is not found. NVDA ScreenReader can not be controlled directly from the application", fullFileName));
+                    return false;
+                }
+                int resRunning = NvdaControllerClientWrapper.nvdaController_testIfRunning();
+                if (0 != resRunning)
+                {
+                    Log(string.Format("NVDA ScreenReader is not running."));
+                    return false;
+                }
+                System.Threading.Thread.Sleep(2000); // Allow the previous speach to propagate through the system
+                int resSpeak = NvdaControllerClientWrapper.nvdaController_speakText("Musiklæser starter.");
+                System.Threading.Thread.Sleep(2000); // Allow the speach to propagate through the system
+                if (0 != resSpeak)
+                {
+                    Log(string.Format("Failed to speak directly through NVDA ScreenReader"));
+                    return false;
+                }
+                int resBraille = NvdaControllerClientWrapper.nvdaController_brailleMessage("Braille");
+                if (0 != resBraille)
+                {
+                    Log(string.Format("Failed to output Braille directly through NVDA ScreenReader"));
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Log(string.Format("LogNvdaInterface() threw an exception: {0}",e.Message));
+                return false;
+            }
+            return true;
+
         }         
 
 
