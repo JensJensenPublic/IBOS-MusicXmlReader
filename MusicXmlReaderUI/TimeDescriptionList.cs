@@ -86,8 +86,20 @@ namespace MusicXmlReaderUI
                         times.Add(measureElement);
                     }
 
-                }
+                    else if (e is SoundElement)
+                    {
+                        SoundElement soundElement = e as SoundElement;
+                        Model.Log(string.Format("Tempo = {0}",soundElement.GetTempo()));
+                        // TODO Find out what to do here..
+                        // times.Add(SoundElement);
+                    }
 
+                    else
+                    {
+                        // Ignore this element.
+                        Model.Log(string.Format("TimeDescriptionList: Unexpected element of type {0}", e.GetType()));
+                    }
+                }
 
                 if (0 == (times.Count))
                 {

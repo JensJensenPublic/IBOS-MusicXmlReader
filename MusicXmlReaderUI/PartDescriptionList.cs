@@ -36,35 +36,46 @@ namespace MusicXmlReaderUI
                 {
                     // Create the next partition
                     currentPart = new List<Element>();
-                    currentPartId   = (o as PartElement).PartId;
+                    currentPartId = (o as PartElement).PartId;
                     parts.Add(currentPart);
                 }
 
-                if (o is NoteElement)
+                else if (o is NoteElement)
                 {
                     currentPart.Add(o as NoteElement);
                 }
 
-                if (o is HarmonyElement)
+                else if (o is HarmonyElement)
                 {
                     currentPart.Add(o as HarmonyElement);
                 }
 
 
-                if (o is BackupElement)
+                else if (o is BackupElement)
                 {
                     currentPart.Add(o as BackupElement);
                 }
 
-                if (o is ForwardElement)
+                else if (o is ForwardElement)
                 {
                     currentPart.Add(o as ForwardElement);
                 }
 
-                if (o is MeasureElement)
+                else if (o is MeasureElement)
                 {
                     currentPart.Add(o as MeasureElement);
                 }
+
+                else if (o is SoundElement)
+                {
+                    currentPart.Add(o as SoundElement);
+                }
+
+                else
+                {
+                    Model.Log(string.Format("PartDescriptionList: Unexpected object of type {0}", o.GetType()));
+                }
+
             }
 
             // Only for inspection during debugging:

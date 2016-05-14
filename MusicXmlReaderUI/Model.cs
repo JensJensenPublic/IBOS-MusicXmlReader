@@ -250,7 +250,12 @@ namespace MusicXmlReaderUI
             LogNvdaInterface();
         }
  
-        public bool WriteElement(XmlNode node)
+        /// <summary>
+        /// Handels the syntax analysis of an XML node representing a MusicXML element while reading the MusicXML file.
+        /// </summary>
+        /// <param name="node">An XML node representing a MusicXML element.</param>
+        /// <returns>True <==> Further recursion is required.</returns>
+        private bool WriteElement(XmlNode node)
         {
             bool continueRecursion = true;
             switch (node.Name)
