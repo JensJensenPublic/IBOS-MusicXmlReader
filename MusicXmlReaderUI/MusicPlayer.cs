@@ -21,6 +21,10 @@ namespace MusicXmlReaderUI
         int tempo = 60 ; // Quarter notes per minute.  Use 60 as a default
         int numberOfParts;
 
+        
+
+        long musicXmlTimeOffset  = 0; // Needed for handling change in Tempo while aulo-playing. Unit is the same as for Duration
+
 
         // User settings
         UserSettings userSettings;
@@ -131,6 +135,26 @@ namespace MusicXmlReaderUI
             this.numberOfParts = numberOfParts;
         }
 
+
+        /// <summary>
+        /// Computes the number of milliSeconds to wait for the next event to occur.
+        /// Assumes that this.firstStopWatchTime and this.musicXmlTimeOffset are changed every time the Tempo is changed.
+        /// Uses the following MusicPlayer member variables
+        /// this.musicXmlTimeOffset: Time (in units of NoteElement.commonDivisions) since the latest change in Tempo
+        /// this.tempo:              Current Tempo in number of quarter notes per minute
+        /// this.stopWatch.ElapsedMilliseconds: Number of milliseconds since the stopWatch was started
+        /// this.firstStopWatchTime: Time (in units of mS) of latest change in Tempo
+        /// </summary>
+        /// <param name="startTime">StartTime of the next event in units of NoteElement.commonDivisions</param>
+        /// <returns>Number of MilliSeconds to wait.</returns>
+        private int MilliSecondsToSleep(int startTime)
+        {
+            float mSPerMinute = 60000; // Used to conpensate for the use of different Units by the other variables
+            float eventTimeInMilliSeconds = ((float)(startTime - this.musicXmlTimeOffset) * mSPerMinute) / ((float)NoteElement.commonDivisions * (float)this.tempo); 
+            long sleep = ((long)eventTimeInMilliSeconds - (this.stopWatch.ElapsedMilliseconds - this.firstStopWatchTime));
+            return (int)Math.Max(0, sleep);
+        }
+
         /// <summary>
         /// Used for playing polyphonic music.
         /// The EventDescription contains a set of noteElements to be handled simultaneously
@@ -139,12 +163,8 @@ namespace MusicXmlReaderUI
         /// <param name=""></param>
         private void Play(EventDescription eventDescription)
         {
-            // Wait for the time to play: TO DO: Use this.tempo to allow for dynamic changes in tempo.
-            int factor = 1;
-            //int commonDivisions = 1260; // NOTE Devined elsewhere  !!!!!!!!!!!!!!!!!!!!!!!!!!
-            //int factor = (int) (commonDivisions / (tempo * 4));
-            long sleep = (eventDescription.StartTime / factor) - (stopWatch.ElapsedMilliseconds - firstStopWatchTime);
-            System.Threading.Thread.Sleep((int)Math.Max(0, sleep));
+            // Sleep until the StartTime of the next event occurs.
+            System.Threading.Thread.Sleep(MilliSecondsToSleep(eventDescription.StartTime));
 
             // Stop playing these notes: 
             if (null != eventDescription.EndEventElements)
@@ -216,6 +236,10 @@ namespace MusicXmlReaderUI
                     {
                         Model.Log(string.Format("MusicPlayer: Tempo {0}->{1}", this.tempo, newTempo));
                         this.tempo = newTempo;
+                        // We must also establish new offsets for stopwatch-time and music-time:
+                        firstStopWatchTime = stopWatch.ElapsedMilliseconds; // From now on all stopwatch times are relative to this value (now) 
+                        musicXmlTimeOffset = eventDescription.StartTime; // From now on all musicXml times are ralative to this value (starttime of the current event
+                        Model.Log(string.Format("MusicPlayer: Tempo {0}->{1} firstStopWatchTime={1} musicXmlTimeOffset={2}", this.tempo, newTempo, firstStopWatchTime, musicXmlTimeOffset));
                     }
                 }
             }
