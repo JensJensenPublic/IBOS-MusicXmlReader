@@ -191,7 +191,7 @@ namespace MusicXmlReaderUI
         {
             bool ok = true;
             string xmlFileName = ""; // The MusicXml file currently handled       
-            try
+//            try
             {
                 string defaultFileName = "Node.xml";
                 if (string.IsNullOrEmpty(fullXmlFileName))
@@ -221,11 +221,11 @@ namespace MusicXmlReaderUI
                     theMusicXmlFileName = "";
                 }
             }
-            catch (System.Exception e)
-            {
-                Log(string.Format("Failed to load {0} ({1})",xmlFileName,e.Message));
-                ok = false;
-            }
+            //catch (System.Exception e)
+            //{
+            //    Log(string.Format("Failed to load {0} ({1})",xmlFileName,e.Message));
+            //    ok = false;
+            //}
             return ok;
         }
 

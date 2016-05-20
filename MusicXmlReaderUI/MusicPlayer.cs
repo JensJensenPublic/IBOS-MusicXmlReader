@@ -18,7 +18,7 @@ namespace MusicXmlReaderUI
         System.Diagnostics.Stopwatch stopWatch = null;
         long nextActionTime;    // For autoplaying monophonic music 
         long firstStopWatchTime = -1;    // For autoplaying polyphonic music 
-        int tempo;
+        int tempo = 60 ; // Quarter notes per minute.  Use 60 as a default
         int numberOfParts;
 
 
@@ -139,8 +139,10 @@ namespace MusicXmlReaderUI
         /// <param name=""></param>
         private void Play(EventDescription eventDescription)
         {
-            // Wait for the time to play:
+            // Wait for the time to play: TO DO: Use this.tempo to allow for dynamic changes in tempo.
             int factor = 1;
+            //int commonDivisions = 1260; // NOTE Devined elsewhere  !!!!!!!!!!!!!!!!!!!!!!!!!!
+            //int factor = (int) (commonDivisions / (tempo * 4));
             long sleep = (eventDescription.StartTime / factor) - (stopWatch.ElapsedMilliseconds - firstStopWatchTime);
             System.Threading.Thread.Sleep((int)Math.Max(0, sleep));
 
@@ -203,6 +205,21 @@ namespace MusicXmlReaderUI
                     }
                 }
             }
+
+            // Handle Sound desriptions, such as "Tempo"
+            if (null != eventDescription.SoundElements)
+            {
+                foreach (SoundElement soundElement in eventDescription.SoundElements)
+                {
+                    int newTempo = soundElement.GetTempo();
+                    if (0 != newTempo)
+                    {
+                        Model.Log(string.Format("MusicPlayer: Tempo {0}->{1}", this.tempo, newTempo));
+                        this.tempo = newTempo;
+                    }
+                }
+            }
+
         }
 
 

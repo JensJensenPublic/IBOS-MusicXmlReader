@@ -2,9 +2,9 @@
 
 namespace MusicXmlReaderUI
 {
-    class SoundElement : Element
+    class SoundElement : EventElement
     {
-        private string tempo = "";
+        private string tempo = "";    // Quarter notes per minute  
 
         /// <summary>
         /// To force the use of the Create() method
@@ -27,6 +27,7 @@ namespace MusicXmlReaderUI
                     case "tempo":
                         tempo = a.Value;
                         break;
+                                       
                 }
             }
         }
@@ -41,9 +42,14 @@ namespace MusicXmlReaderUI
             return string.Format("Tempo {0}", tempo);
         }
 
+        /// <summary>
+        /// Quarter notes per minute.
+        /// This implementation uses 60 as a default
+        /// </summary>
+        /// <returns></returns>
         public int GetTempo()
         {
-            return string.IsNullOrEmpty(tempo) ? 60 : int.Parse(tempo); // Use 60 beats per second as default
+            return string.IsNullOrEmpty(tempo) ? 60 : int.Parse(tempo); // Use 60 quarter notes per minute as default
         }
     }
 }

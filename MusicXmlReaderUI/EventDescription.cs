@@ -30,6 +30,8 @@ namespace MusicXmlReaderUI
 
         private List<EndEventElement> endEventElements; // Elements (for instance NoteElements) to end at this time
 
+        private List<SoundElement> soundElements; // The SoundElements related to this event, if any
+
         //public NoteElement[] Notes // TO DO: Remove Notes. Use NoteLists instead!!
         //{
         //    get
@@ -67,6 +69,19 @@ namespace MusicXmlReaderUI
             get
             {
                 return endEventElements;
+            }
+        }
+
+        internal List<SoundElement> SoundElements
+        {
+            get
+            {
+                return soundElements;
+            }
+
+            set
+            {
+                soundElements = value;
             }
         }
 
@@ -121,6 +136,14 @@ namespace MusicXmlReaderUI
                     endEventElements = new List<EndEventElement>();
                 }
                 endEventElements.Add(eventElement as EndEventElement);
+            }
+            else if (eventElement is SoundElement)
+            {
+                if (null == soundElements)
+                {
+                    soundElements = new List<SoundElement>();
+                }
+                soundElements.Add(eventElement as SoundElement);
             }
         }
 
@@ -235,6 +258,20 @@ namespace MusicXmlReaderUI
             }
 
 
+            string soundString = "";
+            if (null != soundElements)
+            {
+                foreach (SoundElement soundElement in soundElements)
+                {
+                    // For the time being we only handle Tempo here. Later we may handle other velues!
+                    if (0 != soundElement.GetTempo())
+                    {
+                        soundString = string.Format("Tempo={0}", soundElement.GetTempo());
+                    }
+                }
+            }
+
+
             StringBuilder sbNotes = new StringBuilder();
             StringBuilder sbTexts = new StringBuilder();
             // Iterate over the parts and build a complete representation of all notes and of all texts
@@ -247,7 +284,7 @@ namespace MusicXmlReaderUI
                 sbNotes.Append(string.Format("{0,9} ", partNotes));  //  fix width to 9 
                 sbTexts.Append(string.Format("{0} ", partLyrics));
             }
-            return measure + divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString;
+            return measure + divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString;
         }
     }
 }
