@@ -59,6 +59,7 @@
             this.labelReadLyrics = new System.Windows.Forms.Label();
             this.checkedListBoxParts = new System.Windows.Forms.CheckedListBox();
             this.labelSelectParts = new System.Windows.Forms.Label();
+            this.buttonStartMuseScore = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.SuspendLayout();
             // 
@@ -412,11 +413,22 @@
             this.labelSelectParts.TabIndex = 29;
             this.labelSelectParts.Text = "Vælg stemmer";
             // 
+            // buttonStartMuseScore
+            // 
+            this.buttonStartMuseScore.Location = new System.Drawing.Point(856, 388);
+            this.buttonStartMuseScore.Name = "buttonStartMuseScore";
+            this.buttonStartMuseScore.Size = new System.Drawing.Size(120, 23);
+            this.buttonStartMuseScore.TabIndex = 30;
+            this.buttonStartMuseScore.Text = "StartMuseScore";
+            this.buttonStartMuseScore.UseVisualStyleBackColor = true;
+            this.buttonStartMuseScore.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 496);
+            this.Controls.Add(this.buttonStartMuseScore);
             this.Controls.Add(this.labelSelectParts);
             this.Controls.Add(this.checkedListBoxParts);
             this.Controls.Add(this.labelReadLyrics);
@@ -490,6 +502,7 @@
         private System.Windows.Forms.Label labelReadLyrics;
         private System.Windows.Forms.CheckedListBox checkedListBoxParts;
         private System.Windows.Forms.Label labelSelectParts;
+        private System.Windows.Forms.Button buttonStartMuseScore;
     }
 }
 

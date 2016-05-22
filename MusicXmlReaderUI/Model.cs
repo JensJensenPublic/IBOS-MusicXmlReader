@@ -41,6 +41,11 @@ namespace MusicXmlReaderUI
             pProcess.Start();
         }
 
+        /// <summary>
+        /// Working version for startine iexplore.exe
+        /// </summary>
+        /// <param name="executable"></param>
+        /// <param name="fullFileName"></param>
         private void ReadFileByExecutable(string executable,string fullFileName)
         {
             if (!File.Exists(fullFileName))
@@ -50,7 +55,8 @@ namespace MusicXmlReaderUI
             }
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
             pProcess.StartInfo.FileName = executable;
-            pProcess.StartInfo.Arguments = fullFileName;
+            pProcess.StartInfo.WorkingDirectory = Path.GetDirectoryName(executable);
+            pProcess.StartInfo.Arguments = fullFileName ;
             pProcess.StartInfo.UseShellExecute = true; // Allows the system to search for the executable using PATH
             pProcess.StartInfo.RedirectStandardOutput = false;
             pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
@@ -60,11 +66,49 @@ namespace MusicXmlReaderUI
             }
             catch (Exception e)
             {
-                Model.Log(string.Format("ReadFileByNotepad: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
+                Model.Log(string.Format("ReadFileByExecutable: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
             }
         }
 
-        
+        /// <summary>
+        /// NOTE Experimental version for starting MuseScore
+        /// </summary>
+        /// <param name="executable"></param>
+        /// <param name="fullFileName"></param>
+        private void ReadFileByMuseScore(string executable, string fullFileName)
+        {
+            if (!File.Exists(fullFileName))
+            {
+                Model.Log(string.Format("ReadFileByMuseScore: {0} not found", fullFileName));
+                return;
+            }
+
+            if (!File.Exists(executable))
+            {
+                Model.Log(string.Format("ReadFileByMuseScore: {0} not found", executable));
+                return;
+            }
+            
+            System.Diagnostics.Process pProcess = new System.Diagnostics.Process(); 
+            pProcess.StartInfo.FileName = string.Format("\"{0}\"", executable); // Enclose the executable in "" because it contains a space character;
+            pProcess.StartInfo.WorkingDirectory = Path.GetDirectoryName(executable);
+            pProcess.StartInfo.Arguments = string.Format("\"{0}\"",fullFileName);  // Enclose the fullFilename in "" because it contains a space character;
+            pProcess.StartInfo.UseShellExecute = true; // Allows the system to search for the executable using PATH
+            pProcess.StartInfo.RedirectStandardOutput = false;
+            pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+            try
+            {
+                pProcess.Start();
+            }
+            catch (Exception e)
+            {
+                Model.Log(string.Format("ReadFileByExecutable: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
+            }
+        }
+
+
+
+
         private void ReadFileByNotepad(string fullFileName)
         {
             if (!File.Exists(fullFileName))
@@ -145,6 +189,21 @@ namespace MusicXmlReaderUI
         }
         #endregion
 
+
+        #region MuseScore
+        public void StartMuseScore()
+        {
+            if (System.IO.File.Exists(theMusicXmlFileName))
+            {
+                //string exeFileName = @"C:\Program Files(x86)\MuseScore 2\bin\MuseScore.exe";
+                string exeFileName =  @"C:\Program Files (x86)\MuseScore 2\bin\MuseScore.exe";
+                ReadFileByMuseScore(exeFileName, theMusicXmlFileName);
+                //ReadFileByExecutable(@"C:\temp\MuseScore2\bin\MuseScore.exe", theMusicXmlFileName);
+            }
+        }
+        #endregion
+
+ 
 
         /// <summary>
         /// Quick and dirty check to reject obvious unusable Xml files

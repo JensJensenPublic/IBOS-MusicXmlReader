@@ -368,6 +368,10 @@ namespace MusicXmlReaderUI
             model.ReadInterpretation();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            model.StartMuseScore();
+        }
     }
 
 }
