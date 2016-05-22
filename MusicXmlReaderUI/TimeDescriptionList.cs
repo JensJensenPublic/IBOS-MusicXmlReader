@@ -89,8 +89,7 @@ namespace MusicXmlReaderUI
                     else if (e is SoundElement)
                     {
                         SoundElement soundElement = e as SoundElement;
-                        Model.Log(string.Format("Tempo = {0} NextStartTime = {1}",soundElement.GetTempo(), nextStartTime));
-                        // TODO Find out what to do here..
+                        //Model.Log(string.Format("Tempo = {0} NextStartTime = {1}",soundElement.GetTempo(), nextStartTime));                    
                         soundElement.StartTime = nextStartTime;
                         times.Add(soundElement);
                     }

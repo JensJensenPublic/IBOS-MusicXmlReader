@@ -234,12 +234,12 @@ namespace MusicXmlReaderUI
                     int newTempo = soundElement.GetTempo();
                     if (0 != newTempo)
                     {
-                        Model.Log(string.Format("MusicPlayer: Tempo {0}->{1}", this.tempo, newTempo));
-                        this.tempo = newTempo;
+                        // Model.Log(string.Format("MusicPlayer: Tempo {0}->{1}", this.tempo, newTempo));                   
                         // We must also establish new offsets for stopwatch-time and music-time:
                         firstStopWatchTime = stopWatch.ElapsedMilliseconds; // From now on all stopwatch times are relative to this value (now) 
                         musicXmlTimeOffset = eventDescription.StartTime; // From now on all musicXml times are ralative to this value (starttime of the current event
                         Model.Log(string.Format("MusicPlayer: Tempo {0}->{1} firstStopWatchTime={1} musicXmlTimeOffset={2}", this.tempo, newTempo, firstStopWatchTime, musicXmlTimeOffset));
+                        this.tempo = newTempo;
                     }
                 }
             }

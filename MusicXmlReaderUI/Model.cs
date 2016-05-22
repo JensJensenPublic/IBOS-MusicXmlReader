@@ -40,7 +40,54 @@ namespace MusicXmlReaderUI
             pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
             pProcess.Start();
         }
+
+        private void ReadFileByExecutable(string executable,string fullFileName)
+        {
+            if (!File.Exists(fullFileName))
+            {
+                Model.Log(string.Format("ReadFileByNotepad: {0} not found", fullFileName));
+                return;
+            }
+            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
+            pProcess.StartInfo.FileName = executable;
+            pProcess.StartInfo.Arguments = fullFileName;
+            pProcess.StartInfo.UseShellExecute = true; // Allows the system to search for the executable using PATH
+            pProcess.StartInfo.RedirectStandardOutput = false;
+            pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+            try
+            {
+                pProcess.Start();
+            }
+            catch (Exception e)
+            {
+                Model.Log(string.Format("ReadFileByNotepad: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
+            }
+        }
+
         
+        private void ReadFileByNotepad(string fullFileName)
+        {
+            if (!File.Exists(fullFileName))
+            {
+                Model.Log(string.Format("ReadFileByNotepad: {0} not found", fullFileName));
+                return;
+            }
+            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
+            pProcess.StartInfo.FileName = @"NotePad.exe";
+            pProcess.StartInfo.Arguments = fullFileName;       
+            pProcess.StartInfo.UseShellExecute = false;
+            pProcess.StartInfo.RedirectStandardOutput = true;
+            pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+            try
+            {
+                pProcess.Start();
+            }
+            catch (Exception e)
+            {
+                Model.Log(string.Format("ReadFileByNotepad: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
+            }
+        }
+
 
         #region LogFile
         public static string LogFileName = "MusicXmlReader.Log";
@@ -92,7 +139,8 @@ namespace MusicXmlReaderUI
         {
             if (System.IO.File.Exists(theMusicXmlFileName))
             {
-                ReadTempFileByNotepad(theMusicXmlFileName);
+                //ReadFileByNotepad(theMusicXmlFileName);
+                ReadFileByExecutable("iexplore.exe",theMusicXmlFileName);
             }
         }
         #endregion
