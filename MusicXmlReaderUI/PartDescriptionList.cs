@@ -32,55 +32,27 @@ namespace MusicXmlReaderUI
             string currentPartId  = "";
             foreach (Object o in xmlObjects)
             {
-                if (o is PartElement)
+                Element e = o as Element;
+                if (e is PartElement)
                 {
                     // Create the next partition
                     currentPart = new List<Element>();
-                    currentPartId = (o as PartElement).PartId;
+                    currentPartId = (e as PartElement).PartId;
                     parts.Add(currentPart);
                 }
 
-                else if (o is NoteElement)
+                else if
+                (  (e is NoteElement)  
+                || (e is HarmonyElement)
+                || (e is BackupElement)     
+                || (e is ForwardElement)   
+                || (e is MeasureElement)
+                || (e is SoundElement)
+                || (e is ClefElement)
+                || (e is KeyElement)
+                || (e is TimeElement))
                 {
-                    currentPart.Add(o as NoteElement);
-                }
-
-                else if (o is HarmonyElement)
-                {
-                    currentPart.Add(o as HarmonyElement);
-                }
-
-
-                else if (o is BackupElement)
-                {
-                    currentPart.Add(o as BackupElement);
-                }
-
-                else if (o is ForwardElement)
-                {
-                    currentPart.Add(o as ForwardElement);
-                }
-
-                else if (o is MeasureElement)
-                {
-                    currentPart.Add(o as MeasureElement);
-                }
-
-                else if (o is SoundElement)
-                {
-                    currentPart.Add(o as SoundElement);
-                }
-                else if (o is ClefElement)
-                {
-                    currentPart.Add(o as ClefElement);
-                }
-                else if (o is KeyElement)
-                {
-                    currentPart.Add(o as KeyElement);
-                }
-                else if (o is TimeElement)
-                {
-                    currentPart.Add(o as TimeElement);
+                    currentPart.Add(e);
                 }
 
                 else if
