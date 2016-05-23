@@ -30,33 +30,39 @@ namespace MusicXmlReaderUI
         string executingAssembly;
         string executingDirectory;
 
-        private void ReadTempFileByNotepad(string fullFileName)
+
+
+        private bool CheckFileExistance(string fileName, string methodName)
         {
-            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
-            pProcess.StartInfo.FileName = @"NotePad.exe";
-            pProcess.StartInfo.Arguments = System.IO.Path.Combine(System.IO.Path.GetTempPath(), fullFileName); //argument
-            pProcess.StartInfo.UseShellExecute = false;
-            pProcess.StartInfo.RedirectStandardOutput = true;
-            pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-            pProcess.Start();
+            if (!System.IO.File.Exists(fileName))
+            {
+                Model.Log(string.Format("{0} File {1} is not found", string.IsNullOrEmpty(methodName)? "" : methodName + ":",  fileName));
+                MessageBox.Show(string.Format("Filen {0} findes ikke", fileName));
+                return false;
+            }
+            return true;
         }
 
+
         /// <summary>
-        /// Working version for startine iexplore.exe
+        /// Attempts to start an external program using a single filename as argument
+        /// Errors are reportes through messageboxes and Model.Log()
         /// </summary>
-        /// <param name="executable"></param>
-        /// <param name="fullFileName"></param>
-        private void ReadFileByExecutable(string executable,string fullFileName)
+        /// <param name="exeFileName">Name of program to start, with or without full path</param>
+        /// <param name="argFileName">Name of file to use as argument when starting the program</param>
+        /// <returns>true <==> succaee</returns>
+        private bool RunExeWithFileArgument(string exeFileName, string argFileName)
         {
-            if (!File.Exists(fullFileName))
-            {
-                Model.Log(string.Format("ReadFileByNotepad: {0} not found", fullFileName));
-                return;
-            }
-            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
-            pProcess.StartInfo.FileName = executable;
-            pProcess.StartInfo.WorkingDirectory = Path.GetDirectoryName(executable);
-            pProcess.StartInfo.Arguments = fullFileName ;
+            string methodName = "RunExeWithFileArgument";
+            // Check arguments
+            string exePathName = Path.GetDirectoryName(exeFileName);
+            if ((!string.IsNullOrEmpty(exePathName)) && (!CheckFileExistance(exeFileName, methodName))) return false;
+            if ((!string.IsNullOrEmpty(argFileName)) && (!CheckFileExistance(argFileName, methodName))) return false;
+            // Create process startinfo. Enclose all filenames and pathnames in "" in order to handle possible space characters!
+            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();     
+            pProcess.StartInfo.FileName = string.Format("\"{0}\"", exeFileName);
+            pProcess.StartInfo.WorkingDirectory = string.IsNullOrEmpty(exePathName) ? null : string.Format("\"{0}\"", exePathName);
+            pProcess.StartInfo.Arguments = string.Format("\"{0}\"", argFileName); 
             pProcess.StartInfo.UseShellExecute = true; // Allows the system to search for the executable using PATH
             pProcess.StartInfo.RedirectStandardOutput = false;
             pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
@@ -67,71 +73,11 @@ namespace MusicXmlReaderUI
             catch (Exception e)
             {
                 Model.Log(string.Format("ReadFileByExecutable: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
+                MessageBox.Show(string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'",exeFileName,argFileName));
+                return false;
             }
+            return true;
         }
-
-        /// <summary>
-        /// NOTE Experimental version for starting MuseScore
-        /// </summary>
-        /// <param name="executable"></param>
-        /// <param name="fullFileName"></param>
-        private void ReadFileByMuseScore(string executable, string fullFileName)
-        {
-            if (!File.Exists(fullFileName))
-            {
-                Model.Log(string.Format("ReadFileByMuseScore: {0} not found", fullFileName));
-                return;
-            }
-
-            if (!File.Exists(executable))
-            {
-                Model.Log(string.Format("ReadFileByMuseScore: {0} not found", executable));
-                return;
-            }
-            
-            System.Diagnostics.Process pProcess = new System.Diagnostics.Process(); 
-            pProcess.StartInfo.FileName = string.Format("\"{0}\"", executable); // Enclose the executable in "" because it contains a space character;
-            pProcess.StartInfo.WorkingDirectory = Path.GetDirectoryName(executable);
-            pProcess.StartInfo.Arguments = string.Format("\"{0}\"",fullFileName);  // Enclose the fullFilename in "" because it contains a space character;
-            pProcess.StartInfo.UseShellExecute = true; // Allows the system to search for the executable using PATH
-            pProcess.StartInfo.RedirectStandardOutput = false;
-            pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-            try
-            {
-                pProcess.Start();
-            }
-            catch (Exception e)
-            {
-                Model.Log(string.Format("ReadFileByExecutable: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
-            }
-        }
-
-
-
-
-        private void ReadFileByNotepad(string fullFileName)
-        {
-            if (!File.Exists(fullFileName))
-            {
-                Model.Log(string.Format("ReadFileByNotepad: {0} not found", fullFileName));
-                return;
-            }
-            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
-            pProcess.StartInfo.FileName = @"NotePad.exe";
-            pProcess.StartInfo.Arguments = fullFileName;       
-            pProcess.StartInfo.UseShellExecute = false;
-            pProcess.StartInfo.RedirectStandardOutput = true;
-            pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-            try
-            {
-                pProcess.Start();
-            }
-            catch (Exception e)
-            {
-                Model.Log(string.Format("ReadFileByNotepad: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
-            }
-        }
-
 
         #region LogFile
         public static string LogFileName = "MusicXmlReader.Log";
@@ -145,7 +91,8 @@ namespace MusicXmlReaderUI
 
         public void ReadLogFile()
         {
-            ReadTempFileByNotepad(LogFileName);
+            //ReadTempFileByNotepad(LogFileName);
+            RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName));
         }
         #endregion
 
@@ -174,7 +121,9 @@ namespace MusicXmlReaderUI
 
             streamWriter.Close();
 
-            ReadTempFileByNotepad(fileName);
+            RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), fileName));
+
+            //ReadTempFileByNotepad(fileName);
         }
         #endregion
 
@@ -184,7 +133,9 @@ namespace MusicXmlReaderUI
             if (System.IO.File.Exists(theMusicXmlFileName))
             {
                 //ReadFileByNotepad(theMusicXmlFileName);
-                ReadFileByExecutable("iexplore.exe",theMusicXmlFileName);
+                //ReadFileByExecutable("iexplore.exe",theMusicXmlFileName);
+                RunExeWithFileArgument("iexplore.exe", theMusicXmlFileName);
+
             }
         }
         #endregion
@@ -197,8 +148,9 @@ namespace MusicXmlReaderUI
             {
                 //string exeFileName = @"C:\Program Files(x86)\MuseScore 2\bin\MuseScore.exe";
                 string exeFileName =  @"C:\Program Files (x86)\MuseScore 2\bin\MuseScore.exe";
-                ReadFileByMuseScore(exeFileName, theMusicXmlFileName);
-                //ReadFileByExecutable(@"C:\temp\MuseScore2\bin\MuseScore.exe", theMusicXmlFileName);
+                //ReadFileByMuseScore(exeFileName, theMusicXmlFileName);
+                RunExeWithFileArgument(exeFileName, theMusicXmlFileName);
+
             }
         }
         #endregion
