@@ -30,7 +30,11 @@ namespace MusicXmlReaderUI
 
         private List<EndEventElement> endEventElements; // Elements (for instance NoteElements) to end at this time
 
-        private List<SoundElement> soundElements; // The SoundElements related to this event, if any
+        // A few other elements may be related to a specifig event
+        private List<SoundElement> soundElements;   // The SoundElements related to this event, if any
+        private List<KeyElement>   keyElements;       // The KeyElements related to this event, if any
+        private List<ClefElement>  clefElements;     // The ClefElements related to this event, if any
+        private List<TimeElement> timeElements;     // The TimeElements related to this event, if any
 
         //public NoteElement[] Notes // TO DO: Remove Notes. Use NoteLists instead!!
         //{
@@ -145,6 +149,35 @@ namespace MusicXmlReaderUI
                 }
                 soundElements.Add(eventElement as SoundElement);
             }
+
+            else if (eventElement is KeyElement)
+            {
+                if (null == keyElements)
+                {
+                    keyElements = new List<KeyElement>();
+                }
+                keyElements.Add(eventElement as KeyElement);
+            }
+
+            else if (eventElement is ClefElement)
+            {
+                if (null == clefElements)
+                {
+                    clefElements = new List<ClefElement>();
+                }
+                clefElements.Add(eventElement as ClefElement);
+            }
+
+            else if (eventElement is TimeElement)
+            {
+                if (null == timeElements)
+                {
+                    timeElements = new List<TimeElement>();
+                }
+                timeElements.Add(eventElement as TimeElement);
+            }
+            
+
         }
 
 
@@ -271,6 +304,42 @@ namespace MusicXmlReaderUI
                 }
             }
 
+            string keyString = "";
+            if (null != keyElements)
+            {
+                foreach (KeyElement keyElement in keyElements)
+                {
+                    if (!string.IsNullOrEmpty(keyElement.ToString()))
+                    {
+                        keyString = string.Format("{0}", keyElement.ToString());
+                    }
+                }
+            }
+
+            string clefString = "";
+            if (null != clefElements)
+            {
+                foreach (ClefElement clefElement in clefElements)
+                {
+                    if (!string.IsNullOrEmpty(clefElement.ToString()))
+                    {
+                        clefString = string.Format("{0}", clefElement.ToString());
+                    }
+                }
+            }
+
+            string timeString = "";
+            if (null != timeElements)
+            {
+                foreach (TimeElement timeElement in timeElements)
+                {
+                    if (!string.IsNullOrEmpty(timeElement.ToString()))
+                    {
+                        clefString = string.Format("{0}", timeElement.ToString());
+                    }
+                }
+            }
+
 
             StringBuilder sbNotes = new StringBuilder();
             StringBuilder sbTexts = new StringBuilder();
@@ -284,7 +353,7 @@ namespace MusicXmlReaderUI
                 sbNotes.Append(string.Format("{0,9} ", partNotes));  //  fix width to 9 
                 sbTexts.Append(string.Format("{0} ", partLyrics));
             }
-            return measure + divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString;
+            return measure + divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString + keyString + clefString + timeString;
         }
     }
 }

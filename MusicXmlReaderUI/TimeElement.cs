@@ -3,7 +3,7 @@
 namespace MusicXmlReaderUI
 {
 
-    public class TimeElement : Element
+    public class TimeElement : EventElement
     {
         string localizedBeats = "";
         string localizedBeatType = "";

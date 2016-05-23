@@ -3,7 +3,7 @@
 namespace MusicXmlReaderUI
 {
 
-    public class KeyElement : Element
+    public class KeyElement : EventElement
     {
         string localizedKey = "";
         string localizedmode = "";

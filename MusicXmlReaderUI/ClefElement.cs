@@ -3,7 +3,7 @@
 namespace MusicXmlReaderUI
 {
 
-    public class ClefElement : Element
+    public class ClefElement : EventElement
     {
         string sign = "";
   

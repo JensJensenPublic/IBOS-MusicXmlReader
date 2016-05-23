@@ -70,12 +70,35 @@ namespace MusicXmlReaderUI
                 {
                     currentPart.Add(o as SoundElement);
                 }
+                else if (o is ClefElement)
+                {
+                    currentPart.Add(o as ClefElement);
+                }
+                else if (o is KeyElement)
+                {
+                    currentPart.Add(o as KeyElement);
+                }
+                else if (o is TimeElement)
+                {
+                    currentPart.Add(o as TimeElement);
+                }
+
+                else if
+                (   (o is ScorePartwiseElement)
+                ||  (o is SimpleTextElement)
+                ||  (o is PartlistElement)
+                ||  (o is DivisionsElement) 
+                ||  (o is CreatorElement)
+                )
+                {
+                    // These types are explicitly ignored because they are related to the whole score, not to an event.
+                }
 
                 else
                 {
                     Type type = o.GetType();
                     string typeAsString = type.ToString();
-                    Model.Log(string.Format("PartDescriptionList: Unexpected object of type {0}", typeAsString));
+                    Model.Log(string.Format("PartDescriptionList: Unexpected object of type {0}: String='{1}'", typeAsString, o.ToString()));
                 }
 
             }

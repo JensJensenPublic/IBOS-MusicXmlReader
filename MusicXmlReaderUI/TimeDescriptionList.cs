@@ -94,10 +94,31 @@ namespace MusicXmlReaderUI
                         times.Add(soundElement);
                     }
 
+                    else if (e is KeyElement)
+                    {
+                        KeyElement keyElement = e as KeyElement;                   
+                        keyElement.StartTime = nextStartTime;
+                        times.Add(keyElement);
+                    }
+
+                    else if (e is ClefElement)
+                    {
+                        ClefElement clefElement = e as ClefElement;
+                        clefElement.StartTime = nextStartTime;
+                        times.Add(clefElement);
+                    }
+
+                    else if (e is TimeElement)
+                    {
+                        TimeElement timeElement = e as TimeElement;
+                        timeElement.StartTime = nextStartTime;
+                        times.Add(timeElement);
+                    }
+
                     else
                     {
                         // Ignore this element.
-                        Model.Log(string.Format("TimeDescriptionList: Unexpected element of type {0}", e.GetType()));
+                        Model.Log(string.Format("TimeDescriptionList: Unexpected element of type {0} String='{1}'", e.GetType(),e.ToString()));
                     }
                 }
 
