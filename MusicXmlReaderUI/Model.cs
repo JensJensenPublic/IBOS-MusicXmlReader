@@ -266,10 +266,11 @@ namespace MusicXmlReaderUI
                 ok = ok && CheckMusicXmlSyntax(doc);
                 if (ok)
                 {
-                    Log(string.Format("Loaded {0}", fullXmlFileName));                
-                    Recurse(doc.ChildNodes);
+                    Log(string.Format("Loaded {0}", fullXmlFileName));
+                    allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file
+                    Recurse(doc.ChildNodes);                          // Build  the list holding all MusicXml elements read from file
                     Log(string.Format("Parsed {0}", xmlFileName));
-                    Init(); // Experimental code !! 
+                    Init(); // Experimental code !!                   // TO DO move rest of this {} into Init !
                     Log(string.Format("Initialized all components"));
                     LoadListBox();
                     theMusicXmlFileName = fullXmlFileName;
@@ -297,7 +298,6 @@ namespace MusicXmlReaderUI
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
             Log(string.Format("{0} started in {1} on {2}", System.IO.Path.GetFileName(executingAssembly), executingDirectory, System.DateTime.Now.ToLongDateString()));                 
-            allMusicXmlObjecsts = new List<MusicXmlObject>();
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
             this.listBoxParts = listBox;
@@ -583,6 +583,7 @@ namespace MusicXmlReaderUI
 
         public void LoadListBox()
         {
+            listBoxParts.Items.Clear();
             foreach (MusicXmlObject musicXmlObject in allMusicXmlObjecsts)
             {
                 {
@@ -611,12 +612,14 @@ namespace MusicXmlReaderUI
 
         public void LoadListBoxTimes()
         {
+            listBoxPoly.Items.Clear();
             eventDescriptionList.LoadListBox(listBoxPoly);
             //timeDescriptionList.LoadListBox(listBoxTimes); 
         }
 
         public void LoadListBoxOfParts(CheckedListBox checkedListBox)
         {
+            checkedListBox.Items.Clear();
             for (int i = 0; (i < numberOfParts); i++)
             {
                 ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
