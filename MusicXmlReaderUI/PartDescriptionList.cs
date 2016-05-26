@@ -41,17 +41,20 @@ namespace MusicXmlReaderUI
                     parts.Add(currentPart);
                 }
 
-                else if
+                else if 
                 (  (e is NoteElement)  
                 || (e is HarmonyElement)
-                || (e is BackupElement)     
-                || (e is ForwardElement)   
+                || (e is BackupElement)      // Er ikke et EventElement
+                || (e is ForwardElement)     // Er ikke et EventElement
                 || (e is MeasureElement)
                 || (e is SoundElement)
                 || (e is ClefElement)
                 || (e is KeyElement)
                 || (e is TimeElement))
                 {
+                    // All of these elements are related to events and timing and must be reflected in in the EventDescriptionList.
+                    // So they are transferred through the following lists:
+                    // List<MusicXmlObject> -> PartDescriptionList -> TimeDescriptionList -> EventDescriptionList
                     currentPart.Add(e);
                 }
 

@@ -72,53 +72,23 @@ namespace MusicXmlReaderUI
                         //previousStartTime = nextStartTime; // ??????????????????????????????????????????
                     }
 
-                    else if (e is HarmonyElement)
+                    else if ((e is HarmonyElement)
+                         ||  (e is MeasureElement)
+                         ||  (e is SoundElement)
+                         ||  (e is KeyElement)
+                         ||  (e is ClefElement)
+                         ||  (e is TimeElement))
                     {
-                        HarmonyElement harmonyElement = e as HarmonyElement;
-                        harmonyElement.StartTime = nextStartTime;
-                        times.Add(harmonyElement);
+                        // All these elements are EventElements!
+                        EventElement eventElement = e as EventElement;
+                        eventElement.StartTime = nextStartTime;
+                        times.Add(eventElement);
                     }
-
-                    else if (e is MeasureElement)
-                    {
-                        MeasureElement measureElement = e as MeasureElement;
-                        measureElement.StartTime = nextStartTime;
-                        times.Add(measureElement);
-                    }
-
-                    else if (e is SoundElement)
-                    {
-                        SoundElement soundElement = e as SoundElement;
-                        //Model.Log(string.Format("Tempo = {0} NextStartTime = {1}",soundElement.GetTempo(), nextStartTime));                    
-                        soundElement.StartTime = nextStartTime;
-                        times.Add(soundElement);
-                    }
-
-                    else if (e is KeyElement)
-                    {
-                        KeyElement keyElement = e as KeyElement;                   
-                        keyElement.StartTime = nextStartTime;
-                        times.Add(keyElement);
-                    }
-
-                    else if (e is ClefElement)
-                    {
-                        ClefElement clefElement = e as ClefElement;
-                        clefElement.StartTime = nextStartTime;
-                        times.Add(clefElement);
-                    }
-
-                    else if (e is TimeElement)
-                    {
-                        TimeElement timeElement = e as TimeElement;
-                        timeElement.StartTime = nextStartTime;
-                        times.Add(timeElement);
-                    }
-
+    
                     else
                     {
                         // Ignore this element.
-                        Model.Log(string.Format("TimeDescriptionList: Unexpected element of type {0} String='{1}'", e.GetType(),e.ToString()));
+                        Model.Log(string.Format("TimeDescriptionList: Unexpected element of type {0} String='{1}'", e.GetType(), e.ToString()));
                     }
                 }
 
@@ -129,17 +99,6 @@ namespace MusicXmlReaderUI
 
                 times.Sort(Compare);
 
-                //List<EventDescription> events = new List<EventDescription>();
-                //int currentStartTime = -1;
-                //EventDescription currentEventDescription = null;
-                //foreach (NoteElement note in times)
-                //{
-                //    if (note.StartTime != currentStartTime)
-                //    {
-                //        currentEventDescription = EventDescription.Create(currentStartTime, numberOfParts);
-                //        events.Add(currentEventDescription);
-                //    }
-                //    currentEventDescription.AddNote(note);
             }
 
         }
