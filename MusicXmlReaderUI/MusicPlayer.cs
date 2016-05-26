@@ -39,7 +39,26 @@ namespace MusicXmlReaderUI
         {
             this.midiOut = midiOut;
             this.listBox = listBox;
-            this.listBoxPoly = listBoxPoly;  
+            this.listBoxPoly = listBoxPoly;
+
+            // Temp start
+            //MidiCommand midiCommand = new MidiCommand();
+            //midiCommand.ChangeInstrument(19, midiOut); // 19 = Guitar
+            // Temp end
+
+        }
+
+        /// <summary>
+        /// Simple impementation for changing instrument for all parts!
+        /// See instrument numbers at
+        /// https://en.wikipedia.org/wiki/General_MIDI
+        /// TO DO: refine as needed.
+        /// </summary>
+        /// <param name="instrument"></param>
+        public void ChangeInstrument(int instrument)
+        {
+            MidiCommand midiCommand = new MidiCommand();
+            midiCommand.ChangeInstrument(instrument,this.midiOut); // 20 = Church Organ
         }
 
 

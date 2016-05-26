@@ -130,7 +130,7 @@ namespace MusicXmlReaderUI
             }
             else if (eventElement is MeasureElement)
             {
-                // Assuming only one harmony starts at one time.
+                // Assuming only one measure starts at one time.
                 measureElement = eventElement as MeasureElement; // Assume only one measure per event!
             }
             else if (eventElement is EndEventElement)

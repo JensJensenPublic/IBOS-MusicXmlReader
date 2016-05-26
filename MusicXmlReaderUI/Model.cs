@@ -300,6 +300,9 @@ namespace MusicXmlReaderUI
             Log(string.Format("{0} started in {1} on {2}", System.IO.Path.GetFileName(executingAssembly), executingDirectory, System.DateTime.Now.ToLongDateString()));                 
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
+
+            //musicPlayer.ChangeInstrument(20); // Church Organ
+
             this.listBoxParts = listBox;
             this.listBoxPoly = listBoxPoly;
 
