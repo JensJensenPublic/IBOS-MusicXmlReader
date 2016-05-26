@@ -92,7 +92,7 @@ namespace MusicXmlReaderUI
         //}
 
 
-        private void buttonStartUsingDOM_Click(object sender, EventArgs e)
+        private void SelectAndOpenMusicXmlFile(object sender, EventArgs e)
         {
             openFileDialog.FileName = "Node.xml"; // Use this sample file as a default
             openFileDialog.Filter = "MusicXml filer|*.xml"; // Only present .xml files
@@ -372,6 +372,42 @@ namespace MusicXmlReaderUI
         {
             model.StartMuseScore();
         }
+
+
+        #region Menu handlers
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Show a standard Select File dialog to allow the user to select and open a MusicXml file
+            SelectAndOpenMusicXmlFile(sender, e);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TO DO: Call common code to stop MusicPlayer and exit.
+        }
+
+        private void logFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ReadLogFile();
+        }
+
+        private void museScoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.StartMuseScore();
+        }
+
+        private void xmlFilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ReadMusicXmlFile();
+        }
+
+        private void fortolketXMLFilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ReadInterpretation();
+        }
+
+        #endregion
     }
 
 }
