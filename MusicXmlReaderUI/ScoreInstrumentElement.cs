@@ -65,7 +65,7 @@ namespace MusicXmlReaderUI
         
         public override string ToString()
         {
-            return (string.Format("Node: {0} {1} {2} {3}", id, instrumentSound, instrumentName, instrumentAbbreviation));    
+            return (string.Format("ScoreInstrument: Id='{0}' Sound='{1}' Navn='{2}' Forkortelse='{3}'", id, instrumentSound, instrumentName, instrumentAbbreviation));    
         }
     }
 }

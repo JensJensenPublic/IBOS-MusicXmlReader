@@ -64,7 +64,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return (string.Format("Midi: {0} {1} {2} {3} {4}",id, midiProgram, midiChannel, volume,pan));
+            return (string.Format("Midi-Instrument: Id='{0}' Program='{1}' Kanal='{2}' Volumen='{3}' Pan='{4}'",id, midiProgram, midiChannel, volume,pan));
         }
     }
 }

@@ -47,9 +47,11 @@ namespace MusicXmlReaderUI
                     case "part-name": partName = n.InnerText; break;
                     case "score-instrument":
                         scoreInstrumentElement = ScoreInstrumentElement.Create(n);
+                        Model.Log(string.Format(scoreInstrumentElement.ToString())); // Not of interest for the normal user !
                         break;                
                     case "midi-instrument":
                         midiInstrumentElement = MidiInstrumentElement.Create(n);
+                        Model.Log(string.Format(midiInstrumentElement.ToString())); // Not of interest for the normal user !
                         break;        
                 }
             } 
