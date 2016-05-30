@@ -15,7 +15,7 @@ namespace MusicXmlReaderUI
         ListBox listBoxParts; // Lists elements grouped per part
         ListBox listBoxPoly; // Lists elements grouped per time
         public MusicPlayer musicPlayer;
-        public PartlistElement partList;
+        public PartlistElement partList; // Contains the list of parts, describing all instruments used including their midi parameters
         int divisions; // Current number of divisions of a quarternode
         int tempo;     // Current tempo in beats pr minute
         int currentMeasureNumber = 0 ; // Current measure number
