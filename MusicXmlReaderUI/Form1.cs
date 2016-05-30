@@ -107,6 +107,7 @@ namespace MusicXmlReaderUI
                 textBoxMessage.Text = string.Format("Kunne ikke indlæse {0}", openFileDialog.FileName);
                 return;
             }
+            
 
             // Reflect the UI values of the UserSettings to the model
             InitUserSettings(model.UserSettings);
@@ -121,11 +122,15 @@ namespace MusicXmlReaderUI
             autoReload = true; // From now on all changes are  made by user and must be handled
       
             // Load the ListBox showing the filtered values 
-            listBoxFiltered.Focus();
-            listBoxFiltered.SelectedIndex = 0;
+            //listBoxFiltered.Focus();
+            //listBoxFiltered.SelectedIndex = 0;
 
             // Let the Model do the hard work of transforming to e timed representation.
             model.LoadListBoxTimes();
+
+            // Focus on the listbox representing the time representation
+            listBoxTimes.Focus();
+            listBoxTimes.SelectedIndex = 0;
         }
 
         #region Buttons
