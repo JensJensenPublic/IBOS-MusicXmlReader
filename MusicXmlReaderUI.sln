@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXmlReaderUI", "MusicXmlReaderUI\MusicXmlReaderUI.csproj", "{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -11,6 +11,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSynthesis", "MusicSynthesis\MusicSynthesis.csproj", "{529D2C78-0FBC-4BF1-B5AE-F348695546C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSynthesisExperiments", "MusicSynthesisExperiments\MusicSynthesisExperiments.csproj", "{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{1B62366B-E595-454C-846D-E36240015490}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Dropbox\Musiklæser\Delt\Release.2016.05.30\Brugervejledning.doc = ..\..\..\..\Dropbox\Musiklæser\Delt\Release.2016.05.30\Brugervejledning.doc
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
