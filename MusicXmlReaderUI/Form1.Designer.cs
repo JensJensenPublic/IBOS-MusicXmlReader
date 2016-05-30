@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBoxTimes = new System.Windows.Forms.ListBox();
             this.listBoxFiltered = new System.Windows.Forms.ListBox();
-            this.buttonStart = new System.Windows.Forms.Button();
-            this.Play = new System.Windows.Forms.Button();
             this.Stop = new System.Windows.Forms.Button();
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.numericUpDownPlaySpeed = new System.Windows.Forms.NumericUpDown();
@@ -77,16 +75,12 @@
             this.checkBoxPlayMeasureNumbers = new System.Windows.Forms.CheckBox();
             this.checkBoxReadEndEvents = new System.Windows.Forms.CheckBox();
             this.checkedListBoxPartsToReadLyrics = new System.Windows.Forms.CheckedListBox();
-            this.buttonReadLogFile = new System.Windows.Forms.Button();
             this.checkBoxReadPitch = new System.Windows.Forms.CheckBox();
             this.checkBoxReadOctave = new System.Windows.Forms.CheckBox();
             this.checkBoxReadDuration = new System.Windows.Forms.CheckBox();
-            this.buttonReadMusicXmlFile = new System.Windows.Forms.Button();
-            this.buttonReadInterpretation = new System.Windows.Forms.Button();
             this.labelReadLyrics = new System.Windows.Forms.Label();
             this.checkedListBoxParts = new System.Windows.Forms.CheckedListBox();
             this.labelSelectParts = new System.Windows.Forms.Label();
-            this.buttonStartMuseScore = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.menuStripFile.SuspendLayout();
             this.SuspendLayout();
@@ -113,32 +107,9 @@
             this.listBoxFiltered.Size = new System.Drawing.Size(239, 407);
             this.listBoxFiltered.TabIndex = 2;
             // 
-            // buttonStart
-            // 
-            this.buttonStart.AccessibleDescription = "Tryk Enter for at vælge MusicXml fil.";
-            this.buttonStart.AccessibleName = "VælgMusicXmlFile";
-            this.buttonStart.Location = new System.Drawing.Point(12, 24);
-            this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(110, 23);
-            this.buttonStart.TabIndex = 1;
-            this.buttonStart.Text = "Vælg MusicXml fil";
-            this.buttonStart.UseVisualStyleBackColor = true;
-            this.buttonStart.Click += new System.EventHandler(this.SelectAndOpenMusicXmlFile);
-            // 
-            // Play
-            // 
-            this.Play.Location = new System.Drawing.Point(12, 53);
-            this.Play.Name = "Play";
-            this.Play.Size = new System.Drawing.Size(75, 23);
-            this.Play.TabIndex = 4;
-            this.Play.TabStop = false;
-            this.Play.Text = "Spil enstemmigt";
-            this.Play.UseVisualStyleBackColor = true;
-            this.Play.Click += new System.EventHandler(this.Play_Click);
-            // 
             // Stop
             // 
-            this.Stop.Location = new System.Drawing.Point(157, 53);
+            this.Stop.Location = new System.Drawing.Point(350, 53);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(75, 23);
             this.Stop.TabIndex = 8;
@@ -148,7 +119,7 @@
             // 
             // textBoxMessage
             // 
-            this.textBoxMessage.Location = new System.Drawing.Point(128, 24);
+            this.textBoxMessage.Location = new System.Drawing.Point(12, 27);
             this.textBoxMessage.Name = "textBoxMessage";
             this.textBoxMessage.Size = new System.Drawing.Size(1001, 20);
             this.textBoxMessage.TabIndex = 6;
@@ -161,7 +132,7 @@
             0,
             0,
             0});
-            this.numericUpDownPlaySpeed.Location = new System.Drawing.Point(411, 56);
+            this.numericUpDownPlaySpeed.Location = new System.Drawing.Point(440, 55);
             this.numericUpDownPlaySpeed.Maximum = new decimal(new int[] {
             200,
             0,
@@ -184,7 +155,7 @@
             // 
             // butonPlayPoly
             // 
-            this.butonPlayPoly.Location = new System.Drawing.Point(321, 53);
+            this.butonPlayPoly.Location = new System.Drawing.Point(257, 52);
             this.butonPlayPoly.Name = "butonPlayPoly";
             this.butonPlayPoly.Size = new System.Drawing.Size(75, 23);
             this.butonPlayPoly.TabIndex = 7;
@@ -543,16 +514,6 @@
             this.checkedListBoxPartsToReadLyrics.TabStop = false;
             this.checkedListBoxPartsToReadLyrics.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPartsToReadLyrics_ItemCheck);
             // 
-            // buttonReadLogFile
-            // 
-            this.buttonReadLogFile.Location = new System.Drawing.Point(856, 417);
-            this.buttonReadLogFile.Name = "buttonReadLogFile";
-            this.buttonReadLogFile.Size = new System.Drawing.Size(120, 23);
-            this.buttonReadLogFile.TabIndex = 22;
-            this.buttonReadLogFile.Text = "Oplæs logfil";
-            this.buttonReadLogFile.UseVisualStyleBackColor = true;
-            this.buttonReadLogFile.Click += new System.EventHandler(this.buttonReadLogFile_Click);
-            // 
             // checkBoxReadPitch
             // 
             this.checkBoxReadPitch.AutoSize = true;
@@ -595,26 +556,6 @@
             this.checkBoxReadDuration.UseVisualStyleBackColor = true;
             this.checkBoxReadDuration.CheckedChanged += new System.EventHandler(this.checkBoxReadDuration_CheckedChanged);
             // 
-            // buttonReadMusicXmlFile
-            // 
-            this.buttonReadMusicXmlFile.Location = new System.Drawing.Point(856, 446);
-            this.buttonReadMusicXmlFile.Name = "buttonReadMusicXmlFile";
-            this.buttonReadMusicXmlFile.Size = new System.Drawing.Size(120, 23);
-            this.buttonReadMusicXmlFile.TabIndex = 26;
-            this.buttonReadMusicXmlFile.Text = "Oplæs MusicXml fil";
-            this.buttonReadMusicXmlFile.UseVisualStyleBackColor = true;
-            this.buttonReadMusicXmlFile.Click += new System.EventHandler(this.buttonReadMusicXmlFile_Click);
-            // 
-            // buttonReadInterpretation
-            // 
-            this.buttonReadInterpretation.Location = new System.Drawing.Point(856, 476);
-            this.buttonReadInterpretation.Name = "buttonReadInterpretation";
-            this.buttonReadInterpretation.Size = new System.Drawing.Size(120, 23);
-            this.buttonReadInterpretation.TabIndex = 27;
-            this.buttonReadInterpretation.Text = "Oplæs fortolkning";
-            this.buttonReadInterpretation.UseVisualStyleBackColor = true;
-            this.buttonReadInterpretation.Click += new System.EventHandler(this.buttonReadInterpretation_Click);
-            // 
             // labelReadLyrics
             // 
             this.labelReadLyrics.AutoSize = true;
@@ -642,31 +583,17 @@
             this.labelSelectParts.TabIndex = 29;
             this.labelSelectParts.Text = "Vælg stemmer";
             // 
-            // buttonStartMuseScore
-            // 
-            this.buttonStartMuseScore.Location = new System.Drawing.Point(856, 388);
-            this.buttonStartMuseScore.Name = "buttonStartMuseScore";
-            this.buttonStartMuseScore.Size = new System.Drawing.Size(120, 23);
-            this.buttonStartMuseScore.TabIndex = 30;
-            this.buttonStartMuseScore.Text = "StartMuseScore";
-            this.buttonStartMuseScore.UseVisualStyleBackColor = true;
-            this.buttonStartMuseScore.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 496);
-            this.Controls.Add(this.buttonStartMuseScore);
             this.Controls.Add(this.labelSelectParts);
             this.Controls.Add(this.checkedListBoxParts);
             this.Controls.Add(this.labelReadLyrics);
-            this.Controls.Add(this.buttonReadInterpretation);
-            this.Controls.Add(this.buttonReadMusicXmlFile);
             this.Controls.Add(this.checkBoxReadDuration);
             this.Controls.Add(this.checkBoxReadOctave);
             this.Controls.Add(this.checkBoxReadPitch);
-            this.Controls.Add(this.buttonReadLogFile);
             this.Controls.Add(this.checkedListBoxPartsToReadLyrics);
             this.Controls.Add(this.checkBoxReadEndEvents);
             this.Controls.Add(this.checkBoxPlayMeasureNumbers);
@@ -683,8 +610,6 @@
             this.Controls.Add(this.numericUpDownPlaySpeed);
             this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.Stop);
-            this.Controls.Add(this.Play);
-            this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.listBoxFiltered);
             this.Controls.Add(this.listBoxTimes);
             this.Controls.Add(this.menuStripFile);
@@ -704,8 +629,6 @@
         #endregion
         private System.Windows.Forms.ListBox listBoxTimes;
         private System.Windows.Forms.ListBox listBoxFiltered;
-        private System.Windows.Forms.Button buttonStart;
-        private System.Windows.Forms.Button Play;
         private System.Windows.Forms.Button Stop;
         private System.Windows.Forms.TextBox textBoxMessage;
         private System.Windows.Forms.NumericUpDown numericUpDownPlaySpeed;
@@ -724,16 +647,12 @@
         private System.Windows.Forms.CheckBox checkBoxPlayMeasureNumbers;
         private System.Windows.Forms.CheckBox checkBoxReadEndEvents;
         private System.Windows.Forms.CheckedListBox checkedListBoxPartsToReadLyrics;
-        private System.Windows.Forms.Button buttonReadLogFile;
         private System.Windows.Forms.CheckBox checkBoxReadPitch;
         private System.Windows.Forms.CheckBox checkBoxReadOctave;
         private System.Windows.Forms.CheckBox checkBoxReadDuration;
-        private System.Windows.Forms.Button buttonReadMusicXmlFile;
-        private System.Windows.Forms.Button buttonReadInterpretation;
         private System.Windows.Forms.Label labelReadLyrics;
         private System.Windows.Forms.CheckedListBox checkedListBoxParts;
         private System.Windows.Forms.Label labelSelectParts;
-        private System.Windows.Forms.Button buttonStartMuseScore;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
