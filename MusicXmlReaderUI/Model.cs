@@ -557,7 +557,7 @@ namespace MusicXmlReaderUI
             get
             {
                 // For now we expect to find the musicxml files here.
-                return executingDirectory;
+                return Path.Combine(executingDirectory, "MusicXml samples");
             }
         }
 
