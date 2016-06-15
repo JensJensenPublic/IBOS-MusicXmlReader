@@ -257,6 +257,14 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public float MidiVolume
+        {
+            get
+            {
+                return scorePartElement.MidiVolume;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method

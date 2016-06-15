@@ -5,8 +5,8 @@ namespace MusicXmlReaderUI
     public class MidiInstrumentElement : Element
     {
         private string id;
-        private int midiProgram;
-        private int midiChannel;
+        private int midiProgram = 1; // Use Grand Acoustic Piano as default
+        private int midiChannel = 1; // Use midi channel 1 as default
         private float midiVolume;
         private string pan;
 

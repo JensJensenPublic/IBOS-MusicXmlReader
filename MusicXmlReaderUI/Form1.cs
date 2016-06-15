@@ -130,7 +130,7 @@ namespace MusicXmlReaderUI
 
             // Focus on the listbox representing the time representation
             listBoxTimes.Focus();
-            listBoxTimes.SelectedIndex = 0;
+            //listBoxTimes.SelectedIndex = 0;
         }
 
         #region Buttons

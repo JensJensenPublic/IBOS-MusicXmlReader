@@ -286,8 +286,8 @@ namespace MusicXmlReaderUI
             //{
             //    Log(string.Format("Failed to load {0} ({1})",xmlFileName,e.Message));
             //    ok = false;
-            //}
-            return ok;
+            //}               
+                        return ok;
         }
 
 
@@ -361,7 +361,7 @@ namespace MusicXmlReaderUI
                     allMusicXmlObjecsts.Add(scorePartElement);
                     continueRecursion = false;
                     break;
-                case "part": 
+                case "part":
                     // Describes the notes (and pauses) of a part.
                     // (The mata-data is described in "score-part")               
                     PartElement partElement = PartElement.Create(node);
@@ -373,7 +373,14 @@ namespace MusicXmlReaderUI
                     // Save the part number as the current part number. This will be saved with each note!  
                     //this.currentPartNumber = currentScorePartElement.partNumber;
                     // Save the midiChannel of the part. This will be saved with each note!
-                    //this.currentMidiChannel = currentScorePartElement.midiInstrumentElement.MidiChannel;                     
+                    //this.currentMidiChannel = currentScorePartElement.midiInstrumentElement.MidiChannel; 
+
+                    // Set up the the MusicPlayer to use the specified midi program for the specified midiChannel
+                    if ((0 != this.currentScorePartElement.MidiChannel) && (0 != this.currentScorePartElement.MidiProgram))
+                    {
+                        musicPlayer.ChangeInstrument(this.currentScorePartElement.MidiChannel, this.currentScorePartElement.MidiProgram);
+                    }
+
                     break;
                 // We know the existance of the following elements, but for the time being we ignore them.
                 case "work":

@@ -163,7 +163,7 @@ namespace NAudioDemo
             //NotePlayer notePlayer = new NotePlayer(midiOut);
 
             MidiCommand midiCommand = new MidiCommand();
-            midiCommand.ChangeInstrument(0, midiOut);
+            midiCommand.ChangeInstrument(1,1,midiOut);
 
             // Start by playing an unaltered C in octave 4
             //MidiNote midiNote = StartNote(ChromaticStep.C,0,4, 0x7f);
@@ -186,8 +186,8 @@ namespace NAudioDemo
             //    System.Threading.Thread.Sleep(1000);
             //}
 
-            // Back to Instrument 0
-            midiCommand.ChangeInstrument(0, midiOut);
+            // Back to Instrument Acoustic piano
+            midiCommand.ChangeInstrument(1,1,midiOut);
 
             // Iterate over all chord types
             foreach (ChordType chordType in Enum.GetValues(typeof(ChordType)))

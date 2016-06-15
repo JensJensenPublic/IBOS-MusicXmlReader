@@ -30,31 +30,41 @@ namespace JSJ.MusicSynthesis
 
     public class MidiNote
     {
+        int channelCode;
         private byte[] startCommand;
 
+
+
         /// <summary>
-        /// Constructor, primarily used for playing notes from a MusicXml description
+        ///  Constructor, primarily used for playing notes from a MusicXml description
         /// </summary>
         /// <param name="step"></param>
         /// <param name="alter"></param>
         /// <param name="octave"></param>
         /// <param name="velocity"></param>
+        /// <param name="midiChannel"></param>
         /// <param name="midiOut"></param>
+        public MidiNote(string step, string alter, string octave, int velocity, int midiChannel, MidiOut midiOut)
+        {
+            CommonConstructor(GetChromaticStep(step), GetAlterValue(alter), int.Parse(octave), velocity, Interval.Unison, midiChannel, midiOut);
+        }
+
+
         public MidiNote(string step, string alter, string octave, int velocity, MidiOut midiOut)
         {
-            CommonConstructor(GetChromaticStep(step), GetAlterValue(alter), int.Parse(octave), velocity, Interval.Unison, midiOut);
+            CommonConstructor(GetChromaticStep(step), GetAlterValue(alter), int.Parse(octave), velocity, Interval.Unison, 1, midiOut);
         }
 
         // New Code
         public MidiNote(ChromaticStep step, int alter, int octave, int velocity, Interval interval)
         {
-            CommonConstructor(step, alter, octave, velocity, interval, null); // Default: MidiOut = null
+            CommonConstructor(step, alter, octave, velocity, interval, 1, null); // Default: MidiOut=null  midiChannel=1
         }
 
         // New Code
         public MidiNote(ChromaticStep step, int octave, int velocity, Interval interval)
         {
-            CommonConstructor(step, 0, octave, velocity, interval, null); // Default: MidiOut = null
+            CommonConstructor(step, 0, octave, velocity, interval, 1,null); // Default: MidiOut=null  midiChannel=1
         }
 
         /// <summary>
@@ -169,10 +179,11 @@ namespace JSJ.MusicSynthesis
         /// <param name="velocity"></param>
         /// <param name="interval"></param>
         /// <param name="midiOut"></param>
-        private void CommonConstructor(ChromaticStep step, int alter, int octave, int velocity, Interval interval, MidiOut midiOut)
+        private void CommonConstructor(ChromaticStep step, int alter, int octave, int velocity, Interval interval, int midiChannel,MidiOut midiOut)
         {
+            this.channelCode = (midiChannel - 1) % 16; 
             startCommand = new byte[3];
-            startCommand[0] = 0x90; // Command "Start"
+            startCommand[0] = (byte) (0x90 + channelCode); // Command "Start"
             startCommand[1] = (byte)(12 * (octave + 1) + (int)step + alter + (int)interval);
             startCommand[2] = (byte)velocity;
             StartPlaying(midiOut);
@@ -188,7 +199,7 @@ namespace JSJ.MusicSynthesis
         {
             if (null == midiOut) return;
             byte[] stopCommand = new byte[3];
-            stopCommand[0] = 0x80; // Command STOP
+            stopCommand[0] = (byte) (0x80 + channelCode); // Command STOP
             stopCommand[1] = this.startCommand[1];
             stopCommand[2] = this.startCommand[2];
             midiOut.SendBuffer(stopCommand);

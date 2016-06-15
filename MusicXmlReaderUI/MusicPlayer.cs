@@ -46,19 +46,41 @@ namespace MusicXmlReaderUI
             //midiCommand.ChangeInstrument(19, midiOut); // 19 = Guitar
             // Temp end
 
+            //ChangeInstrumentForAllChannels(20);
+            //ChangeInstrument(1, 20);  // Change channel 1 to Church Organ
+            //ChangeInstrument(1, 1);   // Change channel 1 to Grand Acoustic Piano
+            //ChangeInstrument(1, 43);  // Change channel 1 to Cello
+            //ChangeInstrument(1, 25);  // Change channel 1 to Acoustic Guitar
+
+
         }
 
+        ///// <summary>
+        ///// Simple impementation for changing instrument for all channels!
+        ///// See instrument numbers at
+        ///// https://en.wikipedia.org/wiki/General_MIDI
+        ///// TO DO: refine as needed.
+        ///// </summary>
+        ///// <param name="instrument"></param>
+        //public void ChangeInstrumentForAllChannels(int instrument)
+        //{
+        //    MidiCommand midiCommand = new MidiCommand();
+        //    midiCommand.ChangeInstrument(instrument,this.midiOut); // 20 = Church Organ
+        //}
+
+
         /// <summary>
-        /// Simple impementation for changing instrument for all parts!
+        /// Simple implementation for changing instrument for a single midi channel
         /// See instrument numbers at
         /// https://en.wikipedia.org/wiki/General_MIDI
-        /// TO DO: refine as needed.
         /// </summary>
-        /// <param name="instrument"></param>
-        public void ChangeInstrument(int instrument)
+        /// <param name="channel">Must be an integer in [1..16]</param>
+        /// <param name="instrument">Must be an integer in [1.127]</param>
+        public void ChangeInstrument(int channel, int instrument)
         {
+            Model.Log(string.Format("MusicPlayer.ChangeInstrument(channel={0} instrument={1})", channel, instrument));
             MidiCommand midiCommand = new MidiCommand();
-            midiCommand.ChangeInstrument(instrument,this.midiOut); // 20 = Church Organ
+            midiCommand.ChangeInstrument(channel, instrument, this.midiOut);
         }
 
 
@@ -214,7 +236,8 @@ namespace MusicXmlReaderUI
                         if (userSettings.partsToPlay[i])
                         {
                             // This part is selected to be played (for instance from the GUI)
-                            noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                            noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, noteElement.MidiChannel, midiOut);
+                            //noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, 1, midiOut);
                         }
                     }
                 }
