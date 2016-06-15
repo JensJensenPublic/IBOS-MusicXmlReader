@@ -96,6 +96,7 @@
     <Compile Include="TimeElement.cs" />
     <Compile Include="UnimplementedElement.cs" />
     <Compile Include="UserSettings.cs" />
+    <Compile Include="Utilities.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

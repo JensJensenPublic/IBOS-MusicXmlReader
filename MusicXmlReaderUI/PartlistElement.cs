@@ -123,8 +123,8 @@ namespace MusicXmlReaderUI
             foreach (ScorePartElement scorePartElement in partArray)
             {
                 list.Add(string.Format("Stemme[{0}]: {1} ({2})", scorePartElement.partNumber, scorePartElement.partName, scorePartElement.partId));
-                list.Add(string.Format("   {0}", scorePartElement.scoreInstrumentElement.ToString()));
-                list.Add(string.Format("   {0}", scorePartElement.midiInstrumentElement.ToString()));
+                list.Add(string.Format("   {0}", scorePartElement.ScoreInstrumentString));
+                list.Add(string.Format("   {0}", scorePartElement.MidiInstrumentString));
 
             }
             

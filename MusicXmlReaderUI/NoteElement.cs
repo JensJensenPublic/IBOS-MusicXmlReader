@@ -31,15 +31,20 @@ namespace MusicXmlReaderUI
         string localizedPauseType = ""; //  If this is a pause, not a note
         string localizedTie = "";
         Pitch pitchValue;
+        // The following values (measureNumber partId, partNumber and midiChannel)
+        // are not found inside the XML describing the note, but are derived from the XML surrounding the note.
         int measureNumber;
-        string partId;
-        int partNumber;
-        //int startTime;
+        //string partId;   // ID of part to which this note belongs   
+        //int partNumber;  // Part to which this note belongs 
+        //int midiChannel; // Midi channel to be used for playing the note. Implicitly also specifies the Midi instrument to be used.
+
         string syllabic; // Child of lyric
         string text;     // Child of lyric
         string staffString = "";
         int staff = 0;
-        string articulations = "";
+        //string articulations = "";
+
+        ScorePartElement scorePartElement; // Holds a reference to the ScorePartelement describing the score part for this note
 
         MidiNote midiNote = null; // If !null holds a MidiNote curently being played and representing this NoteElement
 
@@ -150,7 +155,7 @@ namespace MusicXmlReaderUI
         {
             get
             {
-                return partId;
+                return scorePartElement.partId;
             }
         }
 
@@ -162,7 +167,7 @@ namespace MusicXmlReaderUI
         {
             get
             {
-                return partNumber;
+                return scorePartElement.partNumber;
             }
         }
 
@@ -241,6 +246,14 @@ namespace MusicXmlReaderUI
             get
             {
                 return localizedPauseType;
+            }
+        }
+
+        public int MidiChannel
+        {
+            get
+            {
+                return scorePartElement.MidiChannel; // Use channel 1 as a default
             }
         }
 
@@ -323,43 +336,42 @@ namespace MusicXmlReaderUI
             }
             return "";
         }
-        
 
-        /// <summary>
-        /// Private constructor, used by the Crate() method
-        /// </summary>
-        /// <param name="node"></param>
-        private NoteElement(XmlNode xmlNode,int divisions,int measureNumber, string partId,int partNumber)
+        private NoteElement(XmlNode xmlNode, int divisions, int measureNumber, ScorePartElement scorePartElement) // New version
         {
+            this.scorePartElement = scorePartElement; 
             this.measureNumber = measureNumber;
-            this.partId = partId;
-            this.partNumber = partNumber;
+            //this.partId = scorePartElement.partId;
+            //this.partNumber = scorePartElement.partNumber;
+            //this.midiChannel = (null == scorePartElement.midiInstrumentElement) ? 1 : scorePartElement.midiInstrumentElement.MidiChannel; // Use channel 1 as a default
             foreach (XmlNode child in xmlNode.ChildNodes)
             {
                 switch (child.Name)
                 {
                     case "pitch":
-                         // The pitch represents the sound, not what is notated, so an alter element must be included even if it represents a flat or sharp
-                         // that is part of the key signature. This is why the E-flat contains an alter element, though there is no accidental on the note.
-                         step = GetChildValue(child, "step");
-                         alter = GetChildValue(child, "alter");
-                         octave = GetChildValue(child, "octave");
-                         pitchValue = Pitch.Create(step, alter, octave);
-                         break;                
+                        // The pitch represents the sound, not what is notated, so an alter element must be included even if it represents a flat or sharp
+                        // that is part of the key signature. This is why the E-flat contains an alter element, though there is no accidental on the note.
+                        step = GetChildValue(child, "step");
+                        alter = GetChildValue(child, "alter");
+                        octave = GetChildValue(child, "octave");
+                        pitchValue = Pitch.Create(step, alter, octave);
+                        break;
                     case "duration": duration = int.Parse(child.InnerText); break;
                     case "chord": chord = true; break;
                     case "type": type = child.InnerText; break;
                     case "voice": voice = child.InnerText; break;
                     case "dot": dot = true; break;
-                    case "tie": tieElement = TieElement.Create(child);
-                          tieType = tieElement.TieType;
-                          tieStop = ("stop" == tieType);
-                          break;
+                    case "tie":
+                        tieElement = TieElement.Create(child);
+                        tieType = tieElement.TieType;
+                        tieStop = ("stop" == tieType);
+                        break;
                     case "lyric":
-                          text = GetChildValue(child, "text");
-                          syllabic = GetChildValue(child, "syllabic");
-                          break;
-                    case "staff": staffString= child.InnerText;
+                        text = GetChildValue(child, "text");
+                        syllabic = GetChildValue(child, "syllabic");
+                        break;
+                    case "staff":
+                        staffString = child.InnerText;
                         staff = int.Parse(staffString);
                         break;
                     case "notations": // TO DO: Find out what to do here                                                
@@ -381,16 +393,86 @@ namespace MusicXmlReaderUI
                 }
             }
             localizedType = LocalizeType(Type, dot);
-            localizedPauseType = (string.IsNullOrEmpty(step)) ? LocalizePause(Type,dot) : ""; 
-            localizedTie  = LocalizeTie(tieType); 
+            localizedPauseType = (string.IsNullOrEmpty(step)) ? LocalizePause(Type, dot) : "";
+            localizedTie = LocalizeTie(tieType);
             this.divisions = divisions;
             // Model.GetNoteTiming(out this.startTime, out this.endTime, int.Parse(this.duration)); 
         }
 
-        public static NoteElement Create(XmlNode node, int divisions, int measureNumber, string partId, int partNumber)
+
+        ///// <summary>
+        ///// Private constructor, used by the Crate() method
+        ///// </summary>
+        ///// <param name="node"></param>
+        //private NoteElement(XmlNode xmlNode,int divisions,int measureNumber, string partId,int partNumber,int midiChannel)
+        //{
+        //    this.measureNumber = measureNumber;
+        //    this.partId = partId;
+        //    this.partNumber = partNumber;
+        //    this.midiChannel = midiChannel;
+        //    foreach (XmlNode child in xmlNode.ChildNodes)
+        //    {
+        //        switch (child.Name)
+        //        {
+        //            case "pitch":
+        //                 // The pitch represents the sound, not what is notated, so an alter element must be included even if it represents a flat or sharp
+        //                 // that is part of the key signature. This is why the E-flat contains an alter element, though there is no accidental on the note.
+        //                 step = GetChildValue(child, "step");
+        //                 alter = GetChildValue(child, "alter");
+        //                 octave = GetChildValue(child, "octave");
+        //                 pitchValue = Pitch.Create(step, alter, octave);
+        //                 break;                
+        //            case "duration": duration = int.Parse(child.InnerText); break;
+        //            case "chord": chord = true; break;
+        //            case "type": type = child.InnerText; break;
+        //            case "voice": voice = child.InnerText; break;
+        //            case "dot": dot = true; break;
+        //            case "tie": tieElement = TieElement.Create(child);
+        //                  tieType = tieElement.TieType;
+        //                  tieStop = ("stop" == tieType);
+        //                  break;
+        //            case "lyric":
+        //                  text = GetChildValue(child, "text");
+        //                  syllabic = GetChildValue(child, "syllabic");
+        //                  break;
+        //            case "staff": staffString= child.InnerText;
+        //                staff = int.Parse(staffString);
+        //                break;
+        //            case "notations": // TO DO: Find out what to do here                                                
+        //                break;
+        //            case "beam": // TO DO: Find out what to do here                                                
+        //                break;
+        //            case "rest": // TO DO: Find out what to do here                                                
+        //                break;
+        //            case "accidental": // TO DO: Find out what to do here                                                
+        //                break;
+        //            case "time-modification": // TO DO: Find out what to do here                                                
+        //                break;
+        //            case "instrument": // TO DO: Find out what to do here                                                
+        //                break;
+        //            case "stem": // TO DO: Find out what to do here                                                
+        //                break;
+        //            //default:  throw new ArgumentException();
+        //            default: Model.Log(string.Format("NoteElement() Unknown child.Name '{0}'", child.Name)); break;
+        //        }
+        //    }
+        //    localizedType = LocalizeType(Type, dot);
+        //    localizedPauseType = (string.IsNullOrEmpty(step)) ? LocalizePause(Type,dot) : ""; 
+        //    localizedTie  = LocalizeTie(tieType); 
+        //    this.divisions = divisions;
+        //    // Model.GetNoteTiming(out this.startTime, out this.endTime, int.Parse(this.duration)); 
+        //}
+
+        //public static NoteElement Create(XmlNode node, int divisions, int measureNumber, string partId, int partNumber,int midiChannel) // Old version
+        //{
+        //    return new NoteElement(node, divisions, measureNumber, partId, partNumber, midiChannel);
+        //}
+
+        public static NoteElement Create(XmlNode node, int divisions,int tempMeasureNumber, ScorePartElement scorePartElement) // New version
         {
-            return new NoteElement(node, divisions, measureNumber, partId, partNumber);
+            return new NoteElement(node, divisions, tempMeasureNumber, scorePartElement);
         }
+
 
         public override string ToString()
         {
@@ -402,7 +484,7 @@ namespace MusicXmlReaderUI
             }
 
             // Primarily for debugging
-            string partString = string.Format("{0} ", partId);
+            string partString = string.Format("{0} ", PartId);
             string timeString = string.Format("{0}:", startTime);
 
             if (!String.IsNullOrEmpty(Step))

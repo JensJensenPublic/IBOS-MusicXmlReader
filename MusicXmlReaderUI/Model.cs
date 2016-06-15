@@ -23,8 +23,9 @@ namespace MusicXmlReaderUI
         int numberOfParts; // Number of parts
         //int currentPartitionNumber = -1;
         string currentPartId = "";
-        int currentPartNumber = 0;
-        ScorePartElement scorePartElement = null;
+        //int currentPartNumber = 0;  // Will be saved with each note
+        //int currentMidiChannel = 1; // Will be saved with each note
+        ScorePartElement currentScorePartElement = null;
         UserSettings userSettings;
  
         string executingAssembly;
@@ -330,7 +331,11 @@ namespace MusicXmlReaderUI
                         this.latestMeasureNumber = this.currentMeasureNumber;
                         tempMeasureNumber = this.currentMeasureNumber;
                     }
-                    allMusicXmlObjecsts.Add(NoteElement.Create(node, this.divisions, tempMeasureNumber, this.currentPartId, this.currentPartNumber));
+                    //NoteElement note = NoteElement.Create(node, this.divisions, tempMeasureNumber, this.currentPartId, this.currentPartNumber, this.currentMidiChannel); // Old version
+                    NoteElement note = NoteElement.Create(node, this.divisions, tempMeasureNumber, this.currentScorePartElement); // New version
+
+                    // Model.Log(string.Format("MidiChannel={0}", note.MidiChannel));           
+                    allMusicXmlObjecsts.Add(note);
                     continueRecursion = false;
                     break;
                 case "part-list":
@@ -352,7 +357,7 @@ namespace MusicXmlReaderUI
                     // Describes the meta-data related to a part.
                     // This includes "part-name", "score-instrument" and "midi-instrument".
                     // (The notes and pauses are described in "part")
-                    scorePartElement = ScorePartElement.Create(node);
+                    ScorePartElement scorePartElement = ScorePartElement.Create(node);
                     allMusicXmlObjecsts.Add(scorePartElement);
                     continueRecursion = false;
                     break;
@@ -364,9 +369,11 @@ namespace MusicXmlReaderUI
                     // Save the current part Id
                     this.currentPartId = partElement.PartId;
                     // Look up the partition in the partList
-                    ScorePartElement currentScorePartElement = partList.GetPartFromId(partElement.PartId);
+                    this.currentScorePartElement = partList.GetPartFromId(partElement.PartId);
                     // Save the part number as the current part number. This will be saved with each note!  
-                    this.currentPartNumber = currentScorePartElement.partNumber;        
+                    //this.currentPartNumber = currentScorePartElement.partNumber;
+                    // Save the midiChannel of the part. This will be saved with each note!
+                    //this.currentMidiChannel = currentScorePartElement.midiInstrumentElement.MidiChannel;                     
                     break;
                 // We know the existance of the following elements, but for the time being we ignore them.
                 case "work":

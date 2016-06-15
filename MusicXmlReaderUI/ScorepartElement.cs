@@ -8,8 +8,8 @@ namespace MusicXmlReaderUI
         public string partId = ""; // For instance "P1"
         public string partName = ""; // For instance "Soprano"
         public int partNumber; // A unique artificial index  for this part.
-        public ScoreInstrumentElement scoreInstrumentElement;
-        public MidiInstrumentElement midiInstrumentElement;
+        private ScoreInstrumentElement scoreInstrumentElement;
+        private MidiInstrumentElement midiInstrumentElement;
 
 
         /// <summary>
@@ -65,7 +65,77 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return string.Format("Stemme[{0}] {1} = {2} TODO: Fill in the rest!", partNumber, partId, partName);  
+            return string.Format("Stemme[{0}] {1} = {2} TODO: Fill in the rest!", partNumber, partId, partName);
         }
+
+  
+        public int MidiChannel
+        {
+            get
+            {
+                // Use midi channel 1 as default
+                if (null == midiInstrumentElement)
+                {
+                    Model.Log(string.Format("ScorePartElement: midiInstrumentElement is null. Using 1 as default value for MidiChannel"));
+                    return 1;
+                }
+                return midiInstrumentElement.MidiChannel; 
+            }
+        }
+
+        public int MidiProgram
+        {
+            get
+            {
+                if(null == midiInstrumentElement)
+                {
+                    Model.Log(string.Format("ScorePartElement: midiInstrumentElement is null. Using 1 as default value for MidiProgram"));
+                    return 1;
+                }
+                return midiInstrumentElement.MidiProgram; // Use midi channel 1 as default
+            }
+        }
+
+        public float MidiVolume
+        {
+            get
+            {
+                if (null == midiInstrumentElement)
+                {
+                    Model.Log(string.Format("ScorePartElement: midiInstrumentElement is null. Using 127 as default value for MidiVolume"));
+                    return 127;
+                }
+                return midiInstrumentElement.MidiVolume ; // Use midi volume 127 as default
+            }
+        }
+
+        public string MidiInstrumentString
+        {
+            get
+            {
+                if (null == midiInstrumentElement)
+                {
+                    Model.Log(string.Format("ScorePartElement: midiInstrumentElement is null. Using empty string as default value for MidiInstrumentString"));
+                    return "";
+                }
+                return midiInstrumentElement.ToString();
+            }
+        }
+
+        public string ScoreInstrumentString
+        {
+            get
+            {
+                if (null == scoreInstrumentElement)
+                {
+                    Model.Log(string.Format("ScorePartElement: scoreInstrumentElement is null. Using empty string as default value for ScoreInstrumentString"));
+                    return "";
+                }
+                return scoreInstrumentElement.ToString(); 
+            }
+        }
+
+
+
     }
 }
