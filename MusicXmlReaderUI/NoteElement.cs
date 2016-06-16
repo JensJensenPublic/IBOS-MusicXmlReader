@@ -25,6 +25,7 @@ namespace MusicXmlReaderUI
         bool dot = false;
         int divisions = 0; 
         TieElement tieElement;
+        bool graceNote;  
         string tieType = ""; // Is this note tied to another note
         bool tieStop = false;
         string localizedType = "";      //  If this is n note,  not a pause
@@ -83,7 +84,8 @@ namespace MusicXmlReaderUI
         }
 
         public string Voice
-        {            get
+        {
+            get
             {
                 return voice;
             }
@@ -265,6 +267,15 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public bool GraceNote
+        {
+            get
+            {
+                return graceNote;
+            }
+        }
+
+ 
 
         /// <summary>
         /// To force the use of the Create() method
@@ -395,6 +406,11 @@ namespace MusicXmlReaderUI
                     case "instrument": // TO DO: Find out what to do here                                                
                         break;
                     case "stem": // TO DO: Find out what to do here                                                
+                        break;
+                    case "grace": // TO DO: Find out what to do here
+                        // Mark this note as a grace note, i.e a note not taking part of the normal timing mechanisms.
+                        // Grace notes may be implemented later, for now they are just ignored while building eventlists. 
+                        graceNote = true;                                                 
                         break;
                     //default:  throw new ArgumentException();
                     default: Model.Log(string.Format("NoteElement() Unknown child.Name '{0}'", child.Name)); break;

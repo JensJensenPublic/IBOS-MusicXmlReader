@@ -39,22 +39,30 @@ namespace MusicXmlReaderUI
                     if (e is NoteElement)
                     {
                         NoteElement noteElement = e as NoteElement;
-                        times.Add(noteElement);
-                        if (noteElement.Chord)
-                        {   // Start at the beginning of the previous note
-                            noteElement.StartTime = previousStartTime;
+                        if (noteElement.GraceNote)
+                        {
+                            // Grace notes are not implemented yet, but they must be explicitly ignored.
+                            // TO DO: Implement grace notes.
+                            Model.Log(string.Format("TimeDescriptionList constructor ignoring grace note {0}", noteElement.Step + noteElement.Octave));
                         }
                         else
                         {
-                            // Default: Start after the previous note
-                            noteElement.StartTime = nextStartTime;
-                            previousStartTime = nextStartTime; // Needed if the following note has the "chord" elemenn
-                            nextStartTime += noteElement.DurationInCommonDivisions;
+                            times.Add(noteElement);
+                            if (noteElement.Chord)
+                            {   // Start at the beginning of the previous note
+                                noteElement.StartTime = previousStartTime;
+                            }
+                            else
+                            {
+                                // Default: Start after the previous note
+                                noteElement.StartTime = nextStartTime;
+                                previousStartTime = nextStartTime; // Needed if the following note has the "chord" elemenn
+                                nextStartTime += noteElement.DurationInCommonDivisions;
+                            }
+                            // Create an EndEventElement to mark the end of this NoteElement                            
+                            EndEventElement endEventElement = EndEventElement.Create(noteElement, noteElement.StartTime + noteElement.DurationInCommonDivisions);
+                            times.Add(endEventElement);
                         }
-                        // Create an EndEventElement to mark the end of this NoteElement                            
-                        EndEventElement endEventElement = EndEventElement.Create(noteElement, noteElement.StartTime + noteElement.DurationInCommonDivisions);
-                        times.Add(endEventElement);
-
                     }
                     else if (e is ForwardElement)
                     {
