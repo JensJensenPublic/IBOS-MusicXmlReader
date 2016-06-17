@@ -60,6 +60,11 @@
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.stemmerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stemmerSomSpillesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stemmerSomOplæsesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stemmerMedLyrikoplæsningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.museScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,32 +92,34 @@
             // 
             // listBoxTimes
             // 
-            this.listBoxTimes.AccessibleDescription = "Indeholder udvalgte stemmer og information. Naviger med op ned . ";
-            this.listBoxTimes.AccessibleName = "Udvalgte stemmer";
+            this.listBoxTimes.AccessibleDescription = "Stemmer";
+            this.listBoxTimes.AccessibleName = "Stemmer";
+            this.listBoxTimes.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.listBoxTimes.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxTimes.FormattingEnabled = true;
             this.listBoxTimes.Location = new System.Drawing.Point(257, 77);
             this.listBoxTimes.Name = "listBoxTimes";
             this.listBoxTimes.Size = new System.Drawing.Size(574, 407);
-            this.listBoxTimes.TabIndex = 6;
+            this.listBoxTimes.TabIndex = 1;
             this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
             // 
             // listBoxFiltered
             // 
-            this.listBoxFiltered.AccessibleDescription = "Brug pil-op og pin-ned for at navigere. Brug TAB for at vælge stemmer. ";
-            this.listBoxFiltered.AccessibleName = "Generel information om den valgte MusicXml fil";
+            this.listBoxFiltered.AccessibleDescription = "Metainformation";
+            this.listBoxFiltered.AccessibleName = "Metainformation";
+            this.listBoxFiltered.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.listBoxFiltered.FormattingEnabled = true;
             this.listBoxFiltered.Location = new System.Drawing.Point(12, 77);
             this.listBoxFiltered.Name = "listBoxFiltered";
             this.listBoxFiltered.Size = new System.Drawing.Size(239, 407);
-            this.listBoxFiltered.TabIndex = 2;
+            this.listBoxFiltered.TabIndex = 4;
             // 
             // Stop
             // 
             this.Stop.Location = new System.Drawing.Point(350, 53);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(75, 23);
-            this.Stop.TabIndex = 8;
+            this.Stop.TabIndex = 3;
             this.Stop.Text = "Stop";
             this.Stop.UseVisualStyleBackColor = true;
             this.Stop.Click += new System.EventHandler(this.Stop_Click);
@@ -122,11 +129,12 @@
             this.textBoxMessage.Location = new System.Drawing.Point(12, 27);
             this.textBoxMessage.Name = "textBoxMessage";
             this.textBoxMessage.Size = new System.Drawing.Size(1001, 20);
-            this.textBoxMessage.TabIndex = 6;
+            this.textBoxMessage.TabIndex = 0;
             this.textBoxMessage.TabStop = false;
             // 
             // numericUpDownPlaySpeed
             // 
+            this.numericUpDownPlaySpeed.Enabled = false;
             this.numericUpDownPlaySpeed.Increment = new decimal(new int[] {
             10,
             0,
@@ -145,7 +153,8 @@
             0});
             this.numericUpDownPlaySpeed.Name = "numericUpDownPlaySpeed";
             this.numericUpDownPlaySpeed.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownPlaySpeed.TabIndex = 7;
+            this.numericUpDownPlaySpeed.TabIndex = 0;
+            this.numericUpDownPlaySpeed.TabStop = false;
             this.numericUpDownPlaySpeed.Value = new decimal(new int[] {
             100,
             0,
@@ -158,7 +167,7 @@
             this.butonPlayPoly.Location = new System.Drawing.Point(257, 52);
             this.butonPlayPoly.Name = "butonPlayPoly";
             this.butonPlayPoly.Size = new System.Drawing.Size(75, 23);
-            this.butonPlayPoly.TabIndex = 7;
+            this.butonPlayPoly.TabIndex = 2;
             this.butonPlayPoly.Text = "Spil flerstemmigt";
             this.butonPlayPoly.UseVisualStyleBackColor = true;
             this.butonPlayPoly.Click += new System.EventHandler(this.butonPlayPoly_Click);
@@ -195,6 +204,7 @@
             this.checkBoxShowStartTime.Name = "checkBoxShowStartTime";
             this.checkBoxShowStartTime.Size = new System.Drawing.Size(91, 17);
             this.checkBoxShowStartTime.TabIndex = 11;
+            this.checkBoxShowStartTime.TabStop = false;
             this.checkBoxShowStartTime.Text = "Oplæs starttid";
             this.checkBoxShowStartTime.UseVisualStyleBackColor = true;
             this.checkBoxShowStartTime.CheckedChanged += new System.EventHandler(this.checkBoxShowStartTime_CheckedChanged);
@@ -246,10 +256,11 @@
             // checkBoxOplæsBecifringskoder
             // 
             this.checkBoxOplæsBecifringskoder.AutoSize = true;
-            this.checkBoxOplæsBecifringskoder.Location = new System.Drawing.Point(982, 446);
+            this.checkBoxOplæsBecifringskoder.Location = new System.Drawing.Point(979, 446);
             this.checkBoxOplæsBecifringskoder.Name = "checkBoxOplæsBecifringskoder";
             this.checkBoxOplæsBecifringskoder.Size = new System.Drawing.Size(132, 17);
             this.checkBoxOplæsBecifringskoder.TabIndex = 16;
+            this.checkBoxOplæsBecifringskoder.TabStop = false;
             this.checkBoxOplæsBecifringskoder.Text = "Oplæs becifringskoder";
             this.checkBoxOplæsBecifringskoder.UseVisualStyleBackColor = true;
             this.checkBoxOplæsBecifringskoder.CheckedChanged += new System.EventHandler(this.checkBoxOplæsBecifringskoder_CheckedChanged);
@@ -263,6 +274,7 @@
             this.menuStripFile.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
+            this.toolStripMenuItem1,
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStripFile.Location = new System.Drawing.Point(0, 0);
@@ -387,6 +399,46 @@
             this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.selectAllToolStripMenuItem.Text = "Select &All";
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stemmerToolStripMenuItem,
+            this.stemmerSomSpillesToolStripMenuItem,
+            this.stemmerSomOplæsesToolStripMenuItem,
+            this.stemmerMedLyrikoplæsningToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(34, 20);
+            this.toolStripMenuItem1.Text = "&Vis";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // stemmerToolStripMenuItem
+            // 
+            this.stemmerToolStripMenuItem.Name = "stemmerToolStripMenuItem";
+            this.stemmerToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.stemmerToolStripMenuItem.Text = "Stemmer";
+            this.stemmerToolStripMenuItem.Click += new System.EventHandler(this.stemmerToolStripMenuItem_Click);
+            // 
+            // stemmerSomSpillesToolStripMenuItem
+            // 
+            this.stemmerSomSpillesToolStripMenuItem.Name = "stemmerSomSpillesToolStripMenuItem";
+            this.stemmerSomSpillesToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.stemmerSomSpillesToolStripMenuItem.Text = "Stemmer (lydafspilning)";
+            this.stemmerSomSpillesToolStripMenuItem.Click += new System.EventHandler(this.stemmerSomSpillesToolStripMenuItem_Click);
+            // 
+            // stemmerSomOplæsesToolStripMenuItem
+            // 
+            this.stemmerSomOplæsesToolStripMenuItem.Name = "stemmerSomOplæsesToolStripMenuItem";
+            this.stemmerSomOplæsesToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.stemmerSomOplæsesToolStripMenuItem.Text = "Stemmer (nodeoplæsning)";
+            this.stemmerSomOplæsesToolStripMenuItem.Click += new System.EventHandler(this.stemmerSomOplæsesToolStripMenuItem_Click);
+            // 
+            // stemmerMedLyrikoplæsningToolStripMenuItem
+            // 
+            this.stemmerMedLyrikoplæsningToolStripMenuItem.Name = "stemmerMedLyrikoplæsningToolStripMenuItem";
+            this.stemmerMedLyrikoplæsningToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.stemmerMedLyrikoplæsningToolStripMenuItem.Text = "Stemmer (lyrikoplæsning)";
+            this.stemmerMedLyrikoplæsningToolStripMenuItem.Click += new System.EventHandler(this.stemmerMedLyrikoplæsningToolStripMenuItem_Click);
+            // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -396,7 +448,7 @@
             this.fortolketXMLFilToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.toolsToolStripMenuItem.Text = "&Værktøjer";
+            this.toolsToolStripMenuItem.Text = "Værk&tøjer";
             // 
             // logFileToolStripMenuItem
             // 
@@ -499,6 +551,7 @@
             this.checkBoxReadEndEvents.Name = "checkBoxReadEndEvents";
             this.checkBoxReadEndEvents.Size = new System.Drawing.Size(112, 17);
             this.checkBoxReadEndEvents.TabIndex = 20;
+            this.checkBoxReadEndEvents.TabStop = false;
             this.checkBoxReadEndEvents.Text = "Oplæs EndEvents";
             this.checkBoxReadEndEvents.UseVisualStyleBackColor = true;
             this.checkBoxReadEndEvents.CheckedChanged += new System.EventHandler(this.checkBoxReadEndEvents_CheckedChanged);
@@ -572,6 +625,7 @@
             this.checkedListBoxParts.Name = "checkedListBoxParts";
             this.checkedListBoxParts.Size = new System.Drawing.Size(120, 184);
             this.checkedListBoxParts.TabIndex = 3;
+            this.checkedListBoxParts.TabStop = false;
             this.checkedListBoxParts.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxParts_ItemCheck);
             // 
             // labelSelectParts
@@ -679,6 +733,11 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xmlFilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fortolketXMLFilToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem stemmerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stemmerSomSpillesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stemmerSomOplæsesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stemmerMedLyrikoplæsningToolStripMenuItem;
     }
 }
 

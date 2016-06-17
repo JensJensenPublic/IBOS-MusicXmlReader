@@ -412,6 +412,49 @@ namespace MusicXmlReaderUI
         }
 
         #endregion
+
+
+        /// <summary>
+        /// Common convenience method for focusing on a checked listbox and selecting the first item (if any)
+        /// </summary>
+        /// <param name="checkedListBox"></param>
+        private void FocusAndSelect(CheckedListBox checkedListBox)
+        {
+            checkedListBox.Focus();       
+            //checkedListBox.Select();
+            if (checkedListBox.Items.Count > 0)
+            {
+                checkedListBox.SetSelected(0, true);
+                //checkedListBox.SelectedItem = 0;
+            }        
+            checkedListBox.Refresh();
+
+        }
+
+        private void stemmerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FocusAndSelect(checkedListBoxParts);    
+        }
+
+        private void stemmerSomSpillesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FocusAndSelect(checkedListBoxPartsToPlay);
+        }
+
+        private void stemmerSomOplæsesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FocusAndSelect(checkedListBoxPartsToRead);
+        }
+
+        private void stemmerMedLyrikoplæsningToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FocusAndSelect(checkedListBoxPartsToReadLyrics); 
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
