@@ -455,6 +455,16 @@ namespace MusicXmlReaderUI
         {
 
         }
+
+        private void logFileLocationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.OpenLogFileLocation();
+        }
+
+        private void musicXmlFileLocationtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.OpenMusicXmlFileLocation();
+        }
     }
 
 }

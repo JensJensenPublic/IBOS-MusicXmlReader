@@ -86,6 +86,8 @@
             this.labelReadLyrics = new System.Windows.Forms.Label();
             this.checkedListBoxParts = new System.Windows.Forms.CheckedListBox();
             this.labelSelectParts = new System.Windows.Forms.Label();
+            this.logFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.musicXmlFileLocationtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.menuStripFile.SuspendLayout();
             this.SuspendLayout();
@@ -442,7 +444,9 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.logFileLocationToolStripMenuItem,
             this.logFileToolStripMenuItem,
+            this.musicXmlFileLocationtoolStripMenuItem,
             this.museScoreToolStripMenuItem,
             this.xmlFilToolStripMenuItem,
             this.fortolketXMLFilToolStripMenuItem});
@@ -637,6 +641,20 @@
             this.labelSelectParts.TabIndex = 29;
             this.labelSelectParts.Text = "Vælg stemmer";
             // 
+            // logFileLocationToolStripMenuItem
+            // 
+            this.logFileLocationToolStripMenuItem.Name = "logFileLocationToolStripMenuItem";
+            this.logFileLocationToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.logFileLocationToolStripMenuItem.Text = "Log fil placering";
+            this.logFileLocationToolStripMenuItem.Click += new System.EventHandler(this.logFileLocationToolStripMenuItem_Click);
+            // 
+            // musicXmlFileLocationtoolStripMenuItem
+            // 
+            this.musicXmlFileLocationtoolStripMenuItem.Name = "musicXmlFileLocationtoolStripMenuItem";
+            this.musicXmlFileLocationtoolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.musicXmlFileLocationtoolStripMenuItem.Text = "MusicXml fil placering";
+            this.musicXmlFileLocationtoolStripMenuItem.Click += new System.EventHandler(this.musicXmlFileLocationtoolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -738,6 +756,8 @@
         private System.Windows.Forms.ToolStripMenuItem stemmerSomSpillesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stemmerSomOplæsesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stemmerMedLyrikoplæsningToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logFileLocationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem musicXmlFileLocationtoolStripMenuItem;
     }
 }
 

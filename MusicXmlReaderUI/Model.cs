@@ -33,13 +33,25 @@ namespace MusicXmlReaderUI
 
 
 
-        private bool CheckFileExistance(string fileName, string methodName)
+        private bool CheckFileExistance(string fileName, string methodName, bool dir)
         {
-            if (!System.IO.File.Exists(fileName))
+            if (dir)
             {
-                Model.Log(string.Format("{0} File {1} is not found", string.IsNullOrEmpty(methodName)? "" : methodName + ":",  fileName));
-                MessageBox.Show(string.Format("Filen {0} findes ikke", fileName));
-                return false;
+                if (!System.IO.Directory.Exists(fileName))
+                {
+                    Model.Log(string.Format("{0} Directory {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
+                    MessageBox.Show(string.Format("Mappen {0} findes ikke", fileName));
+                    return false;
+                }
+            }
+            else
+            {
+                if (!System.IO.File.Exists(fileName))
+                {
+                    Model.Log(string.Format("{0} File {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
+                    MessageBox.Show(string.Format("Filen {0} findes ikke", fileName));
+                    return false;
+                }
             }
             return true;
         }
@@ -54,11 +66,22 @@ namespace MusicXmlReaderUI
         /// <returns>true <==> succaee</returns>
         private bool RunExeWithFileArgument(string exeFileName, string argFileName)
         {
+            return RunExeWithFileArgument(exeFileName, argFileName, false);
+        }
+
+        private bool RunExeWithDirArgument(string exeFileName, string argFileName)
+        {
+            return RunExeWithFileArgument(exeFileName, argFileName, true);
+        }
+
+
+        private bool RunExeWithFileArgument(string exeFileName, string argFileName,bool dir)
+        {
             string methodName = "RunExeWithFileArgument";
             // Check arguments
             string exePathName = Path.GetDirectoryName(exeFileName);
-            if ((!string.IsNullOrEmpty(exePathName)) && (!CheckFileExistance(exeFileName, methodName))) return false;
-            if ((!string.IsNullOrEmpty(argFileName)) && (!CheckFileExistance(argFileName, methodName))) return false;
+            if ((!string.IsNullOrEmpty(exePathName)) && (!CheckFileExistance(exeFileName, methodName,false))) return false;
+            if ((!string.IsNullOrEmpty(argFileName)) && (!CheckFileExistance(argFileName, methodName,dir))) return false;
             // Create process startinfo. Enclose all filenames and pathnames in "" in order to handle possible space characters!
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();     
             pProcess.StartInfo.FileName = string.Format("\"{0}\"", exeFileName);
@@ -92,9 +115,24 @@ namespace MusicXmlReaderUI
 
         public void ReadLogFile()
         {
-            //ReadTempFileByNotepad(LogFileName);
             RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName));
         }
+
+        public void OpenLogFileLocation()
+        {
+            string tempPath = System.IO.Path.GetTempPath();
+            RunExeWithDirArgument("explorer.exe",tempPath);
+        }
+
+        public void OpenMusicXmlFileLocation()
+        {
+            string dir = Path.GetDirectoryName(theMusicXmlFileName);
+            if (System.IO.Directory.Exists(dir))
+            {
+                RunExeWithDirArgument("explorer.exe", dir); 
+            }
+        }
+        
         #endregion
 
 
