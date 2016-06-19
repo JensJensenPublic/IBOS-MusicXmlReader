@@ -80,6 +80,10 @@
             this.labelSelectParts = new System.Windows.Forms.Label();
             this.checkedListBoxReaderSettings = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxPlayerSettings = new System.Windows.Forms.CheckedListBox();
+            this.toolStripMenuItemSpil = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemOplæs = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelPlay = new System.Windows.Forms.Label();
+            this.labelRead = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.menuStripFile.SuspendLayout();
             this.SuspendLayout();
@@ -348,7 +352,9 @@
             this.stemmerToolStripMenuItem,
             this.stemmerSomSpillesToolStripMenuItem,
             this.stemmerSomOplæsesToolStripMenuItem,
-            this.stemmerMedLyrikoplæsningToolStripMenuItem});
+            this.stemmerMedLyrikoplæsningToolStripMenuItem,
+            this.toolStripMenuItemSpil,
+            this.toolStripMenuItemOplæs});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(34, 20);
             this.toolStripMenuItem1.Text = "&Vis";
@@ -520,27 +526,65 @@
             // 
             // checkedListBoxReaderSettings
             // 
+            this.checkedListBoxReaderSettings.AccessibleDescription = "Oplæs";
+            this.checkedListBoxReaderSettings.AccessibleName = "Oplæs";
             this.checkedListBoxReaderSettings.FormattingEnabled = true;
-            this.checkedListBoxReaderSettings.Location = new System.Drawing.Point(1114, 285);
+            this.checkedListBoxReaderSettings.Location = new System.Drawing.Point(963, 285);
             this.checkedListBoxReaderSettings.Name = "checkedListBoxReaderSettings";
-            this.checkedListBoxReaderSettings.Size = new System.Drawing.Size(120, 184);
+            this.checkedListBoxReaderSettings.Size = new System.Drawing.Size(120, 199);
             this.checkedListBoxReaderSettings.TabIndex = 30;
             this.checkedListBoxReaderSettings.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxReaderSettings_ItemCheck);
             // 
             // checkedListBoxPlayerSettings
             // 
+            this.checkedListBoxPlayerSettings.AccessibleDescription = "Spil";
+            this.checkedListBoxPlayerSettings.AccessibleName = "Spil";
             this.checkedListBoxPlayerSettings.FormattingEnabled = true;
-            this.checkedListBoxPlayerSettings.Location = new System.Drawing.Point(963, 285);
+            this.checkedListBoxPlayerSettings.Location = new System.Drawing.Point(837, 285);
             this.checkedListBoxPlayerSettings.Name = "checkedListBoxPlayerSettings";
-            this.checkedListBoxPlayerSettings.Size = new System.Drawing.Size(120, 94);
+            this.checkedListBoxPlayerSettings.Size = new System.Drawing.Size(120, 199);
             this.checkedListBoxPlayerSettings.TabIndex = 31;
             this.checkedListBoxPlayerSettings.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPlayerSettings_ItemCheck);
+            // 
+            // toolStripMenuItemSpil
+            // 
+            this.toolStripMenuItemSpil.Name = "toolStripMenuItemSpil";
+            this.toolStripMenuItemSpil.Size = new System.Drawing.Size(216, 22);
+            this.toolStripMenuItemSpil.Text = "Spil";
+            this.toolStripMenuItemSpil.Click += new System.EventHandler(this.toolStripMenuItemSpil_Click);
+            // 
+            // toolStripMenuItemOplæs
+            // 
+            this.toolStripMenuItemOplæs.Name = "toolStripMenuItemOplæs";
+            this.toolStripMenuItemOplæs.Size = new System.Drawing.Size(216, 22);
+            this.toolStripMenuItemOplæs.Text = "Oplæs";
+            this.toolStripMenuItemOplæs.Click += new System.EventHandler(this.toolStripMenuItemOplæs_Click);
+            // 
+            // labelPlay
+            // 
+            this.labelPlay.AutoSize = true;
+            this.labelPlay.Location = new System.Drawing.Point(837, 264);
+            this.labelPlay.Name = "labelPlay";
+            this.labelPlay.Size = new System.Drawing.Size(24, 13);
+            this.labelPlay.TabIndex = 32;
+            this.labelPlay.Text = "Spil";
+            // 
+            // labelRead
+            // 
+            this.labelRead.AutoSize = true;
+            this.labelRead.Location = new System.Drawing.Point(963, 264);
+            this.labelRead.Name = "labelRead";
+            this.labelRead.Size = new System.Drawing.Size(38, 13);
+            this.labelRead.TabIndex = 33;
+            this.labelRead.Text = "Oplæs";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 496);
+            this.Controls.Add(this.labelRead);
+            this.Controls.Add(this.labelPlay);
             this.Controls.Add(this.checkedListBoxPlayerSettings);
             this.Controls.Add(this.checkedListBoxReaderSettings);
             this.Controls.Add(this.labelSelectParts);
@@ -623,6 +667,10 @@
         private System.Windows.Forms.ToolStripMenuItem musicXmlFileLocationtoolStripMenuItem;
         private System.Windows.Forms.CheckedListBox checkedListBoxReaderSettings;
         private System.Windows.Forms.CheckedListBox checkedListBoxPlayerSettings;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSpil;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOplæs;
+        private System.Windows.Forms.Label labelPlay;
+        private System.Windows.Forms.Label labelRead;
     }
 }
 
