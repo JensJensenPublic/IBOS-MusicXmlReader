@@ -204,6 +204,7 @@ namespace MusicXmlReaderUI
         /// <param name=""></param>
         private void Play(EventDescription eventDescription)
         {
+            // Application.DoEvents(); // Experiment. Makes no difference 
             // Sleep until the StartTime of the next event occurs.
             System.Threading.Thread.Sleep(MilliSecondsToSleep(eventDescription.StartTime));
 
@@ -313,7 +314,7 @@ namespace MusicXmlReaderUI
         }
 
         private System.Threading.Thread playerThread;
-        private bool playing = false;
+        private volatile bool playing = false;
 
         public UserSettings UserSettings
         {
@@ -363,6 +364,8 @@ namespace MusicXmlReaderUI
         {
             playing = true;
             playerThread = new System.Threading.Thread(new System.Threading.ThreadStart(PlayerThreadStartPoly));
+            //playerThread.Priority = System.Threading.ThreadPriority.Lowest; // Handle UI even when playing complicated stuff
+            Model.Log(string.Format("Starting PlayerThread et priority={0}", playerThread.Priority.ToString()));
             playerThread.Start();
         }
 

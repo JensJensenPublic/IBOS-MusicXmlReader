@@ -118,7 +118,7 @@
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(75, 23);
             this.Stop.TabIndex = 3;
-            this.Stop.Text = "Stop";
+            this.Stop.Text = "&Pause";
             this.Stop.UseVisualStyleBackColor = true;
             this.Stop.Click += new System.EventHandler(this.Stop_Click);
             // 
@@ -166,7 +166,7 @@
             this.butonPlayPoly.Name = "butonPlayPoly";
             this.butonPlayPoly.Size = new System.Drawing.Size(75, 23);
             this.butonPlayPoly.TabIndex = 2;
-            this.butonPlayPoly.Text = "Spil flerstemmigt";
+            this.butonPlayPoly.Text = "&Spil";
             this.butonPlayPoly.UseVisualStyleBackColor = true;
             this.butonPlayPoly.Click += new System.EventHandler(this.butonPlayPoly_Click);
             // 
