@@ -37,12 +37,8 @@
             this.butonPlayPoly = new System.Windows.Forms.Button();
             this.checkedListBoxPartsToPlay = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxPartsToRead = new System.Windows.Forms.CheckedListBox();
-            this.checkBoxShowStartTime = new System.Windows.Forms.CheckBox();
             this.labelPartsPlayed = new System.Windows.Forms.Label();
             this.labelPartsRead = new System.Windows.Forms.Label();
-            this.checkBoxShowHarmonies = new System.Windows.Forms.CheckBox();
-            this.checkBoxPlayHarmonies = new System.Windows.Forms.CheckBox();
-            this.checkBoxOplæsBecifringskoder = new System.Windows.Forms.CheckBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuStripFile = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,7 +62,9 @@
             this.stemmerSomOplæsesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stemmerMedLyrikoplæsningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.musicXmlFileLocationtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.museScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xmlFilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fortolketXMLFilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,18 +74,12 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkBoxReadMeasureNumbers = new System.Windows.Forms.CheckBox();
-            this.checkBoxPlayMeasureNumbers = new System.Windows.Forms.CheckBox();
-            this.checkBoxReadEndEvents = new System.Windows.Forms.CheckBox();
             this.checkedListBoxPartsToReadLyrics = new System.Windows.Forms.CheckedListBox();
-            this.checkBoxReadPitch = new System.Windows.Forms.CheckBox();
-            this.checkBoxReadOctave = new System.Windows.Forms.CheckBox();
-            this.checkBoxReadDuration = new System.Windows.Forms.CheckBox();
             this.labelReadLyrics = new System.Windows.Forms.Label();
             this.checkedListBoxParts = new System.Windows.Forms.CheckedListBox();
             this.labelSelectParts = new System.Windows.Forms.Label();
-            this.logFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.musicXmlFileLocationtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkedListBoxReaderSettings = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBoxPlayerSettings = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.menuStripFile.SuspendLayout();
             this.SuspendLayout();
@@ -198,19 +190,6 @@
             this.checkedListBoxPartsToRead.TabStop = false;
             this.checkedListBoxPartsToRead.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPartsToRead_ItemCheck);
             // 
-            // checkBoxShowStartTime
-            // 
-            this.checkBoxShowStartTime.AccessibleName = "Oplæs starttid";
-            this.checkBoxShowStartTime.AutoSize = true;
-            this.checkBoxShowStartTime.Location = new System.Drawing.Point(982, 423);
-            this.checkBoxShowStartTime.Name = "checkBoxShowStartTime";
-            this.checkBoxShowStartTime.Size = new System.Drawing.Size(91, 17);
-            this.checkBoxShowStartTime.TabIndex = 11;
-            this.checkBoxShowStartTime.TabStop = false;
-            this.checkBoxShowStartTime.Text = "Oplæs starttid";
-            this.checkBoxShowStartTime.UseVisualStyleBackColor = true;
-            this.checkBoxShowStartTime.CheckedChanged += new System.EventHandler(this.checkBoxShowStartTime_CheckedChanged);
-            // 
             // labelPartsPlayed
             // 
             this.labelPartsPlayed.AutoSize = true;
@@ -228,44 +207,6 @@
             this.labelPartsRead.Size = new System.Drawing.Size(80, 13);
             this.labelPartsRead.TabIndex = 13;
             this.labelPartsRead.Text = "Oplæs stemmer";
-            // 
-            // checkBoxShowHarmonies
-            // 
-            this.checkBoxShowHarmonies.AccessibleName = "Oplæs becifringer";
-            this.checkBoxShowHarmonies.AutoSize = true;
-            this.checkBoxShowHarmonies.Location = new System.Drawing.Point(982, 263);
-            this.checkBoxShowHarmonies.Name = "checkBoxShowHarmonies";
-            this.checkBoxShowHarmonies.Size = new System.Drawing.Size(110, 17);
-            this.checkBoxShowHarmonies.TabIndex = 14;
-            this.checkBoxShowHarmonies.TabStop = false;
-            this.checkBoxShowHarmonies.Text = "Oplæs Becifringer";
-            this.checkBoxShowHarmonies.UseVisualStyleBackColor = true;
-            this.checkBoxShowHarmonies.CheckedChanged += new System.EventHandler(this.checkBoxShowHarmonies_CheckedChanged);
-            // 
-            // checkBoxPlayHarmonies
-            // 
-            this.checkBoxPlayHarmonies.AccessibleName = "Spil becifringer";
-            this.checkBoxPlayHarmonies.AutoSize = true;
-            this.checkBoxPlayHarmonies.Location = new System.Drawing.Point(856, 263);
-            this.checkBoxPlayHarmonies.Name = "checkBoxPlayHarmonies";
-            this.checkBoxPlayHarmonies.Size = new System.Drawing.Size(96, 17);
-            this.checkBoxPlayHarmonies.TabIndex = 15;
-            this.checkBoxPlayHarmonies.TabStop = false;
-            this.checkBoxPlayHarmonies.Text = "Spil Becifringer";
-            this.checkBoxPlayHarmonies.UseVisualStyleBackColor = true;
-            this.checkBoxPlayHarmonies.CheckedChanged += new System.EventHandler(this.checkBoxPlayHarmonies_CheckedChanged);
-            // 
-            // checkBoxOplæsBecifringskoder
-            // 
-            this.checkBoxOplæsBecifringskoder.AutoSize = true;
-            this.checkBoxOplæsBecifringskoder.Location = new System.Drawing.Point(979, 446);
-            this.checkBoxOplæsBecifringskoder.Name = "checkBoxOplæsBecifringskoder";
-            this.checkBoxOplæsBecifringskoder.Size = new System.Drawing.Size(132, 17);
-            this.checkBoxOplæsBecifringskoder.TabIndex = 16;
-            this.checkBoxOplæsBecifringskoder.TabStop = false;
-            this.checkBoxOplæsBecifringskoder.Text = "Oplæs becifringskoder";
-            this.checkBoxOplæsBecifringskoder.UseVisualStyleBackColor = true;
-            this.checkBoxOplæsBecifringskoder.CheckedChanged += new System.EventHandler(this.checkBoxOplæsBecifringskoder_CheckedChanged);
             // 
             // openFileDialog
             // 
@@ -454,12 +395,26 @@
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.toolsToolStripMenuItem.Text = "Værk&tøjer";
             // 
+            // logFileLocationToolStripMenuItem
+            // 
+            this.logFileLocationToolStripMenuItem.Name = "logFileLocationToolStripMenuItem";
+            this.logFileLocationToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.logFileLocationToolStripMenuItem.Text = "Log fil placering";
+            this.logFileLocationToolStripMenuItem.Click += new System.EventHandler(this.logFileLocationToolStripMenuItem_Click);
+            // 
             // logFileToolStripMenuItem
             // 
             this.logFileToolStripMenuItem.Name = "logFileToolStripMenuItem";
             this.logFileToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.logFileToolStripMenuItem.Text = "Log fil";
             this.logFileToolStripMenuItem.Click += new System.EventHandler(this.logFileToolStripMenuItem_Click);
+            // 
+            // musicXmlFileLocationtoolStripMenuItem
+            // 
+            this.musicXmlFileLocationtoolStripMenuItem.Name = "musicXmlFileLocationtoolStripMenuItem";
+            this.musicXmlFileLocationtoolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.musicXmlFileLocationtoolStripMenuItem.Text = "MusicXml fil placering";
+            this.musicXmlFileLocationtoolStripMenuItem.Click += new System.EventHandler(this.musicXmlFileLocationtoolStripMenuItem_Click);
             // 
             // museScoreToolStripMenuItem
             // 
@@ -523,43 +478,6 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
-            // checkBoxReadMeasureNumbers
-            // 
-            this.checkBoxReadMeasureNumbers.AutoSize = true;
-            this.checkBoxReadMeasureNumbers.Checked = true;
-            this.checkBoxReadMeasureNumbers.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxReadMeasureNumbers.Location = new System.Drawing.Point(982, 286);
-            this.checkBoxReadMeasureNumbers.Name = "checkBoxReadMeasureNumbers";
-            this.checkBoxReadMeasureNumbers.Size = new System.Drawing.Size(111, 17);
-            this.checkBoxReadMeasureNumbers.TabIndex = 18;
-            this.checkBoxReadMeasureNumbers.TabStop = false;
-            this.checkBoxReadMeasureNumbers.Text = "Oplæs Taktnumre";
-            this.checkBoxReadMeasureNumbers.UseVisualStyleBackColor = true;
-            this.checkBoxReadMeasureNumbers.CheckedChanged += new System.EventHandler(this.checkBoxReadMeasureNumbers_CheckedChanged);
-            // 
-            // checkBoxPlayMeasureNumbers
-            // 
-            this.checkBoxPlayMeasureNumbers.AutoSize = true;
-            this.checkBoxPlayMeasureNumbers.Location = new System.Drawing.Point(856, 286);
-            this.checkBoxPlayMeasureNumbers.Name = "checkBoxPlayMeasureNumbers";
-            this.checkBoxPlayMeasureNumbers.Size = new System.Drawing.Size(87, 17);
-            this.checkBoxPlayMeasureNumbers.TabIndex = 19;
-            this.checkBoxPlayMeasureNumbers.TabStop = false;
-            this.checkBoxPlayMeasureNumbers.Text = "Spil Taktslag";
-            this.checkBoxPlayMeasureNumbers.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxReadEndEvents
-            // 
-            this.checkBoxReadEndEvents.AutoSize = true;
-            this.checkBoxReadEndEvents.Location = new System.Drawing.Point(982, 466);
-            this.checkBoxReadEndEvents.Name = "checkBoxReadEndEvents";
-            this.checkBoxReadEndEvents.Size = new System.Drawing.Size(112, 17);
-            this.checkBoxReadEndEvents.TabIndex = 20;
-            this.checkBoxReadEndEvents.TabStop = false;
-            this.checkBoxReadEndEvents.Text = "Oplæs EndEvents";
-            this.checkBoxReadEndEvents.UseVisualStyleBackColor = true;
-            this.checkBoxReadEndEvents.CheckedChanged += new System.EventHandler(this.checkBoxReadEndEvents_CheckedChanged);
-            // 
             // checkedListBoxPartsToReadLyrics
             // 
             this.checkedListBoxPartsToReadLyrics.AccessibleName = "Oplæs lyrik";
@@ -570,48 +488,6 @@
             this.checkedListBoxPartsToReadLyrics.TabIndex = 5;
             this.checkedListBoxPartsToReadLyrics.TabStop = false;
             this.checkedListBoxPartsToReadLyrics.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPartsToReadLyrics_ItemCheck);
-            // 
-            // checkBoxReadPitch
-            // 
-            this.checkBoxReadPitch.AutoSize = true;
-            this.checkBoxReadPitch.Checked = true;
-            this.checkBoxReadPitch.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxReadPitch.Location = new System.Drawing.Point(982, 310);
-            this.checkBoxReadPitch.Name = "checkBoxReadPitch";
-            this.checkBoxReadPitch.Size = new System.Drawing.Size(81, 17);
-            this.checkBoxReadPitch.TabIndex = 23;
-            this.checkBoxReadPitch.TabStop = false;
-            this.checkBoxReadPitch.Text = "Oplæs tone";
-            this.checkBoxReadPitch.UseVisualStyleBackColor = true;
-            this.checkBoxReadPitch.CheckedChanged += new System.EventHandler(this.checkBoxReadPitch_CheckedChanged);
-            // 
-            // checkBoxReadOctave
-            // 
-            this.checkBoxReadOctave.AutoSize = true;
-            this.checkBoxReadOctave.Checked = true;
-            this.checkBoxReadOctave.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxReadOctave.Location = new System.Drawing.Point(982, 334);
-            this.checkBoxReadOctave.Name = "checkBoxReadOctave";
-            this.checkBoxReadOctave.Size = new System.Drawing.Size(87, 17);
-            this.checkBoxReadOctave.TabIndex = 24;
-            this.checkBoxReadOctave.TabStop = false;
-            this.checkBoxReadOctave.Text = "Oplæs oktav";
-            this.checkBoxReadOctave.UseVisualStyleBackColor = true;
-            this.checkBoxReadOctave.CheckedChanged += new System.EventHandler(this.checkBoxReadOctave_CheckedChanged);
-            // 
-            // checkBoxReadDuration
-            // 
-            this.checkBoxReadDuration.AutoSize = true;
-            this.checkBoxReadDuration.Checked = true;
-            this.checkBoxReadDuration.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxReadDuration.Location = new System.Drawing.Point(982, 358);
-            this.checkBoxReadDuration.Name = "checkBoxReadDuration";
-            this.checkBoxReadDuration.Size = new System.Drawing.Size(101, 17);
-            this.checkBoxReadDuration.TabIndex = 25;
-            this.checkBoxReadDuration.TabStop = false;
-            this.checkBoxReadDuration.Text = "Oplæs varighed";
-            this.checkBoxReadDuration.UseVisualStyleBackColor = true;
-            this.checkBoxReadDuration.CheckedChanged += new System.EventHandler(this.checkBoxReadDuration_CheckedChanged);
             // 
             // labelReadLyrics
             // 
@@ -631,6 +507,7 @@
             this.checkedListBoxParts.TabIndex = 3;
             this.checkedListBoxParts.TabStop = false;
             this.checkedListBoxParts.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxParts_ItemCheck);
+            this.checkedListBoxParts.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxParts_SelectedIndexChanged);
             // 
             // labelSelectParts
             // 
@@ -641,41 +518,37 @@
             this.labelSelectParts.TabIndex = 29;
             this.labelSelectParts.Text = "Vælg stemmer";
             // 
-            // logFileLocationToolStripMenuItem
+            // checkedListBoxReaderSettings
             // 
-            this.logFileLocationToolStripMenuItem.Name = "logFileLocationToolStripMenuItem";
-            this.logFileLocationToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.logFileLocationToolStripMenuItem.Text = "Log fil placering";
-            this.logFileLocationToolStripMenuItem.Click += new System.EventHandler(this.logFileLocationToolStripMenuItem_Click);
+            this.checkedListBoxReaderSettings.FormattingEnabled = true;
+            this.checkedListBoxReaderSettings.Location = new System.Drawing.Point(1114, 285);
+            this.checkedListBoxReaderSettings.Name = "checkedListBoxReaderSettings";
+            this.checkedListBoxReaderSettings.Size = new System.Drawing.Size(120, 184);
+            this.checkedListBoxReaderSettings.TabIndex = 30;
+            this.checkedListBoxReaderSettings.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxReaderSettings_ItemCheck);
             // 
-            // musicXmlFileLocationtoolStripMenuItem
+            // checkedListBoxPlayerSettings
             // 
-            this.musicXmlFileLocationtoolStripMenuItem.Name = "musicXmlFileLocationtoolStripMenuItem";
-            this.musicXmlFileLocationtoolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.musicXmlFileLocationtoolStripMenuItem.Text = "MusicXml fil placering";
-            this.musicXmlFileLocationtoolStripMenuItem.Click += new System.EventHandler(this.musicXmlFileLocationtoolStripMenuItem_Click);
+            this.checkedListBoxPlayerSettings.FormattingEnabled = true;
+            this.checkedListBoxPlayerSettings.Location = new System.Drawing.Point(963, 285);
+            this.checkedListBoxPlayerSettings.Name = "checkedListBoxPlayerSettings";
+            this.checkedListBoxPlayerSettings.Size = new System.Drawing.Size(120, 94);
+            this.checkedListBoxPlayerSettings.TabIndex = 31;
+            this.checkedListBoxPlayerSettings.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPlayerSettings_ItemCheck);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 496);
+            this.Controls.Add(this.checkedListBoxPlayerSettings);
+            this.Controls.Add(this.checkedListBoxReaderSettings);
             this.Controls.Add(this.labelSelectParts);
             this.Controls.Add(this.checkedListBoxParts);
             this.Controls.Add(this.labelReadLyrics);
-            this.Controls.Add(this.checkBoxReadDuration);
-            this.Controls.Add(this.checkBoxReadOctave);
-            this.Controls.Add(this.checkBoxReadPitch);
             this.Controls.Add(this.checkedListBoxPartsToReadLyrics);
-            this.Controls.Add(this.checkBoxReadEndEvents);
-            this.Controls.Add(this.checkBoxPlayMeasureNumbers);
-            this.Controls.Add(this.checkBoxReadMeasureNumbers);
-            this.Controls.Add(this.checkBoxOplæsBecifringskoder);
-            this.Controls.Add(this.checkBoxPlayHarmonies);
-            this.Controls.Add(this.checkBoxShowHarmonies);
             this.Controls.Add(this.labelPartsRead);
             this.Controls.Add(this.labelPartsPlayed);
-            this.Controls.Add(this.checkBoxShowStartTime);
             this.Controls.Add(this.checkedListBoxPartsToRead);
             this.Controls.Add(this.checkedListBoxPartsToPlay);
             this.Controls.Add(this.butonPlayPoly);
@@ -707,21 +580,11 @@
         private System.Windows.Forms.Button butonPlayPoly;
         private System.Windows.Forms.CheckedListBox checkedListBoxPartsToPlay;
         private System.Windows.Forms.CheckedListBox checkedListBoxPartsToRead;
-        private System.Windows.Forms.CheckBox checkBoxShowStartTime;
         private System.Windows.Forms.Label labelPartsPlayed;
         private System.Windows.Forms.Label labelPartsRead;
-        private System.Windows.Forms.CheckBox checkBoxShowHarmonies;
-        private System.Windows.Forms.CheckBox checkBoxPlayHarmonies;
-        private System.Windows.Forms.CheckBox checkBoxOplæsBecifringskoder;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.MenuStrip menuStripFile;
-        private System.Windows.Forms.CheckBox checkBoxReadMeasureNumbers;
-        private System.Windows.Forms.CheckBox checkBoxPlayMeasureNumbers;
-        private System.Windows.Forms.CheckBox checkBoxReadEndEvents;
         private System.Windows.Forms.CheckedListBox checkedListBoxPartsToReadLyrics;
-        private System.Windows.Forms.CheckBox checkBoxReadPitch;
-        private System.Windows.Forms.CheckBox checkBoxReadOctave;
-        private System.Windows.Forms.CheckBox checkBoxReadDuration;
         private System.Windows.Forms.Label labelReadLyrics;
         private System.Windows.Forms.CheckedListBox checkedListBoxParts;
         private System.Windows.Forms.Label labelSelectParts;
@@ -758,6 +621,8 @@
         private System.Windows.Forms.ToolStripMenuItem stemmerMedLyrikoplæsningToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logFileLocationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem musicXmlFileLocationtoolStripMenuItem;
+        private System.Windows.Forms.CheckedListBox checkedListBoxReaderSettings;
+        private System.Windows.Forms.CheckedListBox checkedListBoxPlayerSettings;
     }
 }
 

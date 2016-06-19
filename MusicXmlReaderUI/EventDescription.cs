@@ -189,7 +189,7 @@ namespace MusicXmlReaderUI
         /// <returns></returns>
         private string PartNotes(List<NoteElement> noteElementList)
         {
-            if (!userSettings.readNotes) return ""; // User completely turned off reading of notes
+            if (!userSettings.ReaderSettingsValues[(int)UserSettings.ReaderSettings.Notes]) return ""; // User completely turned off reading of notes
             if (0 == noteElementList.Count()) return "-"; // Nothing happened in this part 
             StringBuilder sb = new StringBuilder();
             foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
@@ -205,7 +205,7 @@ namespace MusicXmlReaderUI
                     {
                         // This is a pause
                         // Here the type and the word "pause" are cocatenated such as "punkteret halvnodepause"
-                        string type = userSettings.readNoteTypes ? noteElement.LocalizedPauseType : "pause"; 
+                        string type = userSettings.ReaderSettingsValues[(int)UserSettings.ReaderSettings.NoteTypes] ? noteElement.LocalizedPauseType : "pause"; 
                         note = string.Format("{0}",type);
                     }
                     else
@@ -213,8 +213,8 @@ namespace MusicXmlReaderUI
                         // This is a note
                         // Here the sequence is pitch,octave,type such af "Cis4 punkteret halvnode"
                         string pitch    = noteElement.PitchValue.Name; // Always use the name of the note
-                        string octave   = userSettings.readNoteOctaves ? noteElement.PitchValue.Octave : "";
-                        string type     = userSettings.readNoteTypes ? noteElement.LocalizedType : "";
+                        string octave   = userSettings.ReaderSettingsValues[(int)UserSettings.ReaderSettings.NoteOctaves] ? noteElement.PitchValue.Octave : "";
+                        string type     = userSettings.ReaderSettingsValues[(int)UserSettings.ReaderSettings.NoteTypes] ? noteElement.LocalizedType : "";
                         string pitchAndOctave = string.Format("{0}{1}", pitch, octave);
 //                      note = string.Format("{0,-4} {1}", pitchAndOctave, type); // Always use 4 chars for pitch and Octave. Examples: "C   ","Cis4"
                         note = string.Format("{0} {1}", pitchAndOctave, type);    // Do not use extra chars for Pitch and Octave. Examples: "C","Cis4"
@@ -254,23 +254,23 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            string divisions = userSettings.readDivisions ? string.Format("{0,6}: ", startTime, "") : "";
+            string divisions = userSettings.ReaderSettingsValues[(int)UserSettings.ReaderSettings.Divisions] ? string.Format("{0,6}: ", startTime, "") : "";
 
             string measure = "";
-            if (userSettings.readMeasureNumbers)
+            if (userSettings.ReaderSettingsValues[(int)UserSettings.ReaderSettings.MeasureNumbers])
             {
                 measure = (null != measureElement) ? string.Format("Takt {0,3} ", measureElement.Number) : "         "; // Up to 1000 measures
             }
             
             string harmonyCode = "";
-            if ((userSettings.readHarmonyCodes) && (null != harmonyElement))
+            if ((userSettings.ReaderSettingsValues[(int)UserSettings.ReaderSettings.HarmonyCodes]) && (null != harmonyElement))
             {
                 harmonyCode = string.Format(" {0} {1} {2} : ",harmonyElement.Kind, harmonyElement.RootStep, harmonyElement.RootAlter);
             }
 
 
             string harmony = "";
-            if ((userSettings.readHarmonies) && (null != harmonyElement))
+            if ((userSettings.ReaderSettingsValues[(int)UserSettings.ReaderSettings.Harmonies]) && (null != harmonyElement))
             {
                 //ChromaticStep chromaticStep = MidiNote.GetChromaticStep(harmonyElement.RootStep, harmonyElement.RootAlter);
                 //ChordType chordType = MidiChord.GetChordType(harmonyElement.Kind);
@@ -279,7 +279,7 @@ namespace MusicXmlReaderUI
 
 
             string endEventString = "";
-            if ((userSettings.readEndEvents) && (null != endEventElements))
+            if ((userSettings.ReaderSettingsValues[(int)UserSettings.ReaderSettings.EndEvents]) && (null != endEventElements))
             {
                 endEventString += "(";
                 foreach (EndEventElement endEventElement in endEventElements)

@@ -252,7 +252,7 @@ namespace MusicXmlReaderUI
                     latestHarmonyPlayed = null;
                 }
 
-                if (userSettings.playHarmonies)
+                if (userSettings.PlayerSettingsValues[(int)UserSettings.PlayerSettings.Harmonies])
                 {
                     // Play the harmony related to this event
                     HarmonyElement h = eventDescription.HarmonyElement;

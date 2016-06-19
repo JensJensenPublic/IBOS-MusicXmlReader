@@ -19,27 +19,33 @@ namespace MusicXmlReaderUI
         // Arrays for controlling individual parts
         public bool[] partsToPlay; // Play the note values from these partitions
         public bool[] partsToRead; // Read the note values from these partitions
-        public bool[] partsToReadLyrics; // Read the lyrics from these partitions
+        public bool[] partsToReadLyrics; // Read the lyrics from these partitions  
 
         // For controlling other user properties
-        public bool readMeasureNumbers;
-        public bool playMeasureBeats; // Not implemented yet.
-        public bool readHarmonies;    // After localisation  
-        public bool playHarmonies;
-        public bool readNotes;      // Common for all selected voices. Example: Cis
-        public bool readNoteOctaves;  // Common for all selected voices. Example: 4
-        public bool readNoteTypes;   // Common for all selected voices. Example: Eight
-        public float userSlowDown;      // Percentage of the speed described in the MusicXml file
-
+        // readMeasureNumbers;
+        // playMeasureBeats;     // Not implemented yet.
+        // readHarmonies;        // After localisation  
+        // playHarmonies;
+        // readNotes;            // Common for all selected voices. Example: Cis
+        // readNoteOctaves;      // Common for all selected voices. Example: 4
+        // readNoteTypes;        // Common for all selected voices. Example: Eight
         // For controlling other DEVELOPER properties
-        public bool readDivisions;      
-        public bool readHarmonyCodes; // As found in the MusicXml file
-        public bool readEndEvents;
+        // readDivisions;      
+        // readHarmonyCodes;     // As found in the MusicXml file
+        // readEndEvents;
 
+        // Global settings (for all parts)
+        public enum ReaderSettings                     { MeasureNumbers=0 , Harmonies=1, Notes=2, NoteOctaves=3, NoteTypes=4, Divisions=5, HarmonyCodes=6, EndEvents=7, NumberOfReaderSettings=8};   
+        public readonly string[] ReaderSettingsNames = {"TaktNumre",       "Harmonier",  "Noder", "Oktaver",    "NodeVærdier","Divisions","HarmoniCodes", "EndEvents" };
+        public bool[]            ReaderSettingsValues= { true,              true,        true,    true,         true,        false,        false,          false      };
 
+        // Global settings (for all parts)
+        public enum PlayerSettings { MeasureBeats = 0, Harmonies = 1,NumberOfPlayerSettings=2}
+        public readonly string[] PlayerSettingsNames = { "TaktSlag", "Harmonier" };
+        public bool[] PlayerSettingsValues = { false, false };
 
-
-
+        // Non-boolean user settings
+        public float userSlowDown;      // Percentage of the speed described in the MusicXml file
 
         /// <summary>
         /// To force the use of the Create() method
@@ -54,10 +60,17 @@ namespace MusicXmlReaderUI
         /// <param name="node"></param>
         private UserSettings(int numberOfParts)
         {
-            partsToPlay = new bool[numberOfParts];
-            partsToRead = new bool[numberOfParts];
-            partsToReadLyrics = new bool[numberOfParts];
+            partsToPlay = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
+            partsToRead = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
+            partsToReadLyrics = new bool[numberOfParts]; // Must be done here because numberUfParts is not a constant.
             userSlowDown = 1.0F;
+            if (((int)ReaderSettings.NumberOfReaderSettings != ReaderSettingsNames.Length)
+            || ((int)ReaderSettings.NumberOfReaderSettings  != ReaderSettingsValues.Length)
+            || ((int)PlayerSettings.NumberOfPlayerSettings  != PlayerSettingsNames.Length)
+            || ((int)PlayerSettings.NumberOfPlayerSettings  != PlayerSettingsValues.Length))
+            {
+                throw (new Exception("UserSettings: Wrong size of arrays"));
+            }
         }
 
         public static UserSettings Create(int numberOfParts)

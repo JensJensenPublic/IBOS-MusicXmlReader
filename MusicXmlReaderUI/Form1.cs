@@ -43,15 +43,15 @@ namespace MusicXmlReaderUI
         /// <param name="userSettings"></param>
         private void InitUserSettings(UserSettings userSettings)
         {
-            userSettings.readDivisions = checkBoxShowStartTime.Checked;
-            userSettings.playHarmonies = checkBoxPlayHarmonies.Checked;
-            userSettings.readHarmonies = checkBoxShowHarmonies.Checked;
-            userSettings.readHarmonyCodes = checkBoxOplæsBecifringskoder.Checked;
-            userSettings.readMeasureNumbers = checkBoxReadMeasureNumbers.Checked;
-            userSettings.readEndEvents = checkBoxReadEndEvents.Checked;
-            userSettings.readNotes = checkBoxReadPitch.Checked;
-            userSettings.readNoteOctaves = checkBoxReadOctave.Checked;
-            userSettings.readNoteTypes = checkBoxReadDuration.Checked;
+            //userSettings.readDivisions = checkBoxShowStartTime.Checked;
+            //userSettings.playHarmonies = checkBoxPlayHarmonies.Checked;
+            //userSettings.readHarmonies = checkBoxShowHarmonies.Checked;
+            //userSettings.readHarmonyCodes = checkBoxOplæsBecifringskoder.Checked;
+            //userSettings.readMeasureNumbers = checkBoxReadMeasureNumbers.Checked;
+            //userSettings.readEndEvents = checkBoxReadEndEvents.Checked;
+            //userSettings.readNotes = checkBoxReadPitch.Checked;
+            //userSettings.readNoteOctaves = checkBoxReadOctave.Checked;
+            //userSettings.readNoteTypes = checkBoxReadDuration.Checked;
         }
                 
         //private void Recurse(XmlNodeList childrenNodes)
@@ -112,13 +112,24 @@ namespace MusicXmlReaderUI
             // Reflect the UI values of the UserSettings to the model
             InitUserSettings(model.UserSettings);
 
-            // Load the Checked Listboxes controlling the user settings
+            // Load the Checked Listboxes controlling the user settings per part
 
             model.LoadListBoxOfParts(checkedListBoxPartsToPlay);
             model.LoadListBoxOfParts(checkedListBoxPartsToRead);
             model.LoadListBoxOfParts(checkedListBoxPartsToReadLyrics);
             model.LoadListBoxOfParts(checkedListBoxParts); // The over all checked listbox
-            
+
+            // Load the Checked listboxes controlling the global user settings
+            for (int i = 0; (i < (int)UserSettings.ReaderSettings.NumberOfReaderSettings); i++)
+            {
+                checkedListBoxReaderSettings.Items.Add(model.UserSettings.ReaderSettingsNames[i], model.UserSettings.ReaderSettingsValues[i]);
+            }
+
+            for (int i = 0; (i < (int)UserSettings.PlayerSettings.NumberOfPlayerSettings); i++)
+            {
+                checkedListBoxPlayerSettings.Items.Add(model.UserSettings.PlayerSettingsNames[i], model.UserSettings.PlayerSettingsValues[i]);
+            }
+
             autoReload = true; // From now on all changes are  made by user and must be handled
       
             // Load the ListBox showing the filtered values 
@@ -180,7 +191,6 @@ namespace MusicXmlReaderUI
         }
 
 
-
         /// <summary>
         /// Occurs whenever the state of any of the checkboxes changes
         /// </summary>
@@ -211,64 +221,23 @@ namespace MusicXmlReaderUI
             if (autoReload) model.LoadListBoxTimes();
         }
 
+        private void checkedListBoxReaderSettings_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            model.UserSettings.ReaderSettingsValues[e.Index] = (CheckState.Checked == e.NewValue);
+            if (autoReload) model.LoadListBoxTimes();
+        }
+
+        private void checkedListBoxPlayerSettings_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            model.UserSettings.PlayerSettingsValues[e.Index] = (CheckState.Checked == e.NewValue);
+            if (autoReload) model.LoadListBoxTimes();
+        }
+
+
+
         #endregion // Checked Listboxes
 
         #region CheckBoxes
-        private void checkBoxShowStartTime_CheckedChanged(object sender, EventArgs e)
-        {
-            model.UserSettings.readDivisions = checkBoxShowStartTime.Checked;
-            if (autoReload) model.LoadListBoxTimes();
-        }
-
-        private void checkBoxPlayHarmonies_CheckedChanged(object sender, EventArgs e)
-        {
-            model.UserSettings.playHarmonies = checkBoxPlayHarmonies.Checked;
-            // No reload needed for "Play" options
-        }
-
-        private void checkBoxShowHarmonies_CheckedChanged(object sender, EventArgs e)
-        {
-            model.UserSettings.readHarmonies = checkBoxShowHarmonies.Checked;
-            if (autoReload) model.LoadListBoxTimes();
-        }
-
-        private void checkBoxOplæsBecifringskoder_CheckedChanged(object sender, EventArgs e)
-        {
-            model.UserSettings.readHarmonyCodes = checkBoxOplæsBecifringskoder.Checked;
-            if (autoReload) model.LoadListBoxTimes();
-        }
-
-        private void checkBoxReadMeasureNumbers_CheckedChanged(object sender, EventArgs e)
-        {
-            model.UserSettings.readMeasureNumbers = checkBoxReadMeasureNumbers.Checked;
-            if (autoReload) model.LoadListBoxTimes();
-        }
-
-        private void checkBoxReadEndEvents_CheckedChanged(object sender, EventArgs e)
-        {
-            model.UserSettings.readEndEvents = checkBoxReadEndEvents.Checked;
-            if (autoReload) model.LoadListBoxTimes();
-        }
-
-
-        private void checkBoxReadPitch_CheckedChanged(object sender, EventArgs e)
-        {
-            model.UserSettings.readNotes = checkBoxReadPitch.Checked;
-            if (autoReload) model.LoadListBoxTimes();
-        }
-
-        private void checkBoxReadOctave_CheckedChanged(object sender, EventArgs e)
-        {
-            model.UserSettings.readNoteOctaves = checkBoxReadOctave.Checked;
-            if (autoReload) model.LoadListBoxTimes();
-        }
-
-        private void checkBoxReadDuration_CheckedChanged(object sender, EventArgs e)
-        {
-            model.UserSettings.readNoteTypes = checkBoxReadDuration.Checked;
-            if (autoReload) model.LoadListBoxTimes();
-        }
-
         #endregion // CheckBoxes
 
         /// <summary>
@@ -331,13 +300,13 @@ namespace MusicXmlReaderUI
                 case Keys.D8:
                 case Keys.D9: number = e.KeyCode - Keys.D0; isNumberKey = true; break; // Set or clear one voice
                 case Keys.B: // "Becifringer" TO DO Handle localisation issue here!
-                    if (e.Control) checkBoxShowHarmonies.Checked = check;
-                    if (e.Alt) checkBoxPlayHarmonies.Checked = check;
+                    //if (e.Control) checkBoxShowHarmonies.Checked = check;
+                    //if (e.Alt) checkBoxPlayHarmonies.Checked = check;
                     isHandled = true;
                     break;
                 case Keys.T: // "Takter" TO DO Handle localisation issue here!
-                    if (e.Control) checkBoxReadMeasureNumbers.Checked = check;
-                    if (e.Alt)     checkBoxPlayMeasureNumbers.Checked = check;
+                    //if (e.Control) checkBoxReadMeasureNumbers.Checked = check;
+                    //if (e.Alt)     checkBoxPlayMeasureNumbers.Checked = check;
                     isHandled = true;
                     break;
                 default: break;
@@ -465,6 +434,12 @@ namespace MusicXmlReaderUI
         {
             model.OpenMusicXmlFileLocation();
         }
+
+        private void checkedListBoxParts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 
 }
