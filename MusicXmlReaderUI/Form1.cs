@@ -113,24 +113,27 @@ namespace MusicXmlReaderUI
             InitUserSettings(model.UserSettings);
 
             // Load the Checked Listboxes controlling the user settings per part
-
             model.LoadListBoxOfParts(checkedListBoxPartsToPlay);
             model.LoadListBoxOfParts(checkedListBoxPartsToRead);
             model.LoadListBoxOfParts(checkedListBoxPartsToReadLyrics);
             model.LoadListBoxOfParts(checkedListBoxParts); // The over all checked listbox
 
-            // Load the Checked listboxes controlling the global user settings
-            checkedListBoxReaderSettings.Items.Clear();
-            for (int i = 0; (i < (int)UserSettings.ReaderSettings.NumberOfReaderSettings); i++)
-            {
-                checkedListBoxReaderSettings.Items.Add(model.UserSettings.ReaderSettingsNames[i], model.UserSettings.ReaderSettingsValues[i]);
-            }
+            // Load the Checked Listboxes controlling the global user settings
+            model.UserSettings.LoadPlayerSettings(checkedListBoxPlayerSettings);
+            model.UserSettings.LoadReaderSettings(checkedListBoxReaderSettings);
 
-            checkedListBoxPlayerSettings.Items.Clear();
-            for (int i = 0; (i < (int)UserSettings.PlayerSettings.NumberOfPlayerSettings); i++)
-            {
-                checkedListBoxPlayerSettings.Items.Add(model.UserSettings.PlayerSettingsNames[i], model.UserSettings.PlayerSettingsValues[i]);
-            }
+            //// Load the Checked listboxes controlling the global user settings
+            //checkedListBoxReaderSettings.Items.Clear();
+            //for (int i = 0; (i < (int)UserSettings.ReaderSettings.NumberOfReaderSettings); i++)
+            //{
+            //    checkedListBoxReaderSettings.Items.Add(model.UserSettings.ReaderSettingsNames[i], model.UserSettings.ReaderSettingsValues[i]);
+            //}
+
+            //checkedListBoxPlayerSettings.Items.Clear();
+            //for (int i = 0; (i < (int)UserSettings.PlayerSettings.NumberOfPlayerSettings); i++)
+            //{
+            //    checkedListBoxPlayerSettings.Items.Add(model.UserSettings.PlayerSettingsNames[i], model.UserSettings.PlayerSettingsValues[i]);
+            //}
 
             autoReload = true; // From now on all changes are  made by user and must be handled
       

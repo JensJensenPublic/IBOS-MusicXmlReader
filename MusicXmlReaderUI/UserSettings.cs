@@ -36,13 +36,35 @@ namespace MusicXmlReaderUI
 
         // Global settings (for all parts)
         public enum ReaderSettings                     { MeasureNumbers=0 , Harmonies=1, Notes=2, NoteOctaves=3, NoteTypes=4, Divisions=5, HarmonyCodes=6, EndEvents=7, NumberOfReaderSettings=8};   
-        public readonly string[] ReaderSettingsNames = {"TaktNumre",       "Harmonier",  "Noder", "Oktaver",    "NodeVærdier","Divisions","HarmoniCodes", "EndEvents" };
+        private readonly string[] readerSettingsNames = {"TaktNumre",       "Harmonier",  "Noder", "Oktaver",    "NodeVærdier","Divisions","HarmoniCodes", "EndEvents" };
         public bool[]            ReaderSettingsValues= { true,              true,        true,    true,         true,        false,        false,          false      };
+        public void LoadReaderSettings(System.Windows.Forms.CheckedListBox clb)
+        {
+            LoadSettings(clb, readerSettingsNames, ReaderSettingsValues);
+        }
+
 
         // Global settings (for all parts)
         public enum PlayerSettings { MeasureBeats = 0, Harmonies = 1,NumberOfPlayerSettings=2}
-        public readonly string[] PlayerSettingsNames = { "TaktSlag", "Harmonier" };
+        private readonly string[] playerSettingsNames = { "TaktSlag", "Harmonier" };
         public bool[] PlayerSettingsValues = { false, false };
+        public void LoadPlayerSettings(System.Windows.Forms.CheckedListBox clb)
+        {
+            LoadSettings(clb, playerSettingsNames, PlayerSettingsValues);
+        }
+
+        // Common convenience method
+        private void LoadSettings(System.Windows.Forms.CheckedListBox clb, string[] names, bool[] values)
+        {
+            clb.Items.Clear();
+            for (int i = 0; (i < names.Length); i++)
+            {
+                clb.Items.Add(names[i], values[i]);
+            }
+        }
+
+
+
 
         // Non-boolean user settings
         public float userSlowDown;      // Percentage of the speed described in the MusicXml file
@@ -64,9 +86,9 @@ namespace MusicXmlReaderUI
             partsToRead = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
             partsToReadLyrics = new bool[numberOfParts]; // Must be done here because numberUfParts is not a constant.
             userSlowDown = 1.0F;
-            if (((int)ReaderSettings.NumberOfReaderSettings != ReaderSettingsNames.Length)
+            if (((int)ReaderSettings.NumberOfReaderSettings != readerSettingsNames.Length)
             || ((int)ReaderSettings.NumberOfReaderSettings  != ReaderSettingsValues.Length)
-            || ((int)PlayerSettings.NumberOfPlayerSettings  != PlayerSettingsNames.Length)
+            || ((int)PlayerSettings.NumberOfPlayerSettings  != playerSettingsNames.Length)
             || ((int)PlayerSettings.NumberOfPlayerSettings  != PlayerSettingsValues.Length))
             {
                 throw (new Exception("UserSettings: Wrong size of arrays"));
