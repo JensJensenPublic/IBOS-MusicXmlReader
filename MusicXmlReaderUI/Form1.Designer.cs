@@ -231,7 +231,8 @@
             this.menuStripFile.Location = new System.Drawing.Point(0, 0);
             this.menuStripFile.Name = "menuStripFile";
             this.menuStripFile.Size = new System.Drawing.Size(1276, 24);
-            this.menuStripFile.TabIndex = 17;
+            this.menuStripFile.TabIndex = 0;
+            this.menuStripFile.TabStop = true;
             this.menuStripFile.Text = "Filer";
             // 
             // fileToolStripMenuItem
@@ -551,6 +552,7 @@
             this.checkedListBoxReaderSettings.Name = "checkedListBoxReaderSettings";
             this.checkedListBoxReaderSettings.Size = new System.Drawing.Size(120, 199);
             this.checkedListBoxReaderSettings.TabIndex = 30;
+            this.checkedListBoxReaderSettings.TabStop = false;
             this.checkedListBoxReaderSettings.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxReaderSettings_ItemCheck);
             // 
             // checkedListBoxPlayerSettings
@@ -562,6 +564,7 @@
             this.checkedListBoxPlayerSettings.Name = "checkedListBoxPlayerSettings";
             this.checkedListBoxPlayerSettings.Size = new System.Drawing.Size(120, 199);
             this.checkedListBoxPlayerSettings.TabIndex = 31;
+            this.checkedListBoxPlayerSettings.TabStop = false;
             this.checkedListBoxPlayerSettings.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPlayerSettings_ItemCheck);
             // 
             // labelPlay
