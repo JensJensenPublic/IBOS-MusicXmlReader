@@ -61,6 +61,8 @@
             this.stemmerSomSpillesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stemmerSomOplæsesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stemmerMedLyrikoplæsningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemSpil = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemOplæs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,10 +82,11 @@
             this.labelSelectParts = new System.Windows.Forms.Label();
             this.checkedListBoxReaderSettings = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxPlayerSettings = new System.Windows.Forms.CheckedListBox();
-            this.toolStripMenuItemSpil = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemOplæs = new System.Windows.Forms.ToolStripMenuItem();
             this.labelPlay = new System.Windows.Forms.Label();
             this.labelRead = new System.Windows.Forms.Label();
+            this.toolStripMenuItemAfspil = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemStart = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemPause = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.menuStripFile.SuspendLayout();
             this.SuspendLayout();
@@ -223,6 +226,7 @@
             this.editToolStripMenuItem,
             this.toolStripMenuItem1,
             this.toolsToolStripMenuItem,
+            this.toolStripMenuItemAfspil,
             this.helpToolStripMenuItem});
             this.menuStripFile.Location = new System.Drawing.Point(0, 0);
             this.menuStripFile.Name = "menuStripFile";
@@ -388,6 +392,20 @@
             this.stemmerMedLyrikoplæsningToolStripMenuItem.Text = "Stemmer (lyrikoplæsning)";
             this.stemmerMedLyrikoplæsningToolStripMenuItem.Click += new System.EventHandler(this.stemmerMedLyrikoplæsningToolStripMenuItem_Click);
             // 
+            // toolStripMenuItemSpil
+            // 
+            this.toolStripMenuItemSpil.Name = "toolStripMenuItemSpil";
+            this.toolStripMenuItemSpil.Size = new System.Drawing.Size(216, 22);
+            this.toolStripMenuItemSpil.Text = "Spil";
+            this.toolStripMenuItemSpil.Click += new System.EventHandler(this.toolStripMenuItemSpil_Click);
+            // 
+            // toolStripMenuItemOplæs
+            // 
+            this.toolStripMenuItemOplæs.Name = "toolStripMenuItemOplæs";
+            this.toolStripMenuItemOplæs.Size = new System.Drawing.Size(216, 22);
+            this.toolStripMenuItemOplæs.Text = "Oplæs";
+            this.toolStripMenuItemOplæs.Click += new System.EventHandler(this.toolStripMenuItemOplæs_Click);
+            // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -546,20 +564,6 @@
             this.checkedListBoxPlayerSettings.TabIndex = 31;
             this.checkedListBoxPlayerSettings.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxPlayerSettings_ItemCheck);
             // 
-            // toolStripMenuItemSpil
-            // 
-            this.toolStripMenuItemSpil.Name = "toolStripMenuItemSpil";
-            this.toolStripMenuItemSpil.Size = new System.Drawing.Size(216, 22);
-            this.toolStripMenuItemSpil.Text = "Spil";
-            this.toolStripMenuItemSpil.Click += new System.EventHandler(this.toolStripMenuItemSpil_Click);
-            // 
-            // toolStripMenuItemOplæs
-            // 
-            this.toolStripMenuItemOplæs.Name = "toolStripMenuItemOplæs";
-            this.toolStripMenuItemOplæs.Size = new System.Drawing.Size(216, 22);
-            this.toolStripMenuItemOplæs.Text = "Oplæs";
-            this.toolStripMenuItemOplæs.Click += new System.EventHandler(this.toolStripMenuItemOplæs_Click);
-            // 
             // labelPlay
             // 
             this.labelPlay.AutoSize = true;
@@ -577,6 +581,29 @@
             this.labelRead.Size = new System.Drawing.Size(38, 13);
             this.labelRead.TabIndex = 33;
             this.labelRead.Text = "Oplæs";
+            // 
+            // toolStripMenuItemAfspil
+            // 
+            this.toolStripMenuItemAfspil.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemStart,
+            this.toolStripMenuItemPause});
+            this.toolStripMenuItemAfspil.Name = "toolStripMenuItemAfspil";
+            this.toolStripMenuItemAfspil.Size = new System.Drawing.Size(49, 20);
+            this.toolStripMenuItemAfspil.Text = "&Afspil";
+            // 
+            // toolStripMenuItemStart
+            // 
+            this.toolStripMenuItemStart.Name = "toolStripMenuItemStart";
+            this.toolStripMenuItemStart.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemStart.Text = "Start";
+            this.toolStripMenuItemStart.Click += new System.EventHandler(this.toolStripMenuItemStart_Click);
+            // 
+            // toolStripMenuItemPause
+            // 
+            this.toolStripMenuItemPause.Name = "toolStripMenuItemPause";
+            this.toolStripMenuItemPause.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemPause.Text = "Pause";
+            this.toolStripMenuItemPause.Click += new System.EventHandler(this.toolStripMenuItemPause_Click);
             // 
             // Form1
             // 
@@ -671,6 +698,9 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOplæs;
         private System.Windows.Forms.Label labelPlay;
         private System.Windows.Forms.Label labelRead;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAfspil;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemStart;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPause;
     }
 }
 

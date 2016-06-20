@@ -452,6 +452,15 @@ namespace MusicXmlReaderUI
 
         }
 
+        private void toolStripMenuItemStart_Click(object sender, EventArgs e)
+        {
+            model.StartPlayingPoly();
+        }
+
+        private void toolStripMenuItemPause_Click(object sender, EventArgs e)
+        {
+            model.musicPlayer.StopPlaying();
+        }
     }
 
 }
