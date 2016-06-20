@@ -228,16 +228,15 @@ namespace MusicXmlReaderUI
 
         private void checkedListBoxReaderSettings_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            model.UserSettings.ReaderSettingsValues[e.Index] = (CheckState.Checked == e.NewValue);
+            model.UserSettings.SetReaderSettings(e.Index,(CheckState.Checked == e.NewValue));
             if (autoReload) model.LoadListBoxTimes();
         }
 
         private void checkedListBoxPlayerSettings_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            model.UserSettings.PlayerSettingsValues[e.Index] = (CheckState.Checked == e.NewValue);
+            model.UserSettings.SetPlayerSettings(e.Index, (CheckState.Checked == e.NewValue));
             if (autoReload) model.LoadListBoxTimes();
         }
-
 
 
         #endregion // Checked Listboxes

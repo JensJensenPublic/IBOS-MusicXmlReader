@@ -253,7 +253,7 @@ namespace MusicXmlReaderUI
                     latestHarmonyPlayed = null;
                 }
 
-                if (userSettings.PlayerSettingsValues[(int)UserSettings.PlayerSettings.Harmonies])
+                if (userSettings.GetPlayerSettings(UserSettings.PlayerSettings.Harmonies))
                 {
                     // Play the harmony related to this event
                     HarmonyElement h = eventDescription.HarmonyElement;
@@ -264,7 +264,7 @@ namespace MusicXmlReaderUI
                     }
                     else
                     {
-                        // throw new System.Exception(string.Format("Becifring {0} er ikke implementeret", h.Kind));
+                        Model.Log(string.Format("MusicPlayer: Becifring {0} er ikke implementeret", h.Kind));
                     }
                 }
             }

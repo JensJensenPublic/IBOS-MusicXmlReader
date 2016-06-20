@@ -34,23 +34,39 @@ namespace MusicXmlReaderUI
         // readHarmonyCodes;     // As found in the MusicXml file
         // readEndEvents;
 
-        // Global settings (for all parts)
+        // Global Reader Settings settings (for all parts)
         public enum ReaderSettings                     { MeasureNumbers=0 , Harmonies=1, Notes=2, NoteOctaves=3, NoteTypes=4, Divisions=5, HarmonyCodes=6, EndEvents=7, NumberOfReaderSettings=8};   
         private readonly string[] readerSettingsNames = {"TaktNumre",       "Harmonier",  "Noder", "Oktaver",    "NodeVærdier","Divisions","HarmoniCodes", "EndEvents" };
-        public bool[]            ReaderSettingsValues= { true,              true,        true,    true,         true,        false,        false,          false      };
+        public bool[]            readerSettingsValues= { true,              true,        true,    true,         true,        false,        false,          false      };
         public void LoadReaderSettings(System.Windows.Forms.CheckedListBox clb)
         {
-            LoadSettings(clb, readerSettingsNames, ReaderSettingsValues);
+            LoadSettings(clb, readerSettingsNames, readerSettingsValues);
+        }
+        public bool GetReaderSettings(ReaderSettings i)
+        {
+            return readerSettingsValues[(int)i];
+        }
+        public void SetReaderSettings(int i, bool b)
+        {
+            readerSettingsValues[(int)i] = b;
         }
 
-
-        // Global settings (for all parts)
+        
+        // Global Player Settings (for all parts)
         public enum PlayerSettings { MeasureBeats = 0, Harmonies = 1,NumberOfPlayerSettings=2}
         private readonly string[] playerSettingsNames = { "TaktSlag", "Harmonier" };
-        public bool[] PlayerSettingsValues = { false, false };
+        private bool[] playerSettingsValues = { false, false };
         public void LoadPlayerSettings(System.Windows.Forms.CheckedListBox clb)
         {
-            LoadSettings(clb, playerSettingsNames, PlayerSettingsValues);
+            LoadSettings(clb, playerSettingsNames, playerSettingsValues);
+        }
+        public bool GetPlayerSettings(PlayerSettings i)
+        {
+            return playerSettingsValues[(int)i];
+        }
+        public void SetPlayerSettings(int i, bool b)
+        {
+            playerSettingsValues[(int)i] = b;
         }
 
         // Common convenience method
@@ -87,9 +103,9 @@ namespace MusicXmlReaderUI
             partsToReadLyrics = new bool[numberOfParts]; // Must be done here because numberUfParts is not a constant.
             userSlowDown = 1.0F;
             if (((int)ReaderSettings.NumberOfReaderSettings != readerSettingsNames.Length)
-            || ((int)ReaderSettings.NumberOfReaderSettings  != ReaderSettingsValues.Length)
+            || ((int)ReaderSettings.NumberOfReaderSettings  != readerSettingsValues.Length)
             || ((int)PlayerSettings.NumberOfPlayerSettings  != playerSettingsNames.Length)
-            || ((int)PlayerSettings.NumberOfPlayerSettings  != PlayerSettingsValues.Length))
+            || ((int)PlayerSettings.NumberOfPlayerSettings  != playerSettingsValues.Length))
             {
                 throw (new Exception("UserSettings: Wrong size of arrays"));
             }
