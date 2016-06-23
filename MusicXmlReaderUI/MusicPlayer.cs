@@ -20,6 +20,7 @@ namespace MusicXmlReaderUI
         long firstStopWatchTime = -1;    // For autoplaying polyphonic music 
         int tempo = 60 ; // Quarter notes per minute.  Use 60 as a default
         int numberOfParts;
+        List<MidiNote> notesCurrentlyPlaying; // Contains all notes currently playing. Used when playing is stopped by user
 
         
 
@@ -85,7 +86,10 @@ namespace MusicXmlReaderUI
 
 
         /// <summary>
-        /// Used when the playing manually. The User selects a note at a time.
+        /// Used when the playing manually.
+        /// The User selects a note at a time. 
+        /// or
+        /// The user selects an EventDescription at a time. This may contain several notes to be played simultaneously
         /// </summary>
         /// <param name="selectedIndex"></param>
         /// <param name="selectedObject"></param>
@@ -101,7 +105,18 @@ namespace MusicXmlReaderUI
             }
             else if ((selectedObject is EventDescription))
             {
+                // Firat stop all notes currently playing:
+                if (null != notesCurrentlyPlaying)
+                {
+                    foreach (MidiNote midiNote in notesCurrentlyPlaying)
+                    {
+                        midiNote.StopPlaying(midiOut);
+                    }
+                    notesCurrentlyPlaying.Clear();
+                }
+
                 EventDescription eventDescription = selectedObject as EventDescription;
+                notesCurrentlyPlaying = new List<MidiNote>();
                 foreach(List<NoteElement> noteElementList in eventDescription.NoteLists)
                 {
                     foreach (NoteElement noteElement in noteElementList)
@@ -110,7 +125,8 @@ namespace MusicXmlReaderUI
                         { // This is a real note, not a pause
                             if (userSettings.partsToPlay[noteElement.PartNumber])
                             {
-                                new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                                MidiNote midiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                                notesCurrentlyPlaying.Add(midiNote);
                             }
                         }
                     }
@@ -217,11 +233,16 @@ namespace MusicXmlReaderUI
                     if (null != midiNote)
                     {
                         midiNote.StopPlaying(midiOut);
+                        notesCurrentlyPlaying.Remove(midiNote);
                     }
                 }
 
             }
 
+            if (!playing)
+            {
+                return; // Let the currently existing notes be stopped on time, but do not start any new notes !
+            } 
 
             // Start playing these notes:
             // Itetrate through all parts: 
@@ -238,6 +259,7 @@ namespace MusicXmlReaderUI
                         {
                             // This part is selected to be played (for instance from the GUI)
                             noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, noteElement.MidiChannel, midiOut);
+                            notesCurrentlyPlaying.Add(noteElement.MidiNote);
                             //noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, 1, midiOut);
                         }
                     }
@@ -381,15 +403,21 @@ namespace MusicXmlReaderUI
             this.stopWatch.Start();
             this.nextActionTime = 0;
             this.firstStopWatchTime = stopWatch.ElapsedMilliseconds;
+            notesCurrentlyPlaying = new List<MidiNote>();
             for (int i = 0; ((i < listBox.Items.Count) && (playing)); i++)
-            {
-                object o = listBox.Items[i];
+                {
+                    object o = listBox.Items[i];
                 AutoPlay(o); // Play the next note, using the correct timing!
                 if (o.GetType() == type)
                 {
                     // Only select notes (and pauses) to allow for correct timing!
                     SetSelectedIndex(listBox, i); // Select the corresponding line in the Listbox,  handling Cross-thread issue
                 }
+            }
+            // Stop all notes currently playing! If they don't decay they will keep playing forever !
+            foreach (MidiNote midiNote in notesCurrentlyPlaying)
+            {
+                midiNote.StopPlaying(this.midiOut);
             }
         }
 
