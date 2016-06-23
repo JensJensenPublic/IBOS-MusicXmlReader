@@ -32,19 +32,14 @@ namespace MusicXmlReaderUI
         string localizedPauseType = ""; //  If this is a pause, not a note
         string localizedTie = "";
         Pitch pitchValue;
-        // The following values (measureNumber partId, partNumber and midiChannel)
-        // are not found inside the XML describing the note, but are derived from the XML surrounding the note.
-        int measureNumber;
-        //string partId;   // ID of part to which this note belongs   
-        //int partNumber;  // Part to which this note belongs 
-        //int midiChannel; // Midi channel to be used for playing the note. Implicitly also specifies the Midi instrument to be used.
-
         string syllabic; // Child of lyric
         string text;     // Child of lyric
         string staffString = "";
         int staff = 0;
         //string articulations = "";
 
+        // MeasureNumber and MeasureNumber are not found inside the XML describing the note, but are derived from the XML surrounding the note.
+        int measureNumber;
         ScorePartElement scorePartElement; // Holds a reference to the ScorePartelement describing the score part for this note
 
         MidiNote midiNote = null; // If !null holds a MidiNote curently being played and representing this NoteElement
@@ -275,8 +270,15 @@ namespace MusicXmlReaderUI
             }
         }
 
- 
+        public int MeasureNumber
+        {
+            get
+            {
+                return measureNumber;
+            }
+        }
 
+        
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>

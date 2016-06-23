@@ -362,22 +362,16 @@ namespace MusicXmlReaderUI
             switch (node.Name)
             {
                 case "note":
-                    // If the measure number has changed add the new measure number to the node
-                    int tempMeasureNumber = 0;
                     if (this.currentMeasureNumber != this.latestMeasureNumber)
                     {
                         this.latestMeasureNumber = this.currentMeasureNumber;
-                        tempMeasureNumber = this.currentMeasureNumber;
                     }
-                    //NoteElement note = NoteElement.Create(node, this.divisions, tempMeasureNumber, this.currentPartId, this.currentPartNumber, this.currentMidiChannel); // Old version
-                    NoteElement note = NoteElement.Create(node, this.divisions, tempMeasureNumber, this.currentScorePartElement); // New version
-
-                    // Model.Log(string.Format("MidiChannel={0}", note.MidiChannel));           
+                    NoteElement note = NoteElement.Create(node, this.divisions, this.currentMeasureNumber, this.currentScorePartElement); // New version
                     allMusicXmlObjecsts.Add(note);
                     continueRecursion = false;
                     break;
                 case "part-list":
-                    // We also save the part-list in the model fpr later reference.
+                    // We also save the part-list in the model for later reference.
                     partList = PartlistElement.Create(node);
                     allMusicXmlObjecsts.Add(partList);
                     this.numberOfParts = partList.NumberOfParts();

@@ -43,7 +43,7 @@ namespace MusicXmlReaderUI
                         {
                             // Grace notes are not implemented yet, but they must be explicitly ignored.
                             // TO DO: Implement grace notes.
-                            Model.Log(string.Format("TimeDescriptionList constructor ignoring grace note {0}", noteElement.Step + noteElement.Octave));
+                            Model.Log(string.Format("TimeDescriptionList constructor ignoring grace note {0} in measure {1}", noteElement.Step + noteElement.Octave, noteElement.MeasureNumber));
                         }
                         else
                         {
