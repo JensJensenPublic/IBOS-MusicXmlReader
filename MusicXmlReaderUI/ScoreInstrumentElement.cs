@@ -9,6 +9,8 @@ namespace MusicXmlReaderUI
         string instrumentSound = "";
         string instrumentName = "";
         string instrumentAbbreviation = "";
+        string solo = "";
+        string virtualInstrument = "";
 
 
         /// <summary>
@@ -51,9 +53,16 @@ namespace MusicXmlReaderUI
                     case "instrument-abbreviation":
                         instrumentAbbreviation = n.InnerText;
                         break;
-
+                    case "solo":
+                        solo = n.InnerText;
+                        break;
+                    case "virtual-instrument":
+                        virtualInstrument = n.InnerText;                   
+                        break;
                     default:
-                        throw new System.ArgumentException();
+                        Model.Log(string.Format("ScoreInstrumentElement: Unsupported element {0}", n.InnerText));
+                        break;
+                        // throw new System.ArgumentException();
                 }
             }
         }
@@ -65,7 +74,8 @@ namespace MusicXmlReaderUI
         
         public override string ToString()
         {
-            return (string.Format("ScoreInstrument: Id='{0}' Sound='{1}' Navn='{2}' Forkortelse='{3}'", id, instrumentSound, instrumentName, instrumentAbbreviation));    
+            return (string.Format("ScoreInstrument: Id='{0}' Sound='{1}' Navn='{2}' Forkortelse='{3}' Solo='{4}' VirtualInstrument='{5}'",
+                                   id, instrumentSound, instrumentName, instrumentAbbreviation,solo,virtualInstrument));    
         }
     }
 }
