@@ -31,7 +31,8 @@ namespace MusicXmlReaderUI
  
         string executingAssembly;
         string executingDirectory;
-
+        
+        List<string> metaInfoStrings = new List<string>(); // Selected meta info from the current file, such as Title and Composer
 
 
         private bool CheckFileExistance(string fileName, string methodName, bool dir)
@@ -306,6 +307,7 @@ namespace MusicXmlReaderUI
                 ok = ok && CheckMusicXmlSyntax(doc);
                 if (ok)
                 {
+                    metaInfoStrings = new List<string>(); // Reset Meta Information
                     Log(string.Format("Loaded {0}", fullXmlFileName));
                     allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file
                     Recurse(doc.ChildNodes);                          // Build  the list holding all MusicXml elements read from file
@@ -417,7 +419,9 @@ namespace MusicXmlReaderUI
                     break;
                 // We know the existance of the following elements, but for the time being we ignore them.
                 case "work":
-                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Titel"));
+                    SimpleTextElement workElement = SimpleTextElement.Create(node, "Titel");
+                    allMusicXmlObjecsts.Add(workElement);
+                    metaInfoStrings.Add(workElement.ToString()); 
                     continueRecursion = false;
                     break;
                 case "movement-title":
@@ -432,7 +436,9 @@ namespace MusicXmlReaderUI
                     // allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Identifikation"));          
                     break;
                 case "creator":
-                    allMusicXmlObjecsts.Add(CreatorElement.Create(node));
+                    CreatorElement creatorElement = CreatorElement.Create(node);
+                    allMusicXmlObjecsts.Add(creatorElement);
+                    metaInfoStrings.Add(creatorElement.ToString());
                     continueRecursion = false;
                     break;
                 case "rights":
@@ -663,7 +669,7 @@ namespace MusicXmlReaderUI
         public void LoadListBoxTimes()
         {
             listBoxPoly.Items.Clear();
-            eventDescriptionList.LoadListBox(listBoxPoly);
+            eventDescriptionList.LoadListBox(listBoxPoly, this.metaInfoStrings);
             //timeDescriptionList.LoadListBox(listBoxTimes); 
         }
 
