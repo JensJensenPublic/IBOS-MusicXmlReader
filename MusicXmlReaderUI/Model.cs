@@ -9,6 +9,7 @@ namespace MusicXmlReaderUI
 {
     class Model
     {
+        public readonly string ApplicationName = "IBOS Musiklæser";
         string theMusicXmlFileName = "";
         List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
         MidiOut midiOut;

@@ -23,9 +23,10 @@ namespace MusicXmlReaderUI
 
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent();  
             if (!showTimes) listBoxTimes.Hide();
-            model = new Model(listBoxFiltered, listBoxTimes);      
+            model = new Model(listBoxFiltered, listBoxTimes);
+            this.Text = model.ApplicationName;
             listBoxFiltered.SelectedIndexChanged += new EventHandler(SelectedIndexChanged);
         }
 
