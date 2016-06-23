@@ -521,6 +521,11 @@ namespace MusicXmlReaderUI
                     continueRecursion = false;
                     break;
 
+                case "repeat":
+                    // TODO Implement !!
+                    allMusicXmlObjecsts.Add(RepeatElement.Create(node));
+                    //Model.Log(string.Format("Model.WriteElement: Unimplemented element 'repeat' Part={0} Measure={1}", currentPartId, currentMeasureNumber));
+                     break;
 
                 // The following elements are ignored for the time being, as they describe graphical properties only!
                 case "offset":
