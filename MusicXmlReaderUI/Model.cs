@@ -252,9 +252,9 @@ namespace MusicXmlReaderUI
                     return false;
                 }
                 int resRunning = NvdaControllerClientWrapper.nvdaController_testIfRunning();
+                Log(string.Format("NVDA ScreenReader is{0}running.", (0 != resRunning) ? " NOT " : " "));
                 if (0 != resRunning)
-                {
-                    Log(string.Format("NVDA ScreenReader is not running."));
+                {                
                     return false;
                 }
                 System.Threading.Thread.Sleep(2000); // Allow the previous speach to propagate through the system
@@ -340,7 +340,9 @@ namespace MusicXmlReaderUI
         { 
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
-            Log(string.Format("{0} started in {1} on {2}", System.IO.Path.GetFileName(executingAssembly), executingDirectory, System.DateTime.Now.ToLongDateString()));                 
+            Log(""); // An empty line
+            Log(string.Format("Date={0}:",System.DateTime.Now.ToLongDateString()));
+            Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));                 
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
 
