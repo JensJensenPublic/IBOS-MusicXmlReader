@@ -85,7 +85,9 @@ namespace MusicXmlReaderUI
                          ||  (e is SoundElement)
                          ||  (e is KeyElement)
                          ||  (e is ClefElement)
-                         ||  (e is TimeElement))
+                         || (e is TimeElement)
+                         || (e is RepeatElement))
+
                     {
                         // All these elements are EventElements!
                         EventElement eventElement = e as EventElement;

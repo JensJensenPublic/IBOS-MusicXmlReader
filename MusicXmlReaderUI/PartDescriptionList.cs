@@ -42,7 +42,8 @@ namespace MusicXmlReaderUI
                 }
 
                 else if 
-                (  (e is NoteElement)  
+                (
+                (e is NoteElement)  
                 || (e is HarmonyElement)
                 || (e is BackupElement)      // Er ikke et EventElement
                 || (e is ForwardElement)     // Er ikke et EventElement
@@ -50,7 +51,9 @@ namespace MusicXmlReaderUI
                 || (e is SoundElement)
                 || (e is ClefElement)
                 || (e is KeyElement)
-                || (e is TimeElement))
+                || (e is TimeElement)
+                || (e is RepeatElement)
+                )
                 {
                     // All of these elements are related to events and timing and must be reflected in in the EventDescriptionList.
                     // So they are transferred through the following lists:

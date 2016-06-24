@@ -5,7 +5,16 @@ namespace MusicXmlReaderUI
 
     public class RepeatElement : EventElement
     {
-        string direction = "";
+        public enum RepeatDirectionEnum { Undefinded, Forward, Backward };
+        RepeatDirectionEnum repeatDirection;
+
+        public RepeatDirectionEnum RepeatDirection
+        {
+            get
+            {
+                return repeatDirection;
+            }
+        }
 
         /// <summary>
         /// To force the use of the Create() method
@@ -14,8 +23,7 @@ namespace MusicXmlReaderUI
         {
         }
 
-
-
+        
         /// <summary>
         /// Private constructor, used by the Crate() method
         /// </summary>
@@ -28,8 +36,15 @@ namespace MusicXmlReaderUI
                 switch (a.Name)
                 {
                     case "direction":
-                        direction = a.Value;
+                        switch (a.Value)
+                        {
+                            case "forward": repeatDirection = RepeatDirectionEnum.Forward; break;
+                            case "backward": repeatDirection = RepeatDirectionEnum.Backward; break;
+                            default: Model.Log(string.Format("RepeatElement: Unexpected attributevalue {0} found",a.Value)); break;
+                        }
                         break;
+
+                    default: Model.Log(string.Format("RepeatElement: Unexpected attribute {0} found", a.Name)); break;
                 }
             }
         }
@@ -39,21 +54,21 @@ namespace MusicXmlReaderUI
             return new RepeatElement(node);
         }
 
-        private string LocalizeDirection(string direction)
+        private string LocalizeDirection(RepeatDirectionEnum direction)
         {
-            switch (direction)
+            switch (repeatDirection)
             {
-                case "forward": return "start"; break;
-                case "backward": return "slut"; break;
+                case RepeatDirectionEnum.Forward: return "start";
+                case RepeatDirectionEnum.Backward: return "slut";
                 default: return "???";
             }
        }
 
 
-    public override string ToString()
+        public override string ToString()
         {
 
-            return string.Format("Gentagelse {0}", LocalizeDirection(direction));
+            return string.Format("Gentagelse {0}", LocalizeDirection(repeatDirection));
         }
     }
 }

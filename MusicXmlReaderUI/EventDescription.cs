@@ -28,6 +28,9 @@ namespace MusicXmlReaderUI
         private MeasureElement measureElement; //The  measure related to this event, if any.
         //private int MeasureNumber = -1; // The measure Number if this event falls on a measure border.
 
+        private RepeatElement repeatElementForward; // The RepeatElement  with the "forward" attribute relateted to this event, if any
+        private RepeatElement repeatElementBackward; // The RepeatElement  with the "backward" attribute relateted to this event, if any
+
         private List<EndEventElement> endEventElements; // Elements (for instance NoteElements) to end at this time
 
         // A few other elements may be related to a specifig event
@@ -176,7 +179,18 @@ namespace MusicXmlReaderUI
                 }
                 timeElements.Add(eventElement as TimeElement);
             }
-            
+
+            else if (eventElement is RepeatElement)
+            {
+                RepeatElement repeatElement = eventElement as RepeatElement;
+                switch (repeatElement.RepeatDirection)
+                {
+                    case RepeatElement.RepeatDirectionEnum.Forward: this.repeatElementForward = repeatElement; break;
+                    case RepeatElement.RepeatDirectionEnum.Backward: this.repeatElementBackward = repeatElement; break;
+                    default: break;
+                }
+
+            }
 
         }
 
@@ -255,6 +269,10 @@ namespace MusicXmlReaderUI
         public override string ToString()
         {
             string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
+
+            string repeatForward  = (null == repeatElementForward)  ? "" : repeatElementForward.ToString() + " ";
+            string repeatBackward = (null == repeatElementBackward) ? "" : repeatElementBackward.ToString()+ " ";
+
 
             string measure = "";
             if (userSettings.GetReaderSettings(UserSettings.ReaderSettings.MeasureNumbers))
@@ -353,7 +371,9 @@ namespace MusicXmlReaderUI
                 sbNotes.Append(string.Format("{0,9} ", partNotes));  //  fix width to 9 
                 sbTexts.Append(string.Format("{0} ", partLyrics));
             }
-            return measure + divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString + keyString + clefString + timeString;
+
+            // Finnally compose the result by concatenating all the substrings in the sequence wanted
+            return measure + repeatForward + divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString + keyString + clefString + timeString + repeatBackward;
         }
     }
 }
