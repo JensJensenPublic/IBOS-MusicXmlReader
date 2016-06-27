@@ -83,7 +83,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return string.Format("Toneart: {0}-{1}", localizedKey, localizedmode);
+            return string.Format("Toneart:{0}{1} ", localizedKey, localizedmode);
         }
     } 
 }

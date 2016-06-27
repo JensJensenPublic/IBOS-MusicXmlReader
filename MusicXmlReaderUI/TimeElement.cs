@@ -64,7 +64,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return string.Format("Taktart: {0} {1}", localizedBeats, localizedBeatType);
+            return string.Format("Takt:{0}{1}", localizedBeats, localizedBeatType);
         }
     }
 }
