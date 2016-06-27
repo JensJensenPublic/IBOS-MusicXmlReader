@@ -230,8 +230,9 @@ namespace MusicXmlReaderUI
                         string octave   = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteOctaves) ? noteElement.PitchValue.Octave : "";
                         string type     = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteTypes) ? noteElement.LocalizedType : "";
                         string pitchAndOctave = string.Format("{0}{1}", pitch, octave);
-//                      note = string.Format("{0,-4} {1}", pitchAndOctave, type); // Always use 4 chars for pitch and Octave. Examples: "C   ","Cis4"
-                        note = string.Format("{0} {1}", pitchAndOctave, type);    // Do not use extra chars for Pitch and Octave. Examples: "C","Cis4"
+                        string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
+                        //                      note = string.Format("{0,-4} {1}", pitchAndOctave, type); // Always use 4 chars for pitch and Octave. Examples: "C   ","Cis4"
+                        note = string.Format("{0} {1} {2}", pitchAndOctave, type, notations);    // Do not use extra chars for Pitch and Octave. Examples: "C","Cis4"
                     }
 
                     // string note = string.IsNullOrEmpty(noteElement.Step) ? "Pause" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave + " " +noteElement.LocalizedType;
@@ -358,6 +359,7 @@ namespace MusicXmlReaderUI
                 }
             }
 
+  
 
             StringBuilder sbNotes = new StringBuilder();
             StringBuilder sbTexts = new StringBuilder();

@@ -35,9 +35,9 @@ namespace MusicXmlReaderUI
         // readEndEvents;
 
         // Global Reader Settings settings (for all parts)
-        public enum ReaderSettings                     { MeasureNumbers=0 , Harmonies=1, Notes=2, NoteOctaves=3, NoteTypes=4, Divisions=5, HarmonyCodes=6, EndEvents=7, NumberOfReaderSettings=8};   
-        private readonly string[] readerSettingsNames = {"TaktNumre",       "Harmonier",  "Noder", "Oktaver",    "NodeVærdier","Divisions","HarmoniCodes", "EndEvents" };
-        public bool[]            readerSettingsValues= { true,              true,        true,    true,         true,        false,        false,          false      };
+        public enum ReaderSettings                     { MeasureNumbers=0 , Harmonies=1, Notes=2, NoteOctaves=3, NoteTypes=4, Divisions=5, HarmonyCodes=6, EndEvents=7, Notations=8,NumberOfReaderSettings=9};   
+        private readonly string[] readerSettingsNames = {"TaktNumre",       "Harmonier",  "Noder", "Oktaver",    "NodeVærdier","Divisions","HarmoniCodes", "EndEvents", "Notations" };
+        public bool[]            readerSettingsValues= { true,              true,        true,    true,         true,        false,        false,          false,        true       };
         public void LoadReaderSettings(System.Windows.Forms.CheckedListBox clb)
         {
             LoadSettings(clb, readerSettingsNames, readerSettingsValues);

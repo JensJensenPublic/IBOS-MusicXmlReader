@@ -24,7 +24,8 @@ namespace MusicXmlReaderUI
         string voice = "";
         bool dot = false;
         int divisions = 0; 
-        TieElement tieElement;
+        TieElement tieElement;             // A NoteElement may contain a nested TieElement  (Danish: "Bindebue")
+        NotationsElement notations; // A NoteElement may contain a nested NotationsElement 
         bool graceNote;  
         string tieType = ""; // Is this note tied to another note
         bool tieStop = false;
@@ -278,7 +279,15 @@ namespace MusicXmlReaderUI
             }
         }
 
-        
+        public NotationsElement Notations
+        {
+            get
+            {
+                return notations;
+            }
+        }
+
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
@@ -361,7 +370,7 @@ namespace MusicXmlReaderUI
         private NoteElement(XmlNode xmlNode, int divisions, int measureNumber, ScorePartElement scorePartElement) // New version
         {
             this.scorePartElement = scorePartElement; 
-            this.measureNumber = measureNumber;
+            this.measureNumber = measureNumber;            
             //this.partId = scorePartElement.partId;
             //this.partNumber = scorePartElement.partNumber;
             //this.midiChannel = (null == scorePartElement.midiInstrumentElement) ? 1 : scorePartElement.midiInstrumentElement.MidiChannel; // Use channel 1 as a default
@@ -395,7 +404,8 @@ namespace MusicXmlReaderUI
                         staffString = child.InnerText;
                         staff = int.Parse(staffString);
                         break;
-                    case "notations": // TO DO: Find out what to do here                                                
+                    case "notations": // TO DO: Find out what to do here 
+                        notations = NotationsElement.Create(child);                                               
                         break;
                     case "beam": // TO DO: Find out what to do here                                                
                         break;
@@ -509,6 +519,8 @@ namespace MusicXmlReaderUI
                 measureString = string.Format("Takt {0}", measureNumber);
             }
 
+            string notationsString = (null != notations) ? notations.ToString() : ""; 
+
             // Primarily for debugging
             string partString = string.Format("{0} ", PartId);
             string timeString = string.Format("{0}:", startTime);
@@ -516,7 +528,8 @@ namespace MusicXmlReaderUI
             if (!String.IsNullOrEmpty(Step))
             {
                 // This is a note.
-                return String.Format("{0}{1}{2} {3} {4} {5} {6}", timeString, partString, measureString, pitchValue.Name, pitchValue.Octave, localizedType, localizedTie);
+                return String.Format("{0}{1}{2} {3} {4} {5} {6} {7}",
+                    timeString, partString, measureString, pitchValue.Name, pitchValue.Octave, localizedType, localizedTie,notationsString);
             }
             else
             {      

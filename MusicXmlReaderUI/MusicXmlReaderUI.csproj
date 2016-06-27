@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="BackupElement.cs" />
     <Compile Include="BrailleBuilder.cs" />
+    <Compile Include="NotationsElement.cs" />
     <Compile Include="RepeatElement.cs" />
     <Compile Include="ClefElement.cs" />
     <Compile Include="DivisionsElement.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="ScorepartElement.cs" />
     <Compile Include="ScorePartwiseElement.cs" />
     <Compile Include="SimpleTextElement.cs" />
+    <Compile Include="SlurElement.cs" />
     <Compile Include="SoundElement.cs" />
     <Compile Include="SystemParametersiInfo.cs" />
     <Compile Include="TieElement.cs" />
