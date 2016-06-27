@@ -108,7 +108,13 @@ namespace MusicXmlReaderUI
                 textBoxMessage.Text = string.Format("Kunne ikke indlæse {0}", openFileDialog.FileName);
                 return;
             }
-            
+
+            // Clear the contents of the listbox showing the timed events (important when loading a new file)
+            listBoxTimes.Items.Clear();
+            listBoxTimes.Refresh();
+
+
+            autoReload = false; // While loading the listbox all changes are  made by user and must be ignored
 
             // Reflect the UI values of the UserSettings to the model
             InitUserSettings(model.UserSettings);
@@ -136,7 +142,7 @@ namespace MusicXmlReaderUI
             //    checkedListBoxPlayerSettings.Items.Add(model.UserSettings.PlayerSettingsNames[i], model.UserSettings.PlayerSettingsValues[i]);
             //}
 
-            autoReload = true; // From now on all changes are  made by user and must be handled
+
       
             // Load the ListBox showing the filtered values 
             //listBoxFiltered.Focus();
@@ -144,6 +150,8 @@ namespace MusicXmlReaderUI
 
             // Let the Model do the hard work of transforming to e timed representation.
             model.LoadListBoxTimes();
+
+            autoReload = true; // From now on all changes are  made by user and must be handled
 
             // Focus on the listbox representing the time representation
             listBoxTimes.Focus();
