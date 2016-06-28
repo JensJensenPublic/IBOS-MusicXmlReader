@@ -53,5 +53,8 @@ namespace MusicXmlReaderUI
 
         [DllImport("nvdaControllerClient32.dll", CharSet = CharSet.Unicode)]
         public static extern int nvdaController_brailleMessage(String braille);
+        
+        [DllImport("nvdaControllerClient32.dll", CharSet = CharSet.Unicode)]
+        public static extern int nvdaController_cancelSpeech();
     }
 }

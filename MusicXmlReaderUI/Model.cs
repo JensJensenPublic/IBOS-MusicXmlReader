@@ -248,29 +248,44 @@ namespace MusicXmlReaderUI
                 string fullFileName = Path.Combine(Environment.CurrentDirectory, fileName);
                 if (!File.Exists(fullFileName))
                 {
-                    Log(string.Format("{0} is not found. NVDA ScreenReader can not be controlled directly from the application", fullFileName));
+                    Log(string.Format("{0} is not found. NVDA ScreenReader can not be controlled through NVDA ControllerClient", fullFileName));
                     return false;
                 }
+
                 int resRunning = NvdaControllerClientWrapper.nvdaController_testIfRunning();
-                Log(string.Format("NVDA ScreenReader is{0}running.", (0 != resRunning) ? " NOT " : " "));
+                Log(string.Format("NVDA ControllerServer for NVDA ControllerClient is{0}running.", (0 != resRunning) ? " NOT " : " "));
                 if (0 != resRunning)
-                {                
+                {
+                    if (resRunning != 1722) // 1722 is the expected error in this case : "RPC server is not available. 
+                    {
+                        Log(string.Format("NvdaControllerClientWrapper.nvdaController_testIfRunning() failed WINERROR={0}", resRunning));
+                    }        
                     return false;
                 }
+
                 System.Threading.Thread.Sleep(2000); // Allow the previous speach to propagate through the system
-                int resSpeak = NvdaControllerClientWrapper.nvdaController_speakText("Musiklæser starter.");
+                int resSpeak = NvdaControllerClientWrapper.nvdaController_speakText("N V D A ControllerClient");
                 System.Threading.Thread.Sleep(2000); // Allow the speach to propagate through the system
                 if (0 != resSpeak)
                 {
-                    Log(string.Format("Failed to speak directly through NVDA ScreenReader"));
+                    Log(string.Format("Failed to speak directly through NVDA ControllerClient: NvdaControllerClientWrapper.NvdaController_speakText() returned WINERROR={0}", resSpeak));
                     return false;
                 }
+
                 int resBraille = NvdaControllerClientWrapper.nvdaController_brailleMessage("Braille");
                 if (0 != resBraille)
                 {
-                    Log(string.Format("Failed to output Braille directly through NVDA ScreenReader"));
+                    Log(string.Format("Failed to output to Braille display through NVDA ControllerClient: NvdaControllerClientWrapper.NvdaController_brailleMessage() returned WINERROR={0}", resBraille));
                     return false;
                 }
+
+                int resCancelSpeech = NvdaControllerClientWrapper.nvdaController_cancelSpeech();
+                if (0 != resCancelSpeech)
+                {
+                    Log(string.Format("Failed to cancel speech through NVDA ControllerClient: NvdaControllerClientWrapper.NvdaController_cancelSpeech() returned WINERROR={0}", resCancelSpeech));
+                    return false;
+                }
+                
             }
             catch (Exception e)
             {
