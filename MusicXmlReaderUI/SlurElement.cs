@@ -6,6 +6,7 @@ namespace MusicXmlReaderUI
     {
         public enum SlurTypeEnum { Undefinded, Start, Stop, Continue };
         SlurTypeEnum slurType;
+        int numberLevel = 1 ; // MusicXml default value
         
         /// <summary>
         /// To force the use of the Create() method
@@ -39,6 +40,11 @@ namespace MusicXmlReaderUI
                             }
                         }
                         break;
+
+                    case "number":
+                        Utilities.Parse(a.Value, ref numberLevel, 1, 6, "SlurElement:");
+                        break;
+
                     default:
                         Model.Log(string.Format("SlurElement: Unknown attribute name '{0}'", a.Name));
                         break;
@@ -67,7 +73,14 @@ namespace MusicXmlReaderUI
                 return slurType;
             }
         }
-        
+
+        public int NumberLevel
+        {
+            get
+            {
+                return numberLevel;
+            }
+        }
 
         public static SlurElement Create(XmlNode node)
         {
@@ -77,7 +90,8 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return string.Format("Legato{0}", LocalizeSlur(this.slurType));
+            string number = (1 == this.NumberLevel) ? "" :  NumberLevel.ToString(); // Ignore the number if it has its default value of 1
+            return string.Format("Legato{0} {1}", number, LocalizeSlur(this.slurType));
         }
     }
 }
