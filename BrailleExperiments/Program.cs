@@ -102,10 +102,51 @@ namespace BrailleExperiments
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        static private void LogFSInterface()
+
+        private static bool WriteBytes(int handle, byte[] bytes)
+        {
+            bool fbWriteResult = false;
+            unsafe
+            {
+                
+                fixed (byte* p = bytes)
+                {
+                    IntPtr ptr = (IntPtr)p;
+                    fbWriteResult = FSBrlDspAPIWrapper.fbWrite(handle, 0, bytes.Length, ptr);
+                    // do you stuff here
+                }
+            }
+            return fbWriteResult;
+        }
+
+
+        // Toggle the whole display for 2 minutes
+        private static void Toggle(int handle, int cellCount)
+        {
+            byte[] bytes00 = new byte[cellCount];
+            byte[] bytesFF = new byte[cellCount];
+            for (int i = 0; (i < cellCount); i++)
+            {
+                bytes00[i] = (byte)0;
+                bytesFF[i] = (byte)0xff; ;
+            }
+
+            for (int j = 0; (j < 60); j++)
+            {
+                WriteBytes(handle, bytes00);
+                System.Threading.Thread.Sleep(1000);
+                WriteBytes(handle, bytesFF);
+                System.Threading.Thread.Sleep(1000);
+            }
+        }
+
+
+
+
+            /// <summary>
+            /// 
+            /// </summary>
+            static private void LogFSInterface()
         {
 
             string directoryName32 = @"C:\Windows\System32";
@@ -182,7 +223,11 @@ namespace BrailleExperiments
                 }
 
             }
+
             Log(string.Format("FSBrlDspAPIWrapper.fbWrite {0}", fbWriteResult ? "succeeded" : "failed"));
+
+            Toggle(handle, cellCount);
+
 
             result = FSBrlDspAPIWrapper.fbClose(handle);
             Log(string.Format("FSBrlDspAPIWrapper.fbClose {0}", result ? "succeeded" : "failed"));
