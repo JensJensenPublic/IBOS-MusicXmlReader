@@ -141,7 +141,7 @@ namespace BrailleExperiments
             }
 
             bool result = false;
-            
+
             result = FSBrlDspAPIWrapper.fbBeep(handle);
             Log(string.Format("FSBrlDspAPIWrapper.fbBeep {0}", result ? "succeeded" : "failed"));
 
@@ -161,12 +161,33 @@ namespace BrailleExperiments
 
             Log(string.Format("DeviceName={0} FirmwareVersion ={1} CellCount={2}", sbName.ToString(), sbVersion.ToString(), cellCount));
 
+            //Byte[] bytes = new Byte[100];                
+            //IntPtr pBytes = new IntPtr(bytes);
+            //bool fbWriteResult = FSBrlDspAPIWrapper.fbWrite(handle,1,1,pBytes);
+
+            bool fbWriteResult = false;
+            unsafe
+            {
+
+                byte[] buffer = new byte[255];
+                for (byte i = 0; (i < 255); i++)
+                {
+                    buffer[i] = i;
+                }
+                fixed (byte* p = buffer)
+                {
+                    IntPtr ptr = (IntPtr)p;
+                    fbWriteResult = FSBrlDspAPIWrapper.fbWrite(handle,0,cellCount,ptr);
+                    // do you stuff here
+                }
+
+            }
+            Log(string.Format("FSBrlDspAPIWrapper.fbWrite {0}", fbWriteResult ? "succeeded" : "failed"));
+
             result = FSBrlDspAPIWrapper.fbClose(handle);
             Log(string.Format("FSBrlDspAPIWrapper.fbClose {0}", result ? "succeeded" : "failed"));
             
-            //int byteToWrite = 0;                
-            //IntPtr pBytes = new IntPtr(byteToWrite);
-            //bool fbWriteResult = FSBrlDspAPIWrapper.fbWrite(handle,1,1,pBytes);
+
 
         }
 

@@ -30,9 +30,8 @@ namespace BrailleExperiments
         [DllImport("FSBrlDspAPI.dll", CharSet = CharSet.Ansi)] // Works
         public static extern bool fbClose(Int32 h);
 
-
-        //        [DllImport("FSBrlDspAPI.dll", CharSet = CharSet.Ansi)] // Fails
-        //        public static extern bool fbWrite(Int32 h, int nStart, int nLength, IntPtr pBytes);
+        [DllImport("FSBrlDspAPI.dll", CharSet = CharSet.Ansi)]
+        public static extern bool fbWrite(Int32 h, int nStart, int nLength, IntPtr pBytes);
 
     }
 
