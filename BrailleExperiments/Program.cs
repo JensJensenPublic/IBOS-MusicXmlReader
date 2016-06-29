@@ -1,11 +1,15 @@
 ﻿using System;
 using System.IO;
+using System.Text;
+using System.Runtime.InteropServices;
 using MusicXmlReaderUI;
 
 namespace BrailleExperiments
 {
     class Program
     {
+
+        const int INVALID_HANDLE_VALUE = -1;
 
         static void Log(string s)
         {
@@ -98,11 +102,78 @@ namespace BrailleExperiments
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        static private void LogFSInterface()
+        {
 
+            string directoryName32 = @"C:\Windows\System32";
+            string directoryName64 = @"C:\Windows\SysWOW64";
+            string fileName = "fsbrldspapi.dll";
+            string fullFileName = Path.Combine(directoryName32, fileName);
+
+            if (!File.Exists(fullFileName))
+            {
+                Log(string.Format("Driver file for Freedom Scientific Braille Display {0} not found", fullFileName));
+                return;
+            }
+            else
+            {
+                Log(string.Format("Using {0}", fullFileName));
+            }
+
+            // Open 
+
+            // Should use ANSI ??
+
+
+            int handle = FSBrlDspAPIWrapper.fbOpen("USB", 0, 42); // Fails, but survives
+            //int handle = FSBrlDspAPIWrapper.fbOpen("", 0, 0);// Fails, but survives
+            //int handle = FSBrlDspAPIWrapper.fbOpen(null, 0, 0);// Fails and crashes application
+            if (INVALID_HANDLE_VALUE == handle)
+            {
+                Log(string.Format("FSBrlDspAPIWrapper.fbOpen failed. Marshal.GetLastWin32Error returned {0}", Marshal.GetLastWin32Error()));
+            }
+            else
+            {
+                Log(string.Format("FSBrlDspAPIWrapper.fbOpen returned a valid handle {0}", handle));
+            }
+
+            bool result = false;
+            
+            result = FSBrlDspAPIWrapper.fbBeep(handle);
+            Log(string.Format("FSBrlDspAPIWrapper.fbBeep {0}", result ? "succeeded" : "failed"));
+
+            int cellCount = FSBrlDspAPIWrapper.fbGetCellCount(handle);
+            Log(string.Format("FSBrlDspAPIWrapper.fbGetCellCount {0}", (cellCount != 0) ? "succeeded" : "failed"));
+
+            int maxNameSize = 100;
+            StringBuilder sbName = new StringBuilder(maxNameSize);
+            result = FSBrlDspAPIWrapper.fbGetDisplayName(handle, sbName, maxNameSize);
+            Log(string.Format("FSBrlDspAPIWrapper.fbGetDisplayName {0}", result ? "succeeded" : "failed"));
+
+            int maxVersionSize = 100;
+            StringBuilder sbVersion = new StringBuilder(maxVersionSize);
+            result = FSBrlDspAPIWrapper.fbGetFirmwareVersion(handle, sbVersion, maxVersionSize);
+            Log(string.Format("FSBrlDspAPIWrapper.fbGetFirmwareVersion {0}", result ? "succeeded" : "failed"));
+
+
+            Log(string.Format("DeviceName={0} FirmwareVersion ={1} CellCount={2}", sbName.ToString(), sbVersion.ToString(), cellCount));
+
+            result = FSBrlDspAPIWrapper.fbClose(handle);
+            Log(string.Format("FSBrlDspAPIWrapper.fbClose {0}", result ? "succeeded" : "failed"));
+            
+            //int byteToWrite = 0;                
+            //IntPtr pBytes = new IntPtr(byteToWrite);
+            //bool fbWriteResult = FSBrlDspAPIWrapper.fbWrite(handle,1,1,pBytes);
+
+        }
 
 
         static void Main(string[] args)
         {
+            LogFSInterface();
             LogNvdaInterface();
         }
     }
