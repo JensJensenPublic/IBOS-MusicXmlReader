@@ -42,7 +42,7 @@ namespace MusicXmlReaderUI
                         break;
 
                     case "number":
-                        Utilities.Parse(a.Value, ref numberLevel, 1, 6, "SlurElement:");
+                        Utilities.Parse(a.Value, ref numberLevel, 1, 6, "SlurElement:",false);
                         break;
 
                     default:

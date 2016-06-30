@@ -65,7 +65,7 @@ namespace MusicXmlReaderUI
                 switch (n.Name)
                 {
                     case "midi-channel":
-                        Utilities.Parse(n.InnerText, ref midiChannel, 1, 16, "MidiInstrumentElement: Invalid value of midi-channel");
+                        Utilities.Parse(n.InnerText, ref midiChannel, 1, 16, "MidiInstrumentElement: Invalid value of midi-channel",false);
                         //midiChannel = int.Parse(n.InnerText);
                         //if ((midiChannel < 1) || (MidiChannel > 16))
                         //{
@@ -73,7 +73,7 @@ namespace MusicXmlReaderUI
                         //}
                         break;
                     case "midi-program":
-                        Utilities.Parse(n.InnerText, ref midiProgram, 1, 255, "MidiInstrumentElement: Invalid value of midi-program");
+                        Utilities.Parse(n.InnerText, ref midiProgram, 1, 255, "MidiInstrumentElement: Invalid value of midi-program",false);
                         //midiProgram = int.Parse (n.InnerText);
                         //if ((midiProgram < 1) || (midiProgram > 255))
                         //{

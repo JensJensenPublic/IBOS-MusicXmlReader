@@ -19,9 +19,14 @@ namespace MusicXmlReaderUI
         /// <param name="highValue"></param>
         /// <param name="errorString"></param>
         /// <returns></returns>
-        public static bool Parse(string input, ref int result, int lowValue, int highValue, string errorString)
+        public static bool Parse(string input, ref int result, int lowValue, int highValue, string errorString,bool acceptEmptyAsDefault)
         {
             int tempResult;
+            if ((acceptEmptyAsDefault) && (0 == input.Length))
+            {
+                return true; // Accept and keep the default value
+            }
+
             if (!int.TryParse(input, out tempResult))
             {
                 Model.Log(string.Format("{0}: Got '{1}' Expected an integer", errorString, input));

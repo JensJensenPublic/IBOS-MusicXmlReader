@@ -385,9 +385,9 @@ namespace MusicXmlReaderUI
                         //step = GetChildValue(child, "step");
                         Utilities.Parse(GetChildValue(child, "step"), ref step, 'A', 'G', "NoteElement: step", true);                   
                         //alter = GetChildValue(child, "alter");
-                        Utilities.Parse(GetChildValue(child, "alter"), ref alter, -2, +2, "NoteElement: alter");
+                        Utilities.Parse(GetChildValue(child, "alter"), ref alter, -2, +2, "NoteElement: alter",true);
                         //string octave = GetChildValue(child, "octave");
-                        Utilities.Parse(GetChildValue(child, "octave"), ref this.octave, 0, 9, "NoteElement: octave");
+                        Utilities.Parse(GetChildValue(child, "octave"), ref this.octave, 0, 9, "NoteElement: octave",false);
                         pitchValue = Pitch.Create(step, alter, octave);
                         break;
                     case "duration": duration = int.Parse(child.InnerText); break;
