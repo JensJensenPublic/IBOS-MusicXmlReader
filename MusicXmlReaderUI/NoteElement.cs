@@ -16,6 +16,7 @@ namespace MusicXmlReaderUI
 
         // Values found in MusicXml file, possibly after a minor type conversion, typically fromstring to int.
         string step = "";
+        char chStep = '?'; // No default
         int alter = 0 ; // Represents the number of semitones the note is altered.
         int octave = 0;
         int duration = 0;
@@ -382,6 +383,7 @@ namespace MusicXmlReaderUI
                         // The pitch represents the sound, not what is notated, so an alter element must be included even if it represents a flat or sharp
                         // that is part of the key signature. This is why the E-flat contains an alter element, though there is no accidental on the note.
                         step = GetChildValue(child, "step");
+                        Utilities.Parse(GetChildValue(child, "step"), ref chStep, 'A', 'G', "NoteElement: octave");
                         //alter = GetChildValue(child, "alter");
                         Utilities.Parse(GetChildValue(child, "alter"), ref alter, -2, +2, "NoteElement: alter");
                         //string octave = GetChildValue(child, "octave");
