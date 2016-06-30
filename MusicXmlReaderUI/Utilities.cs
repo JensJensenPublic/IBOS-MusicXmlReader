@@ -46,15 +46,23 @@ namespace MusicXmlReaderUI
         /// <param name="highValue"></param>
         /// <param name="errorString"></param>
         /// <returns></returns>
-        public static bool Parse(string input, ref char result, char lowValue, char highValue, string errorString)
+        public static bool Parse(string input, ref string result, char lowValue, char highValue, string errorString, bool acceptEmptyString)
         {
-            if (string.IsNullOrEmpty(input) || (1 != input.Length) || (input[0] < lowValue) || ((input[0]) > highValue))
+            if (null == input)
             {
-                Model.Log(string.Format("{0}: Got '{1}' Expected a value in [{2}..{3}]", errorString, (null == input) ? "NULL" : input , lowValue, highValue));
+                Model.Log(string.Format("{0}: Got '{1}' Expected a value in [{2}..{3}]", errorString, "NULL" , lowValue, highValue));
                 return false;
             }
-            result = input[0];
-            return true;
+
+            // Accept either an empty string og a string consisting of a single character in the interval specified
+            if (acceptEmptyString && (0 == input.Length) || ((1 == input.Length) && (input[0] >= lowValue) && ((input[0]) <= highValue)))
+            {
+                result = input;
+                return true;
+            }
+
+            Model.Log(string.Format("{0}: Got '{1}' Expected a value in [{2}..{3}]", errorString, (null == input) ? "NULL" : input, lowValue, highValue));
+            return false;
         }
 
 
