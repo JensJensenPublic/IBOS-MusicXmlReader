@@ -168,7 +168,7 @@ namespace NAudioDemo
             // Start by playing an unaltered C in octave 4
             //MidiNote midiNote = StartNote(ChromaticStep.C,0,4, 0x7f);
             //MidiNote midiNote = new MidiNote("C","", "4", 0x7f,midiOut);
-            MidiNote midiNote = new MidiNote("C","","4", 0x7f,midiOut);
+            MidiNote midiNote = new MidiNote("C",0,4, 0x7f,midiOut);
             System.Threading.Thread.Sleep(1000);
             midiNote.StopPlaying(midiOut);
             //StopNote(midiNote);

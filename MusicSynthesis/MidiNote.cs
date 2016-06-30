@@ -44,15 +44,15 @@ namespace JSJ.MusicSynthesis
         /// <param name="velocity"></param>
         /// <param name="midiChannel"></param>
         /// <param name="midiOut"></param>
-        public MidiNote(string step, string alter, string octave, int velocity, int midiChannel, MidiOut midiOut)
+        public MidiNote(string step, int alter, int octave, int velocity, int midiChannel, MidiOut midiOut)
         {
-            CommonConstructor(GetChromaticStep(step), GetAlterValue(alter), int.Parse(octave), velocity, Interval.Unison, midiChannel, midiOut);
+            CommonConstructor(GetChromaticStep(step), alter, octave, velocity, Interval.Unison, midiChannel, midiOut);
         }
 
 
-        public MidiNote(string step, string alter, string octave, int velocity, MidiOut midiOut)
+        public MidiNote(string step, int alter, int octave, int velocity, MidiOut midiOut)
         {
-            CommonConstructor(GetChromaticStep(step), GetAlterValue(alter), int.Parse(octave), velocity, Interval.Unison, 1, midiOut);
+            CommonConstructor(GetChromaticStep(step), alter, octave, velocity, Interval.Unison, 1, midiOut);
         }
 
         // New Code

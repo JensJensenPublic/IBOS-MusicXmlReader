@@ -16,8 +16,8 @@ namespace MusicXmlReaderUI
 
         // Values found in MusicXml file, possibly after a minor type conversion, typically fromstring to int.
         string step = "";
-        string alter = ""; // Represents the number of semitones the note is altered.
-        string octave = "";
+        int alter = 0 ; // Represents the number of semitones the note is altered.
+        int octave = 0;
         int duration = 0;
         bool chord = false; // Means that this note starts at the same time as the previous note, not after the previous note.
         string type = "";
@@ -54,7 +54,7 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public string Octave
+        public int Octave
         {
             get
             {
@@ -95,7 +95,7 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public string Alter
+        public int Alter
         {
             get
             {
@@ -382,8 +382,10 @@ namespace MusicXmlReaderUI
                         // The pitch represents the sound, not what is notated, so an alter element must be included even if it represents a flat or sharp
                         // that is part of the key signature. This is why the E-flat contains an alter element, though there is no accidental on the note.
                         step = GetChildValue(child, "step");
-                        alter = GetChildValue(child, "alter");
-                        octave = GetChildValue(child, "octave");
+                        //alter = GetChildValue(child, "alter");
+                        Utilities.Parse(GetChildValue(child, "alter"), ref alter, -2, +2, "NoteElement: alter");
+                        //string octave = GetChildValue(child, "octave");
+                        Utilities.Parse(GetChildValue(child, "octave"), ref this.octave, 0, 9, "NoteElement: octave");
                         pitchValue = Pitch.Create(step, alter, octave);
                         break;
                     case "duration": duration = int.Parse(child.InnerText); break;

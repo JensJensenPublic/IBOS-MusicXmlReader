@@ -131,7 +131,7 @@ namespace BrailleExperiments
                 bytesFF[i] = (byte)0xff; ;
             }
 
-            for (int j = 0; (j < 60); j++)
+            for (int j = 0; (j < 1000); j++)
             {
                 WriteBytes(handle, bytes00);
                 System.Threading.Thread.Sleep(1000);

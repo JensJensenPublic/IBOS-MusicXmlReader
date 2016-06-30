@@ -194,6 +194,42 @@ namespace MusicXmlReaderUI
 
         }
 
+        /// <summary>
+        /// Generate a representing of the (possibly multiple) notes of a single part
+        /// This function is where we can really differentiate ourselves from mainstream products such as MuseScore
+        /// </summary>
+        /// <param name="noteElementList"></param>
+        /// <returns></returns>
+        private List<byte> NotesForOnePartAsBraille(List<NoteElement> noteElementList)
+        {
+            if (!userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notes)) return new List<byte>(); // User completely turned off reading of notes
+
+            BrailleBuilder bb = BrailleBuilder.Create();
+            foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
+            {
+                // Add pitch information
+                if (userSettings.partsToRead[noteElement.PartNumber]) // Might later look at subparts S1/S2 ? 
+                {
+                    BrailleBuilder bb1 = BrailleBuilder.Create();
+                    string note = "";
+                    // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)
+                    if (string.IsNullOrEmpty(noteElement.Step))
+                    {
+                        // This is a pause            
+                        string type = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteTypes) ? noteElement.LocalizedPauseType : "pause";
+                        note = string.Format("{0}", type);
+                    }
+                    else
+                    {
+                        // This is a note
+                        bb1.AddNote(noteElement.Step, noteElement.Alter, noteElement.Octave, noteElement.Type, false); // TO DO: Handle punctured notes                     
+                    }                    
+                    bb.Append(bb1.Braille);
+                }
+            }
+            return bb.Braille;
+        }
+                
 
         /// <summary>
         /// Generate a string representing the (possibly multiple) notes of a single part
@@ -201,10 +237,10 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="noteElementList"></param>
         /// <returns></returns>
-        private string PartNotes(List<NoteElement> noteElementList)
+        private string NotesForOnePart(List<NoteElement> noteElementList)
         {
             if (!userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notes)) return ""; // User completely turned off reading of notes
-            if (0 == noteElementList.Count()) return "-"; // Nothing happened in this part 
+            if (0 == noteElementList.Count()) return " "; // Nothing happened in this part 
             StringBuilder sb = new StringBuilder();
             foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
             {
@@ -227,7 +263,7 @@ namespace MusicXmlReaderUI
                         // This is a note
                         // Here the sequence is pitch,octave,type such af "Cis4 punkteret halvnode"
                         string pitch    = noteElement.PitchValue.Name; // Always use the name of the note
-                        string octave   = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteOctaves) ? noteElement.PitchValue.Octave : "";
+                        string octave   = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteOctaves) ? noteElement.PitchValue.Octave.ToString() : "";
                         string type     = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteTypes) ? noteElement.LocalizedType : "";
                         string pitchAndOctave = string.Format("{0}{1}", pitch, octave);
                         string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
@@ -249,7 +285,7 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="noteElementList"></param>
         /// <returns></returns>
-        private string PartLyrics(List<NoteElement> noteElementList)
+        private string LyricsForOnePart(List<NoteElement> noteElementList)
         {
             if (0 == noteElementList.Count()) return ""; // Nothing happened in this part 
             string s = "";
@@ -266,8 +302,125 @@ namespace MusicXmlReaderUI
             return s;
         }
 
+        /// <summary>
+        /// Generates the Braille representation, where ToString generates the text representation 
+        /// Same structure as ToString
+        /// </summary>
+        /// <returns></returns>
+        public List<byte> ToBraille()
+        {
+            //string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
 
-        public override string ToString()
+            //string repeatForward = (null == repeatElementForward) ? "" : repeatElementForward.ToString() + " ";
+            //string repeatBackward = (null == repeatElementBackward) ? "" : repeatElementBackward.ToString() + " ";
+
+
+            //string measure = "";
+            //if (userSettings.GetReaderSettings(UserSettings.ReaderSettings.MeasureNumbers))
+            //{
+            //    measure = (null != measureElement) ? string.Format("Takt {0,3} ", measureElement.Number) : "         "; // Up to 1000 measures
+            //}
+
+            //string harmonyCode = "";
+            //if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.HarmonyCodes)) && (null != harmonyElement))
+            //{
+            //    harmonyCode = string.Format(" {0} {1} {2} : ", harmonyElement.Kind, harmonyElement.RootStep, harmonyElement.RootAlter);
+            //}
+
+
+            //string harmony = "";
+            //if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
+            //{
+            //    //ChromaticStep chromaticStep = MidiNote.GetChromaticStep(harmonyElement.RootStep, harmonyElement.RootAlter);
+            //    //ChordType chordType = MidiChord.GetChordType(harmonyElement.Kind);
+            //    harmony = string.Format("{0}-{1}", harmonyElement.ChromaticStep, harmonyElement.LocalizedChordType);
+            //}
+
+
+            //string endEventString = "";
+            //if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.EndEvents)) && (null != endEventElements))
+            //{
+            //    endEventString += "(";
+            //    foreach (EndEventElement endEventElement in endEventElements)
+            //    {
+            //        // Get the starttime for the Element that this EndEventElement represents
+            //        endEventString += " " + endEventElement.StartElement.StartTime.ToString();
+            //    }
+            //    endEventString += ")";
+            //}
+
+
+            //string soundString = "";
+            //if (null != soundElements)
+            //{
+            //    foreach (SoundElement soundElement in soundElements)
+            //    {
+            //        // For the time being we only handle Tempo here. Later we may handle other velues!
+            //        if (0 != soundElement.GetTempo())
+            //        {
+            //            soundString = string.Format("Tempo={0}", soundElement.GetTempo());
+            //        }
+            //    }
+            //}
+
+            //string keyString = "";
+            //if (null != keyElements)
+            //{
+            //    foreach (KeyElement keyElement in keyElements)
+            //    {
+            //        if (!string.IsNullOrEmpty(keyElement.ToString()))
+            //        {
+            //            keyString = string.Format("{0}", keyElement.ToString());
+            //        }
+            //    }
+            //}
+
+            //string clefString = "";
+            //if (null != clefElements)
+            //{
+            //    foreach (ClefElement clefElement in clefElements)
+            //    {
+            //        if (!string.IsNullOrEmpty(clefElement.ToString()))
+            //        {
+            //            clefString = string.Format("{0}", clefElement.ToString());
+            //        }
+            //    }
+            //}
+
+            //string timeString = "";
+            //if (null != timeElements)
+            //{
+            //    foreach (TimeElement timeElement in timeElements)
+            //    {
+            //        if (!string.IsNullOrEmpty(timeElement.ToString()))
+            //        {
+            //            clefString = string.Format("{0}", timeElement.ToString());
+            //        }
+            //    }
+            //}
+
+
+
+            BrailleBuilder bbNotes = BrailleBuilder.Create();
+            BrailleBuilder bbLyrics = BrailleBuilder.Create();
+            // Iterate over the parts and build a complete representation of all notes and of all texts
+            foreach (List<NoteElement> noteElementList in noteLists) // Iterate over the fixed number of parts.
+            {
+                List<byte> notes  = NotesForOnePartAsBraille(noteElementList); // Represents all notes for all parts
+                List<byte> lyrics = new List<byte>();//  LyricsForOnePartAsBraille(noteElementList); // Represents all texts for all parts
+                // Assume that: The step is described with 3 characters. The octave with 1 character and max 2 notes per part !
+                //sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
+                bbNotes.Append(notes);  
+                bbLyrics.Append(lyrics);
+            }
+
+            // Finnally compose the result by concatenating all the substrings in the sequence wanted
+            //return measure + repeatForward + divisions + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString + keyString + clefString + timeString + repeatBackward;
+            return bbNotes.Braille; // Later define the "+" operator for BrailleBuilder 
+        
+    }
+
+    public override string ToString()
         {
             string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
 
@@ -366,12 +519,12 @@ namespace MusicXmlReaderUI
             // Iterate over the parts and build a complete representation of all notes and of all texts
             foreach (List<NoteElement> noteElementList in noteLists) // Iterate over the fixed number of parts.
             {
-                string partNotes = PartNotes(noteElementList); // Represents all notes for all parts
-                string partLyrics = PartLyrics(noteElementList); // Represents all texts for all parts
+                string notes  = NotesForOnePart(noteElementList); // Represents all notes for all parts
+                string lyrics = LyricsForOnePart(noteElementList); // Represents all texts for all parts
                 // Assume that: The step is described with 3 characters. The octave with 1 character and max 2 notes per part !
                 //sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
-                sbNotes.Append(string.Format("{0,9} ", partNotes));  //  fix width to 9 
-                sbTexts.Append(string.Format("{0} ", partLyrics));
+                sbNotes.Append(string.Format("{0,9} ", notes));  //  fix width to 9 
+                sbTexts.Append(string.Format("{0} ", lyrics));
             }
 
             // Finnally compose the result by concatenating all the substrings in the sequence wanted

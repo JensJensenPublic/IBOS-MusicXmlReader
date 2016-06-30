@@ -101,7 +101,7 @@ namespace MusicXmlReaderUI
             {
                 NoteElement noteElement = selectedObject as NoteElement;
                 if (string.IsNullOrEmpty(noteElement.Step)) return; // This is a pause
-                new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                // new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
             }
             else if ((selectedObject is EventDescription))
             {

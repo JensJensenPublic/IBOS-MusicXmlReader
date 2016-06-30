@@ -24,7 +24,7 @@ namespace MusicXmlReaderUI
 
 
         private string name;
-        private string octave;
+        private int octave;
 
         public string Name
         {
@@ -35,7 +35,7 @@ namespace MusicXmlReaderUI
 
         }
 
-        public string Octave
+        public int Octave
         {
             get
             {
@@ -50,19 +50,19 @@ namespace MusicXmlReaderUI
         {
         }
 
-        int AlterToInt(string alter)
-        {
-            switch (alter)
-            {
-                case "-2": return -2;
-                case "-1": return -1;
-                case "0": return  0;
-                case "1": return  1;
-                case "2": return 2;
-                // No attempt to handle all alter values!
-                default: throw new ArgumentException();
-            }
-        }
+        //int AlterToInt(string alter)
+        //{
+        //    switch (alter)
+        //    {
+        //        case "-2": return -2;
+        //        case "-1": return -1;
+        //        case "0": return  0;
+        //        case "1": return  1;
+        //        case "2": return 2;
+        //        // No attempt to handle all alter values!
+        //        default: throw new ArgumentException();
+        //    }
+        //}
 
         int StepToInt(string step)
         {
@@ -87,9 +87,9 @@ namespace MusicXmlReaderUI
         /// <param name="step"></param>
         /// <param name="alter"></param>
         /// <param name="octave"></param>
-        private Pitch(string step,string alter,string octave)
+        private Pitch(string step,int alter,int octave)
         {
-            if (string.IsNullOrEmpty(alter))
+            if (0 == alter)
             {
                 // Optimize for the simple and frequent case !
                 this.name = step;
@@ -97,7 +97,7 @@ namespace MusicXmlReaderUI
                 return;
             }
             // The note has been altered
-            int iAlter = AlterToInt(alter);
+            int iAlter = alter;
             int iStep = StepToInt(step);
             this.name = names[  iAlter + 2, iStep]; // Convert iAlter to an index in the table!
             int carry = carries[iAlter + 2, iStep]; // Convert iAlter to an index in the table!
@@ -107,11 +107,11 @@ namespace MusicXmlReaderUI
             }
             else
             {
-                this.octave = (int.Parse(octave) + carry).ToString();
+                this.octave = octave + carry;
             }
         }
 
-        public static Pitch Create(string step, string alter,string octave)
+        public static Pitch Create(string step, int alter,int octave)
         {
             return new Pitch(step, alter, octave);
         }

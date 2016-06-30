@@ -64,24 +64,37 @@ namespace MusicXmlReaderUI
             { 29, 21, 15, 31, 55, 14, 30, 37 },     // half,32th
             { 61, 53, 47, 63, 55, 46, 62, 13 } };   // whole,16th
 
+        public List<byte> Braille
+        {
+            get
+            {
+                return braille;
+            }
+        }
+
+        public void Append(List<byte> bytes)
+        {
+            this.braille.AddRange(bytes);
+        }
+
         /// <summary>
         /// For looking op in the notes array 
         /// </summary>
         /// <param name="step"></param>
         /// <returns></returns>
-        private int GetStepIndex(FullToneStep step)
+        private int GetStepIndex(string step)
         {
             switch (step)
             {
-                case FullToneStep.C: return 0;
-                case FullToneStep.D: return 1;
-                case FullToneStep.E: return 2;
-                case FullToneStep.F: return 3;
-                case FullToneStep.G: return 4;
-                case FullToneStep.A: return 5;
-                case FullToneStep.B: return 6;
+                case "C": return 0;
+                case "D": return 1;
+                case "E": return 2;
+                case "F": return 3;
+                case "G": return 4;
+                case "A": return 5;
+                case "B": return 6;
                 default:
-                    Model.Log(string.Format("GetStepIndex({0}) Unknown step '{0}'", step.ToString()));
+                    Model.Log(string.Format("GetStepIndex({0}) Unknown step '{0}'", step));
                     return -1;            
             }
         }
@@ -133,8 +146,10 @@ namespace MusicXmlReaderUI
         /// <param name="octave"></param>
         /// <param name="type">From "whole" to 64nd</param>
         /// <param name="punctured">A puncture added</param>
-        public void AddNote(FullToneStep step, int alter,int octave, string type, bool punctured)
+        //public void AddNote(FullToneStep step, int alter, int octave, string type, bool punctured) // The right signature
+        public void AddNote(string step, int alter, int octave, string type, bool punctured) // ********************* FIX ! Temp signature
         {
+ 
             const byte sharp = (byte)41;
             const byte flat = (byte)35;
             const byte dot = (byte)4;
