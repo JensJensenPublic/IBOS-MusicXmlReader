@@ -29,8 +29,13 @@ namespace MusicXmlReaderUI
         {
             List<USBDeviceInfo> devices = new List<USBDeviceInfo>();
 
+            string searchString1 = @"Select * From Win32_USBHub"; // Does not show Braille device
+            string searchString2 = @"Select * From Win32_USBControllerDevice"; //Crashes
+            string searchString3 = @"Select * From Win32_PnPEntity"; // Device ID: USB\VID_0F4E&PID_0114\0123456, PNP Device ID: USB\VID_0F4E&PID_0114\0123456, Description: Focus 3 Braille Display USB
+            string searchString4 = @"SELECT * FROM Win32_PnPEntity where DeviceID Like ""USB%"""; // As 3 but shows only USB devices
+
             ManagementObjectCollection collection;
-            using (var searcher = new ManagementObjectSearcher(@"Select * From Win32_USBHub"))
+            using (var searcher = new ManagementObjectSearcher(searchString4))
                 collection = searcher.Get();
 
             foreach (var device in collection)
