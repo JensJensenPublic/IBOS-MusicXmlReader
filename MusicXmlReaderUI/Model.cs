@@ -370,6 +370,8 @@ namespace MusicXmlReaderUI
             LogSystemParameters();
             // Log availability of NVDA interface.
             LogNvdaInterface();
+
+            //DeviceInfo.LogDeviceInfo();
         }
  
         /// <summary>
