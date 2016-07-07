@@ -100,7 +100,7 @@ namespace MusicXmlReaderUI
             if ((selectedObject is NoteElement))
             {
                 NoteElement noteElement = selectedObject as NoteElement;
-                if (string.IsNullOrEmpty(noteElement.Step)) return; // This is a pause
+                if (noteElement.IsPause) return; // This is a pause
                 // new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
             }
             else if ((selectedObject is EventDescription))
@@ -125,7 +125,7 @@ namespace MusicXmlReaderUI
                         { // This is a real note, not a pause
                             if (userSettings.partsToPlay[noteElement.PartNumber])
                             {
-                                MidiNote midiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                                MidiNote midiNote = new MidiNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, 127, midiOut);
                                 notesCurrentlyPlaying.Add(midiNote);
                             }
                         }
@@ -177,10 +177,10 @@ namespace MusicXmlReaderUI
                     latestNotePlayed.StopPlaying(midiOut);
                 }
 
-                if ("" != noteElement.Step)
+                if (!noteElement.IsPause)
                 {
                     // This is a playable note, not a pause !
-                    latestNotePlayed = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+                    latestNotePlayed = new MidiNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, 127, midiOut);
                 }
             }
             nextActionTime += Duration(noteElement);
@@ -252,13 +252,13 @@ namespace MusicXmlReaderUI
                 foreach (NoteElement noteElement in noteElementList)
                 {
                     if (noteElement.TieStop) continue; // Let the note continue
-                    if ("" != noteElement.Step)
+                    if (!noteElement.IsPause)
                     {
                         // This is a playable note, not a pause !
                         if (userSettings.partsToPlay[i])
                         {
                             // This part is selected to be played (for instance from the GUI)
-                            noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, noteElement.MidiChannel, midiOut);
+                            noteElement.MidiNote = new MidiNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, 127, noteElement.MidiChannel, midiOut);
                             notesCurrentlyPlaying.Add(noteElement.MidiNote);
                             //noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, 1, midiOut);
                         }

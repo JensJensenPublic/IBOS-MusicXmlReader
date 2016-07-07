@@ -213,7 +213,7 @@ namespace MusicXmlReaderUI
                     BrailleBuilder bb1 = BrailleBuilder.Create();
                     string note = "";
                     // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)
-                    if (string.IsNullOrEmpty(noteElement.Step))
+                    if (noteElement.IsPause)
                     {
                         // This is a pause            
                         string type = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteTypes) ? noteElement.LocalizedPauseType : "pause";
@@ -222,7 +222,7 @@ namespace MusicXmlReaderUI
                     else
                     {
                         // This is a note
-                        bb1.AddNote(noteElement.Step, noteElement.Alter, noteElement.Octave, noteElement.Type, false); // TO DO: Handle punctured notes                     
+                        bb1.AddNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, noteElement.Type, false); // TO DO: Handle punctured notes                     
                     }                    
                     bb.Append(bb1.Braille);
                 }
@@ -251,7 +251,7 @@ namespace MusicXmlReaderUI
 
                     string note = "";
                     // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)
-                    if (string.IsNullOrEmpty(noteElement.Step))
+                    if (noteElement.IsPause)
                     {
                         // This is a pause
                         // Here the type and the word "pause" are cocatenated such as "punkteret halvnodepause"

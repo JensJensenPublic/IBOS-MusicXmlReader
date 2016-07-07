@@ -70,6 +70,26 @@ namespace MusicXmlReaderUI
             return false;
         }
 
+        public static bool Parse(string input, ref char result, char lowValue, char highValue, string errorString)
+        {
+            if (null == input)
+            {
+                Model.Log(string.Format("{0}: Got '{1}' Expected a value in [{2}..{3}]", errorString, "NULL", lowValue, highValue));
+                return false;
+            }
+
+            // Accept either an empty string og a string consisting of a single character in the interval specified
+            if ( (1 == input.Length) && (input[0] >= lowValue) && ((input[0]) <= highValue))
+            {
+                result = input[0];
+                return true;
+            }
+
+            Model.Log(string.Format("{0}: Got '{1}' Expected a value in [{2}..{3}]", errorString, (null == input) ? "NULL" : input, lowValue, highValue));
+            return false;
+        }
+
+
 
         /// <summary>
         /// Check valitity of an input parameter of type float

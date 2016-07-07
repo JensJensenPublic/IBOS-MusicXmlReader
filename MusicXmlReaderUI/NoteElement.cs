@@ -14,8 +14,9 @@ namespace MusicXmlReaderUI
         public const int commonDivisions = 1260;
         string punctured = "punkteret ";
 
+
         // Values found in MusicXml file, possibly after a minor type conversion, typically from string to int.
-        string step = "";   // Represents a diatonoc step: A,B,C,D,E,F, G or a pause
+        char step = ' ';   // Represents a diatonoc step: A,B,C,D,E,F, G or a pause
                             // We need a string here because the empty string is used to denote a pause !
         int alter = 0 ;     // Represents the number of semitones the note is altered. 
         int octave = 0;
@@ -47,7 +48,7 @@ namespace MusicXmlReaderUI
         MidiNote midiNote = null; // If !null holds a MidiNote curently being played and representing this NoteElement
 
 
-        public string Step
+        public char Step
         {
             get
             {
@@ -170,11 +171,14 @@ namespace MusicXmlReaderUI
             }
         }
 
+        /// <summary>
+        /// Per definition a note without a pitch is a pause !
+        /// </summary>
         public bool IsPause
         {
             get
             {
-                return string.IsNullOrEmpty(step);
+                return (null == pitchValue);
             }
         }
 
@@ -383,12 +387,14 @@ namespace MusicXmlReaderUI
                         // The pitch represents the sound, not what is notated, so an alter element must be included even if it represents a flat or sharp
                         // that is part of the key signature. This is why the E-flat contains an alter element, though there is no accidental on the note.
                         //step = GetChildValue(child, "step");
-                        Utilities.Parse(GetChildValue(child, "step"), ref step, 'A', 'G', "NoteElement: step", true);                   
-                        //alter = GetChildValue(child, "alter");
-                        Utilities.Parse(GetChildValue(child, "alter"), ref alter, -2, +2, "NoteElement: alter",true);
-                        //string octave = GetChildValue(child, "octave");
-                        Utilities.Parse(GetChildValue(child, "octave"), ref this.octave, 0, 9, "NoteElement: octave",false);
-                        pitchValue = Pitch.Create(step, alter, octave);
+                        string stepString = GetChildValue(child, "step");
+                        if (!string.IsNullOrEmpty(stepString))
+                        {
+                            Utilities.Parse(GetChildValue(child, "step"), ref step, 'A', 'G', "NoteElement: step");
+                            Utilities.Parse(GetChildValue(child, "alter"), ref alter, -2, +2, "NoteElement: alter", true);
+                            Utilities.Parse(GetChildValue(child, "octave"), ref octave, 0, 9, "NoteElement: octave", false);
+                            pitchValue = Pitch.Create(stepString, alter, octave);
+                        }
                         break;
                     case "duration": duration = int.Parse(child.InnerText); break;
                     case "chord": chord = true; break;
@@ -433,7 +439,7 @@ namespace MusicXmlReaderUI
                 }
             }
             localizedType = LocalizeType(Type, dot);
-            localizedPauseType = (string.IsNullOrEmpty(step)) ? LocalizePause(Type, dot) : "";
+            localizedPauseType = (IsPause) ? LocalizePause(Type, dot) : "";
             localizedTie = LocalizeTie(tieType);
             this.divisions = divisions;
             // Model.GetNoteTiming(out this.startTime, out this.endTime, int.Parse(this.duration)); 
@@ -529,7 +535,7 @@ namespace MusicXmlReaderUI
             string partString = string.Format("{0} ", PartId);
             string timeString = string.Format("{0}:", startTime);
 
-            if (!String.IsNullOrEmpty(Step))
+            if (!IsPause)
             {
                 // This is a note.
                 return String.Format("{0}{1}{2} {3} {4} {5} {6} {7}",
