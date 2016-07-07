@@ -58,6 +58,7 @@
     <Compile Include="BrailleBuilder.cs" />
     <Compile Include="BrailleDisplayer.cs" />
     <Compile Include="DeviceInfo.cs" />
+    <Compile Include="FSBrlDspAPI.Wrapper.cs" />
     <Compile Include="NotationsElement.cs" />
     <Compile Include="RepeatElement.cs" />
     <Compile Include="ClefElement.cs" />

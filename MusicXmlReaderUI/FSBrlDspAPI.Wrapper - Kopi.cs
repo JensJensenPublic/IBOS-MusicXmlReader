@@ -11,9 +11,9 @@ namespace BrailleExperiments
     {
 
         // FSBRLAPI HANDLE WINAPI fbOpen(LPCSTR lpszPort,HWND hwndNotify,UINT umsgNotify); 
-        //       [DllImport("FSBrlDspAPI.dll", CharSet = CharSet.Unicode)]
+ //       [DllImport("FSBrlDspAPI.dll", CharSet = CharSet.Unicode)]
         [DllImport("FSBrlDspAPI.dll", CharSet = CharSet.Ansi)]
-        public static extern int fbOpen(String portName, Int32 h, UInt32 umsgNotify); // Works
+        public static extern int fbOpen(String portName,Int32 h,UInt32 umsgNotify ); // Works
 
         [DllImport("FSBrlDspAPI.dll", CharSet = CharSet.Ansi)] // Works
         public static extern bool fbBeep(Int32 h);

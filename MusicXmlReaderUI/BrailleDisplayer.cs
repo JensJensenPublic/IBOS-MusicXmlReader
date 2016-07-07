@@ -15,14 +15,18 @@ namespace MusicXmlReaderUI
     class BrailleDisplayer
     {
 
+        private FSBrlDspAPIWrapper fSBrlDspAPIWrapper;
 
         private BrailleDisplayer()
         {
+            fSBrlDspAPIWrapper = FSBrlDspAPIWrapper.Create();
+            fSBrlDspAPIWrapper.Open();
         }
 
+  
         public static BrailleDisplayer Create()
         {
-            return new BrailleDisplayer();
+             return new BrailleDisplayer();
         }
 
         
@@ -51,7 +55,13 @@ namespace MusicXmlReaderUI
                 string text = eventDescription.ToString();          // The text currently shown on the visual display
                 List<byte> bytes = eventDescription.ToBraille();    // The Braille pattern to show on the Braill display
 
+                byte[] byteArray = bytes.ToArray();
+
                 // Write these bytes to the Braille display
+                if (byteArray.Length > 0)
+                {
+                    fSBrlDspAPIWrapper.Write(byteArray);
+                }
 
             }
             return;
