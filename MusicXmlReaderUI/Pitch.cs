@@ -64,17 +64,17 @@ namespace MusicXmlReaderUI
         //    }
         //}
 
-        int StepToInt(string step)
+        int StepToInt(char step)
         {
             switch (step)
             {
-                case "C": return 0;
-                case "D": return 1;
-                case "E": return 2;
-                case "F": return 3;
-                case "G": return 4;
-                case "A": return 5;
-                case "B": return 6;
+                case 'C': return 0;
+                case 'D': return 1;
+                case 'E': return 2;
+                case 'F': return 3;
+                case 'G': return 4;
+                case 'A': return 5;
+                case 'B': return 6;
                 // No attempt to handle all alter values!
                 default: throw new ArgumentException();
             }
@@ -87,12 +87,12 @@ namespace MusicXmlReaderUI
         /// <param name="step"></param>
         /// <param name="alter"></param>
         /// <param name="octave"></param>
-        private Pitch(string step,int alter,int octave)
+        private Pitch(char step,int alter,int octave)
         {
             if (0 == alter)
             {
                 // Optimize for the simple and frequent case !
-                this.name = step;
+                this.name = step.ToString();
                 this.octave = octave;
                 return;
             }
@@ -111,7 +111,7 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public static Pitch Create(string step, int alter,int octave)
+        public static Pitch Create(char step, int alter,int octave)
         {
             return new Pitch(step, alter, octave);
         }
