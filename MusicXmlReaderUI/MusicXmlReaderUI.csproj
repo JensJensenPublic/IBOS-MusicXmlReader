@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="BackupElement.cs" />
     <Compile Include="BrailleBuilder.cs" />
+    <Compile Include="BrailleDisplayer.cs" />
     <Compile Include="DeviceInfo.cs" />
     <Compile Include="NotationsElement.cs" />
     <Compile Include="RepeatElement.cs" />

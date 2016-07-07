@@ -16,6 +16,7 @@ namespace MusicXmlReaderUI
         ListBox listBoxParts; // Lists elements grouped per part
         ListBox listBoxPoly; // Lists elements grouped per time
         public MusicPlayer musicPlayer;
+        public BrailleDisplayer brailleDisplayer;
         public PartlistElement partList; // Contains the list of parts, describing all instruments used including their midi parameters
         int divisions; // Current number of divisions of a quarternode
         int tempo;     // Current tempo in beats pr minute
@@ -360,6 +361,7 @@ namespace MusicXmlReaderUI
             Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));                 
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
+            brailleDisplayer = BrailleDisplayer.Create();
 
             //musicPlayer.ChangeInstrument(20); // Church Organ
 

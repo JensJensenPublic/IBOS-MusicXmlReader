@@ -189,6 +189,7 @@ namespace MusicXmlReaderUI
         {
             object o = listBoxTimes.Items[listBoxTimes.SelectedIndex];
             model.musicPlayer.SelectedIndexChanged(listBoxTimes.SelectedIndex, o);
+            model.brailleDisplayer.SelectedIndexChanged(listBoxTimes.SelectedIndex, o);
 
         }
 
