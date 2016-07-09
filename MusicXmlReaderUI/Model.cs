@@ -352,7 +352,7 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// Constructor
         /// </summary>
-        public Model(ListBox listBox, ListBox listBoxPoly)
+        public Model(ListBox listBox, ListBox listBoxPoly,TextBox textBoxMusicBraille)
         { 
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
@@ -361,12 +361,13 @@ namespace MusicXmlReaderUI
             Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));                 
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
-            brailleDisplayer = BrailleDisplayer.Create();
+            brailleDisplayer = BrailleDisplayer.Create(textBoxMusicBraille);
 
             //musicPlayer.ChangeInstrument(20); // Church Organ
 
             this.listBoxParts = listBox;
             this.listBoxPoly = listBoxPoly;
+
 
             // Log some global system parameters.
             LogSystemParameters();

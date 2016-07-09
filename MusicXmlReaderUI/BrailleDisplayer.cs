@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 
 
@@ -16,17 +17,19 @@ namespace MusicXmlReaderUI
     {
 
         private FSBrlDspAPIWrapper fSBrlDspAPIWrapper;
+        private TextBox musicBrailleTextBox; // The textbox used for writing MusicBraille bytes, repredsented as UniCode
 
-        private BrailleDisplayer()
+        private BrailleDisplayer(TextBox tb)
         {
+            musicBrailleTextBox = tb;
             fSBrlDspAPIWrapper = FSBrlDspAPIWrapper.Create();
             fSBrlDspAPIWrapper.Open();
         }
 
   
-        public static BrailleDisplayer Create()
+        public static BrailleDisplayer Create(TextBox tb)
         {
-             return new BrailleDisplayer();
+             return new BrailleDisplayer(tb);
         }
 
         
@@ -63,6 +66,15 @@ namespace MusicXmlReaderUI
                     fSBrlDspAPIWrapper.Write(byteArray);
                 }
 
+                // Write these bytes to the MusicBraille textbox, represented as UniCode                               
+                StringBuilder musicBrailleStringBuilder = new StringBuilder();
+                char UnicodeBrailleBase = (char) 0x2800;
+                foreach (byte b in bytes)
+                {
+                    musicBrailleStringBuilder.Append((char)(UnicodeBrailleBase + (char)b));
+                }
+                musicBrailleTextBox.Text = musicBrailleStringBuilder.ToString();
+               
             }
             return;
         }

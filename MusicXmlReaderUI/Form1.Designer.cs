@@ -70,6 +70,9 @@
             this.museScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xmlFilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fortolketXMLFilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemAfspil = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemStart = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemPause = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,9 +87,7 @@
             this.checkedListBoxPlayerSettings = new System.Windows.Forms.CheckedListBox();
             this.labelPlay = new System.Windows.Forms.Label();
             this.labelRead = new System.Windows.Forms.Label();
-            this.toolStripMenuItemAfspil = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemStart = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemPause = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBoxBraille = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.menuStripFile.SuspendLayout();
             this.SuspendLayout();
@@ -461,6 +462,29 @@
             this.fortolketXMLFilToolStripMenuItem.Text = "MusicXml fil (fortolket)";
             this.fortolketXMLFilToolStripMenuItem.Click += new System.EventHandler(this.fortolketXMLFilToolStripMenuItem_Click);
             // 
+            // toolStripMenuItemAfspil
+            // 
+            this.toolStripMenuItemAfspil.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemStart,
+            this.toolStripMenuItemPause});
+            this.toolStripMenuItemAfspil.Name = "toolStripMenuItemAfspil";
+            this.toolStripMenuItemAfspil.Size = new System.Drawing.Size(49, 20);
+            this.toolStripMenuItemAfspil.Text = "&Afspil";
+            // 
+            // toolStripMenuItemStart
+            // 
+            this.toolStripMenuItemStart.Name = "toolStripMenuItemStart";
+            this.toolStripMenuItemStart.Size = new System.Drawing.Size(105, 22);
+            this.toolStripMenuItemStart.Text = "Start";
+            this.toolStripMenuItemStart.Click += new System.EventHandler(this.toolStripMenuItemStart_Click);
+            // 
+            // toolStripMenuItemPause
+            // 
+            this.toolStripMenuItemPause.Name = "toolStripMenuItemPause";
+            this.toolStripMenuItemPause.Size = new System.Drawing.Size(105, 22);
+            this.toolStripMenuItemPause.Text = "Pause";
+            this.toolStripMenuItemPause.Click += new System.EventHandler(this.toolStripMenuItemPause_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -472,6 +496,7 @@
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.helpToolStripMenuItem.Text = "&Hjælp";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // contentsToolStripMenuItem
             // 
@@ -584,34 +609,21 @@
             this.labelRead.TabIndex = 33;
             this.labelRead.Text = "Oplæs";
             // 
-            // toolStripMenuItemAfspil
+            // textBoxBraille
             // 
-            this.toolStripMenuItemAfspil.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemStart,
-            this.toolStripMenuItemPause});
-            this.toolStripMenuItemAfspil.Name = "toolStripMenuItemAfspil";
-            this.toolStripMenuItemAfspil.Size = new System.Drawing.Size(49, 20);
-            this.toolStripMenuItemAfspil.Text = "&Afspil";
-            // 
-            // toolStripMenuItemStart
-            // 
-            this.toolStripMenuItemStart.Name = "toolStripMenuItemStart";
-            this.toolStripMenuItemStart.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemStart.Text = "Start";
-            this.toolStripMenuItemStart.Click += new System.EventHandler(this.toolStripMenuItemStart_Click);
-            // 
-            // toolStripMenuItemPause
-            // 
-            this.toolStripMenuItemPause.Name = "toolStripMenuItemPause";
-            this.toolStripMenuItemPause.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemPause.Text = "Pause";
-            this.toolStripMenuItemPause.Click += new System.EventHandler(this.toolStripMenuItemPause_Click);
+            this.textBoxBraille.Font = new System.Drawing.Font("BrailleUnicode6", 36F);
+            this.textBoxBraille.Location = new System.Drawing.Point(257, 506);
+            this.textBoxBraille.Name = "textBoxBraille";
+            this.textBoxBraille.Size = new System.Drawing.Size(574, 68);
+            this.textBoxBraille.TabIndex = 34;
+            this.textBoxBraille.TextChanged += new System.EventHandler(this.textBoxBraille_TextChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1276, 496);
+            this.ClientSize = new System.Drawing.Size(1276, 578);
+            this.Controls.Add(this.textBoxBraille);
             this.Controls.Add(this.labelRead);
             this.Controls.Add(this.labelPlay);
             this.Controls.Add(this.checkedListBoxPlayerSettings);
@@ -703,6 +715,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAfspil;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemStart;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPause;
+        private System.Windows.Forms.TextBox textBoxBraille;
     }
 }
 

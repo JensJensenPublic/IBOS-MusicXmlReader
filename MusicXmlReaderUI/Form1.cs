@@ -25,7 +25,7 @@ namespace MusicXmlReaderUI
         {
             InitializeComponent();  
             if (!showTimes) listBoxTimes.Hide();
-            model = new Model(listBoxFiltered, listBoxTimes);
+            model = new Model(listBoxFiltered, listBoxTimes,textBoxBraille);
             this.Text = model.ApplicationName;
             listBoxFiltered.SelectedIndexChanged += new EventHandler(SelectedIndexChanged);
         }
@@ -472,6 +472,20 @@ namespace MusicXmlReaderUI
         private void toolStripMenuItemPause_Click(object sender, EventArgs e)
         {
             model.musicPlayer.StopPlaying();
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //char c1 = (char)0x2801;
+            //char c2 = (char)0x2802;
+            //char c3 = (char)0x2803;
+            //string s = c1.ToString() + c2.ToString() + c3.ToString();
+            //textBoxBraille.Text = s;
+        }
+
+        private void textBoxBraille_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 
