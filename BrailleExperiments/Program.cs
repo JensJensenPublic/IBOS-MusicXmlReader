@@ -76,47 +76,62 @@ namespace BrailleExperiments
                 S("Speach");
                 B("                       ");
                 B("Braille");
-                for (int i = 0; (i < text.Length); i++)
-                {
-                    string s = text[i].ToString();
-                    S(s);               
-                    B(s + s + s + s + s + s + s + s + s + s + s + s + s + s); // 14
-                    System.Threading.Thread.Sleep(2000); // Allow the speach to propagate through the system
-
-                }
-
-                int resCancelSpeech = NvdaControllerClientWrapper.nvdaController_cancelSpeech();
-                if (0 != resCancelSpeech)
-                {
-                    Log(string.Format("Failed to cancel speech through NVDA ControllerClient: NvdaControllerClientWrapper.NvdaController_cancelSpeech() returned WINERROR={0}", resCancelSpeech));
-                    return false;
-                }
-
-                char c1 = (char)0x2801;
-                char c2 = (char)0x2802;
-                char c3 = (char)0x2803;
-                string braille = c1.ToString() + c2.ToString() + c3.ToString();
-                int resBrailleMessage = NvdaControllerClientWrapper.nvdaController_brailleMessage(braille);
-                for (int i = 0; (i < 64); i++) // Iterate over all 6-point patterns
-                {
-                    StringBuilder sb = new StringBuilder();
-                    for (int j = 0; (j < 14);  j++) // Shos same pattern everywhere
-                    {
-                        sb.Append((char)(0x2800 + i));
-                    }
-                    int resBrailleMessage1 = NvdaControllerClientWrapper.nvdaController_brailleMessage(sb.ToString());
-              //      int resBrailleMessage = NvdaControllerClientWrapper.nvdaController_brailleMessage(braille);
-                    System.Threading.Thread.Sleep(500);
-                }
             }
+
             catch (Exception e)
             {
                 Log(string.Format("LogNvdaInterface() threw an exception: {0}", e.Message));
                 return false;
             }
             return true;
-
         }
+
+
+        static private bool LogNvdaSpeechTest()
+        {
+            Log("+LogNvdaSpeechTest");
+            for (int i = 0; (i < text.Length); i++)
+            {
+                string s = text[i].ToString();
+                S(s);
+                System.Threading.Thread.Sleep(250); // Allow the speach to propagate through the system
+            }
+
+            int resCancelSpeech = NvdaControllerClientWrapper.nvdaController_cancelSpeech();
+            if (0 != resCancelSpeech)
+            {
+                Log(string.Format("Failed to cancel speech through NVDA ControllerClient: NvdaControllerClientWrapper.NvdaController_cancelSpeech() returned WINERROR={0}", resCancelSpeech));
+                return false;
+            }
+
+            Log("-LogNvdaSpeechTest");
+            return true;
+        }
+
+        static private bool LogNvdaBrailleMessageTest()
+        {
+
+            Log("+LogNvdaBrailleMessageTest");
+            char c1 = (char)0x2801;
+            char c2 = (char)0x2802;
+            char c3 = (char)0x2803;
+            string braille = c1.ToString() + c2.ToString() + c3.ToString();
+            int resBrailleMessage = NvdaControllerClientWrapper.nvdaController_brailleMessage(braille);
+            for (int i = 0; (i < 64); i++) // Iterate over all 6-point patterns
+            {
+                StringBuilder sb = new StringBuilder();
+                for (int j = 0; (j < 14); j++) // Shos same pattern everywhere
+                {
+                    sb.Append((char)(0x2800 + i));
+                }
+                int resBrailleMessage1 = NvdaControllerClientWrapper.nvdaController_brailleMessage(sb.ToString());
+                //      int resBrailleMessage = NvdaControllerClientWrapper.nvdaController_brailleMessage(braille);
+                System.Threading.Thread.Sleep(500);
+            }
+            Log("-LogNvdaBrailleMessageTest");
+            return true;
+        }
+
 
 
         private static bool WriteBytes(int handle, byte[] bytes)
@@ -124,7 +139,7 @@ namespace BrailleExperiments
             bool fbWriteResult = false;
             unsafe
             {
-                
+
                 fixed (byte* p = bytes)
                 {
                     IntPtr ptr = (IntPtr)p;
@@ -159,10 +174,10 @@ namespace BrailleExperiments
 
 
 
-            /// <summary>
-            /// 
-            /// </summary>
-            static private void LogFSInterface()
+        /// <summary>
+        /// 
+        /// </summary>
+        static private void LogFSInterface()
         {
 
             string directoryName32 = @"C:\Windows\System32";
@@ -234,7 +249,7 @@ namespace BrailleExperiments
                 fixed (byte* p = buffer)
                 {
                     IntPtr ptr = (IntPtr)p;
-                    fbWriteResult = FSBrlDspAPIWrapper.fbWrite(handle,0,cellCount,ptr);
+                    fbWriteResult = FSBrlDspAPIWrapper.fbWrite(handle, 0, cellCount, ptr);
                     // do you stuff here
                 }
 
@@ -247,7 +262,7 @@ namespace BrailleExperiments
 
             result = FSBrlDspAPIWrapper.fbClose(handle);
             Log(string.Format("FSBrlDspAPIWrapper.fbClose {0}", result ? "succeeded" : "failed"));
-            
+
 
 
         }
@@ -256,7 +271,12 @@ namespace BrailleExperiments
         static void Main(string[] args)
         {
             //LogFSInterface();
-            LogNvdaInterface();
+            if (LogNvdaInterface())
+            {
+
+                LogNvdaSpeechTest();            // Use speech only, no Braille!
+                LogNvdaBrailleMessageTest();    // Use Braille only, no speech!
+            }
         }
     }
 }
