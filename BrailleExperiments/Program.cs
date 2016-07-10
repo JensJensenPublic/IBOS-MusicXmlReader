@@ -4,6 +4,11 @@ using System.Text;
 using System.Runtime.InteropServices;
 using MusicXmlReaderUI;
 
+//Unicode for Braille
+//https://en.wikipedia.org/wiki/Braille_Patterns
+//http://www.unicode.org/charts/PDF/U2800.pdf
+
+
 namespace BrailleExperiments
 {
     class Program

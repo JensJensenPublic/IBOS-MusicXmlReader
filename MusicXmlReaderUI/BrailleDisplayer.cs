@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
+//Unicode for Braille
+//https://en.wikipedia.org/wiki/Braille_Patterns
+//http://www.unicode.org/charts/PDF/U2800.pdf
 
 namespace MusicXmlReaderUI
 {
