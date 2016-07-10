@@ -92,6 +92,22 @@ namespace BrailleExperiments
                     return false;
                 }
 
+                char c1 = (char)0x2801;
+                char c2 = (char)0x2802;
+                char c3 = (char)0x2803;
+                string braille = c1.ToString() + c2.ToString() + c3.ToString();
+                int resBrailleMessage = NvdaControllerClientWrapper.nvdaController_brailleMessage(braille);
+                for (int i = 0; (i < 64); i++) // Iterate over all 6-point patterns
+                {
+                    StringBuilder sb = new StringBuilder();
+                    for (int j = 0; (j < 14);  j++) // Shos same pattern everywhere
+                    {
+                        sb.Append((char)(0x2800 + i));
+                    }
+                    int resBrailleMessage1 = NvdaControllerClientWrapper.nvdaController_brailleMessage(sb.ToString());
+              //      int resBrailleMessage = NvdaControllerClientWrapper.nvdaController_brailleMessage(braille);
+                    System.Threading.Thread.Sleep(500);
+                }
             }
             catch (Exception e)
             {
@@ -239,7 +255,7 @@ namespace BrailleExperiments
 
         static void Main(string[] args)
         {
-            LogFSInterface();
+            //LogFSInterface();
             LogNvdaInterface();
         }
     }
