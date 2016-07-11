@@ -611,8 +611,10 @@
             // 
             // textBoxBraille
             // 
+            this.textBoxBraille.BackColor = System.Drawing.Color.Black;
             this.textBoxBraille.Font = new System.Drawing.Font("BrailleUnicode6", 36F);
-            this.textBoxBraille.Location = new System.Drawing.Point(257, 506);
+            this.textBoxBraille.ForeColor = System.Drawing.Color.White;
+            this.textBoxBraille.Location = new System.Drawing.Point(257, 490);
             this.textBoxBraille.Name = "textBoxBraille";
             this.textBoxBraille.Size = new System.Drawing.Size(574, 68);
             this.textBoxBraille.TabIndex = 34;
