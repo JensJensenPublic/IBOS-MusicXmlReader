@@ -23,7 +23,7 @@ namespace MusicXmlReaderUI
 
         public Form1()
         {
-            InitializeComponent();  
+            InitializeComponent();     
             if (!showTimes) listBoxTimes.Hide();
             model = new Model(listBoxFiltered, listBoxTimes,textBoxBraille);
             this.Text = model.ApplicationName;

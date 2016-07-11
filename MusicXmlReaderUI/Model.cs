@@ -368,6 +368,8 @@ namespace MusicXmlReaderUI
             this.listBoxParts = listBox;
             this.listBoxPoly = listBoxPoly;
 
+            //Model.Log(string.Format("listBoxPoly.AccessibleDefaultActionDescription={0}", listBoxPoly.AccessibleDefaultActionDescription));
+            //Model.Log(string.Format("listBoxPoly.AccessibilityObject.ToString()={0}", listBoxPoly.AccessibilityObject.ToString()));    
 
             // Log some global system parameters.
             LogSystemParameters();

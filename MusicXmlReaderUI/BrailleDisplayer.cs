@@ -63,10 +63,10 @@ namespace MusicXmlReaderUI
                 byte[] byteArray = bytes.ToArray();
 
                 // Write these bytes to the Braille display
-                if (byteArray.Length > 0)
-                {
-                    fSBrlDspAPIWrapper.Write(byteArray);
-                }
+                //if (byteArray.Length > 0)
+                //{
+                //    fSBrlDspAPIWrapper.Write(byteArray);
+                //}
 
                 // Write these bytes to the MusicBraille textbox, represented as UniCode                               
                 StringBuilder musicBrailleStringBuilder = new StringBuilder();
@@ -75,8 +75,21 @@ namespace MusicXmlReaderUI
                 {
                     musicBrailleStringBuilder.Append((char)(UnicodeBrailleBase + (char)b));
                 }
+                int paddingLength = 14 - musicBrailleStringBuilder.Length;
+                for (int i = 0; (i < paddingLength); i++)
+                {
+                    musicBrailleStringBuilder.Append(UnicodeBrailleBase); // Fill with 0 Braille chars
+                }
                 musicBrailleTextBox.Text = musicBrailleStringBuilder.ToString();
-               
+
+
+                // Write these bytes to the Braille Diaplay through the NVDA Client, overwriting the Lyric-Braille with Music-Braille
+                int brailleMessageResult = NvdaControllerClientWrapper.nvdaController_brailleMessage(musicBrailleStringBuilder.ToString());
+                if (0 != brailleMessageResult)
+                {
+                    Model.Log(string.Format("NvdaControllerClientWrapper.nvdaController_brailleMessage failed. Result={0}", brailleMessageResult));
+                }
+
             }
             return;
         }
