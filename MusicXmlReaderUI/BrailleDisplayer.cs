@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 //Unicode for Braille
 //https://en.wikipedia.org/wiki/Braille_Patterns
@@ -17,15 +18,47 @@ namespace MusicXmlReaderUI
     /// </summary>
     class BrailleDisplayer
     {
+        private char UnicodeBrailleBase = (char)0x2800;
 
         private FSBrlDspAPIWrapper fSBrlDspAPIWrapper;
         private TextBox musicBrailleTextBox; // The textbox used for writing MusicBraille bytes, repredsented as UniCode
+        private Thread brailleDisplayThread;
+        private bool displaying;
+        private string latestMessage = null; // Latest message sent to Braille display using NvdaControllerClientWrapper.nvdaController_brailleMessage
+        private string emptyBrailleString;
+
+        /// <summary>
+        /// Thread needed for refreshing the MusicBraille Message sent to the Braille Display to prevent it from being overwritten by LyricBraille
+        /// </summary>
+        private void DisplayerThreadStart()
+        {
+            while (displaying)
+            {
+                Thread.Sleep(1000);
+                if (!string.IsNullOrEmpty(latestMessage))
+                {
+                    int brailleMessageResult = NvdaControllerClientWrapper.nvdaController_brailleMessage(latestMessage);
+                    if (0 != brailleMessageResult)
+                    {
+                        Model.Log(string.Format("NvdaControllerClientWrapper.nvdaController_brailleMessage failed. Result={0}", brailleMessageResult));
+                    }
+                }
+            }
+        }
 
         private BrailleDisplayer(TextBox tb)
         {
             musicBrailleTextBox = tb;
             fSBrlDspAPIWrapper = FSBrlDspAPIWrapper.Create();
             fSBrlDspAPIWrapper.Open();
+
+            displaying = true;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; (i < 14); i++) { sb.Append(UnicodeBrailleBase);};
+            emptyBrailleString = sb.ToString();
+            brailleDisplayThread = new System.Threading.Thread(new System.Threading.ThreadStart(DisplayerThreadStart));
+            Model.Log(string.Format("Starting PlayerThread et priority={0}", brailleDisplayThread.Priority.ToString()));
+            brailleDisplayThread.Start();               
         }
 
   
@@ -45,6 +78,7 @@ namespace MusicXmlReaderUI
         /// <param name="selectedObject"></param>
         internal void SelectedIndexChanged(int selectedIndex, object selectedObject)
         {
+            StopRefreshing(); // Stop refreshing the Braille Display; Also happens when controllooses focus
             //if (playing) return;
             if (null == selectedObject) return;
             if ((selectedObject is NoteElement))
@@ -70,7 +104,7 @@ namespace MusicXmlReaderUI
 
                 // Write these bytes to the MusicBraille textbox, represented as UniCode                               
                 StringBuilder musicBrailleStringBuilder = new StringBuilder();
-                char UnicodeBrailleBase = (char) 0x2800;
+           
                 foreach (byte b in bytes)
                 {
                     musicBrailleStringBuilder.Append((char)(UnicodeBrailleBase + (char)b));
@@ -84,7 +118,8 @@ namespace MusicXmlReaderUI
 
 
                 // Write these bytes to the Braille Diaplay through the NVDA Client, overwriting the Lyric-Braille with Music-Braille
-                int brailleMessageResult = NvdaControllerClientWrapper.nvdaController_brailleMessage(musicBrailleStringBuilder.ToString());
+                latestMessage = musicBrailleStringBuilder.ToString();
+                int brailleMessageResult = NvdaControllerClientWrapper.nvdaController_brailleMessage(latestMessage);
                 if (0 != brailleMessageResult)
                 {
                     Model.Log(string.Format("NvdaControllerClientWrapper.nvdaController_brailleMessage failed. Result={0}", brailleMessageResult));
@@ -94,7 +129,11 @@ namespace MusicXmlReaderUI
             return;
         }
 
-
+        public void StopRefreshing()
+        {
+            latestMessage = string.Empty; // Stop refreshing the physical Braille Display
+            musicBrailleTextBox.Text = emptyBrailleString;
+        }
 
     }
 

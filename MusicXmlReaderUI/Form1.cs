@@ -28,8 +28,13 @@ namespace MusicXmlReaderUI
             model = new Model(listBoxFiltered, listBoxTimes,textBoxBraille);
             this.Text = model.ApplicationName;
             listBoxFiltered.SelectedIndexChanged += new EventHandler(SelectedIndexChanged);
+            listBoxTimes.LostFocus += ListBoxTimes_LostFocus;
         }
 
+        private void ListBoxTimes_LostFocus(object sender, EventArgs e)
+        {
+             model.StopRefreshingBrailleDevice();
+        }
 
         private void SelectedIndexChanged(object sender, System.EventArgs e)
         {

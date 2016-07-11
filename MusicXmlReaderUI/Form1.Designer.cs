@@ -616,6 +616,7 @@
             this.textBoxBraille.Name = "textBoxBraille";
             this.textBoxBraille.Size = new System.Drawing.Size(574, 68);
             this.textBoxBraille.TabIndex = 34;
+            this.textBoxBraille.TabStop = false;
             this.textBoxBraille.TextChanged += new System.EventHandler(this.textBoxBraille_TextChanged);
             // 
             // Form1

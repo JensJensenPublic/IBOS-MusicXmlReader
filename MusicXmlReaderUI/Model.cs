@@ -369,7 +369,8 @@ namespace MusicXmlReaderUI
             this.listBoxPoly = listBoxPoly;
 
             //Model.Log(string.Format("listBoxPoly.AccessibleDefaultActionDescription={0}", listBoxPoly.AccessibleDefaultActionDescription));
-            //Model.Log(string.Format("listBoxPoly.AccessibilityObject.ToString()={0}", listBoxPoly.AccessibilityObject.ToString()));    
+            //Model.Log(string.Format("listBoxPoly.AccessibilityObject.ToString()={0}", listBoxPoly.AccessibilityObject.ToString())); 
+            
 
             // Log some global system parameters.
             LogSystemParameters();
@@ -758,6 +759,11 @@ namespace MusicXmlReaderUI
         {
             userSettings.userSlowDown = newValue;
         }
-        
+
+
+        public void StopRefreshingBrailleDevice()
+        {
+            brailleDisplayer.StopRefreshing();
+        }
     }
 }
