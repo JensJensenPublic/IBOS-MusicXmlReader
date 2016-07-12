@@ -79,8 +79,23 @@ namespace MusicXmlReaderUI
             }
         }
 
-
-
+        // Global Music Braille Settings settings (for all parts)
+        public enum MusicBrailleSettings { MeasureNumbers = 0, Harmonies = 1, Notes = 2,  Notations = 3,  NumberOfReaderSettings = 4 };
+        private readonly string[] musicBrailleSettingsNames = { "TaktNumre", "Harmonier", "Noder",  "Notationer" };
+        public bool[] musicBrailleSettingsValues = { false, false, true, false };
+        public void LoadMusicBrailleSettings(System.Windows.Forms.CheckedListBox clb)
+        {
+            LoadSettings(clb, musicBrailleSettingsNames, musicBrailleSettingsValues);
+        }
+        public bool GetMusicBrailleSettings(MusicBrailleSettings i)
+        {
+            return musicBrailleSettingsValues[(int)i];
+        }
+        public void SetMusicBrailleSettings(int i, bool b)
+        {
+            musicBrailleSettingsValues[(int)i] = b;
+        }
+        
 
         // Non-boolean user settings
         public float userSlowDown;      // Percentage of the speed described in the MusicXml file

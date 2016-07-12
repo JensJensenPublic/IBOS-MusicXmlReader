@@ -186,7 +186,7 @@ namespace BrailleExperiments
         {
 
             string directoryName32 = @"C:\Windows\System32";
-            string directoryName64 = @"C:\Windows\SysWOW64";
+            //string directoryName64 = @"C:\Windows\SysWOW64";
             string fileName = "fsbrldspapi.dll";
             string fullFileName = Path.Combine(directoryName32, fileName);
 

@@ -202,7 +202,7 @@ namespace MusicXmlReaderUI
         /// <returns></returns>
         private List<byte> NotesForOnePartAsBraille(List<NoteElement> noteElementList)
         {
-            if (!userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notes)) return new List<byte>(); // User completely turned off reading of notes
+            if (!userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettings.Notes)) return new List<byte>(); // User completely turned off reading of notes
 
             BrailleBuilder bb = BrailleBuilder.Create();
             foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).

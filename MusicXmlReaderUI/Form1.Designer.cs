@@ -88,6 +88,8 @@
             this.labelPlay = new System.Windows.Forms.Label();
             this.labelRead = new System.Windows.Forms.Label();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
+            this.checkedListBoxMusicBrailleSettings = new System.Windows.Forms.CheckedListBox();
+            this.labelMusicBraille = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.menuStripFile.SuspendLayout();
             this.SuspendLayout();
@@ -621,11 +623,30 @@
             this.textBoxBraille.TabStop = false;
             this.textBoxBraille.TextChanged += new System.EventHandler(this.textBoxBraille_TextChanged);
             // 
+            // checkedListBoxMusicBrailleSettings
+            // 
+            this.checkedListBoxMusicBrailleSettings.FormattingEnabled = true;
+            this.checkedListBoxMusicBrailleSettings.Location = new System.Drawing.Point(1090, 285);
+            this.checkedListBoxMusicBrailleSettings.Name = "checkedListBoxMusicBrailleSettings";
+            this.checkedListBoxMusicBrailleSettings.Size = new System.Drawing.Size(120, 199);
+            this.checkedListBoxMusicBrailleSettings.TabIndex = 35;
+            // 
+            // labelMusicBraille
+            // 
+            this.labelMusicBraille.AutoSize = true;
+            this.labelMusicBraille.Location = new System.Drawing.Point(1090, 263);
+            this.labelMusicBraille.Name = "labelMusicBraille";
+            this.labelMusicBraille.Size = new System.Drawing.Size(86, 13);
+            this.labelMusicBraille.TabIndex = 36;
+            this.labelMusicBraille.Text = "Vis i musik-braille";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 578);
+            this.Controls.Add(this.labelMusicBraille);
+            this.Controls.Add(this.checkedListBoxMusicBrailleSettings);
             this.Controls.Add(this.textBoxBraille);
             this.Controls.Add(this.labelRead);
             this.Controls.Add(this.labelPlay);
@@ -719,6 +740,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemStart;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPause;
         private System.Windows.Forms.TextBox textBoxBraille;
+        private System.Windows.Forms.CheckedListBox checkedListBoxMusicBrailleSettings;
+        private System.Windows.Forms.Label labelMusicBraille;
     }
 }
 

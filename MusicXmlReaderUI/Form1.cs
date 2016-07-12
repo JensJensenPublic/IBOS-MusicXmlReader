@@ -133,6 +133,7 @@ namespace MusicXmlReaderUI
             // Load the Checked Listboxes controlling the global user settings
             model.UserSettings.LoadPlayerSettings(checkedListBoxPlayerSettings);
             model.UserSettings.LoadReaderSettings(checkedListBoxReaderSettings);
+            model.UserSettings.LoadMusicBrailleSettings(checkedListBoxMusicBrailleSettings);
 
             //// Load the Checked listboxes controlling the global user settings
             //checkedListBoxReaderSettings.Items.Clear();
