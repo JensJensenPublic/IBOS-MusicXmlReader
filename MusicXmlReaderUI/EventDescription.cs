@@ -302,6 +302,14 @@ namespace MusicXmlReaderUI
             return s;
         }
 
+        public string ToMusicBrailleString()
+        {
+            List <byte> bytes = ToBraille();
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in bytes) { sb.Append((char) (BrailleDisplayer.UnicodeBrailleBase + (char)b)); };
+            return sb.ToString();
+        }
+
         /// <summary>
         /// Generates the Braille representation, where ToString generates the text representation 
         /// Same structure as ToString
@@ -420,7 +428,20 @@ namespace MusicXmlReaderUI
         
     }
 
-    public override string ToString()
+        /// <summary>
+        /// This extra indirection allows for selecting either MusicBraille or Normal text dynammically
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            //return "1";
+            //return null;
+            return ToNormalTextString();
+            //return ToMusicBrailleString();
+        }
+                
+
+        public string ToNormalTextString()
         {
             string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
 

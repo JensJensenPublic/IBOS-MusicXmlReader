@@ -18,7 +18,7 @@ namespace MusicXmlReaderUI
     /// </summary>
     class BrailleDisplayer
     {
-        private char UnicodeBrailleBase = (char)0x2800;
+        public static char UnicodeBrailleBase = (char)0x2800;
 
         private FSBrlDspAPIWrapper fSBrlDspAPIWrapper;
         private TextBox musicBrailleTextBox; // The textbox used for writing MusicBraille bytes, repredsented as UniCode
@@ -34,13 +34,15 @@ namespace MusicXmlReaderUI
         {
             while (displaying)
             {
-                Thread.Sleep(1000);
-                if (!string.IsNullOrEmpty(latestMessage))
+                Thread.Sleep(1000); // Refresh the display every second as long as needed
                 {
-                    int brailleMessageResult = NvdaControllerClientWrapper.nvdaController_brailleMessage(latestMessage);
-                    if (0 != brailleMessageResult)
+                    if (!string.IsNullOrEmpty(latestMessage))
                     {
-                        Model.Log(string.Format("NvdaControllerClientWrapper.nvdaController_brailleMessage failed. Result={0}", brailleMessageResult));
+                        int brailleMessageResult = NvdaControllerClientWrapper.nvdaController_brailleMessage(latestMessage);
+                        if (0 != brailleMessageResult)
+                        {
+                            Model.Log(string.Format("NvdaControllerClientWrapper.nvdaController_brailleMessage failed. Result={0}", brailleMessageResult));
+                        }
                     }
                 }
             }
@@ -56,9 +58,11 @@ namespace MusicXmlReaderUI
             StringBuilder sb = new StringBuilder();
             for (int i = 0; (i < 14); i++) { sb.Append(UnicodeBrailleBase);};
             emptyBrailleString = sb.ToString();
-            brailleDisplayThread = new System.Threading.Thread(new System.Threading.ThreadStart(DisplayerThreadStart));
-            Model.Log(string.Format("Starting PlayerThread et priority={0}", brailleDisplayThread.Priority.ToString()));
-            brailleDisplayThread.Start();               
+            {
+                brailleDisplayThread = new System.Threading.Thread(new System.Threading.ThreadStart(DisplayerThreadStart));
+                Model.Log(string.Format("Starting PlayerThread et priority={0}", brailleDisplayThread.Priority.ToString()));
+                brailleDisplayThread.Start();
+            }             
         }
 
   
@@ -78,7 +82,8 @@ namespace MusicXmlReaderUI
         /// <param name="selectedObject"></param>
         internal void SelectedIndexChanged(int selectedIndex, object selectedObject)
         {
-            StopRefreshing(); // Stop refreshing the Braille Display; Also happens when controllooses focus
+            StopRefreshing(); // Stop refreshing the Braille Display; Also happens when controllooses focus      
+
             //if (playing) return;
             if (null == selectedObject) return;
             if ((selectedObject is NoteElement))
@@ -91,6 +96,12 @@ namespace MusicXmlReaderUI
             {
   
                 EventDescription eventDescription = selectedObject as EventDescription;
+                int cancelSpeechResult0 = NvdaControllerClientWrapper.nvdaController_cancelSpeech();
+                //System.Threading.Thread.Sleep(100);
+                //int speekTextResult = NvdaControllerClientWrapper.nvdaController_speakText(eventDescription.ToNormalTextString());
+                // int cancelSpeechResult1 = NvdaControllerClientWrapper.nvdaController_cancelSpeech();
+                //System.Threading.Thread.Sleep(100);
+
                 string text = eventDescription.ToString();          // The text currently shown on the visual display
                 List<byte> bytes = eventDescription.ToBraille();    // The Braille pattern to show on the Braill display
 
@@ -117,7 +128,7 @@ namespace MusicXmlReaderUI
                 musicBrailleTextBox.Text = musicBrailleStringBuilder.ToString();
 
 
-                // Write these bytes to the Braille Diaplay through the NVDA Client, overwriting the Lyric-Braille with Music-Braille
+                //Write these bytes to the Braille Diaplay through the NVDA Client, overwriting the Lyric - Braille with Music-Braille
                 latestMessage = musicBrailleStringBuilder.ToString();
                 int brailleMessageResult = NvdaControllerClientWrapper.nvdaController_brailleMessage(latestMessage);
                 if (0 != brailleMessageResult)

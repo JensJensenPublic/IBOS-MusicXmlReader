@@ -95,7 +95,7 @@
             // listBoxTimes
             // 
             this.listBoxTimes.AccessibleDescription = "";
-            this.listBoxTimes.AccessibleName = "Udvalgte stemmer";
+            this.listBoxTimes.AccessibleName = "";
             this.listBoxTimes.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxTimes.FormattingEnabled = true;
             this.listBoxTimes.Location = new System.Drawing.Point(257, 77);
