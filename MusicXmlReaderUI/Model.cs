@@ -345,7 +345,9 @@ namespace MusicXmlReaderUI
             Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));                 
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
-            brailleDisplayer = BrailleDisplayer.Create(textBoxMusicBraille);
+            int displaySize = 14;
+            brailleDisplayer = BrailleDisplayer.Create(textBoxMusicBraille, displaySize); // TODO Get the real displaysize from somewhere
+            Model.Log(string.Format("Model: Assuming size of physical Braille display = {0}", displaySize));
 
             //musicPlayer.ChangeInstrument(20); // Church Organ
 

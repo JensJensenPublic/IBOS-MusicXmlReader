@@ -24,23 +24,25 @@ namespace MusicXmlReaderUI
         private TextBox musicBrailleTextBox; // The textbox used for writing MusicBraille bytes, repredsented as UniCode
         private string emptyBrailleString;
         private NvdaControllerClientWrapper nvda;
+        private int displaySize;
 
-         private BrailleDisplayer(TextBox tb)
+         private BrailleDisplayer(TextBox tb, int displaySize)
         {
             musicBrailleTextBox = tb;
+            this.displaySize = displaySize;
             fSBrlDspAPIWrapper = FSBrlDspAPIWrapper.Create(); // For direct access to physical Braille Display
             fSBrlDspAPIWrapper.Open();
             nvda = NvdaControllerClientWrapper.Create(); // For access to physical Braille Display through NVDA            
 
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; (i < 14); i++) { sb.Append(UnicodeBrailleBase);};
+            for (int i = 0; (i < this.displaySize); i++) { sb.Append(UnicodeBrailleBase);};
             emptyBrailleString = sb.ToString();
         }
 
   
-        public static BrailleDisplayer Create(TextBox tb)
+        public static BrailleDisplayer Create(TextBox tb,int displaySize)
         {
-             return new BrailleDisplayer(tb);
+             return new BrailleDisplayer(tb,displaySize);
         }
 
         
@@ -89,7 +91,7 @@ namespace MusicXmlReaderUI
                 {
                     musicBrailleStringBuilder.Append((char)(UnicodeBrailleBase + (char)b));
                 }
-                int paddingLength = 14 - musicBrailleStringBuilder.Length;
+                int paddingLength = this.displaySize - musicBrailleStringBuilder.Length;
                 for (int i = 0; (i < paddingLength); i++)
                 {
                     musicBrailleStringBuilder.Append(UnicodeBrailleBase); // Fill with 0 Braille chars
