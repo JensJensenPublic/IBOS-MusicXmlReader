@@ -630,6 +630,7 @@
             this.checkedListBoxMusicBrailleSettings.Name = "checkedListBoxMusicBrailleSettings";
             this.checkedListBoxMusicBrailleSettings.Size = new System.Drawing.Size(120, 199);
             this.checkedListBoxMusicBrailleSettings.TabIndex = 35;
+            this.checkedListBoxMusicBrailleSettings.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBoxMusicBrailleSettings_ItemCheck);
             // 
             // labelMusicBraille
             // 

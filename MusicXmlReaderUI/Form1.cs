@@ -254,6 +254,12 @@ namespace MusicXmlReaderUI
             if (autoReload) model.LoadListBoxTimes();
         }
 
+        private void checkedListBoxMusicBrailleSettings_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            model.UserSettings.SetMusicBrailleSettings(e.Index,(CheckState.Checked == e.NewValue));
+            // Nothing to reload here.
+        }
+
 
         #endregion // Checked Listboxes
 
@@ -493,6 +499,8 @@ namespace MusicXmlReaderUI
         {
 
         }
+
+
     }
 
 }
