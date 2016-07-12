@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Threading;
+
 namespace MusicXmlReaderUI
 {
 
@@ -45,16 +47,171 @@ namespace MusicXmlReaderUI
     /// </summary>
     public class NvdaControllerClientWrapper
     {
-        [DllImport("nvdaControllerClient32.dll", CharSet = CharSet.Unicode)]
-        public static extern int nvdaController_testIfRunning();
+
+        private static string className = "NvdaControllerClientWrapper";
+        private Thread brailleDisplayThread;
+        private bool displaying = true;
+        private string latestMessage = null; // Latest message sent to Braille display
+
+        /// <summary>
+        /// Thread needed for refreshing the MusicBraille Message sent to the Braille Display to prevent it from being overwritten by LyricBraille
+        /// </summary>
+        private void DisplayerThreadStart()
+        {
+            while (displaying)
+            {
+                Thread.Sleep(1000); // Refresh the display every second as long as needed
+                {
+                    if (!string.IsNullOrEmpty(latestMessage))
+                    {
+                        BrailleMessage(latestMessage);
+                        //int brailleMessageResult = NvdaControllerClientWrapper.nvdaController_brailleMessage(latestMessage);
+                        //if (0 != brailleMessageResult)
+                        //{
+                        //    Model.Log(string.Format("NvdaControllerClientWrapper.nvdaController_brailleMessage failed. Result={0}", brailleMessageResult));
+                        //}
+                    }
+                }
+            }
+        }
+
+
+
+
+        public static NvdaControllerClientWrapper Create()
+        {
+            return new NvdaControllerClientWrapper();
+        }
+
+        private NvdaControllerClientWrapper()
+        {
+            {
+                brailleDisplayThread = new System.Threading.Thread(new System.Threading.ThreadStart(DisplayerThreadStart));
+                Model.Log(string.Format("Starting PlayerThread et priority={0}", brailleDisplayThread.Priority.ToString()));
+                brailleDisplayThread.Start();
+            }
+
+        }
+
+        private void LogException(string methodName, string message)
+        {
+            Model.Log(string.Format("{0}.{1} reported an exception: {2}", className, methodName, message));
+        }
+
+        private uint LogFailure(string methodName)
+        {
+            uint lastError = GetLastWin32Error();
+            Model.Log(string.Format("{0}.{1} reported an error: {2}", className, methodName, lastError));
+            return lastError;
+        }
+
+        public bool TestIfRunning(out uint errorCode)
+        {
+            errorCode = 0;
+            try
+            {
+                int result = nvdaController_testIfRunning();
+                if (0 == result)
+                {
+    
+                    return true;
+                }
+                else
+                {
+                    errorCode = LogFailure("TestIfRunning");
+                }
+
+            }
+            catch (Exception e)
+            {
+                LogException("TestIfRunning", e.Message);
+            }
+            return false;
+        }
+
+        public bool SpeakText(String text)
+        {
+            try
+            {
+                int result = nvdaController_speakText(text);
+                if (0 != result)
+                {
+                    LogFailure("SpeakText");
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                LogException("SpeakText", e.Message);
+            }
+            return false;
+        }
+
+        public bool BrailleMessage(String text)
+        {
+            try
+            {
+                int result = nvdaController_brailleMessage(text);
+                if (0 != result)
+                {
+                    LogFailure("BrailleMessage");
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                LogException("BrailleMessage", e.Message);
+            }
+            return false;
+        }
+
+        public bool CancelSpeech()
+        {
+            try
+            {
+                int result = nvdaController_cancelSpeech();
+                if (0 != result)
+                {
+                    LogFailure("cancelSpeech");
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                LogException("cancelSpeech", e.Message);
+            }
+            return false;
+        }
+
+        public void StopRefreshing()
+        {
+            latestMessage = string.Empty; // Stop refreshing the physical Braille Display
+        }
+
+
+
+        // Only for error reporting
+        [DllImport("kernel32.dll")]
+        static extern uint GetLastWin32Error();
+
+
+        //******************************************************************
+        // nvdaControllerClient32.dll implements the following 4 functions:
+        //******************************************************************
 
         [DllImport("nvdaControllerClient32.dll", CharSet = CharSet.Unicode)]
-        public static extern int nvdaController_speakText(String text);
+        private static extern int nvdaController_testIfRunning();
 
         [DllImport("nvdaControllerClient32.dll", CharSet = CharSet.Unicode)]
-        public static extern int nvdaController_brailleMessage(String braille);
+        private static extern int nvdaController_speakText(String text);
+
+        [DllImport("nvdaControllerClient32.dll", CharSet = CharSet.Unicode)]
+        private static extern int nvdaController_brailleMessage(String braille);
         
         [DllImport("nvdaControllerClient32.dll", CharSet = CharSet.Unicode)]
-        public static extern int nvdaController_cancelSpeech();
+        private static extern int nvdaController_cancelSpeech();
     }
 }
