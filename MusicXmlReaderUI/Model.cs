@@ -256,7 +256,6 @@ namespace MusicXmlReaderUI
 
                 uint errorCode;
                 bool resRunning = nvda.TestIfRunning(out errorCode);
-                //int resRunning = NvdaControllerClientWrapper.nvdaController_testIfRunning();
                 Log(string.Format("NVDA ControllerServer for NVDA ControllerClient is{0}running.", (!resRunning) ? " NOT " : " "));
                 if (!resRunning)
                 {
@@ -269,30 +268,9 @@ namespace MusicXmlReaderUI
 
                 System.Threading.Thread.Sleep(2000); // Allow the previous speach to propagate through the system
                 nvda.SpeakText("N V D A ControllerClient");
-                //int resSpeak = NvdaControllerClientWrapper.nvdaController_speakText("N V D A ControllerClient");
                 System.Threading.Thread.Sleep(2000); // Allow the speach to propagate through the system
-                //if (0 != resSpeak)
-                //{
-                //    Log(string.Format("Failed to speak directly through NVDA ControllerClient: NvdaControllerClientWrapper.NvdaController_speakText() returned WINERROR={0}", resSpeak));
-                //    return false;
-                //}
-
                 nvda.BrailleMessage("Braille");
-                //int resBraille = NvdaControllerClientWrapper.nvdaController_brailleMessage("Braille");
-                //if (0 != resBraille)
-                //{
-                //    Log(string.Format("Failed to output to Braille display through NVDA ControllerClient: NvdaControllerClientWrapper.NvdaController_brailleMessage() returned WINERROR={0}", resBraille));
-                //    return false;
-                //}
-
-                nvda.CancelSpeech();
-                //int resCancelSpeech = NvdaControllerClientWrapper.nvdaController_cancelSpeech();
-                //if (0 != resCancelSpeech)
-                //{
-                //    Log(string.Format("Failed to cancel speech through NVDA ControllerClient: NvdaControllerClientWrapper.NvdaController_cancelSpeech() returned WINERROR={0}", resCancelSpeech));
-                //    return false;
-                //}
-                
+                nvda.CancelSpeech();                
             }
             catch (Exception e)
             {
