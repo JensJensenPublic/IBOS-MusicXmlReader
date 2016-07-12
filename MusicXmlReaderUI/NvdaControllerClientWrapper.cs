@@ -65,11 +65,6 @@ namespace MusicXmlReaderUI
                     if (!string.IsNullOrEmpty(latestMessage))
                     {
                         BrailleMessage(latestMessage);
-                        //int brailleMessageResult = NvdaControllerClientWrapper.nvdaController_brailleMessage(latestMessage);
-                        //if (0 != brailleMessageResult)
-                        //{
-                        //    Model.Log(string.Format("NvdaControllerClientWrapper.nvdaController_brailleMessage failed. Result={0}", brailleMessageResult));
-                        //}
                     }
                 }
             }
@@ -148,7 +143,19 @@ namespace MusicXmlReaderUI
             return false;
         }
 
+        public bool TempBrailleMessage(string text)
+        {
+            return BrailleMessage(text,false);
+        }
+
+
         public bool BrailleMessage(String text)
+        {
+           return BrailleMessage(text, true);
+        }
+
+
+        private bool BrailleMessage(String text, bool startRefreshing)
         {
             try
             {
@@ -158,6 +165,7 @@ namespace MusicXmlReaderUI
                     LogFailure("BrailleMessage");
                     return false;
                 }
+                latestMessage = startRefreshing ? text : String.Empty;  
                 return true;
             }
             catch (Exception e)

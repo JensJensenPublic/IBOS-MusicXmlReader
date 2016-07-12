@@ -269,7 +269,7 @@ namespace MusicXmlReaderUI
                 System.Threading.Thread.Sleep(2000); // Allow the previous speach to propagate through the system
                 nvda.SpeakText("N V D A ControllerClient");
                 System.Threading.Thread.Sleep(2000); // Allow the speach to propagate through the system
-                nvda.BrailleMessage("Braille");
+                nvda.TempBrailleMessage("Braille"); //  Do notstart frefreshing the display
                 nvda.CancelSpeech();                
             }
             catch (Exception e)
