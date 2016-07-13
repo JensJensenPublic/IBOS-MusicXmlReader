@@ -149,6 +149,11 @@ namespace MusicXmlReaderUI
         }
 
 
+        /// <summary>
+        /// TODO: When unchanged contents is displayed, we might lower the dots for 10-50 mS to signal an event to the user! 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public bool BrailleMessage(String text)
         {
            return BrailleMessage(text, true);

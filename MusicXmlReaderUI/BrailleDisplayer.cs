@@ -25,6 +25,7 @@ namespace MusicXmlReaderUI
         private string emptyBrailleString;
         private NvdaControllerClientWrapper nvda;
         private int displaySize;
+        private string latestMusicBrailleString = string.Empty;
 
          private BrailleDisplayer(TextBox tb, int displaySize)
         {
@@ -45,7 +46,29 @@ namespace MusicXmlReaderUI
              return new BrailleDisplayer(tb,displaySize);
         }
 
-        
+
+
+        private string BytesToString(List<byte> bytes, int displaySize)
+        {
+            StringBuilder musicBrailleStringBuilder = new StringBuilder();
+            foreach (byte b in bytes)
+            {
+                musicBrailleStringBuilder.Append((char)(UnicodeBrailleBase + (char)b));
+            }
+            int size = musicBrailleStringBuilder.Length;
+            if ( size < displaySize)
+            {
+                // First the typial case
+                return musicBrailleStringBuilder.Append(UnicodeBrailleBase, (displaySize - size)).ToString();
+            }
+            else
+            {
+                return musicBrailleStringBuilder.ToString(0, displaySize);
+            }
+        }
+
+
+
         /// <summary>
         /// Used when the playing manually.
         /// The User selects a note at a time. 
@@ -70,37 +93,28 @@ namespace MusicXmlReaderUI
             {
   
                 EventDescription eventDescription = selectedObject as EventDescription;
-                nvda.CancelSpeech();
+                nvda.CancelSpeech(); // Prevent overloading the internal queue in NVDA when rapidly changing between different events
+
+                // Experimental code, used when displaying Braille code in the listbox: 
                 //int speekTextResult = NvdaControllerClientWrapper.nvdaController_speakText(eventDescription.ToNormalTextString());
  
                 string text = eventDescription.ToString();          // The text currently shown on the visual display
                 List<byte> bytes = eventDescription.ToBraille();    // The Braille pattern to show on the Braill display
 
-                byte[] byteArray = bytes.ToArray();
 
-                // Write these bytes to the Braille display
-                //if (byteArray.Length > 0)
-                //{
-                //    fSBrlDspAPIWrapper.Write(byteArray);
-                //}
+                //// Experimental code for accessing a Freedom Scientific display directly, bypassing NVDA. Works.
 
-                // Write these bytes to the MusicBraille textbox, represented as UniCode                               
-                StringBuilder musicBrailleStringBuilder = new StringBuilder();
-           
-                foreach (byte b in bytes)
-                {
-                    musicBrailleStringBuilder.Append((char)(UnicodeBrailleBase + (char)b));
-                }
-                int paddingLength = this.displaySize - musicBrailleStringBuilder.Length;
-                for (int i = 0; (i < paddingLength); i++)
-                {
-                    musicBrailleStringBuilder.Append(UnicodeBrailleBase); // Fill with 0 Braille chars
-                }
-                musicBrailleTextBox.Text = musicBrailleStringBuilder.ToString();
+                //// byte[] byteArray = bytes.ToArray();
+                //// Write these bytes to the Braille display
+                //// if (byteArray.Length > 0)
+                //// {
+                ////     fSBrlDspAPIWrapper.Write(byteArray);
+                //// }
 
-                //Write these bytes to the Braille Diaplay through the NVDA Client, overwriting the Lyric - Braille with Music-Braille
-                nvda.BrailleMessage(musicBrailleStringBuilder.ToString());
- 
+                string musicBrailleString = BytesToString(bytes, displaySize);
+
+                musicBrailleTextBox.Text = musicBrailleString;  // Write to the Windows Forms control for visualizing Braille on the PC screen      
+                nvda.BrailleMessage(musicBrailleString);        // Write to the physical Braille Display device through nvda
             }
             return;
         }
