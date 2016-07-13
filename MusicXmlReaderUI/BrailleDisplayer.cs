@@ -18,9 +18,9 @@ namespace MusicXmlReaderUI
     /// </summary>
     class BrailleDisplayer
     {
-        public static char UnicodeBrailleBase = (char)0x2800;
+        public static readonly char UnicodeBrailleBase = (char)0x2800;
 
-        private FSBrlDspAPIWrapper fSBrlDspAPIWrapper;
+        private FSBrlDspAPIWrapper fSBrlDspAPIWrapper; // Used by experimental code for accessing a Freedom Scientific Braille diaplay directly.
         private TextBox musicBrailleTextBox; // The textbox used for writing MusicBraille bytes, repredsented as UniCode
         private string emptyBrailleString;
         private NvdaControllerClientWrapper nvda;
@@ -34,10 +34,11 @@ namespace MusicXmlReaderUI
             fSBrlDspAPIWrapper = FSBrlDspAPIWrapper.Create(); // For direct access to physical Braille Display
             fSBrlDspAPIWrapper.Open();
             nvda = NvdaControllerClientWrapper.Create(); // For access to physical Braille Display through NVDA            
+            emptyBrailleString = new StringBuilder().Append(UnicodeBrailleBase, displaySize).ToString();
 
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; (i < this.displaySize); i++) { sb.Append(UnicodeBrailleBase);};
-            emptyBrailleString = sb.ToString();
+            //StringBuilder sb = new StringBuilder();
+            //for (int i = 0; (i < this.displaySize); i++) { sb.Append(UnicodeBrailleBase);};
+            //emptyBrailleString = sb.ToString();
         }
 
   
