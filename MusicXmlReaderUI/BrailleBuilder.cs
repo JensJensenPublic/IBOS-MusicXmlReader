@@ -64,6 +64,14 @@ namespace MusicXmlReaderUI
             { 29, 21, 15, 31, 55, 14, 30, 37 },     // half,32th
             { 61, 53, 47, 63, 55, 46, 62, 13 } };   // whole,16th
 
+        static readonly private byte[] rests = new byte[]
+        {
+            45, // 8th, 128th
+            39, // quarter,64th
+            37, // half,32th
+            13, // whole,16th
+        };
+
         public List<byte> Braille
         {
             get
@@ -144,7 +152,7 @@ namespace MusicXmlReaderUI
         /// <param name="step">One of the 7 fulltone steps</param>
         /// <param name="alter">(-1 for flat)    (0 for no alteration)  (+1 for sharp)  </param>
         /// <param name="octave"></param>
-        /// <param name="type">From "whole" to 64nd</param>
+        /// <param name="type">From "whole" to 128nd</param>
         /// <param name="punctured">A puncture added</param>
         //public void AddNote(FullToneStep step, int alter, int octave, string type, bool punctured) // The right signature
         public void AddNote(string step, int alter, int octave, string type, bool punctured) // ********************* FIX ! Temp signature
@@ -164,8 +172,20 @@ namespace MusicXmlReaderUI
             if (punctured) braille.Add(dot); 
         }
 
-  
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type">From "whole" to 128nd</param>
+        /// <param name="punctured">A puncture added</param>
+        public void AddRest(string type, bool punctured) // ********************* FIX ! Temp signature
+        {
+            const byte dot = (byte)4;
+            int typeIndex = GetTypeIndex(type);
+            byte rest = rests[typeIndex];
+            braille.Add(rest);
+            if (punctured) braille.Add(dot);
+        }
+                
 
         public void AddFinger(Hand hand, int finger)
         {

@@ -210,14 +210,12 @@ namespace MusicXmlReaderUI
                 // Add pitch information
                 if (userSettings.partsToRead[noteElement.PartNumber]) // Might later look at subparts S1/S2 ? 
                 {
-                    BrailleBuilder bb1 = BrailleBuilder.Create();
-                    string note = "";
+                    BrailleBuilder bb1 = BrailleBuilder.Create(); // TO DO: Why not use bb directly ???
                     // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)
                     if (noteElement.IsPause)
                     {
-                        // This is a pause            
-                        string type = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteTypes) ? noteElement.LocalizedPauseType : "pause";
-                        note = string.Format("{0}", type);
+                        // This is a rest           
+                        bb1.AddRest(noteElement.Type, false); // TO DO: Handle punctured rests
                     }
                     else
                     {
