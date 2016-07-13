@@ -15,24 +15,65 @@ namespace MusicXmlReaderUI
         // https://en.wikipedia.org/wiki/Braille_music
         // https://www.rnib.org.uk/sites/default/files/New%20International%20Manual.pdf
 
-        public enum Constant
-        {
-            FourMeasureRest,
-            DoubleBar,
-            Dot,
-            MusicHyphen,
-            Triplet,
-            RepeatSign,
-            Slur,
-            Tie,
-        };
+        //public enum Constant
+        //{
+        //    FourMeasureRest,
+        //    DoubleBar,
+        //    Dot,
+        //    MusicHyphen,
+        //    Triplet,
+        //    RepeatSign,
+        //    Slur,
+        //    Tie,
+        //};
 
+        public static readonly byte[] FourMeasureRest = new byte[] { 60, 25, 13 };
+        public static readonly byte[] DoubleBar = new byte[] { 35 };
+        public static readonly byte Dot = 4;
+        public static readonly byte MusicHyphen = 16;
+        public static readonly byte Triplet = 6;
+        public static readonly byte RepeatSign = 54;
+        public static readonly byte Slur = 9;
+        public static readonly byte[] Tie = new byte[] { 8, 9 };
+        public static readonly byte[] ChordTie = new byte[] { 40, 9 };
+        public static readonly byte[] BracketSlurStart = new byte[] { 48, 6 };
+        public static readonly byte[] BracketClurEnd = new byte[] { 24, };
+        public static readonly byte WordSign = 28;
+        public static readonly byte WordApostrophe = 32;
+        public static readonly byte[] CrescendoHairpin = new byte[] { 28, 9 };
+        public static readonly byte[] Crescendo = new byte[] { 28, 9, 23 };
+        public static readonly byte[] DimShape = new byte[] { 28, 25 };
+        public static readonly byte[] Forte = new byte[] { 28, 11 };
+        public static readonly byte[] Fortissimo = new byte[] { 28, 11, 11 };
+        public static readonly byte[] Fff = new byte[] { 28, 11, 11, 11 };
+        public static readonly byte[] MezzoForte = new byte[] { 28, 13, 11 };
+        public static readonly byte[] Piano = new byte[] { 28, 15 };
+        public static readonly byte[] Pianissimo = new byte[] { 28, 15, 15 };
+        public static readonly byte[] MezzoPiano = new byte[] { 28, 13, 15 };
+        public static readonly byte[] Dim = new byte[] { 28, 25, 10, 9 };
+        public static readonly byte[] Rallentando = new byte[] { 28, 23, 1, 7, 7, 4 };
+        public static readonly byte[] Ritardando = new byte[] { 28, 23, 10, 30 };
+        public static readonly byte[] Ritenuto = new byte[] { 28, 23, 10, 30, 17, 4 };
+        public static readonly byte Staccato = 38; // Articulation mark
+        public static readonly byte[] Staccatissimo = new byte[] { 32, 38 };    // Articulation mark
+        public static readonly byte[] Tenuto = new byte[] { 56, 38 };   // Articulation mark
+        public static readonly byte[] TenutoStaccato = new byte[] { 16, 38 };// Articulation mark
+        public static readonly byte[] Accent = new byte[] { 24, 38 };// Articulation mark
+        public static readonly byte[] Martellato = new byte[] { 48, 38 };// Articulation mark
+        public static readonly byte[] Swell = new byte[] { 33, 4 };// Articulation mark
+        public static readonly byte[] FermatoOnNote = new byte[] { 57 };
+        public static readonly byte[] FermataBetweenNotes = new byte[] { 16, 35, 7 };
+        public static readonly byte[] FermataOverBarLine = new byte[] { 56, 35, 7 };
+        public static readonly byte[] MeasureInAccord = new byte[] { 35, 28 };
+        public static readonly byte[] PartMeasureInAccord = new byte[] { 16, 2 };
+        public static readonly byte[] MeasureDivisionSign = new byte[] { 40, 5 };
+        public static readonly byte Flat = 35;
+        public static readonly byte Sharp = 41;
+        public static readonly byte Natural = 33;
 
-
-
+        // Note: Articulation marks must be inserted BEFORE the note
 
         public enum Hand { Undefined, Left, Right };
-
 
 
         private List<byte> braille;
@@ -157,19 +198,14 @@ namespace MusicXmlReaderUI
         //public void AddNote(FullToneStep step, int alter, int octave, string type, bool punctured) // The right signature
         public void AddNote(string step, int alter, int octave, string type, bool punctured) // ********************* FIX ! Temp signature
         {
- 
-            const byte sharp = (byte)41;
-            const byte flat = (byte)35;
-            const byte dot = (byte)4;
-
             int stepIndex = GetStepIndex(step);
             int typeIndex = GetTypeIndex(type);        
             byte note = notes[typeIndex,stepIndex]; // Represents pitch within an octave
             byte[] octaveMark = GetOctaveMark(octave);
             braille.Add(note);
-            if (0 != alter) braille.Add((alter > 0) ? sharp : flat);
+            if (0 != alter) braille.Add((alter > 0) ? Sharp : Flat);
             braille.AddRange(octaveMark);
-            if (punctured) braille.Add(dot); 
+            if (punctured) braille.Add(Dot); 
         }
 
         /// <summary>
@@ -179,11 +215,10 @@ namespace MusicXmlReaderUI
         /// <param name="punctured">A puncture added</param>
         public void AddRest(string type, bool punctured) // ********************* FIX ! Temp signature
         {
-            const byte dot = (byte)4;
             int typeIndex = GetTypeIndex(type);
             byte rest = rests[typeIndex];
             braille.Add(rest);
-            if (punctured) braille.Add(dot);
+            if (punctured) braille.Add(Dot);
         }
                 
 
@@ -253,8 +288,8 @@ namespace MusicXmlReaderUI
 
         // TO DO: ********************************************************
 
-        public void AddConstant(Constant constant)
-        { }
+        //public void AddConstant(Constant constant)
+        //{ }
 
 
         /// <summary>
