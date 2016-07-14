@@ -30,16 +30,16 @@ namespace MusicXmlReaderUI
         public static readonly byte[] FourMeasureRest = new byte[] { 60, 25, 13 };
         public static readonly byte[] DoubleBar = new byte[] { 35 };
         public static readonly byte Dot = 4;
-        public static readonly byte MusicHyphen = 16;
+        public static readonly byte MusicHyphen = 16; // This measure will be continued on the following line
         public static readonly byte Triplet = 6;
-        public static readonly byte RepeatSign = 54;
+        public static readonly byte RepeatSign = 54; // A beat, a half measure or a full measure must be repeated
         public static readonly byte Slur = 9;
         public static readonly byte[] Tie = new byte[] { 8, 9 };
         public static readonly byte[] ChordTie = new byte[] { 40, 9 };
         public static readonly byte[] BracketSlurStart = new byte[] { 48, 6 };
         public static readonly byte[] BracketClurEnd = new byte[] { 24, };
-        public static readonly byte WordSign = 28;
-        public static readonly byte WordApostrophe = 32;
+        public static readonly byte WordSign = 28; //  Must preceed all musical indications.
+        public static readonly byte WordApostrophe = 32; // The word will be continued on the following line
         public static readonly byte[] CrescendoHairpin = new byte[] { 28, 9 };
         public static readonly byte[] Crescendo = new byte[] { 28, 9, 23 };
         public static readonly byte[] DimShape = new byte[] { 28, 25 };
@@ -72,6 +72,8 @@ namespace MusicXmlReaderUI
         public static readonly byte Natural = 33;
 
         // Note: Articulation marks must be inserted BEFORE the note
+
+ 
 
         public enum Hand { Undefined, Left, Right };
 

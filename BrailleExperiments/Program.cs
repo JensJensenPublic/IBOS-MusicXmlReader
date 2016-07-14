@@ -271,10 +271,19 @@ namespace BrailleExperiments
 
 
         }
-
+        
+        static private void LogJfwApi()
+        {
+            bool result = false;
+            result = JfwApiWrapper.JFWStopSpeech();
+            Log(string.Format("JfwApiWrapper.JFWStopSpeech {0}", result ? "succeeded" : "failed**"));
+        }
 
         static void Main(string[] args)
         {
+
+            //LogJfwApi();
+
             //LogFSInterface();
             if (LogNvdaInterface())
             {

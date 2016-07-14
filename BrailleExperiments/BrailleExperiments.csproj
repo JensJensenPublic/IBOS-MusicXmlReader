@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FSBrlDspAPI.Wrapper.cs" />
+    <Compile Include="JfwApiWrapper.cs" />
     <Compile Include="NvdaControllerClientWrapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
