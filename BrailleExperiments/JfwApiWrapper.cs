@@ -41,7 +41,15 @@ namespace BrailleExperiments
 
         // (First jfwapi.dll is found in the debug directory)
 
-        [DllImport("jfwapi.dll", CharSet = CharSet.Ansi)] 
+        // It looks like the project must be x64 ahd that jfwapi.dll must be present in 
+        // C:\Users\Jens\Documents\Visual Studio 2015\Projects\MusicXmlReaderUI\BrailleExperiments\bin\x64\Debug
+
+        [DllImport("jfwapi.dll", CharSet = CharSet.Ansi)]
         public static extern bool JFWStopSpeech();
+
+        [DllImport("jfwapi.dll", CharSet = CharSet.Unicode)]
+        public static extern bool JFWSayString(String text);
+
+
     }
 }
