@@ -145,10 +145,24 @@ namespace TolkExperiments
             {
                 Log(" "+System.IO.Path.GetFileName(fileName));
             }
+
             // Report if any file is missing
-            CheckDll("tolk.dll", executingDirectory);
-            CheckDll("jfwapi.dll", executingDirectory);
-            CheckDll("nvdaControllerClient64.dll",executingDirectory); 
+            bool is64Bit = IntPtr.Size == 8;
+            Log(string.Format("This program is compiled for is a {0} bit ", is64Bit ? "64" : "32"));
+            if (is64Bit)
+            {
+                CheckDll("tolk.dll", executingDirectory);
+                CheckDll("jfwapi.dll", executingDirectory);
+                CheckDll("nvdaControllerClient64.dll", executingDirectory);
+            }
+            else
+            {
+                CheckDll("tolk.dll", executingDirectory);
+                CheckDll("jfwapi.dll", executingDirectory);
+                CheckDll("nvdaControllerClient32.dll", executingDirectory);
+            }
+
+
             // Now for the real test
             LogTolkApi();
         }
