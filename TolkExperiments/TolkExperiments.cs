@@ -116,12 +116,9 @@ namespace TolkExperiments
 
             for (int i = 0; (i < 10000); i++)
             {
-                if (!Tolk.Braille(varyingBrailleString))
-                {
-                    Console.WriteLine("Failed to output Braille");
-                }
-                Thread.Sleep(2000);
-                if (!Tolk.Braille(fullBrailleString))
+                char c = (char) (UnicodeBrailleBase + (i % 256));
+                string s = new StringBuilder().Append(c, displaySize).ToString();
+                if (!Tolk.Braille(s))
                 {
                     Console.WriteLine("Failed to output Braille");
                 }
