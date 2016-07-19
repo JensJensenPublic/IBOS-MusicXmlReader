@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using DavyKager; // Tolk
 
 //Unicode for Braille
 //https://en.wikipedia.org/wiki/Braille_Patterns
@@ -115,7 +116,8 @@ namespace MusicXmlReaderUI
                 string musicBrailleString = BytesToString(bytes, displaySize);
 
                 musicBrailleTextBox.Text = musicBrailleString;  // Write to the Windows Forms control for visualizing Braille on the PC screen      
-                nvda.BrailleMessage(musicBrailleString);        // Write to the physical Braille Display device through nvda
+                //nvda.BrailleMessage(musicBrailleString);        // Write to the physical Braille Display device through nvda
+                Tolk.Braille(musicBrailleString);  // Write to the physical Braille Display device through Tolk (Which again uses either JAWS or NVDA)
             }
             return;
         }
