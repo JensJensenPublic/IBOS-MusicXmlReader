@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-using DavyKager; // Told
+using System.IO;
+using DavyKager; // Tolk
 
 namespace TolkExperiments
 {
@@ -28,7 +29,9 @@ namespace TolkExperiments
     /// C:\Users\Jens\Documents\Visual Studio 2015\Projects\MusicXmlReaderUI\TolkExperiments\bin\x64\Debug
     /// This directory must also contain 64-bit version of
     /// tolk.dll
-    /// jfwapi.dll    /// 
+    /// jfwapi.dll
+    /// nvdaControllerClient64.dll 
+    ///  
     /// </summary>
     class TolkExperiments
     {
@@ -42,6 +45,15 @@ namespace TolkExperiments
         {
             Console.WriteLine(s);
         }
+
+        static void CheckDll(string dllName, string directory)
+        {
+            if (!File.Exists(Path.Combine(directory,dllName)))      
+            {
+                Log(string.Format("Missing support-dll: {0}", dllName));
+            }
+        }
+
 
         static void LogTolkApi()
         {
@@ -136,6 +148,10 @@ namespace TolkExperiments
             {
                 Log(" "+System.IO.Path.GetFileName(fileName));
             }
+            // Report if any file is missing
+            CheckDll("tolk.dll", executingDirectory);
+            CheckDll("jfwapi.dll", executingDirectory);
+            CheckDll("nvdaControllerClient64.dll",executingDirectory); 
             // Now for the real test
             LogTolkApi();
         }

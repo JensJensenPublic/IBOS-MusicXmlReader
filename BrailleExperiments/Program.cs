@@ -4,7 +4,6 @@ using System.Text;
 using System.Runtime.InteropServices;
 using MusicXmlReaderUI;
 using System.Threading;
-using DavyKager;
 
 //Unicode for Braille
 //https://en.wikipedia.org/wiki/Braille_Patterns
@@ -360,6 +359,11 @@ namespace BrailleExperiments
             {
                 Console.WriteLine("numberstring");
                 function = string.Format("BrailleString({0}=", numberString); // Giver rigtige "1234567890" ASCII tegn  !!!!!!!!!!!!!!!!!!
+
+                //function = string.Format("BrailleString(\"{0}\")\0", varyingBrailleString); 
+
+
+
                 //function = string.Format("BrailleMessage(\"{0}\")", numberString); // Uklart
                 //function = string.Format("BrailleMessage(\"{0}\")", varyingBrailleString); // Uklart
                 //function = string.Format("BrailleMessage({0})", varyingBrailleString); // 
@@ -570,88 +574,6 @@ namespace BrailleExperiments
             }
         }
 
-        static void LogTolkApi()
-        {
-
-            string emptyBrailleString = new StringBuilder().Append(UnicodeBrailleBase, displaySize).ToString(); // Assume standard Braille Unicode
-            string hex01BrailleString = new StringBuilder().Append(UnicodeBraille01, displaySize).ToString(); // Assume standard Braille Unicode
-            string hex02BrailleString = new StringBuilder().Append(UnicodeBraille02, displaySize).ToString(); // Assume standard Braille Unicode
-            string fullBrailleString = new StringBuilder().Append(UnicodeBrailleAll8, displaySize).ToString(); // Assume standard Braille Unicode
-            string zeroString = new StringBuilder().Append((char)0, displaySize).ToString();    // Assume simple 0-based Braille coding
-            string ffString = new StringBuilder().Append((char)0xff, displaySize).ToString(); // Assume simple 0-based Braille coding
-            //string numberString = "12345678901234";
-
-
-            StringBuilder sb = new StringBuilder();
-            for (char ch = UnicodeBrailleBase; (ch < UnicodeBrailleBase + (char)displaySize); ch++)
-            {
-                sb.Append(ch);
-            };
-            string varyingBrailleString = sb.ToString();
-
-            Tolk.Load();
-
-            bool isLoaded = Tolk.IsLoaded();
-            Log(string.Format("Tolk.IsLoaded() returned {0}", isLoaded));
-     
-            string screenReader = Tolk.DetectScreenReader();
-            Log(string.Format("Tolk.DetectScreenReader found {0}", (screenReader == null) ? "No screenreader" : screenReader));
-
-
-            if (Tolk.HasSpeech())
-            {
-                Console.WriteLine("This screen reader driver supports speech");
-            }
-            if (Tolk.HasBraille())
-            {
-                Console.WriteLine("This screen reader driver supports braille");
-            }
-
-            Console.WriteLine("Let's output some text...");
-            if (!Tolk.Output("Hello, World!"))
-            {
-                Console.WriteLine("Failed to output text");
-            }
-
-            if (!Tolk.Braille(fullBrailleString)) // This works perfectly !!
-            {
-                Console.WriteLine("Failed to output Braille");
-            }
-            Thread.Sleep(1000);
-
-
-            //Thread.Sleep(5000);
-
-            Console.WriteLine("Wrote Braille once");
-            Tolk.Silence();
-
-            Thread.Sleep(1000);
-
-            Tolk.Silence();
-
-            Thread.Sleep(1000);
-
-            for (int i = 0; (i < 10000); i++)
-            {
-                if (!Tolk.Braille(varyingBrailleString))
-                {
-                    Console.WriteLine("Failed to output Braille");
-                }
-                  Thread.Sleep(1000);
-                if (!Tolk.Braille(fullBrailleString))
-                {
-                    Console.WriteLine("Failed to output Braille");
-                }
-                Thread.Sleep(1000);
-            }
-
-            Console.WriteLine("Finalizing Tolk...");
-            Tolk.Unload();
-
-            Console.WriteLine("Done!");
-
-        }
-
 
         static void Main(string[] args)
         {
@@ -660,8 +582,7 @@ namespace BrailleExperiments
             Log(""); // An empty line
             Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
 
-            LogTolkApi();
-            //LogJfwApi();
+            LogJfwApi();
 
             //LogFSInterface();
             if (LogNvdaInterface())
