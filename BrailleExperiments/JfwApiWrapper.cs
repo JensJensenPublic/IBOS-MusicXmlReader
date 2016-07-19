@@ -252,7 +252,7 @@ Oplysninger om indholdstype slut
          13    C 000015C0 JFWSayString
          14    D 00001664 JFWSayStringA
          15    E 00001DF0 JFWSayStringEx
-         16    F 00001E10 JFWSayStringEx1
+          16    F 00001E10 JFWSayStringEx1
          17   10 000018FC JFWSayStringExA
          18   11 00001B78 JFWSayStringExA1
          19   12 00001A34 JFWSayStringExW
@@ -296,7 +296,7 @@ return GetProcessVersionInfo(buf, 1, buf, bufmax);
         //  public static extern bool JFWBrailleW(String text);     // Is not implemented in current version of jfwapi.dll
 
 
-        [DllImport("jfwapi.dll", CharSet = CharSet.Unicode)]    // Under development. Returnerer true, men har ingen virkning
+        [DllImport("jfwapi.dll", CharSet = CharSet.Unicode)]    // Under development. Returnerer true, og kan skrive mappede tegn ud, men ikke 0x2800 serien !
         public static extern bool JFWRunFunction(String text);
 
         [DllImport("jfwapi.dll", CharSet = CharSet.Unicode)]    // Under development. Returnerer true, men har ingen virkning
