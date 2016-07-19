@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using NAudio.Midi;
 using System.Windows.Forms;
 using System.Xml;
+using DavyKager; // Tolk
 
 namespace MusicXmlReaderUI
 {
@@ -110,9 +111,16 @@ namespace MusicXmlReaderUI
         public static string LogFileName = "MusicXmlReader.Log";
         public static void Log(string s)
         {
-            System.DateTime now = System.DateTime.Now;
-            string time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
-            System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName), time+" "+s+"\r\n");
+            try
+            {
+                System.DateTime now = System.DateTime.Now;
+                string time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
+                System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName), time + " " + s + "\r\n");
+            }
+            catch (Exception e)
+            {
+                // What to do here ??
+            }
         }
 
 
@@ -332,17 +340,94 @@ namespace MusicXmlReaderUI
                         return ok;
         }
 
+        private bool CheckDll(string dllName, string directory)
+        {
+            if (!File.Exists(Path.Combine(directory, dllName)))
+            {
+                Log(string.Format("Missing support-dll: {0}", dllName));
+                return false;
+            }
+            return true;
+        }
+        
+        private bool CheckDlls()
+        {
+            // Report if any file is missing
+            bool result = true;
+            bool is64Bit = IntPtr.Size == 8;
+            Log(string.Format("This program is compiled for is a {0} bit ", is64Bit ? "64" : "32"));
+            if (is64Bit)
+            {
+                result &= CheckDll("tolk.dll", executingDirectory);
+                result &= CheckDll("jfwapi.dll", executingDirectory);
+                result &= CheckDll("nvdaControllerClient64.dll", executingDirectory);
+            }
+            else
+            {
+                result &= CheckDll("tolk.dll", executingDirectory);
+                result &= CheckDll("jfwapi.dll", executingDirectory);
+                result &= CheckDll("nvdaControllerClient32.dll", executingDirectory);
+            }
+            return result;
+        }
+
+        private bool LoadTolk()
+        {
+            bool result = false;
+            try
+            {
+                Tolk.Load();
+                bool isLoaded = Tolk.IsLoaded();
+                Log(string.Format("Tolk.IsLoaded() returned {0}", isLoaded));
+                string screenReader = Tolk.DetectScreenReader();
+                if (null == screenReader)
+                {
+                    return false;
+                }
+                Log(string.Format("Tolk.DetectScreenReader found {0}", (screenReader == null) ? "No screenreader" : screenReader));
+                if (Tolk.HasSpeech())
+                {
+                    Console.WriteLine("This screen reader driver supports speech");
+                }
+                if (Tolk.HasBraille())
+                {
+                    Console.WriteLine("This screen reader driver supports braille");
+                }
+                result = true;
+            }
+            catch (Exception e)
+            {
+                Log(string.Format("Tolk.Load threw and exception: {0}", e.Message));
+            }
+            return result;
+        }
+
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public Model(ListBox listBox, ListBox listBoxPoly,TextBox textBoxMusicBraille)
-        { 
+        public Model(ListBox listBox, ListBox listBoxPoly, TextBox textBoxMusicBraille)
+        {
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
             Log(""); // An empty line
-            Log(string.Format("Date={0}:",System.DateTime.Now.ToLongDateString()));
-            Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));                 
+            Log(string.Format("Date={0}:", System.DateTime.Now.ToLongDateString()));
+            Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
+
+            if (!CheckDlls())
+            {
+                MessageBox.Show("Manglende programfil ! Se venligst Logfilen!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (!LoadTolk())
+            {
+                string caption = "Kunne ikke forbinde til skærmlæser!";
+                MessageBox.Show(  "Kunne ikke forbinde til skærmlæser!\r\n"
+                                + "Understøttede skærmlæsere er 'JAWS' og 'NVDA'\r\n"
+                                + "Se venligst logfilen (Værktøjer->Log fil)",
+                                caption,MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }    
+                        
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
             int displaySize = 14;
