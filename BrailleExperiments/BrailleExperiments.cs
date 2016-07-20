@@ -597,7 +597,8 @@ namespace BrailleExperiments
             result = FSAPIWrapper.JFWStopSpeech();
             Log(string.Format("FSAPIWrapper.JFWStopSpeech {0}", result ? "succeeded" : "failed**"));
 
-            //result = FSAPIWrapper.JFWSayString("HEJ");
+  
+            //result = FSAPIWrapper.JFWSayString("HEJ"); // CRASHES !
             //Log(string.Format("FSAPIWrapper.JFWSayString(\"HEJ\") {0}", result ? "succeeded" : "failed**"));
 
             string function = string.Format("BrailleString(\"{0}\")", varyingBrailleString);
