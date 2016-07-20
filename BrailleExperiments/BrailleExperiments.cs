@@ -597,17 +597,34 @@ namespace BrailleExperiments
             result = FSAPIWrapper.JFWStopSpeech();
             Log(string.Format("FSAPIWrapper.JFWStopSpeech {0}", result ? "succeeded" : "failed**"));
 
-  
-            //result = FSAPIWrapper.JFWSayString("HEJ"); // CRASHES !
-            //Log(string.Format("FSAPIWrapper.JFWSayString(\"HEJ\") {0}", result ? "succeeded" : "failed**"));
+           
 
-            string function = string.Format("BrailleString(\"{0}\")", varyingBrailleString);
+            // The next operation will cause the debugger to report a problem about an unbalanced stack.
+            // This has temporarily been disabled in the debugger settings as it seems to cause no harm !!   TODO Find out more!!
+            result = FSAPIWrapper.JFWSayString("HEJ"); // CRASHES !
+            Log(string.Format("FSAPIWrapper.JFWSayString(\"HEJ\") {0}", result ? "succeeded" : "failed**"));
+
+                      
+            string sayStringFunction = string.Format("SayString(\"{0}\")", "HALLO");
+            result = FSAPIWrapper.JFWRunFunction(sayStringFunction);
+            Console.WriteLine(string.Format("FSAPIWrapper.JFWRunFunction(sayStringFunction) returned result={0}", result));
+            Thread.Sleep(1000);
+
+
+            string brailleStringFunction;
             Thread.Sleep(5000);
 
             for (int c = 0; (c < 1000); c++)
             {
+                brailleStringFunction = string.Format("BrailleString(\"{0}\")", varyingBrailleString);
                 Console.WriteLine("varyingBrailleString");
-                result = FSAPIWrapper.JFWRunFunction(function);
+                result = FSAPIWrapper.JFWRunFunction(brailleStringFunction);
+                Console.WriteLine(string.Format("result={0}", result));
+                Thread.Sleep(1000);
+
+                brailleStringFunction = string.Format("BrailleString(\"{0}\")", fullBrailleString);
+                Console.WriteLine("fullBrailleString");
+                result = FSAPIWrapper.JFWRunFunction(brailleStringFunction);
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(1000);
             }
