@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace MusicXmlReaderUI
 {
+
+    /// <summary>
+    /// Contains logging and checking in order to avoid polluting the primary Model-logic
+    /// </summary>
     static class Utilities
     {
 
@@ -120,5 +126,59 @@ namespace MusicXmlReaderUI
             return true;
         }
 
+
+        private static bool CheckDll(string dllName, string directory)
+        {
+            if (!File.Exists(Path.Combine(directory, dllName)))
+            {
+                Model.Log(string.Format("Missing support-dll: {0}", dllName));
+                return false;
+            }
+            return true;
+        }
+
+        internal static bool CheckDlls(string directory, bool show)
+        {
+            // Report if any file is missing
+            bool result = true;
+            bool is64Bit = IntPtr.Size == 8;
+            Model.Log(string.Format("This program is compiled for is a {0} bit ", is64Bit ? "64" : "32"));
+            if (is64Bit)
+            {
+                result &= CheckDll("tolk.dll", directory);
+                result &= CheckDll("jfwapi.dll", directory);
+                result &= CheckDll("nvdaControllerClient64.dll", directory);
+            }
+            else
+            {
+                result &= CheckDll("tolk.dll", directory);
+                result &= CheckDll("jfwapi.dll", directory);
+                result &= CheckDll("nvdaControllerClient32.dll", directory);
+            }
+
+            // result = false; // Used during test only !!
+
+            if (show & !result)
+            {
+                MessageBox.Show("Manglende programfil ! Se venligst Logfilen!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return result;
+        }
+
+
+        internal static bool CheckTolk(bool result, bool showMessageBoxOnError)
+        {
+            if (!result & showMessageBoxOnError)
+            {
+                string caption = "Kunne ikke forbinde til skærmlæser!";
+                MessageBox.Show("Kunne ikke forbinde til skærmlæser!\r\n"
+                                        + "Understøttede skærmlæsere er 'JAWS' og 'NVDA'\r\n"
+                                        + "Se venligst logfilen (Værktøjer->Log fil)",
+                                        caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return result;
+        }
     }
+
 }

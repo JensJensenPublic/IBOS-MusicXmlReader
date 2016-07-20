@@ -340,37 +340,6 @@ namespace MusicXmlReaderUI
                         return ok;
         }
 
-        private bool CheckDll(string dllName, string directory)
-        {
-            if (!File.Exists(Path.Combine(directory, dllName)))
-            {
-                Log(string.Format("Missing support-dll: {0}", dllName));
-                return false;
-            }
-            return true;
-        }
-        
-        private bool CheckDlls()
-        {
-            // Report if any file is missing
-            bool result = true;
-            bool is64Bit = IntPtr.Size == 8;
-            Log(string.Format("This program is compiled for is a {0} bit ", is64Bit ? "64" : "32"));
-            if (is64Bit)
-            {
-                result &= CheckDll("tolk.dll", executingDirectory);
-                result &= CheckDll("jfwapi.dll", executingDirectory);
-                result &= CheckDll("nvdaControllerClient64.dll", executingDirectory);
-            }
-            else
-            {
-                result &= CheckDll("tolk.dll", executingDirectory);
-                result &= CheckDll("jfwapi.dll", executingDirectory);
-                result &= CheckDll("nvdaControllerClient32.dll", executingDirectory);
-            }
-            return result;
-        }
-
         private bool LoadTolk()
         {
             bool result = false;
@@ -413,21 +382,9 @@ namespace MusicXmlReaderUI
             Log(""); // An empty line
             Log(string.Format("Date={0}:", System.DateTime.Now.ToLongDateString()));
             Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
-
-            if (!CheckDlls())
-            {
-                MessageBox.Show("Manglende programfil ! Se venligst Logfilen!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            if (!LoadTolk())
-            {
-                string caption = "Kunne ikke forbinde til skærmlæser!";
-                MessageBox.Show(  "Kunne ikke forbinde til skærmlæser!\r\n"
-                                + "Understøttede skærmlæsere er 'JAWS' og 'NVDA'\r\n"
-                                + "Se venligst logfilen (Værktøjer->Log fil)",
-                                caption,MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }    
-                        
+            bool showMessageBoxOnError = true;
+            Utilities.CheckDlls(executingDirectory, showMessageBoxOnError);
+            Utilities.CheckTolk(LoadTolk(), showMessageBoxOnError);                        
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
             int displaySize = 14;
