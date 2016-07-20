@@ -320,12 +320,12 @@ namespace BrailleExperiments
 
             // Strings in the normal character domain
             string numberString = "12345678901234";
-            string string0 = "ABCDEFGHIJ";
-            string string1 = "KLMNOPQRST";
-            string string2 = "UVWXYZ1234";
-            string string3 = "567890.,;:";
-            string string4 = "/?!@#+-*\"\"";
-            string string5 = "'<>()";
+            //string string0 = "ABCDEFGHIJ";
+            //string string1 = "KLMNOPQRST";
+            //string string2 = "UVWXYZ1234";
+            //string string3 = "567890.,;:";
+            //string string4 = "/?!@#+-*\"\"";
+            //string string5 = "'<>()";
 
 
 

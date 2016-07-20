@@ -382,9 +382,8 @@ namespace MusicXmlReaderUI
             Log(""); // An empty line
             Log(string.Format("Date={0}:", System.DateTime.Now.ToLongDateString()));
             Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
-            bool showMessageBoxOnError = true;
-            Utilities.CheckDlls(executingDirectory, showMessageBoxOnError);
-            Utilities.CheckTolk(LoadTolk(), showMessageBoxOnError);                        
+            Utilities.CheckDlls(executingDirectory, ApplicationName);
+            Utilities.CheckTolk(LoadTolk(), ApplicationName);                        
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
             int displaySize = 14;

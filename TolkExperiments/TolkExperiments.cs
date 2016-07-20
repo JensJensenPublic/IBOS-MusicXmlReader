@@ -148,7 +148,7 @@ namespace TolkExperiments
 
             // Report if any file is missing
             bool is64Bit = IntPtr.Size == 8;
-            Log(string.Format("This program is compiled for is a {0} bit ", is64Bit ? "64" : "32"));
+            Log(string.Format("This program is compiled for a {0} bit architechture.", is64Bit ? "64" : "32"));
             if (is64Bit)
             {
                 CheckDll("tolk.dll", executingDirectory);
