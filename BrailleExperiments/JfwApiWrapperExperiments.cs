@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace BrailleExperiments
 {
-    class JfwApiWrapper
+    class JfwApiWrapperExperiments
     {
 
         /*

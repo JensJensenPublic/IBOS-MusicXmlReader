@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BrailleExperiments
 {
-    class FSAPIWrapper
+    class FSAPIWrapperExperiments
     {
         [DllImport("fsapi.dll", CharSet = CharSet.Ansi)]
         public static extern bool JFWStopSpeech();

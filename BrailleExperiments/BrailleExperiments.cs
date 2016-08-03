@@ -288,7 +288,7 @@ namespace BrailleExperiments
             string function = string.Format(format, value);
             Log(function);
             Thread.Sleep(2000);
-            bool result = JfwApiWrapper.JFWRunFunction(function);
+            bool result = JfwApiWrapperExperiments.JFWRunFunction(function);
             Log(string.Format("Result={0}", result));
             return result;
         }
@@ -333,10 +333,10 @@ namespace BrailleExperiments
 
             bool result = false;
    
-            result = JfwApiWrapper.JFWStopSpeech();
+            result = JfwApiWrapperExperiments.JFWStopSpeech();
             Log(string.Format("JfwApiWrapper.JFWStopSpeech {0}", result ? "succeeded" : "failed**"));
 
-            result = JfwApiWrapper.JFWSayString("HEJ");
+            result = JfwApiWrapperExperiments.JFWSayString("HEJ");
             Log(string.Format("JfwApiWrapper.JFWSayString(\"HEJ\") {0}", result ? "succeeded" : "failed**"));
 
             //result = JfwApiWrapper.JFWBrailleW(emptyBrailleString);
@@ -379,7 +379,7 @@ namespace BrailleExperiments
                 //function = string.Format("BrailleString('{0}=')", numberString); // Giver rigtige ASCII tegn
                 //function = string.Format("BrailleString({0}=)", varyingBrailleString); 
                 //function = string.Format("BrailleString({0})", numberString);
-                result = JfwApiWrapper.JFWRunFunction(function);  // S
+                result = JfwApiWrapperExperiments.JFWRunFunction(function);  // S
                 //JfwApiWrapper.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(1000);
@@ -438,7 +438,7 @@ namespace BrailleExperiments
                     //}
 
 
-                    result = JfwApiWrapper.JFWRunFunction(function);  // 
+                    result = JfwApiWrapperExperiments.JFWRunFunction(function);  // 
                     //JfwApiWrapper.JFWStopSpeech();
                     Console.WriteLine(string.Format("result={0}", result));
                     Thread.Sleep(delay);
@@ -450,46 +450,46 @@ namespace BrailleExperiments
 
                 Console.WriteLine("zerostring");
                 function = string.Format("BrailleMessage({0})", zeroString);
-                result = JfwApiWrapper.JFWRunFunction(function);  // Skriver Braille(ingenting) tegn ud over hele displayet. Siger ikke noget
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction(function);  // Skriver Braille(ingenting) tegn ud over hele displayet. Siger ikke noget
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(delay);
 
 
                 Console.WriteLine(" hex01BrailleString");
                 function = string.Format("BrailleMessage({0})", hex01BrailleString);
-                result = JfwApiWrapper.JFWRunFunction(function);  // Skriver {2,6} = 0x22 tegn ud over hele displayet. Siger ikke noget
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction(function);  // Skriver {2,6} = 0x22 tegn ud over hele displayet. Siger ikke noget
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(delay);
 
 
                 Console.WriteLine(" hex02BrailleString");
                 function = string.Format("BrailleMessage({0})", hex02BrailleString);
-                result = JfwApiWrapper.JFWRunFunction(function);  // Skriver tegn ud over hele displayet. Siger ikke noget
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction(function);  // Skriver tegn ud over hele displayet. Siger ikke noget
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(delay);
 
                 Console.WriteLine("varyingBrailleString");
                 function = string.Format("BrailleMessage({0})", varyingBrailleString);
-                result = JfwApiWrapper.JFWRunFunction(function);
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction(function);
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(delay);
 
 
                 Console.WriteLine("ffstring");
                 function = string.Format("BrailleMessage({0})", ffString);
-                result = JfwApiWrapper.JFWRunFunction(function);  // Skriver {6} {2,3,4,5,6,8}  Braille tegn ud over hele displayet. Siger ikke noget
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction(function);  // Skriver {6} {2,3,4,5,6,8}  Braille tegn ud over hele displayet. Siger ikke noget
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(delay);
 
                 Console.WriteLine("numberstring");// Skriver forskellige Braille tegn ud over hele displayet. Siger ikke noget
                 function = string.Format("BrailleMessage({0})", numberString);
-                result = JfwApiWrapper.JFWRunFunction(function);  // ?S
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction(function);  // ?S
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(1000);
 
@@ -497,30 +497,30 @@ namespace BrailleExperiments
 
                 Console.WriteLine("zerostring");
                 function = string.Format("BrailleString({0})", zeroString);
-                result = JfwApiWrapper.JFWRunFunction(function);  // Skriver Braille(ingenting) tegn ud over hele displayet. Siger ikke noget
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction(function);  // Skriver Braille(ingenting) tegn ud over hele displayet. Siger ikke noget
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(delay);
 
                 Console.WriteLine(" hex02BrailleString");
                 function = string.Format("BrailleString({0})", hex02BrailleString);
-                result = JfwApiWrapper.JFWRunFunction(function);  // Skriver tegn ud over hele displayet. Siger ikke noget
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction(function);  // Skriver tegn ud over hele displayet. Siger ikke noget
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(delay);
 
                 Console.WriteLine("varyingBrailleString");
                 function = string.Format("BrailleString({0})", varyingBrailleString);
-                result = JfwApiWrapper.JFWRunFunction(function);
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction(function);
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(delay);
 
 
                 Console.WriteLine("ffstring");
                 function = string.Format("BrailleString({0})", ffString);
-                result = JfwApiWrapper.JFWRunFunction(function);  // Skriver ens søre Braille tegn ud over hele displayet. Siger ikke noget
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction(function);  // Skriver ens søre Braille tegn ud over hele displayet. Siger ikke noget
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(delay);
 
@@ -531,8 +531,8 @@ namespace BrailleExperiments
                     //function = string.Format("BrailleString('{0}=')", numberString); // Giver rigtige ASCII tegn
                     //function = string.Format("BrailleString({0}=)", varyingBrailleString); 
                     //function = string.Format("BrailleString({0})", numberString);
-                    result = JfwApiWrapper.JFWRunFunction(function);  // S
-                    JfwApiWrapper.JFWStopSpeech();
+                    result = JfwApiWrapperExperiments.JFWRunFunction(function);  // S
+                    JfwApiWrapperExperiments.JFWStopSpeech();
                     Console.WriteLine(string.Format("result={0}", result));
                     Thread.Sleep(1000);
                 }
@@ -547,28 +547,28 @@ namespace BrailleExperiments
                 // Ingen af disse siger noget. Har en virkning på displayet !
                 Console.WriteLine(string.Format("j={0}", j));
 
-                result = JfwApiWrapper.JFWRunFunction("BrailleString", emptyBrailleString); // Udskriver blanke over hele display
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction("BrailleString", emptyBrailleString); // Udskriver blanke over hele display
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}",result));
                 Thread.Sleep(delay);
-                result = JfwApiWrapper.JFWRunFunction("BrailleString", varyingBrailleString); // Works ?
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction("BrailleString", varyingBrailleString); // Works ?
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(delay);
-                result = JfwApiWrapper.JFWRunFunction("BrailleString", fullBrailleString);
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction("BrailleString", fullBrailleString);
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(delay);
-                result = JfwApiWrapper.JFWRunFunction("BrailleMessage", emptyBrailleString);
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction("BrailleMessage", emptyBrailleString);
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(delay);
-                result = JfwApiWrapper.JFWRunFunction("BrailleMessage", varyingBrailleString);
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction("BrailleMessage", varyingBrailleString);
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(delay);
-                result = JfwApiWrapper.JFWRunFunction("BrailleMessage", fullBrailleString);
-                JfwApiWrapper.JFWStopSpeech();
+                result = JfwApiWrapperExperiments.JFWRunFunction("BrailleMessage", fullBrailleString);
+                JfwApiWrapperExperiments.JFWStopSpeech();
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(delay);
             }
@@ -594,19 +594,19 @@ namespace BrailleExperiments
 
             bool result = false;
 
-            result = FSAPIWrapper.JFWStopSpeech();
+            result = FSAPIWrapperExperiments.JFWStopSpeech();
             Log(string.Format("FSAPIWrapper.JFWStopSpeech {0}", result ? "succeeded" : "failed**"));
 
            
 
             // The next operation will cause the debugger to report a problem about an unbalanced stack.
             // This has temporarily been disabled in the debugger settings as it seems to cause no harm !!   TODO Find out more!!
-            result = FSAPIWrapper.JFWSayString("HEJ"); // CRASHES !
+            result = FSAPIWrapperExperiments.JFWSayString("HEJ"); // CRASHES !
             Log(string.Format("FSAPIWrapper.JFWSayString(\"HEJ\") {0}", result ? "succeeded" : "failed**"));
 
                       
             string sayStringFunction = string.Format("SayString(\"{0}\")", "HALLO");
-            result = FSAPIWrapper.JFWRunFunction(sayStringFunction);
+            result = FSAPIWrapperExperiments.JFWRunFunction(sayStringFunction);
             Console.WriteLine(string.Format("FSAPIWrapper.JFWRunFunction(sayStringFunction) returned result={0}", result));
             Thread.Sleep(1000);
 
@@ -618,13 +618,13 @@ namespace BrailleExperiments
             {
                 brailleStringFunction = string.Format("BrailleString(\"{0}\")", varyingBrailleString);
                 Console.WriteLine("varyingBrailleString");
-                result = FSAPIWrapper.JFWRunFunction(brailleStringFunction);
+                result = FSAPIWrapperExperiments.JFWRunFunction(brailleStringFunction);
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(1000);
 
                 brailleStringFunction = string.Format("BrailleString(\"{0}\")", fullBrailleString);
                 Console.WriteLine("fullBrailleString");
-                result = FSAPIWrapper.JFWRunFunction(brailleStringFunction);
+                result = FSAPIWrapperExperiments.JFWRunFunction(brailleStringFunction);
                 Console.WriteLine(string.Format("result={0}", result));
                 Thread.Sleep(1000);
             }

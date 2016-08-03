@@ -86,10 +86,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FSAPIWrapper.cs" />
-    <Compile Include="FSBrlDspAPI.Wrapper.cs" />
-    <Compile Include="JfwApiWrapper.cs" />
-    <Compile Include="NvdaControllerClientWrapper.cs" />
+    <Compile Include="FSAPIWrapperExperiments.cs" />
+    <Compile Include="FSBrlDspAPIWrapperExperiments.cs" />
+    <Compile Include="JfwApiWrapperExperiments.cs" />
+    <Compile Include="NvdaControllerClientWrapperExperiments.cs" />
     <Compile Include="BrailleExperiments.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
