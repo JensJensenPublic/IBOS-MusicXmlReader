@@ -27,20 +27,24 @@ namespace BrailleExperiments
 
         public override bool Speak(string s)
         {
-            return (0 != nvdaController_speakText(s));
+            return (0 == nvdaController_speakText(s));
         }
 
         public override bool Braille(string s)
         {
-            return (0 != nvdaController_brailleMessage(s));
+            return (0 == nvdaController_brailleMessage(s));
         }
 
         public override bool Silence()
         {
-            return (0 != nvdaController_cancelSpeech());
+            return (0 == nvdaController_cancelSpeech());
         }
-
-
+        
+        public override string GetScreenReaderDllName()
+        {
+            return "nvdaControllerClient64.dll";
+        }
+        
         /// <summary>
         /// For this class to work as expected, a 32-bit application should define a conditional variable named x86.
         /// Also, the NVDA API should exist in the same directory as the executable. 32-bit applications should use nvdaControllerClient32.dll and 64-bit applications should use nvdaControllerClient64.dll.

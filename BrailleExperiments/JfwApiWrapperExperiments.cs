@@ -288,9 +288,7 @@ return GetProcessVersionInfo(buf, 1, buf, bufmax);
         // It looks like the project must be x64 ahd that jfwapi.dll must be present in 
         // C:\Users\Jens\Documents\Visual Studio 2015\Projects\MusicXmlReaderUI\BrailleExperiments\bin\x64\Debug
 
-
-
-
+       
         static public new JfwApiWrapperExperiments Create()
         {
             bool found = false;
@@ -333,7 +331,13 @@ return GetProcessVersionInfo(buf, 1, buf, bufmax);
             return JFWStopSpeech();
         }
 
-        [DllImport("jfwapi.dll", CharSet = CharSet.Ansi)]
+        public override string GetScreenReaderDllName()
+        {
+            return "jfwapi.dll";
+        }
+
+
+       [DllImport("jfwapi.dll", CharSet = CharSet.Ansi)]
         private static extern bool JFWStopSpeech();           
 
         [DllImport("jfwapi.dll", CharSet = CharSet.Unicode)] 

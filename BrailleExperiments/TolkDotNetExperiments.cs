@@ -69,6 +69,9 @@ namespace BrailleExperiments
         // Prevent construction
         protected TolkDotNet() { }
 
+        // Primarily for debugging:
+        public abstract string GetScreenReaderDllName();
+
         // All screanreader wrappers must implement the following methods:
         public abstract bool Speak(string s);
         public abstract bool Braille(string s);

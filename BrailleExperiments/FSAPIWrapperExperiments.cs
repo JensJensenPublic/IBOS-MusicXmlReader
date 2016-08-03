@@ -51,7 +51,10 @@ namespace BrailleExperiments
             return JFWStopSpeech();
         }
 
-
+        public override string GetScreenReaderDllName()
+        {
+            return "fsapi.dll";
+        }
 
         [DllImport("fsapi.dll", CharSet = CharSet.Ansi)]
         public static extern bool JFWStopSpeech();
