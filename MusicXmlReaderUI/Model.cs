@@ -117,7 +117,7 @@ namespace MusicXmlReaderUI
                 string time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
                 System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName), time + " " + s + "\r\n");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // What to do here ??
             }

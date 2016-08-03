@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-namespace MusicXmlReaderUI
+namespace BrailleExperiments
 {
 
     // JSJ:
@@ -35,16 +35,47 @@ namespace MusicXmlReaderUI
     //  nvdaControllerClient32.dll again communicates with the NVDA server through RPC
     //
 
+    public class NvdaControlerClientWrapperExperiments : TolkDotNet
+    {
+                static public new NvdaControlerClientWrapperExperiments Create()
+        {
+            bool found = false;
+            try
+            {
+                found = (0 == nvdaController_testIfRunning());
+            }
+            catch (Exception)
+            {
+            }
+            return found ? new NvdaControlerClientWrapperExperiments() : null;
+        }
 
+        // Prevent construction
+        private NvdaControlerClientWrapperExperiments()
+        { 
+        }
+
+        public override bool Speak(string s)
+        {
+            return (0 != nvdaController_speakText(s));
+        }
+
+        public override bool Braille(string s)
+        {
+            return (0 != nvdaController_brailleMessage(s));
+        }
+
+        public override bool Silence()
+        {
+            return ( 0 != nvdaController_cancelSpeech());
+        }
+        
 
     /// <summary>
     /// For this class to work as expected, a 32-bit application should define a conditional variable named x86.
-    /// In addition, 32-bit applications should reference JFWAPICTRLLib, and 64-bit applications should reference FSAPILib.
-    /// This can be done by adding the COM references under the "References" node in the project solution.
     /// Also, the NVDA API should exist in the same directory as the executable. 32-bit applications should use nvdaControllerClient32.dll and 64-bit applications should use nvdaControllerClient64.dll.
     /// </summary>
-    public class NvdaControllerClientWrapper
-    {
+
         [DllImport("nvdaControllerClient32.dll", CharSet = CharSet.Unicode)]
         public static extern int nvdaController_testIfRunning();
 

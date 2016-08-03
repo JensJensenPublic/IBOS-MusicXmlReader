@@ -7,8 +7,52 @@ using System.Threading.Tasks;
 
 namespace BrailleExperiments
 {
-    class FSAPIWrapperExperiments
+    class FSAPIWrapperExperiments : TolkDotNet
     {
+
+        static public new FSAPIWrapperExperiments Create()
+        {
+            bool found = false;
+            try
+            {
+                // JAWS does not support an explicit "TestIfRunning", so we must use an other command.   
+                // We might use JFWSayString here, but the debugger reposts that it unbalances the stack, so we use the general JFWRunFunction
+                string sayStringFunction = string.Format("SayString(\"{0}\")", "");
+                found = JFWRunFunction(sayStringFunction);
+            }
+            catch (Exception)
+            {
+            }
+            return found ? new FSAPIWrapperExperiments() : null;
+        }
+
+        // Prevent construction
+        private FSAPIWrapperExperiments()
+        {
+        }
+
+        public override bool Speak(string s)
+        {
+            // return JFWSayString(s);
+            // We might use JFWSayString here, but the debugger reposts that it unbalances the stack, so we use the general JFWRunFunction
+            string sayStringFunction = string.Format("SayString(\"{0}\")",s);
+            return JFWRunFunction(sayStringFunction);           
+        }
+
+        public override bool Braille(string s)
+        {
+            // We might use JFWBraille here, but the debugger reposts that it unbaklances the stack, so we use the general JFWRunFunction
+            string brailleStringFunction = string.Format("BrailleString(\"{0}\")",s);
+            return JFWRunFunction(brailleStringFunction);
+        }
+
+        public override bool Silence()
+        {
+            return JFWStopSpeech();
+        }
+
+
+
         [DllImport("fsapi.dll", CharSet = CharSet.Ansi)]
         public static extern bool JFWStopSpeech();
 
@@ -25,8 +69,8 @@ namespace BrailleExperiments
         [DllImport("fsapi.dll", CharSet = CharSet.Unicode)]         // WORKS!!!
         public static extern bool JFWRunFunction(String text);
 
-        [DllImport("fsapi.dll", CharSet = CharSet.Unicode)]   
-        public static extern bool JFWRunFunction(String function, String param1); // Probably not needed !
+        //[DllImport("fsapi.dll", CharSet = CharSet.Unicode)]   
+        //public static extern bool JFWRunFunction(String function, String param1); // Probably not needed !
 
 
     }

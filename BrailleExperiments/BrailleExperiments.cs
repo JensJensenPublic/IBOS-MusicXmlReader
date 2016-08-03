@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Runtime.InteropServices;
-using MusicXmlReaderUI;
+//using MusicXmlReaderUI;
 using System.Threading;
 
 //Unicode for Braille
@@ -27,7 +27,7 @@ namespace BrailleExperiments
 
         static int B(string s)
         {
-            int result = NvdaControllerClientWrapper.nvdaController_brailleMessage(s);
+            int result = NvdaControlerClientWrapperExperiments.nvdaController_brailleMessage(s);
             if (0 != result)
             {
                 Log(string.Format("Failed to output to Braille display through NVDA ControllerClient: NvdaControllerClientWrapper.NvdaController_brailleMessage() returned WINERROR={0}", result));
@@ -37,7 +37,7 @@ namespace BrailleExperiments
 
         static int S(string s)
         {
-            int result = NvdaControllerClientWrapper.nvdaController_speakText(s);
+            int result = NvdaControlerClientWrapperExperiments.nvdaController_speakText(s);
             if (0 != result)
             {
                 Log(string.Format("Failed to speak directly through NVDA ControllerClient: NvdaControllerClientWrapper.NvdaController_speakText() returned WINERROR={0}", result));
@@ -61,19 +61,19 @@ namespace BrailleExperiments
                     return false;
                 }
 
-                int resRunning = NvdaControllerClientWrapper.nvdaController_testIfRunning();
+                int resRunning = NvdaControlerClientWrapperExperiments.nvdaController_testIfRunning();
                 Log(string.Format("NVDA ControllerServer for NVDA ControllerClient is{0}running.", (0 != resRunning) ? " NOT " : " "));
                 if (0 != resRunning)
                 {
                     if (resRunning != 1722) // 1722 is the expected error in this case : "RPC server is not available. 
                     {
-                        Log(string.Format("NvdaControllerClientWrapper.nvdaController_testIfRunning() failed WINERROR={0}", resRunning));
+                        Log(string.Format("NvdaControlerClientWrapperExperiments.nvdaController_testIfRunning() failed WINERROR={0}", resRunning));
                     }
                     return false;
                 }
 
                 System.Threading.Thread.Sleep(2000); // Allow the previous speach to propagate through the system
-                int resSpeak = NvdaControllerClientWrapper.nvdaController_speakText("N V D A ControllerClient");
+                int resSpeak = NvdaControlerClientWrapperExperiments.nvdaController_speakText("N V D A ControllerClient");
                 System.Threading.Thread.Sleep(2000); // Allow the speach to propagate through the system
                 if (0 != resSpeak)
                 {
@@ -81,7 +81,7 @@ namespace BrailleExperiments
                     return false;
                 }
 
-                NvdaControllerClientWrapper.nvdaController_cancelSpeech();
+                NvdaControlerClientWrapperExperiments.nvdaController_cancelSpeech();
                 S("Speach");
                 B("                       ");
                 B("Braille");
@@ -106,7 +106,7 @@ namespace BrailleExperiments
                 System.Threading.Thread.Sleep(250); // Allow the speach to propagate through the system
             }
 
-            int resCancelSpeech = NvdaControllerClientWrapper.nvdaController_cancelSpeech();
+            int resCancelSpeech = NvdaControlerClientWrapperExperiments.nvdaController_cancelSpeech();
             if (0 != resCancelSpeech)
             {
                 Log(string.Format("Failed to cancel speech through NVDA ControllerClient: NvdaControllerClientWrapper.NvdaController_cancelSpeech() returned WINERROR={0}", resCancelSpeech));
@@ -125,7 +125,7 @@ namespace BrailleExperiments
             char c2 = (char)0x2802;
             char c3 = (char)0x2803;
             string braille = c1.ToString() + c2.ToString() + c3.ToString();
-            int resBrailleMessage = NvdaControllerClientWrapper.nvdaController_brailleMessage(braille);
+            int resBrailleMessage = NvdaControlerClientWrapperExperiments.nvdaController_brailleMessage(braille);
             for (int i = 0; (i < 64); i++) // Iterate over all 6-point patterns
             {
                 StringBuilder sb = new StringBuilder();
@@ -133,7 +133,7 @@ namespace BrailleExperiments
                 {
                     sb.Append((char)(0x2800 + i));
                 }
-                int resBrailleMessage1 = NvdaControllerClientWrapper.nvdaController_brailleMessage(sb.ToString());
+                int resBrailleMessage1 = NvdaControlerClientWrapperExperiments.nvdaController_brailleMessage(sb.ToString());
                 //      int resBrailleMessage = NvdaControllerClientWrapper.nvdaController_brailleMessage(braille);
                 System.Threading.Thread.Sleep(500);
             }
@@ -282,7 +282,7 @@ namespace BrailleExperiments
             char c = (char)(UnicodeBrailleBase + value);
             return new StringBuilder().Append(c, length).ToString();         
         }
-
+/*
         static private bool LogRunFunction(string format, string value)
         {
             string function = string.Format(format, value);
@@ -292,6 +292,7 @@ namespace BrailleExperiments
             Log(string.Format("Result={0}", result));
             return result;
         }
+*/
 
         public static string f = "BrailleString(\"{0}\")";     // Attempts to be identical to the string generated by tolk.dll excluding termination zero
         public static string f0 = "BrailleString(\"{0}\")\0";   // Attempts to be identical to the string generated by tolk.dll including termination zero
@@ -301,6 +302,8 @@ namespace BrailleExperiments
         public static readonly char UnicodeBraille01 = (char)0x2801;
         public static readonly char UnicodeBraille02 = (char)0x2802;
         public static readonly char UnicodeBrailleAll8 = (char)0x28ff;
+
+/*
         static private void LogJfwApi()
         {
             // Strings in thew Unicode (0x2800) domain
@@ -575,7 +578,7 @@ namespace BrailleExperiments
         }
 
         //*********************************************************************************************
-
+*/
         static private void LogFSApi()
         {
             // Strings in thew Unicode (0x2800) domain
@@ -631,12 +634,75 @@ namespace BrailleExperiments
         }
 
 
+        static private void LogTolkDotNet()
+        {
+
+            TolkDotNet tolk = TolkDotNet.Create();
+            if (null == tolk)
+            {
+                Console.WriteLine("No TolkDotNet found");
+                return;
+            }
+
+            Log(string.Format("TolkDotNet is using {0}", TolkDotNet.ScreenReaderName));
+            tolk.Speak(string.Format("TolkDotNet is using {0} ", TolkDotNet.ScreenReaderName));
+            tolk.Braille(string.Format("Found {0}", TolkDotNet.ScreenReaderName));
+            Thread.Sleep(1000);
+
+            bool b;
+            for (int i = 0; (i < 10); i++)
+            {
+                b = tolk.Braille(countingBrailleString);
+                if (!b)
+                {
+                    Log("Failed");
+                }
+                Thread.Sleep(1000);
+                b = tolk.Braille(fullBrailleString);
+                if (!b)
+                {
+                    Log("Failed");
+                }
+                Thread.Sleep(1000);
+            }
+            tolk.Silence();
+
+        }
+
+        // Strings in thew Unicode (0x2800) domain
+        static string emptyBrailleString;
+        static string hex01BrailleString;
+        static string hex02BrailleString;
+        static string fullBrailleString;
+        static string zeroString;
+        static string ffString;
+        static string countingBrailleString;
+
+
         static void Main(string[] args)
         {
             string executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
             Log(""); // An empty line
             Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
+
+            // Strings in thew Unicode (0x2800) domain
+            emptyBrailleString = new StringBuilder().Append(UnicodeBrailleBase, displaySize).ToString(); // Assume standard Braille Unicode
+            hex01BrailleString = new StringBuilder().Append(UnicodeBraille01, displaySize).ToString(); // Assume standard Braille Unicode
+            hex02BrailleString = new StringBuilder().Append(UnicodeBraille02, displaySize).ToString(); // Assume standard Braille Unicode
+            fullBrailleString = new StringBuilder().Append(UnicodeBrailleAll8, displaySize).ToString(); // Assume standard Braille Unicode
+            //zeroString = new StringBuilder().Append((char)0, displaySize).ToString();    // Assume simple 0-based Braille coding
+            //ffString = new StringBuilder().Append((char)0xff, displaySize).ToString(); // Assume simple 0-based Braille coding
+            StringBuilder sb = new StringBuilder();
+            for (char ch = UnicodeBrailleBase; (ch < UnicodeBrailleBase + (char)displaySize); ch++)
+            {
+                sb.Append(ch);
+            };
+            countingBrailleString = sb.ToString();
+
+
+
+            LogTolkDotNet();
 
             //LogJfwApi();
             LogFSApi();

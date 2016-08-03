@@ -7,9 +7,10 @@ using System.Runtime.InteropServices;
 
 namespace BrailleExperiments
 {
-    class JfwApiWrapperExperiments
+    class JfwApiWrapperExperiments : TolkDotNet
     {
 
+        #region comments
         /*
         https://github.com/qtnc/UniversalSpeech/blob/master/src/windows/engines.c
         UniversalSpeech/engines.c at master · qtnc/UniversalSpeech · GitHub
@@ -280,27 +281,66 @@ return GetProcessVersionInfo(buf, 1, buf, bufmax);
 
          */
 
+        #endregion //comments
 
         // (First jfwapi.dll is found in the debug directory)
 
         // It looks like the project must be x64 ahd that jfwapi.dll must be present in 
         // C:\Users\Jens\Documents\Visual Studio 2015\Projects\MusicXmlReaderUI\BrailleExperiments\bin\x64\Debug
 
+
+
+
+        static public new JfwApiWrapperExperiments Create()
+        {
+            bool found = false;
+            try
+            {
+                // JAWS does not support an explicit "TestIfRunning", so we must use an other command.   
+                // We might use JFWSayString here, but the debugger reposts that it unbalances the stack, so we use the general JFWRunFunction
+                string sayStringFunction = string.Format("SayString(\"{0}\")", "");
+                found = JFWRunFunction(sayStringFunction);
+            }
+            catch (Exception)
+            {
+            }
+            return found ? new JfwApiWrapperExperiments() : null;
+        }
+
+        // Prevent construction
+        private JfwApiWrapperExperiments()
+        {
+ 
+        }
+
+        public override bool Speak(string s)
+        {
+            // return JFWSayString(s);
+            // We might use JFWSayString here, but the debugger reposts that it unbalances the stack, so we use the general JFWRunFunction
+            string sayStringFunction = string.Format("SayString(\"{0}\")", s);
+            return JFWRunFunction(sayStringFunction);
+        }
+
+        public override bool Braille(string s)
+        {
+            // We might use JFWBraille here, but the debugger reposts that it unbaklances the stack, so we use the general JFWRunFunction
+            string brailleStringFunction = string.Format("BrailleString(\"{0}\")", s);
+            return JFWRunFunction(brailleStringFunction);
+        }
+
+        public override bool Silence()
+        {
+            return JFWStopSpeech();
+        }
+
         [DllImport("jfwapi.dll", CharSet = CharSet.Ansi)]
-        public static extern bool JFWStopSpeech();              // Works
+        private static extern bool JFWStopSpeech();           
 
-        [DllImport("jfwapi.dll", CharSet = CharSet.Unicode)]    // Works
-        public static extern bool JFWSayString(String text);
+        [DllImport("jfwapi.dll", CharSet = CharSet.Unicode)] 
+        private static extern bool JFWSayString(String text);
 
-        //  [DllImport("jfwapi.dll", CharSet = CharSet.Unicode)]
-        //  public static extern bool JFWBrailleW(String text);     // Is not implemented in current version of jfwapi.dll
-
-
-        [DllImport("jfwapi.dll", CharSet = CharSet.Unicode)]    // Under development. Returnerer true, og kan skrive mappede tegn ud, men ikke 0x2800 serien !
-        public static extern bool JFWRunFunction(String text);
-
-        [DllImport("jfwapi.dll", CharSet = CharSet.Unicode)]    // Under development. Returnerer true, men har ingen virkning
-        public static extern bool JFWRunFunction(String function, String param1);
-
+        [DllImport("jfwapi.dll", CharSet = CharSet.Unicode)] 
+        private static extern bool JFWRunFunction(String text);
+                
     }
 }
