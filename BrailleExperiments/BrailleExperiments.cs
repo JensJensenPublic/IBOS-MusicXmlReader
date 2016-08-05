@@ -649,7 +649,20 @@ namespace BrailleExperiments
             tolk.Speak(string.Format("TolkDotNet is using {0}", TolkDotNet.ScreenReaderName));
             tolk.Braille(countingBrailleString); 
             Thread.Sleep(5000);
-         
+
+            // Attempt to make x64 work
+            //for (int i64 = 0; (i64 < 10000); i64++)
+            //{
+            //    Console.WriteLine(i64);
+            //    string s = new StringBuilder().Append((char)(i64 + UnicodeBrailleBase), displaySize).ToString();
+            //    if (!tolk.Braille(s))
+            //    {
+            //        Log(string.Format("tolk.Braille failed"));
+            //    }
+            //    Thread.Sleep(1000);
+            //}
+
+            // This works finr in ANYCPU and x86:
             for (int i = 0; (i < 100); i++)
             {
                 // Fill up the Braille display one pin at the time:
@@ -688,6 +701,13 @@ namespace BrailleExperiments
         {
             string executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             string executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
+
+            // Set up Console
+            int w = Console.WindowWidth;
+            int h = Console.WindowHeight;
+            Console.WindowWidth = 200;
+            // Console.WindowHeight = 
+
             Log(""); // An empty line
             Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
 
@@ -705,7 +725,7 @@ namespace BrailleExperiments
             };
             countingBrailleString = sb.ToString();
 
-
+  
 
             LogTolkDotNet();
 

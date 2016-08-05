@@ -299,8 +299,9 @@ return GetProcessVersionInfo(buf, 1, buf, bufmax);
                 string sayStringFunction = string.Format("SayString(\"{0}\")", "");
                 found = JFWRunFunction(sayStringFunction);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(string.Format("JFWRunFunction threw an exception.Message: {0}", e.Message));
             }
             return found ? new JfwApiWrapperExperiments() : null;
         }

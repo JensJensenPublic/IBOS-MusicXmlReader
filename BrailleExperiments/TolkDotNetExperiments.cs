@@ -30,7 +30,7 @@ namespace BrailleExperiments
             string architechture = is64Bit ? " (64 bit)" : " (32 bit)";
 
             // First check if JAWS is running 
-            TolkDotNet tolkDotNet;
+            TolkDotNet tolkDotNet;   
             if (is64Bit)
             {
                 tolkDotNet = JfwApiWrapperExperiments.Create();
