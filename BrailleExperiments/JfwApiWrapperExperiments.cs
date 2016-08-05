@@ -320,8 +320,7 @@ return GetProcessVersionInfo(buf, 1, buf, bufmax);
         }
 
         public override bool Braille(string s)
-        {
-            // We might use JFWBraille here, but the debugger reposts that it unbaklances the stack, so we use the general JFWRunFunction
+        { 
             string brailleStringFunction = string.Format("BrailleString(\"{0}\")", s);
             return JFWRunFunction(brailleStringFunction);
         }

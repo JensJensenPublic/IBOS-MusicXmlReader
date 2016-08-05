@@ -41,7 +41,7 @@ namespace BrailleExperiments
             }
             if (null != tolkDotNet)
             {
-                screenReaderName = "JAWS" + architechture; ;
+                screenReaderName = "JAWS" + architechture;    
                 return tolkDotNet;
             }
 
