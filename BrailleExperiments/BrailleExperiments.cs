@@ -650,17 +650,24 @@ namespace BrailleExperiments
             tolk.Braille(countingBrailleString); 
             Thread.Sleep(5000);
 
+#if true
             // Attempt to make x64 work
-            //for (int i64 = 0; (i64 < 10000); i64++)
-            //{
-            //    Console.WriteLine(i64);
-            //    string s = new StringBuilder().Append((char)(i64 + UnicodeBrailleBase), displaySize).ToString();
-            //    if (!tolk.Braille(s))
-            //    {
-            //        Log(string.Format("tolk.Braille failed"));
-            //    }
-            //    Thread.Sleep(1000);
-            //}
+            string chars = "abcdefghijklmnopqrstuvwxyzæøåABCDEFGHIJKLMNOPQRSTUVXYZÆØÅ1234567890";
+            for (int i64 = 0; (i64 < chars.Length); i64++)
+            {
+                Console.WriteLine(chars[i64]);
+                //string s = new StringBuilder().Append((char)(i64 + UnicodeBrailleBase), 8).ToString();
+                string s = new StringBuilder().Append((char)chars[i64], 8).ToString();
+                for (int j = 0; (j < 100); j++)
+                {
+                    if (!tolk.Braille(s))
+                    {
+                        Log(string.Format("tolk.Braille failed"));
+                    }
+                    Thread.Sleep(100);
+                }
+            }
+#endif
 
             // This works finr in ANYCPU and x86:
             for (int i = 0; (i < 100); i++)
