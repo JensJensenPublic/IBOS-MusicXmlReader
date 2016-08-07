@@ -126,9 +126,13 @@ namespace MusicXmlReaderUI
             result = tempResult;
             return true;
         }
+        
+        private static bool CheckDll(string dllName, string directory,bool is64Bit)
+        {
+            return CheckDll(dllName, directory, is64Bit ? MachineType.IMAGE_FILE_MACHINE_AMD64 : MachineType.IMAGE_FILE_MACHINE_I386);
+        }
 
-
-        private static bool CheckDll(string dllName, string directory)
+        private static bool CheckDll(string dllName, string directory, MachineType expectedMachineType)
         {
             string fullFileName = Path.Combine(directory, dllName);
             if (!File.Exists(fullFileName))
@@ -140,8 +144,8 @@ namespace MusicXmlReaderUI
             {
                 FileInfo fi = new FileInfo(fullFileName);
                 MachineType machineType = TryGetDllMachineType(fullFileName);       
-                Model.Log(string.Format("Using {0,-30} LastWriteTimeUtc={1} Length={2,-6} MachineType= {3}",
-                                    fi.Name, fi.LastWriteTimeUtc, fi.Length, machineType.ToString()));
+                Model.Log(string.Format(" {0,-30} LastWriteTimeUtc={1} Length={2,-6} MachineType= {3} {4}",
+                                    fi.Name, fi.LastWriteTimeUtc, fi.Length, machineType.ToString(), (machineType == expectedMachineType) ? "" : "(Unexpected machinetype !!!)"));
             }
             return true;
         }
@@ -214,28 +218,27 @@ namespace MusicXmlReaderUI
             IMAGE_FILE_MACHINE_WCEMIPSV2 = 0x169,
         }
 
-        internal static bool CheckDlls(string directory, string caption)
+        internal static bool CheckDlls(string directory, string caption, bool is64Bit)
         {
             // Report if any file is missing
             bool result = true;
-            bool is64Bit = IntPtr.Size == 8;
-            Model.Log(string.Format("This program is compiled for a {0} bit architechture.", is64Bit ? "64" : "32"));
+            Model.Log(string.Format("This program is compiled for a {0} bit architechture. It uses the following locally installed dlls", is64Bit ? "64" : "32"));
             if (is64Bit)
             {
-                result &= CheckDll("tolk.dll", directory);
-                result &= CheckDll("jfwapi.dll", directory);
-                result &= CheckDll("nvdaControllerClient64.dll", directory);
-                result &= CheckDll("NAudio.dll", directory);
-                result &= CheckDll("MusicSynthesis.dll", directory);
+                result &= CheckDll("tolk.dll", directory, true);
+                result &= CheckDll("jfwapi.dll", directory, true);
+                result &= CheckDll("nvdaControllerClient64.dll", directory, true);
+                result &= CheckDll("NAudio.dll", directory, true);
+                result &= CheckDll("MusicSynthesis.dll", directory, true);
             }
             else
             {
-                result &= CheckDll("tolk.dll", directory);
-                result &= CheckDll("jfwapi.dll", directory);
-                result &= CheckDll("nvdaControllerClient32.dll",directory);
-                result &= CheckDll("NAudio.dll", directory);
-                result &= CheckDll("MusicSynthesis.dll",directory);
-                result &= CheckDll("fsapi.dll", directory); // Maybe this is the right JAWS interface in the  32 bit case ???
+                result &= CheckDll("tolk.dll", directory, false);
+                result &= CheckDll("jfwapi.dll", directory,false);
+                result &= CheckDll("nvdaControllerClient32.dll",directory, false);
+                result &= CheckDll("NAudio.dll", directory, false);
+                result &= CheckDll("MusicSynthesis.dll",directory, false);
+                result &= CheckDll("fsapi.dll", directory, false); // This seems to be the right JAWS interface in the  32 bit case 
             }
 
             // result = false; // Used during test only !!

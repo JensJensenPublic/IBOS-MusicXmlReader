@@ -12,6 +12,7 @@ namespace MusicXmlReaderUI
     {
         public readonly string ApplicationName = "IBOS Musiklæser";
         string theMusicXmlFileName = "";
+        bool is64Bit; // This program is compiled and for the following architechture: false:x86 true:x64 
         List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
         MidiOut midiOut;
         ListBox listBoxParts; // Lists elements grouped per part
@@ -379,10 +380,11 @@ namespace MusicXmlReaderUI
         {
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
+            is64Bit = IntPtr.Size == 8;
             Log(""); // An empty line
             Log(string.Format("Date={0}:", System.DateTime.Now.ToLongDateString()));
             Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
-            Utilities.CheckDlls(executingDirectory, ApplicationName);
+            Utilities.CheckDlls(executingDirectory, ApplicationName, is64Bit);
             Utilities.CheckTolk(LoadTolk(), ApplicationName);                        
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
@@ -677,6 +679,17 @@ namespace MusicXmlReaderUI
             get
             {
                 return userSettings;
+            }
+        }
+
+        /// <summary>
+        ///  This program is compiled and for the following architechture: false:x86 true:x64 
+        /// </summary>
+        public bool Is64Bit
+        {
+            get
+            {
+                return is64Bit;
             }
         }
 
