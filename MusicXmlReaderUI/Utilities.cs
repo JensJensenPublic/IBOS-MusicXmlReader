@@ -234,7 +234,7 @@ namespace MusicXmlReaderUI
             else
             {
                 result &= CheckDll("tolk.dll", directory, false);
-                result &= CheckDll("jfwapi.dll", directory,false);
+                // result &= CheckDll("jfwapi.dll", directory,false);
                 result &= CheckDll("nvdaControllerClient32.dll",directory, false);
                 result &= CheckDll("NAudio.dll", directory, false);
                 result &= CheckDll("MusicSynthesis.dll",directory, false);
