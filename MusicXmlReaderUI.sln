@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrailleRendererDemo", "Brai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TolkExperiments", "TolkExperiments\TolkExperiments.csproj", "{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenReaderAPI", "ScreenReaderAPI\ScreenReaderAPI.csproj", "{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,18 @@ Global
 		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Release|x64.Build.0 = Release|Any CPU
 		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Release|x86.ActiveCfg = Release|Any CPU
 		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Release|x86.Build.0 = Release|Any CPU
+		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Debug|x64.Build.0 = Debug|Any CPU
+		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Debug|x86.Build.0 = Debug|Any CPU
+		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Release|x64.ActiveCfg = Release|Any CPU
+		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Release|x64.Build.0 = Release|Any CPU
+		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Release|x86.ActiveCfg = Release|Any CPU
+		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
