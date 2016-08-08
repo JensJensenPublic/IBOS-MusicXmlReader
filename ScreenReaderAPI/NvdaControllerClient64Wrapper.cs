@@ -6,14 +6,6 @@ namespace JSJ.ScreenReaderAPI
 
     public class NvdaControlerClient64Wrapper : ScreenReaderAPI
     {
-        private IScreenReaderAPILogger logger;
-        internal IScreenReaderAPILogger Logger
-        {
-            set
-            {
-                logger = value;
-            }
-        }
 
         static public NvdaControlerClient64Wrapper Create()
         {

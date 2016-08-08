@@ -9,15 +9,7 @@ namespace JSJ.ScreenReaderAPI
 {
     class JfwApiWrapper : ScreenReaderAPI
     {
-        private IScreenReaderAPILogger logger;
-        internal IScreenReaderAPILogger Logger
-        {
-            set
-            {
-                logger = value;
-            }
-        }
-
+   
         static public JfwApiWrapper Create()
         {
             bool found = false;

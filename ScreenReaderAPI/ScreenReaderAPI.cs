@@ -8,7 +8,7 @@ namespace JSJ.ScreenReaderAPI
     /// </summary>
     public abstract class ScreenReaderAPI
     {
-        private IScreenReaderAPILogger Logger;
+        protected IScreenReaderAPILogger Logger;
         private static string screenReaderName = "";
         public static string ScreenReaderName
         {
@@ -39,7 +39,6 @@ namespace JSJ.ScreenReaderAPI
             if (null != screenReaderAPI)
             {
                 screenReaderName = "JAWS" + architechture;
-                screenReaderAPI.Logger = logger;
                 screenReaderAPI.Logger.LogEvent(string.Format("Created ScreenReaderAPI for {0}", screenReaderName));
                 return screenReaderAPI;
             }
@@ -57,7 +56,6 @@ namespace JSJ.ScreenReaderAPI
             if (null != screenReaderAPI)
             {
                 screenReaderName = "NVDA" + architechture;
-                screenReaderAPI.Logger = logger;
                 screenReaderAPI.Logger.LogEvent(string.Format("Created ScreenReaderAPI for {0}", screenReaderName));
                 return screenReaderAPI;
             }

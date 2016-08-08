@@ -7,15 +7,6 @@ namespace JSJ.ScreenReaderAPI
     public class NvdaControlerClient32Wrapper : ScreenReaderAPI
     {
 
-        private IScreenReaderAPILogger logger;
-        internal IScreenReaderAPILogger Logger
-        {
-            set
-            {
-                logger = value;
-            }
-        }
-
         static public NvdaControlerClient32Wrapper Create()
         {
             bool found = false;
