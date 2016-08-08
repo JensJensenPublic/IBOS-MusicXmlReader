@@ -131,7 +131,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ScreenReaderAPI\ScreenReaderAPI.csproj">
+      <Project>{6444ecf6-7a11-4b21-a31c-ef8e05b0cd32}</Project>
+      <Name>ScreenReaderAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="MusicXmlSamples\Node.xml" />
   </ItemGroup>

@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DummyScreenReader.cs" />
     <Compile Include="FSAPIWrapper.cs" />
+    <Compile Include="IScreenReaderAPILogger.cs" />
     <Compile Include="JfwApiWrapper.cs" />
     <Compile Include="NvdaControllerClient64Wrapper.cs" />
     <Compile Include="NvdaControllerClient32Wrapper.cs" />

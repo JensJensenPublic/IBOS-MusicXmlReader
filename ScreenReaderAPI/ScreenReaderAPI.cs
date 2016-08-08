@@ -8,7 +8,7 @@ namespace JSJ.ScreenReaderAPI
     /// </summary>
     public abstract class ScreenReaderAPI
     {
-
+        private IScreenReaderAPILogger Logger;
         private static string screenReaderName = "";
         public static string ScreenReaderName
         {
@@ -22,11 +22,9 @@ namespace JSJ.ScreenReaderAPI
         /// Create a common API for JAWS and NVDA for 32Bit and 64Bit implementations
         /// </summary>
         /// <returns></returns>
-        public static ScreenReaderAPI Create()
+        public static ScreenReaderAPI Create(bool is64Bit, IScreenReaderAPILogger logger)
         {
-
-            bool is64Bit = (IntPtr.Size == 8); // Find out wheather we are compiled for 32 bit or 64 bit architechture.
-            string architechture = is64Bit ? " (64 bit)" : " (32 bit)";
+            string architechture = is64Bit ? " (64 bit)" : " (32 bit)";            
 
             // First check if JAWS is running 
             ScreenReaderAPI screenReaderAPI;
@@ -41,6 +39,8 @@ namespace JSJ.ScreenReaderAPI
             if (null != screenReaderAPI)
             {
                 screenReaderName = "JAWS" + architechture;
+                screenReaderAPI.Logger = logger;
+                screenReaderAPI.Logger.LogEvent(string.Format("Created ScreenReaderAPI for {0}", screenReaderName));
                 return screenReaderAPI;
             }
 
@@ -57,12 +57,17 @@ namespace JSJ.ScreenReaderAPI
             if (null != screenReaderAPI)
             {
                 screenReaderName = "NVDA" + architechture;
+                screenReaderAPI.Logger = logger;
+                screenReaderAPI.Logger.LogEvent(string.Format("Created ScreenReaderAPI for {0}", screenReaderName));
                 return screenReaderAPI;
             }
 
             // Insert checks for more screen readers here...
 
-            return null;
+            screenReaderAPI = DummyScreenReader.Create();
+            screenReaderAPI.Logger = logger;
+            screenReaderAPI.Logger.LogEvent(string.Format("Created DummyScreenReaderAPI"));
+            return screenReaderAPI;
         }
 
         // Prevent construction
@@ -75,6 +80,11 @@ namespace JSJ.ScreenReaderAPI
         public abstract bool Speak(string s);
         public abstract bool Braille(string s);
         public abstract bool Silence();
+        public bool StopRefreshing()
+        {
+            // TO DO: implement
+            return false;
+        }
 
 
         // JSJ: Start of the original Tolk API ---------------------------------------------------------------------------------------

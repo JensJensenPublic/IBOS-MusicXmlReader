@@ -5,10 +5,11 @@ using NAudio.Midi;
 using System.Windows.Forms;
 using System.Xml;
 using DavyKager; // Tolk
+using JSJ.ScreenReaderAPI;
 
 namespace MusicXmlReaderUI
 {
-    class Model
+    class Model : IScreenReaderAPILogger
     {
         public readonly string ApplicationName = "IBOS Musiklæser";
         string theMusicXmlFileName = "";
@@ -31,12 +32,19 @@ namespace MusicXmlReaderUI
         //int currentMidiChannel = 1; // Will be saved with each note
         ScorePartElement currentScorePartElement = null;
         UserSettings userSettings;
+        ScreenReaderAPI screenReaderAPI;
  
         string executingAssembly;
         string executingDirectory;
         
         List<string> metaInfoStrings = new List<string>(); // Selected meta info from the current file, such as Title and Composer
 
+
+        public bool LogEvent(string s)
+        {
+            Model.Log(s);
+            return true;
+        }
 
         private bool CheckFileExistance(string fileName, string methodName, bool dir)
         {
@@ -385,11 +393,15 @@ namespace MusicXmlReaderUI
             Log(string.Format("Date={0}:", System.DateTime.Now.ToLongDateString()));
             Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
             Utilities.CheckDlls(executingDirectory, ApplicationName, is64Bit);
-            Utilities.CheckTolk(LoadTolk(), ApplicationName);                        
+
+            // Create an API to JAWS or NVDA depending on which screenreader is currently running
+            screenReaderAPI = ScreenReaderAPI.Create(is64Bit,this as IScreenReaderAPILogger);
+            Utilities.CheckScreenReader(!string.IsNullOrEmpty(screenReaderAPI.GetScreenReaderDllName()), ApplicationName); // Check for DummyScreenReader
+
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
             int displaySize = 14;
-            brailleDisplayer = BrailleDisplayer.Create(textBoxMusicBraille, displaySize); // TODO Get the real displaysize from somewhere
+            brailleDisplayer = BrailleDisplayer.Create(textBoxMusicBraille, displaySize, screenReaderAPI); // TODO Get the real displaysize from somewhere
             Model.Log(string.Format("Model: Assuming size of physical Braille display = {0}", displaySize));
 
             //musicPlayer.ChangeInstrument(20); // Church Organ
@@ -404,7 +416,9 @@ namespace MusicXmlReaderUI
             // Log some global system parameters.
             LogSystemParameters();
             // Log availability of NVDA interface.
-            LogNvdaInterface();
+
+
+            //LogNvdaInterface(); // Will be replaced by ScreenReaderAPI.Create() !
 
             //DeviceInfo.LogDeviceInfo();
         }

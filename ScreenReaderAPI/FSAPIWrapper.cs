@@ -6,7 +6,16 @@ namespace JSJ.ScreenReaderAPI
     class FSAPIWrapper : ScreenReaderAPI
     {
 
-        static public new FSAPIWrapper Create()
+        private IScreenReaderAPILogger logger;
+        internal IScreenReaderAPILogger Logger
+        {
+            set
+            {
+                logger = value;
+            }
+        }
+
+        static public FSAPIWrapper Create()
         {
             bool found = false;
             try

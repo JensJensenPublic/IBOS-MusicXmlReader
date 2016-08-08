@@ -252,7 +252,7 @@ namespace MusicXmlReaderUI
         }
 
 
-        internal static bool CheckTolk(bool result, string caption)
+        internal static bool CheckScreenReader(bool result, string caption)
         {
             if (!result && (null!= caption))
             {       
