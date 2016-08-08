@@ -37,6 +37,7 @@ namespace JSJ.ScreenReaderAPI
 
         public override bool Braille(string s)
         {
+            latestMessage = s;
             string brailleStringFunction = string.Format("BrailleString(\"{0}\")",s);
             return JFWRunFunction(brailleStringFunction);
         }

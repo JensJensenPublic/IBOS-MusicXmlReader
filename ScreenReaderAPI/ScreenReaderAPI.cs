@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace JSJ.ScreenReaderAPI
 {
@@ -15,15 +16,25 @@ namespace JSJ.ScreenReaderAPI
             get
             {
                 return screenReaderName;
-            }
+            } 
+
+        }
+
+        protected bool StartBrailleDisplayThread()
+        {
+            // Start a thread used for refreshing the display
+            brailleDisplayThread = new Thread(new ThreadStart(DisplayerThreadStart));
+            Logger.LogEvent(string.Format("Starting BrailleDiaplayThread at priority={0}", brailleDisplayThread.Priority.ToString()));
+            brailleDisplayThread.Start();
+            return true;
         }
 
 
-        /// <summary>
-        /// Create a common API for JAWS and NVDA for 32Bit and 64Bit implementations
-        /// </summary>
-        /// <returns></returns>
-        public static ScreenReaderAPI Create(bool is64Bit, IScreenReaderAPILogger logger)
+    /// <summary>
+    /// Create a common API for JAWS and NVDA for 32Bit and 64Bit implementations
+    /// </summary>
+    /// <returns></returns>
+    public static ScreenReaderAPI Create(bool is64Bit, IScreenReaderAPILogger logger)
         {                  
             ScreenReaderAPI screenReaderAPI;
 
@@ -52,8 +63,11 @@ namespace JSJ.ScreenReaderAPI
             }
 
             // Attach the logger specified to the newly created ScreenReaderAPI
-            screenReaderAPI.Logger = logger;   
+            screenReaderAPI.Logger = logger;
 
+            // Start the thread used for refreshing the display
+            screenReaderAPI.StartBrailleDisplayThread();
+ 
             return screenReaderAPI;
         }
 
@@ -70,9 +84,37 @@ namespace JSJ.ScreenReaderAPI
         public abstract bool Silence();
         public bool StopRefreshing()
         {
-            // TO DO: implement
+            latestMessage = string.Empty; // Stop refreshing the physical Braille Display
             return false;
         }
+
+        private Thread brailleDisplayThread;
+        private bool displaying = true;
+        protected string latestMessage = null; // Latest message sent to Braille display
+
+        /// <summary>
+        /// Thread needed for refreshing the MusicBraille Message sent to the Braille Display to prevent it from being overwritten by LyricBraille
+        /// </summary>
+        private void DisplayerThreadStart()
+        {
+            while (displaying)
+            {
+                Thread.Sleep(1000); // Refresh the display every second as long as needed
+                {
+                    if (!string.IsNullOrEmpty(latestMessage))
+                    {
+                        Braille(latestMessage);
+                    }
+                    else
+                    {
+                        Logger.LogEvent("-"); // For debugging
+                    }
+                }
+            }
+        }
+
+
+
 
 
         // JSJ: Start of the original Tolk API ---------------------------------------------------------------------------------------
