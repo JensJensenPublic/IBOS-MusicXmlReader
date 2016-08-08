@@ -13,7 +13,7 @@ namespace JSJ.ScreenReaderAPI
     class DummyScreenReader : ScreenReaderAPI
     {
 
-           static public DummyScreenReader Create()
+        static public DummyScreenReader Create()
         {
             return new DummyScreenReader();
         }
@@ -36,6 +36,11 @@ namespace JSJ.ScreenReaderAPI
         public override bool Silence()
         {
             return true;
+        }
+
+        public override string GetScreenReaderName()
+        {
+            return "";
         }
 
         public override string GetScreenReaderDllName()

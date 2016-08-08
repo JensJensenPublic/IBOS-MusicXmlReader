@@ -39,16 +39,16 @@ namespace JSJ.ScreenReaderAPI
         {
             return (0 == nvdaController_cancelSpeech());
         }
-        
+
+        public override string GetScreenReaderName()
+        {
+            return "NVDA";
+        }
+
         public override string GetScreenReaderDllName()
         {
             return "nvdaControllerClient64.dll";
         }
-        
-        /// <summary>
-        /// For this class to work as expected, a 32-bit application should define a conditional variable named x86.
-        /// Also, the NVDA API should exist in the same directory as the executable. 32-bit applications should use nvdaControllerClient32.dll and 64-bit applications should use nvdaControllerClient64.dll.
-        /// </summary>
 
         [DllImport("nvdaControllerClient64.dll", CharSet = CharSet.Unicode)]
         private static extern int nvdaController_testIfRunning();

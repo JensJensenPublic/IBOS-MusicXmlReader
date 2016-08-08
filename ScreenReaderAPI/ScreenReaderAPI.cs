@@ -9,8 +9,8 @@ namespace JSJ.ScreenReaderAPI
     public abstract class ScreenReaderAPI
     {
         protected IScreenReaderAPILogger Logger;
-        private static string screenReaderName = "";
-        public static string ScreenReaderName
+        private string screenReaderName = "";
+        public string ScreenReaderName
         {
             get
             {
@@ -18,53 +18,42 @@ namespace JSJ.ScreenReaderAPI
             }
         }
 
+
         /// <summary>
         /// Create a common API for JAWS and NVDA for 32Bit and 64Bit implementations
         /// </summary>
         /// <returns></returns>
         public static ScreenReaderAPI Create(bool is64Bit, IScreenReaderAPILogger logger)
-        {
-            string architechture = is64Bit ? " (64 bit)" : " (32 bit)";            
-
-            // First check if JAWS is running 
+        {                  
             ScreenReaderAPI screenReaderAPI;
-            if (is64Bit)
+
+            // First check if JAWS is available
+            screenReaderAPI = (is64Bit) ? (ScreenReaderAPI) JfwApiWrapper.Create() : FSAPIWrapper.Create();
+
+            // Secondly check if NVDA is available
+            if (null == screenReaderAPI)
             {
-                screenReaderAPI = JfwApiWrapper.Create();
-            }
-            else
-            {
-                screenReaderAPI = FSAPIWrapper.Create();
-            }
-            if (null != screenReaderAPI)
-            {
-                screenReaderName = "JAWS" + architechture;
-                screenReaderAPI.Logger.LogEvent(string.Format("Created ScreenReaderAPI for {0}", screenReaderName));
-                return screenReaderAPI;
+                screenReaderAPI = (is64Bit) ? (ScreenReaderAPI)NvdaControlerClient64Wrapper.Create() : NvdaControlerClient32Wrapper.Create();
             }
 
-            // Secondly check if NVDA is running
-            if (is64Bit)
-            {
-                screenReaderAPI = NvdaControlerClient64Wrapper.Create();
-            }
-            else
-            {
-                screenReaderAPI = NvdaControlerClient32Wrapper.Create();
-            }
-
-            if (null != screenReaderAPI)
-            {
-                screenReaderName = "NVDA" + architechture;
-                screenReaderAPI.Logger.LogEvent(string.Format("Created ScreenReaderAPI for {0}", screenReaderName));
-                return screenReaderAPI;
-            }
-
+            //
             // Insert checks for more screen readers here...
+            //
+            
+            // As a last resort create a dummy  (in order to simplify application code!)
+            if (null == screenReaderAPI)
+            {
+                screenReaderAPI = DummyScreenReader.Create();
+                logger.LogEvent("Created Dummy ScreenReaderAPI");
+            }
+            else
+            {
+                logger.LogEvent(string.Format("Created ScreenReaderAPI for {0} using {1} ", screenReaderAPI.GetScreenReaderName() , screenReaderAPI.GetScreenReaderDllName()));
+            }
 
-            screenReaderAPI = DummyScreenReader.Create();
-            screenReaderAPI.Logger = logger;
-            screenReaderAPI.Logger.LogEvent(string.Format("Created DummyScreenReaderAPI"));
+            // Attach the logger specified to the newly created ScreenReaderAPI
+            screenReaderAPI.Logger = logger;   
+
             return screenReaderAPI;
         }
 
@@ -72,6 +61,7 @@ namespace JSJ.ScreenReaderAPI
         protected ScreenReaderAPI() { }
 
         // Primarily for debugging:
+        public abstract string GetScreenReaderName();
         public abstract string GetScreenReaderDllName();
 
         // All screanreader wrappers must implement the following methods:

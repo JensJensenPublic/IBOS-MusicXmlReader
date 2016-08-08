@@ -40,6 +40,11 @@ namespace JSJ.ScreenReaderAPI
             return (0 == nvdaController_cancelSpeech());
         }
 
+        public override string GetScreenReaderName()
+        {
+            return "NVDA";
+        }
+
         public override string GetScreenReaderDllName()
         {
             return "nvdaControllerClient32.dll";

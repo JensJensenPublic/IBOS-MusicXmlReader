@@ -52,6 +52,11 @@ namespace JSJ.ScreenReaderAPI
             return JFWStopSpeech();
         }
 
+        public override string GetScreenReaderName()
+        {
+            return "JAWS";
+        }
+
         public override string GetScreenReaderDllName()
         {
             return "jfwapi.dll";
