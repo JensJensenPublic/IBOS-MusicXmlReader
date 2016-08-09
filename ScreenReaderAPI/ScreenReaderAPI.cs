@@ -106,7 +106,7 @@ namespace JSJ.ScreenReaderAPI
         {
             while (displaying)
             {
-                Thread.Sleep(1000); // Refresh the display every second as long as needed
+                Thread.Sleep(100); // Refresh the display every second as long as needed
                 {
                     if (refreshing)
                     {

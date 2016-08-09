@@ -31,7 +31,12 @@ namespace MusicXmlReaderUI
             listBoxTimes.LostFocus += ListBoxTimes_LostFocus;
             listBoxTimes.GotFocus += ListBoxTimes_GotFocus;
         }
-        
+
+        /// <summary>
+        /// This is listBoxFiltered ! NOT listBoxTimes!
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SelectedIndexChanged(object sender, System.EventArgs e)
         {      
             object o = listBoxFiltered.Items[listBoxFiltered.SelectedIndex];
