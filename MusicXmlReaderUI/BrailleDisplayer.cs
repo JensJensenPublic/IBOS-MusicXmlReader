@@ -86,7 +86,7 @@ namespace MusicXmlReaderUI
         /// <param name="selectedObject"></param>
         internal void SelectedIndexChanged(int selectedIndex, object selectedObject)
         {
-            StopRefreshing(); // Stop refreshing the Braille Display; Also happens when controllooses focus      
+            //StopRefreshing(); // Stop refreshing the Braille Display; Also happens when controllooses focus      
 
             //if (playing) return;
             if (null == selectedObject) return;
@@ -98,14 +98,14 @@ namespace MusicXmlReaderUI
             }
             else if ((selectedObject is EventDescription))
             {
-  
+
                 EventDescription eventDescription = selectedObject as EventDescription;
 
                 screenReaderAPI.Silence(); // Prevent overloading the internal queue in NVDA when rapidly changing between different events          
 
                 // Experimental code, used when displaying Braille code in the listbox: 
                 //int speekTextResult = NvdaControllerClientWrapper.nvdaController_speakText(eventDescription.ToNormalTextString());
- 
+
                 string text = eventDescription.ToString();          // The text currently shown on the visual display
                 List<byte> bytes = eventDescription.ToBraille();    // The Braille pattern to show on the Braill display
 
@@ -121,18 +121,32 @@ namespace MusicXmlReaderUI
 
                 string musicBrailleString = BytesToString(bytes, displaySize);
 
-                musicBrailleTextBox.Text = musicBrailleString;  // Write to the Windows Forms control for visualizing Braille on the PC screen      
+                //musicBrailleTextBox.Text = musicBrailleString;  // Write to the Windows Forms control for visualizing Braille on the PC screen      
                 //nvda.BrailleMessage(musicBrailleString);        // Write to the physical Braille Display device through nvda
                 //Tolk.Braille(musicBrailleString);  // Write to the physical Braille Display device through Tolk (Which again uses either JAWS or NVDA)
-                screenReaderAPI.Braille(musicBrailleString);  // Write to the physical Braille Display device through screenReaderAPI (Which again uses either JAWS or NVDA)
+                screenReaderAPI.Braille(musicBrailleString, true);  // Write to the physical Braille Display device through screenReaderAPI (Which again uses either JAWS or NVDA)
+                musicBrailleTextBox.Text = musicBrailleString;  // Write to the Windows Forms control for visualizing Braille on the PC screen      
 
+            }
+            else
+            {
+                // This is not an event description
+                StopRefreshing(); // Stop refreshing the Braille Display; Also happens when controllooses focus 
             }
             return;
         }
 
+        public void StartRefreshing()
+        {
+
+        }
+
+
         public void StopRefreshing()
         {
-            screenReaderAPI.StopRefreshing();
+            // Clear the BrailleDisplay first.     
+            screenReaderAPI.Braille(emptyBrailleString,false);
+            //screenReaderAPI.StopRefreshing();
             musicBrailleTextBox.Text = emptyBrailleString;
         }
 

@@ -9,6 +9,7 @@ namespace JSJ.ScreenReaderAPI
     /// </summary>
     public abstract class ScreenReaderAPI
     {
+        protected bool refreshing = false;  
         protected IScreenReaderAPILogger Logger;
         private string screenReaderName = "";
         public string ScreenReaderName
@@ -82,10 +83,16 @@ namespace JSJ.ScreenReaderAPI
         public abstract bool Speak(string s);
         public abstract bool Braille(string s);
         public abstract bool Silence();
-        public bool StopRefreshing()
+        public bool Braille(string s, bool refresh)
         {
-            latestMessage = string.Empty; // Stop refreshing the physical Braille Display
-            return false;
+            latestMessage = s;
+            refreshing = refresh;
+            return Braille(latestMessage);
+        }
+
+        public void StopRefreshing()
+        {
+            refreshing = false; 
         }
 
         private Thread brailleDisplayThread;
@@ -101,13 +108,13 @@ namespace JSJ.ScreenReaderAPI
             {
                 Thread.Sleep(1000); // Refresh the display every second as long as needed
                 {
-                    if (!string.IsNullOrEmpty(latestMessage))
+                    if (refreshing)
                     {
                         Braille(latestMessage);
                     }
                     else
                     {
-                        Logger.LogEvent("-"); // For debugging
+                        //Logger.LogEvent("-"); // For debugging
                     }
                 }
             }

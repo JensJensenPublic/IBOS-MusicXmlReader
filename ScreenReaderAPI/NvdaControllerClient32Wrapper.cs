@@ -32,7 +32,6 @@ namespace JSJ.ScreenReaderAPI
 
         public override bool Braille(string s)
         {
-            latestMessage = s;
             return (0 == nvdaController_brailleMessage(s));
         }
 

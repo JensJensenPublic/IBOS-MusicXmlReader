@@ -29,15 +29,11 @@ namespace MusicXmlReaderUI
             this.Text = model.ApplicationName;
             listBoxFiltered.SelectedIndexChanged += new EventHandler(SelectedIndexChanged);
             listBoxTimes.LostFocus += ListBoxTimes_LostFocus;
+            listBoxTimes.GotFocus += ListBoxTimes_GotFocus;
         }
-
-        private void ListBoxTimes_LostFocus(object sender, EventArgs e)
-        {
-             model.StopRefreshingBrailleDevice();
-        }
-
+        
         private void SelectedIndexChanged(object sender, System.EventArgs e)
-        {
+        {      
             object o = listBoxFiltered.Items[listBoxFiltered.SelectedIndex];
             model.musicPlayer.SelectedIndexChanged(listBoxFiltered.SelectedIndex, o);
         }
@@ -190,14 +186,38 @@ namespace MusicXmlReaderUI
             model.PlaySpeedChanged(100F / value);
         }
 
+        #region ListBoxTimes
 
         private void listBoxTimes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            object o = listBoxTimes.Items[listBoxTimes.SelectedIndex];
-            model.musicPlayer.SelectedIndexChanged(listBoxTimes.SelectedIndex, o);
-            model.brailleDisplayer.SelectedIndexChanged(listBoxTimes.SelectedIndex, o);
-
+            int index = listBoxTimes.SelectedIndex;
+            Model.Trace(string.Format("ListBoxTimes_SelectedIndexChanged(i={0})", index));
+            object o = listBoxTimes.Items[index];
+            model.musicPlayer.SelectedIndexChanged(index, o);
+            model.brailleDisplayer.SelectedIndexChanged(index, o);
         }
+        
+        private void ListBoxTimes_GotFocus(object sender, EventArgs e)
+        {
+            int index = listBoxTimes.SelectedIndex;
+            Model.Trace(string.Format("ListBoxTimes_GotFocus(i={0})", index));
+            // Even if we got focus we can not be sure that an item is selected!
+            if (-1 != index)
+            {
+                // If an index is selected do as if Selected Index changed
+                object o = listBoxTimes.Items[index];
+                model.musicPlayer.SelectedIndexChanged(index, o);
+                model.brailleDisplayer.SelectedIndexChanged(index, o);
+            }
+        }
+
+        private void ListBoxTimes_LostFocus(object sender, EventArgs e)
+        {
+            Model.Trace("ListBoxTimes_LostFocus");
+            model.StopRefreshingBrailleDevice();
+        }
+
+        #endregion
 
         #region Checked Listboxes
 

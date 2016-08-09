@@ -117,11 +117,20 @@ namespace MusicXmlReaderUI
         }
 
         #region LogFile
+        // To use a console in a Windows Forms application: Project Properties -> Application -> Output Type -> Console Application
+        // "Original value was "Windows Application"
+        public static void Trace(string s)
+        {
+            if (useConsole) Console.WriteLine(s);
+        }
+
         public static string LogFileName = "MusicXmlReader.Log";
+        private static bool useConsole = false;
         public static void Log(string s)
         {
             try
             {
+                Trace(s);
                 System.DateTime now = System.DateTime.Now;
                 string time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
                 System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName), time + " " + s + "\r\n");
@@ -380,6 +389,21 @@ namespace MusicXmlReaderUI
             return result;
         }
 
+        /// <summary>
+        /// To use a console in a Windows Forms application change:
+        /// Project Properties -> Application -> Output Type -> Console Application
+        /// Original value was "Windows Application"
+        /// </summary>
+        private void InitTestConsole(bool use)
+        {
+            useConsole = use;
+            if (useConsole)
+            {
+                Console.SetWindowPosition(0, 0);
+                Console.SetWindowSize(140, 20); // Seems to be a good compromize
+            }
+        }
+
 
         /// <summary>
         /// Constructor
@@ -389,6 +413,7 @@ namespace MusicXmlReaderUI
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
             is64Bit = IntPtr.Size == 8;
+            InitTestConsole(true); // Please see the Log methode for details!
             Log(""); // An empty line
             Log(string.Format("Date={0}:", System.DateTime.Now.ToLongDateString()));
             Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
@@ -818,6 +843,11 @@ namespace MusicXmlReaderUI
         public void StopRefreshingBrailleDevice()
         {
             brailleDisplayer.StopRefreshing();
+        }
+
+        public void StartRefreshingBrailleDevice()
+        {
+            brailleDisplayer.StartRefreshing();
         }
     }
 }
