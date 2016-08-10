@@ -27,7 +27,7 @@ namespace JSJ.ScreenReaderAPI
         {
         }
 
-        public override bool Speak(string s)
+        protected override bool SpeakImplementation(string s)
         {
             // return JFWSayString(s);
             // We might use JFWSayString here, but the debugger reposts that it unbalances the stack, so we use the general JFWRunFunction
@@ -35,23 +35,23 @@ namespace JSJ.ScreenReaderAPI
             return JFWRunFunction(sayStringFunction);           
         }
 
-        public override bool Braille(string s)
+        protected override bool BrailleImplementation(string s)
         {
             string brailleStringFunction = string.Format("BrailleString(\"{0}\")",s);
             return JFWRunFunction(brailleStringFunction);
         }
 
-        public override bool Silence()
+        protected override bool SilenceImplementation()
         {
             return JFWStopSpeech();
         }
 
-        public override string GetScreenReaderName()
+        protected override string GetScreenReaderNameImplementation()
         {
             return "JAWS";
         }
 
-        public override string GetScreenReaderDllName()
+        protected override string GetScreenReaderDllNameImplementation()
         {
             return "fsapi.dll";
         }

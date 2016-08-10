@@ -25,27 +25,27 @@ namespace JSJ.ScreenReaderAPI
         {
         }
 
-        public override bool Speak(string s)
+        protected override bool SpeakImplementation(string s)
         {
             return (0 == nvdaController_speakText(s));
         }
 
-        public override bool Braille(string s)
+        protected override bool BrailleImplementation(string s)
         {
             return (0 == nvdaController_brailleMessage(s));
         }
 
-        public override bool Silence()
+        protected override bool SilenceImplementation()
         {
             return (0 == nvdaController_cancelSpeech());
         }
 
-        public override string GetScreenReaderName()
+        protected override string GetScreenReaderNameImplementation()
         {
             return "NVDA";
         }
 
-        public override string GetScreenReaderDllName()
+        protected override string GetScreenReaderDllNameImplementation()
         {
             return "nvdaControllerClient64.dll";
         }

@@ -60,7 +60,7 @@ namespace JSJ.ScreenReaderAPI
             }
             else
             {
-                logger.LogEvent(string.Format("Created ScreenReaderAPI for {0} using {1} ", screenReaderAPI.GetScreenReaderName() , screenReaderAPI.GetScreenReaderDllName()));
+                logger.LogEvent(string.Format("Created ScreenReaderAPI for {0} using {1} ", screenReaderAPI.GetScreenReaderNameImplementation() , screenReaderAPI.GetScreenReaderDllNameImplementation()));
             }
 
             // Attach the logger specified to the newly created ScreenReaderAPI
@@ -75,19 +75,47 @@ namespace JSJ.ScreenReaderAPI
         // Prevent construction
         protected ScreenReaderAPI() { }
 
-        // Primarily for debugging:
-        public abstract string GetScreenReaderName();
-        public abstract string GetScreenReaderDllName();
 
-        // All screanreader wrappers must implement the following methods:
-        public abstract bool Speak(string s);
-        public abstract bool Braille(string s);
-        public abstract bool Silence();
+        // All screanreader API-implementations must implement the following methods:
+        protected abstract bool SpeakImplementation(string s);
+        protected abstract bool BrailleImplementation(string s);
+        protected abstract bool SilenceImplementation();
+        protected abstract string GetScreenReaderNameImplementation();     // Primarily for debugging
+        protected abstract string GetScreenReaderDllNameImplementation();  // Primarily for debugging
+
+        // And now for the public methods:
+
+        public bool Speak(string s)
+        {
+            return this.SpeakImplementation(s);
+        }
+
+        public bool Braille(string s)
+        {
+            return this.BrailleImplementation(s);
+        }
+
+        public bool Silence()
+        {
+            return this.SilenceImplementation();
+        }
+
+        public string GetScreenReaderName()
+        {
+            return this.GetScreenReaderNameImplementation();
+        }
+
+        public string GetScreenReaderDllName()
+        {
+            return this.GetScreenReaderDllNameImplementation();
+        }
+
+
         public bool Braille(string s, bool refresh)
         {
             latestMessage = s;
             refreshing = refresh;
-            return Braille(latestMessage);
+            return this.BrailleImplementation(latestMessage);
         }
 
         public void StopRefreshing()
@@ -106,11 +134,11 @@ namespace JSJ.ScreenReaderAPI
         {
             while (displaying)
             {
-                Thread.Sleep(100); // Refresh the display every second as long as needed
+                Thread.Sleep(1000); // Refresh the display every second as long as needed
                 {
                     if (refreshing)
                     {
-                        Braille(latestMessage);
+                        BrailleImplementation(latestMessage);
                     }
                     else
                     {
