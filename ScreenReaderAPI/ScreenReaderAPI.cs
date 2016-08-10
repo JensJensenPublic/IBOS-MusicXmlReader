@@ -9,7 +9,7 @@ namespace JSJ.ScreenReaderAPI
     /// </summary>
     public abstract class ScreenReaderAPI
     {
-        protected bool refreshing = false;  
+        protected bool refreshing = false;
         protected IScreenReaderAPILogger Logger;
         private string screenReaderName = "";
         public string ScreenReaderName
@@ -17,7 +17,7 @@ namespace JSJ.ScreenReaderAPI
             get
             {
                 return screenReaderName;
-            } 
+            }
 
         }
 
@@ -31,16 +31,16 @@ namespace JSJ.ScreenReaderAPI
         }
 
 
-    /// <summary>
-    /// Create a common API for JAWS and NVDA for 32Bit and 64Bit implementations
-    /// </summary>
-    /// <returns></returns>
-    public static ScreenReaderAPI Create(bool is64Bit, IScreenReaderAPILogger logger)
-        {                  
+        /// <summary>
+        /// Create a common API for JAWS and NVDA for 32Bit and 64Bit implementations
+        /// </summary>
+        /// <returns></returns>
+        public static ScreenReaderAPI Create(bool is64Bit, IScreenReaderAPILogger logger)
+        {
             ScreenReaderAPI screenReaderAPI;
 
             // First check if JAWS is available
-            screenReaderAPI = (is64Bit) ? (ScreenReaderAPI) JfwApiWrapper.Create() : FSAPIWrapper.Create();
+            screenReaderAPI = (is64Bit) ? (ScreenReaderAPI)JfwApiWrapper.Create() : FSAPIWrapper.Create();
 
             // Secondly check if NVDA is available
             if (null == screenReaderAPI)
@@ -51,7 +51,7 @@ namespace JSJ.ScreenReaderAPI
             //
             // Insert checks for more screen readers here...
             //
-            
+
             // As a last resort create a dummy  (in order to simplify application code!)
             if (null == screenReaderAPI)
             {
@@ -60,7 +60,7 @@ namespace JSJ.ScreenReaderAPI
             }
             else
             {
-                logger.LogEvent(string.Format("Created ScreenReaderAPI for {0} using {1} ", screenReaderAPI.GetScreenReaderNameImplementation() , screenReaderAPI.GetScreenReaderDllNameImplementation()));
+                logger.LogEvent(string.Format("Created ScreenReaderAPI for {0} using {1} ", screenReaderAPI.GetScreenReaderNameImplementation(), screenReaderAPI.GetScreenReaderDllNameImplementation()));
             }
 
             // Attach the logger specified to the newly created ScreenReaderAPI
@@ -68,7 +68,7 @@ namespace JSJ.ScreenReaderAPI
 
             // Start the thread used for refreshing the display
             screenReaderAPI.StartBrailleDisplayThread();
- 
+
             return screenReaderAPI;
         }
 
@@ -83,21 +83,57 @@ namespace JSJ.ScreenReaderAPI
         protected abstract string GetScreenReaderNameImplementation();     // Primarily for debugging
         protected abstract string GetScreenReaderDllNameImplementation();  // Primarily for debugging
 
-        // And now for the public methods:
+        // And now for the public methods. Most of the code is boilerplate exception handling, centralized here!
+
+        private void LogError(string function, Exception e)
+        {
+            // TODO: Call and report GetLastError()
+            Logger.LogEvent(string.Format("ScreanReaderAPI.{0} threw an exception with Message='{1}'", function, e.Message));
+        }
 
         public bool Speak(string s)
         {
-            return this.SpeakImplementation(s);
+            bool result = false;
+            // Calls into native code!
+            try
+            {
+                result = this.SpeakImplementation(s);
+            }
+            catch (Exception e)
+            {
+                LogError("Speak", e);
+            }
+            return result;
         }
 
         public bool Braille(string s)
         {
-            return this.BrailleImplementation(s);
+            bool result = false;
+            // Calls into native code!
+            try
+            {
+                result = this.BrailleImplementation(s);
+            }
+            catch (Exception e)
+            {
+                LogError("Braille", e);
+            }
+            return result;
         }
 
         public bool Silence()
         {
-            return this.SilenceImplementation();
+            bool result = false;
+            // Calls into native code!
+            try
+            {
+                result = this.SilenceImplementation();
+            }
+            catch (Exception e)
+            {
+                LogError("Silence", e);
+            }
+            return result;
         }
 
         public string GetScreenReaderName()
@@ -110,17 +146,16 @@ namespace JSJ.ScreenReaderAPI
             return this.GetScreenReaderDllNameImplementation();
         }
 
-
         public bool Braille(string s, bool refresh)
         {
             latestMessage = s;
             refreshing = refresh;
-            return this.BrailleImplementation(latestMessage);
+            return this.Braille(latestMessage);
         }
 
         public void StopRefreshing()
         {
-            refreshing = false; 
+            refreshing = false;
         }
 
         private Thread brailleDisplayThread;
