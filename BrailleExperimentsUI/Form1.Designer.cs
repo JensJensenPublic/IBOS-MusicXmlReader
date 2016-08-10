@@ -52,6 +52,7 @@
             this.ListBoxRight.Name = "ListBoxRight";
             this.ListBoxRight.Size = new System.Drawing.Size(525, 212);
             this.ListBoxRight.TabIndex = 1;
+            this.ListBoxRight.SelectedIndexChanged += new System.EventHandler(this.ListBoxRight_SelectedIndexChanged);
             // 
             // button1
             // 
