@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace JSJ.ScreenReaderAPI
@@ -69,6 +70,7 @@ namespace JSJ.ScreenReaderAPI
             // Start the thread used for refreshing the display
             screenReaderAPI.StartBrailleDisplayThread();
 
+            screenReaderAPI.screenReaderName = screenReaderAPI.GetScreenReaderNameImplementation();
             return screenReaderAPI;
         }
 
@@ -85,53 +87,70 @@ namespace JSJ.ScreenReaderAPI
 
         // And now for the public methods. Most of the code is boilerplate exception handling, centralized here!
 
-        private void LogError(string function, Exception e)
+        private void LogException(string function, Exception e)
         {
-            // TODO: Call and report GetLastError()
-            Logger.LogEvent(string.Format("ScreanReaderAPI.{0} threw an exception with Message='{1}'", function, e.Message));
+            Logger.LogEvent(string.Format("{0}.{1} threw an exception with Message='{2}' GetLastWin32Error={3}",
+                                           screenReaderName, function, e.Message, GetLastWin32Error()));
+        }
+
+        private bool LogError(string function, bool ok)
+        {
+            
+            if (ok)
+            {
+                // Logger.LogEvent(string.Format("{0}.{1} returned ok", screenReaderName,function));
+            }
+            else
+            { 
+                Logger.LogEvent(string.Format("{0}.{1} failed. GetLastWin32Error={2}", screenReaderName, function, GetLastWin32Error()));
+            }
+            return ok;
         }
 
         public bool Speak(string s)
         {
+            string function = "Speak";
             bool result = false;
             // Calls into native code!
             try
             {
-                result = this.SpeakImplementation(s);
+                result = LogError(function,SpeakImplementation(s));
             }
             catch (Exception e)
             {
-                LogError("Speak", e);
+                LogException(function, e);
             }
             return result;
         }
 
         public bool Braille(string s)
         {
+            string function = "Braille";
             bool result = false;
             // Calls into native code!
             try
             {
-                result = this.BrailleImplementation(s);
+                result = LogError(function,BrailleImplementation(s));
             }
             catch (Exception e)
             {
-                LogError("Braille", e);
+                LogException(function, e);
             }
             return result;
         }
 
         public bool Silence()
         {
+            string function = "Silence";
             bool result = false;
             // Calls into native code!
             try
             {
-                result = this.SilenceImplementation();
+                result = LogError(function,SilenceImplementation());
             }
             catch (Exception e)
             {
-                LogError("Silence", e);
+                LogException(function, e);
             }
             return result;
         }
@@ -184,7 +203,9 @@ namespace JSJ.ScreenReaderAPI
         }
 
 
-
+        // Only for error reporting
+        [DllImport("kernel32.dll")]
+        static extern uint GetLastWin32Error();
 
 
         // JSJ: Start of the original Tolk API ---------------------------------------------------------------------------------------

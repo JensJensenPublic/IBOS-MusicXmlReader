@@ -36,7 +36,7 @@
             // 
             // ListBoxLeft
             // 
-            this.ListBoxLeft.AccessibleName = "LL";
+            this.ListBoxLeft.AccessibleName = " .";
             this.ListBoxLeft.FormattingEnabled = true;
             this.ListBoxLeft.Location = new System.Drawing.Point(28, 22);
             this.ListBoxLeft.Name = "ListBoxLeft";

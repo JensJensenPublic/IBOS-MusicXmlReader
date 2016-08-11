@@ -3,6 +3,8 @@ using System.Windows.Forms;
 using JSJ.ScreenReaderAPI;
 using System.Text;
 
+
+
 namespace BrailleExperimentsUI
 {
 
@@ -33,9 +35,10 @@ namespace BrailleExperimentsUI
 
             screenReaderAPI = ScreenReaderAPI.Create(false, this as IScreenReaderAPILogger);
 
-            ListBoxLeft.Items.Add("a");
+            ListBoxLeft.Items.Add("a");      
             ListBoxLeft.Items.Add("b");
             ListBoxLeft.Items.Add("c");
+            ListBoxLeft.Items.Add(""); // What is reported here?
             ListBoxLeft.Items.Add(ToBraille(0xff)); // All pins
             ListBoxLeft.Items.Add(ToBraille(0x00)); // No pins
             ListBoxLeft.Items.Add(ToBraille(0x81)); // Pin 1, pin 8
@@ -49,8 +52,7 @@ namespace BrailleExperimentsUI
             ListBoxRight.Items.Add(ToBraille(0x08)); // pin 4
             ListBoxRight.Items.Add(ToBraille(0x10)); // pin 5
             ListBoxRight.Items.Add(ToBraille(0x20)); // pin 6
-            ListBoxRight.Items.Add(ToBraille(0x80)); // pin 8     
-            
+            ListBoxRight.Items.Add(ToBraille(0x80)); // pin 8                
              
         }
 
@@ -65,15 +67,14 @@ namespace BrailleExperimentsUI
             // Get the contents of the selected item   
             ListBox listBox = (sender as ListBox);
             string s = listBox.Items[listBox.SelectedIndex].ToString();
-
-            AccessibleObject ao = listBox.AccessibilityObject;
+       
 
             // Say something different in order to check if the original text was heard !
             // screenReaderAPI.Speak("HEJ");
             // Populate a string with the first char received
-            string b = new StringBuilder().Append(string.IsNullOrEmpty(s) ? ' ' : s[0], displaySize).ToString();
+                string b = new StringBuilder().Append(string.IsNullOrEmpty(s) ? ' ' : s[0], displaySize).ToString();
             // Braille it
-            System.Threading.Thread.Sleep(1000); // Se what happens when
+            //System.Threading.Thread.Sleep(1000); // Se what happens when
             bool result = screenReaderAPI.Braille(b, true);
         }
 
