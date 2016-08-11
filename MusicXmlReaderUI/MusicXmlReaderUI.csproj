@@ -60,6 +60,7 @@
     <Compile Include="BackupElement.cs" />
     <Compile Include="BrailleBuilder.cs" />
     <Compile Include="BrailleDisplayer.cs" />
+    <Compile Include="DebugTools.cs" />
     <Compile Include="DeviceInfo.cs" />
     <Compile Include="FSBrlDspAPI.Wrapper.cs" />
     <Compile Include="NotationsElement.cs" />

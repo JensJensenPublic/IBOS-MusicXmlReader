@@ -9,7 +9,7 @@ using JSJ.ScreenReaderAPI;
 
 namespace MusicXmlReaderUI
 {
-    class Model : IScreenReaderAPILogger
+    class Model
     {
         public readonly string ApplicationName = "IBOS Musiklæser";
         string theMusicXmlFileName = "";
@@ -33,18 +33,16 @@ namespace MusicXmlReaderUI
         ScorePartElement currentScorePartElement = null;
         UserSettings userSettings;
         ScreenReaderAPI screenReaderAPI;
- 
+        DebugTools debugTools;
+
+
         string executingAssembly;
         string executingDirectory;
         
         List<string> metaInfoStrings = new List<string>(); // Selected meta info from the current file, such as Title and Composer
 
 
-        public bool LogEvent(string s)
-        {
-            Model.Log(s);
-            return true;
-        }
+
 
         private bool CheckFileExistance(string fileName, string methodName, bool dir)
         {
@@ -419,8 +417,10 @@ namespace MusicXmlReaderUI
             Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
             Utilities.CheckDlls(executingDirectory, ApplicationName, is64Bit);
 
+
             // Create an API to JAWS or NVDA depending on which screenreader is currently running
-            screenReaderAPI = ScreenReaderAPI.Create(is64Bit,this as IScreenReaderAPILogger);
+            debugTools = DebugTools.Create(); // Used for logging and tracing from screenReaderAPI.
+            screenReaderAPI = ScreenReaderAPI.Create(is64Bit,debugTools);
             Utilities.CheckScreenReader(!string.IsNullOrEmpty(screenReaderAPI.GetScreenReaderDllName()), ApplicationName); // Check for DummyScreenReader
 
             midiOut = new MidiOut(0);

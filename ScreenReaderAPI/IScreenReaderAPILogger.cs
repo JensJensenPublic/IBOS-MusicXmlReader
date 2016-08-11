@@ -9,5 +9,7 @@ namespace JSJ.ScreenReaderAPI
     public interface IScreenReaderAPILogger
     {
         bool LogEvent(string s);
+        bool TraceLine(string s);
+        bool TraceChar(char c);
     }
 }

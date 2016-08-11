@@ -49,7 +49,7 @@ namespace JSJ.ScreenReaderAPI
             if (result)
             {
                 // Experimental code!
-                // result = JFWRunFunction("BrailleLine(0)");
+                //result = JFWRunFunction("BrailleLine(0)");
             }
             return result;
         }

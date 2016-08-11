@@ -10,11 +10,26 @@ namespace BrailleExperimentsUI
 {
     public class BrailleExperimentsUIModel: IScreenReaderAPILogger
     {
+
+        #region  IScreenReaderAPILogger
         public bool LogEvent(string s)
         {
             Console.WriteLine(s);
             return false;
         }
+
+        public bool TraceLine(string s)
+        {
+            Console.WriteLine(s);
+            return true;
+        }
+
+        public bool TraceChar(char s)
+        {
+            Console.Write(s);
+            return true;
+        }
+        #endregion
 
         ScreenReaderAPI screenReaderAPI;
         int displaySize = 14;
@@ -27,14 +42,15 @@ namespace BrailleExperimentsUI
         }
 
         public void IndexChanged(object sender, EventArgs e)
-        {
-
+        {          
             // Stop the Speak and Braille automatically generated behind the scene
             // screenReaderAPI.Speak("Nu prøver vi at sige en hel masse og se hvad der sker");
             screenReaderAPI.Silence();
             // Get the contents of the selected item   
             ListBox listBox = (sender as ListBox);
-            string s = listBox.Items[listBox.SelectedIndex].ToString();
+            int index = listBox.SelectedIndex;
+            TraceLine(string.Format("Index={0}", index));
+            string s = listBox.Items[index].ToString();
 
             // Say something different in order to check if the original text was heard !
             // screenReaderAPI.Speak("HEJ");
@@ -64,9 +80,12 @@ namespace BrailleExperimentsUI
             ListBoxLeft.Items.Add("b");
             ListBoxLeft.Items.Add("c");
             ListBoxLeft.Items.Add(""); // What is reported here?
-            ListBoxLeft.Items.Add(ToBraille(0xff)); // All pins
+            ListBoxLeft.Items.Add(ToBraille(0xff)); // No pins   
             ListBoxLeft.Items.Add(ToBraille(0x00)); // No pins
             ListBoxLeft.Items.Add(ToBraille(0x81)); // Pin 1, pin 8
+            ListBoxLeft.Items.Add(new StringBuilder().Append(ToBraille(0xff), 4).ToString()); // All pins, 4 of them 
+            ListBoxLeft.Items.Add(new StringBuilder().Append(ToBraille(0x00), 4).ToString()); // No pins, 4 of them 
+            ListBoxLeft.Items.Add(new StringBuilder().Append(ToBraille(0x81), 4).ToString()); //  Pin 1, pin 8, 4 of them 
             ListBoxRight.Items.Add("d");
             ListBoxRight.Items.Add("e");
             ListBoxRight.Items.Add("f");

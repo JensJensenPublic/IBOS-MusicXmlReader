@@ -192,11 +192,12 @@ namespace JSJ.ScreenReaderAPI
                 {
                     if (refreshing)
                     {
+                        Logger.TraceChar('+'); // Shows that we are refreshing
                         BrailleImplementation(latestMessage);
                     }
                     else
                     {
-                        //Logger.LogEvent("-"); // For debugging
+                        Logger.TraceChar('-'); // Shows that we are not refreshing
                     }
                 }
             }
