@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
+// C:\ProgramData\Freedom Scientific\JAWS\17.0\Scripts\hjconst.jsh Contains the following constants for use with the BrailleLine function
+//  brlShowFirstRange = 0, ; show the first display worth of data
+//  brlShowSameRange = 1, ; attempt to align to same relative offset in data as prior show
+//  brlShowLastRange=2, ; show the last range of the data
+//  brlShowRangeContainingCursor = 3, ; show the range containing the cursor acording to the autoPanMode.
+
 namespace JSJ.ScreenReaderAPI
 {
     class FSAPIWrapper : ScreenReaderAPI
@@ -37,8 +43,15 @@ namespace JSJ.ScreenReaderAPI
 
         protected override bool BrailleImplementation(string s)
         {
+            bool result;
             string brailleStringFunction = string.Format("BrailleString(\"{0}\")",s);
-            return JFWRunFunction(brailleStringFunction);
+            result = JFWRunFunction(brailleStringFunction);
+            if (result)
+            {
+                // Experimental code!
+                // result = JFWRunFunction("BrailleLine(0)");
+            }
+            return result;
         }
 
         protected override bool SilenceImplementation()
