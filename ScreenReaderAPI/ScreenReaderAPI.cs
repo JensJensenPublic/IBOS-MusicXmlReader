@@ -22,11 +22,13 @@ namespace JSJ.ScreenReaderAPI
 
         }
 
+        public enum ScreenReader { Dummy, JAWS, NVDA };
+
         protected bool StartBrailleDisplayThread()
         {
             // Start a thread used for refreshing the display
             brailleDisplayThread = new Thread(new ThreadStart(DisplayerThreadStart));
-            Logger.LogEvent(string.Format("Starting BrailleDiaplayThread at priority={0}", brailleDisplayThread.Priority.ToString()));
+            Log(string.Format("Starting BrailleDiaplayThread at priority={0}", brailleDisplayThread.Priority.ToString()));
             brailleDisplayThread.Start();
             return true;
         }
@@ -57,11 +59,11 @@ namespace JSJ.ScreenReaderAPI
             if (null == screenReaderAPI)
             {
                 screenReaderAPI = DummyScreenReader.Create();
-                logger.LogEvent("Created Dummy ScreenReaderAPI");
+                if (null != logger) logger.LogEvent("Created Dummy ScreenReaderAPI");
             }
             else
             {
-                logger.LogEvent(string.Format("Created ScreenReaderAPI for {0} using {1} ", screenReaderAPI.GetScreenReaderNameImplementation(), screenReaderAPI.GetScreenReaderDllNameImplementation()));
+                if (null != logger) logger.LogEvent(string.Format("Created ScreenReaderAPI for {0} using {1} ", screenReaderAPI.GetScreenReaderNameImplementation(), screenReaderAPI.GetScreenReaderDllNameImplementation()));
             }
 
             // Attach the logger specified to the newly created ScreenReaderAPI
@@ -84,6 +86,7 @@ namespace JSJ.ScreenReaderAPI
         protected abstract bool SilenceImplementation();
         protected abstract string GetScreenReaderNameImplementation();     // Primarily for debugging
         protected abstract string GetScreenReaderDllNameImplementation();  // Primarily for debugging
+        protected abstract ScreenReader GetScreenReader();                 // Primarily for debugging
 
         // And now for the public methods. Most of the code is boilerplate exception handling, centralized here!
 
@@ -102,7 +105,7 @@ namespace JSJ.ScreenReaderAPI
             }
             else
             { 
-                Logger.LogEvent(string.Format("{0}.{1} failed. GetLastWin32Error={2}", screenReaderName, function, GetLastWin32Error()));
+                Log(string.Format("{0}.{1} failed. GetLastWin32Error={2}", screenReaderName, function, GetLastWin32Error()));
             }
             return ok;
         }
@@ -192,17 +195,36 @@ namespace JSJ.ScreenReaderAPI
                 {
                     if (refreshing)
                     {
-                        Logger.TraceChar('+'); // Shows that we are refreshing
+                        TraceChar('+'); // Shows that we are refreshing
                         BrailleImplementation(latestMessage);
                     }
                     else
                     {
-                        Logger.TraceChar('-'); // Shows that we are not refreshing
+                        TraceChar('-'); // Shows that we are not refreshing
                     }
                 }
             }
         }
 
+        #region LogAndTrace
+        private void Log(string s)
+        {
+            if (null == Logger) return;
+            Logger.LogEvent(s);
+        }
+
+        private void LogEvent(string s)
+        {
+            if (null == Logger) return;
+            Logger.LogEvent(s);
+        }
+
+        private void TraceChar(char c)
+        {
+            if (null == Logger) return;
+            Logger.TraceChar(c);
+        }
+        #endregion
 
         // Only for error reporting
         [DllImport("kernel32.dll")]

@@ -50,6 +50,12 @@ namespace JSJ.ScreenReaderAPI
             return "nvdaControllerClient32.dll";
         }
 
+        protected override ScreenReader GetScreenReader()
+        {
+            return ScreenReader.NVDA;
+        }
+
+
         [DllImport("nvdaControllerClient32.dll", CharSet = CharSet.Unicode)]
         public static extern int nvdaController_testIfRunning();
 

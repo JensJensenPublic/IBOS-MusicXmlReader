@@ -69,6 +69,11 @@ namespace JSJ.ScreenReaderAPI
             return "fsapi.dll";
         }
 
+        protected override ScreenReader GetScreenReader()
+        {
+            return ScreenReader.JAWS;
+        }
+        
         [DllImport("fsapi.dll", CharSet = CharSet.Ansi)]
         public static extern bool JFWStopSpeech();
 

@@ -47,5 +47,11 @@ namespace JSJ.ScreenReaderAPI
         {
             return "";
         }
+
+        protected override ScreenReader GetScreenReader()
+        {
+            return ScreenReader.Dummy;
+        }
+
     }
 }
