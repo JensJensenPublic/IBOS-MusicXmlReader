@@ -66,75 +66,44 @@ namespace BrailleExperimentsUI
         public void MusicBrailleListBoxIndexChanged()
         {
             if (!ListBoxLeft.Focused) return; // Avoid looping
-            ListBoxRight.SelectedIndex = ListBoxLeft.SelectedIndex;
+            int selectedIndex = ListBoxLeft.SelectedIndex;
+            ListBoxRight.SelectedIndex = selectedIndex;
             // Always speek the contents of the TextBrailleListbox
             screenReaderAPI.Silence(); // Stop the screenreader from speaking the  Braille value!
-            screenReaderAPI.Speak(ListBoxRight.Items[ListBoxRight.SelectedIndex].ToString());
+            screenReaderAPI.Speak(ListBoxRight.Items[selectedIndex].ToString());
             screenReaderAPI.Silence();
+            // Always show the contents in the textbox
+            textBoxBraille.Text = ListBoxLeft.Items[selectedIndex].ToString();
         }
 
         public void TextBrailleListBoxIndexChanged()
         {
             if (!ListBoxRight.Focused) return; // Avoid looping
-            ListBoxLeft.SelectedIndex = ListBoxRight.SelectedIndex ;
-            if (isNVDA)
+            int selectedIndex = ListBoxRight.SelectedIndex;
+            ListBoxLeft.SelectedIndex = selectedIndex ;
+            string brailleText;
+            if (isNVDA || isDummy)
             {
                 // In the NVDA case we expect that only the text Listbox is visible
                 // because we can't prevent the speak of "Braille 1 2 3 4 5 6 7 8" from the MusicBrailleListbox
                 // We must give the user an other way ofselecting what he wants to be brailled in that case.
-                ListBox listbox = (isNVDA && renderAsMusicBraille) ? ListBoxLeft : ListBoxRight;
-                screenReaderAPI.Braille(listbox.Items[ListBoxRight.SelectedIndex].ToString(), true);
+                ListBox listbox = (renderAsMusicBraille) ? ListBoxLeft : ListBoxRight;
+                brailleText = listbox.Items[selectedIndex].ToString();
+                screenReaderAPI.Braille(brailleText, true);
+                textBoxBraille.Text = renderAsMusicBraille ? brailleText : "";
             }
-
+            else
+            {
+                // The screanreader has already written to the Braille Display, but we dont know exactly
+                // how it was mapped,somwe only flush the textbox:      
+                textBoxBraille.Text = "";
+            }
+          
         }
-
-
-        //public void IndexChanged(ListBox thisListBox, ListBox theOtherListbox)
-        //{
-        //    // Prevent looping !
-        //    if(!(thisListBox.Focused))
-        //        return;
-
-        //    // Stop the Speak and Braille automatically generated behind the scene
-        //    screenReaderAPI.Silence();
-        //    screenReaderAPI.Speak("Her siger vi en masse sludder");
-        //    screenReaderAPI.Silence();
-
- 
-        //    // Synchronize the listboxes
-        //    theOtherListbox.SelectedIndex = thisListBox.SelectedIndex;
-
-
-        //    ListBox listBox = thisListBox;
-
-
-        //    TraceLine(string.Format("Index={0}", index));
-        //    string s = listBox.Items[index].ToString();
-        //    if (!string.IsNullOrEmpty(s))
-        //    {
-        //        if (ISBraille((char)s[0]))
-        //        {
-        //            // If the contents is Braille, speak from the same item in the other listbox instead
-        //            screenReaderAPI.Silence();
-        //            string stringToSay = theOtherListbox.Items[listBox.SelectedIndex].ToString();
-        //            screenReaderAPI.Speak(stringToSay);
-        //        }
-        //    }
-      
-
-        //    // Say something different in order to check if the original text was heard !
-        //    // screenReaderAPI.Speak("HEJ");
-        //    // Populate a string with the first char received
-        //    string b = new StringBuilder().Append(string.IsNullOrEmpty(s) ? ' ' : s[0], displaySize).ToString();
-        //    // Braille it
-        //    //System.Threading.Thread.Sleep(1000); // Se what happens when
-        //    bool result = screenReaderAPI.Braille(b, true); // Only needed in the NVDA case!
-        //}
-
-
 
         private ListBox ListBoxLeft;
         private ListBox ListBoxRight;
+        private TextBox textBoxBraille;
 
         private bool isNVDA;
         private bool isJAWS;
@@ -150,10 +119,11 @@ namespace BrailleExperimentsUI
         /// <summary>
         /// Constructor
         /// </summary>
-        public BrailleExperimentsUIModel(ListBox listBoxLeft, ListBox listBoxRight)
+        public BrailleExperimentsUIModel(ListBox listBoxLeft, ListBox listBoxRight,TextBox textBoxBraille)
         {
             this.ListBoxLeft = listBoxLeft;
             this.ListBoxRight = listBoxRight;
+            this.textBoxBraille = textBoxBraille;
             screenReaderAPI = ScreenReaderAPI.Create(false, this as IScreenReaderAPILogger);
             isNVDA = (screenReaderAPI.GetScreenReaderType() == ScreenReaderAPI.ScreenReaderType.NVDA);
             isJAWS = (screenReaderAPI.GetScreenReaderType() == ScreenReaderAPI.ScreenReaderType.JAWS);
@@ -164,38 +134,9 @@ namespace BrailleExperimentsUI
 
             for (int i = 0; (i < 256); i++)
             {
-                add(new StringBuilder().Append(ToBraille(i), 14).ToString(),string.Format("Linie {0}", i));
+                add(new StringBuilder().Append(ToBraille(i), displaySize).ToString(),string.Format("Linie {0}", i));
             }
-
-            //ListBoxLeft.Items.Add("a");   
-            //ListBoxLeft.Items.Add("b");
-            //ListBoxLeft.Items.Add("c");
-            //ListBoxLeft.Items.Add(""); // What is reported here?
-            //ListBoxLeft.Items.Add(ToBraille(0xff)); // No pins   
-            //ListBoxLeft.Items.Add(ToBraille(0x00)); // No pins
-            //ListBoxLeft.Items.Add(ToBraille(0x81)); // Pin 1, pin 8
-            //ListBoxLeft.Items.Add(new StringBuilder().Append(ToBraille(0xff), 14).ToString()); // All pins, 4 of them 
-            //ListBoxLeft.Items.Add(new StringBuilder().Append(ToBraille(0x00), 4).ToString()); // No pins, 4 of them 
-            //ListBoxLeft.Items.Add(new StringBuilder().Append(ToBraille(0x81), 4).ToString()); //  Pin 1, pin 8, 4 of them 
-
-            //ListBoxRight.Items.Add("Linie0"); // pin 1
-            //ListBoxRight.Items.Add("Linie1"); // pin 2
-            //ListBoxRight.Items.Add("Linie2"); // pin 1
-            //ListBoxRight.Items.Add("Linie3"); // pin 2
-            //ListBoxRight.Items.Add("Linie4"); // pin 1
-            //ListBoxRight.Items.Add("Linie5"); // pin 2
-            //ListBoxRight.Items.Add("Linie6"); // pin 1
-            //ListBoxRight.Items.Add("Linie7"); // pin 2
-            //ListBoxRight.Items.Add("Linie8"); // pin 1
-            //ListBoxRight.Items.Add("Linie9"); // pin 2
-
-            ////ListBoxRight.Items.Add(ToBraille(0x04)); // pin 3
-            ////ListBoxRight.Items.Add(ToBraille(0x40)); // pin 7
-            ////ListBoxRight.Items.Add(ToBraille(0x08)); // pin 4
-            ////ListBoxRight.Items.Add(ToBraille(0x10)); // pin 5
-            ////ListBoxRight.Items.Add(ToBraille(0x20)); // pin 6
-            ////ListBoxRight.Items.Add(ToBraille(0x80)); // pin 8     
-
+            
         }
     }
 }
