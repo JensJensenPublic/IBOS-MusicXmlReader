@@ -10,6 +10,7 @@ namespace BrailleExperimentsUI
 {
     public class BrailleExperimentsUIModel: IScreenReaderAPILogger
     {
+        bool traceNeedsNewLine;
 
         #region  IScreenReaderAPILogger
         public bool LogEvent(string s)
@@ -20,13 +21,19 @@ namespace BrailleExperimentsUI
 
         public bool TraceLine(string s)
         {
+            if (traceNeedsNewLine)
+            {
+                Console.WriteLine();
+            }
+            traceNeedsNewLine = false;
             Console.WriteLine(s);
             return true;
         }
 
         public bool TraceChar(char s)
         {
-            Console.Write(s);
+            traceNeedsNewLine = true;
+            Console.Write(s);       
             return true;
         }
         #endregion
