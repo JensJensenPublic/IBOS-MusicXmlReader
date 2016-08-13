@@ -22,7 +22,7 @@ namespace JSJ.ScreenReaderAPI
 
         }
 
-        public enum ScreenReader { Dummy, JAWS, NVDA };
+        public enum ScreenReaderType { Dummy, JAWS, NVDA };
 
         protected bool StartBrailleDisplayThread()
         {
@@ -86,7 +86,7 @@ namespace JSJ.ScreenReaderAPI
         protected abstract bool SilenceImplementation();
         protected abstract string GetScreenReaderNameImplementation();     // Primarily for debugging
         protected abstract string GetScreenReaderDllNameImplementation();  // Primarily for debugging
-        protected abstract ScreenReader GetScreenReader();                 // Primarily for debugging
+        protected abstract ScreenReaderType GetScreenReaderTypeImplementation();  // Primarily for debugging
 
         // And now for the public methods. Most of the code is boilerplate exception handling, centralized here!
 
@@ -167,6 +167,12 @@ namespace JSJ.ScreenReaderAPI
         {
             return this.GetScreenReaderDllNameImplementation();
         }
+
+        public ScreenReaderType GetScreenReaderType()
+        {
+            return this.GetScreenReaderTypeImplementation();
+        }
+
 
         public bool Braille(string s, bool refresh)
         {

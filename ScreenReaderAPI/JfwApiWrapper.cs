@@ -62,9 +62,9 @@ namespace JSJ.ScreenReaderAPI
             return "jfwapi.dll";
         }
 
-        protected override ScreenReader GetScreenReader()
+        protected override ScreenReaderType GetScreenReaderTypeImplementation()
         {
-            return ScreenReader.JAWS;
+            return ScreenReaderType.JAWS;
         }
 
 

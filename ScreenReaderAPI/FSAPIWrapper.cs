@@ -69,9 +69,9 @@ namespace JSJ.ScreenReaderAPI
             return "fsapi.dll";
         }
 
-        protected override ScreenReader GetScreenReader()
+        protected override ScreenReaderType GetScreenReaderTypeImplementation()
         {
-            return ScreenReader.JAWS;
+            return ScreenReaderType.JAWS;
         }
         
         [DllImport("fsapi.dll", CharSet = CharSet.Ansi)]

@@ -7,20 +7,36 @@ namespace BrailleExperimentsUI
     {
         BrailleExperimentsUIModel model;
 
+        public Form1()
+        {
+            InitializeComponent();
+            model = new BrailleExperimentsUIModel(this.ListBoxLeft, this.ListBoxRight);
+        }
+
+
         private void ListBoxLeft_SelectedIndexChanged(object sender, EventArgs e)
         {
-            model.IndexChanged(sender, e);
+            model.MusicBrailleListBoxIndexChanged();
         }
 
         private void ListBoxRight_SelectedIndexChanged(object sender, EventArgs e)
         {
-            model.IndexChanged(sender, e);
+            model.TextBrailleListBoxIndexChanged();
         }
 
-        public Form1()
+        private void ListBoxLeft_Leave(object sender, EventArgs e)
         {
-            InitializeComponent();
-            model = new BrailleExperimentsUIModel(this.ListBoxLeft,this.ListBoxRight);
+            model.FocusLost();
+        }
+
+        private void ListBoxRight_Leave(object sender, EventArgs e)
+        {
+            model.FocusLost();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            model.RenderAsMusicBrailleChanged(checkBox1.Checked);
         }
     }
 }
