@@ -126,7 +126,7 @@ namespace BrailleExperimentsUI
         /// <summary>
         /// Constructor
         /// </summary>
-        public BrailleExperimentsUIModel(ListBox listBoxLeft, ListBox listBoxRight,TextBox textBoxBraille)
+        public BrailleExperimentsUIModel(ListBox listBoxLeft, ListBox listBoxRight,TextBox textBoxBraille,CheckBox checkBoxbrailleSelector)
         {
             this.ListBoxLeft = listBoxLeft;
             this.ListBoxRight = listBoxRight;
@@ -135,6 +135,9 @@ namespace BrailleExperimentsUI
             isNVDA = (screenReaderAPI.GetScreenReaderType() == ScreenReaderAPI.ScreenReaderType.NVDA);
             isJAWS = (screenReaderAPI.GetScreenReaderType() == ScreenReaderAPI.ScreenReaderType.JAWS);
             isDummy = (screenReaderAPI.GetScreenReaderType() == ScreenReaderAPI.ScreenReaderType.Dummy);
+
+            this.ListBoxLeft.Visible = !isNVDA;
+            checkBoxbrailleSelector.Visible = isNVDA;
 
             // ListBoxLeft.Enabled= (ScreenReaderAPI.ScreenReaderType.NVDA != screenReaderAPI.GetScreenReaderType());
             // NVDA insists on reading Braille pin combinations, so we do not want to enable the listbox containing the Music-Braille codes

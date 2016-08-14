@@ -32,7 +32,7 @@
             this.ListBoxRight = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxBrailleSelector = new System.Windows.Forms.CheckBox();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -76,16 +76,16 @@
             this.button2.Text = "b";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // checkBoxBrailleSelector
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(469, 249);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBoxBrailleSelector.AutoSize = true;
+            this.checkBoxBrailleSelector.Location = new System.Drawing.Point(469, 249);
+            this.checkBoxBrailleSelector.Name = "checkBoxBrailleSelector";
+            this.checkBoxBrailleSelector.Size = new System.Drawing.Size(80, 17);
+            this.checkBoxBrailleSelector.TabIndex = 4;
+            this.checkBoxBrailleSelector.Text = "checkBox1";
+            this.checkBoxBrailleSelector.UseVisualStyleBackColor = true;
+            this.checkBoxBrailleSelector.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // textBoxBraille
             // 
@@ -104,7 +104,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1015, 378);
             this.Controls.Add(this.textBoxBraille);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.checkBoxBrailleSelector);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ListBoxRight);
@@ -122,7 +122,7 @@
         private System.Windows.Forms.ListBox ListBoxRight;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxBrailleSelector;
         private System.Windows.Forms.TextBox textBoxBraille;
     }
 }
