@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using JSJ.ScreenReaderAPI;
+using System.Threading;
 
 namespace BrailleExperimentsUI
 {
     public class BrailleExperimentsUIModel: IScreenReaderAPILogger
     {
         bool traceNeedsNewLine;
+        int selectedIndex;
 
         #region  IScreenReaderAPILogger
         public bool LogEvent(string s)
@@ -73,23 +75,46 @@ namespace BrailleExperimentsUI
         public void MusicBrailleListBoxIndexChanged()
         {
             if (!ListBoxLeft.Focused) return; // Avoid looping
-            int selectedIndex = ListBoxLeft.SelectedIndex;
-            ListBoxRight.SelectedIndex = selectedIndex;
+            selectedIndex = ListBoxLeft.SelectedIndex;
+            //ListBoxRight.SelectedIndex = selectedIndex;      
+
+
+            // Always show the contents in the textbox
+            // This variant will first show the automatic line for a moment
+            // Then it will show the braille pattern exactly as wanted !
+            // If the time for flash messages is set to "forever" this version works perfect! But we probably cannot allow this as
+            // add global setting. Is it possible to control this settint dynamically from the application ?
+            //screenReaderAPI.Braille(ListBoxLeft.Items[selectedIndex].ToString(), true); 
+
+
+            // This variant will first show the automatic line for a moment
+            // It will show the prefix "lbX"
+            // It will turn on dots 7 and 8 for all the characters
+
+            int append = 0; // Replace
+            int time = 1000; // Keep 
+            // screenReaderAPI.Braille(ListBoxLeft.Items[selectedIndex].ToString(), true,append, time ); // This variant will also first show the automatic line for a moment
+
+
+            // The automatic rendering will show the "lbX" prefix and will turn on dots 7 and 8 but will NOT show another line for a moment, and thus looks better
+
+
+            textBoxBraille.Text = ListBoxLeft.Items[selectedIndex].ToString();
+
             // Always speek the contents of the TextBrailleListbox
             screenReaderAPI.Silence(); // Stop the screenreader from speaking the  Braille value!
             screenReaderAPI.Speak(ListBoxRight.Items[selectedIndex].ToString());
             screenReaderAPI.Silence();
-            // Always show the contents in the textbox
-            textBoxBraille.Text = ListBoxLeft.Items[selectedIndex].ToString();
+
         }
 
         public void TextBrailleListBoxIndexChanged()
         {
             if (!ListBoxRight.Focused) return; // Avoid looping
-            int selectedIndex = ListBoxRight.SelectedIndex;
-            ListBoxLeft.SelectedIndex = selectedIndex ;
+            selectedIndex = ListBoxRight.SelectedIndex;
+            //ListBoxLeft.SelectedIndex = selectedIndex ;
             string brailleText;
-            if (isNVDA || isDummy)
+            if (isNVDA || isDummy )
             {
                 // In the NVDA case we expect that only the text Listbox is visible
                 // because we can't prevent the speak of "Braille 1 2 3 4 5 6 7 8" from the MusicBrailleListbox
@@ -101,9 +126,11 @@ namespace BrailleExperimentsUI
             }
             else
             {
-                // The screanreader has already written to the Braille Display, but we dont know exactly
-                // how it was mapped,somwe only flush the textbox:      
-                textBoxBraille.Text = "";
+                ListBox listbox = ListBoxLeft;
+                brailleText = listbox.Items[selectedIndex].ToString();
+                //screenReaderAPI.Braille(brailleText, true); // The preferred solution !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //screenReaderAPI.Braille(brailleText,true, 0, 5000);
+                textBoxBraille.Text = brailleText;
             }
           
         }
@@ -120,7 +147,8 @@ namespace BrailleExperimentsUI
         private void add(string musicBraille, string textBraille)
         {
             ListBoxLeft.Items.Add(musicBraille);
-            ListBoxRight.Items.Add(textBraille);
+            //ListBoxRight.Items.Add(textBraille);
+            ListBoxRight.Items.Add(string.Format("{0} {1}",musicBraille,textBraille));
         }
 
         /// <summary>
@@ -144,7 +172,7 @@ namespace BrailleExperimentsUI
 
             for (int i = 0; (i < 256); i++)
             {
-                add(new StringBuilder().Append(ToBraille(i), displaySize).ToString(),string.Format("Linie {0}", i));
+                add(new StringBuilder().Append(ToBraille(i), 4).ToString(),string.Format("L{0}", i));
             }
             
         }

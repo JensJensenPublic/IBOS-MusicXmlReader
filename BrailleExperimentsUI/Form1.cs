@@ -20,7 +20,7 @@ namespace BrailleExperimentsUI
         }
 
         private void ListBoxRight_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {               
             model.TextBrailleListBoxIndexChanged();
         }
 
