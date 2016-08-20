@@ -10,7 +10,7 @@ namespace BrailleExperimentsUI
         public Form1()
         {
             InitializeComponent();
-            model = new BrailleExperimentsUIModel(this.ListBoxLeft, this.ListBoxRight, this.textBoxBraille, this.checkBoxBrailleSelector);
+            model = new BrailleExperimentsUIModel(this.ListBoxRight, this.textBoxBraille);
         }
 
 
@@ -35,8 +35,7 @@ namespace BrailleExperimentsUI
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            model.RenderAsMusicBrailleChanged(checkBoxBrailleSelector.Checked);
+        {       
         }
 
         private void textBoxBraille_TextChanged(object sender, EventArgs e)

@@ -12,7 +12,6 @@ namespace BrailleExperimentsUI
     public class BrailleExperimentsUIModel: IScreenReaderAPILogger
     {
         bool traceNeedsNewLine;
-        int selectedIndex;
 
         #region  IScreenReaderAPILogger
         public bool LogEvent(string s)
@@ -73,47 +72,13 @@ namespace BrailleExperimentsUI
         }
 
         public void MusicBrailleListBoxIndexChanged()
-        {
-            if (!ListBoxLeft.Focused) return; // Avoid looping
-            selectedIndex = ListBoxLeft.SelectedIndex;
-            //ListBoxRight.SelectedIndex = selectedIndex;      
-
-
-            // Always show the contents in the textbox
-            // This variant will first show the automatic line for a moment
-            // Then it will show the braille pattern exactly as wanted !
-            // If the time for flash messages is set to "forever" this version works perfect! But we probably cannot allow this as
-            // add global setting. Is it possible to control this settint dynamically from the application ?
-            //screenReaderAPI.Braille(ListBoxLeft.Items[selectedIndex].ToString(), true); 
-
-
-            // This variant will first show the automatic line for a moment
-            // It will show the prefix "lbX"
-            // It will turn on dots 7 and 8 for all the characters
-
-            //int append = 0; // Replace
-            //int time = 1000; // Keep 
-            // screenReaderAPI.Braille(ListBoxLeft.Items[selectedIndex].ToString(), true,append, time ); // This variant will also first show the automatic line for a moment
-
-
-            // The automatic rendering will show the "lbX" prefix and will turn on dots 7 and 8 but will NOT show another line for a moment, and thus looks better
-
-
-            textBoxBraille.Text = ListBoxLeft.Items[selectedIndex].ToString();
-
-            // Always speek the contents of the TextBrailleListbox
-            screenReaderAPI.Silence(); // Stop the screenreader from speaking the  Braille value!
-            screenReaderAPI.Speak(ListBoxRight.Items[selectedIndex].ToString());
-            screenReaderAPI.Silence();
-
+        {   
         }
 
         public void TextBrailleListBoxIndexChanged()
         {
-            //if (!ListBoxRight.Focused) return; // Avoid looping
-            selectedIndex = ListBoxRight.SelectedIndex;
-            //ListBoxLeft.SelectedIndex = selectedIndex ;
-            BrailleExperimentsLineDescription item = ListBoxRight.Items[selectedIndex] as BrailleExperimentsLineDescription;
+            // At this time the screenreader has already written the selected line to the physical Braille display and started speaking!
+            BrailleExperimentsLineDescription item = ListBoxRight.Items[ListBoxRight.SelectedIndex] as BrailleExperimentsLineDescription;
             textBoxBraille.Text = item.ToMusicBrailleString(); // Always show the MusicBraille in the textbox.
             if (isNVDA)
             {
@@ -123,29 +88,7 @@ namespace BrailleExperimentsUI
                 // Instead we must explicitly write them to the Braille display:
                 screenReaderAPI.Braille(item.ToMusicBrailleAndTextBrailleString(),true);
             }
-
-            //if (isNVDA || isDummy )
-            //{
-            //    //    // In the NVDA case we expect that only the text Listbox is visible
-            //    //    // because we can't prevent the speak of "Braille 1 2 3 4 5 6 7 8" from the MusicBrailleListbox
-            //    //    // We must give the user an other way ofselecting what he wants to be brailled in that case.
-            //    //    ListBox listbox = (renderAsMusicBraille) ? ListBoxLeft : ListBoxRight;
-            //    //    brailleText = listbox.Items[selectedIndex].ToString();
-            //    //    screenReaderAPI.Braille(brailleText, true);
-            //    //    //textBoxBraille.Text = renderAsMusicBraille ? brailleText : "";
-            //    //    (ListBoxRight.Items[selectedIndex] as BrailleExperimentsLineDescription = (ListBoxRight.Items[selectedIndex] as BrailleExperimentsLineDescription).ToMusicBrailleString();
-
-            
-            //}
-            //else
-            //{
-            //    ListBox listbox = ListBoxLeft;
-            //    brailleText = listbox.Items[selectedIndex].ToString();
-            //    //screenReaderAPI.Braille(brailleText, true); // The preferred solution !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //    //screenReaderAPI.Braille(brailleText,true, 0, 5000);
-            //    textBoxBraille.Text = brailleText;
-            //}
-          
+                     
         }
 
         private ListBox ListBoxLeft;
@@ -154,24 +97,18 @@ namespace BrailleExperimentsUI
 
         private bool isNVDA;
         private bool isJAWS;
-        private bool isDummy;
-         
-
+        private bool isDummy;  
 
         private void add(string musicBraille, string textBraille, string format)
         {
-            ListBoxLeft.Items.Add(musicBraille);
-            //ListBoxRight.Items.Add(textBraille);
-            //ListBoxRight.Items.Add(string.Format("{0} {1}",musicBraille,textBraille));
-            ListBoxRight.Items.Add(BrailleExperimentsLineDescription.Create(musicBraille, textBraille, format));
+              ListBoxRight.Items.Add(BrailleExperimentsLineDescription.Create(musicBraille, textBraille, format));
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public BrailleExperimentsUIModel(ListBox listBoxLeft, ListBox listBoxRight,TextBox textBoxBraille,CheckBox checkBoxbrailleSelector)
+        public BrailleExperimentsUIModel(ListBox listBoxRight,TextBox textBoxBraille)
         {
-            this.ListBoxLeft = listBoxLeft;
             this.ListBoxRight = listBoxRight;
             this.textBoxBraille = textBoxBraille;
             screenReaderAPI = ScreenReaderAPI.Create(false, this as IScreenReaderAPILogger);
@@ -179,12 +116,6 @@ namespace BrailleExperimentsUI
             isJAWS = (screenReaderAPI.GetScreenReaderType() == ScreenReaderAPI.ScreenReaderType.JAWS);
             isDummy = (screenReaderAPI.GetScreenReaderType() == ScreenReaderAPI.ScreenReaderType.Dummy);
             string format = isNVDA ? "{1}" : "{0} {1}"; // Might later depend on screenReaderAPI.GetScreenReaderType()
-
-            this.ListBoxLeft.Visible = !isNVDA;
-            checkBoxbrailleSelector.Visible = isNVDA;
-
-            // ListBoxLeft.Enabled= (ScreenReaderAPI.ScreenReaderType.NVDA != screenReaderAPI.GetScreenReaderType());
-            // NVDA insists on reading Braille pin combinations, so we do not want to enable the listbox containing the Music-Braille codes
 
             for (int i = 0; (i < 256); i++)
             {
