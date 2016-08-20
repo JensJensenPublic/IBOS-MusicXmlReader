@@ -40,9 +40,7 @@ namespace BrailleExperimentsUI
         #endregion
 
         ScreenReaderAPI screenReaderAPI;
-        int displaySize = 14;
-        bool renderAsMusicBraille;
-
+        //int displaySize = 14;
 
         private char ToBraille(int i)
         {
@@ -83,8 +81,7 @@ namespace BrailleExperimentsUI
             }
                      
         }
-
-        private ListBox ListBoxLeft;
+   
         private ListBox ListBoxRight;
         private TextBox textBoxBraille;
 
