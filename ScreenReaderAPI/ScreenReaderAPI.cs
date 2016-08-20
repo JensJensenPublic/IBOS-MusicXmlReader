@@ -69,9 +69,6 @@ namespace JSJ.ScreenReaderAPI
             // Attach the logger specified to the newly created ScreenReaderAPI
             screenReaderAPI.Logger = logger;
 
-            // Start the thread used for refreshing the display
-            screenReaderAPI.StartBrailleDisplayThread();
-
             screenReaderAPI.screenReaderName = screenReaderAPI.GetScreenReaderNameImplementation();
             return screenReaderAPI;
         }

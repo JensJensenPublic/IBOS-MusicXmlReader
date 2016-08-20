@@ -13,29 +13,14 @@ namespace BrailleExperimentsUI
             model = new BrailleExperimentsUIModel(this.ListBoxRight, this.textBoxBraille);
         }
 
-
-        private void ListBoxLeft_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            model.MusicBrailleListBoxIndexChanged();
-        }
-
         private void ListBoxRight_SelectedIndexChanged(object sender, EventArgs e)
         {               
             model.TextBrailleListBoxIndexChanged();
         }
 
-        private void ListBoxLeft_Leave(object sender, EventArgs e)
-        {
-            model.FocusLost();
-        }
-
         private void ListBoxRight_Leave(object sender, EventArgs e)
         {
             model.FocusLost();
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {       
         }
 
         private void textBoxBraille_TextChanged(object sender, EventArgs e)

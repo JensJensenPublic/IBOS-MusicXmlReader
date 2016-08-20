@@ -55,25 +55,18 @@ namespace BrailleExperimentsUI
             return ((c >= 0x2800) && (c <= 0x28ff));
         }
 
-        public void RenderAsMusicBrailleChanged(bool newValue)
-        {
-            TraceLine(string.Format("RenderAsMusicBrailleChanged({0})", newValue));
-            renderAsMusicBraille = newValue;
-            if (isNVDA && (!newValue)) screenReaderAPI.StopRefreshing();
-        }
-
         public void FocusLost()
         {
             TraceLine("FocusLost");
-            if (isNVDA && (!ListBoxLeft.Focused) && (!ListBoxLeft.Focused))
+            if (isNVDA)
             {
                 screenReaderAPI.StopRefreshing();
             }
         }
 
-        public void MusicBrailleListBoxIndexChanged()
-        {   
-        }
+        //public void MusicBrailleListBoxIndexChanged()
+        //{   
+        //}
 
         public void TextBrailleListBoxIndexChanged()
         {

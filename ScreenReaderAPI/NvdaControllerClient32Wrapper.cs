@@ -23,6 +23,8 @@ namespace JSJ.ScreenReaderAPI
         // Prevent construction
         private NvdaControlerClient32Wrapper()
         {
+            // Start the thread used for refreshing the display
+            StartBrailleDisplayThread();
         }
 
         protected override bool SpeakImplementation(string s)
