@@ -42,6 +42,10 @@ namespace BrailleExperimentsUI
             return new BrailleExperimentsLineDescription(musicBrailleString, textBrailleString,"{0} {1}"); // Default, used in the JAWS care
         }
 
+        /// <summary>
+        /// This method is used by the Listbox when fetching text for a line
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return string.Format(format, musicBrailleString, textBrailleString);
@@ -55,6 +59,11 @@ namespace BrailleExperimentsUI
         public string ToTextBrailleString()
         {
             return textBrailleString;
+        }
+
+        public string ToMusicBrailleAndTextBrailleString()
+        {
+            return string.Format("{0} {1}", musicBrailleString, textBrailleString); 
         }
     }
 }

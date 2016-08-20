@@ -91,8 +91,8 @@ namespace BrailleExperimentsUI
             // It will show the prefix "lbX"
             // It will turn on dots 7 and 8 for all the characters
 
-            int append = 0; // Replace
-            int time = 1000; // Keep 
+            //int append = 0; // Replace
+            //int time = 1000; // Keep 
             // screenReaderAPI.Braille(ListBoxLeft.Items[selectedIndex].ToString(), true,append, time ); // This variant will also first show the automatic line for a moment
 
 
@@ -110,28 +110,41 @@ namespace BrailleExperimentsUI
 
         public void TextBrailleListBoxIndexChanged()
         {
-            if (!ListBoxRight.Focused) return; // Avoid looping
+            //if (!ListBoxRight.Focused) return; // Avoid looping
             selectedIndex = ListBoxRight.SelectedIndex;
             //ListBoxLeft.SelectedIndex = selectedIndex ;
-            string brailleText;
-            if (isNVDA || isDummy )
+            BrailleExperimentsLineDescription item = ListBoxRight.Items[selectedIndex] as BrailleExperimentsLineDescription;
+            textBoxBraille.Text = item.ToMusicBrailleString(); // Always show the MusicBraille in the textbox.
+            if (isNVDA)
             {
-                // In the NVDA case we expect that only the text Listbox is visible
-                // because we can't prevent the speak of "Braille 1 2 3 4 5 6 7 8" from the MusicBrailleListbox
-                // We must give the user an other way ofselecting what he wants to be brailled in that case.
-                ListBox listbox = (renderAsMusicBraille) ? ListBoxLeft : ListBoxRight;
-                brailleText = listbox.Items[selectedIndex].ToString();
-                screenReaderAPI.Braille(brailleText, true);
-                textBoxBraille.Text = renderAsMusicBraille ? brailleText : "";
+                // NVDA will read the MusicBraille characters as "Braille 1,2,3,4,5,6,7,8"
+                // So in the NVDA case the MusicBraille characters must NOT shown in the listbox.
+                // The MusicBraille characteres are thus not automatically shown on the Braille display.
+                // Instead we must explicitly write them to the Braille display:
+                screenReaderAPI.Braille(item.ToMusicBrailleAndTextBrailleString(),true);
             }
-            else
-            {
-                ListBox listbox = ListBoxLeft;
-                brailleText = listbox.Items[selectedIndex].ToString();
-                //screenReaderAPI.Braille(brailleText, true); // The preferred solution !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                //screenReaderAPI.Braille(brailleText,true, 0, 5000);
-                textBoxBraille.Text = brailleText;
-            }
+
+            //if (isNVDA || isDummy )
+            //{
+            //    //    // In the NVDA case we expect that only the text Listbox is visible
+            //    //    // because we can't prevent the speak of "Braille 1 2 3 4 5 6 7 8" from the MusicBrailleListbox
+            //    //    // We must give the user an other way ofselecting what he wants to be brailled in that case.
+            //    //    ListBox listbox = (renderAsMusicBraille) ? ListBoxLeft : ListBoxRight;
+            //    //    brailleText = listbox.Items[selectedIndex].ToString();
+            //    //    screenReaderAPI.Braille(brailleText, true);
+            //    //    //textBoxBraille.Text = renderAsMusicBraille ? brailleText : "";
+            //    //    (ListBoxRight.Items[selectedIndex] as BrailleExperimentsLineDescription = (ListBoxRight.Items[selectedIndex] as BrailleExperimentsLineDescription).ToMusicBrailleString();
+
+            
+            //}
+            //else
+            //{
+            //    ListBox listbox = ListBoxLeft;
+            //    brailleText = listbox.Items[selectedIndex].ToString();
+            //    //screenReaderAPI.Braille(brailleText, true); // The preferred solution !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //    //screenReaderAPI.Braille(brailleText,true, 0, 5000);
+            //    textBoxBraille.Text = brailleText;
+            //}
           
         }
 
@@ -142,13 +155,15 @@ namespace BrailleExperimentsUI
         private bool isNVDA;
         private bool isJAWS;
         private bool isDummy;
+         
 
 
-        private void add(string musicBraille, string textBraille)
+        private void add(string musicBraille, string textBraille, string format)
         {
             ListBoxLeft.Items.Add(musicBraille);
             //ListBoxRight.Items.Add(textBraille);
-            ListBoxRight.Items.Add(string.Format("{0} {1}",musicBraille,textBraille));
+            //ListBoxRight.Items.Add(string.Format("{0} {1}",musicBraille,textBraille));
+            ListBoxRight.Items.Add(BrailleExperimentsLineDescription.Create(musicBraille, textBraille, format));
         }
 
         /// <summary>
@@ -163,6 +178,7 @@ namespace BrailleExperimentsUI
             isNVDA = (screenReaderAPI.GetScreenReaderType() == ScreenReaderAPI.ScreenReaderType.NVDA);
             isJAWS = (screenReaderAPI.GetScreenReaderType() == ScreenReaderAPI.ScreenReaderType.JAWS);
             isDummy = (screenReaderAPI.GetScreenReaderType() == ScreenReaderAPI.ScreenReaderType.Dummy);
+            string format = isNVDA ? "{1}" : "{0} {1}"; // Might later depend on screenReaderAPI.GetScreenReaderType()
 
             this.ListBoxLeft.Visible = !isNVDA;
             checkBoxbrailleSelector.Visible = isNVDA;
@@ -172,7 +188,7 @@ namespace BrailleExperimentsUI
 
             for (int i = 0; (i < 256); i++)
             {
-                add(new StringBuilder().Append(ToBraille(i), 4).ToString(),string.Format("L{0}", i));
+                add(new StringBuilder().Append(ToBraille(i), 4).ToString(),string.Format("L{0}", i),format);
             }
             
         }
