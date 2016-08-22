@@ -100,33 +100,16 @@ namespace MusicXmlReaderUI
             {
 
                 EventDescription eventDescription = selectedObject as EventDescription;
-
-                screenReaderAPI.Silence(); // Prevent overloading the internal queue in NVDA when rapidly changing between different events          
-
-                // Experimental code, used when displaying Braille code in the listbox: 
-                //int speekTextResult = NvdaControllerClientWrapper.nvdaController_speakText(eventDescription.ToNormalTextString());
-
-                string text = eventDescription.ToString();          // The text currently shown on the visual display
-                List<byte> bytes = eventDescription.ToBraille();    // The Braille pattern to show on the Braill display
-
-
-                //// Experimental code for accessing a Freedom Scientific display directly, bypassing NVDA. Works.
-
-                //// byte[] byteArray = bytes.ToArray();
-                //// Write these bytes to the Braille display
-                //// if (byteArray.Length > 0)
-                //// {
-                ////     fSBrlDspAPIWrapper.Write(byteArray);
-                //// }
-
-                string musicBrailleString = BytesToString(bytes, displaySize);
-
-                //musicBrailleTextBox.Text = musicBrailleString;  // Write to the Windows Forms control for visualizing Braille on the PC screen      
-                //nvda.BrailleMessage(musicBrailleString);        // Write to the physical Braille Display device through nvda
-                //Tolk.Braille(musicBrailleString);  // Write to the physical Braille Display device through Tolk (Which again uses either JAWS or NVDA)
-                screenReaderAPI.Braille(musicBrailleString, true);  // Write to the physical Braille Display device through screenReaderAPI (Which again uses either JAWS or NVDA)
-                musicBrailleTextBox.Text = musicBrailleString;  // Write to the Windows Forms control for visualizing Braille on the PC screen      
-
+                musicBrailleTextBox.Text = eventDescription.ToMusicBrailleString();
+                screenReaderAPI.Silence(); // Prevent overloading the internal queue in NVDA when rapidly changing between different events                  
+                if (ScreenReaderAPI.ScreenReaderType.NVDA == screenReaderAPI.GetScreenReaderType())
+                {
+                    // NVDA will read the MusicBraille characters as "Braille 1,2,3,4,5,6,7,8"
+                    // So in the NVDA case the MusicBraille characters must NOT shown in the listbox.
+                    // The MusicBraille characteres are thus not automatically shown on the Braille display.
+                    // Instead we must explicitly write them to the Braille display:
+                    screenReaderAPI.Braille(eventDescription.ToMusicBrailleAndTextBrailleString(), true);
+                }  
             }
             else
             {

@@ -15,6 +15,8 @@ namespace MusicXmlReaderUI
 
         // All of these settings are just for exchanging simple information.
         // No need to make the coad less readable by making them private etc:
+        public string defaultStringFormat = "{0} {1}";
+
 
         // Arrays for controlling individual parts
         public bool[] partsToPlay; // Play the note values from these partitions

@@ -426,18 +426,42 @@ namespace MusicXmlReaderUI
         
     }
 
+        ///// <summary>
+        ///// This extra indirection allows for selecting either MusicBraille or Normal text dynammically
+        ///// </summary>
+        ///// <returns></returns>
+        //public override string ToString()
+        //{
+        //    //return "1";
+        //    //return null;
+        //    return ToNormalTextString();
+        //    //return ToMusicBrailleString();
+        //}
+
+        //******************
         /// <summary>
-        /// This extra indirection allows for selecting either MusicBraille or Normal text dynammically
+        /// This method is used by the Listbox when fetching text for a line
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            //return "1";
-            //return null;
-            return ToNormalTextString();
-            //return ToMusicBrailleString();
+            string mb = ToMusicBrailleString();
+            string nt = ToNormalTextString();
+            return string.Format(userSettings.defaultStringFormat, mb,nt);
         }
-                
+
+
+        public string ToMusicBrailleAndTextBrailleString()
+        {
+            string mb = ToMusicBrailleString();
+            string nt = ToNormalTextString();
+            return string.Format("{0} {1}", mb, nt);
+        }
+
+
+        //********        
+
+
 
         public string ToNormalTextString()
         {
