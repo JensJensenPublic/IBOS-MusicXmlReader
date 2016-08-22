@@ -104,7 +104,6 @@
     <Compile Include="EventDescription.cs" />
     <Compile Include="TimeDescriptionList.cs" />
     <Compile Include="TimeElement.cs" />
-    <Compile Include="Tolk.cs" />
     <Compile Include="UnimplementedElement.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="Utilities.cs" />

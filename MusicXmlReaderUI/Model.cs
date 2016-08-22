@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using NAudio.Midi;
 using System.Windows.Forms;
 using System.Xml;
-using DavyKager; // Tolk
 using JSJ.ScreenReaderAPI;
 
 namespace MusicXmlReaderUI
@@ -309,36 +308,6 @@ namespace MusicXmlReaderUI
                         return ok;
         }
 
-        private bool LoadTolk()
-        {
-            bool result = false;
-            try
-            {
-                Tolk.Load();
-                bool isLoaded = Tolk.IsLoaded();
-                Log(string.Format("Tolk.IsLoaded() returned {0}", isLoaded));
-                string screenReader = Tolk.DetectScreenReader();
-                if (null == screenReader)
-                {
-                    return false;
-                }
-                Log(string.Format("Tolk.DetectScreenReader found {0}", (screenReader == null) ? "No screenreader" : screenReader));
-                if (Tolk.HasSpeech())
-                {
-                    Console.WriteLine("This screen reader driver supports speech");
-                }
-                if (Tolk.HasBraille())
-                {
-                    Console.WriteLine("This screen reader driver supports braille");
-                }
-                result = true;
-            }
-            catch (Exception e)
-            {
-                Log(string.Format("Tolk.Load threw and exception: {0}", e.Message));
-            }
-            return result;
-        }
 
         /// <summary>
         /// To use a console in a Windows Forms application change:
