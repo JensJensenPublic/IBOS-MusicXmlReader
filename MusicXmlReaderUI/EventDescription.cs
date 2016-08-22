@@ -39,15 +39,7 @@ namespace MusicXmlReaderUI
         private List<ClefElement>  clefElements;     // The ClefElements related to this event, if any
         private List<TimeElement> timeElements;     // The TimeElements related to this event, if any
 
-        //public NoteElement[] Notes // TO DO: Remove Notes. Use NoteLists instead!!
-        //{
-        //    get
-        //    {
-        //        return notes;
-        //    }
-        //}
-
-        public int StartTime
+         public int StartTime
         {
             get
             {
@@ -426,19 +418,6 @@ namespace MusicXmlReaderUI
         
     }
 
-        ///// <summary>
-        ///// This extra indirection allows for selecting either MusicBraille or Normal text dynammically
-        ///// </summary>
-        ///// <returns></returns>
-        //public override string ToString()
-        //{
-        //    //return "1";
-        //    //return null;
-        //    return ToNormalTextString();
-        //    //return ToMusicBrailleString();
-        //}
-
-        //******************
         /// <summary>
         /// This method is used by the Listbox when fetching text for a line
         /// </summary>
@@ -457,11 +436,6 @@ namespace MusicXmlReaderUI
             string nt = ToNormalTextString();
             return string.Format("{0} {1}", mb, nt);
         }
-
-
-        //********        
-
-
 
         public string ToNormalTextString()
         {

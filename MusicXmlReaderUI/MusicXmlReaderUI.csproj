@@ -87,7 +87,6 @@
     <Compile Include="MusicPlayer.cs" />
     <Compile Include="MusicXmlObject.cs" />
     <Compile Include="NoteElement.cs" />
-    <Compile Include="NvdaControllerClientWrapper.cs" />
     <Compile Include="PartDescriptionList.cs" />
     <Compile Include="PartElement.cs" />
     <Compile Include="PartlistElement.cs" />

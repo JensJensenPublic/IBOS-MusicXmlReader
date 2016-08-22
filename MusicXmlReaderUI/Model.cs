@@ -258,53 +258,6 @@ namespace MusicXmlReaderUI
             }
         }
 
-        /// <summary>
-        /// Checks the functionality of NVDA nvdaControllerClient
-        /// All entries in the logfile are in English
-        /// All speach must be localized! TODO
-        /// </summary>
-        /// <returns>false on first failure, true if everything succeds</returns>
-        private bool LogNvdaInterface()
-        {
-            try
-            {
-                // First check if the nvdaControllerClient32.dll is found in the execution directory. TODO
-                string fileName = "nvdaControllerClient32.dll";
-                string fullFileName = Path.Combine(Environment.CurrentDirectory, fileName);
-                if (!File.Exists(fullFileName))
-                {
-                    Log(string.Format("{0} is not found. NVDA ScreenReader can not be controlled through NVDA ControllerClient", fullFileName));
-                    return false;
-                }
-                NvdaControllerClientWrapper nvda = NvdaControllerClientWrapper.Create();
-
-                uint errorCode;
-                bool resRunning = nvda.TestIfRunning(out errorCode);
-                Log(string.Format("NVDA ControllerServer for NVDA ControllerClient is{0}running.", (!resRunning) ? " NOT " : " "));
-                if (!resRunning)
-                {
-                    if (errorCode != 1722) // 1722 is the expected error in this case : "RPC server is not available. 
-                    {
-                        Log(string.Format("NvdaControllerClientWrapper.nvdaController_testIfRunning() failed WINERROR={0}", resRunning));
-                    }        
-                    return false;
-                }
-
-                System.Threading.Thread.Sleep(2000); // Allow the previous speach to propagate through the system
-                nvda.SpeakText("N V D A ControllerClient");
-                System.Threading.Thread.Sleep(2000); // Allow the speach to propagate through the system
-                nvda.TempBrailleMessage("Braille"); //  Do notstart frefreshing the display
-                nvda.CancelSpeech();                
-            }
-            catch (Exception e)
-            {
-                Log(string.Format("LogNvdaInterface() threw an exception: {0}",e.Message));
-                return false;
-            }
-            return true;
-
-        }         
-
 
         /// <summary>
         /// Stops on any error and returns false
