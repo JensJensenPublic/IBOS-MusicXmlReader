@@ -54,7 +54,12 @@ namespace MusicXmlReaderUI
                         Model.Log(string.Format(midiInstrumentElement.ToString())); // Not of interest for the normal user !
                         break;        
                 }
-            } 
+            }
+
+            if (null == midiInstrumentElement)
+            {
+                midiInstrumentElement = MidiInstrumentElement.CreateDefault();
+            }
             
         }
 

@@ -7,7 +7,7 @@ namespace MusicXmlReaderUI
         private string id;
         private int midiProgram = 1; // Use Grand Acoustic Piano as default
         private int midiChannel = 1; // Use midi channel 1 as default
-        private float midiVolume;
+        private float midiVolume = 127 ; // Use midi volume 127 as default
         private string pan;
 
         public int MidiChannel
@@ -38,7 +38,9 @@ namespace MusicXmlReaderUI
         /// To force the use of the Create() method
         /// </summary>
         private MidiInstrumentElement()
-        { }
+        {
+            Model.Log(string.Format("Creating default MidiInstrumentElement: midiProgram={0} midiChannel={1} midiVolume={2}", midiProgram, midiChannel, midiVolume));
+        }
 
         /// <summary>
         /// Private constructor, used by the Crate() method
@@ -99,6 +101,11 @@ namespace MusicXmlReaderUI
         public static MidiInstrumentElement Create(XmlNode node)
         {
             return new MidiInstrumentElement(node);
+        }
+
+        public static MidiInstrumentElement CreateDefault()
+        {
+            return new MidiInstrumentElement();
         }
 
         public override string ToString()
