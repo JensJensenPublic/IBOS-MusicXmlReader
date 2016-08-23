@@ -218,11 +218,18 @@ namespace MusicXmlReaderUI
         public void AddRest(string type, bool punctured) // ********************* FIX ! Temp signature
         {
             int typeIndex = GetTypeIndex(type);
-            byte rest = rests[typeIndex];
-            braille.Add(rest);
-            if (punctured) braille.Add(Dot);
+            if ((typeIndex < 0) || (typeIndex >= rests.Length))
+            {
+                Model.Log(string.Format("BrailleBuilder.AddRest: Skipping invalid type: {0}", type));
+            }
+            else
+            {
+                byte rest = rests[typeIndex];
+                braille.Add(rest);
+                if (punctured) braille.Add(Dot);
+            }
         }
-                
+
 
         public void AddFinger(Hand hand, int finger)
         {
