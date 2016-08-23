@@ -196,7 +196,7 @@ namespace MusicXmlReaderUI
         private void listBoxTimes_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = listBoxTimes.SelectedIndex;
-            Model.Trace(string.Format("ListBoxTimes_SelectedIndexChanged(i={0})", index));
+            // Model.Trace(string.Format("ListBoxTimes_SelectedIndexChanged(i={0})", index));
             object o = listBoxTimes.Items[index];
             model.musicPlayer.SelectedIndexChanged(index, o);
             model.brailleDisplayer.SelectedIndexChanged(index, o);
