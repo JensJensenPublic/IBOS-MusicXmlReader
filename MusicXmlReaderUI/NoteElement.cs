@@ -27,6 +27,7 @@ namespace MusicXmlReaderUI
         bool dot = false;
         int divisions = 0; 
         TieElement tieElement;             // A NoteElement may contain a nested TieElement  (Danish: "Bindebue")
+        RestElement restElement;   // A NoteElement may contain a nested RestElement
         NotationsElement notations; // A NoteElement may contain a nested NotationsElement 
         bool graceNote;  
         string tieType = ""; // Is this note tied to another note
@@ -419,7 +420,13 @@ namespace MusicXmlReaderUI
                         break;
                     case "beam": // TO DO: Find out what to do here                                                
                         break;
-                    case "rest": // TO DO: Find out what to do here                                                
+                    case "rest":
+                        //The RestElement is just a cleaner way of specifying a rest/pause instead of using a noteElement with no pitch! 
+                        restElement = RestElement.Create(child);
+                        if (restElement.MeasureAttributeValue == "yes")
+                        {
+                            type = "whole"; // This Rest covers a full measure
+                        }                  
                         break;
                     case "accidental": // TO DO: Find out what to do here                                                
                         break;
