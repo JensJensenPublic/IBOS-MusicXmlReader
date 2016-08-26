@@ -11,7 +11,7 @@ namespace MusicXmlReaderUI
 {
     class BrailleBuilder
     {
-
+        // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-articulations.htm
         // https://en.wikipedia.org/wiki/Braille_music
         // https://www.rnib.org.uk/sites/default/files/New%20International%20Manual.pdf
 
@@ -187,6 +187,43 @@ namespace MusicXmlReaderUI
             return new byte[] { 8, 8 };
         }
 
+        
+        public void AddNotationsBeforeNote(NotationsElement notations) // Some notations are added Before the note itself
+        {
+            if (null == notations) return;
+            if (null == notations.Articulations) return;
+            const string function = "BrailleBuilder.AddNotationsBeforeNote";
+            foreach (ArticulationsElement.Articulation articulation in notations.Articulations.ArticulationList)
+            {
+                bool implemented = true; 
+                switch (articulation)
+                {
+                    // Cases are shown in the same saquence as in the MusicXml definition:
+                    case ArticulationsElement.Articulation.accent:          Braille.AddRange(Accent); break;
+                    case ArticulationsElement.Articulation.breathmark:      implemented = false; break;
+                    case ArticulationsElement.Articulation.caesura:         implemented = false; break;
+                    case ArticulationsElement.Articulation.detachedlegato:  implemented = false; break;
+                    case ArticulationsElement.Articulation.doit:            implemented = false; break;
+                    case ArticulationsElement.Articulation.falloff:         implemented = false; break;
+                    case ArticulationsElement.Articulation.otherarticulation: implemented = false; break;
+                    case ArticulationsElement.Articulation.plop:            implemented = false; break;
+                    case ArticulationsElement.Articulation.scoop:           implemented = false; break;
+                    case ArticulationsElement.Articulation.spiccato:        implemented = false; break;
+                    case ArticulationsElement.Articulation.staccatissimo:   Braille.AddRange(Staccatissimo); break;
+                    case ArticulationsElement.Articulation.staccato:        Braille.Add(Staccato); break;
+                    case ArticulationsElement.Articulation.stress:          implemented = false; break;
+                    case ArticulationsElement.Articulation.strongaccent:    implemented = false; break;
+                    case ArticulationsElement.Articulation.tenuto:          Braille.AddRange(Tenuto); break;
+                    case ArticulationsElement.Articulation.unstress:        implemented = false; break;    
+                    default:
+                        Model.Log(string.Format("{0}: Unknown articulation: '{1}'",function, articulation)); break;
+                }
+                if (!implemented)
+                {
+                    Model.Log(string.Format("{0}: Unimplemented articulation: '{1}'",function, articulation));
+                }
+            }
+        }
 
 
         /// <summary>

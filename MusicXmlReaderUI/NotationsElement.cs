@@ -14,7 +14,17 @@ namespace MusicXmlReaderUI
         // http://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-notations.htm
 
         private SlurElement slurElement;
-        private ArticulationsElement articulationsElement;
+
+        private ArticulationsElement articulations;
+
+        internal ArticulationsElement Articulations
+        {
+            get
+            {
+                return articulations;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -48,7 +58,7 @@ namespace MusicXmlReaderUI
                 switch (child.Name)
                 {
                     case "slur": slurElement = SlurElement.Create(child); break;
-                    case "articulations": articulationsElement = ArticulationsElement.Create(child); break;
+                    case "articulations": articulations = ArticulationsElement.Create(child); break;
                     case "footnote":
                     case "level":
                     case "accidental-mark":

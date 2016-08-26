@@ -45,6 +45,10 @@ namespace MusicXmlReaderUI
                         Utilities.Parse(a.Value, ref numberLevel, 1, 6, "SlurElement:",false);
                         break;
 
+                    // Explicitly ignire the following
+                    case "relative-x": break;
+                    case "relative-y": break;
+
                     default:
                         Model.Log(string.Format("SlurElement: Unknown attribute name '{0}'", a.Name));
                         break;

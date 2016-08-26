@@ -15,12 +15,12 @@ namespace MusicXmlReaderUI
         private ArticulationsElement()
         { }
 
-        private List<Articulation> articulations = new List<Articulation>();
-        public  List<Articulation> Articulations
+        private List<Articulation> articulationList = new List<Articulation>();
+        public List<Articulation> ArticulationList
         {
             get
             {
-                return articulations;
+                return articulationList;
             }
         }
 
@@ -54,22 +54,22 @@ namespace MusicXmlReaderUI
             {
                 switch (child.Name)
                 {
-                    case "accent": articulations.Add(Articulation.accent); break;
-                    case "breath-mark": articulations.Add(Articulation.breathmark); break;
-                    case "caesura": articulations.Add(Articulation.caesura); break;
-                    case "detached - legato": articulations.Add(Articulation.detachedlegato); break;
-                    case "doit": articulations.Add(Articulation.doit); break;
-                    case "falloff": articulations.Add(Articulation.falloff); break;
-                    case "other-articulation": articulations.Add(Articulation.otherarticulation); break;
-                    case "plop": articulations.Add(Articulation.plop); break;
-                    case "scoop": articulations.Add(Articulation.scoop); break;
-                    case "spiccato": articulations.Add(Articulation.spiccato); break;
-                    case "staccatissimo": articulations.Add(Articulation.staccatissimo); break;
-                    case "staccato": articulations.Add(Articulation.staccato); break;
-                    case "stress": articulations.Add(Articulation.stress); break;
-                    case "strong-accent": articulations.Add(Articulation.strongaccent); break;
-                    case "tenuto": articulations.Add(Articulation.tenuto); break;
-                    case "unstress": articulations.Add(Articulation.unstress); break; 
+                    case "accent": articulationList.Add(Articulation.accent); break;
+                    case "breath-mark": articulationList.Add(Articulation.breathmark); break;
+                    case "caesura": articulationList.Add(Articulation.caesura); break;
+                    case "detached - legato": articulationList.Add(Articulation.detachedlegato); break;
+                    case "doit": articulationList.Add(Articulation.doit); break;
+                    case "falloff": articulationList.Add(Articulation.falloff); break;
+                    case "other-articulation": articulationList.Add(Articulation.otherarticulation); break;
+                    case "plop": articulationList.Add(Articulation.plop); break;
+                    case "scoop": articulationList.Add(Articulation.scoop); break;
+                    case "spiccato": articulationList.Add(Articulation.spiccato); break;
+                    case "staccatissimo": articulationList.Add(Articulation.staccatissimo); break;
+                    case "staccato": articulationList.Add(Articulation.staccato); break;
+                    case "stress": articulationList.Add(Articulation.stress); break;
+                    case "strong-accent": articulationList.Add(Articulation.strongaccent); break;
+                    case "tenuto": articulationList.Add(Articulation.tenuto); break;
+                    case "unstress": articulationList.Add(Articulation.unstress); break; 
                     default:
                         Model.Log(string.Format("ArticulationsElement: Unknown articulation {0}", node.Name));
 
@@ -86,7 +86,7 @@ namespace MusicXmlReaderUI
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder("Articulations:");
-            foreach (Articulation a in articulations)
+            foreach (Articulation a in articulationList)
             {
                 sb.Append(" " + a );
             }
