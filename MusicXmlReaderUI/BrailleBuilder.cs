@@ -11,9 +11,10 @@ namespace MusicXmlReaderUI
 {
     class BrailleBuilder
     {
-        // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-articulations.htm
-        // https://en.wikipedia.org/wiki/Braille_music
-        // https://www.rnib.org.uk/sites/default/files/New%20International%20Manual.pdf
+        // References:
+        // Ref.1: http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-articulations.htm
+        // Ref.2: https://en.wikipedia.org/wiki/Braille_music
+        // Ref.3: https://www.rnib.org.uk/sites/default/files/New%20International%20Manual.pdf
 
         //public enum Constant
         //{
@@ -60,6 +61,8 @@ namespace MusicXmlReaderUI
         public static readonly byte[] TenutoStaccato = new byte[] { 16, 38 };// Articulation mark
         public static readonly byte[] Accent = new byte[] { 24, 38 };// Articulation mark
         public static readonly byte[] Martellato = new byte[] { 48, 38 };// Articulation mark
+        public static readonly byte[] CommaHalfBreath = new byte[] { 28, 2 };     //  Articulation mark Ref.3 Page 268
+        public static readonly byte[] FullBreakOrBreath = new byte[] { 32, 12 };  //  Articulation mark Ref.3 Page 268
         public static readonly byte[] Swell = new byte[] { 33, 4 };// Articulation mark
         public static readonly byte[] FermatoOnNote = new byte[] { 57 };
         public static readonly byte[] FermataBetweenNotes = new byte[] { 16, 35, 7 };
@@ -200,7 +203,7 @@ namespace MusicXmlReaderUI
                 {
                     // Cases are shown in the same saquence as in the MusicXml definition:
                     case ArticulationsElement.Articulation.accent:          Braille.AddRange(Accent); break;
-                    case ArticulationsElement.Articulation.breathmark:      implemented = false; break;
+                    case ArticulationsElement.Articulation.breathmark:      Braille.AddRange(CommaHalfBreath);  break;
                     case ArticulationsElement.Articulation.caesura:         implemented = false; break;
                     case ArticulationsElement.Articulation.detachedlegato:  implemented = false; break;
                     case ArticulationsElement.Articulation.doit:            implemented = false; break;

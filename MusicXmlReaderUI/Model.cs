@@ -285,7 +285,8 @@ namespace MusicXmlReaderUI
                 {
                     metaInfoStrings = new List<string>(); // Reset Meta Information
                     metaInfoStrings.Add(Path.GetFileName(fullXmlFileName)); // Guarentees that some meta information exists
-                    Log(string.Format("Loaded {0}", fullXmlFileName));
+                    Log(string.Format("Loaded '{0}'", Path.GetFileName(fullXmlFileName)));
+                    Log(string.Format("From   '{0}'", Path.GetDirectoryName(fullXmlFileName)));
                     allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file
                     Recurse(doc.ChildNodes);                          // Build  the list holding all MusicXml elements read from file
                     Log(string.Format("Parsed {0}", xmlFileName));
