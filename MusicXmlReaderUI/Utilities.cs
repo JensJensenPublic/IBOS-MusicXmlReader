@@ -241,6 +241,7 @@ namespace MusicXmlReaderUI
                 result &= CheckDll("MusicSynthesis.dll",directory, false);
                 result &= CheckDll("fsapi.dll", directory, false); // This seems to be the right JAWS interface in the  32 bit case 
                 result &= CheckDll("FsBrlDspApi.dll", directory, false);
+
             }
 
             // result = false; // Used during test only !!
