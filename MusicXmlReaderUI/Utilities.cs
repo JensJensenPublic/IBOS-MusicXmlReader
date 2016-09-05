@@ -230,6 +230,7 @@ namespace MusicXmlReaderUI
                 result &= CheckDll("nvdaControllerClient64.dll", directory, true);
                 result &= CheckDll("NAudio.dll", directory, true);
                 result &= CheckDll("MusicSynthesis.dll", directory, true);
+                result &= CheckDll("FsBrlDspApi.dll", directory, true);
             }
             else
             {
@@ -239,6 +240,7 @@ namespace MusicXmlReaderUI
                 result &= CheckDll("NAudio.dll", directory, false);
                 result &= CheckDll("MusicSynthesis.dll",directory, false);
                 result &= CheckDll("fsapi.dll", directory, false); // This seems to be the right JAWS interface in the  32 bit case 
+                result &= CheckDll("FsBrlDspApi.dll", directory, false);
             }
 
             // result = false; // Used during test only !!

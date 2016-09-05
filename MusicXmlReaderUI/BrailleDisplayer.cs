@@ -38,7 +38,7 @@ namespace MusicXmlReaderUI
             this.displaySize = displaySize;
             this.screenReaderAPI = screenReaderAPI;
             fSBrlDspAPIWrapper = FSBrlDspAPIWrapper.Create(); // For direct access to physical Braille Display
-            fSBrlDspAPIWrapper.Open();
+            // fSBrlDspAPIWrapper.Open(); // TODO Insert this line again after placing FSBrlDspApi.dll in the 3.Party directory.
             // nvda = NvdaControllerClientWrapper.Create(); // For access to physical Braille Display through NVDA 
             emptyBrailleString = new StringBuilder().Append(UnicodeBrailleBase, displaySize).ToString();
 
