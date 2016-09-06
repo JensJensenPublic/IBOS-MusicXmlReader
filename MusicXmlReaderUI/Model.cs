@@ -331,12 +331,26 @@ namespace MusicXmlReaderUI
             }
         }
 
+        void OnProcessExit(object sender, EventArgs e)
+        {
+            try
+            {
+                musicPlayer.StopPlaying();
+                Model.Log("The application is exiting");
+            }
+            catch (Exception)
+            {
+                // Ignore any errorsat this point!
+            } 
+        }
+
 
         /// <summary>
         /// Constructor
         /// </summary>
         public Model(ListBox listBoxPoly, TextBox textBoxMusicBraille)
         {
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
             is64Bit = IntPtr.Size == 8;
@@ -375,7 +389,7 @@ namespace MusicXmlReaderUI
 
             //DeviceInfo.LogDeviceInfo();
         }
- 
+
         /// <summary>
         /// Handels the syntax analysis of an XML node representing a MusicXML element while reading the MusicXML file.
         /// </summary>
