@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBoxTimes = new System.Windows.Forms.ListBox();
-            this.listBoxFiltered = new System.Windows.Forms.ListBox();
             this.Stop = new System.Windows.Forms.Button();
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.numericUpDownPlaySpeed = new System.Windows.Forms.NumericUpDown();
@@ -100,26 +99,15 @@
             this.listBoxTimes.AccessibleName = "";
             this.listBoxTimes.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxTimes.FormattingEnabled = true;
-            this.listBoxTimes.Location = new System.Drawing.Point(257, 77);
+            this.listBoxTimes.Location = new System.Drawing.Point(12, 77);
             this.listBoxTimes.Name = "listBoxTimes";
-            this.listBoxTimes.Size = new System.Drawing.Size(574, 407);
+            this.listBoxTimes.Size = new System.Drawing.Size(819, 407);
             this.listBoxTimes.TabIndex = 1;
             this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
             // 
-            // listBoxFiltered
-            // 
-            this.listBoxFiltered.AccessibleDescription = "Metainformation";
-            this.listBoxFiltered.AccessibleName = "Metainformation";
-            this.listBoxFiltered.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.listBoxFiltered.FormattingEnabled = true;
-            this.listBoxFiltered.Location = new System.Drawing.Point(12, 77);
-            this.listBoxFiltered.Name = "listBoxFiltered";
-            this.listBoxFiltered.Size = new System.Drawing.Size(239, 407);
-            this.listBoxFiltered.TabIndex = 4;
-            // 
             // Stop
             // 
-            this.Stop.Location = new System.Drawing.Point(350, 53);
+            this.Stop.Location = new System.Drawing.Point(93, 52);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(75, 23);
             this.Stop.TabIndex = 3;
@@ -143,7 +131,7 @@
             0,
             0,
             0});
-            this.numericUpDownPlaySpeed.Location = new System.Drawing.Point(440, 55);
+            this.numericUpDownPlaySpeed.Location = new System.Drawing.Point(174, 55);
             this.numericUpDownPlaySpeed.Maximum = new decimal(new int[] {
             200,
             0,
@@ -167,7 +155,7 @@
             // 
             // butonPlayPoly
             // 
-            this.butonPlayPoly.Location = new System.Drawing.Point(257, 52);
+            this.butonPlayPoly.Location = new System.Drawing.Point(12, 52);
             this.butonPlayPoly.Name = "butonPlayPoly";
             this.butonPlayPoly.Size = new System.Drawing.Size(75, 23);
             this.butonPlayPoly.TabIndex = 2;
@@ -614,11 +602,11 @@
             // textBoxBraille
             // 
             this.textBoxBraille.BackColor = System.Drawing.Color.Black;
-            this.textBoxBraille.Font = new System.Drawing.Font("BrailleUnicode6", 36F);
+            this.textBoxBraille.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F);
             this.textBoxBraille.ForeColor = System.Drawing.Color.White;
-            this.textBoxBraille.Location = new System.Drawing.Point(257, 490);
+            this.textBoxBraille.Location = new System.Drawing.Point(12, 490);
             this.textBoxBraille.Name = "textBoxBraille";
-            this.textBoxBraille.Size = new System.Drawing.Size(574, 68);
+            this.textBoxBraille.Size = new System.Drawing.Size(819, 62);
             this.textBoxBraille.TabIndex = 34;
             this.textBoxBraille.TabStop = false;
             this.textBoxBraille.TextChanged += new System.EventHandler(this.textBoxBraille_TextChanged);
@@ -665,7 +653,6 @@
             this.Controls.Add(this.numericUpDownPlaySpeed);
             this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.Stop);
-            this.Controls.Add(this.listBoxFiltered);
             this.Controls.Add(this.listBoxTimes);
             this.Controls.Add(this.menuStripFile);
             this.KeyPreview = true;
@@ -683,7 +670,6 @@
 
         #endregion
         private System.Windows.Forms.ListBox listBoxTimes;
-        private System.Windows.Forms.ListBox listBoxFiltered;
         private System.Windows.Forms.Button Stop;
         private System.Windows.Forms.TextBox textBoxMessage;
         private System.Windows.Forms.NumericUpDown numericUpDownPlaySpeed;

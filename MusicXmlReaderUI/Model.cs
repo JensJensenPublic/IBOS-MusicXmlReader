@@ -15,7 +15,6 @@ namespace MusicXmlReaderUI
         bool is64Bit; // This program is compiled and for the following architechture: false:x86 true:x64 
         List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
         MidiOut midiOut;
-        ListBox listBoxParts; // Lists elements grouped per part
         ListBox listBoxPoly; // Lists elements grouped per time
         public MusicPlayer musicPlayer;
         public BrailleDisplayer brailleDisplayer;
@@ -292,7 +291,6 @@ namespace MusicXmlReaderUI
                     Log(string.Format("Parsed {0}", xmlFileName));
                     Init(); // Experimental code !!                   // TO DO move rest of this {} into Init !
                     Log(string.Format("Initialized all components"));
-                    LoadListBox();
                     theMusicXmlFileName = fullXmlFileName;
                 }
                 else
@@ -329,7 +327,7 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// Constructor
         /// </summary>
-        public Model(ListBox listBox, ListBox listBoxPoly, TextBox textBoxMusicBraille)
+        public Model(ListBox listBoxPoly, TextBox textBoxMusicBraille)
         {
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
@@ -347,14 +345,13 @@ namespace MusicXmlReaderUI
             Utilities.CheckScreenReader(!string.IsNullOrEmpty(screenReaderAPI.GetScreenReaderDllName()), ApplicationName); // Check for DummyScreenReader
 
             midiOut = new MidiOut(0);
-            musicPlayer = new MusicPlayer(listBox, listBoxPoly,midiOut);
+            musicPlayer = new MusicPlayer(listBoxPoly,midiOut);
             int displaySize = 14;
             brailleDisplayer = BrailleDisplayer.Create(textBoxMusicBraille, displaySize, screenReaderAPI); // TODO Get the real displaysize from somewhere
             Model.Log(string.Format("Model: Assuming size of physical Braille display = {0}", displaySize));
 
             //musicPlayer.ChangeInstrument(20); // Church Organ
 
-            this.listBoxParts = listBox;
             this.listBoxPoly = listBoxPoly;
 
             //Model.Log(string.Format("listBoxPoly.AccessibleDefaultActionDescription={0}", listBoxPoly.AccessibleDefaultActionDescription));
@@ -671,22 +668,7 @@ namespace MusicXmlReaderUI
         // Event handlers called directly from the GUI and distributing control to other objects.
         //*****************************************************************************************
 
-        public void LoadListBox()
-        {
-            listBoxParts.Items.Clear();
-            foreach (MusicXmlObject musicXmlObject in allMusicXmlObjecsts)
-            {
-                {
-                    // Add ALL objects to make it possible to browse manually through them
-                    // During auto-play only node items (including pauses) will be selected to allow for correct timing!
-                    if (!(musicXmlObject is MeasureElement))
-                    {
-                        listBoxParts.Items.Add(musicXmlObject);
-                    }
-                }
-            }
-        }
-
+ 
 
         public void StartPlayingMono()
         {

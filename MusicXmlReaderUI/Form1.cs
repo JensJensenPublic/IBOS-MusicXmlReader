@@ -25,24 +25,13 @@ namespace MusicXmlReaderUI
         {
             InitializeComponent();     
             if (!showTimes) listBoxTimes.Hide();
-            model = new Model(listBoxFiltered, listBoxTimes,textBoxBraille);
+            model = new Model(listBoxTimes,textBoxBraille);
             this.Text = model.ApplicationName;
-            listBoxFiltered.SelectedIndexChanged += new EventHandler(SelectedIndexChanged);
             listBoxTimes.LostFocus += ListBoxTimes_LostFocus;
             listBoxTimes.GotFocus += ListBoxTimes_GotFocus;
         }
 
-        /// <summary>
-        /// This is listBoxFiltered ! NOT listBoxTimes!
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SelectedIndexChanged(object sender, System.EventArgs e)
-        {      
-            object o = listBoxFiltered.Items[listBoxFiltered.SelectedIndex];
-            model.musicPlayer.SelectedIndexChanged(listBoxFiltered.SelectedIndex, o);
-        }
-
+ 
         /// <summary>
         /// Simple way to assure that the usersettings reflect the UI
         /// More lines must be added when addinge more controls tothe UI

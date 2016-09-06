@@ -36,10 +36,9 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// Constructor
         /// </summary>
-        public MusicPlayer(ListBox listBox, ListBox listBoxPoly, MidiOut midiOut)
+        public MusicPlayer(ListBox listBoxPoly, MidiOut midiOut)
         {
             this.midiOut = midiOut;
-            this.listBox = listBox;
             this.listBoxPoly = listBoxPoly;
 
             // Temp start
