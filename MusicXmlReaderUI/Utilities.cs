@@ -143,9 +143,10 @@ namespace MusicXmlReaderUI
             else
             {
                 FileInfo fi = new FileInfo(fullFileName);
-                MachineType machineType = TryGetDllMachineType(fullFileName);       
-                Model.Log(string.Format(" {0,-30} LastWriteTimeUtc={1} Length={2,-6} MachineType= {3} {4}",
-                                    fi.Name, fi.LastWriteTimeUtc, fi.Length, machineType.ToString(), (machineType == expectedMachineType) ? "" : "(Unexpected machinetype !!!)"));
+                MachineType machineType = TryGetDllMachineType(fullFileName);
+                string machineTypeWarning = (machineType == expectedMachineType) ? "" : string.Format(" (Expected {0} !!!)", expectedMachineType);
+                Model.Log(string.Format(" {0,-30} LastWriteTimeUtc={1} Length={2,-6} MachineType={3} {4}",
+                                    fi.Name, fi.LastWriteTimeUtc, fi.Length, machineType, machineTypeWarning));
             }
             return true;
         }
