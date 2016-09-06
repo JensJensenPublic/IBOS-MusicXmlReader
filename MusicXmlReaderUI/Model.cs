@@ -318,8 +318,16 @@ namespace MusicXmlReaderUI
             useConsole = use;
             if (useConsole)
             {
-                Console.SetWindowPosition(0, 0);
-                Console.SetWindowSize(140, 20); // Seems to be a good compromize
+                try
+                {
+                    Console.SetWindowPosition(0, 0);
+                    Console.SetWindowSize(140, 20); // Seems to be a good compromize
+                }
+                catch (Exception)
+                {
+                    // Quietly stop using the console if it is not there!
+                    useConsole = false;
+                }
             }
         }
 

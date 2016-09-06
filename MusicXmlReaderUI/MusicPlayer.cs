@@ -403,15 +403,24 @@ namespace MusicXmlReaderUI
             this.nextActionTime = 0;
             this.firstStopWatchTime = stopWatch.ElapsedMilliseconds;
             notesCurrentlyPlaying = new List<MidiNote>();
-            for (int i = 0; ((i < listBox.Items.Count) && (playing)); i++)
+            try
+            {
+                for (int i = 0; ((i < listBox.Items.Count) && (playing)); i++)
                 {
                     object o = listBox.Items[i];
-                AutoPlay(o); // Play the next note, using the correct timing!
-                if (o.GetType() == type)
-                {
-                    // Only select notes (and pauses) to allow for correct timing!
-                    SetSelectedIndex(listBox, i); // Select the corresponding line in the Listbox,  handling Cross-thread issue
+                    AutoPlay(o); // Play the next note, using the correct timing!
+                    if (o.GetType() == type)
+                    {
+                        // Only select notes (and pauses) to allow for correct timing!
+                        SetSelectedIndex(listBox, i); // Select the corresponding line in the Listbox,  handling Cross-thread issue
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                // If the application is closed the listbox may be disposed before we can stop playing !
+                playing = false;
+                Model.Log(string.Format("PlayerThread threw an exception because the program was stopped while playing. Message= {0}", e.Message));
             }
             // Stop all notes currently playing! If they don't decay they will keep playing forever !
             foreach (MidiNote midiNote in notesCurrentlyPlaying)
