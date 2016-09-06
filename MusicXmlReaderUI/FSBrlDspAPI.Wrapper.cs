@@ -24,7 +24,15 @@ namespace MusicXmlReaderUI
         public bool Open()
         {
             const int INVALID_HANDLE_VALUE = -1;
-            handle = fbOpen("USB", 0, 42); // Fails, but survives
+            try
+            {
+                handle = fbOpen("USB", 0, 42); // Fails, but survives
+            }
+            catch (Exception e)
+            {
+                Model.Log(string.Format("FSBrlDspAPIWrapper.fbOpen threw an exception. Message={0}", e.Message));
+                return false;
+            }
             //int handle = FSBrlDspAPIWrapper.fbOpen("", 0, 0);// Fails, but survives
             //int handle = FSBrlDspAPIWrapper.fbOpen(null, 0, 0);// Fails and crashes application
             if (INVALID_HANDLE_VALUE == handle)
