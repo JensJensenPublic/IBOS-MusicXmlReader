@@ -14,6 +14,7 @@ namespace MusicXmlReaderUI
         // http://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-notations.htm
 
         private SlurElement slurElement;
+        private TiedElement tiedElement;
 
         private ArticulationsElement articulations;
 
@@ -71,7 +72,8 @@ namespace MusicXmlReaderUI
                     case "other-notation ":
                     case "slide":
                     case "technical":
-                    case "tied":
+                        Model.Log(string.Format("NotationsElement: Element '{0}' is not implemented yet", child.Name)); break;
+                    case "tied": tiedElement = TiedElement.Create(child); break;
                     case "tuplet":
                         Model.Log(string.Format("NotationsElement: Element '{0}' is not implemented yet", child.Name)); break;
                     default:
@@ -87,7 +89,9 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return string.Format("{0}",(null == slurElement) ? "" : slurElement.ToString()); // Add other elements as they are implemented!
+            return string.Format("{0} {1}",
+                (null == slurElement) ? "" : slurElement.ToString(),
+                (null == tiedElement) ? "" : tiedElement.ToString()); // Add other elements as they are implemented!
         }
     }
 }

@@ -102,6 +102,7 @@
     <Compile Include="SlurElement.cs" />
     <Compile Include="SoundElement.cs" />
     <Compile Include="SystemParametersiInfo.cs" />
+    <Compile Include="TiedElement.cs" />
     <Compile Include="TieElement.cs" />
     <Compile Include="EventDescription.cs" />
     <Compile Include="TimeDescriptionList.cs" />
