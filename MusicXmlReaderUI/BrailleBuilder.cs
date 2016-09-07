@@ -228,10 +228,12 @@ namespace MusicXmlReaderUI
             }
         }
 
-        private void LogUnimplementedNotation(string elementName)
-        {  
-                const string function = "BrailleBuilder.AddNotationsAfterNote";
-                Model.Log(string.Format("{0}: Unimplemented NotationElement:{1}", function, elementName));
+        private void LogUnimplementedNotation(StartStopContinueElement element, string elementName)
+        {
+            if (null == element) return;
+            if (0 != element.Id) return; // Only log once
+            const string function = "BrailleBuilder.AddNotationsAfterNote";
+            Model.Log(string.Format("{0}: Unimplemented NotationElement:{1}", function, elementName));
         }
 
         public void AddNotationsAfterNote(NotationsElement notations)  // Some notations are added After the note itself
@@ -239,15 +241,13 @@ namespace MusicXmlReaderUI
             // Actually we dont know what is added before and what is added after.
             // This method is primarily used for logging unimplemented notations !
             if (null == notations) return;
-            if ((null != notations.SlurElement) && (0 == notations.SlurElement.Id)) LogUnimplementedNotation("SlurElement"); // Only log first occurrance
-            if ((null != notations.TiedElement) && (0 == notations.TiedElement.Id)) LogUnimplementedNotation("TiedElement"); // Only log first occurrance
-            if ((null != notations.SlideElement) && (0 == notations.SlideElement.Id)) LogUnimplementedNotation("SlideElement"); // Only log first occurrance
-            if ((null != notations.GlissandoElement) && (0 == notations.GlissandoElement.Id)) LogUnimplementedNotation("GlissandoElement"); // Only log first occurrance
-            if ((null != notations.TupletElement) && (0 == notations.TupletElement.Id)) LogUnimplementedNotation("TupletElement"); // Only log first occurrance
+            LogUnimplementedNotation(notations.SlurElement, "SlurElement"); // Only log first occurrance
+            LogUnimplementedNotation(notations.TiedElement, "TiedElement"); // Only log first occurrance
+            LogUnimplementedNotation(notations.SlideElement, "SlideElement"); // Only log first occurrance
+            LogUnimplementedNotation(notations.GlissandoElement, "GlissandoElement"); // Only log first occurrance
+            LogUnimplementedNotation(notations.TupletElement, "TupletElement"); // Only log first occurrance
 
             // Add other notation elements here asthey are added in the parser.
-
-
         }
 
 
