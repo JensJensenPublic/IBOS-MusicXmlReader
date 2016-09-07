@@ -15,6 +15,9 @@ namespace MusicXmlReaderUI
 
         private SlurElement slurElement;
         private TiedElement tiedElement;
+        private TupletElement tupletElement;
+        private SlideElement slideElement;
+        private GlissandoElement glissandoElement;
 
         private ArticulationsElement articulations;
 
@@ -40,6 +43,30 @@ namespace MusicXmlReaderUI
             {
                 return tiedElement;
             }
+        }
+
+        internal TupletElement TupletElement
+        {
+            get
+            {
+                return tupletElement;
+            }
+        }
+
+        internal SlideElement SlideElement
+        {
+            get
+            {
+                return slideElement;
+            }
+        }
+
+        internal GlissandoElement GlissandoElement
+        {
+            get
+            {
+                return glissandoElement;
+            }            
         }
 
 
@@ -89,28 +116,31 @@ namespace MusicXmlReaderUI
             // Some of these elements are graphical representations of another element representing the sound! Example: tied/tie
             foreach (XmlNode child in node.ChildNodes)
             {
+                bool ok = true;
                 switch (child.Name)
                 {
                     case "slur": slurElement = SlurElement.Create(child); break;
                     case "articulations": articulations = ArticulationsElement.Create(child); break;
-                    case "footnote": 
-                    case "level": 
-                    case "accidental-mark": 
-                    case "arpeggiate": 
-                    case "dynamics": 
-                    case "fermata": 
-                    case "glissando": 
-                    case "non-arpeggiate":
-                    case "ornaments": 
-                    case "other-notation ":
-                    case "slide": 
-                    case "technical":
-                        Model.Log(string.Format("NotationsElement: Element '{0}' is not implemented yet", child.Name)); break;
+                    case "footnote": ok = false; break;
+                    case "level": ok = false; break;
+                    case "accidental-mark": ok = false; break;
+                    case "arpeggiate": ok = false; break;
+                    case "dynamics": ok = false; break;
+                    case "fermata": ok = false; break; 
+                    case "glissando": glissandoElement = GlissandoElement.Create(node); break;
+                    case "non-arpeggiate": ok = false; break;
+                    case "ornaments": ok = false; break;
+                    case "other-notation ": ok = false; break;
+                    case "slide": slideElement = SlideElement.Create(node); break;
+                    case "technical":  ok = false; break;
                     case "tied": tiedElement = TiedElement.Create(child); break;
-                    case "tuplet": 
-                        Model.Log(string.Format("NotationsElement: Element '{0}' is not implemented yet", child.Name)); break;
+                    case "tuplet": tupletElement = TupletElement.Create(child); break; 
                     default:
                         Model.Log(string.Format("NotationsElement: Unknown element '{0}'", child.Name));break;
+                }
+                if (!ok)
+                {                    
+                    Model.Log(string.Format("NotationsElement: Element '{0}' is not implemented yet", child.Name)); break;
                 }
             }
         }

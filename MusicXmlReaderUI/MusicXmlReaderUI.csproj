@@ -64,6 +64,7 @@
     <Compile Include="DebugTools.cs" />
     <Compile Include="DeviceInfo.cs" />
     <Compile Include="FSBrlDspAPI.Wrapper.cs" />
+    <Compile Include="GlissandoElement.cs" />
     <Compile Include="NotationsElement.cs" />
     <Compile Include="RepeatElement.cs" />
     <Compile Include="ClefElement.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="ScorepartElement.cs" />
     <Compile Include="ScorePartwiseElement.cs" />
     <Compile Include="SimpleTextElement.cs" />
+    <Compile Include="SlideElement.cs" />
     <Compile Include="SlurElement.cs" />
     <Compile Include="SoundElement.cs" />
     <Compile Include="StartStopContinueElement.cs" />
@@ -108,6 +110,7 @@
     <Compile Include="EventDescription.cs" />
     <Compile Include="TimeDescriptionList.cs" />
     <Compile Include="TimeElement.cs" />
+    <Compile Include="TupletElement.cs" />
     <Compile Include="UnimplementedElement.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="Utilities.cs" />

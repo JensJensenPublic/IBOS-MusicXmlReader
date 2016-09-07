@@ -241,6 +241,9 @@ namespace MusicXmlReaderUI
             if (null == notations) return;
             if ((null != notations.SlurElement) && (0 == notations.SlurElement.Id)) LogUnimplementedNotation("SlurElement"); // Only log first occurrance
             if ((null != notations.TiedElement) && (0 == notations.TiedElement.Id)) LogUnimplementedNotation("TiedElement"); // Only log first occurrance
+            if ((null != notations.SlideElement) && (0 == notations.SlideElement.Id)) LogUnimplementedNotation("SlideElement"); // Only log first occurrance
+            if ((null != notations.GlissandoElement) && (0 == notations.GlissandoElement.Id)) LogUnimplementedNotation("GlissandoElement"); // Only log first occurrance
+            if ((null != notations.TupletElement) && (0 == notations.TupletElement.Id)) LogUnimplementedNotation("TupletElement"); // Only log first occurrance
 
             // Add other notation elements here asthey are added in the parser.
 
