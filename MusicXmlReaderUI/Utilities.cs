@@ -224,28 +224,26 @@ namespace MusicXmlReaderUI
             // Report if any file is missing
             bool result = true;
             Model.Log(string.Format("This program is compiled for a {0} bit architechture. It uses the following locally installed dlls", is64Bit ? "64" : "32"));
+  
+            // A few dlls have different names in 32 bit and 64 bit versions:
             if (is64Bit)
             {
-                result &= CheckDll("tolk.dll", directory, true);
-                result &= CheckDll("jfwapi.dll", directory, true);
-                result &= CheckDll("nvdaControllerClient64.dll", directory, true);
-                result &= CheckDll("NAudio.dll", directory, true);
-                result &= CheckDll("MusicSynthesis.dll", directory, true);
-                result &= CheckDll("FsBrlDspApi.dll", directory, true);
+                result &= CheckDll("jfwapi.dll", directory, true);                      // JAWS
+                result &= CheckDll("nvdaControllerClient64.dll", directory, true);      // NVDA
             }
             else
             {
-                result &= CheckDll("tolk.dll", directory, false);
-                // result &= CheckDll("jfwapi.dll", directory,false);
-                result &= CheckDll("nvdaControllerClient32.dll",directory, false);
-                result &= CheckDll("NAudio.dll", directory, false);
-                result &= CheckDll("MusicSynthesis.dll",directory, false);
-                result &= CheckDll("fsapi.dll", directory, false); // This seems to be the right JAWS interface in the  32 bit case 
-                result &= CheckDll("FsBrlDspApi.dll", directory, false);
-
+                result &= CheckDll("fsapi.dll", directory, false);                      // JAWS This seems to be the right JAWS interface in the  32 bit case 
+                result &= CheckDll("nvdaControllerClient32.dll",directory, false);      // NVDA
             }
 
-            // result = false; // Used during test only !!
+
+            //  Most of the dlls have the same name in 32 bit and 64 bit versions:
+            // result &= CheckDll("tolk.dll", directory, is64Bit);                        // Generic access to screenreaders. Not really needed ! 
+            result &= CheckDll("NAudio.dll", directory, is64Bit);                      // Generation of MIDI sound 
+            result &= CheckDll("MusicSynthesis.dll", directory, is64Bit);              // Generation of MIDI sound 
+            result &= CheckDll("FsBrlDspApi.dll", directory, is64Bit);                 // Derect access to Freedom Scientific Braille Display. Not really needed. 
+
 
             if ((null != caption) && !result)
             {
