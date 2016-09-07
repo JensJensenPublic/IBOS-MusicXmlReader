@@ -19,6 +19,7 @@ namespace MusicXmlReaderUI
         private SlideElement slideElement;
         private GlissandoElement glissandoElement;
         private ArpeggiateElement arpeggiateElement;
+        private AccidentalMarkElement accidentalMarkElement;
 
         private ArticulationsElement articulations;
 
@@ -78,6 +79,14 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public AccidentalMarkElement AccidentalMarkElement
+        {
+            get
+            {
+                return accidentalMarkElement;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -132,15 +141,15 @@ namespace MusicXmlReaderUI
                     case "articulations": articulations = ArticulationsElement.Create(child); break;
                     case "footnote": ok = false; break;
                     case "level": ok = false; break;
-                    case "accidental-mark": ok = false; break;
-                    case "arpeggiate": arpeggiateElement = ArpeggiateElement.Create(child); break;
+                    case "accidental-mark": accidentalMarkElement = AccidentalMarkElement.Create(child); break; // Løst fortegn
+                    case "arpeggiate": arpeggiateElement = ArpeggiateElement.Create(child); break; // Tilhører brudt akkord
                     case "dynamics": ok = false; break;
                     case "fermata": ok = false; break; 
-                    case "glissando": glissandoElement = GlissandoElement.Create(node); break;
+                    case "glissando": glissandoElement = GlissandoElement.Create(child); break;
                     case "non-arpeggiate": ok = false; break;
                     case "ornaments": ok = false; break;
                     case "other-notation ": ok = false; break;
-                    case "slide": slideElement = SlideElement.Create(node); break;
+                    case "slide": slideElement = SlideElement.Create(child); break;
                     case "technical":  ok = false; break;
                     case "tied": tiedElement = TiedElement.Create(child); break;
                     case "tuplet": tupletElement = TupletElement.Create(child); break; 
