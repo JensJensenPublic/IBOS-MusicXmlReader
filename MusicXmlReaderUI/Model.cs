@@ -257,6 +257,15 @@ namespace MusicXmlReaderUI
         }
 
 
+
+        private  void LogSystemInformation()
+        {
+            Log(string.Format("ComputerName={0} UserName={1} UserDomainName={2}",
+                SystemInformation.ComputerName, SystemInformation.UserName, SystemInformation.UserDomainName));
+            Log(string.Format("OSVersion={0} ProcessorCount={1} Is64BitOperatingSystem={2} Is64BitProcess={3}",
+            System.Environment.OSVersion, System.Environment.ProcessorCount, System.Environment.Is64BitOperatingSystem,System.Environment.Is64BitProcess));
+        }
+
         /// <summary>
         /// Stops on any error and returns false
         /// </summary>
@@ -358,6 +367,7 @@ namespace MusicXmlReaderUI
             Log(""); // An empty line
             Log(string.Format("Date={0}:", System.DateTime.Now.ToLongDateString()));
             Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
+            LogSystemInformation();
             Utilities.CheckDlls(executingDirectory, ApplicationName, is64Bit);
 
 
