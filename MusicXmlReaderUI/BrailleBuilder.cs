@@ -228,10 +228,10 @@ namespace MusicXmlReaderUI
             }
         }
 
-        private void LogUnimplementedNotation(StartStopContinueElement element, string elementName)
+        private void LogUninplementedNotationElement(Element element, string elementName)
         {
             if (null == element) return;
-            if (0 != element.Id) return; // Only log once
+            if ((element is StartStopContinueElement) && (0 != (element as StartStopContinueElement).Id)) return; // Only log these once
             const string function = "BrailleBuilder.AddNotationsAfterNote";
             Model.Log(string.Format("{0}: Unimplemented NotationElement:{1}", function, elementName));
         }
@@ -241,11 +241,12 @@ namespace MusicXmlReaderUI
             // Actually we dont know what is added before and what is added after.
             // This method is primarily used for logging unimplemented notations !
             if (null == notations) return;
-            LogUnimplementedNotation(notations.SlurElement, "SlurElement"); // Only log first occurrance
-            LogUnimplementedNotation(notations.TiedElement, "TiedElement"); // Only log first occurrance
-            LogUnimplementedNotation(notations.SlideElement, "SlideElement"); // Only log first occurrance
-            LogUnimplementedNotation(notations.GlissandoElement, "GlissandoElement"); // Only log first occurrance
-            LogUnimplementedNotation(notations.TupletElement, "TupletElement"); // Only log first occurrance
+            LogUninplementedNotationElement(notations.SlurElement, "SlurElement"); // Only log first occurrance
+            LogUninplementedNotationElement(notations.TiedElement, "TiedElement"); // Only log first occurrance
+            LogUninplementedNotationElement(notations.SlideElement, "SlideElement"); // Only log first occurrance
+            LogUninplementedNotationElement(notations.GlissandoElement, "GlissandoElement"); // Only log first occurrance
+            LogUninplementedNotationElement(notations.TupletElement, "TupletElement"); // Only log first occurrance
+            LogUninplementedNotationElement(notations.ArpeggiateElement, "ArpeggiateElement");
 
             // Add other notation elements here asthey are added in the parser.
         }

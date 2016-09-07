@@ -18,6 +18,7 @@ namespace MusicXmlReaderUI
         private TupletElement tupletElement;
         private SlideElement slideElement;
         private GlissandoElement glissandoElement;
+        private ArpeggiateElement arpeggiateElement;
 
         private ArticulationsElement articulations;
 
@@ -67,6 +68,14 @@ namespace MusicXmlReaderUI
             {
                 return glissandoElement;
             }            
+        }
+
+        internal ArpeggiateElement ArpeggiateElement
+        {
+            get
+            {
+                return arpeggiateElement;
+            }
         }
 
 
@@ -124,7 +133,7 @@ namespace MusicXmlReaderUI
                     case "footnote": ok = false; break;
                     case "level": ok = false; break;
                     case "accidental-mark": ok = false; break;
-                    case "arpeggiate": ok = false; break;
+                    case "arpeggiate": arpeggiateElement = ArpeggiateElement.Create(child); break;
                     case "dynamics": ok = false; break;
                     case "fermata": ok = false; break; 
                     case "glissando": glissandoElement = GlissandoElement.Create(node); break;
@@ -152,9 +161,18 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return string.Format("{0} {1}",
-                (null == slurElement) ? "" : slurElement.ToString(),
-                (null == tiedElement) ? "" : tiedElement.ToString()); // Add other elements as they are implemented!
+            string s = string.Format("{0}{1}{2}{3}{4}{5}",
+            (null == slurElement) ? "" : slurElement.ToString() + " ", // 0
+            (null == tiedElement) ? "" : tiedElement.ToString() +" ", // 1
+            (null == glissandoElement) ? "" : glissandoElement.ToString() + " ", // 2
+            (null == slideElement) ? "" : slideElement.ToString() + " ",         // 3
+            (null == tupletElement) ? "" : tupletElement.ToString() + " ",       // 4
+            (null == arpeggiateElement) ? "" : arpeggiateElement.ToString()); //5
+
+            // ...
+            // Add other elements as they are implemented!
+
+            return s;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace MusicXmlReaderUI
     /// <summary>
     /// Base class for GlissandoElement, SlurElement, TiedElement, SlideElement and TupletElement 
     /// </summary>
-    abstract class StartStopContinueElement
+    abstract class StartStopContinueElement : Element
     {
         public enum StartStopContinueTypeEnum { Undefinded, Start, Stop, Continue };
         StartStopContinueTypeEnum startStopContinueType;
