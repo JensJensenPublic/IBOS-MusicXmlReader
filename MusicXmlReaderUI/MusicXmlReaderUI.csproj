@@ -101,6 +101,7 @@
     <Compile Include="SimpleTextElement.cs" />
     <Compile Include="SlurElement.cs" />
     <Compile Include="SoundElement.cs" />
+    <Compile Include="StartStopContinueElement.cs" />
     <Compile Include="SystemParametersiInfo.cs" />
     <Compile Include="TiedElement.cs" />
     <Compile Include="TieElement.cs" />
