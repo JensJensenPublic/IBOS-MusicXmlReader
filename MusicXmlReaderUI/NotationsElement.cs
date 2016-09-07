@@ -26,6 +26,22 @@ namespace MusicXmlReaderUI
             }
         }
 
+        internal SlurElement SlurElement
+        {
+            get
+            {
+                return slurElement;
+            }
+        }
+
+        internal TiedElement TiedElement
+        {
+            get
+            {
+                return tiedElement;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method

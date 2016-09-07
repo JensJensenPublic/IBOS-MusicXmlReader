@@ -228,6 +228,25 @@ namespace MusicXmlReaderUI
             }
         }
 
+        private void LogUnimplementedNotation(string elementName)
+        {  
+                const string function = "BrailleBuilder.AddNotationsAfterNote";
+                Model.Log(string.Format("{0}: Unimplemented NotationElement:{1}", function, elementName));
+        }
+
+        public void AddNotationsAfterNote(NotationsElement notations)  // Some notations are added After the note itself
+        {
+            // Actually we dont know what is added before and what is added after.
+            // This method is primarily used for logging unimplemented notations !
+            if (null == notations) return;
+            if ((null != notations.SlurElement) && (0 == notations.SlurElement.Id)) LogUnimplementedNotation("SlurElement"); // Only log first occurrance
+            if ((null != notations.TiedElement) && (0 == notations.TiedElement.Id)) LogUnimplementedNotation("TiedElement"); // Only log first occurrance
+
+            // Add other notation elements here asthey are added in the parser.
+
+
+        }
+
 
         /// <summary>
         /// 

@@ -10,6 +10,7 @@ namespace MusicXmlReaderUI
         public enum TiedTypeEnum { Undefinded, Start, Stop, Continue };
         TiedTypeEnum tiedType;
         int numberLevel = 1; // MusicXml default value
+        private int id; // Only used for logging !
 
         /// <summary>
         /// To force the use of the Create() method
@@ -23,8 +24,9 @@ namespace MusicXmlReaderUI
         /// Private constructor, used by the Crate() method
         /// </summary>
         /// <param name="node"></param>
-        private TiedElement(XmlNode node)
+        private TiedElement(XmlNode node,int id)
         {
+            this.id = id;
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
@@ -90,9 +92,18 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+        }
+
+        private static int nextId; // Only used for debugging
         public static TiedElement Create(XmlNode node)
         {
-            return new TiedElement(node);
+            return new TiedElement(node,nextId++);
         }
 
 

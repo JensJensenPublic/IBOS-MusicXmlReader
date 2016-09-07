@@ -7,7 +7,8 @@ namespace MusicXmlReaderUI
         public enum SlurTypeEnum { Undefinded, Start, Stop, Continue };
         SlurTypeEnum slurType;
         int numberLevel = 1 ; // MusicXml default value
-        
+        private int id; // Only used for logging 
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
@@ -20,8 +21,9 @@ namespace MusicXmlReaderUI
         /// Private constructor, used by the Crate() method
         /// </summary>
         /// <param name="node"></param>
-        private SlurElement(XmlNode node)
+        private SlurElement(XmlNode node,int id)
         {
+            this.id = id; // Only used for logging
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
@@ -86,9 +88,18 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+        }
+
+        private static int nextId; // Only used for debugging
         public static SlurElement Create(XmlNode node)
         {
-            return new SlurElement(node);
+            return new SlurElement(node,nextId++);
         }
 
 
