@@ -68,6 +68,23 @@ namespace MusicXmlReaderUI
         /// <param name="node"></param>
         private NotationsElement(XmlNode node)
         {
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-slur.htm?Highlight=slur
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-articulations.htm
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-footnote.htm
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-level.htm
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-accidental-mark.htm
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-arpeggiate.htm             
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-dynamics_1.htm
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-fermata_1.htm
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-glissando.htm
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-non-arpeggiate.htm
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-ornaments.htm
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-other-notation.htm
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-slide.htm
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-technical.htm
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-tied.htm
+            // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-tuplet.htm
+
             // Dig out elements
             // Some of these elements are graphical representations of another element representing the sound! Example: tied/tie
             foreach (XmlNode child in node.ChildNodes)
@@ -76,21 +93,21 @@ namespace MusicXmlReaderUI
                 {
                     case "slur": slurElement = SlurElement.Create(child); break;
                     case "articulations": articulations = ArticulationsElement.Create(child); break;
-                    case "footnote":
-                    case "level":
-                    case "accidental-mark":
-                    case "arpeggiate":              
-                    case "dynamics":
-                    case "fermata":
-                    case "glissando":
+                    case "footnote": 
+                    case "level": 
+                    case "accidental-mark": 
+                    case "arpeggiate": 
+                    case "dynamics": 
+                    case "fermata": 
+                    case "glissando": 
                     case "non-arpeggiate":
-                    case "ornaments":
+                    case "ornaments": 
                     case "other-notation ":
-                    case "slide":
+                    case "slide": 
                     case "technical":
                         Model.Log(string.Format("NotationsElement: Element '{0}' is not implemented yet", child.Name)); break;
                     case "tied": tiedElement = TiedElement.Create(child); break;
-                    case "tuplet":
+                    case "tuplet": 
                         Model.Log(string.Format("NotationsElement: Element '{0}' is not implemented yet", child.Name)); break;
                     default:
                         Model.Log(string.Format("NotationsElement: Unknown element '{0}'", child.Name));break;
