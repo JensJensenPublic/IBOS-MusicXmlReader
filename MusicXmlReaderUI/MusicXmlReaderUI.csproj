@@ -65,7 +65,7 @@
     <Compile Include="BrailleDisplayer.cs" />
     <Compile Include="DebugTools.cs" />
     <Compile Include="DeviceInfo.cs" />
-    <Compile Include="FermateElement.cs" />
+    <Compile Include="FermataElement.cs" />
     <Compile Include="FSBrlDspAPI.Wrapper.cs" />
     <Compile Include="GlissandoElement.cs" />
     <Compile Include="Logger.cs" />
