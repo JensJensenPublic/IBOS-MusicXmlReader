@@ -21,6 +21,7 @@ namespace MusicXmlReaderUI
         private ArpeggiateElement arpeggiateElement;
         private AccidentalMarkElement accidentalMarkElement;
         private FermataElement fermataElement;
+        private OrnamentsElement ornamentsElement;
 
         private ArticulationsElement articulations;
 
@@ -96,6 +97,15 @@ namespace MusicXmlReaderUI
             }
         }
 
+        internal OrnamentsElement OrnamentsElement
+        {
+            get
+            {
+                return ornamentsElement;
+            }
+
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -156,7 +166,7 @@ namespace MusicXmlReaderUI
                     case "fermata": fermataElement = FermataElement.Create(child); break; // Har fermat tilknyttet
                     case "glissando": glissandoElement = GlissandoElement.Create(child); break;
                     case "non-arpeggiate": ok = false; break;
-                    case "ornaments": ok = false; break;
+                    case "ornaments": ornamentsElement = OrnamentsElement.Create(child); break;
                     case "other-notation ": ok = false; break;
                     case "slide": slideElement = SlideElement.Create(child); break;
                     case "technical":  ok = false; break;
@@ -179,14 +189,16 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            string s = string.Format("{0}{1}{2}{3}{4}{5}{6}",
+            string s = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}",
             (null == slurElement) ? "" : slurElement.ToString() + " ", // 0
             (null == tiedElement) ? "" : tiedElement.ToString() + " ", // 1
             (null == glissandoElement) ? "" : glissandoElement.ToString() + " ", // 2
             (null == slideElement) ? "" : slideElement.ToString() + " ",         // 3
             (null == tupletElement) ? "" : tupletElement.ToString() + " ",       // 4
             (null == arpeggiateElement) ? "" : arpeggiateElement.ToString() + " ",// 5
-            (null == fermataElement) ? "" : fermataElement.ToString()); //6
+            (null == fermataElement) ? "" : fermataElement.ToString() + " ", //6
+            (null == ornamentsElement) ? "" : ornamentsElement.ToString() + " "); //7
+
             // ...
             // Add other elements as they are implemented!
 

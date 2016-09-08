@@ -247,6 +247,7 @@ namespace MusicXmlReaderUI
             LogUninplementedNotationElement(notations.TupletElement, "TupletElement"); 
             LogUninplementedNotationElement(notations.ArpeggiateElement, "ArpeggiateElement");
             LogUninplementedNotationElement(notations.FermataElement, "FermataElement");
+            LogUninplementedNotationElement(notations.OrnamentsElement, "OrnamentsElement");
 
             // Add other notation elements here asthey are added in the parser.
         }

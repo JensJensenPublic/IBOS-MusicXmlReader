@@ -70,6 +70,7 @@
     <Compile Include="GlissandoElement.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="NotationsElement.cs" />
+    <Compile Include="OrnamentsElement.cs" />
     <Compile Include="RepeatElement.cs" />
     <Compile Include="ClefElement.cs" />
     <Compile Include="DivisionsElement.cs" />
