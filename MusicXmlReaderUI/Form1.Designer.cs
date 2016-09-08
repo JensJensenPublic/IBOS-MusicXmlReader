@@ -89,6 +89,7 @@
             this.textBoxBraille = new System.Windows.Forms.TextBox();
             this.checkedListBoxMusicBrailleSettings = new System.Windows.Forms.CheckedListBox();
             this.labelMusicBraille = new System.Windows.Forms.Label();
+            this.SaveCurrentRepresentationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPlaySpeed)).BeginInit();
             this.menuStripFile.SuspendLayout();
             this.SuspendLayout();
@@ -405,7 +406,8 @@
             this.musicXmlFileLocationtoolStripMenuItem,
             this.museScoreToolStripMenuItem,
             this.xmlFilToolStripMenuItem,
-            this.fortolketXMLFilToolStripMenuItem});
+            this.fortolketXMLFilToolStripMenuItem,
+            this.SaveCurrentRepresentationToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.toolsToolStripMenuItem.Text = "Værk&tøjer";
@@ -629,6 +631,13 @@
             this.labelMusicBraille.TabIndex = 36;
             this.labelMusicBraille.Text = "Vis i musik-braille";
             // 
+            // SaveCurrentRepresentationToolStripMenuItem
+            // 
+            this.SaveCurrentRepresentationToolStripMenuItem.Name = "SaveCurrentRepresentationToolStripMenuItem";
+            this.SaveCurrentRepresentationToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.SaveCurrentRepresentationToolStripMenuItem.Text = "Gem nuværende visning ";
+            this.SaveCurrentRepresentationToolStripMenuItem.Click += new System.EventHandler(this.SaveCurrentRepresentationToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -729,6 +738,7 @@
         private System.Windows.Forms.TextBox textBoxBraille;
         private System.Windows.Forms.CheckedListBox checkedListBoxMusicBrailleSettings;
         private System.Windows.Forms.Label labelMusicBraille;
+        private System.Windows.Forms.ToolStripMenuItem SaveCurrentRepresentationToolStripMenuItem;
     }
 }
 

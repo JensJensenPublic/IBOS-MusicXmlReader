@@ -196,8 +196,8 @@ namespace MusicXmlReaderUI
             }
         }
         #endregion
+         
 
- 
 
         /// <summary>
         /// Quick and dirty check to reject obvious unusable Xml files
@@ -265,6 +265,30 @@ namespace MusicXmlReaderUI
             //}               
                         return ok;
         }
+        #region CurrentRepretationFile
+        public static string CurrentRepretationFileName = "MusicReaderCurrentRepresentation.txt";
+        public void SaveCurrentRepresentation()
+        {
+            string fileName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), CurrentRepretationFileName);
+            // Create contents
+            System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(fileName);
+            //System.IO.FileStream  fileStream = System.IO.File.OpenWrite(InterpretationFileName);
+            if (listBoxPoly.Items.Count > 0)
+            {
+                foreach (object o in listBoxPoly.Items)
+                {
+                    string line = o.ToString();
+                    streamWriter.WriteLine(line);
+                }
+            }
+            else
+            {
+                streamWriter.WriteLine("Empty representation found");
+            }
+            streamWriter.Close();
+            RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), fileName));
+        }
+        #endregion
 
 
         /// <summary>

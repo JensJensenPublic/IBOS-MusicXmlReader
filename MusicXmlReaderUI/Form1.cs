@@ -519,7 +519,11 @@ namespace MusicXmlReaderUI
 
         }
 
-
+        private void SaveCurrentRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Logger.Log("SaveCurrentRepresentation clicked");
+            model.SaveCurrentRepresentation();
+        }
     }
 
 }
