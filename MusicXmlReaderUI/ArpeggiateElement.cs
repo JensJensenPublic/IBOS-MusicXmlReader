@@ -50,10 +50,15 @@ namespace MusicXmlReaderUI
             return new ArpeggiateElement(node);
         }
 
-
         public override string ToString()
         {
-            return string.Format("Brudt");
+            switch (arpeggiateDirection)
+           {
+                case ArpeggiateDirectionEnum.undefined: return "Brudt"; // "up" is the dominating default
+                case ArpeggiateDirectionEnum.down: return "Brudt nedad";
+                case ArpeggiateDirectionEnum.up: return "Brudt";
+                default: return ""; 
+            }
         }
     }
 }
