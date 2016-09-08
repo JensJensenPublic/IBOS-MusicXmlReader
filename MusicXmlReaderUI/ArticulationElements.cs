@@ -71,7 +71,7 @@ namespace MusicXmlReaderUI
                     case "tenuto": articulationList.Add(Articulation.tenuto); break;
                     case "unstress": articulationList.Add(Articulation.unstress); break; 
                     default:
-                        Model.Log(string.Format("ArticulationsElement: Unknown articulation {0}", node.Name));
+                        Logger.Log(string.Format("ArticulationsElement: Unknown articulation {0}", node.Name));
 
                         break;
                 }

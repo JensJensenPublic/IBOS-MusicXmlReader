@@ -26,7 +26,7 @@ namespace MusicXmlReaderUI
             foreach (XmlNode child in node.ChildNodes)
             {
                 string value = child.Value;
-                Model.Log(string.Format("AccidentalMarkElement: Value={0}", value));
+                Logger.Log(string.Format("AccidentalMarkElement: Value={0}", value));
                 switch (value)
                 {
                     case "flat": accidentalMark = AccidentalMarkEnum.flat; break;

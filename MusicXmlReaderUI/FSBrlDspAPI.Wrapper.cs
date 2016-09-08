@@ -30,42 +30,42 @@ namespace MusicXmlReaderUI
             }
             catch (Exception e)
             {
-                Model.Log(string.Format("FSBrlDspAPIWrapper.fbOpen threw an exception. Message={0}", e.Message));
+                Logger.Log(string.Format("FSBrlDspAPIWrapper.fbOpen threw an exception. Message={0}", e.Message));
                 return false;
             }
             //int handle = FSBrlDspAPIWrapper.fbOpen("", 0, 0);// Fails, but survives
             //int handle = FSBrlDspAPIWrapper.fbOpen(null, 0, 0);// Fails and crashes application
             if (INVALID_HANDLE_VALUE == handle)
             {
-                Model.Log(string.Format("FSBrlDspAPIWrapper.fbOpen failed. Marshal.GetLastWin32Error returned {0}", Marshal.GetLastWin32Error()));
+                Logger.Log(string.Format("FSBrlDspAPIWrapper.fbOpen failed. Marshal.GetLastWin32Error returned {0}", Marshal.GetLastWin32Error()));
                 return false;
             }
             else
             {
-                Model.Log(string.Format("FSBrlDspAPIWrapper.fbOpen returned a valid handle {0}", handle));
+                Logger.Log(string.Format("FSBrlDspAPIWrapper.fbOpen returned a valid handle {0}", handle));
             }
 
             bool result = false;
 
             result = fbBeep(handle);
-            Model.Log(string.Format("FSBrlDspAPIWrapper.fbBeep {0}", result ? "succeeded" : "failed"));
+            Logger.Log(string.Format("FSBrlDspAPIWrapper.fbBeep {0}", result ? "succeeded" : "failed"));
 
             cellCount = fbGetCellCount(handle);
-            Model.Log(string.Format("FSBrlDspAPIWrapper.fbGetCellCount {0}", (cellCount != 0) ? "succeeded" : "failed"));
+            Logger.Log(string.Format("FSBrlDspAPIWrapper.fbGetCellCount {0}", (cellCount != 0) ? "succeeded" : "failed"));
 
 
 
             int maxNameSize = 100;
             StringBuilder sbName = new StringBuilder(maxNameSize);
             result = fbGetDisplayName(handle, sbName, maxNameSize);
-            Model.Log(string.Format("FSBrlDspAPIWrapper.fbGetDisplayName {0}", result ? "succeeded" : "failed"));
+            Logger.Log(string.Format("FSBrlDspAPIWrapper.fbGetDisplayName {0}", result ? "succeeded" : "failed"));
 
             int maxVersionSize = 100;
             StringBuilder sbVersion = new StringBuilder(maxVersionSize);
             result = fbGetFirmwareVersion(handle, sbVersion, maxVersionSize);
-            Model.Log(string.Format("FSBrlDspAPIWrapper.fbGetFirmwareVersion {0}", result ? "succeeded" : "failed"));
+            Logger.Log(string.Format("FSBrlDspAPIWrapper.fbGetFirmwareVersion {0}", result ? "succeeded" : "failed"));
 
-            Model.Log(string.Format("DeviceName={0} FirmwareVersion ={1} CellCount={2}", sbName.ToString(), sbVersion.ToString(), cellCount));
+            Logger.Log(string.Format("DeviceName={0} FirmwareVersion ={1} CellCount={2}", sbName.ToString(), sbVersion.ToString(), cellCount));
 
             return true;
         }
@@ -86,7 +86,7 @@ namespace MusicXmlReaderUI
 
             }
 
-            Model.Log(string.Format("FSBrlDspAPIWrapper.fbWrite {0}", fbWriteResult ? "succeeded" : "failed"));
+            Logger.Log(string.Format("FSBrlDspAPIWrapper.fbWrite {0}", fbWriteResult ? "succeeded" : "failed"));
 
             return fbWriteResult;
         }
@@ -97,7 +97,7 @@ namespace MusicXmlReaderUI
         public bool Close()
         {
             bool result = fbClose(handle);
-            Model.Log(string.Format("FSBrlDspAPIWrapper.fbGetFirmwareVersion {0}", result ? "succeeded" : "failed"));
+            Logger.Log(string.Format("FSBrlDspAPIWrapper.fbGetFirmwareVersion {0}", result ? "succeeded" : "failed"));
             return result;
         }
 

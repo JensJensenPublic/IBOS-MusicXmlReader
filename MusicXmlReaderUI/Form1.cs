@@ -194,7 +194,7 @@ namespace MusicXmlReaderUI
         private void ListBoxTimes_GotFocus(object sender, EventArgs e)
         {
             int index = listBoxTimes.SelectedIndex;
-            Model.Trace(string.Format("ListBoxTimes_GotFocus(i={0})", index));
+            Logger.Trace(string.Format("ListBoxTimes_GotFocus(i={0})", index));
             // Even if we got focus we can not be sure that an item is selected!
             if (-1 != index)
             {
@@ -207,7 +207,7 @@ namespace MusicXmlReaderUI
 
         private void ListBoxTimes_LostFocus(object sender, EventArgs e)
         {
-            Model.Trace("ListBoxTimes_LostFocus");
+            Logger.Trace("ListBoxTimes_LostFocus");
             model.StopRefreshingBrailleDevice();
         }
 

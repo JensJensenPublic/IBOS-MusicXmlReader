@@ -148,7 +148,7 @@ namespace MusicXmlReaderUI
                 case "A": return 5;
                 case "B": return 6;
                 default:
-                    Model.Log(string.Format("GetStepIndex({0}) Unknown step '{0}'", step));
+                    Logger.Log(string.Format("GetStepIndex({0}) Unknown step '{0}'", step));
                     return -1;            
             }
         }
@@ -166,7 +166,7 @@ namespace MusicXmlReaderUI
                 case "64nd": return 1;
                 case "128nd": return 0;
                 default:
-                    Model.Log(string.Format("GetTypeIndex({0}) Unknown typeString '{0}'", type));
+                    Logger.Log(string.Format("GetTypeIndex({0}) Unknown typeString '{0}'", type));
                     return -1;
             }
         }
@@ -186,7 +186,7 @@ namespace MusicXmlReaderUI
             if (octave < 1) return new byte[] { 8, 8 };
             if (octave > 7) return new byte[] { 32, 32 };
             // This is an error. Log it an return something hopefully harmles
-            Model.Log(string.Format("Getoctavemark({0}) was called with illegal parametervalue octave={0}", octave));
+            Logger.Log(string.Format("Getoctavemark({0}) was called with illegal parametervalue octave={0}", octave));
             return new byte[] { 8, 8 };
         }
 
@@ -219,11 +219,11 @@ namespace MusicXmlReaderUI
                     case ArticulationsElement.Articulation.tenuto:          Braille.AddRange(Tenuto); break;
                     case ArticulationsElement.Articulation.unstress:        implemented = false; break;    
                     default:
-                        Model.Log(string.Format("{0}: Unknown articulation: '{1}'",function, articulation)); break;
+                        Logger.Log(string.Format("{0}: Unknown articulation: '{1}'",function, articulation)); break;
                 }
                 if (!implemented)
                 {
-                    Model.Log(string.Format("{0}: Unimplemented articulation: '{1}'",function, articulation));
+                    Logger.Log(string.Format("{0}: Unimplemented articulation: '{1}'",function, articulation));
                 }
             }
         }
@@ -233,7 +233,7 @@ namespace MusicXmlReaderUI
             if (null == element) return;
             if ((element is StartStopContinueElement) && (0 != (element as StartStopContinueElement).Id)) return; // Only log these once
             const string function = "BrailleBuilder.AddNotationsAfterNote";
-            Model.Log(string.Format("{0}: Unimplemented NotationElement:{1}", function, elementName));
+            Logger.Log(string.Format("{0}: Unimplemented NotationElement:{1}", function, elementName));
         }
 
         public void AddNotationsAfterNote(NotationsElement notations)  // Some notations are added After the note itself
@@ -283,7 +283,7 @@ namespace MusicXmlReaderUI
             int typeIndex = GetTypeIndex(type);
             if ((typeIndex < 0) || (typeIndex >= rests.Length))
             {
-                Model.Log(string.Format("BrailleBuilder.AddRest: Skipping invalid type: {0}", type));
+                Logger.Log(string.Format("BrailleBuilder.AddRest: Skipping invalid type: {0}", type));
             }
             else
             {
@@ -313,7 +313,7 @@ namespace MusicXmlReaderUI
                 case Hand.Left: braille.Add(left); braille.Add(handConst); break;
                 case Hand.Right: braille.Add(right); braille.Add(handConst); break;
                 case Hand.Undefined:
-                    Model.Log(string.Format("AddFinger() was called with illegal parameter hand={0}", hand.ToString())); break;
+                    Logger.Log(string.Format("AddFinger() was called with illegal parameter hand={0}", hand.ToString())); break;
             }
 
             switch (finger)
@@ -324,7 +324,7 @@ namespace MusicXmlReaderUI
                 case 4: braille.Add(finger4); break;
                 case 5: braille.Add(finger5); break;
                 default:
-                    Model.Log(string.Format("AddFinger() was called with illegal parameter finger={0}", finger.ToString())); break;
+                    Logger.Log(string.Format("AddFinger() was called with illegal parameter finger={0}", finger.ToString())); break;
             }
 
         }
@@ -352,7 +352,7 @@ namespace MusicXmlReaderUI
                 case 7: braille.Add(seventh); break;
                 case 8: braille.Add(eight); break;
                 default:
-                    Model.Log(string.Format("AddInterval() was called with illegal parameter size={0}", size.ToString())); break;
+                    Logger.Log(string.Format("AddInterval() was called with illegal parameter size={0}", size.ToString())); break;
             }
 
 

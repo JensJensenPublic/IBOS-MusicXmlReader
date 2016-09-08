@@ -33,7 +33,7 @@ namespace MusicXmlReaderUI
                                 case "stop": startStopContinueType = StartStopContinueTypeEnum.Stop; break;
                                 case "continue": startStopContinueType = StartStopContinueTypeEnum.Continue; break;
                                 default:
-                                    Model.Log(string.Format("StartStopContinueTypeEnum: Unknown attribute value '{0}'", a.Value));
+                                    Logger.Log(string.Format("StartStopContinueTypeEnum: Unknown attribute value '{0}'", a.Value));
                                     startStopContinueType = StartStopContinueTypeEnum.Undefinded; break;
                             }
                         }
@@ -48,7 +48,7 @@ namespace MusicXmlReaderUI
                     case "relative-y": break;
 
                     default:
-                        Model.Log(string.Format("SlurElement: Unknown attribute name '{0}'", a.Name));
+                        Logger.Log(string.Format("SlurElement: Unknown attribute name '{0}'", a.Name));
                         break;
                 }
             }
@@ -63,7 +63,7 @@ namespace MusicXmlReaderUI
                 case StartStopContinueTypeEnum.Stop: return "Slut";
                 case StartStopContinueTypeEnum.Continue: return "Fortsæt";
                 default:
-                    Model.Log(string.Format("StartStopContinueElement.Localize: Unexpected value of StartStopContinueType: '{0}'", slurType.ToString()));
+                    Logger.Log(string.Format("StartStopContinueElement.Localize: Unexpected value of StartStopContinueType: '{0}'", slurType.ToString()));
                     return "";
             }
         }

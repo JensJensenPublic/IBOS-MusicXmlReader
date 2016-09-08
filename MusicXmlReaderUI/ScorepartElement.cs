@@ -47,11 +47,11 @@ namespace MusicXmlReaderUI
                     case "part-name": partName = n.InnerText; break;
                     case "score-instrument":
                         scoreInstrumentElement = ScoreInstrumentElement.Create(n);
-                        Model.Log(string.Format(scoreInstrumentElement.ToString())); // Not of interest for the normal user !
+                        Logger.Log(string.Format(scoreInstrumentElement.ToString())); // Not of interest for the normal user !
                         break;                
                     case "midi-instrument":
                         midiInstrumentElement = MidiInstrumentElement.Create(n);
-                        Model.Log(string.Format(midiInstrumentElement.ToString())); // Not of interest for the normal user !
+                        Logger.Log(string.Format(midiInstrumentElement.ToString())); // Not of interest for the normal user !
                         break;        
                 }
             }
@@ -81,7 +81,7 @@ namespace MusicXmlReaderUI
                 // Use midi channel 1 as default
                 if (null == midiInstrumentElement)
                 {
-                    Model.Log(string.Format("ScorePartElement: midiInstrumentElement is null. Using 1 as default value for MidiChannel"));
+                    Logger.Log(string.Format("ScorePartElement: midiInstrumentElement is null. Using 1 as default value for MidiChannel"));
                     return 1;
                 }
                 return midiInstrumentElement.MidiChannel; 
@@ -94,7 +94,7 @@ namespace MusicXmlReaderUI
             {
                 if(null == midiInstrumentElement)
                 {
-                    Model.Log(string.Format("ScorePartElement: midiInstrumentElement is null. Using 1 as default value for MidiProgram"));
+                    Logger.Log(string.Format("ScorePartElement: midiInstrumentElement is null. Using 1 as default value for MidiProgram"));
                     return 1;
                 }
                 return midiInstrumentElement.MidiProgram; // Use midi channel 1 as default
@@ -107,7 +107,7 @@ namespace MusicXmlReaderUI
             {
                 if (null == midiInstrumentElement)
                 {
-                    Model.Log(string.Format("ScorePartElement: midiInstrumentElement is null. Using 127 as default value for MidiVolume"));
+                    Logger.Log(string.Format("ScorePartElement: midiInstrumentElement is null. Using 127 as default value for MidiVolume"));
                     return 127;
                 }
                 return midiInstrumentElement.MidiVolume ; // Use midi volume 127 as default
@@ -120,7 +120,7 @@ namespace MusicXmlReaderUI
             {
                 if (null == midiInstrumentElement)
                 {
-                    Model.Log(string.Format("ScorePartElement: midiInstrumentElement is null. Using empty string as default value for MidiInstrumentString"));
+                    Logger.Log(string.Format("ScorePartElement: midiInstrumentElement is null. Using empty string as default value for MidiInstrumentString"));
                     return "";
                 }
                 return midiInstrumentElement.ToString();
@@ -133,7 +133,7 @@ namespace MusicXmlReaderUI
             {
                 if (null == scoreInstrumentElement)
                 {
-                    Model.Log(string.Format("ScorePartElement: scoreInstrumentElement is null. Using empty string as default value for ScoreInstrumentString"));
+                    Logger.Log(string.Format("ScorePartElement: scoreInstrumentElement is null. Using empty string as default value for ScoreInstrumentString"));
                     return "";
                 }
                 return scoreInstrumentElement.ToString(); 

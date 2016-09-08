@@ -48,7 +48,7 @@ namespace MusicXmlReaderUI
             {
                 if (!System.IO.Directory.Exists(fileName))
                 {
-                    Model.Log(string.Format("{0} Directory {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
+                    Logger.Log(string.Format("{0} Directory {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
                     MessageBox.Show(string.Format("Mappen {0} findes ikke", fileName));
                     return false;
                 }
@@ -57,7 +57,7 @@ namespace MusicXmlReaderUI
             {
                 if (!System.IO.File.Exists(fileName))
                 {
-                    Model.Log(string.Format("{0} File {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
+                    Logger.Log(string.Format("{0} File {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
                     MessageBox.Show(string.Format("Filen {0} findes ikke", fileName));
                     return false;
                 }
@@ -105,7 +105,7 @@ namespace MusicXmlReaderUI
             }
             catch (Exception e)
             {
-                Model.Log(string.Format("ReadFileByExecutable: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
+                Logger.Log(string.Format("ReadFileByExecutable: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
                 MessageBox.Show(string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'",exeFileName,argFileName));
                 return false;
             }
@@ -115,32 +115,10 @@ namespace MusicXmlReaderUI
         #region LogFile
         // To use a console in a Windows Forms application: Project Properties -> Application -> Output Type -> Console Application
         // "Original value was "Windows Application"
-        public static void Trace(string s)
-        {
-            if (useConsole) Console.WriteLine(s);
-        }
-
-        public static string LogFileName = "MusicXmlReader.Log";
-        private static bool useConsole = false;
-        public static void Log(string s)
-        {
-            try
-            {
-                Trace(s);
-                System.DateTime now = System.DateTime.Now;
-                string time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
-                System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName), time + " " + s + "\r\n");
-            }
-            catch (Exception)
-            {
-                // What to do here ??
-            }
-        }
-
 
         public void ReadLogFile()
         {
-            RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName));
+            RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), Logger.LogFileName));
         }
 
         public void OpenLogFileLocation()
@@ -237,34 +215,6 @@ namespace MusicXmlReaderUI
             return ok;
         }
 
-        /// <summary>
-        /// Log som interesting system parameters
-        /// </summary>
-        private void LogSystemParameters()
-        {
-            bool screenReaderRunning;
-            int lastWin32Error;
-            string name = "SystemParametersiInfo.GetScreenReader";
-            bool ok = SystemParametersiInfo.GetScreenReader(out screenReaderRunning, out lastWin32Error);
-            if (ok)
-            {
-                Log(string.Format("{0} reported {1}",name, screenReaderRunning));
-            }
-            else
-            {
-                Log(string.Format("{0} failed. LastWin32Error = {1}", name, lastWin32Error));
-            }
-        }
-
-
-
-        private  void LogSystemInformation()
-        {
-            Log(string.Format("ComputerName={0} UserName={1} UserDomainName={2}",
-                SystemInformation.ComputerName, SystemInformation.UserName, SystemInformation.UserDomainName));
-            Log(string.Format("OSVersion={0} ProcessorCount={1} Is64BitOperatingSystem={2} Is64BitProcess={3}",
-            System.Environment.OSVersion, System.Environment.ProcessorCount, System.Environment.Is64BitOperatingSystem,System.Environment.Is64BitProcess));
-        }
 
         /// <summary>
         /// Stops on any error and returns false
@@ -293,18 +243,18 @@ namespace MusicXmlReaderUI
                 {
                     metaInfoStrings = new List<string>(); // Reset Meta Information
                     metaInfoStrings.Add(Path.GetFileName(fullXmlFileName)); // Guarentees that some meta information exists
-                    Log(string.Format("Loaded '{0}'", Path.GetFileName(fullXmlFileName)));
-                    Log(string.Format("From   '{0}'", Path.GetDirectoryName(fullXmlFileName)));
+                    Logger.Log(string.Format("Loaded '{0}'", Path.GetFileName(fullXmlFileName)));
+                    Logger.Log(string.Format("From   '{0}'", Path.GetDirectoryName(fullXmlFileName)));
                     allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file
                     Recurse(doc.ChildNodes);                          // Build  the list holding all MusicXml elements read from file
-                    Log(string.Format("Parsed {0}", xmlFileName));
+                    Logger.Log(string.Format("Parsed {0}", xmlFileName));
                     Init(); // Experimental code !!                   // TO DO move rest of this {} into Init !
-                    Log(string.Format("Initialized all components"));
+                    Logger.Log(string.Format("Initialized all components"));
                     theMusicXmlFileName = fullXmlFileName;
                 }
                 else
                 {
-                    Log(string.Format("Failed to load {0} because it not a valid MusicXml file",xmlFileName));
+                    Logger.Log(string.Format("Failed to load {0} because it not a valid MusicXml file",xmlFileName));
                     theMusicXmlFileName = "";
                 }
             }
@@ -323,9 +273,8 @@ namespace MusicXmlReaderUI
         /// Original value was "Windows Application"
         /// </summary>
         private void InitTestConsole(bool use)
-        {
-            useConsole = use;
-            if (useConsole)
+        {        
+            if (use)
             {
                 try
                 {
@@ -335,9 +284,10 @@ namespace MusicXmlReaderUI
                 catch (Exception)
                 {
                     // Quietly stop using the console if it is not there!
-                    useConsole = false;
+                    use = false;
                 }
             }
+            Logger.UseConsole = use;
         }
 
         void OnProcessExit(object sender, EventArgs e)
@@ -345,7 +295,7 @@ namespace MusicXmlReaderUI
             try
             {
                 musicPlayer.StopPlaying();
-                Model.Log("The application is exiting");
+                Logger.Log("The application is exiting");
             }
             catch (Exception)
             {
@@ -364,10 +314,10 @@ namespace MusicXmlReaderUI
             executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
             is64Bit = IntPtr.Size == 8;
             InitTestConsole(true); // Please see the Log methode for details!
-            Log(""); // An empty line
-            Log(string.Format("Date={0}:", System.DateTime.Now.ToLongDateString()));
-            Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
-            LogSystemInformation();
+            Logger.Log(""); // An empty line
+            Logger.Log(string.Format("Date={0}:", System.DateTime.Now.ToLongDateString()));
+            Logger.Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
+            Logger.LogSystemInformation();
             Utilities.CheckDlls(executingDirectory, ApplicationName, is64Bit);
 
 
@@ -380,7 +330,7 @@ namespace MusicXmlReaderUI
             musicPlayer = new MusicPlayer(listBoxPoly,midiOut);
             int displaySize = 14;
             brailleDisplayer = BrailleDisplayer.Create(textBoxMusicBraille, displaySize, screenReaderAPI); // TODO Get the real displaysize from somewhere
-            Model.Log(string.Format("Model: Assuming size of physical Braille display = {0}", displaySize));
+            Logger.Log(string.Format("Model: Assuming size of physical Braille display = {0}", displaySize));
 
             //musicPlayer.ChangeInstrument(20); // Church Organ
 
@@ -391,7 +341,7 @@ namespace MusicXmlReaderUI
             
 
             // Log some global system parameters.
-            LogSystemParameters();
+            Logger.LogSystemParameters();
             // Log availability of NVDA interface.
 
 

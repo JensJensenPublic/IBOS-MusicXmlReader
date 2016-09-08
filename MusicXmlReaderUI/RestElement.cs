@@ -28,7 +28,7 @@ namespace MusicXmlReaderUI
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
-                Model.Log(string.Format("RestElement: Attribute.Name={0} Attribute.Value={1}", a.Name, a.Value));
+                Logger.Log(string.Format("RestElement: Attribute.Name={0} Attribute.Value={1}", a.Name, a.Value));
                 switch (a.Name)
                 {
                     case "measure":

@@ -154,11 +154,11 @@ namespace MusicXmlReaderUI
                     case "tied": tiedElement = TiedElement.Create(child); break;
                     case "tuplet": tupletElement = TupletElement.Create(child); break; 
                     default:
-                        Model.Log(string.Format("NotationsElement: Unknown element '{0}'", child.Name));break;
+                        Logger.Log(string.Format("NotationsElement: Unknown element '{0}'", child.Name));break;
                 }
                 if (!ok)
                 {                    
-                    Model.Log(string.Format("NotationsElement: Element '{0}' is not implemented yet", child.Name)); break;
+                    Logger.Log(string.Format("NotationsElement: Element '{0}' is not implemented yet", child.Name)); break;
                 }
             }
         }

@@ -19,7 +19,7 @@ namespace MusicXmlReaderUI
 
             foreach (var usbDevice in usbDevices)
             {
-                Model.Log(string.Format("Device ID: {0}, PNP Device ID: {1}, Description: {2}",
+                Logger.Log(string.Format("Device ID: {0}, PNP Device ID: {1}, Description: {2}",
                     usbDevice.DeviceID, usbDevice.PnpDeviceID, usbDevice.Description));
             }
               

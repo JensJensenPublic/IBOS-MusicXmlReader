@@ -60,7 +60,7 @@ namespace MusicXmlReaderUI
                         virtualInstrument = n.InnerText;                   
                         break;
                     default:
-                        Model.Log(string.Format("ScoreInstrumentElement: Unsupported element {0}", n.InnerText));
+                        Logger.Log(string.Format("ScoreInstrumentElement: Unsupported element {0}", n.InnerText));
                         break;
                         // throw new System.ArgumentException();
                 }

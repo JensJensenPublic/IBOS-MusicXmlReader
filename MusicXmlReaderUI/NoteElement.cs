@@ -321,7 +321,7 @@ namespace MusicXmlReaderUI
                 case "32nd":    value = "toogtredivtedel"; break;
                 case "64nd":    value = "fireogtredsindstyvendedel"; break;
                 default:
-                    Model.Log(string.Format("LocalizeType({0},{1}) Unknown typeString '{2}'", typeString, modifier, typeString)); break;
+                    Logger.Log(string.Format("LocalizeType({0},{1}) Unknown typeString '{2}'", typeString, modifier, typeString)); break;
             }
             return modif + value; // 
         }
@@ -347,7 +347,7 @@ namespace MusicXmlReaderUI
                 case "32nd":    value = "toogtredivtedelspause"; break;
                 case "64nd":    value = "fireogtredsindstyvendedelspause"; break;
                 default:
-                    Model.Log(string.Format("LocalizePause({0},{1}) Unknown typeString '{2}'", typeString, modifier, typeString)); break;
+                    Logger.Log(string.Format("LocalizePause({0},{1}) Unknown typeString '{2}'", typeString, modifier, typeString)); break;
             }
             return modif + value;
         }
@@ -359,7 +359,7 @@ namespace MusicXmlReaderUI
                 case "start": return "bue start";
                 case "stop" : return "bue slut";
                 case ""     :  return "";
-                default: Model.Log(string.Format("LocalizeTie({0}) Unknown tieType '{1}'", tieType, tieType)); return "";     
+                default: Logger.Log(string.Format("LocalizeTie({0}) Unknown tieType '{1}'", tieType, tieType)); return "";     
             }
         }
 
@@ -442,7 +442,7 @@ namespace MusicXmlReaderUI
                         graceNote = true;                                                 
                         break;
                     //default:  throw new ArgumentException();
-                    default: Model.Log(string.Format("NoteElement() Unknown child.Name '{0}'", child.Name)); break;
+                    default: Logger.Log(string.Format("NoteElement() Unknown child.Name '{0}'", child.Name)); break;
                 }
             }
             localizedType = LocalizeType(Type, dot);

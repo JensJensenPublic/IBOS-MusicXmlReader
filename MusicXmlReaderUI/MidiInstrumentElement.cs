@@ -39,7 +39,7 @@ namespace MusicXmlReaderUI
         /// </summary>
         private MidiInstrumentElement()
         {
-            Model.Log(string.Format("Creating default MidiInstrumentElement: midiProgram={0} midiChannel={1} midiVolume={2}", midiProgram, midiChannel, midiVolume));
+            Logger.Log(string.Format("Creating default MidiInstrumentElement: midiProgram={0} midiChannel={1} midiVolume={2}", midiProgram, midiChannel, midiVolume));
         }
 
         /// <summary>

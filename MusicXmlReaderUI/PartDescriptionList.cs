@@ -76,7 +76,7 @@ namespace MusicXmlReaderUI
                 {
                     Type type = o.GetType();
                     string typeAsString = type.ToString();
-                    Model.Log(string.Format("PartDescriptionList: Unexpected object of type {0}: String='{1}'", typeAsString, o.ToString()));
+                    Logger.Log(string.Format("PartDescriptionList: Unexpected object of type {0}: String='{1}'", typeAsString, o.ToString()));
                 }
 
             }

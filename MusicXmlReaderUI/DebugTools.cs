@@ -7,19 +7,19 @@ namespace MusicXmlReaderUI
     {
         public bool LogEvent(string s)
         {
-            Model.Log(s);
+            Logger.Log(s);
             return true;
         }
 
         public bool TraceLine(string s)
         {
-            Model.Trace(s);
+            Logger.Trace(s);
             return true;
         }
 
         public bool TraceChar(char c)
         {
-            Model.Trace(c.ToString());
+            Logger.Trace(c.ToString());
             return true;
         }
 

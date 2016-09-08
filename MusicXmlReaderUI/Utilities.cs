@@ -36,12 +36,12 @@ namespace MusicXmlReaderUI
 
             if (!int.TryParse(input, out tempResult))
             {
-                Model.Log(string.Format("{0}: Got '{1}' Expected an integer", errorString, input));
+                Logger.Log(string.Format("{0}: Got '{1}' Expected an integer", errorString, input));
                 return false;
             }
             if (tempResult < lowValue || (tempResult > highValue))
             {
-                Model.Log(string.Format("{0}: Got'{1}' Expected [{2}..{3}]", errorString, input, lowValue, highValue));
+                Logger.Log(string.Format("{0}: Got'{1}' Expected [{2}..{3}]", errorString, input, lowValue, highValue));
                 return false;
             }
             result = tempResult;
@@ -62,7 +62,7 @@ namespace MusicXmlReaderUI
         {
             if (null == input)
             {
-                Model.Log(string.Format("{0}: Got '{1}' Expected a value in [{2}..{3}]", errorString, "NULL" , lowValue, highValue));
+                Logger.Log(string.Format("{0}: Got '{1}' Expected a value in [{2}..{3}]", errorString, "NULL" , lowValue, highValue));
                 return false;
             }
 
@@ -73,7 +73,7 @@ namespace MusicXmlReaderUI
                 return true;
             }
 
-            Model.Log(string.Format("{0}: Got '{1}' Expected a value in [{2}..{3}]", errorString, (null == input) ? "NULL" : input, lowValue, highValue));
+            Logger.Log(string.Format("{0}: Got '{1}' Expected a value in [{2}..{3}]", errorString, (null == input) ? "NULL" : input, lowValue, highValue));
             return false;
         }
 
@@ -81,7 +81,7 @@ namespace MusicXmlReaderUI
         {
             if (null == input)
             {
-                Model.Log(string.Format("{0}: Got '{1}' Expected a value in [{2}..{3}]", errorString, "NULL", lowValue, highValue));
+                Logger.Log(string.Format("{0}: Got '{1}' Expected a value in [{2}..{3}]", errorString, "NULL", lowValue, highValue));
                 return false;
             }
 
@@ -92,7 +92,7 @@ namespace MusicXmlReaderUI
                 return true;
             }
 
-            Model.Log(string.Format("{0}: Got '{1}' Expected a value in [{2}..{3}]", errorString, (null == input) ? "NULL" : input, lowValue, highValue));
+            Logger.Log(string.Format("{0}: Got '{1}' Expected a value in [{2}..{3}]", errorString, (null == input) ? "NULL" : input, lowValue, highValue));
             return false;
         }
 
@@ -115,12 +115,12 @@ namespace MusicXmlReaderUI
             float tempResult;           
             if (!float.TryParse(tempInput, out tempResult))  
             {
-                Model.Log(string.Format("{0}: Got '{1}' Expected an integer", errorString, input));
+                Logger.Log(string.Format("{0}: Got '{1}' Expected an integer", errorString, input));
                 return false;
             }
             if (tempResult < lowValue || (tempResult > highValue))
             {
-                Model.Log(string.Format("{0}: Got '{1}' Expected [{2}..{3}]", errorString, input, lowValue, highValue));
+                Logger.Log(string.Format("{0}: Got '{1}' Expected [{2}..{3}]", errorString, input, lowValue, highValue));
                 return false;
             }
             result = tempResult;
@@ -137,7 +137,7 @@ namespace MusicXmlReaderUI
             string fullFileName = Path.Combine(directory, dllName);
             if (!File.Exists(fullFileName))
             {
-                Model.Log(string.Format("Missing support-dll: {0}", dllName));
+                Logger.Log(string.Format("Missing support-dll: {0}", dllName));
                 return false;
             }
             else
@@ -145,7 +145,7 @@ namespace MusicXmlReaderUI
                 FileInfo fi = new FileInfo(fullFileName);
                 MachineType machineType = TryGetDllMachineType(fullFileName);
                 string machineTypeWarning = (machineType == expectedMachineType) ? "" : string.Format(" (Expected {0} !!!)", expectedMachineType);
-                Model.Log(string.Format(" {0,-30} LastWriteTimeUtc={1} Length={2,-6} MachineType={3} {4}",
+                Logger.Log(string.Format(" {0,-30} LastWriteTimeUtc={1} Length={2,-6} MachineType={3} {4}",
                                     fi.Name, fi.LastWriteTimeUtc, fi.Length, machineType, machineTypeWarning));
             }
             return true;
@@ -160,7 +160,7 @@ namespace MusicXmlReaderUI
             }
             catch (Exception e)
             {
-                Model.Log(string.Format("Failed to obtain MachineType for {0} Exception.Message={1}", fullFileName, e.Message));
+                Logger.Log(string.Format("Failed to obtain MachineType for {0} Exception.Message={1}", fullFileName, e.Message));
             }
             return machineType;
         }
@@ -223,7 +223,7 @@ namespace MusicXmlReaderUI
         {
             // Report if any file is missing
             bool result = true;
-            Model.Log(string.Format("This program is compiled for a {0} bit architechture. It uses the following locally installed dlls", is64Bit ? "64" : "32"));
+            Logger.Log(string.Format("This program is compiled for a {0} bit architechture. It uses the following locally installed dlls", is64Bit ? "64" : "32"));
   
             // A few dlls have different names in 32 bit and 64 bit versions:
             if (is64Bit)

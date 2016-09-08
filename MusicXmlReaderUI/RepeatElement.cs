@@ -40,11 +40,11 @@ namespace MusicXmlReaderUI
                         {
                             case "forward": repeatDirection = RepeatDirectionEnum.Forward; break;
                             case "backward": repeatDirection = RepeatDirectionEnum.Backward; break;
-                            default: Model.Log(string.Format("RepeatElement: Unexpected attributevalue {0} found",a.Value)); break;
+                            default: Logger.Log(string.Format("RepeatElement: Unexpected attributevalue {0} found",a.Value)); break;
                         }
                         break;
 
-                    default: Model.Log(string.Format("RepeatElement: Unexpected attribute {0} found", a.Name)); break;
+                    default: Logger.Log(string.Format("RepeatElement: Unexpected attribute {0} found", a.Name)); break;
                 }
             }
         }

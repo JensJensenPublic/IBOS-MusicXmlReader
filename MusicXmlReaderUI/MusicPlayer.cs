@@ -78,7 +78,7 @@ namespace MusicXmlReaderUI
         /// <param name="instrument">Must be an integer in [1.127]</param>
         public void ChangeInstrument(int channel, int instrument)
         {
-            Model.Log(string.Format("MusicPlayer.ChangeInstrument(channel={0} instrument={1})", channel, instrument));
+            Logger.Log(string.Format("MusicPlayer.ChangeInstrument(channel={0} instrument={1})", channel, instrument));
             MidiCommand midiCommand = new MidiCommand();
             midiCommand.ChangeInstrument(channel, instrument, this.midiOut);
         }
@@ -285,7 +285,7 @@ namespace MusicXmlReaderUI
                     }
                     else
                     {
-                        Model.Log(string.Format("MusicPlayer: Becifring {0} er ikke implementeret", h.Kind));
+                        Logger.Log(string.Format("MusicPlayer: Becifring {0} er ikke implementeret", h.Kind));
                     }
                 }
             }
@@ -302,7 +302,7 @@ namespace MusicXmlReaderUI
                         // We must also establish new offsets for stopwatch-time and music-time:
                         firstStopWatchTime = stopWatch.ElapsedMilliseconds; // From now on all stopwatch times are relative to this value (now) 
                         musicXmlTimeOffset = eventDescription.StartTime; // From now on all musicXml times are ralative to this value (starttime of the current event
-                        Model.Log(string.Format("MusicPlayer: Tempo {0}->{1} firstStopWatchTime={1} musicXmlTimeOffset={2}", this.tempo, newTempo, firstStopWatchTime, musicXmlTimeOffset));
+                        Logger.Log(string.Format("MusicPlayer: Tempo {0}->{1} firstStopWatchTime={1} musicXmlTimeOffset={2}", this.tempo, newTempo, firstStopWatchTime, musicXmlTimeOffset));
                         this.tempo = newTempo;
                     }
                 }
@@ -386,7 +386,7 @@ namespace MusicXmlReaderUI
             playing = true;
             playerThread = new System.Threading.Thread(new System.Threading.ThreadStart(PlayerThreadStartPoly));
             //playerThread.Priority = System.Threading.ThreadPriority.Lowest; // Handle UI even when playing complicated stuff
-            Model.Log(string.Format("Starting PlayerThread et priority={0}", playerThread.Priority.ToString()));
+            Logger.Log(string.Format("Starting PlayerThread et priority={0}", playerThread.Priority.ToString()));
             playerThread.Start();
         }
 
@@ -420,7 +420,7 @@ namespace MusicXmlReaderUI
             {
                 // If the application is closed the listbox may be disposed before we can stop playing !
                 playing = false;
-                Model.Log(string.Format("PlayerThread threw an exception because the program was stopped while playing. Message= {0}", e.Message));
+                Logger.Log(string.Format("PlayerThread threw an exception because the program was stopped while playing. Message= {0}", e.Message));
             }
             // Stop all notes currently playing! If they don't decay they will keep playing forever !
             foreach (MidiNote midiNote in notesCurrentlyPlaying)
