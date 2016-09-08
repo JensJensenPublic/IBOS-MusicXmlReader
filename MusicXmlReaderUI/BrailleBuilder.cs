@@ -240,12 +240,13 @@ namespace MusicXmlReaderUI
             // Actually we dont know what is added before and what is added after.
             // This method is primarily used for logging unimplemented notations !
             if (null == notations) return;
-            LogUninplementedNotationElement(notations.SlurElement, "SlurElement"); // Only log first occurrance
-            LogUninplementedNotationElement(notations.TiedElement, "TiedElement"); // Only log first occurrance
-            LogUninplementedNotationElement(notations.SlideElement, "SlideElement"); // Only log first occurrance
-            LogUninplementedNotationElement(notations.GlissandoElement, "GlissandoElement"); // Only log first occurrance
-            LogUninplementedNotationElement(notations.TupletElement, "TupletElement"); // Only log first occurrance
+            LogUninplementedNotationElement(notations.SlurElement, "SlurElement"); 
+            LogUninplementedNotationElement(notations.TiedElement, "TiedElement"); 
+            LogUninplementedNotationElement(notations.SlideElement, "SlideElement"); 
+            LogUninplementedNotationElement(notations.GlissandoElement, "GlissandoElement"); 
+            LogUninplementedNotationElement(notations.TupletElement, "TupletElement"); 
             LogUninplementedNotationElement(notations.ArpeggiateElement, "ArpeggiateElement");
+            LogUninplementedNotationElement(notations.FermataElement, "FermataElement");
 
             // Add other notation elements here asthey are added in the parser.
         }

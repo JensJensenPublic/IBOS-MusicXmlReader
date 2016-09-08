@@ -20,6 +20,7 @@ namespace MusicXmlReaderUI
         private GlissandoElement glissandoElement;
         private ArpeggiateElement arpeggiateElement;
         private AccidentalMarkElement accidentalMarkElement;
+        private FermataElement fermataElement;
 
         private ArticulationsElement articulations;
 
@@ -87,6 +88,14 @@ namespace MusicXmlReaderUI
             }
         }
 
+        internal FermataElement FermataElement
+        {
+            get
+            {
+                return fermataElement;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -144,7 +153,7 @@ namespace MusicXmlReaderUI
                     case "accidental-mark": accidentalMarkElement = AccidentalMarkElement.Create(child); break; // Løst fortegn
                     case "arpeggiate": arpeggiateElement = ArpeggiateElement.Create(child); break; // Tilhører brudt akkord
                     case "dynamics": ok = false; break;
-                    case "fermata": ok = false; break; 
+                    case "fermata": fermataElement = FermataElement.Create(child); break; // Har fermat tilknyttet
                     case "glissando": glissandoElement = GlissandoElement.Create(child); break;
                     case "non-arpeggiate": ok = false; break;
                     case "ornaments": ok = false; break;
@@ -170,14 +179,14 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            string s = string.Format("{0}{1}{2}{3}{4}{5}",
+            string s = string.Format("{0}{1}{2}{3}{4}{5}{6}",
             (null == slurElement) ? "" : slurElement.ToString() + " ", // 0
-            (null == tiedElement) ? "" : tiedElement.ToString() +" ", // 1
+            (null == tiedElement) ? "" : tiedElement.ToString() + " ", // 1
             (null == glissandoElement) ? "" : glissandoElement.ToString() + " ", // 2
             (null == slideElement) ? "" : slideElement.ToString() + " ",         // 3
             (null == tupletElement) ? "" : tupletElement.ToString() + " ",       // 4
-            (null == arpeggiateElement) ? "" : arpeggiateElement.ToString()); //5
-
+            (null == arpeggiateElement) ? "" : arpeggiateElement.ToString() + " ",// 5
+            (null == fermataElement) ? "" : fermataElement.ToString()); //6
             // ...
             // Add other elements as they are implemented!
 
