@@ -667,7 +667,7 @@ namespace MusicXmlReaderUI
         public void LoadListBoxTimes()
         {
             listBoxPoly.Items.Clear();
-            eventDescriptionList.LoadListBox(listBoxPoly, this.metaInfoStrings);
+            eventDescriptionList.LoadListBox(listBoxPoly, this.metaInfoStrings); 
             //timeDescriptionList.LoadListBox(listBoxTimes); 
         }
 

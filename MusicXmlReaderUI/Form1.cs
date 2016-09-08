@@ -97,10 +97,13 @@ namespace MusicXmlReaderUI
             textBoxMessage.Focus();
             textBoxMessage.Text = string.Format("Indlæser {0}", openFileDialog.FileName);
 
+            Logger.ClearStatistics();  // Clear statistics to be collected while loading, parsing and rendering the MusicXml file:
+
             if (!model.LoadMusicXmlFile(openFileDialog.FileName)) // Load the selected .xml file into the Model and build all internal data structures.
             {
                 // Simple error handling
                 textBoxMessage.Text = string.Format("Kunne ikke indlæse {0}", openFileDialog.FileName);
+                Logger.DumpStatistics(); // Dump all statistics collected by LogOnce() until now
                 return;
             }
 
@@ -146,6 +149,8 @@ namespace MusicXmlReaderUI
 
             // Let the Model do the hard work of transforming to e timed representation.
             model.LoadListBoxTimes();
+
+            Logger.DumpStatistics(); // Dump all statistics collected by LogOnce() during parsing, interpreting and rendering the file
 
             autoReload = true; // From now on all changes are  made by user and must be handled
 
