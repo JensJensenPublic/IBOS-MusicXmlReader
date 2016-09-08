@@ -4,18 +4,17 @@ namespace MusicXmlReaderUI
 {
     class GlissandoElement : StartStopContinueElement
     {
-        private static int nextId; // Only used for logging 
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
-        private GlissandoElement(XmlNode node, int id) : base(node, id)
+        private GlissandoElement(XmlNode node) : base(node)
         {
         }
 
 
         public static GlissandoElement Create(XmlNode node)
         {
-            return new GlissandoElement(node, nextId++);
+            return new GlissandoElement(node);
         }
 
 

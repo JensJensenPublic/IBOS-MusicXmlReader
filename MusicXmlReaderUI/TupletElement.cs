@@ -3,19 +3,18 @@
 namespace MusicXmlReaderUI
 {
     class TupletElement : StartStopContinueElement
-    {
-        private static int nextId; // Only used for logging 
+    { 
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
-        private TupletElement(XmlNode node, int id) : base(node, id)
+        private TupletElement(XmlNode node) : base(node)
         {
         }
 
 
         public static TupletElement Create(XmlNode node)
         {
-            return new TupletElement(node, nextId++);
+            return new TupletElement(node);
         }
 
 

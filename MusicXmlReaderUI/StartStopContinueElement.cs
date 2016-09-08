@@ -11,15 +11,13 @@ namespace MusicXmlReaderUI
         public enum StartStopContinueTypeEnum { Undefinded, Start, Stop, Continue };
         StartStopContinueTypeEnum startStopContinueType;
         int numberLevel = 1; // MusicXml default value
-        int id; // Only used for logging
 
         /// <summary>
         /// Private constructor, used by the Crate() method
         /// </summary>
         /// <param name="node"></param>
-        protected StartStopContinueElement(XmlNode node, int id)
+        protected StartStopContinueElement(XmlNode node)
         {
-            this.id = id; // Only used for logging
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
@@ -83,16 +81,7 @@ namespace MusicXmlReaderUI
             {
                 return numberLevel;
             }
-        }
-
-        public int Id
-        {
-            get
-            {
-                return id;
-            }
-        }
-        
+        }        
     }
 }
 

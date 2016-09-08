@@ -5,19 +5,18 @@ namespace MusicXmlReaderUI
     // The tied type represents the notated tie. The tie element represents the tie sound.
     class TiedElement : StartStopContinueElement
     {
-        static private int nextId; // Only used for logging
 
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
-        private TiedElement(XmlNode node, int id) : base(node,id)
+        private TiedElement(XmlNode node) : base(node)
         {
         }
 
 
         public static TiedElement Create(XmlNode node)
         {
-            return new TiedElement(node, nextId++);
+            return new TiedElement(node);
         }
 
 

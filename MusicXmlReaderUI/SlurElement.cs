@@ -4,18 +4,17 @@ namespace MusicXmlReaderUI
 {
     class SlurElement : StartStopContinueElement
     {
-        private static int nextId; // Only used for logging 
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
-        private SlurElement(XmlNode node, int id) : base(node,id)
+        private SlurElement(XmlNode node) : base(node)
         {
         }
         
 
         public static SlurElement Create(XmlNode node)
         {
-            return new SlurElement(node,nextId++);
+            return new SlurElement(node);
         }
 
 

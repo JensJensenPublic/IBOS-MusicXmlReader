@@ -231,7 +231,6 @@ namespace MusicXmlReaderUI
         private void LogUninplementedNotationElement(Element element, string elementName)
         {
             if (null == element) return;
-            if ((element is StartStopContinueElement) && (0 != (element as StartStopContinueElement).Id)) return; // Only log these once
             const string function = "BrailleBuilder.AddNotationsAfterNote";
             Logger.LogOnce(string.Format("{0}: Unimplemented NotationElement:{1}", function, elementName));
         }
