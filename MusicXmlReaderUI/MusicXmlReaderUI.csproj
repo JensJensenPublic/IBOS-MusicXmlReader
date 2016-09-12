@@ -57,7 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccidentalMark.cs" />
+    <Compile Include="AccidentalMarkElement.cs" />
     <Compile Include="ArpeggiateElement.cs" />
     <Compile Include="ArticulationElements.cs" />
     <Compile Include="BackupElement.cs" />

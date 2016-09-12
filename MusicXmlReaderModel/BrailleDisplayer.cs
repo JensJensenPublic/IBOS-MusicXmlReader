@@ -1,0 +1,139 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Threading;
+//using DavyKager; // Tolk
+using JSJ.ScreenReaderAPI;
+
+//Unicode for Braille
+//https://en.wikipedia.org/wiki/Braille_Patterns
+//http://www.unicode.org/charts/PDF/U2800.pdf
+
+namespace MusicXmlReaderUI
+{
+
+    /// <summary>
+    /// Similar function to MusicPlyuer
+    /// </summary>
+    class BrailleDisplayer
+    {
+        public static readonly char UnicodeBrailleBase = (char)0x2800;
+
+        private FSBrlDspAPIWrapper fSBrlDspAPIWrapper; // Used by experimental code for accessing a Freedom Scientific Braille diaplay directly.
+        private TextBox musicBrailleTextBox; // The textbox used for writing MusicBraille bytes, repredsented as UniCode
+        private string emptyBrailleString;
+        //private NvdaControllerClientWrapper nvda;
+        private int displaySize;
+        private string latestMusicBrailleString = string.Empty;
+        private ScreenReaderAPI screenReaderAPI;
+
+
+
+         private BrailleDisplayer(TextBox tb, int displaySize,ScreenReaderAPI screenReaderAPI)
+        {
+            musicBrailleTextBox = tb;
+            this.displaySize = displaySize;
+            this.screenReaderAPI = screenReaderAPI;
+            fSBrlDspAPIWrapper = FSBrlDspAPIWrapper.Create(); // For direct access to physical Braille Display
+            fSBrlDspAPIWrapper.Open(); // TODO Insert this line again after placing FSBrlDspApi.dll in the 3.Party directory.
+            // nvda = NvdaControllerClientWrapper.Create(); // For access to physical Braille Display through NVDA 
+            emptyBrailleString = new StringBuilder().Append(UnicodeBrailleBase, displaySize).ToString();
+
+            //StringBuilder sb = new StringBuilder();
+            //for (int i = 0; (i < this.displaySize); i++) { sb.Append(UnicodeBrailleBase);};
+            //emptyBrailleString = sb.ToString();
+        }
+
+  
+        public static BrailleDisplayer Create(TextBox tb,int displaySize,ScreenReaderAPI screenReaderAPI)
+        {
+             return new BrailleDisplayer(tb,displaySize, screenReaderAPI);
+        }
+
+
+
+        private string BytesToString(List<byte> bytes, int displaySize)
+        {
+            StringBuilder musicBrailleStringBuilder = new StringBuilder();
+            foreach (byte b in bytes)
+            {
+                musicBrailleStringBuilder.Append((char)(UnicodeBrailleBase + (char)b));
+            }
+            int size = musicBrailleStringBuilder.Length;
+            if ( size < displaySize)
+            {
+                // First the typial case
+                return musicBrailleStringBuilder.Append(UnicodeBrailleBase, (displaySize - size)).ToString();
+            }
+            else
+            {
+                return musicBrailleStringBuilder.ToString(0, displaySize);
+            }
+        }
+
+
+
+        /// <summary>
+        /// Used when the playing manually.
+        /// The User selects a note at a time. 
+        /// or
+        /// The user selects an EventDescription at a time. This may contain several notes to be played simultaneously
+        /// </summary>
+        /// <param name="selectedIndex"></param>
+        /// <param name="selectedObject"></param>
+        internal void SelectedIndexChanged(int selectedIndex, object selectedObject)
+        {
+            //StopRefreshing(); // Stop refreshing the Braille Display; Also happens when controllooses focus      
+
+            //if (playing) return;
+            if (null == selectedObject) return;
+            if ((selectedObject is NoteElement))
+            {
+                //NoteElement noteElement = selectedObject as NoteElement;
+                //if (noteElement.IsPause) return; // This is a pause
+                //// new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
+            }
+            else if ((selectedObject is EventDescription))
+            {
+
+                EventDescription eventDescription = selectedObject as EventDescription;
+                musicBrailleTextBox.Text = eventDescription.ToMusicBrailleString();
+                screenReaderAPI.Silence(); // Prevent overloading the internal queue in NVDA when rapidly changing between different events                  
+                if (ScreenReaderAPI.ScreenReaderType.NVDA == screenReaderAPI.GetScreenReaderType())
+                {
+                    // NVDA will read the MusicBraille characters as "Braille 1,2,3,4,5,6,7,8"
+                    // So in the NVDA case the MusicBraille characters must NOT shown in the listbox.
+                    // The MusicBraille characteres are thus not automatically shown on the Braille display.
+                    // Instead we must explicitly write them to the Braille display:
+                    screenReaderAPI.Braille(eventDescription.ToMusicBrailleAndTextBrailleString(), true);
+                }  
+            }
+            else
+            {
+                // This is not an event description
+                StopRefreshing(); // Stop refreshing the Braille Display; Also happens when controllooses focus 
+            }
+            return;
+        }
+
+        public void StartRefreshing()
+        {
+
+        }
+
+
+        public void StopRefreshing()
+        {
+            // Clear the BrailleDisplay first.     
+            screenReaderAPI.Braille(emptyBrailleString,false);
+            //screenReaderAPI.StopRefreshing();
+            musicBrailleTextBox.Text = emptyBrailleString;
+        }
+
+    }
+
+
+}
