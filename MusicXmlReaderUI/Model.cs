@@ -8,7 +8,7 @@ using JSJ.ScreenReaderAPI;
 
 namespace MusicXmlReaderUI
 {
-    class Model
+    public class Model
     {
         public readonly string ApplicationName = "IBOS Musiklæser";
         string theMusicXmlFileName = "";
@@ -21,7 +21,7 @@ namespace MusicXmlReaderUI
         public PartlistElement partList; // Contains the list of parts, describing all instruments used including their midi parameters
         int divisions; // Current number of divisions of a quarternode
         int tempo;     // Current tempo in beats pr minute
-        int currentMeasureNumber = 0 ; // Current measure number
+        int currentMeasureNumber = 0; // Current measure number
         int latestMeasureNumber = 0;
         int numberOfParts; // Number of parts
         //int currentPartitionNumber = -1;
@@ -36,11 +36,23 @@ namespace MusicXmlReaderUI
 
         string executingAssembly;
         string executingDirectory;
-        
+
         List<string> metaInfoStrings = new List<string>(); // Selected meta info from the current file, such as Title and Composer
 
 
+        /// <summary>
+        /// Create to be used by UI-less applications
+        /// </summary>
+        /// <returns></returns>
+        static public Model Create()
+        {
+            return new Model(null, null);
+        }
 
+        static public Model Create(ListBox listBoxPoly, TextBox textBoxMusicBraille)
+        {
+            return new Model(listBoxPoly, textBoxMusicBraille);
+        }
 
         private bool CheckFileExistance(string fileName, string methodName, bool dir)
         {
@@ -327,11 +339,15 @@ namespace MusicXmlReaderUI
             } 
         }
 
+        private Model()
+        {
+            // Prevent creation 
+        }
 
         /// <summary>
-        /// Constructor
+        /// Constructor to be used by UI-based applications
         /// </summary>
-        public Model(ListBox listBoxPoly, TextBox textBoxMusicBraille)
+        private Model(ListBox listBoxPoly, TextBox textBoxMusicBraille)
         {
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;

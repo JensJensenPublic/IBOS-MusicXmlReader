@@ -3,7 +3,7 @@ using System.Xml;
 
 namespace MusicXmlReaderUI
 {
-    class PartlistElement : Element
+    public class PartlistElement : Element
     {
 
         /// <summary>

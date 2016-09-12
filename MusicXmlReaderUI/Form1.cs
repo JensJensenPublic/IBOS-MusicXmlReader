@@ -25,7 +25,7 @@ namespace MusicXmlReaderUI
         {
             InitializeComponent();     
             if (!showTimes) listBoxTimes.Hide();
-            model = new Model(listBoxTimes,textBoxBraille);
+            model = Model.Create(listBoxTimes,textBoxBraille);
             this.Text = model.ApplicationName;
             listBoxTimes.LostFocus += ListBoxTimes_LostFocus;
             listBoxTimes.GotFocus += ListBoxTimes_GotFocus;

@@ -46,63 +46,172 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrailleBuilder.cs" />
-    <Compile Include="BrailleDisplayer.cs" />
-    <Compile Include="DebugTools.cs" />
-    <Compile Include="DeviceInfo.cs" />
-    <Compile Include="Elements\AccidentalMarkElement.cs" />
-    <Compile Include="Elements\ArpeggiateElement.cs" />
-    <Compile Include="Elements\ArticulationElements.cs" />
-    <Compile Include="Elements\BackupElement.cs" />
-    <Compile Include="Elements\ClefElement.cs" />
-    <Compile Include="Elements\CreatorElement.cs" />
-    <Compile Include="Elements\DivisionsElement.cs" />
-    <Compile Include="Elements\Element.cs" />
-    <Compile Include="Elements\EndEventElement.cs" />
-    <Compile Include="Elements\EventElement.cs" />
-    <Compile Include="Elements\FermataElement.cs" />
-    <Compile Include="Elements\ForwardElement.cs" />
-    <Compile Include="Elements\GlissandoElement.cs" />
-    <Compile Include="Elements\HarmonyElement.cs" />
-    <Compile Include="Elements\KeyElement.cs" />
-    <Compile Include="Elements\MeasureElement.cs" />
-    <Compile Include="Elements\MidiInstrumentElement.cs" />
-    <Compile Include="Elements\NotationElement.cs" />
-    <Compile Include="Elements\NotationsElement.cs" />
-    <Compile Include="Elements\NoteElement.cs" />
-    <Compile Include="Elements\OrnamentsElement.cs" />
-    <Compile Include="Elements\PartElement.cs" />
-    <Compile Include="Elements\PartlistElement.cs" />
-    <Compile Include="Elements\RepeatElement.cs" />
-    <Compile Include="Elements\RestElement.cs" />
-    <Compile Include="Elements\ScoreInstrumentElement.cs" />
-    <Compile Include="Elements\ScorepartElement.cs" />
-    <Compile Include="Elements\ScorePartwiseElement.cs" />
-    <Compile Include="Elements\SimpleTextElement.cs" />
-    <Compile Include="Elements\SlideElement.cs" />
-    <Compile Include="Elements\SlurElement.cs" />
-    <Compile Include="Elements\SoundElement.cs" />
-    <Compile Include="Elements\StartStopContinueElement.cs" />
-    <Compile Include="Elements\TiedElement.cs" />
-    <Compile Include="Elements\TieElement.cs" />
-    <Compile Include="Elements\TimeElement.cs" />
-    <Compile Include="Elements\TupletElement.cs" />
-    <Compile Include="Elements\UnimplementedElement.cs" />
-    <Compile Include="EventDescription.cs" />
-    <Compile Include="EventDescriptionList.cs" />
-    <Compile Include="FSBrlDspAPI.Wrapper.cs" />
-    <Compile Include="Logger.cs" />
-    <Compile Include="Model.cs" />
-    <Compile Include="MusicPlayer.cs" />
-    <Compile Include="MusicXmlObject.cs" />
-    <Compile Include="PartDescriptionList.cs" />
-    <Compile Include="Pitch.cs" />
+    <Compile Include="..\MusicXmlReaderUI\AccidentalMarkElement.cs">
+      <Link>Elements\AccidentalMarkElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\ArpeggiateElement.cs">
+      <Link>Elements\ArpeggiateElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\ArticulationElements.cs">
+      <Link>Elements\ArticulationElements.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\BackupElement.cs">
+      <Link>Elements\BackupElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\BrailleBuilder.cs">
+      <Link>BrailleBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\BrailleDisplayer.cs">
+      <Link>BrailleDisplayer.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\ClefElement.cs">
+      <Link>Elements\ClefElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\CreatorElement.cs">
+      <Link>Elements\CreatorElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\DebugTools.cs">
+      <Link>DebugTools.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\DeviceInfo.cs">
+      <Link>DeviceInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\DivisionsElement.cs">
+      <Link>Elements\DivisionsElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\Element.cs">
+      <Link>Elements\Element.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\EndEventElement.cs">
+      <Link>Elements\EndEventElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\EventDescription.cs">
+      <Link>EventDescription.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\EventDescriptionList.cs">
+      <Link>EventDescriptionList.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\EventElement.cs">
+      <Link>Elements\EventElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\FermataElement.cs">
+      <Link>Elements\FermataElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\ForwardElement.cs">
+      <Link>Elements\ForwardElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\FSBrlDspAPI.Wrapper.cs">
+      <Link>FSBrlDspAPI.Wrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\GlissandoElement.cs">
+      <Link>Elements\GlissandoElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\HarmonyElement.cs">
+      <Link>Elements\HarmonyElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\KeyElement.cs">
+      <Link>Elements\KeyElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\Logger.cs">
+      <Link>Logger.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\MeasureElement.cs">
+      <Link>Elements\MeasureElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\MidiInstrumentElement.cs">
+      <Link>Elements\MidiInstrumentElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\Model.cs">
+      <Link>Model.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\MusicPlayer.cs">
+      <Link>MusicPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\MusicXmlObject.cs">
+      <Link>MusicXmlObject.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\NotationElement.cs">
+      <Link>Elements\NotationElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\NotationsElement.cs">
+      <Link>Elements\NotationsElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\NoteElement.cs">
+      <Link>Elements\NoteElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\OrnamentsElement.cs">
+      <Link>Elements\OrnamentsElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\PartDescriptionList.cs">
+      <Link>PartDescriptionList.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\PartElement.cs">
+      <Link>Elements\PartElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\PartlistElement.cs">
+      <Link>Elements\PartlistElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\Pitch.cs">
+      <Link>Pitch.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\RepeatElement.cs">
+      <Link>Elements\RepeatElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\RestElement.cs">
+      <Link>Elements\RestElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\ScoreInstrumentElement.cs">
+      <Link>Elements\ScoreInstrumentElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\ScorepartElement.cs">
+      <Link>Elements\ScorepartElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\ScorePartwiseElement.cs">
+      <Link>Elements\ScorePartwiseElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\SimpleTextElement.cs">
+      <Link>Elements\SimpleTextElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\SlideElement.cs">
+      <Link>Elements\SlideElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\SlurElement.cs">
+      <Link>Elements\SlurElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\SoundElement.cs">
+      <Link>Elements\SoundElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\StartStopContinueElement.cs">
+      <Link>Elements\StartStopContinueElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\SystemParametersiInfo.cs">
+      <Link>SystemParametersiInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\TiedElement.cs">
+      <Link>Elements\TiedElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\TieElement.cs">
+      <Link>Elements\TieElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\TimeDescriptionList.cs">
+      <Link>TimeDescriptionList.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\TimeElement.cs">
+      <Link>Elements\TimeElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\TupletElement.cs">
+      <Link>Elements\TupletElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\UnimplementedElement.cs">
+      <Link>Elements\UnimplementedElement.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\UserSettings.cs">
+      <Link>UserSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\Utilities.cs">
+      <Link>Utilities.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SystemParametersiInfo.cs" />
-    <Compile Include="TimeDescriptionList.cs" />
-    <Compile Include="Tolk.cs" />
-    <Compile Include="UserSettings.cs" />
-    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MusicSynthesis\MusicSynthesis.csproj">

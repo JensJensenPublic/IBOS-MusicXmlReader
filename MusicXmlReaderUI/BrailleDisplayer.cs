@@ -18,7 +18,7 @@ namespace MusicXmlReaderUI
     /// <summary>
     /// Similar function to MusicPlyuer
     /// </summary>
-    class BrailleDisplayer
+    public class BrailleDisplayer
     {
         public static readonly char UnicodeBrailleBase = (char)0x2800;
 
