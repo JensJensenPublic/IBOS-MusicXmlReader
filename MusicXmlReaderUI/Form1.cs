@@ -18,15 +18,16 @@ namespace MusicXmlReaderUI
         bool showTimes = true;
         Model model;
         bool autoReload;
+        string ApplicationName = "IBOS Musiklæser";
 
         // string fullFileName = @"C:\temp\MusicXML\La Mer.xml"; // The sample XML file to read from
 
         public Form1()
-        {
+        {   
             InitializeComponent();     
             if (!showTimes) listBoxTimes.Hide();
-            model = Model.Create(listBoxTimes,textBoxBraille);
-            this.Text = model.ApplicationName;
+            model = Model.Create(listBoxTimes,textBoxBraille,ApplicationName);
+            this.Text = ApplicationName;
             listBoxTimes.LostFocus += ListBoxTimes_LostFocus;
             listBoxTimes.GotFocus += ListBoxTimes_GotFocus;
         }

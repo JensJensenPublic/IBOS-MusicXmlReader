@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.IO;
 using System.Collections.Generic;
 using NAudio.Midi;
@@ -10,7 +10,6 @@ namespace MusicXmlReaderUI
 {
     public class Model
     {
-        public readonly string ApplicationName = "IBOS Musiklæser";
         string theMusicXmlFileName = "";
         bool is64Bit; // This program is compiled and for the following architechture: false:x86 true:x64 
         List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
@@ -46,82 +45,12 @@ namespace MusicXmlReaderUI
         /// <returns></returns>
         static public Model Create()
         {
-            return new Model(null, null);
+            return new Model(null,null,null);
         }
 
-        static public Model Create(ListBox listBoxPoly, TextBox textBoxMusicBraille)
+        static public Model Create(ListBox listBoxPoly, TextBox textBoxMusicBraille, string menuCaption)
         {
-            return new Model(listBoxPoly, textBoxMusicBraille);
-        }
-
-        private bool CheckFileExistance(string fileName, string methodName, bool dir)
-        {
-            if (dir)
-            {
-                if (!System.IO.Directory.Exists(fileName))
-                {
-                    Logger.Log(string.Format("{0} Directory {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
-                    MessageBox.Show(string.Format("Mappen {0} findes ikke", fileName));
-                    return false;
-                }
-            }
-            else
-            {
-                if (!System.IO.File.Exists(fileName))
-                {
-                    Logger.Log(string.Format("{0} File {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
-                    MessageBox.Show(string.Format("Filen {0} findes ikke", fileName));
-                    return false;
-                }
-            }
-            return true;
-        }
-
-
-        /// <summary>
-        /// Attempts to start an external program using a single filename as argument
-        /// Errors are reportes through messageboxes and Model.Log()
-        /// </summary>
-        /// <param name="exeFileName">Name of program to start, with or without full path</param>
-        /// <param name="argFileName">Name of file to use as argument when starting the program</param>
-        /// <returns>true <==> succaee</returns>
-        private bool RunExeWithFileArgument(string exeFileName, string argFileName)
-        {
-            return RunExeWithFileArgument(exeFileName, argFileName, false);
-        }
-
-        private bool RunExeWithDirArgument(string exeFileName, string argFileName)
-        {
-            return RunExeWithFileArgument(exeFileName, argFileName, true);
-        }
-
-
-        private bool RunExeWithFileArgument(string exeFileName, string argFileName,bool dir)
-        {
-            string methodName = "RunExeWithFileArgument";
-            // Check arguments
-            string exePathName = Path.GetDirectoryName(exeFileName);
-            if ((!string.IsNullOrEmpty(exePathName)) && (!CheckFileExistance(exeFileName, methodName,false))) return false;
-            if ((!string.IsNullOrEmpty(argFileName)) && (!CheckFileExistance(argFileName, methodName,dir))) return false;
-            // Create process startinfo. Enclose all filenames and pathnames in "" in order to handle possible space characters!
-            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();     
-            pProcess.StartInfo.FileName = string.Format("\"{0}\"", exeFileName);
-            pProcess.StartInfo.WorkingDirectory = string.IsNullOrEmpty(exePathName) ? null : string.Format("\"{0}\"", exePathName);
-            pProcess.StartInfo.Arguments = string.Format("\"{0}\"", argFileName); 
-            pProcess.StartInfo.UseShellExecute = true; // Allows the system to search for the executable using PATH
-            pProcess.StartInfo.RedirectStandardOutput = false;
-            pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-            try
-            {
-                pProcess.Start();
-            }
-            catch (Exception e)
-            {
-                Logger.Log(string.Format("ReadFileByExecutable: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
-                MessageBox.Show(string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'",exeFileName,argFileName));
-                return false;
-            }
-            return true;
+            return new Model(listBoxPoly, textBoxMusicBraille, menuCaption);
         }
 
         #region LogFile
@@ -130,13 +59,13 @@ namespace MusicXmlReaderUI
 
         public void ReadLogFile()
         {
-            RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), Logger.LogFileName));
+            Utilities.RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), Logger.LogFileName));
         }
 
         public void OpenLogFileLocation()
         {
             string tempPath = System.IO.Path.GetTempPath();
-            RunExeWithDirArgument("explorer.exe",tempPath);
+            Utilities.RunExeWithDirArgument("explorer.exe",tempPath);
         }
 
         public void OpenMusicXmlFileLocation()
@@ -144,7 +73,7 @@ namespace MusicXmlReaderUI
             string dir = Path.GetDirectoryName(theMusicXmlFileName);
             if (System.IO.Directory.Exists(dir))
             {
-                RunExeWithDirArgument("explorer.exe", dir); 
+                Utilities.RunExeWithDirArgument("explorer.exe", dir); 
             }
         }
         
@@ -175,7 +104,7 @@ namespace MusicXmlReaderUI
 
             streamWriter.Close();
 
-            RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), fileName));
+            Utilities.RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), fileName));
 
             //ReadTempFileByNotepad(fileName);
         }
@@ -188,7 +117,7 @@ namespace MusicXmlReaderUI
             {
                 //ReadFileByNotepad(theMusicXmlFileName);
                 //ReadFileByExecutable("iexplore.exe",theMusicXmlFileName);
-                RunExeWithFileArgument("iexplore.exe", theMusicXmlFileName);
+                Utilities.RunExeWithFileArgument("iexplore.exe", theMusicXmlFileName);
 
             }
         }
@@ -203,7 +132,7 @@ namespace MusicXmlReaderUI
                 //string exeFileName = @"C:\Program Files(x86)\MuseScore 2\bin\MuseScore.exe";
                 string exeFileName =  @"C:\Program Files (x86)\MuseScore 2\bin\MuseScore.exe";
                 //ReadFileByMuseScore(exeFileName, theMusicXmlFileName);
-                RunExeWithFileArgument(exeFileName, theMusicXmlFileName);
+                Utilities.RunExeWithFileArgument(exeFileName, theMusicXmlFileName);
 
             }
         }
@@ -298,7 +227,7 @@ namespace MusicXmlReaderUI
                 streamWriter.WriteLine("Empty representation found");
             }
             streamWriter.Close();
-            RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), fileName));
+            Utilities.RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), fileName));
         }
         #endregion
 
@@ -347,7 +276,7 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// Constructor to be used by UI-based applications
         /// </summary>
-        private Model(ListBox listBoxPoly, TextBox textBoxMusicBraille)
+        private Model(ListBox listBoxPoly, TextBox textBoxMusicBraille, string caption)
         {
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -358,13 +287,13 @@ namespace MusicXmlReaderUI
             Logger.Log(string.Format("Date={0}:", System.DateTime.Now.ToLongDateString()));
             Logger.Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
             Logger.LogSystemInformation();
-            Utilities.CheckDlls(executingDirectory, ApplicationName, is64Bit);
+            Utilities.CheckDlls(executingDirectory, caption, is64Bit);
 
 
             // Create an API to JAWS or NVDA depending on which screenreader is currently running
             debugTools = DebugTools.Create(); // Used for logging and tracing from screenReaderAPI.
             screenReaderAPI = ScreenReaderAPI.Create(is64Bit,debugTools);
-            Utilities.CheckScreenReader(!string.IsNullOrEmpty(screenReaderAPI.GetScreenReaderDllName()), ApplicationName); // Check for DummyScreenReader
+            Utilities.CheckScreenReader(!string.IsNullOrEmpty(screenReaderAPI.GetScreenReaderDllName()), caption); // Check for DummyScreenReader
 
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(listBoxPoly,midiOut);
@@ -673,6 +602,15 @@ namespace MusicXmlReaderUI
             {
                 return is64Bit;
             }
+        }
+
+        public EventDescriptionList EventDescriptionList
+        {
+            get
+            {
+                return eventDescriptionList;
+            }
+            
         }
 
         //private MeasureDescriptionList measureDescriptionList;

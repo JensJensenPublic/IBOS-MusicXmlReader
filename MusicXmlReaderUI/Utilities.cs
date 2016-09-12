@@ -245,9 +245,19 @@ namespace MusicXmlReaderUI
             result &= CheckDll("FsBrlDspApi.dll", directory, is64Bit);                 // Derect access to Freedom Scientific Braille Display. Not really needed. 
 
 
-            if ((null != caption) && !result)
+            if (!result)
             {
-                MessageBox.Show("Manglende programfil ! Se venligst Logfilen!",caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (null != caption)
+                {
+                    // The application has UI
+                    MessageBox.Show("Manglende programfil!\r\n"
+                                  + "Se venligst Logfilen! (Værktøjer->Log fil)", caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    // The application is .cmd
+                    Console.WriteLine("Manglende programfil! Se venligst Logfilen");
+                }
             }
 
             return result;
@@ -256,15 +266,97 @@ namespace MusicXmlReaderUI
 
         internal static bool CheckScreenReader(bool result, string caption)
         {
-            if (!result && (null!= caption))
-            {       
-                MessageBox.Show("Kunne ikke forbinde til skærmlæser!\r\n"
-                                        + "Understøttede skærmlæsere er 'JAWS' og 'NVDA'\r\n"
-                                        + "Se venligst logfilen (Værktøjer->Log fil)",
-                                        caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (!result)
+            {
+
+                if (null != caption)
+                {
+                    // The application has UI
+                    MessageBox.Show("Kunne ikke forbinde til skærmlæser!\r\n"
+                                            + "Understøttede skærmlæsere er 'JAWS' og 'NVDA'\r\n"
+                                            + "Se venligst logfilen (Værktøjer->Log fil)"
+                                            ,caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    // The application is .cmd
+                    Console.WriteLine("Kunne ikke forbinde til skærmlæser!");
+                }
             }
             return result;
         }
+
+        internal static bool CheckFileExistance(string fileName, string methodName, bool dir)
+        {
+            if (dir)
+            {
+                if (!System.IO.Directory.Exists(fileName))
+                {
+                    Logger.Log(string.Format("{0} Directory {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
+                    MessageBox.Show(string.Format("Mappen {0} findes ikke", fileName));
+                    return false;
+                }
+            }
+            else
+            {
+                if (!System.IO.File.Exists(fileName))
+                {
+                    Logger.Log(string.Format("{0} File {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
+                    MessageBox.Show(string.Format("Filen {0} findes ikke", fileName));
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+        /// <summary>
+        /// Attempts to start an external program using a single filename as argument
+        /// Errors are reportes through messageboxes and Model.Log()
+        /// </summary>
+        /// <param name="exeFileName">Name of program to start, with or without full path</param>
+        /// <param name="argFileName">Name of file to use as argument when starting the program</param>
+        /// <returns>true <==> succaee</returns>
+        internal static bool RunExeWithFileArgument(string exeFileName, string argFileName)
+        {
+            return RunExeWithFileArgument(exeFileName, argFileName, false);
+        }
+
+        internal static bool RunExeWithDirArgument(string exeFileName, string argFileName)
+        {
+            return RunExeWithFileArgument(exeFileName, argFileName, true);
+        }
+
+
+        internal static bool RunExeWithFileArgument(string exeFileName, string argFileName, bool dir)
+        {
+            string methodName = "RunExeWithFileArgument";
+            // Check arguments
+            string exePathName = Path.GetDirectoryName(exeFileName);
+            if ((!string.IsNullOrEmpty(exePathName)) && (!CheckFileExistance(exeFileName, methodName, false))) return false;
+            if ((!string.IsNullOrEmpty(argFileName)) && (!CheckFileExistance(argFileName, methodName, dir))) return false;
+            // Create process startinfo. Enclose all filenames and pathnames in "" in order to handle possible space characters!
+            System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
+            pProcess.StartInfo.FileName = string.Format("\"{0}\"", exeFileName);
+            pProcess.StartInfo.WorkingDirectory = string.IsNullOrEmpty(exePathName) ? null : string.Format("\"{0}\"", exePathName);
+            pProcess.StartInfo.Arguments = string.Format("\"{0}\"", argFileName);
+            pProcess.StartInfo.UseShellExecute = true; // Allows the system to search for the executable using PATH
+            pProcess.StartInfo.RedirectStandardOutput = false;
+            pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+            try
+            {
+                pProcess.Start();
+            }
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("ReadFileByExecutable: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
+                MessageBox.Show(string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'", exeFileName, argFileName));
+                return false;
+            }
+            return true;
+        }
+
+
 
 
     }
