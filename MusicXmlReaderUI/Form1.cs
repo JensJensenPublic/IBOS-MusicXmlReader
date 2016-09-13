@@ -3,7 +3,9 @@ using System.Windows.Forms;
 
 namespace MusicXmlReaderUI
 {
-    public partial class Form1 : Form
+     
+
+    public partial class Form1 : Form, IWritableString
     {
 
         string ApplicationName = "IBOS Nodelæser";  // Application name. Fits into a Freedom Scientific Focus 14 Braille dirplay!
@@ -16,13 +18,17 @@ namespace MusicXmlReaderUI
         public Form1()
         {   
             InitializeComponent();
-            model = Model.Create(listBoxTimes,textBoxBraille,ApplicationName);
+            model = Model.Create(listBoxTimes,(this as IWritableString),ApplicationName);
             this.Text = ApplicationName;
             listBoxTimes.LostFocus  += ListBoxTimes_LostFocus;
             listBoxTimes.GotFocus   += ListBoxTimes_GotFocus;
         }
 
- 
+
+        public void SetString(string s)
+        {
+            textBoxBraille.Text = s;
+        }
 
         /// <summary>
         /// Open a standard File Dialog allowing the user select a MusicXml file.

@@ -48,9 +48,9 @@ namespace MusicXmlReaderUI
             return new Model(null,null,null);
         }
 
-        static public Model Create(ListBox listBoxPoly, TextBox textBoxMusicBraille, string menuCaption)
+        static public Model Create(ListBox listBoxPoly, IWritableString ws, string menuCaption)
         {
-            return new Model(listBoxPoly, textBoxMusicBraille, menuCaption);
+            return new Model(listBoxPoly, ws, menuCaption);
         }
 
         #region LogFile
@@ -276,7 +276,7 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// Constructor to be used by UI-based applications
         /// </summary>
-        private Model(ListBox listBoxPoly, TextBox textBoxMusicBraille, string caption)
+        private Model(ListBox listBoxPoly, IWritableString textBoxMusicBraille, string caption)
         {
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;

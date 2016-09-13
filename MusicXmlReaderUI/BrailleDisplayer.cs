@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Threading;
-//using DavyKager; // Tolk
+
 using JSJ.ScreenReaderAPI;
 
 //Unicode for Braille
@@ -16,6 +12,14 @@ namespace MusicXmlReaderUI
 {
 
     /// <summary>
+    /// This interface is only used to attempt to avoid polluting the Model with references to Windows.Forms
+    /// </summary>
+    public interface IWritableString
+    {
+        void SetString(string s);
+    }
+
+    /// <summary>
     /// Similar function to MusicPlyuer
     /// </summary>
     public class BrailleDisplayer
@@ -23,7 +27,7 @@ namespace MusicXmlReaderUI
         public static readonly char UnicodeBrailleBase = (char)0x2800;
 
         private FSBrlDspAPIWrapper fSBrlDspAPIWrapper; // Used by experimental code for accessing a Freedom Scientific Braille diaplay directly.
-        private TextBox musicBrailleTextBox; // The textbox used for writing MusicBraille bytes, repredsented as UniCode
+        private IWritableString musicBrailleTextBox; // The textbox used for writing MusicBraille bytes, repredsented as UniCode
         private string emptyBrailleString;
         //private NvdaControllerClientWrapper nvda;
         private int displaySize;
@@ -32,9 +36,9 @@ namespace MusicXmlReaderUI
 
 
 
-         private BrailleDisplayer(TextBox tb, int displaySize,ScreenReaderAPI screenReaderAPI)
+         private BrailleDisplayer(IWritableString ws, int displaySize,ScreenReaderAPI screenReaderAPI)
         {
-            musicBrailleTextBox = tb;
+            musicBrailleTextBox = ws;
             this.displaySize = displaySize;
             this.screenReaderAPI = screenReaderAPI;
             fSBrlDspAPIWrapper = FSBrlDspAPIWrapper.Create(); // For direct access to physical Braille Display
@@ -48,9 +52,9 @@ namespace MusicXmlReaderUI
         }
 
   
-        public static BrailleDisplayer Create(TextBox tb,int displaySize,ScreenReaderAPI screenReaderAPI)
+        public static BrailleDisplayer Create(IWritableString ws,int displaySize,ScreenReaderAPI screenReaderAPI)
         {
-             return new BrailleDisplayer(tb,displaySize, screenReaderAPI);
+             return new BrailleDisplayer(ws,displaySize, screenReaderAPI);
         }
 
 
@@ -100,7 +104,7 @@ namespace MusicXmlReaderUI
             {
 
                 EventDescription eventDescription = selectedObject as EventDescription;
-                musicBrailleTextBox.Text = eventDescription.ToMusicBrailleString();
+                musicBrailleTextBox.SetString(eventDescription.ToMusicBrailleString());
                 screenReaderAPI.Silence(); // Prevent overloading the internal queue in NVDA when rapidly changing between different events                  
                 if (ScreenReaderAPI.ScreenReaderType.NVDA == screenReaderAPI.GetScreenReaderType())
                 {
@@ -130,7 +134,7 @@ namespace MusicXmlReaderUI
             // Clear the BrailleDisplay first.     
             screenReaderAPI.Braille(emptyBrailleString,false);
             //screenReaderAPI.StopRefreshing();
-            musicBrailleTextBox.Text = emptyBrailleString;
+            musicBrailleTextBox.SetString(emptyBrailleString);
         }
 
     }
