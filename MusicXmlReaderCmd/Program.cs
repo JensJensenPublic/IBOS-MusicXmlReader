@@ -7,18 +7,52 @@ using System.Threading.Tasks;
 
 namespace MusicXmlReaderUI
 {
+    /// <summary>
+    /// Simple testprogram for checking the parsing of all .xml filer in a directory tree.
+    /// Generates output to the .log file
+    /// </summary>
     class Program
     {
+        static Model model;
+
+        static void Recurse(string dir)
+        {
+            string[] files = System.IO.Directory.GetFiles(dir);
+            foreach (string file in files)
+            {
+                string extension = System.IO.Path.GetExtension(file);
+                if ( 0 == string.Compare(".xml",extension ))
+                {
+                    bool ok = model.LoadMusicXmlFile(file);
+                    Console.WriteLine(string.Format("Model.LoadMusicXmlFile({0}) {1}", file, ok ? "succeeded" : "failed"));
+                    int events = model.EventDescriptionList.Events.Count;
+                    Console.WriteLine(string.Format("The file contains {0} events", events));
+                }
+
+            }
+            string[] subDirs = System.IO.Directory.GetDirectories(dir);
+            foreach(string subDir in subDirs)
+            {
+                Recurse(subDir);
+            }
+
+        }
+
         static void Main(string[] args)
         {
-            Model model = Model.Create();
+            model = Model.Create();
             Console.WriteLine(string.Format("Model.Create {0}", (model != null) ? "succeeded" : "failed"));
-            string fullFileName = @"C:\Users\Jens\Dropbox\Root\Visual Studio 2015\Projects\MusicXmlReaderUI\MusicXmlReaderUI\bin\Debug\MusicXml samples\OpenMusicScore.org\Revolutionary Study.xml";
-            bool ok = model.LoadMusicXmlFile(fullFileName);
-            Console.WriteLine(string.Format("Model.LoadMusicXmlFile({0}) {1}", fullFileName, ok? "succeeded" : "failed"));
-            int events = model.EventDescriptionList.Events.Count;
-            Console.WriteLine(string.Format("The file contains {0} events",events));
-            Console.ReadLine();
+            if (null == model) return;
+
+            string testFileDirName = @"C:\Users\Jens\Dropbox\Root\Visual Studio 2015\Projects\MusicXmlReaderUI\MusicXmlReaderUI\bin\Debug\MusicXml samples";
+
+            // Recurse through all directories and load all musicXml files found
+
+            Recurse(testFileDirName);
+           
+
+
+             Console.ReadLine();
         }
     }
 }
