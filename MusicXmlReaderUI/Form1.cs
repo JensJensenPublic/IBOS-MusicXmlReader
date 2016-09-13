@@ -101,7 +101,7 @@ namespace MusicXmlReaderUI
             //listBoxFiltered.SelectedIndex = 0;
 
             // Let the Model do the hard work of transforming to e timed representation.
-            model.LoadListBoxTimes();
+            LoadListBoxTimes();
 
             Logger.DumpStatistics(); // Dump all statistics collected by LogOnce() during parsing, interpreting and rendering the file
 
@@ -112,7 +112,22 @@ namespace MusicXmlReaderUI
             //listBoxTimes.SelectedIndex = 0;
         }
 
+
         #region conveniencemethods
+
+        public void LoadListBoxTimes()
+        {
+            listBoxTimes.Items.Clear();
+            foreach (string s in model.MetaInfoStrings)
+            {
+                listBoxTimes.Items.Add(s);
+            }
+            foreach (EventDescription eventDescription in model.EventDescriptionList.Events)
+            {
+                listBoxTimes.Items.Add(eventDescription);
+            } 
+        }  
+ 
         private void LoadListBoxOfParts(CheckedListBox checkedListBox)
         {
             checkedListBox.Items.Clear();
@@ -140,8 +155,7 @@ namespace MusicXmlReaderUI
         {
             LoadSettings(clb, model.UserSettings.musicBrailleSettingsNames, model.UserSettings.musicBrailleSettingsValues);
         }
-
-        // Common convenience method
+    
         private void LoadSettings(System.Windows.Forms.CheckedListBox clb, string[] names, bool[] values)
         {
             clb.Items.Clear();
@@ -245,26 +259,26 @@ namespace MusicXmlReaderUI
         {
             model.SetPartsToRead(e.Index, (CheckState.Checked == e.NewValue));
             // This has changed the way ToString() works the notes are drawn in listBoxTimes, so it must be redrawn
-            if (autoReload) model.LoadListBoxTimes();
+            if (autoReload) LoadListBoxTimes();
         }
 
         private void checkedListBoxPartsToReadLyrics_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             model.SetPartsToReadLyrics(e.Index, (CheckState.Checked == e.NewValue));
             // This has changed the way ToString() works the notes are drawn in listBoxTimes, so it must be redrawn
-            if (autoReload) model.LoadListBoxTimes();
+            if (autoReload) LoadListBoxTimes();
         }
 
         private void checkedListBoxReaderSettings_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             model.UserSettings.SetReaderSettings(e.Index,(CheckState.Checked == e.NewValue));
-            if (autoReload) model.LoadListBoxTimes();
+            if (autoReload) LoadListBoxTimes();
         }
 
         private void checkedListBoxPlayerSettings_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             model.UserSettings.SetPlayerSettings(e.Index, (CheckState.Checked == e.NewValue));
-            if (autoReload) model.LoadListBoxTimes();
+            if (autoReload) LoadListBoxTimes();
         }
 
         private void checkedListBoxMusicBrailleSettings_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -513,10 +527,30 @@ namespace MusicXmlReaderUI
 
         }
 
+
+        public static string CurrentRepretationFileName = "MusicReaderCurrentRepresentation.txt";
         private void SaveCurrentRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
             Logger.Log("SaveCurrentRepresentation clicked");
-            model.SaveCurrentRepresentation();
+            string fileName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), CurrentRepretationFileName);
+            // Create contents
+            System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(fileName);
+            //System.IO.FileStream  fileStream = System.IO.File.OpenWrite(InterpretationFileName);
+            if (listBoxTimes.Items.Count > 0)
+            {
+                foreach (object o in listBoxTimes.Items)
+                {
+                    string line = o.ToString();
+                    streamWriter.WriteLine(line);
+                }
+            }
+            else
+            {
+                streamWriter.WriteLine("Empty representation found");
+            }
+            streamWriter.Close();
+            Utilities.RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), fileName));     
         }
     }
 

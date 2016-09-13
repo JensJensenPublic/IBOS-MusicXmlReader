@@ -59,19 +59,5 @@ namespace MusicXmlReaderUI
         }
 
 
-        public void LoadListBox(ListBox listBox, List<string> metaInfo) 
-        {
-            listBox.Items.Clear();
-            foreach (string s in metaInfo)
-            {
-                listBox.Items.Add(s);
-            }
-            foreach (EventDescription eventDescription in events)
-            {
-                listBox.Items.Add(eventDescription);
-            }
-        }
-
-
     }
 }

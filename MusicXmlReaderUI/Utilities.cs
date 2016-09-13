@@ -13,7 +13,7 @@ namespace MusicXmlReaderUI
     /// <summary>
     /// Contains logging and checking in order to avoid polluting the primary Model-logic
     /// </summary>
-    static class Utilities
+    static public class Utilities
     {
 
         /// <summary>
@@ -317,7 +317,7 @@ namespace MusicXmlReaderUI
         /// <param name="exeFileName">Name of program to start, with or without full path</param>
         /// <param name="argFileName">Name of file to use as argument when starting the program</param>
         /// <returns>true <==> succaee</returns>
-        internal static bool RunExeWithFileArgument(string exeFileName, string argFileName)
+        public static bool RunExeWithFileArgument(string exeFileName, string argFileName)
         {
             return RunExeWithFileArgument(exeFileName, argFileName, false);
         }

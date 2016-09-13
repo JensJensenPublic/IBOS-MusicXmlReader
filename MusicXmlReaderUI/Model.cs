@@ -206,32 +206,7 @@ namespace MusicXmlReaderUI
             //}               
                         return ok;
         }
-        #region CurrentRepretationFile
-        public static string CurrentRepretationFileName = "MusicReaderCurrentRepresentation.txt";
-        public void SaveCurrentRepresentation()
-        {
-            string fileName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), CurrentRepretationFileName);
-            // Create contents
-            System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(fileName);
-            //System.IO.FileStream  fileStream = System.IO.File.OpenWrite(InterpretationFileName);
-            if (listBoxPoly.Items.Count > 0)
-            {
-                foreach (object o in listBoxPoly.Items)
-                {
-                    string line = o.ToString();
-                    streamWriter.WriteLine(line);
-                }
-            }
-            else
-            {
-                streamWriter.WriteLine("Empty representation found");
-            }
-            streamWriter.Close();
-            Utilities.RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), fileName));
-        }
-        #endregion
-
-
+ 
         /// <summary>
         /// To use a console in a Windows Forms application change:
         /// Project Properties -> Application -> Output Type -> Console Application
@@ -613,6 +588,15 @@ namespace MusicXmlReaderUI
             
         }
 
+        public List<string> MetaInfoStrings
+        {
+            get
+            {
+                return metaInfoStrings;
+            }
+
+        }
+
         //private MeasureDescriptionList measureDescriptionList;
 
         public void Init()
@@ -640,13 +624,6 @@ namespace MusicXmlReaderUI
         {
             musicPlayer.Reset(numberOfParts);
             musicPlayer.StartPlayingPoly();
-        }
-
-        public void LoadListBoxTimes()
-        {
-            listBoxPoly.Items.Clear();
-            eventDescriptionList.LoadListBox(listBoxPoly, this.metaInfoStrings); 
-            //timeDescriptionList.LoadListBox(listBoxTimes); 
         }
 
 
