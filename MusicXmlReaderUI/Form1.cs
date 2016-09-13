@@ -71,9 +71,9 @@ namespace MusicXmlReaderUI
             LoadListBoxOfParts(checkedListBoxParts); // The over all checked listbox
 
             // Load the Checked Listboxes controlling the global user settings
-            model.UserSettings.LoadPlayerSettings(checkedListBoxPlayerSettings);
-            model.UserSettings.LoadReaderSettings(checkedListBoxReaderSettings);
-            model.UserSettings.LoadMusicBrailleSettings (checkedListBoxMusicBrailleSettings);
+            LoadPlayerSettings(checkedListBoxPlayerSettings);
+            LoadReaderSettings(checkedListBoxReaderSettings);
+            LoadMusicBrailleSettings (checkedListBoxMusicBrailleSettings);
 
             //// Load the Checked listboxes controlling the global user settings
             //checkedListBoxReaderSettings.Items.Clear();
@@ -106,7 +106,7 @@ namespace MusicXmlReaderUI
             //listBoxTimes.SelectedIndex = 0;
         }
 
-
+        #region conveniencemethods
         private void LoadListBoxOfParts(CheckedListBox checkedListBox)
         {
             checkedListBox.Items.Clear();
@@ -120,6 +120,32 @@ namespace MusicXmlReaderUI
         }
 
 
+        public void LoadPlayerSettings(CheckedListBox clb)
+        {
+            LoadSettings(clb, model.UserSettings.playerSettingsNames, model.UserSettings.playerSettingsValues);
+        }
+
+        public void LoadReaderSettings(CheckedListBox clb)
+        {
+            LoadSettings(clb, model.UserSettings.readerSettingsNames, model.UserSettings.readerSettingsValues);
+        }
+
+        public void LoadMusicBrailleSettings(CheckedListBox clb)
+        {
+            LoadSettings(clb, model.UserSettings.musicBrailleSettingsNames, model.UserSettings.musicBrailleSettingsValues);
+        }
+
+        // Common convenience method
+        private void LoadSettings(System.Windows.Forms.CheckedListBox clb, string[] names, bool[] values)
+        {
+            clb.Items.Clear();
+            for (int i = 0; (i < names.Length); i++)
+            {
+                clb.Items.Add(names[i], values[i]);
+            }
+        }
+
+        #endregion
 
         #region Buttons
         private void Play_Click(object sender, EventArgs e)

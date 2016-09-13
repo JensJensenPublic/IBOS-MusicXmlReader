@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MusicXmlReaderUI
 {
@@ -38,12 +34,9 @@ namespace MusicXmlReaderUI
 
         // Global Reader Settings settings (for all parts)
         public enum ReaderSettings                     { MeasureNumbers=0 , Harmonies=1, Notes=2, NoteOctaves=3, NoteTypes=4,  Notations=5, Divisions=6, HarmonyCodes=7, EndEvents=8,NumberOfReaderSettings=9};   
-        private readonly string[] readerSettingsNames = {"TaktNumre",       "Harmonier",  "Noder", "Oktaver",   "NodeVærdier","Notationer","Divisions", "HarmoniCodes", "EndEvents" };
+        public readonly string[] readerSettingsNames = {"TaktNumre",       "Harmonier",  "Noder", "Oktaver",   "NodeVærdier","Notationer","Divisions", "HarmoniCodes", "EndEvents" };
         public bool[]            readerSettingsValues= { true,              true,        true,    true,         true,          true,        false,       false,          false      };
-        public void LoadReaderSettings(System.Windows.Forms.CheckedListBox clb)
-        {
-            LoadSettings(clb, readerSettingsNames, readerSettingsValues);
-        }
+ 
         public bool GetReaderSettings(ReaderSettings i)
         {
             return readerSettingsValues[(int)i];
@@ -56,12 +49,9 @@ namespace MusicXmlReaderUI
         
         // Global Player Settings (for all parts)
         public enum PlayerSettings { MeasureBeats = 0, Harmonies = 1,NumberOfPlayerSettings=2}
-        private readonly string[] playerSettingsNames = { "TaktSlag", "Harmonier" };
-        private bool[] playerSettingsValues = { false, false };
-        public void LoadPlayerSettings(System.Windows.Forms.CheckedListBox clb)
-        {
-            LoadSettings(clb, playerSettingsNames, playerSettingsValues);
-        }
+        public readonly string[] playerSettingsNames = { "TaktSlag", "Harmonier" };
+        public bool[] playerSettingsValues = { false, false };
+  
         public bool GetPlayerSettings(PlayerSettings i)
         {
             return playerSettingsValues[(int)i];
@@ -71,24 +61,12 @@ namespace MusicXmlReaderUI
             playerSettingsValues[(int)i] = b;
         }
 
-        // Common convenience method
-        private void LoadSettings(System.Windows.Forms.CheckedListBox clb, string[] names, bool[] values)
-        {
-            clb.Items.Clear();
-            for (int i = 0; (i < names.Length); i++)
-            {
-                clb.Items.Add(names[i], values[i]);
-            }
-        }
-
+ 
         // Global Music Braille Settings settings (for all parts)
         public enum MusicBrailleSettings { MeasureNumbers = 0, Harmonies = 1, Notes = 2,  Notations = 3,  NumberOfReaderSettings = 4 };
-        private readonly string[] musicBrailleSettingsNames = { "TaktNumre", "Harmonier", "Noder",  "Notationer" };
+        public readonly string[] musicBrailleSettingsNames = { "TaktNumre", "Harmonier", "Noder",  "Notationer" };
         public bool[] musicBrailleSettingsValues = { false, false, true, false };
-        public void LoadMusicBrailleSettings(System.Windows.Forms.CheckedListBox clb)
-        {
-            LoadSettings(clb, musicBrailleSettingsNames, musicBrailleSettingsValues);
-        }
+
         public bool GetMusicBrailleSettings(MusicBrailleSettings i)
         {
             return musicBrailleSettingsValues[(int)i];
