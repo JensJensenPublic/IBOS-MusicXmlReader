@@ -1,35 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using JSJ.MusicSynthesis;
 
 namespace MusicXmlReaderUI
 {
     public partial class Form1 : Form
     {
-        bool showTimes = true;
-        Model model;
-        bool autoReload;
-        string ApplicationName = "IBOS Musiklæser";
 
-        // string fullFileName = @"C:\temp\MusicXML\La Mer.xml"; // The sample XML file to read from
+        string ApplicationName = "IBOS Nodelæser";  // Application name. Fits into a Freedom Scientific Focus 14 Braille dirplay!
+        Model model;        // The Model contails all of the business logic.        
+        bool autoReload;    // Used to optimize performance when changing large parts of the UI within short time
 
+        /// <summary>
+        /// The main form
+        /// </summary>
         public Form1()
         {   
-            InitializeComponent();     
-            if (!showTimes) listBoxTimes.Hide();
+            InitializeComponent();
             model = Model.Create(listBoxTimes,textBoxBraille,ApplicationName);
             this.Text = ApplicationName;
-            listBoxTimes.LostFocus += ListBoxTimes_LostFocus;
-            listBoxTimes.GotFocus += ListBoxTimes_GotFocus;
+            listBoxTimes.LostFocus  += ListBoxTimes_LostFocus;
+            listBoxTimes.GotFocus   += ListBoxTimes_GotFocus;
         }
 
  
@@ -50,44 +40,17 @@ namespace MusicXmlReaderUI
             //userSettings.readNoteOctaves = checkBoxReadOctave.Checked;
             //userSettings.readNoteTypes = checkBoxReadDuration.Checked;
         }
-                
-        //private void Recurse(XmlNodeList childrenNodes)
-        //{  
-        //    foreach (XmlNode childNode in childrenNodes)
-        //    {
 
-        //        if (showRaw)
-        //        {
-        //            // The Unfiltered data
-        //            if (listBoxRaw.Items.Count >= 1000) return;
-        //            switch (childNode.NodeType)
-        //            {
-        //                case XmlNodeType.Element:
-        //                    listBoxRaw.Items.Add(childNode.NodeType + " " + childNode.Name);         
-        //                    break;
-        //            }
-        //        }
-
-        //        // The filtered data
-
-        //        bool doRecursion = true;
-        //        switch (childNode.NodeType)
-        //        {
-        //            case XmlNodeType.Element:
-        //                doRecursion = model.WriteElement(childNode);
-        //                break;
-        //            case XmlNodeType.Comment:
-        //                listBoxFiltered.Items.Add(childNode.InnerText);
-        //                break;
-        //        }
-        //        if (doRecursion)
-        //        {
-        //            Recurse(childNode.ChildNodes);
-        //        }
-        //    }     
-        //}
-
-
+        /// <summary>
+        /// Open a standard File Dialog allowing the user select a MusicXml file.
+        /// Clear statistic counters describing the operations on the file selected.
+        /// Let the Model load the file selected and report any errors detected to the user
+        /// Update the Checked Listboxes used for filtering depending on the contents of the MusicXml file loaded
+        /// Load the contents of the MusicXml file into the mail ListBox.
+        /// Dump statistic counters describing the operations on the file selected.
+        /// </summary>
+        /// <param name="sender"> Not used</param>
+        /// <param name="e">Not used</param>
         private void SelectAndOpenMusicXmlFile(object sender, EventArgs e)
         {
             openFileDialog.FileName = "Node.xml"; // Use this sample file as a default
