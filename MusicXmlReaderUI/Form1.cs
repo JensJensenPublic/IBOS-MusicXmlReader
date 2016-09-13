@@ -23,23 +23,6 @@ namespace MusicXmlReaderUI
         }
 
  
-        /// <summary>
-        /// Simple way to assure that the usersettings reflect the UI
-        /// More lines must be added when addinge more controls tothe UI
-        /// </summary>
-        /// <param name="userSettings"></param>
-        private void InitUserSettings(UserSettings userSettings)
-        {
-            //userSettings.readDivisions = checkBoxShowStartTime.Checked;
-            //userSettings.playHarmonies = checkBoxPlayHarmonies.Checked;
-            //userSettings.readHarmonies = checkBoxShowHarmonies.Checked;
-            //userSettings.readHarmonyCodes = checkBoxOplæsBecifringskoder.Checked;
-            //userSettings.readMeasureNumbers = checkBoxReadMeasureNumbers.Checked;
-            //userSettings.readEndEvents = checkBoxReadEndEvents.Checked;
-            //userSettings.readNotes = checkBoxReadPitch.Checked;
-            //userSettings.readNoteOctaves = checkBoxReadOctave.Checked;
-            //userSettings.readNoteTypes = checkBoxReadDuration.Checked;
-        }
 
         /// <summary>
         /// Open a standard File Dialog allowing the user select a MusicXml file.
@@ -78,19 +61,19 @@ namespace MusicXmlReaderUI
 
             autoReload = false; // While loading the listbox all changes are  made by user and must be ignored
 
-            // Reflect the UI values of the UserSettings to the model
-            InitUserSettings(model.UserSettings);
+            // The initial values of the user settings are determined by the model.
+            // These settings must be reflected in the UI:
 
             // Load the Checked Listboxes controlling the user settings per part
-            model.LoadListBoxOfParts(checkedListBoxPartsToPlay);
-            model.LoadListBoxOfParts(checkedListBoxPartsToRead);
-            model.LoadListBoxOfParts(checkedListBoxPartsToReadLyrics);
-            model.LoadListBoxOfParts(checkedListBoxParts); // The over all checked listbox
+            LoadListBoxOfParts(checkedListBoxPartsToPlay);
+            LoadListBoxOfParts(checkedListBoxPartsToRead);
+            LoadListBoxOfParts(checkedListBoxPartsToReadLyrics);
+            LoadListBoxOfParts(checkedListBoxParts); // The over all checked listbox
 
             // Load the Checked Listboxes controlling the global user settings
             model.UserSettings.LoadPlayerSettings(checkedListBoxPlayerSettings);
             model.UserSettings.LoadReaderSettings(checkedListBoxReaderSettings);
-            model.UserSettings.LoadMusicBrailleSettings(checkedListBoxMusicBrailleSettings);
+            model.UserSettings.LoadMusicBrailleSettings (checkedListBoxMusicBrailleSettings);
 
             //// Load the Checked listboxes controlling the global user settings
             //checkedListBoxReaderSettings.Items.Clear();
@@ -122,6 +105,21 @@ namespace MusicXmlReaderUI
             listBoxTimes.Focus();
             //listBoxTimes.SelectedIndex = 0;
         }
+
+
+        private void LoadListBoxOfParts(CheckedListBox checkedListBox)
+        {
+            checkedListBox.Items.Clear();
+            for (int i = 0; (i < model.partList.NumberOfParts()); i++)
+            {
+                ScorePartElement scorePartElement = model.partList.GetPartFromNumber(i);
+                checkedListBox.Items.Add(string.Format("{0} {1}", scorePartElement.partId, scorePartElement.partName));
+                checkedListBox.SetItemChecked(i, true);
+            }
+            checkedListBox.CheckOnClick = true;
+        }
+
+
 
         #region Buttons
         private void Play_Click(object sender, EventArgs e)

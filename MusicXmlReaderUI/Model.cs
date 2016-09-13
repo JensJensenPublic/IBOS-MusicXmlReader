@@ -649,17 +649,17 @@ namespace MusicXmlReaderUI
             //timeDescriptionList.LoadListBox(listBoxTimes); 
         }
 
-        public void LoadListBoxOfParts(CheckedListBox checkedListBox)
-        {
-            checkedListBox.Items.Clear();
-            for (int i = 0; (i < numberOfParts); i++)
-            {
-                ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
-                checkedListBox.Items.Add(string.Format("{0} {1}", scorePartElement.partId, scorePartElement.partName));
-                checkedListBox.SetItemChecked(i, true);
-            }
-            checkedListBox.CheckOnClick = true;
-        }
+        //public void LoadListBoxOfParts(CheckedListBox checkedListBox)
+        //{
+        //    checkedListBox.Items.Clear();
+        //    for (int i = 0; (i < numberOfParts); i++)
+        //    {
+        //        ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
+        //        checkedListBox.Items.Add(string.Format("{0} {1}", scorePartElement.partId, scorePartElement.partName));
+        //        checkedListBox.SetItemChecked(i, true);
+        //    }
+        //    checkedListBox.CheckOnClick = true;
+        //}
 
         //public void LoadListBoxPartsToPlay(CheckedListBox checkedListBoxPartsToPlay)
         //{
