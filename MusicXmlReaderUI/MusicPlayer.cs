@@ -92,7 +92,7 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="selectedIndex"></param>
         /// <param name="selectedObject"></param>
-        internal void SelectedIndexChanged(int selectedIndex, object selectedObject)
+        public void SelectedIndexChanged(int selectedIndex, object selectedObject)
         {
             if (playing) return;
             if (null == selectedObject) return;

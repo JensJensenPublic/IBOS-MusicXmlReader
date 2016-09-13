@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace MusicXmlReaderUI
 {
-    static class Logger
+    static public class Logger
     {
         // TODO: Adress possible multithreading problems !!
 

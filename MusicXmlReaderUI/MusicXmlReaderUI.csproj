@@ -57,68 +57,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccidentalMarkElement.cs" />
-    <Compile Include="ArpeggiateElement.cs" />
-    <Compile Include="ArticulationElements.cs" />
-    <Compile Include="BackupElement.cs" />
-    <Compile Include="BrailleBuilder.cs" />
-    <Compile Include="BrailleDisplayer.cs" />
-    <Compile Include="DebugTools.cs" />
-    <Compile Include="DeviceInfo.cs" />
-    <Compile Include="FermataElement.cs" />
-    <Compile Include="FSBrlDspAPI.Wrapper.cs" />
-    <Compile Include="GlissandoElement.cs" />
-    <Compile Include="Logger.cs" />
-    <Compile Include="NotationsElement.cs" />
-    <Compile Include="OrnamentsElement.cs" />
-    <Compile Include="RepeatElement.cs" />
-    <Compile Include="ClefElement.cs" />
-    <Compile Include="DivisionsElement.cs" />
-    <Compile Include="Element.cs" />
-    <Compile Include="EndEventElement.cs" />
-    <Compile Include="EventDescriptionList.cs" />
-    <Compile Include="EventElement.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ForwardElement.cs" />
-    <Compile Include="HarmonyElement.cs" />
-    <Compile Include="CreatorElement.cs" />
-    <Compile Include="KeyElement.cs" />
-    <Compile Include="MeasureElement.cs" />
-    <Compile Include="MidiInstrumentElement.cs" />
-    <Compile Include="Model.cs" />
-    <Compile Include="MusicPlayer.cs" />
-    <Compile Include="MusicXmlObject.cs" />
-    <Compile Include="NoteElement.cs" />
-    <Compile Include="PartDescriptionList.cs" />
-    <Compile Include="PartElement.cs" />
-    <Compile Include="PartlistElement.cs" />
-    <Compile Include="Pitch.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RestElement.cs" />
-    <Compile Include="ScoreInstrumentElement.cs" />
-    <Compile Include="ScorepartElement.cs" />
-    <Compile Include="ScorePartwiseElement.cs" />
-    <Compile Include="SimpleTextElement.cs" />
-    <Compile Include="SlideElement.cs" />
-    <Compile Include="SlurElement.cs" />
-    <Compile Include="SoundElement.cs" />
-    <Compile Include="StartStopContinueElement.cs" />
-    <Compile Include="SystemParametersiInfo.cs" />
-    <Compile Include="TiedElement.cs" />
-    <Compile Include="TieElement.cs" />
-    <Compile Include="EventDescription.cs" />
-    <Compile Include="TimeDescriptionList.cs" />
-    <Compile Include="TimeElement.cs" />
-    <Compile Include="TupletElement.cs" />
-    <Compile Include="UnimplementedElement.cs" />
-    <Compile Include="UserSettings.cs" />
-    <Compile Include="Utilities.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,6 +93,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MusicXmlReaderModel\MusicXmlReaderModel.csproj">
+      <Project>{695bf2ce-9955-4d26-b552-2427ee160810}</Project>
+      <Name>MusicXmlReaderModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ScreenReaderAPI\ScreenReaderAPI.csproj">
       <Project>{6444ecf6-7a11-4b21-a31c-ef8e05b0cd32}</Project>
       <Name>ScreenReaderAPI</Name>
