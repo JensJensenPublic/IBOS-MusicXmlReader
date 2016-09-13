@@ -168,10 +168,6 @@ namespace MusicXmlReaderUI
         #endregion
 
         #region Buttons
-        private void Play_Click(object sender, EventArgs e)
-        {
-            model.StartPlayingMono();
-        }
 
         private void Stop_Click(object sender, EventArgs e)
         {

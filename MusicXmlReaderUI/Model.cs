@@ -613,13 +613,6 @@ namespace MusicXmlReaderUI
         //*****************************************************************************************
 
  
-
-        public void StartPlayingMono()
-        {
-            musicPlayer.Reset(numberOfParts);
-            musicPlayer.StartPlayingMono();
-        }
-
         public void StartPlayingPoly()
         {
             musicPlayer.Reset(numberOfParts);

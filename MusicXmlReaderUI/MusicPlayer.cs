@@ -13,7 +13,6 @@ namespace MusicXmlReaderUI
         MidiNote   latestNotePlayed = null;
         MidiChord latestHarmonyPlayed = null;
         MidiOut midiOut = null;
-        ListBox listBox = null;
         ListBox listBoxPoly = null;
         System.Diagnostics.Stopwatch stopWatch = null;
         long nextActionTime;    // For autoplaying monophonic music 
@@ -363,22 +362,6 @@ namespace MusicXmlReaderUI
                 // System.Threading.Thread.Sleep(100); // HACK Pause the UI thread and let the Screenreader get a chance
 
             }
-        }
-
-
-
-
-        private void  PlayerThreadStartMono()
-        {
-            PlayerThreadStart(listBox, typeof(NoteElement));
-        }
-
-        public void StartPlayingMono()
-        {
-            this.numberOfParts = 1;
-            playing = true;
-            playerThread = new System.Threading.Thread(new System.Threading.ThreadStart(PlayerThreadStartMono));
-            playerThread.Start();
         }
 
         public void StartPlayingPoly()
