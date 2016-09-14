@@ -320,8 +320,10 @@ namespace MusicXmlReaderUI
                 case "16th":    value = "sekstendedel"; break;
                 case "32nd":    value = "toogtredivtedel"; break;
                 case "64nd":    value = "fireogtredsindstyvendedel"; break;
-                default:
-                    Logger.Log(string.Format("LocalizeType({0},{1}) Unknown typeString '{2}'", typeString, modifier, typeString)); break;
+                case "":        value = "heltakt"; break;
+                default:                    
+                    Logger.Log(string.Format("LocalizeType ({0},{1}) Unknown typeString '{2}' in Measure={3} Voice={4}",
+                        typeString, modifier, typeString, this.MeasureNumber, this.Voice)); break;
             }
             return modif + value; // 
         }
@@ -346,8 +348,10 @@ namespace MusicXmlReaderUI
                 case "16th":    value = "sekstendedelspause"; break;
                 case "32nd":    value = "toogtredivtedelspause"; break;
                 case "64nd":    value = "fireogtredsindstyvendedelspause"; break;
+                case "":        value = "heltaktpause"; break;
                 default:
-                    Logger.Log(string.Format("LocalizePause({0},{1}) Unknown typeString '{2}'", typeString, modifier, typeString)); break;
+                    Logger.Log(string.Format("LocalizePause({0},{1}) Unknown typeString '{2}' in Measure={3} Voice={4}",
+                        typeString, modifier, typeString, this.MeasureNumber, this.Voice)); break;
             }
             return modif + value;
         }
