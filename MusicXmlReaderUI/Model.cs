@@ -328,7 +328,7 @@ namespace MusicXmlReaderUI
                 case "measure":
                     MeasureElement measureElement = MeasureElement.Create(node);
                     allMusicXmlObjecsts.Add(measureElement); // Avoid the "Ikke VAlgt" error message from screenreader
-                    this.currentMeasureNumber = int.Parse(measureElement.Number);
+                    this.currentMeasureNumber = measureElement.Number; 
                     break;
                 case "score-part":
                     // Describes the meta-data related to a part.

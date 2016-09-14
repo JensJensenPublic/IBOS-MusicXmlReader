@@ -5,7 +5,7 @@ namespace MusicXmlReaderUI
     public class MeasureElement : EventElement
     {
 
-        private string number = "";
+        private int number = 0;
 
         /// <summary>
         /// To force the use of the Create() method
@@ -27,13 +27,14 @@ namespace MusicXmlReaderUI
                 switch (a.Name)
                 {
                     case "number":
-                        number = a.Value;
+                        number = 0;
+                        Utilities.Parse(a.Value, ref number, 0, int.MaxValue, "MeasureElement.Number", false);
                         break;
                 }
             }            
         }
 
-        public string Number
+        public int Number
         {
             get
             {
