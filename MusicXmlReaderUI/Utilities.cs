@@ -294,7 +294,7 @@ namespace MusicXmlReaderUI
 
         internal static bool CheckScreenReader(bool result, string caption)
         {
-            if (!result)
+             if (!result)
             {
 
                 if (null != caption)
