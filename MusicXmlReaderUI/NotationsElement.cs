@@ -177,7 +177,7 @@ namespace MusicXmlReaderUI
                 }
                 if (!ok)
                 {                    
-                    Logger.Log(string.Format("NotationsElement: Element '{0}' is not implemented yet", child.Name)); break;
+                    Logger.LogOnce(string.Format("NotationsElement: Element '{0}' is not implemented yet", child.Name)); break;
                 }
             }
         }

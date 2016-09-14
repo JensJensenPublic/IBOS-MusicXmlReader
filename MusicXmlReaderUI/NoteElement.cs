@@ -446,7 +446,7 @@ namespace MusicXmlReaderUI
                         graceNote = true;                                                 
                         break;
                     //default:  throw new ArgumentException();
-                    default: Logger.Log(string.Format("NoteElement() Unknown child.Name '{0}'", child.Name)); break;
+                    default: Logger.LogOnce(string.Format("NoteElement() Unknown child.Name '{0}'", child.Name)); break;
                 }
             }
             localizedType = LocalizeType(Type, dot);

@@ -39,6 +39,9 @@ namespace MusicXmlReaderUI
                             default: Logger.Log(string.Format("ArpeggiateElement: Unknown value for attribute 'direction': {0}", a.Value)); break;
                         }
                         break;
+                    // Explicitly ignore:
+                    case "default-x": break;
+                    case "default-y": break;
                     default: Logger.Log(string.Format("ArpeggiateElement: Unknown attribute: {0}", a.Name)); break;
                 }
             }

@@ -23,10 +23,12 @@ namespace MusicXmlReaderUI
                 string extension = System.IO.Path.GetExtension(file);
                 if ( 0 == string.Compare(".xml",extension ))
                 {
+                    Logger.ClearStatistics(); // Start counting unimplemented elements and attributes for this file
                     bool ok = model.LoadMusicXmlFile(file);
                     Console.WriteLine(string.Format("Model.LoadMusicXmlFile({0}) {1}", file, ok ? "succeeded" : "failed"));
                     int events = model.EventDescriptionList.Events.Count;
                     Console.WriteLine(string.Format("The file contains {0} events", events));
+                    Logger.DumpStatistics(); // Dump count of unimplemented elements and attributes for this file
                 }
 
             }

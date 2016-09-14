@@ -51,7 +51,7 @@ namespace MusicXmlReaderUI
                     case "placement": break;
 
                     default:
-                        Logger.Log(string.Format("SlurElement: Unknown attribute name '{0}'", a.Name));
+                        Logger.LogOnce(string.Format("SlurElement: Unknown attribute name '{0}'", a.Name));
                         break;
                 }
             }
