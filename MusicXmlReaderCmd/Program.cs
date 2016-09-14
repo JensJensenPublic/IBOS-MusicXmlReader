@@ -40,6 +40,7 @@ namespace MusicXmlReaderUI
 
         static void Main(string[] args)
         {
+            Logger.LogFileName = "MusicXmlReaderCmd.log";
             model = Model.Create();
             Console.WriteLine(string.Format("Model.Create {0}", (model != null) ? "succeeded" : "failed"));
             if (null == model) return;
@@ -49,10 +50,9 @@ namespace MusicXmlReaderUI
             // Recurse through all directories and load all musicXml files found
 
             Recurse(testFileDirName);
-           
 
-
-             Console.ReadLine();
+            model.ReadLogFile();
+            Console.ReadLine();
         }
     }
 }

@@ -25,6 +25,7 @@ namespace MusicXmlReaderUI
         public Form1()
         {   
             InitializeComponent();
+            Logger.LogFileName = "MusicXmlReaderUI.log";
             LogSystemInformation();
             Utilities.MessageShower = (this as IMessageShower); //Decide how to show error messages and warnings 
             model = Model.Create((this as IObjectCollection),(this as IWritableString),ApplicationName);

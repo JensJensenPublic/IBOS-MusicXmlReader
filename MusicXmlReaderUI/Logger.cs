@@ -19,9 +19,10 @@ namespace MusicXmlReaderUI
             if (useConsole) Console.WriteLine(s);
         }
 
-        public static string LogFileName = "MusicXmlReader.Log";
+        private static string logFileName = "MusicXmlReader.Log"; // This is a default whuch may be overwritten by the application
         private static bool useConsole = false;
 
+     
         public static bool UseConsole
         {
             get
@@ -33,6 +34,28 @@ namespace MusicXmlReaderUI
             {
                 useConsole = value;
             }
+        }
+
+        public static string LogFileName
+        {
+            get
+            {
+                return logFileName;
+            }
+
+            set
+            {
+                logFileName = value;
+            }
+        }
+
+        public static string LogFileFullName
+        {
+            get
+            {
+                return System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName);
+            }
+ 
         }
 
         public static void Log(string s)
