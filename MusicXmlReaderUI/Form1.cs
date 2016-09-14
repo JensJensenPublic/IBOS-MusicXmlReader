@@ -3,9 +3,16 @@ using System.Windows.Forms;
 
 namespace MusicXmlReaderUI
 {
-     
 
-    public partial class Form1 : Form, IWritableString, IObjectCollection
+    /// <summary>
+    /// The 3 interfaces are used for
+    /// IWritableString     Let the Model write MusicBraille patterns to the appropriate Textbox
+    /// IObjectCollection   Let tne Model access the main Listbox
+    /// IMessageShower      Let the Model show MessageBoxes
+    /// By using these interfaces we avoid that the Model needs to know anything abour Windows Forms!
+    /// This makes it much easier to reuse the Model for othea applications and other platforms.
+    /// </summary>
+    public partial class Form1 : Form, IWritableString, IObjectCollection, IMessageShower
     {
 
         string ApplicationName = "IBOS Nodelæser";  // Application name. Fits into a Freedom Scientific Focus 14 Braille dirplay!
@@ -19,6 +26,7 @@ namespace MusicXmlReaderUI
         {   
             InitializeComponent();
             LogSystemInformation();
+            Utilities.MessageShower = (this as IMessageShower); //Decide how to show error messages and warnings 
             model = Model.Create((this as IObjectCollection),(this as IWritableString),ApplicationName);
             this.Text = ApplicationName;
             listBoxTimes.LostFocus  += ListBoxTimes_LostFocus;
@@ -63,6 +71,19 @@ namespace MusicXmlReaderUI
                 // System.Threading.Thread.Sleep(100); // HACK Pause the UI thread and let the Screenreader get a chance
             }
         }
+        #endregion
+
+        #region IMessageShower 
+        // Decide how to show error messages and warnings          
+        public void ShowMessage(string text)
+        {
+            MessageBox.Show(text);
+        }
+
+        public void ShowWarning(string text, string caption)
+        {
+            MessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }    
         #endregion
 
 

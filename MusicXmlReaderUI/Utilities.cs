@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +10,40 @@ using System.Threading.Tasks;
 namespace MusicXmlReaderUI
 {
 
+    public interface IMessageShower
+    {
+        void ShowMessage(string text);
+        void ShowWarning(string text, string caption);
+    }
+
+
+
     /// <summary>
     /// Contains logging and checking in order to avoid polluting the primary Model-logic
     /// </summary>
     static public class Utilities
     {
+
+        public static IMessageShower MessageShower;
+
+        private static void ShowWarning(string text, string caption)
+        {
+            if (null != MessageShower)
+            {
+                MessageShower.ShowWarning(text, caption);
+
+            }
+        }
+
+        private static void ShowMessage(string text)
+        {
+            if (null != MessageShower)
+            {
+                MessageShower.ShowMessage(text);
+
+            }
+        }
+        
 
         /// <summary>
         /// Check valitity of an input parameter of type int
@@ -247,11 +276,10 @@ namespace MusicXmlReaderUI
 
             if (!result)
             {
-                if (null != caption)
+                if (caption != null)
                 {
-                    // The application has UI
-                    MessageBox.Show("Manglende programfil!\r\n"
-                                  + "Se venligst Logfilen! (Værktøjer->Log fil)", caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ShowWarning("Manglende programfil!\r\n"
+                              + "Se venligst Logfilen! (Værktøjer->Log fil)", caption);
                 }
                 else
                 {
@@ -272,10 +300,10 @@ namespace MusicXmlReaderUI
                 if (null != caption)
                 {
                     // The application has UI
-                    MessageBox.Show("Kunne ikke forbinde til skærmlæser!\r\n"
-                                            + "Understøttede skærmlæsere er 'JAWS' og 'NVDA'\r\n"
-                                            + "Se venligst logfilen (Værktøjer->Log fil)"
-                                            ,caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ShowWarning("Kunne ikke forbinde til skærmlæser!\r\n"
+                                + "Understøttede skærmlæsere er 'JAWS' og 'NVDA'\r\n"
+                                + "Se venligst logfilen (Værktøjer->Log fil)"
+                                ,caption);
                 }
                 else
                 {
@@ -293,7 +321,7 @@ namespace MusicXmlReaderUI
                 if (!System.IO.Directory.Exists(fileName))
                 {
                     Logger.Log(string.Format("{0} Directory {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
-                    MessageBox.Show(string.Format("Mappen {0} findes ikke", fileName));
+                    ShowMessage(string.Format("Mappen {0} findes ikke", fileName));             
                     return false;
                 }
             }
@@ -302,7 +330,7 @@ namespace MusicXmlReaderUI
                 if (!System.IO.File.Exists(fileName))
                 {
                     Logger.Log(string.Format("{0} File {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
-                    MessageBox.Show(string.Format("Filen {0} findes ikke", fileName));
+                    ShowMessage(string.Format("Filen {0} findes ikke", fileName));
                     return false;
                 }
             }
@@ -350,7 +378,7 @@ namespace MusicXmlReaderUI
             catch (Exception e)
             {
                 Logger.Log(string.Format("ReadFileByExecutable: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
-                MessageBox.Show(string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'", exeFileName, argFileName));
+                ShowMessage(string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'", exeFileName, argFileName));
                 return false;
             }
             return true;
