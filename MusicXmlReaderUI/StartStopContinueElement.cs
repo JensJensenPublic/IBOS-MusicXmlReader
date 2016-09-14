@@ -44,6 +44,11 @@ namespace MusicXmlReaderUI
                     // Explicitly ignire the following
                     case "relative-x": break;
                     case "relative-y": break;
+                    case "bezier-x": break;
+                    case "bezier-y": break;
+                    case "default-x": break;
+                    case "default-y": break;
+                    case "placement": break;
 
                     default:
                         Logger.Log(string.Format("SlurElement: Unknown attribute name '{0}'", a.Name));
