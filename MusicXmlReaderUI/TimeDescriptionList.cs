@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 
 namespace MusicXmlReaderUI
 {
@@ -126,15 +126,7 @@ namespace MusicXmlReaderUI
             }
             return 0;
         }
-
-        public void LoadListBox(ListBox listBox)
-        {
-            foreach (Element e in times)
-            {
-                listBox.Items.Add(e);
-            }
-        }
-
+        
     }
 }
 

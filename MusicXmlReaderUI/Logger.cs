@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 
 namespace MusicXmlReaderUI
 {
@@ -119,19 +119,7 @@ namespace MusicXmlReaderUI
                 Log(string.Format("{0} failed. LastWin32Error = {1}", name, lastWin32Error));
             }
         }
-
-
-
-        public static void LogSystemInformation()
-        {
-            Log(string.Format("ComputerName={0} UserName={1} UserDomainName={2}",
-                SystemInformation.ComputerName, SystemInformation.UserName, SystemInformation.UserDomainName));
-            Log(string.Format("OSVersion={0} ProcessorCount={1} Is64BitOperatingSystem={2} Is64BitProcess={3}",
-            System.Environment.OSVersion, System.Environment.ProcessorCount, System.Environment.Is64BitOperatingSystem, System.Environment.Is64BitProcess));
-        }
-
-
-
+        
 
     }
 }

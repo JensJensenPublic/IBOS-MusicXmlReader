@@ -1,19 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using JSJ.MusicSynthesis;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 using NAudio.Midi;
 
 
 namespace MusicXmlReaderUI
 {
+
+    public interface IObjectCollection
+    {
+        void SetSelectedIndex(int index);
+        int GetNumberOfObjects();
+        object GetObjectAtIndex(int index);
+    }
+
     public class MusicPlayer
     {
 
         MidiNote   latestNotePlayed = null;
         MidiChord latestHarmonyPlayed = null;
         MidiOut midiOut = null;
-        ListBox listBoxPoly = null;
+        IObjectCollection objects = null;
+        // ListBox listBoxPoly = null;
         System.Diagnostics.Stopwatch stopWatch = null;
         long nextActionTime;    // For autoplaying monophonic music 
         long firstStopWatchTime = -1;    // For autoplaying polyphonic music 
@@ -35,10 +44,10 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// Constructor
         /// </summary>
-        public MusicPlayer(ListBox listBoxPoly, MidiOut midiOut)
+        public MusicPlayer(IObjectCollection objects, MidiOut midiOut)
         {
             this.midiOut = midiOut;
-            this.listBoxPoly = listBoxPoly;
+            this.objects = objects;
 
             // Temp start
             //MidiCommand midiCommand = new MidiCommand();
@@ -343,26 +352,6 @@ namespace MusicXmlReaderUI
                 userSettings = value;
             }
         }
- 
-        delegate void SetSelectedIndexCallback(ListBox listBox,int index);
-        private void SetSelectedIndex(ListBox listBox, int index)
-        {
-            // InvokeRequired required compares the thread ID of the
-            // calling thread to the thread ID of the creating thread.
-            // If these threads are different, it returns true.
-            if (listBox.InvokeRequired)
-            {
-                SetSelectedIndexCallback d = new SetSelectedIndexCallback(SetSelectedIndex);
-                listBox.Invoke(d, new object[] { listBox, index });
-            }
-            else
-            {
-                listBox.Focus(); // Maybe not needed. How can we force the Screeen-reader to read the selected line? 
-                listBox.SelectedIndex = index;
-                // System.Threading.Thread.Sleep(100); // HACK Pause the UI thread and let the Screenreader get a chance
-
-            }
-        }
 
         public void StartPlayingPoly()
         {
@@ -375,10 +364,10 @@ namespace MusicXmlReaderUI
 
         private void PlayerThreadStartPoly()
         {
-            PlayerThreadStart(listBoxPoly, typeof(EventDescription));
+            PlayerThreadStart(objects, typeof(EventDescription));
         }
 
-        private void PlayerThreadStart(ListBox listBox, Type type)
+        private void PlayerThreadStart(IObjectCollection objects, Type type)
         {
             System.Threading.Thread.Sleep(1000); // Allow Screanreader to complete initial actions
             this.stopWatch = new System.Diagnostics.Stopwatch();
@@ -388,14 +377,15 @@ namespace MusicXmlReaderUI
             notesCurrentlyPlaying = new List<MidiNote>();
             try
             {
-                for (int i = 0; ((i < listBox.Items.Count) && (playing)); i++)
+                for (int i = 0; ((i < objects.GetNumberOfObjects()) && (playing)); i++)
                 {
-                    object o = listBox.Items[i];
+                    object o = objects.GetObjectAtIndex(i); // listBox.Items[i];
                     AutoPlay(o); // Play the next note, using the correct timing!
                     if (o.GetType() == type)
                     {
                         // Only select notes (and pauses) to allow for correct timing!
-                        SetSelectedIndex(listBox, i); // Select the corresponding line in the Listbox,  handling Cross-thread issue
+                        objects.SetSelectedIndex(i);
+                        //SetSelectedIndex(listBox, i); // Select the corresponding line in the Listbox,  handling Cross-thread issue
                     }
                 }
             }

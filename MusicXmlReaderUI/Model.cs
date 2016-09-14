@@ -2,7 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using NAudio.Midi;
-using System.Windows.Forms;
+//using System.Windows.Forms;
 using System.Xml;
 using JSJ.ScreenReaderAPI;
 
@@ -14,7 +14,8 @@ namespace MusicXmlReaderUI
         bool is64Bit; // This program is compiled and for the following architechture: false:x86 true:x64 
         List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
         MidiOut midiOut;
-        ListBox listBoxPoly; // Lists elements grouped per time
+        //ListBox listBoxPoly; // Lists elements grouped per time
+        IObjectCollection objects; 
         public MusicPlayer musicPlayer;
         public BrailleDisplayer brailleDisplayer;
         public PartlistElement partList; // Contains the list of parts, describing all instruments used including their midi parameters
@@ -48,9 +49,9 @@ namespace MusicXmlReaderUI
             return new Model(null,null,null);
         }
 
-        static public Model Create(ListBox listBoxPoly, IWritableString ws, string menuCaption)
+        static public Model Create(IObjectCollection objects, IWritableString ws, string menuCaption)
         {
-            return new Model(listBoxPoly, ws, menuCaption);
+            return new Model(objects, ws, menuCaption);
         }
 
         #region LogFile
@@ -251,7 +252,7 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// Constructor to be used by UI-based applications
         /// </summary>
-        private Model(ListBox listBoxPoly, IWritableString textBoxMusicBraille, string caption)
+        private Model(IObjectCollection objects, IWritableString textBoxMusicBraille, string caption)
         {
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -261,7 +262,7 @@ namespace MusicXmlReaderUI
             Logger.Log(""); // An empty line
             Logger.Log(string.Format("Date={0}:", System.DateTime.Now.ToLongDateString()));
             Logger.Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
-            Logger.LogSystemInformation();
+            //Logger.LogSystemInformation();
             Utilities.CheckDlls(executingDirectory, caption, is64Bit);
 
 
@@ -271,14 +272,14 @@ namespace MusicXmlReaderUI
             Utilities.CheckScreenReader(!string.IsNullOrEmpty(screenReaderAPI.GetScreenReaderDllName()), caption); // Check for DummyScreenReader
 
             midiOut = new MidiOut(0);
-            musicPlayer = new MusicPlayer(listBoxPoly,midiOut);
+            musicPlayer = new MusicPlayer(objects,midiOut);
             int displaySize = 14;
             brailleDisplayer = BrailleDisplayer.Create(textBoxMusicBraille, displaySize, screenReaderAPI); // TODO Get the real displaysize from somewhere
             Logger.Log(string.Format("Model: Assuming size of physical Braille display = {0}", displaySize));
 
             //musicPlayer.ChangeInstrument(20); // Church Organ
 
-            this.listBoxPoly = listBoxPoly;
+            this.objects = objects;
 
             //Model.Log(string.Format("listBoxPoly.AccessibleDefaultActionDescription={0}", listBoxPoly.AccessibleDefaultActionDescription));
             //Model.Log(string.Format("listBoxPoly.AccessibilityObject.ToString()={0}", listBoxPoly.AccessibilityObject.ToString())); 

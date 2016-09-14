@@ -5,7 +5,7 @@ namespace MusicXmlReaderUI
 {
      
 
-    public partial class Form1 : Form, IWritableString
+    public partial class Form1 : Form, IWritableString, IObjectCollection
     {
 
         string ApplicationName = "IBOS Nodelæser";  // Application name. Fits into a Freedom Scientific Focus 14 Braille dirplay!
@@ -18,17 +18,53 @@ namespace MusicXmlReaderUI
         public Form1()
         {   
             InitializeComponent();
-            model = Model.Create(listBoxTimes,(this as IWritableString),ApplicationName);
+            LogSystemInformation();
+            model = Model.Create((this as IObjectCollection),(this as IWritableString),ApplicationName);
             this.Text = ApplicationName;
             listBoxTimes.LostFocus  += ListBoxTimes_LostFocus;
             listBoxTimes.GotFocus   += ListBoxTimes_GotFocus;
         }
 
-
+        #region IWritableString
+        // Implement IWritableString
         public void SetString(string s)
         {
             textBoxBraille.Text = s;
         }
+        #endregion
+
+        #region  IObjectCollection
+
+        public int GetNumberOfObjects()
+        {
+            return listBoxTimes.Items.Count;
+        }
+
+        public object GetObjectAtIndex(int index)
+        {
+            return listBoxTimes.Items[index];
+        }
+        
+        delegate void SetSelectedIndexCallback(int index);
+        public void SetSelectedIndex(int index)
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (listBoxTimes.InvokeRequired)
+            {
+                SetSelectedIndexCallback d = new SetSelectedIndexCallback(SetSelectedIndex);
+                listBoxTimes.Invoke(d, new object[] { index });
+            }
+            else
+            {
+                listBoxTimes.Focus(); // Maybe not needed. How can we force the Screeen-reader to read the selected line? 
+                listBoxTimes.SelectedIndex = index;
+                // System.Threading.Thread.Sleep(100); // HACK Pause the UI thread and let the Screenreader get a chance
+            }
+        }
+        #endregion
+
 
         /// <summary>
         /// Open a standard File Dialog allowing the user select a MusicXml file.
@@ -548,6 +584,17 @@ namespace MusicXmlReaderUI
             streamWriter.Close();
             Utilities.RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), fileName));     
         }
+
+
+        public static void LogSystemInformation()
+        {
+            Logger.Log(string.Format("ComputerName={0} UserName={1} UserDomainName={2}",
+                SystemInformation.ComputerName, SystemInformation.UserName, SystemInformation.UserDomainName));
+            Logger.Log(string.Format("OSVersion={0} ProcessorCount={1} Is64BitOperatingSystem={2} Is64BitProcess={3}",
+            System.Environment.OSVersion, System.Environment.ProcessorCount, System.Environment.Is64BitOperatingSystem, System.Environment.Is64BitProcess));
+        }
+
+
     }
 
 }
