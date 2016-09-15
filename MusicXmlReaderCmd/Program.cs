@@ -77,7 +77,7 @@ namespace MusicXmlReaderUI
         
         static void Main(string[] args)
         {
-            Logger.LogFileName = "MusicXmlReaderCmd.log";
+            Logger.Open("MusicXmlReaderCmd.log");
             model = Model.Create();
             Console.WriteLine(string.Format("Model.Create {0}", (model != null) ? "succeeded" : "failed"));
             if (null == model) return;

@@ -60,13 +60,12 @@ namespace MusicXmlReaderUI
 
         public void ReadLogFile()
         {
-            Utilities.RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), Logger.LogFileName));
+            Utilities.RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), Logger.LogFileFullName));
         }
 
         public void OpenLogFileLocation()
-        {
-            string tempPath = System.IO.Path.GetTempPath();
-            Utilities.RunExeWithDirArgument("explorer.exe",tempPath);
+        {   
+            Utilities.RunExeWithDirArgument("explorer.exe",Logger.LogFileDirectory);
         }
 
         public void OpenMusicXmlFileLocation()

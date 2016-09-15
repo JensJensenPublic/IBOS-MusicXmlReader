@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,43 @@ namespace MusicXmlReaderUI
         }
 
         private static string logFileName = "MusicXmlReader.Log"; // This is a default whuch may be overwritten by the application
+        private static readonly string mySubDirectoryName = "MusicXmlReader";
         private static bool useConsole = false;
+        private static string logFileFullName;
+        private static string logFileDirectory;
 
+
+        /// <summary>
+        /// Fixes all file and directory names once and for all
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static bool Open(string fileName)
+        {
+            bool result = false;
+            try
+            {
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    // Replace default filename if desired
+                    logFileName = fileName;
+                }
+                string musicXmlReaderTempDirectory = (System.IO.Path.Combine(System.IO.Path.GetTempPath(), mySubDirectoryName));
+                if (!Directory.Exists(musicXmlReaderTempDirectory))
+                {
+                    Directory.CreateDirectory(musicXmlReaderTempDirectory);
+                }
+                logFileDirectory = musicXmlReaderTempDirectory;
+                logFileFullName = Path.Combine(logFileDirectory, logFileName);
+
+                result = true;
+            }
+            catch (Exception)
+            {
+                // But what can we do ?
+            }
+            return result;
+        }
      
         public static bool UseConsole
         {
@@ -36,36 +72,31 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public static string LogFileName
-        {
-            get
-            {
-                return logFileName;
-            }
-
-            set
-            {
-                logFileName = value;
-            }
-        }
-
         public static string LogFileFullName
         {
             get
             {
-                return System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName);
+                return logFileFullName;
             }
- 
+        }
+
+        public static string LogFileDirectory
+        {
+            get
+            {
+                return logFileDirectory;
+            }
         }
 
         public static void Log(string s)
         {
+            if (string.IsNullOrEmpty(logFileFullName)) return; // Open() must be called before using the Logger !
             try
             {
                 Trace(s);
                 System.DateTime now = System.DateTime.Now;
                 string time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
-                System.IO.File.AppendAllText(System.IO.Path.Combine(System.IO.Path.GetTempPath(), LogFileName), time + " " + s + "\r\n");
+                System.IO.File.AppendAllText(logFileFullName, time + " " + s + "\r\n");
             }
             catch (Exception)
             {
