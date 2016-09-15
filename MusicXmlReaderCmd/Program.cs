@@ -24,10 +24,9 @@ namespace MusicXmlReaderUI
                 if ( 0 == string.Compare(".xml",extension ))
                 {
                     Logger.ClearStatistics(); // Start counting unimplemented elements and attributes for this file
-                    bool ok = model.LoadMusicXmlFile(file);
+                    bool ok = model.LoadMusicXmlFile(file); // Loads and parses the file
                     Console.WriteLine(string.Format("Model.LoadMusicXmlFile({0}) {1}", file, ok ? "succeeded" : "failed"));
-                    int events = model.EventDescriptionList.Events.Count;
-                    Console.WriteLine(string.Format("The file contains {0} events", events));
+                    DumpEvents(ok,model.EventDescriptionList);                         
                     Logger.DumpStatistics(); // Dump count of unimplemented elements and attributes for this file
                 }
 
@@ -40,6 +39,42 @@ namespace MusicXmlReaderUI
 
         }
 
+        static void DumpEvents(bool ok, EventDescriptionList events)
+        {
+            if (!ok) return;
+            model.UserSettings.SetMusicBrailleSettings((int)UserSettings.MusicBrailleSettings.Harmonies, true);
+            model.UserSettings.SetMusicBrailleSettings((int)UserSettings.MusicBrailleSettings.MeasureNumbers, true);
+            model.UserSettings.SetMusicBrailleSettings((int)UserSettings.MusicBrailleSettings.Notations, true);
+            model.UserSettings.SetMusicBrailleSettings((int)UserSettings.MusicBrailleSettings.Notes, true);
+            model.UserSettings.partsToRead[0] = true;
+            // Convert the parsed file to MusicBraille
+            for (int i = 0; (i < events.Events.Count); i++)
+            {
+                object o = model.EventDescriptionList.Events[i];
+                if (o is EventDescription)
+                {
+                    List<byte> brailleBytes = (o as EventDescription).ToBraille();
+                    if (0 != brailleBytes.Count)
+                    {
+                        StringBuilder sbRaw = new StringBuilder("Hex=(");
+                        StringBuilder sbUnicode = new StringBuilder("Unicode=");
+                        foreach (byte b in brailleBytes)
+                        {
+                            sbRaw.Append(string.Format(" {0:X2}", b));
+                            char unicodeChar = (char)(0x2800 + (int)b);
+                            sbUnicode.Append(unicodeChar);
+                        }
+                        sbRaw.Append(" ) ");
+                        sbUnicode.Append("");
+                        Logger.Log(sbRaw.ToString() + sbUnicode.ToString());
+                    }
+                }
+
+            }
+            Console.WriteLine(string.Format("The file contains {0} events", events));
+        }
+
+        
         static void Main(string[] args)
         {
             Logger.LogFileName = "MusicXmlReaderCmd.log";
