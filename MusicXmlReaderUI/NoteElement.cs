@@ -392,7 +392,6 @@ namespace MusicXmlReaderUI
             // Dig out attributes
             foreach (XmlAttribute a in xmlNode.Attributes)
             {
-                Logger.LogOnce(string.Format("NoteElement: Attribute.Name={0}", a.Name));
                 switch (a.Name)
                 {
                     case "measure":
@@ -400,6 +399,8 @@ namespace MusicXmlReaderUI
                         break;
                     case "default-x":
                     case "default-y":
+                    case "print-object":
+                    case "print-spacing":
                         break; // Explicitly ignore some graphical attributes 
                     default:
                         Logger.LogOnce(string.Format("NoteElement: Attribute.Name={0}", a.Name));
@@ -411,6 +412,7 @@ namespace MusicXmlReaderUI
 
             foreach (XmlNode child in xmlNode.ChildNodes)
             {
+                bool unimplemented = false;
                 switch (child.Name)
                 {
                     case "pitch":
@@ -447,7 +449,8 @@ namespace MusicXmlReaderUI
                     case "notations": // TO DO: Find out what to do here 
                         notations = NotationsElement.Create(child);                                               
                         break;
-                    case "beam": // TO DO: Find out what to do here                                                
+                    case "beam": // TO DO: Find out what to do here 
+                        unimplemented = true;
                         break;
                     case "rest":
                         //The RestElement is just a cleaner way of specifying a rest/pause instead of using a noteElement with no pitch! 
@@ -457,21 +460,34 @@ namespace MusicXmlReaderUI
                             type = "measure"; // This Rest covers a full measure
                         }                  
                         break;
-                    case "accidental": // TO DO: Find out what to do here                                                
+                    case "accidental": // TO DO: Find out what to do here 
+                        unimplemented = true;
                         break;
-                    case "time-modification": // TO DO: Find out what to do here                                                
+                    case "time-modification": // TO DO: Find out what to do here  
+                        unimplemented = true;
                         break;
-                    case "instrument": // TO DO: Find out what to do here                                                
+                    case "instrument": // TO DO: Find out what to do here 
+                        unimplemented = true;
                         break;
-                    case "stem": // TO DO: Find out what to do here                                                
+                    case "stem": // TO DO: Find out what to do here 
+                        unimplemented = true;
                         break;
                     case "grace": // TO DO: Find out what to do here
                         // Mark this note as a grace note, i.e a note not taking part of the normal timing mechanisms.
                         // Grace notes may be implemented later, for now they are just ignored while building eventlists. 
                         graceNote = true;                                                 
                         break;
+                    case "unpitched":
+                    case "cue":
+                    case "notehead":
+                        unimplemented = true;
+                        break;
                     //default:  throw new ArgumentException();
                     default: Logger.LogOnce(string.Format("NoteElement() Unknown child.Name '{0}'", child.Name)); break;
+                }
+                if (unimplemented)
+                {
+                    Logger.LogOnce(string.Format("NoteElement() child.Name '{0}' is not implemented yet", child.Name)); 
                 }
             }
             if (string.IsNullOrEmpty(Type))
