@@ -61,11 +61,8 @@ namespace MusicXmlReaderUI
             StringBuilder fullString = new StringBuilder(fileName + "\r\n"); // Write the name of the .xml file first   
 
             // Set up for generating MusicBraille
-            model.UserSettings.SetMusicBrailleSettings((int)UserSettings.MusicBrailleSettings.Harmonies, true);
-            model.UserSettings.SetMusicBrailleSettings((int)UserSettings.MusicBrailleSettings.MeasureNumbers, true);
-            model.UserSettings.SetMusicBrailleSettings((int)UserSettings.MusicBrailleSettings.Notations, true);
-            model.UserSettings.SetMusicBrailleSettings((int)UserSettings.MusicBrailleSettings.Notes, true);
-            model.UserSettings.partsToRead[0] = true;
+            model.UserSettings.SetAllMusicBrailleSettings(true);
+
 
             // Convert the parsed file to MusicBraille
             for (int i = 0; (i < events.Events.Count); i++)

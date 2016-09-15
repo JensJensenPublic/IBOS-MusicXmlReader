@@ -87,6 +87,37 @@ namespace MusicXmlReaderUI
         {
         }
 
+
+        /// <summary>
+        /// Enable or disable all parts
+        /// Primarily used for test
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetAllPartsSettings(bool value)
+        {
+            // Then enable allparst: 
+            for (int i = 0; (i < partsToRead.Length); i++)
+            {
+                partsToRead[i] = value;
+            }
+        }
+
+        /// <summary>
+        /// Enable or disable all settings related to MssicBraille
+        /// Primarily used for test
+        /// </summary>
+        public void SetAllMusicBrailleSettings(bool value)
+        {
+            // First handle all MusicBraille specific settings
+            for (int i = 0; (i < musicBrailleSettingsValues.Length); i++)
+            {
+                SetMusicBrailleSettings(i, value);
+            }
+
+            SetAllPartsSettings(value);
+        }
+
+
         /// <summary>
         /// Private constructor, used by the Crate() method
         /// </summary>
