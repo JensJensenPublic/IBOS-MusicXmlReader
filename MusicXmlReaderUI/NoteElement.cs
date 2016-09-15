@@ -5,6 +5,13 @@ using JSJ.MusicSynthesis;
 namespace MusicXmlReaderUI
 {
 
+    /// <summary>
+    /// As specified by MusicXML, but modified according to use C# sytax
+    /// Also used to describe nurations of rests
+    /// The ndtmeasure is not a part of the MusicXml definition but is used to describe a note with the "pullmeasure"= "yes" attribute
+    /// </summary>
+    public enum NoteDurationType { ndtunknown, ndt1024th, ndt512th, ndt256th, ndt128th, ndt64th, ndt32nd, ndt16, ndteight, ndtquarter, ndthalf, ndtwhole, ndtbreve, ndtlong, ndtmaxima, ndtmeasure }
+
 
     public class NoteElement : EventElement
     {
@@ -22,7 +29,8 @@ namespace MusicXmlReaderUI
         int octave = 0;
         int duration = 0;
         bool chord = false; // Means that this note starts at the same time as the previous note, not after the previous note.
-        string type = "unspecified";
+        //string type = "unspecified";
+        NoteDurationType noteDuration = NoteDurationType.ndtunknown;
         string voice = "";
         bool dot = false;
         int divisions = 0; 
@@ -66,14 +74,7 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public string Type
-        {
-            get
-            {
-                return type;
-            }   
-        }
-
+ 
         public int Duration
         {
             get
@@ -294,6 +295,14 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public NoteDurationType NoteDuration
+        {
+            get
+            {
+                return noteDuration;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -308,24 +317,24 @@ namespace MusicXmlReaderUI
         /// <param name="typeString"></param>
         /// <param name="modifier"></param>
         /// <returns></returns>
-        private string LocalizeType(string typeString, bool modifier)
+        private string LocalizeType(NoteDurationType noteDuration, bool modifier)
         {
             string modif = (modifier ? punctured : "");
             string value = "";
-            switch (typeString)
+            switch (noteDuration)
             {
-                case "whole":   value = "helnode"; break;
-                case "half":    value = "halvnode"; ; break;
-                case "quarter": value = "fjerdedel"; break;
-                case "eighth":  value = "ottendedel"; break;
-                case "16th":    value = "sekstendedel"; break;
-                case "32nd":    value = "toogtredivtedel"; break;
-                case "64nd":    value = "fireogtredsindstyvendedel"; break;
-                case "measure": value = "heltakt"; break;
-                case "unspecified": value = "ukendt"; break;
+                case NoteDurationType.ndtwhole:     value = "helnode"; break;
+                case NoteDurationType.ndthalf:      value = "halvnode"; ; break;
+                case NoteDurationType.ndtquarter:   value = "fjerdedel"; break;
+                case NoteDurationType.ndteight:     value = "ottendedel"; break;
+                case NoteDurationType.ndt16:        value = "sekstendedel"; break;
+                case NoteDurationType.ndt32nd:      value = "toogtredivtedel"; break;
+                case NoteDurationType.ndt64th:      value = "fireogtredsindstyvendedel"; break;
+                case NoteDurationType.ndtmeasure:   value = "heltakt"; break;
+                case NoteDurationType.ndtunknown:   value = "ukendt"; break;
                 default:                    
-                    Logger.LogOnce(string.Format("LocalizeType ({0},{1}) Unknown typeString '{2}' in Measure={3} Voice={4} PartId={5} PartNumber={6}",
-                                                 typeString, modifier, typeString, this.MeasureNumber, this.Voice,this.PartId,this.PartNumber)); break;
+                    Logger.LogOnce(string.Format("LocalizeType ({0},{1}) Unknown duration '{2}' in Measure={3} Voice={4} PartId={5} PartNumber={6}",
+                                                 noteDuration.ToString(), modifier, noteDuration.ToString(), measureNumber, voice,PartId,PartNumber)); break;
             }
             return modif + value; // 
         }
@@ -337,24 +346,24 @@ namespace MusicXmlReaderUI
         /// <param name="typeString"></param>
         /// <param name="modifier"></param>
         /// <returns></returns>
-        private string LocalizePause(string typeString, bool modifier)
+        private string LocalizePause(NoteDurationType noteDuration, bool modifier)
         {
             string modif = (modifier ? punctured : "");
             string value = "";
-            switch (typeString)
+            switch (noteDuration)
             {
-                case "whole":   value = "helnodepause"; break;
-                case "half":    value = "halvnodepause"; ; break;
-                case "quarter": value = "fjerdedelspause"; break;
-                case "eighth":  value = "ottendedelspause"; break;
-                case "16th":    value = "sekstendedelspause"; break;
-                case "32nd":    value = "toogtredivtedelspause"; break;
-                case "64nd":    value = "fireogtredsindstyvendedelspause"; break;
-                case "measure": value = "heltaktpause"; break;
-                case "unspecified": value = "ukendt"; break;
+                case NoteDurationType.ndtwhole: value = "helnodepause"; break;
+                case NoteDurationType.ndthalf: value = "halvnodepause"; ; break;
+                case NoteDurationType.ndtquarter: value = "fjerdedelspause"; break;
+                case NoteDurationType.ndteight: value = "ottendedelspause"; break;
+                case NoteDurationType.ndt16: value = "sekstendedelspause"; break;
+                case NoteDurationType.ndt32nd: value = "toogtredivtedel"; break;
+                case NoteDurationType.ndt64th: value = "fireogtredsindstyvendedelspause"; break;
+                case NoteDurationType.ndtmeasure: value = "heltaktspause"; break;
+                case NoteDurationType.ndtunknown: value = "ukendt"; break;
                 default:
-                    Logger.LogOnce(string.Format("LocalizePause({0},{1}) Unknown typeString '{2}' in Measure={3} Voice={4}",
-                        typeString, modifier, typeString, this.MeasureNumber, this.Voice)); break;
+                    Logger.LogOnce(string.Format("LocalizePause({0},{1}) Unknown duration '{2}' in Measure={3} Voice={4}",
+                        duration.ToString(), modifier, duration.ToString(), measureNumber, voice)); break;
             }
             return modif + value;
         }
@@ -379,6 +388,26 @@ namespace MusicXmlReaderUI
             }
             return "";
         }
+
+
+        private NoteDurationType GetDuration(string s)
+        {
+            switch (s)
+            {
+                case "whole": return NoteDurationType.ndtwhole;
+                case "half": return NoteDurationType.ndthalf;
+                case "quarter": return NoteDurationType.ndtquarter;
+                case "eighth":return NoteDurationType.ndteight;
+                case "16th": return NoteDurationType.ndt16;
+                case "32nd": return NoteDurationType.ndt32nd;
+                case "64nd": return NoteDurationType.ndt64th;
+                case "measure": return NoteDurationType.ndtmeasure;
+                case "unspecified": return NoteDurationType.ndtunknown;
+                default:  return NoteDurationType.ndtunknown;
+            }
+        }
+
+
 
         private NoteElement(XmlNode xmlNode, int divisions, int measureNumber, ScorePartElement scorePartElement) // New version
         {
@@ -430,7 +459,15 @@ namespace MusicXmlReaderUI
                         break;
                     case "duration": duration = int.Parse(child.InnerText); break;
                     case "chord": chord = true; break;
-                    case "type": type = child.InnerText; break;
+                    case "type":
+                        noteDuration = GetDuration(child.InnerText);
+                        if (NoteDurationType.ndtunknown == noteDuration)
+                        {
+                            Logger.LogOnce(string.Format("NoteElement constructor: Unknown typeString '{0}' in Measure={1} Voice={2}",
+                                child.InnerText, measureNumber, voice)); break;
+                        }
+                        break;
+                        // type = child.InnerText;
                     case "voice": voice = child.InnerText; break;
                     case "dot": dot = true; break;
                     case "tie":
@@ -457,7 +494,7 @@ namespace MusicXmlReaderUI
                         restElement = RestElement.Create(child);
                         if (restElement.MeasureAttributeValue == "yes")
                         {
-                            type = "measure"; // This Rest covers a full measure
+                            noteDuration = NoteDurationType.ndtmeasure; // This Rest covers a full measure
                         }                  
                         break;
                     case "accidental": // TO DO: Find out what to do here 
@@ -490,13 +527,13 @@ namespace MusicXmlReaderUI
                     Logger.LogOnce(string.Format("NoteElement() child.Name '{0}' is not implemented yet", child.Name)); 
                 }
             }
-            if (string.IsNullOrEmpty(Type))
+            if (NoteDurationType.ndtunknown ==  noteDuration)
             {
-                Logger.Log("Empty Type");
+                Logger.Log("Unknown note duration");
             }
 
-            localizedType = LocalizeType(Type, dot);
-            localizedPauseType = (IsPause) ? LocalizePause(Type, dot) : "";
+            localizedType = LocalizeType(noteDuration, dot);
+            localizedPauseType = (IsPause) ? LocalizePause(noteDuration, dot) : "";
             localizedTie = LocalizeTie(tieType);
             this.divisions = divisions;
             // Model.GetNoteTiming(out this.startTime, out this.endTime, int.Parse(this.duration)); 
@@ -601,7 +638,7 @@ namespace MusicXmlReaderUI
             else
             {      
                 // This is a pause,not a note.     
-                return(String.Format("{0}{1}{2} {3}", timeString, partString, measureString, LocalizePause(Type,dot)));
+                return(String.Format("{0}{1}{2} {3}", timeString, partString, measureString, LocalizePause(noteDuration,dot)));
             }         
         }
 

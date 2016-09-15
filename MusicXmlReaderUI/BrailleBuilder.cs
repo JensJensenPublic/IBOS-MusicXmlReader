@@ -153,20 +153,20 @@ namespace MusicXmlReaderUI
             }
         }
 
-        private int GetTypeIndex(string type)
+        private int GetTypeIndex(NoteDurationType noteDuration)
         {
-            switch (type)
+            switch (noteDuration)
             {
-                case "whole": return 3;
-                case "half": return 2;
-                case "quarter": return 1;
-                case "eighth": return 0;
-                case "16th": return 3;
-                case "32nd": return 2;
-                case "64nd": return 1;
-                case "128nd": return 0;
+                case NoteDurationType.ndtwhole: return 3;
+                case NoteDurationType.ndthalf: return 2;
+                case NoteDurationType.ndtquarter: return 1;
+                case NoteDurationType.ndteight: return 0;
+                case NoteDurationType.ndt16: return 3;
+                case NoteDurationType.ndt32nd: return 2;
+                case NoteDurationType.ndt64th: return 1;
+                case NoteDurationType.ndt128th: return 0;
                 default:
-                    Logger.LogOnce(string.Format("GetTypeIndex({0}) Unknown typeString '{0}'", type));
+                    Logger.LogOnce(string.Format("GetTypeIndex({0}) Unknown typeString '{0}'", noteDuration.ToString()));
                     return -1;
             }
         }
@@ -262,13 +262,13 @@ namespace MusicXmlReaderUI
         /// <param name="type">From "whole" to 128nd</param>
         /// <param name="punctured">A puncture added</param>
         //public void AddNote(FullToneStep step, int alter, int octave, string type, bool punctured) // The right signature
-        public void AddNote(string step, int alter, int octave, string type, bool punctured) // ********************* FIX ! Temp signature
+        public void AddNote(string step, int alter, int octave, NoteDurationType noteDuration, bool punctured) // ********************* FIX ! Temp signature
         {
             int stepIndex = GetStepIndex(step);
-            int typeIndex = GetTypeIndex(type);
+            int typeIndex = GetTypeIndex(noteDuration);
             if ((typeIndex < 0) || (typeIndex >= rests.Length))
             {
-                Logger.LogOnce(string.Format("BrailleBuilder.AddNote: Skipping invalid type: {0}", type));
+                Logger.LogOnce(string.Format("BrailleBuilder.AddNote: Skipping invalid type: {0}", noteDuration.ToString()));
             }
             else
             {
@@ -286,12 +286,12 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="type">From "whole" to 128nd</param>
         /// <param name="punctured">A puncture added</param>
-        public void AddRest(string type, bool punctured) // ********************* FIX ! Temp signature
+        public void AddRest(NoteDurationType noteDuration, bool punctured) // ********************* FIX ! Temp signature
         {
-            int typeIndex = GetTypeIndex(type);
+            int typeIndex = GetTypeIndex(noteDuration);
             if ((typeIndex < 0) || (typeIndex >= rests.Length))
             {
-                Logger.LogOnce(string.Format("BrailleBuilder.AddRest: Skipping invalid type: {0}", type));
+                Logger.LogOnce(string.Format("BrailleBuilder.AddRest: Skipping invalid type: {0}", noteDuration.ToString()));
             }
             else
             {

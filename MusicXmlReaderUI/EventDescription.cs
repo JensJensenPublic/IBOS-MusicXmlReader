@@ -209,13 +209,13 @@ namespace MusicXmlReaderUI
                         if (noteElement.IsPause)
                         {
                             // This is a rest           
-                            bb1.AddRest(noteElement.Type, false); // TO DO: Handle punctured rests
+                            bb1.AddRest(noteElement.NoteDuration, false); // TO DO: Handle punctured rests
                         }
                         else
                         {
                             // This is a note
                             bb1.AddNotationsBeforeNote(noteElement.Notations); // Some notations are added Before the note itself
-                            bb1.AddNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, noteElement.Type, false); // TO DO: Handle punctured notes  
+                            bb1.AddNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, noteElement.NoteDuration, false); // TO DO: Handle punctured notes  
                             bb1.AddNotationsAfterNote(noteElement.Notations);  // Some notations are added After the note itself                 
                         }
                         bb.Append(bb1.Braille);
@@ -224,8 +224,8 @@ namespace MusicXmlReaderUI
                 catch (Exception e)
                 {
                     Logger.Log(string.Format("EventDescription.NotesForOnePartAsBraille threw an exception. Message='{0}'", e.Message));
-                    Logger.Log(string.Format("NoteElement: Step={0} Alter={1} Octave={2} Type={3} Measure={4} Part={5}",
-                        noteElement.Step, noteElement.Alter, noteElement.Octave, noteElement.Type, noteElement.MeasureNumber, noteElement.PartId));
+                    Logger.Log(string.Format("NoteElement: Step={0} Alter={1} Octave={2} Duration={3} Measure={4} Part={5}",
+                        noteElement.Step, noteElement.Alter, noteElement.Octave, noteElement.Notations.ToString(), noteElement.MeasureNumber, noteElement.PartId));
                 }
             }
             return bb.Braille;
