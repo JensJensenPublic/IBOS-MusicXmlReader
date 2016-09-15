@@ -166,7 +166,7 @@ namespace MusicXmlReaderUI
                 case "64nd": return 1;
                 case "128nd": return 0;
                 default:
-                    Logger.Log(string.Format("GetTypeIndex({0}) Unknown typeString '{0}'", type));
+                    Logger.LogOnce(string.Format("GetTypeIndex({0}) Unknown typeString '{0}'", type));
                     return -1;
             }
         }
@@ -265,13 +265,20 @@ namespace MusicXmlReaderUI
         public void AddNote(string step, int alter, int octave, string type, bool punctured) // ********************* FIX ! Temp signature
         {
             int stepIndex = GetStepIndex(step);
-            int typeIndex = GetTypeIndex(type);        
-            byte note = notes[typeIndex,stepIndex]; // Represents pitch within an octave
-            byte[] octaveMark = GetOctaveMark(octave);
-            braille.Add(note);
-            if (0 != alter) braille.Add((alter > 0) ? Sharp : Flat);
-            braille.AddRange(octaveMark);
-            if (punctured) braille.Add(Dot); 
+            int typeIndex = GetTypeIndex(type);
+            if ((typeIndex < 0) || (typeIndex >= rests.Length))
+            {
+                Logger.LogOnce(string.Format("BrailleBuilder.AddNote: Skipping invalid type: {0}", type));
+            }
+            else
+            {
+                byte note = notes[typeIndex, stepIndex]; // Represents pitch within an octave
+                byte[] octaveMark = GetOctaveMark(octave);
+                braille.Add(note);
+                if (0 != alter) braille.Add((alter > 0) ? Sharp : Flat);
+                braille.AddRange(octaveMark);
+                if (punctured) braille.Add(Dot);
+            }
         }
 
         /// <summary>
@@ -284,7 +291,7 @@ namespace MusicXmlReaderUI
             int typeIndex = GetTypeIndex(type);
             if ((typeIndex < 0) || (typeIndex >= rests.Length))
             {
-                Logger.Log(string.Format("BrailleBuilder.AddRest: Skipping invalid type: {0}", type));
+                Logger.LogOnce(string.Format("BrailleBuilder.AddRest: Skipping invalid type: {0}", type));
             }
             else
             {

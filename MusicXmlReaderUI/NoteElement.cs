@@ -22,7 +22,7 @@ namespace MusicXmlReaderUI
         int octave = 0;
         int duration = 0;
         bool chord = false; // Means that this note starts at the same time as the previous note, not after the previous note.
-        string type = "";
+        string type = "unspecified";
         string voice = "";
         bool dot = false;
         int divisions = 0; 
@@ -41,6 +41,7 @@ namespace MusicXmlReaderUI
         string staffString = "";
         int staff = 0;
         //string articulations = "";
+        string measureAttributeValue; 
 
         // MeasureNumber and MeasureNumber are not found inside the XML describing the note, but are derived from the XML surrounding the note.
         int measureNumber;
@@ -320,10 +321,11 @@ namespace MusicXmlReaderUI
                 case "16th":    value = "sekstendedel"; break;
                 case "32nd":    value = "toogtredivtedel"; break;
                 case "64nd":    value = "fireogtredsindstyvendedel"; break;
-                case "":        value = "heltakt"; break;
+                case "measure": value = "heltakt"; break;
+                case "unspecified": value = "ukendt"; break;
                 default:                    
-                    Logger.Log(string.Format("LocalizeType ({0},{1}) Unknown typeString '{2}' in Measure={3} Voice={4}",
-                        typeString, modifier, typeString, this.MeasureNumber, this.Voice)); break;
+                    Logger.LogOnce(string.Format("LocalizeType ({0},{1}) Unknown typeString '{2}' in Measure={3} Voice={4} PartId={5} PartNumber={6}",
+                                                 typeString, modifier, typeString, this.MeasureNumber, this.Voice,this.PartId,this.PartNumber)); break;
             }
             return modif + value; // 
         }
@@ -348,9 +350,10 @@ namespace MusicXmlReaderUI
                 case "16th":    value = "sekstendedelspause"; break;
                 case "32nd":    value = "toogtredivtedelspause"; break;
                 case "64nd":    value = "fireogtredsindstyvendedelspause"; break;
-                case "":        value = "heltaktpause"; break;
+                case "measure": value = "heltaktpause"; break;
+                case "unspecified": value = "ukendt"; break;
                 default:
-                    Logger.Log(string.Format("LocalizePause({0},{1}) Unknown typeString '{2}' in Measure={3} Voice={4}",
+                    Logger.LogOnce(string.Format("LocalizePause({0},{1}) Unknown typeString '{2}' in Measure={3} Voice={4}",
                         typeString, modifier, typeString, this.MeasureNumber, this.Voice)); break;
             }
             return modif + value;
@@ -380,10 +383,32 @@ namespace MusicXmlReaderUI
         private NoteElement(XmlNode xmlNode, int divisions, int measureNumber, ScorePartElement scorePartElement) // New version
         {
             this.scorePartElement = scorePartElement; 
-            this.measureNumber = measureNumber;            
+            this.measureNumber = measureNumber;
             //this.partId = scorePartElement.partId;
             //this.partNumber = scorePartElement.partNumber;
             //this.midiChannel = (null == scorePartElement.midiInstrumentElement) ? 1 : scorePartElement.midiInstrumentElement.MidiChannel; // Use channel 1 as a default
+
+
+            // Dig out attributes
+            foreach (XmlAttribute a in xmlNode.Attributes)
+            {
+                Logger.LogOnce(string.Format("NoteElement: Attribute.Name={0}", a.Name));
+                switch (a.Name)
+                {
+                    case "measure":
+                        measureAttributeValue = a.Value;
+                        break;
+                    case "default-x":
+                    case "default-y":
+                        break; // Explicitly ignore some graphical attributes 
+                    default:
+                        Logger.LogOnce(string.Format("NoteElement: Attribute.Name={0}", a.Name));
+                        break;
+
+                }
+            }
+
+
             foreach (XmlNode child in xmlNode.ChildNodes)
             {
                 switch (child.Name)
@@ -429,7 +454,7 @@ namespace MusicXmlReaderUI
                         restElement = RestElement.Create(child);
                         if (restElement.MeasureAttributeValue == "yes")
                         {
-                            type = "whole"; // This Rest covers a full measure
+                            type = "measure"; // This Rest covers a full measure
                         }                  
                         break;
                     case "accidental": // TO DO: Find out what to do here                                                
@@ -449,6 +474,11 @@ namespace MusicXmlReaderUI
                     default: Logger.LogOnce(string.Format("NoteElement() Unknown child.Name '{0}'", child.Name)); break;
                 }
             }
+            if (string.IsNullOrEmpty(Type))
+            {
+                Logger.Log("Empty Type");
+            }
+
             localizedType = LocalizeType(Type, dot);
             localizedPauseType = (IsPause) ? LocalizePause(Type, dot) : "";
             localizedTie = LocalizeTie(tieType);

@@ -28,12 +28,18 @@ namespace MusicXmlReaderUI
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
-                Logger.LogOnce(string.Format("RestElement: Attribute.Name={0} Attribute.Value={1}", a.Name, a.Value));
+  
                 switch (a.Name)
                 {
                     case "measure":
                         measureAttributeValue = a.Value;
                         break;
+                    case "default-x":
+                    case "default-y":
+                        break; // Explicitly ignore some graphical attributes 
+
+                    default:
+                        Logger.LogOnce(string.Format("RestElement: Attribute.Name={0}", a.Name)); break;
                 }
             }
         }
