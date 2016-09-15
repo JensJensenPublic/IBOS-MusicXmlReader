@@ -26,7 +26,7 @@ namespace MusicXmlReaderUI
                     Logger.ClearStatistics(); // Start counting unimplemented elements and attributes for this file
                     bool ok = model.LoadMusicXmlFile(file); // Loads and parses the file
                     Console.WriteLine(string.Format("Model.LoadMusicXmlFile({0}) {1}", file, ok ? "succeeded" : "failed"));
-                    DumpEvents(ok,model.EventDescriptionList);                         
+                    DumpEvents(ok,model.EventDescriptionList,file);                         
                     Logger.DumpStatistics(); // Dump count of unimplemented elements and attributes for this file
                 }
 
@@ -39,14 +39,34 @@ namespace MusicXmlReaderUI
 
         }
 
-        static void DumpEvents(bool ok, EventDescriptionList events)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ok">The result of previously opening and parsing the file</param>
+        /// <param name="events">The musical events described by the file</param>
+        /// <param name="fileName">The name of the file</param>
+        static private void DumpEvents(bool ok, EventDescriptionList events,string fileName)
         {
-            if (!ok) return;
+            if (!ok) return;       
+            string musicBrailleFileName= System.IO.Path.Combine(Logger.LogFileDirectory, System.IO.Path.GetFileName(fileName) + ".MusicBraille.txt");
+
+         
+            if (System.IO.File.Exists(musicBrailleFileName))
+            {
+                System.IO.File.Delete(musicBrailleFileName);    // Get rid of existing file 
+            }
+
+            // Build the full text first instead of opening and closing the file for each chunk!
+            StringBuilder fullString = new StringBuilder(fileName + "\r\n"); // Write the name of the .xml file first   
+
+            // Set up for generating MusicBraille
             model.UserSettings.SetMusicBrailleSettings((int)UserSettings.MusicBrailleSettings.Harmonies, true);
             model.UserSettings.SetMusicBrailleSettings((int)UserSettings.MusicBrailleSettings.MeasureNumbers, true);
             model.UserSettings.SetMusicBrailleSettings((int)UserSettings.MusicBrailleSettings.Notations, true);
             model.UserSettings.SetMusicBrailleSettings((int)UserSettings.MusicBrailleSettings.Notes, true);
             model.UserSettings.partsToRead[0] = true;
+
             // Convert the parsed file to MusicBraille
             for (int i = 0; (i < events.Events.Count); i++)
             {
@@ -66,11 +86,14 @@ namespace MusicXmlReaderUI
                         }
                         sbRaw.Append(" ) ");
                         sbUnicode.Append("");
-                        Logger.Log(sbRaw.ToString() + sbUnicode.ToString());
+                        string line = sbRaw.ToString() + sbUnicode.ToString();
+                        fullString.Append(line + "\r\n");
                     }
                 }
 
             }
+            // Finally write the whole file contents at once:
+            System.IO.File.AppendAllText(musicBrailleFileName, fullString.ToString());
             Console.WriteLine(string.Format("The file contains {0} events", events));
         }
 
@@ -90,7 +113,7 @@ namespace MusicXmlReaderUI
 
             model.ReadLogFile();            // Open Notepad with the Logfile
             model.OpenLogFileLocation();    // Open File Explorer in the directory holding the LogFile
-            Console.ReadLine();
+            //Console.ReadLine();
         }
     }
 }
