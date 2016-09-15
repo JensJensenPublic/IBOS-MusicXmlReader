@@ -166,7 +166,7 @@ namespace MusicXmlReaderUI
                 case NoteDurationType.ndt64th: return 1;
                 case NoteDurationType.ndt128th: return 0;
                 default:
-                    Logger.LogOnce(string.Format("GetTypeIndex({0}) Unknown typeString '{0}'", noteDuration.ToString()));
+                    Logger.LogOnce(string.Format("GetTypeIndex({0}) Unknown noteDuration '{0}'", noteDuration.ToString()));
                     return -1;
             }
         }
@@ -268,7 +268,7 @@ namespace MusicXmlReaderUI
             int typeIndex = GetTypeIndex(noteDuration);
             if ((typeIndex < 0) || (typeIndex >= rests.Length))
             {
-                Logger.LogOnce(string.Format("BrailleBuilder.AddNote: Skipping invalid type: {0}", noteDuration.ToString()));
+                Logger.LogOnce(string.Format("BrailleBuilder.AddNote: Skipping invalid noteDuration: {0}", noteDuration.ToString()));
             }
             else
             {
@@ -291,7 +291,7 @@ namespace MusicXmlReaderUI
             int typeIndex = GetTypeIndex(noteDuration);
             if ((typeIndex < 0) || (typeIndex >= rests.Length))
             {
-                Logger.LogOnce(string.Format("BrailleBuilder.AddRest: Skipping invalid type: {0}", noteDuration.ToString()));
+                Logger.LogOnce(string.Format("BrailleBuilder.AddRest: Skipping invalid noteDuration: {0}", noteDuration.ToString()));
             }
             else
             {

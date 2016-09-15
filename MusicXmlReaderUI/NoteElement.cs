@@ -529,7 +529,7 @@ namespace MusicXmlReaderUI
             }
             if (NoteDurationType.ndtunknown ==  noteDuration)
             {
-                Logger.Log("Unknown note duration");
+                Logger.LogOnce("Unknown note duration");
             }
 
             localizedType = LocalizeType(noteDuration, dot);
