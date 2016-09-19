@@ -47,7 +47,9 @@ namespace MusicXmlReaderUI
                 switch (a.Name)
                 {
                     case "type": fermataType = GetFermataType(a.Value); break;
-                    default: Logger.LogOnce(string.Format("{0}: Unexpected fermata attribute {0}", function, a.Name)); break;                    
+                    case "default-x":
+                    case "default-y": break; // Explicitly ignore graphic attributes
+                    default: Logger.LogOnce(string.Format("{0}: Unexpected fermata attribute {1}", function, a.Name)); break;                    
                 }
             }
         }
