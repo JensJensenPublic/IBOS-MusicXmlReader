@@ -500,8 +500,8 @@ namespace MusicXmlReaderUI
                     case "notations": // TO DO: Find out what to do here 
                         notations = NotationsElement.Create(child);                                               
                         break;
-                    case "beam": // TO DO: Find out what to do here 
-                        unimplemented = true;
+                    case "beam": // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-beam.htm
+                        // This is pure graphical information. Explicitly ignored!
                         break;
                     case "rest":
                         //The RestElement is just a cleaner way of specifying a rest/pause instead of using a noteElement with no pitch! 
@@ -520,8 +520,8 @@ namespace MusicXmlReaderUI
                     case "instrument":
                         instrumentElement = InstrumentElement.Create(child);
                         break;
-                    case "stem": // TO DO: Find out what to do here 
-                        unimplemented = true;
+                    case "stem": // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-stem.htm 
+                        // This is pure graphical information. Explicitly ignored!
                         break;
                     case "grace": // TO DO: Find out what to do here
                         // Mark this note as a grace note, i.e a note not taking part of the normal timing mechanisms.
