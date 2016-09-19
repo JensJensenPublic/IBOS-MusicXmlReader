@@ -408,6 +408,8 @@ namespace MusicXmlReaderUI
         }
 
 
+        // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-note.htm
+
 
         private NoteElement(XmlNode xmlNode, int divisions, int measureNumber, ScorePartElement scorePartElement) // New version
         {
@@ -428,8 +430,17 @@ namespace MusicXmlReaderUI
                         break;
                     case "default-x":
                     case "default-y":
+                    case "relative-x":
+                    case "relative-y":
+                    case "font-family":
+                    case "font-style":
+                    case "font-size":
+                    case "font-weight":
+                    case "color":                        
                     case "print-object":
+                    case "print-dot":
                     case "print-spacing":
+                    case "print-lyric":
                         break; // Explicitly ignore some graphical attributes 
                     default:
                         Logger.LogOnce(string.Format("NoteElement: Attribute.Name={0}", a.Name));
