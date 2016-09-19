@@ -45,11 +45,12 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="ok">The result of previously opening and parsing the file</param>
         /// <param name="events">The musical events described by the file</param>
-        /// <param name="fileName">The name of the file</param>
-        static private void DumpEvents(bool ok, EventDescriptionList events,string fileName)
+        /// <param name="fileFullName">The name of the file</param>
+        static private void DumpEvents(bool ok, EventDescriptionList events,string fileFullName)
         {
-            if (!ok) return;       
-            string musicBrailleFileName= System.IO.Path.Combine(Logger.LogFileDirectory, System.IO.Path.GetFileName(fileName) + ".MusicBraille.txt");
+            if (!ok) return;
+            string fileShortName = System.IO.Path.GetFileName(fileFullName);
+            string musicBrailleFileName= System.IO.Path.Combine(Logger.LogFileDirectory, fileShortName + ".MusicBraille.txt");
 
          
             if (System.IO.File.Exists(musicBrailleFileName))
@@ -58,7 +59,7 @@ namespace MusicXmlReaderUI
             }
 
             // Build the full text first instead of opening and closing the file for each chunk!
-            StringBuilder fullString = new StringBuilder(fileName + "\r\n"); // Write the name of the .xml file first   
+            StringBuilder fullString = new StringBuilder(fileShortName + "\r\n"); // Write the name of the .xml file first   
 
             // Set up for generating MusicBraille
             model.UserSettings.SetAllMusicBrailleSettings(true);
@@ -74,7 +75,8 @@ namespace MusicXmlReaderUI
                     if (0 != brailleBytes.Count)
                     {
                         StringBuilder sbRaw = new StringBuilder("Hex=(");
-                        StringBuilder sbUnicode = new StringBuilder("Unicode=");
+                        //StringBuilder sbUnicode = new StringBuilder("Unicode=");
+                        StringBuilder sbUnicode = new StringBuilder();
                         foreach (byte b in brailleBytes)
                         {
                             sbRaw.Append(string.Format(" {0:X2}", b));
@@ -83,7 +85,8 @@ namespace MusicXmlReaderUI
                         }
                         sbRaw.Append(" ) ");
                         sbUnicode.Append("");
-                        string line = sbRaw.ToString() + sbUnicode.ToString();
+                        //string line = sbRaw.ToString() + sbUnicode.ToString(); // Show the hex representation + the Music Braille representation
+                        string line = sbUnicode.ToString(); // Show the Music Braille representation only.
                         fullString.Append(line + "\r\n");
                     }
                 }
