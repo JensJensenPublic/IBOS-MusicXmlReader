@@ -49,7 +49,9 @@ namespace MusicXmlReaderUI
         string staffString = "";
         int staff = 0;
         //string articulations = "";
-        string measureAttributeValue; 
+        string measureAttributeValue;
+        InstrumentElement instrumentElement; // The instrument type distinguishes between score-instrument elements in a score-part. The id attribute is an IDREF back to the score-instrument ID.
+                                             //If multiple score-instruments are specified on a score-part, there should be an instrument element for each note in the part.
 
         // MeasureNumber and MeasureNumber are not found inside the XML describing the note, but are derived from the XML surrounding the note.
         int measureNumber;
@@ -514,8 +516,8 @@ namespace MusicXmlReaderUI
                     case "time-modification": // TO DO: Find out what to do here  
                         unimplemented = true;
                         break;
-                    case "instrument": // TO DO: Find out what to do here 
-                        unimplemented = true;
+                    case "instrument":
+                        instrumentElement = InstrumentElement.Create(child);
                         break;
                     case "stem": // TO DO: Find out what to do here 
                         unimplemented = true;
