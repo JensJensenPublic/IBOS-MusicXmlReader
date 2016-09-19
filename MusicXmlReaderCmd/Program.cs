@@ -146,8 +146,12 @@ namespace MusicXmlReaderUI
 
             Recurse(testFileDirName);
 
+            Logger.DumpGlobalStatistics();  // Statistics summed over all MusicXml files.
+
             model.ReadLogFile();            // Open Notepad with the Logfile
             model.OpenLogFileLocation();    // Open File Explorer in the directory holding the LogFile
+
+       
             //Console.ReadLine();
         }
     }
