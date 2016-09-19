@@ -38,20 +38,27 @@ namespace MusicXmlReaderUI
                         break;
 
                     case "number":
-                        Utilities.Parse(a.Value, ref numberLevel, 1, 6, "SlurElement:", false);
+                        Utilities.Parse(a.Value, ref numberLevel, 1, 6, "StartStopContinueElement:", false);
                         break;
 
-                    // Explicitly ignire the following
+                    // Explicitly ignore the following
                     case "relative-x": break;
                     case "relative-y": break;
                     case "bezier-x": break;
                     case "bezier-y": break;
+                    case "bezier-x1": break;
+                    case "bezier-y1": break;
+                    case "bezier-x2": break;
+                    case "bezier-y2": break;
                     case "default-x": break;
                     case "default-y": break;
                     case "placement": break;
+                    case "orientation": break;
+                    case "show-number": break;
+                    case "bracket": break;
 
                     default:
-                        Logger.LogOnce(string.Format("SlurElement: Unknown attribute name '{0}'", a.Name));
+                        Logger.LogOnce(string.Format("StartStopContinueElement: Unknown attribute name '{0}'", a.Name));
                         break;
                 }
             }
