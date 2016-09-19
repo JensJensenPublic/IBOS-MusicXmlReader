@@ -149,6 +149,7 @@ namespace MusicXmlReaderUI
             Log("Logger.DumpGlobalStatistics started");
             int numberOfEntries;
             List<string> strings = globalCounters.GetStatistics(out numberOfEntries);
+            strings.Sort();
             foreach (string s in strings)
             {
                 Log(s);
