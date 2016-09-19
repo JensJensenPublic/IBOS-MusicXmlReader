@@ -210,6 +210,7 @@
     <Compile Include="..\MusicXmlReaderUI\Utilities.cs">
       <Link>Utilities.cs</Link>
     </Compile>
+    <Compile Include="Elements\AccidentalElement.cs" />
     <Compile Include="Elements\InstrumentElement.cs" />
     <Compile Include="LoggerCounters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
