@@ -113,8 +113,15 @@ namespace MusicXmlReaderUI
             {
                 SetMusicBrailleSettings(i, value);
             }
+        }
 
-            SetAllPartsSettings(value);
+        public void SetAllNormalTextSettings(bool value)
+        {
+            // First handle all Normal text specific settings
+            for (int i = 0; (i < readerSettingsValues.Length); i++)
+            {
+                SetReaderSettings(i, value);
+            }
         }
 
 

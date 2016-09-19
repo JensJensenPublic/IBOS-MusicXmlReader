@@ -108,8 +108,10 @@ namespace MusicXmlReaderUI
             StringBuilder fullMusicBrailleString = new StringBuilder(fileShortName + "\r\n"); // Write the name of the .xml file first   
             StringBuilder fullNormalTextString =    new StringBuilder(fileShortName + "\r\n"); // Write the name of the .xml file first   
 
-            // Set up for generating MusicBraille
-            model.UserSettings.SetAllMusicBrailleSettings(true);
+            // Set up for generating every posible output
+            model.UserSettings.SetAllPartsSettings(true);        // Select all parts 
+            model.UserSettings.SetAllMusicBrailleSettings(true); // Select all Music Braille Settings (For each part selected above)
+            model.UserSettings.SetAllNormalTextSettings(true);   // Select all Normal Text settings   (For each part selected above)
 
 
             // Convert the parsed file to MusicBraille and Normal text
