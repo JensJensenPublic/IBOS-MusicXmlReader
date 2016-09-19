@@ -9,7 +9,11 @@ namespace MusicXmlReaderUI
 {
     /// <summary>
     /// Simple testprogram for checking the parsing of all .xml filer in a directory tree.
-    /// Generates output to the .log file
+    /// For each valid MusicXml file found in the tree 2 .txt files are generated:
+    ///  A file containing the Music Braille representation
+    ///  A file containing the Normal Text representation.
+    /// Both files are generated with all UserSettings enabled. 
+    /// After generating these files all logging information and statistics generated during the operation is output to a .log file
     /// </summary>
     class Program
     {
@@ -39,6 +43,11 @@ namespace MusicXmlReaderUI
 
         }
 
+        /// <summary>
+        /// Generate the Unicode Music Braille representation of an Eventdescription
+        /// </summary>
+        /// <param name="eventDescription">The EventDescription to convert</param>
+        /// <param name="sb">The Stringbuilder to receive the result</param>
         static private void AddAsMusicBraille(EventDescription eventDescription, StringBuilder sb)
         {
             List<byte> brailleBytes = eventDescription.ToBraille();
@@ -61,6 +70,11 @@ namespace MusicXmlReaderUI
             }
         }
 
+        /// <summary>
+        /// Generate the normal text representation of an Eventdescription
+        /// </summary>
+        /// <param name="eventDescription">The EventDescription to convert</param>
+        /// <param name="sb">The Stringbuilder to receive the result</param>
         static private void AddAsNormalText(EventDescription eventDescription, StringBuilder sb)
         {
             sb.Append(eventDescription.ToNormalTextString() + "\r\n");
@@ -98,7 +112,7 @@ namespace MusicXmlReaderUI
             model.UserSettings.SetAllMusicBrailleSettings(true);
 
 
-            // Convert the parsed file to MusicBraille
+            // Convert the parsed file to MusicBraille and Normal text
             for (int i = 0; (i < events.Events.Count); i++)
             {
                 object o = model.EventDescriptionList.Events[i];
@@ -110,7 +124,7 @@ namespace MusicXmlReaderUI
                 }
 
             }
-            // Finally write the whole file contents at once:
+            // Finally write the whole files at once:
             System.IO.File.AppendAllText(musicBrailleFileName, fullMusicBrailleString.ToString());
             System.IO.File.AppendAllText(normalTextFileName, fullNormalTextString.ToString());
             Console.WriteLine(string.Format("The file contains {0} events", events));
