@@ -134,24 +134,26 @@ namespace MusicXmlReaderUI
         /// </summary>
         public static void DumpStatistics()
         {
-            Log("Logger.DumpStatistics start");
-            List<string> strings = localCounters.GetStatistics();
+            Log("Logger.DumpStatistics started");
+            int numberOfEntries;
+            List<string> strings = localCounters.GetStatistics(out numberOfEntries);
             foreach (string s in strings)
             {
                 Log(s);
-            }
-            Log("Logger.DumpStatistics end");
+            } 
+            Log(string.Format("Logger.DumpStatistics completed with a total of {0} entries",numberOfEntries));
         }
 
         public static void DumpGlobalStatistics()
         {
-            Log("Logger.DumpGlobalStatistics start");
-            List<string> strings = globalCounters.GetStatistics();
+            Log("Logger.DumpGlobalStatistics started");
+            int numberOfEntries;
+            List<string> strings = globalCounters.GetStatistics(out numberOfEntries);
             foreach (string s in strings)
             {
                 Log(s);
             }
-            Log("Logger.DumpGlobalStatistics end");
+            Log(string.Format("Logger.DumpGlobalStatistics completed with a total of {0} entries", numberOfEntries));
         }
 
         /// <summary>

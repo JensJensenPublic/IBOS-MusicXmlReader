@@ -58,13 +58,16 @@ namespace MusicXmlReaderUI
         /// Dumps all strings used as argument to LogOnce with the number of times it has been called
         /// since last call to ClearStatistics()
         /// </summary>
-        public List<string> GetStatistics()
-        {
+        public List<string> GetStatistics(out int totalNumberOfEntries)
+        {        
+            int sum = 0;
             List<string> result = new List<string>();
             for (int i = 0; (i < strings.Count); i++)
             {
                 result.Add(string.Format("  {0}:{1}", strings[i], counters[i])); // Indent by 2 positions
+                sum += counters[i];
             }
+            totalNumberOfEntries = sum;
             return result;
         }
 
