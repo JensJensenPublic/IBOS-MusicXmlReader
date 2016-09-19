@@ -109,12 +109,6 @@ namespace MusicXmlReaderUI
             }
         }
 
-
-        // Two parallel lists:
-        private static List<string> strings = new List<string>();
-        private static List<int> counters = new List<int>();
-
-
         /// <summary>
         /// Same as Log() but each string is only logged once !
         /// Instead a statistics is kept for counting how many times the string is logged.

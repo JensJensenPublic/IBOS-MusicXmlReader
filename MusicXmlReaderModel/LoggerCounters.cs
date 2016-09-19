@@ -9,8 +9,8 @@ namespace MusicXmlReaderUI
     class LoggerCounters
 
     {    // Two parallel lists contains the logs and the counts of logs.
-        private static List<string> strings = new List<string>();
-        private static List<int> counters = new List<int>();
+        private List<string> strings = new List<string>();
+        private List<int> counters = new List<int>();
 
         private LoggerCounters()
         { }
