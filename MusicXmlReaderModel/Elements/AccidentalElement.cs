@@ -28,10 +28,11 @@ namespace MusicXmlReaderUI
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
-                //switch (a.Name)
-                //{
-                //}
-                Logger.LogOnce(string.Format("{0}: Unexpected  attribute. Name ={1} Value={2}",functionName, a.Name,a.Value));
+                switch (a.Name)
+                {
+                    case "parentheses": break;
+                    default: Logger.LogOnce(string.Format("{0}: Unexpected  attribute. Name={1} Value={2}", functionName, a.Name, a.Value)); break;
+                }
             }
 
             // Dig out elements
@@ -43,9 +44,11 @@ namespace MusicXmlReaderUI
                     case "flat":
                     case "natural":
                     case "sharp":
+                    case "double-flat":
+                    case "double-sharp":
                         break; // Ignore until needed !
                     default:
-                        Logger.LogOnce(string.Format("{1}: Unexpected  child: Value={1}",functionName, value));
+                        Logger.LogOnce(string.Format("{0}: Unexpected child: Value={1}",functionName, value));
                         break;
                 }
             }
