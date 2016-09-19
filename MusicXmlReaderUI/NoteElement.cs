@@ -417,6 +417,7 @@ namespace MusicXmlReaderUI
         {
             this.scorePartElement = scorePartElement; 
             this.measureNumber = measureNumber;
+            const string functionName = "NoteElement constructor"; // For logging
             //this.partId = scorePartElement.partId;
             //this.partNumber = scorePartElement.partNumber;
             //this.midiChannel = (null == scorePartElement.midiInstrumentElement) ? 1 : scorePartElement.midiInstrumentElement.MidiChannel; // Use channel 1 as a default
@@ -445,7 +446,7 @@ namespace MusicXmlReaderUI
                     case "print-lyric":
                         break; // Explicitly ignore some graphical attributes 
                     default:
-                        Logger.LogOnce(string.Format("NoteElement: Attribute.Name={0}", a.Name));
+                        Logger.LogOnce(string.Format("{0} Attribute.Name={0}", functionName, a.Name));
                         break;
 
                 }
@@ -476,8 +477,8 @@ namespace MusicXmlReaderUI
                         noteDuration = GetDuration(child.InnerText);
                         if (NoteDurationType.ndtunknown == noteDuration)
                         {
-                            Logger.LogOnce(string.Format("NoteElement constructor: Unknown typeString '{0}' in Measure={1} Voice={2}",
-                                child.InnerText, measureNumber, voice)); break;
+                            Logger.LogOnce(string.Format("{0}: Unknown typeString '{1}' in Measure={2} Voice={3}",
+                                functionName,child.InnerText, measureNumber, voice)); break;
                         }
                         break;
                         // type = child.InnerText;
@@ -533,16 +534,16 @@ namespace MusicXmlReaderUI
                         unimplemented = true;
                         break;
                     //default:  throw new ArgumentException();
-                    default: Logger.LogOnce(string.Format("NoteElement() Unknown child.Name '{0}'", child.Name)); break;
+                    default: Logger.LogOnce(string.Format("{0}: Unknown child.Name '{1}'",functionName, child.Name)); break;
                 }
                 if (unimplemented)
                 {
-                    Logger.LogOnce(string.Format("NoteElement() child.Name '{0}' is not implemented yet", child.Name)); 
+                    Logger.LogOnce(string.Format("{0}: child.Name '{1}' is not implemented yet", functionName, child.Name)); 
                 }
             }
             if (NoteDurationType.ndtunknown ==  noteDuration)
             {
-                Logger.LogOnce("NoteElement(): Unknown note duration");
+                Logger.LogOnce(string.Format("{0}: Unknown note duration in Measure={1} Voice={2}", functionName,measureNumber, voice));
             }
 
             localizedType = LocalizeType(noteDuration, dot);
