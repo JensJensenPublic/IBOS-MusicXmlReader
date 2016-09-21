@@ -29,6 +29,7 @@ namespace MusicXmlReaderUI
         //int currentPartNumber = 0;  // Will be saved with each note
         //int currentMidiChannel = 1; // Will be saved with each note
         ScorePartElement currentScorePartElement = null;
+        TimeElement currentTimeElement; // Contains the current TimeElement
         UserSettings userSettings;
         ScreenReaderAPI screenReaderAPI;
         DebugTools debugTools;
@@ -309,7 +310,7 @@ namespace MusicXmlReaderUI
                     {
                         this.latestMeasureNumber = this.currentMeasureNumber;
                     }
-                    NoteElement note = NoteElement.Create(node, this.divisions, this.currentMeasureNumber, this.currentScorePartElement); // New version
+                    NoteElement note = NoteElement.Create(node, this.divisions, this.currentMeasureNumber, this.currentScorePartElement, this.currentTimeElement); // New version
                     allMusicXmlObjecsts.Add(note);
                     continueRecursion = false;
                     break;
@@ -431,7 +432,8 @@ namespace MusicXmlReaderUI
                     this.tempo = soundElement.GetTempo();
                     break;
                 case "time":
-                    allMusicXmlObjecsts.Add(TimeElement.Create(node));
+                    currentTimeElement = TimeElement.Create(node);
+                    allMusicXmlObjecsts.Add(currentTimeElement);
                     continueRecursion = false;
                     break;
                 case "clef":

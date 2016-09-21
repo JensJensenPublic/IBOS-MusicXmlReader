@@ -77,6 +77,7 @@ namespace MusicXmlReaderUI
         // MeasureNumber and MeasureNumber are not found inside the XML describing the note, but are derived from the XML surrounding the note.
         int measureNumber;
         ScorePartElement scorePartElement; // Holds a reference to the ScorePartelement describing the score part for this note
+        TimeElement currentTimeElement; // Holds a reference to the TimeElement describing this note
 
         MidiNote midiNote = null; // If !null holds a MidiNote curently being played and representing this NoteElement
         bool unpitched; // Set if the note has a child Unpiched element
@@ -439,11 +440,12 @@ namespace MusicXmlReaderUI
         // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-note.htm
 
 
-        private NoteElement(XmlNode xmlNode, int divisions, int measureNumber, ScorePartElement scorePartElement) // New version
+        private NoteElement(XmlNode xmlNode, int divisions, int measureNumber, ScorePartElement scorePartElement, TimeElement currentTimeElement) // New version
         {
             this.divisions = divisions;
             this.scorePartElement = scorePartElement; 
-            this.measureNumber = measureNumber;  
+            this.measureNumber = measureNumber;
+            this.currentTimeElement = currentTimeElement;  
             const string functionName = "NoteElement constructor"; // For logging
             //this.partId = scorePartElement.partId;
             //this.partNumber = scorePartElement.partNumber;
@@ -593,22 +595,28 @@ namespace MusicXmlReaderUI
 
             if (!this.printObjectAttributeValue) // If this NoteElement is not to be printed we don't need the NoteDurationType
             {
-                Logger.LogOnce(string.Format("{0}: {1} print-object='no'",functionName, ignoreText));
+                // Logger.LogOnce(string.Format("{0}: {1} print-object='no'",functionName, ignoreText));
                 return noteDuration;
             }
             
             if ((null == pitchValue) && (null != restElement) && (restElement.MeasureAttributeValue))
             {
-                Logger.LogOnce(string.Format("{0}: {1} this is a fullmeasure rest. Setting to 'full measure'", functionName, ignoreText));
+                // Logger.LogOnce(string.Format("{0}: {1} this is a fullmeasure rest. Setting to 'full measure'", functionName, ignoreText));
                 return NoteDurationType.ndtmeasure; // Assume it is a full measure rest even if not specified!
             }
 
             int quotient = duration / divisions;
             int remainder = duration % divisions;
-            if ((0 == remainder) && (quotient > 1))
+            if ((0 == remainder) && (quotient > 1) && ( quotient == ( 4 * currentTimeElement.Beats) / currentTimeElement.BeatType))
             {
-                Logger.LogOnce(string.Format("{0}: {1} because duration={2} and divisions={3}. Setting to 'full measure'",
-                                              functionName, ignoreText, duration,divisions));
+                //Logger.LogOnce(string.Format("{0}: {1} because ( duration={2} divisions={3} beats={4} beatType={5} ). Setting to 'full measure'",
+                //                              functionName, // 0
+                //                              ignoreText,   // 1
+                //                              duration,     // 2
+                //                              divisions,    // 3
+                //                              currentTimeElement.Beats,     // 4
+                //                              currentTimeElement.BeatType   // 5
+                //                              ));
                 return NoteDurationType.ndtmeasure;
             }
   
@@ -711,9 +719,9 @@ namespace MusicXmlReaderUI
         //    return new NoteElement(node, divisions, measureNumber, partId, partNumber, midiChannel);
         //}
 
-        public static NoteElement Create(XmlNode node, int divisions,int tempMeasureNumber, ScorePartElement scorePartElement) // New version
+        public static NoteElement Create(XmlNode node, int divisions,int tempMeasureNumber, ScorePartElement scorePartElement,TimeElement currentTimeElement) // New version
         {
-            return new NoteElement(node, divisions, tempMeasureNumber, scorePartElement);
+            return new NoteElement(node, divisions, tempMeasureNumber, scorePartElement,currentTimeElement);
         }
 
 
