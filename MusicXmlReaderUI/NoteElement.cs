@@ -73,6 +73,7 @@ namespace MusicXmlReaderUI
                                              //If multiple score-instruments are specified on a score-part, there should be an instrument element for each note in the part.
         AccidentalElement accidentalElement;
         NoteHeadElement noteHeadElement; // Special graphical variants of hoathead
+        TimeModificationElement timeModificationElement; // Tuplet information 
 
         // MeasureNumber and MeasureNumber are not found inside the XML describing the note, but are derived from the XML surrounding the note.
         int measureNumber;
@@ -553,8 +554,8 @@ namespace MusicXmlReaderUI
                     case "accidental": // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-accidental.htm
                         accidentalElement = AccidentalElement.Create(child);
                         break;
-                    case "time-modification": // TO DO: Find out what to do here  
-                        unimplemented = true;
+                    case "time-modification":   http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-time-modification.htm  
+                        timeModificationElement = TimeModificationElement.Create(child);
                         break;
                     case "instrument":
                         instrumentElement = InstrumentElement.Create(child);
