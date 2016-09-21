@@ -432,7 +432,7 @@ namespace MusicXmlReaderUI
         }
 
 
-        private NoteDurationType GetDuration(string s)
+        public NoteDurationType GetDuration(string s)
         {
             switch (s)
             {
@@ -555,7 +555,7 @@ namespace MusicXmlReaderUI
                         accidentalElement = AccidentalElement.Create(child);
                         break;
                     case "time-modification":   http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-time-modification.htm  
-                        timeModificationElement = TimeModificationElement.Create(child);
+                        timeModificationElement = TimeModificationElement.Create(child,this);
                         break;
                     case "instrument":
                         instrumentElement = InstrumentElement.Create(child);

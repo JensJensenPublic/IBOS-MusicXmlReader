@@ -213,6 +213,7 @@
     <Compile Include="Elements\AccidentalElement.cs" />
     <Compile Include="Elements\InstrumentElement.cs" />
     <Compile Include="Elements\NoteHeadElement.cs" />
+    <Compile Include="Elements\TechnicalElement.cs" />
     <Compile Include="Elements\TimeModificationElement.cs" />
     <Compile Include="LoggerCounters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

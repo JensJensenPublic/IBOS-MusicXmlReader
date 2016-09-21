@@ -22,6 +22,7 @@ namespace MusicXmlReaderUI
         private AccidentalMarkElement accidentalMarkElement;
         private FermataElement fermataElement;
         private OrnamentsElement ornamentsElement;
+        private TechnicalElement technicalElement;
 
         private ArticulationsElement articulations;
 
@@ -169,7 +170,7 @@ namespace MusicXmlReaderUI
                     case "ornaments": ornamentsElement = OrnamentsElement.Create(child); break;
                     case "other-notation ": ok = false; break;
                     case "slide": slideElement = SlideElement.Create(child); break;
-                    case "technical":  ok = false; break;
+                    case "technical":  technicalElement = TechnicalElement.Create(child); break;
                     case "tied": tiedElement = TiedElement.Create(child); break;
                     case "tuplet": tupletElement = TupletElement.Create(child); break; 
                     default:
