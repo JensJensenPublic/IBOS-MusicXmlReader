@@ -198,11 +198,12 @@ namespace MusicXmlReaderUI
 
             BrailleBuilder bb = BrailleBuilder.Create();
             foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
-            {        
+            {                      
                 try
                 {
                     // Add pitch information
-                    if (userSettings.partsToRead[noteElement.PartNumber]) // Might later look at subparts S1/S2 ? 
+                    // If the note is not marked for printing with the PrintObjectAttributeValue we ignore it
+                    if ((userSettings.partsToRead[noteElement.PartNumber]) && noteElement.PrintObjectAttributeValue )// Might later look at subparts S1/S2 ? 
                     {
                         BrailleBuilder bb1 = BrailleBuilder.Create(); // TO DO: Why not use bb directly ???
                                                                       // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)

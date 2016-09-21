@@ -332,6 +332,14 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public bool PrintObjectAttributeValue
+        {
+            get
+            {
+                return printObjectAttributeValue;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
