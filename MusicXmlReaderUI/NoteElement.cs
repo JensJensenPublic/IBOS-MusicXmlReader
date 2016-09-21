@@ -57,8 +57,7 @@ namespace MusicXmlReaderUI
         int divisions = 0; 
         TieElement tieElement;             // A NoteElement may contain a nested TieElement  (Danish: "Bindebue")
         RestElement restElement;   // A NoteElement may contain a nested RestElement
-        NotationsElement notations; // A NoteElement may contain a nested NotationsElement 
-        bool graceNote;  
+        NotationsElement notations; // A NoteElement may contain a nested NotationsElement     
         string tieType = ""; // Is this note tied to another note
         bool tieStop = false;
         string localizedType = "";      //  If this is n note,  not a pause
@@ -80,7 +79,11 @@ namespace MusicXmlReaderUI
         TimeElement currentTimeElement; // Holds a reference to the TimeElement describing this note
 
         MidiNote midiNote = null; // If !null holds a MidiNote curently being played and representing this NoteElement
-        bool unpitched; // Set if the note has a child Unpiched element
+
+        // Simple booleans describing special variants of notes
+        bool unpitched; // Set if the note is marked as unpitched
+        bool isCueNote; // Set if the note is marked as a cue note
+        bool graceNote; // Set if the note is marked as a grace note
 
         // Values directly contained as attributes to the NoteElement
         bool measureAttributeValue = false;    // Default: This object is not a full measure pause
@@ -566,6 +569,7 @@ namespace MusicXmlReaderUI
                     case "unpitched":
                         unpitched = true; break; // Just mark the note as unpitched
                     case "cue":
+                        isCueNote = true; break; ; // Just mark the note as a cue note
                     case "notehead":
                         unimplemented = true;
                         break;
