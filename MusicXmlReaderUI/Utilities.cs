@@ -155,7 +155,29 @@ namespace MusicXmlReaderUI
             result = tempResult;
             return true;
         }
-        
+
+
+        /// <summary>
+        /// Parses an a sting for the values of "yes" or "no"
+        /// </summary>
+        /// <param name="functionName">Only used for logging</param>
+        /// <param name="attributeName">Only used for logging</param>
+        /// <param name="attributeValue">The string to parse</param>
+        /// <param name="result">Set depending of the attributeValue: "yes"-> true, "no"->false, default: unchanged</param>
+        public static void ParseYesNoAttributeValue(string functionName, string attributeName, string attributeValue, ref bool result)
+        {
+            switch (attributeValue)
+            {
+                case "yes": result = true; break;
+                case "no":  result = false; break;
+                default: Logger.LogOnce(string.Format("{0}: Unexpected value for attribute {1}: '{2}'",
+                                                       functionName,  // 0
+                                                       attributeName, // 1
+                                                       attributeValue // 2
+                                                       )); break;            }
+        }
+
+
         private static bool CheckDll(string dllName, string directory,bool is64Bit)
         {
             return CheckDll(dllName, directory, is64Bit ? MachineType.IMAGE_FILE_MACHINE_AMD64 : MachineType.IMAGE_FILE_MACHINE_I386);

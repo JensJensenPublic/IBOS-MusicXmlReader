@@ -115,5 +115,10 @@ namespace MusicXmlReaderUI
         {
             return new Pitch(step, alter, octave);
         }
+
+        public override string ToString()
+        {
+            return name + octave;
+        }
     }
 }

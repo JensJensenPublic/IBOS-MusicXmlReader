@@ -4,8 +4,9 @@ namespace MusicXmlReaderUI
 {
     class RestElement
     {
+        // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-rest.htm
 
-        private string measureAttributeValue = "";
+        private bool measureAttributeValue = false;
 
         /// <summary>
         /// To force the use of the Create() method
@@ -21,6 +22,7 @@ namespace MusicXmlReaderUI
         /// <param name="node"></param>
         private RestElement(XmlNode node)
         {
+            const string functionName = "RestElement";
             if (0 == node.Attributes.Count)
             {
                 //Model.Log(string.Format("RestElement: No attributes found"));
@@ -31,9 +33,7 @@ namespace MusicXmlReaderUI
   
                 switch (a.Name)
                 {
-                    case "measure":
-                        measureAttributeValue = a.Value;
-                        break;
+                    case "measure": Utilities.ParseYesNoAttributeValue(functionName, a.Name, a.Value, ref measureAttributeValue); break;
                     case "default-x":
                     case "default-y":
                         break; // Explicitly ignore some graphical attributes 
@@ -44,7 +44,7 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public string MeasureAttributeValue
+        public bool MeasureAttributeValue
         {
             get
             {

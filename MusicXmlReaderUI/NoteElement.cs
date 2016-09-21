@@ -10,7 +10,28 @@ namespace MusicXmlReaderUI
     /// Also used to describe nurations of rests
     /// The ndtmeasure is not a part of the MusicXml definition but is used to describe a note with the "pullmeasure"= "yes" attribute
     /// </summary>
-    public enum NoteDurationType { ndtunknown, ndt1024th, ndt512th, ndt256th, ndt128th, ndt64th, ndt32nd, ndt16, ndteight, ndtquarter, ndthalf, ndtwhole, ndtbreve, ndtlong, ndtmaxima, ndtmeasure }
+    public enum NoteDurationType
+    {
+        ndtunknown, // We know absolute nothing about the value
+        ndt1024th,
+        ndt512th,
+        ndt256th,
+        ndt128th,
+        ndt64th,
+        ndt32nd,
+        ndt16,
+        ndteight,
+        ndtquarter,
+        ndthalf,
+        ndtwhole,
+        ndtbreve,
+        ndtlong,
+        ndtmaxima,
+        ndtmeasure,
+        unspecifiedRest // HACK: We use this value for rests which nave no type and do not contain the "measure" = "yes" attribute
+                        // This situation seems to be interpreted as a full measure rest by MuseScore - and for the time being we do the same !
+                        // TO DO Find a better solution 
+    }
 
 
     public class NoteElement : EventElement
@@ -49,7 +70,6 @@ namespace MusicXmlReaderUI
         string staffString = "";
         int staff = 0;
         //string articulations = "";
-        string measureAttributeValue;
         InstrumentElement instrumentElement; // The instrument type distinguishes between score-instrument elements in a score-part. The id attribute is an IDREF back to the score-instrument ID.
                                              //If multiple score-instruments are specified on a score-part, there should be an instrument element for each note in the part.
         AccidentalElement accidentalElement;
@@ -59,6 +79,11 @@ namespace MusicXmlReaderUI
         ScorePartElement scorePartElement; // Holds a reference to the ScorePartelement describing the score part for this note
 
         MidiNote midiNote = null; // If !null holds a MidiNote curently being played and representing this NoteElement
+        bool unpitched; // Set if the note has a child Unpiched element
+
+        // Values directly contained as attributes to the NoteElement
+        bool measureAttributeValue = false;    // Default: This object is not a full measure pause
+        bool printObjectAttributeValue = true; // Default: This object should be printed
 
 
         public char Step
@@ -416,8 +441,9 @@ namespace MusicXmlReaderUI
 
         private NoteElement(XmlNode xmlNode, int divisions, int measureNumber, ScorePartElement scorePartElement) // New version
         {
+            this.divisions = divisions;
             this.scorePartElement = scorePartElement; 
-            this.measureNumber = measureNumber;
+            this.measureNumber = measureNumber;  
             const string functionName = "NoteElement constructor"; // For logging
             //this.partId = scorePartElement.partId;
             //this.partNumber = scorePartElement.partNumber;
@@ -429,9 +455,8 @@ namespace MusicXmlReaderUI
             {
                 switch (a.Name)
                 {
-                    case "measure":
-                        measureAttributeValue = a.Value;
-                        break;
+                    case "measure":         Utilities.ParseYesNoAttributeValue(functionName, a.Name, a.Value, ref measureAttributeValue); break;
+                    case "print-object":    Utilities.ParseYesNoAttributeValue(functionName, a.Name, a.Value, ref printObjectAttributeValue); break;            
                     case "default-x":
                     case "default-y":
                     case "relative-x":
@@ -440,8 +465,7 @@ namespace MusicXmlReaderUI
                     case "font-style":
                     case "font-size":
                     case "font-weight":
-                    case "color":                        
-                    case "print-object":
+                    case "color":
                     case "print-dot":
                     case "print-spacing":
                     case "print-lyric":
@@ -507,7 +531,7 @@ namespace MusicXmlReaderUI
                     case "rest":
                         //The RestElement is just a cleaner way of specifying a rest/pause instead of using a noteElement with no pitch! 
                         restElement = RestElement.Create(child);
-                        if (restElement.MeasureAttributeValue == "yes")
+                        if (restElement.MeasureAttributeValue)
                         {
                             noteDuration = NoteDurationType.ndtmeasure; // This Rest covers a full measure
                         }                  
@@ -530,6 +554,7 @@ namespace MusicXmlReaderUI
                         graceNote = true;                                                 
                         break;
                     case "unpitched":
+                        unpitched = true; break; // Just mark the note as unpitched
                     case "cue":
                     case "notehead":
                         unimplemented = true;
@@ -542,18 +567,80 @@ namespace MusicXmlReaderUI
                     Logger.LogOnce(string.Format("{0}: child.Name '{1}' is not implemented yet", functionName, child.Name)); 
                 }
             }
-            if (NoteDurationType.ndtunknown ==  noteDuration)
-            {
-                //Logger.LogOnce(string.Format("{0}: Unknown note duration in Measure={1} Voice={2}", functionName, measureNumber, voice));
-                Logger.LogOnce(string.Format("{0}: Unknown note duration", functionName));
-            }
+
+            noteDuration = GetNoteDuration();          
 
             localizedType = LocalizeType(noteDuration, dot);
             localizedPauseType = (IsPause) ? LocalizePause(noteDuration, dot) : "";
             localizedTie = LocalizeTie(tieType);
-            this.divisions = divisions;
+          
             // Model.GetNoteTiming(out this.startTime, out this.endTime, int.Parse(this.duration)); 
         }
+
+
+        /// <summary>
+        /// Gracefully handle various cases where noteDuration is not explicitly specified.
+        /// </summary>
+        /// <returns></returns>
+        private NoteDurationType GetNoteDuration()
+        {
+            const string functionName = "NoteElement.GetNoteDuration";
+            const string ignoreText   = "Ignoring unknown note type because"; 
+            if (noteDuration != NoteDurationType.ndtunknown)
+            {
+                return noteDuration; // Everytning is ok
+            }
+
+            if (!this.printObjectAttributeValue) // If this NoteElement is not to be printed we don't need the NoteDurationType
+            {
+                Logger.LogOnce(string.Format("{0}: {1} print-object='no'",functionName, ignoreText));
+                return noteDuration;
+            }
+            
+            if ((null == pitchValue) && (null != restElement) && (restElement.MeasureAttributeValue))
+            {
+                Logger.LogOnce(string.Format("{0}: {1} this is a fullmeasure rest. Setting to 'full measure'", functionName, ignoreText));
+                return NoteDurationType.ndtmeasure; // Assume it is a full measure rest even if not specified!
+            }
+
+            int quotient = duration / divisions;
+            int remainder = duration % divisions;
+            if ((0 == remainder) && (quotient > 1))
+            {
+                Logger.LogOnce(string.Format("{0}: {1} because duration={2} and divisions={3}. Setting to 'full measure'",
+                                              functionName, ignoreText, duration,divisions));
+                return NoteDurationType.ndtmeasure;
+            }
+  
+            // We can not fix the note type. Generate a line containing appropriate logging information.
+            string s = string.Format("{0}: Unknown note type in {1}", functionName, ToDebugString());
+            Logger.Log(s);
+
+            return noteDuration; // No change
+        }
+
+
+        /// <summary>
+        /// Returns a string which is ONLY used for debugging and may be changed without warning!
+        /// </summary>
+        /// <returns></returns>
+        private string ToDebugString()
+        {
+            string result = string.Format("Measure={0} Voice={1} {2} {3} {4} PartId={5} PartName={6} Divisions={7} Duration={8} PrintObject={9}",
+                               measureNumber,  // 0
+                               voice,          // 1
+                               unpitched ? "Unpitched" : "", // 2
+                               (null == pitchValue) ? "" : "Pitch=" + pitchValue.ToString(),  // 3
+                               (null == restElement) ? "" : restElement.ToString(), // 4
+                               scorePartElement.partId.ToString(), // 5
+                               scorePartElement.partName.ToString(), // 6
+                               divisions.ToString(), // 7
+                               duration.ToString(), // 8
+                               this.printObjectAttributeValue.ToString()// 9
+                               );
+            return result;
+        } 
+
 
 
         ///// <summary>
