@@ -20,7 +20,7 @@ namespace MusicXmlReaderUI
 
         /// <summary>
         /// Private constructor, used by the Crate() method
-        /// </summary>
+        /// </summary> 
         /// <param name="node"></param>
         private TimeModificationElement(XmlNode node,NoteElement noteElement)
         {
