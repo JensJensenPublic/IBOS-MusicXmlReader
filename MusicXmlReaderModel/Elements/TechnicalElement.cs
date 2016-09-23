@@ -23,7 +23,7 @@ namespace MusicXmlReaderUI
             foreach (XmlNode n in node.ChildNodes)
             {
                 technicals.Add(n.Name); // For now we just collect the technicals !
-                //Logger.LogOnce(string.Format("{0}: {1}", functionName, n.Name)); break;               
+                Logger.LogOnce(string.Format("{0}: {1}", functionName, n.Name)); break;               
             }
         }
 

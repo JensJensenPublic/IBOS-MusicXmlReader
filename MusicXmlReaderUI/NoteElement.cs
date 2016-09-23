@@ -554,7 +554,7 @@ namespace MusicXmlReaderUI
                     case "accidental": // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-accidental.htm
                         accidentalElement = AccidentalElement.Create(child);
                         break;
-                    case "time-modification":   http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-time-modification.htm  
+                    case "time-modification":   // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-time-modification.htm  
                         timeModificationElement = TimeModificationElement.Create(child,this);
                         break;
                     case "instrument":

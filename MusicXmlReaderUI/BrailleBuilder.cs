@@ -28,6 +28,17 @@ namespace MusicXmlReaderUI
         //    Tie,
         //};
 
+        // Valuse for explicitly defining dot patterns in terms of hex byte-values
+        private const byte noDots = 0;
+        private const byte dot1 = 0x01;
+        private const byte dot2 = 0x02;
+        private const byte dot3 = 0x04;
+        private const byte dot4 = 0x08;
+        private const byte dot5 = 0x10;
+        private const byte dot6 = 0x20;
+        private const byte dot7 = 0x40;
+        private const byte dot8 = 0x80;
+
         public static readonly byte[] FourMeasureRest = new byte[] { 60, 25, 13 };
         public static readonly byte[] DoubleBar = new byte[] { 35 };
         public static readonly byte Dot = 4;
@@ -98,27 +109,6 @@ namespace MusicXmlReaderUI
 
         private const string className = "BrailleBuilder"; // Only used for logging ! 
 
-        //static readonly private int[][] notes =
-        //new int[][]   // C, D, E, F, G, A, B, REST 
-        //{   new int[] { 25,17,11,27,19,10,26,45 } , // 8th, 128th
-        //    new int[] { 57,49,43,59,51,42,26,39 } , // quarter,64th
-        //    new int[] { 29,21,15,31,55,14,30,37 } , // half,32th
-        //    new int[] { 61,53,47,63,55,46,62,13 } };// whole,16th
-
-        static readonly private byte[,] notes = new byte[,] {
-            { 25, 17, 11, 27, 19, 10, 26, 45 },     // 8th, 128th
-            { 57, 49, 43, 59, 51, 42, 26, 39 },     // quarter,64th
-            { 29, 21, 15, 31, 55, 14, 30, 37 },     // half,32th
-            { 61, 53, 47, 63, 55, 46, 62, 13 } };   // whole,16th
-
-        static readonly private byte[] rests = new byte[]
-        {
-            45, // 8th, 128th
-            39, // quarter,64th
-            37, // half,32th
-            13, // whole,16th
-        };
-
         public List<byte> Braille
         {
             get
@@ -132,43 +122,67 @@ namespace MusicXmlReaderUI
             this.braille.AddRange(bytes);
         }
 
-        /// <summary>
-        /// For looking op in the notes array 
-        /// </summary>
-        /// <param name="step"></param>
-        /// <returns></returns>
-        private int GetStepIndex(string step)
+
+        private byte GetStepValue(string step) //  Returns the values for dot 1,2,4,5
         {
             switch (step)
             {
-                case "C": return 0;
-                case "D": return 1;
-                case "E": return 2;
-                case "F": return 3;
-                case "G": return 4;
-                case "A": return 5;
-                case "B": return 6;
+                case "C": return dot1+dot4+dot5; // Pin 1,4,5
+                case "D": return dot1+dot5; // Pin 1,5
+                case "E": return dot1+dot2+dot4; // Pin 1,2,4,
+                case "F": return dot1+dot2+dot4+dot5; // Pin 1,2,4,5
+                case "G": return dot1+dot2+dot5;// Pin 1,2,5
+                case "A": return dot2+dot4; // Pin 2,4
+                case "B": return dot2+dot4+dot5; // Pin 2,4,5
                 default:
-                    Logger.Log(string.Format("{0}.GetStepIndex({1}) Unknown step '{1}'", className,step));
-                    return -1;            
+                    Logger.Log(string.Format("{0}.GetStepValue({1}) Unknown step '{1}'", className, step));
+                    return noDots;
             }
         }
 
-        private int GetTypeIndex(NoteDurationType noteDuration)
+
+        private byte GetTypeValue(NoteDurationType noteDuration) //  Returns the values for dot 3,6
         {
             switch (noteDuration)
             {
-                case NoteDurationType.ndtwhole: return 3;
-                case NoteDurationType.ndthalf: return 2;
-                case NoteDurationType.ndtquarter: return 1;
-                case NoteDurationType.ndteight: return 0;
-                case NoteDurationType.ndt16: return 3;
-                case NoteDurationType.ndt32nd: return 2;
-                case NoteDurationType.ndt64th: return 1;
+                case NoteDurationType.ndtwhole:
+                case NoteDurationType.ndt16:  return dot3+dot6;
+
+                case NoteDurationType.ndthalf:
+                case NoteDurationType.ndt32nd: return dot3;
+
+                case NoteDurationType.ndtquarter:
+                case NoteDurationType.ndt64th: return dot6;
+
+                case NoteDurationType.ndteight:  
                 case NoteDurationType.ndt128th: return 0;
+
                 default:
-                    Logger.LogOnce(string.Format("{0}.GetTypeIndex({1}) Unknown noteDuration '{1}'", className,noteDuration.ToString()));
-                    return -1;
+                    Logger.LogOnce(string.Format("{0}.GetTypeValue({1}) Unknown noteDuration '{1}'", className, noteDuration.ToString()));
+                    return noDots;
+            }
+        }
+
+
+        private byte GetRestValue(NoteDurationType noteDuration)
+        {
+            switch (noteDuration)
+            {
+                case NoteDurationType.ndtwhole:
+                case NoteDurationType.ndt16: return dot1 + dot3 + dot4;
+
+                case NoteDurationType.ndthalf:
+                case NoteDurationType.ndt32nd: return dot1 + dot3 + dot6;
+
+                case NoteDurationType.ndtquarter:
+                case NoteDurationType.ndt64th: return dot2 + dot3 + dot6;
+
+                case NoteDurationType.ndteight:
+                case NoteDurationType.ndt128th: return dot1 + dot3 + dot4 + dot6;
+
+                default:
+                    Logger.LogOnce(string.Format("{0}.GetRestValue({1}) Unknown noteDuration '{1}'", className, noteDuration.ToString()));
+                    return noDots;
             }
         }
 
@@ -265,21 +279,14 @@ namespace MusicXmlReaderUI
         //public void AddNote(FullToneStep step, int alter, int octave, string type, bool punctured) // The right signature
         public void AddNote(string step, int alter, int octave, NoteDurationType noteDuration, bool punctured) // ********************* FIX ! Temp signature
         {
-            int stepIndex = GetStepIndex(step);
-            int typeIndex = GetTypeIndex(noteDuration);
-            if ((typeIndex < 0) || (typeIndex >= rests.Length))
-            {
-                Logger.LogOnce(string.Format("{0}.AddNote: Skipping invalid noteDuration: {1}", className,noteDuration.ToString()));
-            }
-            else
-            {
-                byte note = notes[typeIndex, stepIndex]; // Represents pitch within an octave
-                byte[] octaveMark = GetOctaveMark(octave);
-                braille.Add(note);
-                if (0 != alter) braille.Add((alter > 0) ? Sharp : Flat);
-                braille.AddRange(octaveMark);
-                if (punctured) braille.Add(Dot);
-            }
+            byte stepPart = GetStepValue(step);                 //  Returns the values for pin 1,2,4,5
+            byte typePart = GetTypeValue(noteDuration);         //  Returns the values for pin 3,6
+            byte note = (byte)((int)stepPart | (int)typePart);  //  Logical OR to get all 6 pin values
+            byte[] octaveMark = GetOctaveMark(octave);
+            braille.Add(note);
+            if (0 != alter) braille.Add((alter > 0) ? Sharp : Flat);
+            braille.AddRange(octaveMark);
+            if (punctured) braille.Add(Dot);
         }
 
         /// <summary>
@@ -289,14 +296,13 @@ namespace MusicXmlReaderUI
         /// <param name="punctured">A puncture added</param>
         public void AddRest(NoteDurationType noteDuration, bool punctured) // ********************* FIX ! Temp signature
         {
-            int typeIndex = GetTypeIndex(noteDuration);
-            if ((typeIndex < 0) || (typeIndex >= rests.Length))
+            if (NoteDurationType.ndtmeasure == noteDuration)
             {
-                Logger.LogOnce(string.Format("{0}.AddRest: Skipping invalid noteDuration: {1}", className, noteDuration.ToString()));
+                Logger.LogOnce(string.Format("{0}.{1}: Unhandled noteduration: {2}", className, "AddRest", noteDuration));
             }
             else
             {
-                byte rest = rests[typeIndex];
+                byte rest = GetRestValue(noteDuration);
                 braille.Add(rest);
                 if (punctured) braille.Add(Dot);
             }
@@ -313,9 +319,7 @@ namespace MusicXmlReaderUI
             const byte finger2 = 3;
             const byte finger3 = 7;
             const byte finger4 = 2;
-            const byte finger5 = 5;
-
-          
+            const byte finger5 = 5;          
 
             switch (hand)
             {
@@ -337,8 +341,6 @@ namespace MusicXmlReaderUI
             }
 
         }
-
-
 
 
         public void AddInterval(int size)
