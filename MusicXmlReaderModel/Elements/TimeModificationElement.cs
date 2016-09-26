@@ -7,7 +7,7 @@ namespace MusicXmlReaderUI
     {
         private int actualNotes;
         private int normalNotes;
-        private NoteDurationType noteDurationType;
+        private NoteTypeEnum noteDurationType;
 
         /// <summary>
         /// To force the use of the Create() method
@@ -54,7 +54,7 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public NoteDurationType NoteDurationType
+        public NoteTypeEnum NoteDurationType
         {
             get
             {

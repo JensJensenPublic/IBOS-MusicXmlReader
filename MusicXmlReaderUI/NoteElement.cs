@@ -10,29 +10,31 @@ namespace MusicXmlReaderUI
     /// Also used to describe nurations of rests
     /// The ndtmeasure is not a part of the MusicXml definition but is used to describe a note with the "pullmeasure"= "yes" attribute
     /// </summary>
-    public enum NoteDurationType
+    public enum NoteTypeEnum
     {
-        ndtunknown, // We know absolute nothing about the value
-        ndt1024th,
-        ndt512th,
-        ndt256th,
-        ndt128th,
-        ndt64th,
-        ndt32nd,
-        ndt16,
-        ndteight,
-        ndtquarter,
-        ndthalf,
-        ndtwhole,
-        ndtbreve,
-        ndtlong,
-        ndtmaxima,
-        ndtmeasure,
+        unknown,    // We know absolute nothing about the value
+        nt1024th,   // Can't start with a number
+        nt512th,    // Can't start with a number
+        nt256th,    // Can't start with a number
+        nt128th,    // Can't start with a number
+        nt64th,       // Can't start with a number
+        nt32nd,       // Can't start with a number
+        nt16th,       // Can't start with a number
+        eight,
+        quarter,
+        half,
+        whole,
+        breve,
+        longus,     // Long is a C# keyword
+        maxima,
+        measure,
         unspecifiedRest // HACK: We use this value for rests which nave no type and do not contain the "measure" = "yes" attribute
                         // This situation seems to be interpreted as a full measure rest by MuseScore - and for the time being we do the same !
                         // TO DO Find a better solution 
     }
 
+
+    public enum FullStepEnum { Unknown=0,C,D,E,F,G,A,B,Rest};
 
     public class NoteElement : EventElement
     {
@@ -44,14 +46,13 @@ namespace MusicXmlReaderUI
 
 
         // Values found in MusicXml file, possibly after a minor type conversion, typically from string to int.
-        char step = ' ';   // Represents a diatonoc step: A,B,C,D,E,F, G or a pause
-                            // We need a string here because the empty string is used to denote a pause !
+        FullStepEnum step = FullStepEnum.Unknown ;   // Represents a diatonoc step: A,B,C,D,E,F, G or a pause
         int alter = 0 ;     // Represents the number of semitones the note is altered. 
         int octave = 0;
         int duration = 0;
         bool chord = false; // Means that this note starts at the same time as the previous note, not after the previous note.
         //string type = "unspecified";
-        NoteDurationType noteDuration = NoteDurationType.ndtunknown;
+        NoteTypeEnum noteDuration = NoteTypeEnum.unknown;
         string voice = "";
         bool dot = false;
         int divisions = 0; 
@@ -91,8 +92,10 @@ namespace MusicXmlReaderUI
         bool measureAttributeValue = false;    // Default: This object is not a full measure pause
         bool printObjectAttributeValue = true; // Default: This object should be printed
 
+        const string className = "NoteElement";
 
-        public char Step
+
+        public FullStepEnum Step
         {
             get
             {
@@ -329,7 +332,7 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public NoteDurationType NoteDuration
+        public NoteTypeEnum NoteDuration
         {
             get
             {
@@ -359,21 +362,21 @@ namespace MusicXmlReaderUI
         /// <param name="typeString"></param>
         /// <param name="modifier"></param>
         /// <returns></returns>
-        private string LocalizeType(NoteDurationType noteDuration, bool modifier)
+        private string LocalizeType(NoteTypeEnum noteDuration, bool modifier)
         {
             string modif = (modifier ? punctured : "");
             string value = "";
             switch (noteDuration)
             {
-                case NoteDurationType.ndtwhole:     value = "helnode"; break;
-                case NoteDurationType.ndthalf:      value = "halvnode"; ; break;
-                case NoteDurationType.ndtquarter:   value = "fjerdedel"; break;
-                case NoteDurationType.ndteight:     value = "ottendedel"; break;
-                case NoteDurationType.ndt16:        value = "sekstendedel"; break;
-                case NoteDurationType.ndt32nd:      value = "toogtredivtedel"; break;
-                case NoteDurationType.ndt64th:      value = "fireogtredsindstyvendedel"; break;
-                case NoteDurationType.ndtmeasure:   value = "heltakt"; break;
-                case NoteDurationType.ndtunknown:   value = "ukendt"; break;
+                case NoteTypeEnum.whole:     value = "helnode"; break;
+                case NoteTypeEnum.half:      value = "halvnode"; ; break;
+                case NoteTypeEnum.quarter:   value = "fjerdedel"; break;
+                case NoteTypeEnum.eight:     value = "ottendedel"; break;
+                case NoteTypeEnum.nt16th:    value = "sekstendedel"; break;
+                case NoteTypeEnum.nt32nd:    value = "toogtredivtedel"; break;
+                case NoteTypeEnum.nt64th:    value = "fireogtredsindstyvendedel"; break;
+                case NoteTypeEnum.measure:   value = "heltakt"; break;
+                case NoteTypeEnum.unknown: value = "ukendt"; break;
                 default:                    
                     Logger.LogOnce(string.Format("LocalizeType ({0},{1}) Unknown duration '{2}' in Measure={3} Voice={4} PartId={5} PartNumber={6}",
                                                  noteDuration.ToString(), modifier, noteDuration.ToString(), measureNumber, voice,PartId,PartNumber)); break;
@@ -388,21 +391,21 @@ namespace MusicXmlReaderUI
         /// <param name="typeString"></param>
         /// <param name="modifier"></param>
         /// <returns></returns>
-        private string LocalizePause(NoteDurationType noteDuration, bool modifier)
+        private string LocalizePause(NoteTypeEnum noteDuration, bool modifier)
         {
             string modif = (modifier ? punctured : "");
             string value = "";
             switch (noteDuration)
             {
-                case NoteDurationType.ndtwhole: value = "helnodepause"; break;
-                case NoteDurationType.ndthalf: value = "halvnodepause"; ; break;
-                case NoteDurationType.ndtquarter: value = "fjerdedelspause"; break;
-                case NoteDurationType.ndteight: value = "ottendedelspause"; break;
-                case NoteDurationType.ndt16: value = "sekstendedelspause"; break;
-                case NoteDurationType.ndt32nd: value = "toogtredivtedel"; break;
-                case NoteDurationType.ndt64th: value = "fireogtredsindstyvendedelspause"; break;
-                case NoteDurationType.ndtmeasure: value = "heltaktspause"; break;
-                case NoteDurationType.ndtunknown: value = "ukendt"; break;
+                case NoteTypeEnum.whole: value = "helnodepause"; break;
+                case NoteTypeEnum.half: value = "halvnodepause"; ; break;
+                case NoteTypeEnum.quarter: value = "fjerdedelspause"; break;
+                case NoteTypeEnum.eight: value = "ottendedelspause"; break;
+                case NoteTypeEnum.nt16th: value = "sekstendedelspause"; break;
+                case NoteTypeEnum.nt32nd: value = "toogtredivtedel"; break;
+                case NoteTypeEnum.nt64th: value = "fireogtredsindstyvendedelspause"; break;
+                case NoteTypeEnum.measure: value = "heltaktspause"; break;
+                case NoteTypeEnum.unknown: value = "ukendt"; break;
                 default:
                     Logger.LogOnce(string.Format("LocalizePause({0},{1}) Unknown duration '{2}' in Measure={3} Voice={4}",
                         duration.ToString(), modifier, duration.ToString(), measureNumber, voice)); break;
@@ -432,20 +435,37 @@ namespace MusicXmlReaderUI
         }
 
 
-        public NoteDurationType GetDuration(string s)
+        public NoteTypeEnum GetDuration(string s)
         {
             switch (s)
             {
-                case "whole": return NoteDurationType.ndtwhole;
-                case "half": return NoteDurationType.ndthalf;
-                case "quarter": return NoteDurationType.ndtquarter;
-                case "eighth":return NoteDurationType.ndteight;
-                case "16th": return NoteDurationType.ndt16;
-                case "32nd": return NoteDurationType.ndt32nd;
-                case "64nd": return NoteDurationType.ndt64th;
-                case "measure": return NoteDurationType.ndtmeasure;
-                case "unspecified": return NoteDurationType.ndtunknown;
-                default:  return NoteDurationType.ndtunknown;
+                case "whole": return NoteTypeEnum.whole;
+                case "half": return NoteTypeEnum.half;
+                case "quarter": return NoteTypeEnum.quarter;
+                case "eighth":return NoteTypeEnum.eight;
+                case "16th": return NoteTypeEnum.nt16th;
+                case "32nd": return NoteTypeEnum.nt32nd;
+                case "64nd": return NoteTypeEnum.nt64th;
+                case "measure": return NoteTypeEnum.measure;
+                case "unspecified": return NoteTypeEnum.unknown;
+                default:  Logger.LogOnce(string.Format("{0}.{1}: Unknown Fullstep value={2}", className, "GetDuration", s));
+                    return NoteTypeEnum.unknown;
+            }
+        }
+
+        public FullStepEnum GetFullStep(string s)
+        {
+            switch (s)
+            {
+                case "C": return FullStepEnum.C;
+                case "D": return FullStepEnum.D;
+                case "E": return FullStepEnum.E;
+                case "F": return FullStepEnum.F;
+                case "G": return FullStepEnum.G;
+                case "A": return FullStepEnum.A;
+                case "B": return FullStepEnum.B;
+                default: Logger.LogOnce(string.Format("{0}.{1}: Unknown Fullstep value={2}",className,"GetFullStep",s));
+                    return FullStepEnum.Unknown;
             }
         }
 
@@ -505,7 +525,7 @@ namespace MusicXmlReaderUI
                         string stepString = GetChildValue(child, "step");
                         if (!string.IsNullOrEmpty(stepString))
                         {
-                            Utilities.Parse(GetChildValue(child, "step"), ref step, 'A', 'G', "NoteElement: step");
+                            step = GetFullStep(stepString); // Special parsing of step
                             Utilities.Parse(GetChildValue(child, "alter"), ref alter, -2, +2, "NoteElement: alter", true);
                             Utilities.Parse(GetChildValue(child, "octave"), ref octave, 0, 9, "NoteElement: octave", false);
                             pitchValue = Pitch.Create(step, alter, octave);
@@ -515,7 +535,7 @@ namespace MusicXmlReaderUI
                     case "chord": chord = true; break;
                     case "type":
                         noteDuration = GetDuration(child.InnerText);
-                        if (NoteDurationType.ndtunknown == noteDuration)
+                        if (NoteTypeEnum.unknown == noteDuration)
                         {
                             Logger.LogOnce(string.Format("{0}: Unknown typeString '{1}' in Measure={2} Voice={3}",
                                 functionName,child.InnerText, measureNumber, voice)); break;
@@ -548,7 +568,7 @@ namespace MusicXmlReaderUI
                         restElement = RestElement.Create(child);
                         if (restElement.MeasureAttributeValue)
                         {
-                            noteDuration = NoteDurationType.ndtmeasure; // This Rest covers a full measure
+                            noteDuration = NoteTypeEnum.measure; // This Rest covers a full measure
                         }                  
                         break;
                     case "accidental": // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-accidental.htm
@@ -598,11 +618,11 @@ namespace MusicXmlReaderUI
         /// Gracefully handle various cases where noteDuration is not explicitly specified.
         /// </summary>
         /// <returns></returns>
-        private NoteDurationType GetNoteDuration()
+        private NoteTypeEnum GetNoteDuration()
         {
             const string functionName = "NoteElement.GetNoteDuration";
             // const string ignoreText   = "Ignoring unknown note type because"; 
-            if (noteDuration != NoteDurationType.ndtunknown)
+            if (noteDuration != NoteTypeEnum.unknown)
             {
                 return noteDuration; // Everytning is ok
             }
@@ -616,7 +636,7 @@ namespace MusicXmlReaderUI
             if ((null == pitchValue) && (null != restElement) && (restElement.MeasureAttributeValue))
             {
                 // Logger.LogOnce(string.Format("{0}: {1} this is a fullmeasure rest. Setting to 'full measure'", functionName, ignoreText));
-                return NoteDurationType.ndtmeasure; // Assume it is a full measure rest even if not specified!
+                return NoteTypeEnum.measure; // Assume it is a full measure rest even if not specified!
             }
 
             int quotient = duration / divisions;
@@ -631,7 +651,7 @@ namespace MusicXmlReaderUI
                 //                              currentTimeElement.Beats,     // 4
                 //                              currentTimeElement.BeatType   // 5
                 //                              ));
-                return NoteDurationType.ndtmeasure;
+                return NoteTypeEnum.measure;
             }
   
             // We can not fix the note type. Generate a line containing appropriate logging information.

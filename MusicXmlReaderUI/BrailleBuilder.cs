@@ -141,21 +141,21 @@ namespace MusicXmlReaderUI
         }
 
 
-        private byte GetTypeValue(NoteDurationType noteDuration) //  Returns the values for dot 3,6
+        private byte GetTypeValue(NoteTypeEnum noteDuration) //  Returns the values for dot 3,6
         {
             switch (noteDuration)
             {
-                case NoteDurationType.ndtwhole:
-                case NoteDurationType.ndt16:  return dot3+dot6;
+                case NoteTypeEnum.whole:
+                case NoteTypeEnum.nt16th:  return dot3+dot6;
 
-                case NoteDurationType.ndthalf:
-                case NoteDurationType.ndt32nd: return dot3;
+                case NoteTypeEnum.half:
+                case NoteTypeEnum.nt32nd: return dot3;
 
-                case NoteDurationType.ndtquarter:
-                case NoteDurationType.ndt64th: return dot6;
+                case NoteTypeEnum.quarter:
+                case NoteTypeEnum.nt64th: return dot6;
 
-                case NoteDurationType.ndteight:  
-                case NoteDurationType.ndt128th: return 0;
+                case NoteTypeEnum.eight:  
+                case NoteTypeEnum.nt128th: return 0;
 
                 default:
                     Logger.LogOnce(string.Format("{0}.GetTypeValue({1}) Unknown noteDuration '{1}'", className, noteDuration.ToString()));
@@ -164,21 +164,21 @@ namespace MusicXmlReaderUI
         }
 
 
-        private byte GetRestValue(NoteDurationType noteDuration)
+        private byte GetRestValue(NoteTypeEnum noteDuration)
         {
             switch (noteDuration)
             {
-                case NoteDurationType.ndtwhole:
-                case NoteDurationType.ndt16: return dot1 + dot3 + dot4;
+                case NoteTypeEnum.whole:
+                case NoteTypeEnum.nt16th: return dot1 + dot3 + dot4;
 
-                case NoteDurationType.ndthalf:
-                case NoteDurationType.ndt32nd: return dot1 + dot3 + dot6;
+                case NoteTypeEnum.half:
+                case NoteTypeEnum.nt32nd: return dot1 + dot3 + dot6;
 
-                case NoteDurationType.ndtquarter:
-                case NoteDurationType.ndt64th: return dot2 + dot3 + dot6;
+                case NoteTypeEnum.quarter:
+                case NoteTypeEnum.nt64th: return dot2 + dot3 + dot6;
 
-                case NoteDurationType.ndteight:
-                case NoteDurationType.ndt128th: return dot1 + dot3 + dot4 + dot6;
+                case NoteTypeEnum.eight:
+                case NoteTypeEnum.nt128th: return dot1 + dot3 + dot4 + dot6;
 
                 default:
                     Logger.LogOnce(string.Format("{0}.GetRestValue({1}) Unknown noteDuration '{1}'", className, noteDuration.ToString()));
@@ -277,7 +277,7 @@ namespace MusicXmlReaderUI
         /// <param name="type">From "whole" to 128nd</param>
         /// <param name="punctured">A puncture added</param>
         //public void AddNote(FullToneStep step, int alter, int octave, string type, bool punctured) // The right signature
-        public void AddNote(string step, int alter, int octave, NoteDurationType noteDuration, bool punctured) // ********************* FIX ! Temp signature
+        public void AddNote(string step, int alter, int octave, NoteTypeEnum noteDuration, bool punctured) // ********************* FIX ! Temp signature
         {
             byte stepPart = GetStepValue(step);                 //  Returns the values for pin 1,2,4,5
             byte typePart = GetTypeValue(noteDuration);         //  Returns the values for pin 3,6
@@ -294,9 +294,9 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="type">From "whole" to 128nd</param>
         /// <param name="punctured">A puncture added</param>
-        public void AddRest(NoteDurationType noteDuration, bool punctured) // ********************* FIX ! Temp signature
+        public void AddRest(NoteTypeEnum noteDuration, bool punctured) // ********************* FIX ! Temp signature
         {
-            if (NoteDurationType.ndtmeasure == noteDuration)
+            if (NoteTypeEnum.measure == noteDuration)
             {
                 Logger.LogOnce(string.Format("{0}.{1}: Unhandled noteduration: {2}", className, "AddRest", noteDuration));
             }

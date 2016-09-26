@@ -64,17 +64,33 @@ namespace MusicXmlReaderUI
         //    }
         //}
 
-        int StepToInt(char step)
+        int StepToInt(FullStepEnum step)
         {
             switch (step)
             {
-                case 'C': return 0;
-                case 'D': return 1;
-                case 'E': return 2;
-                case 'F': return 3;
-                case 'G': return 4;
-                case 'A': return 5;
-                case 'B': return 6;
+                case FullStepEnum.C: return 0;
+                case FullStepEnum.D: return 1;
+                case FullStepEnum.E: return 2;
+                case FullStepEnum.F: return 3;
+                case FullStepEnum.G: return 4;
+                case FullStepEnum.A: return 5;
+                case FullStepEnum.B: return 6;
+                // No attempt to handle all alter values!
+                default: throw new ArgumentException();
+            }
+        }
+
+        string StepToString(FullStepEnum step)
+        {
+            switch (step)
+            {
+                case FullStepEnum.C: return "C";
+                case FullStepEnum.D: return "D";
+                case FullStepEnum.E: return "E";
+                case FullStepEnum.F: return "F";
+                case FullStepEnum.G: return "G";
+                case FullStepEnum.A: return "A";
+                case FullStepEnum.B: return "B";
                 // No attempt to handle all alter values!
                 default: throw new ArgumentException();
             }
@@ -87,12 +103,12 @@ namespace MusicXmlReaderUI
         /// <param name="step"></param>
         /// <param name="alter"></param>
         /// <param name="octave"></param>
-        private Pitch(char step,int alter,int octave)
+        private Pitch(FullStepEnum step,int alter,int octave)
         {
             if (0 == alter)
             {
                 // Optimize for the simple and frequent case !
-                this.name = step.ToString();
+                this.name = StepToString(step);
                 this.octave = octave;
                 return;
             }
@@ -111,7 +127,7 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public static Pitch Create(char step, int alter,int octave)
+        public static Pitch Create(FullStepEnum step, int alter,int octave)
         {
             return new Pitch(step, alter, octave);
         }
