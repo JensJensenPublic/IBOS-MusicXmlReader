@@ -64,7 +64,7 @@ namespace MusicXmlReaderUI
         string localizedType = "";      //  If this is n note,  not a pause
         string localizedPauseType = ""; //  If this is a pause, not a note
         string localizedTie = "";
-        Pitch pitchValue;
+        PitchElement pitchElement;
         string syllabic; // Child of lyric
         string text;     // Child of lyric
         string staffString = "";
@@ -218,15 +218,15 @@ namespace MusicXmlReaderUI
         {
             get
             {
-                return (null == pitchValue);
+                return (null == pitchElement);
             }
         }
 
-        internal Pitch PitchValue
+        internal PitchElement PitchValue
         {
             get
             {
-                return pitchValue;
+                return pitchElement;
             }
             
         }
@@ -528,7 +528,7 @@ namespace MusicXmlReaderUI
                             step = GetFullStep(stepString); // Special parsing of step
                             Utilities.Parse(GetChildValue(child, "alter"), ref alter, -2, +2, "NoteElement: alter", true);
                             Utilities.Parse(GetChildValue(child, "octave"), ref octave, 0, 9, "NoteElement: octave", false);
-                            pitchValue = Pitch.Create(step, alter, octave);
+                            pitchElement = PitchElement.Create(step, alter, octave);
                         }
                         break;
                     case "duration": duration = int.Parse(child.InnerText); break;
@@ -633,7 +633,7 @@ namespace MusicXmlReaderUI
                 return noteDuration;
             }
             
-            if ((null == pitchValue) && (null != restElement) && (restElement.MeasureAttributeValue))
+            if ((null == pitchElement) && (null != restElement) && (restElement.MeasureAttributeValue))
             {
                 // Logger.LogOnce(string.Format("{0}: {1} this is a fullmeasure rest. Setting to 'full measure'", functionName, ignoreText));
                 return NoteTypeEnum.measure; // Assume it is a full measure rest even if not specified!
@@ -672,7 +672,7 @@ namespace MusicXmlReaderUI
                                measureNumber,  // 0
                                voice,          // 1
                                unpitched ? "Unpitched" : "", // 2
-                               (null == pitchValue) ? "" : "Pitch=" + pitchValue.ToString(),  // 3
+                               (null == pitchElement) ? "" : "Pitch=" + pitchElement.ToString(),  // 3
                                (null == restElement) ? "" : restElement.ToString(), // 4
                                scorePartElement.partId.ToString(), // 5
                                scorePartElement.partName.ToString(), // 6
@@ -778,7 +778,7 @@ namespace MusicXmlReaderUI
             {
                 // This is a note.
                 return String.Format("{0}{1}{2} {3} {4} {5} {6} {7}",
-                    timeString, partString, measureString, pitchValue.Name, pitchValue.Octave, localizedType, localizedTie,notationsString);
+                    timeString, partString, measureString, pitchElement.Name, pitchElement.Octave, localizedType, localizedTie,notationsString);
             }
             else
             {      

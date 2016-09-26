@@ -2,7 +2,7 @@
 
 namespace MusicXmlReaderUI
 {
-    class Pitch
+    class PitchElement
     {
         // These tables handle altered notes within the range of -2 to +2
         // Note that the octave may be changed in some rare cases!
@@ -46,7 +46,7 @@ namespace MusicXmlReaderUI
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
-        private Pitch()
+        private PitchElement()
         {
         }
 
@@ -103,7 +103,7 @@ namespace MusicXmlReaderUI
         /// <param name="step"></param>
         /// <param name="alter"></param>
         /// <param name="octave"></param>
-        private Pitch(FullStepEnum step,int alter,int octave)
+        private PitchElement(FullStepEnum step,int alter,int octave)
         {
             if (0 == alter)
             {
@@ -127,9 +127,9 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public static Pitch Create(FullStepEnum step, int alter,int octave)
+        public static PitchElement Create(FullStepEnum step, int alter,int octave)
         {
-            return new Pitch(step, alter, octave);
+            return new PitchElement(step, alter, octave);
         }
 
         public override string ToString()
