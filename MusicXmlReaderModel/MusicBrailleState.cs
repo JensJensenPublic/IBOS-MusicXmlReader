@@ -8,7 +8,7 @@ namespace MusicXmlReaderUI
 {
     static class MusicBrailleState
     {
-        private const int initalValue = int.MinValue;
+        private const int initalValue = 0;
         private static int lastSemiTonesAboveC0 = initalValue;
         private static int lastOctave = initalValue;
 
@@ -42,6 +42,10 @@ namespace MusicXmlReaderUI
             // Update the global state
             lastOctave = newOctave;
             lastSemiTonesAboveC0 = newSemiTonesAboveC0;
+            //Logger.Log(string.Format("NeedsOctaveMark({0},{1} with old values {2},{3} returned {4}",
+            //    newOctave, newSemiTonesAboveC0, lastOctave, lastSemiTonesAboveC0, result));
+
+            Logger.LogOnce(string.Format("NeedOctaveMark returned {0}", result)); // To get an idea of the number of octave marks
 
             return result;
         }

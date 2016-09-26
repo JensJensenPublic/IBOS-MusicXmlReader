@@ -131,29 +131,32 @@ namespace MusicXmlReaderUI
         /// <param name="step"></param>
         /// <param name="alter"></param>
         /// <param name="octave"></param>
-        private PitchElement(FullStepEnum step,int alter,int octave)
+        private PitchElement(FullStepEnum step, int alter, int octave)
         {
             if (0 == alter)
             {
                 // Optimize for the simple and frequent case !
                 this.name = StepToString(step);
                 this.octave = octave;
-                return;
-            }
-            // The note has been altered
-            int iAlter = alter;
-            int iStep = StepToInt(step);
-            this.name = names[  iAlter + 2, iStep]; // Convert iAlter to an index in the table!
-            int carry = carries[iAlter + 2, iStep]; // Convert iAlter to an index in the table!
-            if (0 == carry)
-            {
-                this.octave = octave;
             }
             else
             {
-                this.octave = octave + carry;
+                // The note has been altered
+                int iAlter = alter;
+                int iStep = StepToInt(step);
+                this.name = names[iAlter + 2, iStep]; // Convert iAlter to an index in the table!
+                int carry = carries[iAlter + 2, iStep]; // Convert iAlter to an index in the table!
+                if (0 == carry)
+                {
+                    this.octave = octave;
+                }
+                else
+                {
+                    this.octave = octave + carry;
+                }
             }
 
+            // In both cases compute the value of semiTonesAboveC0
             semiTonesAboveC0 = (12 * octave) + SemiToneWithinOctave(step) + alter;
 
         }

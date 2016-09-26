@@ -277,15 +277,19 @@ namespace MusicXmlReaderUI
         /// <param name="type">From "whole" to 128nd</param>
         /// <param name="punctured">A puncture added</param>
         //public void AddNote(FullToneStep step, int alter, int octave, string type, bool punctured) // The right signature
-        public void AddNote(string step, int alter, int octave, NoteTypeEnum noteDuration, bool punctured) // ********************* FIX ! Temp signature
+        public void AddNote(string step, int alter, int octave, NoteTypeEnum noteDuration, int semitonesAboveC0,bool punctured) // ********************* FIX ! Temp signature
         {
             byte stepPart = GetStepValue(step);                 //  Returns the values for pin 1,2,4,5
             byte typePart = GetTypeValue(noteDuration);         //  Returns the values for pin 3,6
             byte note = (byte)((int)stepPart | (int)typePart);  //  Logical OR to get all 6 pin values
-            byte[] octaveMark = GetOctaveMark(octave);
             braille.Add(note);
             if (0 != alter) braille.Add((alter > 0) ? Sharp : Flat);
-            braille.AddRange(octaveMark);
+            if (MusicBrailleState.NeedOctaveMark(octave, semitonesAboveC0))
+            {
+                // Add an octave mark if needed 
+                byte[] octaveMark = GetOctaveMark(octave);
+                braille.AddRange(octaveMark);
+            }
             if (punctured) braille.Add(Dot);
         }
 

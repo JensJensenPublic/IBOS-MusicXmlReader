@@ -216,7 +216,7 @@ namespace MusicXmlReaderUI
                         {
                             // This is a note
                             bb1.AddNotationsBeforeNote(noteElement.Notations); // Some notations are added Before the note itself
-                            bb1.AddNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, noteElement.NoteDuration, false); // TO DO: Handle punctured notes  
+                            bb1.AddNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, noteElement.NoteDuration, noteElement.PitchValue.SemiTonesAboveC0, false); // TO DO: Handle punctured notes  
                             bb1.AddNotationsAfterNote(noteElement.Notations);  // Some notations are added After the note itself                 
                         }
                         bb.Append(bb1.Braille);
