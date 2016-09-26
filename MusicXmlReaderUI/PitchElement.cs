@@ -25,6 +25,7 @@ namespace MusicXmlReaderUI
 
         private string name;
         private int octave;
+        private int semiTonesAboveC0;
 
         public string Name
         {
@@ -40,6 +41,17 @@ namespace MusicXmlReaderUI
             get
             {
                 return octave;
+            }
+        }
+
+        /// <summary>
+        /// Used when generating Music Braille for comparing neighbour tones when deciding if the octave must be repeated
+        /// </summary>
+        public int SemiTonesAboveC0
+        {
+            get
+            {
+                return semiTonesAboveC0;
             }
         }
 
@@ -96,6 +108,22 @@ namespace MusicXmlReaderUI
             }
         }
 
+        int SemiToneWithinOctave(FullStepEnum step)
+        {
+            switch (step)
+            {
+                case FullStepEnum.C: return 0;
+                case FullStepEnum.D: return 2;
+                case FullStepEnum.E: return 4;
+                case FullStepEnum.F: return 5;
+                case FullStepEnum.G: return 7;
+                case FullStepEnum.A: return 9;
+                case FullStepEnum.B: return 11;
+                // No attempt to handle all alter values!
+                default: throw new ArgumentException();
+            }
+        }
+
 
         /// <summary>
         /// Constructor, taking care of altered notes
@@ -125,6 +153,9 @@ namespace MusicXmlReaderUI
             {
                 this.octave = octave + carry;
             }
+
+            semiTonesAboveC0 = (12 * octave) + SemiToneWithinOctave(step) + alter;
+
         }
 
         public static PitchElement Create(FullStepEnum step, int alter,int octave)

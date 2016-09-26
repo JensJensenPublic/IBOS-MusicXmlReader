@@ -216,6 +216,7 @@
     <Compile Include="Elements\TechnicalElement.cs" />
     <Compile Include="Elements\TimeModificationElement.cs" />
     <Compile Include="LoggerCounters.cs" />
+    <Compile Include="MusicBrailleState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
