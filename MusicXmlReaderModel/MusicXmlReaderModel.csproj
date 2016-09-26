@@ -150,8 +150,8 @@
     <Compile Include="..\MusicXmlReaderUI\PartlistElement.cs">
       <Link>Elements\PartlistElement.cs</Link>
     </Compile>
-    <Compile Include="..\MusicXmlReaderUI\Pitch.cs">
-      <Link>Pitch.cs</Link>
+    <Compile Include="..\MusicXmlReaderUI\PitchElement.cs">
+      <Link>Elements\PitchElement.cs</Link>
     </Compile>
     <Compile Include="..\MusicXmlReaderUI\RepeatElement.cs">
       <Link>Elements\RepeatElement.cs</Link>
