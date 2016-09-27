@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Xml;
 //using System.Windows.Forms;
 using System.Reflection;
 using System.Collections.Generic;
@@ -43,8 +44,18 @@ namespace MusicXmlReaderUI
 
             }
         }
-        
 
+        
+        public static  string GetChildValue(XmlNode note, string name)
+        {
+            foreach (XmlNode n in note.ChildNodes)
+            {
+                if (name == n.Name) return n.InnerText;
+            }
+            return "";
+        }
+
+        
         /// <summary>
         /// Check valitity of an input parameter of type int
         /// The result parameter is left unchanged if the input fails validation

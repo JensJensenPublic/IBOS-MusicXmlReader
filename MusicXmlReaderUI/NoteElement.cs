@@ -425,16 +425,6 @@ namespace MusicXmlReaderUI
         }
 
 
-        private string GetChildValue(XmlNode note, string name)
-        {
-            foreach (XmlNode n in note.ChildNodes)
-            {
-                if (name == n.Name) return n.InnerText;
-            }
-            return "";
-        }
-
-
         public NoteTypeEnum GetDuration(string s)
         {
             switch (s)
@@ -522,12 +512,12 @@ namespace MusicXmlReaderUI
                         // The pitch represents the sound, not what is notated, so an alter element must be included even if it represents a flat or sharp
                         // that is part of the key signature. This is why the E-flat contains an alter element, though there is no accidental on the note.
                         //step = GetChildValue(child, "step");
-                        string stepString = GetChildValue(child, "step");
+                        string stepString = Utilities.GetChildValue(child, "step");
                         if (!string.IsNullOrEmpty(stepString))
                         {
                             step = GetFullStep(stepString); // Special parsing of step
-                            Utilities.Parse(GetChildValue(child, "alter"), ref alter, -2, +2, "NoteElement: alter", true);
-                            Utilities.Parse(GetChildValue(child, "octave"), ref octave, 0, 9, "NoteElement: octave", false);
+                            Utilities.Parse(Utilities.GetChildValue(child, "alter"), ref alter, -2, +2, "NoteElement: alter", true);
+                            Utilities.Parse(Utilities.GetChildValue(child, "octave"), ref octave, 0, 9, "NoteElement: octave", false);
                             pitchElement = PitchElement.Create(step, alter, octave);
                         }
                         break;
@@ -550,8 +540,8 @@ namespace MusicXmlReaderUI
                         tieStop = ("stop" == tieType);
                         break;
                     case "lyric":
-                        text = GetChildValue(child, "text");
-                        syllabic = GetChildValue(child, "syllabic");
+                        text = Utilities.GetChildValue(child, "text");
+                        syllabic = Utilities.GetChildValue(child, "syllabic");
                         break;
                     case "staff":
                         staffString = child.InnerText;
