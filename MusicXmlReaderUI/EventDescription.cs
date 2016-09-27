@@ -265,7 +265,7 @@ namespace MusicXmlReaderUI
                         // This is a note
                         // Here the sequence is pitch,octave,type such af "Cis4 punkteret halvnode"
                         string pitch    = noteElement.PitchValue.Name; // Always use the name of the note
-                        string octave   = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteOctaves) ? noteElement.PitchValue.Octave.ToString() : "";
+                        string octave   = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteOctaves) ? noteElement.Octave.ToString() : "";
                         string type     = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteTypes) ? noteElement.LocalizedType : "";
                         string pitchAndOctave = string.Format("{0}{1}", pitch, octave);
                         string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";

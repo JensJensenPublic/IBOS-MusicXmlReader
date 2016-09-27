@@ -299,8 +299,8 @@ namespace MusicXmlReaderUI
             {
                 sb.Append(string.Format("0x{0:x} ", b)); 
             }
-            string s =  string.Format("step={0} alter={1} octave={2} semitone={3} ==>{4}", step, alter, octave, semitonesAboveC0, sb.ToString());
-            Logger.Log(s);
+            //string s =  string.Format("step={0} alter={1} octave={2} semitone={3} ==>{4}", step, alter, octave, semitonesAboveC0, sb.ToString());
+            //Logger.Log(s);
             // End for debugging only:
         }
 

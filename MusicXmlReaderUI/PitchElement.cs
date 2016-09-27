@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml;
 
 namespace MusicXmlReaderUI
 {
@@ -22,26 +23,22 @@ namespace MusicXmlReaderUI
           { +0,+0,+0,+0,+0,+0,+1 }};// Alter = +2
 
 
+        private const string className = "PitchElement";
+        int alter = 0;
+        int octave = 0;
+        FullStepEnum step;
 
         private string name;
-        private int octave;
         private int semiTonesAboveC0;
+
 
         public string Name
         {
             get
             {
                 return name;
-            }
+            }  
 
-        }
-
-        public int Octave
-        {
-            get
-            {
-                return octave;
-            }
         }
 
         /// <summary>
@@ -52,6 +49,30 @@ namespace MusicXmlReaderUI
             get
             {
                 return semiTonesAboveC0;
+            }
+        }
+
+        public int Alter
+        {
+            get
+            {
+                return alter;
+            }
+        }
+
+        public int Octave
+        {
+            get
+            {
+                return octave;
+            }
+        }
+
+        public FullStepEnum Step
+        {
+            get
+            {
+                return step;
             }
         }
 
@@ -125,14 +146,36 @@ namespace MusicXmlReaderUI
         }
 
 
+
+        private FullStepEnum GetFullStep(string s)
+        {
+            switch (s)
+            {
+                case "C": return FullStepEnum.C;
+                case "D": return FullStepEnum.D;
+                case "E": return FullStepEnum.E;
+                case "F": return FullStepEnum.F;
+                case "G": return FullStepEnum.G;
+                case "A": return FullStepEnum.A;
+                case "B": return FullStepEnum.B;
+                default:
+                    Logger.LogOnce(string.Format("{0}.{1}: Unknown Fullstep value={2}", className, "GetFullStep", s));
+                    return FullStepEnum.Unknown;
+            }
+        }
+
         /// <summary>
         /// Constructor, taking care of altered notes
         /// </summary>
         /// <param name="step"></param>
         /// <param name="alter"></param>
         /// <param name="octave"></param>
-        private PitchElement(FullStepEnum step, int alter, int octave)
+        private PitchElement(XmlNode node)
         {
+            step = GetFullStep(Utilities.GetChildValue(node, "step")); // Special parsing of step
+            Utilities.Parse(Utilities.GetChildValue(node, "alter"), ref alter, -2, +2, "PitchElement: alter", true);
+            Utilities.Parse(Utilities.GetChildValue(node, "octave"), ref octave, 0, 9, "PitchElement: octave", false);
+
             // First compute the value of semiTonesAboveC0 from the ORIGINAL parameters
             semiTonesAboveC0 = (12 * octave) + SemiToneWithinOctave(step) + alter;
 
@@ -140,7 +183,6 @@ namespace MusicXmlReaderUI
             {
                 // Optimize for the simple and frequent case !
                 this.name = StepToString(step);
-                this.octave = octave;
             }
             else
             {
@@ -149,11 +191,7 @@ namespace MusicXmlReaderUI
                 int iStep = StepToInt(step);
                 this.name = names[iAlter + 2, iStep]; // Convert iAlter to an index in the table!
                 int carry = carries[iAlter + 2, iStep]; // Convert iAlter to an index in the table!
-                if (0 == carry)
-                {
-                    this.octave = octave;
-                }
-                else
+                if (0 != carry)
                 {
                     this.octave = octave + carry;
                 }
@@ -163,10 +201,15 @@ namespace MusicXmlReaderUI
 
         }
 
-        public static PitchElement Create(FullStepEnum step, int alter,int octave)
+        public static PitchElement Create(XmlNode node)
         {
-            return new PitchElement(step, alter, octave);
+            return new PitchElement(node);
         }
+
+        //public static PitchElement Create(FullStepEnum step, int alter, int octave)
+        //{
+        //    return new PitchElement(step, alter, octave);
+        //}
 
         public override string ToString()
         {

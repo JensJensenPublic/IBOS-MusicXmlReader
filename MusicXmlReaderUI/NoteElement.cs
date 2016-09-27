@@ -46,9 +46,9 @@ namespace MusicXmlReaderUI
 
 
         // Values found in MusicXml file, possibly after a minor type conversion, typically from string to int.
-        FullStepEnum step = FullStepEnum.Unknown ;   // Represents a diatonoc step: A,B,C,D,E,F, G or a pause
-        int alter = 0 ;     // Represents the number of semitones the note is altered. 
-        int octave = 0;
+        //FullStepEnum step = FullStepEnum.Unknown ;   // Represents a diatonoc step: A,B,C,D,E,F, G or a pause
+        //int alter = 0 ;     // Represents the number of semitones the note is altered. 
+        //int octave = 0;
         int duration = 0;
         bool chord = false; // Means that this note starts at the same time as the previous note, not after the previous note.
         //string type = "unspecified";
@@ -99,7 +99,7 @@ namespace MusicXmlReaderUI
         {
             get
             {
-                return step;
+                return pitchElement.Step;
             }
         }
 
@@ -107,7 +107,7 @@ namespace MusicXmlReaderUI
         {
             get
             {
-                return octave;
+                return pitchElement.Octave;
             }
         }
 
@@ -141,7 +141,7 @@ namespace MusicXmlReaderUI
         {
             get
             {
-                return alter;
+                return pitchElement.Alter;
             }
         }
 
@@ -443,21 +443,6 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public FullStepEnum GetFullStep(string s)
-        {
-            switch (s)
-            {
-                case "C": return FullStepEnum.C;
-                case "D": return FullStepEnum.D;
-                case "E": return FullStepEnum.E;
-                case "F": return FullStepEnum.F;
-                case "G": return FullStepEnum.G;
-                case "A": return FullStepEnum.A;
-                case "B": return FullStepEnum.B;
-                default: Logger.LogOnce(string.Format("{0}.{1}: Unknown Fullstep value={2}",className,"GetFullStep",s));
-                    return FullStepEnum.Unknown;
-            }
-        }
 
 
         // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-note.htm
@@ -515,10 +500,7 @@ namespace MusicXmlReaderUI
                         string stepString = Utilities.GetChildValue(child, "step");
                         if (!string.IsNullOrEmpty(stepString))
                         {
-                            step = GetFullStep(stepString); // Special parsing of step
-                            Utilities.Parse(Utilities.GetChildValue(child, "alter"), ref alter, -2, +2, "NoteElement: alter", true);
-                            Utilities.Parse(Utilities.GetChildValue(child, "octave"), ref octave, 0, 9, "NoteElement: octave", false);
-                            pitchElement = PitchElement.Create(step, alter, octave);
+                            pitchElement = PitchElement.Create(child);
                         }
                         break;
                     case "duration": duration = int.Parse(child.InnerText); break;
