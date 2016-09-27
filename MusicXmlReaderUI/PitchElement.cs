@@ -133,6 +133,9 @@ namespace MusicXmlReaderUI
         /// <param name="octave"></param>
         private PitchElement(FullStepEnum step, int alter, int octave)
         {
+            // First compute the value of semiTonesAboveC0 from the ORIGINAL parameters
+            semiTonesAboveC0 = (12 * octave) + SemiToneWithinOctave(step) + alter;
+
             if (0 == alter)
             {
                 // Optimize for the simple and frequent case !
@@ -156,8 +159,7 @@ namespace MusicXmlReaderUI
                 }
             }
 
-            // In both cases compute the value of semiTonesAboveC0
-            semiTonesAboveC0 = (12 * octave) + SemiToneWithinOctave(step) + alter;
+        
 
         }
 

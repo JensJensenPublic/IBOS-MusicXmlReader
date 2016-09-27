@@ -281,16 +281,27 @@ namespace MusicXmlReaderUI
         {
             byte stepPart = GetStepValue(step);                 //  Returns the values for pin 1,2,4,5
             byte typePart = GetTypeValue(noteDuration);         //  Returns the values for pin 3,6
-            byte note = (byte)((int)stepPart | (int)typePart);  //  Logical OR to get all 6 pin values
-            braille.Add(note);
+            byte note = (byte)((int)stepPart | (int)typePart);  //  Logical OR to get all 6 pin values       
             if (0 != alter) braille.Add((alter > 0) ? Sharp : Flat);
+      
             if (MusicBrailleState.NeedOctaveMark(octave, semitonesAboveC0))
             {
                 // Add an octave mark if needed 
                 byte[] octaveMark = GetOctaveMark(octave);
                 braille.AddRange(octaveMark);
             }
+            braille.Add(note);
             if (punctured) braille.Add(Dot);
+
+            // Start for debugging only:
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in braille)
+            {
+                sb.Append(string.Format("0x{0:x} ", b)); 
+            }
+            string s =  string.Format("step={0} alter={1} octave={2} semitone={3} ==>{4}", step, alter, octave, semitonesAboveC0, sb.ToString());
+            Logger.Log(s);
+            // End for debugging only:
         }
 
         /// <summary>

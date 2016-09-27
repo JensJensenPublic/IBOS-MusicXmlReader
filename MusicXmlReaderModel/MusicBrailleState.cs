@@ -32,11 +32,11 @@ namespace MusicXmlReaderUI
             int distance = Math.Abs(newSemiTonesAboveC0 - lastSemiTonesAboveC0);
             if (lastOctave == newOctave)
             {
-                result =  ( distance > 4 );
+                result =  ( distance > 7 ); // 7 semitones is a fifth
             }
             else
             {
-                result = ( distance > 7 );
+                result = ( distance > 4 ); // 4 semitones is a (major) third
             }
 
             // Update the global state
