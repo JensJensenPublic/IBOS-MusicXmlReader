@@ -196,6 +196,9 @@ namespace MusicXmlReaderUI
         {
             if (!userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettings.Notes)) return new List<byte>(); // User completely turned off reading of notes
 
+        
+
+
             BrailleBuilder bb = BrailleBuilder.Create();
             foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
             {                      
@@ -319,6 +322,10 @@ namespace MusicXmlReaderUI
         /// <returns></returns>
         public List<byte> ToBraille()
         {
+            const string functionName = "ToBraille";
+            BrailleBuilder bbMetaInfo = BrailleBuilder.Create(); // For information not contained in notes
+
+
             //string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
 
             //string repeatForward = (null == repeatElementForward) ? "" : repeatElementForward.ToString() + " ";
@@ -373,17 +380,19 @@ namespace MusicXmlReaderUI
             //    }
             //}
 
-            //string keyString = "";
-            //if (null != keyElements)
-            //{
-            //    foreach (KeyElement keyElement in keyElements)
-            //    {
-            //        if (!string.IsNullOrEmpty(keyElement.ToString()))
-            //        {
-            //            keyString = string.Format("{0}", keyElement.ToString());
-            //        }
-            //    }
-            //}
+            string keyString = "";
+            if (null != keyElements)
+            {
+                foreach (KeyElement keyElement in keyElements)
+                {
+                    if (!string.IsNullOrEmpty(keyElement.ToString()))
+                    {
+                        keyString = string.Format("{0}", keyElement.ToString());
+                        bbMetaInfo.AddKey(keyElement);
+                        Logger.Log(string.Format("{0} Added KeyElement {1} ", functionName, keyString));
+                    }
+                }
+            }
 
             //string clefString = "";
             //if (null != clefElements)

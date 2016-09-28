@@ -3,10 +3,31 @@
 namespace MusicXmlReaderUI
 {
 
+    public enum ModeEnum {unknown,minor,major};
+
     public class KeyElement : EventElement
     {
         string localizedKey = "";
         string localizedmode = "";
+
+        private int fifths = 0;
+        private ModeEnum mode;
+
+
+        /// <summary>
+        /// Returns the position on the circle of fifts:
+        /// -1 F major / D minor
+        ///  0 C major / A minor 
+        /// +1 G major / E minor
+        /// </summary>
+        public int Fifths
+        {
+            get
+            {
+                return fifths;
+            } 
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -21,35 +42,35 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="k"></param>
         /// <returns></returns>
-        private string LocalizeKey(string k)
+        private string LocalizeKey(int k)
         {
             switch (k)
             {
-                case "0" : return "C";
-                case "1" : return "G";
-                case "2" : return "D";
-                case "3" : return "A";
-                case "4" : return "E";
-                case "5" : return "H";
-                case "6" : return "Fis";
-                case "7" : return "Cis";
-                case "-1": return "F";
-                case "-2": return "Bb";
-                case "-3": return "Es";
-                case "-4": return "As";
-                case "-5": return "Des";
-                case "-6": return "Ges";
-                case "-7": return "H";
+                case 0 : return "C";
+                case 1 : return "G";
+                case 2 : return "D";
+                case 3 : return "A";
+                case 4 : return "E";
+                case 5 : return "H";
+                case 6 : return "Fis";
+                case 7 : return "Cis";
+                case -1: return "F";
+                case -2: return "Bb";
+                case -3: return "Es";
+                case -4: return "As";
+                case -5: return "Des";
+                case -6: return "Ges";
+                case -7: return "H";
             }
             return "";
         }
 
-        private string LocalizeMode(string mode)
+        private string LocalizeMode(ModeEnum mode)
         {
             switch (mode)
             {
-                case "major": return "dur";
-                case "minor": return "mol";
+                case ModeEnum.major: return "dur";
+                case ModeEnum.minor: return "mol";
             }
             return "";
         }        
@@ -60,15 +81,24 @@ namespace MusicXmlReaderUI
         /// <param name="node"></param>
         private KeyElement(XmlNode node)
         {
-            string fifths = "";
-            string mode = "";
+            const string functionName = "KeyElement()";
+            //string fifths = "";
+            //string mode = "";
             // Dig out elements
             foreach (XmlNode n in node.ChildNodes)
             {
                 switch (n.Name)
                 {
-                    case "fifths": fifths = n.InnerText; break;
-                    case "mode":    mode = n.InnerText; break;
+                    case "fifths": Utilities.Parse(n.InnerText, ref fifths, -7, +7, functionName,false); break;  
+                    case "mode":    switch (n.InnerText)
+                        {
+                            case "minor": mode = ModeEnum.minor; break;
+                            case "major": mode = ModeEnum.major; break;
+                            default:
+                                Logger.Log(string.Format("{0}: node={1} has illegal value={2}", functionName, n.Name, n.InnerText)); break;
+
+                        }
+                        break;
                 }
             }
 

@@ -85,9 +85,29 @@ namespace MusicXmlReaderUI
         public static readonly byte Sharp = 41;
         public static readonly byte Natural = 33;
 
+        // The followung symbolr are used as the fixed symbol describing the key
+        public static readonly byte KeySharp = dot1 + dot4 + dot6;
+        public static readonly byte KeyFlat  = dot1 + dot2 + dot6;
+        public static readonly byte KeyNone  = dot1 + dot6;   // "opløsningstegn" 
+
+        public static readonly byte Number = dot3 + dot4 + dot5 + dot6; // Marks the start of numeric coding
+        public static readonly byte cipher0 = dot2 + dot4 + dot5; // 
+        public static readonly byte cipher1 = dot1; // 
+        public static readonly byte cipher2 = dot1 + dot2; // 
+        public static readonly byte cipher3 = dot1 + dot4; // 
+        public static readonly byte cipher4 = dot1 + dot4 + dot5; // 
+        public static readonly byte cipher5 = dot1 + dot5; // 
+        public static readonly byte cipher6 = dot1 + dot2 + dot4; // 
+        public static readonly byte cipher7 = dot1 + dot2 + dot4 + dot5; // 
+        public static readonly byte cipher8 = dot1 + dot2 + dot5; // 
+        public static readonly byte cipher9 = dot2 + dot5; // 
+
+        public static readonly byte[] musicBraille = new byte[] { dot6, dot3 }; // Marks the start of Music Braille coding
+
+
         // Note: Articulation marks must be inserted BEFORE the note
 
- 
+
 
         public enum Hand { Undefined, Left, Right };
 
@@ -303,6 +323,33 @@ namespace MusicXmlReaderUI
             //Logger.Log(s);
             // End for debugging only:
         }
+
+        public void AddKey(KeyElement keyElement)
+        {
+            const string functionName = "AddKey";
+            byte[] bytes = new byte[] { };
+            switch (keyElement.Fifths)
+            {
+                case 0: break; //  Ask Lars Petersen !!! How do we return to C major or A minor from another key ??
+                case 1: bytes = new byte[] { KeySharp }; break;
+                case 2: bytes = new byte[] { KeySharp, KeySharp }; break;
+                case 3: bytes = new byte[] { KeySharp, KeySharp, KeySharp }; break;
+                case 4: bytes = new byte[] { Number, cipher4, KeySharp }; break;
+                case 5: bytes = new byte[] { Number, cipher5, KeySharp }; break;
+                case 6: bytes = new byte[] { Number, cipher6, KeySharp }; break;
+                case 7: bytes = new byte[] { Number, cipher7, KeySharp }; break;
+                case -1: bytes = new byte[] { KeyFlat }; break;
+                case -2: bytes = new byte[] { KeyFlat, KeyFlat }; break;
+                case -3: bytes = new byte[] { KeyFlat, KeyFlat, KeyFlat }; break;
+                case -4: bytes = new byte[] { Number, cipher4, KeyFlat }; break;
+                case -5: bytes = new byte[] { Number, cipher5, KeyFlat }; break;
+                case -6: bytes = new byte[] { Number, cipher6, KeyFlat }; break;
+                case -7: bytes = new byte[] { Number, cipher7, KeyFlat }; break;
+                default: Logger.Log(string.Format("{0}: Illegal number of fifths={1}", functionName, keyElement.Fifths)); break;
+            }
+            braille.AddRange(new List<byte>(bytes));
+        }
+
 
         /// <summary>
         /// 
