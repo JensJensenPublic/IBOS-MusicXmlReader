@@ -346,6 +346,14 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public bool Dot
+        {
+            get
+            {
+                return dot;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method

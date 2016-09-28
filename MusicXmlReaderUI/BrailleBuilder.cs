@@ -123,17 +123,17 @@ namespace MusicXmlReaderUI
         }
 
 
-        private byte GetStepValue(string step) //  Returns the values for dot 1,2,4,5
+        private byte GetStepValue(PitchElement.FullStepEnum step) //  Returns the values for dot 1,2,4,5
         {
             switch (step)
             {
-                case "C": return dot1+dot4+dot5; // Pin 1,4,5
-                case "D": return dot1+dot5; // Pin 1,5
-                case "E": return dot1+dot2+dot4; // Pin 1,2,4,
-                case "F": return dot1+dot2+dot4+dot5; // Pin 1,2,4,5
-                case "G": return dot1+dot2+dot5;// Pin 1,2,5
-                case "A": return dot2+dot4; // Pin 2,4
-                case "B": return dot2+dot4+dot5; // Pin 2,4,5
+                case PitchElement.FullStepEnum.C: return dot1+dot4+dot5; // Pin 1,4,5
+                case PitchElement.FullStepEnum.D: return dot1+dot5; // Pin 1,5
+                case PitchElement.FullStepEnum.E: return dot1+dot2+dot4; // Pin 1,2,4,
+                case PitchElement.FullStepEnum.F: return dot1+dot2+dot4+dot5; // Pin 1,2,4,5
+                case PitchElement.FullStepEnum.G: return dot1+dot2+dot5;// Pin 1,2,5
+                case PitchElement.FullStepEnum.A: return dot2+dot4; // Pin 2,4
+                case PitchElement.FullStepEnum.B: return dot2+dot4+dot5; // Pin 2,4,5
                 default:
                     Logger.Log(string.Format("{0}.GetStepValue({1}) Unknown step '{1}'", className, step));
                     return noDots;
@@ -269,29 +269,29 @@ namespace MusicXmlReaderUI
 
 
         /// <summary>
-        /// 
+        /// Add a NoteElement
         /// </summary>
-        /// <param name="step">One of the 7 fulltone steps</param>
-        /// <param name="alter">(-1 for flat)    (0 for no alteration)  (+1 for sharp)  </param>
-        /// <param name="octave"></param>
-        /// <param name="type">From "whole" to 128nd</param>
-        /// <param name="punctured">A puncture added</param>
-        //public void AddNote(FullToneStep step, int alter, int octave, string type, bool punctured) // The right signature
-        public void AddNote(string step, int alter, int octave, NoteTypeEnum noteDuration, int semitonesAboveC0,bool punctured) // ********************* FIX ! Temp signature
+        /// <param name="noteElement">The NoteElement to add</param>
+        public void AddNote(NoteElement noteElement)
         {
-            byte stepPart = GetStepValue(step);                 //  Returns the values for pin 1,2,4,5
-            byte typePart = GetTypeValue(noteDuration);         //  Returns the values for pin 3,6
-            byte note = (byte)((int)stepPart | (int)typePart);  //  Logical OR to get all 6 pin values       
-            if (0 != alter) braille.Add((alter > 0) ? Sharp : Flat);
+            // Add alteration
+            if (0 != noteElement.Alter) braille.Add((noteElement.Alter > 0) ? Sharp : Flat);
       
-            if (MusicBrailleState.NeedOctaveMark(octave, semitonesAboveC0))
+            // Add Octavemark
+            if (MusicBrailleState.NeedOctaveMark(noteElement.Octave, noteElement.PitchValue.SemiTonesAboveC0))
             {
-                // Add an octave mark if needed 
-                byte[] octaveMark = GetOctaveMark(octave);
+                byte[] octaveMark = GetOctaveMark(noteElement.Octave);
                 braille.AddRange(octaveMark);
             }
+
+            // Add the combined step value and type value
+            byte stepPart = GetStepValue(noteElement.Step);          //  Returns the values for pin 1,2,4,5
+            byte typePart = GetTypeValue(noteElement.NoteDuration);  //  Returns the values for pin 3,6
+            byte note = (byte)((int)stepPart | (int)typePart);       //  Logical OR to get all 6 pin values 
             braille.Add(note);
-            if (punctured) braille.Add(Dot);
+
+            // Add punctuation value
+            if (noteElement.Dot) braille.Add(Dot);
 
             // Start for debugging only:
             StringBuilder sb = new StringBuilder();
