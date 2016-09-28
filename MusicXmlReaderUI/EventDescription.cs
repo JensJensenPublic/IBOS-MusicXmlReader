@@ -435,9 +435,16 @@ namespace MusicXmlReaderUI
 
             // Finnally compose the result by concatenating all the substrings in the sequence wanted
             //return measure + repeatForward + divisions + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString + keyString + clefString + timeString + repeatBackward;
-            return bbNotes.Braille; // Later define the "+" operator for BrailleBuilder 
-        
-    }
+
+            // Ad the various components:
+            BrailleBuilder total = BrailleBuilder.Create();
+            total.Append(bbMetaInfo.Braille);
+            total.Append(bbNotes.Braille);
+            return total.Braille;
+
+            //return bbNotes.Braille; // Later define the "+" operator for BrailleBuilder 
+
+        }
 
         /// <summary>
         /// This method is used by the Listbox when fetching text for a line
