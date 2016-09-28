@@ -403,7 +403,7 @@ namespace MusicXmlReaderUI
                     {
                         clefString = string.Format("{0}", clefElement.ToString());
                         bbMetaInfo.AddClef(clefElement);
-                        Logger.Log(string.Format("{0} Added ClefElement {1} ", functionName, keyString));
+                        Logger.Log(string.Format("{0} Added ClefElement {1} ", functionName, clefString));
                     }
                 }
             }
