@@ -34,8 +34,6 @@ namespace MusicXmlReaderUI
     }
 
 
-    public enum FullStepEnum { Unknown=0,C,D,E,F,G,A,B,Rest};
-
     public class NoteElement : EventElement
     {
         // Allows for representing the following subdivisions of a quarter node:
@@ -95,7 +93,7 @@ namespace MusicXmlReaderUI
         const string className = "NoteElement";
 
 
-        public FullStepEnum Step
+        public PitchElement.FullStepEnum Step
         {
             get
             {
