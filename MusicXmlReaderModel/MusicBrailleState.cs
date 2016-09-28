@@ -45,7 +45,7 @@ namespace MusicXmlReaderUI
             //Logger.Log(string.Format("NeedsOctaveMark({0},{1} with old values {2},{3} returned {4}",
             //    newOctave, newSemiTonesAboveC0, lastOctave, lastSemiTonesAboveC0, result));
 
-            Logger.LogOnce(string.Format("NeedOctaveMark returned {0}", result)); // To get an idea of the number of octave marks
+            //Logger.LogOnce(string.Format("NeedOctaveMark returned {0}", result)); // To get an idea of the number of octave marks
 
             return result;
         }
