@@ -105,6 +105,10 @@ namespace MusicXmlReaderUI
         public static readonly byte[] musicBraille = new byte[] { dot6, dot3 }; // Marks the start of Music Braille coding
 
 
+        // Clefs
+        public static readonly byte[] clefG = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4       ), (dot1 + dot2 + dot3) };
+        public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot6), (dot1 + dot2 + dot3) };
+
         // Note: Articulation marks must be inserted BEFORE the note
 
 
@@ -323,6 +327,21 @@ namespace MusicXmlReaderUI
             //Logger.Log(s);
             // End for debugging only:
         }
+
+        public void AddClef(ClefElement clefElement)
+        {
+            const string functionName = "AddClef";
+            byte[] bytes = new byte[] { };
+            switch (clefElement.Clef)
+            {
+                case ClefEnum.G: bytes = clefG; break;
+                case ClefEnum.F: bytes = clefF; break;
+                case ClefEnum.C: Logger.Log(string.Format("{0} Clef={1} is not supported in Mussic Braille", functionName, "C")); break;
+                default: Logger.Log(string.Format("{0} Unknowh clef={1}", functionName, clefElement.Clef.ToString())); break;
+            }
+            braille.AddRange(new List<byte>(bytes));
+        }
+
 
         public void AddKey(KeyElement keyElement)
         {

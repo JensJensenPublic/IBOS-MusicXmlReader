@@ -322,7 +322,7 @@ namespace MusicXmlReaderUI
         /// <returns></returns>
         public List<byte> ToBraille()
         {
-            const string functionName = "ToBraille";
+            const string functionName = "EventDescription.ToBraille";
             BrailleBuilder bbMetaInfo = BrailleBuilder.Create(); // For information not contained in notes
 
 
@@ -389,22 +389,24 @@ namespace MusicXmlReaderUI
                     {
                         keyString = string.Format("{0}", keyElement.ToString());
                         bbMetaInfo.AddKey(keyElement);
-                        Logger.Log(string.Format("{0} Added KeyElement {1} ", functionName, keyString));
+                        //Logger.Log(string.Format("{0} Added KeyElement {1} ", functionName, keyString));
                     }
                 }
             }
 
-            //string clefString = "";
-            //if (null != clefElements)
-            //{
-            //    foreach (ClefElement clefElement in clefElements)
-            //    {
-            //        if (!string.IsNullOrEmpty(clefElement.ToString()))
-            //        {
-            //            clefString = string.Format("{0}", clefElement.ToString());
-            //        }
-            //    }
-            //}
+            string clefString = "";
+            if (null != clefElements)
+            {
+                foreach (ClefElement clefElement in clefElements)
+                {
+                    if (!string.IsNullOrEmpty(clefElement.ToString()))
+                    {
+                        clefString = string.Format("{0}", clefElement.ToString());
+                        bbMetaInfo.AddClef(clefElement);
+                        Logger.Log(string.Format("{0} Added ClefElement {1} ", functionName, keyString));
+                    }
+                }
+            }
 
             //string timeString = "";
             //if (null != timeElements)
