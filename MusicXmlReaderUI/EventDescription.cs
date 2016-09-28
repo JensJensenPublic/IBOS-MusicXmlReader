@@ -408,17 +408,19 @@ namespace MusicXmlReaderUI
                 }
             }
 
-            //string timeString = "";
-            //if (null != timeElements)
-            //{
-            //    foreach (TimeElement timeElement in timeElements)
-            //    {
-            //        if (!string.IsNullOrEmpty(timeElement.ToString()))
-            //        {
-            //            clefString = string.Format("{0}", timeElement.ToString());
-            //        }
-            //    }
-            //}
+            string timeString = "";
+            if (null != timeElements)
+            {
+                foreach (TimeElement timeElement in timeElements)
+                {
+                    if (!string.IsNullOrEmpty(timeElement.ToString()))
+                    {
+                        timeString = string.Format("{0}", timeElement.ToString());
+                        bbMetaInfo.AddTime(timeElement);
+                        Logger.Log(string.Format("{0} Added TimeElement {1} ", functionName, timeString));
+                    }
+                }
+            }
 
 
 

@@ -328,6 +328,55 @@ namespace MusicXmlReaderUI
             // End for debugging only:
         }
 
+
+        public void AddTime(TimeElement timeElement)
+        {
+            const string functionName = "BrailleBuilder.AddTime";
+            byte[] bytes = new byte[] { };    
+            switch (timeElement.BeatType)
+            {
+                case 2:
+                    switch (timeElement.Beats)
+                    {
+                        case 2: bytes = new byte[] { Number, cipher2, (dot2 + dot3) }; break;       // 2/2  Not specified by REFSNÆS, suggested by JSJ
+                        default: break;
+                    }
+                    break;
+                case 4:
+                    switch (timeElement.Beats)
+                    {
+                        case 2: bytes = new byte[] {Number,cipher2,(dot2+dot5+dot6) }; break;        // 2/4
+                        case 3: bytes = new byte[] {Number, cipher3, (dot2 + dot5 + dot6) }; break;  // 3/4
+                        case 4: bytes = new byte[] { Number, cipher4, (dot2 + dot5 + dot6) }; break; // 4/4
+                        case 5: bytes = new byte[] { Number, cipher5, (dot2 + dot5 + dot6) }; break; // 5/4 Not specified by REFSNÆS, suggested by JSJ
+                        default:  break;
+                    }
+                    break;
+
+                case 8:
+                    switch (timeElement.Beats)
+                    {       
+                        case 3: bytes = new byte[] { Number, cipher3, (dot2 + dot3 + dot6) }; break; // 3/8
+                        case 4: bytes = new byte[] { Number, cipher4, (dot2 + dot3 + dot6) }; break; // 4/8
+                        case 6: bytes = new byte[] { Number, cipher6, (dot2 + dot3 + dot6) }; break; // 6/8 
+                        case 7: bytes = new byte[] { Number, cipher7, (dot2 + dot3 + dot6) }; break; // 7/8  Not specified by REFSNÆS, suggested by JSJ
+                        default:  break;
+                    }
+                    break;
+                default:break;
+            }
+            if (0 == bytes.Count())
+            {
+                Logger.LogOnce(string.Format("{0}: Unsupported time specification: Beats={1} BeatsType={2}", functionName, timeElement.Beats, timeElement.BeatType));
+            }
+            else
+            {
+                Braille.AddRange(new List<byte>(bytes));
+                Logger.LogOnce(string.Format("{0}: Added time specification: {1}/{2}", functionName, timeElement.Beats, timeElement.BeatType));
+            }
+        }
+
+
         public void AddClef(ClefElement clefElement)
         {
             const string functionName = "AddClef";
