@@ -201,9 +201,22 @@ namespace MusicXmlReaderUI
 
         }
 
+        /// <summary>
+        /// An non-typical implementation: Returns null if no "step" is specified
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         public static PitchElement Create(XmlNode node)
         {
-            return new PitchElement(node);
+            string stepString = Utilities.GetChildValue(node, "step");
+            if (!string.IsNullOrEmpty(stepString))
+            {
+                return new PitchElement(node);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         //public static PitchElement Create(FullStepEnum step, int alter, int octave)

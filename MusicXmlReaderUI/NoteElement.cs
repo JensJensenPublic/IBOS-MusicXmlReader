@@ -496,12 +496,7 @@ namespace MusicXmlReaderUI
                     case "pitch":
                         // The pitch represents the sound, not what is notated, so an alter element must be included even if it represents a flat or sharp
                         // that is part of the key signature. This is why the E-flat contains an alter element, though there is no accidental on the note.
-                        //step = GetChildValue(child, "step");
-                        string stepString = Utilities.GetChildValue(child, "step");
-                        if (!string.IsNullOrEmpty(stepString))
-                        {
-                            pitchElement = PitchElement.Create(child);
-                        }
+                        pitchElement = PitchElement.Create(child); // NOTE! Returns null if no step is specified for the pitch
                         break;
                     case "duration": duration = int.Parse(child.InnerText); break;
                     case "chord": chord = true; break;
