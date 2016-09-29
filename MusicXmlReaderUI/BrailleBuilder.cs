@@ -9,12 +9,16 @@ using JSJ.MusicSynthesis;
 
 namespace MusicXmlReaderUI
 {
+
+
     class BrailleBuilder
     {
         // References:
         // Ref.1: http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-articulations.htm
         // Ref.2: https://en.wikipedia.org/wiki/Braille_music
         // Ref.3: https://www.rnib.org.uk/sites/default/files/New%20International%20Manual.pdf
+        // Ref.4: Elementær nodelære i Braille-skrift Enstemmig notation, Revideret udgave 1995, SynsCenter Refsnæs
+        // Ref.5: Elementær nodelære i Braille-skrift 2. del Akkordnotation SynsCenter Refsnæs
 
         //public enum Constant
         //{
