@@ -313,7 +313,7 @@ namespace MusicXmlReaderUI
             if ((null != notations.SlurElement) && (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start))
             {
                 bb.Append(Slur);
-                Logger.LogOnce(string.Format("{0}.{1} Added slur", className, functionName));
+                //Logger.LogOnce(string.Format("{0}.{1} Added slur", className, functionName));
             }
 
             if (null != notations.TiedElement)
@@ -325,7 +325,7 @@ namespace MusicXmlReaderUI
                 )
                 {
                     bb.Append(Tie);
-                    Logger.LogOnce(string.Format("{0}.{1} Added tie", className, functionName));
+                    //Logger.LogOnce(string.Format("{0}.{1} Added tie", className, functionName));
                     // TODO: implement algorithm handling ties conencting more than 4 notes.
                 }
             }
@@ -427,7 +427,7 @@ namespace MusicXmlReaderUI
             else
             {
                 Braille.AddRange(new List<byte>(bytes));
-                Logger.LogOnce(string.Format("{0}: Added time specification: {1}/{2}", functionName, timeElement.Beats, timeElement.BeatType));
+                //Logger.LogOnce(string.Format("{0}: Added time specification: {1}/{2}", functionName, timeElement.Beats, timeElement.BeatType));
             }
         }
 
@@ -440,8 +440,8 @@ namespace MusicXmlReaderUI
             {
                 case ClefEnum.G: bytes = clefG; break;
                 case ClefEnum.F: bytes = clefF; break;
-                case ClefEnum.C: Logger.Log(string.Format("{0}.{1} Clef={2} is not supported in Mussic Braille", className,functionName, "C")); break;
-                default: Logger.LogOnce(string.Format("{0}.{1} Unknowh clef={2}", className,functionName, clefElement.Clef.ToString())); break;
+                case ClefEnum.C: Logger.Log(string.Format("{0}.{1} Clef={2} is not supported in Music Braille", className,functionName, "C")); break;
+                default: Logger.LogOnce(string.Format("{0}.{1} Unknown clef={2}", className,functionName, clefElement.Clef.ToString())); break;
             }
             braille.AddRange(bytes);          
         }
@@ -485,7 +485,7 @@ namespace MusicXmlReaderUI
             if (NoteTypeEnum.measure == noteDuration)
             {
                 braille.AddRange(FullMeasureRest);
-                Logger.LogOnce(string.Format("{0}.{1}: Added FullMeasureRest", className, functionName));
+                //Logger.LogOnce(string.Format("{0}.{1}: Added FullMeasureRest", className, functionName));
             }
             else
             {
