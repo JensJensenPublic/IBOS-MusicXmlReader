@@ -19,6 +19,8 @@ namespace MusicXmlReaderUI
         // Ref.3: https://www.rnib.org.uk/sites/default/files/New%20International%20Manual.pdf
         // Ref.4: Elementær nodelære i Braille-skrift Enstemmig notation, Revideret udgave 1995, SynsCenter Refsnæs
         // Ref.5: Elementær nodelære i Braille-skrift 2. del Akkordnotation SynsCenter Refsnæs
+        // Ref.6: MUSIC BRAILLE CODE 1997 Developed Under the Sponsorship of the BRAILLE AUTHORITY OF NORTH AMERICA
+        //        Downloaded to C:\Users\Jens\Dropbox\Root\Dokumenter\music braille code.pdf
 
         //public enum Constant
         //{
@@ -32,7 +34,7 @@ namespace MusicXmlReaderUI
         //    Tie,
         //};
 
-         // Valuse for explicitly defining dot patterns in terms of hex byte-values
+        // Valuse for explicitly defining dot patterns in terms of hex byte-values
         private const byte noDots = 0;
         private const byte dot1 = 0x01;
         private const byte dot2 = 0x02;
@@ -91,6 +93,8 @@ namespace MusicXmlReaderUI
         public static readonly byte Sharp = 41;
         public static readonly byte Natural = 33;
         public static readonly byte TupletOf3 = dot2 + dot3;
+        public static readonly byte[] ArpeggioUp = new byte[] { dot3 + dot4 + dot5, dot1 + dot3 };
+        public static readonly byte[] ArpeggioDown = new byte[] { (dot3 + dot4 + dot5), (dot1 + dot3) , (dot1 + dot3) };
 
         // The followung symbolr are used as the fixed symbol describing the key
         public static readonly byte KeySharp = dot1 + dot4 + dot6;
@@ -330,12 +334,29 @@ namespace MusicXmlReaderUI
                 }
             }
 
+            if (null != notations.FermataElement)
+            {
+                if ((notations.FermataElement.FermataType == FermataElement.FermataTypeEnum.inverted)
+                    || (notations.FermataElement.FermataType == FermataElement.FermataTypeEnum.upright))
+                {
+                    bb.Append(FermatoOnNote);
+                }
+            }
 
+            if (null != notations.ArpeggiateElement)
+            {
+                switch (notations.ArpeggiateElement.ArpeggiateDirection)
+                {
+                    case ArpeggiateDirectionEnum.down: bb.Append(ArpeggioDown); return;
+                    case ArpeggiateDirectionEnum.up: bb.Append(ArpeggioUp);return;
+                    default:   break;                
+                
+                }
+                Logger.LogOnce(string.Format("{0}.{1} Unknown Arpeggio direction: {2}", className, functionName, notations.ArpeggiateElement.ArpeggiateDirection.ToString()));            
+            }
+                  
             LogUninplementedNotationElement(notations.SlideElement, "SlideElement"); 
             LogUninplementedNotationElement(notations.GlissandoElement, "GlissandoElement"); 
-        
-            LogUninplementedNotationElement(notations.ArpeggiateElement, "ArpeggiateElement");
-            LogUninplementedNotationElement(notations.FermataElement, "FermataElement");
             LogUninplementedNotationElement(notations.OrnamentsElement, "OrnamentsElement");
 
             // Add other notation elements here asthey are added in the parser.

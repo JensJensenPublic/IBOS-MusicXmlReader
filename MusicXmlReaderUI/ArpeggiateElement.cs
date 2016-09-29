@@ -10,6 +10,14 @@ namespace MusicXmlReaderUI
         private int number = 1;
         private ArpeggiateDirectionEnum arpeggiateDirection = ArpeggiateDirectionEnum.undefined;
 
+        internal ArpeggiateDirectionEnum ArpeggiateDirection
+        {
+            get
+            {
+                return arpeggiateDirection;
+            } 
+        }
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
