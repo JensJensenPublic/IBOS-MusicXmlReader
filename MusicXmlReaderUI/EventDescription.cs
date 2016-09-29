@@ -403,7 +403,7 @@ namespace MusicXmlReaderUI
                     {
                         clefString = string.Format("{0}", clefElement.ToString());
                         bbMetaInfo.AddClef(clefElement);
-                        Logger.Log(string.Format("{0} Added ClefElement {1} ", functionName, clefString));
+                      
                     }
                 }
             }
@@ -416,8 +416,7 @@ namespace MusicXmlReaderUI
                     if (!string.IsNullOrEmpty(timeElement.ToString()))
                     {
                         timeString = string.Format("{0}", timeElement.ToString());
-                        bbMetaInfo.AddTime(timeElement);
-                        Logger.Log(string.Format("{0} Added TimeElement {1} ", functionName, timeString));
+                        bbMetaInfo.AddTime(timeElement);        
                     }
                 }
             }

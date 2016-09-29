@@ -32,7 +32,7 @@ namespace MusicXmlReaderUI
         //    Tie,
         //};
 
-        // Valuse for explicitly defining dot patterns in terms of hex byte-values
+         // Valuse for explicitly defining dot patterns in terms of hex byte-values
         private const byte noDots = 0;
         private const byte dot1 = 0x01;
         private const byte dot2 = 0x02;
@@ -49,8 +49,8 @@ namespace MusicXmlReaderUI
         public static readonly byte MusicHyphen = 16; // This measure will be continued on the following line
         public static readonly byte Triplet = 6;
         public static readonly byte RepeatSign = 54; // A beat, a half measure or a full measure must be repeated
-        public static readonly byte Slur = 9;
-        public static readonly byte[] Tie = new byte[] { 8, 9 };
+        public static readonly byte Slur = 9; // Connects 2 or more notes of different pitch. Danish: Legatobue
+        public static readonly byte[] Tie = new byte[] { 8, 9 }; //  Connects 2 notes of the same pitch and makes them souna as one. Danish: Bindebue
         public static readonly byte[] ChordTie = new byte[] { 40, 9 };
         public static readonly byte[] BracketSlurStart = new byte[] { 48, 6 };
         public static readonly byte[] BracketClurEnd = new byte[] { 24, };
@@ -150,7 +150,16 @@ namespace MusicXmlReaderUI
             this.braille.AddRange(bytes);
         }
 
+        public void Append(byte[] bytes)
+        {
+            this.braille.AddRange(new List<byte>(bytes));
+        }
 
+        public void Append(byte b)
+        {
+            this.braille.Add(b);
+        }
+        
         private byte GetStepValue(PitchElement.FullStepEnum step) //  Returns the values for dot 1,2,4,5
         {
             switch (step)
@@ -282,9 +291,31 @@ namespace MusicXmlReaderUI
         {
             // Actually we dont know what is added before and what is added after.
             // This method is primarily used for logging unimplemented notations !
+            const string functionName = "AddNotationsAfterNote";
+
             if (null == notations) return;
-            LogUninplementedNotationElement(notations.SlurElement, "SlurElement"); 
-            LogUninplementedNotationElement(notations.TiedElement, "TiedElement"); 
+            BrailleBuilder bb = new BrailleBuilder();
+
+            if ((null != notations.SlurElement) && (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start))
+            {
+                bb.Append(Slur);
+                Logger.LogOnce(string.Format("{0}.{1} Added slur", className, functionName));
+            }
+
+            if (null != notations.TiedElement)
+            {
+                if
+                (  (notations.TiedElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start)
+                || (notations.TiedElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Continue)
+                || (notations.TiedElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop)
+                )
+                {
+                    bb.Append(Tie);
+                    Logger.LogOnce(string.Format("{0}.{1} Added tie", className, functionName));
+                    // TODO: implement algorithm handling ties conencting more than 4 notes.
+                }
+            }
+
             LogUninplementedNotationElement(notations.SlideElement, "SlideElement"); 
             LogUninplementedNotationElement(notations.GlissandoElement, "GlissandoElement"); 
             LogUninplementedNotationElement(notations.TupletElement, "TupletElement"); 
@@ -394,10 +425,10 @@ namespace MusicXmlReaderUI
             {
                 case ClefEnum.G: bytes = clefG; break;
                 case ClefEnum.F: bytes = clefF; break;
-                case ClefEnum.C: Logger.Log(string.Format("{0} Clef={1} is not supported in Mussic Braille", functionName, "C")); break;
-                default: Logger.Log(string.Format("{0} Unknowh clef={1}", functionName, clefElement.Clef.ToString())); break;
+                case ClefEnum.C: Logger.Log(string.Format("{0}.{1} Clef={2} is not supported in Mussic Braille", className,functionName, "C")); break;
+                default: Logger.LogOnce(string.Format("{0}.{1} Unknowh clef={2}", className,functionName, clefElement.Clef.ToString())); break;
             }
-            braille.AddRange(new List<byte>(bytes));
+            braille.AddRange(new List<byte>(bytes));          
         }
 
 
@@ -422,7 +453,7 @@ namespace MusicXmlReaderUI
                 case -5: bytes = new byte[] { Number, cipher5, KeyFlat }; break;
                 case -6: bytes = new byte[] { Number, cipher6, KeyFlat }; break;
                 case -7: bytes = new byte[] { Number, cipher7, KeyFlat }; break;
-                default: Logger.Log(string.Format("{0}: Illegal number of fifths={1}", functionName, keyElement.Fifths)); break;
+                default: Logger.LogOnce(string.Format("{0}.{1}: Illegal number of fifths={2}", className,functionName, keyElement.Fifths)); break;
             }
             braille.AddRange(new List<byte>(bytes));
         }
