@@ -90,6 +90,7 @@ namespace MusicXmlReaderUI
         public static readonly byte Flat = 35;
         public static readonly byte Sharp = 41;
         public static readonly byte Natural = 33;
+        public static readonly byte TupletOf3 = dot2 + dot3;
 
         // The followung symbolr are used as the fixed symbol describing the key
         public static readonly byte KeySharp = dot1 + dot4 + dot6;
@@ -249,7 +250,18 @@ namespace MusicXmlReaderUI
         {
             if (null == notations) return;
             if (null == notations.Articulations) return;
-            const string function = className + ".AddNotationsBeforeNote";
+            const string functionName = "AddNotationsBeforeNote";
+
+            if (null != notations.TupletElement)
+            {
+                if (notations.TupletElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start)
+                {
+                    Braille.AddRange(new List<byte>(TupletOf3));
+                    Logger.LogOnce(string.Format("{0}.{1} Added tuplet", className, functionName));
+                }
+            }
+                        
+
             foreach (ArticulationsElement.Articulation articulation in notations.Articulations.ArticulationList)
             {
                 bool implemented = true; 
@@ -273,11 +285,11 @@ namespace MusicXmlReaderUI
                     case ArticulationsElement.Articulation.tenuto:          Braille.AddRange(Tenuto); break;
                     case ArticulationsElement.Articulation.unstress:        implemented = false; break;    
                     default:
-                        Logger.Log(string.Format("{0}: Unknown articulation: '{1}'",function, articulation)); break;
+                        Logger.Log(string.Format("{0}.{1}: Unknown articulation: '{2}'",className,functionName, articulation)); break;
                 }
                 if (!implemented)
                 {
-                    Logger.Log(string.Format("{0}: Unimplemented articulation: '{1}'",function, articulation));
+                    Logger.Log(string.Format("{0}.{1}: Unimplemented articulation: '{2}'",className,functionName, articulation));
                 }
             }
         }
@@ -318,9 +330,10 @@ namespace MusicXmlReaderUI
                 }
             }
 
+
             LogUninplementedNotationElement(notations.SlideElement, "SlideElement"); 
             LogUninplementedNotationElement(notations.GlissandoElement, "GlissandoElement"); 
-            LogUninplementedNotationElement(notations.TupletElement, "TupletElement"); 
+        
             LogUninplementedNotationElement(notations.ArpeggiateElement, "ArpeggiateElement");
             LogUninplementedNotationElement(notations.FermataElement, "FermataElement");
             LogUninplementedNotationElement(notations.OrnamentsElement, "OrnamentsElement");
