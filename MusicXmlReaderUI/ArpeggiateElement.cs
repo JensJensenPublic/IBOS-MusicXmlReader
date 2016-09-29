@@ -32,6 +32,8 @@ namespace MusicXmlReaderUI
                 Logger.Log(string.Format("ArpeggiateElement: Unexpected child nodes found)"));
             }
 
+            arpeggiateDirection = ArpeggiateDirectionEnum.up; // MusicXml default value 
+
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
@@ -44,7 +46,7 @@ namespace MusicXmlReaderUI
                         {
                             case "up": arpeggiateDirection = ArpeggiateDirectionEnum.up; break;
                             case "down": arpeggiateDirection = ArpeggiateDirectionEnum.down; break;
-                            default: Logger.Log(string.Format("ArpeggiateElement: Unknown value for attribute 'direction': {0}", a.Value)); break;
+                            default: Logger.LogOnce(string.Format("ArpeggiateElement: Unknown value for attribute 'direction': {0}", a.Value)); break;
                         }
                         break;
                     // Explicitly ignore:
