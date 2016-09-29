@@ -43,6 +43,8 @@ namespace MusicXmlReaderUI
         private const byte dot7 = 0x40;
         private const byte dot8 = 0x80;
 
+
+        public static readonly byte[] FullMeasureRest = new byte[] { noDots, (dot1+dot3+dot4), noDots }; // According to Lars Petersen: space,m,space
         public static readonly byte[] FourMeasureRest = new byte[] { 60, 25, 13 };
         public static readonly byte[] DoubleBar = new byte[] { 35 };
         public static readonly byte Dot = 4;
@@ -428,7 +430,7 @@ namespace MusicXmlReaderUI
                 case ClefEnum.C: Logger.Log(string.Format("{0}.{1} Clef={2} is not supported in Mussic Braille", className,functionName, "C")); break;
                 default: Logger.LogOnce(string.Format("{0}.{1} Unknowh clef={2}", className,functionName, clefElement.Clef.ToString())); break;
             }
-            braille.AddRange(new List<byte>(bytes));          
+            braille.AddRange(bytes);          
         }
 
 
@@ -455,7 +457,7 @@ namespace MusicXmlReaderUI
                 case -7: bytes = new byte[] { Number, cipher7, KeyFlat }; break;
                 default: Logger.LogOnce(string.Format("{0}.{1}: Illegal number of fifths={2}", className,functionName, keyElement.Fifths)); break;
             }
-            braille.AddRange(new List<byte>(bytes));
+            braille.AddRange(bytes);
         }
 
 
@@ -466,9 +468,11 @@ namespace MusicXmlReaderUI
         /// <param name="punctured">A puncture added</param>
         public void AddRest(NoteTypeEnum noteDuration, bool punctured) // ********************* FIX ! Temp signature
         {
+            const string functionName = "AddRest";
             if (NoteTypeEnum.measure == noteDuration)
             {
-                Logger.LogOnce(string.Format("{0}.{1}: Unhandled noteduration: {2}", className, "AddRest", noteDuration));
+                braille.AddRange(FullMeasureRest);
+                Logger.LogOnce(string.Format("{0}.{1}: Added FullMeasureRest", className, functionName));
             }
             else
             {
