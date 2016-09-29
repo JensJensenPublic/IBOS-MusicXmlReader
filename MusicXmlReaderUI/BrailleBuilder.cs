@@ -440,7 +440,12 @@ namespace MusicXmlReaderUI
             {
                 case ClefEnum.G: bytes = clefG; break;
                 case ClefEnum.F: bytes = clefF; break;
-                case ClefEnum.C: Logger.Log(string.Format("{0}.{1} Clef={2} is not supported in Music Braille", className,functionName, "C")); break;
+                case ClefEnum.C:
+                case ClefEnum.percussion:
+                case ClefEnum.TAB :
+                case ClefEnum.jianpu:
+                case ClefEnum.none:
+                    Logger.LogOnce(string.Format("{0}.{1} Clef={2} is not supported in Music Braille", className, functionName, clefElement.ToString())); break;
                 default: Logger.LogOnce(string.Format("{0}.{1} Unknown clef={2}", className,functionName, clefElement.Clef.ToString())); break;
             }
             braille.AddRange(bytes);          
