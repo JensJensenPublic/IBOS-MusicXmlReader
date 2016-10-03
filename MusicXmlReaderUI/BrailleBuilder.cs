@@ -120,6 +120,10 @@ namespace MusicXmlReaderUI
         public static readonly byte[] clefG = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4       ), (dot1 + dot2 + dot3) };
         public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot6), (dot1 + dot2 + dot3) };
 
+        // Repeat
+        public static readonly byte[] repeatEnd   = new byte[] { dot6, dot3, (dot1 + dot2 + dot6), (dot2 + dot3 + dot5 + dot6) };
+        public static readonly byte[] repeatStart = new byte[] { dot6, dot3, (dot1 + dot2 + dot6), (dot2 + dot3) } ;
+
         // Note: Articulation marks must be inserted BEFORE the note
 
 

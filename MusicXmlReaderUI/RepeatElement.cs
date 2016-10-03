@@ -30,6 +30,7 @@ namespace MusicXmlReaderUI
         /// <param name="node"></param>
         private RepeatElement(XmlNode node)
         {
+            Logger.LogOnce(string.Format("RepeatElement constructor"));
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {

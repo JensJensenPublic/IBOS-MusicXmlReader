@@ -469,6 +469,12 @@ namespace MusicXmlReaderUI
                     //Model.Log(string.Format("Model.WriteElement: Unimplemented element 'repeat' Part={0} Measure={1}", currentPartId, currentMeasureNumber));
                      break;
 
+                case "barline":
+                    // TODO Implement !!
+                    allMusicXmlObjecsts.Add(BarlineElement.Create(node));
+                    //Model.Log(string.Format("Model.WriteElement: Unimplemented element 'repeat' Part={0} Measure={1}", currentPartId, currentMeasureNumber));
+                    break;
+
                 // The following elements are ignored for the time being, as they describe graphical properties only!
                 case "offset":
                 case "supports":
@@ -499,8 +505,7 @@ namespace MusicXmlReaderUI
                 case "word-font":
                 case "credit":
                 case "credit-type":
-                case "credit-words":
-                case "barline":
+                case "credit-words":        
                 case "bar-style":
                     break; // Explicitly ignoring graphic information!
                 default:
