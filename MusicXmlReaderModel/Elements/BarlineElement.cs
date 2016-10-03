@@ -28,7 +28,7 @@ namespace MusicXmlReaderUI
         private BarlineElement(XmlNode node)
         {
             const string functionName = "BarlineElement";
-            Logger.LogOnce(string.Format("BarlineElement constructor"));
+            Logger.LogOnce(string.Format("{0} constructor",functionName));
 
             // Dig out elements
             foreach (XmlNode n in node.ChildNodes)

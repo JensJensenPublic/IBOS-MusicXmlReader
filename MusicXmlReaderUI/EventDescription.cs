@@ -421,6 +421,16 @@ namespace MusicXmlReaderUI
                 }
             }
 
+            if (null != repeatElementForward)
+            {
+                bbMetaInfo.AddRepeatForward(repeatElementForward);
+            }
+
+            if (null != repeatElementBackward)
+            {
+                bbMetaInfo.AddRepeatBackward(repeatElementBackward);
+            }
+
 
 
             BrailleBuilder bbNotes = BrailleBuilder.Create();

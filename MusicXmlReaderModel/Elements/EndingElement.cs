@@ -28,6 +28,7 @@ namespace MusicXmlReaderUI
         protected EndingElement(XmlNode node)
         {
             const string functionName = "EndingElement";
+            Logger.LogOnce(string.Format("{0} constructor",functionName));
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
