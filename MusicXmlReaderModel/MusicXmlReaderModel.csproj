@@ -212,6 +212,7 @@
     </Compile>
     <Compile Include="Elements\AccidentalElement.cs" />
     <Compile Include="Elements\BarlineElement.cs" />
+    <Compile Include="Elements\EndingElement.cs" />
     <Compile Include="Elements\InstrumentElement.cs" />
     <Compile Include="Elements\NoteHeadElement.cs" />
     <Compile Include="Elements\TechnicalElement.cs" />

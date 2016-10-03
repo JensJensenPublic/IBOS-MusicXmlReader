@@ -8,7 +8,11 @@ namespace MusicXmlReaderUI
     /// </summary>
     public class BarlineElement : EventElement
     {
- 
+
+        RepeatElement repeatElement;
+        EndingElement endingElement; 
+
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
@@ -32,16 +36,17 @@ namespace MusicXmlReaderUI
                 switch (n.Name)
                 {
                     case "ending":
-                        Logger.LogOnce(string.Format("{0}: Element ={1}", functionName, n.Name)); break;
+                        endingElement = EndingElement.Create(n);
+                        Logger.LogOnce(string.Format("{0}: Child element='{1}'", functionName, n.Name)); break;
                     case "repeat":
-                        Logger.LogOnce(string.Format("{0}: Element ={1}", functionName, n.Name)); break;
-
+                        repeatElement = RepeatElement.Create(n);
+                        Logger.LogOnce(string.Format("{0}: Child element='{1}'", functionName, n.Name)); break;
                     case "bar-style":
                     case "wavy-line":
                     case "segno":
                     case "coda":
                     case "fermata": 
-                        Logger.LogOnce(string.Format("{0}: Explicitly ignoring element. Name={1} Value={2} ", functionName, n.Name, n.InnerText));
+                        //Logger.LogOnce(string.Format("{0}: Explicitly ignoring child element. Name={1} Value={2} ", functionName, n.Name, n.InnerText));
                         return; // Ignore graphical information that can not be represented in Music Braille anyway       
 
                     default: Logger.LogOnce(string.Format("{0}: Unknown element ={1} ", functionName, n.Name)); break;
