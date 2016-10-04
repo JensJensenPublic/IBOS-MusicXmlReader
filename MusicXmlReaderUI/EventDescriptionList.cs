@@ -48,7 +48,7 @@ namespace MusicXmlReaderUI
                     currentEventDescription = EventDescription.Create(currentStartTime, numberOfParts, this.userSettings);       
                     events.Add(currentEventDescription);
                 }
-                currentEventDescription.AddNote(eventElement);
+                currentEventDescription.AddNode(eventElement);
             }
 
         }

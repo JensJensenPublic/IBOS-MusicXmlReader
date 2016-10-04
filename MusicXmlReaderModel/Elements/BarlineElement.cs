@@ -23,6 +23,22 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public RepeatElement RepeatElement
+        {
+            get
+            {
+                return repeatElement;
+            }
+        }
+
+        public EndingElement EndingElement
+        {
+            get
+            {
+                return endingElement;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -58,7 +74,7 @@ namespace MusicXmlReaderUI
                     case "coda":
                     case "fermata": 
                         //Logger.LogOnce(string.Format("{0}: Explicitly ignoring child element. Name={1} Value={2} ", functionName, n.Name, n.InnerText));
-                        return; // Ignore graphical information that can not be represented in Music Braille anyway       
+                        break; // Ignore graphical information that can not be represented in Music Braille anyway       
 
                     default: Logger.LogOnce(string.Format("{0}: Unknown element ={1} ", functionName, n.Name)); break;
                 }

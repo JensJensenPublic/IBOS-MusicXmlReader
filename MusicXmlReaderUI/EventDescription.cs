@@ -38,8 +38,9 @@ namespace MusicXmlReaderUI
         private List<KeyElement>   keyElements;       // The KeyElements related to this event, if any
         private List<ClefElement>  clefElements;     // The ClefElements related to this event, if any
         private List<TimeElement> timeElements;     // The TimeElements related to this event, if any
+        private List<BarlineElement> barlineElements;  // The BarlineElements related to this event, if any. In some rare cases more than one!!
 
-         public int StartTime
+        public int StartTime
         {
             get
             {
@@ -110,8 +111,13 @@ namespace MusicXmlReaderUI
             return new EventDescription(time, numberOfParts, userSettings);
         }
 
-        public void AddNote(EventElement eventElement)
+        /// <summary>
+        /// Adds an XML node, which may or may not be a musical note (a NoteElement)
+        /// </summary>
+        /// <param name="eventElement"></param>
+        public void AddNode(EventElement eventElement)
         {
+            string functionName = "EventDescription.AddNode";
             //            notes[noteElement.PartNumber] = noteElement;
             if (eventElement is NoteElement)
             {
@@ -181,9 +187,25 @@ namespace MusicXmlReaderUI
                     case RepeatElement.RepeatDirectionEnum.Backward: this.repeatElementBackward = repeatElement; break;
                     default: break;
                 }
-
+                Logger.LogOnce(string.Format("{0}: Added RepeatElement Direction={1})", functionName,repeatElement.RepeatDirection.ToString()));
             }
 
+            else if (eventElement is BarlineElement)
+            {
+                // We must add the BarlineElements because they may contain repeatElements and EndingElements and a location attribute
+                if (null == barlineElements)
+                {
+                    barlineElements = new List<BarlineElement>();
+                }
+                BarlineElement barlineElement = eventElement as BarlineElement;
+                barlineElements.Add(barlineElement);
+                // For debugging:
+                {
+                    string ending = (null == barlineElement.EndingElement) ? "null" : barlineElement.EndingElement.EndingElementType.ToString();
+                    string repeat = (null == barlineElement.RepeatElement) ? "null" : barlineElement.RepeatElement.RepeatDirection.ToString();
+                    Logger.LogOnce(string.Format("{0}: Added BarlineElement({1},Ending={2},Repeat={3})", functionName, barlineElement.Location.ToString(),ending,repeat));
+                }
+            }
         }
 
         /// <summary>

@@ -470,8 +470,8 @@ namespace MusicXmlReaderUI
                      break;
 
                 case "barline":
-                    // TODO Implement !!
                     allMusicXmlObjecsts.Add(BarlineElement.Create(node));
+                    continueRecursion = false;
                     //Model.Log(string.Format("Model.WriteElement: Unimplemented element 'repeat' Part={0} Measure={1}", currentPartId, currentMeasureNumber));
                     break;
 
