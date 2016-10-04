@@ -10,6 +10,7 @@ namespace MusicXmlReaderUI
     {
         public enum RepeatDirectionEnum { Undefinded, Forward, Backward };
         RepeatDirectionEnum repeatDirection;
+        int timesToRepeat;
 
         public RepeatDirectionEnum RepeatDirection
         {
@@ -33,6 +34,7 @@ namespace MusicXmlReaderUI
         /// <param name="node"></param>
         private RepeatElement(XmlNode node)
         {
+            string functionName = "RepeatElement";
             Logger.LogOnce(string.Format("RepeatElement constructor"));
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
@@ -47,7 +49,8 @@ namespace MusicXmlReaderUI
                             default: Logger.Log(string.Format("RepeatElement: Unexpected attributevalue {0} found",a.Value)); break;
                         }
                         break;
-
+                    case "times": Utilities.Parse(a.Value, ref timesToRepeat, 0, int.MaxValue, string.Format("{0}.Number", functionName),true); break;
+                    case "winged": break; // Pure graphical information    
                     default: Logger.Log(string.Format("RepeatElement: Unexpected attribute {0} found", a.Name)); break;
                 }
             }
