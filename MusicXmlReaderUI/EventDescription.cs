@@ -351,6 +351,9 @@ namespace MusicXmlReaderUI
 
             //string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
 
+            // TO DO: Brug barlineElements i steet for repeatElementForward og repeatElementForward. BarlineElements har en left/right attribute
+            // og indeholder selv et RepeatElement!
+
             if (null != repeatElementBackward)
             {
                 bbMetaInfo.AddRepeatBackward(repeatElementBackward);
@@ -505,6 +508,10 @@ namespace MusicXmlReaderUI
         public string ToNormalTextString()
         {
             string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
+
+
+            // TO DO: Brug barlineElements i steet for repeatElementForward og repeatElementForward. BarlineElements har en left/right attribute
+            // og indeholder selv et RepeatElement!
 
             string repeatBackward = (null == repeatElementBackward) ? "" : repeatElementBackward.ToString()+ " ";
             string repeatForward  = (null == repeatElementForward) ? "" : repeatElementForward.ToString() + " ";
