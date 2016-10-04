@@ -9,7 +9,9 @@ namespace MusicXmlReaderUI
     /// </summary>
     public class BarlineElement : EventElement
     {
-        BarlineLocationEnum location = BarlineLocationEnum.unknown;
+        // If location is left, it should be the first element in the measure, aside from the print, bookmark, and link elements.
+        // If location is right, it should be the last element, again with the possible exception of the print, bookmark, and link elements. 
+        BarlineLocationEnum location = BarlineLocationEnum.right; // Explicitly mentioned in .htm above !
         RepeatElement repeatElement;
         EndingElement endingElement;
 
