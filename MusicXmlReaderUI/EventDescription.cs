@@ -316,8 +316,9 @@ namespace MusicXmlReaderUI
         }
 
         /// <summary>
-        /// Generates the Braille representation, where ToString generates the text representation 
-        /// Same structure as ToString
+        /// Generates the Braille representation, where ToNormalTextString() generates the text representation 
+        /// Same structure as ToNormalTextString()
+        /// Depending on settings ToString  will generate a mix of the results of ToBraille and ToNormalTextString()
         /// </summary>
         /// <returns></returns>
         public List<byte> ToBraille()
@@ -328,8 +329,16 @@ namespace MusicXmlReaderUI
 
             //string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
 
-            //string repeatForward = (null == repeatElementForward) ? "" : repeatElementForward.ToString() + " ";
-            //string repeatBackward = (null == repeatElementBackward) ? "" : repeatElementBackward.ToString() + " ";
+            if (null != repeatElementBackward)
+            {
+                bbMetaInfo.AddRepeatBackward(repeatElementBackward);
+            }
+
+
+            if (null != repeatElementForward)
+            {
+                bbMetaInfo.AddRepeatForward(repeatElementForward);
+            }
 
 
             //string measure = "";
@@ -421,16 +430,6 @@ namespace MusicXmlReaderUI
                 }
             }
 
-            if (null != repeatElementForward)
-            {
-                bbMetaInfo.AddRepeatForward(repeatElementForward);
-            }
-
-            if (null != repeatElementBackward)
-            {
-                bbMetaInfo.AddRepeatBackward(repeatElementBackward);
-            }
-
 
 
             BrailleBuilder bbNotes = BrailleBuilder.Create();
@@ -478,18 +477,20 @@ namespace MusicXmlReaderUI
             return string.Format("{0} {1}", mb, nt);
         }
 
+        /// Generates a normal text representation.
+        /// Same structure as ToBraille()
+        /// Depending on settings ToString  will generate a mix of the results of ToBraille and ToNormalTextString()
         public string ToNormalTextString()
         {
             string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
 
-            string repeatForward  = (null == repeatElementForward)  ? "" : repeatElementForward.ToString() + " ";
             string repeatBackward = (null == repeatElementBackward) ? "" : repeatElementBackward.ToString()+ " ";
-
+            string repeatForward  = (null == repeatElementForward) ? "" : repeatElementForward.ToString() + " ";
 
             string measure = "";
             if (userSettings.GetReaderSettings(UserSettings.ReaderSettings.MeasureNumbers))
             {
-                measure = (null != measureElement) ? string.Format("Takt {0,3} ", measureElement.Number) : "         "; // Up to 1000 measures
+                measure = ((null != measureElement) && (!measureElement.ImplicitMeasure ))? string.Format("Takt {0,3} ", measureElement.Number) : "         "; // Up to 1000 measures
             }
             
             string harmonyCode = "";
@@ -586,7 +587,7 @@ namespace MusicXmlReaderUI
             }
 
             // Finnally compose the result by concatenating all the substrings in the sequence wanted
-            return measure + repeatForward + divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString + keyString + clefString + timeString + repeatBackward;
+            return measure + repeatBackward + repeatForward + divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString + keyString + clefString + timeString ;
         }
     }
 }

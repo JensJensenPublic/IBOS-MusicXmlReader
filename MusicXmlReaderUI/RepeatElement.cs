@@ -3,6 +3,9 @@
 namespace MusicXmlReaderUI
 {
 
+    /// <summary>
+    /// http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-repeat.htm
+    /// </summary>
     public class RepeatElement : EventElement
     {
         public enum RepeatDirectionEnum { Undefinded, Forward, Backward };
@@ -59,7 +62,7 @@ namespace MusicXmlReaderUI
         {
             switch (repeatDirection)
             {
-                case RepeatDirectionEnum.Forward: return "start";
+                case RepeatDirectionEnum.Forward:  return "start";
                 case RepeatDirectionEnum.Backward: return "slut";
                 default: return "???";
             }
