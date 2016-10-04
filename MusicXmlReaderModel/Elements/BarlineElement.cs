@@ -2,15 +2,24 @@
 
 namespace MusicXmlReaderUI
 {
+    public enum BarlineLocationEnum {unknown, right, left, middle};
 
     /// <summary>
     /// http://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-barline.htm
     /// </summary>
     public class BarlineElement : EventElement
     {
-
+        BarlineLocationEnum location = BarlineLocationEnum.unknown;
         RepeatElement repeatElement;
-        EndingElement endingElement; 
+        EndingElement endingElement;
+
+        public BarlineLocationEnum Location
+        {
+            get
+            {
+                return location;
+            }
+        }
 
 
         /// <summary>
@@ -59,15 +68,19 @@ namespace MusicXmlReaderUI
             {
                 switch (a.Name)
                 {
-                    case "":
+                    case "location":
                         switch (a.Value)
                         {
- 
-                            default: Logger.Log(string.Format("BarlineeElement: Unexpected attributevalue {0} found", a.Value)); break;
+                            case "right": location = BarlineLocationEnum.right; break;
+                            case "left": location = BarlineLocationEnum.left; break;
+                            case "middle": location = BarlineLocationEnum.middle; break;
+                            default: Logger.LogOnce(string.Format("{0}: Attribute Name='{1}' Unexpected attribute Value='{2}'", functionName,a.Name, a.Value)); break;
                         }
                         break;
-
-                    default: Logger.Log(string.Format("BarlineElement: Unexpected attribute {0} found", a.Name)); break;
+                    case "segno":
+                    case "coda":
+                    case "divisions": break; // These 3 attributes may later be used
+                    default: Logger.LogOnce(string.Format("{0}: Unexpected attribute '{1}'", functionName,a.Name)); break;
                 }
             }
         }
