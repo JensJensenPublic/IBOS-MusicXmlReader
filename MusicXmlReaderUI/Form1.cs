@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace MusicXmlReaderUI
 {
@@ -27,6 +28,7 @@ namespace MusicXmlReaderUI
             InitializeComponent();
             Logger.Open("MusicXmlReaderUI.log");
             LogSystemInformation();
+            LogGLobalisationInformation();
             Utilities.MessageShower = (this as IMessageShower); //Decide how to show error messages and warnings 
             model = Model.Create((this as IObjectCollection),(this as IWritableString),ApplicationName);
             this.Text = ApplicationName;
@@ -616,6 +618,31 @@ namespace MusicXmlReaderUI
             System.Environment.OSVersion, System.Environment.ProcessorCount, System.Environment.Is64BitOperatingSystem, System.Environment.Is64BitProcess));
         }
 
+
+        public static void LogGLobalisationInformation()
+        {
+            try
+            {
+                string currentCultureName = CultureInfo.CurrentUICulture.Name;
+                Logger.Log(string.Format("CultureInfo.CurrentUICulture.Name={0}", currentCultureName));
+
+#if false
+                // For test: change the culture of the current thread:
+                {
+                    string newCultureName = "fr-FR";
+                    Logger.Log(string.Format("Changing UICulture for UI thread to {0}", newCultureName));
+                    System.Threading.Thread thisThread = System.Threading.Thread.CurrentThread;
+                    thisThread.CurrentUICulture = new CultureInfo(newCultureName);
+                    Logger.Log(string.Format("thisThread.CurrentUICulture={0}", thisThread.CurrentUICulture.Name));
+                }
+#endif
+            }
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("LogGLobalisationInformation threw an exception. Message=}0}", e.Message));
+            }
+
+        }
 
     }
 
