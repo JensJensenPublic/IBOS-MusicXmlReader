@@ -504,7 +504,7 @@ namespace MusicXmlReaderUI
 
         /// Generates a normal text representation.
         /// Same structure as ToBraille()
-        /// Depending on settings ToString  will generate a mix of the results of ToBraille and ToNormalTextString()
+        /// Depending on settings ToString  will generate a mix of the results of ToBraille and ToNormalTextString() // LOCALIZE
         public string ToNormalTextString()
         {
             string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
@@ -559,7 +559,7 @@ namespace MusicXmlReaderUI
                     // For the time being we only handle Tempo here. Later we may handle other velues!
                     if (0 != soundElement.GetTempo())
                     {
-                        soundString = string.Format("Tempo={0}", soundElement.GetTempo());
+                        soundString = string.Format("Tempo={0}", soundElement.GetTempo()); // LOCALIZE
                     }
                 }
             }

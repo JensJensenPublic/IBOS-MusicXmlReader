@@ -32,7 +32,7 @@ namespace MusicXmlReaderUI
         // readHarmonyCodes;     // As found in the MusicXml file
         // readEndEvents;
 
-        // Global Reader Settings settings (for all parts)
+        // Global Reader Settings settings (for all parts) // LOCALIZE
         public enum ReaderSettings                     { MeasureNumbers=0 , Harmonies=1, Notes=2, NoteOctaves=3, NoteTypes=4,  Notations=5, Divisions=6, HarmonyCodes=7, EndEvents=8,NumberOfReaderSettings=9};   
         public readonly string[] readerSettingsNames = {"TaktNumre",       "Harmonier",  "Noder", "Oktaver",   "NodeVærdier","Notationer","Divisions", "HarmoniCodes", "EndEvents" };
         public bool[]            readerSettingsValues= { true,              true,        true,    true,         true,          true,        false,       false,          false      };
@@ -49,7 +49,7 @@ namespace MusicXmlReaderUI
         
         // Global Player Settings (for all parts)
         public enum PlayerSettings { MeasureBeats = 0, Harmonies = 1,NumberOfPlayerSettings=2}
-        public readonly string[] playerSettingsNames = { "TaktSlag", "Harmonier" };
+        public readonly string[] playerSettingsNames = { "TaktSlag", "Harmonier" }; // LOCALIZE
         public bool[] playerSettingsValues = { false, false };
   
         public bool GetPlayerSettings(PlayerSettings i)
@@ -64,7 +64,7 @@ namespace MusicXmlReaderUI
  
         // Global Music Braille Settings settings (for all parts)
         public enum MusicBrailleSettings { MeasureNumbers = 0, Harmonies = 1, Notes = 2,  Notations = 3,  NumberOfReaderSettings = 4 };
-        public readonly string[] musicBrailleSettingsNames = { "TaktNumre", "Harmonier", "Noder",  "Notationer" };
+        public readonly string[] musicBrailleSettingsNames = { "TaktNumre", "Harmonier", "Noder",  "Notationer" };// LOCALIZE
         public bool[] musicBrailleSettingsValues = { false, false, true, false };
 
         public bool GetMusicBrailleSettings(MusicBrailleSettings i)

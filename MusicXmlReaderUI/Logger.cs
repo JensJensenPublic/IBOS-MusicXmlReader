@@ -20,7 +20,7 @@ namespace MusicXmlReaderUI
             if (useConsole) Console.WriteLine(s);
         }
 
-        private static string logFileName = "MusicXmlReader.Log"; // This is a default whuch may be overwritten by the application
+        private static string logFileName = "MusicXmlReader.Log"; // This is a default whuch may be overwritten by the application 
         private static readonly string mySubDirectoryName = "MusicXmlReader";
         private static bool useConsole = false;
         private static string logFileFullName;
