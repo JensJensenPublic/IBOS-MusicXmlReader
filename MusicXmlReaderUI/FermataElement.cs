@@ -5,7 +5,7 @@ namespace MusicXmlReaderUI
     // The tied type represents the notated tie. The tie element represents the tie sound.
     class FermataElement : Element
     {
-        public enum FermataTypeEnum { undefined, upright, inverted};
+        public enum FermataTypeEnum { undefined, upright, inverted}; // LOCALIZE
         private FermataTypeEnum fermataType = FermataTypeEnum.undefined;
         public FermataTypeEnum FermataType
         {
@@ -61,7 +61,7 @@ namespace MusicXmlReaderUI
         }
 
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             switch (fermataType)
             {

@@ -3,7 +3,7 @@
 namespace MusicXmlReaderUI
 {
 
-    public enum ModeEnum {unknown,minor,major};
+    public enum ModeEnum {unknown,minor,major}; // LOCALIZE
 
     public class KeyElement : EventElement
     {
@@ -42,7 +42,7 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="k"></param>
         /// <returns></returns>
-        private string LocalizeKey(int k)
+        private string LocalizeKey(int k) // LOCALIZE
         {
             switch (k)
             {
@@ -65,7 +65,7 @@ namespace MusicXmlReaderUI
             return "";
         }
 
-        private string LocalizeMode(ModeEnum mode)
+        private string LocalizeMode(ModeEnum mode) // LOCALIZE
         {
             switch (mode)
             {
@@ -111,7 +111,7 @@ namespace MusicXmlReaderUI
             return new KeyElement(node);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             return string.Format("Toneart:{0}{1} ", localizedKey, localizedmode);
         }

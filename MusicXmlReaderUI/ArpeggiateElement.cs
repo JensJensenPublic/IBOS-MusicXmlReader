@@ -2,7 +2,7 @@
 
 namespace MusicXmlReaderUI
 {
-    enum ArpeggiateDirectionEnum {undefined, up, down};
+    enum ArpeggiateDirectionEnum {undefined, up, down}; // LOCALIZE
 
     class ArpeggiateElement : Element
     {
@@ -63,7 +63,7 @@ namespace MusicXmlReaderUI
             return new ArpeggiateElement(node);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             switch (arpeggiateDirection)
            {

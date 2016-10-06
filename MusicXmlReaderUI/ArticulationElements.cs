@@ -24,7 +24,7 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public enum Articulation
+        public enum Articulation // LOCALIZE
         {
             accent,
             breathmark,
@@ -83,7 +83,7 @@ namespace MusicXmlReaderUI
             return new ArticulationsElement(node);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             StringBuilder sb = new StringBuilder("Articulations:");
             foreach (Articulation a in articulationList)

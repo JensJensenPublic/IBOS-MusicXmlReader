@@ -18,7 +18,7 @@ namespace MusicXmlReaderUI
         }
 
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             string number = (1 == this.NumberLevel) ? "" : NumberLevel.ToString(); // Ignore the number if it has its default value of 1
             return string.Format("Glidetone {0} {1}", number, Localize(this.StartStopContinueType));

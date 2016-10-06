@@ -2,7 +2,7 @@
 
 namespace MusicXmlReaderUI
 {
-    public enum BarlineLocationEnum {unknown, right, left, middle};
+    public enum BarlineLocationEnum {unknown, right, left, middle}; // LOCALIZE
 
     /// <summary>
     /// http://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-barline.htm
@@ -108,7 +108,7 @@ namespace MusicXmlReaderUI
             return new BarlineElement(node);
         }
         
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
 
             return string.Format("Barline");

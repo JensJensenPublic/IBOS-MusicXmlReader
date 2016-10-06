@@ -10,7 +10,7 @@ namespace MusicXmlReaderUI
     /// Also used to describe nurations of rests
     /// The ndtmeasure is not a part of the MusicXml definition but is used to describe a note with the "pullmeasure"= "yes" attribute
     /// </summary>
-    public enum NoteTypeEnum
+    public enum NoteTypeEnum // LOCALIZE
     {
         unknown,    // We know absolute nothing about the value
         nt1024th,   // Can't start with a number
@@ -368,7 +368,7 @@ namespace MusicXmlReaderUI
         /// <param name="typeString"></param>
         /// <param name="modifier"></param>
         /// <returns></returns>
-        private string LocalizeType(NoteTypeEnum noteDuration, bool modifier)
+        private string LocalizeType(NoteTypeEnum noteDuration, bool modifier) // LOCALIZE
         {
             string modif = (modifier ? punctured : "");
             string value = "";
@@ -397,7 +397,7 @@ namespace MusicXmlReaderUI
         /// <param name="typeString"></param>
         /// <param name="modifier"></param>
         /// <returns></returns>
-        private string LocalizePause(NoteTypeEnum noteDuration, bool modifier)
+        private string LocalizePause(NoteTypeEnum noteDuration, bool modifier) // LOCALIZE
         {
             string modif = (modifier ? punctured : "");
             string value = "";
@@ -419,7 +419,7 @@ namespace MusicXmlReaderUI
             return modif + value;
         }
 
-        private string LocalizeTie(string tieType)
+        private string LocalizeTie(string tieType) // LOCALIZE
         {
             switch (tieType)
             {
@@ -732,7 +732,7 @@ namespace MusicXmlReaderUI
         }
 
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
 
             string measureString = "";

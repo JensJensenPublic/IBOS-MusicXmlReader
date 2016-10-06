@@ -30,9 +30,9 @@ namespace MusicXmlReaderUI
         private ClefElement()
         { }
 
-        private string Localize(ClefEnum clef)
+        private string Localize(ClefEnum clef) // LOCALIZE
         {
-            const string functionName = "Localize";
+            const string functionName = "Localize"; 
             switch (clef)
             {
                 case ClefEnum.C: return "C-Nøgle";
@@ -92,7 +92,7 @@ namespace MusicXmlReaderUI
             return new ClefElement(node);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             return string.Format("{0}", Localize(clef));
         }

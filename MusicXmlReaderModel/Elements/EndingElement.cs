@@ -73,7 +73,7 @@ namespace MusicXmlReaderUI
             }
         }
 
-        protected string Localize(EndingElementTypeEnum endingType)
+        protected string Localize(EndingElementTypeEnum endingType) // LOCALIZE
         {
             const string functionName = "EndingElementType.Localize";
             switch (endingType)

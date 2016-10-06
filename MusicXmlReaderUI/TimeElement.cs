@@ -39,7 +39,7 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="beats"></param>
         /// <returns></returns>
-        private string LocalizeBeatType(int beatType)
+        private string LocalizeBeatType(int beatType) // LOCALIZE
         {
             switch (beatType)
             {
@@ -92,7 +92,7 @@ namespace MusicXmlReaderUI
             return new TimeElement(node);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             return string.Format("Takt:{0}{1}", localizedBeats, localizedBeatType);
         }

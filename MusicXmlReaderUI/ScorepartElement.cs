@@ -68,7 +68,7 @@ namespace MusicXmlReaderUI
             return new ScorePartElement(node);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             return string.Format("Stemme[{0}] {1} = {2} TODO: Fill in the rest!", partNumber, partId, partName);
         }

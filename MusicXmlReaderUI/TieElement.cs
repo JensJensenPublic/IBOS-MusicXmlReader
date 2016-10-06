@@ -49,7 +49,7 @@ namespace MusicXmlReaderUI
         }
 
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             return string.Format("Overbinding {0}",tieType);        
         }

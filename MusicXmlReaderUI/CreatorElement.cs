@@ -15,7 +15,7 @@ namespace MusicXmlReaderUI
         { }
 
 
-        private string LocalizeCreatorType(string s)
+        private string LocalizeCreatorType(string s) // LOCALIZE
         {
             switch (s)
             {
@@ -54,7 +54,7 @@ namespace MusicXmlReaderUI
             return new CreatorElement(node);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             return string.Format("{0}: {1}",typeValue,value );
         }

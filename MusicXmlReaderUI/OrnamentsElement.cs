@@ -7,7 +7,7 @@ namespace MusicXmlReaderUI
 
     class OrnamentsElement : Element
     {
-        public enum OrnamentsTypeEnum
+        public enum OrnamentsTypeEnum // LOCALIZE
         {
             undefined,
             delayedInvertedTurn,
@@ -77,7 +77,7 @@ namespace MusicXmlReaderUI
         }
 
 
-        private string ToLocalizedString(OrnamentsTypeEnum ornament)
+        private string ToLocalizedString(OrnamentsTypeEnum ornament) // LOCALIZE
         {
             const string function = "OrnamentsElement.ToLocalizedString";
             string result = null;

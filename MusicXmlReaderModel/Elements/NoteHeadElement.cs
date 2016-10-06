@@ -53,7 +53,7 @@ namespace MusicXmlReaderUI
         }
 
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             return string.Format("{0} {1}",
                                 filled? "filled" : "", // 0

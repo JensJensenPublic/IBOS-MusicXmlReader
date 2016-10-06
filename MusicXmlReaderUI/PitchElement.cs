@@ -7,12 +7,12 @@ namespace MusicXmlReaderUI
     {
         // The basic enumeration for the 8 note values representing the white keys on the piano and used by MusicXml
         // Also includes a special value for Rest. This seems to fit the physical world: Rest.Frequency=0 !
-        public enum FullStepEnum { Unknown = 0, C, D, E, F, G, A, B, Rest };
+        public enum FullStepEnum { Unknown = 0, C, D, E, F, G, A, B, Rest }; // LOCALIZE
 
         // These tables handle altered notes within the range of -2 to +2
         // Note that the octave may be changed in some rare cases!
 
-        public static string[,] names =
+        public static string[,] names =                                     // LOCALIZE
         { { "Bb" ,"C"  ,"D"  ,"Es" ,"F"  ,"G"  ,"A"  }, // Alter = -2
           { "B"  ,"Des","Es" ,"E"  ,"Ges","As" ,"Bb" }, // Alter = -1
           { "C"  ,"D"  ,"E"  ,"F"  ,"G"  ,"A"  ,"B"  }, // Alter =  0

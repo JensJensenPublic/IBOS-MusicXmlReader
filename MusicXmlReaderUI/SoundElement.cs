@@ -37,7 +37,7 @@ namespace MusicXmlReaderUI
             return new SoundElement(node);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             return string.Format("Tempo {0}", tempo);
         }

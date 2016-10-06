@@ -37,7 +37,7 @@ namespace MusicXmlReaderUI
             return new SimpleTextElement(node,text);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             return string.Format("{0}: {1}", name, text);
         }

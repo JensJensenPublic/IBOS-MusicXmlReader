@@ -106,12 +106,12 @@ namespace MusicXmlReaderUI
             return new PartlistElement(node);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             return string.Format("Partituret indeholder {0} stemmer:" ,scorePartElements.Count);
         }
 
-        public string[] ToStrings()
+        public string[] ToStrings() // LOCALIZE
         {
             List<string> list = new List<string>();
             //foreach (ScorePartElement spe in scorePartElements)

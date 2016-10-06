@@ -8,7 +8,7 @@ namespace MusicXmlReaderUI
     /// </summary>
     abstract class StartStopContinueElement : Element
     {
-        public enum StartStopContinueTypeEnum { Undefinded, Start, Stop, Continue };
+        public enum StartStopContinueTypeEnum { Undefinded, Start, Stop, Continue }; // LOCALIZE
         StartStopContinueTypeEnum startStopContinueType;
         int numberLevel = 1; // MusicXml default value
 
@@ -64,7 +64,7 @@ namespace MusicXmlReaderUI
             }
         }
 
-        protected string Localize(StartStopContinueTypeEnum slurType)
+        protected string Localize(StartStopContinueTypeEnum slurType) // LOCALIZE
         {
             switch (slurType)
             {

@@ -188,7 +188,7 @@ namespace MusicXmlReaderUI
             return new NotationsElement(node);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             string s = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}",
             (null == slurElement) ? "" : slurElement.ToString() + " ", // 0

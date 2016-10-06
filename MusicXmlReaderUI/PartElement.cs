@@ -46,7 +46,7 @@ namespace MusicXmlReaderUI
             return new PartElement(node);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             return string.Format("Stemme {0}", partId);
         }

@@ -59,7 +59,7 @@ namespace MusicXmlReaderUI
             return new NotationElement(node);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             return string.Format("Notation.tiedType {0}", tiedType);
         }

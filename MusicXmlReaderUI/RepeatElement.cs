@@ -8,7 +8,7 @@ namespace MusicXmlReaderUI
     /// </summary>
     public class RepeatElement : EventElement
     {
-        public enum RepeatDirectionEnum { Undefinded, Forward, Backward };
+        public enum RepeatDirectionEnum { Undefinded, Forward, Backward }; // LOCALIZE
         RepeatDirectionEnum repeatDirection;
         int timesToRepeat;
 
@@ -61,7 +61,7 @@ namespace MusicXmlReaderUI
             return new RepeatElement(node);
         }
 
-        private string LocalizeDirection(RepeatDirectionEnum direction)
+        private string LocalizeDirection(RepeatDirectionEnum direction) // LOCALIZE
         {
             switch (repeatDirection)
             {
@@ -72,7 +72,7 @@ namespace MusicXmlReaderUI
        }
 
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
 
             return string.Format("Gentagelse {0}", LocalizeDirection(repeatDirection));

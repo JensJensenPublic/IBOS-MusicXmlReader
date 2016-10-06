@@ -36,7 +36,7 @@ namespace MusicXmlReaderUI
             return new ScorePartwiseElement(node);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             return string.Format("Score-partwise. Version={0}", version);
         }

@@ -3,7 +3,7 @@
 namespace MusicXmlReaderUI
 {
 
-    enum AccidentalMarkEnum { undefined, flat, natural,sharp };
+    enum AccidentalMarkEnum { undefined, flat, natural,sharp }; // LOCALIZE
 
     /// <summary>
     /// Don't know what this is used for. The real accidentals are placed directly as children of the NoteElements, 
@@ -46,7 +46,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString()
         {
-            return string.Format("{0}",accidentalMark.ToString());
+            return string.Format("{0}",accidentalMark.ToString()); // LOCALIZE
         }
     }
 }

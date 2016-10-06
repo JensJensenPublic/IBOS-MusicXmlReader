@@ -115,7 +115,7 @@ namespace MusicXmlReaderUI
             return new HarmonyElement(node);
         }
 
-        public override string ToString()
+        public override string ToString() // LOCALIZE
         {
             return string.Format("{0}: Akkord: {1} {2} {3}",
                 startTime,
