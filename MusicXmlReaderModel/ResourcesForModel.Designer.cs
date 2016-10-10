@@ -61,6 +61,42 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to flat.
+        /// </summary>
+        internal static string AccidentalMarkElement_flat {
+            get {
+                return ResourceManager.GetString("AccidentalMarkElement_flat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to natural.
+        /// </summary>
+        internal static string AccidentalMarkElement_natural {
+            get {
+                return ResourceManager.GetString("AccidentalMarkElement_natural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sharp.
+        /// </summary>
+        internal static string AccidentalMarkElement_sharp {
+            get {
+                return ResourceManager.GetString("AccidentalMarkElement_sharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accidentalmark.
+        /// </summary>
+        internal static string AccidentalMarkElement_text {
+            get {
+                return ResourceManager.GetString("AccidentalMarkElement_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tempo.
         /// </summary>
         internal static string EventDescription_tempo {

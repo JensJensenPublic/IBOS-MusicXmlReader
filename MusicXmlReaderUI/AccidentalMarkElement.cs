@@ -1,9 +1,12 @@
 ﻿using System.Xml;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
 
-    enum AccidentalMarkEnum { undefined, flat, natural,sharp }; // LOCALIZE
+    // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-accidental-mark.htm
+
+    enum AccidentalMarkEnum { undefined, flat, natural,sharp };
 
     /// <summary>
     /// Don't know what this is used for. The real accidentals are placed directly as children of the NoteElements, 
@@ -26,7 +29,7 @@ namespace MusicXmlReaderUI
             foreach (XmlNode child in node.ChildNodes)
             {
                 string value = child.Value;
-                Logger.Log(string.Format("AccidentalMarkElement: Value={0}", value));
+                Logger.LogOnce(string.Format("AccidentalMarkElement: Value={0}", value));
                 switch (value)
                 {
                     case "flat": accidentalMark = AccidentalMarkEnum.flat; break;
@@ -43,10 +46,25 @@ namespace MusicXmlReaderUI
             return new AccidentalMarkElement(node);
         }
 
+        private string LocalizeAccicdentalMark(AccidentalMarkEnum accidentalMarkEnum)
+        {
+            string functionName = "LocalizeAccicdentalMark";
+            switch (accidentalMarkEnum)
+            {
 
+                case AccidentalMarkEnum.flat: return ResourcesForModel.AccidentalMarkElement_flat;
+                case AccidentalMarkEnum.sharp: return ResourcesForModel.AccidentalMarkElement_sharp;
+                case AccidentalMarkEnum.natural: return ResourcesForModel.AccidentalMarkElement_natural;
+                default:
+                    Logger.LogOnce(string.Format("{0}: AccidentalMark has illegal value={1}", functionName, accidentalMark.ToString())); break;                 
+            }
+            return "";
+        }
+    
         public override string ToString()
         {
-            return string.Format("{0}",accidentalMark.ToString()); // LOCALIZE
+            // Explicitly do not use {0}
+            return string.Format("{1}",ResourcesForModel.AccidentalMarkElement_text,LocalizeAccicdentalMark(accidentalMark)); 
         }
     }
 }

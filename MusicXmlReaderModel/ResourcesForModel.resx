@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccidentalMarkElement_flat" xml:space="preserve">
+    <value>flat</value>
+  </data>
+  <data name="AccidentalMarkElement_natural" xml:space="preserve">
+    <value>natural</value>
+  </data>
+  <data name="AccidentalMarkElement_sharp" xml:space="preserve">
+    <value>sharp</value>
+  </data>
+  <data name="AccidentalMarkElement_text" xml:space="preserve">
+    <value>Accidentalmark</value>
+  </data>
   <data name="EventDescription_tempo" xml:space="preserve">
     <value>Tempo</value>
   </data>
