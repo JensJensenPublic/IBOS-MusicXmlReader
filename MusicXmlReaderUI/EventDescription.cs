@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Globalization;
+using MusicXmlReaderModel;
 using JSJ.MusicSynthesis;
 using System.Threading.Tasks;
 using System.Collections;
@@ -519,7 +521,7 @@ namespace MusicXmlReaderUI
             string measure = "";
             if (userSettings.GetReaderSettings(UserSettings.ReaderSettings.MeasureNumbers))
             {
-                measure = ((null != measureElement) && (!measureElement.ImplicitMeasure ))? string.Format("Takt {0,3} ", measureElement.Number) : "         "; // Up to 1000 measures
+                measure = ((null != measureElement) && (!measureElement.ImplicitMeasure ))? string.Format("{0} {1,3} ",ResourcesForModel.NoteElement_measure_text, measureElement.Number) : "         "; // Up to 1000 measures
             }
             
             string harmonyCode = "";

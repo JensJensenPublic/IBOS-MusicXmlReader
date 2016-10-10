@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Xml;
+using System.Globalization;
+using MusicXmlReaderModel;
 using JSJ.MusicSynthesis;
+
 
 namespace MusicXmlReaderUI
 {
@@ -40,7 +43,7 @@ namespace MusicXmlReaderUI
         // 2,3,4,5,6,7,8,9,10. 
         // 1260 can be divided by 2,3,4,5,6,7,8,9 and 10 !
         public const int commonDivisions = 1260;
-        string punctured = "punkteret ";
+        string punctured = ResourcesForModel.NoteElement_dotted + " "; // "punkteret ";
 
 
         // Values found in MusicXml file, possibly after a minor type conversion, typically from string to int.
@@ -374,14 +377,14 @@ namespace MusicXmlReaderUI
             string value = "";
             switch (noteDuration)
             {
-                case NoteTypeEnum.whole:     value = "helnode"; break;
-                case NoteTypeEnum.half:      value = "halvnode"; ; break;
-                case NoteTypeEnum.quarter:   value = "fjerdedel"; break;
-                case NoteTypeEnum.eight:     value = "ottendedel"; break;
-                case NoteTypeEnum.nt16th:    value = "sekstendedel"; break;
-                case NoteTypeEnum.nt32nd:    value = "toogtredivtedel"; break;
-                case NoteTypeEnum.nt64th:    value = "fireogtredsindstyvendedel"; break;
-                case NoteTypeEnum.measure:   value = "heltakt"; break;
+                case NoteTypeEnum.whole:     value = ResourcesForModel.NoteElement_whole; break;    // "helnode"; break;
+                case NoteTypeEnum.half:      value = ResourcesForModel.NoteElement_half; break;     //"halvnode"; ; break;
+                case NoteTypeEnum.quarter:   value = ResourcesForModel.NoteElement_quarter; break;  // "fjerdedel"; break;
+                case NoteTypeEnum.eight:     value = ResourcesForModel.NoteElement_eight; break;    // "ottendedel"; break;
+                case NoteTypeEnum.nt16th:    value = ResourcesForModel.NoteElement_16th;break;      // "sekstendedel"; break;
+                case NoteTypeEnum.nt32nd:    value = ResourcesForModel.NoteElement_32nd; break;     //"toogtredivtedel"; break;
+                case NoteTypeEnum.nt64th:    value = ResourcesForModel.NoteElement_64th; break;     //"fireogtredsindstyvendedel"; break;
+                case NoteTypeEnum.measure:   value = ResourcesForModel.NoteElement_measure;break;   //  "heltakt"; break;
                 case NoteTypeEnum.unknown: value = "ukendt"; break;
                 default:                    
                     Logger.LogOnce(string.Format("LocalizeType ({0},{1}) Unknown duration '{2}' in Measure={3} Voice={4} PartId={5} PartNumber={6}",
@@ -403,15 +406,15 @@ namespace MusicXmlReaderUI
             string value = "";
             switch (noteDuration)
             {
-                case NoteTypeEnum.whole: value = "helnodepause"; break;
-                case NoteTypeEnum.half: value = "halvnodepause"; ; break;
-                case NoteTypeEnum.quarter: value = "fjerdedelspause"; break;
-                case NoteTypeEnum.eight: value = "ottendedelspause"; break;
-                case NoteTypeEnum.nt16th: value = "sekstendedelspause"; break;
-                case NoteTypeEnum.nt32nd: value = "toogtredivtedel"; break;
-                case NoteTypeEnum.nt64th: value = "fireogtredsindstyvendedelspause"; break;
-                case NoteTypeEnum.measure: value = "heltaktspause"; break;
-                case NoteTypeEnum.unknown: value = "ukendt"; break;
+                case NoteTypeEnum.whole: value =    ResourcesForModel.NoteElement_whole_rest; break;    // "helnodepause"; break;
+                case NoteTypeEnum.half: value =     ResourcesForModel.NoteElement_half_rest; break;     // "halvnodepause"; ; break;
+                case NoteTypeEnum.quarter: value =  ResourcesForModel.NoteElement_quarter_rest; break;  // "fjerdedelspause"; break;
+                case NoteTypeEnum.eight: value =    ResourcesForModel.NoteElement_eight_rest; break;    // "ottendedelspause"; break;
+                case NoteTypeEnum.nt16th: value =   ResourcesForModel.NoteElement_16th_rest; break;     // "sekstendedelspause"; break;
+                case NoteTypeEnum.nt32nd: value =   ResourcesForModel.NoteElement_32nd_rest; break;     // "toogtredivtedel"; break;
+                case NoteTypeEnum.nt64th: value =   ResourcesForModel.NoteElement_64th_rest; break;     // "fireogtredsindstyvendedelspause"; break;
+                case NoteTypeEnum.measure: value =  ResourcesForModel.NoteElement_measure_rest; break;  // "heltaktspause"; break;
+                case NoteTypeEnum.unknown: value =  ResourcesForModel.NoteElement_unknown_rest; break;  // "ukendt"; break;
                 default:
                     Logger.LogOnce(string.Format("LocalizePause({0},{1}) Unknown duration '{2}' in Measure={3} Voice={4}",
                         duration.ToString(), modifier, duration.ToString(), measureNumber, voice)); break;
@@ -423,8 +426,8 @@ namespace MusicXmlReaderUI
         {
             switch (tieType)
             {
-                case "start": return "bue start";
-                case "stop" : return "bue slut";
+                case "start": return ResourcesForModel.NoteElement_tie_start; // "bue start";
+                case "stop" : return ResourcesForModel.NoteElement_tie_stop;  // "bue slut";
                 case ""     :  return "";
                 default: Logger.Log(string.Format("LocalizeTie({0}) Unknown tieType '{1}'", tieType, tieType)); return "";     
             }
@@ -738,7 +741,7 @@ namespace MusicXmlReaderUI
             string measureString = "";
             if (0 != measureNumber)
             {
-                measureString = string.Format("Takt {0}", measureNumber);
+                measureString = string.Format("{0} {1}",ResourcesForModel.NoteElement_measure_text, measureNumber);
             }
 
             string notationsString = (null != notations) ? notations.ToString() : ""; 

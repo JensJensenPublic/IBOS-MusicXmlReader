@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Globalization;
 using System.Threading.Tasks;
 
 
@@ -136,6 +137,12 @@ namespace MusicXmlReaderUI
         static void Main(string[] args)
         {
             Logger.Open("MusicXmlReaderCmd.log");
+#if false
+            // Used for testing localisation
+            System.Threading.Thread thisThread;
+            thisThread = System.Threading.Thread.CurrentThread;
+            thisThread.CurrentUICulture = new CultureInfo("en-US"); // Use this culture instead of the default culture for this machine.
+#endif
             model = Model.Create();
             Console.WriteLine(string.Format("Model.Create {0}", (model != null) ? "succeeded" : "failed"));
             if (null == model) return;

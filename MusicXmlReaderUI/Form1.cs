@@ -28,6 +28,14 @@ namespace MusicXmlReaderUI
             InitializeComponent();
             Logger.Open("MusicXmlReaderUI.log");
             LogSystemInformation();
+
+#if true
+            // Used for testing localisation
+            System.Threading.Thread thisThread;
+            thisThread = System.Threading.Thread.CurrentThread;
+            thisThread.CurrentUICulture = new CultureInfo("en-US"); 
+#endif
+
             LogGLobalisationInformation();
             Utilities.MessageShower = (this as IMessageShower); //Decide how to show error messages and warnings 
             model = Model.Create((this as IObjectCollection),(this as IWritableString),ApplicationName);

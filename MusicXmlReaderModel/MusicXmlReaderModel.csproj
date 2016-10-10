@@ -220,6 +220,11 @@
     <Compile Include="LoggerCounters.cs" />
     <Compile Include="MusicBrailleState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourcesForModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourcesForModel.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MusicSynthesis\MusicSynthesis.csproj">
@@ -230,6 +235,13 @@
       <Project>{6444ecf6-7a11-4b21-a31c-ef8e05b0cd32}</Project>
       <Name>ScreenReaderAPI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ResourcesForModel.da-DK.resx" />
+    <EmbeddedResource Include="ResourcesForModel.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesForModel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
