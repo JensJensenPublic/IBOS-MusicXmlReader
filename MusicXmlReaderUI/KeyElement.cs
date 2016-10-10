@@ -4,7 +4,7 @@ using MusicXmlReaderModel;
 namespace MusicXmlReaderUI
 {
 
-    public enum ModeEnum {unknown,minor,major}; // LOCALIZE
+    public enum ModeEnum {unknown,minor,major};
 
     public class KeyElement : EventElement
     {
@@ -43,7 +43,7 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="k"></param>
         /// <returns></returns>
-        private string LocalizeKey(int k) // LOCALIZE
+        private string LocalizeKey(int k) 
         {
             switch (k)
             {
@@ -66,7 +66,7 @@ namespace MusicXmlReaderUI
             return "";
         }
 
-        private string LocalizeMode(ModeEnum mode) // LOCALIZE
+        private string LocalizeMode(ModeEnum mode) 
         {
             string functionName = "LocalizeMode";
             switch (mode)
