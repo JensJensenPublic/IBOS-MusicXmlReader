@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EventDescription_tempo" xml:space="preserve">
+    <value>Tempo</value>
+  </data>
+  <data name="KeyElement_key" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="KeyElement_major" xml:space="preserve">
+    <value>major</value>
+  </data>
+  <data name="KeyElement_minor" xml:space="preserve">
+    <value>minor</value>
+  </data>
   <data name="NoteElement_128th" xml:space="preserve">
     <value>128th</value>
   </data>
@@ -260,5 +272,26 @@
   </data>
   <data name="PitctElement_g" xml:space="preserve">
     <value>G</value>
+  </data>
+  <data name="TimeElement_eights" xml:space="preserve">
+    <value>eights</value>
+  </data>
+  <data name="TimeElement_halves" xml:space="preserve">
+    <value>halves</value>
+  </data>
+  <data name="TimeElement_pulse" xml:space="preserve">
+    <value>Pulse</value>
+  </data>
+  <data name="TimeElement_quarters" xml:space="preserve">
+    <value>quarters</value>
+  </data>
+  <data name="TimeElement_sixteenths" xml:space="preserve">
+    <value>sixteenths</value>
+  </data>
+  <data name="TimeElement_thirtyseconds" xml:space="preserve">
+    <value>thirtyseconds</value>
+  </data>
+  <data name="TimeElement_wholes" xml:space="preserve">
+    <value>wholes</value>
   </data>
 </root>

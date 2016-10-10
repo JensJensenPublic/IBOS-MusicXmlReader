@@ -61,6 +61,42 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tempo.
+        /// </summary>
+        internal static string EventDescription_tempo {
+            get {
+                return ResourceManager.GetString("EventDescription_tempo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key.
+        /// </summary>
+        internal static string KeyElement_key {
+            get {
+                return ResourceManager.GetString("KeyElement_key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to major.
+        /// </summary>
+        internal static string KeyElement_major {
+            get {
+                return ResourceManager.GetString("KeyElement_major", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to minor.
+        /// </summary>
+        internal static string KeyElement_minor {
+            get {
+                return ResourceManager.GetString("KeyElement_minor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 128th.
         /// </summary>
         internal static string NoteElement_128th {
@@ -489,6 +525,69 @@ namespace MusicXmlReaderModel {
         internal static string PitctElement_g {
             get {
                 return ResourceManager.GetString("PitctElement_g", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eights.
+        /// </summary>
+        internal static string TimeElement_eights {
+            get {
+                return ResourceManager.GetString("TimeElement_eights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to halves.
+        /// </summary>
+        internal static string TimeElement_halves {
+            get {
+                return ResourceManager.GetString("TimeElement_halves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pulse.
+        /// </summary>
+        internal static string TimeElement_pulse {
+            get {
+                return ResourceManager.GetString("TimeElement_pulse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to quarters.
+        /// </summary>
+        internal static string TimeElement_quarters {
+            get {
+                return ResourceManager.GetString("TimeElement_quarters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sixteenths.
+        /// </summary>
+        internal static string TimeElement_sixteenths {
+            get {
+                return ResourceManager.GetString("TimeElement_sixteenths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to thirtyseconds.
+        /// </summary>
+        internal static string TimeElement_thirtyseconds {
+            get {
+                return ResourceManager.GetString("TimeElement_thirtyseconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to wholes.
+        /// </summary>
+        internal static string TimeElement_wholes {
+            get {
+                return ResourceManager.GetString("TimeElement_wholes", resourceCulture);
             }
         }
     }

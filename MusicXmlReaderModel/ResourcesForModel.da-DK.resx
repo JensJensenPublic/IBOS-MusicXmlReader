@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EventDescription_tempo" xml:space="preserve">
+    <value>Tempo</value>
+  </data>
+  <data name="KeyElement_key" xml:space="preserve">
+    <value>Toneart</value>
+  </data>
+  <data name="KeyElement_major" xml:space="preserve">
+    <value>dur</value>
+  </data>
+  <data name="KeyElement_minor" xml:space="preserve">
+    <value>mol</value>
+  </data>
   <data name="NoteElement_128th" xml:space="preserve">
     <value>hundredeogotteogtyvendedel</value>
   </data>
@@ -257,5 +269,26 @@
   </data>
   <data name="PitctElement_g" xml:space="preserve">
     <value>G</value>
+  </data>
+  <data name="TimeElement_eights" xml:space="preserve">
+    <value>ottendedele</value>
+  </data>
+  <data name="TimeElement_halves" xml:space="preserve">
+    <value>halve</value>
+  </data>
+  <data name="TimeElement_pulse" xml:space="preserve">
+    <value>Taktart</value>
+  </data>
+  <data name="TimeElement_quarters" xml:space="preserve">
+    <value>fjerdedele</value>
+  </data>
+  <data name="TimeElement_sixteenths" xml:space="preserve">
+    <value>sekstendedele</value>
+  </data>
+  <data name="TimeElement_thirtyseconds" xml:space="preserve">
+    <value>toogtredivtedele</value>
+  </data>
+  <data name="TimeElement_wholes" xml:space="preserve">
+    <value>hele</value>
   </data>
 </root>

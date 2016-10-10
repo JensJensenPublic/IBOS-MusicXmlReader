@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
@@ -39,16 +40,19 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="beats"></param>
         /// <returns></returns>
-        private string LocalizeBeatType(int beatType) // LOCALIZE
+        private string LocalizeBeatType(int beatType)
         {
+            string functionName = "LocalizeBeatType";
             switch (beatType)
             {
-                case 1: return "hele";
-                case 2: return "halve";
-                case 4: return "fjerdedele";
-                case 8: return "ottendele";
-                case 16: return "sekstendedele";
-                case 32: return "toogtredivtedele";
+                case  1: return ResourcesForModel.TimeElement_wholes; // "hele";
+                case  2: return ResourcesForModel.TimeElement_halves; // "halve";
+                case  4: return ResourcesForModel.TimeElement_quarters; // "fjerdedele";
+                case  8: return ResourcesForModel.TimeElement_eights; // "ottendele";
+                case 16: return ResourcesForModel.TimeElement_sixteenths; // "sekstendedele";
+                case 32: return ResourcesForModel.TimeElement_thirtyseconds; // "toogtredivtedele";
+                default:
+                    Logger.Log(string.Format("{0}: Illegal value for beatTyoe={1}", functionName, beatType.ToString())); break;
             }
             return "";
         }
@@ -92,9 +96,9 @@ namespace MusicXmlReaderUI
             return new TimeElement(node);
         }
 
-        public override string ToString() // LOCALIZE
+        public override string ToString()
         {
-            return string.Format("Takt:{0}{1}", localizedBeats, localizedBeatType);
+            return string.Format("{0}:{1}-{2}",  ResourcesForModel.TimeElement_pulse,  localizedBeats, localizedBeatType);
         }
     }
 }

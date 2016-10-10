@@ -561,7 +561,7 @@ namespace MusicXmlReaderUI
                     // For the time being we only handle Tempo here. Later we may handle other velues!
                     if (0 != soundElement.GetTempo())
                     {
-                        soundString = string.Format("Tempo={0}", soundElement.GetTempo()); // LOCALIZE
+                        soundString = string.Format("{0}:{1} ", ResourcesForModel.EventDescription_tempo, soundElement.GetTempo()); // LOCALIZE
                     }
                 }
             }

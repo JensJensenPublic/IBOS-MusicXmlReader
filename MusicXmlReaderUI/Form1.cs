@@ -29,7 +29,7 @@ namespace MusicXmlReaderUI
             Logger.Open("MusicXmlReaderUI.log");
             LogSystemInformation();
 
-#if true
+#if false
             // Used for testing localisation
             System.Threading.Thread thisThread;
             thisThread = System.Threading.Thread.CurrentThread;

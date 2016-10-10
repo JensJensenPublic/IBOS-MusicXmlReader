@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
@@ -46,31 +47,34 @@ namespace MusicXmlReaderUI
         {
             switch (k)
             {
-                case 0 : return "C";
-                case 1 : return "G";
-                case 2 : return "D";
-                case 3 : return "A";
-                case 4 : return "E";
-                case 5 : return "H";
-                case 6 : return "Fis";
-                case 7 : return "Cis";
-                case -1: return "F";
-                case -2: return "Bb";
-                case -3: return "Es";
-                case -4: return "As";
-                case -5: return "Des";
-                case -6: return "Ges";
-                case -7: return "H";
+                case 0 : return ResourcesForModel.PitchElement_c; // "C";
+                case 1 : return ResourcesForModel.PitchElement_g; // "G";
+                case 2 : return ResourcesForModel.PitchElement_d; // "D";
+                case 3 : return ResourcesForModel.PitchElement_a; // "A";
+                case 4 : return ResourcesForModel.PitchElement_e; // "E";
+                case 5 : return ResourcesForModel.PitchElement_b; // "H";
+                case 6 : return ResourcesForModel.PitchElement_fSharp; // "Fis";
+                case 7 : return ResourcesForModel.PitchElement_cSharp; // "Cis";
+                case -1: return ResourcesForModel.PitchElement_f; // "F";
+                case -2: return ResourcesForModel.PitchElement_Bb; // "Bb";
+                case -3: return ResourcesForModel.PitchElement_eFlat; // "Es";
+                case -4: return ResourcesForModel.PitchElement_aFlat; // "As";
+                case -5: return ResourcesForModel.PitchElement_dFlat; // "Des";
+                case -6: return ResourcesForModel.PitchElement_gFlat; // "Ges";
+                case -7: return ResourcesForModel.PitchElement_b; //"H";
             }
             return "";
         }
 
         private string LocalizeMode(ModeEnum mode) // LOCALIZE
         {
+            string functionName = "LocalizeMode";
             switch (mode)
             {
-                case ModeEnum.major: return "dur";
-                case ModeEnum.minor: return "mol";
+                case ModeEnum.major: return ResourcesForModel.KeyElement_major; // "dur";
+                case ModeEnum.minor: return ResourcesForModel.KeyElement_minor; // "mol";
+                default:
+                    Logger.Log(string.Format("{0}: Illegal value for mode={1}", functionName,mode.ToString() )); break;
             }
             return "";
         }        
@@ -113,7 +117,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString() // LOCALIZE
         {
-            return string.Format("Toneart:{0}{1} ", localizedKey, localizedmode);
+            return string.Format("{0}:{1}-{2} ",ResourcesForModel.KeyElement_key, localizedKey, localizedmode);
         }
     } 
 }
