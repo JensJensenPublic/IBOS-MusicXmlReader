@@ -190,7 +190,7 @@ namespace MusicXmlReaderUI
 
         public override string ToString() // LOCALIZE
         {
-            string s = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}",
+            string s = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}{8}",
             (null == slurElement) ? "" : slurElement.ToString() + " ", // 0
             (null == tiedElement) ? "" : tiedElement.ToString() + " ", // 1
             (null == glissandoElement) ? "" : glissandoElement.ToString() + " ", // 2
@@ -198,7 +198,8 @@ namespace MusicXmlReaderUI
             (null == tupletElement) ? "" : tupletElement.ToString() + " ",       // 4
             (null == arpeggiateElement) ? "" : arpeggiateElement.ToString() + " ",// 5
             (null == fermataElement) ? "" : fermataElement.ToString() + " ", //6
-            (null == ornamentsElement) ? "" : ornamentsElement.ToString() + " "); //7
+            (null == ornamentsElement) ? "" : ornamentsElement.ToString() + " ", //7
+            (null == accidentalMarkElement) ? "" : accidentalMarkElement.ToString() + " "); //8
 
             // ...
             // Add other elements as they are implemented!

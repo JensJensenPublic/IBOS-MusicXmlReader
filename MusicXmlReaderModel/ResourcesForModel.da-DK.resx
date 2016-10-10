@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccidentalMarkElement_flat" xml:space="preserve">
-    <value>b</value>
+    <value>løst b</value>
   </data>
   <data name="AccidentalMarkElement_natural" xml:space="preserve">
-    <value>ophævelse</value>
+    <value>ophævelsestegn</value>
   </data>
   <data name="AccidentalMarkElement_sharp" xml:space="preserve">
-    <value>kryds</value>
+    <value>løst kryds</value>
   </data>
   <data name="AccidentalMarkElement_text" xml:space="preserve">
     <value>Løst fortegn</value>
@@ -145,7 +145,7 @@
     <value>hundredeogotteogtyvendedel</value>
   </data>
   <data name="NoteElement_16th" xml:space="preserve">
-    <value>sekstendedels</value>
+    <value>sekstendedel</value>
   </data>
   <data name="NoteElement_16th_rest" xml:space="preserve">
     <value>sekstendedelspause</value>
