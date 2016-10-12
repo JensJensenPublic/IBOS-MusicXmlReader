@@ -18,12 +18,16 @@ namespace MusicXmlReader
         string ApplicationName = "IBOS Nodelæser";  // Application name. Fits into a Freedom Scientific Focus 14 Braille dirplay!
         Model model;        // The Model contails all of the business logic.        
         bool autoReload;    // Used to optimize performance when changing large parts of the UI within short time
+        UserSettingsHandler userSettingsHandler;
 
         public MainForm()
         {
             InitializeComponent();
             Logger.Open("MusicXmlReaderUI.log");
             LogSystemInformation();
+            // Create a handler for the user settinge, in this case modelled as a treeview.
+            userSettingsHandler = UserSettingsHandler.Create(this.userSettingsTreeView);
+            userSettingsHandler.Init(); // Buyilds up the fixed part of the treeview
 
 #if false
             // Used for testing localisation

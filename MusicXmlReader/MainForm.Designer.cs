@@ -33,7 +33,7 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeView = new System.Windows.Forms.TreeView();
+            this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.listBoxTimes = new System.Windows.Forms.ListBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.buttonStop = new System.Windows.Forms.Button();
@@ -86,12 +86,13 @@
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
-            // treeView
+            // userSettingsTreeView
             // 
-            this.treeView.Location = new System.Drawing.Point(10, 60);
-            this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(200, 420);
-            this.treeView.TabIndex = 1;
+            this.userSettingsTreeView.CheckBoxes = true;
+            this.userSettingsTreeView.Location = new System.Drawing.Point(10, 60);
+            this.userSettingsTreeView.Name = "userSettingsTreeView";
+            this.userSettingsTreeView.Size = new System.Drawing.Size(200, 420);
+            this.userSettingsTreeView.TabIndex = 1;
             // 
             // listBoxTimes
             // 
@@ -170,7 +171,7 @@
             this.Controls.Add(this.buttonStop);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.listBoxTimes);
-            this.Controls.Add(this.treeView);
+            this.Controls.Add(this.userSettingsTreeView);
             this.Controls.Add(this.MenuStrip);
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "MainForm";
@@ -186,7 +187,7 @@
 
         private System.Windows.Forms.MenuStrip MenuStrip;
         private System.Windows.Forms.ToolStripMenuItem filesToolStripMenuItem;
-        private System.Windows.Forms.TreeView treeView;
+        private System.Windows.Forms.TreeView userSettingsTreeView;
         private System.Windows.Forms.ListBox listBoxTimes;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Button buttonStop;
