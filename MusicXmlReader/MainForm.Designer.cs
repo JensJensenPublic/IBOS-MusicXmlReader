@@ -34,11 +34,15 @@
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView = new System.Windows.Forms.TreeView();
-            this.listBox = new System.Windows.Forms.ListBox();
+            this.listBoxTimes = new System.Windows.Forms.ListBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.buttonStop = new System.Windows.Forms.Button();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
             this.textBoxText = new System.Windows.Forms.TextBox();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openMusicXmlFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +52,8 @@
             this.filesToolStripMenuItem,
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
-            this.toolsToolStripMenuItem});
+            this.toolsToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
             this.MenuStrip.Size = new System.Drawing.Size(1219, 24);
@@ -57,27 +62,29 @@
             // 
             // filesToolStripMenuItem
             // 
+            this.filesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openMusicXmlFileToolStripMenuItem});
             this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
             this.filesToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
-            this.filesToolStripMenuItem.Text = "Files";
+            this.filesToolStripMenuItem.Text = "&Files";
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Text = "&Edit";
             // 
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
+            this.viewToolStripMenuItem.Text = "&View";
             // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.toolsToolStripMenuItem.Text = "Tools";
+            this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // treeView
             // 
@@ -86,13 +93,13 @@
             this.treeView.Size = new System.Drawing.Size(200, 420);
             this.treeView.TabIndex = 1;
             // 
-            // listBox
+            // listBoxTimes
             // 
-            this.listBox.FormattingEnabled = true;
-            this.listBox.Location = new System.Drawing.Point(220, 60);
-            this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(993, 420);
-            this.listBox.TabIndex = 2;
+            this.listBoxTimes.FormattingEnabled = true;
+            this.listBoxTimes.Location = new System.Drawing.Point(220, 60);
+            this.listBoxTimes.Name = "listBoxTimes";
+            this.listBoxTimes.Size = new System.Drawing.Size(993, 420);
+            this.listBoxTimes.TabIndex = 2;
             // 
             // buttonStart
             // 
@@ -128,16 +135,41 @@
             this.textBoxText.Size = new System.Drawing.Size(1200, 20);
             this.textBoxText.TabIndex = 6;
             // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "&Help";
+            // 
+            // openMusicXmlFileToolStripMenuItem
+            // 
+            this.openMusicXmlFileToolStripMenuItem.Name = "openMusicXmlFileToolStripMenuItem";
+            this.openMusicXmlFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openMusicXmlFileToolStripMenuItem.Text = "&Open MusicXml File";
+            this.openMusicXmlFileToolStripMenuItem.Click += new System.EventHandler(this.openMusicXmlFileToolStripMenuItem_Click);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
+            // textBoxMessage
+            // 
+            this.textBoxMessage.Location = new System.Drawing.Point(220, 28);
+            this.textBoxMessage.Name = "textBoxMessage";
+            this.textBoxMessage.Size = new System.Drawing.Size(993, 20);
+            this.textBoxMessage.TabIndex = 7;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1219, 595);
+            this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.textBoxText);
             this.Controls.Add(this.textBoxBraille);
             this.Controls.Add(this.buttonStop);
             this.Controls.Add(this.buttonStart);
-            this.Controls.Add(this.listBox);
+            this.Controls.Add(this.listBoxTimes);
             this.Controls.Add(this.treeView);
             this.Controls.Add(this.MenuStrip);
             this.MainMenuStrip = this.MenuStrip;
@@ -155,7 +187,7 @@
         private System.Windows.Forms.MenuStrip MenuStrip;
         private System.Windows.Forms.ToolStripMenuItem filesToolStripMenuItem;
         private System.Windows.Forms.TreeView treeView;
-        private System.Windows.Forms.ListBox listBox;
+        private System.Windows.Forms.ListBox listBoxTimes;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.TextBox textBoxBraille;
@@ -163,6 +195,10 @@
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.TextBox textBoxText;
+        private System.Windows.Forms.ToolStripMenuItem openMusicXmlFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.TextBox textBoxMessage;
     }
 }
 
