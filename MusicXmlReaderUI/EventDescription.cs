@@ -347,7 +347,7 @@ namespace MusicXmlReaderUI
         /// <returns></returns>
         public List<byte> ToBraille()
         {
-            const string functionName = "EventDescription.ToBraille";
+            // const string functionName = "EventDescription.ToBraille";
             BrailleBuilder bbMetaInfo = BrailleBuilder.Create(); // For information not contained in notes
 
 

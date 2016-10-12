@@ -524,7 +524,7 @@ namespace MusicXmlReaderUI
         /// <param name="punctured">A puncture added</param>
         public void AddRest(NoteTypeEnum noteDuration, bool punctured) // ********************* FIX ! Temp signature
         {
-            const string functionName = "AddRest";
+            // const string functionName = "AddRest";
             if (NoteTypeEnum.measure == noteDuration)
             {
                 braille.AddRange(FullMeasureRest);
