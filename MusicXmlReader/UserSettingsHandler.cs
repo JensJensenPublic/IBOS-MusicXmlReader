@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MusicXmlReaderUI;
 
 namespace MusicXmlReader
 {
@@ -68,6 +69,27 @@ namespace MusicXmlReader
             musicAsBrailleVoices = musicAsBraille.Nodes.Add("Voices");
             musicAsBrailleDetails = musicAsBraille.Nodes.Add("Details");  
 
+        }
+
+
+        private void LoadParts(TreeNode treeNode,PartlistElement partList)
+        {
+            treeNode.Nodes.Clear();
+            for (int i = 0; (i < partList.NumberOfParts()); i++)
+            {
+                ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
+                TreeNode node = treeNode.Nodes.Add(string.Format("{0} {1}", scorePartElement.partId, scorePartElement.partName));
+                //checkedListBox.SetItemChecked(i, true);
+            }
+            //checkedLi.CheckOnClick = true;      
+
+        }
+
+        public void LoadParts(PartlistElement partList)
+        {
+            LoadParts(musicAsSoundVoices, partList);
+            LoadParts(musicAsSpeechVoices, partList);
+            LoadParts(musicAsBrailleVoices, partList);
         }
 
     }

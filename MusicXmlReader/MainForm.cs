@@ -180,17 +180,17 @@ namespace MusicXmlReader
             // The initial values of the user settings are determined by the model.
             // These settings must be reflected in the UI:
 
-// Load the Checked Listboxes controlling the user settings per part
-#if false
-            LoadListBoxOfParts(checkedListBoxPartsToPlay);
-            LoadListBoxOfParts(checkedListBoxPartsToRead);
-            LoadListBoxOfParts(checkedListBoxPartsToReadLyrics);
-            LoadListBoxOfParts(checkedListBoxParts); // The over all checked listbox
 
-            // Load the Checked Listboxes controlling the global user settings
-            LoadPlayerSettings(checkedListBoxPlayerSettings);
-            LoadReaderSettings(checkedListBoxReaderSettings);
-            LoadMusicBrailleSettings(checkedListBoxMusicBrailleSettings);
+#if true
+            // Load the Checkboxes controlling the user settings per part
+            userSettingsHandler.LoadParts(model.partList);
+
+
+
+            //            // Load the Checked Listboxes controlling the global user settings
+            //            LoadPlayerSettings(checkedListBoxPlayerSettings);
+            //            LoadReaderSettings(checkedListBoxReaderSettings);
+            //            LoadMusicBrailleSettings(checkedListBoxMusicBrailleSettings);
 #endif
 
             // Let the Model do the hard work of transforming to e timed representation.
