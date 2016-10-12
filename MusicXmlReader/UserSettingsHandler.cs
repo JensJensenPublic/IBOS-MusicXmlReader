@@ -26,29 +26,67 @@ namespace MusicXmlReader
         private TreeNode musicAsBrailleDetails;
 
 
+        private UserSettings userSettings;
+        private PartlistElement partList;
+        private Model model;
+
+
         // Prevent construction
         private UserSettingsHandler()
         {
         }
 
 
-        private UserSettingsHandler(TreeView treeView)
+        private UserSettingsHandler(TreeView treeView,Model model)
         {
             this.treeView = treeView;
             this.treeView.AfterCheck += TreeView_AfterCheck;
+            this.model = model;       
         }
 
+
+        /// <summary>
+        /// This method is called whenever the value of a checkbox is changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TreeView_AfterCheck(object sender, TreeViewEventArgs e)
         {
             int level = e.Node.Level;
             string name = e.Node.Name;
             string text = e.Node.Text;
-            // Find out what to do !
+            int i = e.Node.Index;
+            if ((level == 2) && (null != userSettings))
+            {
+                switch (e.Node.Parent.Index)
+                {
+                    case 0:  // Voices
+                        switch (e.Node.Parent.Parent.Index)
+                        {
+                            case 0: userSettings.partsToPlay[i] = e.Node.Checked; break;
+                            case 1: userSettings.partsToRead[i] = e.Node.Checked; break;
+                            case 2: userSettings.partsToBraille[i] = e.Node.Checked; break;
+                            default: break;       
+                        }
+                        break;
+                    case 1: // Details
+                        switch (e.Node.Parent.Parent.Index) 
+                        {
+                            case 0: userSettings.playerSettingsValues[i] = e.Node.Checked; break;
+                            case 1: userSettings.readerSettingsValues[i] = e.Node.Checked; break;
+                            case 2: userSettings.musicBrailleSettingsValues[i] = e.Node.Checked; break;
+                            default: break;
+                        } break;
+                    default: return;
+                }
+            }
+            // Transfer the settings to the MusicPlayer
+            model.musicPlayer.UserSettings = userSettings;         
         }
 
-        public static UserSettingsHandler Create(TreeView treeView)
+        public static UserSettingsHandler Create(TreeView treeView,Model model)
         {
-            return new UserSettingsHandler(treeView);
+            return new UserSettingsHandler(treeView,model);
         }
 
         public void clearAll()
@@ -65,7 +103,8 @@ namespace MusicXmlReader
             // Build up the fixed part of the tree, which does not depend on the actual MusicXmlfile
             //
 
-            musicAsSound  = treeView.Nodes.Add("Music sound");
+     
+            musicAsSound  = treeView.Nodes.Add("Music sound");          
             musicAsSoundVoices = musicAsSound.Nodes.Add("Voices");
             musicAsSoundDetails = musicAsSound.Nodes.Add("Details");
 
@@ -101,6 +140,7 @@ namespace MusicXmlReader
         /// <param name="partList"></param>
         public void LoadParts(PartlistElement partList)
         {
+            this.
             LoadParts(musicAsSoundVoices, partList);
             LoadParts(musicAsSpeechVoices, partList);
             LoadParts(musicAsBrailleVoices, partList);
@@ -125,6 +165,7 @@ namespace MusicXmlReader
         /// <param name="userSettings"></param>
         public void LoadDetails(UserSettings userSettings)
         {
+            this.userSettings = userSettings;
             LoadDetails(musicAsSoundDetails, userSettings.playerSettingsNames, userSettings.playerSettingsValues);
             LoadDetails(musicAsSpeechDetails,userSettings.readerSettingsNames, userSettings.readerSettingsValues);
             LoadDetails(musicAsBrailleDetails, userSettings.musicBrailleSettingsNames, userSettings.musicBrailleSettingsValues);

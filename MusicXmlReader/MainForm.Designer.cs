@@ -30,17 +30,17 @@
         {
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.filesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openMusicXmlFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.listBoxTimes = new System.Windows.Forms.ListBox();
             this.buttonStart = new System.Windows.Forms.Button();
             this.buttonStop = new System.Windows.Forms.Button();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
             this.textBoxText = new System.Windows.Forms.TextBox();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openMusicXmlFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.MenuStrip.SuspendLayout();
@@ -68,6 +68,13 @@
             this.filesToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.filesToolStripMenuItem.Text = "&Files";
             // 
+            // openMusicXmlFileToolStripMenuItem
+            // 
+            this.openMusicXmlFileToolStripMenuItem.Name = "openMusicXmlFileToolStripMenuItem";
+            this.openMusicXmlFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openMusicXmlFileToolStripMenuItem.Text = "&Open MusicXml File";
+            this.openMusicXmlFileToolStripMenuItem.Click += new System.EventHandler(this.openMusicXmlFileToolStripMenuItem_Click);
+            // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
@@ -86,6 +93,12 @@
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "&Help";
+            // 
             // userSettingsTreeView
             // 
             this.userSettingsTreeView.CheckBoxes = true;
@@ -101,6 +114,7 @@
             this.listBoxTimes.Name = "listBoxTimes";
             this.listBoxTimes.Size = new System.Drawing.Size(993, 420);
             this.listBoxTimes.TabIndex = 2;
+            this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
             // 
             // buttonStart
             // 
@@ -135,19 +149,6 @@
             this.textBoxText.Name = "textBoxText";
             this.textBoxText.Size = new System.Drawing.Size(1200, 20);
             this.textBoxText.TabIndex = 6;
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "&Help";
-            // 
-            // openMusicXmlFileToolStripMenuItem
-            // 
-            this.openMusicXmlFileToolStripMenuItem.Name = "openMusicXmlFileToolStripMenuItem";
-            this.openMusicXmlFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openMusicXmlFileToolStripMenuItem.Text = "&Open MusicXml File";
-            this.openMusicXmlFileToolStripMenuItem.Click += new System.EventHandler(this.openMusicXmlFileToolStripMenuItem_Click);
             // 
             // openFileDialog
             // 

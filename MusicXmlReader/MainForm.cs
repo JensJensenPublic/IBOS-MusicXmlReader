@@ -25,9 +25,6 @@ namespace MusicXmlReader
             InitializeComponent();
             Logger.Open("MusicXmlReaderUI.log");
             LogSystemInformation();
-            // Create a handler for the user settinge, in this case modelled as a treeview.
-            userSettingsHandler = UserSettingsHandler.Create(this.userSettingsTreeView);
-            userSettingsHandler.Init(); // Buyilds up the fixed part of the treeview
 
 #if false
             // Used for testing localisation
@@ -40,6 +37,11 @@ namespace MusicXmlReader
             Utilities.MessageShower = (this as IMessageShower); //Decide how to show error messages and warnings 
             model = Model.Create((this as IObjectCollection), (this as IWritableString), ApplicationName);
             this.Text = ApplicationName;
+
+            // Create a handler for the user settinge, in this case modelled as a treeview.
+            userSettingsHandler = UserSettingsHandler.Create(this.userSettingsTreeView,model);
+            userSettingsHandler.Init(); // Buyilds up the fixed part of the treeview
+
         }
 
 
@@ -183,6 +185,8 @@ namespace MusicXmlReader
             userSettingsHandler.LoadParts(model.partList);
             // Load the Checkboxes controlled by a fixed number of settings statically defined in the Model.
             userSettingsHandler.LoadDetails(model.UserSettings);
+            // Finally expand the tree
+            this.userSettingsTreeView.ExpandAll();
 
             // Let the Model do the hard work of transforming to e timed representation.
             LoadListBoxTimes();
@@ -214,11 +218,8 @@ namespace MusicXmlReader
                 listBoxTimes.Items.Add(eventDescription);
             }
         }
-        
+
         #endregion
-
-
-
 
 
         private void openMusicXmlFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -226,5 +227,49 @@ namespace MusicXmlReader
             // Show a standard Select File dialog to allow the user to select and open a MusicXml file
             SelectAndOpenMusicXmlFile(sender, e);
         }
+
+
+
+        #region ListBoxTimes
+
+        //private void listBoxTimes_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    int index = listBoxTimes.SelectedIndex;
+        //    // Model.Trace(string.Format("ListBoxTimes_SelectedIndexChanged(i={0})", index));
+        //    object o = listBoxTimes.Items[index];
+        //    model.musicPlayer.SelectedIndexChanged(index, o);
+        //    model.brailleDisplayer.SelectedIndexChanged(index, o);
+        //}
+
+        private void ListBoxTimes_GotFocus(object sender, EventArgs e)
+        {
+            int index = listBoxTimes.SelectedIndex;
+            Logger.Trace(string.Format("ListBoxTimes_GotFocus(i={0})", index));
+            // Even if we got focus we can not be sure that an item is selected!
+            if (-1 != index)
+            {
+                // If an index is selected do as if Selected Index changed
+                object o = listBoxTimes.Items[index];
+                model.musicPlayer.SelectedIndexChanged(index, o);
+                model.brailleDisplayer.SelectedIndexChanged(index, o);
+            }
+        }
+
+        private void ListBoxTimes_LostFocus(object sender, EventArgs e)
+        {
+            Logger.Trace("ListBoxTimes_LostFocus");
+            model.StopRefreshingBrailleDevice();
+        }
+        
+        private void listBoxTimes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = listBoxTimes.SelectedIndex;
+            // Model.Trace(string.Format("ListBoxTimes_SelectedIndexChanged(i={0})", index));
+            object o = listBoxTimes.Items[index];
+            model.musicPlayer.SelectedIndexChanged(index, o);
+            model.brailleDisplayer.SelectedIndexChanged(index, o);
+        }
+
+        #endregion
     }
 }

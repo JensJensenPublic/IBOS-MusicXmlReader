@@ -17,7 +17,8 @@ namespace MusicXmlReaderUI
         // Arrays for controlling individual parts
         public bool[] partsToPlay; // Play the note values from these partitions
         public bool[] partsToRead; // Read the note values from these partitions
-        public bool[] partsToReadLyrics; // Read the lyrics from these partitions  
+        public bool[] partsToReadLyrics; // Read the lyrics from these partitions
+        public bool[] partsToBraille; // Generate MusicBraille for these parts  
 
         // For controlling other user properties
         // readMeasureNumbers;
