@@ -184,7 +184,7 @@ namespace MusicXmlReader
 #if true
             // Load the Checkboxes controlling the user settings per part
             userSettingsHandler.LoadParts(model.partList);
-
+            userSettingsHandler.LoadDetails(model.UserSettings);
 
 
             //            // Load the Checked Listboxes controlling the global user settings

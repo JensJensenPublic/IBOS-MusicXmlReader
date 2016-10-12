@@ -35,8 +35,16 @@ namespace MusicXmlReader
         private UserSettingsHandler(TreeView treeView)
         {
             this.treeView = treeView;
+            this.treeView.AfterCheck += TreeView_AfterCheck;
         }
 
+        private void TreeView_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            int level = e.Node.Level;
+            string name = e.Node.Name;
+            string text = e.Node.Text;
+            // Find out what to do !
+        }
 
         public static UserSettingsHandler Create(TreeView treeView)
         {
@@ -85,6 +93,12 @@ namespace MusicXmlReader
 
         }
 
+
+        /// <summary>
+        /// Builds the subtres of the UserSettings tree which depend on the partlist of the currently selected MusicXml file
+        /// Each part is represented by a node in each of the following 3 subtrees
+        /// </summary>
+        /// <param name="partList"></param>
         public void LoadParts(PartlistElement partList)
         {
             LoadParts(musicAsSoundVoices, partList);
@@ -92,5 +106,29 @@ namespace MusicXmlReader
             LoadParts(musicAsBrailleVoices, partList);
         }
 
+
+        private void LoadDetails(TreeNode treeNode, string[] names, bool[] values)
+        {
+            treeNode.Nodes.Clear();
+            for (int i = 0; (i < names.Length); i++)
+            {
+                TreeNode node = treeNode.Nodes.Add(names[i]);
+                node.Checked =  values[i];
+            }
+        }
+
+        /// <summary>
+        /// Loads the subtree of the UserSettings tree which depends on a statically fixed set
+        /// of settings, definde my the Model.
+        /// The set of nodes in the 3 trees will typically differ.
+        /// </summary>
+        /// <param name="userSettings"></param>
+        public void LoadDetails(UserSettings userSettings)
+        {
+            LoadDetails(musicAsSoundDetails, userSettings.playerSettingsNames, userSettings.playerSettingsValues);
+            LoadDetails(musicAsSpeechDetails,userSettings.readerSettingsNames, userSettings.readerSettingsValues);
+            LoadDetails(musicAsBrailleDetails, userSettings.musicBrailleSettingsNames, userSettings.musicBrailleSettingsValues);
+        }
+        
     }
 }
