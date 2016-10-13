@@ -2,6 +2,8 @@
 using System.Globalization;
 using MusicXmlReaderModel;
 
+
+
 namespace MusicXmlReaderUI
 {
     /// <summary>
@@ -35,21 +37,46 @@ namespace MusicXmlReaderUI
         // readHarmonyCodes;     // As found in the MusicXml file
         // readEndEvents;
 
-        // Global Reader Settings settings (for all parts) // LOCALIZE
-        public enum ReaderSettings                     { MeasureNumbers=0 , Harmonies=1, Notes=2, NoteOctaves=3, NoteTypes=4,  Notations=5, Divisions=6, HarmonyCodes=7, EndEvents=8,NumberOfReaderSettings=9};
+
+        // Global Reader Settings settings (for all parts)
+        public enum ReaderSettings
+        {
+            MeasureNumbers =0 ,
+            Harmonies =1,
+            Notes =2,
+            NoteOctaves =3,
+            NoteTypes =4,
+            Notations =5,
+            Divisions =6,
+            HarmonyCodes =7,
+            EndEvents =8,
+            NumberOfReaderSettings =9
+        };
         public readonly string[] readerSettingsNames =
         {
             ResourcesForModel.UserSettings_ReaderNames_MeasureNumbers,  // "TaktNumre",
             ResourcesForModel.UserSettings_ReaderNames_Harmonies,       // "Harmonier",
             ResourcesForModel.UserSettings_ReaderNames_Notes,           // "Noder",
-            ResourcesForModel.UserSettings_ReaderNames_Octaves,        // "Oktaver",
+            ResourcesForModel.UserSettings_ReaderNames_Octaves,         // "Oktaver",
             ResourcesForModel.UserSettings_ReaderNames_NoteValues,      // "NodeVærdier",
             ResourcesForModel.UserSettings_ReaderNames_Notations,       // "Notationer",
             ResourcesForModel.UserSettings_ReaderNames_Divisions,       // "Divisions",
             ResourcesForModel.UserSettings_ReaderNames_HarmonyCodes,    // "HarmoniCodes",
             ResourcesForModel.UserSettings_ReaderNames_EndEvents        // "EndEvents"
         };
-        public bool[]            readerSettingsValues= { true,              true,        true,    true,         true,          true,        false,       false,          false      };
+
+        public bool[]            readerSettingsValues=
+        {
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false
+        };
  
         public bool GetReaderSettings(ReaderSettings i)
         {
