@@ -86,10 +86,16 @@ namespace MusicXmlReader
 
         #region IWritableString
         // Implement IWritableString
-        public void SetString(string s)
+        public void SetTextString(string s)
+        {
+            textBoxText.Text = s;
+        }
+
+        public void SetBrailleString(string s)
         {
             textBoxBraille.Text = s;
         }
+
         #endregion
 
         #region  IObjectCollection
