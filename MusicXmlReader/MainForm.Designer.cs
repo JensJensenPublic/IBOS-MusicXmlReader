@@ -138,6 +138,7 @@
             // 
             this.textBoxBraille.BackColor = System.Drawing.Color.Black;
             this.textBoxBraille.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxBraille.ForeColor = System.Drawing.Color.White;
             this.textBoxBraille.Location = new System.Drawing.Point(10, 500);
             this.textBoxBraille.Name = "textBoxBraille";
             this.textBoxBraille.Size = new System.Drawing.Size(1200, 62);
