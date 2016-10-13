@@ -175,6 +175,35 @@ namespace MusicXmlReader
             LoadDetails(musicAsSpeechDetails,userSettings.readerSettingsNames, model.UserSettings.readerSettingsValues);
             LoadDetails(musicAsBrailleDetails, userSettings.musicBrailleSettingsNames, model.UserSettings.musicBrailleSettingsValues);
         }
-        
+
+        public void CheckSelectedNotes()
+        {
+            // As default check all nodes at level 0 and 1;
+            // The notes at level 2 are checked according to the default values set up by the model.
+
+            musicAsSpeech.Checked = true;
+            musicAsSpeechVoices.Checked = true;
+            musicAsSpeechDetails.Checked = true;
+
+            musicAsSound.Checked = true;
+            musicAsSoundVoices.Checked = true;
+            musicAsSoundDetails.Checked = true;
+
+            musicAsBraille.Checked = true;
+            musicAsBrailleVoices.Checked = true;
+            musicAsBrailleDetails.Checked = true;
+        }
+
+
+        public void ExpandSelectedNodes()
+        {
+            musicAsSound.Collapse(false); // Collapse the node showing the Sound representation and all its children
+            musicAsSpeech.ExpandAll();
+            musicAsBraille.ExpandAll();
+
+            //treeView.ExpandAll();
+        }
+
+
     }
 }

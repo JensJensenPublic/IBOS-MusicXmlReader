@@ -186,7 +186,9 @@ namespace MusicXmlReader
             // Load the Checkboxes controlled by a fixed number of settings statically defined in the Model.
             userSettingsHandler.LoadDetails(model.UserSettings);
             // Finally expand the tree
-            this.userSettingsTreeView.ExpandAll();
+            userSettingsHandler.ExpandSelectedNodes();
+            //this.userSettingsTreeView.ExpandAll();
+            userSettingsHandler.CheckSelectedNotes();
 
             // Let the Model do the hard work of transforming to e timed representation.
             LoadListBoxTimes();
