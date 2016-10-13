@@ -58,6 +58,7 @@
             this.MenuStrip.Name = "MenuStrip";
             this.MenuStrip.Size = new System.Drawing.Size(1219, 24);
             this.MenuStrip.TabIndex = 0;
+            this.MenuStrip.TabStop = true;
             this.MenuStrip.Text = "menuStrip1";
             // 
             // filesToolStripMenuItem
@@ -113,7 +114,7 @@
             this.listBoxTimes.Location = new System.Drawing.Point(220, 60);
             this.listBoxTimes.Name = "listBoxTimes";
             this.listBoxTimes.Size = new System.Drawing.Size(993, 420);
-            this.listBoxTimes.TabIndex = 2;
+            this.listBoxTimes.TabIndex = 3;
             this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
             // 
             // buttonStart
@@ -121,7 +122,7 @@
             this.buttonStart.Location = new System.Drawing.Point(13, 27);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(75, 23);
-            this.buttonStart.TabIndex = 3;
+            this.buttonStart.TabIndex = 2;
             this.buttonStart.Text = "ButtonStart";
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
@@ -144,6 +145,7 @@
             this.textBoxBraille.Name = "textBoxBraille";
             this.textBoxBraille.Size = new System.Drawing.Size(1200, 62);
             this.textBoxBraille.TabIndex = 5;
+            this.textBoxBraille.TabStop = false;
             // 
             // textBoxText
             // 
@@ -151,6 +153,7 @@
             this.textBoxText.Name = "textBoxText";
             this.textBoxText.Size = new System.Drawing.Size(1200, 20);
             this.textBoxText.TabIndex = 6;
+            this.textBoxText.TabStop = false;
             // 
             // openFileDialog
             // 
@@ -162,6 +165,7 @@
             this.textBoxMessage.Name = "textBoxMessage";
             this.textBoxMessage.Size = new System.Drawing.Size(993, 20);
             this.textBoxMessage.TabIndex = 7;
+            this.textBoxMessage.TabStop = false;
             // 
             // MainForm
             // 
