@@ -39,7 +39,7 @@ namespace MusicXmlReader
             this.Text = ApplicationName;
 
             // Create a handler for the user settinge, in this case modelled as a treeview.
-            userSettingsHandler = UserSettingsHandler.Create(this.userSettingsTreeView,model);
+            userSettingsHandler = UserSettingsHandler.Create(this,this.userSettingsTreeView,model);
             userSettingsHandler.Init(); // Buyilds up the fixed part of the treeview
 
         }
@@ -200,6 +200,15 @@ namespace MusicXmlReader
             //listBoxTimes.SelectedIndex = 0;
         }
 
+
+        public void ConditionalLoadListBoxTimes()
+        {
+            if (autoReload)
+            {
+                LoadListBoxTimes();
+            }
+        }
+        
 
         /// <summary>
         /// Load the main listbox with information fetched from the Model

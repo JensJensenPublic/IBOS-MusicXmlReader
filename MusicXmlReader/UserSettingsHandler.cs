@@ -26,6 +26,7 @@ namespace MusicXmlReader
         private TreeNode musicAsBrailleDetails;
 
 
+        private MainForm mainForm;
         private UserSettings userSettings;
         private PartlistElement partList;
         private Model model;
@@ -37,8 +38,9 @@ namespace MusicXmlReader
         }
 
 
-        private UserSettingsHandler(TreeView treeView,Model model)
+        private UserSettingsHandler(MainForm mainForm, TreeView treeView,Model model)
         {
+            this.mainForm = mainForm;
             this.treeView = treeView;
             this.treeView.AfterCheck += TreeView_AfterCheck;
             this.model = model;       
@@ -81,12 +83,14 @@ namespace MusicXmlReader
                 }
             }
             // Transfer the settings to the MusicPlayer
-            model.musicPlayer.UserSettings = userSettings;         
+            model.musicPlayer.UserSettings = userSettings;
+            mainForm.ConditionalLoadListBoxTimes();
+
         }
 
-        public static UserSettingsHandler Create(TreeView treeView,Model model)
+        public static UserSettingsHandler Create(MainForm mainForm,TreeView treeView,Model model)
         {
-            return new UserSettingsHandler(treeView,model);
+            return new UserSettingsHandler(mainForm,treeView,model);
         }
 
         public void clearAll()
