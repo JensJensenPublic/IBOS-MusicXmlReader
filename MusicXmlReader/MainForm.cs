@@ -58,23 +58,26 @@ namespace MusicXmlReader
         }
 
 
+        /// <summary>
+        /// Log information and implement a temporary mechanism for overwriting the locale on the machine
+        /// by placing a simple textfile in the executing directory
+        /// </summary>
         public static void LogGLobalisationInformation()
         {
             try
             {
                 string currentCultureName = CultureInfo.CurrentUICulture.Name;
                 Logger.Log(string.Format("CultureInfo.CurrentUICulture.Name={0}", currentCultureName));
-
-#if false
-                // For test: change the culture of the current thread:
+                string LanguageFileName = (System.IO.Path.Combine(System.Environment.CurrentDirectory, "Language.txt"));
+                if (System.IO.File.Exists(LanguageFileName))
                 {
-                    string newCultureName = "fr-FR";
+                    string newCultureName = System.IO.File.ReadAllText(LanguageFileName);   
                     Logger.Log(string.Format("Changing UICulture for UI thread to {0}", newCultureName));
                     System.Threading.Thread thisThread = System.Threading.Thread.CurrentThread;
                     thisThread.CurrentUICulture = new CultureInfo(newCultureName);
                     Logger.Log(string.Format("thisThread.CurrentUICulture={0}", thisThread.CurrentUICulture.Name));
                 }
-#endif
+
             }
             catch (Exception e)
             {
