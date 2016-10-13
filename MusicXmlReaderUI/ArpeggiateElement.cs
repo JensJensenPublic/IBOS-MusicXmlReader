@@ -1,8 +1,10 @@
 ﻿using System.Xml;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
-    enum ArpeggiateDirectionEnum {undefined, up, down}; // LOCALIZE
+    enum ArpeggiateDirectionEnum {undefined, up, down}; 
 
     class ArpeggiateElement : Element
     {
@@ -63,13 +65,13 @@ namespace MusicXmlReaderUI
             return new ArpeggiateElement(node);
         }
 
-        public override string ToString() // LOCALIZE
+        public override string ToString() 
         {
             switch (arpeggiateDirection)
            {
-                case ArpeggiateDirectionEnum.undefined: return "Brudt"; // "up" is the dominating default
-                case ArpeggiateDirectionEnum.down: return "Brudt nedad";
-                case ArpeggiateDirectionEnum.up: return "Brudt";
+                case ArpeggiateDirectionEnum.undefined: return ResourcesForModel.ArpeggiateElement_upwards; // "Brudt opad"; // "up" is the dominating default
+                case ArpeggiateDirectionEnum.down: return ResourcesForModel.ArpeggiateElement_downwards; //"Brudt nedad";
+                case ArpeggiateDirectionEnum.up: return ResourcesForModel.ArpeggiateElement_upwards; //"Brudt opad";
                 default: return ""; 
             }
         }

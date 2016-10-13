@@ -70,7 +70,7 @@ namespace MusicXmlReaderUI
             true,
             true,
             true,
-            true,
+            true, 
             true,
             true,
             false,

@@ -97,6 +97,24 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Arpeggiate downwards.
+        /// </summary>
+        internal static string ArpeggiateElement_downwards {
+            get {
+                return ResourceManager.GetString("ArpeggiateElement_downwards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arpeggiate upwards.
+        /// </summary>
+        internal static string ArpeggiateElement_upwards {
+            get {
+                return ResourceManager.GetString("ArpeggiateElement_upwards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tempo.
         /// </summary>
         internal static string EventDescription_tempo {

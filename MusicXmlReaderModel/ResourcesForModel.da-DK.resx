@@ -303,6 +303,12 @@
   <data name="TimeElement_wholes" xml:space="preserve">
     <value>hele</value>
   </data>
+  <data name="ArpeggiateElement_downwards" xml:space="preserve">
+    <value>nedadbrudt</value>
+  </data>
+  <data name="ArpeggiateElement_upwards" xml:space="preserve">
+    <value>opadbrudt</value>
+  </data>
   <data name="UserSettings_BrailleNames_Harmonies" xml:space="preserve">
     <value>Akkorder</value>
   </data>

@@ -306,6 +306,12 @@
   <data name="TimeElement_wholes" xml:space="preserve">
     <value>wholes</value>
   </data>
+  <data name="ArpeggiateElement_downwards" xml:space="preserve">
+    <value>Arpeggiate downwards</value>
+  </data>
+  <data name="ArpeggiateElement_upwards" xml:space="preserve">
+    <value>Arpeggiate upwards</value>
+  </data>
   <data name="UserSettings_BrailleNames_Harmonies" xml:space="preserve">
     <value>Harmonies</value>
   </data>
