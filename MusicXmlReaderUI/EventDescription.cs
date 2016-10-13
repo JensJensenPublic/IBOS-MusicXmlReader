@@ -500,7 +500,7 @@ namespace MusicXmlReaderUI
         public string ToMusicBrailleAndTextBrailleString()
         {
             string mb = ToMusicBrailleString();
-            string nt = ToNormalTextString();
+            string nt = ToNormalTextString();            
             return string.Format("{0} {1}", mb, nt);
         }
 

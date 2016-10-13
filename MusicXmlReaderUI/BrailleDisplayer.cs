@@ -16,8 +16,7 @@ namespace MusicXmlReaderUI
     /// </summary>
     public interface IWritableString
     {
-        void SetTextString(string s);
-        void SetBrailleString(string s);
+        void SetString(string s);
     }
 
     /// <summary>
@@ -105,7 +104,7 @@ namespace MusicXmlReaderUI
             {
 
                 EventDescription eventDescription = selectedObject as EventDescription;
-                musicBrailleTextBox.SetBrailleString(eventDescription.ToMusicBrailleString());
+                musicBrailleTextBox.SetString(eventDescription.ToMusicBrailleString());  
                 screenReaderAPI.Silence(); // Prevent overloading the internal queue in NVDA when rapidly changing between different events                  
                 if (ScreenReaderAPI.ScreenReaderType.NVDA == screenReaderAPI.GetScreenReaderType())
                 {
@@ -135,7 +134,7 @@ namespace MusicXmlReaderUI
             // Clear the BrailleDisplay first.     
             screenReaderAPI.Braille(emptyBrailleString,false);
             //screenReaderAPI.StopRefreshing();
-            musicBrailleTextBox.SetBrailleString(emptyBrailleString);
+            musicBrailleTextBox.SetString(emptyBrailleString);
         }
 
     }

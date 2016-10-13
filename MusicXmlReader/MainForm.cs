@@ -83,19 +83,32 @@ namespace MusicXmlReader
 
         }
 
+        /// <summary>
+        /// Assume that a string contains Braille if it is not empty and the first char is a Braille char
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        private bool isBraille(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return false;
+            char c = s[0];
+            return ((0x2800 <= c) && (c <= 0x28ff));
+        }
 
         #region IWritableString
         // Implement IWritableString
-        public void SetTextString(string s)
+        public void SetString(string s)
         {
-            textBoxText.Text = s;
+            if (isBraille(s))
+            {
+                textBoxBraille.Text = s;
+            }
+            else
+            {
+                textBoxText.Text = s;
+            }
         }
-
-        public void SetBrailleString(string s)
-        {
-            textBoxBraille.Text = s;
-        }
-
+        
         #endregion
 
         #region  IObjectCollection

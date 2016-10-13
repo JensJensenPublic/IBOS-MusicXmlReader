@@ -46,15 +46,11 @@ namespace MusicXmlReaderUI
 
         #region IWritableString
         // Implement IWritableString
-        public void SetBrailleString(string s)
+        public void SetString(string s)
         {
             textBoxBraille.Text = s;
         }
 
-        public void SetTextString(string s)
-        {
-            // Explicitly do nothing
-        }
         #endregion
 
         #region  IObjectCollection
