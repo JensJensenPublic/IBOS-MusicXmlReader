@@ -304,5 +304,10 @@ namespace MusicXmlReader
         }
 
         #endregion
+
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            model.StartPlayingPoly();
+        }
     }
 }
