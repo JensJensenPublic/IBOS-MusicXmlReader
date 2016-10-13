@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MusicXmlReaderUI;
+using System.Globalization;
 
 namespace MusicXmlReader
 {
@@ -106,19 +107,18 @@ namespace MusicXmlReader
             //
             // Build up the fixed part of the tree, which does not depend on the actual MusicXmlfile
             //
-
      
-            musicAsSound  = treeView.Nodes.Add("Music sound");          
-            musicAsSoundVoices = musicAsSound.Nodes.Add("Voices");
-            musicAsSoundDetails = musicAsSound.Nodes.Add("Details");
+            musicAsSound  = treeView.Nodes.Add(ResourcesForUI.TreeView_MusicAsSound);          
+            musicAsSoundVoices = musicAsSound.Nodes.Add(ResourcesForUI.TreeView_MusicAsSound_Parts);
+            musicAsSoundDetails = musicAsSound.Nodes.Add(ResourcesForUI.TreeView_MusicAsSound_Details);
 
-            musicAsSpeech = treeView.Nodes.Add("Music speech");
-            musicAsSpeechVoices = musicAsSpeech.Nodes.Add("Voices");
-            musicAsSpeechDetails = musicAsSpeech.Nodes.Add("Details");
+            musicAsSpeech = treeView.Nodes.Add(ResourcesForUI.TreeView_MusicAsSpeech);
+            musicAsSpeechVoices = musicAsSpeech.Nodes.Add(ResourcesForUI.TreeView_MusicAsSpeech_Parts);
+            musicAsSpeechDetails = musicAsSpeech.Nodes.Add(ResourcesForUI.TreeView_MusicAsSpeech_Details);
 
-            musicAsBraille = treeView.Nodes.Add("Music Braille");
-            musicAsBrailleVoices = musicAsBraille.Nodes.Add("Voices");
-            musicAsBrailleDetails = musicAsBraille.Nodes.Add("Details");  
+            musicAsBraille = treeView.Nodes.Add(ResourcesForUI.TreeView_MusicAsBraille);
+            musicAsBrailleVoices = musicAsBraille.Nodes.Add(ResourcesForUI.TreeView_MusicAsBraille_Parts);
+            musicAsBrailleDetails = musicAsBraille.Nodes.Add(ResourcesForUI.TreeView_MusicAsSound_Details);  
 
         }
 
