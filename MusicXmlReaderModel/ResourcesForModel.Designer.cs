@@ -115,6 +115,150 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to accent.
+        /// </summary>
+        internal static string ArticulationsElement_Accent {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_Accent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to breathmark.
+        /// </summary>
+        internal static string ArticulationsElement_BreathMark {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_BreathMark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to caesura.
+        /// </summary>
+        internal static string ArticulationsElement_Caesura {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_Caesura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to detached legato.
+        /// </summary>
+        internal static string ArticulationsElement_DetatchedLegato {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_DetatchedLegato", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to doit.
+        /// </summary>
+        internal static string ArticulationsElement_Doit {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_Doit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to falloff.
+        /// </summary>
+        internal static string ArticulationsElement_Falloff {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_Falloff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to other articulation.
+        /// </summary>
+        internal static string ArticulationsElement_OtherArticulation {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_OtherArticulation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to plop.
+        /// </summary>
+        internal static string ArticulationsElement_Plop {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_Plop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to scoop.
+        /// </summary>
+        internal static string ArticulationsElement_Scoop {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_Scoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to spiccato.
+        /// </summary>
+        internal static string ArticulationsElement_Spiccato {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_Spiccato", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to staccatissimo.
+        /// </summary>
+        internal static string ArticulationsElement_Staccatissimo {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_Staccatissimo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to staccato.
+        /// </summary>
+        internal static string ArticulationsElement_Staccato {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_Staccato", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to stress.
+        /// </summary>
+        internal static string ArticulationsElement_Stress {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_Stress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to strong accent.
+        /// </summary>
+        internal static string ArticulationsElement_StrongAccent {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_StrongAccent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tenuto.
+        /// </summary>
+        internal static string ArticulationsElement_Tenuto {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_Tenuto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to unstress.
+        /// </summary>
+        internal static string ArticulationsElement_Unstress {
+            get {
+                return ResourceManager.GetString("ArticulationsElement_Unstress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tempo.
         /// </summary>
         internal static string EventDescription_tempo {

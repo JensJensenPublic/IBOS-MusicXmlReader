@@ -309,6 +309,54 @@
   <data name="ArpeggiateElement_upwards" xml:space="preserve">
     <value>opadbrudt</value>
   </data>
+  <data name="ArticulationsElement_Accent" xml:space="preserve">
+    <value>accent</value>
+  </data>
+  <data name="ArticulationsElement_BreathMark" xml:space="preserve">
+    <value>vejrtrækning</value>
+  </data>
+  <data name="ArticulationsElement_Caesura" xml:space="preserve">
+    <value>cæsur</value>
+  </data>
+  <data name="ArticulationsElement_DetatchedLegato" xml:space="preserve">
+    <value>frikoblet legato</value>
+  </data>
+  <data name="ArticulationsElement_Doit" xml:space="preserve">
+    <value>doit</value>
+    <comment>?</comment>
+  </data>
+  <data name="ArticulationsElement_Falloff" xml:space="preserve">
+    <value>falloff</value>
+  </data>
+  <data name="ArticulationsElement_OtherArticulation" xml:space="preserve">
+    <value>anden artikulation</value>
+  </data>
+  <data name="ArticulationsElement_Plop" xml:space="preserve">
+    <value>plop</value>
+    <comment>?</comment>
+  </data>
+  <data name="ArticulationsElement_Scoop" xml:space="preserve">
+    <value>scoop</value>
+  </data>
+  <data name="ArticulationsElement_Spiccato" xml:space="preserve">
+    <value>spiccato</value>
+  </data>
+  <data name="ArticulationsElement_Staccatissimo" xml:space="preserve">
+    <value>staccatissimo</value>
+  </data>
+  <data name="ArticulationsElement_Staccato" xml:space="preserve">
+    <value>staccato</value>
+  </data>
+  <data name="ArticulationsElement_StrongAccent" xml:space="preserve">
+    <value>kraftig accent</value>
+  </data>
+  <data name="ArticulationsElement_Tenuto" xml:space="preserve">
+    <value>tenuto</value>
+  </data>
+  <data name="ArticulationsElement_Unstress" xml:space="preserve">
+    <value>afstress</value>
+    <comment>?</comment>
+  </data>
   <data name="UserSettings_BrailleNames_Harmonies" xml:space="preserve">
     <value>Akkorder</value>
   </data>

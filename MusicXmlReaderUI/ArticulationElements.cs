@@ -1,6 +1,8 @@
 ﻿using System.Xml;
 using System.Collections.Generic;
 using System.Text;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 
 namespace MusicXmlReaderUI
@@ -15,6 +17,7 @@ namespace MusicXmlReaderUI
         private ArticulationsElement()
         { }
 
+        
         private List<Articulation> articulationList = new List<Articulation>();
         public List<Articulation> ArticulationList
         {
@@ -24,7 +27,7 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public enum Articulation // LOCALIZE
+        public enum Articulation
         {
             accent,
             breathmark,
@@ -83,16 +86,43 @@ namespace MusicXmlReaderUI
             return new ArticulationsElement(node);
         }
 
-        public override string ToString() // LOCALIZE
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder("Articulations:");
             foreach (Articulation a in articulationList)
             {
-                sb.Append(" " + a );
+                sb.Append(" " + LocalizeArticulation(a) );
             }
             return sb.ToString();
         }
 
+        private string LocalizeArticulation(Articulation a)
+        {
+            string functionName = "LocalizeArticulation";
+            switch (a)
+            {
+                case Articulation.accent: return ResourcesForModel.ArticulationsElement_Accent;
+                case Articulation.breathmark: return ResourcesForModel.ArticulationsElement_BreathMark;
+                case Articulation.caesura: return ResourcesForModel.ArticulationsElement_Caesura;
+                case Articulation.detachedlegato: return ResourcesForModel.ArticulationsElement_DetatchedLegato;
+                case Articulation.doit: return ResourcesForModel.ArticulationsElement_Doit;
+                case Articulation.falloff: return ResourcesForModel.ArticulationsElement_Falloff;
+                case Articulation.otherarticulation:return ResourcesForModel.ArticulationsElement_OtherArticulation;
+                case Articulation.plop:return ResourcesForModel.ArticulationsElement_Plop;
+                case Articulation.scoop:return ResourcesForModel.ArticulationsElement_Scoop;
+                case Articulation.spiccato: return ResourcesForModel.ArticulationsElement_Spiccato;
+                case Articulation.staccatissimo: return ResourcesForModel.ArticulationsElement_Staccatissimo;
+                case Articulation.staccato: return ResourcesForModel.ArticulationsElement_Staccato;
+                case Articulation.stress: return ResourcesForModel.ArticulationsElement_Stress;
+                case Articulation.strongaccent: return ResourcesForModel.ArticulationsElement_StrongAccent;
+                case Articulation.tenuto: return ResourcesForModel.ArticulationsElement_Tenuto;
+                case Articulation.unstress: return ResourcesForModel.ArticulationsElement_Unstress;
+                default:
+                    Logger.LogOnce(string.Format("{0}: Unexpected Articulation={1} ", functionName, a.ToString()));
+                    return "";
+            }
+
+        }
 
     }
 }
