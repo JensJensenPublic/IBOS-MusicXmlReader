@@ -306,4 +306,52 @@
   <data name="TimeElement_wholes" xml:space="preserve">
     <value>wholes</value>
   </data>
+  <data name="UserSettings_BrailleNames_Harmonies" xml:space="preserve">
+    <value>Harmonies</value>
+  </data>
+  <data name="UserSettings_BrailleNames_MeasureNumbers" xml:space="preserve">
+    <value>Measure Numbers</value>
+  </data>
+  <data name="UserSettings_BrailleNames_Notations" xml:space="preserve">
+    <value>Notations</value>
+  </data>
+  <data name="UserSettings_BrailleNames_Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="UserSettings_PlayerNames_Beats" xml:space="preserve">
+    <value>Beats</value>
+  </data>
+  <data name="UserSettings_PlayerNames_Harmonies" xml:space="preserve">
+    <value>Harmonies</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Divisions" xml:space="preserve">
+    <value>Divisions</value>
+    <comment>Developer feature</comment>
+  </data>
+  <data name="UserSettings_ReaderNames_EndEvents" xml:space="preserve">
+    <value>End Events</value>
+    <comment>Developer feature</comment>
+  </data>
+  <data name="UserSettings_ReaderNames_Harmonies" xml:space="preserve">
+    <value>Harmonies</value>
+  </data>
+  <data name="UserSettings_ReaderNames_HarmonyCodes" xml:space="preserve">
+    <value>Harmony Codes</value>
+    <comment>Developer feature</comment>
+  </data>
+  <data name="UserSettings_ReaderNames_MeasureNumbers" xml:space="preserve">
+    <value>Measure numbers</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Notations" xml:space="preserve">
+    <value>Notationer</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="UserSettings_ReaderNames_NoteValues" xml:space="preserve">
+    <value>Note Values</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Octaves" xml:space="preserve">
+    <value>Oktaver</value>
+  </data>
 </root>

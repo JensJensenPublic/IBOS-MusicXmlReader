@@ -626,5 +626,140 @@ namespace MusicXmlReaderModel {
                 return ResourceManager.GetString("TimeElement_wholes", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Harmonies.
+        /// </summary>
+        internal static string UserSettings_BrailleNames_Harmonies {
+            get {
+                return ResourceManager.GetString("UserSettings_BrailleNames_Harmonies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Measure Numbers.
+        /// </summary>
+        internal static string UserSettings_BrailleNames_MeasureNumbers {
+            get {
+                return ResourceManager.GetString("UserSettings_BrailleNames_MeasureNumbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notations.
+        /// </summary>
+        internal static string UserSettings_BrailleNames_Notations {
+            get {
+                return ResourceManager.GetString("UserSettings_BrailleNames_Notations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        internal static string UserSettings_BrailleNames_Notes {
+            get {
+                return ResourceManager.GetString("UserSettings_BrailleNames_Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beats.
+        /// </summary>
+        internal static string UserSettings_PlayerNames_Beats {
+            get {
+                return ResourceManager.GetString("UserSettings_PlayerNames_Beats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Harmonies.
+        /// </summary>
+        internal static string UserSettings_PlayerNames_Harmonies {
+            get {
+                return ResourceManager.GetString("UserSettings_PlayerNames_Harmonies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Divisions.
+        /// </summary>
+        internal static string UserSettings_ReaderNames_Divisions {
+            get {
+                return ResourceManager.GetString("UserSettings_ReaderNames_Divisions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End Events.
+        /// </summary>
+        internal static string UserSettings_ReaderNames_EndEvents {
+            get {
+                return ResourceManager.GetString("UserSettings_ReaderNames_EndEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Harmonies.
+        /// </summary>
+        internal static string UserSettings_ReaderNames_Harmonies {
+            get {
+                return ResourceManager.GetString("UserSettings_ReaderNames_Harmonies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Harmony Codes.
+        /// </summary>
+        internal static string UserSettings_ReaderNames_HarmonyCodes {
+            get {
+                return ResourceManager.GetString("UserSettings_ReaderNames_HarmonyCodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Measure numbers.
+        /// </summary>
+        internal static string UserSettings_ReaderNames_MeasureNumbers {
+            get {
+                return ResourceManager.GetString("UserSettings_ReaderNames_MeasureNumbers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notationer.
+        /// </summary>
+        internal static string UserSettings_ReaderNames_Notations {
+            get {
+                return ResourceManager.GetString("UserSettings_ReaderNames_Notations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        internal static string UserSettings_ReaderNames_Notes {
+            get {
+                return ResourceManager.GetString("UserSettings_ReaderNames_Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note Values.
+        /// </summary>
+        internal static string UserSettings_ReaderNames_NoteValues {
+            get {
+                return ResourceManager.GetString("UserSettings_ReaderNames_NoteValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oktaver.
+        /// </summary>
+        internal static string UserSettings_ReaderNames_Octaves {
+            get {
+                return ResourceManager.GetString("UserSettings_ReaderNames_Octaves", resourceCulture);
+            }
+        }
     }
 }

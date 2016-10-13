@@ -303,4 +303,52 @@
   <data name="TimeElement_wholes" xml:space="preserve">
     <value>hele</value>
   </data>
+  <data name="UserSettings_BrailleNames_Harmonies" xml:space="preserve">
+    <value>Akkorder</value>
+  </data>
+  <data name="UserSettings_BrailleNames_MeasureNumbers" xml:space="preserve">
+    <value>Taktnumre</value>
+  </data>
+  <data name="UserSettings_BrailleNames_Notations" xml:space="preserve">
+    <value>Notationer</value>
+  </data>
+  <data name="UserSettings_BrailleNames_Notes" xml:space="preserve">
+    <value>Noder</value>
+  </data>
+  <data name="UserSettings_PlayerNames_Beats" xml:space="preserve">
+    <value>Taktslag</value>
+  </data>
+  <data name="UserSettings_PlayerNames_Harmonies" xml:space="preserve">
+    <value>Akkorder</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Divisions" xml:space="preserve">
+    <value>Divisions</value>
+    <comment>Developer feature</comment>
+  </data>
+  <data name="UserSettings_ReaderNames_EndEvents" xml:space="preserve">
+    <value>EndEvents</value>
+    <comment>Developer feature</comment>
+  </data>
+  <data name="UserSettings_ReaderNames_Harmonies" xml:space="preserve">
+    <value>Akkorder</value>
+  </data>
+  <data name="UserSettings_ReaderNames_HarmonyCodes" xml:space="preserve">
+    <value>HarmonyCodes</value>
+    <comment>Developer feature</comment>
+  </data>
+  <data name="UserSettings_ReaderNames_MeasureNumbers" xml:space="preserve">
+    <value>Taktnumre</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Notations" xml:space="preserve">
+    <value>Notationer</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Notes" xml:space="preserve">
+    <value>Noder</value>
+  </data>
+  <data name="UserSettings_ReaderNames_NoteValues" xml:space="preserve">
+    <value>Node varigheder</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Octaves" xml:space="preserve">
+    <value>Oktaver</value>
+  </data>
 </root>

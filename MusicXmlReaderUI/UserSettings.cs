@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
@@ -34,8 +36,19 @@ namespace MusicXmlReaderUI
         // readEndEvents;
 
         // Global Reader Settings settings (for all parts) // LOCALIZE
-        public enum ReaderSettings                     { MeasureNumbers=0 , Harmonies=1, Notes=2, NoteOctaves=3, NoteTypes=4,  Notations=5, Divisions=6, HarmonyCodes=7, EndEvents=8,NumberOfReaderSettings=9};   
-        public readonly string[] readerSettingsNames = {"TaktNumre",       "Harmonier",  "Noder", "Oktaver",   "NodeVærdier","Notationer","Divisions", "HarmoniCodes", "EndEvents" };
+        public enum ReaderSettings                     { MeasureNumbers=0 , Harmonies=1, Notes=2, NoteOctaves=3, NoteTypes=4,  Notations=5, Divisions=6, HarmonyCodes=7, EndEvents=8,NumberOfReaderSettings=9};
+        public readonly string[] readerSettingsNames =
+        {
+            ResourcesForModel.UserSettings_ReaderNames_MeasureNumbers,  // "TaktNumre",
+            ResourcesForModel.UserSettings_ReaderNames_Harmonies,       // "Harmonier",
+            ResourcesForModel.UserSettings_ReaderNames_Notes,           // "Noder",
+            ResourcesForModel.UserSettings_ReaderNames_Octaves,        // "Oktaver",
+            ResourcesForModel.UserSettings_ReaderNames_NoteValues,      // "NodeVærdier",
+            ResourcesForModel.UserSettings_ReaderNames_Notations,       // "Notationer",
+            ResourcesForModel.UserSettings_ReaderNames_Divisions,       // "Divisions",
+            ResourcesForModel.UserSettings_ReaderNames_HarmonyCodes,    // "HarmoniCodes",
+            ResourcesForModel.UserSettings_ReaderNames_EndEvents        // "EndEvents"
+        };
         public bool[]            readerSettingsValues= { true,              true,        true,    true,         true,          true,        false,       false,          false      };
  
         public bool GetReaderSettings(ReaderSettings i)
@@ -50,7 +63,11 @@ namespace MusicXmlReaderUI
         
         // Global Player Settings (for all parts)
         public enum PlayerSettings { MeasureBeats = 0, Harmonies = 1,NumberOfPlayerSettings=2}
-        public readonly string[] playerSettingsNames = { "TaktSlag", "Harmonier" }; // LOCALIZE
+        public readonly string[] playerSettingsNames =
+            {
+            ResourcesForModel.UserSettings_PlayerNames_Beats,       //"TaktSlag",
+            ResourcesForModel.UserSettings_PlayerNames_Harmonies    //"Harmonier"
+        };
         public bool[] playerSettingsValues = { false, false };
   
         public bool GetPlayerSettings(PlayerSettings i)
@@ -65,7 +82,14 @@ namespace MusicXmlReaderUI
  
         // Global Music Braille Settings settings (for all parts)
         public enum MusicBrailleSettings { MeasureNumbers = 0, Harmonies = 1, Notes = 2,  Notations = 3,  NumberOfReaderSettings = 4 };
-        public readonly string[] musicBrailleSettingsNames = { "TaktNumre", "Harmonier", "Noder",  "Notationer" };// LOCALIZE
+        public readonly string[] musicBrailleSettingsNames =
+        {
+            ResourcesForModel.UserSettings_BrailleNames_MeasureNumbers, //"TaktNumre",
+            ResourcesForModel.UserSettings_BrailleNames_Harmonies,      //"Harmonier",
+            ResourcesForModel.UserSettings_BrailleNames_Notes,          //"Noder",
+            ResourcesForModel.UserSettings_BrailleNames_Notations       //"Notationer"
+        };
+
         public bool[] musicBrailleSettingsValues = { false, false, true, false };
 
         public bool GetMusicBrailleSettings(MusicBrailleSettings i)
