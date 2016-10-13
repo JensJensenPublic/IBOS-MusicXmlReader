@@ -51,7 +51,7 @@ namespace MusicXmlReaderUI
             textBoxBraille.Text = s;
         }
 
-        public void SetTExtString(string s)
+        public void SetTextString(string s)
         {
             // Explicitly do nothing
         }
