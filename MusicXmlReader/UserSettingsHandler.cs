@@ -27,8 +27,8 @@ namespace MusicXmlReader
 
 
         private MainForm mainForm;
-        private UserSettings userSettings;
-        private PartlistElement partList;
+        //private UserSettings userSettings;
+        //private PartlistElement partList; 
         private Model model;
 
 
@@ -58,32 +58,32 @@ namespace MusicXmlReader
             string name = e.Node.Name;
             string text = e.Node.Text;
             int i = e.Node.Index;
-            if ((level == 2) && (null != userSettings))
+            if ((level == 2) && (null != model.UserSettings))
             {
                 switch (e.Node.Parent.Index)
                 {
                     case 0:  // Voices
                         switch (e.Node.Parent.Parent.Index)
                         {
-                            case 0: userSettings.partsToPlay[i] = e.Node.Checked; break;
-                            case 1: userSettings.partsToRead[i] = e.Node.Checked; break;
-                            case 2: userSettings.partsToBraille[i] = e.Node.Checked; break;
+                            case 0: model.UserSettings.partsToPlay[i] = e.Node.Checked; break;
+                            case 1: model.UserSettings.partsToRead[i] = e.Node.Checked; break;
+                            case 2: model.UserSettings.partsToBraille[i] = e.Node.Checked; break;
                             default: break;       
                         }
                         break;
                     case 1: // Details
                         switch (e.Node.Parent.Parent.Index) 
                         {
-                            case 0: userSettings.playerSettingsValues[i] = e.Node.Checked; break;
-                            case 1: userSettings.readerSettingsValues[i] = e.Node.Checked; break;
-                            case 2: userSettings.musicBrailleSettingsValues[i] = e.Node.Checked; break;
+                            case 0: model.UserSettings.playerSettingsValues[i] = e.Node.Checked; break;
+                            case 1: model.UserSettings.readerSettingsValues[i] = e.Node.Checked; break;
+                            case 2: model.UserSettings.musicBrailleSettingsValues[i] = e.Node.Checked; break;
                             default: break;
                         } break;
                     default: return;
                 }
             }
             // Transfer the settings to the MusicPlayer
-            model.musicPlayer.UserSettings = userSettings;
+            model.musicPlayer.UserSettings = model.UserSettings;
             mainForm.ConditionalLoadListBoxTimes();
 
         }
@@ -130,6 +130,7 @@ namespace MusicXmlReader
             {
                 ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
                 TreeNode node = treeNode.Nodes.Add(string.Format("{0} {1}", scorePartElement.partId, scorePartElement.partName));
+                node.Checked = true; // As default enable all parts
                 //checkedListBox.SetItemChecked(i, true);
             }
             //checkedLi.CheckOnClick = true;      
@@ -169,10 +170,10 @@ namespace MusicXmlReader
         /// <param name="userSettings"></param>
         public void LoadDetails(UserSettings userSettings)
         {
-            this.userSettings = userSettings;
-            LoadDetails(musicAsSoundDetails, userSettings.playerSettingsNames, userSettings.playerSettingsValues);
-            LoadDetails(musicAsSpeechDetails,userSettings.readerSettingsNames, userSettings.readerSettingsValues);
-            LoadDetails(musicAsBrailleDetails, userSettings.musicBrailleSettingsNames, userSettings.musicBrailleSettingsValues);
+            //this.userSettings = userSettings;
+            LoadDetails(musicAsSoundDetails, userSettings.playerSettingsNames, model.UserSettings.playerSettingsValues);
+            LoadDetails(musicAsSpeechDetails,userSettings.readerSettingsNames, model.UserSettings.readerSettingsValues);
+            LoadDetails(musicAsBrailleDetails, userSettings.musicBrailleSettingsNames, model.UserSettings.musicBrailleSettingsValues);
         }
         
     }
