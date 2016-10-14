@@ -1096,6 +1096,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to tie.
+        /// </summary>
+        internal static string TiedElement_Name {
+            get {
+                return ResourceManager.GetString("TiedElement_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to eights.
         /// </summary>
         internal static string TimeElement_eights {

@@ -1,4 +1,6 @@
 ﻿using System.Xml;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
@@ -20,10 +22,10 @@ namespace MusicXmlReaderUI
         }
 
 
-        public override string ToString() // LOCALIZE
+        public override string ToString()
         {
             string number = (1 == this.NumberLevel) ? "" : NumberLevel.ToString(); // Ignore the number if it has its default value of 1
-            return string.Format("Bindebue {0} {1}", number, Localize(this.StartStopContinueType));
+            return string.Format("{0} {1} {2}",ResourcesForModel.TiedElement_Name, number, Localize(this.StartStopContinueType));
         }
     }
 }
