@@ -534,4 +534,7 @@
   <data name="TiedElement_Name" xml:space="preserve">
     <value>tie</value>
   </data>
+  <data name="TieElement_Name" xml:space="preserve">
+    <value>tie</value>
+  </data>
 </root>

@@ -1,4 +1,6 @@
 ﻿using System.Xml;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
@@ -49,9 +51,9 @@ namespace MusicXmlReaderUI
         }
 
 
-        public override string ToString() // LOCALIZE
+        public override string ToString()
         {
-            return string.Format("Overbinding {0}",tieType);        
+            return string.Format("{0} {1}",ResourcesForModel.TieElement_Name, tieType);        
         }
     }
 }
