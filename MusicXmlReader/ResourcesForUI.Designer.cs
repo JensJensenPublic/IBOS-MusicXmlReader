@@ -61,6 +61,33 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MusicXml files.
+        /// </summary>
+        internal static string OpenFileDialog_Filter {
+            get {
+                return ResourceManager.GetString("OpenFileDialog_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to read.
+        /// </summary>
+        internal static string TextBox_Messages_FailedToRead_File {
+            get {
+                return ResourceManager.GetString("TextBox_Messages_FailedToRead_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reading.
+        /// </summary>
+        internal static string TextBox_Messages_Reading_File {
+            get {
+                return ResourceManager.GetString("TextBox_Messages_Reading_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Music as Braille.
         /// </summary>
         internal static string TreeView_MusicAsBraille {

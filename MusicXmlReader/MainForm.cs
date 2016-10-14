@@ -177,19 +177,21 @@ namespace MusicXmlReader
         private void SelectAndOpenMusicXmlFile(object sender, EventArgs e)
         {
             openFileDialog.FileName = "Node.xml"; // Use this sample file as a default
-            openFileDialog.Filter = "MusicXml filer|*.xml"; // Only present .xml files
+            openFileDialog.Filter = string.Format("{0}|*.xml",ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files
             openFileDialog.InitialDirectory = model.InitialDirectory;
             openFileDialog.ShowDialog();
 
             textBoxMessage.Focus();
-            textBoxMessage.Text = string.Format("Indlæser {0}", openFileDialog.FileName);
+            string shortFileName = System.IO.Path.GetFileName(openFileDialog.FileName);
+            textBoxMessage.Text = string.Format("{0} '{1}'",ResourcesForUI.TextBox_Messages_Reading_File, shortFileName);
 
             Logger.ClearStatistics();  // Clear statistics to be collected while loading, parsing and rendering the MusicXml file:
 
             if (!model.LoadMusicXmlFile(openFileDialog.FileName)) // Load the selected .xml file into the Model and build all internal data structures.
             {
                 // Simple error handling
-                textBoxMessage.Text = string.Format("Kunne ikke indlæse {0}", openFileDialog.FileName);
+                textBoxMessage.Text = string.Format("{0} '{1}'",ResourcesForUI.TextBox_Messages_FailedToRead_File ,shortFileName); // Short filename for UI
+                Logger.Log(string.Format("Failed to read {0}", openFileDialog.FileName)); // Full filename for UI
                 Logger.DumpStatistics(); // Dump all statistics collected by LogOnce() until now
                 return;
             }
