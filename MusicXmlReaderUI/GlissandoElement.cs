@@ -20,7 +20,7 @@ namespace MusicXmlReaderUI
         }
 
 
-        public override string ToString() // LOCALIZE
+        public override string ToString()
         {
             string number = (1 == this.NumberLevel) ? "" : NumberLevel.ToString(); // Ignore the number if it has its default value of 1
             return string.Format("{0} {1} {2}",ResourcesForModel.GlissandoElement_Name, number, Localize(this.StartStopContinueType));
