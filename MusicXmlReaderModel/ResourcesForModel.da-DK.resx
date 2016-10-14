@@ -405,4 +405,19 @@
   <data name="UserSettings_ReaderNames_Octaves" xml:space="preserve">
     <value>Oktaver</value>
   </data>
+  <data name="BarlineElement" xml:space="preserve">
+    <value>Taktstreg</value>
+  </data>
+  <data name="BarlineElement_Position_left" xml:space="preserve">
+    <value>venstre</value>
+  </data>
+  <data name="BarlineElement_Position_middle" xml:space="preserve">
+    <value>midten</value>
+  </data>
+  <data name="BarlineElement_Position_right" xml:space="preserve">
+    <value>højre</value>
+  </data>
+  <data name="BarlineElement_Position_unknown" xml:space="preserve">
+    <value>ukendt</value>
+  </data>
 </root>

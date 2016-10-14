@@ -408,4 +408,19 @@
   <data name="UserSettings_ReaderNames_Octaves" xml:space="preserve">
     <value>Oktaver</value>
   </data>
+  <data name="BarlineElement" xml:space="preserve">
+    <value>Barline</value>
+  </data>
+  <data name="BarlineElement_Position_left" xml:space="preserve">
+    <value>left</value>
+  </data>
+  <data name="BarlineElement_Position_middle" xml:space="preserve">
+    <value>middle</value>
+  </data>
+  <data name="BarlineElement_Position_right" xml:space="preserve">
+    <value>right</value>
+  </data>
+  <data name="BarlineElement_Position_unknown" xml:space="preserve">
+    <value>unknown</value>
+  </data>
 </root>

@@ -1,4 +1,6 @@
 ﻿using System.Xml;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
@@ -107,11 +109,35 @@ namespace MusicXmlReaderUI
         {
             return new BarlineElement(node);
         }
-        
-        public override string ToString() // LOCALIZE
+
+
+        /// <summary>
+        /// This function is currently not used, but localization has been performed anyway.
+        /// </summary>
+        /// <param name="barlineLocation"></param>
+        /// <returns></returns>
+        private string LocalizeBarlineLocation(BarlineLocationEnum barlineLocation)
+        {
+            string functionName = "LocalizeBarlineLocation";
+            switch (barlineLocation)
+            {
+                case BarlineLocationEnum.left: return ResourcesForModel.BarlineElement_Position_left;
+                case BarlineLocationEnum.middle: return ResourcesForModel.BarlineElement_Position_middle;
+                case BarlineLocationEnum.right: return ResourcesForModel.BarlineElement_Position_right;
+                case BarlineLocationEnum.unknown:
+                    Logger.LogOnce(string.Format("{0}: Found unknown value {1}", functionName, BarlineLocationEnum.unknown));
+                    return ResourcesForModel.BarlineElement_Position_unknown;
+                default:
+                    Logger.LogOnce(string.Format("{0}: Found undefined value {1}", functionName, barlineLocation.ToString()));
+                    return "";
+            }
+        }
+
+
+        public override string ToString()
         {
 
-            return string.Format("Barline");
+            return string.Format("{0}",ResourcesForModel.BarlineElement);
         }
     }
 }

@@ -259,6 +259,51 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Barline.
+        /// </summary>
+        internal static string BarlineElement {
+            get {
+                return ResourceManager.GetString("BarlineElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to left.
+        /// </summary>
+        internal static string BarlineElement_Position_left {
+            get {
+                return ResourceManager.GetString("BarlineElement_Position_left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to middle.
+        /// </summary>
+        internal static string BarlineElement_Position_middle {
+            get {
+                return ResourceManager.GetString("BarlineElement_Position_middle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to right.
+        /// </summary>
+        internal static string BarlineElement_Position_right {
+            get {
+                return ResourceManager.GetString("BarlineElement_Position_right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to unknown.
+        /// </summary>
+        internal static string BarlineElement_Position_unknown {
+            get {
+                return ResourceManager.GetString("BarlineElement_Position_unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tempo.
         /// </summary>
         internal static string EventDescription_tempo {
