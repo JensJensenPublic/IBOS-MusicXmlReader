@@ -1177,6 +1177,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string TupletElement_Name {
+            get {
+                return ResourceManager.GetString("TupletElement_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Harmonies.
         /// </summary>
         internal static string UserSettings_BrailleNames_Harmonies {

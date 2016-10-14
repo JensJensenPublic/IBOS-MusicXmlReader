@@ -534,4 +534,7 @@
   <data name="TieElement_Name" xml:space="preserve">
     <value>overbinding</value>
   </data>
+  <data name="TupletElement_Name" xml:space="preserve">
+    <value>Tuplet</value>
+  </data>
 </root>
