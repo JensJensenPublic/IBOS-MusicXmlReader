@@ -1042,6 +1042,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Legato.
+        /// </summary>
+        internal static string SlurElement_Name {
+            get {
+                return ResourceManager.GetString("SlurElement_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to eights.
         /// </summary>
         internal static string TimeElement_eights {

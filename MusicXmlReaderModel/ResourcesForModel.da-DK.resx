@@ -510,4 +510,7 @@
   <data name="SlideElement_Name" xml:space="preserve">
     <value>Glidetone</value>
   </data>
+  <data name="SlurElement_Name" xml:space="preserve">
+    <value>Legato</value>
+  </data>
 </root>
