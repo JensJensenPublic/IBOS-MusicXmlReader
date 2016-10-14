@@ -108,9 +108,9 @@ namespace MusicXmlReaderUI
             return new MidiInstrumentElement();
         }
 
-        public override string ToString() // LOCALIZE
+        public override string ToString() // No need for localisation. Not used, or only used for debug messages.
         {
-            return (string.Format("Midi-Instrument: Id='{0}' Program='{1}' Kanal='{2}' Volumen='{3}' Pan='{4}'",id, midiProgram, midiChannel, midiVolume,pan));
+            return (string.Format("Midi-Instrument: Id='{0}' Program='{1}' Kanal='{2}' Volumen='{3}' Pan='{4}'", id, midiProgram, midiChannel, midiVolume, pan));
         }
     }
 }
