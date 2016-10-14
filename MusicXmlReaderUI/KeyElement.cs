@@ -115,7 +115,7 @@ namespace MusicXmlReaderUI
             return new KeyElement(node);
         }
 
-        public override string ToString() // LOCALIZE
+        public override string ToString()
         {
             return string.Format("{0}:{1}-{2} ",ResourcesForModel.KeyElement_key, localizedKey, localizedmode);
         }
