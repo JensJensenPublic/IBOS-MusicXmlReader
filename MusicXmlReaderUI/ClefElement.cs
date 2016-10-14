@@ -1,4 +1,6 @@
 ﻿using System.Xml;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
@@ -30,19 +32,18 @@ namespace MusicXmlReaderUI
         private ClefElement()
         { }
 
-        private string Localize(ClefEnum clef) // LOCALIZE
+        private string LocalizeClef(ClefEnum clef) 
         {
-            const string functionName = "Localize"; 
+            const string functionName = "LocalizeClef"; 
             switch (clef)
             {
-                case ClefEnum.C: return "C-Nøgle";
-                case ClefEnum.G: return "G-Nøgle";
-                case ClefEnum.F: return "F-nøgle";
-                case ClefEnum.percussion: return "slagtøj";
-                case ClefEnum.TAB: return "TAB";
-                case ClefEnum.jianpu: return "jianpu";
-                case ClefEnum.none: return "Ingen nøgle";
-
+                case ClefEnum.C: return ResourcesForModel.ClefElement_C_Key; // "C-Nøgle";
+                case ClefEnum.G: return ResourcesForModel.ClefElement_G_Key; // "G-Nøgle";
+                case ClefEnum.F: return ResourcesForModel.ClefElement_F_Key; // "F-nøgle";
+                case ClefEnum.percussion: return ResourcesForModel.ClefElement_Percussion; // "slagtøj";
+                case ClefEnum.TAB: return ResourcesForModel.ClefElement_TAB; // "TAB";
+                case ClefEnum.jianpu: return ResourcesForModel.ClefElement_jianpu; // "jianpu";
+                case ClefEnum.none: return ResourcesForModel.ClefElement_None; // "Ingen nøgle";
                 default: Logger.LogOnce(string.Format("{0}.{1} Illegal Clef:{2}",className,functionName,clef.ToString()));
                     return "";
             }
@@ -92,9 +93,9 @@ namespace MusicXmlReaderUI
             return new ClefElement(node);
         }
 
-        public override string ToString() // LOCALIZE
+        public override string ToString() 
         {
-            return string.Format("{0}", Localize(clef));
+            return string.Format("{0}", LocalizeClef(clef));
         }
     }
 }

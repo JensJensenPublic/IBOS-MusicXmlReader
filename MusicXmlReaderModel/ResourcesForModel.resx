@@ -423,4 +423,28 @@
   <data name="BarlineElement_Position_unknown" xml:space="preserve">
     <value>unknown</value>
   </data>
+  <data name="ClefElement_C_Key" xml:space="preserve">
+    <value>C-Clef</value>
+  </data>
+  <data name="ClefElement_F_Key" xml:space="preserve">
+    <value>F-Clef</value>
+  </data>
+  <data name="ClefElement_G_Key" xml:space="preserve">
+    <value>G-Clef</value>
+  </data>
+  <data name="ClefElement_jianpu" xml:space="preserve">
+    <value>Jianpu</value>
+  </data>
+  <data name="ClefElement_None" xml:space="preserve">
+    <value>No Clef</value>
+  </data>
+  <data name="ClefElement_Percussion" xml:space="preserve">
+    <value>Percussion</value>
+  </data>
+  <data name="ClefElement_TAB" xml:space="preserve">
+    <value>TAB</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
 </root>

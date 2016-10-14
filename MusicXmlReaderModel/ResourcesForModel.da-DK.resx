@@ -420,4 +420,25 @@
   <data name="BarlineElement_Position_unknown" xml:space="preserve">
     <value>ukendt</value>
   </data>
+  <data name="ClefElement_C_Key" xml:space="preserve">
+    <value>C-nøgle</value>
+  </data>
+  <data name="ClefElement_F_Key" xml:space="preserve">
+    <value>F-nøgle</value>
+  </data>
+  <data name="ClefElement_G_Key" xml:space="preserve">
+    <value>G-nøgle</value>
+  </data>
+  <data name="ClefElement_jianpu" xml:space="preserve">
+    <value>Jianpu</value>
+  </data>
+  <data name="ClefElement_None" xml:space="preserve">
+    <value>Ingen nøgle</value>
+  </data>
+  <data name="ClefElement_Percussion" xml:space="preserve">
+    <value>Slagtøj</value>
+  </data>
+  <data name="ClefElement_TAB" xml:space="preserve">
+    <value>TAB</value>
+  </data>
 </root>

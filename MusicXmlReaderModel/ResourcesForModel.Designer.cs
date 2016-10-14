@@ -304,6 +304,69 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to C-Clef.
+        /// </summary>
+        internal static string ClefElement_C_Key {
+            get {
+                return ResourceManager.GetString("ClefElement_C_Key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to F-Clef.
+        /// </summary>
+        internal static string ClefElement_F_Key {
+            get {
+                return ResourceManager.GetString("ClefElement_F_Key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to G-Clef.
+        /// </summary>
+        internal static string ClefElement_G_Key {
+            get {
+                return ResourceManager.GetString("ClefElement_G_Key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jianpu.
+        /// </summary>
+        internal static string ClefElement_jianpu {
+            get {
+                return ResourceManager.GetString("ClefElement_jianpu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Clef.
+        /// </summary>
+        internal static string ClefElement_None {
+            get {
+                return ResourceManager.GetString("ClefElement_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Percussion.
+        /// </summary>
+        internal static string ClefElement_Percussion {
+            get {
+                return ResourceManager.GetString("ClefElement_Percussion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TAB.
+        /// </summary>
+        internal static string ClefElement_TAB {
+            get {
+                return ResourceManager.GetString("ClefElement_TAB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tempo.
         /// </summary>
         internal static string EventDescription_tempo {
@@ -768,6 +831,15 @@ namespace MusicXmlReaderModel {
         internal static string PitctElement_g {
             get {
                 return ResourceManager.GetString("PitctElement_g", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         
