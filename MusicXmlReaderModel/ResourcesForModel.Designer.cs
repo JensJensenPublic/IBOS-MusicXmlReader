@@ -1033,6 +1033,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Slide.
+        /// </summary>
+        internal static string SlideElement_Name {
+            get {
+                return ResourceManager.GetString("SlideElement_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to eights.
         /// </summary>
         internal static string TimeElement_eights {

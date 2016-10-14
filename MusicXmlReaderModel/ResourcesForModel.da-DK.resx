@@ -507,4 +507,7 @@
   <data name="RestElement_Name" xml:space="preserve">
     <value>Pause</value>
   </data>
+  <data name="SlideElement_Name" xml:space="preserve">
+    <value>Glidetone</value>
+  </data>
 </root>
