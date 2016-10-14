@@ -441,4 +441,19 @@
   <data name="ClefElement_TAB" xml:space="preserve">
     <value>TAB</value>
   </data>
+  <data name="CreatorElementType_Arranger" xml:space="preserve">
+    <value>Arrangør</value>
+  </data>
+  <data name="CreatorElementType_Composer" xml:space="preserve">
+    <value>Komponist</value>
+  </data>
+  <data name="CreatorElementType_Lyricist" xml:space="preserve">
+    <value>Tekstforfatter</value>
+  </data>
+  <data name="CreatorElementType_Poet" xml:space="preserve">
+    <value>Poet</value>
+  </data>
+  <data name="CreatorElementType_Unknown" xml:space="preserve">
+    <value>Ukendt</value>
+  </data>
 </root>

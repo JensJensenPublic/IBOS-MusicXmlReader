@@ -367,6 +367,51 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Arranger.
+        /// </summary>
+        internal static string CreatorElementType_Arranger {
+            get {
+                return ResourceManager.GetString("CreatorElementType_Arranger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Composer.
+        /// </summary>
+        internal static string CreatorElementType_Composer {
+            get {
+                return ResourceManager.GetString("CreatorElementType_Composer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lyricist.
+        /// </summary>
+        internal static string CreatorElementType_Lyricist {
+            get {
+                return ResourceManager.GetString("CreatorElementType_Lyricist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Poet.
+        /// </summary>
+        internal static string CreatorElementType_Poet {
+            get {
+                return ResourceManager.GetString("CreatorElementType_Poet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        internal static string CreatorElementType_Unknown {
+            get {
+                return ResourceManager.GetString("CreatorElementType_Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tempo.
         /// </summary>
         internal static string EventDescription_tempo {
@@ -831,15 +876,6 @@ namespace MusicXmlReaderModel {
         internal static string PitctElement_g {
             get {
                 return ResourceManager.GetString("PitctElement_g", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

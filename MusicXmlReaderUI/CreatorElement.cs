@@ -1,11 +1,16 @@
 ﻿using System.Xml;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
+
+    enum CreatorTypeEnum { unknown, composer, poet, lyricist, arranger };
+
     class CreatorElement : Element
     {
 
-        string typeValue = "";
+        private CreatorTypeEnum creatorType;
         string value = "";
 
         /// <summary>
@@ -15,15 +20,18 @@ namespace MusicXmlReaderUI
         { }
 
 
-        private string LocalizeCreatorType(string s) // LOCALIZE
+        private CreatorTypeEnum GetCreatorType(string s) 
         {
+            string functionName = "GetCreatorType";
             switch (s)
             {
-                case "composer": return "Komponist";
-                case "poet":
-                case "lyricist": return "Tekstforfatter";
-                case "arranger": return "Arrangør";
-                default: return s;
+                case "composer": return CreatorTypeEnum.composer;
+                case "poet": return CreatorTypeEnum.poet;
+                case "lyricist": return CreatorTypeEnum.lyricist;
+                case "arranger": return CreatorTypeEnum.arranger;
+                default:
+                    Logger.LogOnce(string.Format("{0}: Unknown Creator Type= {1}", functionName, s));
+                    return CreatorTypeEnum.unknown;
             }
         }
 
@@ -41,7 +49,7 @@ namespace MusicXmlReaderUI
                 switch (a.Name)
                 {
                     case "type":
-                        this.typeValue = LocalizeCreatorType(a.Value);                  
+                        creatorType = GetCreatorType(a.Value);                  
                         break;
                 }
             }
@@ -54,9 +62,28 @@ namespace MusicXmlReaderUI
             return new CreatorElement(node);
         }
 
-        public override string ToString() // LOCALIZE
+        private string LocalizeCreatorType(CreatorTypeEnum creatorType)
         {
-            return string.Format("{0}: {1}",typeValue,value );
+            string functionName = "LocalizeCreatorType";
+            switch (creatorType)
+            {
+                case CreatorTypeEnum.arranger: return ResourcesForModel.CreatorElementType_Arranger;
+                case CreatorTypeEnum.composer: return ResourcesForModel.CreatorElementType_Composer;
+                case CreatorTypeEnum.lyricist: return ResourcesForModel.CreatorElementType_Lyricist;
+                case CreatorTypeEnum.poet: return ResourcesForModel.CreatorElementType_Poet;
+                case CreatorTypeEnum.unknown:
+                    Logger.LogOnce(string.Format("{0}: CreatorType is unknown", functionName ));
+                    return ResourcesForModel.CreatorElementType_Unknown;
+                default:
+                    Logger.LogOnce(string.Format("{0}: Unsupported CreatorType={1}", functionName, creatorType.ToString()));
+                    return ResourcesForModel.CreatorElementType_Unknown;
+            }
+        }
+
+        
+        public override string ToString() 
+        {
+            return string.Format("{0}: {1}",LocalizeCreatorType(creatorType),value );
         }
 
 
