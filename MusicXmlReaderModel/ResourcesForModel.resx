@@ -471,4 +471,10 @@
   <data name="EndingElement_Undefined" xml:space="preserve">
     <value>Undefined</value>
   </data>
+  <data name="FermataElement_Inverted" xml:space="preserve">
+    <value>Inverted Fermata</value>
+  </data>
+  <data name="FermataElement_Upright" xml:space="preserve">
+    <value>Fermata</value>
+  </data>
 </root>

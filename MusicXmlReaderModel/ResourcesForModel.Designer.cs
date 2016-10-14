@@ -457,6 +457,24 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Inverted Fermata.
+        /// </summary>
+        internal static string FermataElement_Inverted {
+            get {
+                return ResourceManager.GetString("FermataElement_Inverted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fermata.
+        /// </summary>
+        internal static string FermataElement_Upright {
+            get {
+                return ResourceManager.GetString("FermataElement_Upright", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Key.
         /// </summary>
         internal static string KeyElement_key {

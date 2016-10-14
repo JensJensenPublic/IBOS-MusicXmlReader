@@ -1,11 +1,13 @@
 ﻿using System.Xml;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
     // The tied type represents the notated tie. The tie element represents the tie sound.
     class FermataElement : Element
     {
-        public enum FermataTypeEnum { undefined, upright, inverted}; // LOCALIZE
+        public enum FermataTypeEnum { undefined, upright, inverted}; 
         private FermataTypeEnum fermataType = FermataTypeEnum.undefined;
         public FermataTypeEnum FermataType
         {
@@ -61,12 +63,12 @@ namespace MusicXmlReaderUI
         }
 
 
-        public override string ToString() // LOCALIZE
+        public override string ToString() 
         {
             switch (fermataType)
             {
-                case FermataTypeEnum.upright: return "Fermat";
-                case FermataTypeEnum.inverted: return "Omvendt fermat";
+                case FermataTypeEnum.upright:  return ResourcesForModel.FermataElement_Upright;  // "Fermat";
+                case FermataTypeEnum.inverted: return ResourcesForModel.FermataElement_Inverted; // "Omvendt fermat";
                 default: return "";
             }
         }
