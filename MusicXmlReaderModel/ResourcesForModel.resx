@@ -498,4 +498,13 @@
   <data name="PartListElement_Parts" xml:space="preserve">
     <value>Parts</value>
   </data>
+  <data name="RepeatElement_Backward" xml:space="preserve">
+    <value>backward</value>
+  </data>
+  <data name="RepeatElement_Forward" xml:space="preserve">
+    <value>forward</value>
+  </data>
+  <data name="RepeatElement_Name" xml:space="preserve">
+    <value>Repetition</value>
+  </data>
 </root>

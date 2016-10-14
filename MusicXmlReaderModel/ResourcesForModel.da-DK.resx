@@ -495,4 +495,13 @@
   <data name="PartListElement_Parts" xml:space="preserve">
     <value>stemmer</value>
   </data>
+  <data name="RepeatElement_Backward" xml:space="preserve">
+    <value>tilbage</value>
+  </data>
+  <data name="RepeatElement_Forward" xml:space="preserve">
+    <value>fremad</value>
+  </data>
+  <data name="RepeatElement_Name" xml:space="preserve">
+    <value>Gentagelse</value>
+  </data>
 </root>

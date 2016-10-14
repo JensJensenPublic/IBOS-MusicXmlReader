@@ -1,4 +1,6 @@
 ﻿using System.Xml;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
@@ -61,21 +63,24 @@ namespace MusicXmlReaderUI
             return new RepeatElement(node);
         }
 
-        private string LocalizeDirection(RepeatDirectionEnum direction) // LOCALIZE
+        private string LocalizeDirection(RepeatDirectionEnum direction)
         {
+            string functionName = "LocalizeDirection";
             switch (repeatDirection)
             {
-                case RepeatDirectionEnum.Forward:  return "start";
-                case RepeatDirectionEnum.Backward: return "slut";
-                default: return "???";
+                case RepeatDirectionEnum.Forward:  return ResourcesForModel.RepeatElement_Forward;
+                case RepeatDirectionEnum.Backward: return ResourcesForModel.RepeatElement_Backward;
+                default:
+                    Logger.LogOnce(string.Format("{0}: Undefined Repeat-direction {1}", functionName,repeatDirection.ToString()));
+                    return "";
             }
        }
 
 
-        public override string ToString() // LOCALIZE
+        public override string ToString()
         {
 
-            return string.Format("Gentagelse {0}", LocalizeDirection(repeatDirection));
+            return string.Format("{0} {1}",ResourcesForModel.RepeatElement_Name, LocalizeDirection(repeatDirection));
         }
     }
 }

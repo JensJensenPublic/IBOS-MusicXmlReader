@@ -997,6 +997,33 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to backward.
+        /// </summary>
+        internal static string RepeatElement_Backward {
+            get {
+                return ResourceManager.GetString("RepeatElement_Backward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to forward.
+        /// </summary>
+        internal static string RepeatElement_Forward {
+            get {
+                return ResourceManager.GetString("RepeatElement_Forward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repetition.
+        /// </summary>
+        internal static string RepeatElement_Name {
+            get {
+                return ResourceManager.GetString("RepeatElement_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to eights.
         /// </summary>
         internal static string TimeElement_eights {
