@@ -781,6 +781,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Part.
+        /// </summary>
+        internal static string PartElement_Name {
+            get {
+                return ResourceManager.GetString("PartElement_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A.
         /// </summary>
         internal static string PitchElement_a {

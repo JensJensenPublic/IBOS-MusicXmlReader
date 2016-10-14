@@ -481,9 +481,9 @@
     <value>Udfyldt</value>
   </data>
   <data name="NoteHeadElement_Parentheses" xml:space="preserve">
-    <value>I Parentes</value>
+    <value>I Parenteser</value>
   </data>
-  <data name="påpå" xml:space="preserve">
-    <value />
+  <data name="PartElement_Name" xml:space="preserve">
+    <value>Stemme</value>
   </data>
 </root>

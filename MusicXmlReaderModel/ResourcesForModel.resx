@@ -486,4 +486,7 @@
   <data name="NoteHeadElement_Parentheses" xml:space="preserve">
     <value>Parentheses</value>
   </data>
+  <data name="PartElement_Name" xml:space="preserve">
+    <value>Part</value>
+  </data>
 </root>
