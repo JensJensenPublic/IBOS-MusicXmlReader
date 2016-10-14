@@ -1060,6 +1060,42 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to continue.
+        /// </summary>
+        internal static string StartStopContinueElement_Continue {
+            get {
+                return ResourceManager.GetString("StartStopContinueElement_Continue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to start.
+        /// </summary>
+        internal static string StartStopContinueElement_Start {
+            get {
+                return ResourceManager.GetString("StartStopContinueElement_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to stop.
+        /// </summary>
+        internal static string StartStopContinueElement_Stop {
+            get {
+                return ResourceManager.GetString("StartStopContinueElement_Stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to undefined.
+        /// </summary>
+        internal static string StartStopContinueElement_Undefined {
+            get {
+                return ResourceManager.GetString("StartStopContinueElement_Undefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to eights.
         /// </summary>
         internal static string TimeElement_eights {

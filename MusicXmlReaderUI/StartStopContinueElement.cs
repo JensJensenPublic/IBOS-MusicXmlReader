@@ -1,4 +1,6 @@
 ﻿using System.Xml;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
@@ -68,10 +70,10 @@ namespace MusicXmlReaderUI
         {
             switch (slurType)
             {
-                case StartStopContinueTypeEnum.Undefinded: return "Udefineret";
-                case StartStopContinueTypeEnum.Start: return "Start";
-                case StartStopContinueTypeEnum.Stop: return "Slut";
-                case StartStopContinueTypeEnum.Continue: return "Fortsæt";
+                case StartStopContinueTypeEnum.Undefinded: return ResourcesForModel.StartStopContinueElement_Undefined; // "Udefineret";
+                case StartStopContinueTypeEnum.Start: return ResourcesForModel.StartStopContinueElement_Start; // "Start";
+                case StartStopContinueTypeEnum.Stop: return ResourcesForModel.StartStopContinueElement_Stop; // "Slut";
+                case StartStopContinueTypeEnum.Continue: return ResourcesForModel.StartStopContinueElement_Continue; // "Fortsæt";
                 default:
                     Logger.Log(string.Format("StartStopContinueElement.Localize: Unexpected value of StartStopContinueType: '{0}'", slurType.ToString()));
                     return "";

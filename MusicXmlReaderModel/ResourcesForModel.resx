@@ -519,4 +519,16 @@
   <data name="SoundElement_Tempo" xml:space="preserve">
     <value>Tempo</value>
   </data>
+  <data name="StartStopContinueElement_Continue" xml:space="preserve">
+    <value>continue</value>
+  </data>
+  <data name="StartStopContinueElement_Start" xml:space="preserve">
+    <value>start</value>
+  </data>
+  <data name="StartStopContinueElement_Stop" xml:space="preserve">
+    <value>stop</value>
+  </data>
+  <data name="StartStopContinueElement_Undefined" xml:space="preserve">
+    <value>undefined</value>
+  </data>
 </root>
