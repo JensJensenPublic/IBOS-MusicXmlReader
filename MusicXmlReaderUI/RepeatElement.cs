@@ -10,7 +10,7 @@ namespace MusicXmlReaderUI
     /// </summary>
     public class RepeatElement : EventElement
     {
-        public enum RepeatDirectionEnum { Undefinded, Forward, Backward }; // LOCALIZE
+        public enum RepeatDirectionEnum { Undefinded, Forward, Backward };
         RepeatDirectionEnum repeatDirection;
         int timesToRepeat;
 
