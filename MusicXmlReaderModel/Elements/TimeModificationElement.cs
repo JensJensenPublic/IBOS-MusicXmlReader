@@ -67,7 +67,7 @@ namespace MusicXmlReaderUI
             return new TimeModificationElement(node,noteElement);
         }
 
-        public override string ToString() // LOCALIZE
+        public override string ToString() // Localize when implemented
         {
             return string.Format("");
         }
