@@ -1051,6 +1051,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tempo.
+        /// </summary>
+        internal static string SoundElement_Tempo {
+            get {
+                return ResourceManager.GetString("SoundElement_Tempo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to eights.
         /// </summary>
         internal static string TimeElement_eights {

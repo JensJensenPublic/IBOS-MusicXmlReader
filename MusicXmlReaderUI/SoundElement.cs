@@ -1,4 +1,6 @@
 ﻿using System.Xml;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
@@ -37,9 +39,9 @@ namespace MusicXmlReaderUI
             return new SoundElement(node);
         }
 
-        public override string ToString() // LOCALIZE
+        public override string ToString() 
         {
-            return string.Format("Tempo {0}", tempo);
+            return string.Format("{0} {1}",ResourcesForModel.SoundElement_Tempo, tempo);
         }
 
         /// <summary>

@@ -513,4 +513,7 @@
   <data name="SlurElement_Name" xml:space="preserve">
     <value>Legato</value>
   </data>
+  <data name="SoundElement_Tempo" xml:space="preserve">
+    <value>Tempo</value>
+  </data>
 </root>
