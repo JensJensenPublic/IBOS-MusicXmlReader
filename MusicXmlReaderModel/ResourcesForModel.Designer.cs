@@ -1024,6 +1024,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rest.
+        /// </summary>
+        internal static string RestElement_Name {
+            get {
+                return ResourceManager.GetString("RestElement_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to eights.
         /// </summary>
         internal static string TimeElement_eights {

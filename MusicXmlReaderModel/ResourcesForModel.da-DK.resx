@@ -504,4 +504,7 @@
   <data name="RepeatElement_Name" xml:space="preserve">
     <value>Gentagelse</value>
   </data>
+  <data name="RestElement_Name" xml:space="preserve">
+    <value>Pause</value>
+  </data>
 </root>

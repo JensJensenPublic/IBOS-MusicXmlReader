@@ -507,4 +507,7 @@
   <data name="RepeatElement_Name" xml:space="preserve">
     <value>Repetition</value>
   </data>
+  <data name="RestElement_Name" xml:space="preserve">
+    <value>Rest</value>
+  </data>
 </root>
