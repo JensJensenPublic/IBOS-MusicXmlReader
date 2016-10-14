@@ -403,6 +403,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to translator.
+        /// </summary>
+        internal static string CreatorElementType_Translator {
+            get {
+                return ResourceManager.GetString("CreatorElementType_Translator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown.
         /// </summary>
         internal static string CreatorElementType_Unknown {

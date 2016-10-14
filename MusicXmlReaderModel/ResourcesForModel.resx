@@ -456,6 +456,9 @@
   <data name="CreatorElementType_Poet" xml:space="preserve">
     <value>Poet</value>
   </data>
+  <data name="CreatorElementType_Translator" xml:space="preserve">
+    <value>translator</value>
+  </data>
   <data name="CreatorElementType_Unknown" xml:space="preserve">
     <value>Unknown</value>
   </data>
