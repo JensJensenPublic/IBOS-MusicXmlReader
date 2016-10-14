@@ -475,6 +475,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Glissando.
+        /// </summary>
+        internal static string GlissandoElement_Name {
+            get {
+                return ResourceManager.GetString("GlissandoElement_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Key.
         /// </summary>
         internal static string KeyElement_key {

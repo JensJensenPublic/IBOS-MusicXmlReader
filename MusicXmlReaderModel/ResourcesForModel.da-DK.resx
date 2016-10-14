@@ -474,4 +474,7 @@
   <data name="FermataElement_Upright" xml:space="preserve">
     <value>Fermat</value>
   </data>
+  <data name="GlissandoElement_Name" xml:space="preserve">
+    <value>Glidetone</value>
+  </data>
 </root>
