@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
@@ -106,12 +108,12 @@ namespace MusicXmlReaderUI
             return new PartlistElement(node);
         }
 
-        public override string ToString() // LOCALIZE
+        public override string ToString()
         {
-            return string.Format("Partituret indeholder {0} stemmer:" ,scorePartElements.Count);
+            return string.Format( "{0} {1} {2}:" , ResourcesForModel.PartListElement_Message,scorePartElements.Count, ResourcesForModel.PartListElement_Parts);
         }
 
-        public string[] ToStrings() // LOCALIZE
+        public string[] ToStrings() 
         {
             List<string> list = new List<string>();
             //foreach (ScorePartElement spe in scorePartElements)
@@ -122,7 +124,8 @@ namespace MusicXmlReaderUI
             //}
             foreach (ScorePartElement scorePartElement in partArray)
             {
-                list.Add(string.Format("Stemme[{0}]: {1} ({2})", scorePartElement.partNumber, scorePartElement.partName, scorePartElement.partId));
+                string part = ResourcesForModel.PartListElement_Part;
+                list.Add(string.Format("{0}[{1}]: {2} ({3})", part,scorePartElement.partNumber, scorePartElement.partName, scorePartElement.partId));
                 list.Add(string.Format("   {0}", scorePartElement.ScoreInstrumentString));
                 list.Add(string.Format("   {0}", scorePartElement.MidiInstrumentString));
 

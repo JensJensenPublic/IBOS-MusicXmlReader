@@ -489,4 +489,13 @@
   <data name="PartElement_Name" xml:space="preserve">
     <value>Part</value>
   </data>
+  <data name="PartListElement_Message" xml:space="preserve">
+    <value>This partlist contains</value>
+  </data>
+  <data name="PartListElement_Part" xml:space="preserve">
+    <value>Part</value>
+  </data>
+  <data name="PartListElement_Parts" xml:space="preserve">
+    <value>Parts</value>
+  </data>
 </root>
