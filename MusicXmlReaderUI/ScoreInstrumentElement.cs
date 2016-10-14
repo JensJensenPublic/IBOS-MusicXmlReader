@@ -72,10 +72,10 @@ namespace MusicXmlReaderUI
             return new ScoreInstrumentElement(node);
         }
         
-        public override string ToString() // LOCALIZE
-        {
-            return (string.Format("ScoreInstrument: Id='{0}' Sound='{1}' Navn='{2}' Forkortelse='{3}' Solo='{4}' VirtualInstrument='{5}'",
-                                   id, instrumentSound, instrumentName, instrumentAbbreviation,solo,virtualInstrument));    
-        }
+    //    public override string ToString() // Not called, not localized
+    //    {
+    //        return (string.Format("ScoreInstrument: Id='{0}' Sound='{1}' Navn='{2}' Forkortelse='{3}' Solo='{4}' VirtualInstrument='{5}'",
+    //                               id, instrumentSound, instrumentName, instrumentAbbreviation,solo,virtualInstrument));    
+    //    }
     }
 }
