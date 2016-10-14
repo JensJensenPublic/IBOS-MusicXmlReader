@@ -129,9 +129,6 @@
     <Compile Include="..\MusicXmlReaderUI\MusicXmlObject.cs">
       <Link>MusicXmlObject.cs</Link>
     </Compile>
-    <Compile Include="..\MusicXmlReaderUI\NotationElement.cs">
-      <Link>Elements\NotationElement.cs</Link>
-    </Compile>
     <Compile Include="..\MusicXmlReaderUI\NotationsElement.cs">
       <Link>Elements\NotationsElement.cs</Link>
     </Compile>
