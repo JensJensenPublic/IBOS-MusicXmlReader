@@ -4,7 +4,7 @@ using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
-    public enum BarlineLocationEnum {unknown, right, left, middle}; // LOCALIZE
+    public enum BarlineLocationEnum {unknown, right, left, middle}; 
 
     /// <summary>
     /// http://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-barline.htm
