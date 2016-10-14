@@ -480,4 +480,10 @@
   <data name="GlissandoElement_Name" xml:space="preserve">
     <value>Glissando</value>
   </data>
+  <data name="NoteHeadElement_Filled" xml:space="preserve">
+    <value>Filled</value>
+  </data>
+  <data name="NoteHeadElement_Parentheses" xml:space="preserve">
+    <value>Parentheses</value>
+  </data>
 </root>

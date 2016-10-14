@@ -477,4 +477,13 @@
   <data name="GlissandoElement_Name" xml:space="preserve">
     <value>Glidetone</value>
   </data>
+  <data name="NoteHeadElement_Filled" xml:space="preserve">
+    <value>Udfyldt</value>
+  </data>
+  <data name="NoteHeadElement_Parentheses" xml:space="preserve">
+    <value>I Parentes</value>
+  </data>
+  <data name="påpå" xml:space="preserve">
+    <value />
+  </data>
 </root>

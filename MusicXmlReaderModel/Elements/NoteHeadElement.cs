@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
@@ -53,11 +55,11 @@ namespace MusicXmlReaderUI
         }
 
 
-        public override string ToString() // LOCALIZE
+        public override string ToString()
         {
             return string.Format("{0} {1}",
-                                filled? "filled" : "", // 0
-                                parentheses? "parentheses" : "" // 1
+                                filled? ResourcesForModel.NoteHeadElement_Filled : "", // 0
+                                parentheses? ResourcesForModel.NoteHeadElement_Parentheses : "" // 1
                                 );
         }
     }

@@ -763,6 +763,24 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filled.
+        /// </summary>
+        internal static string NoteHeadElement_Filled {
+            get {
+                return ResourceManager.GetString("NoteHeadElement_Filled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parentheses.
+        /// </summary>
+        internal static string NoteHeadElement_Parentheses {
+            get {
+                return ResourceManager.GetString("NoteHeadElement_Parentheses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A.
         /// </summary>
         internal static string PitchElement_a {
