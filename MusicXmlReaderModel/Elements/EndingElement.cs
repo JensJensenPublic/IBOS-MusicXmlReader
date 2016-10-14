@@ -1,4 +1,6 @@
 ﻿using System.Xml;
+using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
@@ -73,15 +75,15 @@ namespace MusicXmlReaderUI
             }
         }
 
-        protected string Localize(EndingElementTypeEnum endingType) // LOCALIZE
+        protected string Localize(EndingElementTypeEnum endingType)
         {
             const string functionName = "EndingElementType.Localize";
             switch (endingType)
             {
-                case EndingElementTypeEnum.Undefinded: return "Udefineret";
-                case EndingElementTypeEnum.Start: return "Start";
-                case EndingElementTypeEnum.Stop: return "Slut";
-                case EndingElementTypeEnum.Discontinue: return "Stop";
+                case EndingElementTypeEnum.Undefinded: return ResourcesForModel.EndingElement_Undefined; // "Udefineret";
+                case EndingElementTypeEnum.Start: return ResourcesForModel.EndingElement_Start; // "Start";
+                case EndingElementTypeEnum.Stop: return ResourcesForModel.EndingElement_Stop; // "Slut";
+                case EndingElementTypeEnum.Discontinue: return ResourcesForModel.EndingElement_Discontinue; // "Stop";
                 default:
                     Logger.Log(string.Format("{0}: Unexpected value='{1}'", functionName, endingType.ToString()));
                     return "";

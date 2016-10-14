@@ -456,4 +456,16 @@
   <data name="CreatorElementType_Unknown" xml:space="preserve">
     <value>Ukendt</value>
   </data>
+  <data name="EndingElement_Discontinue" xml:space="preserve">
+    <value>Afbryd</value>
+  </data>
+  <data name="EndingElement_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="EndingElement_Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="EndingElement_Undefined" xml:space="preserve">
+    <value>Udefineret</value>
+  </data>
 </root>

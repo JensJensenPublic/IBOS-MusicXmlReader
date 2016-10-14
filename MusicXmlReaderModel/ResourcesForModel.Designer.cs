@@ -412,6 +412,42 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Discontinue.
+        /// </summary>
+        internal static string EndingElement_Discontinue {
+            get {
+                return ResourceManager.GetString("EndingElement_Discontinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        internal static string EndingElement_Start {
+            get {
+                return ResourceManager.GetString("EndingElement_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop.
+        /// </summary>
+        internal static string EndingElement_Stop {
+            get {
+                return ResourceManager.GetString("EndingElement_Stop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undefined.
+        /// </summary>
+        internal static string EndingElement_Undefined {
+            get {
+                return ResourceManager.GetString("EndingElement_Undefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tempo.
         /// </summary>
         internal static string EventDescription_tempo {
