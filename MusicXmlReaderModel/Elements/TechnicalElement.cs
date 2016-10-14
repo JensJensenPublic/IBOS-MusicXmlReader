@@ -32,7 +32,7 @@ namespace MusicXmlReaderUI
             return new TechnicalElement(node);
         }
 
-        public override string ToString() // LOCALIZE
+        public override string ToString() // To be localized when implemented
         {
             return string.Format("");
         }
