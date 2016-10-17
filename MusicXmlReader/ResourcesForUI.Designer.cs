@@ -160,6 +160,114 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Files.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Open MusicXml File.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_OpenMusicXmlFile {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_OpenMusicXmlFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Tools.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MusicXml file  as raw Xml.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_InspectAsXml {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_InspectAsXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LogFile.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_Logfile {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_Logfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log file location.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_Logfile_Location {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_Logfile_Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MuseScore.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_MuseScore {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_MuseScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MusicXml file in Notepad.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_MusicXmlFileInNotePad {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_MusicXmlFileInNotePad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XML file location.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_OpenXmlFileLocation {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_OpenXmlFileLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save as text.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_SaveAsText {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_SaveAsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sibelius.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_Sibelius {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_Sibelius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MusicXml file as interpreted Xml.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_ViewAsInterpretedXml {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_ViewAsInterpretedXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Music as Braille.
         /// </summary>
         internal static string TreeView_MusicAsBraille {

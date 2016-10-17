@@ -38,6 +38,32 @@ namespace MusicXmlReader
             userSettingsHandler = UserSettingsHandler.Create(this,this.userSettingsTreeView,model);
             userSettingsHandler.Init(); // Buyilds up the fixed part of the treeview
 
+            LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
+
+        }
+
+        void LocalizeMenuStrip()
+        {
+            //MenuStrip.Text = "??";
+            // Children of MenuStrip
+            filesToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files;
+            //editToolStripMenuItem.Text = "&Edit"; // Not needed yet
+            //viewToolStripMenuItem.Text = "&view"; // Not needed yet
+            toolsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools;
+            //helpToolStripMenuItem.Text = "&help"; // Not needed yet
+
+            // Children of  fileToolStripMenuItem
+            openMusicXmlFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile; ;
+
+            // Children of  toolsToolStripMenuItem
+            museScoreToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_MuseScore;
+            sibeliusToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Sibelius;
+            logfileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Logfile;
+            openXMLFileLocationToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_OpenXmlFileLocation;
+            musicXmlFileInNtePadToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_MusicXmlFileInNotePad;
+            inspectAsXMLToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_InspectAsXml;
+            viewAsInterpretedXMLToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_ViewAsInterpretedXml;
+            saveAsTextToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_SaveAsText;
         }
 
 

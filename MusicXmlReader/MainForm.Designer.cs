@@ -43,6 +43,14 @@
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.textBoxMessage = new System.Windows.Forms.TextBox();
+            this.museScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sibeliusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.musicXmlFileInNtePadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inspectAsXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewAsInterpretedXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openXMLFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,6 +98,15 @@
             // 
             // toolsToolStripMenuItem
             // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.museScoreToolStripMenuItem,
+            this.sibeliusToolStripMenuItem,
+            this.logfileToolStripMenuItem,
+            this.openXMLFileLocationToolStripMenuItem,
+            this.musicXmlFileInNtePadToolStripMenuItem,
+            this.inspectAsXMLToolStripMenuItem,
+            this.viewAsInterpretedXMLToolStripMenuItem,
+            this.saveAsTextToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -167,6 +184,54 @@
             this.textBoxMessage.TabIndex = 7;
             this.textBoxMessage.TabStop = false;
             // 
+            // museScoreToolStripMenuItem
+            // 
+            this.museScoreToolStripMenuItem.Name = "museScoreToolStripMenuItem";
+            this.museScoreToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.museScoreToolStripMenuItem.Text = "Start MuseScore";
+            // 
+            // sibeliusToolStripMenuItem
+            // 
+            this.sibeliusToolStripMenuItem.Name = "sibeliusToolStripMenuItem";
+            this.sibeliusToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.sibeliusToolStripMenuItem.Text = "Start Sibelius";
+            // 
+            // logfileToolStripMenuItem
+            // 
+            this.logfileToolStripMenuItem.Name = "logfileToolStripMenuItem";
+            this.logfileToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.logfileToolStripMenuItem.Text = "Explore log file";
+            // 
+            // musicXmlFileInNtePadToolStripMenuItem
+            // 
+            this.musicXmlFileInNtePadToolStripMenuItem.Name = "musicXmlFileInNtePadToolStripMenuItem";
+            this.musicXmlFileInNtePadToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.musicXmlFileInNtePadToolStripMenuItem.Text = "Open log file location";
+            // 
+            // inspectAsXMLToolStripMenuItem
+            // 
+            this.inspectAsXMLToolStripMenuItem.Name = "inspectAsXMLToolStripMenuItem";
+            this.inspectAsXMLToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.inspectAsXMLToolStripMenuItem.Text = "Explore as raw XML";
+            // 
+            // viewAsInterpretedXMLToolStripMenuItem
+            // 
+            this.viewAsInterpretedXMLToolStripMenuItem.Name = "viewAsInterpretedXMLToolStripMenuItem";
+            this.viewAsInterpretedXMLToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.viewAsInterpretedXMLToolStripMenuItem.Text = "Explore as interpreted XML";
+            // 
+            // saveAsTextToolStripMenuItem
+            // 
+            this.saveAsTextToolStripMenuItem.Name = "saveAsTextToolStripMenuItem";
+            this.saveAsTextToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.saveAsTextToolStripMenuItem.Text = "Save as text";
+            // 
+            // openXMLFileLocationToolStripMenuItem
+            // 
+            this.openXMLFileLocationToolStripMenuItem.Name = "openXMLFileLocationToolStripMenuItem";
+            this.openXMLFileLocationToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.openXMLFileLocationToolStripMenuItem.Text = "Open XML file location";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,6 +272,14 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.TextBox textBoxMessage;
+        private System.Windows.Forms.ToolStripMenuItem museScoreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sibeliusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logfileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openXMLFileLocationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem musicXmlFileInNtePadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inspectAsXMLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewAsInterpretedXMLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsTextToolStripMenuItem;
     }
 }
 

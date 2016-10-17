@@ -150,6 +150,39 @@
   <data name="TextBox_Messages_Reading_File" xml:space="preserve">
     <value>Indlæser</value>
   </data>
+  <data name="ToolStripMenuItem_Files" xml:space="preserve">
+    <value>&amp;Filer</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFile" xml:space="preserve">
+    <value>&amp;Åbn MusicXml fil</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools" xml:space="preserve">
+    <value>&amp;Værktøjer</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_InspectAsXml" xml:space="preserve">
+    <value>MusicXml fil som rå XML</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_Logfile" xml:space="preserve">
+    <value>Logfil</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_MuseScore" xml:space="preserve">
+    <value>MuseScore</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_MusicXmlFileInNotePad" xml:space="preserve">
+    <value>MusicXml fil som rå tekst</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_OpenXmlFileLocation" xml:space="preserve">
+    <value>MusicXml fil placering</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_SaveAsText" xml:space="preserve">
+    <value>Gem som tekst</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_Sibelius" xml:space="preserve">
+    <value>Sibelius</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_ViewAsInterpretedXml" xml:space="preserve">
+    <value>MusicXml fil som fortolket XML</value>
+  </data>
   <data name="TreeView_MusicAsBraille" xml:space="preserve">
     <value>Musik som punktnoder</value>
   </data>
