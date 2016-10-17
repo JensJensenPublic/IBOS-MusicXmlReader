@@ -186,20 +186,21 @@ namespace MusicXmlReader
                 case ModelMessageEnum.FailedToStartProgram: return ResourcesForUI.Message_FailedToStartProgram;
                 case ModelMessageEnum.FileNotFound: return ResourcesForUI.Message_FileNotFound;
                 case ModelMessageEnum.MissingProgramFile: return ResourcesForUI.Message_MissingProgramFile;
+                case ModelMessageEnum.FailedToReadMusicXmlFile: return ResourcesForUI.Message_FailedToReadMusicXmlFile;
                 default: return string.Format("{0} {1}",ResourcesForUI.Message_UndefinedMessage,messageEnum.ToString());
             }
         }
 
         private string LocalizeExtraMessage(ModelMessageEnum messageEnum)
         {
-            string newline = "\r\n";
             switch (messageEnum)
             {
                 case ModelMessageEnum.DirectoryNotFound: return "";
-                case ModelMessageEnum.FailedToConnectToScreenReader: return newline+ResourcesForUI.Message_PleaseSeeLogFile;
-                case ModelMessageEnum.FailedToStartProgram: return newline+ResourcesForUI.Message_PleaseSeeLogFile;
+                case ModelMessageEnum.FailedToConnectToScreenReader: return ResourcesForUI.Message_PleaseSeeLogFile;
+                case ModelMessageEnum.FailedToStartProgram: return ResourcesForUI.Message_PleaseSeeLogFile;
                 case ModelMessageEnum.FileNotFound: return "";
-                case ModelMessageEnum.MissingProgramFile: return newline+ResourcesForUI.Message_PleaseSeeLogFile;
+                case ModelMessageEnum.MissingProgramFile: return ResourcesForUI.Message_PleaseSeeLogFile;
+                case ModelMessageEnum.FailedToReadMusicXmlFile: return ResourcesForUI.Message_PleaseSeeLogFile;
                 default: return "";
             }
         }
@@ -255,7 +256,10 @@ namespace MusicXmlReader
             if (!model.LoadMusicXmlFile(openFileDialog.FileName)) // Load the selected .xml file into the Model and build all internal data structures.
             {
                 // Simple error handling
-                textBoxMessage.Text = string.Format("{0} '{1}'",ResourcesForUI.TextBox_Messages_FailedToRead_File ,shortFileName); // Short filename for UI
+                string message = string.Format("{0} '{1}'", ResourcesForUI.TextBox_Messages_FailedToRead_File, shortFileName); // Short filename for UI
+                textBoxMessage.Text = message;
+                ShowWarning((int)ModelMessageEnum.FailedToReadMusicXmlFile, shortFileName, "");
+                MessageBox.Show(message, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Logger.Log(string.Format("Failed to read {0}", openFileDialog.FileName)); // Full filename for UI
                 Logger.DumpStatistics(); // Dump all statistics collected by LogOnce() until now
                 return;

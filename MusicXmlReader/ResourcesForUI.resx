@@ -126,6 +126,9 @@
   <data name="Message_FailedToConnectToScreenReader" xml:space="preserve">
     <value>Failed to connect to screenreader</value>
   </data>
+  <data name="Message_FailedToReadMusicXmlFile" xml:space="preserve">
+    <value>Failed to read MusicXml file</value>
+  </data>
   <data name="Message_FailedToStartProgram" xml:space="preserve">
     <value>Failed to start program</value>
   </data>

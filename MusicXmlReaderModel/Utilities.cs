@@ -18,7 +18,8 @@ namespace MusicXmlReaderUI
         FailedToConnectToScreenReader, // JAWS
         FileNotFound,
         DirectoryNotFound,
-        FailedToStartProgram // External program such as Sibelius, Notepad etc
+        FailedToStartProgram, // External program such as Sibelius, Notepad etc
+        FailedToReadMusicXmlFile // Unspecified error during reading and interpretation
     }
 
     public interface IMessageShower

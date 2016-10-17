@@ -126,6 +126,9 @@
   <data name="Message_FailedToConnectToScreenReader" xml:space="preserve">
     <value>Kunne ikke forbinde til skærmlæser</value>
   </data>
+  <data name="Message_FailedToReadMusicXmlFile" xml:space="preserve">
+    <value>Kunne ikke indlæse MusicXml fil</value>
+  </data>
   <data name="Message_FailedToStartProgram" xml:space="preserve">
     <value>Kunne ikke starte programmet</value>
   </data>
@@ -136,7 +139,7 @@
     <value>Manglende programfil</value>
   </data>
   <data name="Message_PleaseSeeLogFile" xml:space="preserve">
-    <value>Se venligst log fil (Værktøjer-&gt;Log fil)</value>
+    <value>Se venligst log fil (Værktøjer-&gt;Logfil)</value>
   </data>
   <data name="Message_UndefinedMessage" xml:space="preserve">
     <value>(Udefineret meddelelse)</value>

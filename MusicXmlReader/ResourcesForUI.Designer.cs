@@ -88,6 +88,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to read MusicXml file.
+        /// </summary>
+        internal static string Message_FailedToReadMusicXmlFile {
+            get {
+                return ResourceManager.GetString("Message_FailedToReadMusicXmlFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to start program.
         /// </summary>
         internal static string Message_FailedToStartProgram {
