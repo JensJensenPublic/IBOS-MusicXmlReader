@@ -94,7 +94,7 @@ namespace MusicXmlReaderUI
 
             // Create contents
             System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(fileName);
-            if (allMusicXmlObjecsts.Count > 0)
+            if ((null != allMusicXmlObjecsts) &&(allMusicXmlObjecsts.Count > 0))
             {
                 foreach (object o in allMusicXmlObjecsts)
                 {
