@@ -144,7 +144,7 @@
             this.openLogFileLocationToolStripMenuItem.Name = "musicXmlFileInNtePadToolStripMenuItem";
             this.openLogFileLocationToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.openLogFileLocationToolStripMenuItem.Text = "Open log file location";
-            this.openLogFileLocationToolStripMenuItem.Click += new System.EventHandler(this.musicXmlFileInNtePadToolStripMenuItem_Click);
+            this.openLogFileLocationToolStripMenuItem.Click += new System.EventHandler(this.openLogFileLocationToolStripMenuItem_Click);
             // 
             // inspectAsXMLToolStripMenuItem
             // 

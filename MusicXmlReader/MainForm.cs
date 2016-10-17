@@ -401,7 +401,7 @@ namespace MusicXmlReader
             model.OpenMusicXmlFileLocation();
         }
 
-        private void musicXmlFileInNtePadToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openLogFileLocationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             model.OpenLogFileLocation(); 
         }
