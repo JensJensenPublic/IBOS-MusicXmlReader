@@ -45,10 +45,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrailleBuilder.cs" />
-    <Compile Include="BrailleDisplayer.cs" />
-    <Compile Include="DebugTools.cs" />
-    <Compile Include="DeviceInfo.cs" />
+    <Compile Include="..\MusicXmlReaderUI\BrailleBuilder.cs">
+      <Link>BrailleBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\BrailleDisplayer.cs">
+      <Link>BrailleDisplayer.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\DebugTools.cs">
+      <Link>DebugTools.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\DeviceInfo.cs">
+      <Link>DeviceInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\EventDescription.cs">
+      <Link>EventDescription.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\EventDescriptionList.cs">
+      <Link>EventDescriptionList.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\FSBrlDspAPI.Wrapper.cs">
+      <Link>FSBrlDspAPI.Wrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\Logger.cs">
+      <Link>Logger.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\Model.cs">
+      <Link>Model.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\MusicPlayer.cs">
+      <Link>MusicPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\MusicXmlObject.cs">
+      <Link>MusicXmlObject.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\PartDescriptionList.cs">
+      <Link>PartDescriptionList.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\SystemParametersiInfo.cs">
+      <Link>SystemParametersiInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\TimeDescriptionList.cs">
+      <Link>TimeDescriptionList.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\UserSettings.cs">
+      <Link>UserSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\MusicXmlReaderUI\Utilities.cs">
+      <Link>Utilities.cs</Link>
+    </Compile>
     <Compile Include="Elements\AccidentalElement.cs" />
     <Compile Include="Elements\AccidentalMarkElement.cs" />
     <Compile Include="Elements\ArpeggiateElement.cs" />
@@ -94,26 +138,14 @@
     <Compile Include="Elements\TimeModificationElement.cs" />
     <Compile Include="Elements\TupletElement.cs" />
     <Compile Include="Elements\UnimplementedElement.cs" />
-    <Compile Include="EventDescription.cs" />
-    <Compile Include="EventDescriptionList.cs" />
-    <Compile Include="FSBrlDspAPI.Wrapper.cs" />
-    <Compile Include="Logger.cs" />
     <Compile Include="LoggerCounters.cs" />
-    <Compile Include="Model.cs" />
     <Compile Include="MusicBrailleState.cs" />
-    <Compile Include="MusicPlayer.cs" />
-    <Compile Include="MusicXmlObject.cs" />
-    <Compile Include="PartDescriptionList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourcesForModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourcesForModel.resx</DependentUpon>
     </Compile>
-    <Compile Include="SystemParametersiInfo.cs" />
-    <Compile Include="TimeDescriptionList.cs" />
-    <Compile Include="UserSettings.cs" />
-    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MusicSynthesis\MusicSynthesis.csproj">
