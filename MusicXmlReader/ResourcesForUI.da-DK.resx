@@ -117,6 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Message_DirectoryNotFound" xml:space="preserve">
+    <value>Mappen eksisterer ikke</value>
+  </data>
+  <data name="Message_FailedToConnectToScreenReader" xml:space="preserve">
+    <value>Kunne ikke forbinde til JAWS skærmlæser</value>
+  </data>
+  <data name="Message_FailedToStartProgram" xml:space="preserve">
+    <value>Kunne ikke starte programmet</value>
+  </data>
+  <data name="Message_FileNotFound" xml:space="preserve">
+    <value>Filen eksisterer ikke</value>
+  </data>
+  <data name="Message_MissingProgramFile" xml:space="preserve">
+    <value>Manglende programfil</value>
+  </data>
+  <data name="Message_PleaseSeeLogFile" xml:space="preserve">
+    <value>Se venligst log fil (Værktøjer-&gt;Log fil)</value>
+  </data>
+  <data name="Message_UndefinedMessage" xml:space="preserve">
+    <value>(Udefineret meddelelse)</value>
+  </data>
   <data name="OpenFileDialog_Filter" xml:space="preserve">
     <value>MusicXml filer</value>
   </data>

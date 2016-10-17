@@ -23,8 +23,21 @@ namespace MusicXmlReaderUI
 
     public interface IMessageShower
     {
-        void ShowMessage(int textId, string text);
-        void ShowWarning(int textId, string text);
+        /// <summary>
+        /// For simple messages to be shown in the UI
+        /// </summary>
+        /// <param name="textId">Identifies the text as a ModelMessageEnum. Used by clients implementing localization</param>
+        /// <param name="parameter">En optional parameter. Used by clients implementing localization</param>
+        /// <param name="text">The text to be shown. Used by simple clients, not implementing localization</param>
+        void ShowMessage(int textId, string parameter,string text);
+
+        /// <summary>
+        /// For simple warnings to be shown in the UI
+        /// </summary>
+        /// <param name="textId">Identifies the text as a ModelMessageEnum. Used by clients implementing localization</param>
+        /// <param name="parameter">En optional parameter. Used by clients implementing localization</param>
+        /// <param name="text">The text to be shown. Used by simple clients, not implementing localization</param>
+        void ShowWarning(int textId, string parameter,string text);
     }
 
 
@@ -37,20 +50,20 @@ namespace MusicXmlReaderUI
 
         public static IMessageShower MessageShower;
 
-        private static void ShowWarning(ModelMessageEnum textEnum, string text)
+        private static void ShowWarning(ModelMessageEnum textEnum, string parameter, string text)
         {
             if (null != MessageShower)
             {
-                MessageShower.ShowWarning((int) textEnum,text);
+                MessageShower.ShowWarning((int) textEnum,parameter,text);
 
             }
         }
 
-        private static void ShowMessage(ModelMessageEnum textEnum,string text)
+        private static void ShowMessage(ModelMessageEnum textEnum,string parameter,string text)
         {
             if (null != MessageShower)
             {
-                MessageShower.ShowMessage((int)textEnum,text);
+                MessageShower.ShowMessage((int)textEnum,parameter,text);
 
             }
         }
@@ -321,7 +334,7 @@ namespace MusicXmlReaderUI
             {
                 if (caption != null)
                 {
-                    ShowWarning(ModelMessageEnum.MissingProgramFile,
+                    ShowWarning(ModelMessageEnum.MissingProgramFile,"",
                         "Manglende programfil!\r\n"
                       + "Se venligst Logfilen! (Værktøjer->Log fil)");
                 }
@@ -344,7 +357,7 @@ namespace MusicXmlReaderUI
                 if (null != caption)
                 {
                     // The application has UI
-                    ShowWarning(ModelMessageEnum.FailedToConnectToScreenReader,
+                    ShowWarning(ModelMessageEnum.FailedToConnectToScreenReader,"JAWS",
                         "Kunne ikke forbinde til skærmlæser!\r\n"
                       + "Understøttede skærmlæsere er 'JAWS' og 'NVDA'\r\n"
                       + "Se venligst logfilen (Værktøjer->Log fil)"
@@ -366,7 +379,7 @@ namespace MusicXmlReaderUI
                 if (!System.IO.Directory.Exists(fileName))
                 {
                     Logger.Log(string.Format("{0} Directory {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
-                    ShowMessage(ModelMessageEnum.DirectoryNotFound, string.Format("Mappen {0} findes ikke", fileName));             
+                    ShowMessage(ModelMessageEnum.DirectoryNotFound,"", string.Format("Mappen {0} findes ikke", fileName));             
                     return false;
                 }
             }
@@ -375,7 +388,7 @@ namespace MusicXmlReaderUI
                 if (!System.IO.File.Exists(fileName))
                 {
                     Logger.Log(string.Format("{0} File {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
-                    ShowMessage(ModelMessageEnum.FileNotFound, string.Format("Filen {0} findes ikke", fileName));
+                    ShowMessage(ModelMessageEnum.FileNotFound,"", string.Format("Filen {0} findes ikke", fileName));
                     return false;
                 }
             }
@@ -423,7 +436,7 @@ namespace MusicXmlReaderUI
             catch (Exception e)
             {
                 Logger.Log(string.Format("ReadFileByExecutable: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
-                ShowMessage(ModelMessageEnum.FailedToStartProgram, string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'", exeFileName, argFileName));
+                ShowMessage(ModelMessageEnum.FailedToStartProgram,"", string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'", exeFileName, argFileName));
                 return false;
             }
             return true;

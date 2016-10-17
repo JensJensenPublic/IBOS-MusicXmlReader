@@ -61,6 +61,69 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Directory not found.
+        /// </summary>
+        internal static string Message_DirectoryNotFound {
+            get {
+                return ResourceManager.GetString("Message_DirectoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to connect to JAWS screenreader.
+        /// </summary>
+        internal static string Message_FailedToConnectToScreenReader {
+            get {
+                return ResourceManager.GetString("Message_FailedToConnectToScreenReader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to start program.
+        /// </summary>
+        internal static string Message_FailedToStartProgram {
+            get {
+                return ResourceManager.GetString("Message_FailedToStartProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File not found.
+        /// </summary>
+        internal static string Message_FileNotFound {
+            get {
+                return ResourceManager.GetString("Message_FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing program file.
+        /// </summary>
+        internal static string Message_MissingProgramFile {
+            get {
+                return ResourceManager.GetString("Message_MissingProgramFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please see Log File (Tools-&gt;Log File).
+        /// </summary>
+        internal static string Message_PleaseSeeLogFile {
+            get {
+                return ResourceManager.GetString("Message_PleaseSeeLogFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Undefined Message).
+        /// </summary>
+        internal static string Message_UndefinedMessage {
+            get {
+                return ResourceManager.GetString("Message_UndefinedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MusicXml files.
         /// </summary>
         internal static string OpenFileDialog_Filter {

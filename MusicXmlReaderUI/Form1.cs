@@ -87,12 +87,12 @@ namespace MusicXmlReaderUI
 
         #region IMessageShower 
         // Decide how to show error messages and warnings          
-        public void ShowMessage(int messageId,string text)
+        public void ShowMessage(int messageId,string parameter,string text)
         {
             MessageBox.Show(text);
         }
 
-        public void ShowWarning(int messageId, string text)
+        public void ShowWarning(int messageId,string parameter, string text)
         {
             MessageBox.Show(text, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }    

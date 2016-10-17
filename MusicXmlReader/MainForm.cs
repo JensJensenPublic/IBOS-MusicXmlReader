@@ -148,14 +148,57 @@ namespace MusicXmlReader
 
         #region IMessageShower 
         // Decide how to show error messages and warnings          
-        public void ShowMessage(int messageId, string text)
+        public void ShowMessage(int messageId,string parameter, string text)
         {
             MessageBox.Show(text);
         }
 
-        public void ShowWarning(int messageId,string text)
-        {            
-            MessageBox.Show(text, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
+        private string LocalizeMessage(ModelMessageEnum messageEnum)
+        {
+            switch (messageEnum)
+            {
+                case ModelMessageEnum.DirectoryNotFound: return ResourcesForUI.Message_DirectoryNotFound;
+                case ModelMessageEnum.FailedToConnectToScreenReader: return ResourcesForUI.Message_FailedToConnectToScreenReader;
+                case ModelMessageEnum.FailedToStartProgram: return ResourcesForUI.Message_FailedToStartProgram;
+                case ModelMessageEnum.FileNotFound: return ResourcesForUI.Message_FileNotFound;
+                case ModelMessageEnum.MissingProgramFile: return ResourcesForUI.Message_MissingProgramFile;
+                default: return string.Format("{0} {1}",ResourcesForUI.Message_UndefinedMessage,messageEnum.ToString());
+            }
+        }
+
+        private string LocalizeExtraMessage(ModelMessageEnum messageEnum)
+        {
+            string newline = "\r\n";
+            switch (messageEnum)
+            {
+                case ModelMessageEnum.DirectoryNotFound: return "";
+                case ModelMessageEnum.FailedToConnectToScreenReader: return newline+ResourcesForUI.Message_PleaseSeeLogFile;
+                case ModelMessageEnum.FailedToStartProgram: return newline+ResourcesForUI.Message_PleaseSeeLogFile;
+                case ModelMessageEnum.FileNotFound: return "";
+                case ModelMessageEnum.MissingProgramFile: return newline+ResourcesForUI.Message_PleaseSeeLogFile;
+                default: return "";
+            }
+        }
+
+        /// <summary>
+        /// Build and show a message consisting of
+        /// Line 1: A Message followed by possible parameters. Example: "File not found Stardust.xml"
+        /// Line 2: (optional) an extra message. Example: "Plaese see Log File.."
+        /// </summary>
+        /// <param name="messageId"></param>
+        /// <param name="text"></param>
+        public void ShowWarning(int messageId,string parameter,string text)
+        {
+            //string parameter = "";
+            string localizedMessage = LocalizeMessage((ModelMessageEnum)messageId);
+            string localizedExtraMessage = LocalizeExtraMessage((ModelMessageEnum)messageId);
+            string formattedMessage = string.Format("{0} {1} {2}",
+                localizedMessage,                                                                   // The message
+                string.IsNullOrEmpty(parameter) ? "" : "'"+parameter+"'",                           // Possible parameter
+                string.IsNullOrEmpty(localizedExtraMessage) ? "": "\r\n"+localizedExtraMessage);    // Possible extra message             
+            MessageBox.Show(formattedMessage, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         #endregion
 
