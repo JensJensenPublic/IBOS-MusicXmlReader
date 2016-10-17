@@ -11,10 +11,20 @@ using System.Threading.Tasks;
 namespace MusicXmlReaderUI
 {
 
+    public enum ModelMessageEnum
+    {
+        unknown,
+        MissingProgramFile,            // Typically native dlls distributed with the application
+        FailedToConnectToScreenReader, // JAWS
+        FileNotFound,
+        DirectoryNotFound,
+        FailedToStartProgram // External program such as Sibelius, Notepad etc
+    }
+
     public interface IMessageShower
     {
-        void ShowMessage(string text);
-        void ShowWarning(string text, string caption);
+        void ShowMessage(int textId, string text);
+        void ShowWarning(int textId, string text, string caption);
     }
 
 
@@ -27,20 +37,20 @@ namespace MusicXmlReaderUI
 
         public static IMessageShower MessageShower;
 
-        private static void ShowWarning(string text, string caption)
+        private static void ShowWarning(ModelMessageEnum textEnum, string text, string caption)
         {
             if (null != MessageShower)
             {
-                MessageShower.ShowWarning(text, caption);
+                MessageShower.ShowWarning((int) textEnum,text, caption);
 
             }
         }
 
-        private static void ShowMessage(string text)
+        private static void ShowMessage(ModelMessageEnum textEnum,string text)
         {
             if (null != MessageShower)
             {
-                MessageShower.ShowMessage(text);
+                MessageShower.ShowMessage((int)textEnum,text);
 
             }
         }
@@ -311,8 +321,9 @@ namespace MusicXmlReaderUI
             {
                 if (caption != null)
                 {
-                    ShowWarning("Manglende programfil!\r\n"
-                              + "Se venligst Logfilen! (Værktøjer->Log fil)", caption);
+                    ShowWarning(ModelMessageEnum.MissingProgramFile,
+                        "Manglende programfil!\r\n"
+                      + "Se venligst Logfilen! (Værktøjer->Log fil)", caption);
                 }
                 else
                 {
@@ -333,10 +344,11 @@ namespace MusicXmlReaderUI
                 if (null != caption)
                 {
                     // The application has UI
-                    ShowWarning("Kunne ikke forbinde til skærmlæser!\r\n"
-                                + "Understøttede skærmlæsere er 'JAWS' og 'NVDA'\r\n"
-                                + "Se venligst logfilen (Værktøjer->Log fil)"
-                                ,caption);
+                    ShowWarning(ModelMessageEnum.FailedToConnectToScreenReader,
+                        "Kunne ikke forbinde til skærmlæser!\r\n"
+                      + "Understøttede skærmlæsere er 'JAWS' og 'NVDA'\r\n"
+                      + "Se venligst logfilen (Værktøjer->Log fil)"
+                      , caption);
                 }
                 else
                 {
@@ -354,7 +366,7 @@ namespace MusicXmlReaderUI
                 if (!System.IO.Directory.Exists(fileName))
                 {
                     Logger.Log(string.Format("{0} Directory {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
-                    ShowMessage(string.Format("Mappen {0} findes ikke", fileName));             
+                    ShowMessage(ModelMessageEnum.DirectoryNotFound, string.Format("Mappen {0} findes ikke", fileName));             
                     return false;
                 }
             }
@@ -363,7 +375,7 @@ namespace MusicXmlReaderUI
                 if (!System.IO.File.Exists(fileName))
                 {
                     Logger.Log(string.Format("{0} File {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
-                    ShowMessage(string.Format("Filen {0} findes ikke", fileName));
+                    ShowMessage(ModelMessageEnum.FileNotFound, string.Format("Filen {0} findes ikke", fileName));
                     return false;
                 }
             }
@@ -411,7 +423,7 @@ namespace MusicXmlReaderUI
             catch (Exception e)
             {
                 Logger.Log(string.Format("ReadFileByExecutable: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
-                ShowMessage(string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'", exeFileName, argFileName));
+                ShowMessage(ModelMessageEnum.FailedToStartProgram, string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'", exeFileName, argFileName));
                 return false;
             }
             return true;
