@@ -71,6 +71,10 @@ namespace MusicXmlReaderUI
 
         public void OpenMusicXmlFileLocation()
         {
+            if (String.IsNullOrEmpty(theMusicXmlFileName))
+            {
+                return;
+            }
             string dir = Path.GetDirectoryName(theMusicXmlFileName);
             if (System.IO.Directory.Exists(dir))
             {

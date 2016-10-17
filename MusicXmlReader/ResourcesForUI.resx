@@ -177,6 +177,9 @@
   <data name="ToolStripMenuItem_Tools_MusicXmlFileInNotePad" xml:space="preserve">
     <value>MusicXml file in Notepad</value>
   </data>
+  <data name="ToolStripMenuItem_Tools_OpenLogFileLocation" xml:space="preserve">
+    <value />
+  </data>
   <data name="ToolStripMenuItem_Tools_OpenXmlFileLocation" xml:space="preserve">
     <value>XML file location</value>
   </data>

@@ -60,7 +60,7 @@ namespace MusicXmlReader
             sibeliusToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Sibelius;
             logfileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Logfile;
             openXMLFileLocationToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_OpenXmlFileLocation;
-            musicXmlFileInNtePadToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_MusicXmlFileInNotePad;
+            openLogFileLocationToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Logfile_Location;
             inspectAsXMLToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_InspectAsXml;
             viewAsInterpretedXMLToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_ViewAsInterpretedXml;
             saveAsTextToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_SaveAsText;
@@ -379,6 +379,41 @@ namespace MusicXmlReader
         private void buttonStart_Click(object sender, EventArgs e)
         {
             model.StartPlayingPoly();
+        }
+
+        private void museScoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.StartMuseScore();
+        }
+
+        private void sibeliusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           // model.StartSibelius(); // TO DO
+        }
+
+        private void logfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ReadLogFile();
+        }
+
+        private void openXMLFileLocationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.OpenMusicXmlFileLocation();
+        }
+
+        private void musicXmlFileInNtePadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.OpenLogFileLocation(); 
+        }
+
+        private void inspectAsXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ReadMusicXmlFile();    
+        }
+
+        private void viewAsInterpretedXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ReadInterpretation();           
         }
     }
 }
