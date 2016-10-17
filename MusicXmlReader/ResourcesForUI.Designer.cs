@@ -61,6 +61,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IBOS MusicReader.
+        /// </summary>
+        internal static string MainForm_ApplicationName {
+            get {
+                return ResourceManager.GetString("MainForm_ApplicationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Directory not found.
         /// </summary>
         internal static string Message_DirectoryNotFound {

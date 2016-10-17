@@ -15,25 +15,21 @@ namespace MusicXmlReader
     /// </summary>
     public partial class MainForm : Form, IWritableString, IObjectCollection, IMessageShower
     {
-        string ApplicationName = "IBOS Nodelæser";  // Application name. Fits into a Freedom Scientific Focus 14 Braille dirplay!
-        Model model;        // The Model contails all of the business logic.        
+  
+        string ApplicationName = "";  // Application name. Will be re-initialized later using localization!
+        Model model;        // The Model containing all of the business logic.        
         bool autoReload;    // Used to optimize performance when changing large parts of the UI within short time
-        UserSettingsHandler userSettingsHandler;
+        UserSettingsHandler userSettingsHandler; // Contains all settings that can be configured by the user
 
         public MainForm()
         {
             InitializeComponent();
             Logger.Open("MusicXmlReaderUI.log");
             LogSystemInformation();
-
-#if false
-            // Used for testing localisation
-            System.Threading.Thread thisThread;
-            thisThread = System.Threading.Thread.CurrentThread;
-            thisThread.CurrentUICulture = new CultureInfo("en-US"); 
-#endif
-
+            // If the execution directory contains a file named "Language.txt" containing the string "en-US"
+            // the application language will be changed to english evin if running on a danish PC!
             LogGLobalisationInformation();
+            ApplicationName = ResourcesForUI.MainForm_ApplicationName;
             Utilities.MessageShower = (this as IMessageShower); //Decide how to show error messages and warnings 
             model = Model.Create((this as IObjectCollection), (this as IWritableString), ApplicationName);
             this.Text = ApplicationName;
