@@ -24,7 +24,7 @@ namespace MusicXmlReaderUI
     public interface IMessageShower
     {
         void ShowMessage(int textId, string text);
-        void ShowWarning(int textId, string text, string caption);
+        void ShowWarning(int textId, string text);
     }
 
 
@@ -37,11 +37,11 @@ namespace MusicXmlReaderUI
 
         public static IMessageShower MessageShower;
 
-        private static void ShowWarning(ModelMessageEnum textEnum, string text, string caption)
+        private static void ShowWarning(ModelMessageEnum textEnum, string text)
         {
             if (null != MessageShower)
             {
-                MessageShower.ShowWarning((int) textEnum,text, caption);
+                MessageShower.ShowWarning((int) textEnum,text);
 
             }
         }
@@ -323,7 +323,7 @@ namespace MusicXmlReaderUI
                 {
                     ShowWarning(ModelMessageEnum.MissingProgramFile,
                         "Manglende programfil!\r\n"
-                      + "Se venligst Logfilen! (Værktøjer->Log fil)", caption);
+                      + "Se venligst Logfilen! (Værktøjer->Log fil)");
                 }
                 else
                 {
@@ -348,7 +348,7 @@ namespace MusicXmlReaderUI
                         "Kunne ikke forbinde til skærmlæser!\r\n"
                       + "Understøttede skærmlæsere er 'JAWS' og 'NVDA'\r\n"
                       + "Se venligst logfilen (Værktøjer->Log fil)"
-                      , caption);
+                      );
                 }
                 else
                 {

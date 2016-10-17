@@ -92,9 +92,9 @@ namespace MusicXmlReaderUI
             MessageBox.Show(text);
         }
 
-        public void ShowWarning(int messageId, string text, string caption)
+        public void ShowWarning(int messageId, string text)
         {
-            MessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(text, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }    
         #endregion
 

@@ -153,9 +153,9 @@ namespace MusicXmlReader
             MessageBox.Show(text);
         }
 
-        public void ShowWarning(int messageId,string text, string caption)
-        {
-            MessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        public void ShowWarning(int messageId,string text)
+        {            
+            MessageBox.Show(text, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         #endregion
 
