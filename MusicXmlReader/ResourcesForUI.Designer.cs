@@ -70,7 +70,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to connect to JAWS screenreader.
+        ///   Looks up a localized string similar to Failed to connect to screenreader.
         /// </summary>
         internal static string Message_FailedToConnectToScreenReader {
             get {

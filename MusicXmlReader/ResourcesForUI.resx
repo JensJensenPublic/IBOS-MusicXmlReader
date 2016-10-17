@@ -121,7 +121,7 @@
     <value>Directory not found</value>
   </data>
   <data name="Message_FailedToConnectToScreenReader" xml:space="preserve">
-    <value>Failed to connect to JAWS screenreader</value>
+    <value>Failed to connect to screenreader</value>
   </data>
   <data name="Message_FailedToStartProgram" xml:space="preserve">
     <value>Failed to start program</value>

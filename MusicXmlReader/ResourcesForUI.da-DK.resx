@@ -121,7 +121,7 @@
     <value>Mappen eksisterer ikke</value>
   </data>
   <data name="Message_FailedToConnectToScreenReader" xml:space="preserve">
-    <value>Kunne ikke forbinde til JAWS skærmlæser</value>
+    <value>Kunne ikke forbinde til skærmlæser</value>
   </data>
   <data name="Message_FailedToStartProgram" xml:space="preserve">
     <value>Kunne ikke starte programmet</value>
