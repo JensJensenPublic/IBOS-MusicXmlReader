@@ -457,7 +457,7 @@ namespace MusicXmlReaderUI
 
         private void buttonReadInterpretation_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadInterpretation(model.AllMusicXmlObjecsts);
+            model.ExternalToolsHandler.ReadInterpretation(model.AllMusicXmlObjecsts,model.TheMusicXmlFileName);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -496,7 +496,7 @@ namespace MusicXmlReaderUI
 
         private void fortolketXMLFilToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadInterpretation(model.AllMusicXmlObjecsts);
+            model.ExternalToolsHandler.ReadInterpretation(model.AllMusicXmlObjecsts,model.TheMusicXmlFileName);
         }
 
         #endregion

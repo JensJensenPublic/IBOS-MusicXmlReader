@@ -142,6 +142,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No MusicXml file was specified .
+        /// </summary>
+        internal static string Message_UnspecifiedMusicXmlFile {
+            get {
+                return ResourceManager.GetString("Message_UnspecifiedMusicXmlFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MusicXml files.
         /// </summary>
         internal static string OpenFileDialog_Filter {

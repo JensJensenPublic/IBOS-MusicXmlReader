@@ -188,6 +188,7 @@ namespace MusicXmlReader
                 case ModelMessageEnum.FileNotFound: return ResourcesForUI.Message_FileNotFound;
                 case ModelMessageEnum.MissingProgramFile: return ResourcesForUI.Message_MissingProgramFile;
                 case ModelMessageEnum.FailedToReadMusicXmlFile: return ResourcesForUI.Message_FailedToReadMusicXmlFile;
+                case ModelMessageEnum.UnspecifiedMusicXmlFile: return ResourcesForUI.Message_UnspecifiedMusicXmlFile;
                 default: return string.Format("{0} {1}",ResourcesForUI.Message_UndefinedMessage,messageEnum.ToString());
             }
         }
@@ -414,7 +415,7 @@ namespace MusicXmlReader
 
         private void viewAsInterpretedXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadInterpretation(model.AllMusicXmlObjecsts);           
+            model.ExternalToolsHandler.ReadInterpretation(model.AllMusicXmlObjecsts,model.TheMusicXmlFileName);           
         }
     }
 }

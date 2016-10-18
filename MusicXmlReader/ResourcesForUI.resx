@@ -144,6 +144,9 @@
   <data name="Message_UndefinedMessage" xml:space="preserve">
     <value>(Undefined Message)</value>
   </data>
+  <data name="Message_UnspecifiedMusicXmlFile" xml:space="preserve">
+    <value>No MusicXml file was specified </value>
+  </data>
   <data name="OpenFileDialog_Filter" xml:space="preserve">
     <value>MusicXml files</value>
   </data>

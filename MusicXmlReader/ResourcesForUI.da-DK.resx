@@ -144,6 +144,9 @@
   <data name="Message_UndefinedMessage" xml:space="preserve">
     <value>(Udefineret meddelelse)</value>
   </data>
+  <data name="Message_UnspecifiedMusicXmlFile" xml:space="preserve">
+    <value>Ingen MusicXml fil angivet</value>
+  </data>
   <data name="OpenFileDialog_Filter" xml:space="preserve">
     <value>MusicXml filer</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="ToolStripMenuItem_Tools_Logfile" xml:space="preserve">
     <value>Logfil</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_Logfile_Location" xml:space="preserve">
+    <value>Logfil placering</value>
   </data>
   <data name="ToolStripMenuItem_Tools_MuseScore" xml:space="preserve">
     <value>MuseScore</value>

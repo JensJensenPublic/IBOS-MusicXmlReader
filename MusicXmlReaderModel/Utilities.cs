@@ -13,7 +13,8 @@ namespace MusicXmlReaderModel
         FileNotFound,
         DirectoryNotFound,
         FailedToStartProgram, // External program such as Sibelius, Notepad etc
-        FailedToReadMusicXmlFile // Unspecified error during reading and interpretation
+        FailedToReadMusicXmlFile,
+        UnspecifiedMusicXmlFile // Unspecified error during reading and interpretation
     }
 
     public interface IMessageShower
@@ -400,11 +401,21 @@ namespace MusicXmlReaderModel
         /// <returns>true <==> succaee</returns>
         public static bool RunExeWithFileArgument(string exeFileName, string argFileName)
         {
+            if (!System.IO.File.Exists(argFileName))
+            {
+                Utilities.MessageShower.ShowWarning((int)ModelMessageEnum.UnspecifiedMusicXmlFile,"", "");
+                return false;
+            }
             return RunExeWithFileArgument(exeFileName, argFileName, false);
         }
 
         internal static bool RunExeWithDirArgument(string exeFileName, string argFileName)
         {
+            if (!System.IO.Directory.Exists(argFileName))
+            {
+                Utilities.MessageShower.ShowWarning((int)ModelMessageEnum.DirectoryNotFound, "", "");
+                return false;
+            }
             return RunExeWithFileArgument(exeFileName, argFileName, true);
         }
 
