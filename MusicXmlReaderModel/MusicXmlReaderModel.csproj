@@ -67,6 +67,7 @@
     <Compile Include="Elements\GlissandoElement.cs" />
     <Compile Include="Elements\HarmonyElement.cs" />
     <Compile Include="Elements\InstrumentElement.cs" />
+    <Compile Include="Elements\InstrumentsElement.cs" />
     <Compile Include="Elements\KeyElement.cs" />
     <Compile Include="Elements\MeasureElement.cs" />
     <Compile Include="Elements\MidiInstrumentElement.cs" />

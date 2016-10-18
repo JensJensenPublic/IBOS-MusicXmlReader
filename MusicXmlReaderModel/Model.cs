@@ -368,6 +368,7 @@ namespace MusicXmlReaderModel
                     allMusicXmlObjecsts.Add(ScorePartwiseElement.Create(node));                 
                     break;
                 case "attributes":
+                     //allMusicXmlObjecsts.Add(AttributesElement.Create(node));
                      // Ignore until we need them
                      break;
                 case "backup":
@@ -391,6 +392,11 @@ namespace MusicXmlReaderModel
                     allMusicXmlObjecsts.Add(BarlineElement.Create(node));
                     continueRecursion = false;
                     //Model.Log(string.Format("Model.WriteElement: Unimplemented element 'repeat' Part={0} Measure={1}", currentPartId, currentMeasureNumber));
+                    break;
+
+                case "instruments":
+                    allMusicXmlObjecsts.Add(InstrumentsElement.Create(node));
+                    continueRecursion = false;
                     break;
 
                 // The following elements are ignored for the time being, as they describe graphical properties only!
@@ -425,7 +431,15 @@ namespace MusicXmlReaderModel
                 case "credit-type":
                 case "credit-words":        
                 case "bar-style":
+                case "staff-size":
+                case "staff-lines":
+                case "staff-tuning":
+                case "staff-octave":
                     break; // Explicitly ignoring graphic information!
+                case "tuning-octave":
+                case "tuning-step":
+                case "capo":
+                    break; // Also ignore these until they are needed!
                 default:
                     allMusicXmlObjecsts.Add(UnimplementedElement.Create(node));
                     break;
