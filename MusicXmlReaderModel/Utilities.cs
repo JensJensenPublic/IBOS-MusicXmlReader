@@ -431,7 +431,8 @@ namespace MusicXmlReaderModel
             catch (Exception e)
             {
                 Logger.Log(string.Format("ReadFileByExecutable: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
-                ShowMessage(ModelMessageEnum.FailedToStartProgram,"", string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'", exeFileName, argFileName));
+                string obsoleteMessage = string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'", exeFileName, argFileName);
+                ShowWarning(ModelMessageEnum.FailedToStartProgram, exeFileName, obsoleteMessage);
                 return false;
             }
             return true;

@@ -7,10 +7,9 @@ namespace MusicXmlReaderModel
     public class ExterrnalToolsHandler
     {
    
-
         // Force use of Create() method
         private ExterrnalToolsHandler()
-        {      
+        {           
         }
 
         public static ExterrnalToolsHandler Create()
