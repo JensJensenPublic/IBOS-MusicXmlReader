@@ -480,7 +480,7 @@ namespace MusicXmlReaderUI
                 case ClefEnum.TAB :
                 case ClefEnum.jianpu:
                 case ClefEnum.none:
-                    Logger.LogOnce(string.Format("{0}.{1} Clef={2} is not supported in Music Braille", className, functionName, clefElement.ToString())); break;
+                    Logger.LogOnce(string.Format("{0}.{1} Clef={2} is not supported in Music Braille", className, functionName, clefElement.Clef.ToString())); break;
                 default: Logger.LogOnce(string.Format("{0}.{1} Unknown clef={2}", className,functionName, clefElement.Clef.ToString())); break;
             }
             braille.AddRange(bytes);          
