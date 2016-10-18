@@ -5,6 +5,7 @@ using NAudio.Midi;
 //using System.Windows.Forms;
 using System.Xml;
 using JSJ.ScreenReaderAPI;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReaderUI
 {
@@ -33,6 +34,7 @@ namespace MusicXmlReaderUI
         UserSettings userSettings;
         ScreenReaderAPI screenReaderAPI;
         DebugTools debugTools;
+        ExterrnalToolsHandler externalToolsHandler;
 
 
         string executingAssembly;
@@ -54,96 +56,7 @@ namespace MusicXmlReaderUI
         {
             return new Model(objects, ws, menuCaption);
         }
-
-        #region LogFile
-        // To use a console in a Windows Forms application: Project Properties -> Application -> Output Type -> Console Application
-        // "Original value was "Windows Application"
-
-        public void ReadLogFile()
-        {
-            Utilities.RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), Logger.LogFileFullName));
-        }
-
-        public void OpenLogFileLocation()
-        {   
-            Utilities.RunExeWithDirArgument("explorer.exe",Logger.LogFileDirectory);
-        }
-
-        public void OpenMusicXmlFileLocation()
-        {
-            if (String.IsNullOrEmpty(theMusicXmlFileName))
-            {
-                return;
-            }
-            string dir = Path.GetDirectoryName(theMusicXmlFileName);
-            if (System.IO.Directory.Exists(dir))
-            {
-                Utilities.RunExeWithDirArgument("explorer.exe", dir); 
-            }
-        }
         
-        #endregion
-
-
-        #region InterpretationFile
-        public static string InterpretationFileName = "MusicReader.txt";
-        public void ReadInterpretation()
-        {
-            string fileName = System.IO.Path.Combine(System.IO.Path.GetTempPath(), InterpretationFileName);
-            //System.IO.FileStream  fileStream = System.IO.File.OpenWrite(InterpretationFileName);
-
-            // Create contents
-            System.IO.StreamWriter streamWriter = new System.IO.StreamWriter(fileName);
-            if ((null != allMusicXmlObjecsts) &&(allMusicXmlObjecsts.Count > 0))
-            {
-                foreach (object o in allMusicXmlObjecsts)
-                {
-                    streamWriter.WriteLine(o.ToString());
-                }
-
-            }
-            else
-            {
-                streamWriter.WriteLine("No MusicXml objects found");
-            }
-
-            streamWriter.Close();
-
-            Utilities.RunExeWithFileArgument("notepad.exe", System.IO.Path.Combine(System.IO.Path.GetTempPath(), fileName));
-
-            //ReadTempFileByNotepad(fileName);
-        }
-        #endregion
-
-        #region MusicXmlFile
-        public void ReadMusicXmlFile()
-        {
-            if (System.IO.File.Exists(theMusicXmlFileName))
-            {
-                //ReadFileByNotepad(theMusicXmlFileName);
-                //ReadFileByExecutable("iexplore.exe",theMusicXmlFileName);
-                Utilities.RunExeWithFileArgument("iexplore.exe", theMusicXmlFileName);
-
-            }
-        }
-        #endregion
-
-
-        #region MuseScore
-        public void StartMuseScore()
-        {
-            if (System.IO.File.Exists(theMusicXmlFileName))
-            {
-                //string exeFileName = @"C:\Program Files(x86)\MuseScore 2\bin\MuseScore.exe";
-                string exeFileName =  @"C:\Program Files (x86)\MuseScore 2\bin\MuseScore.exe";
-                //ReadFileByMuseScore(exeFileName, theMusicXmlFileName);
-                Utilities.RunExeWithFileArgument(exeFileName, theMusicXmlFileName);
-
-            }
-        }
-        #endregion
-         
-
 
         /// <summary>
         /// Quick and dirty check to reject obvious unusable Xml files
@@ -274,6 +187,7 @@ namespace MusicXmlReaderUI
             // Create an API to JAWS or NVDA depending on which screenreader is currently running
             debugTools = DebugTools.Create(); // Used for logging and tracing from screenReaderAPI.
             screenReaderAPI = ScreenReaderAPI.Create(is64Bit,debugTools);
+            externalToolsHandler = ExterrnalToolsHandler.Create();
             Utilities.CheckScreenReader(!string.IsNullOrEmpty(screenReaderAPI.GetScreenReaderDllName()), caption); // Check for DummyScreenReader
 
             midiOut = new MidiOut(0);
@@ -607,6 +521,31 @@ namespace MusicXmlReaderUI
                 return metaInfoStrings;
             }
 
+        }
+
+        public ExterrnalToolsHandler ExternalToolsHandler
+        {
+            get
+            {
+                return externalToolsHandler;
+            }
+
+        }
+
+        public string TheMusicXmlFileName
+        {
+            get
+            {
+                return theMusicXmlFileName;
+            }
+        }
+
+        public List<MusicXmlObject> AllMusicXmlObjecsts
+        {
+            get
+            {
+                return allMusicXmlObjecsts;
+            }
         }
 
         //private MeasureDescriptionList measureDescriptionList;

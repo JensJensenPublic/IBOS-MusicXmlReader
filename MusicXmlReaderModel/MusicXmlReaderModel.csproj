@@ -96,6 +96,7 @@
     <Compile Include="Elements\UnimplementedElement.cs" />
     <Compile Include="EventDescription.cs" />
     <Compile Include="EventDescriptionList.cs" />
+    <Compile Include="ExterrnalToolsHandler.cs" />
     <Compile Include="FSBrlDspAPI.Wrapper.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="LoggerCounters.cs" />

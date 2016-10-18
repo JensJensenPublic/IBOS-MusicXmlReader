@@ -383,37 +383,37 @@ namespace MusicXmlReader
 
         private void museScoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.StartMuseScore();
+            model.ExternalToolsHandler.StartMuseScore(model.TheMusicXmlFileName);
         }
 
         private void sibeliusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           // model.StartSibelius(); // TO DO
+            model.ExternalToolsHandler.StartSibelius(model.TheMusicXmlFileName); 
         }
 
         private void logfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ReadLogFile();
+            model.ExternalToolsHandler.ReadLogFile();
         }
 
         private void openXMLFileLocationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.OpenMusicXmlFileLocation();
+            model.ExternalToolsHandler.OpenMusicXmlFileLocation(model.TheMusicXmlFileName);
         }
 
         private void openLogFileLocationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.OpenLogFileLocation(); 
+            model.ExternalToolsHandler.OpenLogFileLocation(); 
         }
 
         private void inspectAsXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ReadMusicXmlFile();    
+            model.ExternalToolsHandler.ReadMusicXmlFile(model.TheMusicXmlFileName);    
         }
 
         private void viewAsInterpretedXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ReadInterpretation();           
+            model.ExternalToolsHandler.ReadInterpretation(model.AllMusicXmlObjecsts);           
         }
     }
 }

@@ -446,22 +446,22 @@ namespace MusicXmlReaderUI
 
         private void buttonReadLogFile_Click(object sender, EventArgs e)
         {
-            model.ReadLogFile();
+            model.ExternalToolsHandler.ReadLogFile();
         }
 
         private void buttonReadMusicXmlFile_Click(object sender, EventArgs e)
         {
-            model.ReadMusicXmlFile();
+            model.ExternalToolsHandler.ReadMusicXmlFile(model.TheMusicXmlFileName);
         }
 
         private void buttonReadInterpretation_Click(object sender, EventArgs e)
         {
-            model.ReadInterpretation();
+            model.ExternalToolsHandler.ReadInterpretation(model.AllMusicXmlObjecsts);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            model.StartMuseScore();
+            model.ExternalToolsHandler.StartMuseScore(model.TheMusicXmlFileName);
         }
 
 
@@ -480,22 +480,22 @@ namespace MusicXmlReaderUI
 
         private void logFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ReadLogFile();
+            model.ExternalToolsHandler.ReadLogFile();
         }
 
         private void museScoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.StartMuseScore();
+            model.ExternalToolsHandler.StartMuseScore(model.TheMusicXmlFileName);
         }
 
         private void xmlFilToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ReadMusicXmlFile();
+            model.ExternalToolsHandler.ReadMusicXmlFile(model.TheMusicXmlFileName);
         }
 
         private void fortolketXMLFilToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ReadInterpretation();
+            model.ExternalToolsHandler.ReadInterpretation(model.AllMusicXmlObjecsts);
         }
 
         #endregion
@@ -555,12 +555,12 @@ namespace MusicXmlReaderUI
 
         private void logFileLocationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.OpenLogFileLocation();
+            model.ExternalToolsHandler.OpenLogFileLocation();
         }
 
         private void musicXmlFileLocationtoolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.OpenMusicXmlFileLocation();
+            model.ExternalToolsHandler.OpenMusicXmlFileLocation(model.TheMusicXmlFileName);
         }
 
         private void checkedListBoxParts_SelectedIndexChanged(object sender, EventArgs e)
