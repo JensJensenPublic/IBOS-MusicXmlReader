@@ -99,7 +99,7 @@ namespace MusicXmlReaderModel
                 case OrnamentsTypeEnum.wavyLine: break;
                 case OrnamentsTypeEnum.accidentalMark: break;
                 default:
-                    Logger.LogOnce(string.Format("{0} Unknown ornament type", function)); break;
+                    Logger.LogOnce(string.Format("{0} Unknown ornament type: {1}", function,ornament.ToString())); break;
             }
             if (null == result)
             {
