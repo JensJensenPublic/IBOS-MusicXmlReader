@@ -1,6 +1,4 @@
-﻿using System;
-using JSJ.ScreenReaderAPI;
-using MusicXmlReaderUI;
+﻿using JSJ.ScreenReaderAPI;
 
 namespace MusicXmlReaderModel
 {

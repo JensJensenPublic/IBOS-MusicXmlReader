@@ -1,6 +1,5 @@
 ﻿using System.Xml;
 using System.Collections.Generic;
-using MusicXmlReaderUI;
 
 namespace MusicXmlReaderModel
 {

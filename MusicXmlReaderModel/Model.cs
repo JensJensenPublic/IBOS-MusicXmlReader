@@ -2,7 +2,6 @@
 using System.IO;
 using System.Collections.Generic;
 using NAudio.Midi;
-//using System.Windows.Forms;
 using System.Xml;
 using JSJ.ScreenReaderAPI;
 using MusicXmlReaderUI; // Interfaces

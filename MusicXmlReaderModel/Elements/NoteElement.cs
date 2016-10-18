@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Xml;
 using System.Globalization;
-using MusicXmlReaderModel;
 using JSJ.MusicSynthesis;
 
 

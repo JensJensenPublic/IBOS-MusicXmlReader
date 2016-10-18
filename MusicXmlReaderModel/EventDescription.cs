@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Globalization;
-using MusicXmlReaderModel;
-using JSJ.MusicSynthesis;
-using System.Threading.Tasks;
-using System.Collections;
 using MusicXmlReaderUI;
-
 
 namespace MusicXmlReaderModel
 {

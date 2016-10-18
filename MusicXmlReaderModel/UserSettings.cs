@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using MusicXmlReaderUI;
-
-
 
 namespace MusicXmlReaderModel
 {

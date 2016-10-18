@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MusicXmlReaderUI;
-
-namespace MusicXmlReaderModel
+﻿namespace MusicXmlReaderModel
 {
     /// <summary>
     /// This is a base class for all classes describing events (in time)

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Xml;
-using MusicXmlReaderUI;
-using JSJ.MusicSynthesis;
 
 namespace MusicXmlReaderModel
 {

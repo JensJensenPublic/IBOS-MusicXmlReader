@@ -1,6 +1,4 @@
-﻿
-using System.Xml;
-using MusicXmlReaderUI;
+﻿using System.Xml;
 
 namespace MusicXmlReaderModel
 {

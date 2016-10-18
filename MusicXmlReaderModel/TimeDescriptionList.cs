@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-//using System.Windows.Forms;
-using MusicXmlReaderModel;
+﻿using System.Collections.Generic;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
 
     public class TimeDescriptionList:  IComparer<Element>

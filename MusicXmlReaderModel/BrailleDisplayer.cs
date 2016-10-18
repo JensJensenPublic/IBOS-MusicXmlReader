@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
-
 using JSJ.ScreenReaderAPI;
-using MusicXmlReaderModel;
 
 //Unicode for Braille
 //https://en.wikipedia.org/wiki/Braille_Patterns
