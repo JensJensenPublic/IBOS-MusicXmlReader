@@ -39,7 +39,7 @@ namespace MusicXmlReaderModel
                 return;
             }
             string dir = Path.GetDirectoryName(theMusicXmlFileName);
-            if (System.IO.Directory.Exists(dir))
+            if (!System.IO.Directory.Exists(dir))
             {
                 // Do not report the path "dir" in the error message, i may be very long
                 Utilities.MessageShower.ShowWarning((int)ModelMessageEnum.DirectoryNotFound, "", "");
