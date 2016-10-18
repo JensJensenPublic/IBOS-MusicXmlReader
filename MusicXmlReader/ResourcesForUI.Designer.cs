@@ -169,6 +169,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Edit.
+        /// </summary>
+        internal static string ToolStripMenuItem_Edit {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Files.
         /// </summary>
         internal static string ToolStripMenuItem_Files {
@@ -183,6 +192,15 @@ namespace MusicXmlReader {
         internal static string ToolStripMenuItem_Files_OpenMusicXmlFile {
             get {
                 return ResourceManager.GetString("ToolStripMenuItem_Files_OpenMusicXmlFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Help.
+        /// </summary>
+        internal static string ToolStripMenuItem_Help {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Help", resourceCulture);
             }
         }
         
@@ -282,6 +300,15 @@ namespace MusicXmlReader {
         internal static string ToolStripMenuItem_Tools_ViewAsInterpretedXml {
             get {
                 return ResourceManager.GetString("ToolStripMenuItem_Tools_ViewAsInterpretedXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;View.
+        /// </summary>
+        internal static string ToolStripMenuItem_View {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_View", resourceCulture);
             }
         }
         

@@ -48,10 +48,10 @@ namespace MusicXmlReader
             //MenuStrip.Text = "??";
             // Children of MenuStrip
             filesToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files;
-            //editToolStripMenuItem.Text = "&Edit"; // Not needed yet
-            //viewToolStripMenuItem.Text = "&view"; // Not needed yet
+            editToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Edit; 
+            viewToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_View; 
             toolsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools;
-            //helpToolStripMenuItem.Text = "&help"; // Not needed yet
+            helpToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help ; 
 
             // Children of  fileToolStripMenuItem
             openMusicXmlFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile; ;
