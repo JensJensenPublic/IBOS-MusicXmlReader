@@ -83,6 +83,7 @@ namespace MusicXmlReaderModel
                          || (e is TimeElement)
                          || (e is RepeatElement)
                          || (e is BarlineElement)
+                         || (e is InstrumentsElement)
 
                          )
 

@@ -50,6 +50,8 @@ namespace MusicXmlReaderModel
                 || (e is TimeElement)
                 || (e is RepeatElement)
                 || (e is BarlineElement)
+                || (e is InstrumentsElement)
+
                 )
                 {
                     // All of these elements are related to events and timing and must be reflected in in the EventDescriptionList.
