@@ -144,6 +144,8 @@ namespace MusicXmlReaderModel
             // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-tied.htm
             // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-tuplet.htm
 
+            // http://www.musikipedia.dk/musikordbog-engelsk
+
             // Dig out elements
             // Some of these elements are graphical representations of another element representing the sound! Example: tied/tie
             foreach (XmlNode child in node.ChildNodes)
@@ -151,22 +153,22 @@ namespace MusicXmlReaderModel
                 bool ok = true;
                 switch (child.Name)
                 {
-                    case "slur": slurElement = SlurElement.Create(child); break;
-                    case "articulations": articulations = ArticulationsElement.Create(child); break;
-                    case "footnote": ok = false; break;
-                    case "level": ok = false; break;
-                    case "accidental-mark": accidentalMarkElement = AccidentalMarkElement.Create(child); break; // Løst fortegn
-                    case "arpeggiate": arpeggiateElement = ArpeggiateElement.Create(child); break; // Tilhører brudt akkord
-                    case "dynamics": ok = false; break;
-                    case "fermata": fermataElement = FermataElement.Create(child); break; // Har fermat tilknyttet
-                    case "glissando": glissandoElement = GlissandoElement.Create(child); break;
-                    case "non-arpeggiate": ok = false; break;
-                    case "ornaments": ornamentsElement = OrnamentsElement.Create(child); break;
-                    case "other-notation ": ok = false; break;
-                    case "slide": slideElement = SlideElement.Create(child); break;
-                    case "technical":  technicalElement = TechnicalElement.Create(child); break;
-                    case "tied": tiedElement = TiedElement.Create(child); break;
-                    case "tuplet": tupletElement = TupletElement.Create(child); break; 
+                    case "slur": slurElement = SlurElement.Create(child); break; // Legatobue                                                   
+                    case "articulations": articulations = ArticulationsElement.Create(child); break; // Artikulation
+                    case "footnote": ok = false; break; // (Fodnote)
+                    case "level": ok = false; break; // (Niveau)
+                    case "accidental-mark": accidentalMarkElement = AccidentalMarkElement.Create(child); break; // (Løst) fortegn (faste fortegn betegnes: key signature)
+                    case "arpeggiate": arpeggiateElement = ArpeggiateElement.Create(child); break; // Brudt akkord
+                    case "dynamics": ok = false; break; // Dynamik
+                    case "fermata": fermataElement = FermataElement.Create(child); break; // Fermat
+                    case "glissando": glissandoElement = GlissandoElement.Create(child); break; // Glissando
+                    case "non-arpeggiate": ok = false; break; // Ikke brudt
+                    case "ornaments": ornamentsElement = OrnamentsElement.Create(child); break; // Ornamenter
+                    case "other-notation ": ok = false; break; // Anden notation
+                    case "slide": slideElement = SlideElement.Create(child); break; // ????????????????????????????
+                    case "technical":  technicalElement = TechnicalElement.Create(child); break; // Teknisk
+                    case "tied": tiedElement = TiedElement.Create(child); break; // Bindebue
+                    case "tuplet": tupletElement = TupletElement.Create(child); break; // "Uregelmæssig nodeværdi"
                     default:
                         Logger.Log(string.Format("NotationsElement: Unknown element '{0}'", child.Name));break;
                 }
