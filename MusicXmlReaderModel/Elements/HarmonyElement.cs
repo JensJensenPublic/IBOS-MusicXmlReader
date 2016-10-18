@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using JSJ.MusicSynthesis;
+using MusicXmlReaderUI;
 
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
 
     public class HarmonyElement : EventElement

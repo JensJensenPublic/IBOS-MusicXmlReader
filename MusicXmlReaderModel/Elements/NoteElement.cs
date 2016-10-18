@@ -5,7 +5,7 @@ using MusicXmlReaderModel;
 using JSJ.MusicSynthesis;
 
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
 
     /// <summary>

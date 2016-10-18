@@ -1,6 +1,7 @@
 ﻿using System.Xml;
+using MusicXmlReaderUI;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
     /// <summary>
     /// For Element simple Element-nodes, only containing a single InnerText

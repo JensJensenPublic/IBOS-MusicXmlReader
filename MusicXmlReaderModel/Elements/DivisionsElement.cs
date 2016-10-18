@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Xml;
+using MusicXmlReaderUI;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
     class DivisionsElement : Element
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Globalization;
-using MusicXmlReaderModel;
+using MusicXmlReaderUI;
 
 
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
     /// <summary>
     /// Holds all user defined settings, such as the set of parts to play and read.

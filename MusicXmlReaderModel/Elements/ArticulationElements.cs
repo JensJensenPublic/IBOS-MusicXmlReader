@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
-using MusicXmlReaderModel;
+using MusicXmlReaderUI;
 
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
     class ArticulationsElement
     {

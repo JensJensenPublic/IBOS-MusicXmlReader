@@ -5,9 +5,9 @@ using NAudio.Midi;
 //using System.Windows.Forms;
 using System.Xml;
 using JSJ.ScreenReaderAPI;
-using MusicXmlReaderModel;
+using MusicXmlReaderUI; // Interfaces
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
     public class Model
     {

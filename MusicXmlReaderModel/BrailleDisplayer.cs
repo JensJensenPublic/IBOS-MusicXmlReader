@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 
 using JSJ.ScreenReaderAPI;
+using MusicXmlReaderModel;
 
 //Unicode for Braille
 //https://en.wikipedia.org/wiki/Braille_Patterns
 //http://www.unicode.org/charts/PDF/U2800.pdf
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
 
     /// <summary>

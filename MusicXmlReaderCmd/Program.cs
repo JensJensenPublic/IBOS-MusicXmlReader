@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Globalization;
 using System.Threading.Tasks;
+using MusicXmlReaderModel;
 
 
 namespace MusicXmlReaderUI

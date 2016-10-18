@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 //using System.Windows.Forms;
+using MusicXmlReaderModel;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
     static public class Logger
     {

@@ -1,8 +1,8 @@
 ﻿using System.Xml;
 using System.Globalization;
-using MusicXmlReaderModel;
+using MusicXmlReaderUI;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
     // The tied type represents the notated tie. The tie element represents the tie sound.
     class FermataElement : Element

@@ -1,8 +1,8 @@
 ﻿using System.Xml;
 using System.Globalization;
-using MusicXmlReaderModel;
+using MusicXmlReaderUI;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
 
     public enum ClefEnum {unknown, F,G,C,percussion,TAB,jianpu,none }

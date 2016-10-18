@@ -7,9 +7,10 @@ using MusicXmlReaderModel;
 using JSJ.MusicSynthesis;
 using System.Threading.Tasks;
 using System.Collections;
+using MusicXmlReaderUI;
 
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
 
     public class EventDescription

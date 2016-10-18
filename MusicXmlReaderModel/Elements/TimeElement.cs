@@ -1,7 +1,7 @@
 ﻿using System.Xml;
-using MusicXmlReaderModel;
+using MusicXmlReaderUI;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
 
     public class TimeElement : EventElement

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Globalization;
 using MusicXmlReaderUI;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReader
 {

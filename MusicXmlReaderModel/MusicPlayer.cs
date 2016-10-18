@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JSJ.MusicSynthesis;
 //using System.Windows.Forms;
 using NAudio.Midi;
+using MusicXmlReaderModel;
 
 
 namespace MusicXmlReaderUI

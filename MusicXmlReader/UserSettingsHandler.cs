@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MusicXmlReaderUI;
 using System.Globalization;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReader
 {

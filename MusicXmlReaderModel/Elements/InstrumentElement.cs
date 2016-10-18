@@ -1,7 +1,8 @@
 ﻿
 using System.Xml;
+using MusicXmlReaderUI;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
     // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-instrument.htm
 

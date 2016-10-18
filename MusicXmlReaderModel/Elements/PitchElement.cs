@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Xml;
-using MusicXmlReaderModel;
+using MusicXmlReaderUI;
 using JSJ.MusicSynthesis;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
     public class PitchElement
     {

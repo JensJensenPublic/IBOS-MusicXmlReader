@@ -1,8 +1,8 @@
 ﻿using System.Xml;
 using System.Globalization;
-using MusicXmlReaderModel;
+using MusicXmlReaderUI;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
     enum ShowTupletEnum {unknown,actual,both,none};
 

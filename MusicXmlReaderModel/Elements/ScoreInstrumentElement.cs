@@ -1,6 +1,7 @@
 ﻿using System.Xml;
+using MusicXmlReaderUI;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
     public class ScoreInstrumentElement : Element
     {

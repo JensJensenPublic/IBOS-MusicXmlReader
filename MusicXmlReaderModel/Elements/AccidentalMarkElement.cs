@@ -1,7 +1,7 @@
 ﻿using System.Xml;
-using MusicXmlReaderModel;
+using MusicXmlReaderUI;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
 
     // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-accidental-mark.htm

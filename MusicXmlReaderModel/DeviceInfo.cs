@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Management;
+using MusicXmlReaderUI;
 
 // http://stackoverflow.com/questions/3331043/get-list-of-connected-usb-devices
 // JSJ: Shows a number of USB devices, but nothing changes when the FOCUS 14 device is removed
 
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
     static class DeviceInfo
     {

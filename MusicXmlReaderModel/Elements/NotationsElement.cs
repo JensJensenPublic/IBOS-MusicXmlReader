@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MusicXmlReaderUI;
 
 using System.Xml;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
 
     public class NotationsElement : Element

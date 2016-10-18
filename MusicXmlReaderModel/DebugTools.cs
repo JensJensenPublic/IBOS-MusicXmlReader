@@ -1,7 +1,8 @@
 ﻿using System;
 using JSJ.ScreenReaderAPI;
+using MusicXmlReaderUI;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
     class DebugTools : IScreenReaderAPILogger
     {

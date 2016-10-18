@@ -1,7 +1,8 @@
 ﻿using System.Xml;
 using System.Collections.Generic;
+using MusicXmlReaderUI;
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
 
     public class TechnicalElement : Element

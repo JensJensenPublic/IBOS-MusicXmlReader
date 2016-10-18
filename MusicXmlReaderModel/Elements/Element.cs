@@ -1,4 +1,5 @@
-﻿namespace MusicXmlReaderUI
+﻿using MusicXmlReaderUI;
+namespace MusicXmlReaderModel
 {
     
     public abstract class Element : MusicXmlObject

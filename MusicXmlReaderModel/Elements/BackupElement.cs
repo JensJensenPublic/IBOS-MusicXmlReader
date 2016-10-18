@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using MusicXmlReaderUI;
 
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
 
     public class BackupElement : Element
