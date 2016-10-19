@@ -447,6 +447,7 @@ namespace MusicXmlReaderModel
                 case "capo":
                     break; // Also ignore these until they are needed!
                 default:
+                    Logger.LogOnce(string.Format("{0}.{1} Unimplemented Element. Name={2}",className,functionName,node.Name));
                     allMusicXmlObjecsts.Add(UnimplementedElement.Create(node));
                     break;
             }
