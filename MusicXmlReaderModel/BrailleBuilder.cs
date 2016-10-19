@@ -309,8 +309,8 @@ namespace MusicXmlReaderUI
         {
             string functionName = "LogUninplementedOrnamentsElement";
             if (null == ornamentsElement) return;
-            string value = ornamentsElement.ToString();
-            Logger.LogOnce(string.Format("{0}.{1}:: Unimplemented NotationElement:{2} Value={3}", className, functionName, elementName,value));
+            string ornaments = ornamentsElement.UnlocalizedString();
+            Logger.LogOnce(string.Format("{0}.{1}: Unimplemented NotationElement:{2} Value={3}", className, functionName, elementName,ornaments));
         }
 
         public void AddNotationsAfterNote(NotationsElement notations)  // Some notations are added After the note itself

@@ -13,7 +13,7 @@ namespace MusicXmlReaderModel
         {
             undefined,
             delayedInvertedTurn,
-            delayeTurn,
+            delayedTurn,
             invertedMordent,
             invertedTurn,
             mordent,
@@ -28,7 +28,15 @@ namespace MusicXmlReaderModel
             accidentalMark
         }
 
-        private List<OrnamentsTypeEnum> ornaments = new List<OrnamentsTypeEnum>();  
+        private List<OrnamentsTypeEnum> ornaments = new List<OrnamentsTypeEnum>();
+
+        internal List<OrnamentsTypeEnum> Ornaments
+        {
+            get
+            {
+                return ornaments;
+            }
+        }
 
         /// <summary>
         /// To force the use of the Create() method
@@ -46,7 +54,7 @@ namespace MusicXmlReaderModel
                 switch (child.Name)
                 {
                     case "delayed-inverted-turn": ornaments.Add(OrnamentsTypeEnum.delayedInvertedTurn); break;
-                    case "delayed-turn": ornaments.Add(OrnamentsTypeEnum.delayeTurn); break;
+                    case "delayed-turn": ornaments.Add(OrnamentsTypeEnum.delayedTurn); break;
                     case "inverted-mordent": ornaments.Add(OrnamentsTypeEnum.invertedMordent); break;
                     case "inverted-turn": ornaments.Add(OrnamentsTypeEnum.invertedTurn); break;
                     case "mordent": ornaments.Add(OrnamentsTypeEnum.mordent); break;
@@ -87,7 +95,7 @@ namespace MusicXmlReaderModel
             {
                 case OrnamentsTypeEnum.undefined: return ResourcesForModel.Ornament_Undefined;
                 case OrnamentsTypeEnum.delayedInvertedTurn: return ResourcesForModel.Ornament_DelayedInvertedTurn;
-                case OrnamentsTypeEnum.delayeTurn: return ResourcesForModel.Ornament_DelayedTurn;
+                case OrnamentsTypeEnum.delayedTurn: return ResourcesForModel.Ornament_DelayedTurn;
                 case OrnamentsTypeEnum.invertedMordent: return ResourcesForModel.Ornament_InvertedMordent;
                 case OrnamentsTypeEnum.invertedTurn: return ResourcesForModel.Ornament_Turn; ;
                 case OrnamentsTypeEnum.mordent: return ResourcesForModel.Ornament_Mordent;
@@ -122,6 +130,19 @@ namespace MusicXmlReaderModel
             }
             return sb.ToString();
         }
+
+        public string UnlocalizedString()
+        {
+            string delimiter = "";
+            StringBuilder sb = new StringBuilder();
+            foreach (OrnamentsTypeEnum ornament in ornaments)
+            {
+                sb.Append(delimiter+ornament.ToString());
+                delimiter = ",";
+            }
+            return sb.ToString();
+        }
+        
     }
 }
 
