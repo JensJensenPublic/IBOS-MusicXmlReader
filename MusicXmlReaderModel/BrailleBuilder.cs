@@ -18,6 +18,8 @@ namespace MusicXmlReaderUI
         // Ref.6: MUSIC BRAILLE CODE 1997 Developed Under the Sponsorship of the BRAILLE AUTHORITY OF NORTH AMERICA
         //        Downloaded to C:\Users\Jens\Dropbox\Root\Dokumenter\music braille code.pdf
 
+     
+
         //public enum Constant
         //{
         //    FourMeasureRest,
@@ -121,6 +123,99 @@ namespace MusicXmlReaderUI
         public static readonly byte[] repeatStart = new byte[] { dot6, dot3, (dot1 + dot2 + dot6), (dot2 + dot3) } ;
 
         // Note: Articulation marks must be inserted BEFORE the note
+
+        //*************************************************************************************************************************************
+
+        // The following references are found at
+        // http://www.brl.org/
+        // http://www.brl.org/music/index.html
+
+        // Table 1: Basic Signs
+        // http://www.brl.org/codes/intmanual/tables/table01.html
+
+        // Table 2 Clefs
+        // http://www.brl.org/codes/intmanual/tables/table02.html
+
+        // Table 3: Accidental, Keys & Time Signatures
+        // http://www.brl.org/codes/intmanual/tables/table03.html
+
+        // Table 4: Rythmic groups
+        // http://www.brl.org/codes/intmanual/tables/table04.html
+        public static readonly byte triplet = dot2 + dot3;
+        public static readonly byte[] GroupOfTree = { (dot4 + dot5 + dot6), (dot2 + dot5), dot3 };
+        public static readonly byte[] GroupOfFive = { (dot4 + dot5 + dot6), (dot2 + dot6), dot3 };
+        public static readonly byte[] GroupOfSix  = { (dot4 + dot5 + dot6), (dot2 + dot3 + dot5), dot3 };
+
+        // Table 5: Chords
+        // http://www.brl.org/codes/intmanual/tables/table05.html
+
+        // Table 6: Slurs and ties
+        // http://www.brl.org/codes/intmanual/tables/table06.html
+        public static byte slur = (dot1 + dot4);
+        public static byte[] glissando = { (dot4), (dot1) };
+
+        // Table 7: Tremolos
+        // http://www.brl.org/codes/intmanual/tables/table07.html
+
+        // Table 8: Fingering
+        // http://www.brl.org/codes/intmanual/tables/table08.html
+
+        // Table 9: Bar Lines & Repeats
+        // http://www.brl.org/codes/intmanual/tables/table09.html
+
+        // Table 10: Nuances
+        // http://www.brl.org/codes/intmanual/tables/table10.html
+        public static byte[] fermata = { (dot1 + dot2 + dot6), (dot1 + dot2 + dot3) };
+        public static byte[] martellato = { (dot5 + dot6), (dot2 + dot3 + dot6) };
+        public static byte[] breath = { (dot6), (dot3 + dot4) };
+
+        // Table 11: Ornaments
+        // http://www.brl.org/codes/intmanual/tables/table11.html
+        public static readonly byte trillMark = (dot2 + dot3 + dot5);
+        public static readonly byte turn = (dot2 + dot5 + dot6);
+        public static readonly byte[] invertedTurn = { (dot2 + dot5 + dot6), (dot1 + dot2 + dot3) };
+        public static readonly byte[] mordent = { (dot5), (dot2 + dot3 + dot5), (dot1 + dot2 + dot3) };
+        //public static readonly byte
+        //public static readonly byte
+
+
+        // Ornaments still missing:
+        //delayedInvertedTurn,
+        //delayedTurn,
+        //invertedMordent,
+        //otherOrnament,
+        //schleifer,
+        //shake,
+        //tremolo,
+        //verticalTurn,
+        //wavyLine,
+        //accidentalMark
+
+        // Table 12: Theory
+        // http://www.brl.org/codes/intmanual/tables/table12.html
+
+        // Table 13: Modern notation
+        // http://www.brl.org/codes/intmanual/tables/table13.html
+
+        // Table 14: General Organization
+        // http://www.brl.org/codes/intmanual/tables/table14.html
+
+        // Table 15: Keyboard music
+        // http://www.brl.org/codes/intmanual/tables/table15.html
+
+        // Table 16: Vocal Music
+        // http://www.brl.org/codes/intmanual/tables/table16.html
+
+        // Table 17: String instruments 
+        // http://www.brl.org/codes/intmanual/tables/table17.html
+
+        // Table 18 : Winds and Percussion
+        // http://www.brl.org/codes/intmanual/tables/table18.html
+
+        // Table 19: Accordion
+        // http://www.brl.org/codes/intmanual/tables/table19.html
+
+//*************************************************************************************************************************************
 
 
 
