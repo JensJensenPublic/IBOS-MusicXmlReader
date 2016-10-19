@@ -101,7 +101,6 @@ namespace MusicXmlReaderModel
 
         }
 
-
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
@@ -119,7 +118,7 @@ namespace MusicXmlReaderModel
         {
             return "";
         }
-
+        
 
         /// <summary>
         /// Private constructor, used by the Crate() method
@@ -145,6 +144,7 @@ namespace MusicXmlReaderModel
             // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-tuplet.htm
 
             // http://www.musikipedia.dk/musikordbog-engelsk
+                
 
             // Dig out elements
             // Some of these elements are graphical representations of another element representing the sound! Example: tied/tie

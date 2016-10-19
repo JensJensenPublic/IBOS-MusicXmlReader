@@ -159,6 +159,13 @@ namespace MusicXmlReaderUI
 
         // Table 7: Tremolos
         // http://www.brl.org/codes/intmanual/tables/table07.html
+        public static byte tremolo = (dot4 + dot5);
+        public static byte[] tremoloIn4ths =    { tremolo, (dot1) };
+        public static byte[] tremoloIn8ths =    { tremolo, (dot1 + dot2) };
+        public static byte[] tremoloIn16ths =   { tremolo, (dot1 + dot2 + dot3) };
+        public static byte[] tremoloIn32ths =   { tremolo, (dot2) };
+        public static byte[] tremoloIn64ths =   { tremolo, (dot1 + dot3 ) };
+        public static byte[] tremoloIn128ths =  { tremolo, (dot3) };
 
         // Table 8: Fingering
         // http://www.brl.org/codes/intmanual/tables/table08.html
@@ -480,7 +487,14 @@ namespace MusicXmlReaderUI
                         case OrnamentsElement.OrnamentsTypeEnum.otherOrnament: supported = false; break;
                         case OrnamentsElement.OrnamentsTypeEnum.schleifer: supported = false; break;
                         case OrnamentsElement.OrnamentsTypeEnum.shake: supported = false; break;
-                        case OrnamentsElement.OrnamentsTypeEnum.tremolo: supported = false; break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo0: bb.Append(tremoloIn4ths); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo1: bb.Append(tremoloIn8ths); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo2: bb.Append(tremoloIn16ths); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo3: bb.Append(tremoloIn32ths); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo4: bb.Append(tremoloIn64ths); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo5: bb.Append(tremoloIn128ths); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo6: supported = false; break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo7: supported = false; break;
                         case OrnamentsElement.OrnamentsTypeEnum.trillMark: bb.Append(trillMark); break;
                         case OrnamentsElement.OrnamentsTypeEnum.turn: bb.Append(turnAtNote); break;
                         case OrnamentsElement.OrnamentsTypeEnum.verticalTurn: supported = false; break;

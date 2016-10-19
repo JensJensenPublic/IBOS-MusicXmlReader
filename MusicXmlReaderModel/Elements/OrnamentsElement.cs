@@ -9,6 +9,8 @@ namespace MusicXmlReaderModel
 
     class OrnamentsElement : Element
     {
+        string className = "OrnamentsElement";
+
         public enum OrnamentsTypeEnum 
         {
             undefined,
@@ -19,8 +21,7 @@ namespace MusicXmlReaderModel
             mordent,
             otherOrnament,
             schleifer,
-            shake,
-            tremolo,
+            shake, 
             trillMark,
             turn,
             verticalTurn,
@@ -28,7 +29,16 @@ namespace MusicXmlReaderModel
             accidentalMarkUnknown, 
             accidentalMarkFlat,
             accidentalMarkNatural,
-            accidentalMarkSharp
+            accidentalMarkSharp,
+            tremolo0,
+            tremolo1,
+            tremolo2,
+            tremolo3,
+            tremolo4,
+            tremolo5,
+            tremolo6,
+            tremolo7,
+            tremolo8
         }
 
         private List<OrnamentsTypeEnum> ornaments = new List<OrnamentsTypeEnum>();
@@ -63,6 +73,28 @@ namespace MusicXmlReaderModel
             }  
         }
 
+        private OrnamentsTypeEnum GetTremoloType(XmlNode node)
+        {
+            string functionName = "GetTremoloType";
+            string s = node.InnerText;
+            switch (s)
+            {
+                case "0": return OrnamentsTypeEnum.tremolo0;
+                case "1": return OrnamentsTypeEnum.tremolo1;
+                case "2": return OrnamentsTypeEnum.tremolo2;
+                case "3": return OrnamentsTypeEnum.tremolo3;
+                case "4": return OrnamentsTypeEnum.tremolo4;
+                case "5": return OrnamentsTypeEnum.tremolo5;
+                case "6": return OrnamentsTypeEnum.tremolo6;
+                case "7": return OrnamentsTypeEnum.tremolo7;
+                case "8": return OrnamentsTypeEnum.tremolo8;
+
+            }
+            Logger.LogOnce(string.Format("{0}.{1}: Invalid text={2} ",className, functionName, s));
+            return OrnamentsTypeEnum.tremolo0;
+        }
+
+
         private OrnamentsElement(XmlNode node)
         {
             const string function = "OrnamentsElement constructor";
@@ -78,12 +110,12 @@ namespace MusicXmlReaderModel
                     case "other-ornament": ornaments.Add(OrnamentsTypeEnum.otherOrnament); break;
                     case "schleifer": ornaments.Add(OrnamentsTypeEnum.schleifer); break;
                     case "shake": ornaments.Add(OrnamentsTypeEnum.shake); break;
-                    case "tremolo": ornaments.Add(OrnamentsTypeEnum.tremolo); break;
+                    case "tremolo": ornaments.Add(GetTremoloType(child)); break; // Several subtypes exist
                     case "trill-mark": ornaments.Add(OrnamentsTypeEnum.trillMark); break;
                     case "turn": ornaments.Add(OrnamentsTypeEnum.turn); break;
                     case "vertical-turn": ornaments.Add(OrnamentsTypeEnum.verticalTurn); break;
                     case "wavy-line": ornaments.Add(OrnamentsTypeEnum.wavyLine); break;
-                    case "accidental-mark": ornaments.Add(GetAccidentalType(child)); break;
+                    case "accidental-mark": ornaments.Add(GetAccidentalType(child)); break; // Several subtypes exist
                     default: Logger.LogOnce(string.Format("{0} Unknown ornament:{1}", function, child.Name));break;
                 }
             }
@@ -119,7 +151,15 @@ namespace MusicXmlReaderModel
                 case OrnamentsTypeEnum.otherOrnament: return ResourcesForModel.Ornament_OtherOrnament;
                 case OrnamentsTypeEnum.schleifer: return ResourcesForModel.Ornament_Schleifer;
                 case OrnamentsTypeEnum.shake: return ResourcesForModel.Ornament_Shake;
-                case OrnamentsTypeEnum.tremolo: return ResourcesForModel.Ornament_Tremolo;
+                case OrnamentsTypeEnum.tremolo0: return ResourcesForModel.Ornament_Tremolo;
+                case OrnamentsTypeEnum.tremolo1: return ResourcesForModel.Ornament_Tremolo;
+                case OrnamentsTypeEnum.tremolo2: return ResourcesForModel.Ornament_Tremolo;
+                case OrnamentsTypeEnum.tremolo3: return ResourcesForModel.Ornament_Tremolo;
+                case OrnamentsTypeEnum.tremolo4: return ResourcesForModel.Ornament_Tremolo;
+                case OrnamentsTypeEnum.tremolo5: return ResourcesForModel.Ornament_Tremolo;
+                case OrnamentsTypeEnum.tremolo6: return ResourcesForModel.Ornament_Tremolo;
+                case OrnamentsTypeEnum.tremolo7: return ResourcesForModel.Ornament_Tremolo;
+                case OrnamentsTypeEnum.tremolo8: return ResourcesForModel.Ornament_Tremolo;
                 case OrnamentsTypeEnum.trillMark: return ResourcesForModel.Ornament_TrillMark;
                 case OrnamentsTypeEnum.turn: return ResourcesForModel.Ornament_Turn;
                 case OrnamentsTypeEnum.verticalTurn: return ResourcesForModel.Ornament_VerticalTurn;

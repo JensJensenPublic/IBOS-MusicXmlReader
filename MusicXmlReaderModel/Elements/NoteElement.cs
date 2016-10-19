@@ -533,7 +533,7 @@ namespace MusicXmlReaderModel
                         staff = int.Parse(staffString);
                         break;
                     case "notations": // TO DO: Find out what to do here 
-                        notations = NotationsElement.Create(child);                                               
+                        notations = NotationsElement.Create(child);                                              
                         break;
                     case "beam": // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-beam.htm
                         // This is pure graphical information. Explicitly ignored!
