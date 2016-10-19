@@ -51,6 +51,7 @@ namespace MusicXmlReaderModel
                 || (e is RepeatElement)
                 || (e is BarlineElement)
                 || (e is InstrumentsElement)
+                || (e is AttributesElement)
 
                 )
                 {

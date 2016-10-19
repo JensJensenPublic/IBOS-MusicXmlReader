@@ -84,6 +84,7 @@ namespace MusicXmlReaderModel
                          || (e is RepeatElement)
                          || (e is BarlineElement)
                          || (e is InstrumentsElement)
+                         || (e is AttributesElement)
 
                          )
 
@@ -97,7 +98,7 @@ namespace MusicXmlReaderModel
                     else
                     {
                         // Ignore this element.
-                        Logger.Log(string.Format("TimeDescriptionList: Unexpected element of type {0} String='{1}'", e.GetType(), e.ToString()));
+                        Logger.LogOnce(string.Format("TimeDescriptionList: Unexpected element of type {0} String='{1}'", e.GetType(), e.ToString()));
                     }
                 }
 

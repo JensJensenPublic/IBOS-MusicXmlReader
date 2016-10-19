@@ -10,6 +10,7 @@ namespace MusicXmlReaderModel
 {
     public class Model
     {
+        string className = "Model";
         string theMusicXmlFileName = "";
         bool is64Bit; // This program is compiled and for the following architechture: false:x86 true:x64 
         List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
@@ -220,6 +221,7 @@ namespace MusicXmlReaderModel
         /// <returns>True <==> Further recursion is required.</returns>
         private bool WriteElement(XmlNode node)
         {
+            string functionName = "WriteElement";
             bool continueRecursion = true;
             switch (node.Name)
             {
@@ -367,10 +369,14 @@ namespace MusicXmlReaderModel
                 case "score-partwise":
                     allMusicXmlObjecsts.Add(ScorePartwiseElement.Create(node));                 
                     break;
-                case "attributes":
-                     //allMusicXmlObjecsts.Add(AttributesElement.Create(node));
-                     // Ignore until we need them
-                     break;
+                case "attributes": // Maybe attributes are always found under MeasureElement ??
+                    //Logger.LogOnce(string.Format("{0}.{1} Unimplemented element: Name={2} Parent.Name={3}",
+                    //    className, functionName, node.Name,node.ParentNode.Name));
+                    allMusicXmlObjecsts.Add(AttributesElement.Create(node));       // Ignore until we need them 
+                    // WE CONTINUE RECURSION below the attributes element, which may contain a lot of other relevant elements:
+                    // footnote, level, divisions, key, time, staves, part-symbol,instruments, clef, staff-details, transpose, directive,measure-style
+                    // For the time being there is no need to structure these elements into the Attribute Element !          
+                    break;
                 case "backup":
                     // Needed soon!
                     allMusicXmlObjecsts.Add(BackupElement.Create(node, divisions));
