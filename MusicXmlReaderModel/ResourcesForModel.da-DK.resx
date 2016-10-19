@@ -540,4 +540,53 @@
   <data name="TupletElement_Name" xml:space="preserve">
     <value>Tuplet</value>
   </data>
+  <data name="Ornament_AccidentalMark" xml:space="preserve">
+    <value>Løst fortegn</value>
+  </data>
+  <data name="Ornament_DelayedInvertedTurn" xml:space="preserve">
+    <value>Forsinket omvendt dobbeltslag</value>
+  </data>
+  <data name="Ornament_DelayedTurn" xml:space="preserve">
+    <value>Forsinket dobbeltslag</value>
+  </data>
+  <data name="Ornament_InvertedMordent" xml:space="preserve">
+    <value>Omvendt praltrille</value>
+  </data>
+  <data name="Ornament_InvertedTurn" xml:space="preserve">
+    <value>Omvendt dobbeltslag</value>
+  </data>
+  <data name="Ornament_Mordent" xml:space="preserve">
+    <value>Praltrille</value>
+  </data>
+  <data name="Ornament_OtherOrnament" xml:space="preserve">
+    <value>Andet ornament</value>
+  </data>
+  <data name="Ornament_Schleifer" xml:space="preserve">
+    <value>Schleifer</value>
+    <comment>???</comment>
+  </data>
+  <data name="Ornament_Shake" xml:space="preserve">
+    <value>Shake</value>
+    <comment>???</comment>
+  </data>
+  <data name="Ornament_Tremolo" xml:space="preserve">
+    <value>Tremolo</value>
+  </data>
+  <data name="Ornament_TrillMark" xml:space="preserve">
+    <value>Trille</value>
+  </data>
+  <data name="Ornament_Turn" xml:space="preserve">
+    <value>Dobbeltslag</value>
+    <comment>???</comment>
+  </data>
+  <data name="Ornament_Undefined" xml:space="preserve">
+    <value>Udefineret ornament</value>
+  </data>
+  <data name="Ornament_VerticalTurn" xml:space="preserve">
+    <value>Lodret dobbeltslag</value>
+    <comment>???</comment>
+  </data>
+  <data name="Ornament_WavyLine" xml:space="preserve">
+    <value>Bølgelinie</value>
+  </data>
 </root>

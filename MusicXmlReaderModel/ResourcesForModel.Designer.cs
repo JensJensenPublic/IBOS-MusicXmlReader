@@ -790,6 +790,141 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accidental-mark.
+        /// </summary>
+        internal static string Ornament_AccidentalMark {
+            get {
+                return ResourceManager.GetString("Ornament_AccidentalMark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delayed inverted turn.
+        /// </summary>
+        internal static string Ornament_DelayedInvertedTurn {
+            get {
+                return ResourceManager.GetString("Ornament_DelayedInvertedTurn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delayed turn.
+        /// </summary>
+        internal static string Ornament_DelayedTurn {
+            get {
+                return ResourceManager.GetString("Ornament_DelayedTurn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inverted mordent.
+        /// </summary>
+        internal static string Ornament_InvertedMordent {
+            get {
+                return ResourceManager.GetString("Ornament_InvertedMordent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inverted turn.
+        /// </summary>
+        internal static string Ornament_InvertedTurn {
+            get {
+                return ResourceManager.GetString("Ornament_InvertedTurn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mordent.
+        /// </summary>
+        internal static string Ornament_Mordent {
+            get {
+                return ResourceManager.GetString("Ornament_Mordent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other ornament.
+        /// </summary>
+        internal static string Ornament_OtherOrnament {
+            get {
+                return ResourceManager.GetString("Ornament_OtherOrnament", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schleifer.
+        /// </summary>
+        internal static string Ornament_Schleifer {
+            get {
+                return ResourceManager.GetString("Ornament_Schleifer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shake.
+        /// </summary>
+        internal static string Ornament_Shake {
+            get {
+                return ResourceManager.GetString("Ornament_Shake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tremolo.
+        /// </summary>
+        internal static string Ornament_Tremolo {
+            get {
+                return ResourceManager.GetString("Ornament_Tremolo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trill-mark.
+        /// </summary>
+        internal static string Ornament_TrillMark {
+            get {
+                return ResourceManager.GetString("Ornament_TrillMark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turn.
+        /// </summary>
+        internal static string Ornament_Turn {
+            get {
+                return ResourceManager.GetString("Ornament_Turn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undefined ornament.
+        /// </summary>
+        internal static string Ornament_Undefined {
+            get {
+                return ResourceManager.GetString("Ornament_Undefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertical turn.
+        /// </summary>
+        internal static string Ornament_VerticalTurn {
+            get {
+                return ResourceManager.GetString("Ornament_VerticalTurn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wavy-line.
+        /// </summary>
+        internal static string Ornament_WavyLine {
+            get {
+                return ResourceManager.GetString("Ornament_WavyLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Part.
         /// </summary>
         internal static string PartElement_Name {
@@ -1294,7 +1429,7 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Notationer.
+        ///   Looks up a localized string similar to Notations.
         /// </summary>
         internal static string UserSettings_ReaderNames_Notations {
             get {

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace MusicXmlReaderModel
-{ 
+{
+    // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-ornaments.htm
+
 
     class OrnamentsElement : Element
     {
-        public enum OrnamentsTypeEnum // LOCALIZE
+        public enum OrnamentsTypeEnum 
         {
             undefined,
             delayedInvertedTurn,
@@ -77,33 +79,33 @@ namespace MusicXmlReaderModel
         }
 
 
-        private string ToLocalizedString(OrnamentsTypeEnum ornament) // LOCALIZE
+        private string ToLocalizedString(OrnamentsTypeEnum ornament) 
         {
             const string function = "OrnamentsElement.ToLocalizedString";
             string result = null;
             switch (ornament)
             {
-                case OrnamentsTypeEnum.undefined: break;
-                case OrnamentsTypeEnum.delayedInvertedTurn: break;
-                case OrnamentsTypeEnum.delayeTurn: break;
-                case OrnamentsTypeEnum.invertedMordent: break;
-                case OrnamentsTypeEnum.invertedTurn: break;
-                case OrnamentsTypeEnum.mordent: break;
-                case OrnamentsTypeEnum.otherOrnament: break;
-                case OrnamentsTypeEnum.schleifer: break;
-                case OrnamentsTypeEnum.shake: break;
-                case OrnamentsTypeEnum.tremolo: break;
-                case OrnamentsTypeEnum.trillMark: return "trille";
-                case OrnamentsTypeEnum.turn: break;
-                case OrnamentsTypeEnum.verticalTurn: break;
-                case OrnamentsTypeEnum.wavyLine: break;
-                case OrnamentsTypeEnum.accidentalMark: break;
+                case OrnamentsTypeEnum.undefined: return ResourcesForModel.Ornament_Undefined;
+                case OrnamentsTypeEnum.delayedInvertedTurn: return ResourcesForModel.Ornament_DelayedInvertedTurn;
+                case OrnamentsTypeEnum.delayeTurn: return ResourcesForModel.Ornament_DelayedTurn;
+                case OrnamentsTypeEnum.invertedMordent: return ResourcesForModel.Ornament_InvertedMordent;
+                case OrnamentsTypeEnum.invertedTurn: return ResourcesForModel.Ornament_Turn; ;
+                case OrnamentsTypeEnum.mordent: return ResourcesForModel.Ornament_Mordent;
+                case OrnamentsTypeEnum.otherOrnament: return ResourcesForModel.Ornament_OtherOrnament;
+                case OrnamentsTypeEnum.schleifer: return ResourcesForModel.Ornament_Schleifer;
+                case OrnamentsTypeEnum.shake: return ResourcesForModel.Ornament_Shake;
+                case OrnamentsTypeEnum.tremolo: return ResourcesForModel.Ornament_Tremolo;
+                case OrnamentsTypeEnum.trillMark: return ResourcesForModel.Ornament_TrillMark;
+                case OrnamentsTypeEnum.turn: return ResourcesForModel.Ornament_Turn;
+                case OrnamentsTypeEnum.verticalTurn: return ResourcesForModel.Ornament_VerticalTurn;
+                case OrnamentsTypeEnum.wavyLine: return ResourcesForModel.Ornament_WavyLine;
+                case OrnamentsTypeEnum.accidentalMark: return ResourcesForModel.Ornament_AccidentalMark;
                 default:
                     Logger.LogOnce(string.Format("{0} Unknown ornament type: {1}", function,ornament.ToString())); break;
             }
             if (null == result)
             {
-                result = ornament.ToString(); // Until we get the localisation done use this default
+                result = ornament.ToString(); 
             }
             return result;
 

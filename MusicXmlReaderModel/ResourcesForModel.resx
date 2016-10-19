@@ -397,7 +397,7 @@
     <value>Measure numbers</value>
   </data>
   <data name="UserSettings_ReaderNames_Notations" xml:space="preserve">
-    <value>Notationer</value>
+    <value>Notations</value>
   </data>
   <data name="UserSettings_ReaderNames_Notes" xml:space="preserve">
     <value>Notes</value>
@@ -542,5 +542,50 @@
   </data>
   <data name="TupletElement_Name" xml:space="preserve">
     <value />
+  </data>
+  <data name="Ornament_AccidentalMark" xml:space="preserve">
+    <value>Accidental-mark</value>
+  </data>
+  <data name="Ornament_DelayedInvertedTurn" xml:space="preserve">
+    <value>Delayed inverted turn</value>
+  </data>
+  <data name="Ornament_DelayedTurn" xml:space="preserve">
+    <value>Delayed turn</value>
+  </data>
+  <data name="Ornament_InvertedMordent" xml:space="preserve">
+    <value>Inverted mordent</value>
+  </data>
+  <data name="Ornament_InvertedTurn" xml:space="preserve">
+    <value>Inverted turn</value>
+  </data>
+  <data name="Ornament_Mordent" xml:space="preserve">
+    <value>Mordent</value>
+  </data>
+  <data name="Ornament_OtherOrnament" xml:space="preserve">
+    <value>Other ornament</value>
+  </data>
+  <data name="Ornament_Schleifer" xml:space="preserve">
+    <value>Schleifer</value>
+  </data>
+  <data name="Ornament_Shake" xml:space="preserve">
+    <value>Shake</value>
+  </data>
+  <data name="Ornament_Tremolo" xml:space="preserve">
+    <value>Tremolo</value>
+  </data>
+  <data name="Ornament_TrillMark" xml:space="preserve">
+    <value>Trill-mark</value>
+  </data>
+  <data name="Ornament_Turn" xml:space="preserve">
+    <value>Turn</value>
+  </data>
+  <data name="Ornament_Undefined" xml:space="preserve">
+    <value>Undefined ornament</value>
+  </data>
+  <data name="Ornament_VerticalTurn" xml:space="preserve">
+    <value>Vertical turn</value>
+  </data>
+  <data name="Ornament_WavyLine" xml:space="preserve">
+    <value>Wavy-line</value>
   </data>
 </root>
