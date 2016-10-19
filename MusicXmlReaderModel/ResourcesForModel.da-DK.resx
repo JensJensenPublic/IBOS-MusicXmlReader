@@ -543,6 +543,18 @@
   <data name="Ornament_AccidentalMark" xml:space="preserve">
     <value>Løst fortegn</value>
   </data>
+  <data name="Ornament_AccidentalMarkFlat" xml:space="preserve">
+    <value>Løst B</value>
+  </data>
+  <data name="Ornament_AccidentalMarkNatural" xml:space="preserve">
+    <value>Løst Opløsningstegn</value>
+  </data>
+  <data name="Ornament_AccidentalMarkSharp" xml:space="preserve">
+    <value>Løst kryds</value>
+  </data>
+  <data name="Ornament_AccidentalMarkUnknown" xml:space="preserve">
+    <value>Udefineret fortegn</value>
+  </data>
   <data name="Ornament_DelayedInvertedTurn" xml:space="preserve">
     <value>Forsinket omvendt dobbeltslag</value>
   </data>

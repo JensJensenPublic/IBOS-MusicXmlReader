@@ -87,8 +87,8 @@ namespace MusicXmlReaderUI
         public static readonly byte[] MeasureInAccord = new byte[] { 35, 28 };
         public static readonly byte[] PartMeasureInAccord = new byte[] { 16, 2 };
         public static readonly byte[] MeasureDivisionSign = new byte[] { 40, 5 };
-        public static readonly byte Flat = 35;
-        public static readonly byte Sharp = 41;
+        public static readonly byte Flat = 35; // Verify !!
+        public static readonly byte Sharp = 41; // Verify !!
         public static readonly byte Natural = 33;
         public static readonly byte TupletOf3 = dot2 + dot3;
         public static readonly byte[] ArpeggioUp = new byte[] { dot3 + dot4 + dot5, dot1 + dot3 };
@@ -96,8 +96,10 @@ namespace MusicXmlReaderUI
 
         // The followung symbolr are used as the fixed symbol describing the key
         public static readonly byte KeySharp = dot1 + dot4 + dot6;
+        public static readonly byte[] KeyDoubleSharp = { KeySharp, KeySharp };
         public static readonly byte KeyFlat  = dot1 + dot2 + dot6;
-        public static readonly byte KeyNone  = dot1 + dot6;   // "opløsningstegn" 
+        public static readonly byte[] KeyDoubleFlat = { KeyFlat, KeyFlat };
+        public static readonly byte KeyNatural  = dot1 + dot6;   // "opløsningstegn" 
 
         public static readonly byte Number = dot3 + dot4 + dot5 + dot6; // Marks the start of numeric coding
         public static readonly byte cipher0 = dot2 + dot4 + dot5; // 
@@ -138,6 +140,7 @@ namespace MusicXmlReaderUI
 
         // Table 3: Accidental, Keys & Time Signatures
         // http://www.brl.org/codes/intmanual/tables/table03.html
+        // Most of these values are already defined above !
 
         // Table 4: Rythmic groups
         // http://www.brl.org/codes/intmanual/tables/table04.html
@@ -172,8 +175,11 @@ namespace MusicXmlReaderUI
         // Table 11: Ornaments
         // http://www.brl.org/codes/intmanual/tables/table11.html
         public static readonly byte trillMark = (dot2 + dot3 + dot5);
-        public static readonly byte turn = (dot2 + dot5 + dot6);
-        public static readonly byte[] invertedTurn = { (dot2 + dot5 + dot6), (dot1 + dot2 + dot3) };
+        public static readonly byte turnBetweenNotes = (dot2 + dot5 + dot6);
+        public static readonly byte[] invertedTurnBetweenNotes = { (dot2 + dot5 + dot6), (dot1 + dot2 + dot3) };
+        public static readonly byte[] turnAtNote = new byte[] {(dot6), (dot2 + dot5 + dot6) };
+        public static readonly byte[] invertedTurnAtNote = {(dot6), (dot2 + dot5 + dot6), (dot1 + dot2 + dot3) };
+
         public static readonly byte[] mordent = { (dot5), (dot2 + dot3 + dot5), (dot1 + dot2 + dot3) };
         //public static readonly byte
         //public static readonly byte
@@ -457,10 +463,51 @@ namespace MusicXmlReaderUI
                 }
                 Logger.LogOnce(string.Format("{0}.{1} Unknown Arpeggio direction: {2}", className, functionName, notations.ArpeggiateElement.ArpeggiateDirection.ToString()));            
             }
-                  
+
+            if (null != notations.OrnamentsElement)
+            {
+                foreach (OrnamentsElement.OrnamentsTypeEnum ornament in notations.OrnamentsElement.Ornaments)
+                {
+                    bool supported = true;
+                    switch (ornament)
+                    {
+                        case OrnamentsElement.OrnamentsTypeEnum.undefined: supported = false; break;
+                        case OrnamentsElement.OrnamentsTypeEnum.delayedInvertedTurn: bb.Append(invertedTurnBetweenNotes); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.delayedTurn: bb.Append(turnBetweenNotes); break; 
+                        case OrnamentsElement.OrnamentsTypeEnum.invertedMordent: bb.Append(mordent); break;  // Use samevalue  as for Mordent
+                        case OrnamentsElement.OrnamentsTypeEnum.invertedTurn: bb.Append(invertedTurnAtNote); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.mordent: bb.Append(mordent); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.otherOrnament: supported = false; break;
+                        case OrnamentsElement.OrnamentsTypeEnum.schleifer: supported = false; break;
+                        case OrnamentsElement.OrnamentsTypeEnum.shake: supported = false; break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo: supported = false; break;
+                        case OrnamentsElement.OrnamentsTypeEnum.trillMark: bb.Append(trillMark); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.turn: bb.Append(turnAtNote); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.verticalTurn: supported = false; break;
+                        case OrnamentsElement.OrnamentsTypeEnum.wavyLine: supported = false; break;
+                        case OrnamentsElement.OrnamentsTypeEnum.accidentalMarkUnknown: supported = false; break;
+                        case OrnamentsElement.OrnamentsTypeEnum.accidentalMarkFlat: bb.Append(KeyFlat); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.accidentalMarkNatural: bb.Append(KeyNatural); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.accidentalMarkSharp: bb.Append(KeySharp); break;
+                        default: supported = false; break;
+                    }
+                    if (!supported)
+                    {
+                        Logger.LogOnce(string.Format("{0}.{1}: Unsupported ornament. Name={2}", className, functionName, ornament.ToString()));
+                    }
+#if false
+                    else
+                    {
+                        Logger.LogOnce(string.Format("{0}.{1}: Added ornament. Name={2}", className, functionName, ornament.ToString()));
+                    }
+#endif
+
+                }         
+            }
+             
             LogUninplementedNotationElement(notations.SlideElement, "SlideElement"); 
             LogUninplementedNotationElement(notations.GlissandoElement, "GlissandoElement"); 
-            LogUninplementedOrnamentsElement(notations.OrnamentsElement, "OrnamentsElement");
+            //LogUninplementedOrnamentsElement(notations.OrnamentsElement, "OrnamentsElement");
 
             // Add other notation elements here asthey are added in the parser.
         }

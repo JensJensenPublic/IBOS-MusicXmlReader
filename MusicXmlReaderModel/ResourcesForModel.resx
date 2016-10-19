@@ -546,6 +546,18 @@
   <data name="Ornament_AccidentalMark" xml:space="preserve">
     <value>Accidental-mark</value>
   </data>
+  <data name="Ornament_AccidentalMarkFlat" xml:space="preserve">
+    <value>Flat</value>
+  </data>
+  <data name="Ornament_AccidentalMarkNatural" xml:space="preserve">
+    <value>Natural</value>
+  </data>
+  <data name="Ornament_AccidentalMarkSharp" xml:space="preserve">
+    <value>Sharp</value>
+  </data>
+  <data name="Ornament_AccidentalMarkUnknown" xml:space="preserve">
+    <value>Unknown accidental</value>
+  </data>
   <data name="Ornament_DelayedInvertedTurn" xml:space="preserve">
     <value>Delayed inverted turn</value>
   </data>

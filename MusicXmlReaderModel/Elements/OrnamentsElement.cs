@@ -25,7 +25,10 @@ namespace MusicXmlReaderModel
             turn,
             verticalTurn,
             wavyLine,
-            accidentalMark
+            accidentalMarkUnknown, 
+            accidentalMarkFlat,
+            accidentalMarkNatural,
+            accidentalMarkSharp
         }
 
         private List<OrnamentsTypeEnum> ornaments = new List<OrnamentsTypeEnum>();
@@ -44,7 +47,21 @@ namespace MusicXmlReaderModel
         /// 
         private OrnamentsElement()
         { }
- 
+
+
+        private OrnamentsTypeEnum GetAccidentalType(XmlNode node)
+        {
+            switch (node.InnerText)
+            {
+
+                case "natural":  return OrnamentsTypeEnum.accidentalMarkNatural;
+                case "flat":  return OrnamentsTypeEnum.accidentalMarkFlat;
+                case "sharp":  return OrnamentsTypeEnum.accidentalMarkSharp;
+                default:
+                    Logger.LogOnce(string.Format("{0}.{1}: Unknown Accidental: {2}", node.InnerText));
+                    return OrnamentsTypeEnum.accidentalMarkUnknown;
+            }  
+        }
 
         private OrnamentsElement(XmlNode node)
         {
@@ -66,7 +83,7 @@ namespace MusicXmlReaderModel
                     case "turn": ornaments.Add(OrnamentsTypeEnum.turn); break;
                     case "vertical-turn": ornaments.Add(OrnamentsTypeEnum.verticalTurn); break;
                     case "wavy-line": ornaments.Add(OrnamentsTypeEnum.wavyLine); break;
-                    case "accidental-mark": ornaments.Add(OrnamentsTypeEnum.accidentalMark); break;
+                    case "accidental-mark": ornaments.Add(GetAccidentalType(child)); break;
                     default: Logger.LogOnce(string.Format("{0} Unknown ornament:{1}", function, child.Name));break;
                 }
             }
@@ -107,7 +124,10 @@ namespace MusicXmlReaderModel
                 case OrnamentsTypeEnum.turn: return ResourcesForModel.Ornament_Turn;
                 case OrnamentsTypeEnum.verticalTurn: return ResourcesForModel.Ornament_VerticalTurn;
                 case OrnamentsTypeEnum.wavyLine: return ResourcesForModel.Ornament_WavyLine;
-                case OrnamentsTypeEnum.accidentalMark: return ResourcesForModel.Ornament_AccidentalMark;
+                case OrnamentsTypeEnum.accidentalMarkUnknown: return ResourcesForModel.Ornament_AccidentalMarkUnknown;
+                case OrnamentsTypeEnum.accidentalMarkFlat: return ResourcesForModel.Ornament_AccidentalMarkFlat;
+                case OrnamentsTypeEnum.accidentalMarkNatural: return ResourcesForModel.Ornament_AccidentalMarkNatural;
+                case OrnamentsTypeEnum.accidentalMarkSharp: return ResourcesForModel.Ornament_AccidentalMarkSharp;
                 default:
                     Logger.LogOnce(string.Format("{0} Unknown ornament type: {1}", function,ornament.ToString())); break;
             }
