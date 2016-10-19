@@ -3,9 +3,12 @@ using System.Globalization;
 
 namespace MusicXmlReaderModel
 {
-    // The tied type represents the notated tie. The tie element represents the tie sound.
+
+    // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-fermata.htm
+
     class FermataElement : Element
     {
+        string className = "FermataElement";
         public enum FermataTypeEnum { undefined, upright, inverted}; 
         private FermataTypeEnum fermataType = FermataTypeEnum.undefined;
         public FermataTypeEnum FermataType
@@ -35,12 +38,8 @@ namespace MusicXmlReaderModel
     /// </summary>
         private FermataElement(XmlNode node)
         {
-            const string function = "FermataElement constructor";
-            if (0 != node.ChildNodes.Count)
-            {
-                Logger.LogOnce(string.Format("{0}: Found unexpected child nodes",function));
-            }
-                        
+            const string functionName = "FermataElement";
+        
 
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
@@ -49,10 +48,33 @@ namespace MusicXmlReaderModel
                 {
                     case "type": fermataType = GetFermataType(a.Value); break;
                     case "default-x":
-                    case "default-y": break; // Explicitly ignore graphic attributes
-                    default: Logger.LogOnce(string.Format("{0}: Unexpected fermata attribute {1}", function, a.Name)); break;                    
+                    case "default-y":
+                    case "relative-x":
+                    case "relative-y":
+                    case "font-family":
+                    case "font-style":
+                    case "font-size":
+                    case "font-weight":
+                    case "color":  break; // Explicitly ignore graphic attributes
+                    default: Logger.LogOnce(string.Format("{0}: Unexpected fermata attribute {1}", functionName, a.Name)); break;                    
                 }
             }
+
+            // Dig out elements
+            foreach (XmlNode n in node.ChildNodes)
+            {
+                switch (n.Name)
+                {
+                    case "normal":   Logger.LogOnce(string.Format("{0}.{1}: Undocumented child found: Name={2} Value={3}",
+                                    className, functionName,n.Name,n.Value)); break;                          
+                                    // "Undocumented" , not "Unexpected" because "normal" is used in Thomas Maintz's Absinthe.xml    
+                    default:         Logger.LogOnce(string.Format("{0}.{1}: Unexpected child found: Name={2} Value={3}",
+                                    className, functionName, n.Name, n.Value)); break;
+                }
+            }
+
+
+
         }
 
 
