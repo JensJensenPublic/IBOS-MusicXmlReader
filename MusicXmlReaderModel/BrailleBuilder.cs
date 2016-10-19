@@ -298,11 +298,19 @@ namespace MusicXmlReaderUI
             }
         }
 
-        private void LogUninplementedNotationElement(Element element, string elementName)
+        private void LogUninplementedNotationElement(Element notationsElement, string elementName)
         {
-            if (null == element) return;
-            const string function = className + ".AddNotationsAfterNote";
-            Logger.LogOnce(string.Format("{0}: Unimplemented NotationElement:{1}", function, elementName));
+            string functionName = "LogUninplementedNotationElement";
+            if (null == notationsElement) return;
+            Logger.LogOnce(string.Format("{0}.{1}:: Unimplemented NotationElement:{2}", className, functionName, elementName));
+        }
+
+        private void LogUninplementedOrnamentsElement(OrnamentsElement ornamentsElement, string elementName)
+        {
+            string functionName = "LogUninplementedOrnamentsElement";
+            if (null == ornamentsElement) return;
+            string value = ornamentsElement.ToString();
+            Logger.LogOnce(string.Format("{0}.{1}:: Unimplemented NotationElement:{2} Value={3}", className, functionName, elementName,value));
         }
 
         public void AddNotationsAfterNote(NotationsElement notations)  // Some notations are added After the note itself
@@ -357,7 +365,7 @@ namespace MusicXmlReaderUI
                   
             LogUninplementedNotationElement(notations.SlideElement, "SlideElement"); 
             LogUninplementedNotationElement(notations.GlissandoElement, "GlissandoElement"); 
-            LogUninplementedNotationElement(notations.OrnamentsElement, "OrnamentsElement");
+            LogUninplementedOrnamentsElement(notations.OrnamentsElement, "OrnamentsElement");
 
             // Add other notation elements here asthey are added in the parser.
         }
