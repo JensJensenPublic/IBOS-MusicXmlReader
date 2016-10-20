@@ -270,6 +270,12 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public void Append(BrailleBuilder bb)
+        {
+            this.Append(bb.Braille, bb.Text.ToString());
+            //this.text.Append(bb.Text);
+        }
+
         public void Append(string s)
         {
             this.text.Append(s);

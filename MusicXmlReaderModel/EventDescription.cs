@@ -247,7 +247,8 @@ namespace MusicXmlReaderModel
                             bb1.Append(">");
 
                         }
-                        bb.Append(bb1.Braille,bb1.Text.ToString());
+                        //bb.Append(bb1.Braille, bb1.Text.ToString());
+                        bb.Append(bb1);
                     }                
                 }
                 catch (Exception e)
