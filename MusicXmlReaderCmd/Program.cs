@@ -52,7 +52,7 @@ namespace MusicXmlReaderUI
         /// <param name="sb">The Stringbuilder to receive the result</param>
         static private void AddAsMusicBraille(EventDescription eventDescription, StringBuilder sb)
         {
-            List<byte> brailleBytes = eventDescription.ToBraille();
+            List<byte> brailleBytes = eventDescription.ToBraille(null);
             if (0 != brailleBytes.Count)
             {
                 StringBuilder sbRaw = new StringBuilder("Hex=(");

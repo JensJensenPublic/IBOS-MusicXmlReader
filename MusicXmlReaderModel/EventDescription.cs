@@ -212,7 +212,7 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="noteElementList"></param>
         /// <returns></returns>
-        private List<byte> NotesForOnePartAsBraille(List<NoteElement> noteElementList)
+        private List<byte> NotesForOnePartAsBraille(List<NoteElement> noteElementList, StringBuilder text)
         {
             if (!userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettings.Notes)) return new List<byte>(); // User completely turned off reading of notes
 
@@ -232,15 +232,19 @@ namespace MusicXmlReaderModel
                                                                       // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)
                         if (noteElement.IsPause)
                         {
-                            // This is a rest           
-                            bb1.AddRest(noteElement.NoteDuration, false); // TO DO: Handle punctured rests
+                            // This is a rest 
+                            text.Append("<");
+                            bb1.AddRest(noteElement.NoteDuration, false,text); // TO DO: Handle punctured rests
+                            text.Append(">");
                         }
                         else
                         {
                             // This is a note
                             bb1.AddNotationsBeforeNote(noteElement.Notations); // Some notations are added Before the note itself
-                            bb1.AddNote(noteElement);
-                            bb1.AddNotationsAfterNote(noteElement.Notations);  // Some notations are added After the note itself                 
+                            text.Append("<");
+                            bb1.AddNote(noteElement,text);
+                            text.Append(">");
+                            bb1.AddNotationsAfterNote(noteElement.Notations);  // Some notations are added After the note itself                                                                      
                         }
                         bb.Append(bb1.Braille);
                     }                
@@ -327,9 +331,13 @@ namespace MusicXmlReaderModel
             return s;
         }
 
-        public string ToMusicBrailleString()
+        public string ToMusicBrailleString(StringBuilder text)
         {
-            List <byte> bytes = ToBraille();
+            if (null == text)
+            {
+                text = new StringBuilder(); // Use a dummy StringBuilder to avoid a lot ef extra code
+            }
+            List <byte> bytes = ToBraille(text);
             StringBuilder sb = new StringBuilder();
             foreach (byte b in bytes) { sb.Append((char) (BrailleDisplayer.UnicodeBrailleBase + (char)b)); };
             return sb.ToString();
@@ -341,7 +349,7 @@ namespace MusicXmlReaderModel
         /// Depending on settings ToString  will generate a mix of the results of ToBraille and ToNormalTextString()
         /// </summary>
         /// <returns></returns>
-        public List<byte> ToBraille()
+        public List<byte> ToBraille(StringBuilder text)
         {
             // const string functionName = "EventDescription.ToBraille";
             BrailleBuilder bbMetaInfo = BrailleBuilder.Create(); // For information not contained in notes
@@ -460,7 +468,7 @@ namespace MusicXmlReaderModel
             // Iterate over the parts and build a complete representation of all notes and of all texts
             foreach (List<NoteElement> noteElementList in noteLists) // Iterate over the fixed number of parts.
             {
-                List<byte> notes  = NotesForOnePartAsBraille(noteElementList); // Represents all notes for all parts
+                List<byte> notes  = NotesForOnePartAsBraille(noteElementList,text); // Represents all notes for all parts
                 List<byte> lyrics = new List<byte>();//  LyricsForOnePartAsBraille(noteElementList); // Represents all texts for all parts
                 // Assume that: The step is described with 3 characters. The octave with 1 character and max 2 notes per part !
                 //sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
@@ -487,7 +495,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public override string ToString()
         {
-            string mb = ToMusicBrailleString();
+            string mb = ToMusicBrailleString(null); // null because we do not want the text representation in this case
             string nt = ToNormalTextString();
             return string.Format(userSettings.defaultStringFormat, mb,nt);
         }
@@ -495,7 +503,7 @@ namespace MusicXmlReaderModel
 
         public string ToMusicBrailleAndTextBrailleString()
         {
-            string mb = ToMusicBrailleString();
+            string mb = ToMusicBrailleString(null); // null because we do not want the text representation in this case
             string nt = ToNormalTextString();            
             return string.Format("{0} {1}", mb, nt);
         }

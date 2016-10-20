@@ -528,19 +528,48 @@ namespace MusicXmlReaderUI
 
 
         /// <summary>
+        /// Only to be used for generating text representation of Music Braille 
+        /// </summary>
+        /// <param name="noteTypeEnum"></param>
+        /// <returns></returns>
+        private string GetDurationString(NoteTypeEnum noteTypeEnum)
+        {
+            switch (noteTypeEnum)
+            {
+                case NoteTypeEnum.whole:    return "/1";
+                case NoteTypeEnum.half:     return "/2";
+                case NoteTypeEnum.quarter:  return "/4";
+                case NoteTypeEnum.eight:    return "/8";
+                case NoteTypeEnum.nt16th:   return "/16";
+                case NoteTypeEnum.nt32nd:   return "/32";
+                case NoteTypeEnum.nt64th:   return "/64";
+                case NoteTypeEnum.measure:  return "FM";
+                case NoteTypeEnum.unknown:  return "?";
+                default:                    return "/?";
+            }
+        }
+
+
+
+        /// <summary>
         /// Add a NoteElement
         /// </summary>
         /// <param name="noteElement">The NoteElement to add</param>
-        public void AddNote(NoteElement noteElement)
+        public void AddNote(NoteElement noteElement,StringBuilder text)
         {
             // Add alteration
-            if (0 != noteElement.Alter) braille.Add((noteElement.Alter > 0) ? Sharp : Flat);
+            if (0 != noteElement.Alter)
+            {
+                braille.Add((noteElement.Alter > 0) ? Sharp : Flat);
+                text.Append((noteElement.Alter > 0) ? "#" : "b");
+            }
       
             // Add Octavemark
             if (MusicBrailleState.NeedOctaveMark(noteElement.Octave, noteElement.PitchValue.SemiTonesAboveC0))
             {
                 byte[] octaveMark = GetOctaveMark(noteElement.Octave);
                 braille.AddRange(octaveMark);
+                text.Append(noteElement.Octave.ToString());
             }
 
             // Add the combined step value and type value
@@ -548,9 +577,14 @@ namespace MusicXmlReaderUI
             byte typePart = GetTypeValue(noteElement.NoteDuration);  //  Returns the values for pin 3,6
             byte note = (byte)((int)stepPart | (int)typePart);       //  Logical OR to get all 6 pin values 
             braille.Add(note);
+            text.Append(string.Format("{0}{1}", noteElement.Step.ToString(), GetDurationString(noteElement.NoteDuration)));
 
             // Add punctuation value
-            if (noteElement.Dot) braille.Add(Dot);
+            if (noteElement.Dot)
+            {
+                braille.Add(Dot);
+                text.Append(".");
+            }
 
             // Start for debugging only:
             StringBuilder sb = new StringBuilder();
@@ -683,19 +717,26 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="type">From "whole" to 128nd</param>
         /// <param name="punctured">A puncture added</param>
-        public void AddRest(NoteTypeEnum noteDuration, bool punctured) // ********************* FIX ! Temp signature
+        public void AddRest(NoteTypeEnum noteDuration, bool punctured,StringBuilder text) // ********************* FIX ! Temp signature
         {
             // const string functionName = "AddRest";
+            text.Append("R"); // For "Rest"
             if (NoteTypeEnum.measure == noteDuration)
             {
                 braille.AddRange(FullMeasureRest);
+                text.Append("FM"); // For  Full Measure"
                 //Logger.LogOnce(string.Format("{0}.{1}: Added FullMeasureRest", className, functionName));
             }
             else
             {
                 byte rest = GetRestValue(noteDuration);
-                braille.Add(rest);
-                if (punctured) braille.Add(Dot);
+                braille.Add(rest);          
+                text.Append(GetDurationString(noteDuration));
+                if (punctured)
+                {
+                    braille.Add(Dot);
+                    text.Append(".");
+                }
             }
         }
 
