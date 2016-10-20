@@ -233,21 +233,21 @@ namespace MusicXmlReaderModel
                         if (noteElement.IsPause)
                         {
                             // This is a rest 
-                            text.Append("<");
-                            bb1.AddRest(noteElement.NoteDuration, false,text); // TO DO: Handle punctured rests
-                            text.Append(">");
+                            bb1.Append("<");
+                            bb1.AddRest(noteElement.NoteDuration, false); // TO DO: Handle punctured rests
+                            bb1.Append(">");
                         }
                         else
                         {
                             // This is a note
-                            text.Append("<");
-                            bb1.AddNotationsBeforeNote(noteElement.Notations,text); // Some notations are added Before the note itself                       
-                            bb1.AddNote(noteElement,text);      
-                            bb1.AddNotationsAfterNote(noteElement.Notations,text);  // Some notations are added After the note itself
-                            text.Append(">");
+                            bb1.Append("<");
+                            bb1.AddNotationsBeforeNote(noteElement.Notations); // Some notations are added Before the note itself                       
+                            bb1.AddNote(noteElement);      
+                            bb1.AddNotationsAfterNote(noteElement.Notations);  // Some notations are added After the note itself
+                            bb1.Append(">");
 
                         }
-                        bb.Append(bb1.Braille);
+                        bb.Append(bb1.Braille,bb1.Text.ToString());
                     }                
                 }
                 catch (Exception e)
@@ -257,6 +257,7 @@ namespace MusicXmlReaderModel
                         noteElement.Step, noteElement.Alter, noteElement.Octave, noteElement.Notations.ToString(), noteElement.MeasureNumber, noteElement.PartId));
                 }
             }
+            text.Append(bb.Text);
             return bb.Braille;
         }
                 

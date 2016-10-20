@@ -236,6 +236,7 @@ namespace MusicXmlReaderUI
 
 
         private List<byte> braille;
+        private StringBuilder text;
 
         /// <summary>
         /// To force the use of the Create() method
@@ -243,6 +244,7 @@ namespace MusicXmlReaderUI
         private BrailleBuilder()
         {
             braille = new List<byte>();
+            text = new StringBuilder();
         }
 
         public static BrailleBuilder Create()
@@ -260,9 +262,28 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public StringBuilder Text
+        {
+            get
+            {
+                return text;
+            }
+        }
+
+        public void Append(string s)
+        {
+            this.text.Append(s);
+        }
+
         public void Append(List<byte> bytes)
         {
             this.braille.AddRange(bytes);
+        }
+
+        public void Append(List<byte> bytes,string text)
+        {
+            this.braille.AddRange(bytes);
+            this.text.Append(text);
         }
 
         public void Append(byte[] bytes)
@@ -270,11 +291,23 @@ namespace MusicXmlReaderUI
             this.braille.AddRange(new List<byte>(bytes));
         }
 
+        public void Append(byte[] bytes, string text)
+        {
+            this.braille.AddRange(new List<byte>(bytes));
+            this.text.Append(text);
+        }
+
         public void Append(byte b)
         {
             this.braille.Add(b);
         }
-        
+
+        public void Append(byte b,string text)
+        {
+            this.braille.Add(b);
+            this.text.Append(text);
+        }
+
         private byte GetStepValue(PitchElement.FullStepEnum step) //  Returns the values for dot 1,2,4,5
         {
             switch (step)
@@ -358,7 +391,7 @@ namespace MusicXmlReaderUI
         }
 
         
-        public void AddNotationsBeforeNote(NotationsElement notations,StringBuilder text) // Some notations are added Before the note itself
+        public void AddNotationsBeforeNote(NotationsElement notations) // Some notations are added Before the note itself
         {
             if (null == notations) return;
             if (null == notations.Articulations) return;
@@ -366,8 +399,9 @@ namespace MusicXmlReaderUI
 
             if ((null != notations.SlurElement) && (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop))
             {
-                Braille.Add(Slur);
-                text.Append("SlurStop");
+                Append(Slur,"SlurStop");
+                //Braille.Add(Slur);
+                //text.Append("SlurStop");
                 //Logger.LogOnce(string.Format("{0}.{1} Added slur", className, functionName));
             }
 
@@ -376,8 +410,9 @@ namespace MusicXmlReaderUI
             {
                 if (notations.TupletElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start)
                 {
-                    Braille.AddRange(new List<byte>(TupletOf3));
-                    text.Append("TriolStart");
+                    Append(new List<byte>(TupletOf3), "TupletStart");
+                    //Braille.AddRange(new List<byte>(TupletOf3));
+                    //text.Append("TriolStart");
                     Logger.LogOnce(string.Format("{0}.{1} Added tuplet", className, functionName));
                 }
             }
@@ -389,8 +424,10 @@ namespace MusicXmlReaderUI
                 switch (articulation)
                 {
                     // Cases are shown in the same saquence as in the MusicXml definition:
-                    case ArticulationsElement.Articulation.accent:          Braille.AddRange(Accent); text.Append("Accent"); break;
-                    case ArticulationsElement.Articulation.breathmark:      Braille.AddRange(CommaHalfBreath); text.Append("CommaHalfBreath");  break;
+                    case ArticulationsElement.Articulation.accent:          Append(Accent,"Accent"); break;
+                    //Braille.AddRange(Accent); text.Append("Accent"); break;
+                    case ArticulationsElement.Articulation.breathmark:      Append(CommaHalfBreath,"CommaHalfBreath"); break;
+                    //Braille.AddRange(CommaHalfBreath); text.Append("CommaHalfBreath");  break;
                     case ArticulationsElement.Articulation.caesura:         implemented = false; break;
                     case ArticulationsElement.Articulation.detachedlegato:  implemented = false; break;
                     case ArticulationsElement.Articulation.doit:            implemented = false; break;
@@ -399,11 +436,14 @@ namespace MusicXmlReaderUI
                     case ArticulationsElement.Articulation.plop:            implemented = false; break;
                     case ArticulationsElement.Articulation.scoop:           implemented = false; break;
                     case ArticulationsElement.Articulation.spiccato:        implemented = false; break;
-                    case ArticulationsElement.Articulation.staccatissimo:   Braille.AddRange(Staccatissimo); text.Append("Staccatissimo"); break;
-                    case ArticulationsElement.Articulation.staccato:        Braille.Add(Staccato); text.Append("Staccato"); break;
+                    case ArticulationsElement.Articulation.staccatissimo:   Append(Staccatissimo,"Staccatissimo"); break;
+                    //Braille.AddRange(Staccatissimo); text.Append("Staccatissimo"); break;
+                    case ArticulationsElement.Articulation.staccato:        Append(Staccato,"Staccato"); break;
+                        //Braille.Add(Staccato); text.Append("Staccato"); break;
                     case ArticulationsElement.Articulation.stress:          implemented = false; break;
                     case ArticulationsElement.Articulation.strongaccent:    implemented = false; break;
-                    case ArticulationsElement.Articulation.tenuto:          Braille.AddRange(Tenuto); text.Append("Tenuto"); break; 
+                    case ArticulationsElement.Articulation.tenuto:          Append(Tenuto,"Tenuto"); break;
+                        //Braille.AddRange(Tenuto); text.Append("Tenuto"); break; 
                     case ArticulationsElement.Articulation.unstress:        implemented = false; break;    
                     default:
                         Logger.Log(string.Format("{0}.{1}: Unknown articulation: '{2}'",className,functionName, articulation)); break;
@@ -430,19 +470,20 @@ namespace MusicXmlReaderUI
             Logger.LogOnce(string.Format("{0}.{1}: Unimplemented NotationElement:{2} Value={3}", className, functionName, elementName,ornaments));
         }
 
-        public void AddNotationsAfterNote(NotationsElement notations,StringBuilder text)  // Some notations are added After the note itself
+        public void AddNotationsAfterNote(NotationsElement notations)  // Some notations are added After the note itself
         {
             // Actually we dont know what is added before and what is added after.
             // This method is primarily used for logging unimplemented notations !
             const string functionName = "AddNotationsAfterNote";
 
             if (null == notations) return;
-            BrailleBuilder bb = new BrailleBuilder();
+            //BrailleBuilder bb = new BrailleBuilder();
 
             if ((null != notations.SlurElement) && (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start))
             {
-                bb.Append(Slur);
-                text.Append("SlurStart");
+                Append(Slur, "SlurStart");
+                //bb.Append(Slur);
+                //text.Append("SlurStart");
                 //Logger.LogOnce(string.Format("{0}.{1} Added slur", className, functionName));
             }
 
@@ -454,8 +495,9 @@ namespace MusicXmlReaderUI
                 || (notations.TiedElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop)
                 )
                 {
-                    bb.Append(Tie);
-                    text.Append("Tie");
+                    Append(Tie, "Tie");
+                    //bb.Append(Tie);
+                    //text.Append("Tie");
                     //Logger.LogOnce(string.Format("{0}.{1} Added tie", className, functionName));
                     // TODO: implement algorithm handling ties conencting more than 4 notes.
                 }
@@ -466,8 +508,9 @@ namespace MusicXmlReaderUI
                 if ((notations.FermataElement.FermataType == FermataElement.FermataTypeEnum.inverted)
                     || (notations.FermataElement.FermataType == FermataElement.FermataTypeEnum.upright))
                 {
-                    bb.Append(FermatoOnNote);
-                    text.Append("Fermata");
+                    Append(FermatoOnNote, "Fermata");
+                    //bb.Append(FermatoOnNote);
+                    //text.Append("Fermata");
                 }
             }
 
@@ -476,9 +519,12 @@ namespace MusicXmlReaderUI
                 switch (notations.ArpeggiateElement.ArpeggiateDirection)
                 {
                     case ArpeggiateDirectionEnum.down:
-                        bb.Append(ArpeggioDown);
-                        text.Append("ArpeggioDown"); return;
-                    case ArpeggiateDirectionEnum.up: bb.Append(ArpeggioUp);return;
+                        Append(ArpeggioDown, "ArpeggioDown"); break;
+                        //bb.Append(ArpeggioDown);
+                        //text.Append("ArpeggioDown"); return;
+                    case ArpeggiateDirectionEnum.up:
+                        Append(ArpeggioUp, "ArpeggioUp"); break;
+                        //bb.Append(ArpeggioUp);return;
                     default:   break;                
                 
                 }
@@ -493,30 +539,30 @@ namespace MusicXmlReaderUI
                     switch (ornament)
                     {
                         case OrnamentsElement.OrnamentsTypeEnum.undefined: supported = false; break;
-                        case OrnamentsElement.OrnamentsTypeEnum.delayedInvertedTurn: bb.Append(invertedTurnBetweenNotes); text.Append("InvertedTurnBetweenNotes"); ; break;
-                        case OrnamentsElement.OrnamentsTypeEnum.delayedTurn: bb.Append(turnBetweenNotes); text.Append("TurnBetweenNotes"); break; 
-                        case OrnamentsElement.OrnamentsTypeEnum.invertedMordent: bb.Append(mordent); text.Append("Mordent"); break;  // Use samevalue  as for Mordent
-                        case OrnamentsElement.OrnamentsTypeEnum.invertedTurn: bb.Append(invertedTurnAtNote); text.Append("InvertedTurnAtNote"); break;
-                        case OrnamentsElement.OrnamentsTypeEnum.mordent: bb.Append(mordent); text.Append("Mordent"); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.delayedInvertedTurn: Append(invertedTurnBetweenNotes,"InvertedTurnBetweenNotes"); ; break;
+                        case OrnamentsElement.OrnamentsTypeEnum.delayedTurn: Append(turnBetweenNotes,"TurnBetweenNotes"); break; 
+                        case OrnamentsElement.OrnamentsTypeEnum.invertedMordent: Append(mordent,"Mordent"); break;  // Use samevalue  as for Mordent
+                        case OrnamentsElement.OrnamentsTypeEnum.invertedTurn: Append(invertedTurnAtNote,"InvertedTurnAtNote"); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.mordent: Append(mordent,"Mordent"); break;
                         case OrnamentsElement.OrnamentsTypeEnum.otherOrnament: supported = false; break;
                         case OrnamentsElement.OrnamentsTypeEnum.schleifer: supported = false; break;
                         case OrnamentsElement.OrnamentsTypeEnum.shake: supported = false; break;
-                        case OrnamentsElement.OrnamentsTypeEnum.tremolo0: bb.Append(tremoloIn4ths); text.Append("TremoloIn4ths"); break;
-                        case OrnamentsElement.OrnamentsTypeEnum.tremolo1: bb.Append(tremoloIn8ths); text.Append("TremoloIn4ths"); break;
-                        case OrnamentsElement.OrnamentsTypeEnum.tremolo2: bb.Append(tremoloIn16ths); text.Append("TremoloIn4ths"); break;
-                        case OrnamentsElement.OrnamentsTypeEnum.tremolo3: bb.Append(tremoloIn32ths); text.Append("TremoloIn4ths"); break;
-                        case OrnamentsElement.OrnamentsTypeEnum.tremolo4: bb.Append(tremoloIn64ths); text.Append("TremoloIn4ths"); break;
-                        case OrnamentsElement.OrnamentsTypeEnum.tremolo5: bb.Append(tremoloIn128ths); text.Append("TremoloIn4ths"); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo0: Append(tremoloIn4ths,"TremoloIn4ths"); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo1: Append(tremoloIn8ths,"TremoloIn4ths"); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo2: Append(tremoloIn16ths,"TremoloIn4ths"); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo3: Append(tremoloIn32ths,"TremoloIn4ths"); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo4: Append(tremoloIn64ths,"TremoloIn4ths"); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.tremolo5: Append(tremoloIn128ths,"TremoloIn4ths"); break;
                         case OrnamentsElement.OrnamentsTypeEnum.tremolo6: supported = false; break;
                         case OrnamentsElement.OrnamentsTypeEnum.tremolo7: supported = false; break;
-                        case OrnamentsElement.OrnamentsTypeEnum.trillMark: bb.Append(trillMark); text.Append("trillMark"); break;
-                        case OrnamentsElement.OrnamentsTypeEnum.turn: bb.Append(turnAtNote); text.Append("turnAtNote"); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.trillMark: Append(trillMark,"trillMark"); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.turn: Append(turnAtNote,"turnAtNote"); break;
                         case OrnamentsElement.OrnamentsTypeEnum.verticalTurn: supported = false; break;
                         case OrnamentsElement.OrnamentsTypeEnum.wavyLine: supported = false; break;
                         case OrnamentsElement.OrnamentsTypeEnum.accidentalMarkUnknown: supported = false; break;
-                        case OrnamentsElement.OrnamentsTypeEnum.accidentalMarkFlat: bb.Append(KeyFlat); text.Append("KeyFlat"); break;
-                        case OrnamentsElement.OrnamentsTypeEnum.accidentalMarkNatural: bb.Append(KeyNatural); text.Append("KeyNatural"); break;
-                        case OrnamentsElement.OrnamentsTypeEnum.accidentalMarkSharp: bb.Append(KeySharp); text.Append("KeySharp"); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.accidentalMarkFlat: Append(KeyFlat,"KeyFlat"); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.accidentalMarkNatural: Append(KeyNatural,"KeyNatural"); break;
+                        case OrnamentsElement.OrnamentsTypeEnum.accidentalMarkSharp: Append(KeySharp,"KeySharp"); break;
                         default: supported = false; break;
                     }
                     if (!supported)
@@ -569,35 +615,39 @@ namespace MusicXmlReaderUI
         /// Add a NoteElement
         /// </summary>
         /// <param name="noteElement">The NoteElement to add</param>
-        public void AddNote(NoteElement noteElement,StringBuilder text)
+        public void AddNote(NoteElement noteElement)
         {
             // Add alteration
             if (0 != noteElement.Alter)
             {
-                braille.Add((noteElement.Alter > 0) ? Sharp : Flat);
-                text.Append((noteElement.Alter > 0) ? "#" : "b");
+                Append(((noteElement.Alter > 0) ? Sharp : Flat), (noteElement.Alter > 0) ? "#" : "b");
+                //braille.Add((noteElement.Alter > 0) ? Sharp : Flat);
+                //text.Append((noteElement.Alter > 0) ? "#" : "b");
             }
       
             // Add Octavemark
             if (MusicBrailleState.NeedOctaveMark(noteElement.Octave, noteElement.PitchValue.SemiTonesAboveC0))
             {
                 byte[] octaveMark = GetOctaveMark(noteElement.Octave);
-                braille.AddRange(octaveMark);
-                text.Append(noteElement.Octave.ToString());
+                Append(octaveMark, noteElement.Octave.ToString());
+                //braille.AddRange(octaveMark);
+                //text.Append(noteElement.Octave.ToString());
             }
 
             // Add the combined step value and type value
             byte stepPart = GetStepValue(noteElement.Step);          //  Returns the values for pin 1,2,4,5
             byte typePart = GetTypeValue(noteElement.NoteDuration);  //  Returns the values for pin 3,6
             byte note = (byte)((int)stepPart | (int)typePart);       //  Logical OR to get all 6 pin values 
-            braille.Add(note);
-            text.Append(string.Format("{0}{1}", noteElement.Step.ToString(), GetDurationString(noteElement.NoteDuration)));
+            Append(note, string.Format("{0}{1}", noteElement.Step.ToString(), GetDurationString(noteElement.NoteDuration)));
+            //braille.Add(note);
+            //text.Append(string.Format("{0}{1}", noteElement.Step.ToString(), GetDurationString(noteElement.NoteDuration)));
 
             // Add punctuation value
             if (noteElement.Dot)
             {
-                braille.Add(Dot);
-                text.Append(".");
+                Append(Dot, ".");
+                //braille.Add(Dot);
+                //text.Append(".");
             }
 
             // Start for debugging only:
@@ -731,25 +781,29 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="type">From "whole" to 128nd</param>
         /// <param name="punctured">A puncture added</param>
-        public void AddRest(NoteTypeEnum noteDuration, bool punctured,StringBuilder text) // ********************* FIX ! Temp signature
+        public void AddRest(NoteTypeEnum noteDuration, bool punctured) // ********************* FIX ! Temp signature
         {
             // const string functionName = "AddRest";
-            text.Append("R"); // For "Rest"
+            //text.Append("R"); // For "Rest"
+            Append("R");
             if (NoteTypeEnum.measure == noteDuration)
             {
-                braille.AddRange(FullMeasureRest);
-                text.Append("FM"); // For  Full Measure"
+                Append(FullMeasureRest, "FM");
+                //braille.AddRange(FullMeasureRest);
+                //text.Append("FM"); // For  Full Measure"
                 //Logger.LogOnce(string.Format("{0}.{1}: Added FullMeasureRest", className, functionName));
             }
             else
             {
                 byte rest = GetRestValue(noteDuration);
-                braille.Add(rest);          
-                text.Append(GetDurationString(noteDuration));
+                Append(rest, GetDurationString(noteDuration));
+                //braille.Add(rest);          
+                //text.Append(GetDurationString(noteDuration));
                 if (punctured)
                 {
-                    braille.Add(Dot);
-                    text.Append(".");
+                    Append(Dot, ".");
+                    //braille.Add(Dot);
+                    //text.Append(".");
                 }
             }
         }
