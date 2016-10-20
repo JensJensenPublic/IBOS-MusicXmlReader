@@ -14,7 +14,7 @@ namespace MusicXmlReaderUI
     /// By using these interfaces we avoid that the Model needs to know anything abour Windows Forms!
     /// This makes it much easier to reuse the Model for othea applications and other platforms.
     /// </summary>
-    public partial class Form1 : Form, IWritableString, IObjectCollection, IUtilityClient
+    public partial class Form1 : Form, IBrailleDisplayerClient, IObjectCollection, IUtilityClient
     {
 
         string ApplicationName = "IBOS Nodelæser";  // Application name. Fits into a Freedom Scientific Focus 14 Braille dirplay!
@@ -39,7 +39,7 @@ namespace MusicXmlReaderUI
 
             LogGLobalisationInformation();
             Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 
-            model = Model.Create((this as IObjectCollection),(this as IWritableString),ApplicationName);
+            model = Model.Create((this as IObjectCollection),(this as IBrailleDisplayerClient),ApplicationName);
             this.Text = ApplicationName;
             listBoxTimes.LostFocus  += ListBoxTimes_LostFocus;
             listBoxTimes.GotFocus   += ListBoxTimes_GotFocus;

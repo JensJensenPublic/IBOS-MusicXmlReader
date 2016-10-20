@@ -52,7 +52,7 @@ namespace MusicXmlReaderModel
             return new Model(null,null,null);
         }
 
-        static public Model Create(IObjectCollection objects, IWritableString ws, string menuCaption)
+        static public Model Create(IObjectCollection objects, IBrailleDisplayerClient ws, string menuCaption)
         {
             return new Model(objects, ws, menuCaption);
         }
@@ -170,7 +170,7 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// Constructor to be used by UI-based applications
         /// </summary>
-        private Model(IObjectCollection objects, IWritableString textBoxMusicBraille, string caption)
+        private Model(IObjectCollection objects, IBrailleDisplayerClient textBoxMusicBraille, string caption)
         {
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
