@@ -35,14 +35,14 @@ namespace MusicXmlReaderModel
         {
             if (String.IsNullOrEmpty(theMusicXmlFileName))
             {
-                Utilities.MessageShower.ShowWarning((int)ModelMessageEnum.UnspecifiedMusicXmlFile, theMusicXmlFileName, "");
+                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.UnspecifiedMusicXmlFile, theMusicXmlFileName, "");
                 return;
             }
             string dir = Path.GetDirectoryName(theMusicXmlFileName);
             if (!System.IO.Directory.Exists(dir))
             {
                 // Do not report the path "dir" in the error message, i may be very long
-                Utilities.MessageShower.ShowWarning((int)ModelMessageEnum.DirectoryNotFound, "", "");
+                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.DirectoryNotFound, "", "");
             }
             Utilities.RunExeWithDirArgument("explorer.exe", dir);
         }
@@ -56,7 +56,7 @@ namespace MusicXmlReaderModel
         {
             if (!System.IO.File.Exists(theMusicXmlFileName))
             {
-                Utilities.MessageShower.ShowWarning((int)ModelMessageEnum.UnspecifiedMusicXmlFile, "", "");
+                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.UnspecifiedMusicXmlFile, "", "");
                 return;
             }
 

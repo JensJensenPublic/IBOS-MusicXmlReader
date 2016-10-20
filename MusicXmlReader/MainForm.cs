@@ -14,7 +14,7 @@ namespace MusicXmlReader
     /// By using these interfaces we avoid that the Model needs to know anything abour Windows Forms!
     /// This makes it much easier to reuse the Model for othea applications and other platforms.
     /// </summary>
-    public partial class MainForm : Form, IWritableString, IObjectCollection, IMessageShower
+    public partial class MainForm : Form, IWritableString, IObjectCollection, IUtilityClient
     {
   
         string ApplicationName = "";  // Application name. Will be re-initialized later using localization!
@@ -31,7 +31,7 @@ namespace MusicXmlReader
             // the application language will be changed to english evin if running on a danish PC!
             LogGLobalisationInformation();
             ApplicationName = ResourcesForUI.MainForm_ApplicationName;
-            Utilities.MessageShower = (this as IMessageShower); //Decide how to show error messages and warnings 
+            Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 
             model = Model.Create((this as IObjectCollection), (this as IWritableString), ApplicationName);
             this.Text = ApplicationName;
 

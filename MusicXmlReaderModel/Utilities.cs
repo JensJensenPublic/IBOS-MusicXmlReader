@@ -17,7 +17,7 @@ namespace MusicXmlReaderModel
         UnspecifiedMusicXmlFile // Unspecified error during reading and interpretation
     }
 
-    public interface IMessageShower
+    public interface IUtilityClient
     {
         /// <summary>
         /// For simple messages to be shown in the UI
@@ -44,22 +44,22 @@ namespace MusicXmlReaderModel
     static public class Utilities
     {
 
-        public static IMessageShower MessageShower;
+        public static IUtilityClient UtilityClient;
 
         private static void ShowWarning(ModelMessageEnum textEnum, string parameter, string text)
         {
-            if (null != MessageShower)
+            if (null != UtilityClient)
             {
-                MessageShower.ShowWarning((int) textEnum,parameter,text);
+                UtilityClient.ShowWarning((int) textEnum,parameter,text);
 
             }
         }
 
         private static void ShowMessage(ModelMessageEnum textEnum,string parameter,string text)
         {
-            if (null != MessageShower)
+            if (null != UtilityClient)
             {
-                MessageShower.ShowMessage((int)textEnum,parameter,text);
+                UtilityClient.ShowMessage((int)textEnum,parameter,text);
 
             }
         }
@@ -403,7 +403,7 @@ namespace MusicXmlReaderModel
         {
             if (!System.IO.File.Exists(argFileName))
             {
-                Utilities.MessageShower.ShowWarning((int)ModelMessageEnum.UnspecifiedMusicXmlFile,"", "");
+                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.UnspecifiedMusicXmlFile,"", "");
                 return false;
             }
             return RunExeWithFileArgument(exeFileName, argFileName, false);
@@ -413,7 +413,7 @@ namespace MusicXmlReaderModel
         {
             if (!System.IO.Directory.Exists(argFileName))
             {
-                Utilities.MessageShower.ShowWarning((int)ModelMessageEnum.DirectoryNotFound, "", "");
+                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.DirectoryNotFound, "", "");
                 return false;
             }
             return RunExeWithFileArgument(exeFileName, argFileName, true);
