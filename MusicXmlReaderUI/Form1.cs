@@ -45,11 +45,15 @@ namespace MusicXmlReaderUI
             listBoxTimes.GotFocus   += ListBoxTimes_GotFocus;
         }
 
-        #region IWritableString
-        // Implement IWritableString
-        public void SetString(string s)
+        #region IBrailleDisplayerClient
+        public void WriteBrailleString(string s)
         {
             textBoxBraille.Text = s;
+        }
+
+        public void WriteTextString(string s)
+        {
+            // textBoxText.Text = s;
         }
 
         #endregion

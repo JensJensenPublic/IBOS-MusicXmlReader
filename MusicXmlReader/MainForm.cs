@@ -121,20 +121,16 @@ namespace MusicXmlReader
             return ((0x2800 <= c) && (c <= 0x28ff));
         }
 
-        #region IWritableString
-        // Implement IWritableString
-        public void SetString(string s)
+        #region IBrailleDisplayerClient
+        public void WriteBrailleString(string s)
         {
-            if (isBraille(s))
-            {
                 textBoxBraille.Text = s;
-            }
-            else
-            {
-                textBoxText.Text = s;
-            }
         }
-        
+
+        public void WriteTextString(string s)
+        {
+            textBoxText.Text = s;
+        }
         #endregion
 
         #region  IObjectCollection

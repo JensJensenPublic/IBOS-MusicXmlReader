@@ -14,7 +14,8 @@ namespace MusicXmlReaderModel
     /// </summary>
     public interface IBrailleDisplayerClient
     {
-        void SetString(string s);
+        void WriteBrailleString(string s); // Write a string to be interpreted as Braille Unicode characters
+        void WriteTextString(string s);    // Write a string to be interpreted as normal  Unicode text
     }
 
     /// <summary>
@@ -102,7 +103,8 @@ namespace MusicXmlReaderModel
             {
 
                 EventDescription eventDescription = selectedObject as EventDescription;
-                brailleDisplayerClient.SetString(eventDescription.ToMusicBrailleString());  
+                brailleDisplayerClient.WriteBrailleString(eventDescription.ToMusicBrailleString());
+                brailleDisplayerClient.WriteTextString("Hej");  
                 screenReaderAPI.Silence(); // Prevent overloading the internal queue in NVDA when rapidly changing between different events                  
                 if (ScreenReaderAPI.ScreenReaderType.NVDA == screenReaderAPI.GetScreenReaderType())
                 {
@@ -132,7 +134,7 @@ namespace MusicXmlReaderModel
             // Clear the BrailleDisplay first.     
             screenReaderAPI.Braille(emptyBrailleString,false);
             //screenReaderAPI.StopRefreshing();
-            brailleDisplayerClient.SetString(emptyBrailleString);
+            brailleDisplayerClient.WriteBrailleString(emptyBrailleString);
         }
 
     }
