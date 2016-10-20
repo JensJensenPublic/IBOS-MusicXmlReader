@@ -65,9 +65,10 @@ namespace MusicXmlReaderModel
             {
                 switch (n.Name)
                 {
-                    case "normal":   Logger.LogOnce(string.Format("{0}.{1}: Undocumented child found: Name={2} Value={3}",
-                                    className, functionName,n.Name,n.Value)); break;                          
-                                    // "Undocumented" , not "Unexpected" because "normal" is used in Thomas Maintz's Absinthe.xml    
+                    case "#text":   if ("normal" != n.Value)
+                                    {  Logger.LogOnce(string.Format("{0}.{1}: Unexpected text element found: Value={2}",
+                                        className, functionName, n.Value)); 
+                                    } break;
                     default:         Logger.LogOnce(string.Format("{0}.{1}: Unexpected child found: Name={2} Value={3}",
                                     className, functionName, n.Name, n.Value)); break;
                 }
