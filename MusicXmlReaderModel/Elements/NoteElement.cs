@@ -499,6 +499,7 @@ namespace MusicXmlReaderModel
             foreach (XmlNode child in xmlNode.ChildNodes)
             {
                 bool unimplemented = false;
+                bool isCueNote = false;
                 switch (child.Name)
                 {
                     case "pitch":
@@ -573,10 +574,12 @@ namespace MusicXmlReaderModel
                     //default:  throw new ArgumentException();
                     default: Logger.LogOnce(string.Format("{0}: Unknown child.Name '{1}'",functionName, child.Name)); break;
                 }
-                if (unimplemented)
+                if ((unimplemented) || (isCueNote))
                 {
                     Logger.LogOnce(string.Format("{0}: child.Name '{1}' is not implemented yet", functionName, child.Name)); 
                 }
+
+
             }
 
             noteDuration = GetNoteDuration();          

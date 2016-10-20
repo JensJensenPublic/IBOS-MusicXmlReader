@@ -240,11 +240,12 @@ namespace MusicXmlReaderModel
                         else
                         {
                             // This is a note
-                            bb1.AddNotationsBeforeNote(noteElement.Notations); // Some notations are added Before the note itself
                             text.Append("<");
-                            bb1.AddNote(noteElement,text);
+                            bb1.AddNotationsBeforeNote(noteElement.Notations,text); // Some notations are added Before the note itself                       
+                            bb1.AddNote(noteElement,text);      
+                            bb1.AddNotationsAfterNote(noteElement.Notations,text);  // Some notations are added After the note itself
                             text.Append(">");
-                            bb1.AddNotationsAfterNote(noteElement.Notations);  // Some notations are added After the note itself                                                                      
+
                         }
                         bb.Append(bb1.Braille);
                     }                
