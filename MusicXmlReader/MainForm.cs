@@ -6,11 +6,11 @@ using MusicXmlReaderModel;
 
 namespace MusicXmlReader
 {
-        /// <summary>
+    /// <summary>
     /// The 3 interfaces are used for
-    /// IWritableString     Let the Model write MusicBraille patterns to the appropriate Textbox
-    /// IObjectCollection   Let tne Model access the main Listbox
-    /// IMessageShower      Let the Model show MessageBoxes
+    /// IBrailleDisplayerClient     Let the Model write MusicBraille patterns to the appropriate Textbox
+    /// IObjectCollection   Let the Model access the main Listbox when auto-playing music
+    /// IUtilityClient      Let the Model show MessageBoxes
     /// By using these interfaces we avoid that the Model needs to know anything abour Windows Forms!
     /// This makes it much easier to reuse the Model for othea applications and other platforms.
     /// </summary>
