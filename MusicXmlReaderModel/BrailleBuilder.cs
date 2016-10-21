@@ -716,9 +716,9 @@ namespace MusicXmlReaderModel
         }
 
 
-        public void AddClef(ClefElement clefElement)
+        public void AddClef(ClefElement clefElement,string s)
         {
-            const string functionName = "AddClef";
+            const string functionName = "AddClef";   
             byte[] bytes = new byte[] { };
             switch (clefElement.Clef)
             {
@@ -732,7 +732,8 @@ namespace MusicXmlReaderModel
                     Logger.LogOnce(string.Format("{0}.{1} Clef={2} is not supported in Music Braille", className, functionName, clefElement.Clef.ToString())); break;
                 default: Logger.LogOnce(string.Format("{0}.{1} Unknown clef={2}", className,functionName, clefElement.Clef.ToString())); break;
             }
-            braille.AddRange(bytes);          
+            braille.AddRange(bytes);
+            text.Append(s);          
         }
 
 

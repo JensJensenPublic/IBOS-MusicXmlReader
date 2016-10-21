@@ -424,7 +424,7 @@ namespace MusicXmlReaderModel
             //    }
             //}
 
-            string keyString = "";
+   
 
             if (null != keyElements)
             {
@@ -446,18 +446,19 @@ namespace MusicXmlReaderModel
                 bbMetaInfo.AddKey(k0, k0.ToShortString());
                 bbMetaInfo.Append(")");                
             }
-
-            string clefString = "";
+            
             if (null != clefElements)
             {
-                foreach (ClefElement clefElement in clefElements)
+                if (1 == clefElements.Count)
                 {
-                    if (!string.IsNullOrEmpty(clefElement.ToString()))
-                    {
-                        clefString = string.Format("{0}", clefElement.ToString());
-                        bbMetaInfo.AddClef(clefElement);
-                      
-                    }
+                    ClefElement c = clefElements[0];
+                    bbMetaInfo.Append("(");
+                    bbMetaInfo.AddClef(c, c.ToShortString());  // Get the unlocalized version
+                    bbMetaInfo.Append(")");
+                }
+                else
+                {
+                    Logger.LogOnce(string.Format("{0}.{1}: Music Braille for more than 1 ClefElement is not implemented yet ", className, functionName));
                 }
             }
   

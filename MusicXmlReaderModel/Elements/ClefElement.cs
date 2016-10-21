@@ -31,9 +31,9 @@ namespace MusicXmlReaderModel
         private ClefElement()
         { }
 
-        private string LocalizeClef(ClefEnum clef) 
+        private string LocalizeClef(ClefEnum clef)
         {
-            const string functionName = "LocalizeClef"; 
+            const string functionName = "LocalizeClef";
             switch (clef)
             {
                 case ClefEnum.C: return ResourcesForModel.ClefElement_C_Key; // "C-Nøgle";
@@ -43,11 +43,35 @@ namespace MusicXmlReaderModel
                 case ClefEnum.TAB: return ResourcesForModel.ClefElement_TAB; // "TAB";
                 case ClefEnum.jianpu: return ResourcesForModel.ClefElement_jianpu; // "jianpu";
                 case ClefEnum.none: return ResourcesForModel.ClefElement_None; // "Ingen nøgle";
-                default: Logger.LogOnce(string.Format("{0}.{1} Illegal Clef:{2}",className,functionName,clef.ToString()));
+                default:
+                    Logger.LogOnce(string.Format("{0}.{1} Illegal Clef:{2}", className, functionName, clef.ToString()));
                     return "";
             }
         }
-        
+
+        /// <summary>
+        /// To be used for Music Braille as text
+        /// </summary>
+        /// <param name="clef"></param>
+        /// <returns></returns>
+        public string ToShortString()
+        {
+            const string functionName = "ToShortString";
+            switch (clef)
+            {
+                case ClefEnum.C: return "C-key"; 
+                case ClefEnum.G: return "G-key";
+                case ClefEnum.F: return "F-key";
+                case ClefEnum.percussion: return "Perc.";
+                case ClefEnum.TAB: return "TAB";
+                case ClefEnum.jianpu: return "jianpu";
+                case ClefEnum.none: return "no-Key";
+                default:
+                    Logger.LogOnce(string.Format("{0}.{1} Illegal Clef:{2}", className, functionName, clef.ToString()));
+                    return "";
+            }
+        }
+
         /// <summary>
         /// Private constructor, used by the Crate() method
         /// </summary>
