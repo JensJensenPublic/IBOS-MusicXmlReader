@@ -118,5 +118,12 @@ namespace MusicXmlReaderModel
         {
             return string.Format("{0}:{1}-{2} ",ResourcesForModel.KeyElement_key, localizedKey, localizedmode);
         }
+
+        public string ToShortString()
+        {      
+            if (Fifths > 0) return Fifths.ToString() + "#";
+            if (Fifths < 0) return (0-Fifths).ToString() + "b";
+            return "0#b";
+        }
     } 
 }

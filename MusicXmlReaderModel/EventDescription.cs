@@ -425,17 +425,26 @@ namespace MusicXmlReaderModel
             //}
 
             string keyString = "";
+
             if (null != keyElements)
             {
-                foreach (KeyElement keyElement in keyElements)
+                // First check that all timeElements are identical
+                KeyElement k0 = keyElements[0];
+                bool diff = false;
+                foreach (KeyElement k in keyElements)
                 {
-                    if (!string.IsNullOrEmpty(keyElement.ToString()))
+                    if (k.Fifths != k0.Fifths)
                     {
-                        keyString = string.Format("{0}", keyElement.ToString());
-                        bbMetaInfo.AddKey(keyElement);
-                        //Logger.Log(string.Format("{0} Added KeyElement {1} ", functionName, keyString));
+                        diff = true;
                     }
                 }
+                if (diff)
+                {
+                    Logger.LogOnce(string.Format("{0}.{1} Different keyElements for same event", className, functionName));
+                }
+                bbMetaInfo.Append("(");
+                bbMetaInfo.AddKey(k0, k0.ToShortString());
+                bbMetaInfo.Append(")");                
             }
 
             string clefString = "";

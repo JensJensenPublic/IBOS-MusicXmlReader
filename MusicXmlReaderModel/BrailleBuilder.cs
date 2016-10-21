@@ -736,7 +736,7 @@ namespace MusicXmlReaderModel
         }
 
 
-        public void AddKey(KeyElement keyElement)
+        public void AddKey(KeyElement keyElement,string s)
         {
             const string functionName = "AddKey";
             byte[] bytes = new byte[] { };
@@ -760,6 +760,7 @@ namespace MusicXmlReaderModel
                 default: Logger.LogOnce(string.Format("{0}.{1}: Illegal number of fifths={2}", className,functionName, keyElement.Fifths)); break;
             }
             braille.AddRange(bytes);
+            text.Append(s);
         }
 
 
