@@ -103,9 +103,11 @@ namespace MusicXmlReaderModel
             {
 
                 EventDescription eventDescription = selectedObject as EventDescription;
-                StringBuilder text = new StringBuilder();
-                brailleDisplayerClient.WriteBrailleString(eventDescription.ToMusicBrailleString(text));
-                brailleDisplayerClient.WriteTextString(text.ToString());  
+
+                BrailleBuilder bb = eventDescription.ToBraille();
+                //StringBuilder text = new StringBuilder();
+                brailleDisplayerClient.WriteBrailleString(bb.ToBrailleString());
+                brailleDisplayerClient.WriteTextString(bb.Text.ToString());  
                 screenReaderAPI.Silence(); // Prevent overloading the internal queue in NVDA when rapidly changing between different events                  
                 if (ScreenReaderAPI.ScreenReaderType.NVDA == screenReaderAPI.GetScreenReaderType())
                 {

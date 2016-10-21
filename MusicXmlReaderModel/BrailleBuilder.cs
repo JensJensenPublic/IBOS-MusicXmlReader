@@ -6,7 +6,7 @@ namespace MusicXmlReaderModel
 {
 
 
-    class BrailleBuilder
+    public class BrailleBuilder
     {
         // References:
         // Ref.1: http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-articulations.htm
@@ -259,6 +259,17 @@ namespace MusicXmlReaderModel
             {
                 return braille;
             }
+        }
+
+        /// <summary>
+        /// Returns the contents as a string of Unicode characters in the interval 0x2800 ..0x28ff
+        /// </summary>
+        /// <returns></returns>
+        public string ToBrailleString()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in braille) { sb.Append((char) (BrailleDisplayer.UnicodeBrailleBase + (char)b)); };
+            return sb.ToString();  
         }
 
         public StringBuilder Text

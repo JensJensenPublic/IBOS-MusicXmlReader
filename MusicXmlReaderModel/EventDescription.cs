@@ -212,21 +212,19 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="noteElementList"></param>
         /// <returns></returns>
-        private List<byte> NotesForOnePartAsBraille(List<NoteElement> noteElementList, StringBuilder text)
+        private BrailleBuilder NotesForOnePartAsBraille(List<NoteElement> noteElementList)
         {
-            if (!userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettings.Notes)) return new List<byte>(); // User completely turned off reading of notes
-
-        
-
-
             BrailleBuilder bb = BrailleBuilder.Create();
+            if (!userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettings.Notes)) return bb; // User completely turned off reading of notes
+
+
             foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
-            {                      
+            {
                 try
                 {
                     // Add pitch information
                     // If the note is not marked for printing with the PrintObjectAttributeValue we ignore it
-                    if ((userSettings.partsToRead[noteElement.PartNumber]) && noteElement.PrintObjectAttributeValue )// Might later look at subparts S1/S2 ? 
+                    if ((userSettings.partsToRead[noteElement.PartNumber]) && noteElement.PrintObjectAttributeValue)// Might later look at subparts S1/S2 ? 
                     {
                         BrailleBuilder bb1 = BrailleBuilder.Create(); // TO DO: Why not use bb directly ???
                                                                       // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)
@@ -242,14 +240,14 @@ namespace MusicXmlReaderModel
                             // This is a note
                             bb1.Append("<");
                             bb1.AddNotationsBeforeNote(noteElement.Notations); // Some notations are added Before the note itself                       
-                            bb1.AddNote(noteElement);      
+                            bb1.AddNote(noteElement);
                             bb1.AddNotationsAfterNote(noteElement.Notations);  // Some notations are added After the note itself
                             bb1.Append(">");
 
                         }
                         //bb.Append(bb1.Braille, bb1.Text.ToString());
                         bb.Append(bb1);
-                    }                
+                    }
                 }
                 catch (Exception e)
                 {
@@ -258,8 +256,8 @@ namespace MusicXmlReaderModel
                         noteElement.Step, noteElement.Alter, noteElement.Octave, noteElement.Notations.ToString(), noteElement.MeasureNumber, noteElement.PartId));
                 }
             }
-            text.Append(bb.Text);
-            return bb.Braille;
+
+            return bb;
         }
                 
 
@@ -334,16 +332,17 @@ namespace MusicXmlReaderModel
             return s;
         }
 
-        public string ToMusicBrailleString(StringBuilder text)
+        public BrailleBuilder ToMusicBrailleString()
         {
-            if (null == text)
-            {
-                text = new StringBuilder(); // Use a dummy StringBuilder to avoid a lot ef extra code
-            }
-            List <byte> bytes = ToBraille(text);
-            StringBuilder sb = new StringBuilder();
-            foreach (byte b in bytes) { sb.Append((char) (BrailleDisplayer.UnicodeBrailleBase + (char)b)); };
-            return sb.ToString();
+            return ToBraille();
+            //if (null == text)
+            //{
+            //    text = new StringBuilder(); // Use a dummy StringBuilder to avoid a lot ef extra code
+            //}
+            //List <byte> bytes = ToBraille();
+            //StringBuilder sb = new StringBuilder();
+            //foreach (byte b in bytes) { sb.Append((char) (BrailleDisplayer.UnicodeBrailleBase + (char)b)); };
+            //return sb.ToString();
         }
 
         /// <summary>
@@ -352,7 +351,7 @@ namespace MusicXmlReaderModel
         /// Depending on settings ToString  will generate a mix of the results of ToBraille and ToNormalTextString()
         /// </summary>
         /// <returns></returns>
-        public List<byte> ToBraille(StringBuilder text)
+        public BrailleBuilder ToBraille()
         {
             // const string functionName = "EventDescription.ToBraille";
             BrailleBuilder bbMetaInfo = BrailleBuilder.Create(); // For information not contained in notes
@@ -471,7 +470,7 @@ namespace MusicXmlReaderModel
             // Iterate over the parts and build a complete representation of all notes and of all texts
             foreach (List<NoteElement> noteElementList in noteLists) // Iterate over the fixed number of parts.
             {
-                List<byte> notes  = NotesForOnePartAsBraille(noteElementList,text); // Represents all notes for all parts
+                BrailleBuilder notes  = NotesForOnePartAsBraille(noteElementList); // Represents all notes for all parts
                 List<byte> lyrics = new List<byte>();//  LyricsForOnePartAsBraille(noteElementList); // Represents all texts for all parts
                 // Assume that: The step is described with 3 characters. The octave with 1 character and max 2 notes per part !
                 //sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
@@ -484,9 +483,9 @@ namespace MusicXmlReaderModel
 
             // Ad the various components:
             BrailleBuilder total = BrailleBuilder.Create();
-            total.Append(bbMetaInfo.Braille);
-            total.Append(bbNotes.Braille);
-            return total.Braille;
+            total.Append(bbMetaInfo);
+            total.Append(bbNotes);
+            return total;
 
             //return bbNotes.Braille; // Later define the "+" operator for BrailleBuilder 
 
@@ -498,7 +497,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public override string ToString()
         {
-            string mb = ToMusicBrailleString(null); // null because we do not want the text representation in this case
+            string mb = ToMusicBrailleString().ToBrailleString(); 
             string nt = ToNormalTextString();
             return string.Format(userSettings.defaultStringFormat, mb,nt);
         }
@@ -506,7 +505,7 @@ namespace MusicXmlReaderModel
 
         public string ToMusicBrailleAndTextBrailleString()
         {
-            string mb = ToMusicBrailleString(null); // null because we do not want the text representation in this case
+            string mb = ToMusicBrailleString().ToBrailleString(); 
             string nt = ToNormalTextString();            
             return string.Format("{0} {1}", mb, nt);
         }

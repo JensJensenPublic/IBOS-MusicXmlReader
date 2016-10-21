@@ -53,13 +53,13 @@ namespace MusicXmlReaderUI
         static private void AddAsMusicBraille(EventDescription eventDescription, StringBuilder sb)
         {
             StringBuilder dummy = new StringBuilder(); // We need to put the text generated somewhere !
-            List<byte> brailleBytes = eventDescription.ToBraille(dummy);
-            if (0 != brailleBytes.Count)
+            BrailleBuilder bb = eventDescription.ToBraille();
+            if (0 != bb.Braille.Count)
             {
                 StringBuilder sbRaw = new StringBuilder("Hex=(");
                 //StringBuilder sbUnicode = new StringBuilder("Unicode=");
                 StringBuilder sbUnicode = new StringBuilder();
-                foreach (byte b in brailleBytes)
+                foreach (byte b in bb.Braille)
                 {
                     sbRaw.Append(string.Format(" {0:X2}", b));
                     char unicodeChar = (char)(0x2800 + (int)b);
