@@ -519,10 +519,10 @@ namespace MusicXmlReaderModel
                         Append(ArpeggioDown, "ArpeggioDown"); break;
                     case ArpeggiateDirectionEnum.up:
                         Append(ArpeggioUp, "ArpeggioUp"); break;
-                    default:   break;                
-                
+                    default:
+                        Logger.LogOnce(string.Format("{0}.{1} Unknown Arpeggio direction: {2}", className, functionName, notations.ArpeggiateElement.ArpeggiateDirection.ToString()));
+                        break;
                 }
-                Logger.LogOnce(string.Format("{0}.{1} Unknown Arpeggio direction: {2}", className, functionName, notations.ArpeggiateElement.ArpeggiateDirection.ToString()));            
             }
 
             if (null != notations.OrnamentsElement)
