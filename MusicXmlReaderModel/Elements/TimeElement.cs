@@ -99,5 +99,14 @@ namespace MusicXmlReaderModel
         {
             return string.Format("{0}:{1}-{2}",  ResourcesForModel.TimeElement_pulse,  localizedBeats, localizedBeatType);
         }
+
+        /// <summary>
+        /// For use when debugging MusicBraille
+        /// </summary>
+        /// <returns></returns>
+        public string ToShortString()
+        {
+            return string.Format("{0}/{1}", beats, beatType);
+        }
     }
 }

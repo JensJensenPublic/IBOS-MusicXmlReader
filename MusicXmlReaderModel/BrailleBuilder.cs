@@ -661,7 +661,7 @@ namespace MusicXmlReaderModel
             Logger.LogOnce(string.Format("{0}.{1}", className, functionName));
         }        
 
-        public void AddTime(TimeElement timeElement)
+        public void AddTime(TimeElement timeElement,string s)
         {
             const string functionName = "BrailleBuilder.AddTime";
             byte[] bytes = new byte[] { };
@@ -710,6 +710,7 @@ namespace MusicXmlReaderModel
             else
             {
                 Braille.AddRange(new List<byte>(bytes));
+                text.Append(s);
                 //Logger.LogOnce(string.Format("{0}: Added time specification: {1}/{2}", functionName, timeElement.Beats, timeElement.BeatType));
             }
         }

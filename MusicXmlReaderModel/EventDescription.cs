@@ -10,6 +10,7 @@ namespace MusicXmlReaderModel
 
     public class EventDescription
     {
+        string className = "EventDescription";
         int startTime;
         int numberOfParts;
         UserSettings userSettings;
@@ -353,6 +354,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public BrailleBuilder ToBraille()
         {
+            string functionName = "ToBraille";
             // const string functionName = "EventDescription.ToBraille";
             BrailleBuilder bbMetaInfo = BrailleBuilder.Create(); // For information not contained in notes
 
@@ -449,21 +451,29 @@ namespace MusicXmlReaderModel
                     }
                 }
             }
-
-            string timeString = "";
+  
             if (null != timeElements)
             {
-                foreach (TimeElement timeElement in timeElements)
+                // First check that all timeElements are identical
+                TimeElement t0 = timeElements[0];
+                bool diff = false;
+
+                foreach (TimeElement t in timeElements)
                 {
-                    if (!string.IsNullOrEmpty(timeElement.ToString()))
+                    if ((t.Beats != t0.Beats) || (t.BeatType != t0.BeatType))
                     {
-                        timeString = string.Format("{0}", timeElement.ToString());
-                        bbMetaInfo.AddTime(timeElement);        
+                        diff = true;
                     }
                 }
+                if (diff)
+                {
+                    Logger.LogOnce(string.Format("{0}.{1} Different timeElements for same event", className, functionName));
+                }
+                bbMetaInfo.Append("(");
+                bbMetaInfo.AddTime(t0, t0.ToShortString());
+                bbMetaInfo.Append(")");
             }
-
-
+            
 
             BrailleBuilder bbNotes = BrailleBuilder.Create();
             BrailleBuilder bbLyrics = BrailleBuilder.Create();
