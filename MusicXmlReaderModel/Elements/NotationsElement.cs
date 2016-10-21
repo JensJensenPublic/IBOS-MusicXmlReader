@@ -13,6 +13,7 @@ namespace MusicXmlReaderModel
         private SlideElement slideElement;
         private GlissandoElement glissandoElement;
         private ArpeggiateElement arpeggiateElement;
+        private DynamicsElement dynamicsElement;
         private AccidentalMarkElement accidentalMarkElement;
         private FermataElement fermataElement;
         private OrnamentsElement ornamentsElement;
@@ -159,7 +160,7 @@ namespace MusicXmlReaderModel
                     case "level": ok = false; break; // (Niveau)
                     case "accidental-mark": accidentalMarkElement = AccidentalMarkElement.Create(child); break; // (Løst) fortegn (faste fortegn betegnes: key signature)
                     case "arpeggiate": arpeggiateElement = ArpeggiateElement.Create(child); break; // Brudt akkord
-                    case "dynamics": ok = false; break; // Dynamik
+                    case "dynamics": dynamicsElement = DynamicsElement.Create(child); break; // Dynamik
                     case "fermata": fermataElement = FermataElement.Create(child); break; // Fermat
                     case "glissando": glissandoElement = GlissandoElement.Create(child); break; // Glissando
                     case "non-arpeggiate": ok = false; break; // Ikke brudt

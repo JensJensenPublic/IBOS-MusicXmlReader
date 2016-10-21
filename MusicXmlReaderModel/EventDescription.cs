@@ -38,6 +38,7 @@ namespace MusicXmlReaderModel
         private List<ClefElement>  clefElements;     // The ClefElements related to this event, if any
         private List<TimeElement> timeElements;     // The TimeElements related to this event, if any
         private List<BarlineElement> barlineElements;  // The BarlineElements related to this event, if any. In some rare cases more than one!!
+        private List<DirectionElement> directionElements; // The DirectionElements related to this event, if any 
 
         public int StartTime
         {
@@ -186,7 +187,7 @@ namespace MusicXmlReaderModel
                     case RepeatElement.RepeatDirectionEnum.Backward: this.repeatElementBackward = repeatElement; break;
                     default: break;
                 }
-                Logger.LogOnce(string.Format("{0}: Added RepeatElement Direction={1})", functionName,repeatElement.RepeatDirection.ToString()));
+                Logger.LogOnce(string.Format("{0}: Added RepeatElement Direction={1})", functionName, repeatElement.RepeatDirection.ToString()));
             }
 
             else if (eventElement is BarlineElement)
@@ -202,8 +203,16 @@ namespace MusicXmlReaderModel
                 {
                     string ending = (null == barlineElement.EndingElement) ? "null" : barlineElement.EndingElement.EndingElementType.ToString();
                     string repeat = (null == barlineElement.RepeatElement) ? "null" : barlineElement.RepeatElement.RepeatDirection.ToString();
-                    Logger.LogOnce(string.Format("{0}: Added BarlineElement({1},Ending={2},Repeat={3})", functionName, barlineElement.Location.ToString(),ending,repeat));
+                    Logger.LogOnce(string.Format("{0}: Added BarlineElement({1},Ending={2},Repeat={3})", functionName, barlineElement.Location.ToString(), ending, repeat));
                 }
+            }
+            else if (eventElement is DirectionElement)
+            {
+                if (null == directionElements)
+                {
+                    directionElements = new List<DirectionElement>();
+                }
+                directionElements.Add(eventElement as DirectionElement);
             }
         }
 
@@ -628,6 +637,18 @@ namespace MusicXmlReaderModel
                 }
             }
 
+            string dynamicsString = "";
+            if (null != directionElements)
+            {
+                foreach (DirectionElement directionElement in directionElements)
+                {
+                    if (null != directionElement.DynamicsElement)   
+                    {
+                        dynamicsString += directionElement.DynamicsElement.Value + " ";
+                    }
+                }
+            }
+
   
 
             StringBuilder sbNotes = new StringBuilder();
@@ -644,7 +665,7 @@ namespace MusicXmlReaderModel
             }
 
             // Finnally compose the result by concatenating all the substrings in the sequence wanted
-            return measure + repeatBackward + repeatForward + divisions +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString + keyString + clefString + timeString ;
+            return measure + repeatBackward + repeatForward + divisions + dynamicsString +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString + keyString + clefString + timeString ;
         }
     }
 }

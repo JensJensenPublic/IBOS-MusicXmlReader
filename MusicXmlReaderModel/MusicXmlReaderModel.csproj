@@ -58,7 +58,9 @@
     <Compile Include="Elements\BarlineElement.cs" />
     <Compile Include="Elements\ClefElement.cs" />
     <Compile Include="Elements\CreatorElement.cs" />
+    <Compile Include="Elements\DirectionElement.cs" />
     <Compile Include="Elements\DivisionsElement.cs" />
+    <Compile Include="Elements\DynamicsElement.cs" />
     <Compile Include="Elements\Element.cs" />
     <Compile Include="Elements\EndEventElement.cs" />
     <Compile Include="Elements\EndingElement.cs" />
