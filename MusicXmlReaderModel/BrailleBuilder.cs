@@ -416,9 +416,6 @@ namespace MusicXmlReaderModel
             if ((null != notations.SlurElement) && (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop))
             {
                 Append(Slur,"SlurStop");
-                //Braille.Add(Slur);
-                //text.Append("SlurStop");
-                //Logger.LogOnce(string.Format("{0}.{1} Added slur", className, functionName));
             }
 
 
@@ -427,8 +424,6 @@ namespace MusicXmlReaderModel
                 if (notations.TupletElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start)
                 {
                     Append(new List<byte>(TupletOf3), "TupletStart");
-                    //Braille.AddRange(new List<byte>(TupletOf3));
-                    //text.Append("TriolStart");
                     Logger.LogOnce(string.Format("{0}.{1} Added tuplet", className, functionName));
                 }
             }
@@ -441,9 +436,7 @@ namespace MusicXmlReaderModel
                 {
                     // Cases are shown in the same saquence as in the MusicXml definition:
                     case ArticulationsElement.Articulation.accent:          Append(Accent,"Accent"); break;
-                    //Braille.AddRange(Accent); text.Append("Accent"); break;
                     case ArticulationsElement.Articulation.breathmark:      Append(CommaHalfBreath,"CommaHalfBreath"); break;
-                    //Braille.AddRange(CommaHalfBreath); text.Append("CommaHalfBreath");  break;
                     case ArticulationsElement.Articulation.caesura:         implemented = false; break;
                     case ArticulationsElement.Articulation.detachedlegato:  implemented = false; break;
                     case ArticulationsElement.Articulation.doit:            implemented = false; break;
@@ -453,13 +446,10 @@ namespace MusicXmlReaderModel
                     case ArticulationsElement.Articulation.scoop:           implemented = false; break;
                     case ArticulationsElement.Articulation.spiccato:        implemented = false; break;
                     case ArticulationsElement.Articulation.staccatissimo:   Append(Staccatissimo,"Staccatissimo"); break;
-                    //Braille.AddRange(Staccatissimo); text.Append("Staccatissimo"); break;
                     case ArticulationsElement.Articulation.staccato:        Append(Staccato,"Staccato"); break;
-                        //Braille.Add(Staccato); text.Append("Staccato"); break;
                     case ArticulationsElement.Articulation.stress:          implemented = false; break;
                     case ArticulationsElement.Articulation.strongaccent:    implemented = false; break;
                     case ArticulationsElement.Articulation.tenuto:          Append(Tenuto,"Tenuto"); break;
-                        //Braille.AddRange(Tenuto); text.Append("Tenuto"); break; 
                     case ArticulationsElement.Articulation.unstress:        implemented = false; break;    
                     default:
                         Logger.Log(string.Format("{0}.{1}: Unknown articulation: '{2}'",className,functionName, articulation)); break;
@@ -498,9 +488,6 @@ namespace MusicXmlReaderModel
             if ((null != notations.SlurElement) && (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start))
             {
                 Append(Slur, "SlurStart");
-                //bb.Append(Slur);
-                //text.Append("SlurStart");
-                //Logger.LogOnce(string.Format("{0}.{1} Added slur", className, functionName));
             }
 
             if (null != notations.TiedElement)
@@ -512,10 +499,6 @@ namespace MusicXmlReaderModel
                 )
                 {
                     Append(Tie, "Tie");
-                    //bb.Append(Tie);
-                    //text.Append("Tie");
-                    //Logger.LogOnce(string.Format("{0}.{1} Added tie", className, functionName));
-                    // TODO: implement algorithm handling ties conencting more than 4 notes.
                 }
             }
 
@@ -525,8 +508,6 @@ namespace MusicXmlReaderModel
                     || (notations.FermataElement.FermataType == FermataElement.FermataTypeEnum.upright))
                 {
                     Append(FermatoOnNote, "Fermata");
-                    //bb.Append(FermatoOnNote);
-                    //text.Append("Fermata");
                 }
             }
 
@@ -536,11 +517,8 @@ namespace MusicXmlReaderModel
                 {
                     case ArpeggiateDirectionEnum.down:
                         Append(ArpeggioDown, "ArpeggioDown"); break;
-                        //bb.Append(ArpeggioDown);
-                        //text.Append("ArpeggioDown"); return;
                     case ArpeggiateDirectionEnum.up:
                         Append(ArpeggioUp, "ArpeggioUp"); break;
-                        //bb.Append(ArpeggioUp);return;
                     default:   break;                
                 
                 }
@@ -637,8 +615,6 @@ namespace MusicXmlReaderModel
             if (0 != noteElement.Alter)
             {
                 Append(((noteElement.Alter > 0) ? Sharp : Flat), (noteElement.Alter > 0) ? "#" : "b");
-                //braille.Add((noteElement.Alter > 0) ? Sharp : Flat);
-                //text.Append((noteElement.Alter > 0) ? "#" : "b");
             }
       
             // Add Octavemark
@@ -646,8 +622,6 @@ namespace MusicXmlReaderModel
             {
                 byte[] octaveMark = GetOctaveMark(noteElement.Octave);
                 Append(octaveMark, noteElement.Octave.ToString());
-                //braille.AddRange(octaveMark);
-                //text.Append(noteElement.Octave.ToString());
             }
 
             // Add the combined step value and type value
@@ -655,15 +629,11 @@ namespace MusicXmlReaderModel
             byte typePart = GetTypeValue(noteElement.NoteDuration);  //  Returns the values for pin 3,6
             byte note = (byte)((int)stepPart | (int)typePart);       //  Logical OR to get all 6 pin values 
             Append(note, string.Format("{0}{1}", noteElement.Step.ToString(), GetDurationString(noteElement.NoteDuration)));
-            //braille.Add(note);
-            //text.Append(string.Format("{0}{1}", noteElement.Step.ToString(), GetDurationString(noteElement.NoteDuration)));
-
+   
             // Add punctuation value
             if (noteElement.Dot)
             {
                 Append(Dot, ".");
-                //braille.Add(Dot);
-                //text.Append(".");
             }
 
             // Start for debugging only:
@@ -805,21 +775,15 @@ namespace MusicXmlReaderModel
             if (NoteTypeEnum.measure == noteDuration)
             {
                 Append(FullMeasureRest, "FM");
-                //braille.AddRange(FullMeasureRest);
-                //text.Append("FM"); // For  Full Measure"
                 //Logger.LogOnce(string.Format("{0}.{1}: Added FullMeasureRest", className, functionName));
             }
             else
             {
                 byte rest = GetRestValue(noteDuration);
                 Append(rest, GetDurationString(noteDuration));
-                //braille.Add(rest);          
-                //text.Append(GetDurationString(noteDuration));
                 if (punctured)
                 {
                     Append(Dot, ".");
-                    //braille.Add(Dot);
-                    //text.Append(".");
                 }
             }
         }
