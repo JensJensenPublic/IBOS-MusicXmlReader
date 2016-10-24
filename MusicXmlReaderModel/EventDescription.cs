@@ -236,22 +236,25 @@ namespace MusicXmlReaderModel
                     // If the note is not marked for printing with the PrintObjectAttributeValue we ignore it
                     if ((userSettings.partsToRead[noteElement.PartNumber]) && noteElement.PrintObjectAttributeValue)// Might later look at subparts S1/S2 ? 
                     {
+                        bool addNotations = userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettings.Notations);
                         BrailleBuilder bb1 = BrailleBuilder.Create(); // TO DO: Why not use bb directly ???
                                                                       // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)
                         if (noteElement.IsPause)
                         {
                             // This is a rest 
                             bb1.Append("<");
+                            if (addNotations) bb1.AddBrailleNotationsBeforeNoteOrRest(noteElement.Notations); // Some notations are added Before the note/rest itself 
                             bb1.AddRest(noteElement.NoteDuration, false); // TO DO: Handle punctured rests
+                            if (addNotations) bb1.AddBrailleNotationsAfterNoteOrRest(noteElement.Notations);  // Some notations are added After the note/rest itself
                             bb1.Append(">");
                         }
                         else
                         {
                             // This is a note
                             bb1.Append("<");
-                            bb1.AddNotationsBeforeNote(noteElement.Notations); // Some notations are added Before the note itself                       
+                            if (addNotations) bb1.AddBrailleNotationsBeforeNoteOrRest(noteElement.Notations); // Some notations are added Before the note/rest itself                       
                             bb1.AddNote(noteElement);
-                            bb1.AddNotationsAfterNote(noteElement.Notations);  // Some notations are added After the note itself
+                            if (addNotations) bb1.AddBrailleNotationsAfterNoteOrRest(noteElement.Notations);  // Some notations are added After the note/rest itself
                             bb1.Append(">");
 
                         }
@@ -543,7 +546,7 @@ namespace MusicXmlReaderModel
         /// Same structure as ToBraille()
         /// Depending on settings ToString  will generate a mix of the results of ToBraille and ToNormalTextString() 
         public string ToNormalTextString()
-        {
+        {  
             string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
 
 

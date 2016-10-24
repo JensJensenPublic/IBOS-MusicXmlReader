@@ -407,11 +407,11 @@ namespace MusicXmlReaderModel
         }
 
         
-        public void AddNotationsBeforeNote(NotationsElement notations) // Some notations are added Before the note itself
+        public void AddBrailleNotationsBeforeNoteOrRest(NotationsElement notations) // Some notations are added Before the note itself
         {
+            const string functionName = "AddBrailleNotationsBeforeNoteOrRest";
             if (null == notations) return;
             if (null == notations.Articulations) return;
-            const string functionName = "AddNotationsBeforeNote";
 
             if ((null != notations.SlurElement) && (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop))
             {
@@ -476,14 +476,13 @@ namespace MusicXmlReaderModel
             Logger.LogOnce(string.Format("{0}.{1}: Unimplemented NotationElement:{2} Value={3}", className, functionName, elementName,ornaments));
         }
 
-        public void AddNotationsAfterNote(NotationsElement notations)  // Some notations are added After the note itself
+        public void AddBrailleNotationsAfterNoteOrRest(NotationsElement notations)  // Some notations are added After the note itself
         {
             // Actually we dont know what is added before and what is added after.
-            // This method is primarily used for logging unimplemented notations !
-            const string functionName = "AddNotationsAfterNote";
+            // This method is primarily used for logging unimplemented notations 
 
+            const string functionName = "AddBrailleNotationsAfterNoteOrRest";
             if (null == notations) return;
-            //BrailleBuilder bb = new BrailleBuilder();
 
             if ((null != notations.SlurElement) && (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start))
             {
