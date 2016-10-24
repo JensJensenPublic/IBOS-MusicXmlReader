@@ -532,10 +532,10 @@ namespace MusicXmlReaderModel
             string mb = ToMusicBrailleString().ToBrailleString(); 
             string nt = ToNormalTextString();
             string s = string.Format(userSettings.defaultStringFormat, mb,nt);
-            // HACK: In order to left justify the Braille output on the 14 char Focus Display we assure, that the total length is always 14 TO DO: Find better solution
+            // HACK: In order to left justify the Braille output on the 14 char Focus Display we assure, that the total length is always >= 14 TO DO: Find better solution
             if ((s.Length) >= 14)
             {
-                return s.Substring(0, 14);
+                return s;
             }
             else
             {
