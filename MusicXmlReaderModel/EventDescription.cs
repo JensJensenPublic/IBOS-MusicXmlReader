@@ -234,7 +234,7 @@ namespace MusicXmlReaderModel
                 {
                     // Add pitch information
                     // If the note is not marked for printing with the PrintObjectAttributeValue we ignore it
-                    if ((userSettings.partsToRead[noteElement.PartNumber]) && noteElement.PrintObjectAttributeValue)// Might later look at subparts S1/S2 ? 
+                    if ((userSettings.partsToBraille[noteElement.PartNumber]) && noteElement.PrintObjectAttributeValue)// Might later look at subparts S1/S2 ? 
                     {
                         bool addNotations = userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettings.Notations);
                         BrailleBuilder bb1 = BrailleBuilder.Create(); // TO DO: Why not use bb directly ???
