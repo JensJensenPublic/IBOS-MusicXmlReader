@@ -9,7 +9,7 @@ namespace MusicXmlReaderModel
 {
     class DynamicsElement: EventElement
     {
-        string className = "DynamicsElement";
+        //string className = "DynamicsElement";
         string value = "";
         // Prevent construction
         private DynamicsElement()
@@ -18,7 +18,7 @@ namespace MusicXmlReaderModel
 
         private DynamicsElement(XmlNode node)
         {
-            string functionName = "DynamicsElement";
+            //string functionName = "DynamicsElement";
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {

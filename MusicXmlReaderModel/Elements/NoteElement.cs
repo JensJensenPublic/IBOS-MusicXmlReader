@@ -85,7 +85,7 @@ namespace MusicXmlReaderModel
 
         // Simple booleans describing special variants of notes
         bool unpitched; // Set if the note is marked as unpitched
-        bool isCueNote; // Set if the note is marked as a cue note
+        //bool isCueNote; // Set if the note is marked as a cue note
         bool graceNote; // Set if the note is marked as a grace note
 
         // Values directly contained as attributes to the NoteElement
