@@ -697,7 +697,7 @@ namespace MusicXmlReaderModel
                 {
                     if (null != directionElement.DynamicsElement)   
                     {
-                        dynamicsString += directionElement.DynamicsElement.Value + " ";
+                        dynamicsString += directionElement.DynamicsElement.ToString() + " ";
                     }
                 }
             }
