@@ -15,6 +15,10 @@ namespace MusicXmlReaderModel
         int numberOfParts;
         UserSettings userSettings;
 
+        string musicBrailleRepresentation;
+        string musicBrailleAsTextRepresentation;
+        string textRepresentation;
+
         /// <summary>
         /// Notes to be played at this time
         /// </summary>
@@ -82,6 +86,43 @@ namespace MusicXmlReaderModel
             set
             {
                 soundElements = value;
+            }
+        }
+
+        /// <summary>
+        /// Contains the current Music Braille representation of this event,
+        /// respecting relevant parts of UserSettings
+        /// </summary>
+        public string MusicBrailleRepresentation
+        {
+            get
+            {
+                return musicBrailleRepresentation;
+            }
+        }
+
+        /// <summary>
+        /// Contains the current Text representation of this event,
+        /// respecting relevant parts of UserSettings
+        /// </summary>
+        public string TextRepresentation
+        {
+            get
+            {
+                return textRepresentation;
+            }
+        }
+
+        /// <summary>
+        /// Contains a text representation of the current Music Braille representation.
+        /// This allows a developer to debug the Music Braille output without knowing Music Braille. 
+        /// Only used for debugging
+        /// </summary>
+        public string MusicBrailleAsTextRepresentation
+        {
+            get
+            {
+                return musicBrailleAsTextRepresentation;
             }
         }
 
@@ -524,14 +565,18 @@ namespace MusicXmlReaderModel
         }
 
         /// <summary>
-        /// This method is used by the Listbox when fetching text for a line
+        /// This method is used by the Listbox when fetching text for a line.
+        /// As a side effect the values of the current
+        /// Music Braille representation and Text representation are cached inside the event
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            string mb = ToMusicBrailleString().ToBrailleString();
-            string nt = ToNormalTextString();
-            string s = string.Format(userSettings.defaultStringFormat, mb,nt);
+            BrailleBuilder bb = ToMusicBrailleString();
+            musicBrailleRepresentation = bb.ToBrailleString();
+            musicBrailleAsTextRepresentation = bb.ToString();
+            textRepresentation = ToNormalTextString();
+            string s = string.Format(userSettings.defaultStringFormat, musicBrailleRepresentation, textRepresentation);
             // HACK: In order to left justify the Braille output on the 14 char Focus Display we assure, that the total length is always >= 14 TO DO: Find better solution
             return s.PadRight(14, ' ');          
         }
