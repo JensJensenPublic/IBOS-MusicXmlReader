@@ -600,4 +600,7 @@
   <data name="Ornament_WavyLine" xml:space="preserve">
     <value>Wavy-line</value>
   </data>
+  <data name="MetaInfoText_FileName" xml:space="preserve">
+    <value>File name</value>
+  </data>
 </root>

@@ -601,4 +601,7 @@
   <data name="Ornament_WavyLine" xml:space="preserve">
     <value>Bølgelinie</value>
   </data>
+  <data name="MetaInfoText_FileName" xml:space="preserve">
+    <value>Filnavn</value>
+  </data>
 </root>

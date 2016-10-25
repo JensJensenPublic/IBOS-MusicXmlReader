@@ -102,7 +102,7 @@ namespace MusicXmlReaderModel
                 if (ok)
                 {
                     metaInfoStrings = new List<string>(); // Reset Meta Information
-                    metaInfoStrings.Add(Path.GetFileName(fullXmlFileName)); // Guarentees that some meta information exists
+                    metaInfoStrings.Add(string.Format("{0}: {1}", ResourcesForModel.MetaInfoText_FileName, Path.GetFileName(fullXmlFileName))); // Guarentees that some meta information exists
                     Logger.Log(string.Format("Loaded '{0}'", Path.GetFileName(fullXmlFileName)));
                     Logger.Log(string.Format("From   '{0}'", Path.GetDirectoryName(fullXmlFileName)));
                     allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file

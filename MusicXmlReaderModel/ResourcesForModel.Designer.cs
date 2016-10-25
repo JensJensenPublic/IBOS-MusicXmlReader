@@ -520,6 +520,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File name.
+        /// </summary>
+        internal static string MetaInfoText_FileName {
+            get {
+                return ResourceManager.GetString("MetaInfoText_FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 128th.
         /// </summary>
         internal static string NoteElement_128th {
