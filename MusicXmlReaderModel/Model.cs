@@ -289,7 +289,9 @@ namespace MusicXmlReaderModel
                     continueRecursion = false;
                     break;
                 case "movement-title":
-                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node, "Opus"));
+                    SimpleTextElement movementTitle = SimpleTextElement.Create(node, "Opus");
+                    allMusicXmlObjecsts.Add(movementTitle);
+                    metaInfoStrings.Add(movementTitle.ToString());
                     continueRecursion = false;
                     break;
                 case "movement-number":
