@@ -19,6 +19,7 @@ namespace MusicXmlReaderModel
         IObjectCollection objects; 
         public MusicPlayer musicPlayer;
         public BrailleDisplayer brailleDisplayer;
+        public TextDisplayer textDisplayer;
         public PartlistElement partList; // Contains the list of parts, describing all instruments used including their midi parameters
         int divisions; // Current number of divisions of a quarternode
         int tempo;     // Current tempo in beats pr minute
@@ -52,7 +53,7 @@ namespace MusicXmlReaderModel
             return new Model(null,null,null);
         }
 
-        static public Model Create(IObjectCollection objects, IBrailleDisplayerClient ws, string menuCaption)
+        static public Model Create(IObjectCollection objects, IDebugDisplayerClient ws, string menuCaption)
         {
             return new Model(objects, ws, menuCaption);
         }
@@ -170,7 +171,7 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// Constructor to be used by UI-based applications
         /// </summary>
-        private Model(IObjectCollection objects, IBrailleDisplayerClient textBoxMusicBraille, string caption)
+        private Model(IObjectCollection objects, IDebugDisplayerClient iDebugDisplayerClient, string caption)
         {
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -193,7 +194,8 @@ namespace MusicXmlReaderModel
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(objects,midiOut);
             int displaySize = 14;
-            brailleDisplayer = BrailleDisplayer.Create(textBoxMusicBraille, displaySize, screenReaderAPI); // TODO Get the real displaysize from somewhere
+            brailleDisplayer = BrailleDisplayer.Create(iDebugDisplayerClient, displaySize, screenReaderAPI); // TODO Get the real displaysize from somewhere
+            textDisplayer = TextDisplayer.Create(iDebugDisplayerClient);
             Logger.Log(string.Format("Model: Assuming size of physical Braille display = {0}", displaySize));
 
             //musicPlayer.ChangeInstrument(20); // Church Organ

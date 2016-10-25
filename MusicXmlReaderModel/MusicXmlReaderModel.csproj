@@ -116,6 +116,7 @@
       <DependentUpon>ResourcesForModel.resx</DependentUpon>
     </Compile>
     <Compile Include="SystemParametersiInfo.cs" />
+    <Compile Include="TextDisplayer.cs" />
     <Compile Include="TimeDescriptionList.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="Utilities.cs" />

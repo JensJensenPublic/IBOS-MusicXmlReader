@@ -272,6 +272,17 @@ namespace MusicXmlReaderModel
             return sb.ToString();  
         }
 
+
+        /// <summary>
+        /// Returns the logically equvivalent text representation of the MusicBraille string returned by ToBrailleString()
+        /// </summary>
+        /// <returns></returns>
+        public string ToEquvivalentTextRepresentation()
+        {
+            return text.ToString();
+        }
+
+
         public StringBuilder Text
         {
             get

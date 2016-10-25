@@ -574,7 +574,7 @@ namespace MusicXmlReaderModel
         {
             BrailleBuilder bb = ToMusicBrailleString();
             musicBrailleRepresentation = bb.ToBrailleString();
-            musicBrailleAsTextRepresentation = bb.ToString();
+            musicBrailleAsTextRepresentation = bb.ToEquvivalentTextRepresentation(); // Primarily for dedugging
             textRepresentation = ToNormalTextString();
             string s = string.Format(userSettings.defaultStringFormat, musicBrailleRepresentation, textRepresentation);
             // HACK: In order to left justify the Braille output on the 14 char Focus Display we assure, that the total length is always >= 14 TO DO: Find better solution

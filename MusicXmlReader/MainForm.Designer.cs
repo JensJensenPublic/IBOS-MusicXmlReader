@@ -51,6 +51,7 @@
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.textBoxMessage = new System.Windows.Forms.TextBox();
+            this.textBoxNormalText = new System.Windows.Forms.TextBox();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,9 +140,9 @@
             this.openXMLFileLocationToolStripMenuItem.Text = "Open XML file location";
             this.openXMLFileLocationToolStripMenuItem.Click += new System.EventHandler(this.openXMLFileLocationToolStripMenuItem_Click);
             // 
-            // musicXmlFileInNtePadToolStripMenuItem
+            // openLogFileLocationToolStripMenuItem
             // 
-            this.openLogFileLocationToolStripMenuItem.Name = "musicXmlFileInNtePadToolStripMenuItem";
+            this.openLogFileLocationToolStripMenuItem.Name = "openLogFileLocationToolStripMenuItem";
             this.openLogFileLocationToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.openLogFileLocationToolStripMenuItem.Text = "Open log file location";
             this.openLogFileLocationToolStripMenuItem.Click += new System.EventHandler(this.openLogFileLocationToolStripMenuItem_Click);
@@ -213,7 +214,7 @@
             this.textBoxBraille.BackColor = System.Drawing.Color.Black;
             this.textBoxBraille.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxBraille.ForeColor = System.Drawing.Color.White;
-            this.textBoxBraille.Location = new System.Drawing.Point(10, 500);
+            this.textBoxBraille.Location = new System.Drawing.Point(10, 511);
             this.textBoxBraille.Name = "textBoxBraille";
             this.textBoxBraille.Size = new System.Drawing.Size(1200, 62);
             this.textBoxBraille.TabIndex = 5;
@@ -221,7 +222,7 @@
             // 
             // textBoxText
             // 
-            this.textBoxText.Location = new System.Drawing.Point(10, 570);
+            this.textBoxText.Location = new System.Drawing.Point(10, 579);
             this.textBoxText.Name = "textBoxText";
             this.textBoxText.Size = new System.Drawing.Size(1200, 20);
             this.textBoxText.TabIndex = 6;
@@ -239,11 +240,19 @@
             this.textBoxMessage.TabIndex = 7;
             this.textBoxMessage.TabStop = false;
             // 
+            // textBoxNormalText
+            // 
+            this.textBoxNormalText.Location = new System.Drawing.Point(10, 485);
+            this.textBoxNormalText.Name = "textBoxNormalText";
+            this.textBoxNormalText.Size = new System.Drawing.Size(1203, 20);
+            this.textBoxNormalText.TabIndex = 8;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1219, 595);
+            this.ClientSize = new System.Drawing.Size(1219, 601);
+            this.Controls.Add(this.textBoxNormalText);
             this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.textBoxText);
             this.Controls.Add(this.textBoxBraille);
@@ -287,6 +296,7 @@
         private System.Windows.Forms.ToolStripMenuItem inspectAsXMLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewAsInterpretedXMLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsTextToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBoxNormalText;
     }
 }
 

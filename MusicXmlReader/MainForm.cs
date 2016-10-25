@@ -14,7 +14,7 @@ namespace MusicXmlReader
     /// By using these interfaces we avoid that the Model needs to know anything abour Windows Forms!
     /// This makes it much easier to reuse the Model for othea applications and other platforms.
     /// </summary>
-    public partial class MainForm : Form, IBrailleDisplayerClient, IObjectCollection, IUtilityClient
+    public partial class MainForm : Form, IDebugDisplayerClient, IObjectCollection, IUtilityClient
     {
   
         string ApplicationName = "";  // Application name. Will be re-initialized later using localization!
@@ -32,7 +32,7 @@ namespace MusicXmlReader
             LogGLobalisationInformation();
             ApplicationName = ResourcesForUI.MainForm_ApplicationName;
             Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 
-            model = Model.Create((this as IObjectCollection), (this as IBrailleDisplayerClient), ApplicationName);
+            model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), ApplicationName);
             this.Text = ApplicationName;
 
             // Create a handler for the user settinge, in this case modelled as a treeview.
@@ -122,6 +122,13 @@ namespace MusicXmlReader
         }
 
         #region IBrailleDisplayerClient
+
+        public void WriteNormalTextString(string s)
+        {
+            textBoxNormalText.Text = s;
+        }
+
+
         public void WriteBrailleString(string s)
         {
                 textBoxBraille.Text = s;
@@ -354,6 +361,7 @@ namespace MusicXmlReader
                 object o = listBoxTimes.Items[index];
                 model.musicPlayer.SelectedIndexChanged(index, o);
                 model.brailleDisplayer.SelectedIndexChanged(index, o);
+                model.textDisplayer.SelectedIndexChanged(index, o);
             }
         }
 
@@ -370,6 +378,7 @@ namespace MusicXmlReader
             object o = listBoxTimes.Items[index];
             model.musicPlayer.SelectedIndexChanged(index, o);
             model.brailleDisplayer.SelectedIndexChanged(index, o);
+            model.textDisplayer.SelectedIndexChanged(index, o);
         }
 
         #endregion
