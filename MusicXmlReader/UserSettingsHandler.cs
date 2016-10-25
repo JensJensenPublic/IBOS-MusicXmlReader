@@ -13,6 +13,7 @@ namespace MusicXmlReader
     class UserSettingsHandler
     {
 
+        private string className = "UserSettingsHandler";
         private TreeView treeView;
 
         private TreeNode musicAsSound;
@@ -56,11 +57,36 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void TreeView_AfterCheck(object sender, TreeViewEventArgs e)
         {
+            string functionName = "TreeView_AfterCheck";
+            if (null == model.UserSettings)
+            {
+                return;
+            }
             int level = e.Node.Level;
             string name = e.Node.Name;
             string text = e.Node.Text;
             int i = e.Node.Index;
-            if ((level == 2) && (null != model.UserSettings))
+            if (level == 0)
+            {
+                if (e.Node.Equals(musicAsSound))
+                {
+                    model.UserSettings.MusicAsSound = e.Node.Checked;
+                }
+                else if (e.Node.Equals(musicAsSpeech))
+                {
+                    model.UserSettings.MusicAsSpeech = e.Node.Checked;
+                }
+                else if (e.Node.Equals(musicAsBraille))
+                {
+                    model.UserSettings.MusicAsMusicBraille = e.Node.Checked;
+                }
+                else
+                {
+                    Logger.Log(string.Format("{0}.{1}: Unexpected Node at level 1: Text={2}", className, functionName, e.Node.Text));
+                }
+
+            }
+            else if (level == 2)
             {
                 switch (e.Node.Parent.Index)
                 {
@@ -109,7 +135,7 @@ namespace MusicXmlReader
             // Build up the fixed part of the tree, which does not depend on the actual MusicXmlfile
             //
      
-            musicAsSound  = treeView.Nodes.Add(ResourcesForUI.TreeView_MusicAsSound);          
+            musicAsSound  = treeView.Nodes.Add(ResourcesForUI.TreeView_MusicAsSound);
             musicAsSoundVoices = musicAsSound.Nodes.Add(ResourcesForUI.TreeView_MusicAsSound_Parts);
             musicAsSoundDetails = musicAsSound.Nodes.Add(ResourcesForUI.TreeView_MusicAsSound_Details);
 
