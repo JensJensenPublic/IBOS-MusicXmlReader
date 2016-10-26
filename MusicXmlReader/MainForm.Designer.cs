@@ -246,6 +246,7 @@
             this.textBoxNormalText.Name = "textBoxNormalText";
             this.textBoxNormalText.Size = new System.Drawing.Size(1203, 20);
             this.textBoxNormalText.TabIndex = 8;
+            this.textBoxNormalText.TabStop = false;
             // 
             // MainForm
             // 
