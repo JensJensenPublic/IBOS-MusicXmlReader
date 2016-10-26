@@ -120,7 +120,7 @@ namespace MusicXmlReaderModel
             ResourcesForModel.UserSettings_BrailleNames_Notations       //"Notationer"
         };
 
-        public bool[] musicBrailleSettingsValues = { false, false, true, false };
+        public bool[] musicBrailleSettingsValues = { false, false, true, true };
 
         public bool GetMusicBrailleSettings(MusicBrailleSettings i)
         {

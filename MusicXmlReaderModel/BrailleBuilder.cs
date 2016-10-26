@@ -422,7 +422,7 @@ namespace MusicXmlReaderModel
         {
             const string functionName = "AddBrailleNotationsBeforeNoteOrRest";
             if (null == notations) return;
-            if (null == notations.Articulations) return;
+            //if (null == notations.Articulations) return;
 
             if ((null != notations.SlurElement) && (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop))
             {
@@ -435,39 +435,41 @@ namespace MusicXmlReaderModel
                 if (notations.TupletElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start)
                 {
                     Append(new List<byte>(TupletOf3), "TupletStart");
-                    Logger.LogOnce(string.Format("{0}.{1} Added tuplet", className, functionName));
+                    Logger.LogOnce(string.Format("{0}.{1} Added tuplet start", className, functionName));
                 }
             }
                         
-
-            foreach (ArticulationsElement.Articulation articulation in notations.Articulations.ArticulationList)
+            if ((null != notations.Articulations) &&  (null != notations.Articulations.ArticulationList))
             {
-                bool implemented = true; 
-                switch (articulation)
+                foreach (ArticulationsElement.Articulation articulation in notations.Articulations.ArticulationList)
                 {
-                    // Cases are shown in the same saquence as in the MusicXml definition:
-                    case ArticulationsElement.Articulation.accent:          Append(Accent,"Accent"); break;
-                    case ArticulationsElement.Articulation.breathmark:      Append(CommaHalfBreath,"CommaHalfBreath"); break;
-                    case ArticulationsElement.Articulation.caesura:         implemented = false; break;
-                    case ArticulationsElement.Articulation.detachedlegato:  implemented = false; break;
-                    case ArticulationsElement.Articulation.doit:            implemented = false; break;
-                    case ArticulationsElement.Articulation.falloff:         implemented = false; break;
-                    case ArticulationsElement.Articulation.otherarticulation: implemented = false; break;
-                    case ArticulationsElement.Articulation.plop:            implemented = false; break;
-                    case ArticulationsElement.Articulation.scoop:           implemented = false; break;
-                    case ArticulationsElement.Articulation.spiccato:        implemented = false; break;
-                    case ArticulationsElement.Articulation.staccatissimo:   Append(Staccatissimo,"Staccatissimo"); break;
-                    case ArticulationsElement.Articulation.staccato:        Append(Staccato,"Staccato"); break;
-                    case ArticulationsElement.Articulation.stress:          implemented = false; break;
-                    case ArticulationsElement.Articulation.strongaccent:    implemented = false; break;
-                    case ArticulationsElement.Articulation.tenuto:          Append(Tenuto,"Tenuto"); break;
-                    case ArticulationsElement.Articulation.unstress:        implemented = false; break;    
-                    default:
-                        Logger.Log(string.Format("{0}.{1}: Unknown articulation: '{2}'",className,functionName, articulation)); break;
-                }
-                if (!implemented)
-                {
-                    Logger.Log(string.Format("{0}.{1}: Unimplemented articulation: '{2}'",className,functionName, articulation));
+                    bool implemented = true;
+                    switch (articulation)
+                    {
+                        // Cases are shown in the same saquence as in the MusicXml definition:
+                        case ArticulationsElement.Articulation.accent: Append(Accent, "Accent"); break;
+                        case ArticulationsElement.Articulation.breathmark: Append(CommaHalfBreath, "CommaHalfBreath"); break;
+                        case ArticulationsElement.Articulation.caesura: implemented = false; break;
+                        case ArticulationsElement.Articulation.detachedlegato: implemented = false; break;
+                        case ArticulationsElement.Articulation.doit: implemented = false; break;
+                        case ArticulationsElement.Articulation.falloff: implemented = false; break;
+                        case ArticulationsElement.Articulation.otherarticulation: implemented = false; break;
+                        case ArticulationsElement.Articulation.plop: implemented = false; break;
+                        case ArticulationsElement.Articulation.scoop: implemented = false; break;
+                        case ArticulationsElement.Articulation.spiccato: implemented = false; break;
+                        case ArticulationsElement.Articulation.staccatissimo: Append(Staccatissimo, "Staccatissimo"); break;
+                        case ArticulationsElement.Articulation.staccato: Append(Staccato, "Staccato"); break;
+                        case ArticulationsElement.Articulation.stress: implemented = false; break;
+                        case ArticulationsElement.Articulation.strongaccent: implemented = false; break;
+                        case ArticulationsElement.Articulation.tenuto: Append(Tenuto, "Tenuto"); break;
+                        case ArticulationsElement.Articulation.unstress: implemented = false; break;
+                        default:
+                            Logger.Log(string.Format("{0}.{1}: Unknown articulation: '{2}'", className, functionName, articulation)); break;
+                    }
+                    if (!implemented)
+                    {
+                        Logger.Log(string.Format("{0}.{1}: Unimplemented articulation: '{2}'", className, functionName, articulation));
+                    }
                 }
             }
         }
@@ -500,6 +502,17 @@ namespace MusicXmlReaderModel
                 Append(Slur, "SlurStart");
             }
 
+
+            if (null != notations.TupletElement)
+            {
+                if (notations.TupletElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop)
+                {
+                    Append(new List<byte>(TupletOf3), "TupletStop");
+                    Logger.LogOnce(string.Format("{0}.{1} Added tuplet stop", className, functionName));
+                }
+            }
+
+            
             if (null != notations.TiedElement)
             {
                 if
