@@ -37,7 +37,8 @@ namespace MusicXmlReader
 
             // Create a handler for the user settinge, in this case modelled as a treeview.
             userSettingsHandler = UserSettingsHandler.Create(this,this.userSettingsTreeView,model);
-            userSettingsHandler.Init(); // Buyilds up the fixed part of the treeview
+            userSettingsHandler.Init(); // Builds up the fixed part of the treeview
+            userSettingsTreeView.CollapseAll();
 
             LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
 
@@ -247,7 +248,7 @@ namespace MusicXmlReader
         /// <param name="e">Not used</param>
         private void SelectAndOpenMusicXmlFile(object sender, EventArgs e)
         {
-            openFileDialog.FileName = "Node.xml"; // Use this sample file as a default
+            openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.xml",ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files
             openFileDialog.InitialDirectory = model.InitialDirectory;
             openFileDialog.CheckFileExists = true;

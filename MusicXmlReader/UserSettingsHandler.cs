@@ -225,12 +225,9 @@ namespace MusicXmlReader
         public void ExpandSelectedNodes()
         {
             musicAsSound.Collapse(false); // Collapse the node showing the Sound representation and all its children
-            musicAsSpeech.ExpandAll();
-            musicAsBraille.ExpandAll();
-
-            //treeView.ExpandAll();
+            musicAsSpeech.Collapse(false); // Collapse the node showing the Speech representation and all its children
+            musicAsBraille.Collapse(false); // Collapse the node showing the Music Braille representation and all its children
         }
-
-
+        
     }
 }
