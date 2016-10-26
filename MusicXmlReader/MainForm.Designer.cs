@@ -46,7 +46,6 @@
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.listBoxTimes = new System.Windows.Forms.ListBox();
             this.buttonStart = new System.Windows.Forms.Button();
-            this.buttonStop = new System.Windows.Forms.Button();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -194,20 +193,11 @@
             // 
             this.buttonStart.Location = new System.Drawing.Point(13, 27);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(75, 23);
+            this.buttonStart.Size = new System.Drawing.Size(197, 23);
             this.buttonStart.TabIndex = 2;
             this.buttonStart.Text = "ButtonStart";
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
-            // 
-            // buttonStop
-            // 
-            this.buttonStop.Location = new System.Drawing.Point(135, 27);
-            this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(75, 23);
-            this.buttonStop.TabIndex = 4;
-            this.buttonStop.Text = "ButtonStop";
-            this.buttonStop.UseVisualStyleBackColor = true;
             // 
             // textBoxBraille
             // 
@@ -257,7 +247,6 @@
             this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.textBoxText);
             this.Controls.Add(this.textBoxBraille);
-            this.Controls.Add(this.buttonStop);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.listBoxTimes);
             this.Controls.Add(this.userSettingsTreeView);
@@ -279,7 +268,6 @@
         private System.Windows.Forms.TreeView userSettingsTreeView;
         private System.Windows.Forms.ListBox listBoxTimes;
         private System.Windows.Forms.Button buttonStart;
-        private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.TextBox textBoxBraille;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;

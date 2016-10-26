@@ -595,6 +595,10 @@ namespace MusicXmlReaderModel
             musicPlayer.StartPlayingPoly();
         }
 
+        public void StopPlaying()
+        {
+            musicPlayer.StopPlaying();
+        }
 
         public void SetParts(int partNumber, bool value)
         {

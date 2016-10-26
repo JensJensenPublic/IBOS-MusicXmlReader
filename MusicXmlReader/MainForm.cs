@@ -16,11 +16,13 @@ namespace MusicXmlReader
     /// </summary>
     public partial class MainForm : Form, IDebugDisplayerClient, IObjectCollection, IUtilityClient
     {
-  
+
+        enum MusicPlayerStateEnum { unknown, stopped, running };
         string ApplicationName = "";  // Application name. Will be re-initialized later using localization!
         Model model;        // The Model containing all of the business logic.        
         bool autoReload;    // Used to optimize performance when changing large parts of the UI within short time
         UserSettingsHandler userSettingsHandler; // Contains all settings that can be configured by the user
+        MusicPlayerStateEnum musicPlayerState = MusicPlayerStateEnum.stopped; // Assume the musicplayer is innitially stopped
 
         public MainForm()
         {
@@ -30,6 +32,12 @@ namespace MusicXmlReader
             // If the execution directory contains a file named "Language.txt" containing the string "en-US"
             // the application language will be changed to english evin if running on a danish PC!
             LogGLobalisationInformation();
+            // Do any UI localization before we create the model. In this way we avoid showing unlocalized texts
+            // if an error is reported by a messagebox.
+            musicPlayerState = MusicPlayerStateEnum.stopped;
+            LocalizeStartStopButton(musicPlayerState);
+            LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
+
             ApplicationName = ResourcesForUI.MainForm_ApplicationName;
             Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 
             model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), ApplicationName);
@@ -38,10 +46,7 @@ namespace MusicXmlReader
             // Create a handler for the user settinge, in this case modelled as a treeview.
             userSettingsHandler = UserSettingsHandler.Create(this,this.userSettingsTreeView,model);
             userSettingsHandler.Init(); // Builds up the fixed part of the treeview
-            userSettingsTreeView.CollapseAll();
-
-            LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
-
+            userSettingsTreeView.CollapseAll();  
         }
 
         void LocalizeMenuStrip()
@@ -69,6 +74,16 @@ namespace MusicXmlReader
         }
 
 
+
+        void LocalizeStartStopButton(MusicPlayerStateEnum musicPlayerState)
+        {
+            switch (musicPlayerState)
+            {
+                case MusicPlayerStateEnum.running: buttonStart.Text = ResourcesForUI.ButtonStart_StopPlaying;  break;
+                case MusicPlayerStateEnum.stopped: buttonStart.Text = ResourcesForUI.ButtonStart_StartPlaying; break;
+                default: break;
+            }
+        }
 
         #region supportcode
 
@@ -390,7 +405,20 @@ namespace MusicXmlReader
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            model.StartPlayingPoly();
+            switch (musicPlayerState)
+            {
+                case MusicPlayerStateEnum.running:
+                    model.StopPlaying();
+                    musicPlayerState = MusicPlayerStateEnum.stopped;
+                    break;                 
+                case MusicPlayerStateEnum.stopped:
+                    model.StartPlayingPoly();
+                    musicPlayerState = MusicPlayerStateEnum.running;
+                    break;
+                case MusicPlayerStateEnum.unknown:
+                    break; // Maybe we will need this later ?
+            }
+            LocalizeStartStopButton(musicPlayerState);
         }
 
         private void museScoreToolStripMenuItem_Click(object sender, EventArgs e)
