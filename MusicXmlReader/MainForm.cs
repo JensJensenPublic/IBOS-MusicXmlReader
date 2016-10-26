@@ -250,7 +250,11 @@ namespace MusicXmlReader
             openFileDialog.FileName = "Node.xml"; // Use this sample file as a default
             openFileDialog.Filter = string.Format("{0}|*.xml",ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files
             openFileDialog.InitialDirectory = model.InitialDirectory;
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.CheckPathExists = true;
             openFileDialog.ShowDialog();
+            // The dialog has focus on the textbox for entering the file name.
+            // Press <shift> <tab> twice to focus on the first line in the selection listbox.
 
             textBoxMessage.Focus();
             string shortFileName = System.IO.Path.GetFileName(openFileDialog.FileName);

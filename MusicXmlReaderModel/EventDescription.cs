@@ -357,7 +357,7 @@ namespace MusicXmlReaderModel
 
                     // string note = string.IsNullOrEmpty(noteElement.Step) ? "Pause" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave + " " +noteElement.LocalizedType;
                     //s = s + delimiter + note;
-                    if (sb.Length > 0)  sb.Append("+"); // Separate the notes with "+"
+                    if (sb.Length > 0)  sb.Append(" "); // Separate the notes with ""
                     sb.Append(note);
                 }
             }
