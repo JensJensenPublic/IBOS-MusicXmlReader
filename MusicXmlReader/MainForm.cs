@@ -455,5 +455,13 @@ namespace MusicXmlReader
         {
             model.ExternalToolsHandler.ReadInterpretation(model.AllMusicXmlObjecsts,model.TheMusicXmlFileName);           
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBoxMessage.Text = ResourcesForUI.TextBox_Messages_TheProgramIsExiting;
+            textBoxMessage.Refresh();
+            model.OnApplicationExit(); // Let the Model clean up its resources etc
+            Application.Exit();
+        }
     }
 }

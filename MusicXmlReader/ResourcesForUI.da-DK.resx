@@ -162,6 +162,9 @@
   <data name="TextBox_Messages_Reading_File" xml:space="preserve">
     <value>Indlæser</value>
   </data>
+  <data name="TextBox_Messages_TheProgramIsExiting" xml:space="preserve">
+    <value>Programmet afslutter</value>
+  </data>
   <data name="ToolStripMenuItem_Edit" xml:space="preserve">
     <value>&amp;Rediger</value>
   </data>

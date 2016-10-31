@@ -196,6 +196,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The program is exiting.
+        /// </summary>
+        internal static string TextBox_Messages_TheProgramIsExiting {
+            get {
+                return ResourceManager.GetString("TextBox_Messages_TheProgramIsExiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Edit.
         /// </summary>
         internal static string ToolStripMenuItem_Edit {

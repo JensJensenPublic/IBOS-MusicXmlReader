@@ -637,5 +637,40 @@ namespace MusicXmlReaderModel
         {
             brailleDisplayer.StartRefreshing();
         }
+
+
+        /// <summary>
+        /// This method must be called by the application before exit
+        /// in order to allow the Model to clean up and release any resources etc.
+        /// </summary>
+        public void OnApplicationExit()
+        {
+            string functionName = "OnApplicationExit";
+            try
+            {
+                musicPlayer.StopPlaying();
+            }
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("{0}.{1} Exception.Message={2}", className, functionName, e.Message));
+            }
+
+            System.Threading.Thread.Sleep(500); // Allow the player to stop
+
+            // Finally tell force the closing of all Midi channels:
+            try
+            {
+                // TODO Call MIDI "AllNotesOff"
+
+            }
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("{0}.{1} Exception.Message={2}", className, functionName, e.Message));
+            }
+
+            System.Threading.Thread.Sleep(100); // Allow the Midi system to stop all sounds
+
+            Logger.Log(string.Format("{0}.{1} succeeded.", className, functionName)); 
+        }
     }
 }
