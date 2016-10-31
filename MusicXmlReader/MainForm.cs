@@ -61,6 +61,8 @@ namespace MusicXmlReader
 
             // Children of  fileToolStripMenuItem
             openMusicXmlFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile; ;
+            exitToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_Exit;
+
 
             // Children of  toolsToolStripMenuItem
             museScoreToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_MuseScore;

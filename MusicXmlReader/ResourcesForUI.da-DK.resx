@@ -171,6 +171,9 @@
   <data name="ToolStripMenuItem_Files" xml:space="preserve">
     <value>&amp;Filer</value>
   </data>
+  <data name="ToolStripMenuItem_Files_Exit" xml:space="preserve">
+    <value>Afslut</value>
+  </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFile" xml:space="preserve">
     <value>&amp;Åbn MusicXml fil</value>
   </data>

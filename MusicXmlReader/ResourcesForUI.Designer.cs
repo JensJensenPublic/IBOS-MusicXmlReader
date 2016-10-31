@@ -223,6 +223,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Exit.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_Exit {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Open MusicXml File.
         /// </summary>
         internal static string ToolStripMenuItem_Files_OpenMusicXmlFile {
