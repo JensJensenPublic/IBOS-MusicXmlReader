@@ -7,7 +7,22 @@ using MusicXmlReaderModel;
 
 namespace MusicXmlReader
 {
+    // Standard Shortcuts defined by the Forms Designer:
+    //
+    // FileToolStripMenuItem:   
+    // CTRL-O OpenFileDialog
+    // ALT-F4 Exit
+    //
+    // EditToolStripMenuItem:
+    // 
+    // ViewToolStripMenuItem: 
+    //
+    // ToolsToolStripMenuItem: 
+    //
+    // HelpToolStripMenuItem: 
+    //
 
+        
     /// <summary>
     /// Class for defining all keyboard shortcuts at on single place instead of scattering them around the code
     /// </summary>
