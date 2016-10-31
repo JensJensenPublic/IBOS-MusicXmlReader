@@ -28,6 +28,7 @@ namespace MusicXmlReader
         {
             InitializeComponent();
             Logger.Open("MusicXmlReaderUI.log");
+            Application.ApplicationExit += Application_ApplicationExit;
             LogSystemInformation();
             // If the execution directory contains a file named "Language.txt" containing the string "en-US"
             // the application language will be changed to english evin if running on a danish PC!
@@ -47,6 +48,11 @@ namespace MusicXmlReader
             userSettingsHandler = UserSettingsHandler.Create(this,this.userSettingsTreeView,model);
             userSettingsHandler.Init(); // Builds up the fixed part of the treeview
             userSettingsTreeView.CollapseAll();  
+        }
+
+        private void Application_ApplicationExit(object sender, EventArgs e)
+        {
+            model.OnApplicationExit(); // Let the Model clean up its resources etc 
         }
 
         void LocalizeMenuStrip()
@@ -458,11 +464,13 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.ReadInterpretation(model.AllMusicXmlObjecsts,model.TheMusicXmlFileName);           
         }
 
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             textBoxMessage.Text = ResourcesForUI.TextBox_Messages_TheProgramIsExiting;
             textBoxMessage.Refresh();
-            model.OnApplicationExit(); // Let the Model clean up its resources etc
+            // Remaining actions are taken in Application_ApplicationExit.
+            // In this way the Model will always be shut down no matter why the application exits.
             Application.Exit();
         }
     }
