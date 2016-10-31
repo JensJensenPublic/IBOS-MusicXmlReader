@@ -67,7 +67,7 @@
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
             this.MenuStrip.Size = new System.Drawing.Size(1219, 24);
-            this.MenuStrip.TabIndex = 0;
+            this.MenuStrip.TabIndex = 3;
             this.MenuStrip.TabStop = true;
             this.MenuStrip.Text = "menuStrip1";
             // 
@@ -84,7 +84,8 @@
             // openMusicXmlFileToolStripMenuItem
             // 
             this.openMusicXmlFileToolStripMenuItem.Name = "openMusicXmlFileToolStripMenuItem";
-            this.openMusicXmlFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openMusicXmlFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openMusicXmlFileToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.openMusicXmlFileToolStripMenuItem.Text = "&Open MusicXml File";
             this.openMusicXmlFileToolStripMenuItem.Click += new System.EventHandler(this.openMusicXmlFileToolStripMenuItem_Click);
             // 
@@ -203,7 +204,7 @@
             this.listBoxTimes.Location = new System.Drawing.Point(220, 60);
             this.listBoxTimes.Name = "listBoxTimes";
             this.listBoxTimes.Size = new System.Drawing.Size(993, 420);
-            this.listBoxTimes.TabIndex = 3;
+            this.listBoxTimes.TabIndex = 0;
             this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
             // 
             // buttonStart
