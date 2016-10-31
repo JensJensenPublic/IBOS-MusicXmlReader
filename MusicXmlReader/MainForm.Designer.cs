@@ -243,6 +243,7 @@
             // 
             this.textBoxMessage.Location = new System.Drawing.Point(220, 28);
             this.textBoxMessage.Name = "textBoxMessage";
+            this.textBoxMessage.ReadOnly = true;
             this.textBoxMessage.Size = new System.Drawing.Size(993, 20);
             this.textBoxMessage.TabIndex = 7;
             this.textBoxMessage.TabStop = false;
