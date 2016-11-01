@@ -126,6 +126,9 @@
   <data name="MainForm_ApplicationName" xml:space="preserve">
     <value>IBOS MusicReader</value>
   </data>
+  <data name="Message_ConnectedToNonDefaultScreenReader" xml:space="preserve">
+    <value>Connected to unsupported screenreader</value>
+  </data>
   <data name="Message_DirectoryNotFound" xml:space="preserve">
     <value>Directory not found</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="Message_FileNotFound" xml:space="preserve">
     <value>File not found</value>
+  </data>
+  <data name="Message_MayNotWorkAsExpected" xml:space="preserve">
+    <value>The program may not work as expected</value>
   </data>
   <data name="Message_MissingProgramFile" xml:space="preserve">
     <value>Missing program file</value>

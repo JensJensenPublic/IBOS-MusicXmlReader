@@ -215,6 +215,7 @@ namespace MusicXmlReader
             {
                 case ModelMessageEnum.DirectoryNotFound: return ResourcesForUI.Message_DirectoryNotFound;
                 case ModelMessageEnum.FailedToConnectToScreenReader: return ResourcesForUI.Message_FailedToConnectToScreenReader;
+                case ModelMessageEnum.ConnectedToNonDefaultScreenReader: return ResourcesForUI.Message_ConnectedToNonDefaultScreenReader;
                 case ModelMessageEnum.FailedToStartProgram: return ResourcesForUI.Message_FailedToStartProgram;
                 case ModelMessageEnum.FileNotFound: return ResourcesForUI.Message_FileNotFound;
                 case ModelMessageEnum.MissingProgramFile: return ResourcesForUI.Message_MissingProgramFile;
@@ -230,6 +231,7 @@ namespace MusicXmlReader
             {
                 case ModelMessageEnum.DirectoryNotFound: return "";
                 case ModelMessageEnum.FailedToConnectToScreenReader: return ResourcesForUI.Message_PleaseSeeLogFile;
+                case ModelMessageEnum.ConnectedToNonDefaultScreenReader: return ResourcesForUI.Message_MayNotWorkAsExpected;
                 case ModelMessageEnum.FailedToStartProgram: return ResourcesForUI.Message_PleaseSeeLogFile;
                 case ModelMessageEnum.FileNotFound: return "";
                 case ModelMessageEnum.MissingProgramFile: return ResourcesForUI.Message_PleaseSeeLogFile;

@@ -126,6 +126,9 @@
   <data name="MainForm_ApplicationName" xml:space="preserve">
     <value>IBOS Nodelæser</value>
   </data>
+  <data name="Message_ConnectedToNonDefaultScreenReader" xml:space="preserve">
+    <value>Forbundet til usupporteret screenreader</value>
+  </data>
   <data name="Message_DirectoryNotFound" xml:space="preserve">
     <value>Mappen eksisterer ikke</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="Message_FileNotFound" xml:space="preserve">
     <value>Filen eksisterer ikke</value>
+  </data>
+  <data name="Message_MayNotWorkAsExpected" xml:space="preserve">
+    <value>Programmet vil måske ikke fungere korrekt</value>
   </data>
   <data name="Message_MissingProgramFile" xml:space="preserve">
     <value>Manglende programfil</value>

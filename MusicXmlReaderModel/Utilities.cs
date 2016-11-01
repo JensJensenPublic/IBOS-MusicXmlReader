@@ -10,6 +10,7 @@ namespace MusicXmlReaderModel
         unknown,
         MissingProgramFile,            // Typically native dlls distributed with the application
         FailedToConnectToScreenReader, // JAWS
+        ConnectedToNonDefaultScreenReader,
         FileNotFound,
         DirectoryNotFound,
         FailedToStartProgram, // External program such as Sibelius, Notepad etc
@@ -345,23 +346,38 @@ namespace MusicXmlReaderModel
         }
 
 
-        internal static bool CheckScreenReader(bool result, string caption)
+        internal static bool CheckScreenReader(string screenReaderName, string caption)
         {
-             if (!result)
-            {
 
-                if (null != caption)
-                {
-                    // The application has UI
-                    ShowWarning(ModelMessageEnum.FailedToConnectToScreenReader, "JAWS", "");                        
-                }
-                else
-                {
-                    // The application is .cmd
-                    Console.WriteLine("Kunne ikke forbinde til skærmlæser!");
-                }
+            // screenReaderName = "NVDA"; // For test 
+            switch (screenReaderName)
+            {
+                case "JAWS": return true;
+                case "NVDA":
+                    if (null != caption)
+                    {
+                        // The application has UI
+                        ShowWarning(ModelMessageEnum.ConnectedToNonDefaultScreenReader, "NVDA", "");
+                    }
+                    else
+                    {
+                        // The application is .cmd
+                        Console.WriteLine("Connected To NVDA screenreader");
+                    }
+                    return true; 
+                default:
+                    if (null != caption)
+                    {
+                        // The application has UI
+                        ShowWarning(ModelMessageEnum.FailedToConnectToScreenReader, "JAWS", "");
+                    }
+                    else
+                    {
+                        // The application is .cmd
+                        Console.WriteLine("Could not connect to screenreader!");
+                    }
+                    return false;
             }
-            return result;
         }
 
         internal static bool CheckFileExistance(string fileName, string methodName, bool dir)

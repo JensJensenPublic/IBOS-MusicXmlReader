@@ -88,6 +88,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connected to unsupported screenreader.
+        /// </summary>
+        internal static string Message_ConnectedToNonDefaultScreenReader {
+            get {
+                return ResourceManager.GetString("Message_ConnectedToNonDefaultScreenReader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Directory not found.
         /// </summary>
         internal static string Message_DirectoryNotFound {
@@ -129,6 +138,15 @@ namespace MusicXmlReader {
         internal static string Message_FileNotFound {
             get {
                 return ResourceManager.GetString("Message_FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The program may not work as expected.
+        /// </summary>
+        internal static string Message_MayNotWorkAsExpected {
+            get {
+                return ResourceManager.GetString("Message_MayNotWorkAsExpected", resourceCulture);
             }
         }
         
