@@ -426,17 +426,17 @@ namespace MusicXmlReader
 
         private void TurnOffSpeeshAndMusicBraille()
         {
-            savedSpeechState = userSettingsTreeView.Nodes[1].Checked;
-            savedMusicBrailleState = userSettingsTreeView.Nodes[2].Checked;
-            userSettingsTreeView.Nodes[1].Checked = false;     // Turn off speech whole playing
-            userSettingsTreeView.Nodes[2].Checked = false;     // Turn off Music Braille whole playing             
+            savedSpeechState = userSettingsHandler.MusicAsSpeech.Checked;
+            savedMusicBrailleState = userSettingsHandler.MusicAsBraille.Checked;
+            userSettingsHandler.MusicAsSpeech.Checked = false;
+            userSettingsHandler.MusicAsBraille.Checked = false;
             listBoxTimes.Refresh();
         }
 
         private void RestoreSpeechAndMusicBraille()
         {
-            userSettingsTreeView.Nodes[1].Checked = savedSpeechState;           // Restore speech after playing
-            userSettingsTreeView.Nodes[2].Checked = savedMusicBrailleState;     // Restore Music Braille after playing             
+            userSettingsHandler.MusicAsSpeech.Checked = savedSpeechState;
+            userSettingsHandler.MusicAsBraille.Checked = savedMusicBrailleState;
             listBoxTimes.Refresh();
         }
 

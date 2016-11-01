@@ -34,6 +34,30 @@ namespace MusicXmlReader
         //private PartlistElement partList; 
         private Model model;
 
+        public TreeNode MusicAsSound
+        {
+            get
+            {
+                return musicAsSound;
+            }
+        }
+
+        public TreeNode MusicAsSpeech
+        {
+            get
+            {
+                return musicAsSpeech;
+            }
+        }
+
+        public TreeNode MusicAsBraille
+        {
+            get
+            {
+                return musicAsBraille;
+            }            
+        }
+
 
         // Prevent construction
         private UserSettingsHandler()
