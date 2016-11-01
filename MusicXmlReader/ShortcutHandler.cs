@@ -161,11 +161,22 @@ namespace MusicXmlReader
             return new ShortcutHandler(mainForm, model);
         }
 
+        //  KeyData:
+        //  A System.Windows.Forms.Keys representing the key code for the key that was pressed,
+        //  combined with modifier flags that indicate which combination of CTRL, SHIFT,
+        //  and ALT keys was pressed at the same time
+
+
+        public bool IsStartPlayingShortcut(KeyEventArgs e)
+        {
+            return (e.KeyData == startPlaying);
+        }
+
         public bool IsStopPlayingShortcut(KeyEventArgs e)
         {
             foreach (Keys key in stopPlaying)
             {
-                if (e.KeyCode == key)
+                if (e.KeyData == key)
                 {
                     return true;
                 }

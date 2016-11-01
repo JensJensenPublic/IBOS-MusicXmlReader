@@ -486,11 +486,22 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void listBoxTimes_KeyDown(object sender, KeyEventArgs e)
         {
-            if (model.musicPlayer.Playing && shortCutHandler.IsStopPlayingShortcut(e))
+            if (shortCutHandler.IsStopPlayingShortcut(e))
             {
-                model.StopPlaying();
+                if (model.musicPlayer.Playing)
+                {
+                    model.StopPlaying();
+                }
                 // Change the text on the start button back
                 this.buttonStart.Text = ResourcesForUI.ButtonStart_StartPlaying;
+                return;
+            }
+
+            if (shortCutHandler.IsStartPlayingShortcut(e))
+            {
+                model.StartPlayingPoly();
+                this.buttonStart.Text = ResourcesForUI.ButtonStart_StopPlaying;
+                return;
             }
 
         }
