@@ -193,7 +193,7 @@ namespace MusicXmlReader
             }
             else
             {
-                listBoxTimes.Focus(); // Maybe not needed. How can we force the Screeen-reader to read the selected line? 
+                //listBoxTimes.Focus(); // Maybe not needed. How can we force the Screeen-reader to read the selected line? 
                 listBoxTimes.SelectedIndex = index;
                 // System.Threading.Thread.Sleep(100); // HACK Pause the UI thread and let the Screenreader get a chance
             }
@@ -419,8 +419,28 @@ namespace MusicXmlReader
             model.textDisplayer.SelectedIndexChanged(index, o);
         }
 
+        private bool savedSpeechState;
+        private bool savedMusicBrailleState;
+
         #endregion
 
+        private void TurnOffSpeeshAndMusicBraille()
+        {
+            savedSpeechState = userSettingsTreeView.Nodes[1].Checked;
+            savedMusicBrailleState = userSettingsTreeView.Nodes[2].Checked;
+            userSettingsTreeView.Nodes[1].Checked = false;     // Turn off speech whole playing
+            userSettingsTreeView.Nodes[2].Checked = false;     // Turn off Music Braille whole playing             
+            listBoxTimes.Refresh();
+        }
+
+        private void RestoreSpeechAndMusicBraille()
+        {
+            userSettingsTreeView.Nodes[1].Checked = savedSpeechState;           // Restore speech after playing
+            userSettingsTreeView.Nodes[2].Checked = savedMusicBrailleState;     // Restore Music Braille after playing             
+            listBoxTimes.Refresh();
+        }
+
+        
         private void buttonStart_Click(object sender, EventArgs e)
         {
             switch (musicPlayerState)
@@ -428,8 +448,10 @@ namespace MusicXmlReader
                 case MusicPlayerStateEnum.running:
                     model.StopPlaying();
                     musicPlayerState = MusicPlayerStateEnum.stopped;
+                    RestoreSpeechAndMusicBraille();
                     break;                 
                 case MusicPlayerStateEnum.stopped:
+                    TurnOffSpeeshAndMusicBraille();
                     model.StartPlayingPoly();
                     musicPlayerState = MusicPlayerStateEnum.running;
                     break;
