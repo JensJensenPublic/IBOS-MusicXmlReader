@@ -23,6 +23,7 @@ namespace MusicXmlReader
         bool autoReload;    // Used to optimize performance when changing large parts of the UI within short time
         UserSettingsHandler userSettingsHandler; // Contains all settings that can be configured by the user
         MusicPlayerStateEnum musicPlayerState = MusicPlayerStateEnum.stopped; // Assume the musicplayer is innitially stopped
+        ShortcutHandler shortCutHandler;
 
         public MainForm()
         {
@@ -47,7 +48,9 @@ namespace MusicXmlReader
             // Create a handler for the user settinge, in this case modelled as a treeview.
             userSettingsHandler = UserSettingsHandler.Create(this,this.userSettingsTreeView,model);
             userSettingsHandler.Init(); // Builds up the fixed part of the treeview
-            userSettingsTreeView.CollapseAll();  
+            userSettingsTreeView.CollapseAll();
+            // Create a handler for handling all Keyboard shortcuts
+            shortCutHandler = ShortcutHandler.Create(this, model);
         }
 
         private void Application_ApplicationExit(object sender, EventArgs e)
@@ -474,5 +477,23 @@ namespace MusicXmlReader
             // In this way the Model will always be shut down no matter why the application exits.
             Application.Exit();
         }
+
+
+        /// <summary>
+        /// Occurs when a key is pressed while listBoxTimes has focus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listBoxTimes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (model.musicPlayer.Playing && shortCutHandler.IsStopPlayingShortcut(e))
+            {
+                model.StopPlaying();
+                // Change the text on the start button back
+                this.buttonStart.Text = ResourcesForUI.ButtonStart_StartPlaying;
+            }
+
+        }
+
     }
 }

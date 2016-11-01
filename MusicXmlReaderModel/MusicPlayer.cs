@@ -353,6 +353,14 @@ namespace MusicXmlReaderUI
             }
         }
 
+        public bool Playing
+        {
+            get
+            {
+                return playing;
+            }
+        }
+
         public void StartPlayingPoly()
         {
             playing = true;

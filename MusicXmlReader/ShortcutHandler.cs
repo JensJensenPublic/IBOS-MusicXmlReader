@@ -156,5 +156,12 @@ namespace MusicXmlReader
         {
             return new ShortcutHandler(mainForm, model);
         }
+
+        public bool IsStopPlayingShortcut(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space) return true;
+            if (e.KeyCode == Keys.Enter) return true;
+            return false;
+        }
     }
 }

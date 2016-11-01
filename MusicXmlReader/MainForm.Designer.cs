@@ -206,6 +206,7 @@
             this.listBoxTimes.Size = new System.Drawing.Size(993, 420);
             this.listBoxTimes.TabIndex = 0;
             this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
+            this.listBoxTimes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxTimes_KeyDown);
             // 
             // buttonStart
             // 
