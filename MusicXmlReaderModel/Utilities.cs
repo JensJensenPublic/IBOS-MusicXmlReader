@@ -355,26 +355,23 @@ namespace MusicXmlReaderModel
                 case "JAWS": return true;
                 case "NVDA":
                     if (null != caption)
-                    {
-                        // The application has UI
-                        ShowWarning(ModelMessageEnum.ConnectedToNonDefaultScreenReader, "NVDA", "");
+                    {                  
+                        ShowWarning(ModelMessageEnum.ConnectedToNonDefaultScreenReader, "NVDA", "");       // The application has UI
                     }
                     else
-                    {
-                        // The application is .cmd
-                        Console.WriteLine("Connected To NVDA screenreader");
+                    {                   
+                        Console.WriteLine("Connected To NVDA screenreader");      // The application is .cmd
                     }
                     return true; 
                 default:
                     if (null != caption)
-                    {
-                        // The application has UI
-                        ShowWarning(ModelMessageEnum.FailedToConnectToScreenReader, "JAWS", "");
+                    {                    
+                        ShowWarning(ModelMessageEnum.FailedToConnectToScreenReader, "JAWS", "");     // The application has UI
                     }
                     else
                     {
-                        // The application is .cmd
-                        Console.WriteLine("Could not connect to screenreader!");
+                     
+                        Console.WriteLine("Could not connect to screenreader!");    // The application is .cmd
                     }
                     return false;
             }
