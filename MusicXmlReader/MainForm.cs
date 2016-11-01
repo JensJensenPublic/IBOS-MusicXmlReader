@@ -276,13 +276,19 @@ namespace MusicXmlReader
         private void SelectAndOpenMusicXmlFile(object sender, EventArgs e)
         {
             openFileDialog.FileName = ""; // No default
-            openFileDialog.Filter = string.Format("{0}|*.xml",ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files
+            openFileDialog.Filter = string.Format("{0}|*.xml", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files
             openFileDialog.InitialDirectory = model.InitialDirectory;
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
             openFileDialog.ShowDialog();
+
             // The dialog has focus on the textbox for entering the file name.
             // Press <shift> <tab> twice to focus on the first line in the selection listbox.
+
+            if (string.IsNullOrEmpty(openFileDialog.FileName))
+            {
+                return; // Let the user press ESC without warning him
+            }
 
             textBoxMessage.Focus();
             string shortFileName = System.IO.Path.GetFileName(openFileDialog.FileName);
