@@ -604,4 +604,7 @@
   <data name="MetaInfoText_FileName" xml:space="preserve">
     <value>Filnavn</value>
   </data>
+  <data name="UserSettings_ReaderNames_Lyrics" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
 </root>

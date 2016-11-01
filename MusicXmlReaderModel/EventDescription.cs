@@ -371,13 +371,12 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         private string LyricsForOnePart(List<NoteElement> noteElementList)
         {
+            if (!userSettings.GetReaderSettings(UserSettings.ReaderSettings.Lyrics)) return ""; 
             if (0 == noteElementList.Count()) return ""; // Nothing happened in this part 
             string s = "";
             foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
             {
-                string delimiter = string.IsNullOrEmpty(s) ? "" : " "; // Use this string te separate notes within one part
-                // Add pitch information
-                if (userSettings.partsToReadLyrics[noteElement.PartNumber]) // Might later look at subparts S1/S2 ? 
+                string delimiter = string.IsNullOrEmpty(s) ? "" : " "; // Use this string te separate notes within one part 
                 {
                     string text = string.IsNullOrEmpty(noteElement.Text) ? "" : noteElement.Text;
                     s = s + delimiter + text;

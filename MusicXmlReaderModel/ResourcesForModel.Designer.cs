@@ -1465,6 +1465,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lyrics.
+        /// </summary>
+        internal static string UserSettings_ReaderNames_Lyrics {
+            get {
+                return ResourceManager.GetString("UserSettings_ReaderNames_Lyrics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Measure numbers.
         /// </summary>
         internal static string UserSettings_ReaderNames_MeasureNumbers {
@@ -1501,7 +1510,7 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Oktaver.
+        ///   Looks up a localized string similar to Oktaves.
         /// </summary>
         internal static string UserSettings_ReaderNames_Octaves {
             get {

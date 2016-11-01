@@ -406,7 +406,7 @@
     <value>Note Values</value>
   </data>
   <data name="UserSettings_ReaderNames_Octaves" xml:space="preserve">
-    <value>Oktaver</value>
+    <value>Oktaves</value>
   </data>
   <data name="BarlineElement" xml:space="preserve">
     <value>Barline</value>
@@ -602,5 +602,8 @@
   </data>
   <data name="MetaInfoText_FileName" xml:space="preserve">
     <value>File name</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Lyrics" xml:space="preserve">
+    <value>Lyrics</value>
   </data>
 </root>
