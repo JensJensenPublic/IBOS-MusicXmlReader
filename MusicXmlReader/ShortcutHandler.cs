@@ -116,7 +116,7 @@ using MusicXmlReaderModel;
 
 namespace MusicXmlReader
 {
-            
+
     /// <summary>
     /// Class for defining all keyboard shortcuts at on single place instead of scattering them around the code
     /// </summary>
@@ -129,7 +129,7 @@ namespace MusicXmlReader
 
         // FileToolStripMenuItem: 
         static public readonly Keys openMusicXmlFile = ((Keys)((Keys.Control | Keys.O)));
-        static public readonly Keys exitApplication  = ((Keys)((Keys.Alt | Keys.F4)));
+        static public readonly Keys exitApplication = ((Keys)((Keys.Alt | Keys.F4)));
 
         // EditToolStripMenuItem:
         // 
@@ -139,6 +139,10 @@ namespace MusicXmlReader
         //
         // HelpToolStripMenuItem: 
         //
+
+        // Start / Stop of Autoplay
+        static public readonly Keys startPlaying = ((Keys)((Keys.Control | Keys.S)));
+        static public readonly Keys[] stopPlaying = new Keys[] { Keys.Space, Keys.Enter };
 
         private ShortcutHandler()
         { }
@@ -159,8 +163,13 @@ namespace MusicXmlReader
 
         public bool IsStopPlayingShortcut(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space) return true;
-            if (e.KeyCode == Keys.Enter) return true;
+            foreach (Keys key in stopPlaying)
+            {
+                if (e.KeyCode == key)
+                {
+                    return true;
+                }
+            }
             return false;
         }
     }
