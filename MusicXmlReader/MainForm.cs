@@ -494,20 +494,14 @@ namespace MusicXmlReader
         {
             if (shortCutHandler.IsStopPlayingShortcut(e))
             {
-                if (model.musicPlayer.Playing)
-                {
-                    model.StopPlaying();
-                }
-                // Change the text on the start button back
-                this.buttonStart.Text = ResourcesForUI.ButtonStart_StartPlaying;
-                return;
+                // Pass on to the event handler for the button 
+                buttonStart_Click(null, null);
             }
 
             if (shortCutHandler.IsStartPlayingShortcut(e))
             {
-                model.StartPlayingPoly();
-                this.buttonStart.Text = ResourcesForUI.ButtonStart_StopPlaying;
-                return;
+                // Pass on to the event handler for the button 
+                buttonStart_Click(null, null);
             }
 
         }
