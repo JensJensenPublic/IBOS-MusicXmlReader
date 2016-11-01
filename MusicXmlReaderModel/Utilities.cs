@@ -353,11 +353,7 @@ namespace MusicXmlReaderModel
                 if (null != caption)
                 {
                     // The application has UI
-                    ShowWarning(ModelMessageEnum.FailedToConnectToScreenReader,"JAWS",
-                        "Kunne ikke forbinde til skærmlæser!\r\n"
-                      + "Understøttede skærmlæsere er 'JAWS' og 'NVDA'\r\n"
-                      + "Se venligst logfilen (Værktøjer->Log fil)"
-                      );
+                    ShowWarning(ModelMessageEnum.FailedToConnectToScreenReader, "JAWS", "");                        
                 }
                 else
                 {
