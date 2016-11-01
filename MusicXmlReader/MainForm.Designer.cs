@@ -92,13 +92,13 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(220, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -224,6 +224,7 @@
             this.textBoxBraille.ForeColor = System.Drawing.Color.White;
             this.textBoxBraille.Location = new System.Drawing.Point(10, 511);
             this.textBoxBraille.Name = "textBoxBraille";
+            this.textBoxBraille.ReadOnly = true;
             this.textBoxBraille.Size = new System.Drawing.Size(1200, 62);
             this.textBoxBraille.TabIndex = 5;
             this.textBoxBraille.TabStop = false;
@@ -232,6 +233,7 @@
             // 
             this.textBoxText.Location = new System.Drawing.Point(10, 579);
             this.textBoxText.Name = "textBoxText";
+            this.textBoxText.ReadOnly = true;
             this.textBoxText.Size = new System.Drawing.Size(1200, 20);
             this.textBoxText.TabIndex = 6;
             this.textBoxText.TabStop = false;
@@ -253,6 +255,7 @@
             // 
             this.textBoxNormalText.Location = new System.Drawing.Point(10, 485);
             this.textBoxNormalText.Name = "textBoxNormalText";
+            this.textBoxNormalText.ReadOnly = true;
             this.textBoxNormalText.Size = new System.Drawing.Size(1203, 20);
             this.textBoxNormalText.TabIndex = 8;
             this.textBoxNormalText.TabStop = false;
