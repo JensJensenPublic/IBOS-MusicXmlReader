@@ -24,7 +24,6 @@ namespace MusicXmlReaderModel
         // Arrays for controlling individual parts
         public bool[] partsToPlay; // Play the note values from these partitions
         public bool[] partsToRead; // Read the note values from these partitions
-        public bool[] partsToReadLyrics; // Read the lyrics from these partitions
         public bool[] partsToBraille; // Generate MusicBraille for these parts  
 
         // For controlling other user properties
@@ -192,7 +191,6 @@ namespace MusicXmlReaderModel
             partsToPlay = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
             partsToRead = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
             partsToBraille = new bool[numberOfParts];    // Must be done here because numberUfParts is not a constant.
-            partsToReadLyrics = new bool[numberOfParts]; // Must be done here because numberUfParts is not a constant.
             userSlowDown = 1.0F;
             if (((int)ReaderSettings.NumberOfReaderSettings != readerSettingsNames.Length)
             || ((int)ReaderSettings.NumberOfReaderSettings  != readerSettingsValues.Length)

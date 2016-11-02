@@ -340,7 +340,7 @@ namespace MusicXmlReaderUI
 
         private void checkedListBoxPartsToReadLyrics_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            model.SetPartsToReadLyrics(e.Index, (CheckState.Checked == e.NewValue));
+            //model.SetPartsToReadLyrics(e.Index, (CheckState.Checked == e.NewValue));
             // This has changed the way ToString() works the notes are drawn in listBoxTimes, so it must be redrawn
             if (autoReload) LoadListBoxTimes();
         }
