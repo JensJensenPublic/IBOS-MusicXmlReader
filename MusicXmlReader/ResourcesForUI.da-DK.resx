@@ -220,7 +220,7 @@
     <value>&amp;Vis</value>
   </data>
   <data name="TreeView_MusicAsBraille" xml:space="preserve">
-    <value>Punktnodevisning</value>
+    <value>Braille (punktnode) visning</value>
   </data>
   <data name="TreeView_MusicAsBraille_Details" xml:space="preserve">
     <value>Detaljer</value>
@@ -229,7 +229,7 @@
     <value>Stemmer</value>
   </data>
   <data name="TreeView_MusicAsSound" xml:space="preserve">
-    <value>Lydvisning</value>
+    <value>Musik afspilning</value>
   </data>
   <data name="TreeView_MusicAsSound_Details" xml:space="preserve">
     <value>Detaljer</value>
@@ -238,7 +238,7 @@
     <value>Stemmer</value>
   </data>
   <data name="TreeView_MusicAsSpeech" xml:space="preserve">
-    <value>Talevisning</value>
+    <value>Tekst visning</value>
   </data>
   <data name="TreeView_MusicAsSpeech_Details" xml:space="preserve">
     <value>Detaljer</value>

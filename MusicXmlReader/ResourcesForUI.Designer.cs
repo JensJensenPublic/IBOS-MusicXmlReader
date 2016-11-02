@@ -376,7 +376,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Music Braille representation.
+        ///   Looks up a localized string similar to Braille Music representation.
         /// </summary>
         internal static string TreeView_MusicAsBraille {
             get {
@@ -403,7 +403,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sound representation.
+        ///   Looks up a localized string similar to Music playback.
         /// </summary>
         internal static string TreeView_MusicAsSound {
             get {
@@ -430,7 +430,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speech representation.
+        ///   Looks up a localized string similar to Text representation.
         /// </summary>
         internal static string TreeView_MusicAsSpeech {
             get {
