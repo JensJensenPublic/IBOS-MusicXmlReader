@@ -537,19 +537,19 @@ namespace MusicXmlReader
         private void musicRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             userSettingsTreeView.Focus();
-            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[0]; // 
+            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[0]; 
         }
 
         private void textRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             userSettingsTreeView.Focus();
-            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[1]; //
+            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[1];
         }
 
         private void brailleRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             userSettingsTreeView.Focus();
-            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[2]; //
+            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[2];
         }
 
         private void partsToolStripMenuItem_Click(object sender, EventArgs e)

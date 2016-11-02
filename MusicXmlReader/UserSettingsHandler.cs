@@ -28,6 +28,15 @@ namespace MusicXmlReader
         private TreeNode musicAsBrailleVoices;
         private TreeNode musicAsBrailleDetails;
 
+        // The Level-0 nedes have the following fixed indices:
+        public const int MusicNodeIndex = 0;
+        public const int TextNodeIndex = 1;
+        public const int BrailleNodeIndex = 2;
+
+        // The level-1 nodes Parts and Details are inserted into the level-0 nodes at xixed indices:
+        public const int partsNodeIndex = 0;
+        public const int detailsNodeIndex = 1;
+
 
         private MainForm mainForm;
         //private UserSettings userSettings;
@@ -150,10 +159,6 @@ namespace MusicXmlReader
             treeView.Nodes.Clear();
         }
 
-        // The level-1 nodes Parts and Details are inserted into the level-0 nodes at xixed indices:
-        public const int partsNodeIndex = 0;
-        public const int detailsNodeIndex = 1;
-
 
         public void CollapseAllParts()
         {
@@ -178,15 +183,15 @@ namespace MusicXmlReader
             // Build up the fixed part of the tree, which does not depend on the actual MusicXmlfile
             //
      
-            musicAsSound  = treeView.Nodes.Add(ResourcesForUI.TreeView_MusicAsSound);
+            musicAsSound  = treeView.Nodes.Insert(MusicNodeIndex ,ResourcesForUI.TreeView_MusicAsSound);
             musicAsSoundVoices = musicAsSound.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Parts);
             musicAsSoundDetails = musicAsSound.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Details);
 
-            musicAsSpeech = treeView.Nodes.Add(ResourcesForUI.TreeView_MusicAsSpeech);
+            musicAsSpeech = treeView.Nodes.Insert(TextNodeIndex, ResourcesForUI.TreeView_MusicAsSpeech);
             musicAsSpeechVoices = musicAsSpeech.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsSpeech_Parts);
             musicAsSpeechDetails = musicAsSpeech.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSpeech_Details);
 
-            musicAsBraille = treeView.Nodes.Add(ResourcesForUI.TreeView_MusicAsBraille);
+            musicAsBraille = treeView.Nodes.Insert(BrailleNodeIndex ,ResourcesForUI.TreeView_MusicAsBraille);
             musicAsBrailleVoices = musicAsBraille.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsBraille_Parts);
             musicAsBrailleDetails = musicAsBraille.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Details);  
 
