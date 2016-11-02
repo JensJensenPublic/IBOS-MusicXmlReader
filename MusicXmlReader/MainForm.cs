@@ -541,22 +541,32 @@ namespace MusicXmlReader
         #region Edit
 
         // Items above the delimiter line are represented by level 0 nodes in the tree
+  
 
         private void musicRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             userSettingsTreeView.Focus();
+            userSettingsTreeView.Nodes[0].ExpandAll();       
+            userSettingsTreeView.Nodes[1].Collapse(false);
+            userSettingsTreeView.Nodes[2].Collapse(false);
             userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[0]; 
         }
 
         private void textRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             userSettingsTreeView.Focus();
+            userSettingsTreeView.Nodes[1].ExpandAll();
+            userSettingsTreeView.Nodes[0].Collapse(false);
+            userSettingsTreeView.Nodes[2].Collapse(false);
             userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[1];
         }
 
         private void brailleRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             userSettingsTreeView.Focus();
+            userSettingsTreeView.Nodes[2].ExpandAll();
+            userSettingsTreeView.Nodes[0].Collapse(false);
+            userSettingsTreeView.Nodes[1].Collapse(false);
             userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[2];
         }
 
