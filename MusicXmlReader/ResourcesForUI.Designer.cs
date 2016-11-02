@@ -277,7 +277,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MusicXml file  as raw Xml.
+        ///   Looks up a localized string similar to MusicXml file  as raw &amp;Xml.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_InspectAsXml {
             get {
@@ -286,7 +286,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LogFile.
+        ///   Looks up a localized string similar to &amp;Log file.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_Logfile {
             get {
@@ -304,7 +304,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MuseScore.
+        ///   Looks up a localized string similar to &amp;MuseScore.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_MuseScore {
             get {
@@ -313,25 +313,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MusicXml file in Notepad.
-        /// </summary>
-        internal static string ToolStripMenuItem_Tools_MusicXmlFileInNotePad {
-            get {
-                return ResourceManager.GetString("ToolStripMenuItem_Tools_MusicXmlFileInNotePad", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string ToolStripMenuItem_Tools_OpenLogFileLocation {
-            get {
-                return ResourceManager.GetString("ToolStripMenuItem_Tools_OpenLogFileLocation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to XML file location.
+        ///   Looks up a localized string similar to MusicXml file location.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_OpenXmlFileLocation {
             get {
@@ -340,7 +322,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save as text.
+        ///   Looks up a localized string similar to Save as &amp;text.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_SaveAsText {
             get {
@@ -349,7 +331,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sibelius.
+        ///   Looks up a localized string similar to &amp;Sibelius.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_Sibelius {
             get {
@@ -358,7 +340,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MusicXml file as interpreted Xml.
+        ///   Looks up a localized string similar to MusicXml file as &amp;interpreted Xml.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_ViewAsInterpretedXml {
             get {

@@ -190,31 +190,28 @@
     <value>Værk&amp;tøjer</value>
   </data>
   <data name="ToolStripMenuItem_Tools_InspectAsXml" xml:space="preserve">
-    <value>MusicXml fil som rå XML</value>
+    <value>MusicXml fil som rå &amp;XML</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Logfile" xml:space="preserve">
-    <value>Logfil</value>
+    <value>&amp;Logfil</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Logfile_Location" xml:space="preserve">
     <value>Logfil placering</value>
   </data>
   <data name="ToolStripMenuItem_Tools_MuseScore" xml:space="preserve">
-    <value>MuseScore</value>
-  </data>
-  <data name="ToolStripMenuItem_Tools_MusicXmlFileInNotePad" xml:space="preserve">
-    <value>MusicXml fil som rå tekst</value>
+    <value>&amp;MuseScore</value>
   </data>
   <data name="ToolStripMenuItem_Tools_OpenXmlFileLocation" xml:space="preserve">
     <value>MusicXml fil placering</value>
   </data>
   <data name="ToolStripMenuItem_Tools_SaveAsText" xml:space="preserve">
-    <value>Gem som tekst</value>
+    <value>Gem som &amp;tekst</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Sibelius" xml:space="preserve">
-    <value>Sibelius</value>
+    <value>&amp;Sibelius</value>
   </data>
   <data name="ToolStripMenuItem_Tools_ViewAsInterpretedXml" xml:space="preserve">
-    <value>MusicXml fil som fortolket XML</value>
+    <value>MusicXml fil som &amp;interpreteret XML</value>
   </data>
   <data name="ToolStripMenuItem_View" xml:space="preserve">
     <value>&amp;Vis</value>
