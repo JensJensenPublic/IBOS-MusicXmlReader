@@ -74,6 +74,14 @@ namespace MusicXmlReader
             exitToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_Exit;
             exitToolStripMenuItem.ShortcutKeys = ShortcutHandler.exitApplication;
 
+            // Children of editToolStripMenuItem
+            // NOTE! Use the same texts as used in the treeview to which these items refer!!
+            musicRepresentationToolStripMenuItem.Text = "&"+ResourcesForUI.TreeView_MusicAsSound;
+            textRepresentationToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsSpeech;
+            brailleRepresentationToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsBraille;
+            partsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsSound_Parts;
+            detailsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsSound_Details;            
+
             // Children of  toolsToolStripMenuItem
             museScoreToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_MuseScore;
             sibeliusToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Sibelius;
