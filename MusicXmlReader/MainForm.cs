@@ -545,47 +545,27 @@ namespace MusicXmlReader
 
         private void musicRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            userSettingsTreeView.Focus();
-            userSettingsTreeView.Nodes[0].ExpandAll();       
-            userSettingsTreeView.Nodes[1].Collapse(false);
-            userSettingsTreeView.Nodes[2].Collapse(false);
-            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[0]; 
+            userSettingsHandler.ShowMusic();
         }
 
         private void textRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            userSettingsTreeView.Focus();
-            userSettingsTreeView.Nodes[1].ExpandAll();
-            userSettingsTreeView.Nodes[0].Collapse(false);
-            userSettingsTreeView.Nodes[2].Collapse(false);
-            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[1];
+            userSettingsHandler.ShowText();
         }
 
         private void brailleRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            userSettingsTreeView.Focus();
-            userSettingsTreeView.Nodes[2].ExpandAll();
-            userSettingsTreeView.Nodes[0].Collapse(false);
-            userSettingsTreeView.Nodes[1].Collapse(false);
-            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[2];
+            userSettingsHandler.ShowBraille();
         }
 
         private void partsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            userSettingsTreeView.Focus();
-            userSettingsTreeView.ExpandAll();
-            userSettingsHandler.CollapseAllDetails();
-            // Select the "Parts" node under Music representation
-            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[0].Nodes[UserSettingsHandler.partsNodeIndex];
+            userSettingsHandler.ShowParts();
         }
 
         private void detailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            userSettingsTreeView.Focus();
-            userSettingsTreeView.ExpandAll();
-            userSettingsHandler.CollapseAllParts();
-            // Select the "Details" node under Music representation
-            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[0].Nodes[UserSettingsHandler.detailsNodeIndex];
+            userSettingsHandler.ShowDetails();
         }
         #endregion
     }
