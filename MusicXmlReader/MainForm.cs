@@ -544,7 +544,6 @@ namespace MusicXmlReader
         {
             userSettingsTreeView.Focus();
             userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[1]; //
-
         }
 
         private void brailleRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -553,38 +552,22 @@ namespace MusicXmlReader
             userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[2]; //
         }
 
-        // Items under the delimiter are represented by level 1 nodes in the tree
-
-        private void CollapseAllParts()
-        {
-            userSettingsTreeView.Nodes[0].Nodes[0].Collapse(); // Collapse Music.Parts
-            userSettingsTreeView.Nodes[1].Nodes[0].Collapse(); // Collapse Text.Parts
-            userSettingsTreeView.Nodes[2].Nodes[0].Collapse(); // Collapse Braille.Parts
-        }
-
-        private void CollapseAllDetails()
-        {
-            userSettingsTreeView.Nodes[0].Nodes[1].Collapse(); // Collapse Music.Details
-            userSettingsTreeView.Nodes[1].Nodes[1].Collapse(); // Collapse Text.Details
-            userSettingsTreeView.Nodes[2].Nodes[1].Collapse(); // Expand Braille.Details
-        }
-
         private void partsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             userSettingsTreeView.Focus();
             userSettingsTreeView.ExpandAll();
-            CollapseAllDetails();
+            userSettingsHandler.CollapseAllDetails();
             // Select the "Parts" node under Music representation
-            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[0].Nodes[0];
+            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[0].Nodes[UserSettingsHandler.partsNodeIndex];
         }
 
         private void detailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             userSettingsTreeView.Focus();
             userSettingsTreeView.ExpandAll();
-            CollapseAllParts();
+            userSettingsHandler.CollapseAllParts();
             // Select the "Details" node under Music representation
-            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[0].Nodes[1];
+            userSettingsTreeView.SelectedNode = userSettingsTreeView.Nodes[0].Nodes[UserSettingsHandler.detailsNodeIndex];
         }
         #endregion
     }
