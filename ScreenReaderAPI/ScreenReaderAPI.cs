@@ -46,10 +46,12 @@ namespace JSJ.ScreenReaderAPI
             screenReaderAPI = (is64Bit) ? (ScreenReaderAPI)JfwApiWrapper.Create() : FSAPIWrapper.Create();
 
             // Secondly check if NVDA is available
-            if (null == screenReaderAPI)
-            {
-                screenReaderAPI = (is64Bit) ? (ScreenReaderAPI)NvdaControlerClient64Wrapper.Create() : NvdaControlerClient32Wrapper.Create();
-            }
+            // NOTE ! For the time being the program crashes when running on NVDA, so in that case we just return a DummyScreenReader
+            // TO DO: Make the program run again on NVDA !
+            //if (null == screenReaderAPI)
+            //{
+            //    screenReaderAPI = (is64Bit) ? (ScreenReaderAPI)NvdaControlerClient64Wrapper.Create() : NvdaControlerClient32Wrapper.Create();
+            //}
 
             //
             // Insert checks for more screen readers here...
