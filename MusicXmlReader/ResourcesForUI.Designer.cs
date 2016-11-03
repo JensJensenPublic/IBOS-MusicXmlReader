@@ -358,6 +358,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All items.
+        /// </summary>
+        internal static string TreeView_All_Items {
+            get {
+                return ResourceManager.GetString("TreeView_All_Items", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Braille Music representation.
         /// </summary>
         internal static string TreeView_MusicAsBraille {
