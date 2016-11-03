@@ -373,6 +373,7 @@ namespace MusicXmlReader
         /// </summary>
         private void LoadListBoxTimes()
         {
+            int selectedIndex = listBoxTimes.SelectedIndex;  // Save index
             listBoxTimes.Items.Clear();
             foreach (string s in model.MetaInfoStrings)
             {
@@ -382,6 +383,8 @@ namespace MusicXmlReader
             {
                 listBoxTimes.Items.Add(eventDescription);
             }
+            // Restore index without exceeding values
+            listBoxTimes.SelectedIndex = Math.Min(selectedIndex, listBoxTimes.Items.Count); 
         }
 
         #endregion
