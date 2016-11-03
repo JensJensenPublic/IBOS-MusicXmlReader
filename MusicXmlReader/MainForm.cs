@@ -75,15 +75,22 @@ namespace MusicXmlReader
             exitToolStripMenuItem.ShortcutKeys = ShortcutHandler.exitApplication;
 
             // Children of editToolStripMenuItem
-            // NOTE! Use the same texts as used in the treeview to which these items refer!!
+            // Texts:  NOTE! Use the same texts as used in the treeview to which these items refer!!
             allItemsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_All_Items;
             musicRepresentationToolStripMenuItem.Text = "&"+ResourcesForUI.TreeView_MusicAsSound;
             textRepresentationToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsSpeech;
             brailleRepresentationToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsBraille;
             partsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsSound_Parts;
-            detailsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsSound_Details;            
+            detailsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsSound_Details;
+            // Shortcuts
+            allItemsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editAllItems;
+            musicRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editMusic;
+            textRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editText;
+            brailleRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editBraille;
+            partsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editParts;
+            detailsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editDetails;
 
-            // Children of  toolsToolStripMenuItem
+           // Children of  toolsToolStripMenuItem
             museScoreToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_MuseScore;
             sibeliusToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Sibelius;
             logfileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Logfile;

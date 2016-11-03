@@ -132,7 +132,14 @@ namespace MusicXmlReader
         static public readonly Keys exitApplication = ((Keys)((Keys.Alt | Keys.F4)));
 
         // EditToolStripMenuItem:
-        // 
+        static public readonly Keys editAllItems= ((Keys)((Keys.Control | Keys.A)));
+        static public readonly Keys editMusic   = ((Keys)((Keys.Control | Keys.M)));
+        static public readonly Keys editText    = ((Keys)((Keys.Control | Keys.T)));
+        static public readonly Keys editBraille = ((Keys)((Keys.Control | Keys.B)));
+        static public readonly Keys editParts   = ((Keys)((Keys.Control | Keys.S)));
+        static public readonly Keys editDetails = ((Keys)((Keys.Control | Keys.D)));
+
+
         // ViewToolStripMenuItem: 
         //
         // ToolsToolStripMenuItem: 
