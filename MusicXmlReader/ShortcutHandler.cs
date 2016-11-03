@@ -151,6 +151,16 @@ namespace MusicXmlReader
         static public readonly Keys startPlaying = ((Keys)((Keys.Control | Keys.S)));
         static public readonly Keys[] stopPlaying = new Keys[] { Keys.Space, Keys.Enter };
 
+        // UserSettingsTreeview:
+        static public readonly Keys checkAll   = ((Keys)((Keys.Control | Keys.C)));
+        static public readonly Keys uncheckAll = ((Keys)((Keys.Control | Keys.U)));
+        public bool IsTreeViewMultiControlShortcut(KeyEventArgs e, out bool newValue)
+        {
+            newValue = (e.KeyData == checkAll);
+            return ((e.KeyData == checkAll) || (e.KeyData == uncheckAll));
+        }
+
+
         private ShortcutHandler()
         { }
 

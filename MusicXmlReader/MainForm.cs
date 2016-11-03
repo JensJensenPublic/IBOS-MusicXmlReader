@@ -554,18 +554,15 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void userSettingsTreeView_KeyDown(object sender, KeyEventArgs e)
         {
-            Keys checkAll  = ((Keys)((Keys.Control | Keys.C)));
-            Keys uncheckAll = ((Keys)((Keys.Control | Keys.U)));
-
-            // We only handle these 2 specific keys
-            if (!((e.KeyData == checkAll) || (e.KeyData == uncheckAll))) return;
+            bool newValue;
+            // We only handle the shortcuts specified in shortCutHandler
+            if (!shortCutHandler.IsTreeViewMultiControlShortcut(e,out newValue)) return;
             // We only handle level 2 nodes
             if (2 != userSettingsTreeView.SelectedNode.Level) return;
-
-            bool newValue = (e.KeyData == checkAll); 
+ 
             string level2Text = userSettingsTreeView.SelectedNode.Text;
             string level1Text = userSettingsTreeView.SelectedNode.Parent.Text;
-            // Locate all nodes with same parent-name and same node-name
+            // Locate and check/uncheck all nodes with same parent-name and same node-name
             foreach (TreeNode level0Node in userSettingsTreeView.Nodes)
             {
                 foreach (TreeNode level1Node in level0Node.Nodes)
