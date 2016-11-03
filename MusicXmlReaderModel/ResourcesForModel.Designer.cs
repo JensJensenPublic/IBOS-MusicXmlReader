@@ -1483,6 +1483,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Meta information.
+        /// </summary>
+        internal static string UserSettings_ReaderNames_Metainformation {
+            get {
+                return ResourceManager.GetString("UserSettings_ReaderNames_Metainformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notations.
         /// </summary>
         internal static string UserSettings_ReaderNames_Notations {

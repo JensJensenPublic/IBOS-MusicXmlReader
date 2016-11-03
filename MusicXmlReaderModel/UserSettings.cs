@@ -50,10 +50,11 @@ namespace MusicXmlReaderModel
             NoteTypes =4,
             Notations =5,
             Lyrics = 6,
-            Divisions =7,
-            HarmonyCodes =8,
-            EndEvents =9,
-            NumberOfReaderSettings =10
+            MetaInformation = 7,
+            Divisions =8,
+            HarmonyCodes =9,
+            EndEvents =10,
+            NumberOfReaderSettings =11
         };
         public readonly string[] readerSettingsNames =
         {
@@ -64,6 +65,7 @@ namespace MusicXmlReaderModel
             ResourcesForModel.UserSettings_ReaderNames_NoteValues,      // "NodeVærdier",
             ResourcesForModel.UserSettings_ReaderNames_Notations,       // "Notationer",
             ResourcesForModel.UserSettings_ReaderNames_Lyrics,          // "Tekst"
+            ResourcesForModel.UserSettings_ReaderNames_Metainformation, // "Meta-information",
             ResourcesForModel.UserSettings_ReaderNames_Divisions,       // "Divisions",
             ResourcesForModel.UserSettings_ReaderNames_HarmonyCodes,    // "HarmoniCodes",
             ResourcesForModel.UserSettings_ReaderNames_EndEvents        // "EndEvents"
@@ -71,13 +73,14 @@ namespace MusicXmlReaderModel
 
         public bool[]            readerSettingsValues=
         {
-            true,
-            true,
+            true, 
+            true, 
             true,
             true, 
             true,
             true,
             true,
+            false,
             false,
             false,
             false

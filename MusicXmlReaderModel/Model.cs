@@ -543,7 +543,14 @@ namespace MusicXmlReaderModel
         {
             get
             {
-                return metaInfoStrings;
+                if (userSettings.GetReaderSettings(UserSettings.ReaderSettings.MetaInformation))
+                {
+                    return metaInfoStrings;
+                }
+                else
+                {
+                    return new List<string>(); // Return an empty string
+                }
             }
 
         }
