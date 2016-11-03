@@ -524,7 +524,8 @@ namespace MusicXmlReader
             Application.Exit();
         }
 
-
+        #region keyhandlers
+        
         /// <summary>
         /// Occurs when a key is pressed while listBoxTimes has focus
         /// </summary>
@@ -546,10 +547,49 @@ namespace MusicXmlReader
 
         }
 
+        /// <summary>
+        /// Occurs when a key is pressed while treeView has focus         
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void userSettingsTreeView_KeyDown(object sender, KeyEventArgs e)
+        {
+            Keys checkAll  = ((Keys)((Keys.Control | Keys.C)));
+            Keys uncheckAll = ((Keys)((Keys.Control | Keys.U)));
+
+            // We only handle these 2 specific keys
+            if (!((e.KeyData == checkAll) || (e.KeyData == uncheckAll))) return;
+            // We only handle level 2 nodes
+            if (2 != userSettingsTreeView.SelectedNode.Level) return;
+
+            bool newValue = (e.KeyData == checkAll); 
+            string level2Text = userSettingsTreeView.SelectedNode.Text;
+            string level1Text = userSettingsTreeView.SelectedNode.Parent.Text;
+            // Locate all nodes with same parent-name and same node-name
+            foreach (TreeNode level0Node in userSettingsTreeView.Nodes)
+            {
+                foreach (TreeNode level1Node in level0Node.Nodes)
+                {
+                    if (0 == string.Compare(level1Text, level1Node.Text))
+                    {
+                        foreach (TreeNode level2Node in level1Node.Nodes)
+                        {
+                            if (0 == string.Compare(level2Text, level2Node.Text))
+                            {
+                                level2Node.Checked = newValue;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #endregion keyhandlers
+
         #region Edit
 
         // Items above the delimiter line are represented by level 0 nodes in the tree
-  
+
 
         private void musicRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -582,6 +622,7 @@ namespace MusicXmlReader
         }
 
         #endregion
+
     }
 
 }

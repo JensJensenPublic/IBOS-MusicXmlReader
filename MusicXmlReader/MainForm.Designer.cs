@@ -266,6 +266,7 @@
             this.userSettingsTreeView.Name = "userSettingsTreeView";
             this.userSettingsTreeView.Size = new System.Drawing.Size(200, 420);
             this.userSettingsTreeView.TabIndex = 1;
+            this.userSettingsTreeView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userSettingsTreeView_KeyDown);
             // 
             // listBoxTimes
             // 
