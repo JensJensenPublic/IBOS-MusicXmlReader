@@ -29,13 +29,13 @@ namespace MusicXmlReader
         private TreeNode musicAsBrailleDetails;
 
         // The Level-0 nedes have the following fixed indices:
-        public const int MusicNodeIndex = 0;
-        public const int TextNodeIndex = 1;
-        public const int BrailleNodeIndex = 2;
+        private const int MusicNodeIndex = 0;
+        private const int TextNodeIndex = 1;
+        private const int BrailleNodeIndex = 2;
 
-        // The level-1 nodes Parts and Details are inserted into the level-0 nodes at xixed indices:
-        public const int partsNodeIndex = 0;
-        public const int detailsNodeIndex = 1;
+        // The level-1 nodes Parts and Details are inserted into the level-0 nodes at fixed indices:
+        private const int partsNodeIndex = 0;
+        private const int detailsNodeIndex = 1;
 
 
         private MainForm mainForm;
@@ -51,7 +51,7 @@ namespace MusicXmlReader
             }
         }
 
-        public TreeNode MusicAsSpeech
+        public TreeNode MusicAsText
         {
             get
             {

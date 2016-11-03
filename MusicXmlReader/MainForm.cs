@@ -436,16 +436,16 @@ namespace MusicXmlReader
 
         private void TurnOffSpeeshAndMusicBraille()
         {
-            savedSpeechState = userSettingsHandler.MusicAsSpeech.Checked;
+            savedSpeechState = userSettingsHandler.MusicAsText.Checked;
             savedMusicBrailleState = userSettingsHandler.MusicAsBraille.Checked;
-            userSettingsHandler.MusicAsSpeech.Checked = false;
+            userSettingsHandler.MusicAsText.Checked = false;
             userSettingsHandler.MusicAsBraille.Checked = false;
             listBoxTimes.Refresh();
         }
 
         private void RestoreSpeechAndMusicBraille()
         {
-            userSettingsHandler.MusicAsSpeech.Checked = savedSpeechState;
+            userSettingsHandler.MusicAsText.Checked = savedSpeechState;
             userSettingsHandler.MusicAsBraille.Checked = savedMusicBrailleState;
             listBoxTimes.Refresh();
         }
