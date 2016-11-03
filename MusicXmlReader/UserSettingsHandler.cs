@@ -20,9 +20,9 @@ namespace MusicXmlReader
         private TreeNode musicAsSoundVoices;
         private TreeNode musicAsSoundDetails;
 
-        private TreeNode musicAsSpeech;
-        private TreeNode musicAsSpeechVoices;
-        private TreeNode musicAsSpeechDetails;
+        private TreeNode musicAsText;
+        private TreeNode musicAsTextVoices;
+        private TreeNode musicAsTextDetails;
 
         private TreeNode musicAsBraille;
         private TreeNode musicAsBrailleVoices;
@@ -55,7 +55,7 @@ namespace MusicXmlReader
         {
             get
             {
-                return musicAsSpeech;
+                return musicAsText;
             }
         }
 
@@ -105,7 +105,7 @@ namespace MusicXmlReader
                 {
                     model.UserSettings.MusicAsSound = e.Node.Checked;
                 }
-                else if (e.Node.Equals(musicAsSpeech))
+                else if (e.Node.Equals(musicAsText))
                 {
                     model.UserSettings.MusicAsSpeech = e.Node.Checked;
                 }
@@ -187,9 +187,9 @@ namespace MusicXmlReader
             musicAsSoundVoices = musicAsSound.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Parts);
             musicAsSoundDetails = musicAsSound.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Details);
 
-            musicAsSpeech = treeView.Nodes.Insert(TextNodeIndex, ResourcesForUI.TreeView_MusicAsSpeech);
-            musicAsSpeechVoices = musicAsSpeech.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsSpeech_Parts);
-            musicAsSpeechDetails = musicAsSpeech.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSpeech_Details);
+            musicAsText = treeView.Nodes.Insert(TextNodeIndex, ResourcesForUI.TreeView_MusicAsSpeech);
+            musicAsTextVoices = musicAsText.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsSpeech_Parts);
+            musicAsTextDetails = musicAsText.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSpeech_Details);
 
             musicAsBraille = treeView.Nodes.Insert(BrailleNodeIndex ,ResourcesForUI.TreeView_MusicAsBraille);
             musicAsBrailleVoices = musicAsBraille.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsBraille_Parts);
@@ -222,7 +222,7 @@ namespace MusicXmlReader
         {
             this.
             LoadParts(musicAsSoundVoices, partList);
-            LoadParts(musicAsSpeechVoices, partList);
+            LoadParts(musicAsTextVoices, partList);
             LoadParts(musicAsBrailleVoices, partList);
         }
 
@@ -247,7 +247,7 @@ namespace MusicXmlReader
         {
             //this.userSettings = userSettings;
             LoadDetails(musicAsSoundDetails, userSettings.playerSettingsNames, model.UserSettings.playerSettingsValues);
-            LoadDetails(musicAsSpeechDetails,userSettings.readerSettingsNames, model.UserSettings.readerSettingsValues);
+            LoadDetails(musicAsTextDetails,userSettings.readerSettingsNames, model.UserSettings.readerSettingsValues);
             LoadDetails(musicAsBrailleDetails, userSettings.musicBrailleSettingsNames, model.UserSettings.musicBrailleSettingsValues);
         }
 
@@ -256,9 +256,9 @@ namespace MusicXmlReader
             // As default check all nodes at level 0 and 1;
             // The notes at level 2 are checked according to the default values set up by the model.
 
-            musicAsSpeech.Checked = true;
-            musicAsSpeechVoices.Checked = true;
-            musicAsSpeechDetails.Checked = true;
+            musicAsText.Checked = true;
+            musicAsTextVoices.Checked = true;
+            musicAsTextDetails.Checked = true;
 
             musicAsSound.Checked = true;
             musicAsSoundVoices.Checked = true;
@@ -282,7 +282,7 @@ namespace MusicXmlReader
         {
             treeView.Focus();
             musicAsSound.ExpandAll();
-            musicAsSpeech.Collapse(false);
+            musicAsText.Collapse(false);
             musicAsBraille.Collapse(false);
             treeView.SelectedNode = musicAsSound;
         }
@@ -290,10 +290,10 @@ namespace MusicXmlReader
         public void ShowText()
         {
             treeView.Focus();
-            musicAsSpeech.ExpandAll();
+            musicAsText.ExpandAll();
             musicAsSound.Collapse(false);
             musicAsBraille.Collapse(false);
-            treeView.SelectedNode = musicAsSpeech;
+            treeView.SelectedNode = musicAsText;
         }
 
         public void ShowBraille()
@@ -301,7 +301,7 @@ namespace MusicXmlReader
             treeView.Focus();
             treeView.Nodes[BrailleNodeIndex].ExpandAll();
             musicAsSound.Collapse(false);
-            musicAsSpeech.Collapse(false);
+            musicAsText.Collapse(false);
             treeView.SelectedNode = musicAsBraille;
         }
 
@@ -311,7 +311,7 @@ namespace MusicXmlReader
             treeView.Focus();
             treeView.ExpandAll();
             musicAsSound.Nodes[detailsNodeIndex].Collapse(); // Collapse Music.Details
-            musicAsSpeech.Nodes[detailsNodeIndex].Collapse(); // Collapse Text.Details
+            musicAsText.Nodes[detailsNodeIndex].Collapse(); // Collapse Text.Details
             musicAsBraille.Nodes[detailsNodeIndex].Collapse(); // Expand Braille.Details  
             // Select the "Parts" node under Music representation
             treeView.SelectedNode = musicAsSound.Nodes[UserSettingsHandler.partsNodeIndex];
@@ -322,7 +322,7 @@ namespace MusicXmlReader
             treeView.Focus();
             treeView.ExpandAll();
             musicAsSound.Nodes[partsNodeIndex].Collapse(); // Collapse Music.Parts
-            musicAsSpeech.Nodes[partsNodeIndex].Collapse(); // Collapse Text.Parts
+            musicAsText.Nodes[partsNodeIndex].Collapse(); // Collapse Text.Parts
             musicAsBraille.Nodes[partsNodeIndex].Collapse(); // Collapse Braille.Parts
             // Select the "Details" node under Music representation
             treeView.SelectedNode = musicAsSound.Nodes[UserSettingsHandler.detailsNodeIndex];
