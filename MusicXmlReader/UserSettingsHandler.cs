@@ -281,28 +281,28 @@ namespace MusicXmlReader
         public void ShowMusic()
         {
             treeView.Focus();
-            treeView.Nodes[MusicNodeIndex].ExpandAll();
-            treeView.Nodes[TextNodeIndex].Collapse(false);
-            treeView.Nodes[BrailleNodeIndex].Collapse(false);
-            treeView.SelectedNode = treeView.Nodes[MusicNodeIndex];
+            musicAsSound.ExpandAll();
+            musicAsSpeech.Collapse(false);
+            musicAsBraille.Collapse(false);
+            treeView.SelectedNode = musicAsSound;
         }
 
         public void ShowText()
         {
             treeView.Focus();
-            treeView.Nodes[TextNodeIndex].ExpandAll();
-            treeView.Nodes[MusicNodeIndex].Collapse(false);
-            treeView.Nodes[BrailleNodeIndex].Collapse(false);
-            treeView.SelectedNode = treeView.Nodes[TextNodeIndex];
+            musicAsSpeech.ExpandAll();
+            musicAsSound.Collapse(false);
+            musicAsBraille.Collapse(false);
+            treeView.SelectedNode = musicAsSpeech;
         }
 
         public void ShowBraille()
         {
             treeView.Focus();
             treeView.Nodes[BrailleNodeIndex].ExpandAll();
-            treeView.Nodes[MusicNodeIndex].Collapse(false);
-            treeView.Nodes[TextNodeIndex].Collapse(false);
-            treeView.SelectedNode = treeView.Nodes[BrailleNodeIndex];
+            musicAsSound.Collapse(false);
+            musicAsSpeech.Collapse(false);
+            treeView.SelectedNode = musicAsBraille;
         }
 
 
@@ -310,29 +310,29 @@ namespace MusicXmlReader
         {
             treeView.Focus();
             treeView.ExpandAll();
-            treeView.Nodes[MusicNodeIndex].Nodes[detailsNodeIndex].Collapse(); // Collapse Music.Details
-            treeView.Nodes[TextNodeIndex].Nodes[detailsNodeIndex].Collapse(); // Collapse Text.Details
-            treeView.Nodes[BrailleNodeIndex].Nodes[detailsNodeIndex].Collapse(); // Expand Braille.Details  
+            musicAsSound.Nodes[detailsNodeIndex].Collapse(); // Collapse Music.Details
+            musicAsSpeech.Nodes[detailsNodeIndex].Collapse(); // Collapse Text.Details
+            musicAsBraille.Nodes[detailsNodeIndex].Collapse(); // Expand Braille.Details  
             // Select the "Parts" node under Music representation
-            treeView.SelectedNode = treeView.Nodes[MusicNodeIndex].Nodes[UserSettingsHandler.partsNodeIndex];
+            treeView.SelectedNode = musicAsSound.Nodes[UserSettingsHandler.partsNodeIndex];
         }
 
         public void ShowDetails()
         {
             treeView.Focus();
             treeView.ExpandAll();
-            treeView.Nodes[MusicNodeIndex].Nodes[partsNodeIndex].Collapse(); // Collapse Music.Parts
-            treeView.Nodes[TextNodeIndex].Nodes[partsNodeIndex].Collapse(); // Collapse Text.Parts
-            treeView.Nodes[BrailleNodeIndex].Nodes[partsNodeIndex].Collapse(); // Collapse Braille.Parts
+            musicAsSound.Nodes[partsNodeIndex].Collapse(); // Collapse Music.Parts
+            musicAsSpeech.Nodes[partsNodeIndex].Collapse(); // Collapse Text.Parts
+            musicAsBraille.Nodes[partsNodeIndex].Collapse(); // Collapse Braille.Parts
             // Select the "Details" node under Music representation
-            treeView.SelectedNode = treeView.Nodes[MusicNodeIndex].Nodes[UserSettingsHandler.detailsNodeIndex];
+            treeView.SelectedNode = musicAsSound.Nodes[UserSettingsHandler.detailsNodeIndex];
         }
 
         public void ShowAllItems()
         {
             treeView.Focus();
             treeView.ExpandAll();
-            treeView.SelectedNode = treeView.Nodes[MusicNodeIndex].Nodes[UserSettingsHandler.detailsNodeIndex];
+            treeView.SelectedNode = musicAsSound.Nodes[UserSettingsHandler.detailsNodeIndex];
         }
 
         #endregion
