@@ -270,13 +270,13 @@ namespace MusicXmlReader
         }
 
 
-        public void ExpandSelectedNodes()
+        public void ExpandAllNodes()
         {
-            musicAsSound.Collapse(false); // Collapse the node showing the Sound representation and all its children
-            musicAsSpeech.Collapse(false); // Collapse the node showing the Speech representation and all its children
-            musicAsBraille.Collapse(false); // Collapse the node showing the Music Braille representation and all its children
+            treeView.ExpandAll();
         }
 
+        #region editHandlers 
+        // Handle clicks in the Edit menu by expanding and collapsing nodes in the treeView 
 
         public void ShowMusic()
         {
@@ -328,8 +328,15 @@ namespace MusicXmlReader
             treeView.SelectedNode = treeView.Nodes[MusicNodeIndex].Nodes[UserSettingsHandler.detailsNodeIndex];
         }
 
+        public void ShowAllItems()
+        {
+            treeView.Focus();
+            treeView.ExpandAll();
+            treeView.SelectedNode = treeView.Nodes[MusicNodeIndex].Nodes[UserSettingsHandler.detailsNodeIndex];
+        }
 
-        
+        #endregion
+
     }
 
 

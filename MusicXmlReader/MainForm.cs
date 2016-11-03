@@ -332,7 +332,7 @@ namespace MusicXmlReader
             // Load the Checkboxes controlled by a fixed number of settings statically defined in the Model.
             userSettingsHandler.LoadDetails(model.UserSettings);
             // Finally expand the tree
-            userSettingsHandler.ExpandSelectedNodes();
+            userSettingsHandler.ExpandAllNodes();
             //this.userSettingsTreeView.ExpandAll();
             userSettingsHandler.CheckSelectedNotes();
 
@@ -567,6 +567,12 @@ namespace MusicXmlReader
         {
             userSettingsHandler.ShowDetails();
         }
+  
+        private void allItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            userSettingsHandler.ShowAllItems();
+        }
+
         #endregion
     }
 
