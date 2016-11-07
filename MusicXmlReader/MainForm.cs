@@ -344,6 +344,8 @@ namespace MusicXmlReader
             //this.userSettingsTreeView.ExpandAll();
             userSettingsHandler.CheckSelectedNotes();
 
+            LoadTextBoxMessage();
+
             // Let the Model do the hard work of transforming to e timed representation.
             LoadListBoxTimes();
 
@@ -364,7 +366,17 @@ namespace MusicXmlReader
                 LoadListBoxTimes();
             }
         }
-        
+
+        private void LoadTextBoxMessage()
+        {
+            textBoxMessage.Clear();
+            foreach (string s in model.MetaInfoStrings)
+            {
+                textBoxMessage.AppendText(s + "    ");
+            }
+
+        }
+
 
         /// <summary>
         /// Load the main listbox with information fetched from the Model
