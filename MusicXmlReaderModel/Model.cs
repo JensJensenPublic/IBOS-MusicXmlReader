@@ -596,9 +596,9 @@ namespace MusicXmlReaderModel
         //*****************************************************************************************
 
  
-        public void StartPlayingPoly()
+        public void StartPlayingPoly(int startIndex)
         {
-            musicPlayer.Reset(numberOfParts);
+            musicPlayer.Reset(numberOfParts,startIndex);
             musicPlayer.StartPlayingPoly();
         }
 

@@ -368,17 +368,19 @@ namespace MusicXmlReader
 
         /// <summary>
         /// Load the main listbox with information fetched from the Model
-        /// First all metainformation (Composer, Author, etc)
+        /// First all metainformation (Composer, Author, etc) NO ! Se below !!
         /// Then all the events describing the music sheet itself
         /// </summary>
         private void LoadListBoxTimes()
         {
             int selectedIndex = listBoxTimes.SelectedIndex;  // Save index
             listBoxTimes.Items.Clear();
-            foreach (string s in model.MetaInfoStrings)
-            {
-                listBoxTimes.Items.Add(s);
-            }
+            // Move the Meta information somewhere else !
+            // We only want EventDescriptions here !
+            //foreach (string s in model.MetaInfoStrings)
+            //{
+            //    listBoxTimes.Items.Add(s);
+            //}
             foreach (EventDescription eventDescription in model.EventDescriptionList.Events)
             {
                 listBoxTimes.Items.Add(eventDescription);
@@ -472,7 +474,7 @@ namespace MusicXmlReader
                     musicPlayerState = MusicPlayerStateEnum.stopped;            
                     break;                 
                 case MusicPlayerStateEnum.stopped:          
-                    model.StartPlayingPoly();
+                    model.StartPlayingPoly(listBoxTimes.SelectedIndex); // Start at selected index
                     musicPlayerState = MusicPlayerStateEnum.running;
                     // NOTE: The use of TurnOffSpeeshAndMusicBraille() and RestoreSpeechAndMusicBraille() is a temporary HACK
                     // TO DO: Find a real solution, allowing the listbox to show visible text without JAWS reading and Brailling it !!

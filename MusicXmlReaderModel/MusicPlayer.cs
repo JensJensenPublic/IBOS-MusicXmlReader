@@ -24,10 +24,11 @@ namespace MusicXmlReaderUI
         IObjectCollection objects = null;
         // ListBox listBoxPoly = null;
         System.Diagnostics.Stopwatch stopWatch = null;
-        long nextActionTime;    // For autoplaying monophonic music 
+        //long nextActionTime;    // For autoplaying monophonic music 
         long firstStopWatchTime = -1;    // For autoplaying polyphonic music 
         int tempo = 60 ; // Quarter notes per minute.  Use 60 as a default
         int numberOfParts;
+        int startIndex;
         List<MidiNote> notesCurrentlyPlaying; // Contains all notes currently playing. Used when playing is stopped by user
 
         
@@ -142,61 +143,62 @@ namespace MusicXmlReaderUI
             return;
         }
 
-        /// <summary>
-        /// Simple timing-implementation:
-        /// </summary>
-        /// <param name="noteElement"></param>
-        /// <returns></returns>
-        private int Duration(NoteElement noteElement)
-        {
-            float duration = noteElement.Duration;
-            float divisions = noteElement.Divisions;
-            float tempo = this.tempo;
-            float durasionInUnitOfMeasures = duration / divisions;
-            float durationInUnitOfMilliSeconds = userSettings.userSlowDown * 60 * 1000 * durasionInUnitOfMeasures / tempo;
-            return (int)durationInUnitOfMilliSeconds;
-        }
+        ///// <summary>
+        ///// Simple timing-implementation:
+        ///// </summary>
+        ///// <param name="noteElement"></param>
+        ///// <returns></returns>
+        //private int Duration(NoteElement noteElement)
+        //{
+        //    float duration = noteElement.Duration;
+        //    float divisions = noteElement.Divisions;
+        //    float tempo = this.tempo;
+        //    float durasionInUnitOfMeasures = duration / divisions;
+        //    float durationInUnitOfMilliSeconds = userSettings.userSlowDown * 60 * 1000 * durasionInUnitOfMeasures / tempo;
+        //    return (int)durationInUnitOfMilliSeconds;
+        //}
 
 
-        /// <summary>
-        /// Play a single, monophonic note
-        /// </summary>
-        /// <param name="noteElement"></param>
-        private void Play(NoteElement noteElement)
-        {
+        ///// <summary>
+        ///// Play a single, monophonic note
+        ///// </summary>
+        ///// <param name="noteElement"></param>
+        //private void Play(NoteElement noteElement)
+        //{
 
-            if (0 == nextActionTime)
-            {
-                // We  play the first note or pause immediately but remember when we did it.
-                nextActionTime = stopWatch.ElapsedMilliseconds;
-            }
-            else
-            {
-                long sleep = nextActionTime - stopWatch.ElapsedMilliseconds;
-                sleep = Math.Max(0, sleep); // Hack to avoid crash 
-                System.Threading.Thread.Sleep((int)sleep);
-            }
+        //    if (0 == nextActionTime)
+        //    {
+        //        // We  play the first note or pause immediately but remember when we did it.
+        //        nextActionTime = stopWatch.ElapsedMilliseconds;
+        //    }
+        //    else
+        //    {
+        //        long sleep = nextActionTime - stopWatch.ElapsedMilliseconds;
+        //        sleep = Math.Max(0, sleep); // Hack to avoid crash 
+        //        System.Threading.Thread.Sleep((int)sleep);
+        //    }
 
-            if (!noteElement.TieStop)
-            {
-                if (null != latestNotePlayed)
-                {
-                    latestNotePlayed.StopPlaying(midiOut);
-                }
+        //    if (!noteElement.TieStop)
+        //    {
+        //        if (null != latestNotePlayed)
+        //        {
+        //            latestNotePlayed.StopPlaying(midiOut);
+        //        }
 
-                if (!noteElement.IsPause)
-                {
-                    // This is a playable note, not a pause !
-                    latestNotePlayed = new MidiNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, 127, midiOut);
-                }
-            }
-            nextActionTime += Duration(noteElement);
-        }
+        //        if (!noteElement.IsPause)
+        //        {
+        //            // This is a playable note, not a pause !
+        //            latestNotePlayed = new MidiNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, 127, midiOut);
+        //        }
+        //    }
+        //    nextActionTime += Duration(noteElement);
+        //}
 
 
-        public void Reset(int numberOfParts)
+        public void Reset(int numberOfParts,int startIndex)
         {
             this.numberOfParts = numberOfParts;
+            this.startIndex = (startIndex < 0) ? 0 : startIndex;
         }
 
 
@@ -330,9 +332,10 @@ namespace MusicXmlReaderUI
             string typeName = selectedObject.GetType().Name;
             switch (typeName)
             {
-                case "NoteElement":     Play(selectedObject as NoteElement); break;
+                //case "NoteElement":     Play(selectedObject as NoteElement); break;
                 case "EventDescription":Play(selectedObject as EventDescription); break;
                 case "SoundElement":    this.tempo = (selectedObject as SoundElement).GetTempo(); break;
+                case "NoteElement":
                 case "MeasureElement":
                 case "ScorePartElement":
                 case "PartElement":
@@ -380,12 +383,15 @@ namespace MusicXmlReaderUI
             System.Threading.Thread.Sleep(1000); // Allow Screanreader to complete initial actions
             this.stopWatch = new System.Diagnostics.Stopwatch();
             this.stopWatch.Start();
-            this.nextActionTime = 0;
+            //this.nextActionTime = 0;
             this.firstStopWatchTime = stopWatch.ElapsedMilliseconds;
             notesCurrentlyPlaying = new List<MidiNote>();
+         
+            //this.nextActionTime = (objects.GetObjectAtIndex(startIndex) as EventDescription).StartTime; // Monophoinic
+            this.musicXmlTimeOffset = (objects.GetObjectAtIndex(this.startIndex) as EventDescription).StartTime;
             try
             {
-                for (int i = 0; ((i < objects.GetNumberOfObjects()) && (playing)); i++)
+                for (int i = this.startIndex; ((i < objects.GetNumberOfObjects()) && (playing)); i++)
                 {
                     object o = objects.GetObjectAtIndex(i); // listBox.Items[i];
                     AutoPlay(o); // Play the next note, using the correct timing!
