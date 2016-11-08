@@ -100,12 +100,7 @@ namespace MusicXmlReaderModel
 
         public enum PlayerSettings { MeasureBeats = 0, Harmonies = 1,NumberOfPlayerSettings=2}
         public readonly string[] playerSettingsNames = new string[(int)PlayerSettings.NumberOfPlayerSettings];
-        //{
-        //    ResourcesForModel.UserSettings_PlayerNames_Beats,       //"TaktSlag",
-        //    ResourcesForModel.UserSettings_PlayerNames_Harmonies    //"Harmonier"
-        //};
         public bool[] playerSettingsValues = new bool[(int)PlayerSettings.NumberOfPlayerSettings];
-//            { false, false };
 
         private void InitPlayerSetting(PlayerSettings setting, string name, bool value)
         {
@@ -134,15 +129,7 @@ namespace MusicXmlReaderModel
 
         public enum MusicBrailleSettings { MeasureNumbers = 0, Harmonies = 1, Notes = 2,  Notations = 3,  NumberOfMusicBrailleSettings = 4 };
         public readonly string[] musicBrailleSettingsNames = new string[(int)MusicBrailleSettings.NumberOfMusicBrailleSettings];
-        //{
-        //    ResourcesForModel.UserSettings_BrailleNames_MeasureNumbers, //"TaktNumre",
-        //    ResourcesForModel.UserSettings_BrailleNames_Harmonies,      //"Harmonier",
-        //    ResourcesForModel.UserSettings_BrailleNames_Notes,          //"Noder",
-        //    ResourcesForModel.UserSettings_BrailleNames_Notations       //"Notationer"
-        //};
-
         public bool[] musicBrailleSettingsValues = new bool[(int)MusicBrailleSettings.NumberOfMusicBrailleSettings];
-        //    { false, false, true, true };
 
         private void InitMusicBrailleSetting(MusicBrailleSettings setting, string name, bool value)
         {
