@@ -159,6 +159,7 @@ namespace MusicXmlReader
             newValue = (e.KeyData == checkAll);
             return ((e.KeyData == checkAll) || (e.KeyData == uncheckAll));
         }
+        static public readonly Keys listBoxFocus = (Keys)(Keys.Control | Keys.L);
 
 
         private ShortcutHandler()

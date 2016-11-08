@@ -573,6 +573,12 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void userSettingsTreeView_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.KeyData == ShortcutHandler.listBoxFocus)
+            {
+                listBoxTimes.Focus(); // Easy way to move the focus to the main listbox
+                return;
+            }
+
             bool newValue;
             // We only handle the shortcuts specified in shortCutHandler
             if (!shortCutHandler.IsTreeViewMultiControlShortcut(e,out newValue)) return;
