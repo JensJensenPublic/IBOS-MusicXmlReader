@@ -485,12 +485,14 @@ namespace MusicXmlReader
                     model.StopPlaying();                 
                     musicPlayerState = MusicPlayerStateEnum.stopped;            
                     break;                 
-                case MusicPlayerStateEnum.stopped:          
-                    model.StartPlayingPoly(listBoxTimes.SelectedIndex); // Start at selected index
-                    musicPlayerState = MusicPlayerStateEnum.running;
-                    // NOTE: The use of TurnOffSpeeshAndMusicBraille() and RestoreSpeechAndMusicBraille() is a temporary HACK
-                    // TO DO: Find a real solution, allowing the listbox to show visible text without JAWS reading and Brailling it !!
-                    TurnOffSpeeshAndMusicBraille(); // Turn off AFTER starting to play in order to avoid playing extra sounds. 
+                case MusicPlayerStateEnum.stopped:
+                    if (model.StartPlayingPoly(listBoxTimes.SelectedIndex))// Start at selected index
+                    {
+                        musicPlayerState = MusicPlayerStateEnum.running;
+                        // NOTE: The use of TurnOffSpeeshAndMusicBraille() and RestoreSpeechAndMusicBraille() is a temporary HACK
+                        // TO DO: Find a real solution, allowing the listbox to show visible text without JAWS reading and Brailling it !!
+                        TurnOffSpeeshAndMusicBraille(); // Turn off AFTER starting to play in order to avoid playing extra sounds. 
+                    }
                     break;
                 case MusicPlayerStateEnum.unknown:
                     break; // Maybe we will need this later ?

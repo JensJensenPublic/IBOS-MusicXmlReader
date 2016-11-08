@@ -596,10 +596,23 @@ namespace MusicXmlReaderModel
         //*****************************************************************************************
 
  
-        public void StartPlayingPoly(int startIndex)
+        public bool StartPlayingPoly(int startIndex)
         {
+            // We need an index to start at and at least 1 part to play ! 
+            if (-1 == startIndex) 
+            {
+                if (0 == numberOfParts)
+                {
+                    return false;
+                }
+                else
+                {
+                    startIndex = 0; // Start at the beginning
+                }
+            }
             musicPlayer.Reset(numberOfParts,startIndex);
             musicPlayer.StartPlayingPoly();
+            return true;
         }
 
         public void StopPlaying()
