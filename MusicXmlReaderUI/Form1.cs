@@ -256,7 +256,7 @@ namespace MusicXmlReaderUI
 
         private void butonPlayPoly_Click(object sender, EventArgs e)
         {
-            model.StartPlayingPoly();
+            model.StartPlayingPoly(0);
         }
 
 
@@ -581,7 +581,7 @@ namespace MusicXmlReaderUI
 
         private void toolStripMenuItemStart_Click(object sender, EventArgs e)
         {
-            model.StartPlayingPoly();
+            model.StartPlayingPoly(0);
         }
 
         private void toolStripMenuItemPause_Click(object sender, EventArgs e)

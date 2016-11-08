@@ -40,7 +40,10 @@ namespace MusicXmlReaderModel
         // readEndEvents;
 
 
+        //*********************************************************
         // Global Reader Settings settings (for all parts)
+        //*********************************************************
+
         public enum ReaderSettings
         {
             MeasureNumbers =0 ,
@@ -56,36 +59,32 @@ namespace MusicXmlReaderModel
             EndEvents =10,
             NumberOfReaderSettings =11
         };
-        public readonly string[] readerSettingsNames =
-        {
-            ResourcesForModel.UserSettings_ReaderNames_MeasureNumbers,  // "TaktNumre",
-            ResourcesForModel.UserSettings_ReaderNames_Harmonies,       // "Harmonier",
-            ResourcesForModel.UserSettings_ReaderNames_Notes,           // "Noder",
-            ResourcesForModel.UserSettings_ReaderNames_Octaves,         // "Oktaver",
-            ResourcesForModel.UserSettings_ReaderNames_NoteValues,      // "NodeVærdier",
-            ResourcesForModel.UserSettings_ReaderNames_Notations,       // "Notationer",
-            ResourcesForModel.UserSettings_ReaderNames_Lyrics,          // "Tekst"
-            ResourcesForModel.UserSettings_ReaderNames_Metainformation, // "Meta-information",
-            ResourcesForModel.UserSettings_ReaderNames_Divisions,       // "Divisions",
-            ResourcesForModel.UserSettings_ReaderNames_HarmonyCodes,    // "HarmoniCodes",
-            ResourcesForModel.UserSettings_ReaderNames_EndEvents        // "EndEvents"
-        };
+        
 
-        public bool[]            readerSettingsValues=
+        public readonly string[] readerSettingsNames  = new string[(int)ReaderSettings.NumberOfReaderSettings];
+        public bool[] readerSettingsValues = new bool[(int)ReaderSettings.NumberOfReaderSettings];
+
+        private void InitReaderSetting(ReaderSettings setting , string name, bool value )
         {
-            true, 
-            true, 
-            true,
-            true, 
-            true,
-            true,
-            true,
-            true,
-            false,
-            false,
-            false
-        };
- 
+            readerSettingsNames[(int) setting] = name;
+            readerSettingsValues[(int)setting] = value;
+        }
+        
+        private void InitReaderSettings()
+        {
+            InitReaderSetting(ReaderSettings.MeasureNumbers, ResourcesForModel.UserSettings_ReaderNames_MeasureNumbers, true);  // "TaktNumre",
+            InitReaderSetting(ReaderSettings.Harmonies,      ResourcesForModel.UserSettings_ReaderNames_Harmonies, true);       // "Harmonier",
+            InitReaderSetting(ReaderSettings.Notes,          ResourcesForModel.UserSettings_ReaderNames_Notes, true);           // "Noder",
+            InitReaderSetting(ReaderSettings.NoteOctaves,    ResourcesForModel.UserSettings_ReaderNames_Octaves, true);         // "Oktaver",
+            InitReaderSetting(ReaderSettings.NoteTypes,      ResourcesForModel.UserSettings_ReaderNames_NoteValues, true);      // "NodeVærdier",
+            InitReaderSetting(ReaderSettings.Notations,      ResourcesForModel.UserSettings_ReaderNames_Notations, true);       // "Notationer",
+            InitReaderSetting(ReaderSettings.Lyrics,         ResourcesForModel.UserSettings_ReaderNames_Lyrics, true);          // "Tekst"
+            InitReaderSetting(ReaderSettings.MetaInformation,ResourcesForModel.UserSettings_ReaderNames_Metainformation, true); // "Meta-information",
+            InitReaderSetting(ReaderSettings.Divisions,      ResourcesForModel.UserSettings_ReaderNames_Divisions, false);      // "Divisions",
+            InitReaderSetting(ReaderSettings.HarmonyCodes,   ResourcesForModel.UserSettings_ReaderNames_HarmonyCodes, false);   // "HarmoniCodes",
+            InitReaderSetting(ReaderSettings.EndEvents,      ResourcesForModel.UserSettings_ReaderNames_EndEvents, false);      // "EndEvents"
+        }
+        
         public bool GetReaderSettings(ReaderSettings i)
         {
             return readerSettingsValues[(int)i];
@@ -95,16 +94,31 @@ namespace MusicXmlReaderModel
             readerSettingsValues[(int)i] = b;
         }
 
-        
+        //*****************************************************************************************
         // Global Player Settings (for all parts)
+        //*****************************************************************************************
+
         public enum PlayerSettings { MeasureBeats = 0, Harmonies = 1,NumberOfPlayerSettings=2}
-        public readonly string[] playerSettingsNames =
-            {
-            ResourcesForModel.UserSettings_PlayerNames_Beats,       //"TaktSlag",
-            ResourcesForModel.UserSettings_PlayerNames_Harmonies    //"Harmonier"
-        };
-        public bool[] playerSettingsValues = { false, false };
-  
+        public readonly string[] playerSettingsNames = new string[(int)PlayerSettings.NumberOfPlayerSettings];
+        //{
+        //    ResourcesForModel.UserSettings_PlayerNames_Beats,       //"TaktSlag",
+        //    ResourcesForModel.UserSettings_PlayerNames_Harmonies    //"Harmonier"
+        //};
+        public bool[] playerSettingsValues = new bool[(int)PlayerSettings.NumberOfPlayerSettings];
+//            { false, false };
+
+        private void InitPlayerSetting(PlayerSettings setting, string name, bool value)
+        {
+            playerSettingsNames[(int)setting] = name;
+            playerSettingsValues[(int)setting] = value;
+        }
+
+        private void InitPlayerSettings()
+        {
+            InitPlayerSetting(PlayerSettings.MeasureBeats, ResourcesForModel.UserSettings_PlayerNames_Beats, false);  // "Taktslag",
+            InitPlayerSetting(PlayerSettings.Harmonies, ResourcesForModel.UserSettings_PlayerNames_Harmonies, false);  // "Harmonier",
+        }
+
         public bool GetPlayerSettings(PlayerSettings i)
         {
             return playerSettingsValues[(int)i];
@@ -114,19 +128,36 @@ namespace MusicXmlReaderModel
             playerSettingsValues[(int)i] = b;
         }
 
- 
+        //*****************************************************************************************
         // Global Music Braille Settings settings (for all parts)
-        public enum MusicBrailleSettings { MeasureNumbers = 0, Harmonies = 1, Notes = 2,  Notations = 3,  NumberOfReaderSettings = 4 };
-        public readonly string[] musicBrailleSettingsNames =
+        //*****************************************************************************************
+
+        public enum MusicBrailleSettings { MeasureNumbers = 0, Harmonies = 1, Notes = 2,  Notations = 3,  NumberOfMusicBrailleSettings = 4 };
+        public readonly string[] musicBrailleSettingsNames = new string[(int)MusicBrailleSettings.NumberOfMusicBrailleSettings];
+        //{
+        //    ResourcesForModel.UserSettings_BrailleNames_MeasureNumbers, //"TaktNumre",
+        //    ResourcesForModel.UserSettings_BrailleNames_Harmonies,      //"Harmonier",
+        //    ResourcesForModel.UserSettings_BrailleNames_Notes,          //"Noder",
+        //    ResourcesForModel.UserSettings_BrailleNames_Notations       //"Notationer"
+        //};
+
+        public bool[] musicBrailleSettingsValues = new bool[(int)MusicBrailleSettings.NumberOfMusicBrailleSettings];
+        //    { false, false, true, true };
+
+        private void InitMusicBrailleSetting(MusicBrailleSettings setting, string name, bool value)
         {
-            ResourcesForModel.UserSettings_BrailleNames_MeasureNumbers, //"TaktNumre",
-            ResourcesForModel.UserSettings_BrailleNames_Harmonies,      //"Harmonier",
-            ResourcesForModel.UserSettings_BrailleNames_Notes,          //"Noder",
-            ResourcesForModel.UserSettings_BrailleNames_Notations       //"Notationer"
-        };
+            musicBrailleSettingsNames[(int)setting] = name;
+            musicBrailleSettingsValues[(int)setting] = value;
+        }
 
-        public bool[] musicBrailleSettingsValues = { false, false, true, true };
-
+        private void InitMusicBrailleSettings()
+        {
+            InitMusicBrailleSetting(MusicBrailleSettings.MeasureNumbers, ResourcesForModel.UserSettings_BrailleNames_MeasureNumbers,false);//"TaktNumre",
+            InitMusicBrailleSetting(MusicBrailleSettings.Harmonies, ResourcesForModel.UserSettings_BrailleNames_Harmonies,false); //"Harmonier",
+            InitMusicBrailleSetting(MusicBrailleSettings.Notes, ResourcesForModel.UserSettings_BrailleNames_Notes,true);  //"Noder",
+            InitMusicBrailleSetting(MusicBrailleSettings.Notations, ResourcesForModel.UserSettings_BrailleNames_Notations,true);   //"Notationer"
+        }
+        
         public bool GetMusicBrailleSettings(MusicBrailleSettings i)
         {
             return musicBrailleSettingsValues[(int)i];
@@ -186,7 +217,7 @@ namespace MusicXmlReaderModel
 
 
         /// <summary>
-        /// Private constructor, used by the Crate() method
+        /// Private constructor, used by the Create() method
         /// </summary>
         /// <param name="node"></param>
         private UserSettings(int numberOfParts)
@@ -194,6 +225,10 @@ namespace MusicXmlReaderModel
             partsToPlay = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
             partsToRead = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
             partsToBraille = new bool[numberOfParts];    // Must be done here because numberUfParts is not a constant.
+            InitReaderSettings();
+            InitPlayerSettings();
+            InitMusicBrailleSettings();
+
             userSlowDown = 1.0F;
             if (((int)ReaderSettings.NumberOfReaderSettings != readerSettingsNames.Length)
             || ((int)ReaderSettings.NumberOfReaderSettings  != readerSettingsValues.Length)
