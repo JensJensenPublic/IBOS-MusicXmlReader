@@ -598,7 +598,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         private NoteTypeEnum GetNoteDuration()
         {
-            const string functionName = "NoteElement.GetNoteDuration";
+            const string functionName = "GetNoteDuration";
             // const string ignoreText   = "Ignoring unknown note type because"; 
             if (noteDuration != NoteTypeEnum.unknown)
             {
@@ -617,25 +617,41 @@ namespace MusicXmlReaderModel
                 return NoteTypeEnum.measure; // Assume it is a full measure rest even if not specified!
             }
 
-            int quotient = duration / divisions;
-            int remainder = duration % divisions;
-            if ((0 == remainder) && (quotient > 1) && ( quotient == ( 4 * currentTimeElement.Beats) / currentTimeElement.BeatType))
+            // The duration element is an integer that represents a note’s duration in terms of divisions per quarter note.
+            // The divisions element indicates how many divisions per quarter note are used to indicate a note's duration
+            // Check if the duration of the node is exactly a full measure, taking in acount the beattype:
+            int nominator = duration * currentTimeElement.BeatType;
+            int denominator = divisions * 4;
+            int quotient = nominator / denominator;
+            int remainder = nominator % denominator;
+            //int quotient = duration / divisions;
+            //int remainder = duration % divisions;
+            if ((0 == remainder) && (quotient > 1) && ( quotient == currentTimeElement.Beats) )
             {
-                //Logger.LogOnce(string.Format("{0}: {1} because ( duration={2} divisions={3} beats={4} beatType={5} ). Setting to 'full measure'",
-                //                              functionName, // 0
-                //                              ignoreText,   // 1
-                //                              duration,     // 2
-                //                              divisions,    // 3
-                //                              currentTimeElement.Beats,     // 4
-                //                              currentTimeElement.BeatType   // 5
-                //                              ));
+#if true
+                Logger.LogOnce(string.Format("{0}:{1}( duration={2} divisions={3} beats={4} beatType={5} ). Setting to 'full measure'",
+                                              className,    // 0
+                                              functionName, // 1
+                                              duration,     // 2
+                                              divisions,    // 3
+                                              currentTimeElement.Beats,     // 4
+                                              currentTimeElement.BeatType   // 5
+                                              ));
+#endif
                 return NoteTypeEnum.measure;
             }
   
             // We can not fix the note type. Generate a line containing appropriate logging information.
-            string s = string.Format("{0}: Unknown note type in {1}", functionName, ToDebugString());
-            Logger.Log(s);
-
+            // string s = string.Format("{0}: Unknown note type in {1}", functionName, ToDebugString());
+            //Logger.Log(s);
+            Logger.LogOnce(string.Format("{0}:{1}( duration={2} divisions={3} beats={4} beatType={5} ). Failed to determine noteDuration",
+                                          className,    // 0
+                                          functionName, // 1
+                                          duration,     // 2
+                                          divisions,    // 3
+                                          currentTimeElement.Beats,     // 4
+                                          currentTimeElement.BeatType   // 5
+                                          ));
             return noteDuration; // No change
         }
 
