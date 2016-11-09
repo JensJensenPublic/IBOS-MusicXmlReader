@@ -149,7 +149,7 @@ namespace MusicXmlReaderUI
             Console.WriteLine(string.Format("Model.Create {0}", (model != null) ? "succeeded" : "failed"));
             if (null == model) return;
 
-            string testFileDirName = @"C:\Users\Jens\Dropbox\Root\Visual Studio 2015\Projects\MusicXmlReaderUI\MusicXmlReaderUI\bin\Debug\MusicXml samples";
+            string testFileDirName = @"C:\Users\Jens\Dropbox\Root\Visual Studio 2015\Projects\MusicXmlReaderUI\MusicXmlReader\bin\Debug\MusicXml samples";
 
             // Recurse through all directories and load all musicXml files found
 
