@@ -16,6 +16,7 @@ namespace MusicXmlReaderModel
         private int chromaticValue = 0;
         private int octaveChangeValue = 0;
         private bool doubleValue = false; 
+        private int staffNumberAttribute = 0 ; // 0 "means all staffs for this part"
 
         /// <summary>
         /// Prevent construction
@@ -29,8 +30,22 @@ namespace MusicXmlReaderModel
         /// <param name="node"></param>
         private TransposeElement(XmlNode node)
         {
-             
+
             const string functionName = "TransposeElement()";
+
+            // Dig out attributes
+            foreach (XmlAttribute a in node.Attributes)
+            {
+
+                switch (a.Name)
+                {
+                    case "number": Utilities.Parse(a.Value, ref staffNumberAttribute, 0, 10,"", false); break; // 0 and 10 are just guesses
+                    default:
+                        Logger.LogOnce(string.Format("{0}.{1} Unknown Attribute.Name={0}", className,functionName,a.Name)); break;
+                }
+            }
+
+            // Dig out Elements
             foreach (XmlNode n in node.ChildNodes)
             {
                 switch (n.Name)
