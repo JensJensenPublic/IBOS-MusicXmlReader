@@ -264,16 +264,16 @@
             this.userSettingsTreeView.CheckBoxes = true;
             this.userSettingsTreeView.Location = new System.Drawing.Point(10, 60);
             this.userSettingsTreeView.Name = "userSettingsTreeView";
-            this.userSettingsTreeView.Size = new System.Drawing.Size(200, 420);
+            this.userSettingsTreeView.Size = new System.Drawing.Size(250, 420);
             this.userSettingsTreeView.TabIndex = 1;
             this.userSettingsTreeView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userSettingsTreeView_KeyDown);
             // 
             // listBoxTimes
             // 
             this.listBoxTimes.FormattingEnabled = true;
-            this.listBoxTimes.Location = new System.Drawing.Point(220, 60);
+            this.listBoxTimes.Location = new System.Drawing.Point(265, 60);
             this.listBoxTimes.Name = "listBoxTimes";
-            this.listBoxTimes.Size = new System.Drawing.Size(993, 420);
+            this.listBoxTimes.Size = new System.Drawing.Size(950, 420);
             this.listBoxTimes.TabIndex = 0;
             this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
             this.listBoxTimes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxTimes_KeyDown);
@@ -282,7 +282,7 @@
             // 
             this.buttonStart.Location = new System.Drawing.Point(13, 27);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(197, 23);
+            this.buttonStart.Size = new System.Drawing.Size(250, 23);
             this.buttonStart.TabIndex = 2;
             this.buttonStart.Text = "ButtonStart";
             this.buttonStart.UseVisualStyleBackColor = true;
@@ -315,10 +315,10 @@
             // 
             // textBoxMessage
             // 
-            this.textBoxMessage.Location = new System.Drawing.Point(220, 28);
+            this.textBoxMessage.Location = new System.Drawing.Point(265, 28);
             this.textBoxMessage.Name = "textBoxMessage";
             this.textBoxMessage.ReadOnly = true;
-            this.textBoxMessage.Size = new System.Drawing.Size(993, 20);
+            this.textBoxMessage.Size = new System.Drawing.Size(950, 20);
             this.textBoxMessage.TabIndex = 7;
             this.textBoxMessage.TabStop = false;
             // 
