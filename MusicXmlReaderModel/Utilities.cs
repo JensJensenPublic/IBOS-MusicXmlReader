@@ -400,6 +400,11 @@ namespace MusicXmlReaderModel
             return true;
         }
 
+        public static bool RunExeWithUrlArgument(string url)
+        {
+            return RunExeWithArgument("iexplorer.exe", url);
+        }
+
 
         /// <summary>
         /// Attempts to start an external program using a single filename as argument
@@ -410,37 +415,57 @@ namespace MusicXmlReaderModel
         /// <returns>true <==> succaee</returns>
         public static bool RunExeWithFileArgument(string exeFileName, string argFileName)
         {
+            // Check that the File exists
             if (!System.IO.File.Exists(argFileName))
             {
                 Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.UnspecifiedMusicXmlFile,"", "");
                 return false;
             }
-            return RunExeWithFileArgument(exeFileName, argFileName, false);
+            return RunExeWithArgument(exeFileName, argFileName);
         }
 
-        internal static bool RunExeWithDirArgument(string exeFileName, string argFileName)
+                internal static bool RunExeWithDirArgument(string exeFileName, string argFileName)
         {
+            // Check that the directory exists
             if (!System.IO.Directory.Exists(argFileName))
             {
                 Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.DirectoryNotFound, "", "");
                 return false;
             }
-            return RunExeWithFileArgument(exeFileName, argFileName, true);
+            return RunExeWithArgument(exeFileName, argFileName);
         }
 
 
-        internal static bool RunExeWithFileArgument(string exeFileName, string argFileName, bool dir)
+        //internal static bool RunExeWithFileArgument(string exeFileName, string argFileName, bool dir)
+        //{
+        //    string methodName = "RunExeWithFileArgument";
+        //    if ((!string.IsNullOrEmpty(argFileName)) && (!CheckFileExistance(argFileName, methodName, dir))) return false;
+        //    return RunExeWithArgument(exeFileName, argFileName);
+        //}
+
+        internal static bool RunExeWithUrlArgument(string exeFileName, string url)
         {
-            string methodName = "RunExeWithFileArgument";
+            return RunExeWithArgument(exeFileName,url);
+        }
+
+
+        /// <summary>
+        /// Assumes that the "argument" parameter has already been checked according to its type of file, directory or ulr
+        /// </summary>
+        /// <param name="exeFileName"></param>
+        /// <param name="argument"></param>
+        /// <returns></returns>
+        private static bool RunExeWithArgument(string exeFileName, string argument)
+        {
+            string methodName = "RunExeWithArgument";
             // Check arguments
             string exePathName = Path.GetDirectoryName(exeFileName);
             if ((!string.IsNullOrEmpty(exePathName)) && (!CheckFileExistance(exeFileName, methodName, false))) return false;
-            if ((!string.IsNullOrEmpty(argFileName)) && (!CheckFileExistance(argFileName, methodName, dir))) return false;
             // Create process startinfo. Enclose all filenames and pathnames in "" in order to handle possible space characters!
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
             pProcess.StartInfo.FileName = string.Format("\"{0}\"", exeFileName);
             pProcess.StartInfo.WorkingDirectory = string.IsNullOrEmpty(exePathName) ? null : string.Format("\"{0}\"", exePathName);
-            pProcess.StartInfo.Arguments = string.Format("\"{0}\"", argFileName);
+            pProcess.StartInfo.Arguments = string.Format("\"{0}\"", argument);
             pProcess.StartInfo.UseShellExecute = true; // Allows the system to search for the executable using PATH
             pProcess.StartInfo.RedirectStandardOutput = false;
             pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
@@ -451,7 +476,7 @@ namespace MusicXmlReaderModel
             catch (Exception e)
             {
                 Logger.Log(string.Format("ReadFileByExecutable: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
-                string obsoleteMessage = string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'", exeFileName, argFileName);
+                string obsoleteMessage = string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'", exeFileName, argument);
                 ShowWarning(ModelMessageEnum.FailedToStartProgram, exeFileName, obsoleteMessage);
                 return false;
             }

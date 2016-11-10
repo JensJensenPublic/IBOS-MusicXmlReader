@@ -100,5 +100,10 @@ namespace MusicXmlReaderModel
             Utilities.RunExeWithFileArgument(exeFileName, theMusicXmlFileName);
         }
 
+        public void OpenUrl(string url)
+        {
+            Utilities.RunExeWithUrlArgument("iexplore.exe", url);
+        }
+
     }
 }

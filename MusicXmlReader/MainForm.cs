@@ -647,6 +647,10 @@ namespace MusicXmlReader
 
         #endregion
 
+        private void httpsmusescorecomsheetmusicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(@"https://musescore.com/sheetmusic");
+        }
     }
 
 }

@@ -61,6 +61,7 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.textBoxNormalText = new System.Windows.Forms.TextBox();
+            this.httpsmusescorecomsheetmusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -192,7 +193,8 @@
             this.openXMLFileLocationToolStripMenuItem,
             this.inspectAsXMLToolStripMenuItem,
             this.viewAsInterpretedXMLToolStripMenuItem,
-            this.saveAsTextToolStripMenuItem});
+            this.saveAsTextToolStripMenuItem,
+            this.httpsmusescorecomsheetmusicToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -330,6 +332,13 @@
             this.textBoxNormalText.TabIndex = 8;
             this.textBoxNormalText.TabStop = false;
             // 
+            // httpsmusescorecomsheetmusicToolStripMenuItem
+            // 
+            this.httpsmusescorecomsheetmusicToolStripMenuItem.Name = "httpsmusescorecomsheetmusicToolStripMenuItem";
+            this.httpsmusescorecomsheetmusicToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+            this.httpsmusescorecomsheetmusicToolStripMenuItem.Text = "https://musescore.com/sheetmusic";
+            this.httpsmusescorecomsheetmusicToolStripMenuItem.Click += new System.EventHandler(this.httpsmusescorecomsheetmusicToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -388,6 +397,7 @@
         private System.Windows.Forms.ToolStripMenuItem detailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem httpsmusescorecomsheetmusicToolStripMenuItem;
     }
 }
 
