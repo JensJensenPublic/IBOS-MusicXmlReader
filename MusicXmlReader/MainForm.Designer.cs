@@ -76,7 +76,6 @@
             this.MenuStrip.Name = "MenuStrip";
             this.MenuStrip.Size = new System.Drawing.Size(1219, 24);
             this.MenuStrip.TabIndex = 3;
-            this.MenuStrip.TabStop = true;
             this.MenuStrip.Text = "menuStrip1";
             // 
             // filesToolStripMenuItem
