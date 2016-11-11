@@ -267,7 +267,7 @@ namespace MusicXmlReaderUI
                         if (userSettings.partsToPlay[i])
                         {
                             // This part is selected to be played (for instance from the GUI)                        
-                            noteElement.MidiNote = new MidiNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, noteElement.Transpose,127, noteElement.MidiChannel, midiOut);
+                            noteElement.MidiNote = new MidiNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, noteElement.Transpose,noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
                             notesCurrentlyPlaying.Add(noteElement.MidiNote);
                             //noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, 1, midiOut);
                         }

@@ -96,7 +96,8 @@ namespace MusicXmlReaderModel
         bool printObjectAttributeValue = true; // Default: This object should be printed
 
         const string className = "NoteElement";
-        float dynamicsValue = 100;
+        float dynamicsFloatValue = 100;
+        int dynamicsValue = 90;
 
 
         public PitchElement.FullStepEnum Step
@@ -384,6 +385,14 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public int DynamicsIntValue
+        {
+            get
+            {
+                return dynamicsValue;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -518,9 +527,12 @@ namespace MusicXmlReaderModel
                         break; // Explicitly ignore some graphical attributes 
 
                     case "dynamics":
-                        Utilities.Parse(a.Value, ref dynamicsValue, (float)0, (float)1000, "NoteElement: Invalid value of dynamics");
-                        // We parse the value, but do not use the result yet, just check it is valid 
-                        Logger.LogOnce(string.Format("{0}.{1} Unimplemented attribute. Name='{2}' Value is parsed but not used", className, functionName, a.Name));
+                        if (Utilities.Parse(a.Value, ref dynamicsFloatValue, (float)0, (float)1000, "NoteElement: Invalid value of dynamics"))
+                        {
+                            dynamicsValue = (int) ((float)(0.90) * dynamicsFloatValue);
+                        }  
+                        http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-note.htm
+                        // Logger.LogOnce(string.Format("{0}.{1} Unimplemented attribute. Name='{2}' Value is parsed but not used", className, functionName, a.Name));
                         break; 
                     case "end-dynamics":
                     case "attack":
