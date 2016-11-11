@@ -73,6 +73,14 @@ namespace MusicXmlReaderModel
                     // These types are explicitly ignored because they are related to the whole score, not to an event.
                 }
 
+                else if
+                (   (o is TransposeElement)
+  
+                )
+                {
+                    // These types are explicitly ignored because they are related to the whole part, not to an event.
+                }
+                                
                 else
                 {
                     Type type = o.GetType();
