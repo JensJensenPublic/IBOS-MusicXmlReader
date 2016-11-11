@@ -132,8 +132,8 @@ namespace MusicXmlReaderUI
                         if (!noteElement.IsPause)
                         { // This is a real note, not a pause
                             if (userSettings.partsToPlay[noteElement.PartNumber])
-                            {
-                                MidiNote midiNote = new MidiNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, 127, midiOut);
+                            {                                
+                                MidiNote midiNote = new MidiNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, noteElement.Transpose,noteElement.DynamicsIntValue,noteElement.MidiChannel, midiOut);
                                 notesCurrentlyPlaying.Add(midiNote);
                             }
                         }
