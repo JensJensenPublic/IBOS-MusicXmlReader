@@ -654,7 +654,7 @@ namespace MusicXmlReaderModel
             //int remainder = duration % divisions;
             if ((0 == remainder) && (quotient > 1) && ( quotient == currentTimeElement.Beats) )
             {
-#if true
+#if false
                 Logger.LogOnce(string.Format("{0}:{1}( duration={2} divisions={3} beats={4} beatType={5} ). Setting to 'full measure'",
                                               className,    // 0
                                               functionName, // 1
