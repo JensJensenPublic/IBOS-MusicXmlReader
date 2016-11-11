@@ -413,6 +413,13 @@ namespace MusicXmlReaderModel
                     continueRecursion = false;
                     break;
 
+                case "source":
+                    SimpleTextElement source = SimpleTextElement.Create(node, "Source");
+                    allMusicXmlObjecsts.Add(source);
+                    metaInfoStrings.Add(source.ToString());
+                    continueRecursion = false;
+                    break;
+
                 // The following elements are ignored for the time being, as they describe graphical properties only!
                 case "offset":
                 case "supports":
