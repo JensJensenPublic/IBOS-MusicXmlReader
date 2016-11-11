@@ -65,6 +65,7 @@ namespace MusicXmlReaderModel
         string localizedPauseType = ""; //  If this is a pause, not a note
         string localizedTie = "";
         PitchElement pitchElement;
+        TransposeElement transposeElement; // Used if the cuttent scorepart describes an "non-C" instrument such as an A-clarinet.
         string syllabic; // Child of lyric
         string text;     // Child of lyric
         string staffString = "";
@@ -103,11 +104,22 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public int Transpose
+        {
+            get
+            {
+                return (null == transposeElement) ? 0 : transposeElement.ChromaticValue;
+            }
+        }
+
+
         public int Octave
         {
             get
             {
-                return pitchElement.Octave;
+                {
+                    return pitchElement.Octave;
+                }
             }
         }
 
@@ -356,6 +368,19 @@ namespace MusicXmlReaderModel
             }
         }
 
+        internal TransposeElement TransposeElement
+        {
+            get
+            {
+                return transposeElement;
+            }
+
+            set
+            {
+                transposeElement = value;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -506,6 +531,7 @@ namespace MusicXmlReaderModel
                         // The pitch represents the sound, not what is notated, so an alter element must be included even if it represents a flat or sharp
                         // that is part of the key signature. This is why the E-flat contains an alter element, though there is no accidental on the note.
                         pitchElement = PitchElement.Create(child); // NOTE! Returns null if no step is specified for the pitch
+                        transposeElement = scorePartElement.TransposeElement; 
                         break;
                     case "duration": duration = int.Parse(child.InnerText); break;
                     case "chord": chord = true; break;

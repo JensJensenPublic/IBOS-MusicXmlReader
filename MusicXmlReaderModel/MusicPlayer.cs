@@ -266,8 +266,8 @@ namespace MusicXmlReaderUI
                         // This is a playable note, not a pause !
                         if (userSettings.partsToPlay[i])
                         {
-                            // This part is selected to be played (for instance from the GUI)
-                            noteElement.MidiNote = new MidiNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, 127, noteElement.MidiChannel, midiOut);
+                            // This part is selected to be played (for instance from the GUI)                        
+                            noteElement.MidiNote = new MidiNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, noteElement.Transpose,127, noteElement.MidiChannel, midiOut);
                             notesCurrentlyPlaying.Add(noteElement.MidiNote);
                             //noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, 1, midiOut);
                         }

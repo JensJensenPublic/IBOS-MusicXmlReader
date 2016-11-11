@@ -18,6 +18,38 @@ namespace MusicXmlReaderModel
         private bool doubleValue = false; 
         private int staffNumberAttribute = 0 ; // 0 "means all staffs for this part"
 
+        public int ChromaticValue
+        {
+            get
+            {
+                return chromaticValue;
+            }
+        }
+
+        public int DiatonicValue
+        {
+            get
+            {
+                return diatonicValue;
+            }
+        }
+
+        public int OctaveChangeValue
+        {
+            get
+            {
+                return octaveChangeValue;
+            }
+        }
+
+        public bool DoubleValue
+        {
+            get
+            {
+                return doubleValue;
+            }
+        }
+
         /// <summary>
         /// Prevent construction
         /// </summary>

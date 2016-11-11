@@ -10,6 +10,7 @@ namespace MusicXmlReaderModel
         public int partNumber; // A unique artificial index  for this part.
         private ScoreInstrumentElement scoreInstrumentElement;
         private MidiInstrumentElement midiInstrumentElement;
+        private TransposeElement transposeElement;
 
 
         /// <summary>
@@ -140,7 +141,17 @@ namespace MusicXmlReaderModel
             }
         }
 
+        internal TransposeElement TransposeElement
+        {
+            get
+            {
+                return transposeElement;
+            }
 
-
+            set
+            {
+                transposeElement = value;
+            }
+        }
     }
 }

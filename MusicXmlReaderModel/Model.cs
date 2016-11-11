@@ -336,7 +336,9 @@ namespace MusicXmlReaderModel
                     continueRecursion = false;
                     break;
                 case "transpose":
-                    allMusicXmlObjecsts.Add(TransposeElement.Create(node));
+                    TransposeElement transposeElement = TransposeElement.Create(node);
+                    allMusicXmlObjecsts.Add(transposeElement);
+                    this.currentScorePartElement.TransposeElement = transposeElement;
                     continueRecursion = false;
                     break;
                 case "divisions":
