@@ -35,9 +35,11 @@ namespace MusicXmlReaderModel
                         // TO DO Find a better solution 
     }
 
+  
 
     public class NoteElement : EventElement
     {
+
         // Allows for representing the following subdivisions of a quarter node:
         // 2,3,4,5,6,7,8,9,10. 
         // 1260 can be divided by 2,3,4,5,6,7,8,9 and 10 !
@@ -94,6 +96,7 @@ namespace MusicXmlReaderModel
         bool printObjectAttributeValue = true; // Default: This object should be printed
 
         const string className = "NoteElement";
+        float dynamicsValue = 100;
 
 
         public PitchElement.FullStepEnum Step
@@ -487,7 +490,7 @@ namespace MusicXmlReaderModel
             this.scorePartElement = scorePartElement; 
             this.measureNumber = measureNumber;
             this.currentTimeElement = currentTimeElement;  
-            const string functionName = "NoteElement constructor"; // For logging
+            const string functionName = "NoteElement constructor"; // For logging            
             //this.partId = scorePartElement.partId;
             //this.partNumber = scorePartElement.partNumber;
             //this.midiChannel = (null == scorePartElement.midiInstrumentElement) ? 1 : scorePartElement.midiInstrumentElement.MidiChannel; // Use channel 1 as a default
@@ -513,8 +516,22 @@ namespace MusicXmlReaderModel
                     case "print-spacing":
                     case "print-lyric":
                         break; // Explicitly ignore some graphical attributes 
+
+                    case "dynamics":
+                        Utilities.Parse(a.Value, ref dynamicsValue, (float)0, (float)1000, "NoteElement: Invalid value of dynamics");
+                        // We parse the value, but do not use the result yet, just check it is valid 
+                        Logger.LogOnce(string.Format("{0}.{1} Unimplemented attribute. Name='{2}' Value is parsed but not used", className, functionName, a.Name));
+                        break; 
+                    case "end-dynamics":
+                    case "attack":
+                    case "release":
+                    case "time-only":
+                    case "pizzicato":
+                        Logger.LogOnce(string.Format("{0}.{1} Unimplemented attribute. Name={2}", className, functionName, a.Name));
+                        break; // Not implemented yet
+
                     default:
-                        Logger.LogOnce(string.Format("{0} Attribute.Name={0}", functionName, a.Name));
+                        Logger.LogOnce(string.Format("{0}.{1} Unexpected attribute. Name={2} Value={3}", className, functionName, a.Name, a.Value));
                         break;
 
                 }
