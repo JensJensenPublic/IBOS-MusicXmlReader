@@ -50,6 +50,7 @@ namespace MusicXmlReaderModel
             {
                 switch (n.Name)
                 {
+                    case "mf": value = DynamicsEnum.mezzoforte; break;
                     case "f": value = DynamicsEnum.Forte; break;
                     case "ff": value = DynamicsEnum.Fortissimo; break;
                     case "fff": value = DynamicsEnum.Fortississimo; break;
