@@ -193,9 +193,21 @@ namespace MusicXmlReader
             return listBoxTimes.Items.Count;
         }
 
+        delegate object GetObjectAtIndexCallback(int index);
         public object GetObjectAtIndex(int index)
         {
-            return listBoxTimes.Items[index];
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (listBoxTimes.InvokeRequired)
+            {
+                GetObjectAtIndexCallback d = new GetObjectAtIndexCallback(GetObjectAtIndex);
+                return listBoxTimes.Invoke(d, new object[] { index });
+            }
+            else
+            {
+                return listBoxTimes.Items[index];
+            }
         }
 
         delegate void SetSelectedIndexCallback(int index);
