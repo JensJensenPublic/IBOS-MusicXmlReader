@@ -77,6 +77,7 @@ namespace MusicXmlReader
             // Children of editToolStripMenuItem
             // Texts:  NOTE! Use the same texts as used in the treeview to which these items refer!!
             allItemsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_All_Items;
+            filterItemsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeWiew_Items;
             musicRepresentationToolStripMenuItem.Text = "&"+ResourcesForUI.TreeView_MusicAsSound;
             textRepresentationToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsSpeech;
             brailleRepresentationToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsBraille;
@@ -84,6 +85,7 @@ namespace MusicXmlReader
             detailsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsSound_Details;
             // Shortcuts
             allItemsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editAllItems;
+            filterItemsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editItems;
             musicRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editMusic;
             textRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editText;
             brailleRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editBraille;
@@ -500,6 +502,13 @@ namespace MusicXmlReader
             LocalizeStartStopButton(musicPlayerState);
         }
 
+        //
+        //*************************************************************************************************
+        //
+
+        #region tools
+
+
         private void museScoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             model.ExternalToolsHandler.StartMuseScore(model.TheMusicXmlFileName);
@@ -535,6 +544,13 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.ReadInterpretation(model.AllMusicXmlObjecsts,model.TheMusicXmlFileName);           
         }
 
+        private void httpsmusescorecomsheetmusicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(@"https://musescore.com/sheetmusic");
+        }
+
+
+        #endregion // tools ***********************************************************************
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -607,13 +623,12 @@ namespace MusicXmlReader
                 }
             }
         }
-
-        #endregion keyhandlers
-
+        #endregion keyhandlers 
+        //
+        //*************************************************************************************************
+        //
         #region Edit
-
         // Items above the delimiter line are represented by level 0 nodes in the tree
-
 
         private void musicRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -642,15 +657,17 @@ namespace MusicXmlReader
   
         private void allItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            userSettingsHandler.ShowAllItems();
+            userSettingsHandler.ShowFilterItems(true);
         }
 
-        #endregion
-
-        private void httpsmusescorecomsheetmusicToolStripMenuItem_Click(object sender, EventArgs e)
+        private void filterItemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.OpenUrl(@"https://musescore.com/sheetmusic");
+            userSettingsHandler.ShowFilterItems(false);
         }
+
+        #endregion // Edit
+//*************************************************************************************************
+
     }
 
 }

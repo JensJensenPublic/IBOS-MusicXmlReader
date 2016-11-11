@@ -217,7 +217,7 @@
     <value>&amp;View</value>
   </data>
   <data name="TreeView_All_Items" xml:space="preserve">
-    <value>All items</value>
+    <value>All filter items</value>
   </data>
   <data name="TreeView_MusicAsBraille" xml:space="preserve">
     <value>Braille Music representation</value>
@@ -245,5 +245,8 @@
   </data>
   <data name="TreeView_MusicAsSpeech_Parts" xml:space="preserve">
     <value>Parts</value>
+  </data>
+  <data name="TreeWiew_Items" xml:space="preserve">
+    <value>Filter items</value>
   </data>
 </root>

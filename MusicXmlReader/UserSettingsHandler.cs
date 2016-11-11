@@ -328,11 +328,14 @@ namespace MusicXmlReader
             treeView.SelectedNode = musicAsSound.Nodes[UserSettingsHandler.detailsNodeIndex];
         }
 
-        public void ShowAllItems()
+        public void ShowFilterItems(bool expandAndSelect)
         {
             treeView.Focus();
-            treeView.ExpandAll();
-            treeView.SelectedNode = musicAsSound.Nodes[UserSettingsHandler.detailsNodeIndex];
+            if (expandAndSelect)
+            {
+                treeView.ExpandAll();
+                treeView.SelectedNode = musicAsSound.Nodes[UserSettingsHandler.detailsNodeIndex];
+            }
         }
 
         #endregion

@@ -52,6 +52,7 @@
             this.inspectAsXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAsInterpretedXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpsmusescorecomsheetmusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.listBoxTimes = new System.Windows.Forms.ListBox();
@@ -61,7 +62,7 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.textBoxNormalText = new System.Windows.Forms.TextBox();
-            this.httpsmusescorecomsheetmusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filterItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,6 +115,7 @@
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.allItemsToolStripMenuItem,
+            this.filterItemsToolStripMenuItem,
             this.toolStripSeparator3,
             this.musicRepresentationToolStripMenuItem,
             this.textRepresentationToolStripMenuItem,
@@ -129,7 +131,7 @@
             // 
             this.allItemsToolStripMenuItem.Name = "allItemsToolStripMenuItem";
             this.allItemsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
-            this.allItemsToolStripMenuItem.Text = "All items";
+            this.allItemsToolStripMenuItem.Text = "All filter items";
             this.allItemsToolStripMenuItem.Click += new System.EventHandler(this.allItemsToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
@@ -202,57 +204,64 @@
             // museScoreToolStripMenuItem
             // 
             this.museScoreToolStripMenuItem.Name = "museScoreToolStripMenuItem";
-            this.museScoreToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.museScoreToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
             this.museScoreToolStripMenuItem.Text = "Start MuseScore";
             this.museScoreToolStripMenuItem.Click += new System.EventHandler(this.museScoreToolStripMenuItem_Click);
             // 
             // sibeliusToolStripMenuItem
             // 
             this.sibeliusToolStripMenuItem.Name = "sibeliusToolStripMenuItem";
-            this.sibeliusToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.sibeliusToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
             this.sibeliusToolStripMenuItem.Text = "Start Sibelius";
             this.sibeliusToolStripMenuItem.Click += new System.EventHandler(this.sibeliusToolStripMenuItem_Click);
             // 
             // logfileToolStripMenuItem
             // 
             this.logfileToolStripMenuItem.Name = "logfileToolStripMenuItem";
-            this.logfileToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.logfileToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
             this.logfileToolStripMenuItem.Text = "Log file";
             this.logfileToolStripMenuItem.Click += new System.EventHandler(this.logfileToolStripMenuItem_Click);
             // 
             // openLogFileLocationToolStripMenuItem
             // 
             this.openLogFileLocationToolStripMenuItem.Name = "openLogFileLocationToolStripMenuItem";
-            this.openLogFileLocationToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.openLogFileLocationToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
             this.openLogFileLocationToolStripMenuItem.Text = "Log file location";
             this.openLogFileLocationToolStripMenuItem.Click += new System.EventHandler(this.openLogFileLocationToolStripMenuItem_Click);
             // 
             // openXMLFileLocationToolStripMenuItem
             // 
             this.openXMLFileLocationToolStripMenuItem.Name = "openXMLFileLocationToolStripMenuItem";
-            this.openXMLFileLocationToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.openXMLFileLocationToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
             this.openXMLFileLocationToolStripMenuItem.Text = "MusicXml file location";
             this.openXMLFileLocationToolStripMenuItem.Click += new System.EventHandler(this.openXMLFileLocationToolStripMenuItem_Click);
             // 
             // inspectAsXMLToolStripMenuItem
             // 
             this.inspectAsXMLToolStripMenuItem.Name = "inspectAsXMLToolStripMenuItem";
-            this.inspectAsXMLToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.inspectAsXMLToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
             this.inspectAsXMLToolStripMenuItem.Text = "MusicXml file as raw XML";
             this.inspectAsXMLToolStripMenuItem.Click += new System.EventHandler(this.inspectAsXMLToolStripMenuItem_Click);
             // 
             // viewAsInterpretedXMLToolStripMenuItem
             // 
             this.viewAsInterpretedXMLToolStripMenuItem.Name = "viewAsInterpretedXMLToolStripMenuItem";
-            this.viewAsInterpretedXMLToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.viewAsInterpretedXMLToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
             this.viewAsInterpretedXMLToolStripMenuItem.Text = "MusicXml file interpreted";
             this.viewAsInterpretedXMLToolStripMenuItem.Click += new System.EventHandler(this.viewAsInterpretedXMLToolStripMenuItem_Click);
             // 
             // saveAsTextToolStripMenuItem
             // 
             this.saveAsTextToolStripMenuItem.Name = "saveAsTextToolStripMenuItem";
-            this.saveAsTextToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.saveAsTextToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
             this.saveAsTextToolStripMenuItem.Text = "Save as text";
+            // 
+            // httpsmusescorecomsheetmusicToolStripMenuItem
+            // 
+            this.httpsmusescorecomsheetmusicToolStripMenuItem.Name = "httpsmusescorecomsheetmusicToolStripMenuItem";
+            this.httpsmusescorecomsheetmusicToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
+            this.httpsmusescorecomsheetmusicToolStripMenuItem.Text = "https://musescore.com/sheetmusic";
+            this.httpsmusescorecomsheetmusicToolStripMenuItem.Click += new System.EventHandler(this.httpsmusescorecomsheetmusicToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -332,12 +341,13 @@
             this.textBoxNormalText.TabIndex = 8;
             this.textBoxNormalText.TabStop = false;
             // 
-            // httpsmusescorecomsheetmusicToolStripMenuItem
+            // filterItemsToolStripMenuItem
             // 
-            this.httpsmusescorecomsheetmusicToolStripMenuItem.Name = "httpsmusescorecomsheetmusicToolStripMenuItem";
-            this.httpsmusescorecomsheetmusicToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-            this.httpsmusescorecomsheetmusicToolStripMenuItem.Text = "https://musescore.com/sheetmusic";
-            this.httpsmusescorecomsheetmusicToolStripMenuItem.Click += new System.EventHandler(this.httpsmusescorecomsheetmusicToolStripMenuItem_Click);
+            this.filterItemsToolStripMenuItem.Name = "filterItemsToolStripMenuItem";
+            this.filterItemsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.filterItemsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.filterItemsToolStripMenuItem.Text = "Filter items";
+            this.filterItemsToolStripMenuItem.Click += new System.EventHandler(this.filterItemsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -398,6 +408,7 @@
         private System.Windows.Forms.ToolStripMenuItem allItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem httpsmusescorecomsheetmusicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem filterItemsToolStripMenuItem;
     }
 }
 

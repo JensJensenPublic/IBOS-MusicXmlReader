@@ -358,7 +358,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All items.
+        ///   Looks up a localized string similar to All filter items.
         /// </summary>
         internal static string TreeView_All_Items {
             get {
@@ -444,6 +444,15 @@ namespace MusicXmlReader {
         internal static string TreeView_MusicAsSpeech_Parts {
             get {
                 return ResourceManager.GetString("TreeView_MusicAsSpeech_Parts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter items.
+        /// </summary>
+        internal static string TreeWiew_Items {
+            get {
+                return ResourceManager.GetString("TreeWiew_Items", resourceCulture);
             }
         }
     }
