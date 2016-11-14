@@ -196,6 +196,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Compressed MusicXml files.
+        /// </summary>
+        internal static string OpenFileDialog_Filter_mxl {
+            get {
+                return ResourceManager.GetString("OpenFileDialog_Filter_mxl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to read.
         /// </summary>
         internal static string TextBox_Messages_FailedToRead_File {

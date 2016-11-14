@@ -162,6 +162,9 @@
   <data name="OpenFileDialog_Filter" xml:space="preserve">
     <value>MusicXml files</value>
   </data>
+  <data name="OpenFileDialog_Filter_mxl" xml:space="preserve">
+    <value>Compressed MusicXml files</value>
+  </data>
   <data name="TextBox_Messages_FailedToRead_File" xml:space="preserve">
     <value>Failed to read</value>
   </data>

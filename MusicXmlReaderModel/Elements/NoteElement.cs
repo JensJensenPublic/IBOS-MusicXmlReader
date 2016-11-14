@@ -531,7 +531,7 @@ namespace MusicXmlReaderModel
                         {
                             dynamicsValue = (int) ((float)(0.90) * dynamicsFloatValue);
                         }  
-                        http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-note.htm
+                        // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-note.htm
                         // Logger.LogOnce(string.Format("{0}.{1} Unimplemented attribute. Name='{2}' Value is parsed but not used", className, functionName, a.Name));
                         break; 
                     case "end-dynamics":

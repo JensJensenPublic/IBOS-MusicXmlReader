@@ -311,6 +311,7 @@ namespace MusicXmlReader
         {
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.xml", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files
+//            openFileDialog.Filter = string.Format("{0}|*.xml|{0}|*.mxl", ResourcesForUI.OpenFileDialog_Filter,ResourcesForUI.OpenFileDialog_Filter_mxl); // Only present .xml files and .mxl files
             openFileDialog.InitialDirectory = model.InitialDirectory;
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
