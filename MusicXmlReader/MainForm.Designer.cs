@@ -64,6 +64,7 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.textBoxNormalText = new System.Windows.Forms.TextBox();
+            this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -309,7 +310,7 @@
             // 
             this.buttonStart.Location = new System.Drawing.Point(13, 27);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(250, 23);
+            this.buttonStart.Size = new System.Drawing.Size(127, 23);
             this.buttonStart.TabIndex = 2;
             this.buttonStart.Text = "ButtonStart";
             this.buttonStart.UseVisualStyleBackColor = true;
@@ -358,11 +359,19 @@
             this.textBoxNormalText.TabIndex = 8;
             this.textBoxNormalText.TabStop = false;
             // 
+            // textBoxCommand
+            // 
+            this.textBoxCommand.Location = new System.Drawing.Point(147, 28);
+            this.textBoxCommand.Name = "textBoxCommand";
+            this.textBoxCommand.Size = new System.Drawing.Size(112, 20);
+            this.textBoxCommand.TabIndex = 9;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1219, 601);
+            this.Controls.Add(this.textBoxCommand);
             this.Controls.Add(this.textBoxNormalText);
             this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.textBoxText);
@@ -419,6 +428,7 @@
         private System.Windows.Forms.ToolStripMenuItem filterItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem archivesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem httpsmusescorecomsheetmusicToolStripMenuItem1;
+        private System.Windows.Forms.TextBox textBoxCommand;
     }
 }
 
