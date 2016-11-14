@@ -66,6 +66,7 @@ namespace MusicXmlReader
             editToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Edit; 
             viewToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_View; 
             toolsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools;
+            archivesToolStripMenuItem.Text = ResourcesForUI.ToolsStripMenuItem_Archives;
             helpToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help ; 
 
             // Children of  fileToolStripMenuItem
@@ -83,6 +84,7 @@ namespace MusicXmlReader
             brailleRepresentationToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsBraille;
             partsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsSound_Parts;
             detailsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsSound_Details;
+
             // Shortcuts
             allItemsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editAllItems;
             filterItemsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editItems;
@@ -556,10 +558,6 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.ReadInterpretation(model.AllMusicXmlObjecsts,model.TheMusicXmlFileName);           
         }
 
-        private void httpsmusescorecomsheetmusicToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            model.ExternalToolsHandler.OpenUrl(@"https://musescore.com/sheetmusic");
-        }
 
 
         #endregion // tools ***********************************************************************
@@ -676,9 +674,19 @@ namespace MusicXmlReader
         {
             userSettingsHandler.ShowFilterItems(false);
         }
-
+        
         #endregion // Edit
-//*************************************************************************************************
+        //
+        //*************************************************************************************************
+        //
+        #region Archives
+
+        private void httpsmusescorecomsheetmusicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(@"https://musescore.com/sheetmusic");
+        }
+        #endregion
+        //*************************************************************************************************
 
     }
 

@@ -171,6 +171,9 @@
   <data name="TextBox_Messages_TheProgramIsExiting" xml:space="preserve">
     <value>The program is exiting</value>
   </data>
+  <data name="ToolsStripMenuItem_Archives" xml:space="preserve">
+    <value>&amp;Archives</value>
+  </data>
   <data name="ToolStripMenuItem_Edit" xml:space="preserve">
     <value>&amp;Edit</value>
   </data>
