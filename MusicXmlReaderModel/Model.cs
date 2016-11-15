@@ -671,6 +671,7 @@ namespace MusicXmlReaderModel
         /// <param name="lastMeasure"></param>
         public bool StartRepeating(int firstMeasure, int lastMeasure)
         {
+            musicPlayer.Reset(numberOfParts,-1);
             return musicPlayer.StartRepeating(firstMeasure,lastMeasure);
         }
 

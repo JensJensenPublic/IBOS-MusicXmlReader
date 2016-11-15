@@ -150,7 +150,7 @@ namespace MusicXmlReader
 
         // Start / Stop of Autoplay
         static public readonly Keys startPlaying = ((Keys)((Keys.Control | Keys.S)));
-        static public readonly Keys[] stopPlaying = new Keys[] { Keys.Space, Keys.Enter };
+        static public readonly Keys[] stopPlaying = new Keys[] { Keys.Space };
 
         // UserSettingsTreeview:
         static public readonly Keys[] checkAll = new Keys[] { ((Keys)((Keys.Control | Keys.Add))),       // Numeric "+"

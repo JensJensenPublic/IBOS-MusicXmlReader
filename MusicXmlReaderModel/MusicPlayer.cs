@@ -17,8 +17,8 @@ namespace MusicXmlReaderUI
 
     public class MusicPlayer
     {
-
-        MidiNote   latestNotePlayed = null;
+        string className = "MusicPlayer";
+        MidiNote latestNotePlayed = null;
         MidiChord latestHarmonyPlayed = null;
         MidiOut midiOut = null;
         IObjectCollection objects = null;
@@ -200,6 +200,8 @@ namespace MusicXmlReaderUI
 
         public void Reset(int numberOfParts,int startIndex)
         {
+            string functionName = "Reset";
+            Logger.Log(string.Format("{0}.{1} NumberOfParts={2} Startindex={3}", className, functionName, numberOfParts, startIndex));
             this.numberOfParts = numberOfParts;
             this.startIndex = (startIndex < 0) ? 0 : startIndex;
         }
@@ -369,10 +371,12 @@ namespace MusicXmlReaderUI
 
         public void StartPlayingPoly()
         {
+            string functionName = "StartPlayingPoly";
+            Logger.Log(string.Format("{0}.{1}", className, functionName));
             playing = true;
             playerThread = new System.Threading.Thread(new System.Threading.ThreadStart(PlayerThreadStartPoly));
             //playerThread.Priority = System.Threading.ThreadPriority.Lowest; // Handle UI even when playing complicated stuff
-            Logger.Log(string.Format("Starting PlayerThread et priority={0}", playerThread.Priority.ToString()));
+            Logger.Log(string.Format("Starting PlayerThread at priority={0}", playerThread.Priority.ToString()));
             playerThread.Start();
         }
 
