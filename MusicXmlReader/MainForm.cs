@@ -585,14 +585,14 @@ namespace MusicXmlReader
         {
             if (shortCutHandler.IsStopPlayingShortcut(e))
             {
-                // Pass on to the event handler for the button 
-                buttonStart_Click(null, null);
+                model.StopPlaying();
+                musicPlayerState = MusicPlayerStateEnum.stopped;
             }
 
             if (shortCutHandler.IsStartPlayingShortcut(e))
             {
-                // Pass on to the event handler for the button 
-                buttonStart_Click(null, null);
+                model.StartPlayingPoly(listBoxTimes.SelectedIndex);
+                musicPlayerState = MusicPlayerStateEnum.running;
             }
 
             // Let the command interpreter handle it 
