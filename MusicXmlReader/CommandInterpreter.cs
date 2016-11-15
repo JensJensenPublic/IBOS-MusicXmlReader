@@ -65,11 +65,11 @@ namespace MusicXmlReader
             && (n2 >= n1)
             )
             {
-               // model.Repeat(n1, n2); // Means "Repeat [measure n1 to measure n2]"
+               model.StartRepeating(n1, n2); // Means "Repeat [measure n1 to measure n2]"
             }
             else
             {
-                //model.Repeat(-1); // Means "Stop repeating"
+                model.StopRepeating();
             }
         }
 

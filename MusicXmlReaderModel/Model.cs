@@ -665,6 +665,21 @@ namespace MusicXmlReaderModel
 
 
         /// <summary>
+        /// Define an interval to be repeated.
+        /// </summary>
+        /// <param name="firstMeasure"></param>
+        /// <param name="lastMeasure"></param>
+        public bool StartRepeating(int firstMeasure, int lastMeasure)
+        {
+            return musicPlayer.StartRepeating(firstMeasure,lastMeasure);
+        }
+
+        public bool StopRepeating()
+        {
+            return musicPlayer.StopRepeating();
+        }
+
+        /// <summary>
         /// This method must be called by the application before exit
         /// in order to allow the Model to clean up and release any resources etc.
         /// </summary>

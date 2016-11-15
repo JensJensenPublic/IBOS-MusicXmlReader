@@ -500,7 +500,7 @@ namespace MusicXmlReader
             switch (musicPlayerState)
             {
                 case MusicPlayerStateEnum.running:
-                    RestoreSpeechAndMusicBraille(); // Restore the original settings BEFORE stopping in order to avoid playing last event multiple times.
+                    //RestoreSpeechAndMusicBraille(); // Restore the original settings BEFORE stopping in order to avoid playing last event multiple times.
                     model.StopPlaying();                 
                     musicPlayerState = MusicPlayerStateEnum.stopped;            
                     break;                 
@@ -510,7 +510,7 @@ namespace MusicXmlReader
                         musicPlayerState = MusicPlayerStateEnum.running;
                         // NOTE: The use of TurnOffSpeeshAndMusicBraille() and RestoreSpeechAndMusicBraille() is a temporary HACK
                         // TO DO: Find a real solution, allowing the listbox to show visible text without JAWS reading and Brailling it !!
-                        TurnOffSpeeshAndMusicBraille(); // Turn off AFTER starting to play in order to avoid playing extra sounds. 
+                       // TurnOffSpeeshAndMusicBraille(); // Turn off AFTER starting to play in order to avoid playing extra sounds. 
                     }
                     break;
                 case MusicPlayerStateEnum.unknown:
