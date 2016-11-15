@@ -201,7 +201,7 @@ namespace MusicXmlReaderUI
         public void Reset(int numberOfParts,int startIndex)
         {
             string functionName = "Reset";
-            Logger.Log(string.Format("{0}.{1} NumberOfParts={2} Startindex={3}", className, functionName, numberOfParts, startIndex));
+            Logger.Log(string.Format("{0}.{1}({2},{3})", className, functionName, numberOfParts, startIndex));
             this.numberOfParts = numberOfParts;
             this.startIndex = (startIndex < 0) ? 0 : startIndex;
         }
@@ -451,16 +451,19 @@ namespace MusicXmlReaderUI
             playing = false;
         }
 
-        public bool StartRepeating(int firstMeasure, int lastMeasure)
+        public bool StartRepeating(int numberOfParts,int firstMeasure, int lastMeasure)
         {
+            string functionName = "StartRepeating";
+            Logger.Log(string.Format("{0}:{1}({2},{3},{4})", className, functionName, numberOfParts, firstMeasure, lastMeasure));
+            this.numberOfParts = numberOfParts;
             bool result = true;
             if ((firstMeasure >= 0) && (lastMeasure >= 0))
             {
                 StopPlaying();
-                repeating = true;
-                firstRepetitionMeasure = firstMeasure;
-                lastRepetitionMeasure = lastMeasure;
-                startIndex = firstRepetitionMeasure;
+                this.repeating = true;
+                this.firstRepetitionMeasure = firstMeasure;
+                this.lastRepetitionMeasure = lastMeasure;
+                this.startIndex = firstRepetitionMeasure;
                 StartPlayingPoly();
             }
             else
