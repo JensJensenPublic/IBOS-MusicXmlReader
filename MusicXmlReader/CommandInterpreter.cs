@@ -52,14 +52,14 @@ namespace MusicXmlReader
             return ""; 
         }
 
-        private void Repeat(string[] command)
+        private void Repeat(string[] paramaters)
         {
             // If the command had the form "R,n1,n2" where n1 and represent integers we start repeating, else we cancel it:
             int n1 = 0;
             int n2 = 0;
-            if ((3 == command.Length)
-            && (int.TryParse(command[1], out n1))
-            && (int.TryParse(command[2], out n2))
+            if ((2 == paramaters.Length)
+            && (int.TryParse(paramaters[0], out n1)) // First parameter
+            && (int.TryParse(paramaters[1], out n2)) // Second parameter
             && (n1 >= 0)
             && (n2 >= 0)
             && (n2 >= n1)
@@ -80,12 +80,14 @@ namespace MusicXmlReader
             {
                 // Interpret and execute command
                 string s = command.ToString();
-                string[] strings = s.Split(new char[] { ',' });
-                if (strings.Length > 0)
+                command.Clear();
+        
+                if (s.Length > 0)
                 {
-                    switch (strings[0])
+                    string[] parameters = s.Substring(1).Split(new char[] { ',' });
+                    switch (s[0])
                     {
-                        case "R": Repeat(strings); break;
+                        case 'R': Repeat(parameters); break;
                         default: break;
                     }
                 }
