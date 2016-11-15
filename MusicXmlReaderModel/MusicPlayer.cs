@@ -45,6 +45,9 @@ namespace MusicXmlReaderUI
         //float userSlowDown;
 
 
+        int playerThreadId = 0; // Used for debugging only
+        bool playerThreadIsRunning = false;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -369,6 +372,17 @@ namespace MusicXmlReaderUI
             }
         }
 
+        /// <summary>
+        /// Can be used for implementing toggle-functionality for starting and stopping the playerThread in the UI
+        /// </summary>
+        public bool PlayerThreadIsRunning
+        {
+            get
+            {
+                return playerThreadIsRunning;
+            }
+        }
+
         public void StartPlayingPoly()
         {
             string functionName = "StartPlayingPoly";
@@ -382,12 +396,14 @@ namespace MusicXmlReaderUI
 
         private void PlayerThreadStartPoly()
         {
-            PlayerThreadStart(objects, typeof(EventDescription));
+            PlayerThreadStart(objects, playerThreadId++);
         }
 
-        private void PlayerThreadStart(IObjectCollection objects, Type type)
+        private void PlayerThreadStart(IObjectCollection objects, int id)
         {
+            playerThreadIsRunning = true;
             System.Threading.Thread.Sleep(1000); // Allow Screanreader to complete initial actions
+            Logger.Log(string.Format("PlayerThread(Id={0}) starting",id));
             this.stopWatch = new System.Diagnostics.Stopwatch();
             this.stopWatch.Start();
             //this.nextActionTime = 0;
@@ -418,7 +434,7 @@ namespace MusicXmlReaderUI
                     {
                         object o = objects.GetObjectAtIndex(i); // listBox.Items[i];
                         AutoPlay(o); // Play the next note, using the correct timing!
-                        if (o.GetType() == type)
+                        if (o.GetType() == typeof(EventDescription))
                         {
                             // Only select notes (and pauses) to allow for correct timing!
                             objects.SetSelectedIndex(i);
@@ -441,7 +457,9 @@ namespace MusicXmlReaderUI
                 //{
                 //    midiNote.StopPlaying(this.midiOut);
                 //}
-            } while (repeating && playing) ;        
+            } while (repeating && playing) ;
+            Logger.Log(string.Format("PlayerThread(Id={0}) exiting", id));
+            playerThreadIsRunning = false;
         }
 
 
