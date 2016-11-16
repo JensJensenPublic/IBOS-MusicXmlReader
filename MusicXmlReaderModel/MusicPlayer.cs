@@ -385,7 +385,8 @@ namespace MusicXmlReaderUI
 
         private void PlayerThreadStartPoly()
         {
-            PlayerThreadStart(objects, playerThreadId++);
+            PlayerThreadStart(objects, playerThreadId);
+             playerThreadId = (playerThreadId + 1) % 1000; // No silly overrun
         }
 
         private void PlayerThreadStart(IObjectCollection objects, int id)
@@ -514,8 +515,7 @@ namespace MusicXmlReaderUI
                 StopPlaying();
                 this.repeating = true;
                 this.firstRepetitionIndex = firstIndex;
-                this.lastRepetitionIndex = lastIndex;
-                this.startIndex = firstRepetitionIndex;
+                this.lastRepetitionIndex = lastIndex; 
                 StartPlaying(numberOfParts,firstIndex);
             }
             else
