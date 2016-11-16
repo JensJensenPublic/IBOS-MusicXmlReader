@@ -390,13 +390,13 @@ namespace MusicXmlReaderUI
 
         private void PlayerThreadStartPoly()
         {
-            PlayerThreadStart(objects, playerThreadId);
-             playerThreadId = (playerThreadId + 1) % 1000; // No silly overrun
+            PlayerThreadStart(objects);
+
         }
 
-        private void PlayerThreadStart(IObjectCollection objects, int id)
+        private void PlayerThreadStart(IObjectCollection objects)
         {
-            int threadId = id;
+            int threadId = playerThreadId; 
             musicPlayerThreadState = MusicPlayerThreadStateEnum.running;
             
             string functionName = "PlayerThreadStart";
@@ -508,6 +508,7 @@ namespace MusicXmlReaderUI
             }
             this.startIndex = startIndex;
             this.numberOfParts = numberOfParts;
+            playerThreadId = (playerThreadId + 1) % 1000; // No silly overrun
             playing = true;
             playerThread = new System.Threading.Thread(new System.Threading.ThreadStart(PlayerThreadStartPoly));
             //playerThread.Priority = System.Threading.ThreadPriority.Lowest; // Handle UI even when playing complicated stuff
