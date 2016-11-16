@@ -497,26 +497,9 @@ namespace MusicXmlReader
         
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            switch (musicPlayerState)
-            {
-                case MusicPlayerStateEnum.running:
-                    //RestoreSpeechAndMusicBraille(); // Restore the original settings BEFORE stopping in order to avoid playing last event multiple times.
-                    model.StopPlaying();                 
-                    musicPlayerState = MusicPlayerStateEnum.stopped;            
-                    break;                 
-                case MusicPlayerStateEnum.stopped:
-                    if (model.StartPlayingPoly(listBoxTimes.SelectedIndex))// Start at selected index
-                    {
-                        musicPlayerState = MusicPlayerStateEnum.running;
-                        // NOTE: The use of TurnOffSpeeshAndMusicBraille() and RestoreSpeechAndMusicBraille() is a temporary HACK
-                        // TO DO: Find a real solution, allowing the listbox to show visible text without JAWS reading and Brailling it !!
-                       // TurnOffSpeeshAndMusicBraille(); // Turn off AFTER starting to play in order to avoid playing extra sounds. 
-                    }
-                    break;
-                case MusicPlayerStateEnum.unknown:
-                    break; // Maybe we will need this later ?
-            }
-            LocalizeStartStopButton(musicPlayerState);
+
+            model.TogglePlaying(listBoxTimes.SelectedIndex);
+            //LocalizeStartStopButton(musicPlayerState);
         }
 
         //
@@ -583,10 +566,11 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void listBoxTimes_KeyDown(object sender, KeyEventArgs e)
         {
-            if (shortCutHandler.IsStopPlayingShortcut(e))
+            if (shortCutHandler.IsTogglePlayingShortcut(e))
             {
-                model.StopPlaying();
-                musicPlayerState = MusicPlayerStateEnum.stopped;
+                model.ToggleStartStopPlaying(listBoxTimes.SelectedIndex);
+                //model.StopPlaying();
+                //musicPlayerState = MusicPlayerStateEnum.stopped;
             }
 
             if (shortCutHandler.IsStartPlayingShortcut(e))

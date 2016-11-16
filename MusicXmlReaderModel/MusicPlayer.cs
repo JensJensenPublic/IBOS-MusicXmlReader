@@ -36,8 +36,8 @@ namespace MusicXmlReaderUI
         long musicXmlTimeOffset  = 0; // Needed for handling change in Tempo while aulo-playing. Unit is the same as for Duration
 
         bool repeating = false;
-        int firstRepetitionMeasure;
-        int lastRepetitionMeasure;
+        int firstRepetitionIndex;
+        int lastRepetitionIndex;
 
         // User settings
         UserSettings userSettings;
@@ -201,13 +201,13 @@ namespace MusicXmlReaderUI
         //}
 
 
-        public void Reset(int numberOfParts,int startIndex)
-        {
-            string functionName = "Reset";
-            Logger.Log(string.Format("{0}.{1}({2},{3})", className, functionName, numberOfParts, startIndex));
-            this.numberOfParts = numberOfParts;
-            this.startIndex = (startIndex < 0) ? 0 : startIndex;
-        }
+        //public void Reset(int numberOfParts,int startIndex)
+        //{
+        //    string functionName = "Reset";
+        //    Logger.Log(string.Format("{0}.{1}({2},{3})", className, functionName, numberOfParts, startIndex));
+        //    this.numberOfParts = numberOfParts;
+        //    this.startIndex = (startIndex < 0) ? 0 : startIndex;
+        //}
 
 
         /// <summary>
@@ -383,17 +383,6 @@ namespace MusicXmlReaderUI
             }
         }
 
-        public void StartPlayingPoly()
-        {
-            string functionName = "StartPlayingPoly";
-            Logger.Log(string.Format("{0}.{1}", className, functionName));
-            playing = true;
-            playerThread = new System.Threading.Thread(new System.Threading.ThreadStart(PlayerThreadStartPoly));
-            //playerThread.Priority = System.Threading.ThreadPriority.Lowest; // Handle UI even when playing complicated stuff
-            Logger.Log(string.Format("Starting PlayerThread at priority={0}", playerThread.Priority.ToString()));
-            playerThread.Start();
-        }
-
         private void PlayerThreadStartPoly()
         {
             PlayerThreadStart(objects, playerThreadId++);
@@ -401,6 +390,7 @@ namespace MusicXmlReaderUI
 
         private void PlayerThreadStart(IObjectCollection objects, int id)
         {
+            string functionName = "PlayerThreadStart";
             playerThreadIsRunning = true;
             System.Threading.Thread.Sleep(1000); // Allow Screanreader to complete initial actions
             Logger.Log(string.Format("PlayerThread(Id={0}) starting",id));
@@ -418,12 +408,16 @@ namespace MusicXmlReaderUI
        
             if (repeating)
             {
-                firstIndex = firstRepetitionMeasure; // TO DO: Convert to index !
-                lastIndex = lastRepetitionMeasure;   // TO DO: Convert to index !
+                firstIndex = firstRepetitionIndex; // TO DO: Convert to index !
+                lastIndex = lastRepetitionIndex;   // TO DO: Convert to index !
             }
 
             do
             {
+                if (repeating)
+                {
+                    Logger.Log(string.Format("{0}.{1} Repeating Index[{2},{3}]",className,functionName, firstRepetitionIndex, lastRepetitionIndex));
+                }
                 notesCurrentlyPlaying = new List<MidiNote>();
                 // Establish a common startpoint for computing note duration:
                 this.musicXmlTimeOffset = (objects.GetObjectAtIndex(firstIndex) as EventDescription).StartTime;
@@ -462,27 +456,67 @@ namespace MusicXmlReaderUI
             playerThreadIsRunning = false;
         }
 
+        //
+        // Public methods for starting and stopping the MusicPlayer
+        //
 
-
-        public void StopPlaying()
+        /// <summary>
+        /// Stop the current PlayerThread if any
+        /// Unconditionally start playing as specified
+        /// </summary>
+        /// <param name="numberOfParts">Number of parts in the current score</param>
+        /// <param name="startIndex">Index to start playing at</param>
+        public void StartPlaying(int numberOfParts, int startIndex)
         {
-            playing = false;
+            string functionName = "StartPlaying";
+            Logger.Log(string.Format("{0}.{1}(Parts={2},StartIndex={3})", className, functionName, numberOfParts, startIndex));
+            if (playing)
+            {
+                StopPlaying();
+            }
+            this.startIndex = startIndex;
+            this.numberOfParts = numberOfParts;
+            playing = true;
+            playerThread = new System.Threading.Thread(new System.Threading.ThreadStart(PlayerThreadStartPoly));
+            //playerThread.Priority = System.Threading.ThreadPriority.Lowest; // Handle UI even when playing complicated stuff
+            Logger.Log(string.Format("Starting PlayerThread at priority={0}", playerThread.Priority.ToString()));
+            playerThread.Start();
+
         }
 
-        public bool StartRepeating(int numberOfParts,int firstMeasure, int lastMeasure)
+        /// <summary>
+        /// Unconditionally stop playing
+        /// </summary>
+        public void StopPlaying()
+        {
+            string functionName = "StopPlaying";
+            Logger.Log(string.Format("{0}.{1}", className, functionName));
+            playing = false;
+            repeating = false;
+        }
+
+        /// <summary>
+        /// Stop the current PlayerThread if any
+        /// Start playing as specified
+        /// </summary>
+        /// <param name="numberOfParts">Number of parts in the current score</param>
+        /// <param name="firstIndex">First index to repeat</param>
+        /// <param name="lastIndex">Last index to repeat</param>
+        /// <returns></returns>
+        public bool StartRepeating(int numberOfParts,int firstIndex, int lastIndex)
         {
             string functionName = "StartRepeating";
-            Logger.Log(string.Format("{0}:{1}({2},{3},{4})", className, functionName, numberOfParts, firstMeasure, lastMeasure));
-            this.numberOfParts = numberOfParts;
+            Logger.Log(string.Format("{0}:{1}(Parts={2},FirstIndex={3},LastIndex={4})", className, functionName, numberOfParts, firstIndex, lastIndex));
+            //this.numberOfParts = numberOfParts;
             bool result = true;
-            if ((firstMeasure >= 0) && (lastMeasure >= 0))
+            if ((firstIndex >= 0) && (lastIndex >= 0))
             {
                 StopPlaying();
                 this.repeating = true;
-                this.firstRepetitionMeasure = firstMeasure;
-                this.lastRepetitionMeasure = lastMeasure;
-                this.startIndex = firstRepetitionMeasure;
-                StartPlayingPoly();
+                this.firstRepetitionIndex = firstIndex;
+                this.lastRepetitionIndex = lastIndex;
+                this.startIndex = firstRepetitionIndex;
+                StartPlaying(numberOfParts,firstIndex);
             }
             else
             {
@@ -491,13 +525,40 @@ namespace MusicXmlReaderUI
             return result;
         }
 
-        public bool StopRepeating()
+        /// <summary>
+        /// Stop the current PlayerThread if any 
+        /// Implicitly clear the "repeating " flag by calling StopPlaying()
+        /// </summary>
+        /// <returns></returns>
+        public void StopRepeating()
         {
-            repeating = false;
-            StopPlaying();
-            return true;
+            StopPlaying();   
         }
 
+
+        /// <summary>
+        /// If a player thread is running it is stopped
+        /// If  no player thread is running a new thread is started as specified.
+        /// </summary>
+        /// <param name="numberOfParts"></param>
+        /// <param name="startIndex"></param>
+        /// <returns></returns>
+        public bool ToggleStartStopPlaying(int numberOfParts, int startIndex)
+        {
+            string functionName = "ToggleStartStopPlaying";
+            Logger.Log(string.Format("{0}:{1}(Parts={2},StartIndex={3})", className, functionName, numberOfParts, startIndex));
+            if (playerThreadIsRunning)
+            {
+                StopPlaying();
+                return false;
+            }
+            else
+            {
+                StartPlaying(numberOfParts,Math.Max(0,startIndex));
+                return true;
+            }
+
+        }
 
 
 

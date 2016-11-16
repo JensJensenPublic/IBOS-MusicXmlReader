@@ -605,6 +605,12 @@ namespace MusicXmlReaderModel
         // Event handlers called directly from the GUI and distributing control to other objects.
         //*****************************************************************************************
 
+        public bool ToggleStartStopPlaying(int startIndex)
+        {
+            return musicPlayer.ToggleStartStopPlaying(numberOfParts, startIndex);           
+        }
+
+
  
         public bool StartPlayingPoly(int startIndex)
         {
@@ -620,8 +626,8 @@ namespace MusicXmlReaderModel
                     startIndex = 0; // Start at the beginning
                 }
             }
-            musicPlayer.Reset(numberOfParts,startIndex);
-            musicPlayer.StartPlayingPoly();
+            //musicPlayer.Reset(numberOfParts,startIndex);
+            musicPlayer.StartPlaying(numberOfParts,startIndex);
             return true;
         }
 
@@ -675,9 +681,14 @@ namespace MusicXmlReaderModel
             return musicPlayer.StartRepeating(numberOfParts,firstMeasure, lastMeasure);
         }
 
-        public bool StopRepeating()
+        public bool TogglePlaying(int startIndex)
         {
-            return musicPlayer.StopRepeating();
+            return musicPlayer.ToggleStartStopPlaying(numberOfParts,startIndex);
+        }
+
+        public void StopRepeating()
+        {
+            musicPlayer.StopRepeating();
         }
 
         /// <summary>

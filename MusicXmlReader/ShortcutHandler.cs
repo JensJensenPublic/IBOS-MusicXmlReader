@@ -150,7 +150,7 @@ namespace MusicXmlReader
 
         // Start / Stop of Autoplay
         static public readonly Keys startPlaying = ((Keys)((Keys.Control | Keys.P)));
-        static public readonly Keys[] stopPlaying = new Keys[] { Keys.Space };
+        static public readonly Keys[] togglePlaying = new Keys[] { Keys.Space };
 
         // UserSettingsTreeview:
         static public readonly Keys[] checkAll = new Keys[] { ((Keys)((Keys.Control | Keys.Add))),       // Numeric "+"
@@ -196,9 +196,9 @@ namespace MusicXmlReader
             return (e.KeyData == startPlaying);
         }
 
-        public bool IsStopPlayingShortcut(KeyEventArgs e)
+        public bool IsTogglePlayingShortcut(KeyEventArgs e)
         {
-            foreach (Keys key in stopPlaying)
+            foreach (Keys key in togglePlaying)
             {
                 if (e.KeyData == key)
                 {
