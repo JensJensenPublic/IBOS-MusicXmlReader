@@ -255,4 +255,10 @@
   <data name="TreeWiew_Items" xml:space="preserve">
     <value>Filtre</value>
   </data>
+  <data name="Message_NotAllowedWhilePlaying" xml:space="preserve">
+    <value>Ikke tilladt under afspilning</value>
+  </data>
+  <data name="Message_StopPlayingFirst" xml:space="preserve">
+    <value>Stop afspilning først</value>
+  </data>
 </root>

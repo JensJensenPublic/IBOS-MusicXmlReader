@@ -15,7 +15,9 @@ namespace MusicXmlReaderModel
         DirectoryNotFound,
         FailedToStartProgram, // External program such as Sibelius, Notepad etc
         FailedToReadMusicXmlFile,
-        UnspecifiedMusicXmlFile // Unspecified error during reading and interpretation
+        UnspecifiedMusicXmlFile, // Unspecified error during reading and interpretation
+        NotAllowedWhilePlaying // Operation not allowed while playing music
+
     }
 
     public interface IUtilityClient

@@ -255,6 +255,7 @@ namespace MusicXmlReader
                 case ModelMessageEnum.MissingProgramFile: return ResourcesForUI.Message_MissingProgramFile;
                 case ModelMessageEnum.FailedToReadMusicXmlFile: return ResourcesForUI.Message_FailedToReadMusicXmlFile;
                 case ModelMessageEnum.UnspecifiedMusicXmlFile: return ResourcesForUI.Message_UnspecifiedMusicXmlFile;
+                case ModelMessageEnum.NotAllowedWhilePlaying: return ResourcesForUI.Message_NotAllowedWhilePlaying;
                 default: return string.Format("{0} {1}",ResourcesForUI.Message_UndefinedMessage,messageEnum.ToString());
             }
         }
@@ -270,6 +271,7 @@ namespace MusicXmlReader
                 case ModelMessageEnum.FileNotFound: return "";
                 case ModelMessageEnum.MissingProgramFile: return ResourcesForUI.Message_PleaseSeeLogFile;
                 case ModelMessageEnum.FailedToReadMusicXmlFile: return ResourcesForUI.Message_PleaseSeeLogFile;
+                case ModelMessageEnum.NotAllowedWhilePlaying: return ResourcesForUI.Message_StopPlayingFirst;
                 default: return "";
             }
         }

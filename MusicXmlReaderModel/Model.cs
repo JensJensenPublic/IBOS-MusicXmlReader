@@ -627,7 +627,10 @@ namespace MusicXmlReaderModel
                 }
             }
             //musicPlayer.Reset(numberOfParts,startIndex);
-            musicPlayer.StartPlaying(numberOfParts,startIndex);
+            if (!musicPlayer.StartPlaying(numberOfParts, startIndex))
+            {
+                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.NotAllowedWhilePlaying, "", "");             
+            }
             return true;
         }
 
@@ -675,10 +678,13 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="firstMeasure"></param>
         /// <param name="lastMeasure"></param>
-        public bool StartRepeating(int firstMeasure, int lastMeasure)
+        public void StartRepeating(int firstMeasure, int lastMeasure)
         {
             //musicPlayer.Reset(numberOfParts,-1);
-            return musicPlayer.StartRepeating(numberOfParts,firstMeasure, lastMeasure);
+            if (!musicPlayer.StartRepeating(numberOfParts, firstMeasure, lastMeasure))
+            {
+                Utilities.UtilityClient.ShowWarning((int) ModelMessageEnum.NotAllowedWhilePlaying, "", "");
+            }
         }
 
         public bool TogglePlaying(int startIndex)

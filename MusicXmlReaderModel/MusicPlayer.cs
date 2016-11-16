@@ -496,16 +496,12 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="numberOfParts">Number of parts in the current score</param>
         /// <param name="startIndex">Index to start playing at</param>
-        public void StartPlaying(int numberOfParts, int startIndex)
+        public bool StartPlaying(int numberOfParts, int startIndex)
         {
             string functionName = "StartPlaying";
             Logger.Log(string.Format("{0}.{1}(Parts={2},StartIndex={3})", className, functionName, numberOfParts, startIndex));
-            if (musicPlayerThreadState == MusicPlayerThreadStateEnum.running)
-            {
-                // Before starting a new thread attempt to stop any current thread
-                StopPlaying();
-                WaitForExistingTreadToStop();  
-            }
+
+            if (musicPlayerThreadState == MusicPlayerThreadStateEnum.running) return false;
             this.startIndex = startIndex;
             this.numberOfParts = numberOfParts;
             playerThreadId = (playerThreadId + 1) % 1000; // No silly overrun
@@ -514,6 +510,7 @@ namespace MusicXmlReaderUI
             //playerThread.Priority = System.Threading.ThreadPriority.Lowest; // Handle UI even when playing complicated stuff
             Logger.Log(string.Format("Starting PlayerThread at priority={0}", playerThread.Priority.ToString()));
             playerThread.Start();
+            return true;
 
         }
 
@@ -539,8 +536,10 @@ namespace MusicXmlReaderUI
         /// <returns></returns>
         public bool StartRepeating(int numberOfParts,int firstIndex, int lastIndex)
         {
+            
             string functionName = "StartRepeating";
             Logger.Log(string.Format("{0}:{1}(Parts={2},FirstIndex={3},LastIndex={4})", className, functionName, numberOfParts, firstIndex, lastIndex));
+            if (musicPlayerThreadState == MusicPlayerThreadStateEnum.running) return false;
             //this.numberOfParts = numberOfParts;
             bool result = true;
             if ((firstIndex >= 0) && (lastIndex >= 0))

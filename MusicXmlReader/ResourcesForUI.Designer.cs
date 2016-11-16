@@ -160,11 +160,29 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not allowed while playing music.
+        /// </summary>
+        internal static string Message_NotAllowedWhilePlaying {
+            get {
+                return ResourceManager.GetString("Message_NotAllowedWhilePlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please see Log File (Tools-&gt;Log File).
         /// </summary>
         internal static string Message_PleaseSeeLogFile {
             get {
                 return ResourceManager.GetString("Message_PleaseSeeLogFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop plaing first.
+        /// </summary>
+        internal static string Message_StopPlayingFirst {
+            get {
+                return ResourceManager.GetString("Message_StopPlayingFirst", resourceCulture);
             }
         }
         
