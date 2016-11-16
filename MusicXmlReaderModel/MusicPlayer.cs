@@ -15,10 +15,12 @@ namespace MusicXmlReaderUI
         object GetObjectAtIndex(int index);
     }
 
+    enum MusicPlayerThreadStateEnum { unknown=0, stopped, running }; 
+
     public class MusicPlayer
     {
         string className = "MusicPlayer";
-        MidiNote latestNotePlayed = null;
+        //MidiNote latestNotePlayed = null;
         MidiChord latestHarmonyPlayed = null;
         MidiOut midiOut = null;
         IObjectCollection objects = null;
@@ -30,8 +32,8 @@ namespace MusicXmlReaderUI
         int numberOfParts;
         int startIndex;
         List<MidiNote> notesCurrentlyPlaying; // Contains all notes currently playing. Used when playing is stopped by user
-
-
+        volatile MusicPlayerThreadStateEnum musicPlayerThreadState; // Set by the MusicPlayerThread, read by the UI thread ! 
+        int playerThreadId = 0; // Used for debugging only to keep track of various instances of the MusicPlayerThread.
 
         long musicXmlTimeOffset  = 0; // Needed for handling change in Tempo while aulo-playing. Unit is the same as for Duration
 
@@ -42,11 +44,6 @@ namespace MusicXmlReaderUI
         // User settings
         UserSettings userSettings;
 
-        //float userSlowDown;
-
-
-        int playerThreadId = 0; // Used for debugging only
-        bool playerThreadIsRunning = false;
 
         /// <summary>
         /// Constructor
@@ -372,14 +369,22 @@ namespace MusicXmlReaderUI
             }
         }
 
-        /// <summary>
-        /// Can be used for implementing toggle-functionality for starting and stopping the playerThread in the UI
-        /// </summary>
-        public bool PlayerThreadIsRunning
+        ///// <summary>
+        ///// Can be used for implementing toggle-functionality for starting and stopping the playerThread in the UI
+        ///// </summary>
+        //public bool PlayerThreadIsRunning
+        //{
+        //    get
+        //    {
+        //        return playerThreadIsRunning;
+        //    }
+        //}
+
+        internal MusicPlayerThreadStateEnum MusicPlayerThreadState
         {
             get
             {
-                return playerThreadIsRunning;
+                return musicPlayerThreadState;
             }
         }
 
@@ -391,10 +396,13 @@ namespace MusicXmlReaderUI
 
         private void PlayerThreadStart(IObjectCollection objects, int id)
         {
+            int threadId = id;
+            musicPlayerThreadState = MusicPlayerThreadStateEnum.running;
+            
             string functionName = "PlayerThreadStart";
-            playerThreadIsRunning = true;
+            //playerThreadIsRunning = true;
             System.Threading.Thread.Sleep(1000); // Allow Screanreader to complete initial actions
-            Logger.Log(string.Format("PlayerThread(Id={0}) starting",id));
+            Logger.Log(string.Format("PlayerThread(Id={0}) starting", threadId));
             this.stopWatch = new System.Diagnostics.Stopwatch();
             this.stopWatch.Start();
             //this.nextActionTime = 0;
@@ -453,9 +461,30 @@ namespace MusicXmlReaderUI
                 //    midiNote.StopPlaying(this.midiOut);
                 //}
             } while (repeating && playing) ;
-            Logger.Log(string.Format("PlayerThread(Id={0}) exiting", id));
-            playerThreadIsRunning = false;
+            Logger.Log(string.Format("PlayerThread(Id={0}) exiting", threadId));
+            musicPlayerThreadState = MusicPlayerThreadStateEnum.stopped;
         }
+
+
+        private void WaitForExistingTreadToStop()
+        {
+            string functionName = "WaitForExistingTreadToStop";
+            System.Threading.Thread.Sleep(100);
+            // Give the player thread a chance to exit in order to prevent 2 threads running at the same time
+            for (int i = 0; (i < 10) && (musicPlayerThreadState == MusicPlayerThreadStateEnum.running); i++)
+            {
+                if (i == 5)
+                {
+                    Logger.Log(string.Format("{0}.{1} waiting for MusicPlayerThread to stop", className, functionName));
+                }
+                System.Threading.Thread.Sleep(100);
+            }
+            if (musicPlayerThreadState == MusicPlayerThreadStateEnum.running)
+            {
+                Logger.Log(string.Format("{0}.{1} warning: MusicPlayerThread did not stop within time limit", className, functionName));
+            }
+        }
+
 
         //
         // Public methods for starting and stopping the MusicPlayer
@@ -471,9 +500,11 @@ namespace MusicXmlReaderUI
         {
             string functionName = "StartPlaying";
             Logger.Log(string.Format("{0}.{1}(Parts={2},StartIndex={3})", className, functionName, numberOfParts, startIndex));
-            if (playing)
+            if (musicPlayerThreadState == MusicPlayerThreadStateEnum.running)
             {
+                // Before starting a new thread attempt to stop any current thread
                 StopPlaying();
+                WaitForExistingTreadToStop();  
             }
             this.startIndex = startIndex;
             this.numberOfParts = numberOfParts;
@@ -487,6 +518,7 @@ namespace MusicXmlReaderUI
 
         /// <summary>
         /// Unconditionally stop playing
+        /// Keep the calling (UI) thread back for up to 1000 mS to avoid 2 or more threads running at the same time !
         /// </summary>
         public void StopPlaying()
         {
@@ -547,7 +579,7 @@ namespace MusicXmlReaderUI
         {
             string functionName = "ToggleStartStopPlaying";
             Logger.Log(string.Format("{0}:{1}(Parts={2},StartIndex={3})", className, functionName, numberOfParts, startIndex));
-            if (playerThreadIsRunning)
+            if (musicPlayerThreadState == MusicPlayerThreadStateEnum.running)
             {
                 StopPlaying();
                 return false;
