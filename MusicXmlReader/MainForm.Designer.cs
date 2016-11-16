@@ -363,8 +363,10 @@
             // 
             this.textBoxCommand.Location = new System.Drawing.Point(147, 28);
             this.textBoxCommand.Name = "textBoxCommand";
+            this.textBoxCommand.ReadOnly = true;
             this.textBoxCommand.Size = new System.Drawing.Size(112, 20);
             this.textBoxCommand.TabIndex = 9;
+            this.textBoxCommand.TabStop = false;
             // 
             // MainForm
             // 
