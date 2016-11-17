@@ -181,25 +181,26 @@ namespace MusicXmlReader
 
             //
             // Build up the fixed part of the tree, which does not depend on the actual MusicXmlfile
-            // The .Name is used for horisontal navigation between nodes with similar semantics.
+            // The .Name in level 1 nodes is used for horisontal navigation between nodes with similar semantics.
             //
-     
+            string f = " " + ResourcesForUI.Treeview_for + " ";
+
             musicAsSound  = treeView.Nodes.Insert(MusicNodeIndex ,ResourcesForUI.TreeView_MusicAsSound);
-            musicAsSoundVoices = musicAsSound.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Parts);
+            musicAsSoundVoices = musicAsSound.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Parts + f + ResourcesForUI.TreeView_MusicAsSound);
             musicAsSoundVoices.Name = ResourcesForUI.TreeView_MusicAsSound_Parts;
-            musicAsSoundDetails = musicAsSound.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Details);
+            musicAsSoundDetails = musicAsSound.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Details + f + ResourcesForUI.TreeView_MusicAsSound);
             musicAsSoundDetails.Name = ResourcesForUI.TreeView_MusicAsSound_Details;
 
             musicAsText = treeView.Nodes.Insert(TextNodeIndex, ResourcesForUI.TreeView_MusicAsSpeech);
-            musicAsTextVoices = musicAsText.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsSpeech_Parts);
+            musicAsTextVoices = musicAsText.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsSpeech_Parts + f + ResourcesForUI.TreeView_MusicAsSpeech);
             musicAsTextVoices.Name = ResourcesForUI.TreeView_MusicAsSpeech_Parts;
-            musicAsTextDetails = musicAsText.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSpeech_Details);
+            musicAsTextDetails = musicAsText.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSpeech_Details + f + ResourcesForUI.TreeView_MusicAsSpeech);
             musicAsTextDetails.Name = ResourcesForUI.TreeView_MusicAsSpeech_Details;
 
             musicAsBraille = treeView.Nodes.Insert(BrailleNodeIndex ,ResourcesForUI.TreeView_MusicAsBraille);
-            musicAsBrailleVoices = musicAsBraille.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsBraille_Parts);
+            musicAsBrailleVoices = musicAsBraille.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsBraille_Parts + f + ResourcesForUI.TreeView_MusicAsBraille);
             musicAsBrailleVoices.Name = ResourcesForUI.TreeView_MusicAsBraille_Parts;
-            musicAsBrailleDetails = musicAsBraille.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Details);
+            musicAsBrailleDetails = musicAsBraille.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Details + f + ResourcesForUI.TreeView_MusicAsBraille);
             musicAsBrailleDetails.Name = ResourcesForUI.TreeView_MusicAsSound_Details;
         }
 
