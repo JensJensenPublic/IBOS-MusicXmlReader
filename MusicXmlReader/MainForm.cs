@@ -16,7 +16,7 @@ namespace MusicXmlReader
     /// </summary>
     public partial class MainForm : Form, IDebugDisplayerClient, IObjectCollection, IUtilityClient
     {
-
+        string className = "MainForm";
         enum MusicPlayerStateEnum { unknown, stopped, running };
         string ApplicationName = "";  // Application name. Will be re-initialized later using localization!
         Model model;        // The Model containing all of the business logic.        
@@ -28,8 +28,10 @@ namespace MusicXmlReader
 
         public MainForm()
         {
+            string functionName = "MainForm";
             InitializeComponent();
-            Logger.Open("MusicXmlReaderUI.log");
+            Logger.Open("MusicXmlReader.log");
+            Logger.Log(string.Format("{0}.{1}", className, functionName)); // Primarily  to avoid "not used" warnings
             Application.ApplicationExit += Application_ApplicationExit;
             LogSystemInformation();
             // If the execution directory contains a file named "Language.txt" containing the string "en-US"
@@ -382,6 +384,10 @@ namespace MusicXmlReader
 
         public void ConditionalLoadListBoxTimes()
         {
+#if false
+            string functionName = "ConditionalLoadListBoxTimes";
+            Logger.Log(String.Format("{0}.{1} autoReload= {2}", className, functionName, autoReload));
+#endif
             if (autoReload)
             {
                 LoadListBoxTimes();
@@ -422,7 +428,7 @@ namespace MusicXmlReader
             listBoxTimes.SelectedIndex = Math.Min(selectedIndex, listBoxTimes.Items.Count); 
         }
 
-        #endregion
+#endregion
 
 
         private void openMusicXmlFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -433,7 +439,7 @@ namespace MusicXmlReader
 
 
 
-        #region ListBoxTimes
+#region ListBoxTimes
 
         //private void listBoxTimes_SelectedIndexChanged(object sender, EventArgs e)
         //{
@@ -478,7 +484,7 @@ namespace MusicXmlReader
         private bool savedSpeechState;
         private bool savedMusicBrailleState;
 
-        #endregion
+#endregion
 
         private void TurnOffSpeeshAndMusicBraille()
         {
@@ -508,7 +514,7 @@ namespace MusicXmlReader
         //*************************************************************************************************
         //
 
-        #region tools
+#region tools
 
 
         private void museScoreToolStripMenuItem_Click(object sender, EventArgs e)
@@ -548,7 +554,7 @@ namespace MusicXmlReader
 
 
 
-        #endregion // tools ***********************************************************************
+#endregion // tools ***********************************************************************
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -559,7 +565,7 @@ namespace MusicXmlReader
             Application.Exit();
         }
 
-        #region keyhandlers
+#region keyhandlers
         
         /// <summary>
         /// Occurs when a key is pressed while listBoxTimes has focus
@@ -607,6 +613,9 @@ namespace MusicXmlReader
  
             string level2Text = userSettingsTreeView.SelectedNode.Text;
             string level1Name = userSettingsTreeView.SelectedNode.Parent.Name;
+
+            bool saveAutoReload = autoReload;
+            autoReload = false; // Avoid loading the listbox for each and every change
             // Locate and check/uncheck all nodes with same parent-name and same node-name
             foreach (TreeNode level0Node in userSettingsTreeView.Nodes)
             {
@@ -624,12 +633,14 @@ namespace MusicXmlReader
                     }
                 }
             }
+            autoReload = saveAutoReload; // Restore
+            ConditionalLoadListBoxTimes(); // Reload once instead of multiple times
         }
-        #endregion keyhandlers 
+#endregion keyhandlers 
         //
         //*************************************************************************************************
         //
-        #region Edit
+#region Edit
         // Items above the delimiter line are represented by level 0 nodes in the tree
 
         private void musicRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -667,17 +678,17 @@ namespace MusicXmlReader
             userSettingsHandler.ShowFilterItems(false);
         }
         
-        #endregion // Edit
+#endregion // Edit
         //
         //*************************************************************************************************
         //
-        #region Archives
+#region Archives
 
         private void httpsmusescorecomsheetmusicToolStripMenuItem_Click(object sender, EventArgs e)
         {
             model.ExternalToolsHandler.OpenUrl(@"https://musescore.com/sheetmusic");
         }
-        #endregion
+#endregion
         //*************************************************************************************************
 
     }
