@@ -14,13 +14,16 @@ namespace MusicXmlReader
         private Model model;
         private StringBuilder command;
         private TextBox textBox;
+        private ListBox listBox;
+        private string className = "CommandInterpreter";
 
         private CommandInterpreter()
         {}
 
-        private CommandInterpreter(TextBox textBox, Model model)
+        private CommandInterpreter(TextBox textBox,ListBox listBox, Model model)
         {
             this.model = model;
+            this.listBox = listBox;
             this.textBox = textBox;
             command = new StringBuilder();
         }
@@ -52,7 +55,27 @@ namespace MusicXmlReader
             return ""; 
         }
 
-        private void Repeat(string[] paramaters)
+        private void Goto(string[] paramaters,string command)
+        {
+            // If the command had the form "Gn1 where n1 represent an integer we go to that index 
+            string functionName = "Goto";
+            int n1 = 0;
+            if ((1 == paramaters.Length)
+            && (int.TryParse(paramaters[0], out n1)) // First parameter
+            && (n1 >= 0)
+            && (n1 < listBox.Items.Count)
+            )
+            {
+                listBox.SelectedIndex = n1;
+            }
+            else
+            {
+                Logger.Log(string.Format("{0}.{1} Illegal arguments:{2}", className, functionName, command));
+            }    
+        }
+        
+
+        private void Repeat(string[] paramaters,string command)
         {
             // If the command had the form "R,n1,n2" where n1 and represent integers we start repeating, else we cancel it:
             int n1 = 0;
@@ -87,7 +110,8 @@ namespace MusicXmlReader
                     string[] parameters = s.Substring(1).Split(new char[] { ',' });
                     switch (s[0])
                     {
-                        case 'R': Repeat(parameters); break;
+                        case 'R': Repeat(parameters,s); break;
+                        case 'G': Goto(parameters,s); break;
                         default: break;
                     }
                 }
@@ -110,9 +134,9 @@ namespace MusicXmlReader
 
         }
 
-        public static CommandInterpreter Create(TextBox textBox,Model model)
+        public static CommandInterpreter Create(TextBox textBox,ListBox listBox,Model model)
         {
-            return new CommandInterpreter(textBox,model);
+            return new CommandInterpreter(textBox,listBox,model);
         }
     
     }

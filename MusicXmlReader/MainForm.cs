@@ -54,7 +54,7 @@ namespace MusicXmlReader
             userSettingsTreeView.CollapseAll();
             // Create a handler for handling all Keyboard shortcuts
             shortCutHandler = ShortcutHandler.Create(this, model);
-            commandInterpreter = CommandInterpreter.Create(this.textBoxCommand, model);
+            commandInterpreter = CommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
         }
 
         private void Application_ApplicationExit(object sender, EventArgs e)
