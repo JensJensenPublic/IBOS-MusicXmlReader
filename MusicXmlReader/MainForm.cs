@@ -606,13 +606,13 @@ namespace MusicXmlReader
             if (2 != userSettingsTreeView.SelectedNode.Level) return;
  
             string level2Text = userSettingsTreeView.SelectedNode.Text;
-            string level1Text = userSettingsTreeView.SelectedNode.Parent.Text;
+            string level1Name = userSettingsTreeView.SelectedNode.Parent.Name;
             // Locate and check/uncheck all nodes with same parent-name and same node-name
             foreach (TreeNode level0Node in userSettingsTreeView.Nodes)
             {
                 foreach (TreeNode level1Node in level0Node.Nodes)
                 {
-                    if (0 == string.Compare(level1Text, level1Node.Text))
+                    if (0 == string.Compare(level1Name, level1Node.Name))
                     {
                         foreach (TreeNode level2Node in level1Node.Nodes)
                         {

@@ -181,20 +181,26 @@ namespace MusicXmlReader
 
             //
             // Build up the fixed part of the tree, which does not depend on the actual MusicXmlfile
+            // The .Name is used for horisontal navigation between nodes with similar semantics.
             //
      
             musicAsSound  = treeView.Nodes.Insert(MusicNodeIndex ,ResourcesForUI.TreeView_MusicAsSound);
             musicAsSoundVoices = musicAsSound.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Parts);
+            musicAsSoundVoices.Name = ResourcesForUI.TreeView_MusicAsSound_Parts;
             musicAsSoundDetails = musicAsSound.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Details);
+            musicAsSoundDetails.Name = ResourcesForUI.TreeView_MusicAsSound_Details;
 
             musicAsText = treeView.Nodes.Insert(TextNodeIndex, ResourcesForUI.TreeView_MusicAsSpeech);
             musicAsTextVoices = musicAsText.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsSpeech_Parts);
+            musicAsTextVoices.Name = ResourcesForUI.TreeView_MusicAsSpeech_Parts;
             musicAsTextDetails = musicAsText.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSpeech_Details);
+            musicAsTextDetails.Name = ResourcesForUI.TreeView_MusicAsSpeech_Details;
 
             musicAsBraille = treeView.Nodes.Insert(BrailleNodeIndex ,ResourcesForUI.TreeView_MusicAsBraille);
             musicAsBrailleVoices = musicAsBraille.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsBraille_Parts);
-            musicAsBrailleDetails = musicAsBraille.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Details);  
-
+            musicAsBrailleVoices.Name = ResourcesForUI.TreeView_MusicAsBraille_Parts;
+            musicAsBrailleDetails = musicAsBraille.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Details);
+            musicAsBrailleDetails.Name = ResourcesForUI.TreeView_MusicAsSound_Details;
         }
 
 
