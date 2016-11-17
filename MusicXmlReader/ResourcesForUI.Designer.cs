@@ -403,6 +403,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to for.
+        /// </summary>
+        internal static string Treeview_for {
+            get {
+                return ResourceManager.GetString("Treeview_for", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Braille Music representation.
         /// </summary>
         internal static string TreeView_MusicAsBraille {

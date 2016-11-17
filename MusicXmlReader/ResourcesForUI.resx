@@ -261,4 +261,7 @@
   <data name="Message_StopPlayingFirst" xml:space="preserve">
     <value>Stop plaing first</value>
   </data>
+  <data name="Treeview_for" xml:space="preserve">
+    <value>for</value>
+  </data>
 </root>
