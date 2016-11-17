@@ -70,10 +70,31 @@ namespace MusicXmlReader
             }
             else
             {
-                Logger.Log(string.Format("{0}.{1} Illegal arguments:{2}", className, functionName, command));
+                Logger.Log(string.Format("{0}.{1} Illegal command:'{2}'", className, functionName, command));
             }    
         }
-        
+
+        private void Tempo(string[] paramaters, string command)
+        {
+            // If the command had the form "Tn1 where n1 represent an integer we modify the playback speed to n1% of the value stated by the score.
+            string functionName = "Tempo";
+            int n1 = 0;
+            if ((1 == paramaters.Length)
+            && (int.TryParse(paramaters[0], out n1)) // First parameter
+            && (n1 >= 10)
+            && (n1 <= 200)
+            )
+            {
+                //model.ModifyPlaybackTempo(n1);
+            }
+            else
+            {
+                Logger.Log(string.Format("{0}.{1} Illegal command:'{2}'", className, functionName, command));
+            }
+        }
+
+
+
 
         private void Repeat(string[] paramaters,string command)
         {
@@ -111,7 +132,9 @@ namespace MusicXmlReader
                     switch (s[0])
                     {
                         case 'R': Repeat(parameters,s); break;
-                        case 'G': Goto(parameters,s); break;
+                        case 'G': Goto(parameters, s); break;
+                        case 'T': Tempo(parameters, s); break;
+
                         default: break;
                     }
                 }
