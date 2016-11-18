@@ -55,10 +55,15 @@ namespace MusicXmlReader
             return ""; 
         }
 
-        private void Goto(string[] paramaters,string command)
+        /// <summary>
+        /// Interpret the parameter as an index
+        /// </summary>
+        /// <param name="paramaters"></param>
+        /// <param name="command"></param>
+        private void GotoIndex(string[] paramaters,string command)
         {
             // If the command had the form "Gn1 where n1 represent an integer we go to that index 
-            string functionName = "Goto";
+            string functionName = "GotoIndex";
             int n1 = 0;
             if ((1 == paramaters.Length)
             && (int.TryParse(paramaters[0], out n1)) // First parameter
@@ -74,10 +79,15 @@ namespace MusicXmlReader
             }    
         }
 
-        private void GotoIndex(string[] paramaters, string command)
+        /// <summary>
+        /// Interpret the parameter as a measure number
+        /// </summary>
+        /// <param name="paramaters"></param>
+        /// <param name="command"></param>
+        private void GotoMeasure(string[] paramaters, string command)
         {
             // If the command had the form "Gn1 where n1 represent an integer we go to that index 
-            string functionName = "Goto";
+            string functionName = "GotoMeasure";
             int index = 0;
             int n1 = 0;
             if ((1 == paramaters.Length)
@@ -94,7 +104,63 @@ namespace MusicXmlReader
             }
         }
 
+        
+        /// <summary>
+        /// Interpret the parameters as indices
+        /// </summary>
+        /// <param name="paramaters"></param>
+        /// <param name="command"></param>
+        private void RepeatIndices(string[] paramaters, string command)
+        {
+            // If the command had the form "R,n1,n2" where n1 and represent integers we start repeating, else we cancel it:
+            int n1 = 0;
+            int n2 = 0;
+            if ((2 == paramaters.Length)
+            && (int.TryParse(paramaters[0], out n1)) // First parameter
+            && (int.TryParse(paramaters[1], out n2)) // Second parameter
+            && (n1 >= 0)
+            && (n2 >= 0)
+            && (n2 >= n1)
+            )
+            {
+                model.StartRepeating(n1, n2); // Means "Repeat [index n1 to index n2]"
+            }
+            else
+            {
+                model.StopRepeating();
+            }
+        }
 
+        /// <summary>
+        /// Interpret the parameters as measure numbers
+        /// </summary>
+        /// <param name="paramaters"></param>
+        /// <param name="command"></param>
+        private void RepeatMeasures(string[] paramaters, string command)
+        {
+            // If the command had the form "R,n1,n2" where n1 and represent integers we start repeating, else we cancel it:
+            int n1 = 0;
+            int n2 = 0;
+            int iStart = 0;
+            int iStop = 0;
+
+            if ((2 == paramaters.Length)
+            && (int.TryParse(paramaters[0], out n1)) // First parameter
+            && (int.TryParse(paramaters[1], out n2)) // Second parameter
+            && (n1 >= 0)
+            && (n2 >= 0)
+            && (model.MeasureToIndex(n1, ref iStart))
+            && (model.MeasureToIndex(n2+1, ref iStop))
+            )
+            {
+                model.StartRepeating(iStart, iStop); // Means "Repeat [measure n1 to measure n2]"
+            }
+            else
+            {
+                model.StopRepeating();
+            }
+        }
+        
 
         private void Tempo(string[] paramaters, string command)
         {
@@ -118,28 +184,6 @@ namespace MusicXmlReader
 
 
 
-        private void Repeat(string[] paramaters,string command)
-        {
-            // If the command had the form "R,n1,n2" where n1 and represent integers we start repeating, else we cancel it:
-            int n1 = 0;
-            int n2 = 0;
-            if ((2 == paramaters.Length)
-            && (int.TryParse(paramaters[0], out n1)) // First parameter
-            && (int.TryParse(paramaters[1], out n2)) // Second parameter
-            && (n1 >= 0)
-            && (n2 >= 0)
-            && (n2 >= n1)
-            )
-            {
-               model.StartRepeating(n1, n2); // Means "Repeat [measure n1 to measure n2]"
-            }
-            else
-            {
-                model.StopRepeating();
-            }
-        }
-
-
         public void Add(KeyEventArgs args)
         {
             if (args.KeyData == Keys.Return)
@@ -153,9 +197,10 @@ namespace MusicXmlReader
                     string[] parameters = s.Substring(1).Split(new char[] { ',' });
                     switch (s[0])
                     {
-                        case 'R': Repeat(parameters,s); break;
-  //                      case 'G': Goto(parameters, s); break;
-                        case 'G': GotoIndex(parameters, s); break;
+                        //case 'R': RepeatIndices(parameters, s); break;
+                        case 'R': RepeatMeasures(parameters, s); break;
+                        // case 'G': GotoIndex(parameters, s); break;
+                        case 'G': GotoMeasure(parameters, s); break;
                         case 'T': Tempo(parameters, s); break;
 
                         default: break;
