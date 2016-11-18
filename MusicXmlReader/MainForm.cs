@@ -24,7 +24,7 @@ namespace MusicXmlReader
         UserSettingsHandler userSettingsHandler; // Contains all settings that can be configured by the user
         MusicPlayerStateEnum musicPlayerState = MusicPlayerStateEnum.stopped; // Assume the musicplayer is innitially stopped
         ShortcutHandler shortCutHandler;
-        CommandInterpreter commandInterpreter;
+        UserCommandInterpreter commandInterpreter;
 
         public MainForm()
         {
@@ -54,7 +54,7 @@ namespace MusicXmlReader
             userSettingsTreeView.CollapseAll();
             // Create a handler for handling all Keyboard shortcuts
             shortCutHandler = ShortcutHandler.Create(this, model);
-            commandInterpreter = CommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
+            commandInterpreter = UserCommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
         }
 
         private void Application_ApplicationExit(object sender, EventArgs e)

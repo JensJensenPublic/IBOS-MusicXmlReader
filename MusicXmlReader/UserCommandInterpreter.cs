@@ -8,7 +8,7 @@ using MusicXmlReaderModel;
 
 namespace MusicXmlReader
 {
-    class CommandInterpreter
+    class UserCommandInterpreter
     {
 
         private Model model;
@@ -17,10 +17,10 @@ namespace MusicXmlReader
         private ListBox listBox;
         private string className = "CommandInterpreter";
 
-        private CommandInterpreter()
+        private UserCommandInterpreter()
         {}
 
-        private CommandInterpreter(TextBox textBox,ListBox listBox, Model model)
+        private UserCommandInterpreter(TextBox textBox,ListBox listBox, Model model)
         {
             this.model = model;
             this.listBox = listBox;
@@ -157,9 +157,9 @@ namespace MusicXmlReader
 
         }
 
-        public static CommandInterpreter Create(TextBox textBox,ListBox listBox,Model model)
+        public static UserCommandInterpreter Create(TextBox textBox,ListBox listBox,Model model)
         {
-            return new CommandInterpreter(textBox,listBox,model);
+            return new UserCommandInterpreter(textBox,listBox,model);
         }
     
     }
