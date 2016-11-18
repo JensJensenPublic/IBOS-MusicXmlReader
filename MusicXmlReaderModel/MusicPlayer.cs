@@ -229,6 +229,21 @@ namespace MusicXmlReaderUI
             return (int)Math.Max(0, sleep);
         }
 
+
+        /// <summary>
+        /// This method allows musical Tempo to be changed by any Eventdescriptor, either caused by
+        /// 1) A SoundElement contained in the EventDescriptor and describing a change of Tempo found in the MusicXml file.
+        /// 2) A User interaction (which is for simplicity executed by the next EventDescriptor)
+        /// </summary>
+        /// <param name="eventStartTime">The Start time for the EventDescriptor</param>
+        private void ChangeTimingOffsets(int eventStartTime)
+        {
+            firstStopWatchTime = stopWatch.ElapsedMilliseconds; // From now on all stopwatch times are relative to this value (now) 
+            musicXmlTimeOffset = eventStartTime; // From now on all musicXml times are ralative to this value (starttime of the current event
+        }
+
+
+
         /// <summary>
         /// Used for playing polyphonic music.
         /// The EventDescription contains a set of noteElements to be handled simultaneously
@@ -308,18 +323,15 @@ namespace MusicXmlReaderUI
                 }
             }
 
-            // Handle Sound desriptions, such as "Tempo"
+            // Handle Sound desriptions, such as "Tempo". NOTE: May cause a change of musical tempo!
             if (null != eventDescription.SoundElements)
             {
                 foreach (SoundElement soundElement in eventDescription.SoundElements)
                 {
                     int newTempo = soundElement.GetTempo();
                     if (0 != newTempo)
-                    {
-                        // Model.Log(string.Format("MusicPlayer: Tempo {0}->{1}", this.tempo, newTempo));                   
-                        // We must also establish new offsets for stopwatch-time and music-time:
-                        firstStopWatchTime = stopWatch.ElapsedMilliseconds; // From now on all stopwatch times are relative to this value (now) 
-                        musicXmlTimeOffset = eventDescription.StartTime; // From now on all musicXml times are ralative to this value (starttime of the current event
+                    {    
+                        ChangeTimingOffsets(eventDescription.StartTime); // Establish new offsets for stopwatch-time and music-time:
                         Logger.Log(string.Format("MusicPlayer: Tempo {0}->{1} firstStopWatchTime={2} musicXmlTimeOffset={3}", this.tempo, newTempo, firstStopWatchTime, musicXmlTimeOffset));
                         this.tempo = newTempo;
                     }
@@ -327,15 +339,13 @@ namespace MusicXmlReaderUI
             }
 
 
-            // Finally handle changes in UserSettings.Tempo
+            // Finally handle changes in UserSettings.Tempo. NOTE: May cause a change of musical tempo!
             {
                 if (userTemopChanged)
                 {
                     float currentUserTempoFactor = userTempoFactor;
-                    userTempoFactor = (float)userTempo / (float)100;
-                    // We must also establish new offsets for stopwatch-time and music-time:
-                    firstStopWatchTime = stopWatch.ElapsedMilliseconds; // From now on all stopwatch times are relative to this value (now) 
-                    musicXmlTimeOffset = eventDescription.StartTime; // From now on all musicXml times are ralative to this value (starttime of the current event
+                    userTempoFactor = (float)userTempo / (float)100;                
+                    ChangeTimingOffsets(eventDescription.StartTime); // Establish new offsets for stopwatch-time and music-time:
                     Logger.Log(string.Format("MusicPlayer: UserTempoFactor {0}->{1} firstStopWatchTime={2} musicXmlTimeOffset={2}", currentUserTempoFactor, userTempoFactor, firstStopWatchTime, musicXmlTimeOffset));
                     userTemopChanged = false;
                 }
