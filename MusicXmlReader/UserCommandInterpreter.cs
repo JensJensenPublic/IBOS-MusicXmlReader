@@ -74,6 +74,28 @@ namespace MusicXmlReader
             }    
         }
 
+        private void GotoIndex(string[] paramaters, string command)
+        {
+            // If the command had the form "Gn1 where n1 represent an integer we go to that index 
+            string functionName = "Goto";
+            int index = 0;
+            int n1 = 0;
+            if ((1 == paramaters.Length)
+            && (int.TryParse(paramaters[0], out n1)) // First parameter
+            && (n1 >= 0)
+            && model.MeasureToIndex(n1,ref index)
+            )
+            {
+                listBox.SelectedIndex = index;
+            }
+            else
+            {
+                Logger.Log(string.Format("{0}.{1} Illegal command:'{2}'", className, functionName, command));
+            }
+        }
+
+
+
         private void Tempo(string[] paramaters, string command)
         {
             // If the command had the form "Tn1 where n1 represent an integer we modify the playback speed to n1% of the value stated by the score.
@@ -132,7 +154,8 @@ namespace MusicXmlReader
                     switch (s[0])
                     {
                         case 'R': Repeat(parameters,s); break;
-                        case 'G': Goto(parameters, s); break;
+  //                      case 'G': Goto(parameters, s); break;
+                        case 'G': GotoIndex(parameters, s); break;
                         case 'T': Tempo(parameters, s); break;
 
                         default: break;

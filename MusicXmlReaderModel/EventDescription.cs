@@ -44,6 +44,16 @@ namespace MusicXmlReaderModel
         private List<BarlineElement> barlineElements;  // The BarlineElements related to this event, if any. In some rare cases more than one!!
         private List<DirectionElement> directionElements; // The DirectionElements related to this event, if any 
 
+
+        public int MeasureNumber
+        {
+            get
+            {
+                return (null == measureElement) ? -1 : measureElement.Number;
+            }
+
+        }
+
         public int StartTime
         {
             get

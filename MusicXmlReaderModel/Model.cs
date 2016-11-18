@@ -601,6 +601,42 @@ namespace MusicXmlReaderModel
             //measureDescriptionList = MeasureDescriptionList.Create(allMusicXmlObjecsts);
         }
 
+
+        /// <summary>
+        /// Converts a measureNumber to an index in the current EventDescriptionList
+        /// Returns true iff the conversion was possible
+        /// Primarily used by the UI, not needed by the Model code itself!
+        /// </summary>
+        /// <param name="measure"></param>
+        /// <returns></returns>
+        public bool MeasureToIndex(int measureNumberToFind, ref int index)
+        {
+            string functionName = "MeasureToIndex";
+            if (null == eventDescriptionList) return false;
+            try
+            {
+                for (int i = 0; (i < eventDescriptionList.Events.Count); i++)  
+                {
+                    // Find the first match, representing the first event in the measure.
+                    int m = eventDescriptionList.Events[i].MeasureNumber;
+                    if (m == measureNumberToFind)
+                    {
+                        index = i;
+                        Logger.Log(string.Format("{0}.{1} Found measure number {2} at index {3}", className, functionName, measureNumberToFind, index));
+                        return true;
+                    }
+                }              
+            }
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("{0}.{1} Exception thrown while searching measure number {2} Message={3}", className, functionName, measureNumberToFind,e.Message));
+            }
+            Logger.Log(string.Format("{0}.{1} Failed to find measure number {2}", className, functionName, measureNumberToFind));
+            return false;
+        }
+
+
+
         //*****************************************************************************************
         // Event handlers called directly from the GUI and distributing control to other objects.
         //*****************************************************************************************
