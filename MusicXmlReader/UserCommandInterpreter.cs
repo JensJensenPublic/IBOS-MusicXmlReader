@@ -123,7 +123,7 @@ namespace MusicXmlReader
             && (n2 >= n1)
             )
             {
-                model.StartRepeating(n1, n2); // Means "Repeat [index n1 to index n2]"
+                model.StartRepeating(n1, n2+1); // Means "Repeat [index n1 to index n2]"
             }
             else
             {
@@ -153,7 +153,7 @@ namespace MusicXmlReader
             && (model.MeasureToIndex(n2+1, ref iStop))
             )
             {
-                model.StartRepeating(iStart, iStop); // Means "Repeat [measure n1 to measure n2]"
+                model.StartRepeating(iStart, iStop+1); // Means "Repeat [measure n1 to measure n2]"
             }
             else
             {
