@@ -154,9 +154,25 @@ namespace MusicXmlReaderModel
             musicBrailleSettingsValues[(int)i] = b;
         }
         
-
+        //*****************************************************************************************
         // Non-boolean user settings
-        public float userSlowDown;      // Percentage of the speed described in the MusicXml file
+        //*****************************************************************************************  
+
+        // Tempo settings
+        private int userTempo = 100; // Percentage of tempo indicated in score
+        public int UserTempo
+        {
+            get
+            {
+                return userTempo;
+            }
+
+            set
+            {
+                userTempo = value;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -216,7 +232,7 @@ namespace MusicXmlReaderModel
             InitPlayerSettings();
             InitMusicBrailleSettings();
 
-            userSlowDown = 1.0F;
+            userTempo = 100; // Percentage of tempo indicated in score
             if (((int)ReaderSettings.NumberOfReaderSettings != readerSettingsNames.Length)
             || ((int)ReaderSettings.NumberOfReaderSettings  != readerSettingsValues.Length)
             || ((int)PlayerSettings.NumberOfPlayerSettings  != playerSettingsNames.Length)

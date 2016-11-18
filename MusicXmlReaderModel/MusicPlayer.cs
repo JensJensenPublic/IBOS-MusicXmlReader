@@ -45,7 +45,7 @@ namespace MusicXmlReaderUI
         UserSettings userSettings;
 
         bool  userTemopChanged = false;
-        int   userTempo = 100; // Percentage of tempo indicated in score
+        //int   userTempo = 100; // Percentage of tempo indicated in score
         float userTempoFactor = (float)1;
 
         /// <summary>
@@ -344,9 +344,9 @@ namespace MusicXmlReaderUI
                 if (userTemopChanged)
                 {
                     float currentUserTempoFactor = userTempoFactor;
-                    userTempoFactor = (float)userTempo / (float)100;                
+                    userTempoFactor = (float)userSettings.UserTempo / (float)100;                
                     ChangeTimingOffsets(eventDescription.StartTime); // Establish new offsets for stopwatch-time and music-time:
-                    Logger.Log(string.Format("MusicPlayer: UserTempoFactor {0}->{1} firstStopWatchTime={2} musicXmlTimeOffset={2}", currentUserTempoFactor, userTempoFactor, firstStopWatchTime, musicXmlTimeOffset));
+                    Logger.Log(string.Format("MusicPlayer: UserTempoFactor {0}->{1} firstStopWatchTime={2} musicXmlTimeOffset={3}", currentUserTempoFactor, userTempoFactor, firstStopWatchTime, musicXmlTimeOffset));
                     userTemopChanged = false;
                 }
             }
@@ -544,7 +544,7 @@ namespace MusicXmlReaderUI
 
         public void SetUserTempo(int tempo)
         {
-            userTempo = tempo;
+            userSettings.UserTempo = tempo;
             userTemopChanged = true;
         }
 

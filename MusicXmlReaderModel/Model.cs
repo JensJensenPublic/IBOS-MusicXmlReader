@@ -662,10 +662,10 @@ namespace MusicXmlReaderModel
             this.userSettings.partsToRead[partNumber] = value;
         }
 
-        public void PlaySpeedChanged(float newValue)
-        {
-            userSettings.userSlowDown = newValue;
-        }
+        //public void PlaySpeedChanged(float newValue)
+        //{
+        //    userSettings.userSlowDown = newValue;
+        //}
 
 
         public void StopRefreshingBrailleDevice()

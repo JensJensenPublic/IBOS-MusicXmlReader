@@ -266,7 +266,7 @@ namespace MusicXmlReaderUI
         {
             NumericUpDown numericUpDown = sender as NumericUpDown;
             float value = (float)numericUpDown.Value;
-            model.PlaySpeedChanged(100F / value);
+            //model.PlaySpeedChanged(100F / value);
         }
 
         #region ListBoxTimes
