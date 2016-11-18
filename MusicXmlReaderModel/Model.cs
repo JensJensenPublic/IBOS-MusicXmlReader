@@ -634,6 +634,12 @@ namespace MusicXmlReaderModel
             return true;
         }
 
+        public void SetUserTempo(int tempo)
+        {
+            musicPlayer.SetUserTempo(tempo);
+        }
+
+
         public void StopPlaying()
         {
             musicPlayer.StopPlaying();

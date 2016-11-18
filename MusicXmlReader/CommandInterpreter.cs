@@ -85,7 +85,7 @@ namespace MusicXmlReader
             && (n1 <= 200)
             )
             {
-                //model.ModifyPlaybackTempo(n1);
+                model.SetUserTempo(n1);
             }
             else
             {

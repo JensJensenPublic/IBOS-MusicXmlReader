@@ -44,6 +44,9 @@ namespace MusicXmlReaderUI
         // User settings
         UserSettings userSettings;
 
+        bool  userTemopChanged = false;
+        int   userTempo = 100; // Percentage of tempo indicated in score
+        float userTempoFactor = (float)1;
 
         /// <summary>
         /// Constructor
@@ -221,7 +224,7 @@ namespace MusicXmlReaderUI
         private int MilliSecondsToSleep(int startTime)
         {
             float mSPerMinute = 60000; // Used to conpensate for the use of different Units by the other variables
-            float eventTimeInMilliSeconds = ((float)(startTime - this.musicXmlTimeOffset) * mSPerMinute) / ((float)NoteElement.commonDivisions * (float)this.tempo);
+            float eventTimeInMilliSeconds = ((float)(startTime - this.musicXmlTimeOffset) * mSPerMinute) / ((float)NoteElement.commonDivisions * (float)this.tempo * userTempoFactor);
             long sleep = ((long)eventTimeInMilliSeconds - (this.stopWatch.ElapsedMilliseconds - this.firstStopWatchTime));
             return (int)Math.Max(0, sleep);
         }
@@ -317,9 +320,24 @@ namespace MusicXmlReaderUI
                         // We must also establish new offsets for stopwatch-time and music-time:
                         firstStopWatchTime = stopWatch.ElapsedMilliseconds; // From now on all stopwatch times are relative to this value (now) 
                         musicXmlTimeOffset = eventDescription.StartTime; // From now on all musicXml times are ralative to this value (starttime of the current event
-                        Logger.Log(string.Format("MusicPlayer: Tempo {0}->{1} firstStopWatchTime={1} musicXmlTimeOffset={2}", this.tempo, newTempo, firstStopWatchTime, musicXmlTimeOffset));
+                        Logger.Log(string.Format("MusicPlayer: Tempo {0}->{1} firstStopWatchTime={2} musicXmlTimeOffset={3}", this.tempo, newTempo, firstStopWatchTime, musicXmlTimeOffset));
                         this.tempo = newTempo;
                     }
+                }
+            }
+
+
+            // Finally handle changes in UserSettings.Tempo
+            {
+                if (userTemopChanged)
+                {
+                    float currentUserTempoFactor = userTempoFactor;
+                    userTempoFactor = (float)userTempo / (float)100;
+                    // We must also establish new offsets for stopwatch-time and music-time:
+                    firstStopWatchTime = stopWatch.ElapsedMilliseconds; // From now on all stopwatch times are relative to this value (now) 
+                    musicXmlTimeOffset = eventDescription.StartTime; // From now on all musicXml times are ralative to this value (starttime of the current event
+                    Logger.Log(string.Format("MusicPlayer: UserTempoFactor {0}->{1} firstStopWatchTime={2} musicXmlTimeOffset={2}", currentUserTempoFactor, userTempoFactor, firstStopWatchTime, musicXmlTimeOffset));
+                    userTemopChanged = false;
                 }
             }
 
@@ -513,6 +531,14 @@ namespace MusicXmlReaderUI
             return true;
 
         }
+
+        public void SetUserTempo(int tempo)
+        {
+            userTempo = tempo;
+            userTemopChanged = true;
+        }
+
+
 
         /// <summary>
         /// Unconditionally stop playing
