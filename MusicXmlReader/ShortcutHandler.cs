@@ -153,10 +153,8 @@ namespace MusicXmlReader
         static public readonly Keys[] togglePlaying = new Keys[] { Keys.Space };
 
         // UserSettingsTreeview:
-        static public readonly Keys[] checkAll = new Keys[] { ((Keys)((Keys.Control | Keys.Add))),       // Numeric "+"
-                                                              ((Keys)((Keys.Control | Keys.Oemplus))) }; // "+"
-        static public readonly Keys[] uncheckAll = new Keys[]{((Keys)((Keys.Control | Keys.Subtract))),  // Numeric "-"
-                                                              ((Keys)((Keys.Control | Keys.OemMinus)))}; // "-"
+        static public readonly Keys[] checkAll   = new Keys[] { ((Keys)((Keys.Control | Keys.D1))) };
+        static public readonly Keys[] uncheckAll = new Keys[] { ((Keys)((Keys.Control | Keys.D0))) };
 
         public bool IsTreeViewMultiControlShortcut(KeyEventArgs e, out bool newValue)
         {
