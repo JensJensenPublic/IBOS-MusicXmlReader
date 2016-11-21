@@ -217,7 +217,7 @@
     <value>&amp;Sibelius</value>
   </data>
   <data name="ToolStripMenuItem_Tools_ViewAsInterpretedXml" xml:space="preserve">
-    <value>MusicXml fil som &amp;interpreteret XML</value>
+    <value>MusicXml fil som fortolket XML</value>
   </data>
   <data name="ToolStripMenuItem_View" xml:space="preserve">
     <value>&amp;Vis</value>
