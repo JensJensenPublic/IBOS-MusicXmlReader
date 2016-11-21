@@ -52,7 +52,6 @@
             this.openXMLFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inspectAsXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAsInterpretedXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -205,8 +204,7 @@
             this.openLogFileLocationToolStripMenuItem,
             this.openXMLFileLocationToolStripMenuItem,
             this.inspectAsXMLToolStripMenuItem,
-            this.viewAsInterpretedXMLToolStripMenuItem,
-            this.saveAsTextToolStripMenuItem});
+            this.viewAsInterpretedXMLToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -259,12 +257,6 @@
             this.viewAsInterpretedXMLToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.viewAsInterpretedXMLToolStripMenuItem.Text = "MusicXml file interpreted";
             this.viewAsInterpretedXMLToolStripMenuItem.Click += new System.EventHandler(this.viewAsInterpretedXMLToolStripMenuItem_Click);
-            // 
-            // saveAsTextToolStripMenuItem
-            // 
-            this.saveAsTextToolStripMenuItem.Name = "saveAsTextToolStripMenuItem";
-            this.saveAsTextToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.saveAsTextToolStripMenuItem.Text = "Save as text";
             // 
             // archivesToolStripMenuItem
             // 
@@ -415,7 +407,6 @@
         private System.Windows.Forms.ToolStripMenuItem openLogFileLocationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inspectAsXMLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewAsInterpretedXMLToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveAsTextToolStripMenuItem;
         private System.Windows.Forms.TextBox textBoxNormalText;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
