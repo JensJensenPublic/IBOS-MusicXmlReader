@@ -281,6 +281,7 @@
             // 
             // userSettingsTreeView
             // 
+            this.userSettingsTreeView.AccessibleName = "Note filter";
             this.userSettingsTreeView.CheckBoxes = true;
             this.userSettingsTreeView.Location = new System.Drawing.Point(10, 60);
             this.userSettingsTreeView.Name = "userSettingsTreeView";
@@ -290,6 +291,7 @@
             // 
             // listBoxTimes
             // 
+            this.listBoxTimes.AccessibleName = "Note list";
             this.listBoxTimes.FormattingEnabled = true;
             this.listBoxTimes.Location = new System.Drawing.Point(265, 60);
             this.listBoxTimes.Name = "listBoxTimes";
