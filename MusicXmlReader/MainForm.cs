@@ -42,6 +42,8 @@ namespace MusicXmlReader
             musicPlayerState = MusicPlayerStateEnum.stopped;
             LocalizeStartStopButton(musicPlayerState);
             LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
+            listBoxTimes.AccessibleName = ResourcesForUI.ListView_Accessible_Name; // Overwrite all items in listBoxTimes with localized texts
+            userSettingsTreeView.AccessibleName = ResourcesForUI.TreeView_Accessible_Name; // Overwrite all items in userSettingsTreeview with localized texts
 
             ApplicationName = ResourcesForUI.MainForm_ApplicationName;
             Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 

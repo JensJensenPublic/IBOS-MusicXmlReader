@@ -264,4 +264,10 @@
   <data name="Treeview_for" xml:space="preserve">
     <value>for</value>
   </data>
+  <data name="ListView_Accessible_Name" xml:space="preserve">
+    <value>Note list</value>
+  </data>
+  <data name="TreeView_Accessible_Name" xml:space="preserve">
+    <value>Note filter</value>
+  </data>
 </root>

@@ -79,6 +79,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Note list.
+        /// </summary>
+        internal static string ListView_Accessible_Name {
+            get {
+                return ResourceManager.GetString("ListView_Accessible_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IBOS MusicReader.
         /// </summary>
         internal static string MainForm_ApplicationName {
@@ -390,6 +399,15 @@ namespace MusicXmlReader {
         internal static string ToolStripMenuItem_View {
             get {
                 return ResourceManager.GetString("ToolStripMenuItem_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note filter.
+        /// </summary>
+        internal static string TreeView_Accessible_Name {
+            get {
+                return ResourceManager.GetString("TreeView_Accessible_Name", resourceCulture);
             }
         }
         
