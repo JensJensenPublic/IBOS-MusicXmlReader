@@ -16,13 +16,16 @@ namespace MusicXmlReaderModel
             if (useConsole) Console.WriteLine(s);
         }
 
-        private static string logFileName = "MusicXmlReader.Log"; // This is a default whuch may be overwritten by the application 
+        private static string logFileName = "MusicXmlReader.Log"; // Name of current log file. This is a default which may be overwritten by the application 
+        private static string oldLogFileName = "MusicXmlReader.Old.Log"; // Name of old log file. This is a default which may be overwritten by the application 
         private static readonly string mySubDirectoryName = "MusicXmlReader";
         private static bool useConsole = false;
         private static string logFileFullName;
+        private static string oldLogFileFullName;
         private static string logFileDirectory;
         private static LoggerCounters localCounters;  // For counting log lines local to one MusicXml file  (Used by all applications) 
         private static LoggerCounters globalCounters; // For counting a sum over a number og MusicXml files (Used for instance by  MusicXmlReaderCmd).
+        private static readonly long maxLogfileLength = 1024 * 1024;  // Max length of the current log file before we rename it at start a new logfile
 
 
         /// <summary>
@@ -47,14 +50,29 @@ namespace MusicXmlReaderModel
                 }
                 logFileDirectory = musicXmlReaderTempDirectory;
                 logFileFullName = Path.Combine(logFileDirectory, logFileName);
+                oldLogFileFullName = Path.Combine(logFileDirectory, oldLogFileName);
+
+                // Avoid growing the logfile without limited
+
+                if ((File.Exists(logFileFullName)
+                &&  (new FileInfo(logFileFullName)).Length > maxLogfileLength))
+                {
+                    // Delete the existing "Old" logfile and mark the current logfile to "Old" by renaming it
+                    if (File.Exists(oldLogFileFullName))
+                    {
+                        File.Delete(oldLogFileFullName);
+                    }
+                    File.Move(logFileFullName, oldLogFileFullName); //Actually a rename !
+                }
 
                 localCounters = LoggerCounters.Create();
                 globalCounters = LoggerCounters.Create();
 
                 result = true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                string s = e.Message; // For debugging
                 // But what can we do ?
             }
             return result;

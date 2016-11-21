@@ -30,7 +30,7 @@ namespace MusicXmlReader
         {
             string functionName = "MainForm";
             InitializeComponent();
-            Logger.Open("MusicXmlReader.log");
+            Logger.Open(null); // null => Use the default logfile name
             Logger.Log(string.Format("{0}.{1}", className, functionName)); // Primarily  to avoid "not used" warnings
             Application.ApplicationExit += Application_ApplicationExit;
             LogSystemInformation();
