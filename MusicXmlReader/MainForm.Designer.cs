@@ -57,7 +57,6 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.listBoxTimes = new System.Windows.Forms.ListBox();
-            this.buttonStart = new System.Windows.Forms.Button();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -300,16 +299,6 @@
             this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
             this.listBoxTimes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxTimes_KeyDown);
             // 
-            // buttonStart
-            // 
-            this.buttonStart.Location = new System.Drawing.Point(13, 27);
-            this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(127, 23);
-            this.buttonStart.TabIndex = 2;
-            this.buttonStart.Text = "ButtonStart";
-            this.buttonStart.UseVisualStyleBackColor = true;
-            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
-            // 
             // textBoxBraille
             // 
             this.textBoxBraille.BackColor = System.Drawing.Color.Black;
@@ -355,10 +344,10 @@
             // 
             // textBoxCommand
             // 
-            this.textBoxCommand.Location = new System.Drawing.Point(147, 28);
+            this.textBoxCommand.Location = new System.Drawing.Point(12, 28);
             this.textBoxCommand.Name = "textBoxCommand";
             this.textBoxCommand.ReadOnly = true;
-            this.textBoxCommand.Size = new System.Drawing.Size(112, 20);
+            this.textBoxCommand.Size = new System.Drawing.Size(247, 20);
             this.textBoxCommand.TabIndex = 9;
             this.textBoxCommand.TabStop = false;
             // 
@@ -372,7 +361,6 @@
             this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.textBoxText);
             this.Controls.Add(this.textBoxBraille);
-            this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.listBoxTimes);
             this.Controls.Add(this.userSettingsTreeView);
             this.Controls.Add(this.MenuStrip);
@@ -392,7 +380,6 @@
         private System.Windows.Forms.ToolStripMenuItem filesToolStripMenuItem;
         private System.Windows.Forms.TreeView userSettingsTreeView;
         private System.Windows.Forms.ListBox listBoxTimes;
-        private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.TextBox textBoxBraille;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;

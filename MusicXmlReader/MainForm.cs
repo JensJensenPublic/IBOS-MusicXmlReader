@@ -40,7 +40,7 @@ namespace MusicXmlReader
             // Do any UI localization before we create the model. In this way we avoid showing unlocalized texts
             // if an error is reported by a messagebox.
             musicPlayerState = MusicPlayerStateEnum.stopped;
-            LocalizeStartStopButton(musicPlayerState);
+            //LocalizeStartStopButton(musicPlayerState);
             LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
             listBoxTimes.AccessibleName = ResourcesForUI.ListView_Accessible_Name; // Overwrite all items in listBoxTimes with localized texts
             userSettingsTreeView.AccessibleName = ResourcesForUI.TreeView_Accessible_Name; // Overwrite all items in userSettingsTreeview with localized texts
@@ -111,7 +111,7 @@ namespace MusicXmlReader
         }
 
 
-
+#if false
         void LocalizeStartStopButton(MusicPlayerStateEnum musicPlayerState)
         {
             switch (musicPlayerState)
@@ -121,8 +121,9 @@ namespace MusicXmlReader
                 default: break;
             }
         }
+#endif
 
-        #region supportcode
+#region supportcode
 
 
         public static void LogSystemInformation()
@@ -175,7 +176,7 @@ namespace MusicXmlReader
             return ((0x2800 <= c) && (c <= 0x28ff));
         }
 
-        #region IBrailleDisplayerClient
+#region IBrailleDisplayerClient
 
         public void WriteNormalTextString(string s)
         {
@@ -192,9 +193,9 @@ namespace MusicXmlReader
         {
             textBoxText.Text = s;
         }
-        #endregion
+#endregion
 
-        #region  IObjectCollection
+#region  IObjectCollection
 
         public int GetNumberOfObjects()
         {
@@ -236,9 +237,9 @@ namespace MusicXmlReader
                 // System.Threading.Thread.Sleep(100); // HACK Pause the UI thread and let the Screenreader get a chance
             }
         }
-        #endregion
+#endregion
 
-        #region IMessageShower 
+#region IMessageShower 
         // Decide how to show error messages and warnings          
         public void ShowMessage(int messageId,string parameter, string text)
         {
@@ -298,7 +299,7 @@ namespace MusicXmlReader
                 string.IsNullOrEmpty(localizedExtraMessage) ? "": "\r\n"+localizedExtraMessage);    // Possible extra message             
             MessageBox.Show(formattedMessage, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
-        #endregion
+#endregion
 
 
 
