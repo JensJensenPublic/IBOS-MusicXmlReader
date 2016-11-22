@@ -127,6 +127,7 @@ namespace MusicXmlReader
 
         public static void LogSystemInformation()
         {
+            Logger.Log(string.Format("Executing Assembly='{0}'", System.Reflection.Assembly.GetExecutingAssembly()));
             Logger.Log(string.Format("ComputerName={0} UserName={1} UserDomainName={2}",
                 SystemInformation.ComputerName, SystemInformation.UserName, SystemInformation.UserDomainName));
             Logger.Log(string.Format("OSVersion={0} ProcessorCount={1} Is64BitOperatingSystem={2} Is64BitProcess={3}",
