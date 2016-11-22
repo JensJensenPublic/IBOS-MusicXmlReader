@@ -193,7 +193,7 @@ namespace MusicXmlReaderModel
 
             midiOut = new MidiOut(0);
             musicPlayer = new MusicPlayer(objects,midiOut);
-            int displaySize = 14;
+            int displaySize = 40;
             brailleDisplayer = BrailleDisplayer.Create(iDebugDisplayerClient, displaySize, screenReaderAPI); // TODO Get the real displaysize from somewhere
             textDisplayer = TextDisplayer.Create(iDebugDisplayerClient);
             Logger.Log(string.Format("Model: Assuming size of physical Braille display = {0}", displaySize));
