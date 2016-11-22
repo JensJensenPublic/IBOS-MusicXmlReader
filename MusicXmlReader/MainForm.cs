@@ -41,11 +41,11 @@ namespace MusicXmlReader
             // if an error is reported by a messagebox.
             musicPlayerState = MusicPlayerStateEnum.stopped;
             //LocalizeStartStopButton(musicPlayerState);
+            ApplicationName = ResourcesForUI.MainForm_ApplicationName;
             LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
             listBoxTimes.AccessibleName = ResourcesForUI.ListView_Accessible_Name; // Overwrite all items in listBoxTimes with localized texts
             userSettingsTreeView.AccessibleName = ResourcesForUI.TreeView_Accessible_Name; // Overwrite all items in userSettingsTreeview with localized texts
-
-            ApplicationName = ResourcesForUI.MainForm_ApplicationName;
+        
             Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 
             model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), ApplicationName);
             this.Text = ApplicationName;
@@ -107,7 +107,10 @@ namespace MusicXmlReader
             openXMLFileLocationToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_OpenXmlFileLocation;
             openLogFileLocationToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Logfile_Location;
             inspectAsXMLToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_InspectAsXml;
-            viewAsInterpretedXMLToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_ViewAsInterpretedXml;     
+            viewAsInterpretedXMLToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_ViewAsInterpretedXml;
+
+            // Children of  helpToolStripMenuItem
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = string.Format("{0} {1}",ResourcesForUI.ToolStripMenuItem_Help_About,ApplicationName);
         }
 
 
@@ -127,7 +130,7 @@ namespace MusicXmlReader
 
 
         public static void LogSystemInformation()
-        {
+        { 
             Logger.Log(string.Format("Executing Assembly='{0}'", System.Reflection.Assembly.GetExecutingAssembly()));
             Logger.Log(string.Format("ComputerName={0} UserName={1} UserDomainName={2}",
                 SystemInformation.ComputerName, SystemInformation.UserName, SystemInformation.UserDomainName));
@@ -691,7 +694,15 @@ namespace MusicXmlReader
         {
             model.ExternalToolsHandler.OpenUrl(@"https://musescore.com/sheetmusic");
         }
-#endregion
+
+        private void aboutIBOSMusicXmlReaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Version version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
+            string caption = ApplicationName;
+            string text = string.Format("{0}={1}",ResourcesForUI.ToolStripMenuItem_Help_About_Version,version.ToString());
+            MessageBox.Show(text, caption);
+        }
+        #endregion
         //*************************************************************************************************
 
     }

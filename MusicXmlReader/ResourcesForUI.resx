@@ -270,4 +270,10 @@
   <data name="TreeView_Accessible_Name" xml:space="preserve">
     <value>Note filter</value>
   </data>
+  <data name="ToolStripMenuItem_Help_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_About_Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
 </root>

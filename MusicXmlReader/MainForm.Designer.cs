@@ -63,6 +63,7 @@
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.textBoxNormalText = new System.Windows.Forms.TextBox();
             this.textBoxCommand = new System.Windows.Forms.TextBox();
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -274,6 +275,8 @@
             // 
             // helpToolStripMenuItem
             // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
@@ -351,6 +354,13 @@
             this.textBoxCommand.TabIndex = 9;
             this.textBoxCommand.TabStop = false;
             // 
+            // aboutIBOSMusicXmlReaderToolStripMenuItem
+            // 
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Name = "aboutIBOSMusicXmlReaderToolStripMenuItem";
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = "About IBOS MusicXmlReader";
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Click += new System.EventHandler(this.aboutIBOSMusicXmlReaderToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -411,6 +421,7 @@
         private System.Windows.Forms.ToolStripMenuItem archivesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem httpsmusescorecomsheetmusicToolStripMenuItem1;
         private System.Windows.Forms.TextBox textBoxCommand;
+        private System.Windows.Forms.ToolStripMenuItem aboutIBOSMusicXmlReaderToolStripMenuItem;
     }
 }
 

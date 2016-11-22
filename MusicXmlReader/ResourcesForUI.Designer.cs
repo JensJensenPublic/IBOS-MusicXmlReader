@@ -313,6 +313,24 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        internal static string ToolStripMenuItem_Help_About {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Help_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        internal static string ToolStripMenuItem_Help_About_Version {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Help_About_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Tools.
         /// </summary>
         internal static string ToolStripMenuItem_Tools {
