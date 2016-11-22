@@ -1,0 +1,13 @@
+[Braille]
+EightDotBraille=1
+BrailleShowMarking=0
+BrailleMode=2
+[FocusXT14]
+StructuredModeInclusionFlags=8191
+WordWrap=1
+[options]
+ScreenEcho=1
+[Brailliant BI]
+PositionOfStatusCells=2
+UseHowManyStatusCells=0
+BraillePanMode=2

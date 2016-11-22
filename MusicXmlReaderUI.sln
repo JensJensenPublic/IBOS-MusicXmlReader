@@ -13,6 +13,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSynthesisExperiments", "MusicSynthesisExperiments\MusicSynthesisExperiments.csproj", "{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{1B62366B-E595-454C-846D-E36240015490}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Generering af release.odt = Documentation\Generering af release.odt
+		Documentation\Principper for dokumentation.odt = Documentation\Principper for dokumentation.odt
+		Documentation\Sample MusicXmlReader.JCF = Documentation\Sample MusicXmlReader.JCF
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrailleExperiments", "BrailleExperiments\BrailleExperiments.csproj", "{F315C5A3-B1B9-4722-9141-9E4D688BC057}"
 EndProject
