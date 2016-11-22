@@ -175,7 +175,7 @@
     <value>Programmet afslutter</value>
   </data>
   <data name="ToolsStripMenuItem_Archives" xml:space="preserve">
-    <value>&amp;Arkiver</value>
+    <value>&amp;Nodearkiver</value>
   </data>
   <data name="ToolStripMenuItem_Edit" xml:space="preserve">
     <value>&amp;Rediger</value>

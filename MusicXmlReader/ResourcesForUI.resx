@@ -175,7 +175,7 @@
     <value>The program is exiting</value>
   </data>
   <data name="ToolsStripMenuItem_Archives" xml:space="preserve">
-    <value>&amp;Archives</value>
+    <value>&amp;Note-archives</value>
   </data>
   <data name="ToolStripMenuItem_Edit" xml:space="preserve">
     <value>&amp;Edit</value>

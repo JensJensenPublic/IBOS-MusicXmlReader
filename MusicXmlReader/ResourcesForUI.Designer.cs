@@ -259,7 +259,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Archives.
+        ///   Looks up a localized string similar to &amp;Note-archives.
         /// </summary>
         internal static string ToolsStripMenuItem_Archives {
             get {

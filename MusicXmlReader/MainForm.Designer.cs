@@ -263,8 +263,8 @@
             this.archivesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.httpsmusescorecomsheetmusicToolStripMenuItem1});
             this.archivesToolStripMenuItem.Name = "archivesToolStripMenuItem";
-            this.archivesToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.archivesToolStripMenuItem.Text = "&Archives";
+            this.archivesToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+            this.archivesToolStripMenuItem.Text = "&NoteArchives";
             // 
             // httpsmusescorecomsheetmusicToolStripMenuItem1
             // 
