@@ -583,6 +583,7 @@ namespace MusicXmlReader
             if (shortCutHandler.IsTogglePlayingShortcut(e))
             {
                 model.ToggleStartStopPlaying(listBoxTimes.SelectedIndex);
+                return;
                 //model.StopPlaying();
                 //musicPlayerState = MusicPlayerStateEnum.stopped;
             }
@@ -591,6 +592,15 @@ namespace MusicXmlReader
             {
                 model.StartPlayingPoly(listBoxTimes.SelectedIndex);
                 musicPlayerState = MusicPlayerStateEnum.running;
+                return;
+            }
+
+
+            else if (shortCutHandler.IsStopPlayingShortcut(e))
+            {
+                model.StopPlaying();
+                musicPlayerState = MusicPlayerStateEnum.stopped;
+                return;
             }
 
             // Let the command interpreter handle it 
