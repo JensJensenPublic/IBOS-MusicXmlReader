@@ -37,8 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXmlReader", "MusicXmlR
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Official Documentation", "Official Documentation", "{A07A01AC-A16A-48D8-9415-555CDA1E37F6}"
 	ProjectSection(SolutionItems) = preProject
-		Documentation\Official Documentation\Brugervejledning.odt = Documentation\Official Documentation\Brugervejledning.odt
-		Documentation\Official Documentation\Installationsvejledning.odt = Documentation\Official Documentation\Installationsvejledning.odt
+		Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser.odt = Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser.odt
+		Documentation\Official Documentation\Installationsvejledning for IBOS Nodelæser.odt = Documentation\Official Documentation\Installationsvejledning for IBOS Nodelæser.odt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Release Notes", "Release Notes", "{DC119A17-C15E-403A-9163-4CD93B8F880B}"
