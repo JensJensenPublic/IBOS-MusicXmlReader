@@ -379,28 +379,51 @@ namespace MusicXmlReaderModel
             }
         }
 
-        internal static bool CheckFileExistance(string fileName, string methodName, bool dir)
+
+        internal static bool CheckDirectoryExistance(string directoryName, string methodName)
         {
-            if (dir)
+            if (!System.IO.Directory.Exists(directoryName))
             {
-                if (!System.IO.Directory.Exists(fileName))
-                {
-                    Logger.Log(string.Format("{0} Directory {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
-                    ShowWarning(ModelMessageEnum.DirectoryNotFound,fileName,"");             
-                    return false;
-                }
-            }
-            else
-            {
-                if (!System.IO.File.Exists(fileName))
-                {
-                    Logger.Log(string.Format("{0} File {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
-                    ShowWarning(ModelMessageEnum.FileNotFound,fileName,"");
-                    return false;
-                }
+                Logger.Log(string.Format("{0} Directory {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", directoryName));
+                ShowWarning(ModelMessageEnum.DirectoryNotFound, directoryName, "");
+                return false;
             }
             return true;
         }
+
+        internal static bool CheckFileExistance(string fileName, string methodName)
+        {
+            if (!System.IO.File.Exists(fileName))
+            {
+                Logger.Log(string.Format("{0} File {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
+                ShowWarning(ModelMessageEnum.FileNotFound, fileName, "");
+                return false;
+            }
+            return true;
+        }
+        
+        //internal static bool CheckFileExistance(string fileName, string methodName, bool dir)
+        //{
+        //    if (dir)
+        //    {
+        //        if (!System.IO.Directory.Exists(fileName))
+        //        {
+        //            Logger.Log(string.Format("{0} Directory {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
+        //            ShowWarning(ModelMessageEnum.DirectoryNotFound,fileName,"");             
+        //            return false;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (!System.IO.File.Exists(fileName))
+        //        {
+        //            Logger.Log(string.Format("{0} File {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
+        //            ShowWarning(ModelMessageEnum.FileNotFound,fileName,"");
+        //            return false;
+        //        }
+        //    }
+        //    return true;
+        //}
 
         public static bool RunExeWithUrlArgument(string url)
         {
@@ -462,7 +485,7 @@ namespace MusicXmlReaderModel
             string methodName = "RunExeWithArgument";
             // Check arguments
             string exePathName = Path.GetDirectoryName(exeFileName);
-            if ((!string.IsNullOrEmpty(exePathName)) && (!CheckFileExistance(exeFileName, methodName, false))) return false;
+            if ((!string.IsNullOrEmpty(exePathName)) && (!CheckFileExistance(exeFileName, methodName))) return false;
             // Create process startinfo. Enclose all filenames and pathnames in "" in order to handle possible space characters!
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
             pProcess.StartInfo.FileName = string.Format("\"{0}\"", exeFileName);

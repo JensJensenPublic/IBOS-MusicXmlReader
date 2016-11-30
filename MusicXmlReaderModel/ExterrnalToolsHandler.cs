@@ -118,8 +118,8 @@ namespace MusicXmlReaderModel
             string extension = "JCF"; // JAWS configuration file
             string JawsSettingsFullFileName = Path.ChangeExtension(Path.Combine(directoryName, fileName), extension);
             if (
-               Utilities.CheckFileExistance(directoryName, methodName, true) // Dir= true : Check directory name
-            && Utilities.CheckFileExistance(JawsSettingsFullFileName, methodName, false)) // Dir= false : Check file name
+               Utilities.CheckDirectoryExistance(directoryName, methodName) 
+            && Utilities.CheckFileExistance(JawsSettingsFullFileName, methodName))
             {
                 Utilities.RunExeWithFileArgument("notepad.exe", JawsSettingsFullFileName);
             }
