@@ -175,6 +175,19 @@ namespace MusicXmlReaderModel
         private Model(IObjectCollection objects, IDebugDisplayerClient iDebugDisplayerClient, string caption)
         {
             string methodName = "Model";
+
+#if false
+            // http://stackoverflow.com/questions/915210/how-can-i-get-the-path-of-the-current-users-application-data-folder
+            string s = "";
+            s = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);      // C:\Users\Jens\AppData\Local
+            s = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);           // C:\Users\Jens\AppData\Roaming
+            s = Environment.GetFolderPath(Environment.SpecialFolder.System);                    // C:\WINDOWS\system32
+            s = System.Environment.SystemDirectory;                                             // C:\WINDOWS\System32
+            s = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments); // C:\Users\Jens\Documents
+            s = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Recent);      // C:\Users\Jens\AppData\Roaming\Microsoft\Windows\Recent
+            s = System.IO.Path.GetPathRoot(System.Environment.SystemDirectory);                 // C:\
+#endif
+
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
