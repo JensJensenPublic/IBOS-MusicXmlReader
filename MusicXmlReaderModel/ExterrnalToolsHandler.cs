@@ -112,11 +112,17 @@ namespace MusicXmlReaderModel
         /// </summary>
         public void ReadJawsSettingsFile()
         {
+            string methodName = "ReadJawsSettingsFile";
             string directoryName = @"C:\Users\Jens\AppData\Roaming\Freedom Scientific\JAWS\17.0\Settings\dan";
             string fileName = "IBOS MusicXmlReader";
             string extension = "JCF"; // JAWS configuration file
             string JawsSettingsFullFileName = Path.ChangeExtension(Path.Combine(directoryName, fileName), extension);
-            Utilities.RunExeWithFileArgument("notepad.exe", JawsSettingsFullFileName);
+            if (
+               Utilities.CheckFileExistance(directoryName, methodName, true) // Dir= true : Check directory name
+            && Utilities.CheckFileExistance(JawsSettingsFullFileName, methodName, false)) // Dir= false : Check file name
+            {
+                Utilities.RunExeWithFileArgument("notepad.exe", JawsSettingsFullFileName);
+            }
         }
 
     }
