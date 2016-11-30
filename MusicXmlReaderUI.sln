@@ -14,7 +14,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSynthesisExperiments",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{1B62366B-E595-454C-846D-E36240015490}"
 	ProjectSection(SolutionItems) = preProject
-		Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser.odt = Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser.odt
 		Documentation\Generering af release.odt = Documentation\Generering af release.odt
 		Documentation\Principper for dokumentation.odt = Documentation\Principper for dokumentation.odt
 		Documentation\Sample MusicXmlReader.JCF = Documentation\Sample MusicXmlReader.JCF
