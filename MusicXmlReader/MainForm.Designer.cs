@@ -55,6 +55,7 @@
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.listBoxTimes = new System.Windows.Forms.ListBox();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
@@ -63,7 +64,7 @@
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.textBoxNormalText = new System.Windows.Forms.TextBox();
             this.textBoxCommand = new System.Windows.Forms.TextBox();
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jAWSSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -204,7 +205,8 @@
             this.openLogFileLocationToolStripMenuItem,
             this.openXMLFileLocationToolStripMenuItem,
             this.inspectAsXMLToolStripMenuItem,
-            this.viewAsInterpretedXMLToolStripMenuItem});
+            this.viewAsInterpretedXMLToolStripMenuItem,
+            this.jAWSSettingsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -281,6 +283,13 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
+            // aboutIBOSMusicXmlReaderToolStripMenuItem
+            // 
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Name = "aboutIBOSMusicXmlReaderToolStripMenuItem";
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = "About IBOS MusicXmlReader";
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Click += new System.EventHandler(this.aboutIBOSMusicXmlReaderToolStripMenuItem_Click);
+            // 
             // userSettingsTreeView
             // 
             this.userSettingsTreeView.AccessibleName = "Note filter";
@@ -354,12 +363,12 @@
             this.textBoxCommand.TabIndex = 9;
             this.textBoxCommand.TabStop = false;
             // 
-            // aboutIBOSMusicXmlReaderToolStripMenuItem
+            // jAWSSettingsToolStripMenuItem
             // 
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Name = "aboutIBOSMusicXmlReaderToolStripMenuItem";
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = "About IBOS MusicXmlReader";
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Click += new System.EventHandler(this.aboutIBOSMusicXmlReaderToolStripMenuItem_Click);
+            this.jAWSSettingsToolStripMenuItem.Name = "jAWSSettingsToolStripMenuItem";
+            this.jAWSSettingsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.jAWSSettingsToolStripMenuItem.Text = "JAWS settings";
+            this.jAWSSettingsToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -422,6 +431,7 @@
         private System.Windows.Forms.ToolStripMenuItem httpsmusescorecomsheetmusicToolStripMenuItem1;
         private System.Windows.Forms.TextBox textBoxCommand;
         private System.Windows.Forms.ToolStripMenuItem aboutIBOSMusicXmlReaderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jAWSSettingsToolStripMenuItem;
     }
 }
 

@@ -276,4 +276,7 @@
   <data name="ToolStripMenuItem_Help_About_Version" xml:space="preserve">
     <value>Version</value>
   </data>
+  <data name="ToolStripMenuItem_Tools_JAWS_Settings" xml:space="preserve">
+    <value>&amp;JAWS indstillinger</value>
+  </data>
 </root>

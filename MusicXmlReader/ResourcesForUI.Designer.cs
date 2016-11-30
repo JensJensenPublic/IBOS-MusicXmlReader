@@ -349,6 +349,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;JAWS settings.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_JAWS_Settings {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_JAWS_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Log file.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_Logfile {

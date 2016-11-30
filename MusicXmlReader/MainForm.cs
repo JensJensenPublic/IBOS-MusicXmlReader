@@ -108,6 +108,7 @@ namespace MusicXmlReader
             openLogFileLocationToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Logfile_Location;
             inspectAsXMLToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_InspectAsXml;
             viewAsInterpretedXMLToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_ViewAsInterpretedXml;
+            jAWSSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_JAWS_Settings;
 
             // Children of  helpToolStripMenuItem
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = string.Format("{0} {1}",ResourcesForUI.ToolStripMenuItem_Help_About,ApplicationName);
@@ -559,8 +560,13 @@ namespace MusicXmlReader
         }
 
 
+        private void jAWSSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.ReadJawsSettingsFile();
+        }
 
-#endregion // tools ***********************************************************************
+
+        #endregion // tools ***********************************************************************
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -712,6 +718,7 @@ namespace MusicXmlReader
             string text = string.Format("{0}={1}",ResourcesForUI.ToolStripMenuItem_Help_About_Version,version.ToString());
             MessageBox.Show(text, caption);
         }
+
         #endregion
         //*************************************************************************************************
 
