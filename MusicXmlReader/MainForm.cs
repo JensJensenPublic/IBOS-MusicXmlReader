@@ -247,7 +247,7 @@ namespace MusicXmlReader
         // Decide how to show error messages and warnings          
         public void ShowMessage(int messageId,string parameter, string text)
         {
-            MessageBox.Show(text);
+            MessageBox.Show(text); // To implement localization: Do as in ShowWarning !!
         }
 
 

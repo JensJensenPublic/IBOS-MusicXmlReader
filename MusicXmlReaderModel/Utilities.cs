@@ -386,7 +386,7 @@ namespace MusicXmlReaderModel
                 if (!System.IO.Directory.Exists(fileName))
                 {
                     Logger.Log(string.Format("{0} Directory {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
-                    ShowMessage(ModelMessageEnum.DirectoryNotFound,"", string.Format("Mappen {0} findes ikke", fileName));             
+                    ShowWarning(ModelMessageEnum.DirectoryNotFound,fileName,"");             
                     return false;
                 }
             }
@@ -395,7 +395,7 @@ namespace MusicXmlReaderModel
                 if (!System.IO.File.Exists(fileName))
                 {
                     Logger.Log(string.Format("{0} File {1} is not found", string.IsNullOrEmpty(methodName) ? "" : methodName + ":", fileName));
-                    ShowMessage(ModelMessageEnum.FileNotFound,"", string.Format("Filen {0} findes ikke", fileName));
+                    ShowWarning(ModelMessageEnum.FileNotFound,fileName,"");
                     return false;
                 }
             }
