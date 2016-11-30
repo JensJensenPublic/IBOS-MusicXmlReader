@@ -18,7 +18,9 @@ namespace MusicXmlReader
     {
         string className = "MainForm";
         enum MusicPlayerStateEnum { unknown, stopped, running };
-        string ApplicationName = "";  // Application name. Will be re-initialized later using localization!
+        string ApplicationName = "";  // Locakized application name. Will be re-initialized later using localization!
+        string executingAssemblyFullPath  = ""; // The (unlocalized) name and location of the program, 
+        string executingAssemblyShortName = ""; // The (unlocalized) short name of the program, used by for instance JAWS to name configuration file! 
         Model model;        // The Model containing all of the business logic.        
         bool autoReload;    // Used to optimize performance when changing large parts of the UI within short time
         UserSettingsHandler userSettingsHandler; // Contains all settings that can be configured by the user
@@ -28,7 +30,9 @@ namespace MusicXmlReader
 
         public MainForm()
         {
-            string functionName = "MainForm";
+            string functionName = "MainForm"; // Only for logging
+            executingAssemblyFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            executingAssemblyShortName = System.IO.Path.GetFileNameWithoutExtension(executingAssemblyFullPath);
             InitializeComponent();
             Logger.Open(null); // null => Use the default logfile name
             Logger.Log(string.Format("{0}.{1}", className, functionName)); // Primarily  to avoid "not used" warnings
@@ -562,7 +566,7 @@ namespace MusicXmlReader
 
         private void jAWSSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadJawsSettingsFile();
+            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName);
         }
 
 

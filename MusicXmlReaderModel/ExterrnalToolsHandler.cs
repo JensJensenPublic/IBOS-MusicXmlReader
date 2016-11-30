@@ -110,11 +110,10 @@ namespace MusicXmlReaderModel
         /// Show the JAWS application specific configuration file in notepad.
         /// TO DO: The directory name is JAWS version specific "17.0" and language specific "dan". Fix this !!
         /// </summary>
-        public void ReadJawsSettingsFile()
+        public void ReadJawsSettingsFile(string fileName)
         {
             string methodName = "ReadJawsSettingsFile";
             string directoryName = @"C:\Users\Jens\AppData\Roaming\Freedom Scientific\JAWS\17.0\Settings\dan";
-            string fileName = "IBOS MusicXmlReader";
             string extension = "JCF"; // JAWS configuration file
             string JawsSettingsFullFileName = Path.ChangeExtension(Path.Combine(directoryName, fileName), extension);
             if (
