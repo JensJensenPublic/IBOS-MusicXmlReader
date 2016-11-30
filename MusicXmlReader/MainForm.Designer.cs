@@ -52,6 +52,7 @@
             this.openXMLFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inspectAsXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAsInterpretedXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jAWSSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +65,26 @@
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.textBoxNormalText = new System.Windows.Forms.TextBox();
             this.textBoxCommand = new System.Windows.Forms.TextBox();
-            this.jAWSSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpwwwmusicalioncomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpimslporgwikiMainPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpickingmusicarchiveorgindexphpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpjosquinstanfordeduToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpneumahumanumfrToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpwwwhymnaryorgToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpwwwvisaudiodesignscomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpwwwlamadeguidocomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpwwwfolkotecagalegacomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpopenmusicscoreorgToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpwwwnewhymnsorgToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpwwwhausmusikchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -260,10 +280,37 @@
             this.viewAsInterpretedXMLToolStripMenuItem.Text = "MusicXml file interpreted";
             this.viewAsInterpretedXMLToolStripMenuItem.Click += new System.EventHandler(this.viewAsInterpretedXMLToolStripMenuItem_Click);
             // 
+            // jAWSSettingsToolStripMenuItem
+            // 
+            this.jAWSSettingsToolStripMenuItem.Name = "jAWSSettingsToolStripMenuItem";
+            this.jAWSSettingsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.jAWSSettingsToolStripMenuItem.Text = "JAWS settings";
+            this.jAWSSettingsToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsToolStripMenuItem_Click);
+            // 
             // archivesToolStripMenuItem
             // 
             this.archivesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.httpsmusescorecomsheetmusicToolStripMenuItem1});
+            this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem,
+            this.httpsmusescorecomsheetmusicToolStripMenuItem1,
+            this.httpwwwmusicalioncomToolStripMenuItem,
+            this.httpimslporgwikiMainPageToolStripMenuItem,
+            this.httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem,
+            this.httpickingmusicarchiveorgindexphpToolStripMenuItem,
+            this.httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem,
+            this.httpjosquinstanfordeduToolStripMenuItem,
+            this.httpneumahumanumfrToolStripMenuItem,
+            this.httpwwwhymnaryorgToolStripMenuItem,
+            this.httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem,
+            this.httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem,
+            this.httpwwwvisaudiodesignscomToolStripMenuItem,
+            this.httpwwwlamadeguidocomToolStripMenuItem,
+            this.httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem,
+            this.httpwwwfolkotecagalegacomToolStripMenuItem,
+            this.httpopenmusicscoreorgToolStripMenuItem,
+            this.httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem,
+            this.httpwwwnewhymnsorgToolStripMenuItem,
+            this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem,
+            this.httpwwwhausmusikchToolStripMenuItem});
             this.archivesToolStripMenuItem.Name = "archivesToolStripMenuItem";
             this.archivesToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.archivesToolStripMenuItem.Text = "&NoteArchives";
@@ -271,7 +318,7 @@
             // httpsmusescorecomsheetmusicToolStripMenuItem1
             // 
             this.httpsmusescorecomsheetmusicToolStripMenuItem1.Name = "httpsmusescorecomsheetmusicToolStripMenuItem1";
-            this.httpsmusescorecomsheetmusicToolStripMenuItem1.Size = new System.Drawing.Size(263, 22);
+            this.httpsmusescorecomsheetmusicToolStripMenuItem1.Size = new System.Drawing.Size(502, 22);
             this.httpsmusescorecomsheetmusicToolStripMenuItem1.Text = "https://musescore.com/sheetmusic";
             this.httpsmusescorecomsheetmusicToolStripMenuItem1.Click += new System.EventHandler(this.httpsmusescorecomsheetmusicToolStripMenuItem_Click);
             // 
@@ -286,7 +333,7 @@
             // aboutIBOSMusicXmlReaderToolStripMenuItem
             // 
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Name = "aboutIBOSMusicXmlReaderToolStripMenuItem";
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = "About ";
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Click += new System.EventHandler(this.aboutIBOSMusicXmlReaderToolStripMenuItem_Click);
             // 
@@ -363,12 +410,145 @@
             this.textBoxCommand.TabIndex = 9;
             this.textBoxCommand.TabStop = false;
             // 
-            // jAWSSettingsToolStripMenuItem
+            // httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem
             // 
-            this.jAWSSettingsToolStripMenuItem.Name = "jAWSSettingsToolStripMenuItem";
-            this.jAWSSettingsToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.jAWSSettingsToolStripMenuItem.Text = "JAWS settings";
-            this.jAWSSettingsToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsToolStripMenuItem_Click);
+            this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem.Name = "httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem";
+            this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem.Text = "https://www.musicxml.com/music-in-musicxml/";
+            this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem.Click += new System.EventHandler(this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem_Click);
+            // 
+            // httpwwwmusicalioncomToolStripMenuItem
+            // 
+            this.httpwwwmusicalioncomToolStripMenuItem.Name = "httpwwwmusicalioncomToolStripMenuItem";
+            this.httpwwwmusicalioncomToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwmusicalioncomToolStripMenuItem.Text = "http://www.musicalion.com/";
+            this.httpwwwmusicalioncomToolStripMenuItem.Click += new System.EventHandler(this.httpwwwmusicalioncomToolStripMenuItem_Click);
+            // 
+            // httpimslporgwikiMainPageToolStripMenuItem
+            // 
+            this.httpimslporgwikiMainPageToolStripMenuItem.Name = "httpimslporgwikiMainPageToolStripMenuItem";
+            this.httpimslporgwikiMainPageToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpimslporgwikiMainPageToolStripMenuItem.Text = "http://imslp.org/wiki/Main_Page";
+            this.httpimslporgwikiMainPageToolStripMenuItem.Click += new System.EventHandler(this.httpimslporgwikiMainPageToolStripMenuItem_Click);
+            // 
+            // httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem
+            // 
+            this.httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem.Name = "httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem";
+            this.httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem.Text = "http://www1.cpdl.org/wiki/index.php/Main_Page";
+            this.httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem.Click += new System.EventHandler(this.httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem_Click);
+            // 
+            // httpickingmusicarchiveorgindexphpToolStripMenuItem
+            // 
+            this.httpickingmusicarchiveorgindexphpToolStripMenuItem.Name = "httpickingmusicarchiveorgindexphpToolStripMenuItem";
+            this.httpickingmusicarchiveorgindexphpToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpickingmusicarchiveorgindexphpToolStripMenuItem.Text = "http://icking-music-archive.org/index.php";
+            this.httpickingmusicarchiveorgindexphpToolStripMenuItem.Click += new System.EventHandler(this.httpickingmusicarchiveorgindexphpToolStripMenuItem_Click);
+            // 
+            // httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem
+            // 
+            this.httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem.Name = "httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem";
+            this.httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem.Text = "http://folkopedia.efdss.org/wiki/Take_6_Transcription_Programme";
+            this.httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem.Click += new System.EventHandler(this.httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem_Click);
+            // 
+            // httpjosquinstanfordeduToolStripMenuItem
+            // 
+            this.httpjosquinstanfordeduToolStripMenuItem.Name = "httpjosquinstanfordeduToolStripMenuItem";
+            this.httpjosquinstanfordeduToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpjosquinstanfordeduToolStripMenuItem.Text = "http://josquin.stanford.edu/";
+            this.httpjosquinstanfordeduToolStripMenuItem.Click += new System.EventHandler(this.httpjosquinstanfordeduToolStripMenuItem_Click);
+            // 
+            // httpneumahumanumfrToolStripMenuItem
+            // 
+            this.httpneumahumanumfrToolStripMenuItem.Name = "httpneumahumanumfrToolStripMenuItem";
+            this.httpneumahumanumfrToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpneumahumanumfrToolStripMenuItem.Text = "http://neuma.huma-num.fr/";
+            this.httpneumahumanumfrToolStripMenuItem.Click += new System.EventHandler(this.httpneumahumanumfrToolStripMenuItem_Click);
+            // 
+            // httpwwwhymnaryorgToolStripMenuItem
+            // 
+            this.httpwwwhymnaryorgToolStripMenuItem.Name = "httpwwwhymnaryorgToolStripMenuItem";
+            this.httpwwwhymnaryorgToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwhymnaryorgToolStripMenuItem.Text = "http://www.hymnary.org/";
+            this.httpwwwhymnaryorgToolStripMenuItem.Click += new System.EventHandler(this.httpwwwhymnaryorgToolStripMenuItem_Click);
+            // 
+            // httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem
+            // 
+            this.httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem.Name = "httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem";
+            this.httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem.Text = "http://www.shsu.edu/academics/music/ponchielli/index.html";
+            this.httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem.Click += new System.EventHandler(this.httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem_Click);
+            // 
+            // httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem
+            // 
+            this.httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem.Name = "httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem";
+            this.httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem.Text = "https://github.com/MTG/SymbTr/releases/tag/v2.0.0";
+            this.httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem.Click += new System.EventHandler(this.httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem_Click);
+            // 
+            // httpwwwvisaudiodesignscomToolStripMenuItem
+            // 
+            this.httpwwwvisaudiodesignscomToolStripMenuItem.Name = "httpwwwvisaudiodesignscomToolStripMenuItem";
+            this.httpwwwvisaudiodesignscomToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwvisaudiodesignscomToolStripMenuItem.Text = "http://www.visaudiodesigns.com/";
+            this.httpwwwvisaudiodesignscomToolStripMenuItem.Click += new System.EventHandler(this.httpwwwvisaudiodesignscomToolStripMenuItem_Click);
+            // 
+            // httpwwwlamadeguidocomToolStripMenuItem
+            // 
+            this.httpwwwlamadeguidocomToolStripMenuItem.Name = "httpwwwlamadeguidocomToolStripMenuItem";
+            this.httpwwwlamadeguidocomToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwlamadeguidocomToolStripMenuItem.Text = "http://www.lamadeguido.com/";
+            this.httpwwwlamadeguidocomToolStripMenuItem.Click += new System.EventHandler(this.httpwwwlamadeguidocomToolStripMenuItem_Click);
+            // 
+            // httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem
+            // 
+            this.httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem.Name = "httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem";
+            this.httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem.Text = "http://lusthof-der-muziek.blogspot.dk/2010/11/garden-of-musical-delights.html";
+            this.httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem.Click += new System.EventHandler(this.httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem_Click);
+            // 
+            // httpwwwfolkotecagalegacomToolStripMenuItem
+            // 
+            this.httpwwwfolkotecagalegacomToolStripMenuItem.Name = "httpwwwfolkotecagalegacomToolStripMenuItem";
+            this.httpwwwfolkotecagalegacomToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwfolkotecagalegacomToolStripMenuItem.Text = "http://www.folkotecagalega.com/";
+            this.httpwwwfolkotecagalegacomToolStripMenuItem.Click += new System.EventHandler(this.httpwwwfolkotecagalegacomToolStripMenuItem_Click);
+            // 
+            // httpopenmusicscoreorgToolStripMenuItem
+            // 
+            this.httpopenmusicscoreorgToolStripMenuItem.Name = "httpopenmusicscoreorgToolStripMenuItem";
+            this.httpopenmusicscoreorgToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpopenmusicscoreorgToolStripMenuItem.Text = "http://openmusicscore.org/";
+            this.httpopenmusicscoreorgToolStripMenuItem.Click += new System.EventHandler(this.httpopenmusicscoreorgToolStripMenuItem_Click);
+            // 
+            // httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem
+            // 
+            this.httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem.Name = "httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem";
+            this.httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem.Text = "http://www.gutenberg.org/wiki/Gutenberg:The_Sheet_Music_Project";
+            this.httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem.Click += new System.EventHandler(this.httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem_Click);
+            // 
+            // httpwwwnewhymnsorgToolStripMenuItem
+            // 
+            this.httpwwwnewhymnsorgToolStripMenuItem.Name = "httpwwwnewhymnsorgToolStripMenuItem";
+            this.httpwwwnewhymnsorgToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwnewhymnsorgToolStripMenuItem.Text = "http://www.newhymns.org/";
+            this.httpwwwnewhymnsorgToolStripMenuItem.Click += new System.EventHandler(this.httpwwwnewhymnsorgToolStripMenuItem_Click);
+            // 
+            // httpwwwhymnsandcarolsofchristmascomToolStripMenuItem
+            // 
+            this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem.Name = "httpwwwhymnsandcarolsofchristmascomToolStripMenuItem";
+            this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem.Text = "http://www.hymnsandcarolsofchristmas.com/";
+            this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem.Click += new System.EventHandler(this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem_Click);
+            // 
+            // httpwwwhausmusikchToolStripMenuItem
+            // 
+            this.httpwwwhausmusikchToolStripMenuItem.Name = "httpwwwhausmusikchToolStripMenuItem";
+            this.httpwwwhausmusikchToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwhausmusikchToolStripMenuItem.Text = "http://www.hausmusik.ch/";
+            this.httpwwwhausmusikchToolStripMenuItem.Click += new System.EventHandler(this.httpwwwhausmusikchToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -432,6 +612,26 @@
         private System.Windows.Forms.TextBox textBoxCommand;
         private System.Windows.Forms.ToolStripMenuItem aboutIBOSMusicXmlReaderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jAWSSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpwwwmusicalioncomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpimslporgwikiMainPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpickingmusicarchiveorgindexphpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpjosquinstanfordeduToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpneumahumanumfrToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpwwwhymnaryorgToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpwwwvisaudiodesignscomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpwwwlamadeguidocomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpwwwfolkotecagalegacomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpopenmusicscoreorgToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpwwwnewhymnsorgToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpwwwhymnsandcarolsofchristmascomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem httpwwwhausmusikchToolStripMenuItem;
     }
 }
 

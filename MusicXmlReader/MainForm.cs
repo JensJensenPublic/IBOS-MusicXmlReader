@@ -703,24 +703,127 @@ namespace MusicXmlReader
         {
             userSettingsHandler.ShowFilterItems(false);
         }
-        
-#endregion // Edit
+
+        #endregion // Edit
         //
         //*************************************************************************************************
         //
-#region Archives
+
+        #region About
+        private void aboutIBOSMusicXmlReaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Version version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
+            string caption = ApplicationName;
+            string text = string.Format("{0}={1}", ResourcesForUI.ToolStripMenuItem_Help_About_Version, version.ToString());
+            MessageBox.Show(text, caption);
+        }
+        #endregion
+
+        #region Archives
 
         private void httpsmusescorecomsheetmusicToolStripMenuItem_Click(object sender, EventArgs e)
         {
             model.ExternalToolsHandler.OpenUrl(@"https://musescore.com/sheetmusic");
         }
 
-        private void aboutIBOSMusicXmlReaderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Version version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
-            string caption = ApplicationName;
-            string text = string.Format("{0}={1}",ResourcesForUI.ToolStripMenuItem_Help_About_Version,version.ToString());
-            MessageBox.Show(text, caption);
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpwwwmusicalioncomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpimslporgwikiMainPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpickingmusicarchiveorgindexphpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpjosquinstanfordeduToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpneumahumanumfrToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpwwwhymnaryorgToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpwwwvisaudiodesignscomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpwwwlamadeguidocomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpwwwfolkotecagalegacomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpopenmusicscoreorgToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpwwwnewhymnsorgToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpwwwhymnsandcarolsofchristmascomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
+        }
+
+        private void httpwwwhausmusikchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenUrl(sender.ToString());
         }
 
         #endregion
