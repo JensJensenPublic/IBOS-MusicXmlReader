@@ -287,7 +287,7 @@
             // 
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Name = "aboutIBOSMusicXmlReaderToolStripMenuItem";
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = "About " + executingAssemblyShortName;
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = "About ";
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Click += new System.EventHandler(this.aboutIBOSMusicXmlReaderToolStripMenuItem_Click);
             // 
             // userSettingsTreeView
