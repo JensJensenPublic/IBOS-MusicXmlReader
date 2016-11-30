@@ -35,7 +35,7 @@ namespace MusicXmlReader
             executingAssemblyShortName = System.IO.Path.GetFileNameWithoutExtension(executingAssemblyFullPath);
             InitializeComponent();
             Logger.Open(null); // null => Use the default logfile name
-            Logger.Log(string.Format("{0}.{1}", className, functionName)); // Primarily  to avoid "not used" warnings
+            Logger.Log(string.Format("{0}.{1}: Date={2}",className, functionName,System.DateTime.Now.ToLongDateString()));
             Application.ApplicationExit += Application_ApplicationExit;
             LogSystemInformation();
             // If the execution directory contains a file named "Language.txt" containing the string "en-US"

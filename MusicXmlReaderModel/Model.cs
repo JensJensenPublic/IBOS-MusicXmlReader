@@ -155,7 +155,8 @@ namespace MusicXmlReaderModel
             try
             {
                 musicPlayer.StopPlaying();
-                Logger.Log("The application is exiting");
+                Logger.Log("The application is exiting.");
+                Logger.Log("");
             }
             catch (Exception)
             {
@@ -173,13 +174,14 @@ namespace MusicXmlReaderModel
         /// </summary>
         private Model(IObjectCollection objects, IDebugDisplayerClient iDebugDisplayerClient, string caption)
         {
+            string methodName = "Model";
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
             is64Bit = IntPtr.Size == 8;
             InitTestConsole(true); // Please see the Log methode for details!
-            Logger.Log(""); // An empty line
-            Logger.Log(string.Format("Date={0}:", System.DateTime.Now.ToLongDateString()));
+            //Logger.Log(""); // An empty line
+            Logger.Log(string.Format("{0}.{1}: Date={2}",className,methodName,System.DateTime.Now.ToLongDateString()));
             Logger.Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
             //Logger.LogSystemInformation();
             Utilities.CheckDlls(executingDirectory, caption, is64Bit);
