@@ -79,6 +79,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Samples.
+        /// </summary>
+        internal static string DirectoryNames_Samples {
+            get {
+                return ResourceManager.GetString("DirectoryNames_Samples", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note list.
         /// </summary>
         internal static string ListView_Accessible_Name {

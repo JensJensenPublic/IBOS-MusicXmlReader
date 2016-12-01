@@ -509,14 +509,14 @@ namespace MusicXmlReaderModel
         }
 
         
-        public static string InitMusicXmlFiles(string applicationName,string sourceDirName)
+        public static string InitMusicXmlFiles(string applicationName,string sourceDirName,string sampleDirName)
         {
             string functionName = "InitMusicXmlFiles";
             string documentPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments); // C:\Users\<Username>\Documents       
             string myMusicXmlDirectory = Path.Combine(documentPath,applicationName); //  // C:\Users\<Username>\Documents\IBOS Nodelæser   
             if (!Directory.Exists(myMusicXmlDirectory))
             {
-                string fullDestinationDirName = Path.Combine(myMusicXmlDirectory, "Eksempler"); // Localize !
+                string fullDestinationDirName = Path.Combine(myMusicXmlDirectory, sampleDirName); 
                 try
                 {
                     // Create the destination directory:

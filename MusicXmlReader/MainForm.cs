@@ -55,7 +55,8 @@ namespace MusicXmlReader
             model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), ApplicationName);
             this.Text = ApplicationName;
 
-            myMusicXmlDirectory = Utilities.InitMusicXmlFiles(ApplicationName,model.InitialDirectory);    // Copy MusicXml samples during first activation !   
+            // XCopy MusicXml samples from the "MusicXml samples" directory in the installation files to myMusicXmlDirectory during first activation !   
+            myMusicXmlDirectory = Utilities.InitMusicXmlFiles(ApplicationName,model.InitialDirectory,ResourcesForUI.DirectoryNames_Samples); 
 
             // Create a handler for the user settinge, in this case modelled as a treeview.
             userSettingsHandler = UserSettingsHandler.Create(this,this.userSettingsTreeView,model);

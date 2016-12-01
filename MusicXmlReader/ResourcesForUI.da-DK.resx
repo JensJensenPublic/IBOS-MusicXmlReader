@@ -279,4 +279,7 @@
   <data name="ToolStripMenuItem_Tools_JAWS_Settings" xml:space="preserve">
     <value>&amp;JAWS indstillinger</value>
   </data>
+  <data name="DirectoryNames_Samples" xml:space="preserve">
+    <value>Eksempler</value>
+  </data>
 </root>
