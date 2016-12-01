@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Globalization;
 
+
+// Note for .Net mechanisms for persisting  User Settings see: https://msdn.microsoft.com/en-us/library/ms171565(v=vs.100).aspx
+
 namespace MusicXmlReaderModel
 {
     /// <summary>
