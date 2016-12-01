@@ -228,7 +228,7 @@ namespace MusicXmlReaderModel
 
             //LogNvdaInterface(); // Will be replaced by ScreenReaderAPI.Create() !
 
-            //DeviceInfo.LogDeviceInfo();
+            //DeviceInfo.LogDeviceInfo();         
         }
 
         /// <summary>

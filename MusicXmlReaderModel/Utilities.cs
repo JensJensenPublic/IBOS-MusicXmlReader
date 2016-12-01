@@ -46,7 +46,7 @@ namespace MusicXmlReaderModel
     /// </summary>
     static public class Utilities
     {
-
+        private static string className = "Utilities";
         public static IUtilityClient UtilityClient;
 
         private static void ShowWarning(ModelMessageEnum textEnum, string parameter, string text)
@@ -508,9 +508,72 @@ namespace MusicXmlReaderModel
             return true;
         }
 
+        
+        public static string InitMusicXmlFiles(string applicationName,string sourceDirName)
+        {
+            string functionName = "InitMusicXmlFiles";
+            string documentPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments); // C:\Users\<Username>\Documents       
+            string myMusicXmlDirectory = Path.Combine(documentPath,applicationName); //  // C:\Users\<Username>\Documents\IBOS Nodelæser   
+            if (!Directory.Exists(myMusicXmlDirectory))
+            {
+                string fullDestinationDirName = Path.Combine(myMusicXmlDirectory, "Eksempler"); // Localize !
+                try
+                {
+                    // Create the destination directory:
+                    Directory.CreateDirectory(myMusicXmlDirectory);  // C:\Users\<Username>\Documents\IBOS MusicXmlReader            
+                    Directory.CreateDirectory(fullDestinationDirName);  // C:\Users\<Username>\Documents\IBOS MusicXmlReader\Eksempler
+                    Logger.Log(string.Format("{0}.{1}: Calling DirectoryCopy({2},{3})", className, functionName, sourceDirName, fullDestinationDirName));
+                    DirectoryCopy(sourceDirName, fullDestinationDirName, true);  // true to copy subdirs
+                }
+                catch (Exception e)
+                {
+                    Logger.Log(string.Format("{0}.{1}: Exception during DirectoryCopy({2},{3}) Message={4}",
+                        className, functionName, sourceDirName, fullDestinationDirName, e.Message));
+                }
 
+            }
+            return myMusicXmlDirectory;
+        }
+
+
+        /// <summary>
+        /// https://msdn.microsoft.com/en-us/library/bb762914(v=vs.110).aspx
+        /// </summary>
+        /// <param name="sourceDirName"></param>
+        /// <param name="destDirName"></param>
+        /// <param name="copySubDirs"></param>
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        {
+            // Get the subdirectories for the specified directory.
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            // If the destination directory doesn't exist, create it.
+            // If the destination directory doesn't exist, create it.
+            if (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+            }
+
+            // Get the files in the directory and copy them to the new location.
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string temppath = Path.Combine(destDirName, file.Name);
+                file.CopyTo(temppath, false);
+            }
+
+            // If copying subdirectories, copy them and their contents to new location.
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                }
+            }
+        }
 
 
     }
-
 }

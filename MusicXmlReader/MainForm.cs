@@ -27,6 +27,7 @@ namespace MusicXmlReader
         MusicPlayerStateEnum musicPlayerState = MusicPlayerStateEnum.stopped; // Assume the musicplayer is innitially stopped
         ShortcutHandler shortCutHandler;
         UserCommandInterpreter commandInterpreter;
+        string myMusicXmlDirectory; // Default location for MusicXml files belonging to thos user. Wil be populated with sample filer!
 
         public MainForm()
         {
@@ -53,6 +54,8 @@ namespace MusicXmlReader
             Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 
             model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), ApplicationName);
             this.Text = ApplicationName;
+
+            myMusicXmlDirectory = Utilities.InitMusicXmlFiles(ApplicationName,model.InitialDirectory);    // Copy MusicXml samples during first activation !   
 
             // Create a handler for the user settinge, in this case modelled as a treeview.
             userSettingsHandler = UserSettingsHandler.Create(this,this.userSettingsTreeView,model);
@@ -329,7 +332,8 @@ namespace MusicXmlReader
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.xml", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files
 //            openFileDialog.Filter = string.Format("{0}|*.xml|{0}|*.mxl", ResourcesForUI.OpenFileDialog_Filter,ResourcesForUI.OpenFileDialog_Filter_mxl); // Only present .xml files and .mxl files
-            openFileDialog.InitialDirectory = model.InitialDirectory;
+            //openFileDialog.InitialDirectory = model.InitialDirectory;
+            openFileDialog.InitialDirectory = myMusicXmlDirectory;
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
             openFileDialog.ShowDialog();
