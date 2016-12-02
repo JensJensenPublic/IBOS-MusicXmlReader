@@ -17,6 +17,7 @@ namespace MusicXmlReaderModel
         void WriteBrailleString(string s); // Write a string to be interpreted as Braille Unicode characters
         void WriteTextString(string s);    // Write a string to be interpreted as normal  Unicode text
         void WriteNormalTextString(string s); //   // Write a string to be interpreted as normal  Unicode text
+        void WriteStatusInformation(string s); // Write a string to be interpreted as normal Unicode Text
     }
 
     /// <summary>
@@ -111,6 +112,7 @@ namespace MusicXmlReaderModel
                 //brailleDisplayerClient.WriteTextString(bb.Text.ToString()); 
                 brailleDisplayerClient.WriteBrailleString(eventDescription.MusicBrailleRepresentation);
                 brailleDisplayerClient.WriteTextString(eventDescription.MusicBrailleAsTextRepresentation);
+                brailleDisplayerClient.WriteStatusInformation("Status:" + eventDescription.StatusInformation.ToString());
 
                 screenReaderAPI.Silence(); // Prevent overloading the internal queue in NVDA when rapidly changing between different events                  
                 if (ScreenReaderAPI.ScreenReaderType.NVDA == screenReaderAPI.GetScreenReaderType())

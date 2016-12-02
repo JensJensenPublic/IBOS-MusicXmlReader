@@ -206,9 +206,16 @@ namespace MusicXmlReader
         {
             textBoxText.Text = s;
         }
-#endregion
 
-#region  IObjectCollection
+        public void WriteStatusInformation(string s)
+        {
+            textBoxStatusInformation.Text = s;
+        }
+
+
+        #endregion
+
+        #region  IObjectCollection
 
         public int GetNumberOfObjects()
         {

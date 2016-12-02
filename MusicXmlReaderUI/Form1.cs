@@ -50,7 +50,10 @@ namespace MusicXmlReaderUI
             // textBoxNormalText.Text = s;
         }
 
-
+        public void WriteStatusInformation(string s)
+        {            
+        }
+        
         #region IBrailleDisplayerClient
         public void WriteBrailleString(string s)
         {

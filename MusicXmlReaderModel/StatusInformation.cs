@@ -125,17 +125,21 @@ namespace MusicXmlReaderModel
 
         private StatusInformation (StatusInformation statusInformation)
         {            
-            StatusInformation newStatusInformation = new StatusInformation(); // Create a new one
-            newStatusInformation.measureNumber = statusInformation.measureNumber; // Fill in 
-            newStatusInformation.beats = statusInformation.beats;       // Derived from (latest) TimeElement
-            newStatusInformation.beatType = statusInformation.beatType; // Derived from (latest) TimeElement
-            newStatusInformation.fifths = statusInformation.fifths;     // Derived from (latest) KeyElement
-            newStatusInformation.mode = statusInformation.mode;         // Derived from (latest) KeyElement
-            newStatusInformation.tempo = statusInformation.tempo;       // Derived from (latest) SoundElement
-
+            //StatusInformation newStatusInformation = new StatusInformation(); // Create a new one
+            this.measureNumber = statusInformation.measureNumber; // Fill in 
+            this.beats = statusInformation.beats;       // Derived from (latest) TimeElement
+            this.beatType = statusInformation.beatType; // Derived from (latest) TimeElement
+            this.fifths = statusInformation.fifths;     // Derived from (latest) KeyElement
+            this.mode = statusInformation.mode;         // Derived from (latest) KeyElement
+            this.tempo = statusInformation.tempo;       // Derived from (latest) SoundElement
              // NOTE!!! Do not forget to add to the Copy-constructor HERE !!
         }
 
+
+        public override string ToString()
+        {
+            return string.Format("Measure={0} Beats={1}/{2} Fifths={3} Mode={4} Tempo={5}", measureNumber, beats, BeatType, fifths, mode, tempo);
+        }
 
         public static StatusInformation Create()
         {
