@@ -513,7 +513,9 @@ namespace MusicXmlReaderModel
         {
             string functionName = "InitMusicXmlFiles";
             string documentPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments); // C:\Users\<Username>\Documents       
-            string myMusicXmlDirectory = Path.Combine(documentPath,applicationName); //  // C:\Users\<Username>\Documents\IBOS Nodelæser   
+            string myMusicXmlDirectory = Path.Combine(documentPath,applicationName); //  // C:\Users\<Username>\Documents\IBOS Nodelæser
+            int nFiles = 0;
+            int nDirs  = 0;   
             if (!Directory.Exists(myMusicXmlDirectory))
             {
                 string fullDestinationDirName = Path.Combine(myMusicXmlDirectory, sampleDirName); 
@@ -522,15 +524,18 @@ namespace MusicXmlReaderModel
                     // Create the destination directory:
                     Directory.CreateDirectory(myMusicXmlDirectory);  // C:\Users\<Username>\Documents\IBOS MusicXmlReader            
                     Directory.CreateDirectory(fullDestinationDirName);  // C:\Users\<Username>\Documents\IBOS MusicXmlReader\Eksempler
-                    Logger.Log(string.Format("{0}.{1}: Calling DirectoryCopy({2},{3})", className, functionName, sourceDirName, fullDestinationDirName));
-                    DirectoryCopy(sourceDirName, fullDestinationDirName, true);  // true to copy subdirs
+                    Logger.Log(string.Format("{0}.{1}: Calling DirectoryCopy(Source,Dest) where", className, functionName));
+                    Logger.Log(string.Format(" Source='{0}'",sourceDirName));
+                    Logger.Log(string.Format(" Dest=  '{0}'",fullDestinationDirName));
+                    DirectoryCopy(sourceDirName, fullDestinationDirName, true,ref nFiles,ref nDirs);  // true to copy subdirs
+                    Logger.Log(string.Format("{0}.{1}: DirectoryCopy() successfully copied {2} files in {3} directories", className, functionName,nFiles,nDirs));
+                    // throw (new Exception("For test only"));
                 }
                 catch (Exception e)
                 {
-                    Logger.Log(string.Format("{0}.{1}: Exception during DirectoryCopy({2},{3}) Message={4}",
-                        className, functionName, sourceDirName, fullDestinationDirName, e.Message));
+                    Logger.Log(string.Format("{0}.{1}: Exception during DirectoryCopy(): Message='{2}'",
+                        className, functionName, e.Message));
                 }
-
             }
             return myMusicXmlDirectory;
         }
@@ -542,7 +547,7 @@ namespace MusicXmlReaderModel
         /// <param name="sourceDirName"></param>
         /// <param name="destDirName"></param>
         /// <param name="copySubDirs"></param>
-        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs,ref int nFiles, ref int nDirs)
         {
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
@@ -553,6 +558,7 @@ namespace MusicXmlReaderModel
             if (!Directory.Exists(destDirName))
             {
                 Directory.CreateDirectory(destDirName);
+                nDirs++;
             }
 
             // Get the files in the directory and copy them to the new location.
@@ -561,6 +567,7 @@ namespace MusicXmlReaderModel
             {
                 string temppath = Path.Combine(destDirName, file.Name);
                 file.CopyTo(temppath, false);
+                nFiles++;
             }
 
             // If copying subdirectories, copy them and their contents to new location.
@@ -569,7 +576,7 @@ namespace MusicXmlReaderModel
                 foreach (DirectoryInfo subdir in dirs)
                 {
                     string temppath = Path.Combine(destDirName, subdir.Name);
-                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs,ref nFiles, ref nDirs);
                 }
             }
         }
