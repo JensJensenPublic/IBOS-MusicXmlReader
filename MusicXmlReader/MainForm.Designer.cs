@@ -54,18 +54,8 @@
             this.viewAsInterpretedXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jAWSSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.userSettingsTreeView = new System.Windows.Forms.TreeView();
-            this.listBoxTimes = new System.Windows.Forms.ListBox();
-            this.textBoxBraille = new System.Windows.Forms.TextBox();
-            this.textBoxText = new System.Windows.Forms.TextBox();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.textBoxMessage = new System.Windows.Forms.TextBox();
-            this.textBoxNormalText = new System.Windows.Forms.TextBox();
-            this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.httpwwwmusicalioncomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpimslporgwikiMainPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,6 +75,17 @@
             this.httpwwwnewhymnsorgToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpwwwhausmusikchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userSettingsTreeView = new System.Windows.Forms.TreeView();
+            this.listBoxTimes = new System.Windows.Forms.ListBox();
+            this.textBoxBraille = new System.Windows.Forms.TextBox();
+            this.textBoxText = new System.Windows.Forms.TextBox();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.textBoxMessage = new System.Windows.Forms.TextBox();
+            this.textBoxNormalText = new System.Windows.Forms.TextBox();
+            this.textBoxCommand = new System.Windows.Forms.TextBox();
+            this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -315,107 +316,19 @@
             this.archivesToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.archivesToolStripMenuItem.Text = "&NoteArchives";
             // 
-            // httpsmusescorecomsheetmusicToolStripMenuItem1
-            // 
-            this.httpsmusescorecomsheetmusicToolStripMenuItem1.Name = "httpsmusescorecomsheetmusicToolStripMenuItem1";
-            this.httpsmusescorecomsheetmusicToolStripMenuItem1.Size = new System.Drawing.Size(502, 22);
-            this.httpsmusescorecomsheetmusicToolStripMenuItem1.Text = "https://musescore.com/sheetmusic";
-            this.httpsmusescorecomsheetmusicToolStripMenuItem1.Click += new System.EventHandler(this.httpsmusescorecomsheetmusicToolStripMenuItem_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "&Help";
-            // 
-            // aboutIBOSMusicXmlReaderToolStripMenuItem
-            // 
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Name = "aboutIBOSMusicXmlReaderToolStripMenuItem";
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = "About ";
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Click += new System.EventHandler(this.aboutIBOSMusicXmlReaderToolStripMenuItem_Click);
-            // 
-            // userSettingsTreeView
-            // 
-            this.userSettingsTreeView.AccessibleName = "Note filter";
-            this.userSettingsTreeView.CheckBoxes = true;
-            this.userSettingsTreeView.Location = new System.Drawing.Point(10, 60);
-            this.userSettingsTreeView.Name = "userSettingsTreeView";
-            this.userSettingsTreeView.Size = new System.Drawing.Size(250, 420);
-            this.userSettingsTreeView.TabIndex = 1;
-            this.userSettingsTreeView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userSettingsTreeView_KeyDown);
-            // 
-            // listBoxTimes
-            // 
-            this.listBoxTimes.AccessibleName = "Note list";
-            this.listBoxTimes.FormattingEnabled = true;
-            this.listBoxTimes.Location = new System.Drawing.Point(265, 60);
-            this.listBoxTimes.Name = "listBoxTimes";
-            this.listBoxTimes.Size = new System.Drawing.Size(950, 420);
-            this.listBoxTimes.TabIndex = 0;
-            this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
-            this.listBoxTimes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxTimes_KeyDown);
-            // 
-            // textBoxBraille
-            // 
-            this.textBoxBraille.BackColor = System.Drawing.Color.Black;
-            this.textBoxBraille.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxBraille.ForeColor = System.Drawing.Color.White;
-            this.textBoxBraille.Location = new System.Drawing.Point(10, 511);
-            this.textBoxBraille.Name = "textBoxBraille";
-            this.textBoxBraille.ReadOnly = true;
-            this.textBoxBraille.Size = new System.Drawing.Size(1200, 62);
-            this.textBoxBraille.TabIndex = 5;
-            this.textBoxBraille.TabStop = false;
-            // 
-            // textBoxText
-            // 
-            this.textBoxText.Location = new System.Drawing.Point(10, 579);
-            this.textBoxText.Name = "textBoxText";
-            this.textBoxText.ReadOnly = true;
-            this.textBoxText.Size = new System.Drawing.Size(1200, 20);
-            this.textBoxText.TabIndex = 6;
-            this.textBoxText.TabStop = false;
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog1";
-            // 
-            // textBoxMessage
-            // 
-            this.textBoxMessage.Location = new System.Drawing.Point(265, 28);
-            this.textBoxMessage.Name = "textBoxMessage";
-            this.textBoxMessage.ReadOnly = true;
-            this.textBoxMessage.Size = new System.Drawing.Size(950, 20);
-            this.textBoxMessage.TabIndex = 7;
-            this.textBoxMessage.TabStop = false;
-            // 
-            // textBoxNormalText
-            // 
-            this.textBoxNormalText.Location = new System.Drawing.Point(10, 485);
-            this.textBoxNormalText.Name = "textBoxNormalText";
-            this.textBoxNormalText.ReadOnly = true;
-            this.textBoxNormalText.Size = new System.Drawing.Size(1203, 20);
-            this.textBoxNormalText.TabIndex = 8;
-            this.textBoxNormalText.TabStop = false;
-            // 
-            // textBoxCommand
-            // 
-            this.textBoxCommand.Location = new System.Drawing.Point(12, 28);
-            this.textBoxCommand.Name = "textBoxCommand";
-            this.textBoxCommand.ReadOnly = true;
-            this.textBoxCommand.Size = new System.Drawing.Size(247, 20);
-            this.textBoxCommand.TabIndex = 9;
-            this.textBoxCommand.TabStop = false;
-            // 
             // httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem
             // 
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem.Name = "httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem";
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem.Text = "https://www.musicxml.com/music-in-musicxml/";
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem.Click += new System.EventHandler(this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem_Click);
+            // 
+            // httpsmusescorecomsheetmusicToolStripMenuItem1
+            // 
+            this.httpsmusescorecomsheetmusicToolStripMenuItem1.Name = "httpsmusescorecomsheetmusicToolStripMenuItem1";
+            this.httpsmusescorecomsheetmusicToolStripMenuItem1.Size = new System.Drawing.Size(502, 22);
+            this.httpsmusescorecomsheetmusicToolStripMenuItem1.Text = "https://musescore.com/sheetmusic";
+            this.httpsmusescorecomsheetmusicToolStripMenuItem1.Click += new System.EventHandler(this.httpsmusescorecomsheetmusicToolStripMenuItem_Click);
             // 
             // httpwwwmusicalioncomToolStripMenuItem
             // 
@@ -550,11 +463,110 @@
             this.httpwwwhausmusikchToolStripMenuItem.Text = "http://www.hausmusik.ch/";
             this.httpwwwhausmusikchToolStripMenuItem.Click += new System.EventHandler(this.httpwwwhausmusikchToolStripMenuItem_Click);
             // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "&Help";
+            // 
+            // aboutIBOSMusicXmlReaderToolStripMenuItem
+            // 
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Name = "aboutIBOSMusicXmlReaderToolStripMenuItem";
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = "About ";
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Click += new System.EventHandler(this.aboutIBOSMusicXmlReaderToolStripMenuItem_Click);
+            // 
+            // userSettingsTreeView
+            // 
+            this.userSettingsTreeView.AccessibleName = "Note filter";
+            this.userSettingsTreeView.CheckBoxes = true;
+            this.userSettingsTreeView.Location = new System.Drawing.Point(10, 60);
+            this.userSettingsTreeView.Name = "userSettingsTreeView";
+            this.userSettingsTreeView.Size = new System.Drawing.Size(250, 420);
+            this.userSettingsTreeView.TabIndex = 1;
+            this.userSettingsTreeView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userSettingsTreeView_KeyDown);
+            // 
+            // listBoxTimes
+            // 
+            this.listBoxTimes.AccessibleName = "Note list";
+            this.listBoxTimes.FormattingEnabled = true;
+            this.listBoxTimes.Location = new System.Drawing.Point(265, 60);
+            this.listBoxTimes.Name = "listBoxTimes";
+            this.listBoxTimes.Size = new System.Drawing.Size(950, 420);
+            this.listBoxTimes.TabIndex = 0;
+            this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
+            this.listBoxTimes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxTimes_KeyDown);
+            // 
+            // textBoxBraille
+            // 
+            this.textBoxBraille.BackColor = System.Drawing.Color.Black;
+            this.textBoxBraille.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxBraille.ForeColor = System.Drawing.Color.White;
+            this.textBoxBraille.Location = new System.Drawing.Point(10, 511);
+            this.textBoxBraille.Name = "textBoxBraille";
+            this.textBoxBraille.ReadOnly = true;
+            this.textBoxBraille.Size = new System.Drawing.Size(1200, 62);
+            this.textBoxBraille.TabIndex = 5;
+            this.textBoxBraille.TabStop = false;
+            // 
+            // textBoxText
+            // 
+            this.textBoxText.Location = new System.Drawing.Point(10, 579);
+            this.textBoxText.Name = "textBoxText";
+            this.textBoxText.ReadOnly = true;
+            this.textBoxText.Size = new System.Drawing.Size(1200, 20);
+            this.textBoxText.TabIndex = 6;
+            this.textBoxText.TabStop = false;
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
+            // textBoxMessage
+            // 
+            this.textBoxMessage.Location = new System.Drawing.Point(265, 28);
+            this.textBoxMessage.Name = "textBoxMessage";
+            this.textBoxMessage.ReadOnly = true;
+            this.textBoxMessage.Size = new System.Drawing.Size(950, 20);
+            this.textBoxMessage.TabIndex = 7;
+            this.textBoxMessage.TabStop = false;
+            // 
+            // textBoxNormalText
+            // 
+            this.textBoxNormalText.Location = new System.Drawing.Point(10, 485);
+            this.textBoxNormalText.Name = "textBoxNormalText";
+            this.textBoxNormalText.ReadOnly = true;
+            this.textBoxNormalText.Size = new System.Drawing.Size(1203, 20);
+            this.textBoxNormalText.TabIndex = 8;
+            this.textBoxNormalText.TabStop = false;
+            // 
+            // textBoxCommand
+            // 
+            this.textBoxCommand.Location = new System.Drawing.Point(12, 28);
+            this.textBoxCommand.Name = "textBoxCommand";
+            this.textBoxCommand.ReadOnly = true;
+            this.textBoxCommand.Size = new System.Drawing.Size(247, 20);
+            this.textBoxCommand.TabIndex = 9;
+            this.textBoxCommand.TabStop = false;
+            // 
+            // textBoxStatusInformation
+            // 
+            this.textBoxStatusInformation.Location = new System.Drawing.Point(10, 606);
+            this.textBoxStatusInformation.Name = "textBoxStatusInformation";
+            this.textBoxStatusInformation.ReadOnly = true;
+            this.textBoxStatusInformation.Size = new System.Drawing.Size(1200, 20);
+            this.textBoxStatusInformation.TabIndex = 10;
+            this.textBoxStatusInformation.TabStop = false;
+            this.textBoxStatusInformation.Text = "Status Information";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1219, 601);
+            this.ClientSize = new System.Drawing.Size(1219, 641);
+            this.Controls.Add(this.textBoxStatusInformation);
             this.Controls.Add(this.textBoxCommand);
             this.Controls.Add(this.textBoxNormalText);
             this.Controls.Add(this.textBoxMessage);
@@ -632,6 +644,7 @@
         private System.Windows.Forms.ToolStripMenuItem httpwwwnewhymnsorgToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem httpwwwhymnsandcarolsofchristmascomToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem httpwwwhausmusikchToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBoxStatusInformation;
     }
 }
 
