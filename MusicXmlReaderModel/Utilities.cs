@@ -509,37 +509,7 @@ namespace MusicXmlReaderModel
         }
 
         
-        public static string InitMusicXmlFiles(string applicationName,string sourceDirName,string sampleDirName)
-        {
-            string functionName = "InitMusicXmlFiles";
-            string documentPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments); // C:\Users\<Username>\Documents       
-            string myMusicXmlDirectory = Path.Combine(documentPath,applicationName); //  // C:\Users\<Username>\Documents\IBOS Nodelæser
-            int nFiles = 0;
-            int nDirs  = 0;   
-            if (!Directory.Exists(myMusicXmlDirectory))
-            {
-                string fullDestinationDirName = Path.Combine(myMusicXmlDirectory, sampleDirName); 
-                try
-                {
-                    // Create the destination directory:
-                    Directory.CreateDirectory(myMusicXmlDirectory);  // C:\Users\<Username>\Documents\IBOS MusicXmlReader            
-                    Directory.CreateDirectory(fullDestinationDirName);  // C:\Users\<Username>\Documents\IBOS MusicXmlReader\Eksempler
-                    Logger.Log(string.Format("{0}.{1}: Calling DirectoryCopy(Source,Dest) where", className, functionName));
-                    Logger.Log(string.Format(" Source='{0}'",sourceDirName));
-                    Logger.Log(string.Format(" Dest=  '{0}'",fullDestinationDirName));
-                    DirectoryCopy(sourceDirName, fullDestinationDirName, true,ref nFiles,ref nDirs);  // true to copy subdirs
-                    Logger.Log(string.Format("{0}.{1}: DirectoryCopy() successfully copied {2} files in {3} directories", className, functionName,nFiles,nDirs));
-                    // throw (new Exception("For test only"));
-                }
-                catch (Exception e)
-                {
-                    Logger.Log(string.Format("{0}.{1}: Exception during DirectoryCopy(): Message='{2}'",
-                        className, functionName, e.Message));
-                }
-            }
-            return myMusicXmlDirectory;
-        }
-
+   
 
         /// <summary>
         /// https://msdn.microsoft.com/en-us/library/bb762914(v=vs.110).aspx
@@ -547,7 +517,7 @@ namespace MusicXmlReaderModel
         /// <param name="sourceDirName"></param>
         /// <param name="destDirName"></param>
         /// <param name="copySubDirs"></param>
-        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs,ref int nFiles, ref int nDirs)
+        public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs,ref int nFiles, ref int nDirs)
         {
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);

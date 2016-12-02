@@ -787,5 +787,51 @@ namespace MusicXmlReaderModel
 
             Logger.Log(string.Format("{0}.{1} succeeded.", className, functionName)); 
         }
+
+
+        /// <summary>
+        /// During first activation copy sample files from the installation, typically
+        /// From C:\Program Files (x86)\...
+        /// To   C:\Users\"user"\Documents\"LocalizedApplicationName"
+        /// Where "user" is current Windows username
+        /// and   "LocalizedApplicationName" could be "IBOS Nodelæser" or "IBOS MusicXmlReader" or any other localized application name 
+        /// </summary>
+        /// <param name="applicationName">Localized application name</param>
+        /// <param name="sampleDirName">Location of sample files, distributed with the installation files</param>
+        /// <returns></returns>
+        public string InitMusicXmlFiles(string applicationName,  string sampleDirName)
+        {
+            string sourceDirName = InitialDirectory;
+            string functionName = "InitMusicXmlFiles";
+            string documentPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments); // C:\Users\<Username>\Documents       
+            string myMusicXmlDirectory = Path.Combine(documentPath, applicationName); //  // C:\Users\<Username>\Documents\IBOS Nodelæser
+            int nFiles = 0;
+            int nDirs = 0;
+            if (!Directory.Exists(myMusicXmlDirectory))
+            {
+                string fullDestinationDirName = Path.Combine(myMusicXmlDirectory, sampleDirName);
+                try
+                {
+                    // Create the destination directory:
+                    Directory.CreateDirectory(myMusicXmlDirectory);  // C:\Users\<Username>\Documents\IBOS MusicXmlReader            
+                    Directory.CreateDirectory(fullDestinationDirName);  // C:\Users\<Username>\Documents\IBOS MusicXmlReader\Eksempler
+                    Logger.Log(string.Format("{0}.{1}: Calling DirectoryCopy(Source,Dest) where", className, functionName));
+                    Logger.Log(string.Format(" Source='{0}'", sourceDirName));
+                    Logger.Log(string.Format(" Dest=  '{0}'", fullDestinationDirName));
+                    Utilities.DirectoryCopy(sourceDirName, fullDestinationDirName, true, ref nFiles, ref nDirs);  // true to copy subdirs
+                    Logger.Log(string.Format("{0}.{1}: DirectoryCopy() successfully copied {2} files in {3} directories", className, functionName, nFiles, nDirs));
+                    // throw (new Exception("For test only"));
+                }
+                catch (Exception e)
+                {
+                    Logger.Log(string.Format("{0}.{1}: Exception during DirectoryCopy(): Message='{2}'",
+                        className, functionName, e.Message));
+                }
+            }
+            return myMusicXmlDirectory;
+        }
+
+
+
     }
 }
