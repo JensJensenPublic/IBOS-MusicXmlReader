@@ -116,6 +116,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourcesForModel.resx</DependentUpon>
     </Compile>
+    <Compile Include="StatusInformation.cs" />
     <Compile Include="SystemParametersiInfo.cs" />
     <Compile Include="TextDisplayer.cs" />
     <Compile Include="TimeDescriptionList.cs" />

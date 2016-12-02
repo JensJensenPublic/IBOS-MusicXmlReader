@@ -482,7 +482,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         private static bool RunExeWithArgument(string exeFileName, string argument)
         {
-            string methodName = "RunExeWithArgument";
+            string methodName = className + "." + "RunExeWithArgument";
             // Check arguments
             string exePathName = Path.GetDirectoryName(exeFileName);
             if ((!string.IsNullOrEmpty(exePathName)) && (!CheckFileExistance(exeFileName, methodName))) return false;
@@ -518,7 +518,7 @@ namespace MusicXmlReaderModel
         /// <param name="destDirName"></param>
         /// <param name="copySubDirs"></param>
         public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs,ref int nFiles, ref int nDirs)
-        {
+        {            
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
 
