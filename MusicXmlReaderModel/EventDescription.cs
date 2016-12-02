@@ -44,6 +44,7 @@ namespace MusicXmlReaderModel
         private List<BarlineElement> barlineElements;  // The BarlineElements related to this event, if any. In some rare cases more than one!!
         private List<DirectionElement> directionElements; // The DirectionElements related to this event, if any 
 
+        private StatusInformation statusInformation; // Contains Status information valid for this eventdescription
 
         public int MeasureNumber
         {
@@ -136,6 +137,19 @@ namespace MusicXmlReaderModel
             }
         }
 
+        internal StatusInformation StatusInformation
+        {
+            get
+            {
+                return statusInformation;
+            }
+
+            set
+            {
+                statusInformation = value;
+            }
+        }
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
@@ -166,7 +180,7 @@ namespace MusicXmlReaderModel
         /// Adds an XML node, which may or may not be a musical note (a NoteElement)
         /// </summary>
         /// <param name="eventElement"></param>
-        public void AddNode(EventElement eventElement)
+        public void AddNode(EventElement eventElement, StatusInformation currentStatusInformation)
         {
             string functionName = "EventDescription.AddNode";
             //            notes[noteElement.PartNumber] = noteElement;
@@ -184,6 +198,7 @@ namespace MusicXmlReaderModel
             {
                 // Assuming only one measure starts at one time.
                 measureElement = eventElement as MeasureElement; // Assume only one measure per event!
+                currentStatusInformation.MeasureNumber = measureElement.Number;
             }
             else if (eventElement is EndEventElement)
             {
@@ -199,7 +214,9 @@ namespace MusicXmlReaderModel
                 {
                     soundElements = new List<SoundElement>();
                 }
-                soundElements.Add(eventElement as SoundElement);
+                SoundElement soundElement = eventElement as SoundElement;
+                soundElements.Add(soundElement);
+                currentStatusInformation.Tempo = soundElement.GetTempo();
             }
 
             else if (eventElement is KeyElement)
@@ -208,7 +225,10 @@ namespace MusicXmlReaderModel
                 {
                     keyElements = new List<KeyElement>();
                 }
-                keyElements.Add(eventElement as KeyElement);
+                KeyElement keyElement = eventElement as KeyElement;
+                keyElements.Add(keyElement);
+                currentStatusInformation.Fifths = keyElement.Fifths;
+                currentStatusInformation.Mode = keyElement.Mode;
             }
 
             else if (eventElement is ClefElement)
@@ -226,7 +246,10 @@ namespace MusicXmlReaderModel
                 {
                     timeElements = new List<TimeElement>();
                 }
-                timeElements.Add(eventElement as TimeElement);
+                TimeElement timeElement = eventElement as TimeElement;
+                timeElements.Add(timeElement);
+                currentStatusInformation.Beats = timeElement.Beats;
+                currentStatusInformation.BeatType = timeElement.BeatType;
             }
 
             else if (eventElement is RepeatElement)

@@ -5,15 +5,16 @@ namespace MusicXmlReaderModel
     /// Classs for holding all "state-like" status information, which is valid for a part of the score.
     /// Only values covering all parts are implemented.
     /// </summary>
-    class StatusInformation
+    public class StatusInformation
     {
+        private string className = "StatusInformation";
         // Use -1 as a marker for "unknown"
         private int measureNumber =-1 ;
         private int beats = -1 ;      // Derived from (latest) TimeElement
         private int beatType = -1;    // Derived from (latest) TimeElement
         private int fifths = -1;      // Derived from (latest) KeyElement
         private ModeEnum mode = ModeEnum.unknown;  // Derived from (latest) KeyElement
-        private int Tempo = -1;       // Derived from (latest) SoundElement
+        private int tempo = -1;       // Derived from (latest) SoundElement
 
         #region encapsulation
         public int MeasureNumber
@@ -24,7 +25,8 @@ namespace MusicXmlReaderModel
             }
 
             set
-            {
+            {      
+                LogChange("MeasureNumber", measureNumber, value);
                 measureNumber = value;
             }
         }
@@ -37,7 +39,8 @@ namespace MusicXmlReaderModel
             }
 
             set
-            {
+            { 
+                LogChange("Beats", beats, value);
                 beats = value;
             }
         }
@@ -50,7 +53,8 @@ namespace MusicXmlReaderModel
             }
 
             set
-            {
+            {     
+                LogChange("BeatType", beatType, value);
                 beatType = value;
             }
         }
@@ -63,7 +67,8 @@ namespace MusicXmlReaderModel
             }
 
             set
-            {
+            {    
+                LogChange("Fifths", fifths, value);
                 fifths = value;
             }
         }
@@ -76,23 +81,39 @@ namespace MusicXmlReaderModel
             }
 
             set
-            {
+            { 
+                LogChange("Mode", mode, value);
                 mode = value;
             }
         }
 
-        public int Tempo1
+        public int Tempo
         {
             get
             {
-                return Tempo;
+                return tempo;
             }
 
             set
-            {
-                Tempo = value;
+            {  
+                LogChange("Tempo", tempo, value);
+                tempo = value;
             }
         }
+
+        private void LogChange(string attrubuteName, int oldValue, int newValue)
+        {
+            if (newValue == oldValue) return;
+            Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue, newValue));
+        }
+
+        private void LogChange(string attrubuteName, ModeEnum oldValue, ModeEnum newValue)
+        {
+            if (newValue == oldValue) return;
+            Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue.ToString(), newValue.ToString()));
+        }
+
+
         #endregion // Encapsulation
 
         // NOTE!!! Do not forget to add to the Copy-constructor !!!
@@ -110,7 +131,7 @@ namespace MusicXmlReaderModel
             newStatusInformation.beatType = statusInformation.beatType; // Derived from (latest) TimeElement
             newStatusInformation.fifths = statusInformation.fifths;     // Derived from (latest) KeyElement
             newStatusInformation.mode = statusInformation.mode;         // Derived from (latest) KeyElement
-            newStatusInformation.Tempo = statusInformation.Tempo;       // Derived from (latest) SoundElement
+            newStatusInformation.tempo = statusInformation.tempo;       // Derived from (latest) SoundElement
 
              // NOTE!!! Do not forget to add to the Copy-constructor HERE !!
         }

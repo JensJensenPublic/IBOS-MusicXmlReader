@@ -24,6 +24,7 @@ namespace MusicXmlReaderModel
         int divisions; // Current number of divisions of a quarternode
         int tempo;     // Current tempo in beats pr minute
         int currentMeasureNumber = 0; // Current measure number
+        StatusInformation currentStatusInformation; // Contains information which is valid in a part of the score, such as Key, Beats, Tempo etc.
         int latestMeasureNumber = 0;
         int numberOfParts; // Number of parts
         //int currentPartitionNumber = -1;
@@ -612,7 +613,8 @@ namespace MusicXmlReaderModel
             partDescriptionList = PartDescriptionList.Create(allMusicXmlObjecsts,numberOfParts);
             divisions = 24; // TODO compute!
             timeDescriptionList = TimeDescriptionList.Create(partDescriptionList, divisions);
-            eventDescriptionList = EventDescriptionList.Create(timeDescriptionList, numberOfParts,userSettings);
+            currentStatusInformation = StatusInformation.Create();
+            eventDescriptionList = EventDescriptionList.Create(timeDescriptionList, numberOfParts,userSettings, currentStatusInformation);
             //measureDescriptionList = MeasureDescriptionList.Create(allMusicXmlObjecsts);
         }
 

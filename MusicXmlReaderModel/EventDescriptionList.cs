@@ -30,7 +30,7 @@ namespace MusicXmlReaderModel
         /// Private constructor, used by the Crate() method
         /// </summary>
         /// <param name="node"></param>
-        private EventDescriptionList(TimeDescriptionList timeDescriptionList, int numberOfParts,UserSettings userSettings)
+        private EventDescriptionList(TimeDescriptionList timeDescriptionList, int numberOfParts,UserSettings userSettings,StatusInformation currentStatusInformation)
         {
             this.userSettings = userSettings;
             events = new List<EventDescription>();
@@ -40,18 +40,26 @@ namespace MusicXmlReaderModel
             {
                 if (eventElement.StartTime != currentStartTime)
                 {
+                    // Time has changed, so we need a new event Description
+
+                    if (null != currentEventDescription)
+                    {
+                        // Save a copy of the currrent status information with the eventDescription, we have just finished:
+                        currentEventDescription.StatusInformation = StatusInformation.Create(currentStatusInformation);                     
+                    }
+
                     currentStartTime = eventElement.StartTime;
                     currentEventDescription = EventDescription.Create(currentStartTime, numberOfParts, this.userSettings);       
                     events.Add(currentEventDescription);
                 }
-                currentEventDescription.AddNode(eventElement);
+                currentEventDescription.AddNode(eventElement, currentStatusInformation);
             }
 
         }
 
-        public static EventDescriptionList Create(TimeDescriptionList timeDescriptionList, int numberOfParts, UserSettings userSettings)
+        public static EventDescriptionList Create(TimeDescriptionList timeDescriptionList, int numberOfParts, UserSettings userSettings, StatusInformation currentStatusInformation)
         {
-            return new EventDescriptionList(timeDescriptionList, numberOfParts,userSettings);
+            return new EventDescriptionList(timeDescriptionList, numberOfParts,userSettings,currentStatusInformation);
         }
 
 

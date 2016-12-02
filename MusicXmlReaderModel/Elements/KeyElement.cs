@@ -28,6 +28,14 @@ namespace MusicXmlReaderModel
             } 
         }
 
+        public ModeEnum Mode
+        {
+            get
+            {
+                return mode;
+            }
+        }
+
 
         /// <summary>
         /// To force the use of the Create() method
