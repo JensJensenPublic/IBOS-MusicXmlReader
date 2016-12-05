@@ -170,7 +170,7 @@ namespace MusicXmlReader
             if ((1 == paramaters.Length)
             && (int.TryParse(paramaters[0], out n1)) // First parameter
             && (n1 >= 10)
-            && (n1 <= 200)
+            && (n1 <= 1000)
             )
             {
                 model.SetUserTempo(n1);
