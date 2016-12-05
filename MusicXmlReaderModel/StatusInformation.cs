@@ -186,19 +186,19 @@ namespace MusicXmlReaderModel
         private void LogChange(string attrubuteName, int oldValue, int newValue)
         {
             if (newValue == oldValue) return;
-            Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue, newValue));
+            // Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue, newValue));
         }
 
         private void LogChange(string attrubuteName, ModeEnum oldValue, ModeEnum newValue)
         {
             if (newValue == oldValue) return;
-            Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue.ToString(), newValue.ToString()));
+            // Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue.ToString(), newValue.ToString()));
         }
 
         private void LogChange(string attrubuteName, string oldValue, string newValue)
         {
             if (0 == string.Compare(newValue,oldValue)) return;
-            Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue, newValue));
+            // Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue, newValue));
         }
 
 
