@@ -9,97 +9,165 @@ namespace MusicXmlReaderModel
     {
         private string className = "StatusInformation";
         // Use -1 as a marker for "unknown"
-        private int measureNumber =-1 ;
-        private int beats = -1 ;      // Derived from (latest) TimeElement
-        private int beatType = -1;    // Derived from (latest) TimeElement
-        private int fifths = -1;      // Derived from (latest) KeyElement
-        private ModeEnum mode = ModeEnum.unknown;  // Derived from (latest) KeyElement
-        private int tempo = -1;       // Derived from (latest) SoundElement
+        //private int measureNumber =-1 ;
+        //private int beats = -1 ;      // Derived from (latest) TimeElement
+        //private int beatType = -1;    // Derived from (latest) TimeElement
+        //private int fifths = -1;      // Derived from (latest) KeyElement
+        //private ModeEnum mode = ModeEnum.unknown;  // Derived from (latest) KeyElement
+        //private int tempo = -1;       // Derived from (latest) SoundElement
+
+
+        private MeasureElement  currentMeasureElement;
+        private KeyElement currentKeyElement;
+        private SoundElement currentSoundElement;
+        private TimeElement currentTimeElement;
 
         #region encapsulation
-        public int MeasureNumber
+        public MeasureElement CurrentMeasureElement
         {
             get
             {
-                return measureNumber;
+                return currentMeasureElement;
             }
 
             set
-            {      
-                LogChange("MeasureNumber", measureNumber, value);
-                measureNumber = value;
+            {
+                LogChange("MeasureNumber", (null == currentMeasureElement) ? -1 : currentMeasureElement.Number, value.Number);
+                currentMeasureElement = value; 
             }
         }
 
-        public int Beats
+        public KeyElement CurrentKeyElement
         {
             get
             {
-                return beats;
+                return currentKeyElement;
             }
 
             set
-            { 
-                LogChange("Beats", beats, value);
-                beats = value;
+            {
+                LogChange("Fifths", (null == currentKeyElement) ? -1 :  currentKeyElement.Fifths, value.Fifths);
+                LogChange("Mode",   (null == currentKeyElement) ? ModeEnum.unknown : currentKeyElement.Mode, value.Mode);
+                currentKeyElement = value;
             }
         }
 
-        public int BeatType
+        internal SoundElement CurrentSoundElement
         {
             get
             {
-                return beatType;
+                return currentSoundElement;
             }
 
             set
-            {     
-                LogChange("BeatType", beatType, value);
-                beatType = value;
+            {
+                LogChange("Tempo", (null == currentSoundElement) ? -1 :currentSoundElement.GetTempo(), value.GetTempo());
+                currentSoundElement = value;
             }
         }
 
-        public int Fifths
+        public TimeElement CurrentTimeElement
         {
             get
             {
-                return fifths;
+                return currentTimeElement;
             }
 
             set
-            {    
-                LogChange("Fifths", fifths, value);
-                fifths = value;
-            }
-        }
-
-        public ModeEnum Mode
-        {
-            get
             {
-                return mode;
-            }
-
-            set
-            { 
-                LogChange("Mode", mode, value);
-                mode = value;
+                LogChange("Beats",    (null == currentTimeElement) ? -1 : currentTimeElement.Beats, value.Beats);
+                LogChange("BeatType", (null == currentTimeElement) ? -1 : currentTimeElement.BeatType, value.BeatType);
+                currentTimeElement = value;
             }
         }
 
-        public int Tempo
-        {
-            get
-            {
-                return tempo;
-            }
 
-            set
-            {  
-                LogChange("Tempo", tempo, value);
-                tempo = value;
-            }
-        }
+
+        //public int MeasureNumber
+        //{
+        //    get
+        //    {
+        //        return measureNumber;
+        //    }
+
+        //    set
+        //    {      
+        //        LogChange("MeasureNumber", measureNumber, value);
+        //        measureNumber = value;
+        //    }
+        //}
+
+        //public int Beats
+        //{
+        //    get
+        //    {
+        //        return beats;
+        //    }
+
+        //    set
+        //    { 
+        //        LogChange("Beats", beats, value);
+        //        beats = value;
+        //    }
+        //}
+
+        //public int BeatType
+        //{
+        //    get
+        //    {
+        //        return beatType;
+        //    }
+
+        //    set
+        //    {     
+        //        LogChange("BeatType", beatType, value);
+        //        beatType = value;
+        //    }
+        //}
+
+        //public int Fifths
+        //{
+        //    get
+        //    {
+        //        return fifths;
+        //    }
+
+        //    set
+        //    {    
+        //        LogChange("Fifths", fifths, value);
+        //        fifths = value;
+        //    }
+        //}
+
+        //public ModeEnum Mode
+        //{
+        //    get
+        //    {
+        //        return mode;
+        //    }
+
+        //    set
+        //    { 
+        //        LogChange("Mode", mode, value);
+        //        mode = value;
+        //    }
+        //}
+
+        //public int Tempo
+        //{
+        //    get
+        //    {
+        //        return tempo;
+        //    }
+
+        //    set
+        //    {  
+        //        LogChange("Tempo", tempo, value);
+        //        tempo = value;
+        //    }
+        //}
+
+        #endregion // Encapsulation
 
         private void LogChange(string attrubuteName, int oldValue, int newValue)
         {
@@ -114,7 +182,7 @@ namespace MusicXmlReaderModel
         }
 
 
-        #endregion // Encapsulation
+    
 
         // NOTE!!! Do not forget to add to the Copy-constructor !!!
 
@@ -126,19 +194,32 @@ namespace MusicXmlReaderModel
         private StatusInformation (StatusInformation statusInformation)
         {            
             //StatusInformation newStatusInformation = new StatusInformation(); // Create a new one
-            this.measureNumber = statusInformation.measureNumber; // Fill in 
-            this.beats = statusInformation.beats;       // Derived from (latest) TimeElement
-            this.beatType = statusInformation.beatType; // Derived from (latest) TimeElement
-            this.fifths = statusInformation.fifths;     // Derived from (latest) KeyElement
-            this.mode = statusInformation.mode;         // Derived from (latest) KeyElement
-            this.tempo = statusInformation.tempo;       // Derived from (latest) SoundElement
-             // NOTE!!! Do not forget to add to the Copy-constructor HERE !!
+            //this.measureNumber = statusInformation.measureNumber; // Fill in 
+            //this.beats = statusInformation.beats;       // Derived from (latest) TimeElement
+            //this.beatType = statusInformation.beatType; // Derived from (latest) TimeElement
+            //this.fifths = statusInformation.fifths;     // Derived from (latest) KeyElement
+            //this.mode = statusInformation.mode;         // Derived from (latest) KeyElement
+            //this.tempo = statusInformation.tempo;       // Derived from (latest) SoundElement
+
+            this.currentMeasureElement  = statusInformation.currentMeasureElement;
+            this.currentKeyElement      = statusInformation.currentKeyElement;
+            this.currentSoundElement    = statusInformation.currentSoundElement;
+            this.currentTimeElement     = statusInformation.currentTimeElement;
+
+
+            // NOTE!!! Do not forget to add to the Copy-constructor HERE !!
         }
 
 
         public override string ToString()
         {
-            return string.Format("Measure={0} Beats={1}/{2} Fifths={3} Mode={4} Tempo={5}", measureNumber, beats, BeatType, fifths, mode, tempo);
+            return string.Format("Measure={0} Beats={1}/{2} Fifths={3} Mode={4} Tempo={5}",
+                (null == currentMeasureElement) ? "?" : currentMeasureElement.Number.ToString(),    // 0
+                (null == currentTimeElement)    ? "?" : currentTimeElement.Beats.ToString(),        // 1
+                (null == currentTimeElement)    ? "?" : currentTimeElement.BeatType.ToString(),     // 2
+                (null == currentKeyElement)     ? "?" : currentKeyElement.Fifths.ToString(),        // 3
+                (null == currentKeyElement)     ? "?" : currentKeyElement.Mode.ToString(),          // 4
+                (null == currentSoundElement)   ? "?" : currentSoundElement.GetTempo().ToString()); // 5
         }
 
         public static StatusInformation Create()

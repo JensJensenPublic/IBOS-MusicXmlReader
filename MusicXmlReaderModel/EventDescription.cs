@@ -198,7 +198,8 @@ namespace MusicXmlReaderModel
             {
                 // Assuming only one measure starts at one time.
                 measureElement = eventElement as MeasureElement; // Assume only one measure per event!
-                currentStatusInformation.MeasureNumber = measureElement.Number;
+                //currentStatusInformation.MeasureNumber = measureElement.Number;
+                currentStatusInformation.CurrentMeasureElement = measureElement;
             }
             else if (eventElement is EndEventElement)
             {
@@ -216,7 +217,8 @@ namespace MusicXmlReaderModel
                 }
                 SoundElement soundElement = eventElement as SoundElement;
                 soundElements.Add(soundElement);
-                currentStatusInformation.Tempo = soundElement.GetTempo();
+                //currentStatusInformation.Tempo = soundElement.GetTempo();
+                currentStatusInformation.CurrentSoundElement = soundElement;
             }
 
             else if (eventElement is KeyElement)
@@ -227,8 +229,9 @@ namespace MusicXmlReaderModel
                 }
                 KeyElement keyElement = eventElement as KeyElement;
                 keyElements.Add(keyElement);
-                currentStatusInformation.Fifths = keyElement.Fifths;
-                currentStatusInformation.Mode = keyElement.Mode;
+                //currentStatusInformation.Fifths = keyElement.Fifths;
+                //currentStatusInformation.Mode = keyElement.Mode;
+                currentStatusInformation.CurrentKeyElement = keyElement;
             }
 
             else if (eventElement is ClefElement)
@@ -248,8 +251,9 @@ namespace MusicXmlReaderModel
                 }
                 TimeElement timeElement = eventElement as TimeElement;
                 timeElements.Add(timeElement);
-                currentStatusInformation.Beats = timeElement.Beats;
-                currentStatusInformation.BeatType = timeElement.BeatType;
+                //currentStatusInformation.Beats = timeElement.Beats;
+                //currentStatusInformation.BeatType = timeElement.BeatType;
+                currentStatusInformation.CurrentTimeElement = timeElement;
             }
 
             else if (eventElement is RepeatElement)
