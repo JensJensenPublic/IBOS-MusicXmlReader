@@ -21,6 +21,7 @@ namespace MusicXmlReaderModel
         private KeyElement currentKeyElement;
         private SoundElement currentSoundElement;
         private TimeElement currentTimeElement;
+        private HarmonyElement currentHarmonyElement;
 
         #region encapsulation
         public MeasureElement CurrentMeasureElement
@@ -78,6 +79,19 @@ namespace MusicXmlReaderModel
                 LogChange("Beats",    (null == currentTimeElement) ? -1 : currentTimeElement.Beats, value.Beats);
                 LogChange("BeatType", (null == currentTimeElement) ? -1 : currentTimeElement.BeatType, value.BeatType);
                 currentTimeElement = value;
+            }
+        }
+
+        public HarmonyElement CurrentHarmonyElement
+        {
+            get
+            {
+                return currentHarmonyElement;
+            }
+            set
+            {
+                LogChange("Harmony", (null == currentHarmonyElement) ? "" : currentHarmonyElement.ToString(), value.ToString());
+                currentHarmonyElement = value;
             }
         }
 
@@ -181,8 +195,14 @@ namespace MusicXmlReaderModel
             Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue.ToString(), newValue.ToString()));
         }
 
+        private void LogChange(string attrubuteName, string oldValue, string newValue)
+        {
+            if (0 == string.Compare(newValue,oldValue)) return;
+            Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue, newValue));
+        }
 
-    
+
+
 
         // NOTE!!! Do not forget to add to the Copy-constructor !!!
 
@@ -205,6 +225,7 @@ namespace MusicXmlReaderModel
             this.currentKeyElement      = statusInformation.currentKeyElement;
             this.currentSoundElement    = statusInformation.currentSoundElement;
             this.currentTimeElement     = statusInformation.currentTimeElement;
+            this.currentHarmonyElement  = statusInformation.currentHarmonyElement;
 
 
             // NOTE!!! Do not forget to add to the Copy-constructor HERE !!
@@ -213,11 +234,12 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            return string.Format("{0} {1} {2} Tempo={3}",
+            return string.Format("{0} {1} {2} {3}",
                 (null == currentMeasureElement) ? "?" : currentMeasureElement.ToString(), // 0
                 (null == currentTimeElement) ? "?" : currentTimeElement.ToString(), //1
                 (null == currentKeyElement) ? "?" : currentKeyElement.ToString(),        // 2
-                (null == currentSoundElement) ? "?" : currentSoundElement.GetTempo().ToString()); // 3
+                (null == currentHarmonyElement) ? "?" : currentHarmonyElement.ToLocalizedString()); //3
+                // (null == currentSoundElement) ? "?" : currentSoundElement.GetTempo().ToString()); // 4
         }
 
         public static StatusInformation Create()

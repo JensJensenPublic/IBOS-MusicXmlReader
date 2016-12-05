@@ -193,6 +193,7 @@ namespace MusicXmlReaderModel
             {
                 // Assuming only one harmony starts at one time.
                 harmonyElement = eventElement as HarmonyElement; // Assume only one harmony per event!
+                currentStatusInformation.CurrentHarmonyElement = harmonyElement;
             }
             else if (eventElement is MeasureElement)
             {

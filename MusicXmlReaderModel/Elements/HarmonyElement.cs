@@ -70,7 +70,7 @@ namespace MusicXmlReaderModel
         private HarmonyElement()
         {
         }
-        
+
 
         /// <summary>
         /// Private constructor, used by the Crate() method
@@ -92,8 +92,8 @@ namespace MusicXmlReaderModel
                                 case "root-step": rootStep = nn.InnerText; break;
                                 case "root-alter": rootAlter = nn.InnerText; break;
                             }
-                        }                    
-                          break;
+                        }
+                        break;
                     case "kind": kind = n.InnerText; break;
                 }
             }
@@ -117,6 +117,14 @@ namespace MusicXmlReaderModel
                 string.IsNullOrEmpty(rootStep) ? "" : rootStep,
                 string.IsNullOrEmpty(rootAlter) ? "" : rootAlter);
         }
+        
+        public string ToLocalizedString()
+        {
+            string s = string.Format("{0}-{1}", chromaticStep, localizedChordType);
+            return s;
+        }
+
     }
+
 }
 
