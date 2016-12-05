@@ -233,11 +233,15 @@ namespace MusicXmlReader
             LoadParts(musicAsBrailleVoices, partList);
         }
 
-
         private void LoadDetails(TreeNode treeNode, string[] names, bool[] values)
         {
+            LoadDetails(treeNode, names, values, int.MaxValue);
+        }
+
+        private void LoadDetails(TreeNode treeNode, string[] names, bool[] values, int lastNodeToLoad)
+        {
             treeNode.Nodes.Clear();
-            for (int i = 0; (i < names.Length); i++)
+            for (int i = 0; (i < names.Length) && (i <= lastNodeToLoad); i++)
             {
                 TreeNode node = treeNode.Nodes.Add(names[i]);
                 node.Checked =  values[i];
@@ -254,7 +258,7 @@ namespace MusicXmlReader
         {
             //this.userSettings = userSettings;
             LoadDetails(musicAsSoundDetails, userSettings.playerSettingsNames, model.UserSettings.playerSettingsValues);
-            LoadDetails(musicAsTextDetails,userSettings.readerSettingsNames, model.UserSettings.readerSettingsValues);
+            LoadDetails(musicAsTextDetails,userSettings.readerSettingsNames, model.UserSettings.readerSettingsValues,7); // Do not load last notes, they are for debugging only
             LoadDetails(musicAsBrailleDetails, userSettings.musicBrailleSettingsNames, model.UserSettings.musicBrailleSettingsValues);
         }
 
