@@ -8,15 +8,7 @@ namespace MusicXmlReaderModel
     public class StatusInformation
     {
         private string className = "StatusInformation";
-        // Use -1 as a marker for "unknown"
-        //private int measureNumber =-1 ;
-        //private int beats = -1 ;      // Derived from (latest) TimeElement
-        //private int beatType = -1;    // Derived from (latest) TimeElement
-        //private int fifths = -1;      // Derived from (latest) KeyElement
-        //private ModeEnum mode = ModeEnum.unknown;  // Derived from (latest) KeyElement
-        //private int tempo = -1;       // Derived from (latest) SoundElement
-
-
+  
         private MeasureElement  currentMeasureElement;
         private KeyElement currentKeyElement;
         private SoundElement currentSoundElement;
@@ -95,92 +87,6 @@ namespace MusicXmlReaderModel
             }
         }
 
-
-
-        //public int MeasureNumber
-        //{
-        //    get
-        //    {
-        //        return measureNumber;
-        //    }
-
-        //    set
-        //    {      
-        //        LogChange("MeasureNumber", measureNumber, value);
-        //        measureNumber = value;
-        //    }
-        //}
-
-        //public int Beats
-        //{
-        //    get
-        //    {
-        //        return beats;
-        //    }
-
-        //    set
-        //    { 
-        //        LogChange("Beats", beats, value);
-        //        beats = value;
-        //    }
-        //}
-
-        //public int BeatType
-        //{
-        //    get
-        //    {
-        //        return beatType;
-        //    }
-
-        //    set
-        //    {     
-        //        LogChange("BeatType", beatType, value);
-        //        beatType = value;
-        //    }
-        //}
-
-        //public int Fifths
-        //{
-        //    get
-        //    {
-        //        return fifths;
-        //    }
-
-        //    set
-        //    {    
-        //        LogChange("Fifths", fifths, value);
-        //        fifths = value;
-        //    }
-        //}
-
-        //public ModeEnum Mode
-        //{
-        //    get
-        //    {
-        //        return mode;
-        //    }
-
-        //    set
-        //    { 
-        //        LogChange("Mode", mode, value);
-        //        mode = value;
-        //    }
-        //}
-
-        //public int Tempo
-        //{
-        //    get
-        //    {
-        //        return tempo;
-        //    }
-
-        //    set
-        //    {  
-        //        LogChange("Tempo", tempo, value);
-        //        tempo = value;
-        //    }
-        //}
-
         #endregion // Encapsulation
 
         private void LogChange(string attrubuteName, int oldValue, int newValue)
@@ -213,20 +119,12 @@ namespace MusicXmlReaderModel
 
         private StatusInformation (StatusInformation statusInformation)
         {            
-            //StatusInformation newStatusInformation = new StatusInformation(); // Create a new one
-            //this.measureNumber = statusInformation.measureNumber; // Fill in 
-            //this.beats = statusInformation.beats;       // Derived from (latest) TimeElement
-            //this.beatType = statusInformation.beatType; // Derived from (latest) TimeElement
-            //this.fifths = statusInformation.fifths;     // Derived from (latest) KeyElement
-            //this.mode = statusInformation.mode;         // Derived from (latest) KeyElement
-            //this.tempo = statusInformation.tempo;       // Derived from (latest) SoundElement
 
             this.currentMeasureElement  = statusInformation.currentMeasureElement;
             this.currentKeyElement      = statusInformation.currentKeyElement;
             this.currentSoundElement    = statusInformation.currentSoundElement;
             this.currentTimeElement     = statusInformation.currentTimeElement;
             this.currentHarmonyElement  = statusInformation.currentHarmonyElement;
-
 
             // NOTE!!! Do not forget to add to the Copy-constructor HERE !!
         }
