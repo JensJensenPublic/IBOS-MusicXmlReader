@@ -493,6 +493,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chord.
+        /// </summary>
+        internal static string HarmonyElement_Chord {
+            get {
+                return ResourceManager.GetString("HarmonyElement_Chord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Key.
         /// </summary>
         internal static string KeyElement_key {

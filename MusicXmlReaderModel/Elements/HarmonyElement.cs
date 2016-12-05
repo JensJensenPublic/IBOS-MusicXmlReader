@@ -120,7 +120,7 @@ namespace MusicXmlReaderModel
         
         public string ToLocalizedString()
         {
-            string s = string.Format("{0}-{1}", chromaticStep, localizedChordType);
+            string s = string.Format("{0}:{1}-{2}", ResourcesForModel.HarmonyElement_Chord, chromaticStep, localizedChordType);
             return s;
         }
 
