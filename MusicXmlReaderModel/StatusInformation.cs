@@ -213,16 +213,11 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            return string.Format("{0} {1} Fifths={3} Mode={4} Tempo={5}",
-                //(null == currentMeasureElement) ? "?" : currentMeasureElement.Number.ToString(),    // 0
+            return string.Format("{0} {1} {2} Tempo={3}",
                 (null == currentMeasureElement) ? "?" : currentMeasureElement.ToString(), // 0
-                //(null == currentTimeElement)    ? "?" : currentTimeElement.Beats.ToString(),        // 1
-                //(null == currentTimeElement)    ? "?" : currentTimeElement.BeatType.ToString(),     // 2
-                (null == currentTimeElement)    ? "?" : currentTimeElement.ToString(), //1
-                "", // 2
-                (null == currentKeyElement)     ? "?" : currentKeyElement.Fifths.ToString(),        // 3
-                (null == currentKeyElement)     ? "?" : currentKeyElement.Mode.ToString(),          // 4
-                (null == currentSoundElement)   ? "?" : currentSoundElement.GetTempo().ToString()); // 5
+                (null == currentTimeElement) ? "?" : currentTimeElement.ToString(), //1
+                (null == currentKeyElement) ? "?" : currentKeyElement.ToString(),        // 2
+                (null == currentSoundElement) ? "?" : currentSoundElement.GetTempo().ToString()); // 3
         }
 
         public static StatusInformation Create()
