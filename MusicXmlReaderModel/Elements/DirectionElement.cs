@@ -9,7 +9,7 @@ namespace MusicXmlReaderModel
 {
     class DirectionElement : EventElement
     {
-        //string className = "DirectionElement";
+        string className = "DirectionElement";
         private DynamicsElement dynamicsElement;
         // Prevent construction
         private DirectionElement()
@@ -18,7 +18,7 @@ namespace MusicXmlReaderModel
 
         private DirectionElement(XmlNode node)
         {
-            //string functionName = "DirectionElement";
+            string functionName = "DirectionElement";
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
@@ -51,7 +51,9 @@ namespace MusicXmlReaderModel
                             }
                         }
                         break;
-                    default: break;
+                    default:
+                        Logger.LogOnce(string.Format("{0}.{1} DirectionType Value={2}", className, functionName, n.Name));
+                        break;
                 }
             }
 
