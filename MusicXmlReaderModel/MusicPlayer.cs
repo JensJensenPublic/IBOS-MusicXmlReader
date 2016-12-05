@@ -145,8 +145,43 @@ namespace MusicXmlReaderUI
                         }
                     }
                 }
+                PlayHarmonies(eventDescription);   // Handle harmonies
             }
             return;
+        }
+
+
+        /// <summary>
+        /// Common helper, used from autoplaying, Called from method Play()
+        /// and from manual playing, called from method SelectedIndexChanged()
+        /// </summary>
+        /// <param name="eventDescription"></param>
+        private void PlayHarmonies(EventDescription eventDescription)
+        {
+            // Handle harmonies 
+            if (null != eventDescription.HarmonyElement)
+            {
+                if (null != latestHarmonyPlayed)
+                {
+                    latestHarmonyPlayed.StopPlaying(midiOut);
+                    latestHarmonyPlayed = null;
+                }
+
+                if (userSettings.GetPlayerSettings(UserSettings.PlayerSettings.Harmonies))
+                {
+                    // Play the harmony related to this event
+                    HarmonyElement h = eventDescription.HarmonyElement;
+                    if (ChordType.UnImplemented != h.ChordType)
+                    {
+                        latestHarmonyPlayed = new MidiChord(h.ChromaticStep, 4, 127, h.ChordType);
+                        latestHarmonyPlayed.StartPlaying(midiOut);
+                    }
+                    else
+                    {
+                        Logger.Log(string.Format("MusicPlayer: Becifring {0} er ikke implementeret", h.Kind));
+                    }
+                }
+            }
         }
 
         ///// <summary>
@@ -297,31 +332,8 @@ namespace MusicXmlReaderUI
                     }
                 }
             }
-
-            // Handle harmonies 
-            if (null != eventDescription.HarmonyElement)
-            {
-                if (null != latestHarmonyPlayed)
-                {
-                    latestHarmonyPlayed.StopPlaying(midiOut);
-                    latestHarmonyPlayed = null;
-                }
-
-                if (userSettings.GetPlayerSettings(UserSettings.PlayerSettings.Harmonies))
-                {
-                    // Play the harmony related to this event
-                    HarmonyElement h = eventDescription.HarmonyElement;
-                    if (ChordType.UnImplemented != h.ChordType)
-                    {
-                        latestHarmonyPlayed = new MidiChord(h.ChromaticStep, 4, 127, h.ChordType);
-                        latestHarmonyPlayed.StartPlaying(midiOut);
-                    }
-                    else
-                    {
-                        Logger.Log(string.Format("MusicPlayer: Becifring {0} er ikke implementeret", h.Kind));
-                    }
-                }
-            }
+                    
+            PlayHarmonies(eventDescription);     // Handle harmonies
 
             // Handle Sound desriptions, such as "Tempo". NOTE: May cause a change of musical tempo!
             if (null != eventDescription.SoundElements)

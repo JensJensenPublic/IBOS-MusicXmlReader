@@ -25,6 +25,7 @@ namespace MusicXmlReaderModel
     /// </summary>
     public class BrailleDisplayer
     {
+        private string className = "BrailleDisplayer";
         public static readonly char UnicodeBrailleBase = (char)0x2800;
 
         private FSBrlDspAPIWrapper fSBrlDspAPIWrapper; // Used by experimental code for accessing a Freedom Scientific Braille display directly.
@@ -91,6 +92,7 @@ namespace MusicXmlReaderModel
         /// <param name="selectedObject"></param>
         public void SelectedIndexChanged(int selectedIndex, object selectedObject)
         {
+            string methodName = "SelectedIndexChanged";
             //StopRefreshing(); // Stop refreshing the Braille Display; Also happens when controllooses focus      
 
             //if (playing) return;
@@ -112,7 +114,14 @@ namespace MusicXmlReaderModel
                 //brailleDisplayerClient.WriteTextString(bb.Text.ToString()); 
                 brailleDisplayerClient.WriteBrailleString(eventDescription.MusicBrailleRepresentation);
                 brailleDisplayerClient.WriteTextString(eventDescription.MusicBrailleAsTextRepresentation);
-                brailleDisplayerClient.WriteStatusInformation(eventDescription.StatusInformation.ToString());
+                if (null != eventDescription.StatusInformation)
+                {
+                    brailleDisplayerClient.WriteStatusInformation(eventDescription.StatusInformation.ToString());
+                }
+                else
+                {
+                    Logger.LogOnce(string.Format("{0}.{1} : eventDescription.StatusInformation is null", className, methodName));
+                }
 
                 screenReaderAPI.Silence(); // Prevent overloading the internal queue in NVDA when rapidly changing between different events                  
                 if (ScreenReaderAPI.ScreenReaderType.NVDA == screenReaderAPI.GetScreenReaderType())
