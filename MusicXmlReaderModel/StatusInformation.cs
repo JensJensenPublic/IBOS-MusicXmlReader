@@ -213,10 +213,13 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            return string.Format("Measure={0} Beats={1}/{2} Fifths={3} Mode={4} Tempo={5}",
-                (null == currentMeasureElement) ? "?" : currentMeasureElement.Number.ToString(),    // 0
-                (null == currentTimeElement)    ? "?" : currentTimeElement.Beats.ToString(),        // 1
-                (null == currentTimeElement)    ? "?" : currentTimeElement.BeatType.ToString(),     // 2
+            return string.Format("{0} {1} Fifths={3} Mode={4} Tempo={5}",
+                //(null == currentMeasureElement) ? "?" : currentMeasureElement.Number.ToString(),    // 0
+                (null == currentMeasureElement) ? "?" : currentMeasureElement.ToString(), // 0
+                //(null == currentTimeElement)    ? "?" : currentTimeElement.Beats.ToString(),        // 1
+                //(null == currentTimeElement)    ? "?" : currentTimeElement.BeatType.ToString(),     // 2
+                (null == currentTimeElement)    ? "?" : currentTimeElement.ToString(), //1
+                "", // 2
                 (null == currentKeyElement)     ? "?" : currentKeyElement.Fifths.ToString(),        // 3
                 (null == currentKeyElement)     ? "?" : currentKeyElement.Mode.ToString(),          // 4
                 (null == currentSoundElement)   ? "?" : currentSoundElement.GetTempo().ToString()); // 5

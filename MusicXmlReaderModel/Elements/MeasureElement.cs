@@ -63,9 +63,12 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            return null;
-            // string s = string.Format("Takt {0}", number);
-            // return s;
+            string measureString = "";
+            if (0 != Number)
+            {
+                measureString = string.Format("{0} {1}", ResourcesForModel.NoteElement_measure_text,Number);
+            }
+            return measureString;
         }
     }
 }
