@@ -514,11 +514,26 @@ namespace MusicXmlReaderModel
             //    }
             //}
 
-   
 
-            if (null != keyElements)
+            if (null != clefElements) // First the ClefElement
             {
-                // First check that all timeElements are identical
+                if (1 == clefElements.Count)
+                {
+                    ClefElement c = clefElements[0];
+                    bbMetaInfo.Append("(");
+                    bbMetaInfo.AddClef(c, c.ToShortString());  // Get the unlocalized version
+                    bbMetaInfo.Append(")");
+                }
+                else
+                {
+                    Logger.LogOnce(string.Format("{0}.{1}: Music Braille for more than 1 ClefElement is not implemented yet ", className, functionName));
+                }
+            }
+
+
+            if (null != keyElements) // Then the KeyElement
+            {
+                // First check that all keyElements are identical
                 KeyElement k0 = keyElements[0];
                 bool diff = false;
                 foreach (KeyElement k in keyElements)
@@ -537,22 +552,8 @@ namespace MusicXmlReaderModel
                 bbMetaInfo.Append(")");                
             }
             
-            if (null != clefElements)
-            {
-                if (1 == clefElements.Count)
-                {
-                    ClefElement c = clefElements[0];
-                    bbMetaInfo.Append("(");
-                    bbMetaInfo.AddClef(c, c.ToShortString());  // Get the unlocalized version
-                    bbMetaInfo.Append(")");
-                }
-                else
-                {
-                    Logger.LogOnce(string.Format("{0}.{1}: Music Braille for more than 1 ClefElement is not implemented yet ", className, functionName));
-                }
-            }
   
-            if (null != timeElements)
+            if (null != timeElements) // Finally the TimeElement
             {
                 // First check that all timeElements are identical
                 TimeElement t0 = timeElements[0];

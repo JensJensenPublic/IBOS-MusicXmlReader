@@ -59,13 +59,13 @@ namespace MusicXmlReaderModel
             const string functionName = "ToShortString";
             switch (clef)
             {
-                case ClefEnum.C: return "C-key"; 
-                case ClefEnum.G: return "G-key";
-                case ClefEnum.F: return "F-key";
+                case ClefEnum.C: return "C-clef"; 
+                case ClefEnum.G: return "G-clef";
+                case ClefEnum.F: return "F-clef";
                 case ClefEnum.percussion: return "Perc.";
                 case ClefEnum.TAB: return "TAB";
                 case ClefEnum.jianpu: return "jianpu";
-                case ClefEnum.none: return "no-Key";
+                case ClefEnum.none: return "no-clef";
                 default:
                     Logger.LogOnce(string.Format("{0}.{1} Illegal Clef:{2}", className, functionName, clef.ToString()));
                     return "";
