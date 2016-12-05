@@ -136,7 +136,7 @@ namespace MusicXmlReaderModel
                 (null == currentMeasureElement) ? "?" : currentMeasureElement.ToString(), // 0
                 (null == currentTimeElement) ? "?" : currentTimeElement.ToString(), //1
                 (null == currentKeyElement) ? "?" : currentKeyElement.ToString(),        // 2
-                (null == currentHarmonyElement) ? "?" : currentHarmonyElement.ToLocalizedString()); //3
+                (null == currentHarmonyElement) ? "" : currentHarmonyElement.ToLocalizedString()); //3 // Ignore the case where no narmony is found
                 // (null == currentSoundElement) ? "?" : currentSoundElement.GetTempo().ToString()); // 4
         }
 
