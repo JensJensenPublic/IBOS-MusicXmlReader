@@ -40,7 +40,7 @@ namespace MusicXmlReaderModel
 
         public override string ToString() 
         {
-            return string.Format("{0} {1}",ResourcesForModel.SoundElement_Tempo, tempo);
+            return string.Format("{0}:{1}",ResourcesForModel.SoundElement_Tempo, tempo);
         }
 
         /// <summary>
@@ -52,5 +52,16 @@ namespace MusicXmlReaderModel
         {
             return string.IsNullOrEmpty(tempo) ? 60 : int.Parse(tempo); // Use 60 quarter notes per minute as default
         }
+
+        ///// <summary>
+        /////  Quarter notes per minute.
+        ///// </summary>
+        ///// <returns></returns>
+        //public string ToLocalizedTempo()
+        //{
+        //    int tempo = GetTempo();
+        //    return string.Format("{0}:{1}",ResourcesForModel.SoundElement_Tempo, tempo.ToString());
+        //}
+
     }
 }

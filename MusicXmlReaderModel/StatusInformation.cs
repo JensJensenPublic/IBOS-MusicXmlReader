@@ -25,7 +25,7 @@ namespace MusicXmlReaderModel
 
             set
             {
-                LogChange("MeasureNumber", (null == currentMeasureElement) ? -1 : currentMeasureElement.Number, value.Number);
+                //LogChange("MeasureNumber", (null == currentMeasureElement) ? -1 : currentMeasureElement.Number, value.Number);
                 currentMeasureElement = value; 
             }
         }
@@ -39,8 +39,8 @@ namespace MusicXmlReaderModel
 
             set
             {
-                LogChange("Fifths", (null == currentKeyElement) ? -1 :  currentKeyElement.Fifths, value.Fifths);
-                LogChange("Mode",   (null == currentKeyElement) ? ModeEnum.unknown : currentKeyElement.Mode, value.Mode);
+                //LogChange("Fifths", (null == currentKeyElement) ? -1 :  currentKeyElement.Fifths, value.Fifths);
+                //LogChange("Mode",   (null == currentKeyElement) ? ModeEnum.unknown : currentKeyElement.Mode, value.Mode);
                 currentKeyElement = value;
             }
         }
@@ -68,8 +68,8 @@ namespace MusicXmlReaderModel
 
             set
             {
-                LogChange("Beats",    (null == currentTimeElement) ? -1 : currentTimeElement.Beats, value.Beats);
-                LogChange("BeatType", (null == currentTimeElement) ? -1 : currentTimeElement.BeatType, value.BeatType);
+                //LogChange("Beats",    (null == currentTimeElement) ? -1 : currentTimeElement.Beats, value.Beats);
+                //LogChange("BeatType", (null == currentTimeElement) ? -1 : currentTimeElement.BeatType, value.BeatType);
                 currentTimeElement = value;
             }
         }
@@ -82,7 +82,7 @@ namespace MusicXmlReaderModel
             }
             set
             {
-                LogChange("Harmony", (null == currentHarmonyElement) ? "" : currentHarmonyElement.ToString(), value.ToString());
+                //LogChange("Harmony", (null == currentHarmonyElement) ? "" : currentHarmonyElement.ToString(), value.ToString());
                 currentHarmonyElement = value;
             }
         }
@@ -92,19 +92,19 @@ namespace MusicXmlReaderModel
         private void LogChange(string attrubuteName, int oldValue, int newValue)
         {
             if (newValue == oldValue) return;
-            // Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue, newValue));
+            Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue, newValue));
         }
 
         private void LogChange(string attrubuteName, ModeEnum oldValue, ModeEnum newValue)
         {
             if (newValue == oldValue) return;
-            // Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue.ToString(), newValue.ToString()));
+            Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue.ToString(), newValue.ToString()));
         }
 
         private void LogChange(string attrubuteName, string oldValue, string newValue)
         {
             if (0 == string.Compare(newValue,oldValue)) return;
-            // Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue, newValue));
+            Logger.Log(string.Format("{0}.{1}: changed to {3}", className, attrubuteName, oldValue, newValue));
         }
 
 
@@ -132,12 +132,13 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            return string.Format("{0} {1} {2} {3}",
+            string s = string.Format("{0} {1} {2} {3} {4}",
                 (null == currentMeasureElement) ? "?" : currentMeasureElement.ToString(), // 0
                 (null == currentTimeElement) ? "?" : currentTimeElement.ToString(), //1
                 (null == currentKeyElement) ? "?" : currentKeyElement.ToString(),        // 2
-                (null == currentHarmonyElement) ? "" : currentHarmonyElement.ToLocalizedString()); //3 // Ignore the case where no narmony is found
-                // (null == currentSoundElement) ? "?" : currentSoundElement.GetTempo().ToString()); // 4
+                (null == currentHarmonyElement) ? "" : currentHarmonyElement.ToLocalizedString(), //3 // Ignore the case where no narmony is found
+                (null == currentSoundElement) ? "" : currentSoundElement.ToString()); // 4
+            return s;
         }
 
         public static StatusInformation Create()
