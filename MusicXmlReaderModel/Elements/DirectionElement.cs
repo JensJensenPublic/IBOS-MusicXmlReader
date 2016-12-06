@@ -52,7 +52,7 @@ namespace MusicXmlReaderModel
                         }
                         break;
                     default:
-                        Logger.LogOnce(string.Format("{0}.{1} DirectionType Value={2}", className, functionName, n.Name));
+                        // Logger.LogOnce(string.Format("{0}.{1} DirectionType Value={2}", className, functionName, n.Name));
                         break;
                 }
             }
