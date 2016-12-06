@@ -358,7 +358,7 @@
     <comment>?</comment>
   </data>
   <data name="UserSettings_BrailleNames_Harmonies" xml:space="preserve">
-    <value>Akkorder</value>
+    <value>Becifringer</value>
   </data>
   <data name="UserSettings_BrailleNames_MeasureNumbers" xml:space="preserve">
     <value>Taktnumre</value>
@@ -373,7 +373,7 @@
     <value>Taktslag</value>
   </data>
   <data name="UserSettings_PlayerNames_Harmonies" xml:space="preserve">
-    <value>Akkorder</value>
+    <value>Becifringer</value>
   </data>
   <data name="UserSettings_ReaderNames_Divisions" xml:space="preserve">
     <value>Divisions</value>
@@ -384,10 +384,10 @@
     <comment>Developer feature</comment>
   </data>
   <data name="UserSettings_ReaderNames_Harmonies" xml:space="preserve">
-    <value>Akkorder</value>
+    <value>Becifringer</value>
   </data>
   <data name="UserSettings_ReaderNames_HarmonyCodes" xml:space="preserve">
-    <value>HarmonyCodes</value>
+    <value>Becifringskoder</value>
     <comment>Developer feature</comment>
   </data>
   <data name="UserSettings_ReaderNames_MeasureNumbers" xml:space="preserve">
