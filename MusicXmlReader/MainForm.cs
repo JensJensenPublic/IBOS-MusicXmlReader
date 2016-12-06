@@ -64,7 +64,7 @@ namespace MusicXmlReader
             // Create a handler for the user settinge, in this case modelled as a treeview.
             userSettingsHandler = UserSettingsHandler.Create(this,this.userSettingsTreeView,model);
             userSettingsHandler.Init(); // Builds up the fixed part of the treeview
-            userSettingsTreeView.CollapseAll();
+            userSettingsTreeView.CollapseAll(); 
             // Create a handler for handling all Keyboard shortcuts
             shortCutHandler = ShortcutHandler.Create(this, model);
             commandInterpreter = UserCommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
@@ -342,9 +342,8 @@ namespace MusicXmlReader
         {
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.xml", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files
-//            openFileDialog.Filter = string.Format("{0}|*.xml|{0}|*.mxl", ResourcesForUI.OpenFileDialog_Filter,ResourcesForUI.OpenFileDialog_Filter_mxl); // Only present .xml files and .mxl files
-            //openFileDialog.InitialDirectory = model.InitialDirectory;
-            openFileDialog.InitialDirectory = myMusicXmlDirectory;
+           //            openFileDialog.Filter = string.Format("{0}|*.xml|{0}|*.mxl", ResourcesForUI.OpenFileDialog_Filter,ResourcesForUI.OpenFileDialog_Filter_mxl); // Only present .xml files and .mxl files
+            openFileDialog.InitialDirectory = GetFileOpenInitialDirectory();
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
             openFileDialog.ShowDialog();
@@ -405,6 +404,18 @@ namespace MusicXmlReader
             // Focus on the listbox representing the time representation
             listBoxTimes.Focus();
             //listBoxTimes.SelectedIndex = 0;
+        }
+
+        private string GetFileOpenInitialDirectory()
+        {
+            string functionName = "GetOpenFileInitialDirectory";
+            string result = myMusicXmlDirectory;  // When running a user session we want to use the files in the <user>\Documents\IBOS NNodelæser directory 
+            if (model.InitialDirectory.Contains("Visual Studio"))
+            {
+                result = model.InitialDirectory;   // When running a debug session we want to use the files in the debug\bin directory
+            }
+            Logger.Log(string.Format("{0}.{1} returns {2}",className,functionName,result));
+            return result;
         }
 
 
