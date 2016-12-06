@@ -58,7 +58,18 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public int GetTempo()
         {
-            return string.IsNullOrEmpty(tempo) ? 60 : int.Parse(tempo); // Use 60 quarter notes per minute as default
+            //int iTempo = 60;
+            float fTempo = (float)60;
+            if (!string.IsNullOrEmpty(tempo))         
+            {
+                if (!float.TryParse(tempo, out fTempo))
+                {
+                    //Logger.LogOnce 
+                } 
+            }
+            int iTempo = (int)fTempo;
+            return iTempo; 
+            //return string.IsNullOrEmpty(tempo) ? 60 : int.Parse(tempo); // Use 60 quarter notes per minute as default
         }
 
         ///// <summary>
