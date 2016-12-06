@@ -340,8 +340,9 @@ namespace MusicXmlReaderUI
             {
                 foreach (SoundElement soundElement in eventDescription.SoundElements)
                 {
-                    int newTempo = soundElement.GetTempo();
-                    if (0 != newTempo)
+                    // int newTempo = soundElement.GetTempo();
+                    int newTempo = 0;
+                    if ((null != soundElement.Tempo) && int.TryParse(soundElement.Tempo,out newTempo))  
                     {    
                         ChangeTimingOffsets(eventDescription.StartTime); // Establish new offsets for stopwatch-time and music-time:
                         Logger.Log(string.Format("MusicPlayer: Tempo {0}->{1} firstStopWatchTime={2} musicXmlTimeOffset={3}", this.tempo, newTempo, firstStopWatchTime, musicXmlTimeOffset));

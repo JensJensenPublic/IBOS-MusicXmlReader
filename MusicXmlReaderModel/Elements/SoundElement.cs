@@ -7,6 +7,14 @@ namespace MusicXmlReaderModel
     {
         private string tempo = "";    // Quarter notes per minute  
 
+        public string Tempo
+        {
+            get
+            {
+                return tempo;
+            }
+        }
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>

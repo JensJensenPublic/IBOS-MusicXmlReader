@@ -54,8 +54,13 @@ namespace MusicXmlReaderModel
 
             set
             {
-                LogChange("Tempo", (null == currentSoundElement) ? -1 :currentSoundElement.GetTempo(), value.GetTempo());
-                currentSoundElement = value;
+                int newTempo = 0;
+                if ((null != value.Tempo) && int.TryParse(value.Tempo, out newTempo))
+                {
+                    // Only change currentSoundElement if the new one contains a valid value
+                    LogChange("Tempo", (null == currentSoundElement) ? -1 : currentSoundElement.GetTempo(), value.GetTempo());
+                    currentSoundElement = value;
+                }
             }
         }
 

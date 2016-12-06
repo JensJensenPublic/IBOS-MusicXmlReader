@@ -372,8 +372,8 @@ namespace MusicXmlReaderModel
                     break;
                 case "sound":
                     SoundElement soundElement = SoundElement.Create(node);
-                    allMusicXmlObjecsts.Add(soundElement);
-                    this.tempo = soundElement.GetTempo();
+                    allMusicXmlObjecsts.Add(soundElement);                 
+                    //this.tempo = soundElement.GetTempo();
                     break;
                 case "time":
                     currentTimeElement = TimeElement.Create(node);
