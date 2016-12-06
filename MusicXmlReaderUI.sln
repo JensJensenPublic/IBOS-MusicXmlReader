@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXmlReaderUI", "MusicXmlReaderUI\MusicXmlReaderUI.csproj", "{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -46,6 +46,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Release Notes", "Release No
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Official Documentation\Release Notes\Ekstra vejledning til installation af version 0.5.0.0.odt = Documentation\Official Documentation\Release Notes\Ekstra vejledning til installation af version 0.5.0.0.odt
 		Documentation\Official Documentation\Release Notes\Release Notes for version 0.5.0.0.odt = Documentation\Official Documentation\Release Notes\Release Notes for version 0.5.0.0.odt
+		Documentation\Official Documentation\Release Notes\Release Notes for version 0.6.0.0.odt = Documentation\Official Documentation\Release Notes\Release Notes for version 0.6.0.0.odt
 	EndProjectSection
 EndProject
 Global
