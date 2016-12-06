@@ -282,4 +282,7 @@
   <data name="DirectoryNames_Samples" xml:space="preserve">
     <value>Eksempler</value>
   </data>
+  <data name="StatusLine_Accessible_Name" xml:space="preserve">
+    <value>Statuslinie</value>
+  </data>
 </root>

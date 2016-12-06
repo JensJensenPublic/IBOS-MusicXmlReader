@@ -241,6 +241,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status line.
+        /// </summary>
+        internal static string StatusLine_Accessible_Name {
+            get {
+                return ResourceManager.GetString("StatusLine_Accessible_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to read.
         /// </summary>
         internal static string TextBox_Messages_FailedToRead_File {

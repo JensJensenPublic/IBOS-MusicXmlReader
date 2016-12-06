@@ -51,7 +51,9 @@ namespace MusicXmlReader
             LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
             listBoxTimes.AccessibleName = ResourcesForUI.ListView_Accessible_Name; // Overwrite all items in listBoxTimes with localized texts
             userSettingsTreeView.AccessibleName = ResourcesForUI.TreeView_Accessible_Name; // Overwrite all items in userSettingsTreeview with localized texts
-        
+            textBoxStatusInformation.AccessibleName = ResourcesForUI.StatusLine_Accessible_Name; // Overwrite with localized text
+
+
             Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 
             model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), ApplicationName);
             this.Text = ApplicationName;
