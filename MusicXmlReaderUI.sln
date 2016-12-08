@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXmlReaderUI", "MusicXmlReaderUI\MusicXmlReaderUI.csproj", "{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{529D2C78-0FBC-4BF1-B5AE-F348695546C2} = {529D2C78-0FBC-4BF1-B5AE-F348695546C2}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSynthesis", "MusicSynthesis\MusicSynthesis.csproj", "{529D2C78-0FBC-4BF1-B5AE-F348695546C2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{1B62366B-E595-454C-846D-E36240015490}"
@@ -49,18 +44,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}.Debug|x64.Build.0 = Debug|Any CPU
-		{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}.Debug|x86.Build.0 = Debug|Any CPU
-		{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}.Release|x64.ActiveCfg = Release|Any CPU
-		{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}.Release|x64.Build.0 = Release|Any CPU
-		{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}.Release|x86.ActiveCfg = Release|Any CPU
-		{FF416129-9DB8-4B09-BDA5-0A2867FEBF6C}.Release|x86.Build.0 = Release|Any CPU
 		{529D2C78-0FBC-4BF1-B5AE-F348695546C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{529D2C78-0FBC-4BF1-B5AE-F348695546C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{529D2C78-0FBC-4BF1-B5AE-F348695546C2}.Debug|x64.ActiveCfg = Debug|Any CPU
