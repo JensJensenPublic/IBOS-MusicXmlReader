@@ -18,8 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\Sample MusicXmlReader.JCF = Documentation\Sample MusicXmlReader.JCF
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TolkExperiments", "TolkExperiments\TolkExperiments.csproj", "{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenReaderAPI", "ScreenReaderAPI\ScreenReaderAPI.csproj", "{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXmlReaderModel", "MusicXmlReaderModel\MusicXmlReaderModel.csproj", "{695BF2CE-9955-4D26-B552-2427EE160810}"
@@ -75,18 +73,6 @@ Global
 		{529D2C78-0FBC-4BF1-B5AE-F348695546C2}.Release|x64.Build.0 = Release|Any CPU
 		{529D2C78-0FBC-4BF1-B5AE-F348695546C2}.Release|x86.ActiveCfg = Release|Any CPU
 		{529D2C78-0FBC-4BF1-B5AE-F348695546C2}.Release|x86.Build.0 = Release|Any CPU
-		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Debug|x64.ActiveCfg = Debug|x64
-		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Debug|x64.Build.0 = Debug|x64
-		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Debug|x86.Build.0 = Debug|Any CPU
-		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Release|x64.ActiveCfg = Release|Any CPU
-		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Release|x64.Build.0 = Release|Any CPU
-		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Release|x86.ActiveCfg = Release|Any CPU
-		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Release|x86.Build.0 = Release|Any CPU
 		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}.Debug|x64.ActiveCfg = Debug|Any CPU
