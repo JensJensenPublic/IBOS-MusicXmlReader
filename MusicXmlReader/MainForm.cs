@@ -619,9 +619,9 @@ namespace MusicXmlReader
             if (shortCutHandler.IsTogglePlayingShortcut(e))
             {
                 model.ToggleStartStopPlaying(listBoxTimes.SelectedIndex);
-                return;
-                //model.StopPlaying();
-                //musicPlayerState = MusicPlayerStateEnum.stopped;
+                e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
+                                            // This avoids flickering caused by the special interpretation of SPACE to the underlying Listbox 
+                return;            
             }
 
             if (shortCutHandler.IsStartPlayingShortcut(e))
