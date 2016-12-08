@@ -124,15 +124,6 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to connect to screenreader.
-        /// </summary>
-        internal static string Message_FailedToConnectToScreenReader {
-            get {
-                return ResourceManager.GetString("Message_FailedToConnectToScreenReader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Failed to read MusicXml file.
         /// </summary>
         internal static string Message_FailedToReadMusicXmlFile {
@@ -156,6 +147,15 @@ namespace MusicXmlReader {
         internal static string Message_FileNotFound {
             get {
                 return ResourceManager.GetString("Message_FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JAWS screenreader is not running.
+        /// </summary>
+        internal static string Message_JAWSScreenReaderIsNotRunning {
+            get {
+                return ResourceManager.GetString("Message_JAWSScreenReaderIsNotRunning", resourceCulture);
             }
         }
         

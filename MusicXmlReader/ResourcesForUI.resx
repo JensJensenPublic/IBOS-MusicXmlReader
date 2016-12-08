@@ -132,8 +132,8 @@
   <data name="Message_DirectoryNotFound" xml:space="preserve">
     <value>Directory not found</value>
   </data>
-  <data name="Message_FailedToConnectToScreenReader" xml:space="preserve">
-    <value>Failed to connect to screenreader</value>
+  <data name="Message_JAWSScreenReaderIsNotRunning" xml:space="preserve">
+    <value>JAWS screenreader is not running</value>
   </data>
   <data name="Message_FailedToReadMusicXmlFile" xml:space="preserve">
     <value>Failed to read MusicXml file</value>

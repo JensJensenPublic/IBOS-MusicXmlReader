@@ -132,8 +132,8 @@
   <data name="Message_DirectoryNotFound" xml:space="preserve">
     <value>Mappen eksisterer ikke</value>
   </data>
-  <data name="Message_FailedToConnectToScreenReader" xml:space="preserve">
-    <value>Kunne ikke forbinde til skærmlæser</value>
+  <data name="Message_JAWSScreenReaderIsNotRunning" xml:space="preserve">
+    <value>JAWS skærmlæser er ikke startet.</value>
   </data>
   <data name="Message_FailedToReadMusicXmlFile" xml:space="preserve">
     <value>Kunne ikke indlæse MusicXml fil</value>

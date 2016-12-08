@@ -368,7 +368,7 @@ namespace MusicXmlReaderModel
                 default:
                     if (null != caption)
                     {                    
-                        ShowWarning(ModelMessageEnum.FailedToConnectToScreenReader, "JAWS", "");     // The application has UI
+                        ShowWarning(ModelMessageEnum.FailedToConnectToScreenReader, "", "");     // The application has UI
                     }
                     else
                     {

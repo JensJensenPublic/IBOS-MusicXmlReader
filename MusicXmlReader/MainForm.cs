@@ -275,7 +275,7 @@ namespace MusicXmlReader
             switch (messageEnum)
             {
                 case ModelMessageEnum.DirectoryNotFound: return ResourcesForUI.Message_DirectoryNotFound;
-                case ModelMessageEnum.FailedToConnectToScreenReader: return ResourcesForUI.Message_FailedToConnectToScreenReader;
+                case ModelMessageEnum.FailedToConnectToScreenReader: return ResourcesForUI.Message_JAWSScreenReaderIsNotRunning;
                 case ModelMessageEnum.ConnectedToNonDefaultScreenReader: return ResourcesForUI.Message_ConnectedToNonDefaultScreenReader;
                 case ModelMessageEnum.FailedToStartProgram: return ResourcesForUI.Message_FailedToStartProgram;
                 case ModelMessageEnum.FileNotFound: return ResourcesForUI.Message_FileNotFound;
