@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXmlReaderUI", "MusicXm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSynthesis", "MusicSynthesis\MusicSynthesis.csproj", "{529D2C78-0FBC-4BF1-B5AE-F348695546C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSynthesisExperiments", "MusicSynthesisExperiments\MusicSynthesisExperiments.csproj", "{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{1B62366B-E595-454C-846D-E36240015490}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Forslag til tekst til hjemmeside.odt = Documentation\Forslag til tekst til hjemmeside.odt
@@ -77,18 +75,6 @@ Global
 		{529D2C78-0FBC-4BF1-B5AE-F348695546C2}.Release|x64.Build.0 = Release|Any CPU
 		{529D2C78-0FBC-4BF1-B5AE-F348695546C2}.Release|x86.ActiveCfg = Release|Any CPU
 		{529D2C78-0FBC-4BF1-B5AE-F348695546C2}.Release|x86.Build.0 = Release|Any CPU
-		{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}.Debug|x64.Build.0 = Debug|Any CPU
-		{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}.Debug|x86.Build.0 = Debug|Any CPU
-		{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}.Release|x64.ActiveCfg = Release|Any CPU
-		{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}.Release|x64.Build.0 = Release|Any CPU
-		{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}.Release|x86.ActiveCfg = Release|Any CPU
-		{BE03ED7E-6007-43FC-8D4D-3D98FEF7956E}.Release|x86.Build.0 = Release|Any CPU
 		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BD946A6-0018-4FB6-846B-0B5F9E8E51EF}.Debug|x64.ActiveCfg = Debug|x64
