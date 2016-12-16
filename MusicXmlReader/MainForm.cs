@@ -639,6 +639,12 @@ namespace MusicXmlReader
                 return;
             }
 
+            else if (shortCutHandler.IsStopAllNotesPlayingShortcut(e))
+            {
+                model.musicPlayer.StopAllNotesPlaying();
+                return;
+            }
+
             // Let the command interpreter handle it 
             commandInterpreter.Add(e);
 

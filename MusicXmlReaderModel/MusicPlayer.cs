@@ -493,17 +493,29 @@ namespace MusicXmlReaderUI
                     Logger.Log(string.Format("PlayerThread threw an exception because the program was stopped while playing. Message= {0}", e.Message));
                 }
                 // Stop all notes currently playing! If they don't decay they will keep playing forever !
-                for (int i = 0; (i < notesCurrentlyPlaying.Count); i++)
-                {
-                    notesCurrentlyPlaying[i].StopPlaying(this.midiOut);
-                }
-                //foreach (MidiNote midiNote in notesCurrentlyPlaying)
-                //{
-                //    midiNote.StopPlaying(this.midiOut);
-                //}
+                StopAllNotesPlaying();
             } while (repeating && playing) ;
             Logger.Log(string.Format("PlayerThread(Id={0}) exiting", threadId));
             musicPlayerThreadState = MusicPlayerThreadStateEnum.stopped;
+        }
+
+
+        /// <summary>
+        /// Stop all notes currently playing.
+        /// Can be called:
+        /// 1) From the UI for stopping a non-dacaying note (for instance an organ-note)
+        /// 2) After any musicplayer exception
+        /// 3) Immediately before application exit
+        /// </summary>
+        public void StopAllNotesPlaying()
+        {
+            string functionName = "StopAllNotesPlaying";
+            int n = notesCurrentlyPlaying.Count;
+            for (int i = 0; (i < n); i++)
+            {
+                notesCurrentlyPlaying[i].StopPlaying(this.midiOut);
+            }
+            Logger.Log(string.Format("{0}.{1}: Stopped {2} notes from playing", className, functionName, n));
         }
 
 

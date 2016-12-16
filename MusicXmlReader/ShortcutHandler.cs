@@ -167,6 +167,10 @@ namespace MusicXmlReader
         static public readonly Keys listBoxFocus = (Keys)(Keys.Control | Keys.L);
 
 
+
+        static public readonly Keys StopAllNotesPlaying = Keys.Escape;
+
+
         private ShortcutHandler()
         { }
 
@@ -210,6 +214,11 @@ namespace MusicXmlReader
                 }
             }
             return false;
+        }
+
+        public bool IsStopAllNotesPlayingShortcut(KeyEventArgs e)
+        {
+            return (e.KeyData == StopAllNotesPlaying);
         }
     }
 }
