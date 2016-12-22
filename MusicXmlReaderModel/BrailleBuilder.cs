@@ -387,7 +387,7 @@ namespace MusicXmlReaderModel
                 case NoteTypeEnum.nt32nd: return dot1 + dot3 + dot6;
 
                 case NoteTypeEnum.quarter:
-                case NoteTypeEnum.nt64th: return dot2 + dot3 + dot6;
+                case NoteTypeEnum.nt64th: return dot1 + dot2 + dot3 + dot6;
 
                 case NoteTypeEnum.eight:
                 case NoteTypeEnum.nt128th: return dot1 + dot3 + dot4 + dot6;
