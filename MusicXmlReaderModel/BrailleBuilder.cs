@@ -750,6 +750,7 @@ namespace MusicXmlReaderModel
             else
             {
                 Braille.AddRange(new List<byte>(bytes));
+                braille.Add(noDots); // Requested by Lars Petersen
                 text.Append(s);
                 //Logger.LogOnce(string.Format("{0}: Added time specification: {1}/{2}", functionName, timeElement.Beats, timeElement.BeatType));
             }
@@ -773,6 +774,7 @@ namespace MusicXmlReaderModel
                 default: Logger.LogOnce(string.Format("{0}.{1} Unknown clef={2}", className,functionName, clefElement.Clef.ToString())); break;
             }
             braille.AddRange(bytes);
+            braille.Add(noDots); // Requested by Lars Petersen
             text.Append(s);          
         }
 
@@ -801,7 +803,8 @@ namespace MusicXmlReaderModel
                 default: Logger.LogOnce(string.Format("{0}.{1}: Illegal number of fifths={2}", className,functionName, keyElement.Fifths)); break;
             }
             braille.AddRange(bytes);
-            text.Append(s);
+            braille.Add(noDots); // Requested by Lars Petersen
+            text.Append(s);       
         }
 
 
