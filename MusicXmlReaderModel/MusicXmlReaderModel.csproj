@@ -110,6 +110,7 @@
     <Compile Include="MusicPlayer.cs" />
     <Compile Include="MusicXmlObject.cs" />
     <Compile Include="PartDescriptionList.cs" />
+    <Compile Include="PitchMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourcesForModel.Designer.cs">
       <AutoGen>True</AutoGen>
