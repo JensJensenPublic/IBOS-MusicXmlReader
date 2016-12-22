@@ -238,7 +238,7 @@ namespace MusicXmlReaderModel
             }
         }
 
-        internal PitchElement PitchValue
+        public PitchElement PitchValue
         {
             get
             {

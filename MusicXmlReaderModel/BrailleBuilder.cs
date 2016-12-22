@@ -86,9 +86,9 @@ namespace MusicXmlReaderModel
         public static readonly byte[] MeasureInAccord = new byte[] { 35, 28 };
         public static readonly byte[] PartMeasureInAccord = new byte[] { 16, 2 };
         public static readonly byte[] MeasureDivisionSign = new byte[] { 40, 5 };
-        public static readonly byte Flat = 35; // Verify !!
-        public static readonly byte Sharp = 41; // Verify !!
-        public static readonly byte Natural = 33;
+        public static readonly byte Flat  = dot1 + dot2 + dot6;  // 35 // Verify !!
+        public static readonly byte Sharp = dot1 + dot4 + dot6; //41; // Verify !!
+        public static readonly byte Natural = dot1 + dot6; // Danish: "Opløsningstegn"
         public static readonly byte TupletOf3 = dot2 + dot3;
         public static readonly byte[] ArpeggioUp = new byte[] { dot3 + dot4 + dot5, dot1 + dot3 };
         public static readonly byte[] ArpeggioDown = new byte[] { (dot3 + dot4 + dot5), (dot1 + dot3) , (dot1 + dot3) };
@@ -632,12 +632,29 @@ namespace MusicXmlReaderModel
         /// Add a NoteElement
         /// </summary>
         /// <param name="noteElement">The NoteElement to add</param>
-        public void AddNote(NoteElement noteElement)
+        public void AddNote(NoteElement noteElement,int fifths)
         {
-            // Add alteration
-            if (0 != noteElement.Alter)
+            string functionName = "AddNote";
+
+            // Get midified values for Alter and antural, taking in account the current key.
+            int alter = noteElement.Alter;
+            bool natural = false;
+            if (!PitchMap.Map(noteElement.PitchValue, fifths, ref alter, ref natural))
             {
-                Append(((noteElement.Alter > 0) ? Sharp : Flat), (noteElement.Alter > 0) ? "#" : "b");
+                Logger.LogOnce(string.Format("{0}.{1}", className, functionName));
+            }
+
+            if (natural)
+            {
+                // Add a "natural-sign" (Danish: "Opløsningstegn")
+                Append(Natural, "¤");
+            }
+
+
+            // Add alteration
+            if (0 != alter)
+            {
+                Append(((noteElement.Alter > 0) ? Sharp : Flat), (alter > 0) ? "#" : "b");
             }
       
             // Add Octavemark

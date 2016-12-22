@@ -332,7 +332,7 @@ namespace MusicXmlReaderModel
                             // This is a note
                             bb1.Append("<");
                             if (addNotations) bb1.AddBrailleNotationsBeforeNoteOrRest(noteElement.Notations); // Some notations are added Before the note/rest itself                       
-                            bb1.AddNote(noteElement);
+                            bb1.AddNote(noteElement,statusInformation.CurrentKeyElement.Fifths);
                             if (addNotations) bb1.AddBrailleNotationsAfterNoteOrRest(noteElement.Notations);  // Some notations are added After the note/rest itself
                             bb1.Append(">");
 

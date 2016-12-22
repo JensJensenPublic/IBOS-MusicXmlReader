@@ -113,7 +113,7 @@ namespace MusicXmlReaderModel
             
             // Convert to indices for a simple table lookup          
             int rowIndex = (stepIndex * 3) + 1 + pitchElement.Alter;
-            int colIndex = fifths;
+            int colIndex = fifths + 6;
 
             // Get a code representing what to do 
             int change = values[rowIndex, colIndex];
