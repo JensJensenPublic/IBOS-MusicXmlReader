@@ -824,7 +824,7 @@ namespace MusicXmlReaderModel
             Append("R");
             if (NoteTypeEnum.measure == noteDuration)
             {
-                Append(FullMeasureRest, "FM");
+                Append(FullMeasureRest, "/FM");
                 //Logger.LogOnce(string.Format("{0}.{1}: Added FullMeasureRest", className, functionName));
             }
             else
