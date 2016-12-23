@@ -377,6 +377,10 @@ namespace MusicXmlReader
             // Clear the contents of the listbox showing the timed events (important when loading a new file)
             listBoxTimes.Items.Clear();
             listBoxTimes.Refresh();
+            // Clear the contents of all other user controls
+            textBoxBraille.Clear();
+            textBoxText.Clear();
+            textBoxStatusInformation.Clear();
 
 
             autoReload = false; // While loading the listbox all changes are  made by user and must be ignored
