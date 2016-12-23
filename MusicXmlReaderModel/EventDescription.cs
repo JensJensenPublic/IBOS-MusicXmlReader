@@ -448,7 +448,7 @@ namespace MusicXmlReaderModel
         {
             string functionName = "ToBraille";
             // const string functionName = "EventDescription.ToBraille";
-            BrailleBuilder bbMetaInfo = BrailleBuilder.Create(); // For information not contained in notes
+            BrailleBuilder bbBeforeNotes = BrailleBuilder.Create(); // For information not contained in notes
 
 
             //string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
@@ -458,13 +458,13 @@ namespace MusicXmlReaderModel
 
             if (null != repeatElementBackward)
             {
-                bbMetaInfo.AddRepeatBackward(repeatElementBackward);
+                bbBeforeNotes.AddRepeatBackward(repeatElementBackward);
             }
 
 
             if (null != repeatElementForward)
             {
-                bbMetaInfo.AddRepeatForward(repeatElementForward);
+                bbBeforeNotes.AddRepeatForward(repeatElementForward);
             }
 
 
@@ -522,9 +522,9 @@ namespace MusicXmlReaderModel
                 if (1 == clefElements.Count)
                 {
                     ClefElement c = clefElements[0];
-                    bbMetaInfo.Append("(");
-                    bbMetaInfo.AddClef(c, c.ToShortString());  // Get the unlocalized version
-                    bbMetaInfo.Append(")");
+                    bbBeforeNotes.Append("(");
+                    bbBeforeNotes.AddClef(c, c.ToShortString());  // Get the unlocalized version
+                    bbBeforeNotes.Append(")");
                 }
                 else
                 {
@@ -549,9 +549,9 @@ namespace MusicXmlReaderModel
                 {
                     Logger.LogOnce(string.Format("{0}.{1} Different keyElements for same event", className, functionName));
                 }
-                bbMetaInfo.Append("(");
-                bbMetaInfo.AddKey(k0, k0.ToShortString());
-                bbMetaInfo.Append(")");                
+                bbBeforeNotes.Append("(");
+                bbBeforeNotes.AddKey(k0, k0.ToShortString());
+                bbBeforeNotes.Append(")");                
             }
             
   
@@ -572,10 +572,11 @@ namespace MusicXmlReaderModel
                 {
                     Logger.LogOnce(string.Format("{0}.{1} Different timeElements for same event", className, functionName));
                 }
-                bbMetaInfo.Append("(");
-                bbMetaInfo.AddTime(t0, t0.ToShortString());
-                bbMetaInfo.Append(")");
+                bbBeforeNotes.Append("(");
+                bbBeforeNotes.AddTime(t0, t0.ToShortString());
+                bbBeforeNotes.Append(")");
             }
+
             
 
             BrailleBuilder bbNotes = BrailleBuilder.Create();
@@ -586,13 +587,38 @@ namespace MusicXmlReaderModel
                 bbNotes.Append(notes);  
             }
 
+            // Extract information to be shown after the notes
+            BrailleBuilder bbAfterNotes = BrailleBuilder.Create();
+            // Look for a termination (Danish "Helslutning") and insert the appropriate sequence
+            bool foundTermination = false;
+            if (null != barlineElements)
+            {  
+                foreach (BarlineElement barlineElement in barlineElements)
+                {
+                    if ((barlineElement.Location == BarlineLocationEnum.right)
+                    && (barlineElement.EndingElement == null)
+                    && (barlineElement.RepeatElement == null)
+                    && (barlineElement.BarStyleElement != null)
+                    && (barlineElement.BarStyleElement.BarStyle == BarStyleEnum.lightHeavy))
+                    {
+                        foundTermination = true;
+                    }
+                }
+                if (foundTermination)
+                {
+                    bbAfterNotes.Append(BrailleBuilder.fullEnd, "FullEnd");
+                    Logger.Log(string.Format("{0}.{1} Found a termination", className, functionName));
+                }
+            }
+
             // Finnally compose the result by concatenating all the substrings in the sequence wanted
             //return measure + repeatForward + divisions + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString + keyString + clefString + timeString + repeatBackward;
 
             // Ad the various components:
             BrailleBuilder total = BrailleBuilder.Create();
-            total.Append(bbMetaInfo);
+            total.Append(bbBeforeNotes);
             total.Append(bbNotes);
+            total.Append(bbAfterNotes);
             return total;
 
             //return bbNotes.Braille; // Later define the "+" operator for BrailleBuilder 
