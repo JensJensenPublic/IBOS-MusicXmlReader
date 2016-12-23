@@ -348,8 +348,14 @@ namespace MusicXmlReaderModel
                     continueRecursion = false;
                     break;
                 case "direction":
-                    allMusicXmlObjecsts.Add(DirectionElement.Create(node));
-                    // continueRecursion = false; DirectionElement may contain a soundelement, so we must continue recursion
+                    DirectionElement directionElement = DirectionElement.Create(node);
+                    allMusicXmlObjecsts.Add(directionElement);
+                    if (null != directionElement.SoundElement)
+                    {
+                        // DirectionElement may contain a soundelement
+                        allMusicXmlObjecsts.Add(directionElement.SoundElement);
+                    }                    
+                    continueRecursion = false; 
                     break;
                 case "transpose":
                     TransposeElement transposeElement = TransposeElement.Create(node);

@@ -7,10 +7,15 @@ using System.Xml;
 
 namespace MusicXmlReaderModel
 {
+
+    /// <summary>
+    /// https://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-direction.htm
+    /// </summary>
     class DirectionElement : EventElement
     {
         string className = "DirectionElement";
         private DynamicsElement dynamicsElement;
+        private SoundElement soundElement;
         // Prevent construction
         private DirectionElement()
         {
@@ -51,8 +56,25 @@ namespace MusicXmlReaderModel
                             }
                         }
                         break;
+                    case "sound":
+                        // The sound element contains general playback parameters.
+                        // They can stand alone within a part / measure, or be a component element within a direction.
+                        soundElement = SoundElement.Create(n); // We expose it when the DirectionElement.Create() returns.
+                        //Logger.LogOnce(string.Format("{0}.{1} Child: {2}", className, functionName, n.Name));
+                        break;
+
+                    case "offset":
+                    case "footnote":
+                        break; // Pure graphic information. Explicitly ignore!
+
+                    // We know these childs exist but we do explicitly not support them yet.
+                    case "staff":
+                    case "voice":             
+                        Logger.LogOnce(string.Format("{0}.{1} Child: {2}", className, functionName, n.Name));
+                        break;
+
                     default:
-                        // Logger.LogOnce(string.Format("{0}.{1} DirectionType Value={2}", className, functionName, n.Name));
+                        Logger.LogOnce(string.Format("{0}.{1} Unsupported child: {2}", className, functionName, n.Name));
                         break;
                 }
             }
@@ -66,6 +88,14 @@ namespace MusicXmlReaderModel
                 return dynamicsElement;
             }
 
+        }
+
+        internal SoundElement SoundElement
+        {
+            get
+            {
+                return soundElement;
+            }
         }
 
         public static DirectionElement Create(XmlNode xmlNode)
