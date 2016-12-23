@@ -16,6 +16,7 @@ namespace MusicXmlReaderModel
         BarlineLocationEnum location = BarlineLocationEnum.right; // Explicitly mentioned in .htm above !
         RepeatElement repeatElement;
         EndingElement endingElement;
+        BarStyleElement barStyleElement;
 
         public BarlineLocationEnum Location
         {
@@ -38,6 +39,14 @@ namespace MusicXmlReaderModel
             get
             {
                 return endingElement;
+            }
+        }
+
+        public BarStyleElement BarStyleElement
+        {
+            get
+            {
+                return barStyleElement;
             }
         }
 
@@ -71,6 +80,8 @@ namespace MusicXmlReaderModel
                         repeatElement = RepeatElement.Create(n);
                         Logger.LogOnce(string.Format("{0}: Child element='{1}'", functionName, n.Name)); break;
                     case "bar-style":
+                        barStyleElement = BarStyleElement.Create(n);
+                        Logger.LogOnce(string.Format("{0}: Child element='{1}'", functionName, n.Name)); break;
                     case "wavy-line":
                     case "segno":
                     case "coda":

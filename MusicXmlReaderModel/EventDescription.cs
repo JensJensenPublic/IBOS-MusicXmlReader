@@ -282,7 +282,9 @@ namespace MusicXmlReaderModel
                 {
                     string ending = (null == barlineElement.EndingElement) ? "null" : barlineElement.EndingElement.EndingElementType.ToString();
                     string repeat = (null == barlineElement.RepeatElement) ? "null" : barlineElement.RepeatElement.RepeatDirection.ToString();
-                    Logger.LogOnce(string.Format("{0}: Added BarlineElement({1},Ending={2},Repeat={3})", functionName, barlineElement.Location.ToString(), ending, repeat));
+                    string style  = (null == barlineElement.BarStyleElement) ? "null" : barlineElement.BarStyleElement.ToString();
+                    Logger.LogOnce(string.Format("{0}: Added BarlineElement({1},Ending={2},Repeat={3},Style={4})",
+                        functionName, barlineElement.Location.ToString(), ending, repeat,style));
                 }
             }
             else if (eventElement is DirectionElement)
