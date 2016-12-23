@@ -66,7 +66,7 @@ namespace MusicXmlReaderModel
         private BarlineElement(XmlNode node)
         {
             const string functionName = "BarlineElement";
-            Logger.LogOnce(string.Format("{0} constructor",functionName));
+            //Logger.LogOnce(string.Format("{0} constructor",functionName));
 
             // Dig out elements
             foreach (XmlNode n in node.ChildNodes)
@@ -75,13 +75,16 @@ namespace MusicXmlReaderModel
                 {
                     case "ending":
                         endingElement = EndingElement.Create(n);
-                        Logger.LogOnce(string.Format("{0}: Child element='{1}'", functionName, n.Name)); break;
+                        //Logger.LogOnce(string.Format("{0}: Child element='{1}'", functionName, n.Name));
+                        break;
                     case "repeat":
                         repeatElement = RepeatElement.Create(n);
-                        Logger.LogOnce(string.Format("{0}: Child element='{1}'", functionName, n.Name)); break;
+                        //Logger.LogOnce(string.Format("{0}: Child element='{1}'", functionName, n.Name));
+                        break;
                     case "bar-style":
                         barStyleElement = BarStyleElement.Create(n);
-                        Logger.LogOnce(string.Format("{0}: Child element='{1}'", functionName, n.Name)); break;
+                        //Logger.LogOnce(string.Format("{0}: Child element='{1}'", functionName, n.Name));
+                        break;
                     case "wavy-line":
                     case "segno":
                     case "coda":
