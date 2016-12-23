@@ -13,7 +13,7 @@ namespace MusicXmlReaderModel
     /// but could also be used in a similar way for generating a graphical representation!
     /// Implementation restrictions:
     /// Alter must be -1,0 or +1
-    /// Fifths must be in the interval [-6 .. +6]
+    /// Fifths must be in the interval [-7 .. +7]
     /// </summary>
     static class PitchMap
     {
@@ -26,37 +26,37 @@ namespace MusicXmlReaderModel
 
         static readonly int[,] values =
        {
-           //-6,-5,-4,-3,-2,-1, 0,+1,+2,+3,+4,+5,+6 // Fifths value
-           //Gb,Db,Ab,Eb,Bb, F, C, G, D, A, E, H,F# // Major key for this fifths value
-           //Eb,Bb, F, C, G, D, A, E, H,F#,C#,G#,D# // Minor key for this fifths value
+           //-7,-6,-5,-4,-3,-2,-1, 0,+1,+2,+3,+4,+5,+6,+7 // Fifths value
+           //Cb,Gb,Db,Ab,Eb,Bb, F, C, G, D, A, E, H,F#,C# // Major key for this fifths value
+           //Ab,Eb,Bb, F, C, G, D, A, E, H,F#,C#,G#,D#,A# // Minor key for this fifths value
 
-            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // C,-1
-            { 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2}, // C
-            { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,+1, 1}, // C,+1
+            { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // C,-1
+            { 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2}, // C
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,+1, 1, 1}, // C,+1
 
-            { 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // D,-1
-            { 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2}, // D
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, // D,+1
+            { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // D,-1
+            { 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2}, // D
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1}, // D,+1
 
-            { 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0}, // E,-1
-            { 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2}, // E
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, // E,+1
+            { 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // E,-1
+            { 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2}, // E
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1}, // E,+1
 
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // F,-1
-            { 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2}, // F
-            { 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1}, // F,+1
+            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // F,-1
+            { 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2}, // F
+            { 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1}, // F,+1
 
-            { 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // G,-1
-            { 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2}, // G
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1}, // G,+1
+            { 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // G,-1
+            { 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2}, // G
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1}, // G,+1
 
-            { 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // A,-1
-            { 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2}, // A
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1}, // A,+1
+            { 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // A,-1
+            { 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2}, // A
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1}, // A,+1
 
-            { 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0}, // B,-1
-            { 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0}, // B
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}  // B,+1
+            { 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0}, // B,-1
+            { 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2}, // B
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}  // B,+1
 
         };
 
@@ -105,7 +105,7 @@ namespace MusicXmlReaderModel
                 Logger.Log(String.Format("{0}.{1} Unsupported value of PitchElement.Step = {2}", className, functionName, pitchElement.Step.ToString()));
                 return false;
             }
-            if ((fifths < -6) || (fifths > 6))
+            if ((fifths < -7) || (fifths > 7))
             {
                 Logger.Log(String.Format("{0}.{1} Unsupported value of fifths = {2}", className, functionName, fifths));
                 return false;
@@ -113,7 +113,7 @@ namespace MusicXmlReaderModel
             
             // Convert to indices for a simple table lookup          
             int rowIndex = (stepIndex * 3) + 1 + pitchElement.Alter;
-            int colIndex = fifths + 6;
+            int colIndex = fifths + 7;
 
             // Get a code representing what to do 
             int change = values[rowIndex, colIndex];
