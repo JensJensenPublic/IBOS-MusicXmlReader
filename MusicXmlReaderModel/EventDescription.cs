@@ -579,16 +579,11 @@ namespace MusicXmlReaderModel
             
 
             BrailleBuilder bbNotes = BrailleBuilder.Create();
-            BrailleBuilder bbLyrics = BrailleBuilder.Create();
             // Iterate over the parts and build a complete representation of all notes and of all texts
             foreach (List<NoteElement> noteElementList in noteLists) // Iterate over the fixed number of parts.
             {
                 BrailleBuilder notes  = NotesForOnePartAsBraille(noteElementList); // Represents all notes for all parts
-                List<byte> lyrics = new List<byte>();//  LyricsForOnePartAsBraille(noteElementList); // Represents all texts for all parts
-                // Assume that: The step is described with 3 characters. The octave with 1 character and max 2 notes per part !
-                //sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
                 bbNotes.Append(notes);  
-                bbLyrics.Append(lyrics);
             }
 
             // Finnally compose the result by concatenating all the substrings in the sequence wanted
