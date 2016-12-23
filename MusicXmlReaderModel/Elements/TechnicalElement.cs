@@ -4,6 +4,9 @@ using System.Collections.Generic;
 namespace MusicXmlReaderModel
 {
 
+    /// <summary>
+    /// https://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-technical.htm
+    /// </summary>
     public class TechnicalElement : Element
     {
         /// <summary>
