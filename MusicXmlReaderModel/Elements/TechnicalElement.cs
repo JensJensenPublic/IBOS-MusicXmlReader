@@ -1,5 +1,6 @@
 ﻿using System.Xml;
 using System.Collections.Generic;
+using System.Text;
 
 namespace MusicXmlReaderModel
 {
@@ -9,12 +10,16 @@ namespace MusicXmlReaderModel
     /// </summary>
     public class TechnicalElement : Element
     {
+        private string className = "TechnicalElement";
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
         private TechnicalElement()
         { }
-                
+
+        private List<string> technicals;
+
         /// <summary>
         /// Private constructor, used by the Crate() method
         /// </summary>
@@ -22,11 +27,11 @@ namespace MusicXmlReaderModel
         private TechnicalElement(XmlNode node)
         {
             const string functionName = "TechnicalElement";
-            List<string> technicals = new List<string>();
+            technicals = new List<string>();
             foreach (XmlNode n in node.ChildNodes)
             {
                 technicals.Add(n.Name); // For now we just collect the technicals !
-                Logger.LogOnce(string.Format("{0}: {1}", functionName, n.Name)); break;               
+                // Logger.LogOnce(string.Format("{0}: {1}", functionName, n.Name)); break;               
             }
         }
 
@@ -37,7 +42,19 @@ namespace MusicXmlReaderModel
 
         public override string ToString() // To be localized when implemented
         {
-            return string.Format("");
+            string functionName = "ToString";
+            StringBuilder allTecnnicals = new StringBuilder();
+            foreach (string s in technicals)
+            {
+                allTecnnicals.Append(s + " ");
+            }
+            string result = allTecnnicals.ToString();
+            if (result.Length > 0)
+            {
+                Logger.LogOnce(string.Format("{0}.{1}: Localization is missing for '{2}'",className,functionName,result));
+            }
+            return result; // TODO: Implement localization !
+            // return string.Format("{0}", technicals.ToString()); // TODO: Implement localization !
         }
     }
 }

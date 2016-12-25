@@ -187,7 +187,7 @@ namespace MusicXmlReaderModel
 
         public override string ToString() // Localization is implemented in the various elements mentioned below, not here
         {
-            string s = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}{8}",
+            string s = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}{8}{9}",
             (null == slurElement) ? "" : slurElement.ToString() + " ", // 0
             (null == tiedElement) ? "" : tiedElement.ToString() + " ", // 1
             (null == glissandoElement) ? "" : glissandoElement.ToString() + " ", // 2
@@ -196,7 +196,8 @@ namespace MusicXmlReaderModel
             (null == arpeggiateElement) ? "" : arpeggiateElement.ToString() + " ",// 5
             (null == fermataElement) ? "" : fermataElement.ToString() + " ", //6
             (null == ornamentsElement) ? "" : ornamentsElement.ToString() + " ", //7
-            (null == accidentalMarkElement) ? "" : accidentalMarkElement.ToString() + " "); //8
+            (null == accidentalMarkElement) ? "" : accidentalMarkElement.ToString() + " ", //8
+            (null == technicalElement) ? "" : technicalElement.ToString() + " "); //9
 
             // ...
             // Add other elements as they are implemented!

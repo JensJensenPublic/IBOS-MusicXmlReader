@@ -763,8 +763,7 @@ namespace MusicXmlReaderModel
                     }
                 }
             }
-
-  
+   
 
             StringBuilder sbNotes = new StringBuilder();
             StringBuilder sbTexts = new StringBuilder();
