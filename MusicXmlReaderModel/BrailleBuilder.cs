@@ -231,8 +231,12 @@ namespace MusicXmlReaderModel
         // Table 19: Accordion
         // http://www.brl.org/codes/intmanual/tables/table19.html
 
-//*************************************************************************************************************************************
+        //*************************************************************************************************************************************
 
+        // some special Unicode values matching some of the aboce Music Braille definitions 
+        private const char UnicodeFlat      = (char)0x266D;
+        private const char UnicodeNatural   = (char)0x266E; // Danish "Ophævelsestegn"
+        private const char UnicodeSharp     = (char)0x266f;
 
 
         public enum Hand { Undefined, Left, Right };
@@ -333,10 +337,16 @@ namespace MusicXmlReaderModel
             this.braille.Add(b);
         }
 
-        public void Append(byte b,string text)
+        public void Append(byte b, string text)
         {
             this.braille.Add(b);
             this.text.Append(text);
+        }
+
+        public void Append(byte b, char character)
+        {
+            this.braille.Add(b);
+            this.text.Append(character);
         }
 
         private byte GetStepValue(PitchElement.FullStepEnum step) //  Returns the values for dot 1,2,4,5
@@ -651,14 +661,14 @@ namespace MusicXmlReaderModel
             if (natural)
             {
                 // Add a "natural-sign" (Danish: "Opløsningstegn")
-                Append(Natural, "¤");
+                Append(Natural, UnicodeNatural);
             }
 
 
             // Add alteration
             if (0 != alter)
             {
-                Append(((noteElement.Alter > 0) ? Sharp : Flat), (alter > 0) ? "#" : "b");
+                Append(((noteElement.Alter > 0) ? Sharp : Flat), (alter > 0) ? UnicodeSharp : UnicodeFlat);
             }
       
             // Add Octavemark
