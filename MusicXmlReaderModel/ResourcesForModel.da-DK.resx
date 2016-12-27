@@ -620,7 +620,7 @@
     <value>bend</value>
   </data>
   <data name="TechnicalElement_doubleTongue" xml:space="preserve">
-    <value>dobbelt tunge</value>
+    <value>to prikker</value>
   </data>
   <data name="TechnicalElement_fingernails" xml:space="preserve">
     <value>negle</value>
@@ -674,7 +674,7 @@
     <value>tå</value>
   </data>
   <data name="TechnicalElement_tripleTongue" xml:space="preserve">
-    <value>trippel tunge</value>
+    <value>tre prikker</value>
   </data>
   <data name="TechnicalElement_unknown" xml:space="preserve">
     <value>ukendt</value>
