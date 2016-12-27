@@ -16,7 +16,8 @@ namespace MusicXmlReaderModel
         string className = "DirectionElement";
         private DynamicsElement dynamicsElement;
         private SoundElement soundElement;
-        int staffNumber = 1; // The staff to which this element belongs. Implemented, but not used yet.
+        int staffNumber = 1; // The staff to which this element belongs. Parsed, but not used yet.
+        int voiceNumber = 1;  // The voice (within a part, for instance S1 or S2) to which this element belongs. Parsed, but not used yet.
         // Prevent construction
         private DirectionElement()
         {
@@ -69,14 +70,22 @@ namespace MusicXmlReaderModel
                         break; // Pure graphic information. Explicitly ignore!
           
                     case "staff":
-                        // We know "staff" nodes exist. We parse them  but we do explicitly not support them yet.
-                        Utilities.Parse(n.InnerText, ref staffNumber, 1, int.MaxValue, "", true);
-                        // Logger.LogOnce(string.Format("{0}.{1} Child: {2}", className, className + "." +  functionName, n.Name));
+                        // We parse "staff" nodes  but we do explicitly not support them yet.
+                        Utilities.Parse(n.InnerText, ref staffNumber, 1, int.MaxValue, className + "." + functionName, true);
+                        if (1 != staffNumber)
+                        {
+                            // This is actually pure graphical information, so don't bother to log it !
+                            //Logger.LogOnce(string.Format("{0}.{1}: Child='{2}' has unsupported value={3}", className,functionName, n.Name,staffNumber));
+                        }
                         break;
 
                     case "voice":
-                        // We know "voice" nodes exist. We parse them  but we do explicitly not support them yet.             
-                        Logger.LogOnce(string.Format("{0}.{1} Child: {2}", className, className + "." + functionName, n.Name));
+                        // We parse "voice" nodes  but we do explicitly not support them yet. 
+                        Utilities.Parse(n.InnerText, ref voiceNumber, 1, int.MaxValue, className + "." + functionName, true);
+                        if (1 != voiceNumber)
+                        {
+                            Logger.LogOnce(string.Format("{0}.{1}: Child='{2}' has unsupported value={3}", className, functionName, n.Name, voiceNumber));
+                        }
                         break;
 
                     default:
