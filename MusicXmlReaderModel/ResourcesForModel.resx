@@ -621,6 +621,12 @@
   <data name="TechnicalElement_doubleTongue" xml:space="preserve">
     <value>doubleTongue</value>
   </data>
+  <data name="TechnicalElement_downBow" xml:space="preserve">
+    <value>downbow</value>
+  </data>
+  <data name="TechnicalElement_fingering" xml:space="preserve">
+    <value>fingering</value>
+  </data>
   <data name="TechnicalElement_fingernails" xml:space="preserve">
     <value>fingernails</value>
   </data>
@@ -680,11 +686,5 @@
   </data>
   <data name="TechnicalElement_upbow" xml:space="preserve">
     <value>upbow</value>
-  </data>
-  <data name="TechnicalElement__downBow" xml:space="preserve">
-    <value>downbow</value>
-  </data>
-  <data name="TechnicalElement__fingering" xml:space="preserve">
-    <value>fingering</value>
   </data>
 </root>

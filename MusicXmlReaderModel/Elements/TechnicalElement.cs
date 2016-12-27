@@ -85,15 +85,51 @@ namespace MusicXmlReaderModel
             }
         }
 
+        private string ToLocalizedString(TechnicalElementEnum technicalElementEnum)
+        {
+            string functionName = "ToLocalizedString";
+            switch (technicalElementEnum)
+            {
+                case TechnicalElementEnum.arrow: return ResourcesForModel.TechnicalElement_arrow;
+                case TechnicalElementEnum.bend: return ResourcesForModel.TechnicalElement_arrow;
+                case TechnicalElementEnum.doubleTongue: return ResourcesForModel.TechnicalElement_doubleTongue;
+                case TechnicalElementEnum.downBow: return ResourcesForModel.TechnicalElement_downBow;
+                case TechnicalElementEnum.fingering: return ResourcesForModel.TechnicalElement_fingering;
+                case TechnicalElementEnum.fingernails: return ResourcesForModel.TechnicalElement_fingernails;
+                case TechnicalElementEnum.fret: return ResourcesForModel.TechnicalElement_fret;
+                case TechnicalElementEnum.hammerOn: return ResourcesForModel.TechnicalElement_hammer_on;
+                case TechnicalElementEnum.handbell: return ResourcesForModel.TechnicalElement_handbell;
+                case TechnicalElementEnum.harmonic: return ResourcesForModel.TechnicalElement_harmonic;
+                case TechnicalElementEnum.heel: return ResourcesForModel.TechnicalElement_heel;
+                case TechnicalElementEnum.hole: return ResourcesForModel.TechnicalElement_hole;
+                case TechnicalElementEnum.openString: return ResourcesForModel.TechnicalElement_open_string;
+                case TechnicalElementEnum.otherTechnical: return ResourcesForModel.TechnicalElement_other_technical;
+                case TechnicalElementEnum.pluck: return ResourcesForModel.TechnicalElement_pluck;
+                case TechnicalElementEnum.pullOff: return ResourcesForModel.TechnicalElement_pullOff;
+                case TechnicalElementEnum.snapPizzicato: return ResourcesForModel.TechnicalElement_snap_pizzicato;
+                case TechnicalElementEnum.stopped: return ResourcesForModel.TechnicalElement_stopped;
+                case TechnicalElementEnum.stringTechnical: return ResourcesForModel.TechnicalElement_string;
+                case TechnicalElementEnum.tap: return ResourcesForModel.TechnicalElement_tap; ;
+                case TechnicalElementEnum.thumbPosition: return ResourcesForModel.TechnicalElement_thumb_position;
+                case TechnicalElementEnum.toe: return ResourcesForModel.TechnicalElement_toe;
+                case TechnicalElementEnum.tripleTongue: return ResourcesForModel.TechnicalElement_tripleTongue;
+                case TechnicalElementEnum.upBow: return ResourcesForModel.TechnicalElement_upbow;
+                default:
+                    Logger.LogOnce(string.Format("{0}.{1}: Unknown TechnicalElementEnum", className, functionName));
+                    return ResourcesForModel.TechnicalElement_unknown;  
+            }
+        }
 
 
 
 
-    /// <summary>
-    /// Private constructor, used by the Crate() method
-    /// </summary>
-    /// <param name="node"></param>
-    private TechnicalElement(XmlNode node)
+
+
+        /// <summary>
+        /// Private constructor, used by the Crate() method
+        /// </summary>
+        /// <param name="node"></param>
+        private TechnicalElement(XmlNode node)
         {
             const string functionName = "TechnicalElement";
             technicals = new List<TechnicalElementEnum>();
@@ -120,18 +156,15 @@ namespace MusicXmlReaderModel
             string delimiter = "";
             for ( int i = 0 ; (i < technicals.Count); i ++)
             {
-                string s = delimiter + technicals[i].ToString() + (("" == values[i]) ? "" : "=" + values[i]);
-                if (!string.IsNullOrEmpty(s))
-                {
-                    Logger.LogOnce(string.Format("{0}.{1}: Localization is missing for '{2}'", className, functionName,s));
-                }
+                string localizedString = ToLocalizedString(technicals[i]);
+                string s = delimiter + localizedString + (("" == values[i]) ? "" : "=" + values[i]);
+                //Logger.LogOnce(string.Format("{0}.{1}: Found '{2}'", className, functionName,s));
                 allTecnnicals.Append(s);
                 delimiter = " ";
             }
             string result = allTecnnicals.ToString();
     
-            return result; // TODO: Implement localization !
-            // return string.Format("{0}", technicals.ToString()); // TODO: Implement localization !
+            return result; 
         }
     }
 }

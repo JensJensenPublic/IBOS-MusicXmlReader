@@ -1294,24 +1294,6 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to downbow.
-        /// </summary>
-        internal static string TechnicalElement__downBow {
-            get {
-                return ResourceManager.GetString("TechnicalElement__downBow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to fingering.
-        /// </summary>
-        internal static string TechnicalElement__fingering {
-            get {
-                return ResourceManager.GetString("TechnicalElement__fingering", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to arrow.
         /// </summary>
         internal static string TechnicalElement_arrow {
@@ -1335,6 +1317,24 @@ namespace MusicXmlReaderModel {
         internal static string TechnicalElement_doubleTongue {
             get {
                 return ResourceManager.GetString("TechnicalElement_doubleTongue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to downbow.
+        /// </summary>
+        internal static string TechnicalElement_downBow {
+            get {
+                return ResourceManager.GetString("TechnicalElement_downBow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fingering.
+        /// </summary>
+        internal static string TechnicalElement_fingering {
+            get {
+                return ResourceManager.GetString("TechnicalElement_fingering", resourceCulture);
             }
         }
         
