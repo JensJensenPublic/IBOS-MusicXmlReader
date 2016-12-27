@@ -613,4 +613,79 @@
   <data name="HarmonyElement_Chord" xml:space="preserve">
     <value>Becifring</value>
   </data>
+  <data name="TechnicalElement_arrow" xml:space="preserve">
+    <value>pil</value>
+  </data>
+  <data name="TechnicalElement_bend" xml:space="preserve">
+    <value>bend</value>
+  </data>
+  <data name="TechnicalElement_doubleTongue" xml:space="preserve">
+    <value>dobbelt tunge</value>
+  </data>
+  <data name="TechnicalElement_fingernails" xml:space="preserve">
+    <value>negle</value>
+  </data>
+  <data name="TechnicalElement_fret" xml:space="preserve">
+    <value>bånd</value>
+  </data>
+  <data name="TechnicalElement_hammer_on" xml:space="preserve">
+    <value>hammer på</value>
+  </data>
+  <data name="TechnicalElement_handbell" xml:space="preserve">
+    <value>håndklokke</value>
+  </data>
+  <data name="TechnicalElement_harmonic" xml:space="preserve">
+    <value>harmoniske</value>
+  </data>
+  <data name="TechnicalElement_heel" xml:space="preserve">
+    <value>hæl</value>
+  </data>
+  <data name="TechnicalElement_hole" xml:space="preserve">
+    <value>hul</value>
+  </data>
+  <data name="TechnicalElement_open_string" xml:space="preserve">
+    <value>fri streng</value>
+  </data>
+  <data name="TechnicalElement_other_technical" xml:space="preserve">
+    <value>anden teknisk information</value>
+  </data>
+  <data name="TechnicalElement_pluck" xml:space="preserve">
+    <value>knips</value>
+  </data>
+  <data name="TechnicalElement_pullOff" xml:space="preserve">
+    <value>pull off</value>
+  </data>
+  <data name="TechnicalElement_snap_pizzicato" xml:space="preserve">
+    <value>snap pizzicato</value>
+  </data>
+  <data name="TechnicalElement_stopped" xml:space="preserve">
+    <value>stoppet</value>
+  </data>
+  <data name="TechnicalElement_string" xml:space="preserve">
+    <value>streng</value>
+  </data>
+  <data name="TechnicalElement_tap" xml:space="preserve">
+    <value>tap</value>
+  </data>
+  <data name="TechnicalElement_thumb_position" xml:space="preserve">
+    <value>tommel position</value>
+  </data>
+  <data name="TechnicalElement_toe" xml:space="preserve">
+    <value>tå</value>
+  </data>
+  <data name="TechnicalElement_tripleTongue" xml:space="preserve">
+    <value>trippel tunge</value>
+  </data>
+  <data name="TechnicalElement_unknown" xml:space="preserve">
+    <value>ukendt</value>
+  </data>
+  <data name="TechnicalElement_upbow" xml:space="preserve">
+    <value>opstrøg</value>
+  </data>
+  <data name="TechnicalElement__downBow" xml:space="preserve">
+    <value>nedstrøg</value>
+  </data>
+  <data name="TechnicalElement__fingering" xml:space="preserve">
+    <value>fingersætning</value>
+  </data>
 </root>

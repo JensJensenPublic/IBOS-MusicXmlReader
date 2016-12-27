@@ -1294,6 +1294,231 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to downbow.
+        /// </summary>
+        internal static string TechnicalElement__downBow {
+            get {
+                return ResourceManager.GetString("TechnicalElement__downBow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fingering.
+        /// </summary>
+        internal static string TechnicalElement__fingering {
+            get {
+                return ResourceManager.GetString("TechnicalElement__fingering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to arrow.
+        /// </summary>
+        internal static string TechnicalElement_arrow {
+            get {
+                return ResourceManager.GetString("TechnicalElement_arrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to bend.
+        /// </summary>
+        internal static string TechnicalElement_bend {
+            get {
+                return ResourceManager.GetString("TechnicalElement_bend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to doubleTongue.
+        /// </summary>
+        internal static string TechnicalElement_doubleTongue {
+            get {
+                return ResourceManager.GetString("TechnicalElement_doubleTongue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fingernails.
+        /// </summary>
+        internal static string TechnicalElement_fingernails {
+            get {
+                return ResourceManager.GetString("TechnicalElement_fingernails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fret.
+        /// </summary>
+        internal static string TechnicalElement_fret {
+            get {
+                return ResourceManager.GetString("TechnicalElement_fret", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hammer on.
+        /// </summary>
+        internal static string TechnicalElement_hammer_on {
+            get {
+                return ResourceManager.GetString("TechnicalElement_hammer_on", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to handbell.
+        /// </summary>
+        internal static string TechnicalElement_handbell {
+            get {
+                return ResourceManager.GetString("TechnicalElement_handbell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to harmonic.
+        /// </summary>
+        internal static string TechnicalElement_harmonic {
+            get {
+                return ResourceManager.GetString("TechnicalElement_harmonic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to heel.
+        /// </summary>
+        internal static string TechnicalElement_heel {
+            get {
+                return ResourceManager.GetString("TechnicalElement_heel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hole.
+        /// </summary>
+        internal static string TechnicalElement_hole {
+            get {
+                return ResourceManager.GetString("TechnicalElement_hole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to open string.
+        /// </summary>
+        internal static string TechnicalElement_open_string {
+            get {
+                return ResourceManager.GetString("TechnicalElement_open_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to other technical information.
+        /// </summary>
+        internal static string TechnicalElement_other_technical {
+            get {
+                return ResourceManager.GetString("TechnicalElement_other_technical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pluck.
+        /// </summary>
+        internal static string TechnicalElement_pluck {
+            get {
+                return ResourceManager.GetString("TechnicalElement_pluck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pull off.
+        /// </summary>
+        internal static string TechnicalElement_pullOff {
+            get {
+                return ResourceManager.GetString("TechnicalElement_pullOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to snap pizzicato.
+        /// </summary>
+        internal static string TechnicalElement_snap_pizzicato {
+            get {
+                return ResourceManager.GetString("TechnicalElement_snap_pizzicato", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to stopped.
+        /// </summary>
+        internal static string TechnicalElement_stopped {
+            get {
+                return ResourceManager.GetString("TechnicalElement_stopped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to string.
+        /// </summary>
+        internal static string TechnicalElement_string {
+            get {
+                return ResourceManager.GetString("TechnicalElement_string", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tap.
+        /// </summary>
+        internal static string TechnicalElement_tap {
+            get {
+                return ResourceManager.GetString("TechnicalElement_tap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to thumb position.
+        /// </summary>
+        internal static string TechnicalElement_thumb_position {
+            get {
+                return ResourceManager.GetString("TechnicalElement_thumb_position", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to toe.
+        /// </summary>
+        internal static string TechnicalElement_toe {
+            get {
+                return ResourceManager.GetString("TechnicalElement_toe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to triple tongue.
+        /// </summary>
+        internal static string TechnicalElement_tripleTongue {
+            get {
+                return ResourceManager.GetString("TechnicalElement_tripleTongue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to unknown.
+        /// </summary>
+        internal static string TechnicalElement_unknown {
+            get {
+                return ResourceManager.GetString("TechnicalElement_unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to upbow.
+        /// </summary>
+        internal static string TechnicalElement_upbow {
+            get {
+                return ResourceManager.GetString("TechnicalElement_upbow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to tie.
         /// </summary>
         internal static string TiedElement_Name {
