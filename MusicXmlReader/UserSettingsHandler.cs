@@ -258,7 +258,7 @@ namespace MusicXmlReader
         {
             //this.userSettings = userSettings;
             LoadDetails(musicAsSoundDetails, userSettings.playerSettingsNames, model.UserSettings.playerSettingsValues);
-            LoadDetails(musicAsTextDetails,userSettings.readerSettingsNames, model.UserSettings.readerSettingsValues,7); // Do not load last notes, they are for debugging only
+            LoadDetails(musicAsTextDetails,userSettings.readerSettingsNames, model.UserSettings.readerSettingsValues,6); // Do not load last notes, they are for debugging only
             LoadDetails(musicAsBrailleDetails, userSettings.musicBrailleSettingsNames, model.UserSettings.musicBrailleSettingsValues);
         }
 
