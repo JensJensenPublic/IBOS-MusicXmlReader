@@ -725,8 +725,10 @@ namespace MusicXmlReaderModel
                 case 2:
                     beatType = (dot2 + dot3);
                     switch (timeElement.Beats)
-                    {                       
-                        case 2: bytes = new byte[] { Number, cipher2, beatType  }; break;       // 2/2  Not specified by REFSNÆS, suggested by JSJ
+                    {
+                        case 2: bytes = new byte[] { Number, cipher2, beatType }; break;       // 2/2  Not specified by REFSNÆS, suggested by JSJ
+                        case 3: bytes = new byte[] { Number, cipher3, beatType }; break;       // 3/2  Not specified by REFSNÆS, suggested by JSJ
+                        case 4: bytes = new byte[] { Number, cipher4, beatType }; break;       // 4/2  Not specified by REFSNÆS, suggested by JSJ
                         default: break;
                     }
                     break;
