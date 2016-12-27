@@ -16,6 +16,7 @@ namespace MusicXmlReaderModel
         string className = "DirectionElement";
         private DynamicsElement dynamicsElement;
         private SoundElement soundElement;
+        int staffNumber = 1; // The staff to which this element belongs. Implemented, but not used yet.
         // Prevent construction
         private DirectionElement()
         {
@@ -66,11 +67,16 @@ namespace MusicXmlReaderModel
                     case "offset":
                     case "footnote":
                         break; // Pure graphic information. Explicitly ignore!
-
-                    // We know these childs exist but we do explicitly not support them yet.
+          
                     case "staff":
-                    case "voice":             
-                        Logger.LogOnce(string.Format("{0}.{1} Child: {2}", className, functionName, n.Name));
+                        // We know "staff" nodes exist. We parse them  but we do explicitly not support them yet.
+                        Utilities.Parse(n.InnerText, ref staffNumber, 1, int.MaxValue, "", true);
+                        // Logger.LogOnce(string.Format("{0}.{1} Child: {2}", className, className + "." +  functionName, n.Name));
+                        break;
+
+                    case "voice":
+                        // We know "voice" nodes exist. We parse them  but we do explicitly not support them yet.             
+                        Logger.LogOnce(string.Format("{0}.{1} Child: {2}", className, className + "." + functionName, n.Name));
                         break;
 
                     default:
