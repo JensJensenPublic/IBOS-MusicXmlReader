@@ -10,6 +10,12 @@ namespace MusicXmlReaderModel
 
     /// <summary>
     /// https://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-direction.htm
+    /// A direction is a musical indication that is not attached to a specific note.
+    /// Two or more may be combined to indicate starts and stops of wedges, dashes, etc.
+    /// By default, a series of direction-type elements and a series of child elements of
+    /// a direction-type within a single direction element follow one another in sequence visually.
+    /// For a series of direction-type children, non-positional formatting attributes are carried
+    /// over from the previous element by default.
     /// </summary>
     class DirectionElement : EventElement
     {
@@ -32,11 +38,12 @@ namespace MusicXmlReaderModel
 
                 switch (a.Name)
                 {
-
                     case "default-x": break; // Explicitly ignore some graphical attributes 
-                    //    TODO list other attributes to be ignored
-                    default: break;
-                        //    Logger.LogOnce(string.Format("{0}.{1}:", className,functionName)); break;
+                    case "directive": break;
+                    case "placement": break;
+                    default:
+                    Logger.LogOnce(string.Format("{0}.{1}: Found unexpected attribute={2}", className,functionName,a.Name));
+                    break;
                 }
             }
 
