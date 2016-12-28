@@ -131,7 +131,7 @@ namespace MusicXmlReaderModel
         /// <param name="node"></param>
         private TechnicalElement(XmlNode node)
         {
-            const string functionName = "TechnicalElement";
+            // const string functionName = "TechnicalElement";
             technicals = new List<TechnicalElementEnum>();
             values = new List<string>();
             foreach (XmlNode n in node.ChildNodes)
