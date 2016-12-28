@@ -4,17 +4,18 @@ using System.IO;
 
 namespace MusicXmlReaderModel
 {
-    public class ExterrnalToolsHandler
+    public class ExternalToolsHandler
     {
+        private string className = "ExternalToolsHandler"; 
 
         // Force use of Create() method
-        private ExterrnalToolsHandler()
+        private ExternalToolsHandler()
         {
         }
 
-        public static ExterrnalToolsHandler Create()
+        public static ExternalToolsHandler Create()
         {
-            return new ExterrnalToolsHandler();
+            return new ExternalToolsHandler();
         }
 
 
@@ -88,16 +89,51 @@ namespace MusicXmlReaderModel
             Utilities.RunExeWithFileArgument("iexplore.exe", theMusicXmlFileName);
         }
 
+        /// <summary>
+        /// Find a shortcut on the desktop with the name specified
+        /// </summary>
+        /// <param name="shortcutName">NAme of shortcut</param>
+        /// <returns>The name of the link forun in the shortcut</returns>
+        private string GetLinkFromShortcutAtDesktop(string shortcutName)
+        {
+            string functionName = "GetLinkFromShortcutAtDesktop";
+            try
+            {
+                string desktopDirectory = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                string extension = "lnk";
+                string directory = Path.Combine(desktopDirectory, shortcutName);
+                string linkFileName = Path.ChangeExtension(directory, extension);
+                if (File.Exists(linkFileName))
+                {
+                    Logger.Log(string.Format("{0}.{1} found shortcut='{2}'", className, functionName, shortcutName));
+                    return linkFileName;
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("{0}.{1} threw an exception. Message='{2}'", className, functionName, e.Message));
+            }
+            Logger.Log(string.Format("{0}.{1} failed to find a shortcut {2}", className, functionName, shortcutName));
+            return null;
+        }
+        
+
         public void StartMuseScore(string theMusicXmlFileName)
         {
+            string linkName = GetLinkFromShortcutAtDesktop(ResourcesForModel.Shortcut_MuseScore);
             string exeFileName = @"C:\Program Files (x86)\MuseScore 2\bin\MuseScore.exe";
+            // Use the link if found, otherwise the hardwired location
+            string executable = string.IsNullOrEmpty(linkName) ? exeFileName : linkName;
             Utilities.RunExeWithFileArgument(exeFileName, theMusicXmlFileName);
         }
 
         public void StartSibelius(string theMusicXmlFileName)
         {
+            string linkName = GetLinkFromShortcutAtDesktop(ResourcesForModel.Shortcut_Sibelius);
             string exeFileName = @"C:\Program Files (x86)\Sibelius.exe"; // TO DO: Specify path for Sibelius !!
-            Utilities.RunExeWithFileArgument(exeFileName, theMusicXmlFileName);
+            // Use the link if found, otherwise the hardwired location
+            string executable = string.IsNullOrEmpty(linkName) ? exeFileName : linkName; 
+            Utilities.RunExeWithFileArgument(executable, theMusicXmlFileName);            
         }
 
         public void OpenUrl(string url)

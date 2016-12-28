@@ -688,4 +688,10 @@
   <data name="TechnicalElement_upbow" xml:space="preserve">
     <value>opstrøg</value>
   </data>
+  <data name="Shortcut_MuseScore" xml:space="preserve">
+    <value>MuseScore for IBOS Nodelæser</value>
+  </data>
+  <data name="Shortcut_Sibelius" xml:space="preserve">
+    <value>Sibelius for IBOS Nodelæser</value>
+  </data>
 </root>

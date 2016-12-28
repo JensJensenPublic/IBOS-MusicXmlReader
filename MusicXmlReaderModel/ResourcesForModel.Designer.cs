@@ -1231,6 +1231,24 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MuseScore for IBOS MusicXmlReader.
+        /// </summary>
+        internal static string Shortcut_MuseScore {
+            get {
+                return ResourceManager.GetString("Shortcut_MuseScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sibelius for IBOS MusicXmlReader.
+        /// </summary>
+        internal static string Shortcut_Sibelius {
+            get {
+                return ResourceManager.GetString("Shortcut_Sibelius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Slide.
         /// </summary>
         internal static string SlideElement_Name {

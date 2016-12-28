@@ -36,7 +36,7 @@ namespace MusicXmlReaderModel
         UserSettings userSettings;
         ScreenReaderAPI screenReaderAPI;
         DebugTools debugTools;
-        ExterrnalToolsHandler externalToolsHandler;
+        ExternalToolsHandler externalToolsHandler;
 
 
         string executingAssembly;
@@ -204,7 +204,7 @@ namespace MusicXmlReaderModel
             // Create an API to JAWS or NVDA depending on which screenreader is currently running
             debugTools = DebugTools.Create(); // Used for logging and tracing from screenReaderAPI.
             screenReaderAPI = ScreenReaderAPI.Create(is64Bit,debugTools);
-            externalToolsHandler = ExterrnalToolsHandler.Create();
+            externalToolsHandler = ExternalToolsHandler.Create();
             Utilities.CheckScreenReader(screenReaderAPI.ScreenReaderName, caption); // Check for DummyScreenReader
 
             midiOut = new MidiOut(0);
@@ -587,7 +587,7 @@ namespace MusicXmlReaderModel
 
         }
 
-        public ExterrnalToolsHandler ExternalToolsHandler
+        public ExternalToolsHandler ExternalToolsHandler
         {
             get
             {
