@@ -130,7 +130,7 @@ namespace MusicXmlReaderModel
         public void StartSibelius(string theMusicXmlFileName)
         {
             string linkName = GetLinkFromShortcutAtDesktop(ResourcesForModel.Shortcut_Sibelius);
-            string exeFileName = @"C:\Program Files (x86)\Sibelius.exe"; // TO DO: Specify path for Sibelius !!
+            string exeFileName = @"C:\Program Files\Avid\Sibelius\Sibelius.exe";
             // Use the link if found, otherwise the hardwired location
             string executable = string.IsNullOrEmpty(linkName) ? exeFileName : linkName; 
             Utilities.RunExeWithFileArgument(executable, theMusicXmlFileName);            
