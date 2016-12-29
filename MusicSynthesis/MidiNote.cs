@@ -182,10 +182,10 @@ namespace JSJ.MusicSynthesis
         /// <param name="midiOut"></param>
         private void CommonConstructor(ChromaticStep step, int alter, int octave, int transpose, int velocity, Interval interval, int midiChannel,MidiOut midiOut)
         {
-            this.channelCode = (midiChannel - 1) % 16; 
+            this.channelCode = (midiChannel - 1) % 16;       
             startCommand = new byte[3];
             startCommand[0] = (byte) (0x90 + channelCode); // Command "Start"
-            startCommand[1] = (byte)(12 * (octave + 1) + (int)step + alter + (int)interval + transpose) ;
+            startCommand[1] = (byte)(12 * (octave + 1) + ((int)step + alter) % 12 + (int)interval + transpose) ;
             startCommand[2] = (byte)velocity;
             StartPlaying(midiOut);
         }
