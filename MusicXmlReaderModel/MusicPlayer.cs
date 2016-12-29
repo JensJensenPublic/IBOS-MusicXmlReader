@@ -496,6 +496,7 @@ namespace MusicXmlReaderUI
                 StopAllNotesPlaying();
             } while (repeating && playing) ;
             Logger.Log(string.Format("PlayerThread(Id={0}) exiting", threadId));
+            playing = false;
             musicPlayerThreadState = MusicPlayerThreadStateEnum.stopped;
         }
 
