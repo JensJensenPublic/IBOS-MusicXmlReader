@@ -22,7 +22,7 @@ namespace MusicXmlReaderModel
         public TextDisplayer textDisplayer;
         public PartlistElement partList; // Contains the list of parts, describing all instruments used including their midi parameters
         int divisions; // Current number of divisions of a quarternode
-        int tempo;     // Current tempo in beats pr minute
+        //int tempo;     // Current tempo in beats pr minute
         int currentMeasureNumber = 0; // Current measure number
         StatusInformation currentStatusInformation; // Contains information which is valid in a part of the score, such as Key, Beats, Tempo etc.
         int latestMeasureNumber = 0;

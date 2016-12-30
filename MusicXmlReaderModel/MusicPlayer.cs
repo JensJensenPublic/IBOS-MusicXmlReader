@@ -139,7 +139,7 @@ namespace MusicXmlReaderUI
                         { // This is a real note, not a pause
                             if (userSettings.partsToPlay[noteElement.PartNumber])
                             {
-                                MidiNote midiNote = new MidiNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, noteElement.Transpose,noteElement.DynamicsIntValue,noteElement.MidiChannel, midiOut);
+                                MidiNote midiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose,noteElement.DynamicsIntValue,noteElement.MidiChannel, midiOut);
                                 notesCurrentlyPlaying.Add(midiNote);
                             }
                         }
@@ -149,6 +149,25 @@ namespace MusicXmlReaderUI
             }
             return;
         }
+
+
+        private  ChromaticStep GetChromaticStep(PitchElement.FullStepEnum fullStep)
+        {
+            switch (fullStep)
+            {
+                case PitchElement.FullStepEnum.C: return ChromaticStep.C;
+                case PitchElement.FullStepEnum.D: return ChromaticStep.D;
+                case PitchElement.FullStepEnum.E: return ChromaticStep.E;
+                case PitchElement.FullStepEnum.F: return ChromaticStep.F;
+                case PitchElement.FullStepEnum.G: return ChromaticStep.G;
+                case PitchElement.FullStepEnum.A: return ChromaticStep.A;
+                case PitchElement.FullStepEnum.B: return ChromaticStep.B;
+                //case "H": return ChromaticStep.B;
+                default: throw new System.ArgumentException(string.Format("Unknown step:{0}", fullStep));
+            }
+        }
+
+
 
 
         /// <summary>
@@ -325,7 +344,7 @@ namespace MusicXmlReaderUI
                         if (userSettings.partsToPlay[i])
                         {
                             // This part is selected to be played (for instance from the GUI)                        
-                            noteElement.MidiNote = new MidiNote(noteElement.Step.ToString(), noteElement.Alter, noteElement.Octave, noteElement.Transpose,noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
+                            noteElement.MidiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose,noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
                             notesCurrentlyPlaying.Add(noteElement.MidiNote);
                             //noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, 1, midiOut);
                         }

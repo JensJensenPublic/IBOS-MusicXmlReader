@@ -151,7 +151,7 @@ namespace MusicXmlReaderModel
 
         public override string ToString() // To be localized when implemented
         {
-            string functionName = "ToString";
+            //string functionName = "ToString";
             StringBuilder allTecnnicals = new StringBuilder();
             string delimiter = "";
             for ( int i = 0 ; (i < technicals.Count); i ++)

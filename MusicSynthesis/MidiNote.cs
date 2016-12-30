@@ -45,15 +45,15 @@ namespace JSJ.MusicSynthesis
         /// <param name="velocity"></param>
         /// <param name="midiChannel"></param>
         /// <param name="midiOut"></param>
-        public MidiNote(string step, int alter, int octave, int transpose, int velocity, int midiChannel, MidiOut midiOut)
+        public MidiNote(ChromaticStep step, int alter, int octave, int transpose, int velocity, int midiChannel, MidiOut midiOut)
         {
-            CommonConstructor(GetChromaticStep(step), alter, octave, transpose, velocity, Interval.Unison, midiChannel, midiOut);
+            CommonConstructor(step, alter, octave, transpose, velocity, Interval.Unison, midiChannel, midiOut);
         }
 
 
-        public MidiNote(string step, int alter, int octave, int velocity, MidiOut midiOut)
+        public MidiNote(ChromaticStep step, int alter, int octave, int velocity, MidiOut midiOut)
         {
-            CommonConstructor(GetChromaticStep(step), alter, octave, 0, velocity, Interval.Unison, 1, midiOut); // Default transpose=0
+            CommonConstructor(step , alter, octave, 0, velocity, Interval.Unison, 1, midiOut); // Default transpose=0
         }
 
         // New Code
@@ -137,10 +137,9 @@ namespace JSJ.MusicSynthesis
                     throw new System.ArgumentException(string.Format(string.Format(invalidArgumentFormat, "alter", alter)));
             }     
         }
-        
 
-        // New code
-        public static ChromaticStep GetChromaticStep(string s)
+
+        private static ChromaticStep GetChromaticStep(string s)
         {
             switch (s)
             {
@@ -161,7 +160,6 @@ namespace JSJ.MusicSynthesis
             }
         }
 
-        // New code
         private static int GetAlterValue(string alter)
         {
             if (string.IsNullOrEmpty(alter))
