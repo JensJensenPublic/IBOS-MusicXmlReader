@@ -9,8 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Forslag til tekst til hjemmeside.odt = Documentation\Forslag til tekst til hjemmeside.odt
 		Documentation\Generering af release.odt = Documentation\Generering af release.odt
+		Documentation\Overordnet programdokumentation.odt = Documentation\Overordnet programdokumentation.odt
 		Documentation\Principper for dokumentation.odt = Documentation\Principper for dokumentation.odt
 		Documentation\Sample MusicXmlReader.JCF = Documentation\Sample MusicXmlReader.JCF
+		Documentation\ToDo liste.odt = Documentation\ToDo liste.odt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenReaderAPI", "ScreenReaderAPI\ScreenReaderAPI.csproj", "{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}"
