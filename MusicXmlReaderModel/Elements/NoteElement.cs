@@ -112,7 +112,7 @@ namespace MusicXmlReaderModel
         {
             get
             {
-                return (null != pitchElement);
+                return ((null != pitchElement) && (pitchElement.Step != PitchElement.FullStepEnum.Unknown));
             }
         }
 
