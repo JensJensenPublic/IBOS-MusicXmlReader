@@ -27,18 +27,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1031C7FE7FAD0468C60B4F13B12EA8EC"
-        "OwnerKey" = "8:_6D6E222771983F8C0E03D580AAA8B610"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1031C7FE7FAD0468C60B4F13B12EA8EC"
-        "OwnerKey" = "8:_FA4692E3CA1546B8AEB01F00A1C09170"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_17EDA571A0594713A67E978D32C9D5BF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -69,14 +57,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3D5783719E590663C7357601BE5EA8B6"
-        "OwnerKey" = "8:_6D6E222771983F8C0E03D580AAA8B610"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3D5783719E590663C7357601BE5EA8B6"
-        "OwnerKey" = "8:_FA4692E3CA1546B8AEB01F00A1C09170"
+        "MsmKey" = "8:_415C2AF89B7F4BE7ACE88ECF53FE3A58"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -93,20 +75,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5C41216515CC4E3E995FA9D995204FAA"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_6922689A5FC54FE7B8EC56AC1A8F36C0"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_6D6E222771983F8C0E03D580AAA8B610"
-        "OwnerKey" = "8:_811C7BFAEDA34E3491D0E8D9396C8240"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -118,6 +88,12 @@
         "Entry"
         {
         "MsmKey" = "8:_89EC9433802D455CB6D304FA3D1DE990"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9502146522DE415CA8AFC18CD5F06CD0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -135,30 +111,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_AA74843CB4573484FDC3384F9F8A0AC6"
-        "OwnerKey" = "8:_1031C7FE7FAD0468C60B4F13B12EA8EC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AA74843CB4573484FDC3384F9F8A0AC6"
-        "OwnerKey" = "8:_FA4692E3CA1546B8AEB01F00A1C09170"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AA74843CB4573484FDC3384F9F8A0AC6"
-        "OwnerKey" = "8:_D0CB786AE9AB464886F85F9D2530BB7F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AA74843CB4573484FDC3384F9F8A0AC6"
-        "OwnerKey" = "8:_6D6E222771983F8C0E03D580AAA8B610"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_AEAD87D3E9956D534322DCF82FB47C0D"
         "OwnerKey" = "8:_A1A929A5B4FC414E97500D5C535E8BCD"
         "MsmSig" = "8:_UNDEFINED"
@@ -171,7 +123,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C6935DC75E8B4558B1C5DDDB8BF9EA94"
+        "MsmKey" = "8:_C73A1279F0B5469E928707AFB6926245"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -189,7 +141,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D0CB786AE9AB464886F85F9D2530BB7F"
+        "MsmKey" = "8:_D47D86713B0B4DC4B8BD10FC52C2F338"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -201,7 +153,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_FA4692E3CA1546B8AEB01F00A1C09170"
+        "MsmKey" = "8:_F5B8E6DCC8BD42CF9ADB582DAEB1E9C7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -214,31 +166,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C6935DC75E8B4558B1C5DDDB8BF9EA94"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5C41216515CC4E3E995FA9D995204FAA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FA4692E3CA1546B8AEB01F00A1C09170"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_38792250A2DD41B1875CA3B988D225D0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D0CB786AE9AB464886F85F9D2530BB7F"
+        "OwnerKey" = "8:_AEAD87D3E9956D534322DCF82FB47C0D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -250,31 +178,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AEAD87D3E9956D534322DCF82FB47C0D"
+        "OwnerKey" = "8:_811C7BFAEDA34E3491D0E8D9396C8240"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3D5783719E590663C7357601BE5EA8B6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1031C7FE7FAD0468C60B4F13B12EA8EC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AA74843CB4573484FDC3384F9F8A0AC6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6D6E222771983F8C0E03D580AAA8B610"
+        "OwnerKey" = "8:_38792250A2DD41B1875CA3B988D225D0"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -295,6 +205,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -311,6 +237,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -387,11 +329,6 @@
             "AssemblyAsmDisplayName" = "8:MusicSynthesis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_1031C7FE7FAD0468C60B4F13B12EA8EC"
-                    {
-                    "Name" = "8:MusicSynthesis.DLL"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:MusicSynthesis.DLL"
             "TargetName" = "8:"
@@ -529,11 +466,6 @@
             "AssemblyAsmDisplayName" = "8:ScreenReaderAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_3D5783719E590663C7357601BE5EA8B6"
-                    {
-                    "Name" = "8:ScreenReaderAPI.DLL"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:ScreenReaderAPI.DLL"
             "TargetName" = "8:"
@@ -551,6 +483,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_415C2AF89B7F4BE7ACE88ECF53FE3A58"
+            {
+            "SourcePath" = "8:..\\MusicXmlReader\\bin\\Debug\\MusicXml samples\\Revolutionary Study.xml"
+            "TargetName" = "8:Revolutionary Study.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_847242E21467485D96BB8F41B2D9750A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_51B49E5D9FBB443AA225650020F873A5"
@@ -577,37 +529,6 @@
             {
             "SourcePath" = "8:..\\MusicXmlReader\\bin\\Debug\\MusicXmlReaderModel.pdb"
             "TargetName" = "8:MusicXmlReaderModel.pdb"
-            "Tag" = "8:"
-            "Folder" = "8:_4DA2711220AA4A9C81ED5B43BC887BC1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5C41216515CC4E3E995FA9D995204FAA"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_5C41216515CC4E3E995FA9D995204FAA"
-                    {
-                    "Name" = "8:NAudio.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\MusicXmlReader\\bin\\Debug\\NAudio.dll"
-            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4DA2711220AA4A9C81ED5B43BC887BC1"
             "Condition" = "8:"
@@ -651,11 +572,6 @@
             "AssemblyAsmDisplayName" = "8:MusicXmlReaderModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6D6E222771983F8C0E03D580AAA8B610"
-                    {
-                    "Name" = "8:MusicXmlReaderModel.DLL"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:MusicXmlReaderModel.DLL"
             "TargetName" = "8:"
@@ -712,6 +628,26 @@
             "TargetName" = "8:IBOS MusicXmlReader.vshost.exe.manifest"
             "Tag" = "8:"
             "Folder" = "8:_4DA2711220AA4A9C81ED5B43BC887BC1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9502146522DE415CA8AFC18CD5F06CD0"
+            {
+            "SourcePath" = "8:..\\MusicXmlReader\\bin\\Debug\\MusicXml samples\\Moments Musicaux Op16 No4.xml"
+            "TargetName" = "8:Moments Musicaux Op16 No4.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_847242E21467485D96BB8F41B2D9750A"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -784,11 +720,6 @@
             "AssemblyAsmDisplayName" = "8:NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_AA74843CB4573484FDC3384F9F8A0AC6"
-                    {
-                    "Name" = "8:NAudio.DLL"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:NAudio.DLL"
             "TargetName" = "8:"
@@ -839,23 +770,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C6935DC75E8B4558B1C5DDDB8BF9EA94"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C73A1279F0B5469E928707AFB6926245"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ScreenReaderAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_C6935DC75E8B4558B1C5DDDB8BF9EA94"
-                    {
-                    "Name" = "8:ScreenReaderAPI.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\MusicXmlReader\\bin\\Debug\\ScreenReaderAPI.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\MusicXmlReader\\bin\\Debug\\MusicXml samples\\O_Little_Town_of_Bethlehem-_SATB.xml"
+            "TargetName" = "8:O_Little_Town_of_Bethlehem-_SATB.xml"
             "Tag" = "8:"
-            "Folder" = "8:_4DA2711220AA4A9C81ED5B43BC887BC1"
+            "Folder" = "8:_847242E21467485D96BB8F41B2D9750A"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -910,23 +830,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D0CB786AE9AB464886F85F9D2530BB7F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D47D86713B0B4DC4B8BD10FC52C2F338"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MusicSynthesis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_D0CB786AE9AB464886F85F9D2530BB7F"
-                    {
-                    "Name" = "8:MusicSynthesis.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\MusicXmlReader\\bin\\Debug\\MusicSynthesis.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\MusicXmlReader\\bin\\Debug\\MusicXml samples\\foursharps.mscz"
+            "TargetName" = "8:foursharps.mscz"
             "Tag" = "8:"
-            "Folder" = "8:_4DA2711220AA4A9C81ED5B43BC887BC1"
+            "Folder" = "8:_847242E21467485D96BB8F41B2D9750A"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -961,23 +870,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FA4692E3CA1546B8AEB01F00A1C09170"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F5B8E6DCC8BD42CF9ADB582DAEB1E9C7"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MusicXmlReaderModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_FA4692E3CA1546B8AEB01F00A1C09170"
-                    {
-                    "Name" = "8:MusicXmlReaderModel.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\MusicXmlReader\\bin\\Debug\\MusicXmlReaderModel.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\MusicXmlReader\\bin\\Debug\\MusicXml samples\\Men det blir atter stille.xml"
+            "TargetName" = "8:Men det blir atter stille.xml"
             "Tag" = "8:"
-            "Folder" = "8:_4DA2711220AA4A9C81ED5B43BC887BC1"
+            "Folder" = "8:_847242E21467485D96BB8F41B2D9750A"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1001,7 +899,7 @@
             "{1525181F-901A-416C-8A58-119130FE478E}:_302E5147261C414F82D19E94B60CB365"
             {
             "Name" = "8:#1916"
-            "AlwaysCreate" = "11:FALSE"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:DesktopFolder"
@@ -1011,7 +909,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_4DA2711220AA4A9C81ED5B43BC887BC1"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -1019,12 +917,34 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_847242E21467485D96BB8F41B2D9750A"
+                    {
+                    "Name" = "8:MusicXml Samples"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_387F89F11A694D3A84F49B409D548BF2"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_B72DD09B6F18431790D7493A9B412FEA"
+                            {
+                            "Name" = "8:New Folder #1"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_48BC32BDEE9440348A6FA211875DBED2"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_D953DC0A36D649578360C71F490B5897"
             {
             "Name" = "8:#1919"
-            "AlwaysCreate" = "11:FALSE"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:ProgramMenuFolder"
@@ -1049,7 +969,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup"
         "ProductCode" = "8:{E5785555-1302-49EB-8EEA-9528D23FB77C}"
-        "PackageCode" = "8:{330C66F1-D01F-41F8-9CA1-1631827895EC}"
+        "PackageCode" = "8:{4B939BF0-4FAE-4833-8ACA-E76596F837D9}"
         "UpgradeCode" = "8:{D167444E-6D04-4424-91BB-0156583B1C37}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1169,6 +1089,34 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_DE6F83ED0E5B455D9CEACAFFAB5C7283"
+            {
+            "Name" = "8:JSJ1 Nodelæser"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_D953DC0A36D649578360C71F490B5897"
+            "Folder" = "8:_D953DC0A36D649578360C71F490B5897"
+            "WorkingFolder" = "8:_D953DC0A36D649578360C71F490B5897"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F85A7DE28A484DEEBBF676823713A755"
+            {
+            "Name" = "8:JSJ1 Nodelæser"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_302E5147261C414F82D19E94B60CB365"
+            "Folder" = "8:_302E5147261C414F82D19E94B60CB365"
+            "WorkingFolder" = "8:_302E5147261C414F82D19E94B60CB365"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {

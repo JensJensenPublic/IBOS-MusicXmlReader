@@ -37,8 +37,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Release Notes", "Release No
 		Documentation\Official Documentation\Release Notes\Release Notes for version 0.7.0.0.odt = Documentation\Official Documentation\Release Notes\Release Notes for version 0.7.0.0.odt
 	EndProjectSection
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{FEB3CF42-49A9-40A9-85E3-37DBD86F462B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,12 +107,6 @@ Global
 		{6E0D8239-0AF3-426C-81D3-2E2C155D0848}.Release|x64.Build.0 = Release|Any CPU
 		{6E0D8239-0AF3-426C-81D3-2E2C155D0848}.Release|x86.ActiveCfg = Release|Any CPU
 		{6E0D8239-0AF3-426C-81D3-2E2C155D0848}.Release|x86.Build.0 = Release|Any CPU
-		{FEB3CF42-49A9-40A9-85E3-37DBD86F462B}.Debug|Any CPU.ActiveCfg = Debug
-		{FEB3CF42-49A9-40A9-85E3-37DBD86F462B}.Debug|x64.ActiveCfg = Debug
-		{FEB3CF42-49A9-40A9-85E3-37DBD86F462B}.Debug|x86.ActiveCfg = Debug
-		{FEB3CF42-49A9-40A9-85E3-37DBD86F462B}.Release|Any CPU.ActiveCfg = Release
-		{FEB3CF42-49A9-40A9-85E3-37DBD86F462B}.Release|x64.ActiveCfg = Release
-		{FEB3CF42-49A9-40A9-85E3-37DBD86F462B}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
