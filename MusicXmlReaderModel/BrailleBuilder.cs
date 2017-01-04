@@ -75,7 +75,8 @@ namespace MusicXmlReaderModel
         public static readonly byte[] Staccatissimo = new byte[] { 32, 38 };    // Articulation mark
         public static readonly byte[] Tenuto = new byte[] { 56, 38 };   // Articulation mark
         public static readonly byte[] TenutoStaccato = new byte[] { 16, 38 };// Articulation mark
-        public static readonly byte[] Accent = new byte[] { 24, 38 };// Articulation mark
+        public static readonly byte[] Accent = new byte[] { (dot4 + dot6 ) ,( dot2 + dot3 + dot6) }; // Articulation mark ">"
+        public static readonly byte[] StrongAccent = new byte[] { (dot5 + dot6) , (dot2 + dot3 + dot6) }; // Articulation mark "V" or "^"
         public static readonly byte[] Martellato = new byte[] { 48, 38 };// Articulation mark
         public static readonly byte[] CommaHalfBreath = new byte[] { 28, 2 };     //  Articulation mark Ref.3 Page 268
         public static readonly byte[] FullBreakOrBreath = new byte[] { 32, 12 };  //  Articulation mark Ref.3 Page 268
@@ -474,7 +475,7 @@ namespace MusicXmlReaderModel
                         case ArticulationsElement.Articulation.staccatissimo: Append(Staccatissimo, "Staccatissimo"); break;
                         case ArticulationsElement.Articulation.staccato: Append(Staccato, "Staccato"); break;
                         case ArticulationsElement.Articulation.stress: implemented = false; break;
-                        case ArticulationsElement.Articulation.strongaccent: implemented = false; break;
+                        case ArticulationsElement.Articulation.strongaccent: Append(StrongAccent, "StrongAccent"); break;
                         case ArticulationsElement.Articulation.tenuto: Append(Tenuto, "Tenuto"); break;
                         case ArticulationsElement.Articulation.unstress: implemented = false; break;
                         default:
