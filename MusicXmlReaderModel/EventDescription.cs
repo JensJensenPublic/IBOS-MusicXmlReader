@@ -608,7 +608,7 @@ namespace MusicXmlReaderModel
                 if (foundTermination)
                 {
                     bbAfterNotes.Append(BrailleBuilder.fullEnd, "FullEnd");
-                    Logger.Log(string.Format("{0}.{1} Found a termination", className, functionName));
+                    Logger.LogOnce(string.Format("{0}.{1} Found a termination", className, functionName));
                 }
             }
 
