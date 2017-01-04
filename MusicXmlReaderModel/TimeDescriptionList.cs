@@ -37,8 +37,15 @@ namespace MusicXmlReaderModel
                         if (noteElement.GraceNote)
                         {
                             // Grace notes are not implemented yet, but they must be explicitly ignored.
-                            // TO DO: Implement grace notes.
-                            Logger.Log(string.Format("TimeDescriptionList constructor ignoring grace note {0} in measure {1}", noteElement.Step + noteElement.Octave, noteElement.MeasureNumber));
+                            // TO DO: Implement grace notes.                    
+                            if (noteElement.Pitched)
+                            {
+                                Logger.Log(string.Format("TimeDescriptionList constructor ignoring grace note {0} in measure {1} part {2}", noteElement.Step + noteElement.Octave, noteElement.MeasureNumber,noteElement.PartId));
+                            }
+                            else
+                            {
+                                Logger.Log(string.Format("TimeDescriptionList constructor ignoring unpitched grace note in measure {0} part {1}",noteElement.MeasureNumber,noteElement.PartId));
+                            }
                         }
                         else
                         {

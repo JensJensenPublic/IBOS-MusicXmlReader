@@ -108,6 +108,14 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public bool Pitched
+        {
+            get
+            {
+                return (null != pitchElement);
+            }
+        }
+
         public int Transpose
         {
             get
