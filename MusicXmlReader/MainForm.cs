@@ -668,8 +668,16 @@ namespace MusicXmlReader
             }
 
             bool newValue;
+            bool toggleAndCopy;
             // We only handle the shortcuts specified in shortCutHandler
-            if (!shortCutHandler.IsTreeViewMultiControlShortcut(e,out newValue)) return;
+            if (!shortCutHandler.IsTreeViewMultiControlShortcut(e,out newValue,out toggleAndCopy)) return;
+            if (toggleAndCopy)
+            {
+                // new valye is the togled value of the node that was clisked!
+                newValue = !userSettingsTreeView.SelectedNode.Checked;
+                e.Handled = true;  // Prevents that the control wil toggle this checkbox once more !                
+            }
+
             // We only handle level 2 nodes
             if (2 != userSettingsTreeView.SelectedNode.Level) return;
  

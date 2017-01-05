@@ -156,13 +156,15 @@ namespace MusicXmlReader
         // UserSettingsTreeview:
         static public readonly Keys[] checkAll   = new Keys[] { ((Keys)((Keys.Control | Keys.D1))) };
         static public readonly Keys[] uncheckAll = new Keys[] { ((Keys)((Keys.Control | Keys.D0))) };
+        static public readonly Keys[] toggleAndCopy = new Keys[] { ((Keys)((Keys.Control | Keys.Space))) };
 
-        public bool IsTreeViewMultiControlShortcut(KeyEventArgs e, out bool newValue)
+        public bool IsTreeViewMultiControlShortcut(KeyEventArgs e, out bool newValue,out bool toggle)
         {
             bool check   = checkAll.Contains(e.KeyData);
             bool unCheck = uncheckAll.Contains(e.KeyData);
+            toggle = toggleAndCopy.Contains(e.KeyData);
             newValue = check;
-            return (check || unCheck);
+            return (check || unCheck || toggle);
         }
         static public readonly Keys listBoxFocus = (Keys)(Keys.Control | Keys.L);
 
