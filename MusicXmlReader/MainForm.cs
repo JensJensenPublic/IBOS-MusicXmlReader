@@ -371,6 +371,7 @@ namespace MusicXmlReader
                 MessageBox.Show(message, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Logger.Log(string.Format("Failed to read {0}", openFileDialog.FileName)); // Full filename for UI
                 Logger.DumpStatistics(); // Dump all statistics collected by LogOnce() until now
+                this.Text = ApplicationName; // Remove any exixting filename from the title bar
                 return;
             }
 
@@ -408,6 +409,8 @@ namespace MusicXmlReader
             // Focus on the listbox representing the time representation
             listBoxTimes.Focus();
             //listBoxTimes.SelectedIndex = 0;
+
+            this.Text = string.Format("{0}       {1}",shortFileName,ApplicationName); // Show the name of the file just loaded in the Title-Line, accessible by <INSERT> + T
         }
 
         private string GetFileOpenInitialDirectory()
