@@ -42,7 +42,8 @@ namespace MusicXmlReaderModel
         string executingAssembly;
         string executingDirectory;
 
-        List<string> metaInfoStrings = new List<string>(); // Selected meta info from the current file, such as Title and Composer
+        List<string> metaInfoStrings  = new List<string>(); // Selected meta info from the current file, such as Title and Composer
+        List<string> titleInfoStrings = new List<string>(); // Selected meta info from the current file, such as Title and Composer to be shown in the title line
 
 
         /// <summary>
@@ -104,6 +105,8 @@ namespace MusicXmlReaderModel
                 {
                     metaInfoStrings = new List<string>(); // Reset Meta Information
                     metaInfoStrings.Add(string.Format("{0}: {1}", ResourcesForModel.MetaInfoText_FileName, Path.GetFileName(fullXmlFileName))); // Guarentees that some meta information exists
+                    titleInfoStrings = new List<string>(); // Reset Title line information
+                    titleInfoStrings.Add(string.Format("{0}", Path.GetFileName(fullXmlFileName))); // Guarentees that some meta information exists
                     Logger.Log(string.Format("Loaded '{0}'", Path.GetFileName(fullXmlFileName)));
                     Logger.Log(string.Format("From   '{0}'", Path.GetDirectoryName(fullXmlFileName)));
                     allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file
@@ -301,13 +304,15 @@ namespace MusicXmlReaderModel
                 case "work":
                     SimpleTextElement workElement = SimpleTextElement.Create(node, "Titel");
                     allMusicXmlObjecsts.Add(workElement);
-                    metaInfoStrings.Add(workElement.ToString()); 
+                    metaInfoStrings.Add(workElement.ToString());
+                    titleInfoStrings.Add(workElement.ToString());
                     continueRecursion = false;
                     break;
                 case "movement-title":
                     SimpleTextElement movementTitle = SimpleTextElement.Create(node, "Opus");
                     allMusicXmlObjecsts.Add(movementTitle);
                     metaInfoStrings.Add(movementTitle.ToString());
+                    titleInfoStrings.Add(movementTitle.ToString());
                     continueRecursion = false;
                     break;
                 case "movement-number":
@@ -321,6 +326,7 @@ namespace MusicXmlReaderModel
                     CreatorElement creatorElement = CreatorElement.Create(node);
                     allMusicXmlObjecsts.Add(creatorElement);
                     metaInfoStrings.Add(creatorElement.ToString());
+                    titleInfoStrings.Add(creatorElement.ToString());
                     continueRecursion = false;
                     break;
                 case "rights":
@@ -439,6 +445,7 @@ namespace MusicXmlReaderModel
                     SimpleTextElement source = SimpleTextElement.Create(node, "Source");
                     allMusicXmlObjecsts.Add(source);
                     metaInfoStrings.Add(source.ToString());
+                    titleInfoStrings.Add(source.ToString());
                     continueRecursion = false;
                     break;
 
@@ -570,6 +577,15 @@ namespace MusicXmlReaderModel
             }
             
         }
+
+        public List<string> TitleInfoStrings
+        {
+            get
+            {
+                return titleInfoStrings;
+            }
+        }
+
 
         public List<string> MetaInfoStrings
         {

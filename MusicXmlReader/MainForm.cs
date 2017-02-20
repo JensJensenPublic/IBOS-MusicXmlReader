@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Windows.Forms;
 using System.Globalization;
 using MusicXmlReaderUI;
@@ -356,9 +357,9 @@ namespace MusicXmlReader
                 return; // Let the user press ESC without warning him
             }
 
-            textBoxMessage.Focus();
+            textBoxStatusInformation.Focus();
             string shortFileName = System.IO.Path.GetFileName(openFileDialog.FileName);
-            textBoxMessage.Text = string.Format("{0} '{1}'",ResourcesForUI.TextBox_Messages_Reading_File, shortFileName);
+            textBoxStatusInformation.Text = string.Format("{0} '{1}'",ResourcesForUI.TextBox_Messages_Reading_File, shortFileName);
 
             Logger.ClearStatistics();  // Clear statistics to be collected while loading, parsing and rendering the MusicXml file:
 
@@ -366,7 +367,7 @@ namespace MusicXmlReader
             {
                 // Simple error handling
                 string message = string.Format("{0} '{1}'", ResourcesForUI.TextBox_Messages_FailedToRead_File, shortFileName); // Short filename for UI
-                textBoxMessage.Text = message;
+                textBoxStatusInformation.Text = message;
                 ShowWarning((int)ModelMessageEnum.FailedToReadMusicXmlFile, shortFileName, "");
                 MessageBox.Show(message, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Logger.Log(string.Format("Failed to read {0}", openFileDialog.FileName)); // Full filename for UI
@@ -397,7 +398,7 @@ namespace MusicXmlReader
             //this.userSettingsTreeView.ExpandAll();
             userSettingsHandler.CheckSelectedNotes();
 
-            LoadTextBoxMessage();
+            LoadTextBoxStatusInformation();    
 
             // Let the Model do the hard work of transforming to e timed representation.
             LoadListBoxTimes();
@@ -410,7 +411,7 @@ namespace MusicXmlReader
             listBoxTimes.Focus();
             //listBoxTimes.SelectedIndex = 0;
 
-            this.Text = string.Format("{0}       {1}",shortFileName,ApplicationName); // Show the name of the file just loaded in the Title-Line, accessible by <INSERT> + T
+            this.Text = string.Format("{0}       {1}",GetTitleInfo(),ApplicationName); // Show the name of the file just loaded in the Title-Line, accessible by <INSERT> + T
         }
 
         private string GetFileOpenInitialDirectory()
@@ -438,12 +439,22 @@ namespace MusicXmlReader
             }
         }
 
-        private void LoadTextBoxMessage()
+        private string GetTitleInfo()
         {
-            textBoxMessage.Clear();
+            StringBuilder sb = new StringBuilder();
+            foreach (string s in model.TitleInfoStrings)
+            {
+                sb.Append(s + "    ");
+            }
+            return sb.ToString();
+        }
+
+        private void LoadTextBoxStatusInformation()
+        {
+            textBoxStatusInformation.Clear();
             foreach (string s in model.MetaInfoStrings)
             {
-                textBoxMessage.AppendText(s + "    ");
+                textBoxStatusInformation.AppendText(s + "    ");
             }
 
         }
@@ -607,8 +618,8 @@ namespace MusicXmlReader
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBoxMessage.Text = ResourcesForUI.TextBox_Messages_TheProgramIsExiting;
-            textBoxMessage.Refresh();
+            textBoxStatusInformation.Text = ResourcesForUI.TextBox_Messages_TheProgramIsExiting;
+            textBoxStatusInformation.Refresh();
             // Remaining actions are taken in Application_ApplicationExit.
             // In this way the Model will always be shut down no matter why the application exits.
             Application.Exit();
