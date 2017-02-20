@@ -82,7 +82,6 @@
             this.textBoxBraille = new System.Windows.Forms.TextBox();
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.textBoxNormalText = new System.Windows.Forms.TextBox();
             this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
@@ -524,15 +523,6 @@
             // 
             this.openFileDialog.FileName = "openFileDialog1";
             // 
-            // textBoxMessage
-            // 
-            this.textBoxMessage.Location = new System.Drawing.Point(265, 28);
-            this.textBoxMessage.Name = "textBoxMessage";
-            this.textBoxMessage.ReadOnly = true;
-            this.textBoxMessage.Size = new System.Drawing.Size(950, 20);
-            this.textBoxMessage.TabIndex = 7;
-            this.textBoxMessage.TabStop = false;
-            // 
             // textBoxNormalText
             // 
             this.textBoxNormalText.Location = new System.Drawing.Point(10, 485);
@@ -569,7 +559,6 @@
             this.Controls.Add(this.textBoxStatusInformation);
             this.Controls.Add(this.textBoxCommand);
             this.Controls.Add(this.textBoxNormalText);
-            this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.textBoxText);
             this.Controls.Add(this.textBoxBraille);
             this.Controls.Add(this.listBoxTimes);
@@ -602,7 +591,6 @@
         private System.Windows.Forms.ToolStripMenuItem openMusicXmlFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.TextBox textBoxMessage;
         private System.Windows.Forms.ToolStripMenuItem museScoreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sibeliusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logfileToolStripMenuItem;
