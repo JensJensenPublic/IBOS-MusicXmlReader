@@ -647,9 +647,10 @@ namespace MusicXmlReaderModel
         /// Add a NoteElement
         /// </summary>
         /// <param name="noteElement">The NoteElement to add</param>
-        public void AddNote(NoteElement noteElement,int fifths)
+        public void AddNote(NoteElement noteElement,KeyElement currentKeyElement)
         {
             string functionName = "AddNote";
+            int fifths = (null == currentKeyElement) ? 0 : currentKeyElement.Fifths;
 
             // Get midified values for Alter and antural, taking in account the current key.
             int alter = noteElement.Alter;

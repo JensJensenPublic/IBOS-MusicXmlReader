@@ -335,7 +335,7 @@ namespace MusicXmlReaderModel
                             // This is a note
                             bb1.Append("<");
                             if (addNotations) bb1.AddBrailleNotationsBeforeNoteOrRest(noteElement.Notations); // Some notations are added Before the note/rest itself                       
-                            bb1.AddNote(noteElement,statusInformation.CurrentKeyElement.Fifths);
+                            bb1.AddNote(noteElement,statusInformation.CurrentKeyElement);
                             if (addNotations) bb1.AddBrailleNotationsAfterNoteOrRest(noteElement.Notations);  // Some notations are added After the note/rest itself
                             bb1.Append(">");
 
@@ -348,7 +348,7 @@ namespace MusicXmlReaderModel
                 {
                     Logger.Log(string.Format("EventDescription.NotesForOnePartAsBraille threw an exception. Message='{0}'", e.Message));
                     Logger.Log(string.Format("NoteElement: Step={0} Alter={1} Octave={2} Duration={3} Measure={4} Part={5}",
-                        noteElement.Step, noteElement.Alter, noteElement.Octave, noteElement.Notations.ToString(), noteElement.MeasureNumber, noteElement.PartId));
+                        noteElement.Step, noteElement.Alter, noteElement.Octave, noteElement.Duration.ToString(), noteElement.MeasureNumber, noteElement.PartId));
                 }
             }
 
