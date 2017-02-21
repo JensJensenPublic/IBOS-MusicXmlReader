@@ -15,7 +15,8 @@ namespace MusicXmlReaderModel
         private TimeElement currentTimeElement;
         private HarmonyElement currentHarmonyElement;
 
-        // The tempo modufication is defined from the client, not from the xml file 
+        // The tempo modufication is defined from the client, not from the xml file
+        // so it is modelled as a static variable and is ´referenced in the copy constructor! 
         private static int currentTempoModification = 100; // 100 %
 
         #region encapsulation
