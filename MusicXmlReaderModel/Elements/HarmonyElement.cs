@@ -105,7 +105,11 @@ namespace MusicXmlReaderModel
             chordType = MidiChord.GetChordType(kind);
             if (ChordType.UnImplemented == chordType)
             {
-                Logger.LogOnce(string.Format("{0}.{1} found unimpmemented harmony kind={2}", className, functionName, kind));
+                Logger.LogOnce(string.Format("{0}.{1} found unimplemented harmony kind={2}", className, functionName, kind));
+            }
+            if (ChordType.Unknown == chordType)
+            {
+                Logger.LogOnce(string.Format("{0}.{1} found unknown harmony kind={2}", className, functionName, kind));
             }
             localizedChordType = MidiChord.LocalizeChordType(chordType);
         }

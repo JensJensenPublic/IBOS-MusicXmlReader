@@ -4,7 +4,8 @@ using NAudio.Midi;
 namespace JSJ.MusicSynthesis
 {
 
-    public enum ChordType {
+    public enum ChordType
+    {
         // Triads
         Major, Minor, Aug, Dim, Major6, Minor6,                     // 6 triads
         // Sevenths
@@ -17,8 +18,10 @@ namespace JSJ.MusicSynthesis
         Dom13, Major13, Minor13,                                    // 3 thirteenths
         // Suspended
         Sus2, Sus4,                                                 // 2 sus
-        // Unimplemented
-        UnImplemented };
+        // 
+        UnImplemented,                                              // Mentioned in the MusicXml definition, but not implemented here        
+        Unknown                                                     // Not mentioned in the MusicXml definition, 
+    };
 
 
     public class MidiChord
@@ -112,7 +115,24 @@ namespace JSJ.MusicSynthesis
                 case "suspended-second": return ChordType.Sus2;         // (major second, perfect fifth)    https://en.wikipedia.org/wiki/Suspended_chord {0,2,7}
                 case "suspended-fourth": return ChordType.Sus4;         // (perfect fourth, perfect fifth)  https://en.wikipedia.org/wiki/Suspended_chord {0,5,7}
 
-                default: return ChordType.UnImplemented;
+                // Other chords, mentioned in http://usermanuals.musicxml.com/MusicXML/Content/ST-MusicXML-kind-value.htm but not implemented here
+
+                // Functional sixths
+                case "Neapolitan ":
+                case "Italian":
+                case "French":
+                case "German":
+
+                // Other kinds
+                case "pedal":
+                case "power":
+                case "Tristan":
+                case "other": // The "other" kind is used when the harmony is entirely composed of add elements.
+                case "none":  // The "none"  kind is used to explicitly encode absence of chords or functional 
+                    return ChordType.UnImplemented;
+
+                //  Chords, NOT mentioned in http://usermanuals.musicxml.com/MusicXML/Content/ST-MusicXML-kind-value.htm
+                default: return ChordType.Unknown;
             }
         }
 
@@ -163,7 +183,7 @@ namespace JSJ.MusicSynthesis
         }
 
 
-        public static string LocalizeChordType(ChordType chordType)
+        public static string LocalizeChordType(ChordType chordType) // TODO Localize !!
         {
             switch (chordType)
             {
@@ -171,35 +191,35 @@ namespace JSJ.MusicSynthesis
                 // Triads
 
                 case ChordType.Major:   return ""; // Or "dur"
-                case ChordType.Minor:   return "mol";
+                case ChordType.Minor:   return "m";
                 case ChordType.Dim:     return "dim";
                 case ChordType.Aug:     return "aug";
                 case ChordType.Major6:  return "dur6";
-                case ChordType.Minor6:  return "mol6";
+                case ChordType.Minor6:  return "m6";
 
                 // Sevenths:
                 case ChordType.Dom7:    return "7";     // A  major with an added 7
                 case ChordType.Major7:  return "maj7";  // A major with an added major 7
-                case ChordType.Minor7:  return "mol7";  // A minor with an added 7
+                case ChordType.Minor7:  return "m7";  // A minor with an added 7
                 case ChordType.MajorMinor: return "molmaj"; // Aminor with an added major7
                 case ChordType.Aug7:    return "aug7";
-                case ChordType.HalfDim7:return "mol7b5"; // ??
+                case ChordType.HalfDim7:return "m7b5"; // ??
                 case ChordType.FullDim7:return "dim7"; // ??
 
                 // Ninths
                 case ChordType.Dom9:    return "9";     // Dom7 with a 9
                 case ChordType.Major9:  return "maj9"; //  maj7 with a 9
-                case ChordType.Minor9:  return "mol9"; //  m7 with a 9
+                case ChordType.Minor9:  return "m9"; //  m7 with a 9
 
                 // Elevenths
                 case ChordType.Dom11:   return "11";
                 case ChordType.Major11: return "maj11"; 
-                case ChordType.Minor11: return "mol11";
+                case ChordType.Minor11: return "m11";
 
                 // Thirteenths
                 case ChordType.Dom13:   return "13";
                 case ChordType.Major13: return "maj13"; 
-                case ChordType.Minor13: return "mol13";
+                case ChordType.Minor13: return "m13";
 
                 // Suspended
                 case ChordType.Sus2:    return "sus2";
