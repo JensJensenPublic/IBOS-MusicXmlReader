@@ -50,8 +50,8 @@ namespace JSJ.MusicSynthesis
         static readonly Interval[] Minor11ChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth, Interval.Eleventh };
         // Thirteenths:
         static readonly Interval[] Dom13ChordIntervals   = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth, Interval.Eleventh, Interval.Thirteenth };
-        static readonly Interval[] Major13ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.Thirteenth };
-        static readonly Interval[] Minor13ChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.Thirteenth};
+        static readonly Interval[] Major13ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MajorSeventh, Interval.Ninth, Interval.Eleventh, Interval.Thirteenth };
+        static readonly Interval[] Minor13ChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth, Interval.Eleventh, Interval.Thirteenth};
         // Sustained 
         static readonly Interval[] Sus2ChordIntervals    = new Interval[] { Interval.Unison, Interval.MajorSecond, Interval.MajorSeventh };
         static readonly Interval[] Sus4ChordIntervals    = new Interval[] { Interval.Unison, Interval.Fourth, Interval.MinorSeventh };
@@ -171,19 +171,19 @@ namespace JSJ.MusicSynthesis
                 // Triads
 
                 case ChordType.Major:   return "dur"; // Or just ""
-                case ChordType.Minor:   return "mol";
+                case ChordType.Minor:   return "m";
                 case ChordType.Dim:     return "dim";
                 case ChordType.Aug:     return "aug";
                 case ChordType.Major6:  return "dur6";
-                case ChordType.Minor6:  return "mol6";
+                case ChordType.Minor6:  return "m6";
 
                 // Sevenths:
                 case ChordType.Dom7:    return "7";     // A  major with an added 7
                 case ChordType.Major7:  return "maj7";  // A major with an added major 7
-                case ChordType.Minor7:  return "mol7";  // A minor with an added 7
+                case ChordType.Minor7:  return "m7";  // A minor with an added 7
                 case ChordType.MinorMajor: return "molmaj"; // Aminor with an added major7
                 case ChordType.Aug7:    return "aug7";
-                case ChordType.HalfDim7:return "mol7b5"; // ??
+                case ChordType.HalfDim7:return "m7b5"; // ??
                 case ChordType.FullDim7:return "dim7"; // ??
 
                 // Ninths
@@ -193,13 +193,13 @@ namespace JSJ.MusicSynthesis
 
                 // Elevenths
                 case ChordType.Dom11:   return "11";
-                case ChordType.Major11: return "dur11"; // Or just "11"
-                case ChordType.Minor11: return "mol11";
+                case ChordType.Major11: return "maj11"; 
+                case ChordType.Minor11: return "m11";
 
                 // Thirteenths
-                case ChordType.Dom13:   return "dom13";
-                case ChordType.Major13: return "dur13"; // Or just "13"
-                case ChordType.Minor13: return "mol13";
+                case ChordType.Dom13:   return "13";
+                case ChordType.Major13: return "maj13"; 
+                case ChordType.Minor13: return "m13";
 
                 // Suspended
                 case ChordType.Sus2:    return "sus2";
