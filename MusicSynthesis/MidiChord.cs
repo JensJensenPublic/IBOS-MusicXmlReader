@@ -118,10 +118,10 @@ namespace JSJ.MusicSynthesis
                 // Other chords, mentioned in http://usermanuals.musicxml.com/MusicXML/Content/ST-MusicXML-kind-value.htm but not implemented here
 
                 // Functional sixths
-                case "Neapolitan ":
-                case "Italian":
-                case "French":
-                case "German":
+                case "Neapolitan ":     // https://en.wikipedia.org/wiki/Neapolitan_chord
+                case "Italian":         // https://en.wikipedia.org/wiki/Augmented_sixth_chord#Italian_sixth
+                case "French":          // https://en.wikipedia.org/wiki/Augmented_sixth_chord#Italian_sixth
+                case "German":          // https://en.wikipedia.org/wiki/Augmented_sixth_chord#Italian_sixth
 
                 // Other kinds
                 case "pedal":
