@@ -686,8 +686,16 @@ namespace MusicXmlReaderModel
 
         public void SetUserTempo(int tempo)
         {
+            UserSettings.UserTempo = tempo;
             musicPlayer.SetUserTempo(tempo); // Change the actual tempo
             currentStatusInformation.CurrentTempoModification = tempo; // Show the new tempo in the status line
+        }
+
+        public void ChangeUserTempo(int change)
+        {
+            UserSettings.UserTempo += change;
+            musicPlayer.SetUserTempo(UserSettings.UserTempo); // Change the actual tempo
+            currentStatusInformation.CurrentTempoModification = UserSettings.UserTempo; // Show the new tempo in the status line
         }
 
 

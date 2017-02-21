@@ -661,6 +661,21 @@ namespace MusicXmlReader
                 return;            
             }
 
+            if (shortCutHandler.IsTempoDecrementShortcut(e))
+            {
+                model.ChangeUserTempo(-1);
+                e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control. 
+                return;
+            }
+
+            if (shortCutHandler.IsTempoIncrementShortcut(e))
+            {
+                model.ChangeUserTempo(1);
+                e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
+                return;
+            }
+
+
             if (shortCutHandler.IsStartPlayingShortcut(e))
             {
                 model.StartPlayingPoly(listBoxTimes.SelectedIndex);

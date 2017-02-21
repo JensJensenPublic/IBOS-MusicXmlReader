@@ -163,6 +163,8 @@ namespace MusicXmlReaderModel
 
         // Tempo settings
         private int userTempo = 100; // Percentage of tempo indicated in score
+        private int minUserTempo = 1;
+        private int maxUserTempo = 1000;
         public int UserTempo
         {
             get
@@ -172,6 +174,14 @@ namespace MusicXmlReaderModel
 
             set
             {
+                if (value < minUserTempo)
+                {
+                    value = minUserTempo;
+                }
+                if (value > maxUserTempo)
+                {
+                    value = maxUserTempo;
+                }
                 userTempo = value;
             }
         }

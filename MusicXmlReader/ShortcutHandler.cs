@@ -153,6 +153,12 @@ namespace MusicXmlReader
         static public readonly Keys stopPlaying  = ((Keys)((Keys.Control | Keys.Shift | Keys.P)));
         static public readonly Keys[] togglePlaying = new Keys[] {Keys.Space};
 
+
+        // Tempo control of AutoPlay
+        static public readonly Keys tempoIncrement = ((Keys)((Keys.Control | Keys.Up)));
+        static public readonly Keys tempoDecrement = ((Keys)((Keys.Control | Keys.Down)));
+
+
         // UserSettingsTreeview:
         static public readonly Keys[] checkAll   = new Keys[] { ((Keys)((Keys.Control | Keys.D1))) };
         static public readonly Keys[] uncheckAll = new Keys[] { ((Keys)((Keys.Control | Keys.D0))) };
@@ -199,6 +205,16 @@ namespace MusicXmlReader
         public bool IsStartPlayingShortcut(KeyEventArgs e)
         {
             return (e.KeyData == startPlaying);
+        }
+
+        public bool IsTempoDecrementShortcut(KeyEventArgs e)
+        {
+            return (e.KeyData == tempoDecrement);        
+        }
+
+        public bool IsTempoIncrementShortcut(KeyEventArgs e)
+        {
+            return (e.KeyData == tempoIncrement);
         }
 
         public bool IsStopPlayingShortcut(KeyEventArgs e)
