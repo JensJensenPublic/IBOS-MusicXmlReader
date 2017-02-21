@@ -6,6 +6,7 @@ namespace MusicXmlReaderModel
 
     public class HarmonyElement : EventElement
     {
+        string className = "HarmonyElement";
         // Variables read directly fromthe MusucXml file
         string kind;
         string rootStep;
@@ -78,6 +79,7 @@ namespace MusicXmlReaderModel
         /// <param name="node"></param>
         private HarmonyElement(XmlNode node)
         {
+            string functionName = "HarmonyElement";
             // Dig out elements
             foreach (XmlNode n in node.ChildNodes)
             {
@@ -101,6 +103,10 @@ namespace MusicXmlReaderModel
             // Fill in derived values
             chromaticStep = MidiNote.GetChromaticStep(rootStep, rootAlter);
             chordType = MidiChord.GetChordType(kind);
+            if (ChordType.UnImplemented == chordType)
+            {
+                Logger.LogOnce(string.Format("{0}.{1} found unimpmemented harmony kind={2}", className, functionName, kind));
+            }
             localizedChordType = MidiChord.LocalizeChordType(chordType);
         }
 

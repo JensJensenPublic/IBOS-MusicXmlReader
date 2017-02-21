@@ -8,7 +8,7 @@ namespace JSJ.MusicSynthesis
         // Triads
         Major, Minor, Aug, Dim, Major6, Minor6,                     // 6 triads
         // Sevenths
-        Dom7, Major7, Minor7, Aug7, FullDim7, HalfDim7, MinorMajor, // 7 sevenths
+        Dom7, Major7, Minor7, Aug7, FullDim7, HalfDim7, MajorMinor, // 7 sevenths
         // Ninths
         Dom9, Major9, Minor9,                                       // 3 ninths
         // Elevenths
@@ -36,7 +36,7 @@ namespace JSJ.MusicSynthesis
         static readonly Interval[] Dom7ChordIntervals   = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh };
         static readonly Interval[] Major7ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MajorSeventh };
         static readonly Interval[] Minor7ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh };
-        static readonly Interval[] MinorMajorChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.MajorSeventh };
+        static readonly Interval[] MajorMinorChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.MajorSeventh };
         static readonly Interval[] Aug7ChordIntervals    = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.AugmentedFifth, Interval.MinorSeventh };
         static readonly Interval[] HalfDim7ChordIntervals= new Interval[] { Interval.Unison, Interval.MinorThird, Interval.Fourth, Interval.MinorSeventh };
         static readonly Interval[] FullDim7ChordIntervals= new Interval[] { Interval.Unison, Interval.MinorThird, Interval.Fourth, Interval.DiminishedSeventh };
@@ -86,7 +86,7 @@ namespace JSJ.MusicSynthesis
                                                                         // (augmentedminor seventh:         https://en.wikipedia.org/wiki/Augmented_seventh_chord           {0,4,8,10}  
                                                                         // (augmentedmajor seventh:         https://en.wikipedia.org/wiki/Augmented_major_seventh_chord     {0,4,8,11}
                 case "half-diminished":; return ChordType.HalfDim7;     // (diminished triad, minor seventh) https://en.wikipedia.org/wiki/Half-diminished_seventh_chord    {0,3,6,10}
-                case "minor-major": return ChordType.MinorMajor;        // (minor triad, major seventh)     https://en.wikipedia.org/wiki/Minor_major_seventh_chord         {0,3,7,11}
+                case "major-minor": return ChordType.MajorMinor;        // (minor triad, major seventh)     https://en.wikipedia.org/wiki/Minor_major_seventh_chord         {0,3,7,11}
 
                 // Sixths
                 case "major-sixth": return ChordType.Major6;            // (major triad, added sixth)       https://en.wikipedia.org/wiki/Major_6th_chord  
@@ -136,7 +136,7 @@ namespace JSJ.MusicSynthesis
                 case ChordType.Dom7: return Dom7ChordIntervals;
                 case ChordType.Major7: return Major7ChordIntervals;
                 case ChordType.Minor7: return Minor7ChordIntervals;
-                case ChordType.MinorMajor: return MinorMajorChordIntervals;
+                case ChordType.MajorMinor: return MajorMinorChordIntervals;
                 case ChordType.Aug7: return Aug7ChordIntervals;
                 case ChordType.HalfDim7: return HalfDim7ChordIntervals;
                 case ChordType.FullDim7: return FullDim7ChordIntervals;
@@ -170,7 +170,7 @@ namespace JSJ.MusicSynthesis
 
                 // Triads
 
-                case ChordType.Major:   return "dur"; // Or just ""
+                case ChordType.Major:   return ""; // Or "dur"
                 case ChordType.Minor:   return "m";
                 case ChordType.Dim:     return "dim";
                 case ChordType.Aug:     return "aug";
@@ -181,7 +181,7 @@ namespace JSJ.MusicSynthesis
                 case ChordType.Dom7:    return "7";     // A  major with an added 7
                 case ChordType.Major7:  return "maj7";  // A major with an added major 7
                 case ChordType.Minor7:  return "m7";  // A minor with an added 7
-                case ChordType.MinorMajor: return "molmaj"; // Aminor with an added major7
+                case ChordType.MajorMinor: return "molmaj"; // Aminor with an added major7
                 case ChordType.Aug7:    return "aug7";
                 case ChordType.HalfDim7:return "m7b5"; // ??
                 case ChordType.FullDim7:return "dim7"; // ??
