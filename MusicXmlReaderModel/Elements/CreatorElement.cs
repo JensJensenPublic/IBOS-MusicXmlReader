@@ -12,6 +12,22 @@ namespace MusicXmlReaderModel
         private CreatorTypeEnum creatorType;
         string value = "";
 
+        public string Value
+        {
+            get
+            {
+                return value;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return LocalizeCreatorType(creatorType);
+            }
+        }
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>

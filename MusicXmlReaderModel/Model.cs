@@ -42,9 +42,7 @@ namespace MusicXmlReaderModel
         string executingAssembly;
         string executingDirectory;
 
-        List<string> metaInfoStrings  = new List<string>(); // Selected meta info from the current file, such as Title and Composer
-        List<string> titleInfoStrings = new List<string>(); // Selected meta info from the current file, such as Title and Composer to be shown in the title line
-
+        MetaInformation metaInformation = MetaInformation.Create(); // Holds filename, title, composer, arranger etc.
 
         /// <summary>
         /// Create to be used by UI-less applications
@@ -103,10 +101,8 @@ namespace MusicXmlReaderModel
                 ok = ok && CheckMusicXmlSyntax(doc);
                 if (ok)
                 {
-                    metaInfoStrings = new List<string>(); // Reset Meta Information
-                    metaInfoStrings.Add(string.Format("{0}: {1}", ResourcesForModel.MetaInfoText_FileName, Path.GetFileName(fullXmlFileName))); // Guarentees that some meta information exists
-                    titleInfoStrings = new List<string>(); // Reset Title line information
-                    titleInfoStrings.Add(string.Format("{0}", Path.GetFileName(fullXmlFileName))); // Guarentees that some meta information exists
+                    metaInformation = MetaInformation.Create();
+                    metaInformation.FileName = MetaInfoItem.Create(ResourcesForModel.MetaInfoText_FileName, Path.GetFileName(fullXmlFileName));
                     Logger.Log(string.Format("Loaded '{0}'", Path.GetFileName(fullXmlFileName)));
                     Logger.Log(string.Format("From   '{0}'", Path.GetDirectoryName(fullXmlFileName)));
                     allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file
@@ -302,17 +298,15 @@ namespace MusicXmlReaderModel
                     break;
                 // We know the existance of the following elements, but for the time being we ignore them.
                 case "work":
-                    SimpleTextElement workElement = SimpleTextElement.Create(node, "Titel");
+                    SimpleTextElement workElement = SimpleTextElement.Create(node, "Titel"); // TODO: Localize
                     allMusicXmlObjecsts.Add(workElement);
-                    metaInfoStrings.Add(workElement.ToString());
-                    titleInfoStrings.Add(workElement.ToString());
+                    metaInformation.Work = MetaInfoItem.Create(workElement.Name, workElement.Text);
                     continueRecursion = false;
                     break;
                 case "movement-title":
-                    SimpleTextElement movementTitle = SimpleTextElement.Create(node, "Opus");
+                    SimpleTextElement movementTitle = SimpleTextElement.Create(node, "Opus"); // TODO: Localize
                     allMusicXmlObjecsts.Add(movementTitle);
-                    metaInfoStrings.Add(movementTitle.ToString());
-                    titleInfoStrings.Add(movementTitle.ToString());
+                    metaInformation.MovementTitle = MetaInfoItem.Create(movementTitle.Name, movementTitle.Text);
                     continueRecursion = false;
                     break;
                 case "movement-number":
@@ -325,8 +319,7 @@ namespace MusicXmlReaderModel
                 case "creator":
                     CreatorElement creatorElement = CreatorElement.Create(node);
                     allMusicXmlObjecsts.Add(creatorElement);
-                    metaInfoStrings.Add(creatorElement.ToString());
-                    titleInfoStrings.Add(creatorElement.ToString());
+                    metaInformation.Creator = MetaInfoItem.Create(creatorElement.Name, creatorElement.Value); 
                     continueRecursion = false;
                     break;
                 case "rights":
@@ -444,8 +437,7 @@ namespace MusicXmlReaderModel
                 case "source":
                     SimpleTextElement source = SimpleTextElement.Create(node, "Source");
                     allMusicXmlObjecsts.Add(source);
-                    metaInfoStrings.Add(source.ToString());
-                    titleInfoStrings.Add(source.ToString());
+                    metaInformation.Source = MetaInfoItem.Create(source.Name, source.Text);
                     continueRecursion = false;
                     break;
 
@@ -578,31 +570,6 @@ namespace MusicXmlReaderModel
             
         }
 
-        public List<string> TitleInfoStrings
-        {
-            get
-            {
-                return titleInfoStrings;
-            }
-        }
-
-
-        public List<string> MetaInfoStrings
-        {
-            get
-            {
-                if (userSettings.GetReaderSettings(UserSettings.ReaderSettings.MetaInformation))
-                {
-                    return metaInfoStrings;
-                }
-                else
-                {
-                    return new List<string>(); // Return an empty string
-                }
-            }
-
-        }
-
         public ExternalToolsHandler ExternalToolsHandler
         {
             get
@@ -625,6 +592,14 @@ namespace MusicXmlReaderModel
             get
             {
                 return allMusicXmlObjecsts;
+            }
+        }
+
+        public MetaInformation MetaInformation
+        {
+            get
+            {
+                return metaInformation;
             }
         }
 

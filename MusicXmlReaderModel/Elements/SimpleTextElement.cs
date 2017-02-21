@@ -27,6 +27,22 @@ namespace MusicXmlReaderModel
             text = node.InnerText;
         }
 
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+        }
+
+        public string Text
+        {
+            get
+            {
+                return text;
+            }
+        }
+
         public static SimpleTextElement Create(XmlNode node)
         {
             return new SimpleTextElement(node,null);

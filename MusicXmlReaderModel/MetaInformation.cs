@@ -50,6 +50,16 @@ namespace MusicXmlReaderModel
         {
             return new MetaInfoItem("","");
         }
+
+        public override string ToString()
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return "";
+            }
+            string result = string.Format("{0}:{1}", name, value);
+            return result;
+        }
     }
 
 
@@ -63,12 +73,19 @@ namespace MusicXmlReaderModel
         private MetaInfoItem work = MetaInfoItem.Create();
         private MetaInfoItem movementTitle = MetaInfoItem.Create();
         private MetaInfoItem movementNumber = MetaInfoItem.Create();
+        private MetaInfoItem creator = MetaInfoItem.Create();
+        private MetaInfoItem source = MetaInfoItem.Create();
 
         public MetaInfoItem FileName
         {
             get
             {
                 return fileName;
+            }
+
+            set
+            {
+                fileName = value;
             }
         }
 
@@ -78,6 +95,11 @@ namespace MusicXmlReaderModel
             {
                 return work;
             }
+
+            set
+            {
+                work = value;
+            }
         }
 
         public MetaInfoItem MovementTitle
@@ -85,6 +107,11 @@ namespace MusicXmlReaderModel
             get
             {
                 return movementTitle;
+            }
+
+            set
+            {
+                movementTitle = value;
             }
         }
 
@@ -94,7 +121,38 @@ namespace MusicXmlReaderModel
             {
                 return movementNumber;
             }
+
+            set
+            {
+                movementNumber = value;
+            }
         }
+
+        public MetaInfoItem Creator
+        {
+            get
+            {
+                return creator;
+            }
+
+            set
+            {
+                creator = value;
+            }
+        }
+
+        public MetaInfoItem Source
+        {
+            get
+            {
+                return source;
+            }
+
+            set
+            {
+                source = value;
+            }
+        }  
 
 
         // Prevent construction

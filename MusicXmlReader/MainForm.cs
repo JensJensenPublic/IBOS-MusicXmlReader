@@ -397,8 +397,8 @@ namespace MusicXmlReader
             userSettingsHandler.ExpandAllNodes();
             //this.userSettingsTreeView.ExpandAll();
             userSettingsHandler.CheckSelectedNotes();
-
-            LoadTextBoxStatusInformation();    
+            // Use the status line for meta information ontil overwritten by real status information
+            textBoxStatusInformation.Text = GetStatusFromMetaInformation(); 
 
             // Let the Model do the hard work of transforming to e timed representation.
             LoadListBoxTimes();
@@ -411,7 +411,8 @@ namespace MusicXmlReader
             listBoxTimes.Focus();
             //listBoxTimes.SelectedIndex = 0;
 
-            this.Text = string.Format("{0}       {1}",GetTitleInfo(),ApplicationName); // Show the name of the file just loaded in the Title-Line, accessible by <INSERT> + T
+            //this.Text = string.Format("{0}       {1}",GetTitleInfo(),ApplicationName); // Show the name of the file just loaded in the Title-Line, accessible by <INSERT> + T
+            this.Text = GetTitleInfo();
         }
 
         private string GetFileOpenInitialDirectory()
@@ -439,24 +440,42 @@ namespace MusicXmlReader
             }
         }
 
+        /// <summary>
+        /// Defines the contents of the title-line
+        /// </summary>
+        /// <returns></returns>
         private string GetTitleInfo()
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (string s in model.TitleInfoStrings)
-            {
-                sb.Append(s + "    ");
-            }
-            return sb.ToString();
+            string result = string.Format("{0}  {1}  {2}"
+                                            , ApplicationName // 0
+                                            , model.MetaInformation.FileName // 1
+                                            , model.MetaInformation.MovementTitle // 2
+                                            );
+            return result;
         }
+
+        /// <summary>
+        /// Defines the (initial) contents of the status line
+        /// </summary>
+        /// <returns></returns>
+        private string GetStatusFromMetaInformation()
+        {
+            string result = string.Format("{0}  {1}  {2}  {3}  {4}  {5}  {6}"
+                                            , "" // 0 No need to repeat the application nema here !
+                                            , model.MetaInformation.FileName // 1
+                                            , model.MetaInformation.MovementTitle // 2
+                                            , model.MetaInformation.MovementNumber // 3
+                                            , model.MetaInformation.Work // 4
+                                            , model.MetaInformation.Source // 5 
+                                            , model.MetaInformation.Creator // 6
+                                         );
+            return result;
+        }
+
 
         private void LoadTextBoxStatusInformation()
         {
-            textBoxStatusInformation.Clear();
-            foreach (string s in model.MetaInfoStrings)
-            {
-                textBoxStatusInformation.AppendText(s + "    ");
-            }
-
+            textBoxStatusInformation.Text = GetStatusFromMetaInformation();
         }
 
 
