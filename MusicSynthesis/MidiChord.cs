@@ -42,8 +42,8 @@ namespace JSJ.MusicSynthesis
         static readonly Interval[] FullDim7ChordIntervals= new Interval[] { Interval.Unison, Interval.MinorThird, Interval.Fourth, Interval.DiminishedSeventh };
         // Ninths:
         static readonly Interval[] Dom9ChordIntervals    = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth };
-        static readonly Interval[] Major9ChordIntervals  = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.Ninth };
-        static readonly Interval[] Minor9ChordIntervals  = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.Ninth };
+        static readonly Interval[] Major9ChordIntervals  = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MajorSeventh, Interval.Ninth };
+        static readonly Interval[] Minor9ChordIntervals  = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth };
         // Elevenths:
         static readonly Interval[] Dom11ChordIntervals   = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth,Interval.Eleventh };
         static readonly Interval[] Major11ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.Eleventh };
@@ -187,9 +187,9 @@ namespace JSJ.MusicSynthesis
                 case ChordType.FullDim7:return "dim7"; // ??
 
                 // Ninths
-                case ChordType.Dom9:    return "dom9";
-                case ChordType.Major9:  return "dur9"; // Or just "9"
-                case ChordType.Minor9:  return "mol9";
+                case ChordType.Dom9:    return "9";     // Dom7 with a 9
+                case ChordType.Major9:  return "maj9"; //  maj7 with a 9
+                case ChordType.Minor9:  return "m9"; //  m7 with a 9
 
                 // Elevenths
                 case ChordType.Dom11:   return "dom11";
