@@ -178,12 +178,12 @@ namespace JSJ.MusicSynthesis
                 case ChordType.Minor6:  return "mol6";
 
                 // Sevenths:
-                case ChordType.Dom7:    return "dom7";
-                case ChordType.Major7:  return "dur7";
-                case ChordType.Minor7:  return "mol7";
-                case ChordType.MinorMajor: return "molmaj";
+                case ChordType.Dom7:    return "7";     // A  major with an added 7
+                case ChordType.Major7:  return "maj7";  // A major with an added major 7
+                case ChordType.Minor7:  return "mol7";  // A minor with an added 7
+                case ChordType.MinorMajor: return "molmaj"; // Aminor with an added major7
                 case ChordType.Aug7:    return "aug7";
-                case ChordType.HalfDim7:return "ø7"; // ??
+                case ChordType.HalfDim7:return "mol7b5"; // ??
                 case ChordType.FullDim7:return "dim7"; // ??
 
                 // Ninths
