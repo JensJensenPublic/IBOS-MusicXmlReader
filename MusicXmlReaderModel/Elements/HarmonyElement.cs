@@ -126,7 +126,8 @@ namespace MusicXmlReaderModel
         
         public string ToLocalizedString()
         {
-            string s = string.Format("{0}:{1}-{2}", ResourcesForModel.HarmonyElement_Chord, chromaticStep, localizedChordType);
+            string delimiter = (string.IsNullOrEmpty(localizedChordType)) ? "" : "-"; // Only show delimiter if needed
+            string s = string.Format("{0}:{1}{2}{3}", ResourcesForModel.HarmonyElement_Chord, chromaticStep, delimiter, localizedChordType);
             return s;
         }
 
