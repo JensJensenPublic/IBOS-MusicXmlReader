@@ -15,6 +15,9 @@ namespace MusicXmlReaderModel
         private TimeElement currentTimeElement;
         private HarmonyElement currentHarmonyElement;
 
+        // The tempo modufication is defined from the client, not from the xml file 
+        private static int currentTempoModification = 100; // 100 %
+
         #region encapsulation
         public MeasureElement CurrentMeasureElement
         {
@@ -92,6 +95,19 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public int CurrentTempoModification
+        {
+            get
+            {
+                return currentTempoModification;
+            }
+
+            set
+            {
+                currentTempoModification = value;
+            }
+        }
+
         #endregion // Encapsulation
 
         private void LogChange(string attrubuteName, int oldValue, int newValue)
@@ -134,6 +150,39 @@ namespace MusicXmlReaderModel
             // NOTE!!! Do not forget to add to the Copy-constructor HERE !!
         }
 
+        private string GetTempoString()
+        {
+            string functionName = "GetTempoString";
+            if (null == currentSoundElement)
+            {
+                return "";
+            }
+
+            string result = "";
+            if (100 == currentTempoModification) 
+            {
+                result = currentSoundElement.ToString();
+            }
+            else
+            {
+                string resultingTempo = "";
+                try
+                {
+                    int originalTempo = currentSoundElement.GetTempo();
+                    float modifiedTempo = originalTempo * currentTempoModification / 100;
+                    resultingTempo = string.Format("={0}", modifiedTempo); // efine number of decimals to 0
+                }
+                catch (System.Exception e)
+                {
+                    Logger.Log(string.Format("{0}.{1} failed to compute resulting tempo. Message={2}", className,functionName,e.Message));
+
+                }
+                result = string.Format("{0}*{1}%{2} ", currentSoundElement.ToString(), currentTempoModification.ToString(), resultingTempo);
+            }
+            return result;
+        }
+
+
 
         public override string ToString()
         {
@@ -142,7 +191,7 @@ namespace MusicXmlReaderModel
                 (null == currentTimeElement) ? "?" : currentTimeElement.ToString(), //1
                 (null == currentKeyElement) ? "?" : currentKeyElement.ToString(),        // 2
                 (null == currentHarmonyElement) ? "" : currentHarmonyElement.ToLocalizedString(), //3 // Ignore the case where no narmony is found
-                (null == currentSoundElement) ? "" : currentSoundElement.ToString()); // 4
+                GetTempoString()); // 4 The string describing the tempo is more complex than the others and need a special mothod.
             return s;
         }
 
