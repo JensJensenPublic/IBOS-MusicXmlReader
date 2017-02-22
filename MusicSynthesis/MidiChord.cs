@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using NAudio.Midi;
+using MusicSynthesis;
 
 namespace JSJ.MusicSynthesis
 {
@@ -190,12 +191,12 @@ namespace JSJ.MusicSynthesis
 
                 // Triads
 
-                case ChordType.Major:   return ""; // Or "dur"
-                case ChordType.Minor:   return "m";
-                case ChordType.Dim:     return "dim";
-                case ChordType.Aug:     return "aug";
-                case ChordType.Major6:  return "dur6";
-                case ChordType.Minor6:  return "m6";
+                case ChordType.Major:   return ResourcesForMusicSynthesis.ChordKind_Major;  // ""
+                case ChordType.Minor:   return ResourcesForMusicSynthesis.ChordKind_Minor;  // "m"
+                case ChordType.Dim:     return ResourcesForMusicSynthesis.ChordKind_Dim;    // "dim"
+                case ChordType.Aug:     return ResourcesForMusicSynthesis.ChordKind_Aug;    // "aug"
+                case ChordType.Major6:  return ResourcesForMusicSynthesis.ChordKind_Major6; // "6"
+                case ChordType.Minor6:  return ResourcesForMusicSynthesis.ChordKind_Minor6; // "m6"
 
                 // Sevenths:
                 case ChordType.Dom7:    return "7";     // A  major with an added 7
