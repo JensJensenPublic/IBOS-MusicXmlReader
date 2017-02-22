@@ -684,9 +684,7 @@ namespace MusicXmlReaderModel
             string harmony = "";
             if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
             {
-                //ChromaticStep chromaticStep = MidiNote.GetChromaticStep(harmonyElement.RootStep, harmonyElement.RootAlter);
-                //ChordType chordType = MidiChord.GetChordType(harmonyElement.Kind);
-                harmony = string.Format("{0}-{1}",harmonyElement.ChromaticStep, harmonyElement.LocalizedChordType);
+                harmony = string.Format("{0}{1}  ",harmonyElement.ChromaticStep, harmonyElement.LocalizedChordType); // Use same formatting as used in the status line !!
             }
 
 
