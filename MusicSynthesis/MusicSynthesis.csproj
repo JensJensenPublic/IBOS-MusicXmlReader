@@ -54,6 +54,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ResourcesForMusicSynthesis.da-DK.resx" />
     <EmbeddedResource Include="ResourcesForMusicSynthesis.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesForMusicSynthesis.Designer.cs</LastGenOutput>
