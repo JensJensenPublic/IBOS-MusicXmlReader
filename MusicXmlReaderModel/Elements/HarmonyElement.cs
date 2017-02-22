@@ -4,6 +4,9 @@ using JSJ.MusicSynthesis;
 namespace MusicXmlReaderModel
 {
 
+    // https://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-harmony.htm
+
+
     public class HarmonyElement : EventElement
     {
         string className = "HarmonyElement";
@@ -97,6 +100,19 @@ namespace MusicXmlReaderModel
                         }
                         break;
                     case "kind": kind = n.InnerText; break;
+
+                    case "function":
+                    case "inversion":
+                    case "bass":
+                    case "degree":
+                    case "frame":
+                    case "offset":
+                    case "footnote":
+                    case "level":
+                    case "staff":
+                        Logger.LogOnce(string.Format("{0}.{1} found unimplemented harmony element. Name={2} InnerText={3}", className, functionName, n.Name, n.InnerText)); break;
+                    default:
+                        Logger.LogOnce(string.Format("{0}.{1} found unknown harmony element. Name={2} InnerText={3}", className, functionName, n.Name, n.InnerText)); break;
                 }
             }
 
