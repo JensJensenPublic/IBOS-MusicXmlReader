@@ -142,7 +142,7 @@
     <value>dim7</value>
   </data>
   <data name="ChordKind_HalfDim7" xml:space="preserve">
-    <value>half-diminished</value>
+    <value>m7b5</value>
   </data>
   <data name="ChordKind_Major" xml:space="preserve">
     <value />

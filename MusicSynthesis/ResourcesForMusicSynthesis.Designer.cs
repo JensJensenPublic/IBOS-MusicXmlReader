@@ -133,7 +133,7 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to half-diminished.
+        ///   Looks up a localized string similar to m7b5.
         /// </summary>
         internal static string ChordKind_HalfDim7 {
             get {
