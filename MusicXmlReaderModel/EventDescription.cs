@@ -721,7 +721,7 @@ namespace MusicXmlReaderModel
                 {
                     if (!string.IsNullOrEmpty(keyElement.ToString()))
                     {
-                        keyString = string.Format("{0}", keyElement.ToString());
+                        keyString = string.Format("{0} ", keyElement.ToString());
                     }
                 }
             }
@@ -733,7 +733,7 @@ namespace MusicXmlReaderModel
                 {
                     if (!string.IsNullOrEmpty(clefElement.ToString()))
                     {
-                        clefString = string.Format("{0}", clefElement.ToString());
+                        clefString = string.Format("{0} ", clefElement.ToString());
                     }
                 }
             }
@@ -745,7 +745,7 @@ namespace MusicXmlReaderModel
                 {
                     if (!string.IsNullOrEmpty(timeElement.ToString()))
                     {
-                        clefString = string.Format("{0}", timeElement.ToString());
+                        timeString = string.Format("{0} ", timeElement.ToString());
                     }
                 }
             }
@@ -777,7 +777,8 @@ namespace MusicXmlReaderModel
             }
 
             // Finnally compose the result by concatenating all the substrings in the sequence wanted
-            return measure + repeatBackward + repeatForward + divisions + dynamicsString +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString + keyString + clefString + timeString ;
+            // The first event description (to a certain extent) reflects the sequence in which information is aquired by the eye when scanning a music sheet for prima vista use.
+            return measure + soundString + timeString + keyString + clefString + repeatBackward + repeatForward + divisions + dynamicsString +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString  ;
         }
     }
 }
