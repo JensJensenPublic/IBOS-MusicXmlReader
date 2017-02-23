@@ -482,13 +482,15 @@ namespace MusicXmlReaderModel
         {
             switch (s)
             {
+                case "breve": return NoteTypeEnum.breve; // A double whole note
                 case "whole": return NoteTypeEnum.whole;
                 case "half": return NoteTypeEnum.half;
                 case "quarter": return NoteTypeEnum.quarter;
                 case "eighth":return NoteTypeEnum.eight;
                 case "16th": return NoteTypeEnum.nt16th;
                 case "32nd": return NoteTypeEnum.nt32nd;
-                case "64nd": return NoteTypeEnum.nt64th;
+                case "64th": return NoteTypeEnum.nt64th;
+                case "128th": return NoteTypeEnum.nt128th;
                 case "measure": return NoteTypeEnum.measure;
                 case "unspecified": return NoteTypeEnum.unknown;
                 default:  Logger.LogOnce(string.Format("{0}.{1}: Unknown Fullstep value={2}", className, "GetDuration", s));
