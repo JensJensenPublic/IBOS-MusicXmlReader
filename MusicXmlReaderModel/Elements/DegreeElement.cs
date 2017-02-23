@@ -8,6 +8,10 @@ using System.Xml;
 namespace MusicXmlReaderModel
 {
 
+
+    public enum DegreeAlterEnum { unknown, flat, sharp, none};
+    public enum DegreeTypeEnum  { unknown, add, alter, subtract};
+
    
 
     /// <summary>
@@ -17,8 +21,8 @@ namespace MusicXmlReaderModel
     {
         private string className = "DegreeElement";
         private string degreeValue = "";
-        private string degreeAlter = "";
-        private string degreeType  = "";
+        private DegreeAlterEnum degreeAlter;
+        private DegreeTypeEnum  degreeType;
 
         public string DegreeValue
         {
@@ -28,21 +32,22 @@ namespace MusicXmlReaderModel
             }  
         }
 
-        public string DegreeAlter
+        public DegreeAlterEnum DegreeAlter
         {
             get
             {
                 return degreeAlter;
-            } 
+            }
         }
 
-        public string DegreeType
+        public DegreeTypeEnum DegreeType
         {
             get
             {
                 return degreeType;
-            }  
+            }
         }
+
 
         /// <summary>
         /// Prevent construction
@@ -66,15 +71,27 @@ namespace MusicXmlReaderModel
                     case "degree-alter":
                         switch (n.InnerText)
                         {
-                            case "-1": degreeAlter = "b"; break;
-                            case "0":  degreeAlter = ""; break;
-                            case "":   degreeAlter = ""; break;
-                            case "1":  degreeAlter = "#"; break;
-                            default:
-                                Logger.LogOnce(string.Format("{0}.{1} found unexpected value for degree-alter:{2}", className, functionName, n.InnerText)); break;
-
+                            case "-1": degreeAlter = DegreeAlterEnum.flat; break;
+                            case "0":  degreeAlter = DegreeAlterEnum.none; break;
+                            case "":   degreeAlter = DegreeAlterEnum.none; break;
+                            case "1":  degreeAlter = DegreeAlterEnum.sharp; break;
+                            default:   degreeAlter = DegreeAlterEnum.unknown;
+                                       Logger.LogOnce(string.Format("{0}.{1} found unexpected value for degree-alter:{2}", className, functionName, n.InnerText));
+                                       break;
                         } break;
-                    case "degree-type":  degreeType  = n.InnerText;  break;
+
+                    case "degree-type":
+                        switch (n.InnerText)
+                        {
+                            case "add":     degreeType = DegreeTypeEnum.add; break;
+                            case "alter":   degreeType = DegreeTypeEnum.alter; break;    
+                            case "subtract":degreeType = DegreeTypeEnum.subtract; break;
+                            default:        degreeType = DegreeTypeEnum.unknown;
+                                            Logger.LogOnce(string.Format("{0}.{1} found unexpected value for degree-type:{2}", className, functionName, n.InnerText));
+                                            break;
+                        }
+                        break; 
+                                       
                     default:
                         Logger.LogOnce(string.Format("{0}.{1} found unknown degree element. Name={2} InnerText={3}", className, functionName, n.Name, n.InnerText)); break;
                 }
@@ -84,10 +101,36 @@ namespace MusicXmlReaderModel
             Logger.LogOnce(string.Format("{0}.{1} found DegreeElement: {2}", className, functionName, this.ToString()));
         }
 
-
-        public override string ToString()
+        private string DegreeTypeToString()
         {
-            return string.Format("({0}{1}{2})", degreeType, degreeAlter, degreeValue);
+            switch (degreeType)
+            {
+                case DegreeTypeEnum.add:        return "add";       // TODO: Localize
+                case DegreeTypeEnum.alter:      return "alter";     // TODO: Localize
+                case DegreeTypeEnum.subtract:   return "sub";       // TODO: Localize
+                case DegreeTypeEnum.unknown:    return "";
+                default: return "";
+            }
+        }
+
+
+        private string DegreeAlterToString()        
+        {
+
+            switch (degreeAlter)
+            {
+                case DegreeAlterEnum.flat:      return "b";     // TODO: Localize
+                case DegreeAlterEnum.none:      return "";      // TODO: Localize
+                case DegreeAlterEnum.sharp:     return "#";     // TODO: Localize
+                case DegreeAlterEnum.unknown:   return "";      // TODO: Localize
+                default:                        return "";
+            }
+
+        }
+
+    public override string ToString()
+        {
+            return string.Format("({0}{1}{2})", DegreeTypeToString(), DegreeAlterToString(), degreeValue);
         }
 
         public static DegreeElement Create(XmlNode node)
