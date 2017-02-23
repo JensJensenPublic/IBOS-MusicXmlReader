@@ -14,6 +14,8 @@ namespace MusicXmlReaderModel
         string kind;
         string rootStep;
         string rootAlter;
+        string bassStep;
+        DegreeElement degree;
 
         // Derived variables
         ChromaticStep chromaticStep;
@@ -68,6 +70,14 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public DegreeElement Degree
+        {
+            get
+            {
+                return degree;
+            }
+        }
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
@@ -83,8 +93,7 @@ namespace MusicXmlReaderModel
         private HarmonyElement(XmlNode node)
         {
             string functionName = "HarmonyElement";
-            string bassStep;
-            DegreeElement degree; 
+
             bool implemented = true;
             // Dig out elements
             foreach (XmlNode n in node.ChildNodes)
