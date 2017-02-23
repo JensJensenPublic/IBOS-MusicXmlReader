@@ -119,7 +119,7 @@ namespace MusicXmlReaderModel
                     case "degree": degree = DegreeElement.Create(n);  break; // Handles the logging of unimplemented values
 
                     case "bass": bassStep = n.InnerText; // Avoid repeating log for each different InnerTExt (bass note)
-                        Logger.LogOnce(string.Format("{0}.{1} found unknown harmony element. Name={2}", className, functionName, n.Name)); break;
+                        Logger.LogOnce(string.Format("{0}.{1} Harmony element '{2}' is decoded, but the value not used yet", className, functionName, n.Name)); break;
 
                     case "function":    implemented = false; break;
                     case "inversion":   implemented = false; break;
