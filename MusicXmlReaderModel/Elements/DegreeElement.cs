@@ -20,11 +20,11 @@ namespace MusicXmlReaderModel
     public class DegreeElement
     {
         private string className = "DegreeElement";
-        private string degreeValue = "";
+        private int degreeValue;
         private DegreeAlterEnum degreeAlter;
         private DegreeTypeEnum  degreeType;
 
-        public string DegreeValue
+        public int DegreeValue
         {
             get
             {
@@ -67,7 +67,11 @@ namespace MusicXmlReaderModel
   
                 switch (n.Name)
                 {
-                    case "degree-value": degreeValue = n.InnerText; break; // TODO : Convert to int!
+                    case "degree-value": if (!Utilities.Parse(n.InnerText, ref degreeValue, 0, 19, className + functionName, false)) // "false" => Do not accept an empty string
+                        {
+                            Logger.LogOnce(string.Format("{0}.{1} found unexpected value for degree-value:{2}", className, functionName, n.InnerText));
+                        }
+                        break;
                     case "degree-alter":
                         switch (n.InnerText)
                         {
@@ -130,7 +134,7 @@ namespace MusicXmlReaderModel
 
     public override string ToString()
         {
-            return string.Format("({0}{1}{2})", DegreeTypeToString(), DegreeAlterToString(), degreeValue);
+            return string.Format("({0}{1}{2})", DegreeTypeToString(), DegreeAlterToString(), degreeValue.ToString());
         }
 
         public static DegreeElement Create(XmlNode node)
