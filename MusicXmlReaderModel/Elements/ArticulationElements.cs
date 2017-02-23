@@ -58,7 +58,7 @@ namespace MusicXmlReaderModel
                     case "accent": articulationList.Add(Articulation.accent); break;
                     case "breath-mark": articulationList.Add(Articulation.breathmark); break;
                     case "caesura": articulationList.Add(Articulation.caesura); break;
-                    case "detached - legato": articulationList.Add(Articulation.detachedlegato); break;
+                    case "detached-legato": articulationList.Add(Articulation.detachedlegato); break;
                     case "doit": articulationList.Add(Articulation.doit); break;
                     case "falloff": articulationList.Add(Articulation.falloff); break;
                     case "other-articulation": articulationList.Add(Articulation.otherarticulation); break;
@@ -72,7 +72,7 @@ namespace MusicXmlReaderModel
                     case "tenuto": articulationList.Add(Articulation.tenuto); break;
                     case "unstress": articulationList.Add(Articulation.unstress); break; 
                     default:
-                        Logger.Log(string.Format("ArticulationsElement: Unknown articulation {0}", node.Name));
+                        Logger.LogOnce(string.Format("ArticulationsElement: Unknown articulation {0}", child.Name));
 
                         break;
                 }

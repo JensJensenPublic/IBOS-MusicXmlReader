@@ -161,7 +161,7 @@ namespace MusicXmlReaderUI
             model.ExternalToolsHandler.OpenLogFileLocation();    // Open File Explorer in the directory holding the LogFile
 
        
-            //Console.ReadLine();
+            Console.ReadLine();
         }
     }
 }
