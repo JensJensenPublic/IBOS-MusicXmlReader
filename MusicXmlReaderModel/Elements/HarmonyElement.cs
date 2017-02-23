@@ -84,6 +84,7 @@ namespace MusicXmlReaderModel
         {
             string functionName = "HarmonyElement";
             string bassStep;
+            DegreeElement degree; 
             bool implemented = true;
             // Dig out elements
             foreach (XmlNode n in node.ChildNodes)
@@ -106,10 +107,14 @@ namespace MusicXmlReaderModel
 
                     case "staff": Logger.LogOnce(string.Format("{0}.{1} Element '{2}' explicitly ignored", className, functionName, n.Name)); break;
 
+                    case "degree": degree = DegreeElement.Create(n);  break; // Handles the logging of unimplemented values
+
+                    case "bass": bassStep = n.InnerText; // Avoid repeating log for each different InnerTExt (bass note)
+                        Logger.LogOnce(string.Format("{0}.{1} found unknown harmony element. Name={2}", className, functionName, n.Name)); break;
+
                     case "function":    implemented = false; break;
                     case "inversion":   implemented = false; break;
-                    case "bass":        implemented = false; bassStep = n.InnerText; break;
-                    case "degree":      implemented = false; break;
+
                     case "frame":       implemented = false; break;
                     case "offset":      implemented = false; break;
                     case "footnote":    implemented = false; break;
