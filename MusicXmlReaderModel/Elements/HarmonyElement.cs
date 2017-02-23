@@ -118,7 +118,7 @@ namespace MusicXmlReaderModel
 
                     case "degree": degree = DegreeElement.Create(n);  break; // Handles the logging of unimplemented values
 
-                    case "bass": bassStep = n.InnerText; // Avoid repeating log for each different InnerTExt (bass note)
+                    case "bass": bassStep = n.InnerText; // Avoid repeating log for each different InnerTxt (bass note) TODO: Decode step and alter in a way similar to PitchElement
                         Logger.LogOnce(string.Format("{0}.{1} Harmony element '{2}' is decoded, but the value not used yet", className, functionName, n.Name)); break;
 
                     case "function":    implemented = false; break;

@@ -89,10 +89,10 @@ namespace MusicXmlReaderModel
                     case "voice":
                         // We parse "voice" nodes  but we do explicitly not support them yet. 
                         Utilities.Parse(n.InnerText, ref voiceNumber, 1, int.MaxValue, className + "." + functionName, true);
-                        if (1 != voiceNumber)
-                        {
-                            Logger.LogOnce(string.Format("{0}.{1}: Child='{2}' has unsupported value={3}", className, functionName, n.Name, voiceNumber));
-                        }
+                        //if (1 != voiceNumber)
+                        //{
+                        //    Logger.LogOnce(string.Format("{0}.{1}: Child='{2}' has unsupported value={3}", className, functionName, n.Name, n.InnerText));
+                        //}
                         break;
 
                     default:
