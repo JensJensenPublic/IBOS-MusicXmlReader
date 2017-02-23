@@ -421,15 +421,17 @@ namespace MusicXmlReaderModel
             string value = "";
             switch (noteDuration)
             {
-                case NoteTypeEnum.whole:     value = ResourcesForModel.NoteElement_whole; break;    // "helnode"; break;
-                case NoteTypeEnum.half:      value = ResourcesForModel.NoteElement_half; break;     //"halvnode"; ; break;
-                case NoteTypeEnum.quarter:   value = ResourcesForModel.NoteElement_quarter; break;  // "fjerdedel"; break;
-                case NoteTypeEnum.eight:     value = ResourcesForModel.NoteElement_eight; break;    // "ottendedel"; break;
-                case NoteTypeEnum.nt16th:    value = ResourcesForModel.NoteElement_16th;break;      // "sekstendedel"; break;
-                case NoteTypeEnum.nt32nd:    value = ResourcesForModel.NoteElement_32nd; break;     //"toogtredivtedel"; break;
-                case NoteTypeEnum.nt64th:    value = ResourcesForModel.NoteElement_64th; break;     //"fireogtredsindstyvendedel"; break;
-                case NoteTypeEnum.measure:   value = ResourcesForModel.NoteElement_measure;break;   //  "heltakt"; break;
-                case NoteTypeEnum.unknown: value = "ukendt"; break;
+                case NoteTypeEnum.breve:    value = ResourcesForModel.NoteElement_breve; break;    // "dobbelthelnode"; break;
+                case NoteTypeEnum.whole:    value = ResourcesForModel.NoteElement_whole; break;    // "helnode"; break;
+                case NoteTypeEnum.half:     value = ResourcesForModel.NoteElement_half; break;     //"halvnode"; ; break;
+                case NoteTypeEnum.quarter:  value = ResourcesForModel.NoteElement_quarter; break;  // "fjerdedel"; break;
+                case NoteTypeEnum.eight:    value = ResourcesForModel.NoteElement_eight; break;    // "ottendedel"; break;
+                case NoteTypeEnum.nt16th:   value = ResourcesForModel.NoteElement_16th;break;      // "sekstendedel"; break;
+                case NoteTypeEnum.nt32nd:   value = ResourcesForModel.NoteElement_32nd; break;     //"toogtredivtedel"; break;
+                case NoteTypeEnum.nt64th:   value = ResourcesForModel.NoteElement_64th; break;     //"fireogtredsindstyvendedel"; break;
+                case NoteTypeEnum.nt128th:  value = ResourcesForModel.NoteElement_128th; break;     //"hundredeogotteogtyvendedeltyvendedel"; break;
+                case NoteTypeEnum.measure:  value = ResourcesForModel.NoteElement_measure;break;   //  "heltakt"; break;
+                case NoteTypeEnum.unknown:  value = "ukendt"; break;
                 default:                    
                     Logger.LogOnce(string.Format("LocalizeType ({0},{1}) Unknown duration '{2}' in Measure={3} Voice={4} PartId={5} PartNumber={6}",
                                                  noteDuration.ToString(), modifier, noteDuration.ToString(), measureNumber, voice,PartId,PartNumber)); break;
