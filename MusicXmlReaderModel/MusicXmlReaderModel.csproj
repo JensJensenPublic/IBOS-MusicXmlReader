@@ -47,7 +47,9 @@
   <ItemGroup>
     <Compile Include="BrailleBuilder.cs" />
     <Compile Include="BrailleDisplayer.cs" />
+    <Compile Include="Elements\BassElement.cs" />
     <Compile Include="Elements\DegreeElement.cs" />
+    <Compile Include="Elements\RootElement.cs" />
     <Compile Include="MetaInformation.cs" />
     <Compile Include="DebugTools.cs" />
     <Compile Include="DeviceInfo.cs" />

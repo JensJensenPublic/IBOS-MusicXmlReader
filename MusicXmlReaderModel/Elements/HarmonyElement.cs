@@ -14,7 +14,9 @@ namespace MusicXmlReaderModel
         string kind;
         string rootStep;
         string rootAlter;
-        string bassStep;
+        // string bassStep;
+        RootElement rootElement; // The "C" in "C/G"
+        BassElement bassElement; // The "G" in "C/G"
         DegreeElement degree;
 
         // Derived variables
@@ -111,6 +113,9 @@ namespace MusicXmlReaderModel
                                 case "root-alter": rootAlter = nn.InnerText; break;
                             }
                         }
+                        // New implementation:
+                        rootElement = RootElement.Create(n);                          
+
                         break;
                     case "kind": kind = n.InnerText; break;
 
@@ -118,8 +123,10 @@ namespace MusicXmlReaderModel
 
                     case "degree": degree = DegreeElement.Create(n);  break; // Handles the logging of unimplemented values
 
-                    case "bass": bassStep = n.InnerText; // Avoid repeating log for each different InnerTxt (bass note) TODO: Decode step and alter in a way similar to PitchElement
-                        Logger.LogOnce(string.Format("{0}.{1} Harmony element '{2}' is decoded, but the value not used yet", className, functionName, n.Name)); break;
+                    case "bass": //bassStep = n.InnerText; // Avoid repeating log for each different InnerTxt (bass note) TODO: Decode step and alter in a way similar to PitchElement
+                        bassElement = BassElement.Create(n);
+                        //Logger.LogOnce(string.Format("{0}.{1} Harmony element '{2}' is decoded, but the value not used yet", className, functionName, n.Name)); break;
+                        Logger.LogOnce(string.Format("{0}.{1} Harmony element '{2}' is decoded to step={3} alter={4} But the value not used yet", className, functionName, n.Name, bassElement.Step, bassElement.Alter)); break;
 
                     case "function":    implemented = false; break;
                     case "inversion":   implemented = false; break;

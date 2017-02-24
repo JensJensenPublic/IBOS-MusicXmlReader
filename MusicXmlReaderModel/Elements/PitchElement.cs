@@ -59,9 +59,9 @@ namespace MusicXmlReaderModel
 
 
         private const string className = "PitchElement";
-        int alter = 0;
+        protected int alter = 0;
         int octave = 0;
-        FullStepEnum step;
+        protected FullStepEnum step;
 
         private string name;
         private int semiTonesAboveC0;
@@ -114,7 +114,7 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
-        private PitchElement()
+        protected PitchElement()
         {
         }
 
@@ -182,7 +182,7 @@ namespace MusicXmlReaderModel
 
 
 
-        private FullStepEnum GetFullStep(string s)
+        protected FullStepEnum GetFullStep(string s)
         {
             switch (s)
             {
@@ -244,7 +244,7 @@ namespace MusicXmlReaderModel
         /// <param name="node"></param>
         /// <returns></returns>
         public static PitchElement Create(XmlNode node)
-        {
+        {            
             string stepString = Utilities.GetChildValue(node, "step");
             if (!string.IsNullOrEmpty(stepString))
             {
