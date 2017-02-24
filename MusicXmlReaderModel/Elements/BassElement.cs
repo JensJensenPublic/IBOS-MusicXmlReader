@@ -7,9 +7,12 @@ using System.Xml;
 
 namespace MusicXmlReaderModel
 {
-    class BassElement : PitchElement
-    {
 
+    /// <summary>
+    /// Class for handling HarmonyElement.bass 
+    /// </summary>
+    class BassElement : PitchElementBase
+    {
 
         BassElement(XmlNode node) // : base(node, stepName)
         {
@@ -18,11 +21,10 @@ namespace MusicXmlReaderModel
             Utilities.Parse(Utilities.GetChildValue(node, "bass-alter"), ref alter, -1, +1, "BassElement: alter", true);
         }
 
-        public static new BassElement Create(XmlNode node)
+        public static BassElement Create(XmlNode node)
         {
             return new BassElement(node);
         }
-
 
     }
 }

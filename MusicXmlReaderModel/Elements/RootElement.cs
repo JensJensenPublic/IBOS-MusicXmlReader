@@ -7,7 +7,10 @@ using System.Xml;
 
 namespace MusicXmlReaderModel
 {
-    class RootElement : PitchElement
+    /// <summary>
+    /// Class for handling HarmonyElement.root
+    /// </summary>
+    class RootElement : PitchElementBase
     {
         RootElement(XmlNode node) // : base(node, stepName)
         {
@@ -16,7 +19,7 @@ namespace MusicXmlReaderModel
             Utilities.Parse(Utilities.GetChildValue(node, "root-alter"), ref alter, -1, +1, "RootElement: alter", true);
         }
 
-        public static new RootElement Create(XmlNode node)
+        public static RootElement Create(XmlNode node)
         {
             return new RootElement(node);
         }
