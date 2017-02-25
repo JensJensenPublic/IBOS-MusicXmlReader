@@ -12,11 +12,39 @@ namespace MusicXmlReaderModel
     /// </summary>
     class RootElement : PitchElementBase
     {
+        private string rootStep;
+        private string rootAlter;
+
+        /// <summary>
+        /// The string representation
+        /// </summary>
+        public string RootStep
+        {
+            get
+            {
+                return rootStep;
+            }
+        }
+
+        /// <summary>
+        /// The string representation
+        /// </summary>
+        public string RootAlter
+        {
+            get
+            {
+                return rootAlter;
+            }
+        }
+
         RootElement(XmlNode node) // : base(node, stepName)
         {
             // Here we do not parse the "octave" and we only allow alter in [-1 ..+1]
-            step = GetFullStep(Utilities.GetChildValue(node, "root-step")); // Special parsing of step
-            Utilities.Parse(Utilities.GetChildValue(node, "root-alter"), ref alter, -1, +1, "RootElement: alter", true);
+            rootStep = Utilities.GetChildValue(node, "root-step");
+            step = GetFullStep(rootStep); // Special parsing of step
+
+            rootAlter = Utilities.GetChildValue(node, "root-alter");
+            Utilities.Parse(rootAlter, ref alter, -1, +1, "RootElement: alter", true);
         }
 
         public static RootElement Create(XmlNode node)
