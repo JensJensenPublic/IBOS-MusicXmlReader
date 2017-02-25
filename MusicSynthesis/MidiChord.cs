@@ -27,6 +27,8 @@ namespace JSJ.MusicSynthesis
 
     public class MidiChord
     {
+        private string className = "MidiChord";
+
         // The following static arrays describe the intervals found in the varions chords as described in
         // http://www.musicxml.com/UserManuals/MusicXML/Content/ST-MusicXML-kind-value.htm 
         // Triads:  
@@ -249,14 +251,56 @@ namespace JSJ.MusicSynthesis
         /// <param name="octave"></param>
         /// <param name="velocity"></param>
         /// <param name="chordType"></param>
-        public MidiChord(ChromaticStep step, int octave,  int velocity, ChordType chordType)
+        public MidiChord(ChromaticStep step, int octave,  int velocity, ChordType chordType, ChromaticStep bassStep, List<MidiChordDegreeDescription> degreeDescriptions, List<string> logLines)
         {
+            string functionName = "MidiChord";
             Interval[] intervals = GetChordIntervals(chordType);
             foreach (Interval interval in intervals)
             {
                 midinotes.Add(new MidiNote(step, octave, velocity, interval));
             }
+            if (step != bassStep)
+            {
+                if (null != logLines)
+                {
+                    logLines.Add(string.Format("{0}.{1} Root={2} Bass={3} BassStep not implemented yet", className, functionName, step, bassStep));
+                }
+            }
+            if (null != degreeDescriptions)
+            {
+                 foreach (MidiChordDegreeDescription degreeDescription in degreeDescriptions)
+                {
+                    switch(degreeDescription.DegreeType)
+                    {
+                        case DegreeTypeEnum.none: break;
+
+                        case DegreeTypeEnum.add:
+                        case DegreeTypeEnum.alter:
+                        case DegreeTypeEnum.subtract:
+                        case DegreeTypeEnum.unknown:
+                            if (null != logLines)
+                            {
+                                logLines.Add(string.Format("{0}.{1} Type={2} Value={3} Degree not implemented yet", className, functionName, degreeDescription.DegreeType.ToString(), degreeDescription.Degree.ToString()));
+                            }
+                            break;
+                        default: 
+                            if (null != logLines)
+                            {
+                                logLines.Add(string.Format("{0}.{1} Unimplemented DegreeType={2}", className, functionName, degreeDescription.DegreeType.ToString()));
+                            }
+                            break;
+
+                    }
+                }
+
+            }
+
+
+
+
         }
+
+
 
         /// <summary>
         /// Starts playing the chord on the device specified

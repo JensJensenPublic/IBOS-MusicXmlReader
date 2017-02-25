@@ -1,5 +1,7 @@
 ﻿using System.Xml;
 using JSJ.MusicSynthesis;
+using System.Collections.Generic;
+using MusicSynthesis;
 
 namespace MusicXmlReaderModel
 {
@@ -17,10 +19,12 @@ namespace MusicXmlReaderModel
         // string bassStep;
         RootElement rootElement; // The "C" in "C/G"
         BassElement bassElement; // The "G" in "C/G"
-        DegreeElement degree;
+        // List<DegreeElement> degreeElements = new List<DegreeElement>(); // (add11) etc
+        List<MusicSynthesis.MidiChordDegreeDescription> degrees = new List<MusicSynthesis.MidiChordDegreeDescription>(); // (add11) etc
 
         // Derived variables
         ChromaticStep chromaticStep;
+        ChromaticStep chromaticBassStep;
         ChordType chordType;
         string localizedChordType;
 
@@ -72,11 +76,20 @@ namespace MusicXmlReaderModel
             }
         }
 
-        public DegreeElement Degree
+
+        public ChromaticStep ChromaticBassStep
         {
             get
             {
-                return degree;
+                return chromaticBassStep;
+            }
+        }
+
+        public List<MidiChordDegreeDescription> Degrees
+        {
+            get
+            {
+                return degrees;
             }
         }
 
@@ -95,7 +108,6 @@ namespace MusicXmlReaderModel
         private HarmonyElement(XmlNode node)
         {
             string functionName = "HarmonyElement";
-
             bool implemented = true;
             // Dig out elements
             foreach (XmlNode n in node.ChildNodes)
@@ -114,27 +126,30 @@ namespace MusicXmlReaderModel
                             }
                         }
                         // New implementation:
-                        rootElement = RootElement.Create(n);                          
+                        rootElement = RootElement.Create(n);
 
                         break;
                     case "kind": kind = n.InnerText; break;
 
                     case "staff": Logger.LogOnce(string.Format("{0}.{1} Element '{2}' explicitly ignored", className, functionName, n.Name)); break;
 
-                    case "degree": degree = DegreeElement.Create(n);  break; // Handles the logging of unimplemented values
+                    case "degree":
+                        DegreeElement degreeElement = DegreeElement.Create(n); // Handles the logging of unimplemented values                                                                           
+                        degrees.Add(MidiChordDegreeDescription.Create(degreeElement.DegreeValue,degreeElement.DegreeType));
+                        break; 
 
                     case "bass": //bassStep = n.InnerText; // Avoid repeating log for each different InnerTxt (bass note) TODO: Decode step and alter in a way similar to PitchElement
                         bassElement = BassElement.Create(n);
                         //Logger.LogOnce(string.Format("{0}.{1} Harmony element '{2}' is decoded, but the value not used yet", className, functionName, n.Name)); break;
                         Logger.LogOnce(string.Format("{0}.{1} Harmony element '{2}' is decoded to step={3} alter={4} But the value not used yet", className, functionName, n.Name, bassElement.Step, bassElement.Alter)); break;
 
-                    case "function":    implemented = false; break;
-                    case "inversion":   implemented = false; break;
+                    case "function": implemented = false; break;
+                    case "inversion": implemented = false; break;
 
-                    case "frame":       implemented = false; break;
-                    case "offset":      implemented = false; break;
-                    case "footnote":    implemented = false; break;
-                    case "level":       implemented = false; break;
+                    case "frame": implemented = false; break;
+                    case "offset": implemented = false; break;
+                    case "footnote": implemented = false; break;
+                    case "level": implemented = false; break;
 
                     default:
                         Logger.LogOnce(string.Format("{0}.{1} found unknown harmony element. Name={2} InnerText={3}", className, functionName, n.Name, n.InnerText)); break;
@@ -147,6 +162,13 @@ namespace MusicXmlReaderModel
 
             // Fill in derived values
             chromaticStep = MidiNote.GetChromaticStep(rootStep, rootAlter);
+            chromaticBassStep = chromaticStep; // Te fault to use the root as 
+            if (null != bassElement)
+            {
+                // The hatmony contains an explicit bass note
+                chromaticBassStep = MidiNote.GetChromaticStep(bassElement.BassStep, bassElement.BassAlter);
+            }
+
             chordType = MidiChord.GetChordType(kind);
             if (ChordType.UnImplemented == chordType)
             {

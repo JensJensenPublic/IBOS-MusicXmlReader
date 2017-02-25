@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MidiChord.cs" />
+    <Compile Include="MidiChordDegreeDescription.cs" />
     <Compile Include="MidiCommand.cs" />
     <Compile Include="MidiNote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,12 +13,32 @@ namespace MusicXmlReaderModel
     /// </summary>
     class BassElement : PitchElementBase
     {
+        private string bassStep;
+        private string bassAlter;
+
+        public string BassStep
+        {
+            get
+            {
+                return bassStep;
+            }
+        }
+
+        public string BassAlter
+        {
+            get
+            {
+                return bassAlter;
+            }
+        }
 
         BassElement(XmlNode node) // : base(node, stepName)
         {
             // Here we do not parse the "octave" and we only allow alter in [-1 ..+1]
-            step = GetFullStep(Utilities.GetChildValue(node, "bass-step")); // Special parsing of step
-            Utilities.Parse(Utilities.GetChildValue(node, "bass-alter"), ref alter, -1, +1, "BassElement: alter", true);
+            bassStep = Utilities.GetChildValue(node, "bass-step");
+            step = GetFullStep(bassStep); // Special parsing of step
+            bassAlter = Utilities.GetChildValue(node, "bass-alter");
+            Utilities.Parse(bassAlter,ref alter, -1, +1, "BassElement: alter", true);
         }
 
         public static BassElement Create(XmlNode node)

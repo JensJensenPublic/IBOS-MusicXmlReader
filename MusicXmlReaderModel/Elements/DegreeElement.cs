@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using MusicSynthesis;
 
 namespace MusicXmlReaderModel
 {
 
 
     public enum DegreeAlterEnum { unknown, flat, sharp, none};
-    public enum DegreeTypeEnum  { unknown, add, alter, subtract};
+
 
    
 
