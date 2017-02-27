@@ -23,7 +23,7 @@ namespace MusicXmlReaderModel
         List<MusicSynthesis.MidiChordDegreeDescription> degrees = new List<MusicSynthesis.MidiChordDegreeDescription>(); // (add11) etc
 
         // Derived variables
-        ChromaticStep chromaticStep;
+        ChromaticStep chromaticRootStep;
         ChromaticStep chromaticBassStep;
         ChordType chordType;
         string localizedChordType;
@@ -56,7 +56,7 @@ namespace MusicXmlReaderModel
         {
             get
             {
-                return chromaticStep;
+                return chromaticRootStep;
             }
         }
 
@@ -115,20 +115,12 @@ namespace MusicXmlReaderModel
                 implemented = true;
                 switch (n.Name)
                 {
-                    case "root":
-                        // Dig out elements from the childNode
-                        foreach (XmlNode nn in n.ChildNodes)
-                        {
-                            switch (nn.Name)
-                            {
-                                case "root-step": rootStep = nn.InnerText; break;
-                                case "root-alter": rootAlter = nn.InnerText; break;
-                            }
-                        }
-                        // New implementation:
+                    case "root": 
                         rootElement = RootElement.Create(n);
-
+                        rootStep = rootElement.RootStep;
+                        rootAlter = rootElement.RootAlter;
                         break;
+
                     case "kind": kind = n.InnerText; break;
 
                     case "staff": Logger.LogOnce(string.Format("{0}.{1} Element '{2}' explicitly ignored", className, functionName, n.Name)); break;
@@ -140,12 +132,11 @@ namespace MusicXmlReaderModel
 
                     case "bass": //bassStep = n.InnerText; // Avoid repeating log for each different InnerTxt (bass note) TODO: Decode step and alter in a way similar to PitchElement
                         bassElement = BassElement.Create(n);
-                        //Logger.LogOnce(string.Format("{0}.{1} Harmony element '{2}' is decoded, but the value not used yet", className, functionName, n.Name)); break;
-                        Logger.LogOnce(string.Format("{0}.{1} Harmony element '{2}' is decoded to step={3} alter={4} But the value not used yet", className, functionName, n.Name, bassElement.Step, bassElement.Alter)); break;
+                        Logger.LogOnce(string.Format("{0}.{1} Harmony element '{2}' is decoded to step={3} alter={4} But the value not used yet", className, functionName, n.Name, bassElement.Step, bassElement.Alter));
+                        break;
 
                     case "function": implemented = false; break;
                     case "inversion": implemented = false; break;
-
                     case "frame": implemented = false; break;
                     case "offset": implemented = false; break;
                     case "footnote": implemented = false; break;
@@ -160,12 +151,26 @@ namespace MusicXmlReaderModel
                 }
             }
 
+            if ((null == rootElement) || (string.IsNullOrEmpty(rootElement.RootStep)))
+            {
+                // This seems to be a possible scenario when building chords from degrees only !
+                // Do not know how to handle this in detail.
+                Logger.LogOnce(string.Format("{0}.{1} found HarmonyElement with no RootElement", className, functionName));
+            }
+
+            if (string.IsNullOrEmpty(kind))
+            {
+                // This seems to be a possible scenario when building chords from degrees only !
+                // Do not know how to handle this in detail.
+                Logger.LogOnce(string.Format("{0}.{1} found HarmonyElement with no Kind", className, functionName));
+            }
+
             // Fill in derived values
-            chromaticStep = MidiNote.GetChromaticStep(rootStep, rootAlter);
-            chromaticBassStep = chromaticStep; // Te fault to use the root as 
+            chromaticRootStep = MidiNote.GetChromaticStep(rootStep, rootAlter);
+            chromaticBassStep = chromaticRootStep; // Default to use the root as 
             if (null != bassElement)
             {
-                // The hatmony contains an explicit bass note
+                // The harmony contains an explicit bass note
                 chromaticBassStep = MidiNote.GetChromaticStep(bassElement.BassStep, bassElement.BassAlter);
             }
 
@@ -198,7 +203,7 @@ namespace MusicXmlReaderModel
         public string ToLocalizedString()
         {
             string delimiter = ""; // (string.IsNullOrEmpty(localizedChordType)) ? "" : "-"; // Only show delimiter if needed
-            string s = string.Format("{0}:{1}{2}{3}", ResourcesForModel.HarmonyElement_Chord, chromaticStep, delimiter, localizedChordType);
+            string s = string.Format("{0}:{1}{2}{3}", ResourcesForModel.HarmonyElement_Chord, chromaticRootStep, delimiter, localizedChordType);
             return s;
         }
 
