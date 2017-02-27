@@ -62,8 +62,7 @@ namespace MusicXmlReaderModel
         RestElement restElement;   // A NoteElement may contain a nested RestElement
         NotationsElement notations; // A NoteElement may contain a nested NotationsElement     
         string tieType = ""; // Is this note tied to another note
-        bool tieStart = false; // Will be set if this note contains a "start" TieElement
-        bool tieStop = false;  // Will be set if this note contains a "stop" TieElement
+        bool tieStop = false;
         string localizedType = "";      //  If this is n note,  not a pause
         string localizedPauseType = ""; //  If this is a pause, not a note
         string localizedTie = "";
@@ -183,14 +182,6 @@ namespace MusicXmlReaderModel
             get
             {
                 return tieStop;
-            }
-        }
-
-        public bool TieStart
-        {
-            get
-            {
-                return tieStart;
             }
         }
 
@@ -410,8 +401,6 @@ namespace MusicXmlReaderModel
             }
         }
 
- 
-
 
         /// <summary>
         /// To force the use of the Create() method
@@ -601,15 +590,7 @@ namespace MusicXmlReaderModel
                     case "tie":
                         tieElement = TieElement.Create(child);
                         tieType = tieElement.TieType;
-                        // A single NoteElement may contain both a tieStop and a tieStart
-                        if ("stop" == tieType)
-                        {
-                            tieStop = true;
-                        }
-                        if ("start" == tieType)
-                        {
-                            tieStart = true;
-                        }
+                        tieStop = ("stop" == tieType);
                         break;
                     case "lyric":
                         text = Utilities.GetChildValue(child, "text");
