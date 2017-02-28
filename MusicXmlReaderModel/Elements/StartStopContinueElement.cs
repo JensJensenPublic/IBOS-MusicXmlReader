@@ -58,6 +58,7 @@ namespace MusicXmlReaderModel
                     case "show-number": break;
                     case "bracket": break;
                     case "color": break;
+                    case "line-type": break;
 
                     default:
                         Logger.LogOnce(string.Format("StartStopContinueElement: Unknown attribute name '{0}'", a.Name));

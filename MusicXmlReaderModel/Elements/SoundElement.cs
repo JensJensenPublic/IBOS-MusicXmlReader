@@ -54,7 +54,7 @@ namespace MusicXmlReaderModel
                         break;
                     case "dynamics":
                         // Logger.LogOnce(string.Format("{0}.{1} Dynamics = {2}", className, functionName, a.Value));
-                        Utilities.Parse(a.Value, ref dynamics, (float)0, (float) 100, "SoundElement: Invalid value of dynamics");
+                        Utilities.Parse(a.Value, ref dynamics, (float)0, (float) float.MaxValue, "SoundElement: Invalid value of dynamics"); // No upper limit
                         // Logger.LogOnce(string.Format("{0}.{1} Dynamics = {2}", className, functionName, dynamics.ToString()));
                         Logger.LogOnce(string.Format("{0}.{1} Dynamics", className, functionName)); // Avoid polluting the logfile
                         break;
