@@ -413,6 +413,9 @@ namespace MusicXmlReader
 
             //this.Text = string.Format("{0}       {1}",GetTitleInfo(),ApplicationName); // Show the name of the file just loaded in the Title-Line, accessible by <INSERT> + T
             this.Text = GetTitleInfo();
+
+            model.SetUserTempo(100); // Play at 100% of tempo specified in MusicXml file
+          
         }
 
         private string GetFileOpenInitialDirectory()
