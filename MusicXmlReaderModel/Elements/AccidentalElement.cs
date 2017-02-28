@@ -60,13 +60,13 @@ namespace MusicXmlReaderModel
             string functionName = "ToString";
             switch (accidentalType)
             {
-                case AccidentalTypeEnum.doubleSharp:    return "";
-                case AccidentalTypeEnum.flat:           return "";
-                case AccidentalTypeEnum.flatFlat:       return "";
-                case AccidentalTypeEnum.natural:        return "";
-                case AccidentalTypeEnum.none:           return "";
-                case AccidentalTypeEnum.sharp:          return "";
-                case AccidentalTypeEnum.unknown:        return "";
+                case AccidentalTypeEnum.doubleSharp:    return ResourcesForModel.Accidental_doubleSharp;
+                case AccidentalTypeEnum.flat:           return ResourcesForModel.Accidental_flat;
+                case AccidentalTypeEnum.flatFlat:       return ResourcesForModel.Accidental_flatFlat;
+                case AccidentalTypeEnum.natural:        return ResourcesForModel.Accidental_natural;
+                case AccidentalTypeEnum.none:           return ResourcesForModel.Accidental_none;
+                case AccidentalTypeEnum.sharp:          return ResourcesForModel.Accidental_sharp;
+                case AccidentalTypeEnum.unknown:        return ResourcesForModel.Accidental_unknown;
                 default:
                     Logger.LogOnce(string.Format("{0}.{1} Unsupported value for accidentaltype={2}", className, functionName, accidentalType.ToString()));
                     return "";        

@@ -61,6 +61,69 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accidental Double-sharp.
+        /// </summary>
+        internal static string Accidental_doubleSharp {
+            get {
+                return ResourceManager.GetString("Accidental_doubleSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accidental flat.
+        /// </summary>
+        internal static string Accidental_flat {
+            get {
+                return ResourceManager.GetString("Accidental_flat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accidental Double-flat.
+        /// </summary>
+        internal static string Accidental_flatFlat {
+            get {
+                return ResourceManager.GetString("Accidental_flatFlat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accidental Natural.
+        /// </summary>
+        internal static string Accidental_natural {
+            get {
+                return ResourceManager.GetString("Accidental_natural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Accidental_none {
+            get {
+                return ResourceManager.GetString("Accidental_none", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accidental Sharp.
+        /// </summary>
+        internal static string Accidental_sharp {
+            get {
+                return ResourceManager.GetString("Accidental_sharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accidental ?.
+        /// </summary>
+        internal static string Accidental_unknown {
+            get {
+                return ResourceManager.GetString("Accidental_unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to flat.
         /// </summary>
         internal static string AccidentalMarkElement_flat {

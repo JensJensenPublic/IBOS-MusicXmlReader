@@ -694,4 +694,25 @@
   <data name="Shortcut_Sibelius" xml:space="preserve">
     <value>Sibelius for IBOS Nodelæser</value>
   </data>
+  <data name="Accidental_doubleSharp" xml:space="preserve">
+    <value>Løst dobbeltkryds</value>
+  </data>
+  <data name="Accidental_flat" xml:space="preserve">
+    <value>Løst b</value>
+  </data>
+  <data name="Accidental_flatFlat" xml:space="preserve">
+    <value>Løst dobbelt b</value>
+  </data>
+  <data name="Accidental_natural" xml:space="preserve">
+    <value>Ophævelsestegn</value>
+  </data>
+  <data name="Accidental_none" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Accidental_sharp" xml:space="preserve">
+    <value>Løst kryds</value>
+  </data>
+  <data name="Accidental_unknown" xml:space="preserve">
+    <value>?</value>
+  </data>
 </root>

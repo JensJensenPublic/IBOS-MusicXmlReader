@@ -693,4 +693,25 @@
   <data name="Shortcut_Sibelius" xml:space="preserve">
     <value>Sibelius for IBOS MusicXmlReader</value>
   </data>
+  <data name="Accidental_doubleSharp" xml:space="preserve">
+    <value>Accidental Double-sharp</value>
+  </data>
+  <data name="Accidental_flat" xml:space="preserve">
+    <value>Accidental flat</value>
+  </data>
+  <data name="Accidental_flatFlat" xml:space="preserve">
+    <value>Accidental Double-flat</value>
+  </data>
+  <data name="Accidental_natural" xml:space="preserve">
+    <value>Accidental Natural</value>
+  </data>
+  <data name="Accidental_none" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Accidental_sharp" xml:space="preserve">
+    <value>Accidental Sharp</value>
+  </data>
+  <data name="Accidental_unknown" xml:space="preserve">
+    <value>Accidental ?</value>
+  </data>
 </root>
