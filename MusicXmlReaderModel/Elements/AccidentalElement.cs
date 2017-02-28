@@ -78,7 +78,10 @@ namespace MusicXmlReaderModel
         public override string ToString()
         {
             // Handle parentesis etc !
-            return ToLocalizedString();
+            string pre  = ((parentesis) || cautionary) ? "(" : "";
+            string post = ((parentesis) || cautionary) ? ")" : "";
+
+            return pre + ToLocalizedString() + post;
         }
 
 
