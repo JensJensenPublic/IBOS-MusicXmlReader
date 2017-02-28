@@ -123,7 +123,9 @@ namespace MusicXmlReaderModel
 
                     case "kind": kind = n.InnerText; break;
 
-                    case "staff": Logger.LogOnce(string.Format("{0}.{1} Element '{2}' explicitly ignored", className, functionName, n.Name)); break;
+                    case "staff":
+                        // Logger.LogOnce(string.Format("{0}.{1} Element '{2}' explicitly ignored", className, functionName, n.Name));
+                        break;
 
                     case "degree":
                         DegreeElement degreeElement = DegreeElement.Create(n); // Handles the logging of unimplemented values                                                                           
