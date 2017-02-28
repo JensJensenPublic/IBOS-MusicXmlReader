@@ -387,13 +387,14 @@ namespace MusicXmlReaderModel
                     {
                         // This is a note
                         // Here the sequence is pitch,octave,type such af "Cis4 punkteret halvnode"
+                        string accidental = (userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteAccidentals) && (null != noteElement.AccidentalElement)) ?  noteElement.AccidentalElement.ToString() : "";
                         string pitch    = noteElement.PitchValue.Name; // Always use the name of the note
                         string octave   = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteOctaves) ? noteElement.Octave.ToString() : "";
                         string type     = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteTypes) ? noteElement.LocalizedType : "";
                         string pitchAndOctave = string.Format("{0}{1}", pitch, octave);
                         string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
                         //                      note = string.Format("{0,-4} {1}", pitchAndOctave, type); // Always use 4 chars for pitch and Octave. Examples: "C   ","Cis4"
-                        note = string.Format("{0} {1} {2}", pitchAndOctave, type, notations);    // Do not use extra chars for Pitch and Octave. Examples: "C","Cis4"
+                        note = string.Format("{0} {1} {2} {3}", accidental, pitchAndOctave, type, notations);    // Do not use extra chars for Pitch and Octave. Examples: "C","Cis4"
                     }
 
                     // string note = string.IsNullOrEmpty(noteElement.Step) ? "Pause" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave + " " +noteElement.LocalizedType;

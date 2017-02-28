@@ -161,7 +161,7 @@ namespace MusicXmlReaderModel
                         Logger.LogOnce(string.Format("{0}.{1}: Unimplemented child: Value={1}", className, functionName, value));
                         break;
                     default:
-                        accidentalType = AccidentalTypeEnum.unknown; break;
+                        accidentalType = AccidentalTypeEnum.unknown;
                         Logger.LogOnce(string.Format("{0}.{1}: Unexpected child: Value={1}",className,functionName, value));
                         break;
                 }

@@ -718,4 +718,7 @@
   <data name="Accidental_unsupported" xml:space="preserve">
     <value>Usupporteret</value>
   </data>
+  <data name="UserSettings_ReaderNames_Accidentals" xml:space="preserve">
+    <value>Løse fortegn</value>
+  </data>
 </root>

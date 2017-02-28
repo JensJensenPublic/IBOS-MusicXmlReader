@@ -717,4 +717,7 @@
   <data name="Accidental_unsupported" xml:space="preserve">
     <value>Unsupported</value>
   </data>
+  <data name="UserSettings_ReaderNames_Accidentals" xml:space="preserve">
+    <value>Accidentals</value>
+  </data>
 </root>

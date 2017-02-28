@@ -412,6 +412,14 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public AccidentalElement AccidentalElement
+        {
+            get
+            {
+                return accidentalElement;
+            }
+        }
+
 
 
         /// <summary>

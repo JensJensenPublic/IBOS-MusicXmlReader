@@ -1753,6 +1753,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accidentals.
+        /// </summary>
+        internal static string UserSettings_ReaderNames_Accidentals {
+            get {
+                return ResourceManager.GetString("UserSettings_ReaderNames_Accidentals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Divisions.
         /// </summary>
         internal static string UserSettings_ReaderNames_Divisions {

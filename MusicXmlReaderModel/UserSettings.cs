@@ -54,13 +54,14 @@ namespace MusicXmlReaderModel
             Notes =2,
             NoteOctaves =3,
             NoteTypes =4,
-            Notations =5,
-            Lyrics = 6,
-            MetaInformation = 7,
-            Divisions =8,
-            HarmonyCodes =9,
-            EndEvents =10,
-            NumberOfReaderSettings =11
+            NoteAccidentals =5,
+            Notations =6,
+            Lyrics = 7,
+            MetaInformation = 8,
+            Divisions =9,
+            HarmonyCodes =10,
+            EndEvents =11,
+            NumberOfReaderSettings =12
         };
         
 
@@ -80,6 +81,7 @@ namespace MusicXmlReaderModel
             InitReaderSetting(ReaderSettings.Notes,          ResourcesForModel.UserSettings_ReaderNames_Notes, true);           // "Noder",
             InitReaderSetting(ReaderSettings.NoteOctaves,    ResourcesForModel.UserSettings_ReaderNames_Octaves, true);         // "Oktaver",
             InitReaderSetting(ReaderSettings.NoteTypes,      ResourcesForModel.UserSettings_ReaderNames_NoteValues, true);      // "NodeVærdier",
+            InitReaderSetting(ReaderSettings.NoteAccidentals,ResourcesForModel.UserSettings_ReaderNames_Accidentals, false);    // "Læse fortegn"
             InitReaderSetting(ReaderSettings.Notations,      ResourcesForModel.UserSettings_ReaderNames_Notations, true);       // "Notationer",
             InitReaderSetting(ReaderSettings.Lyrics,         ResourcesForModel.UserSettings_ReaderNames_Lyrics, true);          // "Tekst"
             InitReaderSetting(ReaderSettings.MetaInformation,ResourcesForModel.UserSettings_ReaderNames_Metainformation, true); // "Meta-information",
@@ -210,7 +212,7 @@ namespace MusicXmlReaderModel
         }
 
         /// <summary>
-        /// Enable or disable all settings related to MssicBraille
+        /// Enable or disable all settings related to MusicBraille
         /// Primarily used for test
         /// </summary>
         public void SetAllMusicBrailleSettings(bool value)
