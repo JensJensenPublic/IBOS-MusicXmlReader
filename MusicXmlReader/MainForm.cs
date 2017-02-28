@@ -69,8 +69,27 @@ namespace MusicXmlReader
             // Create a handler for handling all Keyboard shortcuts
             shortCutHandler = ShortcutHandler.Create(this, model);
             commandInterpreter = UserCommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
+            LoadIcon();
         }
 
+        private void LoadIcon()
+        {
+            const string functionName = "LoadIcon";
+            string iconFile = "";
+            try
+            {
+                iconFile = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(executingAssemblyFullPath), "ringtones.ico");
+                this.Icon = new System.Drawing.Icon(iconFile);
+            }
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("{0}.{1} Could not load icon file {2} ->", className, functionName, iconFile));
+                Logger.Log(string.Format("{0}", e.Message));
+            }
+
+        }
+
+        
         private void Application_ApplicationExit(object sender, EventArgs e)
         {
             model.OnApplicationExit(); // Let the Model clean up its resources etc 
