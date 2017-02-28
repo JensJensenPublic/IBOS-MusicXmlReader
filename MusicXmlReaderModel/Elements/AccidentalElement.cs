@@ -95,12 +95,11 @@ namespace MusicXmlReaderModel
                 switch (a.Name)
                 {
                     case "parentheses": Utilities.ParseYesNoAttributeValue(functionName,a.Name, a.Value, ref parentesis);
-                                        Logger.LogOnce(string.Format("{0}.{1}: Attribute Name={2} Value={3}", className,functionName, a.Name, a.Value));
-
+                                        //Logger.LogOnce(string.Format("{0}.{1}: Attribute Name={2} Value={3}", className,functionName, a.Name, a.Value));
                                         break;
 
                     case "cautionary":  Utilities.ParseYesNoAttributeValue(functionName, a.Name, a.Value, ref cautionary);
-                                        Logger.LogOnce(string.Format("{0}.{1}: Attribute Name={2} Value={3}", className, functionName, a.Name, a.Value));
+                                        // Logger.LogOnce(string.Format("{0}.{1}: Attribute Name={2} Value={3}", className, functionName, a.Name, a.Value));
                                         break;
 
                     case "editorial":   Utilities.ParseYesNoAttributeValue(functionName, a.Name, a.Value, ref editorial);
@@ -168,7 +167,7 @@ namespace MusicXmlReaderModel
 
                 if (accidentalType != AccidentalTypeEnum.none)
                 {
-                    Logger.LogOnce(string.Format("{0}.{1}: Accidentalelement {2} ignored until needed", className,functionName, rawAccidentalString));
+                    // Logger.LogOnce(string.Format("{0}.{1}: Accidentalelement {2} ignored until needed", className,functionName, rawAccidentalString));
                 }
 
             }
