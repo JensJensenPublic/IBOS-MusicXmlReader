@@ -311,6 +311,11 @@ namespace MusicXmlReaderUI
         /// <param name=""></param>
         private void Play(EventDescription eventDescription)
         {
+
+            List<NoteElement> noteElementsToStopPlaying = new List<NoteElement>();
+            List<NoteElement> noteElementsToStartPlaying = new List<NoteElement>();
+
+            // Application.DoEvents(); // Experiment. Makes no difference 
             // Sleep until the StartTime of the next event occurs.
             System.Threading.Thread.Sleep(MilliSecondsToSleep(eventDescription.StartTime));
 
@@ -322,23 +327,23 @@ namespace MusicXmlReaderUI
                     NoteElement noteElement = endEventElement.StartElement as NoteElement;
                     if (!noteElement.IsPause)
                     {
-                        // If the note contains a tie element we just let it continue (and do not start the corresponding note either!)
-                        if (!noteElement.TieStart)
-                        {
-                            MidiNote midiNote = (endEventElement.StartElement as NoteElement).MidiNote;
-                            if (null == midiNote)
-                            {
-                                // In the case of a tie we must explicitly create the midinote to stop !
-                                // If the MIDI implementation changes we may need the midinote originally created, which would make things a little more complicated!
-                                midiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
-                            }
-                            midiNote.StopPlaying(midiOut);
-                            notesCurrentlyPlaying.Remove(midiNote);
-                        }
+                        noteElementsToStopPlaying.Add(noteElement);
+                        noteElement.Tied = false;
                     }
+                    //    MidiNote midiNote = (endEventElement.StartElement as NoteElement).MidiNote;                 
+                    //    if (null != midiNote)
+                    //    {
+                    //        midiNote.StopPlaying(midiOut);
+                    //        notesCurrentlyPlaying.Remove(midiNote);
+                    //    }
                 }
+
             }
 
+            //if (!playing)
+            //{
+            //    return; // Let the currently existing notes be stopped on time, but do not start any new notes !
+            //}
 
             // Start playing these notes:
             // Itetrate through all parts: 
@@ -349,25 +354,82 @@ namespace MusicXmlReaderUI
                     List<NoteElement> noteElementList = eventDescription.NoteLists[i];
                     foreach (NoteElement noteElement in noteElementList)
                     {
+
                         if (!noteElement.IsPause)
                         {
                             // This is a playable note, not a pause !
-                            if (!noteElement.TieStop)
+                            if (userSettings.partsToPlay[i])
                             {
-                                // If the note is tied to a previous note we do not start the new note, but let the previous note continue                          
-                                if (userSettings.partsToPlay[i])
-                                {
-                                    // This part is selected to be played (for instance from the GUI)                        
-                                    noteElement.MidiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
-                                    notesCurrentlyPlaying.Add(noteElement.MidiNote);
-                                    //noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, 1, midiOut);
-                                }
+                                noteElementsToStartPlaying.Add(noteElement);
+                                noteElement.Tied = false;
+                            }
+                        }
+                        //    if (noteElement.TieStop) continue; // Let the note continue
+                        //    if (!noteElement.IsPause)
+                        //    {
+                        //        // This is a playable note, not a pause !
+                        //        if (userSettings.partsToPlay[i])
+                        //        {
+                        //            // This part is selected to be played (for instance from the GUI)                        
+                        //            noteElement.MidiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose,noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
+                        //            notesCurrentlyPlaying.Add(noteElement.MidiNote);
+                        //            //noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, 1, midiOut);
+                        //        }
+                        //    }
+                        //}
+                    }
+                }
+            }
+
+
+            // Remove tied notes from both lists:
+            foreach (NoteElement noteElementToStop in noteElementsToStopPlaying)
+            {
+
+                CHECK
+               if (noteElementToStop.TieStart)
+                {
+                    foreach (NoteElement noteElementToStart in noteElementsToStartPlaying)
+                    {
+                        if (noteElementToStart.TieStop)
+                        {
+                            if (noteElementToStart.IsTiedTo(noteElementToStop))
+                            {
+                                // Mark both NoteElements so we can avoid stopping and restarting the MidiNote
+                                noteElementToStart.Tied = true;
+                                noteElementToStop.Tied = true;
                             }
                         }
                     }
                 }
             }
- 
+
+            // Stop all notes that have not been tied
+            foreach (NoteElement noteElement in noteElementsToStopPlaying)
+            {
+                if (!noteElement.Tied)
+                {
+                    MidiNote midiNote = noteElement.MidiNote;
+                    if (null != midiNote)
+                    {
+                        midiNote.StopPlaying(midiOut);
+                        notesCurrentlyPlaying.Remove(midiNote);
+                    }
+                }
+            }
+
+            // Start all notes that have not been tied
+            foreach (NoteElement noteElement in noteElementsToStartPlaying)
+            {
+                if (!noteElement.Tied)
+                {
+                    noteElement.MidiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
+                    notesCurrentlyPlaying.Add(noteElement.MidiNote);
+                }
+            }
+
+
+
             PlayHarmonies(eventDescription);     // Handle harmonies
 
             // Handle Sound desriptions, such as "Tempo". NOTE: May cause a change of musical tempo!

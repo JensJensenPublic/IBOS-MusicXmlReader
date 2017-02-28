@@ -61,9 +61,9 @@ namespace MusicXmlReaderModel
         TieElement tieElement;             // A NoteElement may contain a nested TieElement  (Danish: "Bindebue")
         RestElement restElement;   // A NoteElement may contain a nested RestElement
         NotationsElement notations; // A NoteElement may contain a nested NotationsElement     
-        string tieType = "";        // Is this note tied to another note
-        bool tieStart = false;      // This note is tied to a note later   in the score
-        bool tieStop = false;       // This note is tied to a note earlier in the score
+        string tieType = ""; // Is this note tied to another note
+        bool tieStart = false;
+        bool tieStop = false;
         string localizedType = "";      //  If this is n note,  not a pause
         string localizedPauseType = ""; //  If this is a pause, not a note
         string localizedTie = "";
@@ -101,6 +101,7 @@ namespace MusicXmlReaderModel
         int dynamicsValue = 90;
 
 
+        bool tied = false;
 
 
         public PitchElement.FullStepEnum Step
@@ -412,6 +413,18 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public bool Tied
+        {
+            get
+            {
+                return tied;
+            }
+
+            set
+            {
+                tied = value;
+            }
+        }
 
 
         /// <summary>
@@ -513,7 +526,21 @@ namespace MusicXmlReaderModel
         }
 
 
-    
+        /// <summary>
+        /// Returns true if the NoteElements can be tied to each other 
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public bool IsTiedTo(NoteElement param)
+        {
+            if (this.tied || param.tied) return false;  // Cannot tie to a note already tied
+            if (this.PartId != param.PartId) return false;
+            if (this.Voice != param.Voice) return false;
+            if (!(this.Pitched && param.Pitched)) return false;
+            if (this.pitchElement.SemiTonesAboveC0 != param.pitchElement.SemiTonesAboveC0) return false;  
+            return true;
+        }
+
 
         // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-note.htm
 
