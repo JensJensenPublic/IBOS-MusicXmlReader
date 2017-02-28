@@ -128,18 +128,18 @@ namespace MusicXmlReaderModel
                     // but are not implemented yet !
                     case "natural-sharp":
                     case "natural-flat":
-                    case "quarter-flat ":
-                    case "quarter-sharp ":
-                    case "three-quarters-flat ":
-                    case "three-quarters-sharp ":
-                    case "sharp-down ":
+                    case "quarter-flat":
+                    case "quarter-sharp":
+                    case "three-quarters-flat":
+                    case "three-quarters-sharp":
+                    case "sharp-down":
                     case "sharp-up":
-                    case "natural-down ":
-                    case "natural-up ":
-                    case "flat-down ":
+                    case "natural-down":
+                    case "natural-up":
+                    case "flat-down":
                     case "flat-up":
-                    case "triple-sharp ":
-                    case "triple-flat ":
+                    case "triple-sharp":
+                    case "triple-flat":
                     case "slash-quarter-sharp":
                     case "slash-sharp":
                     case "slash-flat":
@@ -157,11 +157,11 @@ namespace MusicXmlReaderModel
                     case "sori":
                     case "koron":
                         accidentalType = AccidentalTypeEnum.unsupported;
-                        Logger.LogOnce(string.Format("{0}.{1}: Unimplemented child: Value={1}", className, functionName, value));
+                        Logger.LogOnce(string.Format("{0}.{1}: Unimplemented child: Value={2}", className, functionName, value));
                         break;
                     default:
                         accidentalType = AccidentalTypeEnum.unknown;
-                        Logger.LogOnce(string.Format("{0}.{1}: Unexpected child: Value={1}",className,functionName, value));
+                        Logger.LogOnce(string.Format("{0}.{1}: Unexpected child: Value={2}",className,functionName, value));
                         break;
                 }
 
