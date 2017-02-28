@@ -5,7 +5,7 @@ namespace MusicXmlReaderModel
 
     //http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-accidental.htm
 
-    public enum AccidentalTypeEnum { unknown,none,natural,flat,sharp,flatFlat,doubleSharp};
+    public enum AccidentalTypeEnum { unknown,none,natural,flat,sharp,flatFlat,doubleSharp,unsupported};
 
     public class AccidentalElement
     {
@@ -67,6 +67,7 @@ namespace MusicXmlReaderModel
                 case AccidentalTypeEnum.none:           return ResourcesForModel.Accidental_none;
                 case AccidentalTypeEnum.sharp:          return ResourcesForModel.Accidental_sharp;
                 case AccidentalTypeEnum.unknown:        return ResourcesForModel.Accidental_unknown;
+                case AccidentalTypeEnum.unsupported:    return ResourcesForModel.Accidental_unsupported;
                 default:
                     Logger.LogOnce(string.Format("{0}.{1} Unsupported value for accidentaltype={2}", className, functionName, accidentalType.ToString()));
                     return "";        
@@ -115,9 +116,47 @@ namespace MusicXmlReaderModel
                     case "flat":            accidentalType = AccidentalTypeEnum.flat;       break;
                     case "natural":         accidentalType = AccidentalTypeEnum.natural;    break;
                     case "sharp":           accidentalType = AccidentalTypeEnum.sharp;      break;
+                    case "doubleflat":
                     case "flat-flat":       accidentalType = AccidentalTypeEnum.flatFlat;   break;
+                    case "sharp-sharp":
                     case "double-sharp":    accidentalType = AccidentalTypeEnum.doubleSharp; break;
+                    // The following values are mentioned at    https://usermanuals.musicxml.com/MusicXML/Content/ST-MusicXML-accidental-value.htm
+                    // but are not implemented yet !
+                    case "natural-sharp":
+                    case "natural-flat":
+                    case "quarter-flat ":
+                    case "quarter-sharp ":
+                    case "three-quarters-flat ":
+                    case "three-quarters-sharp ":
+                    case "sharp-down ":
+                    case "sharp-up":
+                    case "natural-down ":
+                    case "natural-up ":
+                    case "flat-down ":
+                    case "flat-up":
+                    case "triple-sharp ":
+                    case "triple-flat ":
+                    case "slash-quarter-sharp":
+                    case "slash-sharp":
+                    case "slash-flat":
+                    case "double-slash-flat":
+                    case "sharp-1":
+                    case "sharp-2":
+                    case "sharp-3":
+                    case "sharp-4":
+                    case "sharp-5":
+                    case "flat-1":
+                    case "flat-2":
+                    case "flat-3":
+                    case "flat-4":
+                    case "flat-15":
+                    case "sori":
+                    case "koron":
+                        accidentalType = AccidentalTypeEnum.unsupported;
+                        Logger.LogOnce(string.Format("{0}.{1}: Unimplemented child: Value={1}", className, functionName, value));
+                        break;
                     default:
+                        accidentalType = AccidentalTypeEnum.unknown; break;
                         Logger.LogOnce(string.Format("{0}.{1}: Unexpected child: Value={1}",className,functionName, value));
                         break;
                 }

@@ -715,4 +715,7 @@
   <data name="Accidental_unknown" xml:space="preserve">
     <value>?</value>
   </data>
+  <data name="Accidental_unsupported" xml:space="preserve">
+    <value>Usupporteret</value>
+  </data>
 </root>

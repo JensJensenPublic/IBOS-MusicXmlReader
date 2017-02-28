@@ -124,6 +124,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unsupported.
+        /// </summary>
+        internal static string Accidental_unsupported {
+            get {
+                return ResourceManager.GetString("Accidental_unsupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to flat.
         /// </summary>
         internal static string AccidentalMarkElement_flat {
