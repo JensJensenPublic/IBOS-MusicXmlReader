@@ -14,6 +14,7 @@ namespace MusicXmlReaderModel
         private bool editorial = false;
         private bool parentesis = false;
         private AccidentalTypeEnum accidentalType = AccidentalTypeEnum.none;
+        private string rawAccidentalString; // The raw value from the MusicXml file. Only used for error reporting.
 
 
 
@@ -69,7 +70,7 @@ namespace MusicXmlReaderModel
                 case AccidentalTypeEnum.unknown:        return ResourcesForModel.Accidental_unknown;
                 case AccidentalTypeEnum.unsupported:    return ResourcesForModel.Accidental_unsupported;
                 default:
-                    Logger.LogOnce(string.Format("{0}.{1} Unsupported value for accidentaltype={2}", className, functionName, accidentalType.ToString()));
+                    Logger.LogOnce(string.Format("{0}.{1} Unsupported value for accidentaltype={2}", className, functionName, rawAccidentalString));
                     return "";        
             }
         }
@@ -110,7 +111,8 @@ namespace MusicXmlReaderModel
             // Dig out elements
             foreach (XmlNode child in node.ChildNodes)
             {
-                string value = child.Value;         
+                string value = child.Value;
+                rawAccidentalString = value;  // Used for logging of unsupported values        
                 switch (value)
                 {
                     case "flat":            accidentalType = AccidentalTypeEnum.flat;       break;
@@ -163,7 +165,7 @@ namespace MusicXmlReaderModel
 
                 if (accidentalType != AccidentalTypeEnum.none)
                 {
-                    Logger.LogOnce(string.Format("{0}.{1}: Accidentalelement {2} ignored until needed", className,functionName, this.ToString()));
+                    Logger.LogOnce(string.Format("{0}.{1}: Accidentalelement {2} ignored until needed", className,functionName, rawAccidentalString));
                 }
 
             }
