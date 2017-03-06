@@ -708,9 +708,9 @@ namespace MusicXmlReaderModel
                 foreach (SoundElement soundElement in soundElements)
                 {
                     // For the time being we only handle Tempo here. Later we may handle other velues!
-                    if (0 != soundElement.GetTempo())
+                    if (soundElement.TempoValid)
                     {
-                        soundString = string.Format("{0}:{1} ", ResourcesForModel.EventDescription_tempo, soundElement.GetTempo()); 
+                        soundString = string.Format("{0}:{1} ", ResourcesForModel.EventDescription_tempo, soundElement.TempoValue); 
                     }
                 }
             }

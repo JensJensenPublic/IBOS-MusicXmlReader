@@ -58,11 +58,10 @@ namespace MusicXmlReaderModel
 
             set
             {
-                int newTempo = 0;
-                if ((null != value.Tempo) && int.TryParse(value.Tempo, out newTempo))
+                if (value.TempoValid)
                 {
                     // Only change currentSoundElement if the new one contains a valid value
-                    LogChange("Tempo", (null == currentSoundElement) ? -1 : currentSoundElement.GetTempo(), value.GetTempo());
+                    LogChange("Tempo", (null == currentSoundElement) ? -1 : (int) currentSoundElement.TempoValue, (int) value.TempoValue);
                     currentSoundElement = value;
                 }
             }
@@ -169,7 +168,7 @@ namespace MusicXmlReaderModel
                 string resultingTempo = "";
                 try
                 {
-                    int originalTempo = currentSoundElement.GetTempo();
+                    int originalTempo = (int) currentSoundElement.TempoValue;
                     float modifiedTempo = originalTempo * currentTempoModification / 100;
                     resultingTempo = string.Format("={0}", modifiedTempo); // efine number of decimals to 0
                 }

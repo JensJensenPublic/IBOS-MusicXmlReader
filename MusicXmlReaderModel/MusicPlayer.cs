@@ -375,13 +375,12 @@ namespace MusicXmlReaderUI
             {
                 foreach (SoundElement soundElement in eventDescription.SoundElements)
                 {
-                    // int newTempo = soundElement.GetTempo();
-                    int newTempo = 0;
-                    if ((null != soundElement.Tempo) && int.TryParse(soundElement.Tempo, out newTempo))
+                    // int newTempo = soundElement.GetTempo();              
+                    if (soundElement.TempoValid)
                     {
                         ChangeTimingOffsets(eventDescription.StartTime); // Establish new offsets for stopwatch-time and music-time:
-                        Logger.Log(string.Format("MusicPlayer: Tempo {0}->{1} firstStopWatchTime={2} musicXmlTimeOffset={3}", this.tempo, newTempo, firstStopWatchTime, musicXmlTimeOffset));
-                        this.tempo = newTempo;
+                        Logger.Log(string.Format("MusicPlayer: Tempo {0}->{1} firstStopWatchTime={2} musicXmlTimeOffset={3}", this.tempo, soundElement.TempoValue, firstStopWatchTime, musicXmlTimeOffset));
+                        this.tempo = (int) soundElement.TempoValue;
                     }
                 }
             }
@@ -415,7 +414,7 @@ namespace MusicXmlReaderUI
             {
                 //case "NoteElement":     Play(selectedObject as NoteElement); break;
                 case "EventDescription": Play(selectedObject as EventDescription); break;
-                case "SoundElement": this.tempo = (selectedObject as SoundElement).GetTempo(); break;
+                case "SoundElement": this.tempo = (int) (selectedObject as SoundElement).TempoValue; break;
                 case "NoteElement":
                 case "MeasureElement":
                 case "ScorePartElement":
