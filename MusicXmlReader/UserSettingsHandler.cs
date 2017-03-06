@@ -91,6 +91,7 @@ namespace MusicXmlReader
         private void TreeView_AfterCheck(object sender, TreeViewEventArgs e)
         {
             string functionName = "TreeView_AfterCheck";
+            TreeNode level0Node = null;
             if (null == model.UserSettings)
             {
                 return;
@@ -101,6 +102,7 @@ namespace MusicXmlReader
             int i = e.Node.Index;
             if (level == 0)
             {
+                level0Node = e.Node;
                 if (e.Node.Equals(musicAsSound))
                 {
                     model.UserSettings.MusicAsSound = e.Node.Checked;
@@ -121,6 +123,7 @@ namespace MusicXmlReader
             }
             else if (level == 2)
             {
+                level0Node = e.Node.Parent.Parent;
                 switch (e.Node.Parent.Index)
                 {
                     case 0:  // Voices
@@ -145,7 +148,12 @@ namespace MusicXmlReader
             }
             // Transfer the settings to the MusicPlayer
             model.musicPlayer.UserSettings = model.UserSettings;
-            mainForm.ConditionalLoadListBoxTimes();
+
+            if (!((null != level0Node) && (0 == level0Node.Index)))
+            {
+                // Skip the update of the Listbox if this was a change of a sound parameter, which is not reflected there.
+                mainForm.ConditionalLoadListBoxTimes();
+            }
 
         }
 
