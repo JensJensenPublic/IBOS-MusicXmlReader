@@ -673,8 +673,8 @@ namespace MusicXmlReaderModel
                 Append(((noteElement.Alter > 0) ? Sharp : Flat), (alter > 0) ? UnicodeSharp : UnicodeFlat);
             }
       
-            // Add Octavemark
-            if (MusicBrailleState.NeedOctaveMark(noteElement.Octave, noteElement.PitchValue.SemiTonesAboveC0))
+            // Add Octavemark, either caused by the interval rule or because this is the first note in a scorepart
+            if ((MusicBrailleState.NeedOctaveMark(noteElement.Octave, noteElement.PitchValue.SemiTonesAboveC0)) || noteElement.IsFirstNoteInScorePart)
             {
                 byte[] octaveMark = GetOctaveMark(noteElement.Octave);
                 Append(octaveMark, noteElement.Octave.ToString());

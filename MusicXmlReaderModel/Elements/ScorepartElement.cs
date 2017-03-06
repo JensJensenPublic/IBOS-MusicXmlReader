@@ -11,6 +11,7 @@ namespace MusicXmlReaderModel
         private ScoreInstrumentElement scoreInstrumentElement;
         private MidiInstrumentElement midiInstrumentElement;
         private TransposeElement transposeElement;
+        private bool hasNotes; // Used by  MusicBraille to show an octave mark with first note in each part
 
 
         /// <summary>
@@ -151,6 +152,19 @@ namespace MusicXmlReaderModel
             set
             {
                 transposeElement = value;
+            }
+        }
+
+        public bool HasNotes
+        {
+            get
+            {
+                return hasNotes;
+            }
+
+            set
+            {
+                hasNotes = value;
             }
         }
     }

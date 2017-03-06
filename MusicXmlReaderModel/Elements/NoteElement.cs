@@ -99,6 +99,7 @@ namespace MusicXmlReaderModel
         const string className = "NoteElement";
         float dynamicsFloatValue = 100;
         int dynamicsValue = 90;
+        bool isFirstNoteInScorePart;
 
 
 
@@ -420,7 +421,14 @@ namespace MusicXmlReaderModel
             }
         }
 
-
+        public bool IsFirstNoteInScorePart
+        {
+            get
+            {
+                return isFirstNoteInScorePart;
+            }
+        }
+        
 
         /// <summary>
         /// To force the use of the Create() method
@@ -521,7 +529,7 @@ namespace MusicXmlReaderModel
         }
 
 
-    
+
 
         // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-note.htm
 
@@ -529,9 +537,9 @@ namespace MusicXmlReaderModel
         private NoteElement(XmlNode xmlNode, int divisions, int measureNumber, ScorePartElement scorePartElement, TimeElement currentTimeElement) // New version
         {
             this.divisions = divisions;
-            this.scorePartElement = scorePartElement; 
+            this.scorePartElement = scorePartElement;
             this.measureNumber = measureNumber;
-            this.currentTimeElement = currentTimeElement;  
+            this.currentTimeElement = currentTimeElement;
             const string functionName = "NoteElement constructor"; // For logging            
             //this.partId = scorePartElement.partId;
             //this.partNumber = scorePartElement.partNumber;
@@ -543,8 +551,8 @@ namespace MusicXmlReaderModel
             {
                 switch (a.Name)
                 {
-                    case "measure":         Utilities.ParseYesNoAttributeValue(functionName, a.Name, a.Value, ref measureAttributeValue); break;
-                    case "print-object":    Utilities.ParseYesNoAttributeValue(functionName, a.Name, a.Value, ref printObjectAttributeValue); break;            
+                    case "measure": Utilities.ParseYesNoAttributeValue(functionName, a.Name, a.Value, ref measureAttributeValue); break;
+                    case "print-object": Utilities.ParseYesNoAttributeValue(functionName, a.Name, a.Value, ref printObjectAttributeValue); break;
                     case "default-x":
                     case "default-y":
                     case "relative-x":
@@ -562,11 +570,11 @@ namespace MusicXmlReaderModel
                     case "dynamics":
                         if (Utilities.Parse(a.Value, ref dynamicsFloatValue, (float)0, (float)1000, "NoteElement: Invalid value of dynamics"))
                         {
-                            dynamicsValue = (int) ((float)(0.90) * dynamicsFloatValue);
-                        }  
+                            dynamicsValue = (int)((float)(0.90) * dynamicsFloatValue);
+                        }
                         // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-note.htm
                         // Logger.LogOnce(string.Format("{0}.{1} Unimplemented attribute. Name='{2}' Value is parsed but not used", className, functionName, a.Name));
-                        break; 
+                        break;
                     case "end-dynamics":
                     case "attack":
                     case "release":
@@ -593,7 +601,7 @@ namespace MusicXmlReaderModel
                         // The pitch represents the sound, not what is notated, so an alter element must be included even if it represents a flat or sharp
                         // that is part of the key signature. This is why the E-flat contains an alter element, though there is no accidental on the note.
                         pitchElement = PitchElement.Create(child); // NOTE! Returns null if no step is specified for the pitch
-                        transposeElement = scorePartElement.TransposeElement; 
+                        transposeElement = scorePartElement.TransposeElement;
                         break;
                     case "duration": duration = int.Parse(child.InnerText); break;
                     case "chord": chord = true; break;
@@ -602,10 +610,10 @@ namespace MusicXmlReaderModel
                         if (NoteTypeEnum.unknown == noteDuration)
                         {
                             Logger.LogOnce(string.Format("{0}: Unknown typeString '{1}' in Measure={2} Voice={3}",
-                                functionName,child.InnerText, measureNumber, voice)); break;
+                                functionName, child.InnerText, measureNumber, voice)); break;
                         }
                         break;
-                        // type = child.InnerText;
+                    // type = child.InnerText;
                     case "voice": voice = child.InnerText; break;
                     case "dot": dot = true; break;
                     case "tie":
@@ -629,7 +637,7 @@ namespace MusicXmlReaderModel
                         staff = int.Parse(staffString);
                         break;
                     case "notations": // TO DO: Find out what to do here 
-                        notations = NotationsElement.Create(child);                                              
+                        notations = NotationsElement.Create(child);
                         break;
                     case "beam": // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-beam.htm
                         // This is pure graphical information. Explicitly ignored!
@@ -640,13 +648,13 @@ namespace MusicXmlReaderModel
                         if (restElement.MeasureAttributeValue)
                         {
                             noteDuration = NoteTypeEnum.measure; // This Rest covers a full measure
-                        }                  
+                        }
                         break;
                     case "accidental": // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-accidental.htm
                         accidentalElement = AccidentalElement.Create(child);
                         break;
                     case "time-modification":   // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-time-modification.htm  
-                        timeModificationElement = TimeModificationElement.Create(child,this);
+                        timeModificationElement = TimeModificationElement.Create(child, this);
                         break;
                     case "instrument":
                         instrumentElement = InstrumentElement.Create(child);
@@ -657,7 +665,7 @@ namespace MusicXmlReaderModel
                     case "grace": // TO DO: Find out what to do here
                         // Mark this note as a grace note, i.e a note not taking part of the normal timing mechanisms.
                         // Grace notes may be implemented later, for now they are just ignored while building eventlists. 
-                        graceNote = true;                                                 
+                        graceNote = true;
                         break;
                     case "unpitched":
                         unpitched = true; break; // Just mark the note as unpitched
@@ -667,24 +675,34 @@ namespace MusicXmlReaderModel
                         noteHeadElement = NoteHeadElement.Create(child);
                         break;
                     //default:  throw new ArgumentException();
-                    default: Logger.LogOnce(string.Format("{0}: Unknown child.Name '{1}'",functionName, child.Name)); break;
+                    default: Logger.LogOnce(string.Format("{0}: Unknown child.Name '{1}'", functionName, child.Name)); break;
                 }
                 if ((unimplemented) || (isCueNote))
                 {
-                    Logger.LogOnce(string.Format("{0}: child.Name '{1}' is not implemented yet", functionName, child.Name)); 
+                    Logger.LogOnce(string.Format("{0}: child.Name '{1}' is not implemented yet", functionName, child.Name));
                 }
 
 
             }
 
-            noteDuration = GetNoteDuration();          
+            noteDuration = GetNoteDuration();
 
             localizedType = LocalizeType(noteDuration, dot);
             localizedPauseType = (IsPause) ? LocalizePause(noteDuration, dot) : "";
             localizedTie = LocalizeTie(tieType);
-          
-            // Model.GetNoteTiming(out this.startTime, out this.endTime, int.Parse(this.duration)); 
+
+            // Model.GetNoteTiming(out this.startTime, out this.endTime, int.Parse(this.duration));
+
+            // Mark this note if it is the first NoteElement in this scorePart (Used by MusicBraille)
+            if (!scorePartElement.HasNotes)
+            {
+                // Mark this note as the first note in the score
+                isFirstNoteInScorePart = true;
+                scorePartElement.HasNotes = true;
+            }
+
         }
+      
 
 
         /// <summary>
