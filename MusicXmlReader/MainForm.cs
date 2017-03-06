@@ -78,7 +78,7 @@ namespace MusicXmlReader
             string iconFile = "";
             try
             {
-                iconFile = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(executingAssemblyFullPath), "ringtones.ico");
+                iconFile = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(executingAssemblyFullPath), "icon.ico");
                 this.Icon = new System.Drawing.Icon(iconFile);
             }
             catch (Exception e)
