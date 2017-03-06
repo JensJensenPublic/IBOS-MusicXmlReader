@@ -823,7 +823,7 @@ namespace MusicXmlReader
         //*************************************************************************************************
         //
 
-        #region About
+        #region Help
         private void aboutIBOSMusicXmlReaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Version version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
@@ -831,6 +831,14 @@ namespace MusicXmlReader
             string text = string.Format("{0}={1}", ResourcesForUI.ToolStripMenuItem_Help_About_Version, version.ToString());
             MessageBox.Show(text, caption);
         }
+
+
+        private void keyboardShortcutsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string caption = ApplicationName;
+            MessageBox.Show(ShortcutHelp.Create().ToString(), caption);
+        }
+
         #endregion
 
         #region Archives
@@ -939,6 +947,8 @@ namespace MusicXmlReader
         {
             model.ExternalToolsHandler.OpenUrl(sender.ToString());
         }
+
+
 
         #endregion
         //*************************************************************************************************

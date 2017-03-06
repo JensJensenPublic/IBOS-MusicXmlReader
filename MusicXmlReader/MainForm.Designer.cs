@@ -85,6 +85,7 @@
             this.textBoxNormalText = new System.Windows.Forms.TextBox();
             this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
+            this.keyboardShortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -465,7 +466,8 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem});
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem,
+            this.keyboardShortcutsToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
@@ -473,7 +475,7 @@
             // aboutIBOSMusicXmlReaderToolStripMenuItem
             // 
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Name = "aboutIBOSMusicXmlReaderToolStripMenuItem";
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = "About ";
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Click += new System.EventHandler(this.aboutIBOSMusicXmlReaderToolStripMenuItem_Click);
             // 
@@ -550,6 +552,13 @@
             this.textBoxStatusInformation.TabIndex = 10;
             this.textBoxStatusInformation.TabStop = false;
             this.textBoxStatusInformation.Text = "Status Information";
+            // 
+            // keyboardShortcutsToolStripMenuItem
+            // 
+            this.keyboardShortcutsToolStripMenuItem.Name = "keyboardShortcutsToolStripMenuItem";
+            this.keyboardShortcutsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.keyboardShortcutsToolStripMenuItem.Text = "Keyboard shortcuts";
+            this.keyboardShortcutsToolStripMenuItem.Click += new System.EventHandler(this.keyboardShortcutsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -636,6 +645,7 @@
         private System.Windows.Forms.ToolStripMenuItem httpwwwhymnsandcarolsofchristmascomToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem httpwwwhausmusikchToolStripMenuItem;
         private System.Windows.Forms.TextBox textBoxStatusInformation;
+        private System.Windows.Forms.ToolStripMenuItem keyboardShortcutsToolStripMenuItem;
     }
 }
 
