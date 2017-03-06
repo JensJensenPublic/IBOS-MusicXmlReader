@@ -61,6 +61,33 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shortcuts used for controlling the note filter.
+        /// </summary>
+        internal static string shortcut_Caption_NoteFilter {
+            get {
+                return ResourceManager.GetString("shortcut_Caption_NoteFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shortcuts used for controlling the note list.
+        /// </summary>
+        internal static string shortcut_Caption_NoteList {
+            get {
+                return ResourceManager.GetString("shortcut_Caption_NoteList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard Windows / JAWS shortcuts.
+        /// </summary>
+        internal static string shortcut_Caption_Windows_JAWS {
+            get {
+                return ResourceManager.GetString("shortcut_Caption_Windows_JAWS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close program.
         /// </summary>
         internal static string Shortcut_CloseProgram {
@@ -138,6 +165,87 @@ namespace MusicXmlReader {
         internal static string Shortcut_GoToMeasureN {
             get {
                 return ResourceManager.GetString("Shortcut_GoToMeasureN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALT.
+        /// </summary>
+        internal static string shortcut_Key_alt {
+            get {
+                return ResourceManager.GetString("shortcut_Key_alt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CONTROL.
+        /// </summary>
+        internal static string Shortcut_Key_Control {
+            get {
+                return ResourceManager.GetString("Shortcut_Key_Control", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENTER.
+        /// </summary>
+        internal static string Shortcut_Key_enter {
+            get {
+                return ResourceManager.GetString("Shortcut_Key_enter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ESC.
+        /// </summary>
+        internal static string Shortcut_Key_escape {
+            get {
+                return ResourceManager.GetString("Shortcut_Key_escape", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT.
+        /// </summary>
+        internal static string Shortcut_Key_insert {
+            get {
+                return ResourceManager.GetString("Shortcut_Key_insert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PAGEDOWN.
+        /// </summary>
+        internal static string shortcut_Key_pageDown {
+            get {
+                return ResourceManager.GetString("shortcut_Key_pageDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SHIFT.
+        /// </summary>
+        internal static string shortcut_Key_shift {
+            get {
+                return ResourceManager.GetString("shortcut_Key_shift", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SPACE.
+        /// </summary>
+        internal static string Shortcut_Key_space {
+            get {
+                return ResourceManager.GetString("Shortcut_Key_space", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TAB.
+        /// </summary>
+        internal static string shortcut_Key_tab {
+            get {
+                return ResourceManager.GetString("shortcut_Key_tab", resourceCulture);
             }
         }
         
@@ -228,6 +336,15 @@ namespace MusicXmlReader {
         internal static string Shortcut_StopPlaying {
             get {
                 return ResourceManager.GetString("Shortcut_StopPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to followed by.
+        /// </summary>
+        internal static string shortcut_Text_followedBy {
+            get {
+                return ResourceManager.GetString("shortcut_Text_followedBy", resourceCulture);
             }
         }
         

@@ -43,23 +43,24 @@ namespace MusicXmlReader
         public override string ToString()
         {     
             // The following texts must be localized!   
-            const string control = "CONTROL";
-            const string space = "SPACE";
-            const string escape = "ESCAPE";
-            const string enter = "ENTER";
-            const string insert = "INSERT";
-            const string alt = "ALT";
-            const string tab = "TAB";
-            const string followedBy = "followed by";
-            const string pageDown  = "PAGEDOWN";
-            const string shift = "SHIFT";
+            string control = ResourcesForHelp.Shortcut_Key_Control;
+            string space = ResourcesForHelp.Shortcut_Key_space;
+            string escape = ResourcesForHelp.Shortcut_Key_escape;
+            string enter = ResourcesForHelp.Shortcut_Key_enter;
+            string insert = ResourcesForHelp.Shortcut_Key_insert;
+            string alt = ResourcesForHelp.shortcut_Key_alt;
+            string tab = ResourcesForHelp.shortcut_Key_tab;
+            string followedBy = ResourcesForHelp.shortcut_Text_followedBy;
+            string pageDown  = ResourcesForHelp.shortcut_Key_pageDown;
+            string shift = ResourcesForHelp.shortcut_Key_shift;
 
 
             sb = new StringBuilder();
 
 
             // Følgende standard Windows / JAWS tastatur genveje kan anvendes generelt
-            AddLine("-----------------------");
+            sb.Append("\r");
+            AddLine(ResourcesForHelp.shortcut_Caption_Windows_JAWS);
             AddLine(Combine(Plus(control, "O"),  ResourcesForHelp.Shortcut_OpenFileOpenDialog));
             AddLine(Combine(Plus(alt, "F4"),     ResourcesForHelp.Shortcut_CloseProgram));
             AddLine(Combine(alt, ResourcesForHelp.Shortcut_SelectMenuLine));
@@ -69,7 +70,8 @@ namespace MusicXmlReader
             AddLine(Combine(Plus(insert, "T"), ResourcesForHelp.Shortcut_ReadTitleLine));
 
             // Følgende specielle tastaturgenveje og kommandoer kan anvendes i forbindelse med Nodelisten
-            AddLine("-----------------------");
+            sb.Append("\r");
+            AddLine(ResourcesForHelp.shortcut_Caption_NoteList);
             AddLine(Combine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList));
             AddLine(Combine(Plus(control, "P"), ResourcesForHelp.Shortcut_StartPlaying));
             AddLine(Combine(Plus(control, shift, "P"), ResourcesForHelp.Shortcut_StopPlaying));
@@ -80,7 +82,8 @@ namespace MusicXmlReader
             AddLine(Combine("ESC", ResourcesForHelp.Shortcut_StopCurrentNote));
 
             // Følgende specielle tastaturgenveje kan bruges i forbindelse med redigering af nodefilteret:
-            AddLine("-----------------------");
+            sb.Append("\r");
+            AddLine(ResourcesForHelp.shortcut_Caption_NoteFilter);
             AddLine(Combine(Plus(control, "A"), ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter));
             AddLine(Combine(Plus(control, "F"), ResourcesForHelp.Shortcut_EdirNoteFilter));
             AddLine(Combine(Plus(control, "M"), ResourcesForHelp.Shortcut_EditMusicPlaying));
