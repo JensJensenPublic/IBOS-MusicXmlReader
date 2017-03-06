@@ -60,37 +60,36 @@ namespace MusicXmlReader
 
             // Følgende standard Windows / JAWS tastatur genveje kan anvendes generelt
             AddLine("-----------------------");
-            AddLine(Combine(Plus(control, "O"),  "KLKL"));
-            AddLine(Combine(Plus(alt, "F4"),     "KLKL"));
-            AddLine(Combine(alt, "KLKL"));
-            AddLine(Combine(tab, "KLKL"));
-            AddLine(Combine(Plus(insert,space) + " " + followedBy + " s","KLKL"));
-            AddLine(Combine(Plus(insert,pageDown), "KLKL"));
-            AddLine(Combine(Plus(insert, "T"), "KLKL"));
+            AddLine(Combine(Plus(control, "O"),  ResourcesForHelp.Shortcut_OpenFileOpenDialog));
+            AddLine(Combine(Plus(alt, "F4"),     ResourcesForHelp.Shortcut_CloseProgram));
+            AddLine(Combine(alt, ResourcesForHelp.Shortcut_SelectMenuLine));
+            AddLine(Combine(tab, ResourcesForHelp.Shortcut_ToggleBetweenListAndFilter));
+            AddLine(Combine(Plus(insert,space) + " " + followedBy + " s",ResourcesForHelp.Shortcut_ToggleJAWSSpeechOnOff));
+            AddLine(Combine(Plus(insert,pageDown), ResourcesForHelp.Shortcut_ReadStatusLine));
+            AddLine(Combine(Plus(insert, "T"), ResourcesForHelp.Shortcut_ReadTitleLine));
 
             // Følgende specielle tastaturgenveje og kommandoer kan anvendes i forbindelse med Nodelisten
             AddLine("-----------------------");
-            AddLine(Combine(Plus(control, "L"), "KLKL"));
-            AddLine(Combine(Plus(control, "P"), "KLKL"));
-            AddLine(Combine(Plus(control, shift, "T"), "KLKL"));
-            AddLine(Combine(Plus(space), "KLKL"));
-            AddLine(Combine("Tn " + enter, "KLKL"));
-            AddLine(Combine("Rn,m " + enter, "KLKL"));
-            AddLine(Combine("Gn " + enter, "KLKL"));
-            AddLine(Combine("ESC", "KLKL"));
+            AddLine(Combine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList));
+            AddLine(Combine(Plus(control, "P"), ResourcesForHelp.Shortcut_StartPlaying));
+            AddLine(Combine(Plus(control, shift, "P"), ResourcesForHelp.Shortcut_StopPlaying));
+            AddLine(Combine(Plus(space), ResourcesForHelp.Shortcut_TogglePlay));
+            AddLine(Combine("Tn " + enter, ResourcesForHelp.Shortcut_SetTempo));
+            AddLine(Combine("Rn,m " + enter, ResourcesForHelp.Shortcut_RepeatFromNtoM));
+            AddLine(Combine("Gn " + enter, ResourcesForHelp.Shortcut_GoToMeasureN));
+            AddLine(Combine("ESC", ResourcesForHelp.Shortcut_StopCurrentNote));
 
             // Følgende specielle tastaturgenveje kan bruges i forbindelse med redigering af nodefilteret:
             AddLine("-----------------------");
-            AddLine(Combine(Plus(control, "A"), "KLKL"));
-            AddLine(Combine(Plus(control, "F"), "KLKL"));
-            AddLine(Combine(Plus(control, "M"), "KLKL"));
-            AddLine(Combine(Plus(control, "T"), "KLKL"));
-            AddLine(Combine(Plus(control, "B"), "KLKL"));
-            AddLine(Combine(Plus(control, "S"), "KLKL"));
-            AddLine(Combine(space, "KLKL"));
-            AddLine(Combine(Plus(control, "A"), "KLKL"));
-            AddLine(Combine(Plus(control, "0"), "KLKL"));
-            AddLine(Combine(Plus(control, "1"), "KLKL"));
+            AddLine(Combine(Plus(control, "A"), ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter));
+            AddLine(Combine(Plus(control, "F"), ResourcesForHelp.Shortcut_EdirNoteFilter));
+            AddLine(Combine(Plus(control, "M"), ResourcesForHelp.Shortcut_EditMusicPlaying));
+            AddLine(Combine(Plus(control, "T"), ResourcesForHelp.Shortcut_EditText));
+            AddLine(Combine(Plus(control, "B"), ResourcesForHelp.Shortcut_EditMusicBraille));
+            AddLine(Combine(Plus(control, "S"), ResourcesForHelp.Shortcut_EditVoices));
+            AddLine(Combine(space, ResourcesForHelp.Shortcut_ToggleValue));
+            AddLine(Combine(Plus(control, "0"), ResourcesForHelp.Shortcut_TurnOffGlobally));
+            AddLine(Combine(Plus(control, "1"), ResourcesForHelp.Shurtcut_TurnOnGlobally));
 
             return sb.ToString();
         }

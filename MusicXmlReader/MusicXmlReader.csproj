@@ -64,6 +64,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ResourcesForHelp.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourcesForHelp.resx</DependentUpon>
+    </Compile>
     <Compile Include="ShortcutHelp.cs" />
     <Compile Include="UserCommandInterpreter.cs" />
     <Compile Include="MainForm.cs">
@@ -93,6 +98,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ResourcesForHelp.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesForHelp.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ResourcesForUI.da-DK.resx" />
     <EmbeddedResource Include="ResourcesForUI.resx">
       <Generator>ResXFileCodeGenerator</Generator>
