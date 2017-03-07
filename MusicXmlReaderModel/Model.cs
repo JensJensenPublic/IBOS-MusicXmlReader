@@ -373,6 +373,12 @@ namespace MusicXmlReaderModel
                     // footnote, level, divisions, key, time, staves, part-symbol,instruments, clef, staff-details, transpose, directive,measure-style
                     // For the time being there is no need to structure these elements into the Attribute Element !          
                     break;
+                case "measure-repeat":
+                    allMusicXmlObjecsts.Add(MeasureRepeatElement.Create(node));
+                    break;
+                case "measure-style":
+                    allMusicXmlObjecsts.Add(MeasureStyleElement.Create(node));
+                    break;
                 case "backup":
                     allMusicXmlObjecsts.Add(BackupElement.Create(node, divisions));
                     continueRecursion = false;

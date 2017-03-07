@@ -49,6 +49,8 @@
     <Compile Include="BrailleDisplayer.cs" />
     <Compile Include="Elements\BassElement.cs" />
     <Compile Include="Elements\DegreeElement.cs" />
+    <Compile Include="Elements\MeasureRepeatElement.cs" />
+    <Compile Include="Elements\MeasureStyleElement.cs" />
     <Compile Include="Elements\PitchElementBase.cs" />
     <Compile Include="Elements\RootElement.cs" />
     <Compile Include="MetaInformation.cs" />

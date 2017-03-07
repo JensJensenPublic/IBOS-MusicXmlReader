@@ -202,13 +202,39 @@ namespace MusicXmlReaderModel
             switch (attributeValue)
             {
                 case "yes": result = true; break;
-                case "no":  result = false; break;
-                default: Logger.LogOnce(string.Format("{0}: Unexpected value for attribute {1}: '{2}'",
-                                                       functionName,  // 0
-                                                       attributeName, // 1
-                                                       attributeValue // 2
-                                                       )); break;            }
+                case "no": result = false; break;
+                default:
+                    Logger.LogOnce(string.Format("{0}: Unexpected value for attribute {1}: '{2}'",
+                                                  functionName,  // 0
+                                                  attributeName, // 1
+                                                  attributeValue // 2
+                                                  )); break;
+            }
         }
+
+        /// <summary>
+        /// Parses an a sting for the values of "start" or "stop"
+        /// </summary>
+        /// <param name="functionName">Only used for logging</param>
+        /// <param name="attributeName">Only used for logging</param>
+        /// <param name="attributeValue">The string to parse</param>
+        /// <param name="result">Set depending of the attributeValue: "start"-> true, "stop"->false, default: unchanged</param>
+        public static void ParseStartStopAttributeValue(string functionName, string attributeName, string attributeValue, ref bool result)
+        {
+            switch (attributeValue)
+            {
+                case "start": result = true; break;
+                case "stop": result = false; break;
+                default:
+                    Logger.LogOnce(string.Format("{0}: Unexpected value for attribute {1}: '{2}'",
+                                                  functionName,  // 0
+                                                  attributeName, // 1
+                                                  attributeValue // 2
+                                                  )); break;
+            }
+        }
+
+
 
 
         private static bool CheckDll(string dllName, string directory,bool is64Bit)
