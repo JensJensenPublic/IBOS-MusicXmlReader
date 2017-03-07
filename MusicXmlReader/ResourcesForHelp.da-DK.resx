@@ -126,4 +126,109 @@
   <data name="shortcut_Caption_Windows_JAWS" xml:space="preserve">
     <value>Genvejstaster som bruges generelt af Windows eller JAWS</value>
   </data>
+  <data name="Shortcut_CloseProgram" xml:space="preserve">
+    <value>Luk programmet</value>
+  </data>
+  <data name="Shortcut_EditDetails" xml:space="preserve">
+    <value>Rediger detaljer i nodefilteret</value>
+  </data>
+  <data name="Shortcut_EditMusicBraille" xml:space="preserve">
+    <value>Rediger Music Braille i nodefilteret</value>
+  </data>
+  <data name="Shortcut_EditMusicPlaying" xml:space="preserve">
+    <value>Rediger afspilning i nodefilteret</value>
+  </data>
+  <data name="Shortcut_EditNoteFilter" xml:space="preserve">
+    <value>Rediger nodefilteret</value>
+  </data>
+  <data name="Shortcut_EditText" xml:space="preserve">
+    <value>Rediger tekst-repræsentation i nodefilteret</value>
+  </data>
+  <data name="Shortcut_EditVoices" xml:space="preserve">
+    <value>Rediger stemmer i nodefilteret</value>
+  </data>
+  <data name="Shortcut_ExpandAndEditNoteFilt" xml:space="preserve">
+    <value>Rediger nodefilteret efter udfoldning</value>
+  </data>
+  <data name="Shortcut_GoToMeasureN" xml:space="preserve">
+    <value>Gå til takt n </value>
+  </data>
+  <data name="shortcut_Key_alt" xml:space="preserve">
+    <value>ALT</value>
+  </data>
+  <data name="Shortcut_Key_Control" xml:space="preserve">
+    <value>CONTROL</value>
+  </data>
+  <data name="Shortcut_Key_enter" xml:space="preserve">
+    <value>RETUR</value>
+  </data>
+  <data name="Shortcut_Key_escape" xml:space="preserve">
+    <value>ESC</value>
+  </data>
+  <data name="Shortcut_Key_insert" xml:space="preserve">
+    <value>INDSÆT</value>
+  </data>
+  <data name="shortcut_Key_pageDown" xml:space="preserve">
+    <value>PAGEDOWN</value>
+  </data>
+  <data name="shortcut_Key_shift" xml:space="preserve">
+    <value>SKIFT</value>
+  </data>
+  <data name="Shortcut_Key_space" xml:space="preserve">
+    <value>MELLEMRUM</value>
+  </data>
+  <data name="shortcut_Key_tab" xml:space="preserve">
+    <value>TAB</value>
+  </data>
+  <data name="Shortcut_OpenFileOpenDialog" xml:space="preserve">
+    <value>Åbn filåbningsdialog</value>
+  </data>
+  <data name="Shortcut_ReadStatusLine" xml:space="preserve">
+    <value>Oplæs statuslinien</value>
+  </data>
+  <data name="Shortcut_ReadTitleLine" xml:space="preserve">
+    <value>Oplæs titellinien</value>
+  </data>
+  <data name="Shortcut_RepeatFromNtoM" xml:space="preserve">
+    <value>Gentag fra takt N til takt M</value>
+  </data>
+  <data name="Shortcut_SelectMenuLine" xml:space="preserve">
+    <value>Gå til menulinien</value>
+  </data>
+  <data name="Shortcut_SelectNoteList" xml:space="preserve">
+    <value>Gå til nodelisten</value>
+  </data>
+  <data name="Shortcut_SetTempo" xml:space="preserve">
+    <value>Sæt afspilningstempo til N procent af det angivne tempo</value>
+  </data>
+  <data name="Shortcut_StartPlaying" xml:space="preserve">
+    <value>Start afspilning</value>
+  </data>
+  <data name="Shortcut_StopCurrentNote" xml:space="preserve">
+    <value>Stop afspilning af aktuelle node</value>
+  </data>
+  <data name="Shortcut_StopPlaying" xml:space="preserve">
+    <value>Stop afspilning</value>
+  </data>
+  <data name="shortcut_Text_followedBy" xml:space="preserve">
+    <value>fulgt af</value>
+  </data>
+  <data name="Shortcut_ToggleBetweenListAndFilter" xml:space="preserve">
+    <value>Skift mellem nodelisten og nodefilteret</value>
+  </data>
+  <data name="Shortcut_ToggleJAWSSpeechOnOff" xml:space="preserve">
+    <value>Slå JAWS tale til / fra</value>
+  </data>
+  <data name="Shortcut_TogglePlay" xml:space="preserve">
+    <value>Start / stop afspilning </value>
+  </data>
+  <data name="Shortcut_ToggleValue" xml:space="preserve">
+    <value>Skift indstilling til modsat værdi</value>
+  </data>
+  <data name="Shortcut_TurnOffGlobally" xml:space="preserve">
+    <value>Sluk udvalgte stemme globalt</value>
+  </data>
+  <data name="Shurtcut_TurnOnGlobally" xml:space="preserve">
+    <value>Tænd udvalgte stemme globalt</value>
+  </data>
 </root>
