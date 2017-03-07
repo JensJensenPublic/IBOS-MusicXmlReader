@@ -349,6 +349,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keyboard shortcuts.
+        /// </summary>
+        internal static string ToolStripMenuItem_Help_Shortcuts {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Help_Shortcuts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Tools.
         /// </summary>
         internal static string ToolStripMenuItem_Tools {

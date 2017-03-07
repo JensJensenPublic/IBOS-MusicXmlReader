@@ -285,4 +285,7 @@
   <data name="StatusLine_Accessible_Name" xml:space="preserve">
     <value>Statuslinie</value>
   </data>
+  <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
+    <value>Tastaturgenveje</value>
+  </data>
 </root>
