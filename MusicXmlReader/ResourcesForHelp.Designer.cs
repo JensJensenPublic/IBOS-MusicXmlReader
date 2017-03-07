@@ -97,15 +97,6 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit the note filter.
-        /// </summary>
-        internal static string Shortcut_EdirNoteFilter {
-            get {
-                return ResourceManager.GetString("Shortcut_EdirNoteFilter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Edit details.
         /// </summary>
         internal static string Shortcut_EditDetails {
@@ -129,6 +120,15 @@ namespace MusicXmlReader {
         internal static string Shortcut_EditMusicPlaying {
             get {
                 return ResourceManager.GetString("Shortcut_EditMusicPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit the note filter.
+        /// </summary>
+        internal static string Shortcut_EditNoteFilter {
+            get {
+                return ResourceManager.GetString("Shortcut_EditNoteFilter", resourceCulture);
             }
         }
         

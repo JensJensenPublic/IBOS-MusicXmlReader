@@ -85,7 +85,7 @@ namespace MusicXmlReader
             sb.Append("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteFilter);
             AddLine(Combine(Plus(control, "A"), ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter));
-            AddLine(Combine(Plus(control, "F"), ResourcesForHelp.Shortcut_EdirNoteFilter));
+            AddLine(Combine(Plus(control, "F"), ResourcesForHelp.Shortcut_EditNoteFilter));
             AddLine(Combine(Plus(control, "M"), ResourcesForHelp.Shortcut_EditMusicPlaying));
             AddLine(Combine(Plus(control, "T"), ResourcesForHelp.Shortcut_EditText));
             AddLine(Combine(Plus(control, "B"), ResourcesForHelp.Shortcut_EditMusicBraille));

@@ -147,7 +147,7 @@
   <data name="Shortcut_EditVoices" xml:space="preserve">
     <value>Rediger stemmer i nodefilteret</value>
   </data>
-  <data name="Shortcut_ExpandAndEditNoteFilt" xml:space="preserve">
+  <data name="Shortcut_ExpandAndEditNoteFilter" xml:space="preserve">
     <value>Rediger nodefilteret efter udfoldning</value>
   </data>
   <data name="Shortcut_GoToMeasureN" xml:space="preserve">
@@ -190,7 +190,7 @@
     <value>Oplæs titellinien</value>
   </data>
   <data name="Shortcut_RepeatFromNtoM" xml:space="preserve">
-    <value>Gentag fra takt N til takt M</value>
+    <value>Gentag fra takt n til takt m</value>
   </data>
   <data name="Shortcut_SelectMenuLine" xml:space="preserve">
     <value>Gå til menulinien</value>
@@ -199,7 +199,7 @@
     <value>Gå til nodelisten</value>
   </data>
   <data name="Shortcut_SetTempo" xml:space="preserve">
-    <value>Sæt afspilningstempo til N procent af det angivne tempo</value>
+    <value>Sæt afspilningstempo til n procent af det angivne tempo</value>
   </data>
   <data name="Shortcut_StartPlaying" xml:space="preserve">
     <value>Start afspilning</value>

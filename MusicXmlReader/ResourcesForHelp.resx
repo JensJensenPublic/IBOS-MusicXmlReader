@@ -129,7 +129,7 @@
   <data name="Shortcut_CloseProgram" xml:space="preserve">
     <value>Close program</value>
   </data>
-  <data name="Shortcut_EdirNoteFilter" xml:space="preserve">
+  <data name="Shortcut_EditNoteFilter" xml:space="preserve">
     <value>Edit the note filter</value>
   </data>
   <data name="Shortcut_EditDetails" xml:space="preserve">
