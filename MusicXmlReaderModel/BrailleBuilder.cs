@@ -439,11 +439,6 @@ namespace MusicXmlReaderModel
             if (null == notations) return;
             //if (null == notations.Articulations) return;
 
-            if ((null != notations.SlurElement) && (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop))
-            {
-                Append(Slur,"SlurStop");
-            }
-
 
             if (null != notations.TupletElement)
             {
@@ -530,6 +525,7 @@ namespace MusicXmlReaderModel
             
             if (null != notations.TiedElement)
             {
+                // Note: "Slur" == "Legatobue"   "Tie" == "Bindebue" See http://www.musicreadingsavant.com/whats-the-difference-between-ties-and-slurs/
                 if
                 (  (notations.TiedElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start)
                 || (notations.TiedElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Continue)
@@ -539,6 +535,19 @@ namespace MusicXmlReaderModel
                     Append(Tie, "Tie");
                 }
             }
+
+            if (null != notations.SlurElement) 
+            {
+                // Note: "Slur" == "Legatobue"   "Tie" == "Bindebue" See http://www.musicreadingsavant.com/whats-the-difference-between-ties-and-slurs/
+                if
+                (
+                    (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start)
+                ||  (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Continue)
+                ||  (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop)                    
+                )               
+                Append(Slur, "Slur");
+            }
+                        
 
             if (null != notations.FermataElement)
             {
