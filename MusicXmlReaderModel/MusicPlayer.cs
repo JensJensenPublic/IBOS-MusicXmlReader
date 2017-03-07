@@ -47,6 +47,7 @@ namespace MusicXmlReaderUI
         bool userTemopChanged = false;
         //int   userTempo = 100; // Percentage of tempo indicated in score
         float userTempoFactor = (float)1;
+        int latestSelectedIndex = -1; // Used to avoid playing notes only because a filter has changed
 
         /// <summary>
         /// Constructor
@@ -111,6 +112,8 @@ namespace MusicXmlReaderUI
         {
             if (playing) return;
             if (null == selectedObject) return;
+            if (selectedIndex == latestSelectedIndex) return;
+            latestSelectedIndex = selectedIndex;
             if ((selectedObject is NoteElement))
             {
                 NoteElement noteElement = selectedObject as NoteElement;
