@@ -375,9 +375,11 @@ namespace MusicXmlReaderModel
                     break;
                 case "measure-repeat":
                     allMusicXmlObjecsts.Add(MeasureRepeatElement.Create(node));
+                    continueRecursion = false;
                     break;
                 case "measure-style":
                     allMusicXmlObjecsts.Add(MeasureStyleElement.Create(node));
+                    continueRecursion = false;
                     break;
                 case "backup":
                     allMusicXmlObjecsts.Add(BackupElement.Create(node, divisions));
