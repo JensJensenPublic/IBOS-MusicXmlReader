@@ -130,25 +130,25 @@
     <value>Luk programmet</value>
   </data>
   <data name="Shortcut_EditDetails" xml:space="preserve">
-    <value>Rediger detaljer i nodefilteret</value>
+    <value>Redigér detaljer i nodefilteret</value>
   </data>
   <data name="Shortcut_EditMusicBraille" xml:space="preserve">
-    <value>Rediger Music Braille i nodefilteret</value>
+    <value>Redigér Music Braille repræsentation i nodefilteret</value>
   </data>
   <data name="Shortcut_EditMusicPlaying" xml:space="preserve">
-    <value>Rediger afspilning i nodefilteret</value>
+    <value>Redigér afspilning i nodefilteret</value>
   </data>
   <data name="Shortcut_EditNoteFilter" xml:space="preserve">
-    <value>Rediger nodefilteret</value>
+    <value>Redigér nodefilteret</value>
   </data>
   <data name="Shortcut_EditText" xml:space="preserve">
-    <value>Rediger tekst-repræsentation i nodefilteret</value>
+    <value>Redigér tekst repræsentation i nodefilteret</value>
   </data>
   <data name="Shortcut_EditVoices" xml:space="preserve">
-    <value>Rediger stemmer i nodefilteret</value>
+    <value>Redigér stemmer i nodefilteret</value>
   </data>
   <data name="Shortcut_ExpandAndEditNoteFilter" xml:space="preserve">
-    <value>Rediger nodefilteret efter udfoldning</value>
+    <value>Redigér nodefilteret efter udfoldning</value>
   </data>
   <data name="Shortcut_GoToMeasureN" xml:space="preserve">
     <value>Gå til takt n </value>
@@ -211,7 +211,7 @@
     <value>Stop afspilning</value>
   </data>
   <data name="shortcut_Text_followedBy" xml:space="preserve">
-    <value>fulgt af</value>
+    <value />
   </data>
   <data name="Shortcut_ToggleBetweenListAndFilter" xml:space="preserve">
     <value>Skift mellem nodelisten og nodefilteret</value>

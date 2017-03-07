@@ -211,7 +211,7 @@
     <value>Stop playing</value>
   </data>
   <data name="shortcut_Text_followedBy" xml:space="preserve">
-    <value>followed by</value>
+    <value />
   </data>
   <data name="Shortcut_ToggleBetweenListAndFilter" xml:space="preserve">
     <value>Toggle between the note list and the note filter</value>

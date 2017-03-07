@@ -340,7 +340,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to followed by.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string shortcut_Text_followedBy {
             get {
