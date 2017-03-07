@@ -32,7 +32,8 @@ namespace MusicXmlReader
 
         private string Combine(string s1, string s2)
         {
-            return string.Format("{0,-30} : {1}", s1, s2); // Make all s1 30 chars long
+            // Accept a simple formatting to save development time !!
+            return string.Format("{0,-20} \t {1}", s1, s2); // Make all s1 25 chars long and use a TAB
         }
 
         private void AddLine(string line)
