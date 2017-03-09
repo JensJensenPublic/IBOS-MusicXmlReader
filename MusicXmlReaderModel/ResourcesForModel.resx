@@ -720,4 +720,13 @@
   <data name="UserSettings_ReaderNames_Accidentals" xml:space="preserve">
     <value>Accidentals</value>
   </data>
+  <data name="BeatRepeatElement_Name" xml:space="preserve">
+    <value>Beat-repeat</value>
+  </data>
+  <data name="MeasureRepeatElement_Name" xml:space="preserve">
+    <value>Measure-repeat</value>
+  </data>
+  <data name="MultipleRestElement_Name" xml:space="preserve">
+    <value>Multiple-rest</value>
+  </data>
 </root>

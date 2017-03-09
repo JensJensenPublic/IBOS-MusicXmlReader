@@ -376,6 +376,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Beat-repeat.
+        /// </summary>
+        internal static string BeatRepeatElement_Name {
+            get {
+                return ResourceManager.GetString("BeatRepeatElement_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to C-Clef.
         /// </summary>
         internal static string ClefElement_C_Key {
@@ -601,11 +610,29 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Measure-repeat.
+        /// </summary>
+        internal static string MeasureRepeatElement_Name {
+            get {
+                return ResourceManager.GetString("MeasureRepeatElement_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File name.
         /// </summary>
         internal static string MetaInfoText_FileName {
             get {
                 return ResourceManager.GetString("MetaInfoText_FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple-rest.
+        /// </summary>
+        internal static string MultipleRestElement_Name {
+            get {
+                return ResourceManager.GetString("MultipleRestElement_Name", resourceCulture);
             }
         }
         

@@ -50,7 +50,9 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            return " " + "Taktgentagelse" + ":" + (start ? "start" : "stop"); // TODO Localize
+            string startString = ResourcesForModel.StartStopContinueElement_Start;
+            string stopString = ResourcesForModel.StartStopContinueElement_Stop;
+            return " " + ResourcesForModel.MeasureRepeatElement_Name + ":" + (start ? startString : stopString); 
         }
 
         public static MeasureRepeatElement Create(XmlNode node)

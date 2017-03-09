@@ -721,4 +721,13 @@
   <data name="UserSettings_ReaderNames_Accidentals" xml:space="preserve">
     <value>Løse fortegn</value>
   </data>
+  <data name="BeatRepeatElement_Name" xml:space="preserve">
+    <value>Slag-gentagelse</value>
+  </data>
+  <data name="MeasureRepeatElement_Name" xml:space="preserve">
+    <value>Takt-gentagelse</value>
+  </data>
+  <data name="MultipleRestElement_Name" xml:space="preserve">
+    <value>Flertaktspause</value>
+  </data>
 </root>

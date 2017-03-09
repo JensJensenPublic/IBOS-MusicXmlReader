@@ -64,7 +64,7 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            return "slag-gentagelse"; // TODO Localize
+            return ResourcesForModel.BeatRepeatElement_Name; 
         }
 
         public static BeatRepeatElement Create(XmlNode node)
