@@ -89,7 +89,7 @@ namespace MusicXmlReaderModel
 
         // Simple booleans describing special variants of notes
         bool unpitched; // Set if the note is marked as unpitched
-        //bool isCueNote; // Set if the note is marked as a cue note
+        bool isCueNote; // Set if the note is marked as a cue note
         bool graceNote; // Set if the note is marked as a grace note
 
         // Values directly contained as attributes to the NoteElement
@@ -344,6 +344,14 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public bool CueNote
+        {
+            get
+            {
+                return isCueNote;
+            }
+        }
+
         public int MeasureNumber
         {
             get
@@ -593,8 +601,7 @@ namespace MusicXmlReaderModel
 
             foreach (XmlNode child in xmlNode.ChildNodes)
             {
-                bool unimplemented = false;
-                bool isCueNote = false;
+                bool unimplemented = false; 
                 switch (child.Name)
                 {
                     case "pitch":
@@ -677,7 +684,7 @@ namespace MusicXmlReaderModel
                     //default:  throw new ArgumentException();
                     default: Logger.LogOnce(string.Format("{0}: Unknown child.Name '{1}'", functionName, child.Name)); break;
                 }
-                if ((unimplemented) || (isCueNote))
+                if (unimplemented)
                 {
                     Logger.LogOnce(string.Format("{0}: child.Name '{1}' is not implemented yet", functionName, child.Name));
                 }
