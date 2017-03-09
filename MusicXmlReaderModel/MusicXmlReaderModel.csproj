@@ -52,8 +52,10 @@
     <Compile Include="Elements\DegreeElement.cs" />
     <Compile Include="Elements\MeasureRepeatElement.cs" />
     <Compile Include="Elements\MeasureStyleElement.cs" />
+    <Compile Include="Elements\MultipleRestElement.cs" />
     <Compile Include="Elements\PitchElementBase.cs" />
     <Compile Include="Elements\RootElement.cs" />
+    <Compile Include="Elements\SlashElement.cs" />
     <Compile Include="MetaInformation.cs" />
     <Compile Include="DebugTools.cs" />
     <Compile Include="DeviceInfo.cs" />

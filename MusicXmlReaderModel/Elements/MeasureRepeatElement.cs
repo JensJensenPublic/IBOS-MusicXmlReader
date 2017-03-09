@@ -29,8 +29,7 @@ namespace MusicXmlReaderModel
                             break;
                 }
             }
-
-            Logger.LogOnce(string.Format("{0}.{1} Type={2} Slashes={3}", className, functionName, start ? "start" : "stop " ,slashes)); // Until wn know how to handle it                      
+            // Logger.LogOnce(string.Format("{0}.{1} Type={2} Slashes={3}", className, functionName, start ? "start" : "stop " ,slashes)); // Until wn know how to handle it                      
         }
 
         public int Slashes
@@ -47,6 +46,11 @@ namespace MusicXmlReaderModel
             {
                 return start;
             }
+        }
+
+        public override string ToString()
+        {
+            return " " + "Taktgentagelse" + ":" + (start ? "start" : "stop"); // TODO Localize
         }
 
         public static MeasureRepeatElement Create(XmlNode node)

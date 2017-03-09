@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using System.Text;
 
 // https://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-measure-style.htm
 
@@ -10,12 +11,13 @@ namespace MusicXmlReaderModel
         private int staffNumber = 1;
         private MeasureRepeatElement measureRepeatElement;
         private BeatRepeatElement beatRepeatElement;
+        private MultipleRestElement multipleRestElement;
+        private SlashElement slashElement;
 
         private MeasureStyleElement(XmlNode node)
         {
             const string functionName = "MeasureStyleElement";
-            Logger.LogOnce(string.Format("{0}.{1}", className, functionName)); // Until we know how to handle it
-
+  
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
@@ -39,25 +41,24 @@ namespace MusicXmlReaderModel
                 {
                     case "measure-repeat": measureRepeatElement = MeasureRepeatElement.Create(child); break;
                     case "beat-repeat":    beatRepeatElement = BeatRepeatElement.Create(child); break;
-                    case "multiple-rest":
-                    case "slash":
-                        Logger.LogOnce(string.Format("{0}.{1} Expected, but unsupported element. Name={2}", className, functionName, child.Name));
-                        break;
+                    case "multiple-rest":  multipleRestElement = MultipleRestElement.Create(child); break;
+                    case "slash":          slashElement = SlashElement.Create(child);break; 
                     default:
                         Logger.LogOnce(string.Format("{0}.{1} Unexpected element. Name={2}", className, functionName, child.Name));
                         break;
                 }
-
-
             }
-
-
         }
 
         public override string ToString()
         {
-            // Find out what the mucisians really want here !
-            return "Gentagelse"; // TO DO Localize !
+            // TO DO: Find out what the mucisians really want here !
+            StringBuilder sb = new StringBuilder();
+            if (null != measureRepeatElement) sb.Append(measureRepeatElement.ToString());
+            if (null != beatRepeatElement) sb.Append(beatRepeatElement.ToString());
+            if (null != multipleRestElement) sb.Append(multipleRestElement.ToString());
+            if (null != slashElement) sb.Append(slashElement.ToString());
+            return sb.ToString(); 
         }
 
 
