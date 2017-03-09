@@ -9,6 +9,7 @@ namespace MusicXmlReaderModel
         const string className = "MeasureStyleElement";
         private int staffNumber = 1;
         private MeasureRepeatElement measureRepeatElement;
+        private BeatRepeatElement beatRepeatElement;
 
         private MeasureStyleElement(XmlNode node)
         {
@@ -37,7 +38,7 @@ namespace MusicXmlReaderModel
                 switch (child.Name)
                 {
                     case "measure-repeat": measureRepeatElement = MeasureRepeatElement.Create(child); break;
-                    case "beat-repeat":                  
+                    case "beat-repeat":    beatRepeatElement = BeatRepeatElement.Create(child); break;
                     case "multiple-rest":
                     case "slash":
                         Logger.LogOnce(string.Format("{0}.{1} Expected, but unsupported element. Name={2}", className, functionName, child.Name));

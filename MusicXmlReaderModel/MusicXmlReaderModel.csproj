@@ -48,6 +48,7 @@
     <Compile Include="BrailleBuilder.cs" />
     <Compile Include="BrailleDisplayer.cs" />
     <Compile Include="Elements\BassElement.cs" />
+    <Compile Include="Elements\BeatRepeatElement.cs" />
     <Compile Include="Elements\DegreeElement.cs" />
     <Compile Include="Elements\MeasureRepeatElement.cs" />
     <Compile Include="Elements\MeasureStyleElement.cs" />
