@@ -111,7 +111,7 @@ namespace MusicXmlReaderUI
         public void SelectedIndexChanged(int selectedIndex, object selectedObject)
         {
             if (playing) return;
-            if (null == selectedObject) return;
+             if (null == selectedObject) return;
             if (selectedIndex == latestSelectedIndex) return;
             latestSelectedIndex = selectedIndex;
             if ((selectedObject is NoteElement))
@@ -333,7 +333,8 @@ namespace MusicXmlReaderUI
                             {
                                 // In the case of a tie we must explicitly create the midinote to stop !
                                 // If the MIDI implementation changes we may need the midinote originally created, which would make things a little more complicated!
-                                midiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
+                                // When we create a new MidiNote with mitiOut == null it will not be started which is just what we want here!
+                                midiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, null);
                             }
                             midiNote.StopPlaying(midiOut);
                             notesCurrentlyPlaying.Remove(midiNote);
@@ -349,18 +350,17 @@ namespace MusicXmlReaderUI
             {
                 for (int i = 0; (i < numberOfParts); i++)
                 {
-                    List<NoteElement> noteElementList = eventDescription.NoteLists[i];
-                    foreach (NoteElement noteElement in noteElementList)
-                    {
-                        if (!noteElement.IsPause)
+                    if (userSettings.partsToPlay[i])
+                    { 
+                        List<NoteElement> noteElementList = eventDescription.NoteLists[i];
+                        foreach (NoteElement noteElement in noteElementList)
                         {
-                            // This is a playable note, not a pause !
-                            if (!noteElement.TieStop)
+                            if (!noteElement.IsPause)
                             {
-                                // If the note is tied to a previous note we do not start the new note, but let the previous note continue                          
-                                if (userSettings.partsToPlay[i])
+                                // This is a playable note, not a pause !
+                                if (!noteElement.TieStop)
                                 {
-                                    // This part is selected to be played (for instance from the GUI)                        
+                                    // If the note is tied to a previous note we do not start the new note, but let the previous note continue                          
                                     noteElement.MidiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
                                     notesCurrentlyPlaying.Add(noteElement.MidiNote);
                                     //noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, 1, midiOut);
