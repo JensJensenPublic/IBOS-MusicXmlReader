@@ -16,7 +16,7 @@ namespace MusicXmlReaderModel
         {
 
             const string functionName = "MeasureRepeatElement";
-            Logger.LogOnce(string.Format("{0}.{1}", className, functionName)); // Until wn know how to handle it
+  
 
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
@@ -28,7 +28,9 @@ namespace MusicXmlReaderModel
                     default: Logger.LogOnce(string.Format("{0}.{1} Unexpected attribute. Name={2} Value={3}", className, functionName, a.Name, a.Value));
                             break;
                 }
-            }                       
+            }
+
+            Logger.LogOnce(string.Format("{0}.{1} Type={2} Slashes={3}", className, functionName, start ? "start" : "stop " ,slashes)); // Until wn know how to handle it                      
         }
 
         public int Slashes

@@ -36,13 +36,14 @@ namespace MusicXmlReaderModel
 
         private List<EndEventElement> endEventElements; // Elements (for instance NoteElements) to end at this time
 
-        // A few other elements may be related to a specifig event
-        private List<SoundElement> soundElements;   // The SoundElements related to this event, if any
-        private List<KeyElement>   keyElements;       // The KeyElements related to this event, if any
-        private List<ClefElement>  clefElements;     // The ClefElements related to this event, if any
-        private List<TimeElement> timeElements;     // The TimeElements related to this event, if any
-        private List<BarlineElement> barlineElements;  // The BarlineElements related to this event, if any. In some rare cases more than one!!
-        private List<DirectionElement> directionElements; // The DirectionElements related to this event, if any 
+        // A few other elements may be related to a specific event
+        private List<SoundElement> soundElements;           // The SoundElements related to this event, if any
+        private List<KeyElement>   keyElements;             // The KeyElements related to this event, if any
+        private List<ClefElement>  clefElements;            // The ClefElements related to this event, if any
+        private List<TimeElement> timeElements;             // The TimeElements related to this event, if any
+        private List<BarlineElement> barlineElements;       // The BarlineElements related to this event, if any. In some rare cases more than one!!
+        private List<DirectionElement> directionElements;   // The DirectionElements related to this event, if any 
+        private List<MeasureStyleElement> measureStyleElements; // The MeasureStyleElements related to this event, if any 
 
         private StatusInformation statusInformation; // Contains Status information valid for this eventdescription
 
@@ -296,6 +297,16 @@ namespace MusicXmlReaderModel
                 }
                 directionElements.Add(eventElement as DirectionElement);
             }
+
+            else if (eventElement is MeasureStyleElement)
+            {
+                if (null == measureStyleElements)
+                {
+                    measureStyleElements = new List<MeasureStyleElement>();
+                }
+                measureStyleElements.Add(eventElement as MeasureStyleElement);
+            }
+
         }
 
         /// <summary>
@@ -752,7 +763,7 @@ namespace MusicXmlReaderModel
             }
 
             string dynamicsString = "";
-            if (null != directionElements)
+            if (userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notations) && (null != directionElements))
             {
                 foreach (DirectionElement directionElement in directionElements)
                 {
@@ -762,7 +773,20 @@ namespace MusicXmlReaderModel
                     }
                 }
             }
-   
+            
+            string measureStyleString = "";
+            if (userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notations) && (null != measureStyleElements))
+            {  
+                foreach (MeasureStyleElement measureStyleElement in measureStyleElements)
+                {
+                    if (null != measureStyleElement)
+                    {
+                        // According to the MusicXML spec The MeasureStyleElement is always a child of an attribute element
+                        measureStyleString += measureStyleElement.ToString() + " ";
+                    }
+                }
+            }                     
+
 
             StringBuilder sbNotes = new StringBuilder();
             StringBuilder sbTexts = new StringBuilder();
@@ -779,7 +803,7 @@ namespace MusicXmlReaderModel
 
             // Finnally compose the result by concatenating all the substrings in the sequence wanted
             // The first event description (to a certain extent) reflects the sequence in which information is aquired by the eye when scanning a music sheet for prima vista use.
-            return measure + soundString + timeString + keyString + clefString + repeatBackward + repeatForward + divisions + dynamicsString +  sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString  ;
+            return measure + soundString + timeString + keyString + clefString + repeatBackward + repeatForward + divisions + dynamicsString + measureStyleString + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString  ;
         }
     }
 }

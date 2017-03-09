@@ -88,6 +88,7 @@ namespace MusicXmlReaderModel
                          || (e is InstrumentsElement)
                          || (e is AttributesElement)
                          || (e is DirectionElement)
+                         || (e is MeasureStyleElement)
 
                          )
 

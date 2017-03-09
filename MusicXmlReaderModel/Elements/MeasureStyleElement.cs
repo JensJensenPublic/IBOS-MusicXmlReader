@@ -53,6 +53,13 @@ namespace MusicXmlReaderModel
 
         }
 
+        public override string ToString()
+        {
+            // Find out what the mucisians really want here !
+            return "Gentagelse"; // TO DO Localize !
+        }
+
+
         public int StaffNumber
         {
             get

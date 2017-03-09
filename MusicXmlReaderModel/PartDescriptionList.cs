@@ -53,7 +53,7 @@ namespace MusicXmlReaderModel
                 || (e is InstrumentsElement)
                 || (e is AttributesElement)
                 || (e is DirectionElement)
-
+                || (e is MeasureStyleElement)
                 )
                 {
                     // All of these elements are related to events and timing and must be reflected in in the EventDescriptionList.
