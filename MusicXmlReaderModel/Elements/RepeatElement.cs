@@ -9,6 +9,7 @@ namespace MusicXmlReaderModel
     /// </summary>
     public class RepeatElement : EventElement
     {
+        const string className = "RepeatElement";
         public enum RepeatDirectionEnum { Undefinded, Forward, Backward };
         RepeatDirectionEnum repeatDirection;
         int timesToRepeat;
@@ -36,7 +37,7 @@ namespace MusicXmlReaderModel
         private RepeatElement(XmlNode node)
         {
             string functionName = "RepeatElement";
-            Logger.LogOnce(string.Format("RepeatElement constructor"));
+            //Logger.LogOnce(string.Format("RepeatElement constructor"));
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
@@ -55,6 +56,7 @@ namespace MusicXmlReaderModel
                     default: Logger.Log(string.Format("RepeatElement: Unexpected attribute {0} found", a.Name)); break;
                 }
             }
+            Logger.LogOnce(string.Format("{0}.{1} Direction={2} Times= {3}", className, functionName, repeatDirection.ToString(), timesToRepeat));
         }
 
         public static RepeatElement Create(XmlNode node)

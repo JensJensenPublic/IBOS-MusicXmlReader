@@ -668,12 +668,26 @@ namespace MusicXmlReaderModel
 
             string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
 
-
-            // TO DO: Brug barlineElements i steet for repeatElementForward og repeatElementForward. BarlineElements har en left/right attribute
-            // og indeholder selv et RepeatElement!
-
-            string repeatBackward = (null == repeatElementBackward) ? "" : repeatElementBackward.ToString()+ " ";
-            string repeatForward  = (null == repeatElementForward) ? "" : repeatElementForward.ToString() + " ";
+            // A BarlineElement can contain a RepeatElements containing repetition information.
+            string repeatBackward = "";
+            string repeatForward = "";
+            if (null != barlineElements)
+            {
+                foreach (BarlineElement barlineElement in barlineElements)
+                {
+                    if (barlineElement.RepeatElement != null)
+                    {
+                        if (barlineElement.RepeatElement.RepeatDirection == RepeatElement.RepeatDirectionEnum.Forward)
+                        {
+                            repeatForward = barlineElement.RepeatElement.ToString() + " ";
+                        }
+                        if (barlineElement.RepeatElement.RepeatDirection == RepeatElement.RepeatDirectionEnum.Backward)
+                        {
+                            repeatBackward = barlineElement.RepeatElement.ToString() + " ";
+                        }
+                    }   
+                } 
+            }
 
             string measure = "";
             if (userSettings.GetReaderSettings(UserSettings.ReaderSettings.MeasureNumbers))
