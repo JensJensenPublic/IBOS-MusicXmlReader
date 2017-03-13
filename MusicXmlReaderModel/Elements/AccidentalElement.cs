@@ -5,7 +5,7 @@ namespace MusicXmlReaderModel
 
     //http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-accidental.htm
 
-    public enum AccidentalTypeEnum { unknown,none,natural,flat,sharp,flatFlat,doubleSharp,unsupported};
+    public enum AccidentalTypeEnum { unknown,none,natural,flat,sharp,flatFlat,doubleSharp,quarterSharp,quarterFlat,unsupported};
 
     public class AccidentalElement
     {
@@ -61,6 +61,8 @@ namespace MusicXmlReaderModel
             string functionName = "ToString";
             switch (accidentalType)
             {
+                case AccidentalTypeEnum.quarterSharp:   return ResourcesForModel.Accidental_quarterSharp;
+                case AccidentalTypeEnum.quarterFlat:    return ResourcesForModel.Accidental_quarterFlat;
                 case AccidentalTypeEnum.doubleSharp:    return ResourcesForModel.Accidental_doubleSharp;
                 case AccidentalTypeEnum.flat:           return ResourcesForModel.Accidental_flat;
                 case AccidentalTypeEnum.flatFlat:       return ResourcesForModel.Accidental_flatFlat;
@@ -124,12 +126,13 @@ namespace MusicXmlReaderModel
                     case "flat-flat":       accidentalType = AccidentalTypeEnum.flatFlat;   break;
                     case "sharp-sharp":
                     case "double-sharp":    accidentalType = AccidentalTypeEnum.doubleSharp; break;
+                    case "quarter-flat":    accidentalType = AccidentalTypeEnum.quarterFlat; break;
+                    case "quarter-sharp":   accidentalType = AccidentalTypeEnum.quarterSharp;break;
                     // The following values are mentioned at    https://usermanuals.musicxml.com/MusicXML/Content/ST-MusicXML-accidental-value.htm
                     // but are not implemented yet !
                     case "natural-sharp":
                     case "natural-flat":
-                    case "quarter-flat":
-                    case "quarter-sharp":
+
                     case "three-quarters-flat":
                     case "three-quarters-sharp":
                     case "sharp-down":

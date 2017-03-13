@@ -106,6 +106,24 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accidental Quarter-flat.
+        /// </summary>
+        internal static string Accidental_quarterFlat {
+            get {
+                return ResourceManager.GetString("Accidental_quarterFlat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accidental Quarter-sharp.
+        /// </summary>
+        internal static string Accidental_quarterSharp {
+            get {
+                return ResourceManager.GetString("Accidental_quarterSharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accidental Sharp.
         /// </summary>
         internal static string Accidental_sharp {

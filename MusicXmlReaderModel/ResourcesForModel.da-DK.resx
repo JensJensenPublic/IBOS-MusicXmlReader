@@ -730,4 +730,10 @@
   <data name="MultipleRestElement_Name" xml:space="preserve">
     <value>Flertaktspause</value>
   </data>
+  <data name="Accidental_quarterFlat" xml:space="preserve">
+    <value>Løst firedobbelt b</value>
+  </data>
+  <data name="Accidental_quarterSharp" xml:space="preserve">
+    <value>Løst firedobbelt kryds</value>
+  </data>
 </root>
