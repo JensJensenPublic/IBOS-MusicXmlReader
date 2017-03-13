@@ -56,7 +56,7 @@ namespace MusicXmlReaderModel
                     default: Logger.Log(string.Format("RepeatElement: Unexpected attribute {0} found", a.Name)); break;
                 }
             }
-            Logger.LogOnce(string.Format("{0}.{1} Direction={2} Times= {3}", className, functionName, repeatDirection.ToString(), timesToRepeat));
+            // Logger.LogOnce(string.Format("{0}.{1} Direction={2} Times= {3}", className, functionName, repeatDirection.ToString(), timesToRepeat));
         }
 
         public static RepeatElement Create(XmlNode node)
