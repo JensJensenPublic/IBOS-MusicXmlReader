@@ -440,6 +440,7 @@ namespace MusicXmlReaderModel
 
         public BrailleBuilder ToMusicBrailleString()
         {
+            if (!userSettings.MusicAsMusicBraille) return BrailleBuilder.Create();
             return ToBraille();
             //if (null == text)
             //{
@@ -670,7 +671,9 @@ namespace MusicXmlReaderModel
         /// Same structure as ToBraille()
         /// Depending on settings ToString  will generate a mix of the results of ToBraille and ToNormalTextString() 
         public string ToNormalTextString()
-        {  
+        {
+            if (!userSettings.MusicAsSpeech) return "";
+
             string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
 
 
