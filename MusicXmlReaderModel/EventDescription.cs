@@ -453,6 +453,9 @@ namespace MusicXmlReaderModel
         public BrailleBuilder ToBraille()
         {
             string functionName = "ToBraille";
+            bool repeatForward  = false; // Max one Repeat forward per eventdescription
+            bool repeatBackward = false; // Max one Repeat backward per eventdescription
+
             // const string functionName = "EventDescription.ToBraille";
             BrailleBuilder bbBeforeNotes = BrailleBuilder.Create(); // For information not contained in notes
 
@@ -595,19 +598,45 @@ namespace MusicXmlReaderModel
 
             // Extract information to be shown after the notes
             BrailleBuilder bbAfterNotes = BrailleBuilder.Create();
+            // Look for repeat forward/backward and insert, but only one of each per event description !!
             // Look for a termination (Danish "Helslutning") and insert the appropriate sequence
             bool foundTermination = false;
             if (null != barlineElements)
             {  
                 foreach (BarlineElement barlineElement in barlineElements)
                 {
-                    if ((barlineElement.Location == BarlineLocationEnum.right)
-                    && (barlineElement.EndingElement == null)
-                    && (barlineElement.RepeatElement == null)
-                    && (barlineElement.BarStyleElement != null)
-                    && (barlineElement.BarStyleElement.BarStyle == BarStyleEnum.lightHeavy))
+                    if (null != barlineElement.RepeatElement)
                     {
-                        foundTermination = true;
+                        switch (barlineElement.RepeatElement.RepeatDirection)
+                        {
+                            case RepeatElement.RepeatDirectionEnum.Forward:
+                                if (!repeatForward)
+                                {
+                                    bbBeforeNotes.AddRepeatForward(barlineElement.RepeatElement);
+                                    repeatForward = true;
+                                }
+                                break;
+                            case RepeatElement.RepeatDirectionEnum.Backward:
+                                if (!repeatBackward)
+                                {
+                                    bbAfterNotes.AddRepeatBackward(barlineElement.RepeatElement);
+                                    repeatBackward = true;
+                                }
+                                break;
+                            default: Logger.Log(string.Format("{0}.{1} Unknown RepeatDirection = {2}",
+                                                       className, functionName, barlineElement.RepeatElement.RepeatDirection.ToString())); break;
+                        } 
+                    }
+                    else
+                    {
+                        if ((barlineElement.Location == BarlineLocationEnum.right)
+                        && (barlineElement.EndingElement == null)
+                        && (barlineElement.RepeatElement == null)
+                        && (barlineElement.BarStyleElement != null)
+                        && (barlineElement.BarStyleElement.BarStyle == BarStyleEnum.lightHeavy))
+                        {
+                            foundTermination = true;
+                        }
                     }
                 }
                 if (foundTermination)
