@@ -20,8 +20,9 @@ namespace MusicXmlReaderModel
     class DirectionElement : EventElement
     {
         string className = "DirectionElement";
-        private DynamicsElement dynamicsElement;
-        private SoundElement soundElement;
+        DirectionTypeElement directionTypeElement;
+        private DynamicsElement dynamicsElement; // To be moved to DirectionTypeElement
+        private SoundElement soundElement; // to be moved to DirectionTypeElement
         int staffNumber = 1; // The staff to which this element belongs. Parsed, but not used yet.
         int voiceNumber = 1;  // The voice (within a part, for instance S1 or S2) to which this element belongs. Parsed, but not used yet.
         // Prevent construction
@@ -54,16 +55,19 @@ namespace MusicXmlReaderModel
             {
                 switch (n.Name)
                 {
-                    case "direction-type":
-                        // Logger.LogOnce(string.Format("{0}.{1} DirectionType Value={2}", className, functionName, n.InnerText));
-                        foreach (XmlNode child in n.ChildNodes)
-                        {
-                            switch (child.Name)
-                            {
-                                case "dynamics": dynamicsElement = DynamicsElement.Create(child); break;
-                                default: break;
-                            }
-                        }
+                    case "direction-type": directionTypeElement = DirectionTypeElement.Create(n);
+
+                        //foreach (XmlNode child in n.ChildNodes)
+                        //{
+                        //    switch (child.Name)
+                        //    {
+                        //        case "dynamics": dynamicsElement = DynamicsElement.Create(child); break;
+                        //        case "metronome": break;
+                        //        case "sound": soundElement = SoundElement.Create(n); break;
+                        //        default: Logger.LogOnce(string.Format("{0}.{1} DirectionType Value={2}", className, functionName, n.InnerText)); break;
+                        //    }
+                        //}
+
                         break;
                     case "sound":
                         // The sound element contains general playback parameters.
