@@ -102,8 +102,6 @@ namespace MusicXmlReaderUI
 
         /// <summary>
         /// Used when the playing manually.
-        /// The User selects a note at a time. 
-        /// or
         /// The user selects an EventDescription at a time. This may contain several notes to be played simultaneously
         /// </summary>
         /// <param name="selectedIndex"></param>
@@ -132,23 +130,30 @@ namespace MusicXmlReaderUI
                     notesCurrentlyPlaying.Clear();
                 }
 
+
                 EventDescription eventDescription = selectedObject as EventDescription;
-                notesCurrentlyPlaying = new List<MidiNote>();
-                foreach (List<NoteElement> noteElementList in eventDescription.NoteLists)
+
+                if (userSettings.MusicAsSound) // Start playing notes in selected ports
                 {
-                    foreach (NoteElement noteElement in noteElementList)
+                    notesCurrentlyPlaying = new List<MidiNote>();
+                    foreach (List<NoteElement> noteElementList in eventDescription.NoteLists)
                     {
-                        if (!noteElement.IsPause)
-                        { // This is a real note, not a pause
-                            if (userSettings.partsToPlay[noteElement.PartNumber])
-                            {
-                                MidiNote midiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
-                                notesCurrentlyPlaying.Add(midiNote);
+                        foreach (NoteElement noteElement in noteElementList)
+                        {
+                            if (!noteElement.IsPause)
+                            { // This is a real note, not a pause
+                                if (userSettings.partsToPlay[noteElement.PartNumber])
+                                {
+                                    MidiNote midiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
+                                    notesCurrentlyPlaying.Add(midiNote);
+                                }
                             }
                         }
                     }
                 }
+
                 PlayHarmonies(eventDescription);   // Handle harmonies
+             
             }
             return;
         }
@@ -307,11 +312,10 @@ namespace MusicXmlReaderUI
 
 
         /// <summary>
-        /// Used for playing polyphonic music.
+        /// Used for AUTOMATIC playing polyphonic music, controlled by timing information in the eventdescriptor
         /// The EventDescription contains a set of noteElements to be handled simultaneously
         /// </summary>
-        /// <param name=""></param>
-        /// <param name=""></param>
+        /// <param name="eventDescription">The eventDescription to play as sound</param>
         private void Play(EventDescription eventDescription)
         {
             // Sleep until the StartTime of the next event occurs.
@@ -344,11 +348,11 @@ namespace MusicXmlReaderUI
             }
 
 
-            // Start playing these notes:
-            // Itetrate through all parts: 
-            if (playing) // Let the currently existing notes be stopped on time, but do not start any new notes !
+            // Start playing these notes:          
+            if ((playing)                       // The MusicPlayer is currently ihn the "Playing" state 
+            &&  (userSettings.MusicAsSound))    // Playing of music as sound is globally enabled             
             {
-                for (int i = 0; (i < numberOfParts); i++)
+                for (int i = 0; (i < numberOfParts); i++)    // Itetrate through all parts:
                 {
                     if (userSettings.partsToPlay[i])
                     { 
