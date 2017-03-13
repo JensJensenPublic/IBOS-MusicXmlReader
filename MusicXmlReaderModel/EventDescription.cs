@@ -442,14 +442,6 @@ namespace MusicXmlReaderModel
         {
             if (!userSettings.MusicAsMusicBraille) return BrailleBuilder.Create();
             return ToBraille();
-            //if (null == text)
-            //{
-            //    text = new StringBuilder(); // Use a dummy StringBuilder to avoid a lot ef extra code
-            //}
-            //List <byte> bytes = ToBraille();
-            //StringBuilder sb = new StringBuilder();
-            //foreach (byte b in bytes) { sb.Append((char) (BrailleDisplayer.UnicodeBrailleBase + (char)b)); };
-            //return sb.ToString();
         }
 
         /// <summary>
