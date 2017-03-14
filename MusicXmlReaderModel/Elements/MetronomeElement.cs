@@ -68,8 +68,8 @@ namespace MusicXmlReaderModel
                         // beatsPerMinuteText = "?"; // For test only !!
                         string errorString = string.Format("{0}.{1}: '{2}'='{3}'", className, functionName, n.Name, (null == beatsPerMinuteText) ? "" : beatsPerMinuteText); // Only for error reporting !
                         beatsPerMinuteBool = Utilities.Parse(beatsPerMinuteText, ref beatsPerMinuteInt, 0, int.MaxValue, errorString, false);
-                        //Logger.LogOnce(string.Format("{0}.{1}:  Name={2} Value={3}", className, functionName, n.Name, n.InnerText));
-                        Logger.LogOnce(string.Format("{0}.{1}:  Name={2}", className, functionName, n.Name)); // Only count the total number
+                        // Logger.LogOnce(string.Format("{0}.{1}:  Name={2} Value={3}", className, functionName, n.Name, n.InnerText));
+                        // Logger.LogOnce(string.Format("{0}.{1}:  Name={2}", className, functionName, n.Name)); // Only count the total number
                         break;  // Number of beats per minute 
 
                     case "beat-unit": break; // Pure graphical information

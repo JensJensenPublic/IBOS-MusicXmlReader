@@ -25,13 +25,13 @@ namespace MusicXmlReaderModel
                 switch (n.Name)
                 {
                     case "dynamics":
-                        dynamicsElement = DynamicsElement.Create(n);                   
-                        Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element. Name={2} ", className, functionName, n.Name));
+                        dynamicsElement = DynamicsElement.Create(n);
+                        // This is mentioned in Error 158  so we get rid of the log                 
+                        // Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element. Name={2} ", className, functionName, n.Name));
                         break;
                    
                     case "metronome":
                         metronomeElement = MetronomeElement.Create(n); 
-                        Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element. Name={2} ", className, functionName, n.Name));
                         break;            
 
                     // No current plans for supporting these:
@@ -55,8 +55,9 @@ namespace MusicXmlReaderModel
                     case "string-mute":
                     case "wedge":
                     case "words":
+                        // This is mentioned in Error 158  so we get rid of the log 
                         // Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element. Name={2} ", className, functionName, n.Name));
-                        Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element.", className, functionName)); // Group them all together
+                        //Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element.", className, functionName)); // Group them all together
                         break;
                     default: Logger.LogOnce(string.Format("{0}.{1}: Unknown element. Name={2} ",className, functionName, n.Name)); break;
                 }
