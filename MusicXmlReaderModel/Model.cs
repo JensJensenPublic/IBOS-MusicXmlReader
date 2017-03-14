@@ -107,7 +107,7 @@ namespace MusicXmlReaderModel
                     allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file
                     Recurse(doc.ChildNodes);                          // Build  the list holding all MusicXml elements read from file
                     Logger.Log(string.Format("Parsed {0}", xmlFileName));
-                    Init(); // Experimental code !!                   // TO DO move rest of this {} into Init !
+                    Init();  // Initialize the basic Model data structures.     
                     Logger.Log(string.Format("Initialized all components"));
                     theMusicXmlFileName = fullXmlFileName;
                 }
