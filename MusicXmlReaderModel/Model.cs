@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.IO;
 using System.Collections.Generic;
 using NAudio.Midi;
@@ -8,6 +8,12 @@ using MusicXmlReaderUI; // Interfaces
 
 namespace MusicXmlReaderModel
 {
+    /// <summary>
+    /// The Model class is the central hub in the MusicXmlReaderModel project.
+    /// It connects the other classes in the MusicXmlReaderModel project.
+    /// It plays the "Model" role in the MVVM (Model, Viev, ViewModel) architecture used in the MusicXmlReader solution
+    /// As written in C# it is easily ported to other OS arvhitechtures, such as iOS and Android, using the Xamarin development tool
+    /// </summary>
     public class Model
     {
         string className = "Model";
@@ -153,7 +159,7 @@ namespace MusicXmlReaderModel
             }
             catch (Exception)
             {
-                // Ignore any errorsat this point!
+                // Ignore any errors at this point!
             } 
         }
 
@@ -560,8 +566,7 @@ namespace MusicXmlReaderModel
             divisions = 24; // TODO compute!
             timeDescriptionList = TimeDescriptionList.Create(partDescriptionList, divisions);
             currentStatusInformation = StatusInformation.Create();
-            eventDescriptionList = EventDescriptionList.Create(timeDescriptionList, numberOfParts,userSettings, currentStatusInformation);
-            //measureDescriptionList = MeasureDescriptionList.Create(allMusicXmlObjecsts);
+            eventDescriptionList = EventDescriptionList.Create(timeDescriptionList, numberOfParts,userSettings, currentStatusInformation); 
         }
 
 
