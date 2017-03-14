@@ -646,6 +646,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tempo.
+        /// </summary>
+        internal static string MetronomeElement_Tempo {
+            get {
+                return ResourceManager.GetString("MetronomeElement_Tempo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multiple-rest.
         /// </summary>
         internal static string MultipleRestElement_Name {

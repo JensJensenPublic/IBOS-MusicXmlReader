@@ -64,6 +64,14 @@ namespace MusicXmlReaderModel
 
         }
 
+        public MetronomeElement MetronomeElement
+        {
+            get
+            {
+                return metronomeElement;
+            }
+        }
+
         public static DirectionTypeElement Create(XmlNode node)
         {
             return new DirectionTypeElement(node);

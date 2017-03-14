@@ -392,6 +392,15 @@ namespace MusicXmlReaderUI
                 }
             }
 
+            if (-1 != eventDescription.MetronomeBeatsPerMinute)
+            {
+                int newTempo = eventDescription.MetronomeBeatsPerMinute;
+                // This event contains a valid metronome element with a valid number of beats per minute. Use it
+                // (This probably only occurs at the very start of the score and will can overridden by any soundelements occuring later.
+                Logger.Log(string.Format("MusicPlayer: Tempo {0}->{1} firstStopWatchTime={2} musicXmlTimeOffset={3}", this.tempo, newTempo, firstStopWatchTime, musicXmlTimeOffset));
+                this.tempo = newTempo;
+            }
+       
 
             // Finally handle changes in UserSettings.Tempo. NOTE: May cause a change of musical tempo!
             {

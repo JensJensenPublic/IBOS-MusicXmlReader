@@ -107,13 +107,20 @@ namespace MusicXmlReaderModel
 
         }
 
+        public DirectionTypeElement DirectionTypeElement
+        {
+            get
+            {
+                return directionTypeElement;
+            } 
+        }
+
         internal DynamicsElement DynamicsElement
         {
             get
             {
                 return dynamicsElement;
             }
-
         }
 
         internal SoundElement SoundElement

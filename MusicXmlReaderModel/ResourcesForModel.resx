@@ -735,4 +735,7 @@
   <data name="Accidental_quarterSharp" xml:space="preserve">
     <value>Accidental Quarter-sharp</value>
   </data>
+  <data name="MetronomeElement_Tempo" xml:space="preserve">
+    <value>Tempo</value>
+  </data>
 </root>

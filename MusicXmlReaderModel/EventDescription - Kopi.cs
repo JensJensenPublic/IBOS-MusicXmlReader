@@ -14,7 +14,6 @@ namespace MusicXmlReaderModel
         int startTime;
         int numberOfParts;
         UserSettings userSettings;
-        int metronomeBeatsPerMinute = -1;
 
         string musicBrailleRepresentation;
         string musicBrailleAsTextRepresentation;
@@ -149,14 +148,6 @@ namespace MusicXmlReaderModel
             set
             {
                 statusInformation = value;
-            }
-        }
-
-        public int MetronomeBeatsPerMinute
-        {
-            get
-            {
-                return metronomeBeatsPerMinute;
             }
         }
 
@@ -312,7 +303,6 @@ namespace MusicXmlReaderModel
                     directionElement.DirectionTypeElement.MetronomeElement.BeatsPerMinuteBool                    
                 )
                 {
-                    this.metronomeBeatsPerMinute = directionElement.DirectionTypeElement.MetronomeElement.BeatsPerMinuteInt;
                     // The MetronomeElement contains Tempo information to be used by the MusicPlayer and the StatusInformation !
                     currentStatusInformation.CurrentMetronomeElement = directionElement.DirectionTypeElement.MetronomeElement;
                 }

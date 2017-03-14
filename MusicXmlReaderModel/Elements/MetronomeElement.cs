@@ -89,6 +89,15 @@ namespace MusicXmlReaderModel
 
         }
 
+        public override string ToString()
+        {
+            if (BeatsPerMinuteBool)
+            {
+                return string.Format("{0}={1}", ResourcesForModel.MetronomeElement_Tempo, beatsPerMinuteInt.ToString()); 
+            }
+            return "";
+        }
+
         public static MetronomeElement Create(XmlNode node)
         {
             return new MetronomeElement(node);

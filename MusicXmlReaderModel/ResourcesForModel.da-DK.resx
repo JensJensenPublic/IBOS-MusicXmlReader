@@ -736,4 +736,7 @@
   <data name="Accidental_quarterSharp" xml:space="preserve">
     <value>Løst firedobbelt kryds</value>
   </data>
+  <data name="MetronomeElement_Tempo" xml:space="preserve">
+    <value>Tempo</value>
+  </data>
 </root>

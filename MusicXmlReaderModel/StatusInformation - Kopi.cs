@@ -227,13 +227,13 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            string s = string.Format("{0} {1} {2} {3} {4}",
+            string s = string.Format("{0} {1} {2} {3} {4} {5}",
                 (null == currentMeasureElement) ? "?" : currentMeasureElement.ToString(), // 0
                 (null == currentTimeElement) ? "?" : currentTimeElement.ToString(), //1
                 (null == currentKeyElement) ? "?" : currentKeyElement.ToString(),        // 2
                 (null == currentHarmonyElement) ? "" : currentHarmonyElement.ToLocalizedString(), //3 // Ignore the case where no narmony is found
-                GetTempoString()); // 4 The string describing the tempo is more complex than the others and need a special mothod.
-                //  GetMetronomeString()); // 5
+                GetTempoString(), // 4 The string describing the tempo is more complex than the others and need a special mothod.
+                GetMetronomeString()); // 5
             return s;
         }
 
