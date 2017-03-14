@@ -69,6 +69,7 @@ namespace MusicXmlReader
             AddLine(Combine(Plus(insert,space) + " " + followedBy + " s",ResourcesForHelp.Shortcut_ToggleJAWSSpeechOnOff));
             AddLine(Combine(Plus(insert,pageDown), ResourcesForHelp.Shortcut_ReadStatusLine));
             AddLine(Combine(Plus(insert, "T"), ResourcesForHelp.Shortcut_ReadTitleLine));
+            AddLine(Combine(Plus(insert, "B"), ResourcesForHelp.Shortcut_ReadMessagebox));
 
             // Følgende specielle tastaturgenveje og kommandoer kan anvendes i forbindelse med Nodelisten
             sb.Append("\r");

@@ -231,4 +231,7 @@
   <data name="Shurtcut_TurnOnGlobally" xml:space="preserve">
     <value>Tænd udvalgte stemme globalt</value>
   </data>
+  <data name="Shortcut_ReadMessagebox" xml:space="preserve">
+    <value>Oplæs meddelelse</value>
+  </data>
 </root>

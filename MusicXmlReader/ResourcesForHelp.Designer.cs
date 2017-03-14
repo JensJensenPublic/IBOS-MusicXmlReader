@@ -259,6 +259,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Read message box.
+        /// </summary>
+        internal static string Shortcut_ReadMessagebox {
+            get {
+                return ResourceManager.GetString("Shortcut_ReadMessagebox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Read the status line.
         /// </summary>
         internal static string Shortcut_ReadStatusLine {

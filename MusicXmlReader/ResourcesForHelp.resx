@@ -231,4 +231,7 @@
   <data name="Shurtcut_TurnOnGlobally" xml:space="preserve">
     <value>Turn selected voice or detail on globally</value>
   </data>
+  <data name="Shortcut_ReadMessagebox" xml:space="preserve">
+    <value>Read message box</value>
+  </data>
 </root>
