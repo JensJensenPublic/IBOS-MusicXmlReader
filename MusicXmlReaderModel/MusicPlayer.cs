@@ -20,6 +20,7 @@ namespace MusicXmlReaderUI
     public class MusicPlayer
     {
         string className = "MusicPlayer";
+        const int defaultMusicPlayerTempo = 60; // Quarter notes per minute.  Use 60 as a default
         //MidiNote latestNotePlayed = null;
         MidiChord latestHarmonyPlayed = null;
         MidiOut midiOut = null;
@@ -28,7 +29,7 @@ namespace MusicXmlReaderUI
         System.Diagnostics.Stopwatch stopWatch = null;
         //long nextActionTime;    // For autoplaying monophonic music 
         long firstStopWatchTime = -1;    // For autoplaying polyphonic music 
-        int tempo = 60; // Quarter notes per minute.  Use 60 as a default
+        int tempo = defaultMusicPlayerTempo; // Quarter notes per minute.  Use 60 as a default
         int numberOfParts;
         int startIndex;
         List<MidiNote> notesCurrentlyPlaying; // Contains all notes currently playing. Used when playing is stopped by user
@@ -522,6 +523,7 @@ namespace MusicXmlReaderUI
                 // Establish a common startpoint for computing note duration:
                 this.musicXmlTimeOffset = (objects.GetObjectAtIndex(firstIndex) as EventDescription).StartTime;
                 this.firstStopWatchTime = stopWatch.ElapsedMilliseconds;
+                this.tempo = defaultMusicPlayerTempo;
                 try
                 {
                     for (int i = firstIndex; ((i < lastIndex) && (playing)); i++)
