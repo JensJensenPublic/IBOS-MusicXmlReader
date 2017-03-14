@@ -13,6 +13,8 @@ namespace MusicXmlReaderModel
     public class DirectionTypeElement
     {
         const string className = "DirectionTypeElement";
+        DynamicsElement dynamicsElement;
+        MetronomeElement metronomeElement;
 
         private DirectionTypeElement(XmlNode node)
         {
@@ -23,12 +25,14 @@ namespace MusicXmlReaderModel
                 switch (n.Name)
                 {
                     case "dynamics":
-                        // TO DO Create a Dynamics element here !
-                        Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element. Name={2} ", className, functionName, n.Name)); break;
+                        dynamicsElement = DynamicsElement.Create(n);                   
+                        Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element. Name={2} ", className, functionName, n.Name));
+                        break;
                    
                     case "metronome":
-                        // TODO Implement Metronome element and create one here
-                        Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element. Name={2} ", className, functionName, n.Name)); break;            
+                        metronomeElement = MetronomeElement.Create(n); 
+                        Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element. Name={2} ", className, functionName, n.Name));
+                        break;            
 
                     // No current plans for supporting these:
                     case "accordion-registration":
@@ -51,7 +55,9 @@ namespace MusicXmlReaderModel
                     case "string-mute":
                     case "wedge":
                     case "words":
-                        Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element. Name={2} ",className,functionName, n.Name)); break;
+                        // Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element. Name={2} ", className, functionName, n.Name));
+                        Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element.", className, functionName)); // Group them all together
+                        break;
                     default: Logger.LogOnce(string.Format("{0}.{1}: Unknown element. Name={2} ",className, functionName, n.Name)); break;
                 }
             }
