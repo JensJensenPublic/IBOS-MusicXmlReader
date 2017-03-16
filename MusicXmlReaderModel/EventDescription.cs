@@ -424,9 +424,10 @@ namespace MusicXmlReaderModel
                         string octave   = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteOctaves) ? noteElement.Octave.ToString() : "";
                         string type     = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteTypes) ? noteElement.LocalizedType : "";
                         string pitchAndOctave = string.Format("{0}{1}", pitch, octave);
+                        string cueString = noteElement.CueNote ? "cuenote" : ""; // IODO Localize                         
                         string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
                         //                      note = string.Format("{0,-4} {1}", pitchAndOctave, type); // Always use 4 chars for pitch and Octave. Examples: "C   ","Cis4"
-                        note = string.Format("{0} {1} {2} {3}", accidental, pitchAndOctave, type, notations);    // Do not use extra chars for Pitch and Octave. Examples: "C","Cis4"
+                        note = string.Format("{0} {1} {2} {3} {4}", accidental, pitchAndOctave, type, cueString, notations);    // Do not use extra chars for Pitch and Octave. Examples: "C","Cis4"
                     }
 
                     // string note = string.IsNullOrEmpty(noteElement.Step) ? "Pause" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave + " " +noteElement.LocalizedType;
