@@ -84,11 +84,11 @@ namespace MusicXmlReaderModel
                 HSE pitch = enums[iAlter + 2, iStep];
                 this.name = GetLocalizedPitch(pitch);
                 //this.name = names[iAlter + 2, iStep]; // Convert iAlter to an index in the table!
-                int carry = carries[iAlter + 2, iStep]; // Convert iAlter to an index in the table!
-                if (0 != carry)
-                {
-                    this.octave = octave + carry;
-                }
+            //    int carry = carries[iAlter + 2, iStep]; // Convert iAlter to an index in the table!
+            //    if (0 != carry)
+            //    {
+            //        this.octave = octave + carry;
+            //    }
             }
 
         
