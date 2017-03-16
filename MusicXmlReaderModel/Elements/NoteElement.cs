@@ -209,7 +209,7 @@ namespace MusicXmlReaderModel
         {
             get
             {
-                return duration * commonDivisions / divisions;
+                return (duration * commonDivisions) / divisions;
             }
 
 

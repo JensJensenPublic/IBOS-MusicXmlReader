@@ -263,10 +263,11 @@ namespace MusicXmlReader
         /// </summary>
         /// <param name="userSettings"></param>
         public void LoadDetails(UserSettings userSettings)
-        {
-            //this.userSettings = userSettings;
+        { 
+            const int lastTextDetail =    7; // "7" is the "Lyrics" node. Do not load last notes for release versions! They are for real hardcore debugging only!
+            //const int lastTextDetail = 11; // 11: Load all nodes: For real hardcore debugging only !!!!!!!
             LoadDetails(musicAsSoundDetails, userSettings.playerSettingsNames, model.UserSettings.playerSettingsValues);
-            LoadDetails(musicAsTextDetails,userSettings.readerSettingsNames, model.UserSettings.readerSettingsValues,7); // "7" is the Lyrics node Do not load last notes, they are for debugging only
+            LoadDetails(musicAsTextDetails, userSettings.readerSettingsNames, model.UserSettings.readerSettingsValues, lastTextDetail);  
             LoadDetails(musicAsBrailleDetails, userSettings.musicBrailleSettingsNames, model.UserSettings.musicBrailleSettingsValues);
         }
 
