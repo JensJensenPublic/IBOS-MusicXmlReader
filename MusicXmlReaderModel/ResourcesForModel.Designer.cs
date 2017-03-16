@@ -745,6 +745,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to cuenote.
+        /// </summary>
+        internal static string NoteElement_CueNote {
+            get {
+                return ResourceManager.GetString("NoteElement_CueNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to dotted.
         /// </summary>
         internal static string NoteElement_dotted {

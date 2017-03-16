@@ -435,9 +435,17 @@ namespace MusicXmlReaderModel
             {
                 return isFirstNoteInScorePart;
             }
-        }
-        
+        }  
 
+        public string CueNoteString
+        {
+            get
+            {
+                return isCueNote ? ResourcesForModel.NoteElement_CueNote : "";
+            }
+        }
+
+        
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>

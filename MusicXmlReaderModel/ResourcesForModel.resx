@@ -738,4 +738,7 @@
   <data name="MetronomeElement_Tempo" xml:space="preserve">
     <value>Tempo</value>
   </data>
+  <data name="NoteElement_CueNote" xml:space="preserve">
+    <value>cuenote</value>
+  </data>
 </root>
