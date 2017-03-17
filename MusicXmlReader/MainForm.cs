@@ -669,8 +669,20 @@ namespace MusicXmlReader
             Application.Exit();
         }
 
-#region keyhandlers
+        #region keyhandlers
+
+        private void listBoxDetails_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!shortCutHandler.IsDetailsShortcut(e))
+            {
+                // All other keys will return focus to the mail listbox
+                listBoxDetails.Items.Clear();
+                listBoxTimes.Focus();
+            }
+        }
         
+
+
         /// <summary>
         /// Occurs when a key is pressed while listBoxTimes has focus
         /// </summary>
@@ -986,6 +998,8 @@ namespace MusicXmlReader
         {
 
         }
+
+
 
         #endregion
         //*************************************************************************************************
