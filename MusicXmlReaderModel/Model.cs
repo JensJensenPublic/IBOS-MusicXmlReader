@@ -792,6 +792,11 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public string[] GetCurrentEventDetails(EventDescription eventDescription)
         {
+            if (!UserSettings.MusicAsSpeech)
+            {
+                return new string[0];
+            }
+
             List<string> details  = new List<string>();
             for (int i = 0; (i < numberOfParts); i++)
             {
