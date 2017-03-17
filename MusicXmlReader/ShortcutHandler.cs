@@ -174,8 +174,16 @@ namespace MusicXmlReader
         }
         static public readonly Keys listBoxFocus = (Keys)(Keys.Control | Keys.L);
 
+        //static public readonly Keys detailsRight = (Keys)(Keys.Control | Keys.Right);
+        //static public readonly Keys detailsLeft = (Keys)(Keys.Control | Keys.Left);
+        static public readonly Keys detailsRight = (Keys)(Keys.Right);
+        static public readonly Keys detailsLeft = (Keys)(Keys.Left);
 
-
+        public bool IsDetailsShortcut(KeyEventArgs e)
+        {
+            return ((e.KeyCode == detailsLeft) || (e.KeyCode == detailsRight));
+        }
+                        
         static public readonly Keys StopAllNotesPlaying = Keys.Escape;
 
 

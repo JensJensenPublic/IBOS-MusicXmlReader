@@ -394,7 +394,7 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="noteElementList"></param>
         /// <returns></returns>
-        private string NotesForOnePart(List<NoteElement> noteElementList)
+        public string NotesForOnePart(List<NoteElement> noteElementList)
         {
             if (!userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notes)) return ""; // User completely turned off reading of notes
             if (0 == noteElementList.Count()) return " "; // Nothing happened in this part 

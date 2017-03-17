@@ -783,6 +783,40 @@ namespace MusicXmlReaderModel
             }
             return myMusicXmlDirectory;
         }
-        
+
+
+        /// <summary>
+        /// Returns detail information about the event currently selected in the main listbox, one line per part.
+        /// In this way the user can investigate exactly which notes belong to which part
+        /// </summary>
+        /// <returns></returns>
+        public string[] GetCurrentEventDetails(EventDescription eventDescription)
+        {
+            List<string> details  = new List<string>();
+            for (int i = 0; (i < numberOfParts); i++)
+            {
+                List<NoteElement> notesForPart = eventDescription.NoteLists[i];
+                if ((null != notesForPart) && (0 !=notesForPart.Count))
+                {
+                    // The eventdescription contains notes for this part so we dig out the part parameters:
+                    ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
+                    string partId = scorePartElement.partId;
+                    string partName = scorePartElement.partName;
+                    // By using  eventDescription.NotesForOnePart for formatting the notes we assure the usage of identical formatting.
+                    string notes = eventDescription.NotesForOnePart(notesForPart);
+                    string detailString = string.Format("{0} {1} {2}", partId, partName, notes);
+                    details.Add(detailString);
+                }
+            }
+            // Transform to a format usable in the interface
+            int length = details.Count;
+            string[] result = new string[details.Count];
+            for (int i = 0; (i < length); i++)
+            {
+                result[i] = details[i];
+            }
+            return result;
+        }
+
     }
 }

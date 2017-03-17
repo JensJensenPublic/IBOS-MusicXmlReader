@@ -77,6 +77,7 @@
             this.httpwwwhausmusikchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutIBOSMusicXmlReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.keyboardShortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.listBoxTimes = new System.Windows.Forms.ListBox();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
@@ -85,7 +86,7 @@
             this.textBoxNormalText = new System.Windows.Forms.TextBox();
             this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
-            this.keyboardShortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listBoxDetails = new System.Windows.Forms.ListBox();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -475,9 +476,16 @@
             // aboutIBOSMusicXmlReaderToolStripMenuItem
             // 
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Name = "aboutIBOSMusicXmlReaderToolStripMenuItem";
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = "About ";
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Click += new System.EventHandler(this.aboutIBOSMusicXmlReaderToolStripMenuItem_Click);
+            // 
+            // keyboardShortcutsToolStripMenuItem
+            // 
+            this.keyboardShortcutsToolStripMenuItem.Name = "keyboardShortcutsToolStripMenuItem";
+            this.keyboardShortcutsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.keyboardShortcutsToolStripMenuItem.Text = "Keyboard shortcuts";
+            this.keyboardShortcutsToolStripMenuItem.Click += new System.EventHandler(this.keyboardShortcutsToolStripMenuItem_Click);
             // 
             // userSettingsTreeView
             // 
@@ -553,18 +561,20 @@
             this.textBoxStatusInformation.TabStop = false;
             this.textBoxStatusInformation.Text = "Status Information";
             // 
-            // keyboardShortcutsToolStripMenuItem
+            // listBoxDetails
             // 
-            this.keyboardShortcutsToolStripMenuItem.Name = "keyboardShortcutsToolStripMenuItem";
-            this.keyboardShortcutsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.keyboardShortcutsToolStripMenuItem.Text = "Keyboard shortcuts";
-            this.keyboardShortcutsToolStripMenuItem.Click += new System.EventHandler(this.keyboardShortcutsToolStripMenuItem_Click);
+            this.listBoxDetails.FormattingEnabled = true;
+            this.listBoxDetails.Location = new System.Drawing.Point(265, 28);
+            this.listBoxDetails.Name = "listBoxDetails";
+            this.listBoxDetails.Size = new System.Drawing.Size(950, 30);
+            this.listBoxDetails.TabIndex = 11;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1219, 641);
+            this.Controls.Add(this.listBoxDetails);
             this.Controls.Add(this.textBoxStatusInformation);
             this.Controls.Add(this.textBoxCommand);
             this.Controls.Add(this.textBoxNormalText);
@@ -646,6 +656,7 @@
         private System.Windows.Forms.ToolStripMenuItem httpwwwhausmusikchToolStripMenuItem;
         private System.Windows.Forms.TextBox textBoxStatusInformation;
         private System.Windows.Forms.ToolStripMenuItem keyboardShortcutsToolStripMenuItem;
+        private System.Windows.Forms.ListBox listBoxDetails;
     }
 }
 

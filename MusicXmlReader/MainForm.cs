@@ -722,6 +722,27 @@ namespace MusicXmlReader
                 return;
             }
 
+            else if (shortCutHandler.IsDetailsShortcut(e))
+            {
+                //textBoxNormalText.Text = model.CurrentEventDetails(0); // Get text from  model
+                //textBoxNormalText.Focus(); // Give focus to the textBoxNormalText for showing details 
+                listBoxDetails.Items.Clear();
+                object selectedEvent = listBoxTimes.Items[listBoxTimes.SelectedIndex];
+                if ((null != selectedEvent) && (selectedEvent is EventDescription))
+                {
+                    EventDescription currentEventDescription = (listBoxTimes.Items[listBoxTimes.SelectedIndex]) as EventDescription;
+                    listBoxDetails.Items.AddRange(model.GetCurrentEventDetails(currentEventDescription));
+                }
+                if ( 0 == listBoxDetails.Items.Count) // For whatever reason
+                { 
+                    listBoxDetails.Items.Add("No details found");
+                }
+                listBoxDetails.SelectedIndex = 0;
+                listBoxDetails.Focus();
+                e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
+            }
+
+
             // Let the command interpreter handle it 
             commandInterpreter.Add(e);
 
@@ -779,11 +800,21 @@ namespace MusicXmlReader
             autoReload = saveAutoReload; // Restore
             ConditionalLoadListBoxTimes(); // Reload once instead of multiple times
         }
-#endregion keyhandlers 
+        
+        /// <summary>
+        /// Occurs when a key is pressed and the textBoxNormalTExt has focus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxNormalText_KeyDown(object sender, KeyEventArgs e)
+        {
+        }        
+
+        #endregion keyhandlers 
         //
         //*************************************************************************************************
         //
-#region Edit
+        #region Edit
         // Items above the delimiter line are represented by level 0 nodes in the tree
 
         private void musicRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -951,7 +982,10 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.OpenUrl(sender.ToString());
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
 
+        }
 
         #endregion
         //*************************************************************************************************
