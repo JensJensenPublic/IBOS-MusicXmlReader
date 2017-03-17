@@ -690,6 +690,7 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void listBoxTimes_KeyDown(object sender, KeyEventArgs e)
         {
+            string functionName = "listBoxTimes_KeyDown";
             if (shortCutHandler.IsTogglePlayingShortcut(e))
             {
                 model.ToggleStartStopPlaying(listBoxTimes.SelectedIndex);
@@ -736,22 +737,28 @@ namespace MusicXmlReader
 
             else if (shortCutHandler.IsDetailsShortcut(e))
             {
-                //textBoxNormalText.Text = model.CurrentEventDetails(0); // Get text from  model
-                //textBoxNormalText.Focus(); // Give focus to the textBoxNormalText for showing details 
-                listBoxDetails.Items.Clear();
-                object selectedEvent = listBoxTimes.Items[listBoxTimes.SelectedIndex];
-                if ((null != selectedEvent) && (selectedEvent is EventDescription))
+
+                try // This is new code for version 1.0.0.0 so better safe than sorry
+                {          
+                    listBoxDetails.Items.Clear();
+                    object selectedEvent = listBoxTimes.Items[listBoxTimes.SelectedIndex];
+                    if ((null != selectedEvent) && (selectedEvent is EventDescription))
+                    {
+                        EventDescription currentEventDescription = (listBoxTimes.Items[listBoxTimes.SelectedIndex]) as EventDescription;
+                        listBoxDetails.Items.AddRange(model.GetCurrentEventDetails(currentEventDescription));
+                    }
+                    if (0 == listBoxDetails.Items.Count) // For whatever reason
+                    {
+                        listBoxDetails.Items.Add("No details found");
+                    }
+                    listBoxDetails.SelectedIndex = 0;
+                    listBoxDetails.Focus();
+                    e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
+                }
+                catch (Exception exception)
                 {
-                    EventDescription currentEventDescription = (listBoxTimes.Items[listBoxTimes.SelectedIndex]) as EventDescription;
-                    listBoxDetails.Items.AddRange(model.GetCurrentEventDetails(currentEventDescription));
+                    Logger.Log(string.Format("{0}.{1} KeyCode={2} threw an exception: Message={3}", className, functionName, e.KeyCode.ToString(), exception.Message));
                 }
-                if ( 0 == listBoxDetails.Items.Count) // For whatever reason
-                { 
-                    listBoxDetails.Items.Add("No details found");
-                }
-                listBoxDetails.SelectedIndex = 0;
-                listBoxDetails.Focus();
-                e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
             }
 
 
