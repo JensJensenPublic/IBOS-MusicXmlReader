@@ -759,6 +759,7 @@ namespace MusicXmlReader
                 {
                     Logger.Log(string.Format("{0}.{1} KeyCode={2} threw an exception: Message={3}", className, functionName, e.KeyCode.ToString(), exception.Message));
                 }
+                return;
             }
 
 
