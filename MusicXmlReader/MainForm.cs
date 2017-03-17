@@ -766,12 +766,26 @@ namespace MusicXmlReader
                     {
                         EventDescription currentEventDescription = (listBoxTimes.Items[listBoxTimes.SelectedIndex]) as EventDescription;
                         listBoxDetails.Items.AddRange(model.GetCurrentEventDetails(currentEventDescription));
+                        int itemCount = listBoxDetails.Items.Count;
+                        if (0 != itemCount)
+                        {
+                            // Select either the first or the last item
+                            if (e.KeyCode == ShortcutHandler.detailsLeft)
+                            {
+                                listBoxDetails.SelectedIndex = (itemCount - 1); // Select the last item
+                            }
+                            if (e.KeyCode == ShortcutHandler.detailsRight)
+                            {
+                                listBoxDetails.SelectedIndex = 0; // Select the first item
+                            }
+                        }
                     }
+
                     if (0 == listBoxDetails.Items.Count) // For whatever reason
                     {
                         listBoxDetails.Items.Add("No details found");
                     }
-                    listBoxDetails.SelectedIndex = 0;
+         
                     listBoxDetails.Focus();
                     e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
                 }
