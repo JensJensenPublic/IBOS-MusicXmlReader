@@ -673,14 +673,34 @@ namespace MusicXmlReader
 
         private void listBoxDetails_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!shortCutHandler.IsDetailsShortcut(e))
+            string functionName = "listBoxDetails_KeyDown";
+            try // This is new code for version 1.0.0.0 so better safe than sorry
             {
-                // All other keys will return focus to the mail listbox
-                listBoxDetails.Items.Clear();
-                listBoxTimes.Focus();
+                if (!shortCutHandler.IsDetailsShortcut(e))
+                {
+                    // All other keys will return focus to the mail listbox
+                    listBoxDetails.Items.Clear();
+                    int selectedIndex = listBoxTimes.SelectedIndex;
+                    if ((e.KeyCode == Keys.Down) && ((selectedIndex + 1) < listBoxTimes.Items.Count))
+                    {
+                        listBoxTimes.SelectedIndex = selectedIndex + 1;
+                    }
+                    if ((e.KeyCode == Keys.Up) && (selectedIndex > 0))
+                    {
+                        listBoxTimes.SelectedIndex = selectedIndex - 1;
+                    }
+                    // In all other cases just return to the original index and move focus
+                    listBoxTimes.Focus();
+                    e.SuppressKeyPress = true;
+                }
             }
+            catch (Exception exception)
+            {
+                Logger.Log(string.Format("{0}.{1} KeyCode={2} threw an exception: Message={3}", className, functionName, e.KeyCode.ToString(), exception.Message));
+            }
+            return;
         }
-        
+
 
 
         /// <summary>
