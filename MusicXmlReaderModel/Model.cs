@@ -795,19 +795,22 @@ namespace MusicXmlReaderModel
             List<string> details  = new List<string>();
             for (int i = 0; (i < numberOfParts); i++)
             {
-                List<NoteElement> notesForPart = eventDescription.NoteLists[i];
-                if ((null != notesForPart) && (0 !=notesForPart.Count))
+                if (UserSettings.partsToRead[i])
                 {
-                    // The eventdescription contains notes for this part so we dig out the part parameters:
-                    ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
-                    string partId = scorePartElement.partId;
-                    string partName = scorePartElement.partName;
-                    // By using  eventDescription.NotesForOnePart for formatting the notes we assure the usage of identical formatting.
-                    string notes = eventDescription.NotesForOnePart(notesForPart);
-                    // By using  eventDescription.LyricsForOnePart for formatting the lyrics we assure the usage of identical formatting.
-                    string lyrics = eventDescription.LyricsForOnePart(notesForPart);
-                    string detailString = string.Format("{0} {1} {2} {3}", partId, partName, notes, lyrics);
-                    details.Add(detailString);
+                    List<NoteElement> notesForPart = eventDescription.NoteLists[i];
+                    if ((null != notesForPart) && (0 != notesForPart.Count))
+                    {
+                        // The eventdescription contains notes for this part so we dig out the part parameters:
+                        ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
+                        string partId = scorePartElement.partId;
+                        string partName = scorePartElement.partName;
+                        // By using  eventDescription.NotesForOnePart for formatting the notes we assure the usage of identical formatting.
+                        string notes = eventDescription.NotesForOnePart(notesForPart);
+                        // By using  eventDescription.LyricsForOnePart for formatting the lyrics we assure the usage of identical formatting.
+                        string lyrics = eventDescription.LyricsForOnePart(notesForPart);
+                        string detailString = string.Format("{0} {1} {2} {3}", partId, partName, notes, lyrics);
+                        details.Add(detailString);
+                    }
                 }
             }
              
