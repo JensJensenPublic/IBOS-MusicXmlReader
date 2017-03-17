@@ -444,7 +444,7 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="noteElementList"></param>
         /// <returns></returns>
-        private string LyricsForOnePart(List<NoteElement> noteElementList)
+        public string LyricsForOnePart(List<NoteElement> noteElementList)
         {
             if (!userSettings.GetReaderSettings(UserSettings.ReaderSettings.Lyrics)) return ""; 
             if (0 == noteElementList.Count()) return ""; // Nothing happened in this part 

@@ -804,10 +804,21 @@ namespace MusicXmlReaderModel
                     string partName = scorePartElement.partName;
                     // By using  eventDescription.NotesForOnePart for formatting the notes we assure the usage of identical formatting.
                     string notes = eventDescription.NotesForOnePart(notesForPart);
-                    string detailString = string.Format("{0} {1} {2}", partId, partName, notes);
+                    // By using  eventDescription.LyricsForOnePart for formatting the lyrics we assure the usage of identical formatting.
+                    string lyrics = eventDescription.LyricsForOnePart(notesForPart);
+                    string detailString = string.Format("{0} {1} {2} {3}", partId, partName, notes, lyrics);
                     details.Add(detailString);
                 }
             }
+             
+            // Add any harmonies after the last part
+            HarmonyElement harmonyElement = eventDescription.HarmonyElement;
+            if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
+            {
+                string harmony = string.Format("{0}{1}  ", harmonyElement.ChromaticStep, harmonyElement.LocalizedChordType); // Use same formatting as used in the status line !!
+                details.Add(harmony);
+            }
+            
             // Transform to a format usable in the interface
             int length = details.Count;
             string[] result = new string[details.Count];
