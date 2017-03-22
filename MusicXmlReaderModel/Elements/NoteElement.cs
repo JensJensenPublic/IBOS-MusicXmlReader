@@ -43,7 +43,10 @@ namespace MusicXmlReaderModel
         // Allows for representing the following subdivisions of a quarter node:
         // 2,3,4,5,6,7,8,9,10. 
         // 1260 can be divided by 2,3,4,5,6,7,8,9 and 10 !
-        public const int commonDivisions = 1260;
+        // public const int commonDivisions = 1260;
+        // While testing version 0.8.0.0 it was found that Sibelius may use divisions=256
+        // So commonDivisions was changed so it can be divided by 256 as well !
+        public const int commonDivisions = 80640;
         string punctured = ResourcesForModel.NoteElement_dotted + " "; // "punkteret ";
 
 
@@ -697,6 +700,7 @@ namespace MusicXmlReaderModel
                     Logger.LogOnce(string.Format("{0}: child.Name '{1}' is not implemented yet", functionName, child.Name));
                 }
 
+                CheckDuration(); // Primarily for debugging. Checks that the value of commonDivisions is large enough! The call can be omitted!
 
             }
 
@@ -717,7 +721,24 @@ namespace MusicXmlReaderModel
             }
 
         }
-      
+
+        /// <summary>
+        /// Generate a log entry if the value for CommonDivisions is not large enough!
+        /// </summary>
+        private void CheckDuration()
+        {
+            const string functionName = "CheckDuration";
+            if (0 != duration)
+            {
+                int quotient = DurationInCommonDivisions / duration;
+                int remainder = DurationInCommonDivisions % duration;
+                if (0 != remainder)
+                {
+                    Logger.LogOnce(string.Format("{0}.{1} DurationInCommonDivisions={2} Duration={3} Quotient={4} Remainder={5} Divisions={6}",
+                                  className, functionName, DurationInCommonDivisions, duration, quotient, remainder, divisions));
+                }
+            }
+        }
 
 
         /// <summary>
