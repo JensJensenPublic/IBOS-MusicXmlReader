@@ -676,16 +676,23 @@ namespace MusicXmlReader
             string functionName = "listBoxDetails_KeyDown";
             try // This is new code for version 1.0.0.0 so better safe than sorry
             {
-                if (!shortCutHandler.IsDetailsShortcut(e))
+                if (shortCutHandler.IsDetailsShortcut(e))
+                {
+                    // On keys.Right and keys.Left:
+                    // Do nothing special, but pass the key to the listbox without suppressing it !
+                }
+                else
                 {
                     // All other keys will return focus to the mail listbox
                     listBoxDetails.Items.Clear();
                     int selectedIndex = listBoxTimes.SelectedIndex;
-                    if ((e.KeyCode == Keys.Down) && ((selectedIndex + 1) < listBoxTimes.Items.Count))
+                    // keys.Right will select the next detail if possible
+                    if ((e.KeyCode == ShortcutHandler.detailsNextEvent) && ((selectedIndex + 1) < listBoxTimes.Items.Count))
                     {
                         listBoxTimes.SelectedIndex = selectedIndex + 1;
                     }
-                    if ((e.KeyCode == Keys.Up) && (selectedIndex > 0))
+                    // keys.Left will select the previous detail if possible
+                    if ((e.KeyCode == ShortcutHandler.detailsPreviousEvent) && (selectedIndex > 0))
                     {
                         listBoxTimes.SelectedIndex = selectedIndex - 1;
                     }
