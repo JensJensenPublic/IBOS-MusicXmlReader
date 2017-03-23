@@ -234,6 +234,18 @@
   <data name="Shortcut_ReadMessagebox" xml:space="preserve">
     <value>Read message box</value>
   </data>
+  <data name="Shortcut_ArrowDown" xml:space="preserve">
+    <value>ARROW-DOWN</value>
+  </data>
+  <data name="Shortcut_ArrowLeft" xml:space="preserve">
+    <value>ARROW-LEFT</value>
+  </data>
+  <data name="Shortcut_ArrowRight" xml:space="preserve">
+    <value>ARROW-RIGHT</value>
+  </data>
+  <data name="Shortcut_ArrowUp" xml:space="preserve">
+    <value>ARROW-UP</value>
+  </data>
   <data name="Shortcut_MenuCaption" xml:space="preserve">
     <value>Help for keyboard shortcuts</value>
   </data>

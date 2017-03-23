@@ -61,6 +61,42 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ARROW-DOWN.
+        /// </summary>
+        internal static string Shortcut_ArrowDown {
+            get {
+                return ResourceManager.GetString("Shortcut_ArrowDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ARROW-LEFT.
+        /// </summary>
+        internal static string Shortcut_ArrowLeft {
+            get {
+                return ResourceManager.GetString("Shortcut_ArrowLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ARROW-RIGHT.
+        /// </summary>
+        internal static string Shortcut_ArrowRight {
+            get {
+                return ResourceManager.GetString("Shortcut_ArrowRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ARROW-UP.
+        /// </summary>
+        internal static string Shortcut_ArrowUp {
+            get {
+                return ResourceManager.GetString("Shortcut_ArrowUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shortcuts used for controlling the note filter.
         /// </summary>
         internal static string shortcut_Caption_NoteFilter {

@@ -57,6 +57,10 @@ namespace MusicXmlReader
             string followedBy = ResourcesForHelp.shortcut_Text_followedBy;
             string pageDown  = ResourcesForHelp.shortcut_Key_pageDown;
             string shift = ResourcesForHelp.shortcut_Key_shift;
+            string arrowLeft = ResourcesForHelp.Shortcut_ArrowLeft;
+            string arrowRight = ResourcesForHelp.Shortcut_ArrowRight;
+            string arrowUp = ResourcesForHelp.Shortcut_ArrowUp;
+            string arrowDown = ResourcesForHelp.Shortcut_ArrowDown;
 
 
             sb = new StringBuilder();
@@ -77,6 +81,10 @@ namespace MusicXmlReader
             // Følgende specielle tastaturgenveje og kommandoer kan anvendes i forbindelse med Nodelisten
             sb.Append("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteList);
+            AddLine(Combine(arrowLeft, "")); 
+            AddLine(Combine(arrowRight, ""));
+            AddLine(Combine(arrowDown, ""));
+            AddLine(Combine(arrowUp, ""));
             AddLine(Combine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList));
             AddLine(Combine(Plus(control, "P"), ResourcesForHelp.Shortcut_StartPlaying));
             AddLine(Combine(Plus(control, shift, "P"), ResourcesForHelp.Shortcut_StopPlaying));

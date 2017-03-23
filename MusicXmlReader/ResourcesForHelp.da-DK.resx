@@ -234,6 +234,18 @@
   <data name="Shortcut_ReadMessagebox" xml:space="preserve">
     <value>Oplæs meddelelse</value>
   </data>
+  <data name="Shortcut_ArrowDown" xml:space="preserve">
+    <value>PIL-NED</value>
+  </data>
+  <data name="Shortcut_ArrowLeft" xml:space="preserve">
+    <value>VENSTRE-PIL</value>
+  </data>
+  <data name="Shortcut_ArrowRight" xml:space="preserve">
+    <value>HØJRE-PIL</value>
+  </data>
+  <data name="Shortcut_ArrowUp" xml:space="preserve">
+    <value>PIL-OP</value>
+  </data>
   <data name="Shortcut_MenuCaption" xml:space="preserve">
     <value>Hjælp til tastaturgenveje</value>
   </data>
