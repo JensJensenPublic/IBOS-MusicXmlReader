@@ -44,7 +44,7 @@ namespace MusicXmlReaderModel
         // 2,3,4,5,6,7,8,9,10. 
         // 1260 can be divided by 2,3,4,5,6,7,8,9 and 10 !
         // public const int commonDivisions = 1260;
-        // While testing version 0.8.0.0 it was found that Sibelius may use divisions=256
+        // While testing version 0.8.0.0 it was found that Sibelius may use divisions=1024
         // So commonDivisions was changed so it can be divided by 1024 as well !
         public const int commonDivisions = 322560;
         string punctured = ResourcesForModel.NoteElement_dotted + " "; // "punkteret ";
