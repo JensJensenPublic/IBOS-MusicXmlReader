@@ -38,11 +38,14 @@ namespace MusicXmlReader
 
         private void AddLine(string line)
         {
-            sb.Append(line + "\r");
+            strings.Add(line);
         }
 
-        public override string ToString()
-        {     
+        private List<string> strings = new List<string>();
+
+        public List<string> ToStrings()
+        {
+            strings = new List<string>();
             // The following texts must be localized!   
             string control = ResourcesForHelp.Shortcut_Key_Control;
             string space = ResourcesForHelp.Shortcut_Key_space;
@@ -96,7 +99,7 @@ namespace MusicXmlReader
             AddLine(Combine(Plus(control, "0"), ResourcesForHelp.Shortcut_TurnOffGlobally));
             AddLine(Combine(Plus(control, "1"), ResourcesForHelp.Shurtcut_TurnOnGlobally));
 
-            return sb.ToString();
+            return strings;
         }
 
 

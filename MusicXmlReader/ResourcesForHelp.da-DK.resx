@@ -234,4 +234,7 @@
   <data name="Shortcut_ReadMessagebox" xml:space="preserve">
     <value>Oplæs meddelelse</value>
   </data>
+  <data name="Shortcut_MenuCaption" xml:space="preserve">
+    <value>Hjælp til tastaturgenveje</value>
+  </data>
 </root>

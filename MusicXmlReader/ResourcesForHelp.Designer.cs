@@ -250,6 +250,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Help for keyboard shortcuts.
+        /// </summary>
+        internal static string Shortcut_MenuCaption {
+            get {
+                return ResourceManager.GetString("Shortcut_MenuCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open FileOpen dialog.
         /// </summary>
         internal static string Shortcut_OpenFileOpenDialog {
