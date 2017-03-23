@@ -250,13 +250,13 @@
     <value>Hjælp til tastaturgenveje</value>
   </data>
   <data name="Shortcut_NextLine" xml:space="preserve">
-    <value>Vælg næste linie</value>
+    <value>Vælg næste node</value>
   </data>
   <data name="Shortcut_NextPart" xml:space="preserve">
     <value>Vælg næste stemme</value>
   </data>
   <data name="Shortcut_PreviousLine" xml:space="preserve">
-    <value>Vælg foregående linie</value>
+    <value>Vælg foregående node</value>
   </data>
   <data name="Shortcut_PreviousPart" xml:space="preserve">
     <value>Vælg foregående stemme</value>

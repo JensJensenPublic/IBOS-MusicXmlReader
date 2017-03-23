@@ -295,7 +295,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select next line.
+        ///   Looks up a localized string similar to Select next note.
         /// </summary>
         internal static string Shortcut_NextLine {
             get {
@@ -322,7 +322,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select previous line.
+        ///   Looks up a localized string similar to Select previous note.
         /// </summary>
         internal static string Shortcut_PreviousLine {
             get {

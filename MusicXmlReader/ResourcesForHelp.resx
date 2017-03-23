@@ -250,13 +250,13 @@
     <value>Help for keyboard shortcuts</value>
   </data>
   <data name="Shortcut_NextLine" xml:space="preserve">
-    <value>Select next line</value>
+    <value>Select next note</value>
   </data>
   <data name="Shortcut_NextPart" xml:space="preserve">
     <value>Select next part</value>
   </data>
   <data name="Shortcut_PreviousLine" xml:space="preserve">
-    <value>Select previous line</value>
+    <value>Select previous note</value>
   </data>
   <data name="Shortcut_PreviousPart" xml:space="preserve">
     <value>Select previous part</value>
