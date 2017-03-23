@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MusicXmlReaderUI;
 
 namespace MusicXmlReaderModel
@@ -34,7 +35,7 @@ namespace MusicXmlReaderModel
         {
             this.userSettings = userSettings;
             events = new List<EventDescription>();
-            int currentStartTime = -1;
+            Int64 currentStartTime = -1;
             EventDescription currentEventDescription = null;
             foreach (EventElement eventElement in timeDescriptionList.times)
             {

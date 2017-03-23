@@ -11,7 +11,7 @@ namespace MusicXmlReaderModel
     public class EventDescription
     {
         string className = "EventDescription";
-        int startTime;
+        Int64 startTime;
         int numberOfParts;
         UserSettings userSettings;
         int metronomeBeatsPerMinute = -1;
@@ -57,7 +57,7 @@ namespace MusicXmlReaderModel
 
         }
 
-        public int StartTime
+        public Int64 StartTime
         {
             get
             {
@@ -167,7 +167,7 @@ namespace MusicXmlReaderModel
         {
         }
 
-        private EventDescription(int time, int numberOfParts, UserSettings userSettings)
+        private EventDescription(Int64 time, int numberOfParts, UserSettings userSettings)
         {
             this.startTime = time;
             this.numberOfParts = numberOfParts;
@@ -181,7 +181,7 @@ namespace MusicXmlReaderModel
             this.userSettings = userSettings;
         }
 
-        public static EventDescription Create(int time, int numberOfParts, UserSettings userSettings)
+        public static EventDescription Create(Int64 time, int numberOfParts, UserSettings userSettings)
         {
             return new EventDescription(time, numberOfParts, userSettings);
         }

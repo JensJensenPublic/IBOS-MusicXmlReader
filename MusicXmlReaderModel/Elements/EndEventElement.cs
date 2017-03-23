@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace MusicXmlReaderModel
 {
 
@@ -27,7 +28,7 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="startElement">The EventElement to which this EndElement is related</param>
         /// <param name="time">The time for this event</param>
-        private EndEventElement(EventElement startElement, int time)
+        private EndEventElement(EventElement startElement, Int64 time)
         {
             this.startElement = startElement;
             this.startTime = time;
@@ -41,7 +42,7 @@ namespace MusicXmlReaderModel
             }
         }
 
-        public static EndEventElement Create(EventElement startElement, int time)
+        public static EndEventElement Create(EventElement startElement, Int64 time)
         {
             return new EndEventElement(startElement,time);
         }

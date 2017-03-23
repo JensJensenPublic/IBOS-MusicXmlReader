@@ -289,7 +289,7 @@ namespace MusicXmlReaderUI
         /// </summary>
         /// <param name="startTime">StartTime of the next event in units of NoteElement.commonDivisions</param>
         /// <returns>Number of MilliSeconds to wait.</returns>
-        private int MilliSecondsToSleep(int startTime)
+        private int MilliSecondsToSleep(Int64 startTime)
         {
             float mSPerMinute = 60000; // Used to conpensate for the use of different Units by the other variables
             float eventTimeInMilliSeconds = ((float)(startTime - this.musicXmlTimeOffset) * mSPerMinute) / ((float)NoteElement.commonDivisions * (float)this.tempo * userTempoFactor);
@@ -304,7 +304,7 @@ namespace MusicXmlReaderUI
         /// 2) A User interaction (which is for simplicity executed by the next EventDescriptor)
         /// </summary>
         /// <param name="eventStartTime">The Start time for the EventDescriptor</param>
-        private void ChangeTimingOffsets(int eventStartTime)
+        private void ChangeTimingOffsets(Int64 eventStartTime)
         {
             firstStopWatchTime = stopWatch.ElapsedMilliseconds; // From now on all stopwatch times are relative to this value (now) 
             musicXmlTimeOffset = eventStartTime; // From now on all musicXml times are ralative to this value (starttime of the current event

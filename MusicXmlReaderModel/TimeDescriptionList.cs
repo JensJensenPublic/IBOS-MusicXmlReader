@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MusicXmlReaderModel
 {
@@ -27,8 +28,8 @@ namespace MusicXmlReaderModel
 
             foreach (List<Element> elementList in partDescriptionList.parts)
             {
-                int nextStartTime = 0; // Each part starts at time = 0 MilliSeconds
-                int previousStartTime = 0;
+                Int64 nextStartTime = 0; // Each part starts at time = 0 MilliSeconds
+                Int64 previousStartTime = 0;
                 foreach (Element e in elementList)
                 {
                     if (e is NoteElement)
@@ -126,7 +127,10 @@ namespace MusicXmlReaderModel
         {
             if ((x is EventElement) && (y is EventElement))
             {
-                return ((x as EventElement).StartTime - (y as EventElement).StartTime);
+                // We want to use 64 bit integer arithmetics for  all times, but Compare must return an int:
+                Int64 dif = ((x as EventElement).StartTime - (y as EventElement).StartTime);
+                if (dif < 0) return -1;
+                if (dif > 0) return  1;
             }
             return 0;
         }

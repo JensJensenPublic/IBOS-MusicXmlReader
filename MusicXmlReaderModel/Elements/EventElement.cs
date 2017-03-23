@@ -1,4 +1,6 @@
-﻿namespace MusicXmlReaderModel
+﻿using System;
+
+namespace MusicXmlReaderModel
 {
     /// <summary>
     /// This is a base class for all classes describing events (in time)
@@ -6,12 +8,12 @@
     /// </summary>
     public class EventElement : Element
     {
-        protected int startTime;
+        protected Int64 startTime;
 
         /// <summary>
         /// Unit is milliSeconds. Is 0 at start of part.
         /// </summary>
-        public int StartTime
+        public Int64 StartTime
         {
             get
             {

@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System;
+using System.Xml;
 
 namespace MusicXmlReaderModel
 {
@@ -45,7 +46,7 @@ namespace MusicXmlReaderModel
         }
 
 
-        public int DurationInCommonDivisions
+        public Int64 DurationInCommonDivisions
         {
             get
             {

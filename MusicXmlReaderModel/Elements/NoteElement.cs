@@ -46,7 +46,7 @@ namespace MusicXmlReaderModel
         // public const int commonDivisions = 1260;
         // While testing version 0.8.0.0 it was found that Sibelius may use divisions=1024
         // So commonDivisions was changed so it can be divided by 1024 as well !
-        public const int commonDivisions = 322560; // 2^10 * 3^2 * 5 * 7
+        public const Int64 commonDivisions = 322560; // 2^10 * 3^2 * 5 * 7
         string punctured = ResourcesForModel.NoteElement_dotted + " "; // "punkteret ";
 
 
@@ -208,7 +208,7 @@ namespace MusicXmlReaderModel
         //    }
         //}
 
-        public int DurationInCommonDivisions
+        public Int64 DurationInCommonDivisions
         {
             get
             {
@@ -730,10 +730,10 @@ namespace MusicXmlReaderModel
             const string functionName = "CheckDuration";
             if (0 != duration)
             {
-                int quotient = DurationInCommonDivisions / duration;
-                int remainder = DurationInCommonDivisions % duration;
+                Int64 remainder = DurationInCommonDivisions % duration;
                 if (0 != remainder)
                 {
+                    Int64 quotient = DurationInCommonDivisions / duration;
                     Logger.LogOnce(string.Format("{0}.{1} DurationInCommonDivisions={2} Duration={3} Quotient={4} Remainder={5} Divisions={6}",
                                   className, functionName, DurationInCommonDivisions, duration, quotient, remainder, divisions));
                 }
