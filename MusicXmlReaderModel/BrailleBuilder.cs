@@ -714,14 +714,14 @@ namespace MusicXmlReaderModel
 
         public void AddRepeatForward(RepeatElement repeatElement)
         {
-            const string functionName = "AddRepeatForward";
+            //const string functionName = "AddRepeatForward";
             Braille.AddRange(repeatStart);
             //Logger.LogOnce(string.Format("{0}.{1}", className, functionName));
         }
 
         public void AddRepeatBackward(RepeatElement repeatElement)
         {
-            const string functionName = "AddRepeatBackward";
+            // const string functionName = "AddRepeatBackward";
             Braille.AddRange(repeatEnd);
             //Logger.LogOnce(string.Format("{0}.{1}", className, functionName));
         }        
