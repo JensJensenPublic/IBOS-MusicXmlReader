@@ -174,14 +174,14 @@ namespace MusicXmlReader
         }
         static public readonly Keys listBoxFocus = (Keys)(Keys.Control | Keys.L);
 
-        static public readonly Keys detailsRight        = (Keys)(Keys.Right);   // Enter Details mode and select the last part (or harmony, if available)
-        static public readonly Keys detailsLeft         = (Keys)(Keys.Left);    // Enter Details mode and select the first part
-        static public readonly Keys detailsNextEvent    = (Keys)(Keys.Down);    // Leave Details mode and select the next event
-        static public readonly Keys detailsPreviousEvent= (Keys)(Keys.Up);      // Leave Details mode and select the previous event
+        static public readonly Keys detailsNextPart     = (Keys)(Keys.Up);      // Enter Details mode and select the last part (or harmony, if available)
+        static public readonly Keys detailsPreviousPart = (Keys)(Keys.Down);    // Enter Details mode and select the first part
+        static public readonly Keys detailsNextEvent    = (Keys)(Keys.Right);   // Leave Details mode and select the next event
+        static public readonly Keys detailsPreviousEvent= (Keys)(Keys.Left);    // Leave Details mode and select the previous event
 
         public bool IsDetailsShortcut(KeyEventArgs e)
         {
-            return ((e.KeyCode == detailsLeft) || (e.KeyCode == detailsRight));
+            return ((e.KeyCode == detailsPreviousPart) || (e.KeyCode == detailsNextPart));
         }
                         
         static public readonly Keys StopAllNotesPlaying = Keys.Escape;

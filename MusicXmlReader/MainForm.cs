@@ -777,11 +777,11 @@ namespace MusicXmlReader
                         if (0 != itemCount)
                         {
                             // Select either the first or the last item
-                            if (e.KeyCode == ShortcutHandler.detailsLeft)
+                            if (e.KeyCode == ShortcutHandler.detailsPreviousPart)
                             {
                                 listBoxDetails.SelectedIndex = (itemCount - 1); // Select the last item
                             }
-                            if (e.KeyCode == ShortcutHandler.detailsRight)
+                            if (e.KeyCode == ShortcutHandler.detailsNextPart)
                             {
                                 listBoxDetails.SelectedIndex = 0; // Select the first item
                             }
