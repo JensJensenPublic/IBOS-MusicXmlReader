@@ -792,33 +792,52 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public string[] GetCurrentEventDetails(EventDescription eventDescription)
         {
-            if (!UserSettings.MusicAsSpeech)
-            {
-                return new string[0];
-            }
+            //if (!UserSettings.MusicAsSpeech)
+            //{
+            //    return new string[0];
+            //}
 
             List<string> details  = new List<string>();
             for (int i = 0; (i < numberOfParts); i++)
             {
-                if (UserSettings.partsToRead[i])
+                List<NoteElement> notesForPart = eventDescription.NoteLists[i];
+                if ((null != notesForPart) && (0 != notesForPart.Count))
                 {
-                    List<NoteElement> notesForPart = eventDescription.NoteLists[i];
-                    if ((null != notesForPart) && (0 != notesForPart.Count))
+                    // String variables for desribing the detail as text
+                    string partId = "";
+                    string partName = "";
+                    string notes = "";
+                    string lyrics = "";
+
+                    if ((UserSettings.MusicAsSpeech) && (UserSettings.partsToRead[i]))
                     {
                         // The eventdescription contains notes for this part so we dig out the part parameters:
                         ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
-                        string partId = scorePartElement.partId;
-                        string partName = scorePartElement.partName;
+                        partId = scorePartElement.partId;
+                        partName = scorePartElement.partName;
                         // By using  eventDescription.NotesForOnePart for formatting the notes we assure the usage of identical formatting.
-                        string notes = eventDescription.NotesForOnePart(notesForPart);
+                        notes = eventDescription.NotesForOnePart(notesForPart);
                         // By using  eventDescription.LyricsForOnePart for formatting the lyrics we assure the usage of identical formatting.
-                        string lyrics = eventDescription.LyricsForOnePart(notesForPart);
-                        string detailString = string.Format("{0} {1} {2} {3}", partId, partName, notes, lyrics);
-                        details.Add(detailString);
+                        lyrics = eventDescription.LyricsForOnePart(notesForPart);
                     }
+
+                    // String variables for desribing the detail as MusicBraille
+                    string musicBraille = "";
+                    if ((UserSettings.MusicAsMusicBraille) && (UserSettings.partsToBraille[i]))
+                    {
+                        BrailleBuilder musicBrailleDetails = eventDescription.NotesForOnePartAsBraille(notesForPart);
+                        musicBraille = musicBrailleDetails.ToBrailleString();
+                    }
+
+                    // Compose all details, always showing MusicBraille first
+                    string detailString = string.Format("{0} {1} {2} {3} {4}", musicBraille, partId, partName, notes, lyrics);
+                    details.Add(detailString);
+
                 }
+
+
             }
-             
+
             // Add any harmonies after the last part
             HarmonyElement harmonyElement = eventDescription.HarmonyElement;
             if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))

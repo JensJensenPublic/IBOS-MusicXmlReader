@@ -336,7 +336,7 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="noteElementList"></param>
         /// <returns></returns>
-        private BrailleBuilder NotesForOnePartAsBraille(List<NoteElement> noteElementList)
+        public BrailleBuilder NotesForOnePartAsBraille(List<NoteElement> noteElementList)
         {
             BrailleBuilder bb = BrailleBuilder.Create();
             if (!userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettings.Notes)) return bb; // User completely turned off reading of notes
