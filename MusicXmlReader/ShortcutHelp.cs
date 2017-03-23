@@ -67,7 +67,7 @@ namespace MusicXmlReader
 
 
             // Følgende standard Windows / JAWS tastatur genveje kan anvendes generelt
-            sb.Append("\r");
+            AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_Windows_JAWS);
             AddLine(Combine(Plus(control, "O"),  ResourcesForHelp.Shortcut_OpenFileOpenDialog));
             AddLine(Combine(Plus(alt, "F4"),     ResourcesForHelp.Shortcut_CloseProgram));
@@ -78,13 +78,13 @@ namespace MusicXmlReader
             AddLine(Combine(Plus(insert, "T"), ResourcesForHelp.Shortcut_ReadTitleLine));
             AddLine(Combine(Plus(insert, "B"), ResourcesForHelp.Shortcut_ReadMessagebox));
 
-            // Følgende specielle tastaturgenveje og kommandoer kan anvendes i forbindelse med Nodelisten
-            sb.Append("\r");
+            // Følgende specielle tastaturgenveje og kommandoer kan anvendes i forbindelse med Nodelisten           
+            AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteList);
-            AddLine(Combine(arrowLeft, ResourcesForHelp.Shortcut_PreviousPart)); 
-            AddLine(Combine(arrowRight, ResourcesForHelp.Shortcut_NextPart));
-            AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_NextLine));
-            AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_PreviousLine));
+            AddLine(Combine(arrowLeft, ResourcesForHelp.Shortcut_PreviousLine)); 
+            AddLine(Combine(arrowRight, ResourcesForHelp.Shortcut_NextLine));
+            AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_PreviousPart));
+            AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_NextPart));
             AddLine(Combine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList));
             AddLine(Combine(Plus(control, "P"), ResourcesForHelp.Shortcut_StartPlaying));
             AddLine(Combine(Plus(control, shift, "P"), ResourcesForHelp.Shortcut_StopPlaying));
@@ -95,7 +95,7 @@ namespace MusicXmlReader
             AddLine(Combine("ESC", ResourcesForHelp.Shortcut_StopCurrentNote));
 
             // Følgende specielle tastaturgenveje kan bruges i forbindelse med redigering af nodefilteret:
-            sb.Append("\r");
+            AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteFilter);
             AddLine(Combine(Plus(control, "A"), ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter));
             AddLine(Combine(Plus(control, "F"), ResourcesForHelp.Shortcut_EditNoteFilter));
