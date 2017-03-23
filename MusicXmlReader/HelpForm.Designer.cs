@@ -40,6 +40,7 @@
             this.listBoxHelp.Name = "listBoxHelp";
             this.listBoxHelp.Size = new System.Drawing.Size(485, 228);
             this.listBoxHelp.TabIndex = 0;
+            this.listBoxHelp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxHelp_KeyDown);
             // 
             // HelpForm
             // 
@@ -49,6 +50,7 @@
             this.Controls.Add(this.listBoxHelp);
             this.Name = "HelpForm";
             this.Text = "HelpForm";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.HelpForm_KeyDown);
             this.ResumeLayout(false);
 
         }
