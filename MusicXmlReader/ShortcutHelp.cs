@@ -81,10 +81,10 @@ namespace MusicXmlReader
             // Følgende specielle tastaturgenveje og kommandoer kan anvendes i forbindelse med Nodelisten
             sb.Append("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteList);
-            AddLine(Combine(arrowLeft, "")); 
-            AddLine(Combine(arrowRight, ""));
-            AddLine(Combine(arrowDown, ""));
-            AddLine(Combine(arrowUp, ""));
+            AddLine(Combine(arrowLeft, ResourcesForHelp.Shortcut_PreviousPart)); 
+            AddLine(Combine(arrowRight, ResourcesForHelp.Shortcut_NextPart));
+            AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_NextLine));
+            AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_PreviousLine));
             AddLine(Combine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList));
             AddLine(Combine(Plus(control, "P"), ResourcesForHelp.Shortcut_StartPlaying));
             AddLine(Combine(Plus(control, shift, "P"), ResourcesForHelp.Shortcut_StopPlaying));

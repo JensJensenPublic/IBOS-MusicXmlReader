@@ -295,11 +295,47 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select next line.
+        /// </summary>
+        internal static string Shortcut_NextLine {
+            get {
+                return ResourceManager.GetString("Shortcut_NextLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select next part.
+        /// </summary>
+        internal static string Shortcut_NextPart {
+            get {
+                return ResourceManager.GetString("Shortcut_NextPart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open FileOpen dialog.
         /// </summary>
         internal static string Shortcut_OpenFileOpenDialog {
             get {
                 return ResourceManager.GetString("Shortcut_OpenFileOpenDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select previous line.
+        /// </summary>
+        internal static string Shortcut_PreviousLine {
+            get {
+                return ResourceManager.GetString("Shortcut_PreviousLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select previous part.
+        /// </summary>
+        internal static string Shortcut_PreviousPart {
+            get {
+                return ResourceManager.GetString("Shortcut_PreviousPart", resourceCulture);
             }
         }
         
