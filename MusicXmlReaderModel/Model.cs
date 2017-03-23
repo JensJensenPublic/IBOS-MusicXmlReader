@@ -339,7 +339,7 @@ namespace MusicXmlReaderModel
                 case "divisions":
                     DivisionsElement divisionsElement = DivisionsElement.Create(node);
                     allMusicXmlObjecsts.Add(divisionsElement);
-                    this.divisions = divisionsElement.GetDivisions();
+                    this.divisions = divisionsElement.Divisions;
                     break;
                 case "key":
                     allMusicXmlObjecsts.Add(KeyElement.Create(node));
