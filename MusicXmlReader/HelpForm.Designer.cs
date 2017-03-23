@@ -33,10 +33,12 @@
             // 
             // listBoxHelp
             // 
+            this.listBoxHelp.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxHelp.FormattingEnabled = true;
+            this.listBoxHelp.ItemHeight = 14;
             this.listBoxHelp.Location = new System.Drawing.Point(13, 13);
             this.listBoxHelp.Name = "listBoxHelp";
-            this.listBoxHelp.Size = new System.Drawing.Size(485, 238);
+            this.listBoxHelp.Size = new System.Drawing.Size(485, 228);
             this.listBoxHelp.TabIndex = 0;
             // 
             // HelpForm
