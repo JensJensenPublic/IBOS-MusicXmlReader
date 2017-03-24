@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSynthesis", "MusicSynthesis\MusicSynthesis.csproj", "{529D2C78-0FBC-4BF1-B5AE-F348695546C2}"
 EndProject
@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\Principper for dokumentation.odt = Documentation\Principper for dokumentation.odt
 		Documentation\Sample MusicXmlReader.JCF = Documentation\Sample MusicXmlReader.JCF
 		Documentation\Simple becifringer.odt = Documentation\Simple becifringer.odt
+		Documentation\TODo liste. Genereret fra odt 2017.03.23.ods = Documentation\TODo liste. Genereret fra odt 2017.03.23.ods
+		Documentation\TODo liste.Genereret fra ods 2017.03.23.xls = Documentation\TODo liste.Genereret fra ods 2017.03.23.xls
 		Documentation\ToDo liste.odt = Documentation\ToDo liste.odt
 	EndProjectSection
 EndProject
