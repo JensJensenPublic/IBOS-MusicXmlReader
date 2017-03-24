@@ -101,7 +101,7 @@ namespace MusicXmlReader
             // Children of MenuStrip
             filesToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files;
             editToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Edit; 
-            viewToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_View; 
+            // viewToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_View;  // Removed,but may be reintroduced later !!!
             toolsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools;
             archivesToolStripMenuItem.Text = ResourcesForUI.ToolsStripMenuItem_Archives;
             helpToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help ; 
