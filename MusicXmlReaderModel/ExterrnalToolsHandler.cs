@@ -149,14 +149,48 @@ namespace MusicXmlReaderModel
         public void ReadJawsSettingsFile(string fileName)
         {
             string methodName = "ReadJawsSettingsFile";
-            string directoryName = @"C:\Users\Jens\AppData\Roaming\Freedom Scientific\JAWS\17.0\Settings\dan";
-            string extension = "JCF"; // JAWS configuration file
-            string JawsSettingsFullFileName = Path.ChangeExtension(Path.Combine(directoryName, fileName), extension);
-            if (
-               Utilities.CheckDirectoryExistance(directoryName, methodName) 
-            && Utilities.CheckFileExistance(JawsSettingsFullFileName, methodName))
+            string directoryName = "";
+            try
             {
-                Utilities.RunExeWithFileArgument("notepad.exe", JawsSettingsFullFileName);
+                // fileName = "DEFAULT"; // For testing ONLY !!!  "DEFAULT.JCF" is always there !
+                // Attempt to locate the JAWS settings file.
+                // This includes variable directory names for user, version and locale  so we need to use a little heuristics !
+                string roamingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                string jawsDirectory = Path.Combine(roamingDirectory, @"Freedom Scientific\JAWS");
+                // Find the highest version of JAWS
+                string[] jawsDirectories = Directory.GetDirectories(jawsDirectory);
+                int iHighestVersion = 0;
+                float highestVersion = 0F;
+                for (int i = 0; (i < jawsDirectories.GetLength(0)); i++)
+                {
+                    float version = 0F;
+                    string fullPath = jawsDirectories[i];
+                    string dirName = fullPath.Remove(0, jawsDirectory.Length + 1); // Hopefully reflects the JAWS version such as "17.0"
+                    if ((float.TryParse(dirName, out version)) && (version > highestVersion))
+                    {
+                        iHighestVersion = i;
+                        highestVersion = version;
+                    }
+                }
+                string highestVersionDirectory = jawsDirectories[iHighestVersion];
+                string settingsDirectory = Path.Combine(highestVersionDirectory, "Settings");
+                directoryName = Path.Combine(settingsDirectory, "dan"); // TODO ResourcesForUI.JawsSettingsDirName 
+            }
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("{0}.{1} Failed to locate JAWS settings directory. Message='{2}'", className, methodName, e.Message));
+            }
+            //string directoryName = @"C:\Users\Jens\AppData\Roaming\Freedom Scientific\JAWS\17.0\Settings\dan"; // Before version 1.0.0.0
+            if (!string.IsNullOrEmpty(directoryName))
+            {
+                string extension = "JCF"; // JAWS configuration file
+                string JawsSettingsFullFileName = Path.ChangeExtension(Path.Combine(directoryName, fileName), extension);
+                if (
+                   Utilities.CheckDirectoryExistance(directoryName, methodName)
+                && Utilities.CheckFileExistance(JawsSettingsFullFileName, methodName))
+                {
+                    Utilities.RunExeWithFileArgument("notepad.exe", JawsSettingsFullFileName);
+                }
             }
         }
 
