@@ -148,6 +148,7 @@ namespace MusicXmlReaderModel
         /// </summary>
         public void ReadJawsSettingsFile(string fileName)
         {
+            // TODO Consider using a link file as for MuseScore and Sibelius !
             string methodName = "ReadJawsSettingsFile";
             string directoryName = "";
             try
@@ -159,25 +160,14 @@ namespace MusicXmlReaderModel
                 string jawsDirectory = Path.Combine(roamingDirectory, @"Freedom Scientific\JAWS");
                 // Find the highest version of JAWS
                 string[] jawsDirectories = Directory.GetDirectories(jawsDirectory);
-                int iHighestVersion = 0;
-                float highestVersion = 0F;
-                for (int i = 0; (i < jawsDirectories.GetLength(0)); i++)
-                {
-                    float version = 0F;
-                    string fullPath = jawsDirectories[i];
-                    string dirName = fullPath.Remove(0, jawsDirectory.Length + 1); // Hopefully reflects the JAWS version such as "17.0"
-                    if ((float.TryParse(dirName, out version)) && (version > highestVersion))
-                    {
-                        iHighestVersion = i;
-                        highestVersion = version;
-                    }
-                }
-                string highestVersionDirectory = jawsDirectories[iHighestVersion];
+                // Intensionally throw an index-exception if do directory is found !
+                string highestVersionDirectory = highestVersionDirectory = jawsDirectories[jawsDirectories.Length - 1]; 
                 string settingsDirectory = Path.Combine(highestVersionDirectory, "Settings");
                 directoryName = Path.Combine(settingsDirectory, "dan"); // TODO ResourcesForUI.JawsSettingsDirName 
             }
             catch (Exception e)
             {
+                // TODO show a messagebox !
                 Logger.Log(string.Format("{0}.{1} Failed to locate JAWS settings directory. Message='{2}'", className, methodName, e.Message));
             }
             //string directoryName = @"C:\Users\Jens\AppData\Roaming\Freedom Scientific\JAWS\17.0\Settings\dan"; // Before version 1.0.0.0
