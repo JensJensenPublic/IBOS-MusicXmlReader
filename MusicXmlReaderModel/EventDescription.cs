@@ -451,10 +451,13 @@ namespace MusicXmlReaderModel
             StringBuilder sb = new StringBuilder();
             foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
             {
-                if (!string.IsNullOrEmpty(noteElement.Text))
+                if (userSettings.partsToRead[noteElement.PartNumber])
                 {
-                    sb.Append((0 == sb.Length) ? "" : " ");
-                    sb.Append(noteElement.Text);
+                    if (!string.IsNullOrEmpty(noteElement.Text))
+                    {
+                        sb.Append((0 == sb.Length) ? "" : " ");
+                        sb.Append(noteElement.Text);
+                    }
                 }
             }
             return sb.ToString();
