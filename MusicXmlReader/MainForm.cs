@@ -765,7 +765,11 @@ namespace MusicXmlReader
 
             else if (shortCutHandler.IsDetailsShortcut(e))
             {
-
+                if (-1 == listBoxTimes.SelectedIndex)
+                {
+                    // It has no meaning to inspect details when nothing is selected !
+                    return;
+                }
                 try // This is new code for version 1.0.0.0 so better safe than sorry
                 {          
                     listBoxDetails.Items.Clear();
