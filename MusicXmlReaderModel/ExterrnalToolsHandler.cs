@@ -196,9 +196,11 @@ namespace MusicXmlReaderModel
                 Logger.Log(string.Format("{0}.{1} Exception caught while attempting to locate JAWS settings directory. Message='{2}'", className, methodName, e.Message));
             }
             //string directoryName = @"C:\Users\Jens\AppData\Roaming\Freedom Scientific\JAWS\17.0\Settings\dan"; // Before version 1.0.0.0
+
             if (string.IsNullOrEmpty(directoryName))
             {
                 // This includes explicitly detected errors as wells as exceptions !
+                Utilities.ShowWarning(ModelMessageEnum.LocationNotDetermined, fileNameWithExtension, "");
                 // Show as messagebox
             }
             else

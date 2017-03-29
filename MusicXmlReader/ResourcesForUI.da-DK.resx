@@ -288,4 +288,7 @@
   <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
     <value>Tastaturgenveje</value>
   </data>
+  <data name="Message_LocationNotDetermined" xml:space="preserve">
+    <value>Filens placering kunne ikke bestemmes</value>
+  </data>
 </root>

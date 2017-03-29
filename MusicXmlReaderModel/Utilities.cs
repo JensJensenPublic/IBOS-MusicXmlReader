@@ -16,7 +16,8 @@ namespace MusicXmlReaderModel
         FailedToStartProgram, // External program such as Sibelius, Notepad etc
         FailedToReadMusicXmlFile,
         UnspecifiedMusicXmlFile, // Unspecified error during reading and interpretation
-        NotAllowedWhilePlaying // Operation not allowed while playing music
+        NotAllowedWhilePlaying, // Operation not allowed while playing music
+        LocationNotDetermined   // Location (of for instance JAWS settings file) could not be determined
 
     }
 
@@ -49,7 +50,7 @@ namespace MusicXmlReaderModel
         private static string className = "Utilities";
         public static IUtilityClient UtilityClient;
 
-        private static void ShowWarning(ModelMessageEnum textEnum, string parameter, string text)
+        public static void ShowWarning(ModelMessageEnum textEnum, string parameter, string text)
         {
             if (null != UtilityClient)
             {

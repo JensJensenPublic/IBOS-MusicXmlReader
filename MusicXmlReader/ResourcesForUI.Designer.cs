@@ -160,6 +160,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Location of file could not be determined.
+        /// </summary>
+        internal static string Message_LocationNotDetermined {
+            get {
+                return ResourceManager.GetString("Message_LocationNotDetermined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The program may not work as expected.
         /// </summary>
         internal static string Message_MayNotWorkAsExpected {

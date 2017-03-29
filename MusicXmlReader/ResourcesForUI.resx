@@ -288,4 +288,7 @@
   <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
     <value>Keyboard shortcuts</value>
   </data>
+  <data name="Message_LocationNotDetermined" xml:space="preserve">
+    <value>Location of file could not be determined</value>
+  </data>
 </root>
