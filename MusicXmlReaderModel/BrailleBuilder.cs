@@ -529,7 +529,7 @@ namespace MusicXmlReaderModel
                 if
                 (  (notations.TiedElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start)
                 || (notations.TiedElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Continue)
-                || (notations.TiedElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop)
+//                || (notations.TiedElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop) // Removed according to Lars Petersen. Error 178
                 )
                 {
                     Append(Tie, "Tie");
