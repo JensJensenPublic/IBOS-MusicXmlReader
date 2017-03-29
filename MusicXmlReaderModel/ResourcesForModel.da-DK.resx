@@ -742,4 +742,7 @@
   <data name="NoteElement_CueNote" xml:space="preserve">
     <value>stiknode</value>
   </data>
+  <data name="JawsSettingsLanguageName" xml:space="preserve">
+    <value>dan</value>
+  </data>
 </root>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace MusicXmlReaderModel
 {
@@ -142,6 +143,22 @@ namespace MusicXmlReaderModel
         }
 
 
+        private string LogDirectories(string[] directories)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (string directory in directories)
+            {
+                sb.Append(" '" +  directory + "'");
+            }
+            string s = sb.ToString();
+            if (!string.IsNullOrEmpty(s))
+            {
+                Logger.Log(s);
+            }
+            return s;
+        }
+
+
         /// <summary>
         /// Show the JAWS application specific configuration file in notepad.
         /// TO DO: The directory name is JAWS version specific "17.0" and language specific "dan". Fix this !!
@@ -150,31 +167,43 @@ namespace MusicXmlReaderModel
         {
             // TODO Consider using a link file as for MuseScore and Sibelius !
             string methodName = "ReadJawsSettingsFile";
+            string extension = "JCF"; // JAWS configuration file
+            string fileNameWithExtension = Path.ChangeExtension(fileName, extension);
             string directoryName = "";
             try
             {
-                // fileName = "DEFAULT"; // For testing ONLY !!!  "DEFAULT.JCF" is always there !
                 // Attempt to locate the JAWS settings file.
                 // This includes variable directory names for user, version and locale  so we need to use a little heuristics !
                 string roamingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
                 string jawsDirectory = Path.Combine(roamingDirectory, @"Freedom Scientific\JAWS");
-                // Find the highest version of JAWS
-                string[] jawsDirectories = Directory.GetDirectories(jawsDirectory);
-                // Intensionally throw an index-exception if do directory is found !
-                string highestVersionDirectory = highestVersionDirectory = jawsDirectories[jawsDirectories.Length - 1]; 
-                string settingsDirectory = Path.Combine(highestVersionDirectory, "Settings");
-                directoryName = Path.Combine(settingsDirectory, "dan"); // TODO ResourcesForUI.JawsSettingsDirName 
+                // Find the highest version of JAWS, assuming the directories are listed in alphabetical order.
+                string[] jawsVersionDirectories = Directory.GetDirectories(jawsDirectory);
+                Logger.Log(string.Format("{0}.{1} Found {2} directories in {3}", className, methodName, jawsVersionDirectories.Length, jawsDirectory));
+                LogDirectories(jawsVersionDirectories); // Only for debugging
+                if (jawsVersionDirectories.Length != 0)
+                {
+                    string highestVersionDirectory = highestVersionDirectory = jawsVersionDirectories[jawsVersionDirectories.Length - 1];
+                    string settingsDirectory = Path.Combine(highestVersionDirectory, "Settings");
+                    string[] languageDirectories = Directory.GetDirectories(settingsDirectory);
+                    Logger.Log(string.Format("{0}.{1} Found {2} directories in {3}", className, methodName, languageDirectories.Length, settingsDirectory));
+                    LogDirectories(languageDirectories); // Only for debugging
+                    directoryName = Path.Combine(settingsDirectory, ResourcesForModel.JawsSettingsLanguageName); // "dan" for Danish                     
+                }
             }
             catch (Exception e)
             {
-                // TODO show a messagebox !
-                Logger.Log(string.Format("{0}.{1} Failed to locate JAWS settings directory. Message='{2}'", className, methodName, e.Message));
+                directoryName = "";
+                Logger.Log(string.Format("{0}.{1} Exception caught while attempting to locate JAWS settings directory. Message='{2}'", className, methodName, e.Message));
             }
             //string directoryName = @"C:\Users\Jens\AppData\Roaming\Freedom Scientific\JAWS\17.0\Settings\dan"; // Before version 1.0.0.0
-            if (!string.IsNullOrEmpty(directoryName))
+            if (string.IsNullOrEmpty(directoryName))
             {
-                string extension = "JCF"; // JAWS configuration file
-                string JawsSettingsFullFileName = Path.ChangeExtension(Path.Combine(directoryName, fileName), extension);
+                // This includes explicitly detected errors as wells as exceptions !
+                // Show as messagebox
+            }
+            else
+            {  
+                string JawsSettingsFullFileName = Path.Combine(directoryName, fileNameWithExtension);
                 if (
                    Utilities.CheckDirectoryExistance(directoryName, methodName)
                 && Utilities.CheckFileExistance(JawsSettingsFullFileName, methodName))

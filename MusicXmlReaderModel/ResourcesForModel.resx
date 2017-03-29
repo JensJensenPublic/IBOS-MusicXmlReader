@@ -741,4 +741,7 @@
   <data name="NoteElement_CueNote" xml:space="preserve">
     <value>cuenote</value>
   </data>
+  <data name="JawsSettingsLanguageName" xml:space="preserve">
+    <value>en</value>
+  </data>
 </root>

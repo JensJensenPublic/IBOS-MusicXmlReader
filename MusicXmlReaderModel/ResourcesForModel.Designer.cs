@@ -601,6 +601,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to en.
+        /// </summary>
+        internal static string JawsSettingsLanguageName {
+            get {
+                return ResourceManager.GetString("JawsSettingsLanguageName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Key.
         /// </summary>
         internal static string KeyElement_key {
