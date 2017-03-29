@@ -7,6 +7,7 @@ using System.Xml;
 
 namespace MusicXmlReaderModel
 {
+    // https://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-dynamics.htm
 
     enum DynamicsEnum {
         unknown,
@@ -59,7 +60,7 @@ namespace MusicXmlReaderModel
                     case "fp": value = DynamicsEnum.Fortepiano; break;
                     case "fz": value = DynamicsEnum.sforzando; break;
                     case "mp": value = DynamicsEnum.mezzopiano; break;
-                    case "otherDynamics": value = DynamicsEnum.otherDynamics; break;
+                    case "other-dynamics": value = DynamicsEnum.otherDynamics; break;
                     case "p": value = DynamicsEnum.Piano; break;
                     case "pp": value = DynamicsEnum.Pianissimi; break;
                     case "ppp": value = DynamicsEnum.Pianississimo; break;
