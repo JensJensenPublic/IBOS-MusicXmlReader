@@ -140,10 +140,17 @@ namespace MusicXmlReaderModel
 
                     case "function": implemented = false; break;
                     case "inversion": implemented = false; break;
-                    case "frame": implemented = false; break;
-                    case "offset": implemented = false; break;
+                    case "frame": implemented = false; break;              
                     case "footnote": implemented = false; break;
                     case "level": implemented = false; break;
+
+                    case "offset":
+                        if (0 != n.Attributes.Count)
+                        {
+                            Logger.LogOnce(string.Format("{0}.{1} found offset element with unimplemented attributes.", className, functionName));
+                            implemented = false;
+                        }
+                        break;
 
                     default:
                         Logger.LogOnce(string.Format("{0}.{1} found unknown harmony element. Name={2} InnerText={3}", className, functionName, n.Name, n.InnerText)); break;
