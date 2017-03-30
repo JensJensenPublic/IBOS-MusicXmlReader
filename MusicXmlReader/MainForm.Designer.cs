@@ -560,6 +560,7 @@
             this.listBoxDetails.Name = "listBoxDetails";
             this.listBoxDetails.Size = new System.Drawing.Size(950, 30);
             this.listBoxDetails.TabIndex = 11;
+            this.listBoxDetails.TabStop = false;
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDetails_KeyDown);
             // 
             // MainForm
