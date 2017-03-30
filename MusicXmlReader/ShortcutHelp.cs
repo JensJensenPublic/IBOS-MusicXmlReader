@@ -83,8 +83,8 @@ namespace MusicXmlReader
             AddLine(ResourcesForHelp.shortcut_Caption_NoteList);
             AddLine(Combine(arrowLeft, ResourcesForHelp.Shortcut_PreviousLine)); 
             AddLine(Combine(arrowRight, ResourcesForHelp.Shortcut_NextLine));
-            AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_PreviousPart));
-            AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_NextPart));
+            AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_NextPart));
+            AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_PreviousPart));
             AddLine(Combine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList));
             AddLine(Combine(Plus(control, "P"), ResourcesForHelp.Shortcut_StartPlaying));
             AddLine(Combine(Plus(control, shift, "P"), ResourcesForHelp.Shortcut_StopPlaying));
