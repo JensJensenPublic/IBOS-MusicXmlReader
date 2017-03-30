@@ -23,8 +23,8 @@ namespace MusicXmlReader
         }
 
         private void UserInit()
-        {
-            this.Text = ResourcesForHelp.Shortcut_MenuCaption;
+        { 
+            this.Text = ResourcesForUI.MainForm_ApplicationName + ":   " + ResourcesForHelp.Shortcut_MenuCaption;
             ShortcutHelp shortcutHelp = ShortcutHelp.Create();
             List<string> strings = shortcutHelp.ToStrings();
             foreach (string s in strings)
