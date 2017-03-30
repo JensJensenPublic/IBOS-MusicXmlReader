@@ -563,12 +563,20 @@ namespace MusicXmlReaderUI
         public void StopAllNotesPlaying()
         {
             string functionName = "StopAllNotesPlaying";
-            int n = notesCurrentlyPlaying.Count;
-            for (int i = 0; (i < n); i++)
+            try
             {
-                notesCurrentlyPlaying[i].StopPlaying(this.midiOut);
+                // throw new Exception("For test"); // For test only !!!
+                int n = notesCurrentlyPlaying.Count;
+                for (int i = 0; (i < n); i++)
+                {
+                    notesCurrentlyPlaying[i].StopPlaying(this.midiOut);
+                }
+                Logger.Log(string.Format("{0}.{1}: Stopped {2} notes from playing", className, functionName, n));
             }
-            Logger.Log(string.Format("{0}.{1}: Stopped {2} notes from playing", className, functionName, n));
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("{0}.{1}: Threw an exception. Message='{2}'", className, functionName, e.Message));
+            }
         }
 
 
