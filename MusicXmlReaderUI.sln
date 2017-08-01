@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSynthesis", "MusicSynthesis\MusicSynthesis.csproj", "{529D2C78-0FBC-4BF1-B5AE-F348695546C2}"
 EndProject
@@ -41,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Release Notes", "Release No
 		Documentation\Official Documentation\Release Notes\Release Notes for version 0.7.0.0.odt = Documentation\Official Documentation\Release Notes\Release Notes for version 0.7.0.0.odt
 		Documentation\Official Documentation\Release Notes\Release Notes for version 1.0.0.0.odt = Documentation\Official Documentation\Release Notes\Release Notes for version 1.0.0.0.odt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlatformDependencies", "PlatformDependencies\PlatformDependencies.csproj", "{5C29F3B2-FE9D-4306-98D6-00D3730D8EBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -112,6 +114,18 @@ Global
 		{6E0D8239-0AF3-426C-81D3-2E2C155D0848}.Release|x64.Build.0 = Release|Any CPU
 		{6E0D8239-0AF3-426C-81D3-2E2C155D0848}.Release|x86.ActiveCfg = Release|Any CPU
 		{6E0D8239-0AF3-426C-81D3-2E2C155D0848}.Release|x86.Build.0 = Release|Any CPU
+		{5C29F3B2-FE9D-4306-98D6-00D3730D8EBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C29F3B2-FE9D-4306-98D6-00D3730D8EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C29F3B2-FE9D-4306-98D6-00D3730D8EBC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5C29F3B2-FE9D-4306-98D6-00D3730D8EBC}.Debug|x64.Build.0 = Debug|Any CPU
+		{5C29F3B2-FE9D-4306-98D6-00D3730D8EBC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5C29F3B2-FE9D-4306-98D6-00D3730D8EBC}.Debug|x86.Build.0 = Debug|Any CPU
+		{5C29F3B2-FE9D-4306-98D6-00D3730D8EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C29F3B2-FE9D-4306-98D6-00D3730D8EBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C29F3B2-FE9D-4306-98D6-00D3730D8EBC}.Release|x64.ActiveCfg = Release|Any CPU
+		{5C29F3B2-FE9D-4306-98D6-00D3730D8EBC}.Release|x64.Build.0 = Release|Any CPU
+		{5C29F3B2-FE9D-4306-98D6-00D3730D8EBC}.Release|x86.ActiveCfg = Release|Any CPU
+		{5C29F3B2-FE9D-4306-98D6-00D3730D8EBC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
