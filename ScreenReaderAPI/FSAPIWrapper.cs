@@ -12,24 +12,34 @@ namespace JSJ.ScreenReaderAPI
     class FSAPIWrapper : ScreenReaderAPI
     {
 
-        static public FSAPIWrapper Create()
+        static private string className = "FSAPIWrapper";
+        static public FSAPIWrapper Create(IScreenReaderAPILogger logger)
         {
             bool found = false;
+            string methodName = "Create";
             try
             {
+                // throw new Exception("For testing logging of exceptions only !");
                 // JAWS does not support an explicit "TestIfRunning", so we must use an other command.   
                 // We might use JFWSayString here, but the debugger reposts that it unbalances the stack, so we use the general JFWRunFunction
                 string sayStringFunction = string.Format("SayString(\"{0}\")", "");
-                found = JFWRunFunction(sayStringFunction);
+                found = NativeMethods.FsApiJFWRunFunction(sayStringFunction);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                LogException(logger, className, methodName, "JFWRunFunction", e.Message);
             }
-            return found ? new FSAPIWrapper() : null;
+            return found ? new FSAPIWrapper(logger) : null;
         }
 
         // Prevent construction
         private FSAPIWrapper()
+        {
+        }
+        
+
+        // Prevent construction
+        protected FSAPIWrapper(IScreenReaderAPILogger logger) : base(logger)
         {
         }
 
@@ -38,14 +48,14 @@ namespace JSJ.ScreenReaderAPI
             // return JFWSayString(s);
             // We might use JFWSayString here, but the debugger reposts that it unbalances the stack, so we use the general JFWRunFunction
             string sayStringFunction = string.Format("SayString(\"{0}\")",s);
-            return JFWRunFunction(sayStringFunction);           
+            return NativeMethods.FsApiJFWRunFunction(sayStringFunction);           
         }
 
         protected override bool BrailleImplementation(string s)
         {
             bool result;
             string brailleStringFunction = string.Format("BrailleString(\"{0}\")",s);
-            result = JFWRunFunction(brailleStringFunction);
+            result = NativeMethods.FsApiJFWRunFunction(brailleStringFunction);
             if (result)
             {
                 // Experimental code!
@@ -56,7 +66,7 @@ namespace JSJ.ScreenReaderAPI
 
         protected override bool SilenceImplementation()
         {
-            return JFWStopSpeech();
+            return NativeMethods.FsApiJFWStopSpeech();
         }
 
         protected override string GetScreenReaderNameImplementation()
@@ -74,17 +84,6 @@ namespace JSJ.ScreenReaderAPI
             return ScreenReaderType.JAWS;
         }
         
-        [DllImport("fsapi.dll", CharSet = CharSet.Ansi)]
-        public static extern bool JFWStopSpeech();
-
-        [DllImport("fsapi.dll", CharSet = CharSet.Unicode)]            // Says the string, then crashes with an unbalanced stack
-        public static extern bool JFWSayString(String text);
-
-        [DllImport("fsapi.dll", CharSet = CharSet.Unicode)]       
-        public static extern bool JFWRunFunction(String text);
-
-        //[DllImport("fsapi.dll", CharSet = CharSet.Unicode)]   
-        //public static extern bool JFWRunFunction(String function, String param1); // Probably not needed !
-
+  
     }
 }

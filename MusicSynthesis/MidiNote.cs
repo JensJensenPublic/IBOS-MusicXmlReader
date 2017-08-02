@@ -32,6 +32,7 @@ namespace JSJ.MusicSynthesis
     {
         int channelCode;
         private byte[] startCommand;
+        object hSynthesizedTone; // Handle to the to currently playing tone representing this MidiNote
 
 
 
@@ -191,8 +192,14 @@ namespace JSJ.MusicSynthesis
         public void StartPlaying(MidiOut midiOut)
         {
             if (null == midiOut) return;
-            midiOut.SendBuffer(this.startCommand);
-       }
+#if Windows
+            midiOut.SendBuffer(this.startCommand); // The original NAudio 3.rd party component
+#elif Android
+            hSynthesizedTone =  midiOut.SendBuffer(this.startCommand,hSynthesizedTone); // JSJ local Android implementation
+#else
+#error "Compiling for unknown platform"
+#endif
+        }
 
         public void StopPlaying(MidiOut midiOut)
         {
@@ -201,7 +208,13 @@ namespace JSJ.MusicSynthesis
             stopCommand[0] = (byte) (0x80 + channelCode); // Command STOP
             stopCommand[1] = this.startCommand[1];
             stopCommand[2] = this.startCommand[2];
+#if Windows
             midiOut.SendBuffer(stopCommand);
+#elif Android
+            midiOut.SendBuffer(stopCommand,hSynthesizedTone);
+#else
+#error "Compiling for unknown platform"
+#endif
         }
     }    
 }

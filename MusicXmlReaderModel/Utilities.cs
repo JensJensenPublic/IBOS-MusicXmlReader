@@ -256,7 +256,7 @@ namespace MusicXmlReaderModel
                 FileInfo fi = new FileInfo(fullFileName);
                 MachineType machineType = TryGetDllMachineType(fullFileName);
                 string machineTypeWarning = (machineType == expectedMachineType) ? "" : string.Format(" (Expected {0} !!!)", expectedMachineType);
-                Logger.Log(string.Format(" {0,-30} LastWriteTimeUtc={1} Length={2,-6} MachineType={3} {4}",
+                Logger.Log(string.Format(" {0,-30} LastWriteTimeUtc={1} Length={2,-8} MachineType={3} {4}",
                                     fi.Name, fi.LastWriteTimeUtc, fi.Length, machineType, machineTypeWarning));
             }
             return true;
@@ -353,7 +353,9 @@ namespace MusicXmlReaderModel
             // result &= CheckDll("tolk.dll", directory, is64Bit);                        // Generic access to screenreaders. Not really needed ! 
             result &= CheckDll("NAudio.dll", directory, is64Bit);                      // Generation of MIDI sound 
             result &= CheckDll("MusicSynthesis.dll", directory, is64Bit);              // Generation of MIDI sound 
-            result &= CheckDll("FsBrlDspApi.dll", directory, is64Bit);                 // Derect access to Freedom Scientific Braille Display. Not really needed. 
+            result &= CheckDll("FsBrlDspApi.dll", directory, is64Bit);                 // Direct access to Freedom Scientific Braille Display. Not really needed. 
+            result &= CheckDll("7z.dll", directory, true);                           // For converting .mxl to .xml 
+            result &= CheckDll("7z.exe", directory, true);                           // For converting .mxl to .xml  
 
 
             if (!result)
@@ -428,7 +430,7 @@ namespace MusicXmlReaderModel
             }
             return true;
         }
-        
+
         //internal static bool CheckFileExistance(string fileName, string methodName, bool dir)
         //{
         //    if (dir)
@@ -452,9 +454,16 @@ namespace MusicXmlReaderModel
         //    return true;
         //}
 
+        private static string Quote(string argument)
+        {
+            if (string.IsNullOrEmpty(argument)) return argument;            
+            if (('"' == argument[0]) && ('"' == argument[argument.Length])) return argument;
+            return string.Format("\"{0}\"", argument);
+        }
+
         public static bool RunExeWithUrlArgument(string url)
         {
-            return RunExeWithArgument("iexplorer.exe", url);
+            return RunExeWithArgument("iexplorer.exe", Quote(url));
         }
 
 
@@ -473,7 +482,7 @@ namespace MusicXmlReaderModel
                 Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.UnspecifiedMusicXmlFile,"", "");
                 return false;
             }
-            return RunExeWithArgument(exeFileName, argFileName);
+            return RunExeWithArgument(exeFileName, Quote(argFileName));
         }
 
                 internal static bool RunExeWithDirArgument(string exeFileName, string argFileName)
@@ -484,7 +493,7 @@ namespace MusicXmlReaderModel
                 Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.DirectoryNotFound, "", "");
                 return false;
             }
-            return RunExeWithArgument(exeFileName, argFileName);
+            return RunExeWithArgument(exeFileName, Quote(argFileName));
         }
 
 
@@ -497,37 +506,64 @@ namespace MusicXmlReaderModel
 
         internal static bool RunExeWithUrlArgument(string exeFileName, string url)
         {
-            return RunExeWithArgument(exeFileName,url);
+            return   RunExeWithArgument(exeFileName,Quote(url));
         }
 
 
         /// <summary>
         /// Assumes that the "argument" parameter has already been checked according to its type of file, directory or ulr
         /// </summary>
-        /// <param name="exeFileName"></param>
-        /// <param name="argument"></param>
-        /// <returns></returns>
-        private static bool RunExeWithArgument(string exeFileName, string argument)
+        /// <param name="exeFileName">Name of .exe file to run</param>
+        /// <param name="argument">Argument(s) for .exe file. Enclosed in "" if needed, for instance for file names containing spaces.</param>
+        /// <returns>true  <==> success</returns>
+        internal static bool RunExeWithArgument(string exeFileName, string argument)
         {
-            string methodName = className + "." + "RunExeWithArgument";
+            int exitCode = 0; // Needed as dummy argument
+            return RunExeWithArgument(exeFileName, argument,false, out exitCode, System.Diagnostics.ProcessWindowStyle.Normal);
+        }
+
+        internal static bool RunExeWithArgumentAndWaitForExit(string exeFileName, string argument,out int exitCode)
+        {
+            return RunExeWithArgument(exeFileName, argument,true,out exitCode, System.Diagnostics.ProcessWindowStyle.Hidden);
+        }
+
+        private static bool RunExeWithArgument(string exeFileName, string argument,bool waitForExit,out int exitCode, System.Diagnostics.ProcessWindowStyle windowStyle)
+        {
+            string methodName = "RunExeWithArgument";
+            exitCode = 0;         
             // Check arguments
             string exePathName = Path.GetDirectoryName(exeFileName);
-            if ((!string.IsNullOrEmpty(exePathName)) && (!CheckFileExistance(exeFileName, methodName))) return false;
+            if ((!string.IsNullOrEmpty(exePathName)) && (!CheckFileExistance(exeFileName, className + "." + methodName))) return false;
             // Create process startinfo. Enclose all filenames and pathnames in "" in order to handle possible space characters!
             System.Diagnostics.Process pProcess = new System.Diagnostics.Process();
-            pProcess.StartInfo.FileName = string.Format("\"{0}\"", exeFileName);
+            pProcess.StartInfo.FileName = Quote(exeFileName); // Needed if the exeFileNAme contains spaces
             pProcess.StartInfo.WorkingDirectory = string.IsNullOrEmpty(exePathName) ? null : string.Format("\"{0}\"", exePathName);
-            pProcess.StartInfo.Arguments = string.Format("\"{0}\"", argument);
+            pProcess.StartInfo.Arguments = argument;
             pProcess.StartInfo.UseShellExecute = true; // Allows the system to search for the executable using PATH
             pProcess.StartInfo.RedirectStandardOutput = false;
-            pProcess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+            pProcess.StartInfo.WindowStyle = windowStyle;
             try
             {
-                pProcess.Start();
-            }
+                if (pProcess.Start())
+                {
+                    Logger.Log(string.Format("{0}.{1}: Started {2}", className, methodName, pProcess.StartInfo.FileName));
+                    if (waitForExit)
+                    {
+                        pProcess.WaitForExit();
+                        exitCode = pProcess.ExitCode;
+                        Logger.Log(string.Format("{0}.{1}: Exited with ExitCode={2}", className, methodName, exitCode));
+                    }
+                }
+                else
+                {
+                    Logger.Log(string.Format("{0}.{1}: Failed to start {2}", className, methodName, pProcess.StartInfo.FileName));
+                }
+                // throw new Exception("test"); // For testing error handling only
+            }       
             catch (Exception e)
             {
-                Logger.Log(string.Format("ReadFileByExecutable: Exception thrown while starting {0}: {1}", pProcess.StartInfo.FileName, e.Message));
+                Logger.Log(string.Format("{0}.{1}: Exception thrown while starting {2}: {3}", className, methodName, pProcess.StartInfo.FileName, e.Message));
+#warning "obsoleteMssage"
                 string obsoleteMessage = string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'", exeFileName, argument);
                 ShowWarning(ModelMessageEnum.FailedToStartProgram, exeFileName, obsoleteMessage);
                 return false;
@@ -535,8 +571,88 @@ namespace MusicXmlReaderModel
             return true;
         }
 
+
+        private static void CreateEmptyTempDirectory(string directoryName)
+        {
+            if (Directory.Exists(directoryName))
+            {
+                // Delete all files in the temp directory
+                FileInfo[] files = new DirectoryInfo(directoryName).GetFiles();
+                foreach (FileInfo fileInfo in files)
+                {
+                    File.Delete(fileInfo.FullName); // Allows us to delete the directory
+                }
+            }
+            else
+            {
+                // Create a new temp directory
+                Directory.CreateDirectory(directoryName);
+            }
+        }
+
+
+        static void DeleteTempDirectory(string directoryName)
+        {
+            FileInfo[] files = new DirectoryInfo(directoryName).GetFiles();
+            foreach (FileInfo fileInfo in files)
+            {
+                File.Delete(fileInfo.FullName); // Allows us to delete the directory
+            }
+            Directory.Delete(directoryName);
+        }
         
-   
+
+        /// <summary>
+        /// Convert a .mxl file (compressed MusicXml) to .xml (MusicXml) relying on the external program 7z.exe
+        /// which is a part of all Windows 10 installation. Other implementations may follow if needed !
+        /// </summary>
+        /// <param name="fullMxlFileName">Full path  of .mxl file to be converted </param>
+        /// <returns>Full path of the resulting .xml file</returns>
+        public static string MxlToXml(string fullMxlFileName,string executingDirectory)
+        {
+            string methodName = "MxlToXml";
+            string result = "";
+            string mxlFileDirectory = Path.GetDirectoryName(fullMxlFileName);
+            string tempDirectory = Path.Combine(mxlFileDirectory, "tempDirectoryUsedByMxlToXml"); // Probably a unique name
+            Logger.Log(string.Format("{0}.{1}({2},{3}) started.", className, methodName, fullMxlFileName, executingDirectory));
+            CreateEmptyTempDirectory(tempDirectory);
+            //string exeFileName = @"C:\Program Files\7-Zip\7z.exe";
+            string exeFileName = Path.Combine(executingDirectory,@"7z.exe"); // Assumes that 7z.exe and 7z.dll are found in the execution directory !
+            string command = "e";
+            string switches = string.Format("-aoa -o\"{0}\"", tempDirectory); // -aoa: Overwrite existing files, -0: Specify output directory
+            string argument = string.Format("{0} \"{1}\" {2}", command, fullMxlFileName, switches); // The filename may contain spaces so we need ""
+            int exitCode = 0;
+            if (Utilities.RunExeWithArgumentAndWaitForExit(exeFileName, argument, out exitCode))
+            {
+                if (0 != exitCode)
+                {         
+                    Logger.Log(string.Format("{0}.{1}({2}) failed: {3} returned exitcode={4}. ", className, methodName, fullMxlFileName, exeFileName, exitCode));
+#warning "ToDo: Exit here!"
+                }
+
+                // Move the newly generated .xml file from the temp directory to the original directory.
+                FileInfo[] files = new DirectoryInfo(tempDirectory).GetFiles();
+                Logger.Log(string.Format("{0}.{1}: TempDirectory={2} contains {3} files:", className, methodName, tempDirectory, files.Length));
+                foreach (FileInfo fileInfo in files)
+                {
+                    Logger.Log(string.Format(" {0}",fileInfo.Name));
+                    if ("container.xml" != fileInfo.Name)
+                    {
+                        string source = fileInfo.FullName;
+                        string dest = Path.ChangeExtension(fullMxlFileName, "xml");
+                        bool overwriteExisting = true;
+                        File.Copy(source, dest, overwriteExisting);
+                        result = dest;
+#warning "ToDo: Check that only one file meets this criterium !"
+                    }
+                    File.Delete(fileInfo.FullName); // Allows us to delete the directory
+                }
+            }
+            DeleteTempDirectory(tempDirectory);
+            Logger.Log(string.Format("{0}.{1}({2},{3}) returned {4}.", className, methodName, fullMxlFileName, executingDirectory, (null == result) ? "null" : result));
+            return result;
+        }
+        
 
         /// <summary>
         /// https://msdn.microsoft.com/en-us/library/bb762914(v=vs.110).aspx

@@ -29,7 +29,7 @@ namespace MusicXmlReaderUI
         System.Diagnostics.Stopwatch stopWatch = null;
         //long nextActionTime;    // For autoplaying monophonic music 
         long firstStopWatchTime = -1;    // For autoplaying polyphonic music 
-        int tempo = defaultMusicPlayerTempo; // Quarter notes per minute.  Use 60 as a default
+        int tempo = defaultMusicPlayerTempo; // Quarter notes per minute.  Use 60 as a default. Reinitialized in Constructor because we need logging!
         int numberOfParts;
         int startIndex;
         List<MidiNote> notesCurrentlyPlaying; // Contains all notes currently playing. Used when playing is stopped by user
@@ -48,16 +48,19 @@ namespace MusicXmlReaderUI
         bool userTemopChanged = false;
         //int   userTempo = 100; // Percentage of tempo indicated in score
         float userTempoFactor = (float)1;
-        int latestSelectedIndex = -1; // Used to avoid playing notes only because a filter has changed
+        //int latestSelectedIndex = -1; // Used to avoid playing notes only because a filter has changed
+        object latestSelectedObject = null; // Used to avoid playing notes only because a filter has changed
 
         /// <summary>
         /// Constructor
         /// </summary>
         public MusicPlayer(IObjectCollection objects, MidiOut midiOut)
         {
+            string functionName = "MusicPlayer";
             this.midiOut = midiOut;
             this.objects = objects;
-
+            Logger.Log(string.Format("{0}.{1} Initializing tempo to {2}", className, functionName, defaultMusicPlayerTempo));
+            this.tempo = defaultMusicPlayerTempo; // Quarter notes per minute.  Use 60 as a default
             // Temp start
             //MidiCommand midiCommand = new MidiCommand();
             //midiCommand.ChangeInstrument(19, midiOut); // 19 = Guitar
@@ -111,8 +114,17 @@ namespace MusicXmlReaderUI
         {
             if (playing) return;
              if (null == selectedObject) return;
-            if (selectedIndex == latestSelectedIndex) return;
-            latestSelectedIndex = selectedIndex;
+
+             if (selectedObject == latestSelectedObject) return; 
+//#if Windows
+//            // if (selectedIndex == latestSelectedIndex) return; // Maybe compare objects instead
+//#elif Android
+//#else
+//#error "Compiling for unknown platform"
+//#endif
+
+            // latestSelectedIndex = selectedIndex;
+            latestSelectedObject = selectedObject;
             if ((selectedObject is NoteElement))
             {
                 NoteElement noteElement = selectedObject as NoteElement;
@@ -523,7 +535,8 @@ namespace MusicXmlReaderUI
                 // Establish a common startpoint for computing note duration:
                 this.musicXmlTimeOffset = (objects.GetObjectAtIndex(firstIndex) as EventDescription).StartTime;
                 this.firstStopWatchTime = stopWatch.ElapsedMilliseconds;
-                this.tempo = defaultMusicPlayerTempo;
+                //Logger.Log(string.Format("{0}.{1} Changing  Tempo from {2} to {3}", className, functionName, this.tempo, defaultMusicPlayerTempo));
+                //this.tempo = defaultMusicPlayerTempo;           
                 try
                 {
                     for (int i = firstIndex; ((i < lastIndex) && (playing)); i++)

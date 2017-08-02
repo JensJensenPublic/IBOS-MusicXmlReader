@@ -6,18 +6,20 @@ namespace JSJ.ScreenReaderAPI
 
     public class NvdaControlerClient32Wrapper : ScreenReaderAPI
     {
-
-        static public NvdaControlerClient32Wrapper Create()
+        static private string className = "NvdaControlerClient32Wrapper";
+        static public NvdaControlerClient32Wrapper Create(IScreenReaderAPILogger logger)
         {
+            string methodName = "Create";
             bool found = false;
             try
             {
-                found = (0 == nvdaController_testIfRunning());
+                found = (0 == NativeMethods.Nvda32nvdaController_testIfRunning());
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                LogException(logger, className, methodName, "nvdaController_testIfRunning()", e.Message);
             }
-            return found ? new NvdaControlerClient32Wrapper() : null;
+            return found ? new NvdaControlerClient32Wrapper(logger) : null;
         }
 
         // Prevent construction
@@ -27,19 +29,25 @@ namespace JSJ.ScreenReaderAPI
             StartBrailleDisplayThread();
         }
 
+        protected NvdaControlerClient32Wrapper(IScreenReaderAPILogger logger) : base(logger)
+        {
+            // Start the thread used for refreshing the display
+            StartBrailleDisplayThread();
+        }
+
         protected override bool SpeakImplementation(string s)
         {
-            return (0 == nvdaController_speakText(s));
+            return (0 == NativeMethods.Nvda32nvdaController_speakText(s));
         }
 
         protected override bool BrailleImplementation(string s)
         {
-            return (0 == nvdaController_brailleMessage(s));
+            return (0 == NativeMethods.Nvda32nvdaController_brailleMessage(s));
         }
 
         protected override bool SilenceImplementation()
         {
-            return (0 == nvdaController_cancelSpeech());
+            return (0 == NativeMethods.Nvda32nvdaController_cancelSpeech());
         }
 
         protected override string GetScreenReaderNameImplementation()
@@ -58,16 +66,5 @@ namespace JSJ.ScreenReaderAPI
         }
 
 
-        [DllImport("nvdaControllerClient32.dll", CharSet = CharSet.Unicode)]
-        public static extern int nvdaController_testIfRunning();
-
-        [DllImport("nvdaControllerClient32.dll", CharSet = CharSet.Unicode)]
-        public static extern int nvdaController_speakText(String text);
-
-        [DllImport("nvdaControllerClient32.dll", CharSet = CharSet.Unicode)]
-        public static extern int nvdaController_brailleMessage(String braille);
-
-        [DllImport("nvdaControllerClient32.dll", CharSet = CharSet.Unicode)]
-        public static extern int nvdaController_cancelSpeech();
     }
 }

@@ -10,8 +10,10 @@ namespace JSJ.ScreenReaderAPI
     /// </summary>
     public abstract class ScreenReaderAPI
     {
+        static string className = "ScreenReaderAPI";
         protected bool refreshing = false;
-        protected IScreenReaderAPILogger Logger;
+        private IScreenReaderAPILogger logger;
+        protected IScreenReaderAPILogger Logger { get { return logger; } }
         private string screenReaderName = "";
         public string ScreenReaderName
         {
@@ -26,11 +28,19 @@ namespace JSJ.ScreenReaderAPI
 
         protected bool StartBrailleDisplayThread()
         {
+#if false
+            // If we start the brailleDisplayThread we must explicitly stop it again when the program exits!
+            // Otherwise we will leave an instance of MusicXmlReader running as a background process.
+            // For the time being we do not start the brailleDisplayThread in order to avoid this.
+            // If the brailleDisplayThread is really needed we must start it and implement a mechanism for stopping it again !
+            return false;
+#else
             // Start a thread used for refreshing the display
             brailleDisplayThread = new Thread(new ThreadStart(DisplayerThreadStart));
             Log(string.Format("Starting BrailleDiaplayThread at priority={0}", brailleDisplayThread.Priority.ToString()));
             brailleDisplayThread.Start();
             return true;
+#endif
         }
 
 
@@ -40,18 +50,23 @@ namespace JSJ.ScreenReaderAPI
         /// <returns></returns>
         public static ScreenReaderAPI Create(bool is64Bit, IScreenReaderAPILogger logger)
         {
-            ScreenReaderAPI screenReaderAPI;
+            string methodName = "Create"; 
+            ScreenReaderAPI screenReaderAPI = null;
 
             // First check if JAWS is available
-            screenReaderAPI = (is64Bit) ? (ScreenReaderAPI)JfwApiWrapper.Create() : FSAPIWrapper.Create();
+            screenReaderAPI = (is64Bit) ? (ScreenReaderAPI)JfwApiWrapper.Create(logger) : FSAPIWrapper.Create(logger);
 
             // Secondly check if NVDA is available
-            // NOTE ! For the time being the program crashes when running on NVDA, so in that case we just return a DummyScreenReader
-            // TO DO: Make the program run again on NVDA !
-            //if (null == screenReaderAPI)
-            //{
-            //    screenReaderAPI = (is64Bit) ? (ScreenReaderAPI)NvdaControlerClient64Wrapper.Create() : NvdaControlerClient32Wrapper.Create();
-            //}
+            // NOTE ! For the time being the program crashes when running on NVDA under the Visual Studio debugger
+#warning    // TO DO: Make the program run on NVDA under the Visual Studio Debugger
+            if (null == screenReaderAPI)
+            {
+                screenReaderAPI = (is64Bit) ? (ScreenReaderAPI)NvdaControlerClient64Wrapper.Create(logger) : NvdaControlerClient32Wrapper.Create(logger);
+                if ((null != logger) && (null != screenReaderAPI))
+                {
+                    logger.LogEvent(string.Format("{0}.{1}: Detected NVDA. Crashes under the Visual Studio Debugger, but seems to work when run outside debugger.", className, methodName));
+                }
+            }
 
             //
             // Insert checks for more screen readers here...
@@ -60,23 +75,32 @@ namespace JSJ.ScreenReaderAPI
             // As a last resort create a dummy  (in order to simplify application code!)
             if (null == screenReaderAPI)
             {
-                screenReaderAPI = DummyScreenReader.Create();
-                if (null != logger) logger.LogEvent("Created Dummy ScreenReaderAPI");
+                screenReaderAPI = DummyScreenReader.Create(logger);
+                if (null != logger) logger.LogEvent(string.Format("{0}.{1}: Created Dummy ScreenReaderAPI",className,methodName));
             }
             else
             {
-                if (null != logger) logger.LogEvent(string.Format("Created ScreenReaderAPI for {0} using {1} ", screenReaderAPI.GetScreenReaderNameImplementation(), screenReaderAPI.GetScreenReaderDllNameImplementation()));
+                if (null != logger) logger.LogEvent(string.Format("{0}.{1}: Created ScreenReaderAPI for {2} using {3} ",
+                                                                    className, methodName, screenReaderAPI.GetScreenReaderNameImplementation(), screenReaderAPI.GetScreenReaderDllNameImplementation()));
             }
 
-            // Attach the logger specified to the newly created ScreenReaderAPI
-            screenReaderAPI.Logger = logger;
 
             screenReaderAPI.screenReaderName = screenReaderAPI.GetScreenReaderNameImplementation();
+
+            // screenReaderAPI.LogError("For test only!", false);
+            // screenReaderAPI.LogException("For test only!", new Exception("For test only!"));
+
             return screenReaderAPI;
         }
 
         // Prevent construction
         protected ScreenReaderAPI() { }
+
+        protected ScreenReaderAPI(IScreenReaderAPILogger logger)
+        {
+            // Attach the logger specified
+            this.logger = logger;
+        }
 
 
         // All screanreader API-implementations must implement the following methods:
@@ -91,8 +115,9 @@ namespace JSJ.ScreenReaderAPI
 
         private void LogException(string function, Exception e)
         {
-            Logger.LogEvent(string.Format("{0}.{1} threw an exception with Message='{2}' GetLastWin32Error={3}",
-                                           screenReaderName, function, e.Message, GetLastWin32Error()));
+            int lastWin32Error = Marshal.GetLastWin32Error();
+            Logger.LogEvent(string.Format("{0}.{1} threw an exception with Message='{2}' Marshal.GetLastWin32Error()={3}",
+                                           screenReaderName, function, e.Message, lastWin32Error));
         }
 
         private bool LogError(string function, bool ok)
@@ -103,10 +128,21 @@ namespace JSJ.ScreenReaderAPI
                 // Logger.LogEvent(string.Format("{0}.{1} returned ok", screenReaderName,function));
             }
             else
-            { 
-                Log(string.Format("{0}.{1} failed. GetLastWin32Error={2}", screenReaderName, function, GetLastWin32Error()));
+            {
+                int lastWin32Error = Marshal.GetLastWin32Error();
+                Log(string.Format("{0}.{1} failed. Marshal.GetLastWin32Error()={2}", screenReaderName, function, lastWin32Error));
             }
             return ok;
+        }
+
+  
+
+        static protected void LogException(IScreenReaderAPILogger logger, string className, string methodName, string nativeMethodName, string exceptionMessage)
+        {
+            if (null != logger)
+            {
+                logger.LogEvent(string.Format("{0}.{1}: {2} threw an exception. Message={3}", className, methodName, nativeMethodName, exceptionMessage));
+            }
         }
 
         public bool Speak(string s)
@@ -211,7 +247,15 @@ namespace JSJ.ScreenReaderAPI
             }
         }
 
-        #region LogAndTrace
+        public bool OnApplicationExit()
+        {
+            string functionName = "OnApplicationExit";
+            Log(string.Format("{0}.{1}", className, functionName));
+            displaying = false; // Stops the DisplayerThread
+            return true;
+        }
+
+#region LogAndTrace
         private void Log(string s)
         {
             if (null == Logger) return;
@@ -229,11 +273,11 @@ namespace JSJ.ScreenReaderAPI
             if (null == Logger) return;
             Logger.TraceChar(c);
         }
-        #endregion
+#endregion
 
-        // Only for error reporting
-        [DllImport("kernel32.dll")]
-        static extern uint GetLastWin32Error();
+        //// Only for error reporting
+        //[DllImport("kernel32.dll")]
+        //static extern uint GetLastWin32Error();
 
 
         // JSJ: Start of the original Tolk API ---------------------------------------------------------------------------------------

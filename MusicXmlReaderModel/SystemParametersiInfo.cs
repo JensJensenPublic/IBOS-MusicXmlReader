@@ -6,7 +6,7 @@ namespace MusicXmlReaderModel
   
     static public class SystemParametersiInfo
     {
-
+#if Windows
         //[DllImport("kernel32.dll")]
         //static extern uint GetLastError();
 
@@ -45,6 +45,17 @@ namespace MusicXmlReaderModel
         //[DllImport("user32.dll", SetLastError = true)]
         //[return: MarshalAs(UnmanagedType.Bool)]
         //static extern bool SystemParametersInfo(SPI uiAction, uint uiParam, ref ANIMATIONINFO pvParam, SPIF fWinIni);
+
+#elif Android
+        static public bool GetScreenReader(out bool bScreenReader, out int lastWin32Error)
+        {
+            bScreenReader = false;
+            lastWin32Error = 0;
+            return false;
+        }
+#else
+#error Compiling for unknown platform        
+#endif
 
 
     }

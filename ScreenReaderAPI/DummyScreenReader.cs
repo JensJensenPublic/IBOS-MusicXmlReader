@@ -13,13 +13,18 @@ namespace JSJ.ScreenReaderAPI
     class DummyScreenReader : ScreenReaderAPI
     {
 
-        static public DummyScreenReader Create()
+        static public DummyScreenReader Create(IScreenReaderAPILogger logger)
         {
-            return new DummyScreenReader();
+            return new DummyScreenReader(logger);
         }
 
         // Prevent construction
         private DummyScreenReader()
+        {
+        }
+
+   
+        private DummyScreenReader(IScreenReaderAPILogger logger) : base(logger)
         {
         }
 

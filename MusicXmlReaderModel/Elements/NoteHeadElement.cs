@@ -4,6 +4,9 @@ using System.Globalization;
 
 namespace MusicXmlReaderModel
 {
+
+    // https://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-notehead.htm
+
     class NoteHeadElement
     {
 
@@ -39,7 +42,7 @@ namespace MusicXmlReaderModel
                     case "font-size":
                     case "font-weight":
                     case "color": break; // Explicitly ignore graphical attributes.
-                    default: Logger.LogOnce(string.Format("{0}: Unknown attribute name={1} with value={2]", functionName, a.Name, a.Value)); break;
+                    default: Logger.LogOnce(string.Format("{0}: Unknown attribute name={1} with value={2}", functionName, a.Name, a.Value)); break;
                 }
             }
         }

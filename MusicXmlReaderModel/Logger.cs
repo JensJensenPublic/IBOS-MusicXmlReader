@@ -6,7 +6,20 @@ namespace MusicXmlReaderModel
 {
     static public class Logger
     {
+        static string className = "Logger";
         // TODO: Adress possible multithreading problems !!
+
+
+        //        private static string GetPlatformTempDirectory()
+        //        {
+        //#if Windows
+        //            return System.IO.Path.GetTempPath();
+        //#elif Android
+        //            return (string)Android.OS.Environment.ExternalStorageDirectory;
+        //#else
+        //#error Compiling for unknown platform
+        //#endif
+        //        }
 
 
         // To use a console in a Windows Forms application: Project Properties -> Application -> Output Type -> Console Application
@@ -43,7 +56,9 @@ namespace MusicXmlReaderModel
                     // Replace default filename if desired
                     logFileName = fileName;
                 }
-                string musicXmlReaderTempDirectory = (System.IO.Path.Combine(System.IO.Path.GetTempPath(), mySubDirectoryName));
+
+                string musicXmlReaderTempDirectory = (System.IO.Path.Combine(PlatformDependencies.StaticFunctions.GetPlatformTempDirectory(), mySubDirectoryName));
+
                 if (!Directory.Exists(musicXmlReaderTempDirectory))
                 {
                     Directory.CreateDirectory(musicXmlReaderTempDirectory);
@@ -107,6 +122,18 @@ namespace MusicXmlReaderModel
             }
         }
 
+
+        public static string MySubDirectoryName
+        {
+            get
+            {
+                return mySubDirectoryName;
+            }
+        }
+
+
+
+
         public static void Log(string s)
         {
             if (string.IsNullOrEmpty(logFileFullName)) return; // Open() must be called before using the Logger !
@@ -158,6 +185,14 @@ namespace MusicXmlReaderModel
             Log(string.Format("Logger.DumpStatistics completed with a total of {0} entries",numberOfEntries));
         }
 
+
+        public static List<string> GetStatistics()
+        {
+            int numberOfEntries;
+            return localCounters.GetStatistics(out numberOfEntries); ;
+        }
+
+        
         public static void DumpGlobalStatistics()
         {
             Log("Logger.DumpGlobalStatistics started");
@@ -171,6 +206,14 @@ namespace MusicXmlReaderModel
             Log(string.Format("Logger.DumpGlobalStatistics completed with a total of {0} entries", numberOfEntries));
         }
 
+
+        public static List<string> GetGlobalStatistics()
+        {
+            int numberOfEntries;
+            return globalCounters.GetStatistics(out numberOfEntries);
+        }
+
+
         /// <summary>
         /// Log som interesting system parameters
         /// </summary>
@@ -179,7 +222,7 @@ namespace MusicXmlReaderModel
             bool screenReaderRunning;
             int lastWin32Error;
             string name = "SystemParametersiInfo.GetScreenReader";
-            bool ok = SystemParametersiInfo.GetScreenReader(out screenReaderRunning, out lastWin32Error);
+            bool ok = PlatformDependencies.SystemParametersiInfo.GetScreenReader(out screenReaderRunning, out lastWin32Error);
             if (ok)
             {
                 Log(string.Format("{0} reported {1}", name, screenReaderRunning));
@@ -189,7 +232,14 @@ namespace MusicXmlReaderModel
                 Log(string.Format("{0} failed. LastWin32Error = {1}", name, lastWin32Error));
             }
         }
-        
+
+        public static void LogDebugerAttachment()
+        {
+            string methodName = "LogDebugerAttachment";
+            bool b = System.Diagnostics.Debugger.IsAttached;
+            Log(string.Format("{0}.{1} reported {2}",className, methodName, b));
+        }
+
 
     }
 }

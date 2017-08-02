@@ -541,7 +541,7 @@
     <value>tie</value>
   </data>
   <data name="TupletElement_Name" xml:space="preserve">
-    <value />
+    <value>tuplet</value>
   </data>
   <data name="Ornament_AccidentalMark" xml:space="preserve">
     <value>Accidental-mark</value>
@@ -743,5 +743,11 @@
   </data>
   <data name="JawsSettingsLanguageName" xml:space="preserve">
     <value>en</value>
+  </data>
+  <data name="NoteElement_unpitched_text" xml:space="preserve">
+    <value>unpitched</value>
+  </data>
+  <data name="TupletElement_Triplet" xml:space="preserve">
+    <value>triplet</value>
   </data>
 </root>

@@ -71,6 +71,7 @@ namespace MusicXmlReaderModel
         string localizedPauseType = ""; //  If this is a pause, not a note
         string localizedTie = "";
         PitchElement pitchElement;
+        UnpitchedElement unpitchedElement;
         TransposeElement transposeElement; // Used if the cuttent scorepart describes an "non-C" instrument such as an A-clarinet.
         string syllabic; // Child of lyric
         string text;     // Child of lyric
@@ -120,6 +121,14 @@ namespace MusicXmlReaderModel
             get
             {
                 return ((null != pitchElement) && (pitchElement.Step != PitchElement.FullStepEnum.Unknown));
+            }
+        }
+
+        public bool UnPitched
+        {
+            get
+            {
+                return unpitched;
             }
         }
 
@@ -448,6 +457,14 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public string UnpitchedText
+        {
+            get
+            {
+                return ResourcesForModel.NoteElement_unpitched_text;
+            }
+        }
+
         
         /// <summary>
         /// To force the use of the Create() method
@@ -686,11 +703,15 @@ namespace MusicXmlReaderModel
                         graceNote = true;
                         break;
                     case "unpitched":
-                        unpitched = true; break; // Just mark the note as unpitched
+                        unpitched = true;
+                        Logger.LogOnce(string.Format("{0}: Unpitched note is not completely implemented yet", functionName));
+                        unpitchedElement = UnpitchedElement.Create(child);     
+                        break; // Just mark the note as unpitched
                     case "cue": // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-cue.htm
                         isCueNote = true; break; ; // Just mark the note as a cue note
                     case "notehead": // http://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-notehead.htm
                         noteHeadElement = NoteHeadElement.Create(child);
+                        Logger.LogOnce(string.Format("{0}: NoteHeadElement is decoded but not used yet", functionName));
                         break;
                     //default:  throw new ArgumentException();
                     default: Logger.LogOnce(string.Format("{0}: Unknown child.Name '{1}'", functionName, child.Name)); break;
@@ -698,6 +719,13 @@ namespace MusicXmlReaderModel
                 if (unimplemented)
                 {
                     Logger.LogOnce(string.Format("{0}: child.Name '{1}' is not implemented yet", functionName, child.Name));
+                }
+
+                if ((null == pitchElement) && unpitched && (null != unpitchedElement)) // Experiment for handling unpitched notes
+                {
+                    Logger.LogOnce(string.Format("{0}: Replacing unpitched note displayed as {1}{2} by pitched equivalent",
+                        functionName, unpitchedElement.DisplayStep, unpitchedElement.DisplayOctave));
+                    pitchElement = PitchElement.Create(unpitchedElement.DisplayStep, unpitchedElement.DisplayOctave);
                 }
 
                 CheckDuration(); // Primarily for debugging. Checks that the value of commonDivisions is large enough! The call can be omitted!
@@ -718,6 +746,12 @@ namespace MusicXmlReaderModel
                 // Mark this note as the first note in the score
                 isFirstNoteInScorePart = true;
                 scorePartElement.HasNotes = true;
+            }
+
+            // Allow the TupletElement to access the timeModification Element in order to describe tuplets in details
+            if ((null != notations) && (null != notations.TupletElement))
+            {
+                notations.TupletElement.TimeModificationElement = this.timeModificationElement;
             }
 
         }

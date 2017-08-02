@@ -44,6 +44,7 @@
     <Compile Include="FSAPIWrapper.cs" />
     <Compile Include="IScreenReaderAPILogger.cs" />
     <Compile Include="JfwApiWrapper.cs" />
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="NvdaControllerClient64Wrapper.cs" />
     <Compile Include="NvdaControllerClient32Wrapper.cs" />
     <Compile Include="ScreenReaderAPI.cs" />

@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
+#if Windows
 using System.Management;
-
+#elif Android
+#else
+#error Compiling for unknown platform
+#endif
 
 // http://stackoverflow.com/questions/3331043/get-list-of-connected-usb-devices
 // JSJ: Shows a number of USB devices, but nothing changes when the FOCUS 14 device is removed
@@ -8,6 +12,7 @@ using System.Management;
 
 namespace MusicXmlReaderModel
 {
+#if Windows
     static class DeviceInfo
     {
         static public void LogDeviceInfo()
@@ -48,6 +53,26 @@ namespace MusicXmlReaderModel
             return devices;
         }
     }
+
+#elif Android
+    /// <summary>
+    /// Dummy implementation
+    /// </summary>
+    static class DeviceInfo
+    {
+        static public void LogDeviceInfo()
+        {
+        }
+
+        static List<USBDeviceInfo> GetUSBDevices()
+        {
+            return null;
+        }
+    }
+#else
+#error Compiling for unknown platform
+#endif
+
 
     class USBDeviceInfo
     {

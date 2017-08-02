@@ -25,7 +25,7 @@ namespace BrailleExperiments
         /// <returns></returns>
         public static TolkDotNet Create()
         {
-
+#if false
             bool is64Bit = (IntPtr.Size == 8); // Find out wheather we are compiled for 32 bit or 64 bit architechture.
             string architechture = is64Bit ? " (64 bit)" : " (32 bit)";
 
@@ -62,7 +62,7 @@ namespace BrailleExperiments
             }
 
             // Insert checks for more screen readers here...
-
+#endif
             return null;
         }
 

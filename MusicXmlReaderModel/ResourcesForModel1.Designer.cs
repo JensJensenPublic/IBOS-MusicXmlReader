@@ -8,8 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MusicXmlReaderModel {
+namespace Android_MusicXmlReaderModel {
     using System;
+    using System.Reflection;
     
     
     /// <summary>
@@ -39,7 +40,7 @@ namespace MusicXmlReaderModel {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MusicXmlReaderModel.ResourcesForModel", typeof(ResourcesForModel).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Android_MusicXmlReaderModel.ResourcesForModel", typeof(ResourcesForModel).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,96 +58,6 @@ namespace MusicXmlReaderModel {
             }
             set {
                 resourceCulture = value;
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Accidental Double-sharp.
-        /// </summary>
-        internal static string Accidental_doubleSharp {
-            get {
-                return ResourceManager.GetString("Accidental_doubleSharp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Accidental flat.
-        /// </summary>
-        internal static string Accidental_flat {
-            get {
-                return ResourceManager.GetString("Accidental_flat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Accidental Double-flat.
-        /// </summary>
-        internal static string Accidental_flatFlat {
-            get {
-                return ResourceManager.GetString("Accidental_flatFlat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Accidental Natural.
-        /// </summary>
-        internal static string Accidental_natural {
-            get {
-                return ResourceManager.GetString("Accidental_natural", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string Accidental_none {
-            get {
-                return ResourceManager.GetString("Accidental_none", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Accidental Quarter-flat.
-        /// </summary>
-        internal static string Accidental_quarterFlat {
-            get {
-                return ResourceManager.GetString("Accidental_quarterFlat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Accidental Quarter-sharp.
-        /// </summary>
-        internal static string Accidental_quarterSharp {
-            get {
-                return ResourceManager.GetString("Accidental_quarterSharp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Accidental Sharp.
-        /// </summary>
-        internal static string Accidental_sharp {
-            get {
-                return ResourceManager.GetString("Accidental_sharp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Accidental ?.
-        /// </summary>
-        internal static string Accidental_unknown {
-            get {
-                return ResourceManager.GetString("Accidental_unknown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Unsupported.
-        /// </summary>
-        internal static string Accidental_unsupported {
-            get {
-                return ResourceManager.GetString("Accidental_unsupported", resourceCulture);
             }
         }
         
@@ -394,15 +305,6 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beat-repeat.
-        /// </summary>
-        internal static string BeatRepeatElement_Name {
-            get {
-                return ResourceManager.GetString("BeatRepeatElement_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to C-Clef.
         /// </summary>
         internal static string ClefElement_C_Key {
@@ -601,15 +503,6 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to en.
-        /// </summary>
-        internal static string JawsSettingsLanguageName {
-            get {
-                return ResourceManager.GetString("JawsSettingsLanguageName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Key.
         /// </summary>
         internal static string KeyElement_key {
@@ -637,38 +530,11 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Measure-repeat.
-        /// </summary>
-        internal static string MeasureRepeatElement_Name {
-            get {
-                return ResourceManager.GetString("MeasureRepeatElement_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to File name.
         /// </summary>
         internal static string MetaInfoText_FileName {
             get {
                 return ResourceManager.GetString("MetaInfoText_FileName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tempo.
-        /// </summary>
-        internal static string MetronomeElement_Tempo {
-            get {
-                return ResourceManager.GetString("MetronomeElement_Tempo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Multiple-rest.
-        /// </summary>
-        internal static string MultipleRestElement_Name {
-            get {
-                return ResourceManager.GetString("MultipleRestElement_Name", resourceCulture);
             }
         }
         
@@ -750,15 +616,6 @@ namespace MusicXmlReaderModel {
         internal static string NoteElement_breve {
             get {
                 return ResourceManager.GetString("NoteElement_breve", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to cuenote.
-        /// </summary>
-        internal static string NoteElement_CueNote {
-            get {
-                return ResourceManager.GetString("NoteElement_CueNote", resourceCulture);
             }
         }
         
@@ -903,15 +760,6 @@ namespace MusicXmlReaderModel {
         internal static string NoteElement_unknown_rest {
             get {
                 return ResourceManager.GetString("NoteElement_unknown_rest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to unpitched.
-        /// </summary>
-        internal static string NoteElement_unpitched_text {
-            get {
-                return ResourceManager.GetString("NoteElement_unpitched_text", resourceCulture);
             }
         }
         
@@ -1771,20 +1619,11 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to tuplet.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string TupletElement_Name {
             get {
                 return ResourceManager.GetString("TupletElement_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to triplet.
-        /// </summary>
-        internal static string TupletElement_Triplet {
-            get {
-                return ResourceManager.GetString("TupletElement_Triplet", resourceCulture);
             }
         }
         
@@ -1839,15 +1678,6 @@ namespace MusicXmlReaderModel {
         internal static string UserSettings_PlayerNames_Harmonies {
             get {
                 return ResourceManager.GetString("UserSettings_PlayerNames_Harmonies", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Accidentals.
-        /// </summary>
-        internal static string UserSettings_ReaderNames_Accidentals {
-            get {
-                return ResourceManager.GetString("UserSettings_ReaderNames_Accidentals", resourceCulture);
             }
         }
         

@@ -21,7 +21,7 @@ namespace MusicXmlReaderModel
         bool is64Bit; // This program is compiled and for the following architechture: false:x86 true:x64 
         List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
         MidiOut midiOut;
-        IObjectCollection objects; 
+        IObjectCollection objects;
         public MusicPlayer musicPlayer;
         public BrailleDisplayer brailleDisplayer;
         public TextDisplayer textDisplayer;
@@ -38,10 +38,17 @@ namespace MusicXmlReaderModel
         ScreenReaderAPI screenReaderAPI;
         DebugTools debugTools;
         ExternalToolsHandler externalToolsHandler;
-
+        IDebugDisplayerClient iDebugDisplayerClient;
+        ProgressWriter loaderProgressWriter = null;
+        ProgressWriter conversionProgressWriter = null;
 
         string executingAssembly;
         string executingDirectory;
+
+        public string ScreenReaderName
+        {
+            get { return (null == screenReaderAPI) ? "" : screenReaderAPI.ScreenReaderName; }
+        }
 
         MetaInformation metaInformation = MetaInformation.Create(); // Holds filename, title, composer, arranger etc.
 
@@ -51,14 +58,14 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         static public Model Create()
         {
-            return new Model(null,null,null);
+            return new Model(null, null, null);
         }
 
         static public Model Create(IObjectCollection objects, IDebugDisplayerClient ws, string menuCaption)
         {
             return new Model(objects, ws, menuCaption);
         }
-        
+
 
         /// <summary>
         /// Quick and dirty check to reject obvious unusable Xml files
@@ -74,6 +81,15 @@ namespace MusicXmlReaderModel
             return ok;
         }
 
+        /// <summary>
+        /// Writes the text to the status line in the UI handling X-thread issues etc!
+        /// </summary>
+        /// <param name="s"></param>
+        private void WriteStatusInformation(string s)
+        {
+            iDebugDisplayerClient.WriteStatusInformation(s);
+        }
+
 
         /// <summary>
         /// Stops on any error and returns false
@@ -83,20 +99,35 @@ namespace MusicXmlReaderModel
         public bool LoadMusicXmlFile(string fullXmlFileName)
         {
             bool ok = true;
-            string xmlFileName = ""; // The MusicXml file currently handled       
+            string xmlFileName = ""; // The MusicXml file currently handled 
+            // ProgressWriter progressWriter = null;
             try
             {
                 string defaultFileName = "Node.xml";
                 if (string.IsNullOrEmpty(fullXmlFileName))
-                {     
+                {
                     // Use a default value             
                     fullXmlFileName = System.IO.Path.Combine(executingDirectory, defaultFileName);
                 }
+
+                if (".mxl" == Path.GetExtension(fullXmlFileName))
+                {
+                    // This is a compressed MusicXml file in the .mxl format
+#warning "TODO Localize !!"
+                    conversionProgressWriter = ProgressWriter.Create(1000, iDebugDisplayerClient, string.Format("Converting from .mxl to .xml '{0}'  TODO Localize !!", xmlFileName)); // TODO Localize !!
+                    fullXmlFileName = Utilities.MxlToXml(fullXmlFileName, executingDirectory);
+                    conversionProgressWriter.Stop();
+                    // ToDo Error handling
+                }
+
                 xmlFileName = System.IO.Path.GetFileName(fullXmlFileName);
                 XmlDocument doc = new XmlDocument();
                 XmlTextReader reader = new XmlTextReader(fullXmlFileName);
                 reader.WhitespaceHandling = WhitespaceHandling.None;
-                doc.Load(reader);
+#warning "TODO Localize !!"
+                loaderProgressWriter = ProgressWriter.Create(1000, iDebugDisplayerClient, string.Format("Loading '{0}'  TODO Localize !!!!", xmlFileName)); // TODO Localize !!
+                doc.Load(reader); // This single operation may last decades of seconds on a slow platform!!
+                loaderProgressWriter.Stop();
                 ok = ok && CheckMusicXmlSyntax(doc);
                 if (ok)
                 {
@@ -105,34 +136,50 @@ namespace MusicXmlReaderModel
                     Logger.Log(string.Format("Loaded '{0}'", Path.GetFileName(fullXmlFileName)));
                     Logger.Log(string.Format("From   '{0}'", Path.GetDirectoryName(fullXmlFileName)));
                     allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file
+                    WriteStatusInformation(string.Format("Interpreting '{0}'  TODO Localize !!", xmlFileName)); // TODO Localize !!  
                     Recurse(doc.ChildNodes);                          // Build  the list holding all MusicXml elements read from file
-                    Logger.Log(string.Format("Parsed {0}", xmlFileName));
-                    Init();  // Initialize the basic Model data structures.     
-                    Logger.Log(string.Format("Initialized all components"));
+                    Logger.Log(string.Format("Parsed '{0}'", xmlFileName));
+#warning "TODO Localize !!"
+                    WriteStatusInformation(string.Format("Building '{0}' data  TODO Localize !!", xmlFileName)); // TODO Localize !!
+                    Init();  // Initialize the basic Model data structures.
                     theMusicXmlFileName = fullXmlFileName;
+#warning "TODO Localize !!"
+                    WriteStatusInformation(string.Format("Loaded '{0}'  TODO Localize !!", xmlFileName)); // TODO Localize !!
                 }
                 else
                 {
-                    Logger.Log(string.Format("Failed to load {0} because it not a valid MusicXml file",xmlFileName));
+#warning "TODO Localize !!"
+                    WriteStatusInformation(string.Format("Failed to load '{0}' because it is not a valid MusicXml file. TODO Localize !!", xmlFileName)); // TODO Localize !!  
+                    Logger.Log(string.Format("Failed to load '{0}' because it not a valid MusicXml file", xmlFileName));
                     theMusicXmlFileName = "";
                 }
             }
             catch (System.Exception e)
             {
-                Logger.Log(string.Format("Failed to load {0} ({1})", xmlFileName, e.Message));
+                if (null != loaderProgressWriter)
+                {
+                    loaderProgressWriter.Stop(); // Be sure to stop any running progresswriter
+                }
+                if (null != conversionProgressWriter)
+                {
+                    conversionProgressWriter.Stop(); // Be sure to stop any running progresswriter
+                }
+                WriteStatusInformation(string.Format("Failed to load '{0}' ({1}) TODO Localize !!", xmlFileName, e.Message));
+                Logger.Log(string.Format("Failed to load '{0}' ({1})", xmlFileName, e.Message));
+            
                 ok = false;
-            }
+            }    
 
             return ok;
         }
- 
+
         /// <summary>
         /// To use a console in a Windows Forms application change:
         /// Project Properties -> Application -> Output Type -> Console Application
         /// Original value was "Windows Application"
         /// </summary>
         private void InitTestConsole(bool use)
-        {        
+        {
             if (use)
             {
                 try
@@ -160,7 +207,7 @@ namespace MusicXmlReaderModel
             catch (Exception)
             {
                 // Ignore any errors at this point!
-            } 
+            }
         }
 
         private Model()
@@ -192,7 +239,7 @@ namespace MusicXmlReaderModel
             executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
             is64Bit = IntPtr.Size == 8;
             InitTestConsole(true); // Please see the Log methode for details!
-            Logger.Log(string.Format("{0}.{1}: Date={2}",className,methodName,System.DateTime.Now.ToLongDateString()));
+            Logger.Log(string.Format("{0}.{1}: Date={2}", className, methodName, System.DateTime.Now.ToLongDateString()));
             Logger.Log(string.Format("{0} started in '{1}'", System.IO.Path.GetFileName(executingAssembly), executingDirectory));
             //Logger.LogSystemInformation();
             Utilities.CheckDlls(executingDirectory, caption, is64Bit);
@@ -200,18 +247,20 @@ namespace MusicXmlReaderModel
 
             // Create an API to JAWS or NVDA depending on which screenreader is currently running
             debugTools = DebugTools.Create(); // Used for logging and tracing from screenReaderAPI.
-            screenReaderAPI = ScreenReaderAPI.Create(is64Bit,debugTools);
+            screenReaderAPI = ScreenReaderAPI.Create(is64Bit, debugTools);
             externalToolsHandler = ExternalToolsHandler.Create();
             Utilities.CheckScreenReader(screenReaderAPI.ScreenReaderName, caption); // Check for DummyScreenReader
 
             midiOut = new MidiOut(0);
-            musicPlayer = new MusicPlayer(objects,midiOut);
+            musicPlayer = new MusicPlayer(objects, midiOut);
             int displaySize = 40;
             brailleDisplayer = BrailleDisplayer.Create(iDebugDisplayerClient, displaySize, screenReaderAPI); // TODO Get the real displaysize from somewhere
             textDisplayer = TextDisplayer.Create(iDebugDisplayerClient);
             Logger.Log(string.Format("Model: Assuming size of physical Braille display = {0}", displaySize));
             this.objects = objects;
-            Logger.LogSystemParameters();         
+            this.iDebugDisplayerClient = iDebugDisplayerClient;
+            Logger.LogSystemParameters();
+            Logger.LogDebugerAttachment();
         }
 
         /// <summary>
@@ -241,13 +290,13 @@ namespace MusicXmlReaderModel
                     this.numberOfParts = partList.NumberOfParts();
                     // Now we know the number of parts.
                     userSettings = UserSettings.Create(this.numberOfParts);
-                    userSettings.defaultStringFormat = (ScreenReaderAPI.ScreenReaderType.NVDA == screenReaderAPI.GetScreenReaderType()) ? "{1}" : "{0} {1}"; 
+                    userSettings.defaultStringFormat = (ScreenReaderAPI.ScreenReaderType.NVDA == screenReaderAPI.GetScreenReaderType()) ? "{1}" : "{0} {1}";
                     continueRecursion = false;
                     break;
                 case "measure":
                     MeasureElement measureElement = MeasureElement.Create(node);
                     allMusicXmlObjecsts.Add(measureElement); // Avoid the "Ikke VAlgt" error message from screenreader
-                    this.currentMeasureNumber = measureElement.Number; 
+                    this.currentMeasureNumber = measureElement.Number;
                     break;
                 case "score-part":
                     // Describes the meta-data related to a part.
@@ -269,6 +318,7 @@ namespace MusicXmlReaderModel
                     // Set up the the MusicPlayer to use the specified midi program for the specified midiChannel
                     if ((0 != this.currentScorePartElement.MidiChannel) && (0 != this.currentScorePartElement.MidiProgram))
                     {
+                        // TO DO The instrument should NOT be changed during parsing, but during music playing !!!!
                         musicPlayer.ChangeInstrument(this.currentScorePartElement.MidiChannel, this.currentScorePartElement.MidiProgram);
                     }
                     break;
@@ -288,16 +338,16 @@ namespace MusicXmlReaderModel
                     allMusicXmlObjecsts.Add(SimpleTextElement.Create(node, "Nummer"));
                     continueRecursion = false;
                     break;
-                case "identification":        
+                case "identification":
                     break;
                 case "creator":
                     CreatorElement creatorElement = CreatorElement.Create(node);
                     allMusicXmlObjecsts.Add(creatorElement);
-                    metaInformation.Creator = MetaInfoItem.Create(creatorElement.Name, creatorElement.Value); 
+                    metaInformation.Creator = MetaInfoItem.Create(creatorElement.Name, creatorElement.Value);
                     continueRecursion = false;
                     break;
                 case "rights":
-                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Rettigheder"));
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node, "Rettigheder"));
                     continueRecursion = false;
                     break;
                 case "encoding":
@@ -305,19 +355,19 @@ namespace MusicXmlReaderModel
                     //allMusicXmlObjecsts.Add(SimpleTextElement.Create(node));         
                     break;
                 case "software":
-                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Software"));
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node, "Software"));
                     continueRecursion = false;
                     break;
                 case "encoding-date":
-                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Arrangements dato"));
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node, "Arrangements dato"));
                     continueRecursion = false;
                     break;
                 case "encoder":
-                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Arrangement"));
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node, "Arrangement"));
                     continueRecursion = false;
                     break;
                 case "encoding-description":
-                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node,"Kodnings-beskrivelse"));
+                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node, "Kodnings-beskrivelse"));
                     continueRecursion = false;
                     break;
                 case "direction":
@@ -327,8 +377,8 @@ namespace MusicXmlReaderModel
                     {
                         // DirectionElement may contain a soundelement
                         allMusicXmlObjecsts.Add(directionElement.SoundElement);
-                    }                    
-                    continueRecursion = false; 
+                    }
+                    continueRecursion = false;
                     break;
                 case "transpose":
                     TransposeElement transposeElement = TransposeElement.Create(node);
@@ -369,7 +419,7 @@ namespace MusicXmlReaderModel
                     continueRecursion = false; // This is all graphics stuff!
                     break;
                 case "score-partwise":
-                    allMusicXmlObjecsts.Add(ScorePartwiseElement.Create(node));                 
+                    allMusicXmlObjecsts.Add(ScorePartwiseElement.Create(node));
                     break;
                 case "attributes": // Maybe attributes are always found under MeasureElement ??
                     //Logger.LogOnce(string.Format("{0}.{1} Unimplemented element: Name={2} Parent.Name={3}",
@@ -398,7 +448,7 @@ namespace MusicXmlReaderModel
                 case "repeat":
                     // TODO Implement !!
                     allMusicXmlObjecsts.Add(RepeatElement.Create(node));
-                     break;
+                    break;
                 case "barline":
                     allMusicXmlObjecsts.Add(BarlineElement.Create(node));
                     continueRecursion = false;
@@ -444,7 +494,7 @@ namespace MusicXmlReaderModel
                 case "word-font":
                 case "credit":
                 case "credit-type":
-                case "credit-words":        
+                case "credit-words":
                 case "bar-style":
                 case "staff-size":
                 case "staff-lines":
@@ -456,7 +506,7 @@ namespace MusicXmlReaderModel
                 case "capo":
                     break; // Also ignore these until they are needed!
                 default:
-                    Logger.LogOnce(string.Format("{0}.{1} Unimplemented Element. Name={2}",className,functionName,node.Name));
+                    Logger.LogOnce(string.Format("{0}.{1} Unimplemented Element. Name={2}", className, functionName, node.Name));
                     allMusicXmlObjecsts.Add(UnimplementedElement.Create(node));
                     break;
             }
@@ -479,14 +529,14 @@ namespace MusicXmlReaderModel
                 if (doRecursion)
                 {
                     Recurse(childNode.ChildNodes);
-                }                          
-                                    
+                }
+
             }
         }
 
         // The following 2 lists contain references into allMusicXmlObjecsts where the decoded information is kept! 
-        private PartDescriptionList  partDescriptionList;
-        private TimeDescriptionList  timeDescriptionList;
+        private PartDescriptionList partDescriptionList;
+        private TimeDescriptionList timeDescriptionList;
         private EventDescriptionList eventDescriptionList;
 
 
@@ -524,7 +574,7 @@ namespace MusicXmlReaderModel
             {
                 return eventDescriptionList;
             }
-            
+
         }
 
         public ExternalToolsHandler ExternalToolsHandler
@@ -562,11 +612,11 @@ namespace MusicXmlReaderModel
 
         public void Init()
         {
-            partDescriptionList = PartDescriptionList.Create(allMusicXmlObjecsts,numberOfParts);
+            partDescriptionList = PartDescriptionList.Create(allMusicXmlObjecsts, numberOfParts);
             divisions = 24; // TODO compute!
             timeDescriptionList = TimeDescriptionList.Create(partDescriptionList, divisions);
             currentStatusInformation = StatusInformation.Create();
-            eventDescriptionList = EventDescriptionList.Create(timeDescriptionList, numberOfParts,userSettings, currentStatusInformation); 
+            eventDescriptionList = EventDescriptionList.Create(timeDescriptionList, numberOfParts, userSettings, currentStatusInformation);
         }
 
 
@@ -583,7 +633,7 @@ namespace MusicXmlReaderModel
             if (null == eventDescriptionList) return false;
             try
             {
-                for (int i = 0; (i < eventDescriptionList.Events.Count); i++)  
+                for (int i = 0; (i < eventDescriptionList.Events.Count); i++)
                 {
                     // Find the first match, representing the first event in the measure.
                     int m = eventDescriptionList.Events[i].MeasureNumber;
@@ -593,11 +643,11 @@ namespace MusicXmlReaderModel
                         Logger.Log(string.Format("{0}.{1} Found measure number {2} at index {3}", className, functionName, measureNumberToFind, index));
                         return true;
                     }
-                }              
+                }
             }
             catch (Exception e)
             {
-                Logger.Log(string.Format("{0}.{1} Exception thrown while searching measure number {2} Message={3}", className, functionName, measureNumberToFind,e.Message));
+                Logger.Log(string.Format("{0}.{1} Exception thrown while searching measure number {2} Message={3}", className, functionName, measureNumberToFind, e.Message));
             }
             Logger.Log(string.Format("{0}.{1} Failed to find measure number {2}", className, functionName, measureNumberToFind));
             return false;
@@ -611,15 +661,15 @@ namespace MusicXmlReaderModel
 
         public bool ToggleStartStopPlaying(int startIndex)
         {
-            return musicPlayer.ToggleStartStopPlaying(numberOfParts, startIndex);           
+            return musicPlayer.ToggleStartStopPlaying(numberOfParts, startIndex);
         }
 
 
- 
+
         public bool StartPlayingPoly(int startIndex)
         {
             // We need an index to start at and at least 1 part to play ! 
-            if (-1 == startIndex) 
+            if (-1 == startIndex)
             {
                 if (0 == numberOfParts)
                 {
@@ -632,7 +682,7 @@ namespace MusicXmlReaderModel
             }
             if (!musicPlayer.StartPlaying(numberOfParts, startIndex))
             {
-                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.NotAllowedWhilePlaying, "", "");             
+                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.NotAllowedWhilePlaying, "", "");
             }
             return true;
         }
@@ -661,7 +711,7 @@ namespace MusicXmlReaderModel
         {
             // For the time being handled in the UI
         }
-        
+
         public void SetPartsToPlay(int partNumber, bool value)
         {
             this.userSettings.partsToPlay[partNumber] = value;
@@ -672,7 +722,7 @@ namespace MusicXmlReaderModel
         {
             this.userSettings.partsToRead[partNumber] = value;
         }
-        
+
         public void StopRefreshingBrailleDevice()
         {
             brailleDisplayer.StopRefreshing();
@@ -693,13 +743,13 @@ namespace MusicXmlReaderModel
         {
             if (!musicPlayer.StartRepeating(numberOfParts, firstMeasure, lastMeasure))
             {
-                Utilities.UtilityClient.ShowWarning((int) ModelMessageEnum.NotAllowedWhilePlaying, "", "");
+                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.NotAllowedWhilePlaying, "", "");
             }
         }
 
         public bool TogglePlaying(int startIndex)
         {
-            return musicPlayer.ToggleStartStopPlaying(numberOfParts,startIndex);
+            return musicPlayer.ToggleStartStopPlaying(numberOfParts, startIndex);
         }
 
         public void StopRepeating()
@@ -738,7 +788,13 @@ namespace MusicXmlReaderModel
 
             System.Threading.Thread.Sleep(100); // Allow the Midi system to stop all sounds
 
-            Logger.Log(string.Format("{0}.{1} succeeded.", className, functionName)); 
+            if (null != screenReaderAPI)
+            {
+                screenReaderAPI.OnApplicationExit();
+            } 
+
+            
+            Logger.Log(string.Format("{0}.{1} succeeded.", className, functionName));
         }
 
 
@@ -752,7 +808,7 @@ namespace MusicXmlReaderModel
         /// <param name="applicationName">Localized application name</param>
         /// <param name="sampleDirName">Location of sample files, distributed with the installation files</param>
         /// <returns></returns>
-        public string InitMusicXmlFiles(string applicationName,  string sampleDirName)
+        public string InitMusicXmlFiles(string applicationName, string sampleDirName)
         {
             string sourceDirName = InitialDirectory;
             string functionName = "InitMusicXmlFiles";
@@ -797,7 +853,7 @@ namespace MusicXmlReaderModel
             //    return new string[0];
             //}
 
-            List<string> details  = new List<string>();
+            List<string> details = new List<string>();
             for (int i = 0; (i < numberOfParts); i++)
             {
                 List<NoteElement> notesForPart = eventDescription.NoteLists[i];
@@ -845,7 +901,7 @@ namespace MusicXmlReaderModel
                 string harmony = string.Format("{0}{1}  ", harmonyElement.ChromaticStep, harmonyElement.LocalizedChordType); // Use same formatting as used in the status line !!
                 details.Add(harmony);
             }
-            
+
             // Transform to a format usable in the interface
             int length = details.Count;
             string[] result = new string[details.Count];

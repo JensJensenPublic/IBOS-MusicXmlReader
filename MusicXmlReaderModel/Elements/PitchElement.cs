@@ -122,6 +122,30 @@ namespace MusicXmlReaderModel
             }
         }
 
+
+        /// <summary>
+        /// Used for handling Unpitched notes as pitched notes, not as rests !
+        /// </summary>
+        /// <param name="step"></param>
+        /// <param name="octave"></param>
+        private PitchElement(FullStepEnum step, int octave)
+        {
+            this.step = step;
+            this.octave = octave; 
+        }
+
+        /// <summary>
+        ///  Used for handling Unpitched notes as pitched notes, not as rests !
+        /// </summary>
+        /// <param name="step"></param>
+        /// <param name="octave"></param>
+        /// <returns></returns>
+        public static PitchElement Create(FullStepEnum step, int octave)
+        {
+            return new PitchElement(step, octave);
+        }
+
+
         //public static PitchElement Create(FullStepEnum step, int alter, int octave)
         //{
         //    return new PitchElement(step, alter, octave);

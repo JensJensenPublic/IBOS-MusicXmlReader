@@ -10,6 +10,22 @@ namespace MusicXmlReaderModel
         private bool bracket;
         private ShowTupletEnum showNumber;
         private ShowTupletEnum showType;
+        private TimeModificationElement timeModificationElement;
+
+
+        public TimeModificationElement TimeModificationElement
+        {
+            get
+            {
+                return timeModificationElement;
+            }
+            set
+            {
+                // Allows the tupletElement to access its corresponding TimeModificationElement
+                timeModificationElement = value;
+            }
+        }
+
 
         private ShowTupletEnum GetTypletEnum(string functionName, string name, string value)
         {
@@ -50,8 +66,25 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            string number = (1 == this.NumberLevel) ? "" : NumberLevel.ToString(); // Ignore the number if it has its default value of 1
-            return string.Format("{0} {1} {2}",ResourcesForModel.TupletElement_Name, number, Localize(this.StartStopContinueType));
+            string number = (1 == this.NumberLevel) ? "" : NumberLevel.ToString(); // Ignore the number if it has its default value of 1           
+            if (null == timeModificationElement)
+            {
+                // No timemodificationElement found. We have no supplementary information.
+                return string.Format("{0} {1} {2}", ResourcesForModel.TupletElement_Name, number, Localize(this.StartStopContinueType));
+            }
+            else
+            {
+                if (3 == timeModificationElement.ActualNotes)
+                {
+                    // This is a triplet (danish "triol")
+                    return string.Format("{0} {1} {2}", ResourcesForModel.TupletElement_Triplet, number, Localize(this.StartStopContinueType));
+                }
+                else
+                {
+                    // This is a more complex tuplet. We denote it by the "tuplet" followed by the number of actual notes (found in the respective timeModificationElement).
+                    return string.Format("{0} {1} {2} {3}", ResourcesForModel.TupletElement_Name, timeModificationElement.ActualNotes, number, Localize(this.StartStopContinueType));
+                }
+            }
         }
     }
 }

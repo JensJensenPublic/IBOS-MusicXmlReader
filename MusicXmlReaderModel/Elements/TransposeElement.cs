@@ -73,7 +73,7 @@ namespace MusicXmlReaderModel
                 {
                     case "number": Utilities.Parse(a.Value, ref staffNumberAttribute, 0, 10,"", false); break; // 0 and 10 are just guesses
                     default:
-                        Logger.LogOnce(string.Format("{0}.{1} Unknown Attribute.Name={0}", className,functionName,a.Name)); break;
+                        Logger.LogOnce(string.Format("{0}.{1} Unknown Attribute.Name={2}", className,functionName,a.Name)); break;
                 }
             }
 

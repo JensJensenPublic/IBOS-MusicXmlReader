@@ -58,6 +58,7 @@ namespace MusicXmlReader
             Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 
             model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), ApplicationName);
             this.Text = ApplicationName;
+            WriteStatusInformation(model.ScreenReaderName);
 
             // XCopy MusicXml samples from the "MusicXml samples" directory in the installation files to myMusicXmlDirectory during first activation !   
             myMusicXmlDirectory = model.InitMusicXmlFiles(ApplicationName,ResourcesForUI.DirectoryNames_Samples); 
@@ -197,7 +198,7 @@ namespace MusicXmlReader
             }
             catch (Exception e)
             {
-                Logger.Log(string.Format("LogGLobalisationInformation threw an exception. Message=}0}", e.Message));
+                Logger.Log(string.Format("LogGLobalisationInformation threw an exception. Message={0}", e.Message));
             }
 
         }
@@ -232,9 +233,38 @@ namespace MusicXmlReader
             textBoxText.Text = s;
         }
 
+        private long currentSequenceNumber = 0; // For avoiding overwriting relavant status information witn obsolete status information
         public void WriteStatusInformation(string s)
         {
-            textBoxStatusInformation.Text = s;
+            WriteStatusInformation(s, ++currentSequenceNumber);
+        }
+
+
+        delegate void WriteStatusInformationCallback(string s,long sequenceNumber);
+        private void WriteStatusInformation(string s, long sequenceNumber)
+        {
+            string functionName = "WriteStatusInformation";
+            if (textBoxStatusInformation.InvokeRequired)
+            {
+                Logger.Log(string.Format("{0}.{1}.IR({2})", className, functionName, s));
+                WriteStatusInformationCallback d = new WriteStatusInformationCallback(WriteStatusInformation);
+                textBoxStatusInformation.Invoke(d, s, sequenceNumber);
+            }
+            else
+            {
+                // Logger.Log(string.Format("{0}.{1}.INR({2},{3} Current={4})", className, functionName, s,sequenceNumber,currentSequenceNumber));
+                if (sequenceNumber == currentSequenceNumber)
+                {    
+                    // Logger.Log(string.Format("{0}.{1}.INR: Showed Status:{2}", className, functionName, s));
+                    textBoxStatusInformation.Text = s;
+                    textBoxStatusInformation.Refresh();
+                }
+                else
+                {
+                    // Explicitly skip obsolete status information
+                    Logger.Log(string.Format("{0}.{1}.INR: Ignored Status:{2}", className, functionName, s));
+                }
+            }
         }
 
 
@@ -365,7 +395,7 @@ namespace MusicXmlReader
         private void SelectAndOpenMusicXmlFile(object sender, EventArgs e)
         {
             openFileDialog.FileName = ""; // No default
-            openFileDialog.Filter = string.Format("{0}|*.xml", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files
+            openFileDialog.Filter = string.Format("{0}|*.xml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files
            //            openFileDialog.Filter = string.Format("{0}|*.xml|{0}|*.mxl", ResourcesForUI.OpenFileDialog_Filter,ResourcesForUI.OpenFileDialog_Filter_mxl); // Only present .xml files and .mxl files
             openFileDialog.InitialDirectory = GetFileOpenInitialDirectory();
             openFileDialog.CheckFileExists = true;
@@ -382,15 +412,16 @@ namespace MusicXmlReader
 
             textBoxStatusInformation.Focus();
             string shortFileName = System.IO.Path.GetFileName(openFileDialog.FileName);
-            textBoxStatusInformation.Text = string.Format("{0} '{1}'",ResourcesForUI.TextBox_Messages_Reading_File, shortFileName);
+            string message = string.Format("{0} '{1}'",ResourcesForUI.TextBox_Messages_Reading_File, shortFileName);
+            WriteStatusInformation(message);
 
             Logger.ClearStatistics();  // Clear statistics to be collected while loading, parsing and rendering the MusicXml file:
 
             if (!model.LoadMusicXmlFile(openFileDialog.FileName)) // Load the selected .xml file into the Model and build all internal data structures.
             {
                 // Simple error handling
-                string message = string.Format("{0} '{1}'", ResourcesForUI.TextBox_Messages_FailedToRead_File, shortFileName); // Short filename for UI
-                textBoxStatusInformation.Text = message;
+                message = string.Format("{0} '{1}'", ResourcesForUI.TextBox_Messages_FailedToRead_File, shortFileName); // Short filename for UI
+                WriteStatusInformation(message);
                 ShowWarning((int)ModelMessageEnum.FailedToReadMusicXmlFile, shortFileName, "");
                 MessageBox.Show(message, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Logger.Log(string.Format("Failed to read {0}", openFileDialog.FileName)); // Full filename for UI
@@ -404,8 +435,11 @@ namespace MusicXmlReader
             listBoxTimes.Refresh();
             // Clear the contents of all other user controls
             textBoxBraille.Clear();
+            textBoxBraille.Refresh();
             textBoxText.Clear();
+            textBoxText.Refresh();
             textBoxStatusInformation.Clear();
+            textBoxStatusInformation.Refresh();
 
 
             autoReload = false; // While loading the listbox all changes are  made by user and must be ignored
@@ -421,7 +455,7 @@ namespace MusicXmlReader
             //this.userSettingsTreeView.ExpandAll();
             userSettingsHandler.CheckSelectedNotes();
             // Use the status line for meta information ontil overwritten by real status information
-            textBoxStatusInformation.Text = GetStatusFromMetaInformation(); 
+            WriteStatusInformation(GetStatusFromMetaInformation()); 
 
             // Let the Model do the hard work of transforming to e timed representation.
             LoadListBoxTimes();
@@ -499,10 +533,10 @@ namespace MusicXmlReader
         }
 
 
-        private void LoadTextBoxStatusInformation()
-        {
-            textBoxStatusInformation.Text = GetStatusFromMetaInformation();
-        }
+        //private void LoadTextBoxStatusInformation()
+        //{
+        //    textBoxStatusInformation.Text = GetStatusFromMetaInformation();
+        //}
 
 
         /// <summary>
@@ -663,8 +697,8 @@ namespace MusicXmlReader
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBoxStatusInformation.Text = ResourcesForUI.TextBox_Messages_TheProgramIsExiting;
-            textBoxStatusInformation.Refresh();
+            string message = ResourcesForUI.TextBox_Messages_TheProgramIsExiting;
+            WriteStatusInformation(message);  
             // Remaining actions are taken in Application_ApplicationExit.
             // In this way the Model will always be shut down no matter why the application exits.
             Application.Exit();

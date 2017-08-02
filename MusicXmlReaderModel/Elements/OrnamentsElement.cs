@@ -61,6 +61,7 @@ namespace MusicXmlReaderModel
 
         private OrnamentsTypeEnum GetAccidentalType(XmlNode node)
         {
+            string methodName = "GetAccidentalType";
             switch (node.InnerText)
             {
 
@@ -68,7 +69,7 @@ namespace MusicXmlReaderModel
                 case "flat":  return OrnamentsTypeEnum.accidentalMarkFlat;
                 case "sharp":  return OrnamentsTypeEnum.accidentalMarkSharp;
                 default:
-                    Logger.LogOnce(string.Format("{0}.{1}: Unknown Accidental: {2}", node.InnerText));
+                    Logger.LogOnce(string.Format("{0}.{1}: Unknown Accidental: {2}",className,methodName, node.InnerText));
                     return OrnamentsTypeEnum.accidentalMarkUnknown;
             }  
         }

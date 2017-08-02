@@ -423,7 +423,7 @@ namespace MusicXmlReaderModel
                         string pitch    = noteElement.PitchValue.Name; // Always use the name of the note
                         string octave   = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteOctaves) ? noteElement.Octave.ToString() : "";
                         string type     = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteTypes) ? noteElement.LocalizedType : "";
-                        string pitchAndOctave = string.Format("{0}{1}", pitch, octave);
+                        string pitchAndOctave = noteElement.UnPitched ? noteElement.UnpitchedText : string.Format("{0}{1}", pitch, octave);
                         string cueString = noteElement.CueNoteString;                        
                         string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
                         //                      note = string.Format("{0,-4} {1}", pitchAndOctave, type); // Always use 4 chars for pitch and Octave. Examples: "C   ","Cis4"
@@ -720,7 +720,7 @@ namespace MusicXmlReaderModel
         {
             if (!userSettings.MusicAsSpeech) return "";
 
-            string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
+            string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime) : "";
 
             // A BarlineElement can contain a RepeatElements containing repetition information.
             string repeatBackward = "";

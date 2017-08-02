@@ -538,7 +538,7 @@
     <value>overbinding</value>
   </data>
   <data name="TupletElement_Name" xml:space="preserve">
-    <value>Tuplet</value>
+    <value>tuplet</value>
   </data>
   <data name="Ornament_AccidentalMark" xml:space="preserve">
     <value>Løst fortegn</value>
@@ -744,5 +744,11 @@
   </data>
   <data name="JawsSettingsLanguageName" xml:space="preserve">
     <value>dan</value>
+  </data>
+  <data name="NoteElement_unpitched_text" xml:space="preserve">
+    <value>unpitched</value>
+  </data>
+  <data name="TupletElement_Triplet" xml:space="preserve">
+    <value>triol</value>
   </data>
 </root>

@@ -189,9 +189,15 @@ Sound effects[edit]
             byte[] command = new byte[2];
             command[0] = (byte) (change + channelCode); // Upper 4 bits hold command, Lower 4 bits hold channelCode
             command[1] = (byte) ((instrument - 1) % 128);    // Upper bit is unused, Lower 7 bits hold the instrument number "midi-program"
-            // command[1] = 0x19; // Guitar
-            midiOut.SendBuffer(command);
+                                                             // command[1] = 0x19; // Guitar
 
+#if Windows
+            midiOut.SendBuffer(command); // The original NAudio 3.rd party component
+#elif Android
+            // midiOut.SendBuffer(stopCommand,mull); // To Do Implement this later
+#else
+#error "Compiling for unknown platform"
+#endif
         }
 
     }

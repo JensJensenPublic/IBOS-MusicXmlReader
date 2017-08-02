@@ -71,6 +71,7 @@ namespace MusicXmlReaderModel
 
         public bool Write(byte[] buffer)
         {
+#if Windows
             bool fbWriteResult = false;
             unsafe
             {
@@ -86,6 +87,14 @@ namespace MusicXmlReaderModel
             Logger.Log(string.Format("FSBrlDspAPIWrapper.fbWrite {0}", fbWriteResult ? "succeeded" : "failed"));
 
             return fbWriteResult;
+
+#elif Android
+            return false;
+#else
+#error Compiling for unknown platform
+#endif
+
+
         }
 
 
