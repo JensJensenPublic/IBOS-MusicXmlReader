@@ -592,12 +592,22 @@ namespace MusicXmlReaderModel
 
         static void DeleteTempDirectory(string directoryName)
         {
-            FileInfo[] files = new DirectoryInfo(directoryName).GetFiles();
-            foreach (FileInfo fileInfo in files)
+            string functionName = "DeleteTempDirectory";
+            // Logger.Log(string.Format("{0}.{1}+", className, functionName));
+            try
             {
-                File.Delete(fileInfo.FullName); // Allows us to delete the directory
+                FileInfo[] files = new DirectoryInfo(directoryName).GetFiles();
+                foreach (FileInfo fileInfo in files)
+                {
+                    File.Delete(fileInfo.FullName); // Allows us to delete the directory
+                }
+                Directory.Delete(directoryName);
             }
-            Directory.Delete(directoryName);
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("{0}.{1}({2}) failed. Exception.Message={3}", className, functionName, directoryName, e.Message));
+            }
+            // Logger.Log(string.Format("{0}.{1}-", className, functionName));
         }
         
 

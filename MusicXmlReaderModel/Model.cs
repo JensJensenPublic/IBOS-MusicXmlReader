@@ -170,7 +170,9 @@ namespace MusicXmlReaderModel
                 //throw (new Exception("For test only")); // For test only
             }
             catch (System.Exception e)
-            {
+            {   
+                Logger.Log(string.Format("{0}.{1}: Failed to load '{2}' Exception.Message='{3}'", className, functionName, xmlFileName, e.Message));
+
                 if (null != loaderProgressWriter)
                 {
                     loaderProgressWriter.Stop(); // Be sure to stop any running progresswriter
@@ -180,8 +182,7 @@ namespace MusicXmlReaderModel
                     conversionProgressWriter.Stop(); // Be sure to stop any running progresswriter
                 }
                 string status = string.Format("{0} '{1}'.  {2}", ResourcesForModel.Status_FailedToLoad, xmlFileName, e.Message);
-                WriteStatusInformation(status);
-                Logger.Log(string.Format("{0}.{1}: Failed to load '{2}' Exception.Message ='{3}'", className, functionName, xmlFileName, e.Message));
+                WriteStatusInformation(status);    
             
                 ok = false;
             }    
