@@ -65,6 +65,14 @@ namespace MusicXmlReaderModel
 
         }
 
+        public DynamicsElement DynamicsElement
+        {
+            get
+            {
+                return dynamicsElement;
+            }
+        }
+
         public MetronomeElement MetronomeElement
         {
             get

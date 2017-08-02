@@ -21,7 +21,6 @@ namespace MusicXmlReaderModel
     {
         string className = "DirectionElement";
         DirectionTypeElement directionTypeElement;
-        private DynamicsElement dynamicsElement; // To be moved to DirectionTypeElement
         private SoundElement soundElement; // to be moved to DirectionTypeElement
         int staffNumber = 1; // The staff to which this element belongs. Parsed, but not used yet.
         int voiceNumber = 1;  // The voice (within a part, for instance S1 or S2) to which this element belongs. Parsed, but not used yet.
@@ -119,7 +118,7 @@ namespace MusicXmlReaderModel
         {
             get
             {
-                return dynamicsElement;
+                return directionTypeElement.DynamicsElement;
             }
         }
 
