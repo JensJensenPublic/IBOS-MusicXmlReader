@@ -111,7 +111,9 @@ namespace MusicXmlReaderModel
                     fullXmlFileName = System.IO.Path.Combine(executingDirectory, defaultFileName);
                 }
 
-            
+
+                xmlFileName = System.IO.Path.GetFileName(fullXmlFileName); // Report a filename even if an exception is thrown during conversion !
+
 
                 if (".mxl" == Path.GetExtension(fullXmlFileName))
                 {
