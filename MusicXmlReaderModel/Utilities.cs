@@ -564,9 +564,7 @@ namespace MusicXmlReaderModel
             catch (Exception e)
             {
                 Logger.Log(string.Format("{0}.{1}: Exception thrown while starting {2}: {3}", className, methodName, pProcess.StartInfo.FileName, e.Message));
-#warning "obsoleteMssage"
-                string obsoleteMessage = string.Format("Kunne ikke starte programmet \r\n'{0}'\r\nmed filen\r\n'{1}'", exeFileName, argument);
-                ShowWarning(ModelMessageEnum.FailedToStartProgram, exeFileName, obsoleteMessage);
+               ShowWarning(ModelMessageEnum.FailedToStartProgram, exeFileName,"");
                 return false;
             }
             return true;
