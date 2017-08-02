@@ -603,7 +603,7 @@ namespace MusicXmlReaderModel
 
         /// <summary>
         /// Convert a .mxl file (compressed MusicXml) to .xml (MusicXml) relying on the external program 7z.exe
-        /// which is a part of all Windows 10 installation. Other implementations may follow if needed !
+        /// which is a part of the IBOS MusicXmlReader distributiontion. Other implementations may follow if needed !
         /// </summary>
         /// <param name="fullMxlFileName">Full path  of .mxl file to be converted </param>
         /// <returns>Full path of the resulting .xml file</returns>
