@@ -750,4 +750,13 @@
   <data name="TupletElement_Triplet" xml:space="preserve">
     <value>triplet</value>
   </data>
+  <data name="Progress_Converting" xml:space="preserve">
+    <value>Converting</value>
+  </data>
+  <data name="Progress_LoadingFile" xml:space="preserve">
+    <value>Loading file</value>
+  </data>
+  <data name="Progress_FromMxlToXml" xml:space="preserve">
+    <value>to .xml</value>
+  </data>
 </root>

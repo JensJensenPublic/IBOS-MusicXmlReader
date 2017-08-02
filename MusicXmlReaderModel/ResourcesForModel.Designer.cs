@@ -1348,6 +1348,33 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Converting.
+        /// </summary>
+        internal static string Progress_Converting {
+            get {
+                return ResourceManager.GetString("Progress_Converting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to .xml.
+        /// </summary>
+        internal static string Progress_FromMxlToXml {
+            get {
+                return ResourceManager.GetString("Progress_FromMxlToXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading file.
+        /// </summary>
+        internal static string Progress_LoadingFile {
+            get {
+                return ResourceManager.GetString("Progress_LoadingFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to backward.
         /// </summary>
         internal static string RepeatElement_Backward {

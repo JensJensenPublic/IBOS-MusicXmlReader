@@ -110,22 +110,26 @@ namespace MusicXmlReaderModel
                     fullXmlFileName = System.IO.Path.Combine(executingDirectory, defaultFileName);
                 }
 
+            
+
                 if (".mxl" == Path.GetExtension(fullXmlFileName))
                 {
                     // This is a compressed MusicXml file in the .mxl format
-#warning "TODO Localize !!"
-                    conversionProgressWriter = ProgressWriter.Create(1000, iDebugDisplayerClient, string.Format("Converting from .mxl to .xml '{0}'  TODO Localize !!", xmlFileName)); // TODO Localize !!
+                    string mxlFileName = System.IO.Path.GetFileName(fullXmlFileName);
+                    string progressConverting = string.Format("{0} {1} {2}", ResourcesForModel.Progress_Converting, mxlFileName,ResourcesForModel.Progress_FromMxlToXml);
+                    conversionProgressWriter = ProgressWriter.Create(1000, iDebugDisplayerClient, progressConverting); 
                     fullXmlFileName = Utilities.MxlToXml(fullXmlFileName, executingDirectory);
                     conversionProgressWriter.Stop();
                     // ToDo Error handling
                 }
 
                 xmlFileName = System.IO.Path.GetFileName(fullXmlFileName);
+
                 XmlDocument doc = new XmlDocument();
                 XmlTextReader reader = new XmlTextReader(fullXmlFileName);
                 reader.WhitespaceHandling = WhitespaceHandling.None;
-#warning "TODO Localize !!"
-                loaderProgressWriter = ProgressWriter.Create(1000, iDebugDisplayerClient, string.Format("Loading '{0}'  TODO Localize !!!!", xmlFileName)); // TODO Localize !!
+                string progressLoading = string.Format("{0} {1}", ResourcesForModel.Progress_LoadingFile, xmlFileName);
+                loaderProgressWriter = ProgressWriter.Create(1000, iDebugDisplayerClient, progressLoading); 
                 doc.Load(reader); // This single operation may last decades of seconds on a slow platform!!
                 loaderProgressWriter.Stop();
                 ok = ok && CheckMusicXmlSyntax(doc);

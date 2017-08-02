@@ -751,4 +751,13 @@
   <data name="TupletElement_Triplet" xml:space="preserve">
     <value>triol</value>
   </data>
+  <data name="Progress_Converting" xml:space="preserve">
+    <value>Konverterer</value>
+  </data>
+  <data name="Progress_LoadingFile" xml:space="preserve">
+    <value>Indlæser filen</value>
+  </data>
+  <data name="Progress_FromMxlToXml" xml:space="preserve">
+    <value>til .xml </value>
+  </data>
 </root>
