@@ -98,6 +98,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public bool LoadMusicXmlFile(string fullXmlFileName)
         {
+            string functionName = "LoadMusicXmlFile";
             bool ok = true;
             string xmlFileName = ""; // The MusicXml file currently handled 
             // ProgressWriter progressWriter = null;
@@ -139,13 +140,13 @@ namespace MusicXmlReaderModel
                     string status = "";
                     metaInformation = MetaInformation.Create();
                     metaInformation.FileName = MetaInfoItem.Create(ResourcesForModel.MetaInfoText_FileName, Path.GetFileName(fullXmlFileName));
-                    Logger.Log(string.Format("Loaded '{0}'", Path.GetFileName(fullXmlFileName)));
-                    Logger.Log(string.Format("From   '{0}'", Path.GetDirectoryName(fullXmlFileName)));
+                    Logger.Log(string.Format("{0}.{1}: Loaded '{2}'", className, functionName, Path.GetFileName(fullXmlFileName)));
+                    Logger.Log(string.Format("{0}.{1}: From   '{2}'", className, functionName,Path.GetDirectoryName(fullXmlFileName)));
                     allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file
                     status = string.Format("{0} {1}", ResourcesForModel.Status_Interpreting, xmlFileName);
                     WriteStatusInformation(status);  
                     Recurse(doc.ChildNodes);                          // Build  the list holding all MusicXml elements read from file
-                    Logger.Log(string.Format("Parsed '{0}'", xmlFileName));
+                    Logger.Log(string.Format("{0}.{1}: Parsed '{2}'", className, functionName,xmlFileName));
                     status = string.Format("{0} {1}", ResourcesForModel.Status_BuildingDataStructuresFor, xmlFileName);
                     WriteStatusInformation(status); 
                     Init();  // Initialize the basic Model data structures.
@@ -157,7 +158,7 @@ namespace MusicXmlReaderModel
                 {
                     string status = string.Format("{0} '{1}'.   {2}", ResourcesForModel.Status_FailedToLoad, xmlFileName, ResourcesForModel.Status_ItIsNotAValidMusicXmlFile);
                     WriteStatusInformation(status); 
-                    Logger.Log(string.Format("Failed to load '{0}' because it not a valid MusicXml file", xmlFileName));
+                    Logger.Log(string.Format("{0}.{1}: Failed to load '{2}' because it not a valid MusicXml file", className, functionName, xmlFileName));
                     theMusicXmlFileName = "";
                 }
                 //throw (new Exception("For test only")); // For test only
@@ -174,7 +175,7 @@ namespace MusicXmlReaderModel
                 }
                 string status = string.Format("{0} '{1}'.  {2}", ResourcesForModel.Status_FailedToLoad, xmlFileName, e.Message);
                 WriteStatusInformation(status);
-                Logger.Log(string.Format("Failed to load '{0}' ({1})", xmlFileName, e.Message));
+                Logger.Log(string.Format("{0}.{1}: Failed to load '{2}' Exception.Message ='{3}'", className, functionName, xmlFileName, e.Message));
             
                 ok = false;
             }    
