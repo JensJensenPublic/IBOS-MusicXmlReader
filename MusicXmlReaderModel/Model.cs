@@ -160,6 +160,7 @@ namespace MusicXmlReaderModel
                     Logger.Log(string.Format("Failed to load '{0}' because it not a valid MusicXml file", xmlFileName));
                     theMusicXmlFileName = "";
                 }
+                //throw (new Exception("For test only")); // For test only
             }
             catch (System.Exception e)
             {
@@ -171,7 +172,8 @@ namespace MusicXmlReaderModel
                 {
                     conversionProgressWriter.Stop(); // Be sure to stop any running progresswriter
                 }
-                WriteStatusInformation(string.Format("Failed to load '{0}' ({1}) TODO Localize !!", xmlFileName, e.Message));
+                string status = string.Format("{0} '{1}'.  {2}", ResourcesForModel.Status_FailedToLoad, xmlFileName, e.Message);
+                WriteStatusInformation(status);
                 Logger.Log(string.Format("Failed to load '{0}' ({1})", xmlFileName, e.Message));
             
                 ok = false;
