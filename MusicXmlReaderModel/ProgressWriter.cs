@@ -27,6 +27,10 @@ namespace MusicXmlReaderModel
 
         private void ProgressThreadStart()
         {
+            if (null == client) // Handle the UI-less case
+            {
+                return;
+            }
             count = 0;
             if (running)
             {
@@ -44,7 +48,7 @@ namespace MusicXmlReaderModel
                 {
                     fullText = "";
                 }
-            }  
+            }
         }
 
         private ProgressWriter(int delay,IDebugDisplayerClient client,string text)

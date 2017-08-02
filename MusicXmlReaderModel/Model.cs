@@ -87,7 +87,11 @@ namespace MusicXmlReaderModel
         /// <param name="s"></param>
         private void WriteStatusInformation(string s)
         {
-            iDebugDisplayerClient.WriteStatusInformation(s);
+            if (null == iDebugDisplayerClient)
+            {
+                return;
+            }
+            iDebugDisplayerClient.WriteStatusInformation(s); // Handle the UI-les case
         }
 
 
