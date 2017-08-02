@@ -133,6 +133,7 @@ namespace MusicXmlReaderModel
                 doc.Load(reader); // This single operation may last decades of seconds on a slow platform!!
                 loaderProgressWriter.Stop();
                 ok = ok && CheckMusicXmlSyntax(doc);
+                // ok = false; //For test only
                 if (ok)
                 {
                     string status = "";
@@ -154,8 +155,8 @@ namespace MusicXmlReaderModel
                 }
                 else
                 {
-#warning "TODO Localize !!"
-                    WriteStatusInformation(string.Format("Failed to load '{0}' because it is not a valid MusicXml file. TODO Localize !!", xmlFileName)); // TODO Localize !!  
+                    string status = string.Format("{0} '{1}'.   {2}", ResourcesForModel.Status_FailedToLoad, xmlFileName, ResourcesForModel.Status_ItIsNotAValidMusicXmlFile);
+                    WriteStatusInformation(status); 
                     Logger.Log(string.Format("Failed to load '{0}' because it not a valid MusicXml file", xmlFileName));
                     theMusicXmlFileName = "";
                 }

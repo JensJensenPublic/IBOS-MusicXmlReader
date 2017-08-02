@@ -1501,11 +1501,29 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load.
+        /// </summary>
+        internal static string Status_FailedToLoad {
+            get {
+                return ResourceManager.GetString("Status_FailedToLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Interpreting.
         /// </summary>
         internal static string Status_Interpreting {
             get {
                 return ResourceManager.GetString("Status_Interpreting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is not a valid MusicXML file.
+        /// </summary>
+        internal static string Status_ItIsNotAValidMusicXmlFile {
+            get {
+                return ResourceManager.GetString("Status_ItIsNotAValidMusicXmlFile", resourceCulture);
             }
         }
         

@@ -768,4 +768,10 @@
   <data name="Status_WasSuccessfullyLoaded" xml:space="preserve">
     <value>was successfully loaded</value>
   </data>
+  <data name="Status_FailedToLoad" xml:space="preserve">
+    <value>Failed to load</value>
+  </data>
+  <data name="Status_ItIsNotAValidMusicXmlFile" xml:space="preserve">
+    <value>It is not a valid MusicXML file</value>
+  </data>
 </root>

@@ -769,4 +769,10 @@
   <data name="Status_WasSuccessfullyLoaded" xml:space="preserve">
     <value>blev korrekt indlæst</value>
   </data>
+  <data name="Status_FailedToLoad" xml:space="preserve">
+    <value>Kunne ikke indlæse</value>
+  </data>
+  <data name="Status_ItIsNotAValidMusicXmlFile" xml:space="preserve">
+    <value>Filen er ikke en korrekt MusicXML file</value>
+  </data>
 </root>
