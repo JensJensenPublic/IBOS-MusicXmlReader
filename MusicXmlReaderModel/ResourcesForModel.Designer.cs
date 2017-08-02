@@ -1492,6 +1492,33 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Building data structures for.
+        /// </summary>
+        internal static string Status_BuildingDataStructuresFor {
+            get {
+                return ResourceManager.GetString("Status_BuildingDataStructuresFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interpreting.
+        /// </summary>
+        internal static string Status_Interpreting {
+            get {
+                return ResourceManager.GetString("Status_Interpreting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to was successfully loaded.
+        /// </summary>
+        internal static string Status_WasSuccessfullyLoaded {
+            get {
+                return ResourceManager.GetString("Status_WasSuccessfullyLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to arrow.
         /// </summary>
         internal static string TechnicalElement_arrow {

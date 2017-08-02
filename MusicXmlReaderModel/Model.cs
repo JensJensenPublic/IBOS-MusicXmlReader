@@ -135,20 +135,22 @@ namespace MusicXmlReaderModel
                 ok = ok && CheckMusicXmlSyntax(doc);
                 if (ok)
                 {
+                    string status = "";
                     metaInformation = MetaInformation.Create();
                     metaInformation.FileName = MetaInfoItem.Create(ResourcesForModel.MetaInfoText_FileName, Path.GetFileName(fullXmlFileName));
                     Logger.Log(string.Format("Loaded '{0}'", Path.GetFileName(fullXmlFileName)));
                     Logger.Log(string.Format("From   '{0}'", Path.GetDirectoryName(fullXmlFileName)));
                     allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file
-                    WriteStatusInformation(string.Format("Interpreting '{0}'  TODO Localize !!", xmlFileName)); // TODO Localize !!  
+                    status = string.Format("{0} {1}", ResourcesForModel.Status_Interpreting, xmlFileName);
+                    WriteStatusInformation(status);  
                     Recurse(doc.ChildNodes);                          // Build  the list holding all MusicXml elements read from file
                     Logger.Log(string.Format("Parsed '{0}'", xmlFileName));
-#warning "TODO Localize !!"
-                    WriteStatusInformation(string.Format("Building '{0}' data  TODO Localize !!", xmlFileName)); // TODO Localize !!
+                    status = string.Format("{0} {1}", ResourcesForModel.Status_BuildingDataStructuresFor, xmlFileName);
+                    WriteStatusInformation(status); 
                     Init();  // Initialize the basic Model data structures.
                     theMusicXmlFileName = fullXmlFileName;
-#warning "TODO Localize !!"
-                    WriteStatusInformation(string.Format("Loaded '{0}'  TODO Localize !!", xmlFileName)); // TODO Localize !!
+                    status = string.Format("{0} {1}", xmlFileName,ResourcesForModel.Status_WasSuccessfullyLoaded);
+                    WriteStatusInformation(status);
                 }
                 else
                 {

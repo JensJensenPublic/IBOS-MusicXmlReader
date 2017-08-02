@@ -759,4 +759,13 @@
   <data name="Progress_FromMxlToXml" xml:space="preserve">
     <value>to .xml</value>
   </data>
+  <data name="Status_BuildingDataStructuresFor" xml:space="preserve">
+    <value>Building data structures for</value>
+  </data>
+  <data name="Status_Interpreting" xml:space="preserve">
+    <value>Interpreting</value>
+  </data>
+  <data name="Status_WasSuccessfullyLoaded" xml:space="preserve">
+    <value>was successfully loaded</value>
+  </data>
 </root>
