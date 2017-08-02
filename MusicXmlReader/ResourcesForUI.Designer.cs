@@ -223,6 +223,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error during program initialization.
+        /// </summary>
+        internal static string Message_UnspecifiedInitializationError {
+            get {
+                return ResourceManager.GetString("Message_UnspecifiedInitializationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No MusicXml file was specified .
         /// </summary>
         internal static string Message_UnspecifiedMusicXmlFile {

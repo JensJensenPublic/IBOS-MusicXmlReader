@@ -33,44 +33,55 @@ namespace MusicXmlReader
         public MainForm()
         {
             string functionName = "MainForm"; // Only for logging
-            executingAssemblyFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            executingAssemblyShortName = System.IO.Path.GetFileNameWithoutExtension(executingAssemblyFullPath);
-            InitializeComponent();
-            Logger.Open(null); // null => Use the default logfile name
-            Logger.Log(""); // An empty line to catch the eye
-            Logger.Log(string.Format("{0}.{1} Starting: Date={2}",className, functionName,System.DateTime.Now.ToLongDateString()));
-            Application.ApplicationExit += Application_ApplicationExit;
-            LogSystemInformation();
-            // If the execution directory contains a file named "Language.txt" containing the string "en-US"
-            // the application language will be changed to english evin if running on a danish PC!
-            LogGLobalisationInformation();
-            // Do any UI localization before we create the model. In this way we avoid showing unlocalized texts
-            // if an error is reported by a messagebox.
-            musicPlayerState = MusicPlayerStateEnum.stopped;
-            //LocalizeStartStopButton(musicPlayerState);
-            ApplicationName = ResourcesForUI.MainForm_ApplicationName;
-            LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
-            listBoxTimes.AccessibleName = ResourcesForUI.ListView_Accessible_Name; // Overwrite all items in listBoxTimes with localized texts
-            userSettingsTreeView.AccessibleName = ResourcesForUI.TreeView_Accessible_Name; // Overwrite all items in userSettingsTreeview with localized texts
-            textBoxStatusInformation.AccessibleName = ResourcesForUI.StatusLine_Accessible_Name; // Overwrite with localized text
+            try
+            {
+                executingAssemblyFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                executingAssemblyShortName = System.IO.Path.GetFileNameWithoutExtension(executingAssemblyFullPath);
+                InitializeComponent();
+                Logger.Open(null); // null => Use the default logfile name
+                Logger.Log(""); // An empty line to catch the eye
+                Logger.Log(string.Format("{0}.{1} Starting: Date={2}", className, functionName, System.DateTime.Now.ToLongDateString()));
+                Application.ApplicationExit += Application_ApplicationExit;
+                LogSystemInformation();
+                // If the execution directory contains a file named "Language.txt" containing the string "en-US"
+                // the application language will be changed to english evin if running on a danish PC!
+                LogGLobalisationInformation();
+                // Do any UI localization before we create the model. In this way we avoid showing unlocalized texts
+                // if an error is reported by a messagebox.
+                musicPlayerState = MusicPlayerStateEnum.stopped;
+                //LocalizeStartStopButton(musicPlayerState);
+                ApplicationName = ResourcesForUI.MainForm_ApplicationName;
+                LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
+                listBoxTimes.AccessibleName = ResourcesForUI.ListView_Accessible_Name; // Overwrite all items in listBoxTimes with localized texts
+                userSettingsTreeView.AccessibleName = ResourcesForUI.TreeView_Accessible_Name; // Overwrite all items in userSettingsTreeview with localized texts
+                textBoxStatusInformation.AccessibleName = ResourcesForUI.StatusLine_Accessible_Name; // Overwrite with localized text
 
 
-            Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 
-            model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), ApplicationName);
-            this.Text = ApplicationName;
-            WriteStatusInformation(model.ScreenReaderName);
+                Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 
+                model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), ApplicationName);
+                this.Text = ApplicationName;
+                WriteStatusInformation(model.ScreenReaderName);
 
-            // XCopy MusicXml samples from the "MusicXml samples" directory in the installation files to myMusicXmlDirectory during first activation !   
-            myMusicXmlDirectory = model.InitMusicXmlFiles(ApplicationName,ResourcesForUI.DirectoryNames_Samples); 
+                // XCopy MusicXml samples from the "MusicXml samples" directory in the installation files to myMusicXmlDirectory during first activation !   
+                myMusicXmlDirectory = model.InitMusicXmlFiles(ApplicationName, ResourcesForUI.DirectoryNames_Samples);
 
-            // Create a handler for the user settinge, in this case modelled as a treeview.
-            userSettingsHandler = UserSettingsHandler.Create(this,this.userSettingsTreeView,model);
-            userSettingsHandler.Init(); // Builds up the fixed part of the treeview
-            userSettingsTreeView.CollapseAll(); 
-            // Create a handler for handling all Keyboard shortcuts
-            shortCutHandler = ShortcutHandler.Create(this, model);
-            commandInterpreter = UserCommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
-            LoadIcon();
+                // Create a handler for the user settinge, in this case modelled as a treeview.
+                userSettingsHandler = UserSettingsHandler.Create(this, this.userSettingsTreeView, model);
+                userSettingsHandler.Init(); // Builds up the fixed part of the treeview
+                userSettingsTreeView.CollapseAll();
+                // Create a handler for handling all Keyboard shortcuts
+                shortCutHandler = ShortcutHandler.Create(this, model);
+                commandInterpreter = UserCommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
+                LoadIcon();
+                // throw (new Exception("For test only")); // Insert this line to test the Last Resort handler below
+            }
+            catch (Exception e)
+            {
+                // Last resort handler: An unhandled exception occured.
+                // The best we can do is to show a warning in a messagebox and log the exception message          
+                Logger.Log(String.Format("{0}.{1} Exception occurred: {2}",className,functionName,e.Message));
+                ShowWarning((int)ModelMessageEnum.UnspecifiedInitializationError,"","");
+            }
         }
 
         private void LoadIcon()
@@ -337,6 +348,7 @@ namespace MusicXmlReader
                 case ModelMessageEnum.UnspecifiedMusicXmlFile: return ResourcesForUI.Message_UnspecifiedMusicXmlFile;
                 case ModelMessageEnum.NotAllowedWhilePlaying: return ResourcesForUI.Message_NotAllowedWhilePlaying;
                 case ModelMessageEnum.LocationNotDetermined: return ResourcesForUI.Message_LocationNotDetermined;
+                case ModelMessageEnum.UnspecifiedInitializationError: return ResourcesForUI.Message_UnspecifiedInitializationError;
                 default: return string.Format("{0} {1}",ResourcesForUI.Message_UndefinedMessage,messageEnum.ToString());
             }
         }
@@ -353,6 +365,7 @@ namespace MusicXmlReader
                 case ModelMessageEnum.MissingProgramFile: return ResourcesForUI.Message_PleaseSeeLogFile;
                 case ModelMessageEnum.FailedToReadMusicXmlFile: return ResourcesForUI.Message_PleaseSeeLogFile;
                 case ModelMessageEnum.NotAllowedWhilePlaying: return ResourcesForUI.Message_StopPlayingFirst;
+                case ModelMessageEnum.UnspecifiedInitializationError: return ResourcesForUI.Message_PleaseSeeLogFile;
                 default: return "";
             }
         }

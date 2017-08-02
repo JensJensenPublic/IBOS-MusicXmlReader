@@ -291,4 +291,7 @@
   <data name="Message_LocationNotDetermined" xml:space="preserve">
     <value>Location of file could not be determined</value>
   </data>
+  <data name="Message_UnspecifiedInitializationError" xml:space="preserve">
+    <value>Error during program initialization</value>
+  </data>
 </root>

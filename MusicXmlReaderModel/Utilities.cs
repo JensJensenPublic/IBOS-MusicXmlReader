@@ -17,7 +17,8 @@ namespace MusicXmlReaderModel
         FailedToReadMusicXmlFile,
         UnspecifiedMusicXmlFile, // Unspecified error during reading and interpretation
         NotAllowedWhilePlaying, // Operation not allowed while playing music
-        LocationNotDetermined   // Location (of for instance JAWS settings file) could not be determined
+        LocationNotDetermined,   // Location (of for instance JAWS settings file) could not be determined
+        UnspecifiedInitializationError // Last resort for otherwise unspecifiet error during program initializastion
 
     }
 
