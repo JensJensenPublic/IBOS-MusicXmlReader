@@ -621,7 +621,7 @@ namespace MusicXmlReaderModel
 
         /// <summary>
         /// Convert a .mxl file (compressed MusicXml) to .xml (MusicXml) relying on the external program 7z.exe
-        /// which is a part of the IBOS MusicXmlReader distributiontion. Other implementations may follow if needed !
+        /// which is a part of the IBOS MusicXmlReader distribution. Other implementations may follow if needed !
         /// </summary>
         /// <param name="fullMxlFileName">Full path  of .mxl file to be converted </param>
         /// <returns>Full path of the resulting .xml file</returns>
@@ -629,7 +629,6 @@ namespace MusicXmlReaderModel
         {
             string methodName = "MxlToXml";
             string result = "";
-            //string mxlFileDirectory = Path.GetDirectoryName(fullMxlFileName);
             // Use the temp directory created and used by the Logger
             string tempDirectory = Path.Combine(Logger.MusicXmlReaderTempDirectory, "tempDirectoryUsedByMxlToXml"); // Probably a unique name
             Logger.Log(string.Format("{0}.{1}({2},{3}) started.", className, methodName, fullMxlFileName, executingDirectory));
