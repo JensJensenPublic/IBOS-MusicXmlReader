@@ -39,6 +39,15 @@ namespace MusicXmlReaderModel
         private static LoggerCounters localCounters;  // For counting log lines local to one MusicXml file  (Used by all applications) 
         private static LoggerCounters globalCounters; // For counting a sum over a number og MusicXml files (Used for instance by  MusicXmlReaderCmd).
         private static readonly long maxLogfileLength = 1024 * 1024;  // Max length of the current log file before we rename it at start a new logfile
+        private static string musicXmlReaderTempDirectory;
+
+        public static string MusicXmlReaderTempDirectory
+        {
+            get
+            {
+                return musicXmlReaderTempDirectory;
+            }
+        }
 
 
         /// <summary>
@@ -57,7 +66,7 @@ namespace MusicXmlReaderModel
                     logFileName = fileName;
                 }
 
-                string musicXmlReaderTempDirectory = (System.IO.Path.Combine(PlatformDependencies.StaticFunctions.GetPlatformTempDirectory(), mySubDirectoryName));
+                musicXmlReaderTempDirectory = (System.IO.Path.Combine(PlatformDependencies.StaticFunctions.GetPlatformTempDirectory(), mySubDirectoryName));
 
                 if (!Directory.Exists(musicXmlReaderTempDirectory))
                 {

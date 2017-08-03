@@ -621,8 +621,9 @@ namespace MusicXmlReaderModel
         {
             string methodName = "MxlToXml";
             string result = "";
-            string mxlFileDirectory = Path.GetDirectoryName(fullMxlFileName);
-            string tempDirectory = Path.Combine(mxlFileDirectory, "tempDirectoryUsedByMxlToXml"); // Probably a unique name
+            //string mxlFileDirectory = Path.GetDirectoryName(fullMxlFileName);
+            // Use the temp directory created and used by the Logger
+            string tempDirectory = Path.Combine(Logger.MusicXmlReaderTempDirectory, "tempDirectoryUsedByMxlToXml"); // Probably a unique name
             Logger.Log(string.Format("{0}.{1}({2},{3}) started.", className, methodName, fullMxlFileName, executingDirectory));
             CreateEmptyTempDirectory(tempDirectory);
             //string exeFileName = @"C:\Program Files\7-Zip\7z.exe";
