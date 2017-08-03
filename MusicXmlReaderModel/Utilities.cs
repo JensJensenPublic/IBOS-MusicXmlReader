@@ -596,6 +596,14 @@ namespace MusicXmlReaderModel
             // Logger.Log(string.Format("{0}.{1}+", className, functionName));
             try
             {
+                // Recursively delete all directories
+                DirectoryInfo[] directories = new DirectoryInfo(directoryName).GetDirectories(); 
+                foreach (DirectoryInfo directoryInfo in directories)
+                {
+                    DeleteTempDirectory(directoryInfo.FullName);
+                }
+
+                // delete all files
                 FileInfo[] files = new DirectoryInfo(directoryName).GetFiles();
                 foreach (FileInfo fileInfo in files)
                 {
