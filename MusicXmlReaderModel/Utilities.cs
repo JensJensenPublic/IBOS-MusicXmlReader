@@ -610,10 +610,13 @@ namespace MusicXmlReaderModel
                     File.Delete(fileInfo.FullName); // Allows us to delete the directory
                 }
                 Directory.Delete(directoryName);
+                // throw new Exception("For test only!");
             }
             catch (Exception e)
             {
-                Logger.Log(string.Format("{0}.{1}({2}) failed. Exception.Message={3}", className, functionName, directoryName, e.Message));
+                string message = string.Format("{0}.{1}({2}) failed. Exception.Message={3}", className, functionName, directoryName, e.Message);
+                Logger.Log(message);
+                throw new Exception(message, e); // Rethrow
             }
             // Logger.Log(string.Format("{0}.{1}-", className, functionName));
         }
