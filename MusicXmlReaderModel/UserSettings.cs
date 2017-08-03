@@ -204,11 +204,18 @@ namespace MusicXmlReaderModel
         /// <param name="value"></param>
         public void SetAllPartsSettings(bool value)
         {
-            // Then enable allparst: 
+            // Generate Text for all parts 
             for (int i = 0; (i < partsToRead.Length); i++)
             {
                 partsToRead[i] = value;
             }
+
+            // Generate Music Braille for all parts
+            for (int i = 0; (i < partsToBraille.Length); i++)
+            {
+                partsToBraille[i] = value;
+            }
+
         }
 
         /// <summary>
@@ -222,6 +229,8 @@ namespace MusicXmlReaderModel
             {
                 SetMusicBrailleSettings(i, value);
             }
+
+        
         }
 
         public void SetAllNormalTextSettings(bool value)
