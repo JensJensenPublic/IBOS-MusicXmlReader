@@ -96,7 +96,7 @@ namespace MusicXmlReaderModel
             }
             if ((pitchElement.Alter < -1) || (pitchElement.Alter > 1))
             {
-                Logger.Log(String.Format("{0}.{1} Unsupported value of PitchElement.Alter = {2}", className, functionName, pitchElement.Alter));
+                Logger.LogOnce(String.Format("{0}.{1} Unsupported value of PitchElement.Alter = {2}", className, functionName, pitchElement.Alter));
                 return false;
             }
             int stepIndex = GetIndex(pitchElement.Step);
