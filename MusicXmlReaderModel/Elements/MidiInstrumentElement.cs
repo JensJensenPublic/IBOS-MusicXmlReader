@@ -4,10 +4,12 @@ namespace MusicXmlReaderModel
 {
     public class MidiInstrumentElement : Element
     {
+        private string className = "MidiInstrumentElement";
         private string id;
         private int midiProgram = 1; // Use Grand Acoustic Piano as default
         private int midiChannel = 1; // Use midi channel 1 as default
         private float midiVolume = 127 ; // Use midi volume 127 as default
+        private int midiInstrument = 1;
         private string pan;
 
         public int MidiChannel
@@ -34,6 +36,15 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public float MidiInstrument
+        {
+            get
+            {
+                return midiInstrument;
+            }
+        }
+
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
@@ -48,6 +59,7 @@ namespace MusicXmlReaderModel
         /// <param name="node"></param>
         private MidiInstrumentElement(XmlNode node)
         {
+            string functionName = "MidiInstrumentElement";
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
@@ -92,6 +104,12 @@ namespace MusicXmlReaderModel
                         break;
                     case "pan":
                         pan = n.InnerText;
+                        break;
+                    case "midi-unpitched":
+                        Utilities.Parse(n.InnerText, ref midiInstrument, 1, 255, "MidiInstrumentElement: Invalid value of midi-instrument", false);
+                        break;
+                    default:
+                        Logger.Log(string.Format("{0}.{1}: Unimplemented element: InnerText={2} Value={3}", className, functionName, n.Name,n.InnerText));
                         break;
                 }
             }
