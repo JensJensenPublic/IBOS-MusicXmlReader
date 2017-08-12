@@ -132,6 +132,14 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public UnpitchedElement UnpitchedElement
+        {
+            get
+            {
+                return unpitchedElement;
+            }
+        }
+
         public int Transpose
         {
             get
@@ -250,6 +258,16 @@ namespace MusicXmlReaderModel
                 return scorePartElement.partNumber;
             }
         }
+
+        public int UnpitchedInstrumentNumber
+        {
+            get
+            {
+                return scorePartElement.MidiUnpitchedInstrumentNumber;
+            }
+        }
+
+
 
         /// <summary>
         /// Per definition a note without a pitch is a pause !

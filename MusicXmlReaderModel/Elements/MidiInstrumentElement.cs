@@ -9,7 +9,7 @@ namespace MusicXmlReaderModel
         private int midiProgram = 1; // Use Grand Acoustic Piano as default
         private int midiChannel = 1; // Use midi channel 1 as default
         private float midiVolume = 127 ; // Use midi volume 127 as default
-        private int midiUnpitched = 1;
+        private int midiUnpitchedInstrumentNumber = 0;
         private string pan;
 
         public int MidiChannel
@@ -36,11 +36,11 @@ namespace MusicXmlReaderModel
             }
         }
 
-        public float MidiUnpitched
+        public int MidiUnpitchedInstrumentNumber
         {
             get
             {
-                return midiUnpitched;
+                return midiUnpitchedInstrumentNumber;
             }
         }
 
@@ -106,7 +106,7 @@ namespace MusicXmlReaderModel
                         pan = n.InnerText;
                         break;
                     case "midi-unpitched":
-                        Utilities.Parse(n.InnerText, ref midiUnpitched, 1, 255, "MidiInstrumentElement: Invalid value of midi-instrument", false);
+                        Utilities.Parse(n.InnerText, ref midiUnpitchedInstrumentNumber, 1, 255, "MidiInstrumentElement: Invalid value of midi-instrument", false);
                         break;
                     default:
                         Logger.Log(string.Format("{0}.{1}: Unimplemented element: InnerText={2} Value={3}", className, functionName, n.Name,n.InnerText));

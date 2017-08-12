@@ -58,6 +58,7 @@
     <Compile Include="Elements\PitchElementBase.cs" />
     <Compile Include="Elements\RootElement.cs" />
     <Compile Include="Elements\SlashElement.cs" />
+    <Compile Include="Elements\UnpitchedElement.cs" />
     <Compile Include="MetaInformation.cs" />
     <Compile Include="DebugTools.cs" />
     <Compile Include="Elements\AccidentalElement.cs" />
@@ -132,7 +133,6 @@
     <Compile Include="StatusInformation.cs" />
     <Compile Include="TextDisplayer.cs" />
     <Compile Include="TimeDescriptionList.cs" />
-    <Compile Include="UnpitchedElement.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>

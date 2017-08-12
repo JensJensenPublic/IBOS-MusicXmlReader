@@ -20,6 +20,13 @@ namespace MusicXmlReaderModel
         private ScorePartElement()
         { }
 
+        public int MidiInstrument
+        {
+            get
+            {
+                return midiInstrumentElement.MidiUnpitchedInstrumentNumber;
+            }
+        }
 
 
         /// <summary>
@@ -129,6 +136,19 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public int MidiUnpitchedInstrumentNumber
+        {
+            get
+            {
+                if (null == midiInstrumentElement)
+                {
+                    Logger.Log(string.Format("ScorePartElement: midiInstrumentElement is null. Using 0 as default value for MidiInstrumentString"));
+                    return 0;
+                }
+                return midiInstrumentElement.MidiUnpitchedInstrumentNumber;
+            }
+        }
+
         public string ScoreInstrumentString
         {
             get
@@ -138,10 +158,11 @@ namespace MusicXmlReaderModel
                     Logger.Log(string.Format("ScorePartElement: scoreInstrumentElement is null. Using empty string as default value for ScoreInstrumentString"));
                     return "";
                 }
-                return scoreInstrumentElement.ToString(); 
+                return scoreInstrumentElement.ToString();
             }
         }
 
+  
         internal TransposeElement TransposeElement
         {
             get

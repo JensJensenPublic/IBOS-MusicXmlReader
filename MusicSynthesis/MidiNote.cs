@@ -126,6 +126,11 @@ namespace JSJ.MusicSynthesis
             CommonConstructor(step, 0, octave,0, velocity, interval, 1,null); // Default: alter=0, transpose=0 MidiOut=null  midiChannel=1
         }
 
+        public MidiNote(UnpitchedMidiInstrument unpitchedMidiInstrument, int velocity, int midiChannel, MidiOut midiOut)
+        {
+            UnpitchedConstructor(unpitchedMidiInstrument, velocity, midiChannel, midiOut);
+        }
+
         /// <summary>
         /// Convert from the string representation step/alter to ChromaticStep representation
         /// </summary>
@@ -245,7 +250,26 @@ namespace JSJ.MusicSynthesis
             startCommand[2] = (byte)velocity;
             StartPlaying(midiOut);
         }
-        
+
+        /// <summary>
+        /// For unpitched instruments neither step, alter, octave nor transpose are needed !
+        /// </summary>
+        /// <param name="unpitchedMidiInstrument"></param>
+        /// <param name="velocity"></param>
+        /// <param name="midiChannel"></param>
+        /// <param name="midiOut"></param>
+        private void UnpitchedConstructor(UnpitchedMidiInstrument unpitchedMidiInstrument, int velocity, int midiChannel, MidiOut midiOut)
+        {
+
+            // Check for channel=10
+            this.channelCode = (midiChannel - 1) % 16;
+            startCommand = new byte[3];
+            startCommand[0] = (byte)(0x90 + channelCode); // Command "Start"
+            startCommand[1] = (byte)(unpitchedMidiInstrument);
+            startCommand[2] = (byte)velocity;
+            StartPlaying(midiOut);
+        }
+
         public void StartPlaying(MidiOut midiOut)
         {
             if (null == midiOut) return;

@@ -157,7 +157,8 @@ namespace MusicXmlReaderUI
                             { // This is a real note, not a pause
                                 if (userSettings.partsToPlay[noteElement.PartNumber])
                                 {
-                                    MidiNote midiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
+//                                   MidiNote midiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
+                                    MidiNote midiNote = CreateMidinote(noteElement,midiOut);
                                     notesCurrentlyPlaying.Add(midiNote);
                                 }
                             }
@@ -323,6 +324,29 @@ namespace MusicXmlReaderUI
         }
 
 
+        /// <summary>
+        /// Convenience method fro creating a MidiNote in two different ways.
+        /// Create either a pitched or an unpitched Midinote and pas the parameters needed 
+        /// </summary>
+        /// <returns></returns>
+        MidiNote CreateMidinote(NoteElement noteElement, MidiOut midiout)
+        {
+            string functionName = "CreateMidinote";
+            if (noteElement.UnPitched)
+            {
+                UnpitchedMidiInstrument unpitchedMidiInstrument = (UnpitchedMidiInstrument) noteElement.  UnpitchedInstrumentNumber;
+                // Neither Step, Alter, Octave nor Transpose are needed
+                Logger.LogOnce(string.Format("{0}.{1}: Creating unpitched MidiNote({2},{3},{4},midiout)", className, functionName, unpitchedMidiInstrument, noteElement.DynamicsIntValue, noteElement.MidiChannel));
+                return new MidiNote(unpitchedMidiInstrument, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
+            }
+            else
+            {
+                // UnpitchedInstrument is not needed!
+                return new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut); // 161
+            }
+        }
+
+
 
         /// <summary>
         /// Used for AUTOMATIC playing polyphonic music, controlled by timing information in the eventdescriptor
@@ -351,7 +375,8 @@ namespace MusicXmlReaderUI
                                 // In the case of a tie we must explicitly create the midinote to stop !
                                 // If the MIDI implementation changes we may need the midinote originally created, which would make things a little more complicated!
                                 // When we create a new MidiNote with mitiOut == null it will not be started which is just what we want here!
-                                midiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, null);
+                                //midiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, null);
+                                midiNote = CreateMidinote(noteElement, null);
                             }
                             midiNote.StopPlaying(midiOut);
                             notesCurrentlyPlaying.Remove(midiNote);
@@ -378,7 +403,8 @@ namespace MusicXmlReaderUI
                                 if (!noteElement.TieStop)
                                 {
                                     // If the note is tied to a previous note we do not start the new note, but let the previous note continue                          
-                                    noteElement.MidiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
+                                    //noteElement.MidiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
+                                    noteElement.MidiNote = CreateMidinote(noteElement, midiOut);
                                     notesCurrentlyPlaying.Add(noteElement.MidiNote);
                                     //noteElement.MidiNote = new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, 1, midiOut);
                                 }
