@@ -722,7 +722,7 @@ namespace MusicXmlReaderModel
                         break;
                     case "unpitched":
                         unpitched = true;
-                        Logger.LogOnce(string.Format("{0}: Unpitched note is not completely implemented yet", functionName));
+                        // Logger.LogOnce(string.Format("{0}: Unpitched note is not completely implemented yet", functionName));
                         unpitchedElement = UnpitchedElement.Create(child);     
                         break; // Just mark the note as unpitched
                     case "cue": // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-cue.htm
@@ -741,8 +741,8 @@ namespace MusicXmlReaderModel
 
                 if ((null == pitchElement) && unpitched && (null != unpitchedElement)) // Experiment for handling unpitched notes
                 {
-                    Logger.LogOnce(string.Format("{0}: Replacing unpitched note displayed as {1}{2} by pitched equivalent",
-                        functionName, unpitchedElement.DisplayStep, unpitchedElement.DisplayOctave));
+                    // Logger.LogOnce(string.Format("{0}: Replacing unpitched note displayed as {1}{2} by pitched equivalent",
+                    //    functionName, unpitchedElement.DisplayStep, unpitchedElement.DisplayOctave));
                     pitchElement = PitchElement.Create(unpitchedElement.DisplayStep, unpitchedElement.DisplayOctave);
                 }
 

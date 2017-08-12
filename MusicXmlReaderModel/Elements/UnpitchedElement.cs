@@ -39,12 +39,12 @@ namespace MusicXmlReaderModel
 
         private UnpitchedElement(XmlNode node) // : base(node, stepName)
         {
-            string functionName = "UnpitchedElement";
+            //string functionName = "UnpitchedElement";
             string displayStepString = Utilities.GetChildValue(node, "display-step");
             displayStep = GetFullStep(displayStepString); // Special parsing of step
             string displayOctaveString = Utilities.GetChildValue(node, "display-octave");
             Utilities.Parse(displayOctaveString, ref displayOctave, 0, 10, "", false);
-            Logger.LogOnce(string.Format("{0}.{1} found Display={2}{3}", className, functionName, displayStep, displayOctave));
+            // Logger.LogOnce(string.Format("{0}.{1} found Display={2}{3}", className, functionName, displayStep, displayOctave));
         }
 
         public static UnpitchedElement Create(XmlNode node)
