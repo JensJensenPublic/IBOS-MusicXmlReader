@@ -26,6 +26,63 @@ namespace JSJ.MusicSynthesis
         Thirteenth = 21 // ??
     };
 
+    // https://www.midi.org/specifications/item/gm-level-1-sound-set
+    // On MIDI Channel 10, each MIDI Note number("Key#") corresponds to a different drum sound, as shown below.
+    // GM-compatible instruments must have the sounds on the keys shown here.
+    // While many current instruments also have additional sounds above or below the range show here,
+    // and may even have additional "kits" with variations of these sounds, only these sounds are supported by General MIDI Level 1 devices.
+    public enum UnpitchedMidiInstrument
+    {
+        Pitched = 0,
+        AcousticBassDrum = 35,
+        BassDrum1 = 36,
+        SideStick = 37,
+        AcousticSnare = 38,
+        HandClap = 39,
+        ElectricSnare = 40,
+        LowFloorTom = 41,
+        ClosedHiHat = 42,
+        HighFloorTom = 43,
+        PedalHiHat = 44,
+        LowTom = 45,
+        OpenHiHat = 46,
+        LowMidTom = 47,
+        HiMidTom = 48,
+        CrashCymbal1 = 49,
+        HighTom = 50,
+        RideCymbal1 = 51,
+        ChineseCymbal = 52,
+        RideBell = 53,
+        Tambourine = 54,
+        SplashCymbal = 55,
+        Cowbell = 56,
+        CrashCymbal2 = 57,
+        Vibraslap = 58,
+        RideCymbal2 = 59,
+        HiBongo = 60,
+        LowBongo = 61,
+        MuteHiConga = 62,
+        OpenHiConga = 63,
+        LowConga = 64,
+        HighTimbale = 65,
+        LowTimbale = 66,
+        HighAgogo = 67,
+        LowAgogo = 68,
+        Cabasa = 69,
+        Maracas = 70,
+        ShortWhistle = 71,
+        LongWhistle = 72,
+        ShortGuiro = 73,
+        LongGuiro = 74,
+        Claves = 75,
+        HiWoodBlock = 76,
+        LowWoodBlock = 77,
+        MuteCuica = 78,
+        OpenCuica = 79,
+        MuteTriangle = 80,
+        OpenTriangle = 81
+    };
+
     //public enum ChordType { Major, Minor, Augmented, Major6, Minor6, Major7, Minor7, Aug7, FullDim7, Major7maj, MinorMajor, Dom9, Major9, Minor9, Dom11, Major11, Minor11, Dom13,Major13, Minor13, Dim, HalfDim7, Sus2, Sus4, UnImplemented };
 
     public class MidiNote
