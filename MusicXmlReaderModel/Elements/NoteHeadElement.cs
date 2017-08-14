@@ -12,6 +12,15 @@ namespace MusicXmlReaderModel
 
         bool filled = false;
         bool parentheses = false;
+        string innerText = "";
+
+        public string InnerText
+        {
+            get
+            {
+                return innerText;
+            }
+        }
 
         /// <summary>
         /// To force the use of the Create() method
@@ -29,6 +38,7 @@ namespace MusicXmlReaderModel
         {
             const string functionName = "NoteHeadElement";
             // Dig out attributes
+
             foreach (XmlAttribute a in node.Attributes)
             {
                 switch (a.Name)
@@ -45,6 +55,7 @@ namespace MusicXmlReaderModel
                     default: Logger.LogOnce(string.Format("{0}: Unknown attribute name={1} with value={2}", functionName, a.Name, a.Value)); break;
                 }
             }
+            innerText = node.InnerText;
         }
 
 
@@ -56,9 +67,10 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            return string.Format("{0} {1}",
-                                filled? ResourcesForModel.NoteHeadElement_Filled : "", // 0
-                                parentheses? ResourcesForModel.NoteHeadElement_Parentheses : "" // 1
+            return string.Format("{0}{1}{2}",
+                                filled? ResourcesForModel.NoteHeadElement_Filled + " " : "", // 0
+                                parentheses? ResourcesForModel.NoteHeadElement_Parentheses + " ": "", // 1
+                                innerText // 2
                                 );
         }
     }
