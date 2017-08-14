@@ -83,6 +83,8 @@ namespace JSJ.MusicSynthesis
         OpenTriangle = 81
     };
 
+
+
     //public enum ChordType { Major, Minor, Augmented, Major6, Minor6, Major7, Minor7, Aug7, FullDim7, Major7maj, MinorMajor, Dom9, Major9, Minor9, Dom11, Major11, Minor11, Dom13,Major13, Minor13, Dim, HalfDim7, Sus2, Sus4, UnImplemented };
 
     public class MidiNote
@@ -91,6 +93,10 @@ namespace JSJ.MusicSynthesis
         private byte[] startCommand;
         object hSynthesizedTone; // Handle to the to currently playing tone representing this MidiNote
 
+        static public bool IsKnownUnpitchedMidiInstrument(UnpitchedMidiInstrument instrument)
+        {
+            return ((UnpitchedMidiInstrument.AcousticBassDrum <= instrument) && (instrument <= UnpitchedMidiInstrument.OpenTriangle));
+        }
 
 
         /// <summary>

@@ -341,13 +341,7 @@ namespace MusicXmlReaderUI
                 UnpitchedMidiInstrument unpitchedMidiInstrument;
                 if (null != noteElement.InstrumentElement)
                 {
-                    // If the NoteElement itself contains an InstrumentElement use it
-                    //string temp = noteElement.InstrumentElement.Id;
-                    //int i = temp.IndexOf('I');
-                    //string n = temp.Remove(0, i+1);
-                    //int instrumentNumber = (int)UnpitchedMidiInstrument.AcousticBassDrum;
-                    //int.TryParse(n,out instrumentNumber);
-                    //unpitchedMidiInstrument = (UnpitchedMidiInstrument) instrumentNumber; // TEMP
+                    // If the noteElement contains information about the instrument, use that
                     unpitchedMidiInstrument = (UnpitchedMidiInstrument) noteElement.MidiUnpitchedInstrumentNumber;
                 }
                 else

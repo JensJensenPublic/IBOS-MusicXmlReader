@@ -488,7 +488,16 @@ namespace MusicXmlReaderModel
         {
             get
             {
-                return ResourcesForModel.NoteElement_unpitched_text;
+                UnpitchedMidiInstrument unpitchedMidiInstrument = (UnpitchedMidiInstrument)midiUnpitchedInstrumentNumber;
+                if (MidiNote.IsKnownUnpitchedMidiInstrument(unpitchedMidiInstrument))
+                {
+                    return unpitchedMidiInstrument.ToString();
+#warning ToDo  Implement localization of names of unpitched instruments
+                }
+                else
+                {
+                    return string.Format("{0}({1})",ResourcesForModel.NoteElement_unpitched_text, unpitchedMidiInstrument);
+                }
             }
         }
 
