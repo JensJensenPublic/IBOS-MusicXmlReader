@@ -474,11 +474,11 @@ namespace MusicXmlReaderModel
                         case ArticulationsElement.Articulation.tenuto: Append(Tenuto, "Tenuto"); break;
                         case ArticulationsElement.Articulation.unstress: implemented = false; break;
                         default:
-                            Logger.Log(string.Format("{0}.{1}: Unknown articulation: '{2}'", className, functionName, articulation)); break;
+                            Logger.LogOnce(string.Format("{0}.{1}: Unknown articulation: '{2}'", className, functionName, articulation)); break;
                     }
                     if (!implemented)
                     {
-                        Logger.Log(string.Format("{0}.{1}: Unimplemented articulation: '{2}'", className, functionName, articulation));
+                        Logger.LogOnce(string.Format("{0}.{1}: Unimplemented articulation: '{2}'", className, functionName, articulation));
                     }
                 }
             }
