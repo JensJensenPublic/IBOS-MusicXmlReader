@@ -12,6 +12,14 @@ namespace MusicXmlReaderModel
         private int midiUnpitchedInstrumentNumber = 0;
         private string pan;
 
+        public string Id
+        {
+            get
+            {
+                return id
+;            }
+        }
+
         public int MidiChannel
         {
             get

@@ -104,7 +104,15 @@ namespace MusicXmlReaderModel
         float dynamicsFloatValue = 100;
         int dynamicsValue = 90;
         bool isFirstNoteInScorePart;
+        int midiUnpitchedInstrumentNumber;
 
+        public int MidiUnpitchedInstrumentNumber
+        {
+            get
+            {
+                return midiUnpitchedInstrumentNumber;
+            }
+        }
 
 
 
@@ -259,11 +267,12 @@ namespace MusicXmlReaderModel
             }
         }
 
-        public int UnpitchedInstrumentNumber
+ 
+        public ScorePartElement ScorePartElement
         {
             get
             {
-                return scorePartElement.MidiUnpitchedInstrumentNumber;
+                return scorePartElement;
             }
         }
 
@@ -482,6 +491,15 @@ namespace MusicXmlReaderModel
                 return ResourcesForModel.NoteElement_unpitched_text;
             }
         }
+
+        public InstrumentElement InstrumentElement
+        {
+            get
+            {
+                return instrumentElement;
+            }
+        }
+
 
         
         /// <summary>
@@ -770,6 +788,21 @@ namespace MusicXmlReaderModel
             if ((null != notations) && (null != notations.TupletElement))
             {
                 notations.TupletElement.TimeModificationElement = this.timeModificationElement;
+            }
+
+            // We need to be sure that all elements have been interpreted before we can handle unpitched notes.
+            if (unpitched)
+            {
+
+                if (null == scorePartElement)
+                {
+                    return;
+                }
+
+                MidiInstrumentElement midiInstrumentElement = scorePartElement.GetMidiInstrument(this.InstrumentElement.Id);
+                // int nnn = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
+                this.midiUnpitchedInstrumentNumber = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
+
             }
 
         }

@@ -4,7 +4,7 @@ namespace MusicXmlReaderModel
 {
     // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-instrument.htm
 
-    class InstrumentElement
+    public class InstrumentElement
     {
         private string id;
 

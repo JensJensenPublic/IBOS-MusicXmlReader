@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using System.Collections.Generic;
 
 namespace MusicXmlReaderModel
 {
@@ -12,6 +13,60 @@ namespace MusicXmlReaderModel
         private MidiInstrumentElement midiInstrumentElement;
         private TransposeElement transposeElement;
         private bool hasNotes; // Used by  MusicBraille to show an octave mark with first note in each part
+
+        private List<ScoreInstrumentElement> scoreInstruments = new List<ScoreInstrumentElement>() ;
+        private List<MidiInstrumentElement> midiInstruments = new List<MidiInstrumentElement>();
+
+        // Only needed during debuggine
+        public List<ScoreInstrumentElement> ScoreInstruments
+        {
+            get
+            {
+                return scoreInstruments;
+            }
+        }
+
+        // Only needed during debugging
+        public List<MidiInstrumentElement> MidiInstruments
+        {
+            get
+            {
+                return midiInstruments;
+            }
+
+        }
+
+        public ScoreInstrumentElement GetScoreInstrument(string name)
+        {
+            ScoreInstrumentElement result = null;
+            foreach (ScoreInstrumentElement scoreInstrumentElement in scoreInstruments)
+            {
+                if (name == scoreInstrumentElement.Id)
+                {
+                    return scoreInstrumentElement;
+                }
+
+            }
+
+            return result; 
+        }
+
+        public MidiInstrumentElement GetMidiInstrument(string name)
+        {
+            MidiInstrumentElement result = null;
+            foreach (MidiInstrumentElement midiInstrumentElement in midiInstruments)
+            {
+                if (name == midiInstrumentElement.Id)
+                {
+                    return midiInstrumentElement;
+                }
+
+            }
+
+            return result;
+     
+        }
+
 
 
         /// <summary>
@@ -57,10 +112,12 @@ namespace MusicXmlReaderModel
                     case "score-instrument":
                         scoreInstrumentElement = ScoreInstrumentElement.Create(n);
                         Logger.Log(string.Format(scoreInstrumentElement.ToString())); // Not of interest for the normal user !
+                        scoreInstruments.Add(scoreInstrumentElement);
                         break;                
                     case "midi-instrument":
                         midiInstrumentElement = MidiInstrumentElement.Create(n);
                         Logger.Log(string.Format(midiInstrumentElement.ToString())); // Not of interest for the normal user !
+                        midiInstruments.Add(midiInstrumentElement);
                         break;        
                 }
             }

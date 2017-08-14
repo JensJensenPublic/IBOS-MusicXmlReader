@@ -12,6 +12,13 @@ namespace MusicXmlReaderModel
         string solo = "";
         string virtualInstrument = "";
 
+        public string Id
+        {
+            get
+            {
+                return id;
+            }
+        }
 
         /// <summary>
         /// To force the use of the Create() method

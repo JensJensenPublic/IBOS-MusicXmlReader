@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using JSJ.MusicSynthesis;
 using NAudio.Midi;
@@ -334,14 +334,34 @@ namespace MusicXmlReaderUI
             string functionName = "CreateMidinote";
             if (noteElement.UnPitched)
             {
-                UnpitchedMidiInstrument unpitchedMidiInstrument = (UnpitchedMidiInstrument) noteElement.  UnpitchedInstrumentNumber;
+
+                // This is an unpitched note, which is handled in a special way in MIDI:
+                // As the information, otherwise specifying the pitch are not needed, an instrument number
+                // can be specified instead.
+                UnpitchedMidiInstrument unpitchedMidiInstrument;
+                if (null != noteElement.InstrumentElement)
+                {
+                    // If the NoteElement itself contains an InstrumentElement use it
+                    //string temp = noteElement.InstrumentElement.Id;
+                    //int i = temp.IndexOf('I');
+                    //string n = temp.Remove(0, i+1);
+                    //int instrumentNumber = (int)UnpitchedMidiInstrument.AcousticBassDrum;
+                    //int.TryParse(n,out instrumentNumber);
+                    //unpitchedMidiInstrument = (UnpitchedMidiInstrument) instrumentNumber; // TEMP
+                    unpitchedMidiInstrument = (UnpitchedMidiInstrument) noteElement.MidiUnpitchedInstrumentNumber;
+                }
+                else
+                {
+                    // Otherwise default to the instrument in the ScorePartElement
+                    unpitchedMidiInstrument = (UnpitchedMidiInstrument)noteElement.ScorePartElement.MidiUnpitchedInstrumentNumber;
+                }
                 // Neither Step, Alter, Octave nor Transpose are needed
                 Logger.LogOnce(string.Format("{0}.{1}: Creating unpitched MidiNote({2},{3},{4},midiout)", className, functionName, unpitchedMidiInstrument, noteElement.DynamicsIntValue, noteElement.MidiChannel));
                 return new MidiNote(unpitchedMidiInstrument, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
             }
             else
             {
-                // UnpitchedInstrument is not needed!
+                // This is a normal, pitched note.
                 return new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut); // 161
             }
         }
