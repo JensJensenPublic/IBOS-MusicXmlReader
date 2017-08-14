@@ -759,7 +759,7 @@ namespace MusicXmlReaderModel
                         Logger.LogOnce(string.Format("{0}: NoteHeadElement is decoded but not used yet", functionName));
                         break;
                     //default:  throw new ArgumentException();
-                    default: Logger.LogOnce(string.Format("{0}: Unknown child.Name '{1}'", functionName, child.Name)); break;
+                    default: Logger.LogOnce(string.Format("{0}.{1}: Unknown child element. Name='{2}'", className, functionName, child.Name)); break;
                 }
                 if (unimplemented)
                 {
