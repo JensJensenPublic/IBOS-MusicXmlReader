@@ -756,7 +756,7 @@ namespace MusicXmlReaderModel
                         isCueNote = true; break; ; // Just mark the note as a cue note
                     case "notehead": // http://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-notehead.htm
                         noteHeadElement = NoteHeadElement.Create(child);
-                        Logger.LogOnce(string.Format("{0}: NoteHeadElement is decoded to '{1}' but not used yet.", functionName, noteHeadElement.ToString()));
+                        // Logger.LogOnce(string.Format("{0}: NoteHeadElement is decoded to '{1}' but not used yet.", functionName, noteHeadElement.ToString()));
                         break;
                     //default:  throw new ArgumentException();
                     default: Logger.LogOnce(string.Format("{0}.{1}: Unknown child element. Name='{2}'", className, functionName, child.Name)); break;
