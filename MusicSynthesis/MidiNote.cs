@@ -27,6 +27,7 @@ namespace JSJ.MusicSynthesis
     };
 
     // https://www.midi.org/specifications/item/gm-level-1-sound-set
+    // http://www.music.mcgill.ca/~ich/classes/mumt306/StandardMIDIfileformat.html
     // On MIDI Channel 10, each MIDI Note number("Key#") corresponds to a different drum sound, as shown below.
     // GM-compatible instruments must have the sounds on the keys shown here.
     // While many current instruments also have additional sounds above or below the range show here,
