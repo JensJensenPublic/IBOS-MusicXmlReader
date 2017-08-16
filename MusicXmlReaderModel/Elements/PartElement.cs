@@ -6,6 +6,7 @@ namespace MusicXmlReaderModel
 
     public class PartElement : Element
     {
+        const string className = "PartElement";
         string partId = ""; 
 
         /// <summary>
@@ -22,6 +23,7 @@ namespace MusicXmlReaderModel
         /// <param name="node"></param>
         private PartElement(XmlNode node)
         {
+            const string functionName = "PartElement";
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
@@ -29,6 +31,9 @@ namespace MusicXmlReaderModel
                 {
                     case "id":
                         partId = a.Value;
+                        break;
+                    default:
+                        Logger.LogOnce(string.Format("{0}.{1}: Unexpected attribute: Name={2} Value={3}", className, functionName, a.Name, a.Value));
                         break;
                 }
             }            

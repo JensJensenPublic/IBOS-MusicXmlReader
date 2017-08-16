@@ -5,7 +5,7 @@ namespace MusicXmlReaderModel
 {
     public class ScorePartElement : Element
     {
-
+        const string className = "ScorePartElement";
         public string partId = ""; // For instance "P1"
         public string partName = ""; // For instance "Soprano"
         public int partNumber; // A unique artificial index  for this part.
@@ -90,7 +90,7 @@ namespace MusicXmlReaderModel
         /// <param name="node"></param>
         private ScorePartElement(XmlNode node)
         {
-
+            const string functionName = "ScorePartElement";
             //this.partNumber = partNumber;
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
@@ -98,7 +98,11 @@ namespace MusicXmlReaderModel
                 switch (a.Name)
                 {
                     case "id":
-                        partId = a.Value;                       
+                        partId = a.Value;
+                        Logger.Log(string.Format("{0}.{1}: Part={2}", className, functionName, partId));
+                        break;
+                    default:
+                        Logger.LogOnce(string.Format("{0}.{1}: Unexpected attribute: Name={2} Value={3}", className, functionName, a.Name, a.Value));
                         break;
                 }
             }
