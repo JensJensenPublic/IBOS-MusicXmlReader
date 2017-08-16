@@ -9,7 +9,7 @@ namespace MusicXmlReaderModel
 
     class NoteHeadElement
     {
-
+        const string className = "NoteHeadElement";
         bool filled = false;
         bool parentheses = false;
         string innerText = "";
@@ -56,6 +56,42 @@ namespace MusicXmlReaderModel
                 }
             }
             innerText = node.InnerText;
+
+            switch (innerText)
+            {
+                case "slash":
+                case "triangle":
+                case "diamond":
+                case "square":
+                case "cross":
+                case "x":
+                case "circle-x":
+                case "inverted triangle":
+                case "arrow down":
+                case "arrow up":
+                case "slashed":
+                case "back slashed":
+                case "normal":
+                case "cluster":
+                case "circle dot":
+                case "left triangle":
+                case "rectangle":
+                case "none":
+                case "do":
+                case "re":
+                case "mi":
+                case "fa":
+                case "fa up":
+                case "so":
+                case "la":
+                case "ti":
+                    Logger.LogOnce(string.Format("{0}.{1}: Value='{2}'", className, functionName, innerText));
+                    break;
+                default:
+                    Logger.LogOnce(string.Format("{0}.{1}: Unexpected value='{2}'", className, functionName, innerText));
+                    break;
+
+            }
         }
 
 
