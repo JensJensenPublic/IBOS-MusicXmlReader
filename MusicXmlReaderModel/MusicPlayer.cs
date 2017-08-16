@@ -350,7 +350,6 @@ namespace MusicXmlReaderUI
                     unpitchedMidiInstrument = (UnpitchedMidiInstrument)noteElement.ScorePartElement.MidiUnpitchedInstrumentNumber;
                 }
                 // Neither Step, Alter, Octave nor Transpose are needed
-                Logger.LogOnce(string.Format("{0}.{1}: Creating unpitched MidiNote({2},{3},{4},midiout)", className, functionName, unpitchedMidiInstrument, noteElement.DynamicsIntValue, noteElement.MidiChannel));
                 return new MidiNote(unpitchedMidiInstrument, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
             }
             else

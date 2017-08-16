@@ -812,6 +812,18 @@ namespace MusicXmlReaderModel
                 // int nnn = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
                 this.midiUnpitchedInstrumentNumber = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
 
+                // Log varions unusual conditions using varinats of the same formatstring
+                const string logFormatString = "{0}.{1}: Creating unpitched MidiNote for unexpected {2}={3}";
+                if (10 != this.MidiChannel)
+                {
+                    Logger.LogOnce(string.Format(logFormatString, className, functionName,"MidiChannel",MidiChannel));
+                }
+
+                if (!MidiNote.IsKnownUnpitchedMidiInstrument((UnpitchedMidiInstrument)midiUnpitchedInstrumentNumber))
+                {
+                    Logger.LogOnce(string.Format(logFormatString, className, functionName,"MidiInstrument", midiUnpitchedInstrumentNumber));
+                }          
+
             }
 
         }
