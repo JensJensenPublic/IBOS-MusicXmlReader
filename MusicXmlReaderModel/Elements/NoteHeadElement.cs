@@ -7,12 +7,46 @@ namespace MusicXmlReaderModel
 
     // https://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-notehead.htm
 
+    enum NoteHeadTypeEnum
+    {
+        unDefined = 0,
+        slash,
+        triangle,
+        diamond,
+        square,
+        cross,
+        x,
+        circleX,
+        invertedTriangle,
+        arrowDown,
+        arrowUp,
+        slashed,
+        backSlashed,
+        normal,
+        cluster,
+        circleDot,
+        leftTriangle,
+        rectangle,
+        none,
+        Do, // do is a reserved word !
+        re,
+        mi,
+        fa,
+        faUp,
+        so,
+        la,
+        ti
+    }
+
+
+
     class NoteHeadElement
     {
         const string className = "NoteHeadElement";
         bool filled = false;
         bool parentheses = false;
         string innerText = "";
+        NoteHeadTypeEnum type = NoteHeadTypeEnum.unDefined;
 
         public string InnerText
         {
@@ -52,46 +86,51 @@ namespace MusicXmlReaderModel
                     case "font-size":
                     case "font-weight":
                     case "color": break; // Explicitly ignore graphical attributes.
-                    default: Logger.LogOnce(string.Format("{0}: Unknown attribute name={1} with value={2}", functionName, a.Name, a.Value)); break;
+                    default: Logger.LogOnce(string.Format("{0}.{1}: Unknown attribute name={2} with value={3}", className, functionName, a.Name, a.Value)); break;
                 }
             }
             innerText = node.InnerText;
 
             switch (innerText)
             {
-                case "slash":
-                case "triangle":
-                case "diamond":
-                case "square":
-                case "cross":
-                case "x":
-                case "circle-x":
-                case "inverted triangle":
-                case "arrow down":
-                case "arrow up":
-                case "slashed":
-                case "back slashed":
-                case "normal":
-                case "cluster":
-                case "circle dot":
-                case "left triangle":
-                case "rectangle":
-                case "none":
-                case "do":
-                case "re":
-                case "mi":
-                case "fa":
-                case "fa up":
-                case "so":
-                case "la":
-                case "ti":
-                    Logger.LogOnce(string.Format("{0}.{1}: Value='{2}'", className, functionName, innerText));
-                    break;
+                case "slash":  type = NoteHeadTypeEnum.slash; break;
+                case "triangle": type = NoteHeadTypeEnum.triangle; break;
+                case "diamond": type = NoteHeadTypeEnum.diamond; break;
+                case "square": type = NoteHeadTypeEnum.square; break;
+                case "cross": type = NoteHeadTypeEnum.cross; break;
+                case "x": type = NoteHeadTypeEnum.x; break;
+                case "circle-x": type = NoteHeadTypeEnum.circleX; break;
+                case "inverted triangle": type = NoteHeadTypeEnum.invertedTriangle; break;
+                case "arrow down": type = NoteHeadTypeEnum.arrowDown; break;
+                case "arrow up": type = NoteHeadTypeEnum.arrowUp; break;
+                case "slashed": type = NoteHeadTypeEnum.slashed; break;
+                case "back slashed": type = NoteHeadTypeEnum.backSlashed;break;
+                case "normal": type = NoteHeadTypeEnum.normal; break;
+                case "cluster": type = NoteHeadTypeEnum.cluster; break;
+                case "circle dot": type = NoteHeadTypeEnum.circleDot; break;
+                case "left triangle": type = NoteHeadTypeEnum.leftTriangle; break;
+                case "rectangle": type = NoteHeadTypeEnum.rectangle; break;
+                case "none": type = NoteHeadTypeEnum.none; break;
+                case "do": type = NoteHeadTypeEnum.Do; break;
+                case "re": type = NoteHeadTypeEnum.re; break;
+                case "mi": type = NoteHeadTypeEnum.mi; break;
+                case "fa": type = NoteHeadTypeEnum.fa; break;
+                case "fa up":type = NoteHeadTypeEnum.faUp;break;
+                case "so": type = NoteHeadTypeEnum.so; break;
+                case "la": type = NoteHeadTypeEnum.la; break;
+                case "ti": type = NoteHeadTypeEnum.ti; break; 
                 default:
+                    type = NoteHeadTypeEnum.unDefined;
                     Logger.LogOnce(string.Format("{0}.{1}: Unexpected value='{2}'", className, functionName, innerText));
                     break;
 
             }
+
+            if (type != NoteHeadTypeEnum.unDefined)
+            {
+                Logger.LogOnce(string.Format("{0}.{1}: NoteElementType='{2}'", className, functionName, type.ToString()));
+            }
+
         }
 
 
