@@ -32,7 +32,7 @@ namespace JSJ.MusicSynthesis
     // GM-compatible instruments must have the sounds on the keys shown here.
     // While many current instruments also have additional sounds above or below the range show here,
     // and may even have additional "kits" with variations of these sounds, only these sounds are supported by General MIDI Level 1 devices.
-    public enum UnpitchedMidiInstrument
+    public enum UnpitchedMidiInstrumentEnum
     {
         Pitched = 0,
         AcousticBassDrum = 35,
@@ -94,9 +94,9 @@ namespace JSJ.MusicSynthesis
         private byte[] startCommand;
         object hSynthesizedTone; // Handle to the to currently playing tone representing this MidiNote
 
-        static public bool IsKnownUnpitchedMidiInstrument(UnpitchedMidiInstrument instrument)
+        static public bool IsKnownUnpitchedMidiInstrument(UnpitchedMidiInstrumentEnum instrument)
         {
-            return ((UnpitchedMidiInstrument.AcousticBassDrum <= instrument) && (instrument <= UnpitchedMidiInstrument.OpenTriangle));
+            return ((UnpitchedMidiInstrumentEnum.AcousticBassDrum <= instrument) && (instrument <= UnpitchedMidiInstrumentEnum.OpenTriangle));
         }
 
 
@@ -133,7 +133,7 @@ namespace JSJ.MusicSynthesis
             CommonConstructor(step, 0, octave,0, velocity, interval, 1,null); // Default: alter=0, transpose=0 MidiOut=null  midiChannel=1
         }
 
-        public MidiNote(UnpitchedMidiInstrument unpitchedMidiInstrument, int velocity, int midiChannel, MidiOut midiOut)
+        public MidiNote(UnpitchedMidiInstrumentEnum unpitchedMidiInstrument, int velocity, int midiChannel, MidiOut midiOut)
         {
             UnpitchedConstructor(unpitchedMidiInstrument, velocity, midiChannel, midiOut);
         }
@@ -265,7 +265,7 @@ namespace JSJ.MusicSynthesis
         /// <param name="velocity"></param>
         /// <param name="midiChannel"></param>
         /// <param name="midiOut"></param>
-        private void UnpitchedConstructor(UnpitchedMidiInstrument unpitchedMidiInstrument, int velocity, int midiChannel, MidiOut midiOut)
+        private void UnpitchedConstructor(UnpitchedMidiInstrumentEnum unpitchedMidiInstrument, int velocity, int midiChannel, MidiOut midiOut)
         {
 
             // Check for channel=10

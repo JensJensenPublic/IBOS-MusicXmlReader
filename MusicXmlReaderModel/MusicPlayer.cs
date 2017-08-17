@@ -338,16 +338,16 @@ namespace MusicXmlReaderUI
                 // This is an unpitched note, which is handled in a special way in MIDI:
                 // As the information, otherwise specifying the pitch are not needed, an instrument number
                 // can be specified instead.
-                UnpitchedMidiInstrument unpitchedMidiInstrument;
+                UnpitchedMidiInstrumentEnum unpitchedMidiInstrument;
                 if (null != noteElement.InstrumentElement)
                 {
                     // If the noteElement contains information about the instrument, use that
-                    unpitchedMidiInstrument = (UnpitchedMidiInstrument) noteElement.MidiUnpitchedInstrumentNumber;
+                    unpitchedMidiInstrument = (UnpitchedMidiInstrumentEnum) noteElement.MidiUnpitchedInstrumentNumber;
                 }
                 else
                 {
                     // Otherwise default to the instrument in the ScorePartElement
-                    unpitchedMidiInstrument = (UnpitchedMidiInstrument)noteElement.ScorePartElement.MidiUnpitchedInstrumentNumber;
+                    unpitchedMidiInstrument = (UnpitchedMidiInstrumentEnum)noteElement.ScorePartElement.MidiUnpitchedInstrumentNumber;
                 }
                 // Neither Step, Alter, Octave nor Transpose are needed
                 return new MidiNote(unpitchedMidiInstrument, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);

@@ -488,10 +488,10 @@ namespace MusicXmlReaderModel
         {
             get
             {
-                UnpitchedMidiInstrument unpitchedMidiInstrument = (UnpitchedMidiInstrument)midiUnpitchedInstrumentNumber;
+                UnpitchedMidiInstrumentEnum unpitchedMidiInstrument = (UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber;
                 if (MidiNote.IsKnownUnpitchedMidiInstrument(unpitchedMidiInstrument))
                 {
-                    return unpitchedMidiInstrument.ToString();
+                    return string.Format("{0}({1})", unpitchedMidiInstrument.ToString(), ((int)unpitchedMidiInstrument).ToString());
 #warning ToDo  Implement localization of names of unpitched instruments
                 }
                 else
@@ -819,7 +819,7 @@ namespace MusicXmlReaderModel
                     Logger.LogOnce(string.Format(logFormatString, className, functionName,"MidiChannel",MidiChannel));
                 }
 
-                if (!MidiNote.IsKnownUnpitchedMidiInstrument((UnpitchedMidiInstrument)midiUnpitchedInstrumentNumber))
+                if (!MidiNote.IsKnownUnpitchedMidiInstrument((UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber))
                 {
                     Logger.LogOnce(string.Format(logFormatString, className, functionName,"MidiInstrument", midiUnpitchedInstrumentNumber));
                 }          
