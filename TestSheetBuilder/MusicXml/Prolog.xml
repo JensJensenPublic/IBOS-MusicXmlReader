@@ -2,10 +2,10 @@
 <!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
 <score-partwise>
   <work>
-    <work-title>Unity</work-title>
+    <work-title>All unpitched midi instruments</work-title>
   </work>
   <identification>
-    <creator type="composer">Erik Schmid</creator>
+    <creator type="composer">JSJ</creator>
     <encoding>
       <software>MuseScore 2.1.0</software>
       <encoding-date>2017-08-15</encoding-date>
@@ -42,12 +42,12 @@
     <lyric-font font-family="FreeSerif" font-size="11"/>
   </defaults>
   <credit page="1">
-    <credit-words default-x="595.44" default-y="1626.67" justify="center" valign="top" font-size="24">Unity</credit-words>
+    <credit-words default-x="595.44" default-y="1626.67" justify="center" valign="top" font-size="24">All unpitched midi instruments</credit-words>
   </credit>
   <credit page="1">
-    <credit-words default-x="595.44" default-y="1569.97" justify="center" valign="top" font-size="14">TheFatRat (Drums)</credit-words>
+    <credit-words default-x="595.44" default-y="1569.97" justify="center" valign="top" font-size="14">For test of IBOS MusicXmlReader</credit-words>
   </credit>
   <credit page="1">
-    <credit-words default-x="1134.19" default-y="1526.67" justify="right" valign="bottom" font-size="12">Erik Schmid</credit-words>
+    <credit-words default-x="1134.19" default-y="1526.67" justify="right" valign="bottom" font-size="12">JSJ</credit-words>
   </credit>
   </score-partwise>
