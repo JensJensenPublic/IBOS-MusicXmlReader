@@ -11,6 +11,7 @@ namespace MusicXmlReaderModel
         public int partNumber; // A unique artificial index  for this part.
         private ScoreInstrumentElement scoreInstrumentElement;
         private MidiInstrumentElement midiInstrumentElement;
+        private MidiDeviceElement midiDeviceElement;
         private TransposeElement transposeElement;
         private bool hasNotes; // Used by  MusicBraille to show an octave mark with first note in each part
 
@@ -122,7 +123,25 @@ namespace MusicXmlReaderModel
                         midiInstrumentElement = MidiInstrumentElement.Create(n);
                         Logger.Log(string.Format(midiInstrumentElement.ToString())); // Not of interest for the normal user !
                         midiInstruments.Add(midiInstrumentElement);
-                        break;        
+                        break;
+
+                    case "midi-device":
+                        midiDeviceElement = MidiDeviceElement.Create(n);
+                        Logger.Log(string.Format("{0}.{1}: midi-device found. Port={2})", className, functionName,midiDeviceElement.Port)); // Not of interest for the normal user !
+                        break;
+
+                    case "identification":
+                    case "part-name-display":
+                    case "part-abbreviation":
+                    case "part-abbreviation-display":
+                    case "group":
+                        Logger.Log(string.Format("{0}.{1}: Unimplemented element found: Name={2} InnerText={3}", className, functionName, n.Name, n.InnerText));
+                        break;
+
+                    default:
+                        Logger.Log(string.Format("{0}.{1}: Unexpected element found: Name={2} InnerText={3}", className, functionName, n.Name, n.InnerText));
+                        break;
+
                 }
             }
 
