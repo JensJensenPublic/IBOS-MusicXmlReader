@@ -70,14 +70,21 @@ namespace TestSheetBuilder
             for (int instrument = firstInstrument; (instrument <= lastInstrument); instrument++)
             {
                 sb.Append(string.Format("<note>"));
+
                 sb.Append(string.Format("<unpitched>"));
                 sb.Append(string.Format("<display-step>F</display-step>"));
                 sb.Append(string.Format("<display-octave>4</display-octave>"));
                 sb.Append(string.Format("</unpitched>"));
+
                 sb.Append(string.Format("<duration>{0}</duration>", 1)); // In this way we can keep everything inside one measure!
                 sb.Append(string.Format("<instrument id=\"P{0}-I{1}\"/>", part,instrument));
                 sb.Append(string.Format("<voice>{0}</voice>", 1));
                 sb.Append(string.Format("<stem>{0}</stem>", "up"));
+
+                sb.Append(string.Format("<lyric>"));
+                sb.Append(string.Format("<text>{0}</text>",instrument)); // Show the instrument number as text
+                sb.Append(string.Format("</lyric>"));
+
                 sb.Append(string.Format("</note>"));
             }
 
