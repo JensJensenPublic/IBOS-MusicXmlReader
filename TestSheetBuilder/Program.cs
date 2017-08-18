@@ -57,7 +57,13 @@ namespace TestSheetBuilder
             sb.Append(string.Format("<measure number=\"{0}\">", 1)); // Keep everything in one measure to keep things simple !
 
             sb.Append(string.Format("<attributes>"));
-            sb.Append(string.Format("<divisions>{0}</divisions>",32)); // A quarter note is devided into 3 divisions, each an 128th
+            sb.Append(string.Format("<divisions>{0}</divisions>",32)); // A quarter note is devided into 32 divisions, each an 128th
+
+            sb.Append(string.Format("<time>"));
+            sb.Append(string.Format("<beats>{0}</beats>", 4));
+            sb.Append(string.Format("<beat-type>{0}</beat-type>", 4));
+            sb.Append(string.Format("</time>"));
+
             sb.Append(string.Format("</attributes>"));
 
             // Generate one note for each instrument
