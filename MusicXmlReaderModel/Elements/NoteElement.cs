@@ -875,6 +875,13 @@ namespace MusicXmlReaderModel
             // The duration element is an integer that represents a note’s duration in terms of divisions per quarter note.
             // The divisions element indicates how many divisions per quarter note are used to indicate a note's duration
             // Check if the duration of the node is exactly a full measure, taking in acount the beattype:
+            if (null == currentTimeElement)
+            {
+                string message = string.Format("{0}.{1}: CurrentTimeElement is null",className,functionName);
+                Logger.Log(message);
+                throw new Exception(message);
+            }
+
             int nominator = duration * currentTimeElement.BeatType;
             int denominator = divisions * 4;
             int quotient = nominator / denominator;
