@@ -104,9 +104,11 @@ namespace TestSheetBuilder
 
                 string prolog = System.IO.File.ReadAllText(prologFullFilename);
                 Console.WriteLine(string.Format("{0}.{1}: Read {2} bytes from {3}", className, functionName, prolog.Length, prologFileName));
- 
-                int firstInstrument = 35;
-                int lastInstrument = 81;
+
+                int firstInstrument = 1;
+                int lastInstrument = 127;
+//                int firstInstrument = 35;
+//                int lastInstrument = 81;
 
                 string partList = GetPartList(1, firstInstrument, lastInstrument);
                 string part1 = GetPart(1, firstInstrument, lastInstrument);
