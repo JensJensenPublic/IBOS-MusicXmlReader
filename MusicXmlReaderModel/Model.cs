@@ -232,6 +232,34 @@ namespace MusicXmlReaderModel
             // Prevent creation 
         }
 
+
+        /// <summary>
+        /// Convenience method for creating an NAudio MidiOut device and logging its capabilities
+        /// Catshes any exception and logs it.
+        /// </summary>
+        /// <param name="deviceNumber"></param>
+        /// <returns></returns>
+        private MidiOut CreateMidiOut(int deviceNumber)
+        {
+            const string functionName = "CreateMidiOut";
+            MidiOut midiOut = null;
+            try
+            {
+                // throw new Exception("For test only");
+                midiOut = new MidiOut(deviceNumber);
+                MidiOutCapabilities mc = MidiOut.DeviceInfo(deviceNumber);
+                Logger.Log(string.Format("{0}.{1}: Created MidiOut({2}) for '{3}' '{4}'", className, functionName,deviceNumber,  mc.ProductName, mc.Technology));
+            }
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("{0}.{1}: Creation of MidiOut({2}) failed. Exception.Message='{3}'", className, functionName, deviceNumber, e.Message));
+                // Do NOT rethrow, as this will prevent the creation of the Model and make the Logfile unavailable !!        
+            }
+            return midiOut;
+        }
+
+
+
         /// <summary>
         /// Constructor to be used by UI-based applications
         /// </summary>
@@ -268,7 +296,7 @@ namespace MusicXmlReaderModel
             externalToolsHandler = ExternalToolsHandler.Create();
             Utilities.CheckScreenReader(screenReaderAPI.ScreenReaderName, caption); // Check for DummyScreenReader
 
-            midiOut = new MidiOut(0);
+            midiOut = CreateMidiOut(0);
             musicPlayer = new MusicPlayer(objects, midiOut);
             int displaySize = 40;
             brailleDisplayer = BrailleDisplayer.Create(iDebugDisplayerClient, displaySize, screenReaderAPI); // TODO Get the real displaysize from somewhere
