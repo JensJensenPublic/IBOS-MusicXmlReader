@@ -170,7 +170,7 @@ namespace MusicXmlReaderModel
                 //throw (new Exception("For test only")); // For test only
             }
             catch (System.Exception e)
-            {   
+            {
                 Logger.Log(string.Format("{0}.{1}: Failed to load '{2}' Exception.Message='{3}'", className, functionName, xmlFileName, e.Message));
 
                 if (null != loaderProgressWriter)
@@ -182,10 +182,10 @@ namespace MusicXmlReaderModel
                     conversionProgressWriter.Stop(); // Be sure to stop any running progresswriter
                 }
                 string status = string.Format("{0} '{1}'.  {2}", ResourcesForModel.Status_FailedToLoad, xmlFileName, e.Message);
-                WriteStatusInformation(status);    
-            
+                WriteStatusInformation(status);
+
                 ok = false;
-            }    
+            }
 
             return ok;
         }
@@ -253,6 +253,7 @@ namespace MusicXmlReaderModel
             catch (Exception e)
             {
                 Logger.Log(string.Format("{0}.{1}: Creation of MidiOut({2}) failed. Exception.Message='{3}'", className, functionName, deviceNumber, e.Message));
+                Utilities.ShowWarning(ModelMessageEnum.UnspecifiedInitializationError, string.Format("MidiOut({0})=null",deviceNumber), "");
                 // Do NOT rethrow, as this will prevent the creation of the Model and make the Logfile unavailable !!        
             }
             return midiOut;
@@ -362,10 +363,11 @@ namespace MusicXmlReaderModel
                     this.currentScorePartElement = partList.GetPartFromId(partElement.PartId);
                     // Set up the the MusicPlayer to use the specified midi program for the specified midiChannel
                     if ((0 != this.currentScorePartElement.MidiChannel) && (0 != this.currentScorePartElement.MidiProgram))
-                    {
+                        {
+#warning TODO: The instrument should NOT be changed during parsing, but during music playing !!!!
                         // TO DO The instrument should NOT be changed during parsing, but during music playing !!!!
                         musicPlayer.ChangeInstrument(this.currentScorePartElement.MidiChannel, this.currentScorePartElement.MidiProgram);
-                    }
+                        }
                     break;
                 case "work":
                     SimpleTextElement workElement = SimpleTextElement.Create(node, "Titel"); // TODO: Localize
