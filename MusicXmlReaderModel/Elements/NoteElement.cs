@@ -105,12 +105,21 @@ namespace MusicXmlReaderModel
         int dynamicsValue = 90;
         bool isFirstNoteInScorePart;
         int midiUnpitchedInstrumentNumber;
+        string scoreUnpitchedInstrumentName;
 
         public int MidiUnpitchedInstrumentNumber
         {
             get
             {
                 return midiUnpitchedInstrumentNumber;
+            }
+        }
+
+        public string ScoreUnpitchedInstrumentName
+        {
+            get
+            {
+                return scoreUnpitchedInstrumentName;
             }
         }
 
@@ -488,17 +497,25 @@ namespace MusicXmlReaderModel
         {
             get
             {
-                UnpitchedMidiInstrumentEnum unpitchedMidiInstrument = (UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber;
-                if (MidiNote.IsKnownUnpitchedMidiInstrument(unpitchedMidiInstrument))
-                {
-                    return string.Format("{0}({1})", unpitchedMidiInstrument.ToString(), ((int)unpitchedMidiInstrument).ToString());
-#warning ToDo  Implement localization of names of unpitched instruments
-                }
-                else
-                {
-                    return string.Format("{0}({1})",ResourcesForModel.NoteElement_unpitched_text, unpitchedMidiInstrument);
-                }
+#warning TODO Find out why MuseScore unpitched instrument numbers differ by 1 from what should be extected
+                // Take the name from the ScoreInstrument. Take the number from the midiInstrument 
+                return string.Format("{0} ({1}={2})", this.ScoreUnpitchedInstrumentName, midiUnpitchedInstrumentNumber, (UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber);
             }
+
+
+//            get
+//            {
+//                UnpitchedMidiInstrumentEnum unpitchedMidiInstrument = (UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber;
+//                if (MidiNote.IsKnownUnpitchedMidiInstrument(unpitchedMidiInstrument))
+//                {
+//                    return string.Format("{0}({1})", unpitchedMidiInstrument.ToString(), ((int)unpitchedMidiInstrument).ToString());
+//#warning ToDo  Implement localization of names of unpitched instruments
+//                }
+//                else
+//                {
+//                    return string.Format("{0}({1})",ResourcesForModel.NoteElement_unpitched_text, unpitchedMidiInstrument);
+//                }
+//            }
         }
 
         public InstrumentElement InstrumentElement
@@ -809,8 +826,10 @@ namespace MusicXmlReaderModel
                 }
 
                 MidiInstrumentElement midiInstrumentElement = scorePartElement.GetMidiInstrument(this.InstrumentElement.Id);
+                ScoreInstrumentElement scoreInstrumentElement= scorePartElement.GetScoreInstrument(this.InstrumentElement.Id);
                 // int nnn = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
                 this.midiUnpitchedInstrumentNumber = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
+                this.scoreUnpitchedInstrumentName = scoreInstrumentElement.InstrumentName;
 
                 // Log varions unusual conditions using varinats of the same formatstring
                 const string logFormatString = "{0}.{1}: Creating unpitched MidiNote for unexpected {2}={3}";

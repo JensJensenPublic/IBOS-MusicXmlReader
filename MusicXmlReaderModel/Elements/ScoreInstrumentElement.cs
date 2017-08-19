@@ -20,6 +20,14 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public string InstrumentName
+        {
+            get
+            {
+                return instrumentName;
+            }
+        }
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
