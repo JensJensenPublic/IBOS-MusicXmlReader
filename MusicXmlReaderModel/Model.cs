@@ -414,7 +414,9 @@ namespace MusicXmlReaderModel
                     continueRecursion = false;
                     break;
                 case "encoding-description":
-                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node, "Kodnings-beskrivelse"));
+                    SimpleTextElement encodingDescriptionElement = SimpleTextElement.Create(node, "Kodnings-beskrivelse");
+                    allMusicXmlObjecsts.Add(encodingDescriptionElement);
+                    Logger.LogOnce(string.Format("{0}.{1}: Encoding='{2}'",className,functionName,node.InnerText));
                     continueRecursion = false;
                     break;
                 case "direction":
