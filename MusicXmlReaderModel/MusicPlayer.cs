@@ -342,7 +342,8 @@ namespace MusicXmlReaderUI
                 if (null != noteElement.InstrumentElement)
                 {
                     // If the noteElement contains information about the instrument, use that
-                    unpitchedMidiInstrument = (UnpitchedMidiInstrumentEnum) noteElement.MidiUnpitchedInstrumentNumber;
+#warning Verify that we need to convert from base 1 to base 1 !
+                    unpitchedMidiInstrument = (UnpitchedMidiInstrumentEnum) noteElement.MidiUnpitchedInstrumentNumber - 1; // https://musescore.org/en/node/89756
                 }
                 else
                 {
