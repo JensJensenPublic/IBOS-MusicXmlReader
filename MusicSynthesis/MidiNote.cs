@@ -38,6 +38,14 @@ namespace JSJ.MusicSynthesis
     public enum UnpitchedMidiInstrumentEnum
     {
         Pitched = 0,
+        HighQ = 27,         // GM Level 2
+        Slap = 28,          // GM Level 2
+        SchratchPush = 29,  // GM Level 2
+        ScratchPull = 30,   // GM Level 2
+        Sticks = 31,        // GM Level 2
+        SquareClick = 32,   // GM Level 2
+        MetronomeClick = 33,// GM Level 2
+        MetronomeBell = 34, // GM Level 2
         AcousticBassDrum = 35,
         BassDrum1 = 36,
         SideStick = 37,
@@ -84,7 +92,13 @@ namespace JSJ.MusicSynthesis
         MuteCuica = 78,
         OpenCuica = 79,
         MuteTriangle = 80,
-        OpenTriangle = 81
+        OpenTriangle = 81,
+        Shaker = 82,        // GM Level 2
+        JingleBell = 83,    // GM Level 2
+        BellTree = 84,      // GM Level 2
+        Castanets = 85,     // GM Level 2
+        MuteSurdo = 86,     // GM Level 2
+        OpenSurdo = 87      // GM Level 2
     };
 
 
@@ -99,7 +113,7 @@ namespace JSJ.MusicSynthesis
 
         static public bool IsKnownUnpitchedMidiInstrument(UnpitchedMidiInstrumentEnum instrument)
         {
-            return ((UnpitchedMidiInstrumentEnum.AcousticBassDrum <= instrument) && (instrument <= UnpitchedMidiInstrumentEnum.OpenTriangle));
+            return ((UnpitchedMidiInstrumentEnum.HighQ <= instrument) && (instrument <= UnpitchedMidiInstrumentEnum.OpenSurdo));
         }
 
 
