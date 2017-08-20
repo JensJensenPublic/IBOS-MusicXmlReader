@@ -5,6 +5,7 @@ namespace MusicXmlReaderModel
     public class ScoreInstrumentElement : Element
     {
 
+        const string className = "ScoreInstrumentElement";
         string id = "";
         string instrumentSound = "";
         string instrumentName = "";
@@ -42,7 +43,8 @@ namespace MusicXmlReaderModel
         /// <param name="node"></param>
         private ScoreInstrumentElement(XmlNode node)
         {
-            
+            const string functionName = "ScoreInstrumentElement";
+
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)
             {
@@ -72,7 +74,8 @@ namespace MusicXmlReaderModel
                         solo = n.InnerText;
                         break;
                     case "virtual-instrument":
-                        virtualInstrument = n.InnerText;                   
+                        virtualInstrument = n.InnerText;
+                        Logger.LogOnce(string.Format("{0}.{1}: Found Unsupported element 'virtual-instrument'='{2}'", className, functionName, virtualInstrument));                   
                         break;
                     default:
                         Logger.Log(string.Format("ScoreInstrumentElement: Unsupported element {0}", n.InnerText));
