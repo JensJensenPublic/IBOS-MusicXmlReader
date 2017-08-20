@@ -26,6 +26,9 @@ namespace JSJ.MusicSynthesis
         Thirteenth = 21 // ??
     };
 
+    // For General MIDI Level 2 see: 
+    // https://en.wikipedia.org/wiki/General_MIDI_Level_2#Percussive
+
     // https://www.midi.org/specifications/item/gm-level-1-sound-set
     // http://www.music.mcgill.ca/~ich/classes/mumt306/StandardMIDIfileformat.html
     // On MIDI Channel 10, each MIDI Note number("Key#") corresponds to a different drum sound, as shown below.
