@@ -828,7 +828,8 @@ namespace MusicXmlReaderModel
                 MidiInstrumentElement midiInstrumentElement = scorePartElement.GetMidiInstrument(this.InstrumentElement.Id);
                 ScoreInstrumentElement scoreInstrumentElement= scorePartElement.GetScoreInstrument(this.InstrumentElement.Id);
                 // int nnn = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
-                this.midiUnpitchedInstrumentNumber = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
+#warning Verify that we need to convert from base 1 to base 1 !
+                this.midiUnpitchedInstrumentNumber = midiInstrumentElement.MidiUnpitchedInstrumentNumber - 1; // https://musescore.org/en/node/89756
                 this.scoreUnpitchedInstrumentName = scoreInstrumentElement.InstrumentName;
 
                 // Log varions unusual conditions using varinats of the same formatstring
