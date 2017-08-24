@@ -664,7 +664,7 @@ namespace MusicXmlReaderModel
             partDescriptionList = PartDescriptionList.Create(allMusicXmlObjecsts, numberOfParts);
             divisions = 24; // TODO compute!
             timeDescriptionList = TimeDescriptionList.Create(partDescriptionList, divisions);
-            currentStatusInformation = StatusInformation.Create();
+            currentStatusInformation = StatusInformation.Create(MusicPlayer.defaultMusicPlayerTempo);
             eventDescriptionList = EventDescriptionList.Create(timeDescriptionList, numberOfParts, userSettings, currentStatusInformation);
         }
 

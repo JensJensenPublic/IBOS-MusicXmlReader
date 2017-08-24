@@ -148,8 +148,10 @@ namespace MusicXmlReaderModel
         // NOTE!!! Do not forget to add to the Copy-constructor !!!
 
         // Prevent construction
-        private StatusInformation()
-        { }
+        private StatusInformation(float tempo)
+        {
+            this.CurrentSoundElement = SoundElement.Create(tempo);
+        }
 
 
         private StatusInformation (StatusInformation statusInformation)
@@ -237,9 +239,9 @@ namespace MusicXmlReaderModel
             return s;
         }
 
-        public static StatusInformation Create()
+        public static StatusInformation Create(float tempo)
         {
-            return new StatusInformation();
+            return new StatusInformation(tempo);
         }
 
 

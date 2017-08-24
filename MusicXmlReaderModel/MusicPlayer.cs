@@ -20,7 +20,7 @@ namespace MusicXmlReaderUI
     public class MusicPlayer
     {
         string className = "MusicPlayer";
-        const int defaultMusicPlayerTempo = 120; // Quarter notes per minute.  Use 120 as a default. Same as MuseScore does !
+        public static int defaultMusicPlayerTempo = 120; // Quarter notes per minute.  Use 120 as a default. Same as MuseScore does !
         //MidiNote latestNotePlayed = null;
         MidiChord latestHarmonyPlayed = null;
         MidiOut midiOut = null;

@@ -13,8 +13,8 @@ namespace MusicXmlReaderModel
         //                              //  If 0, the sound-generating program should prompt the user at the time of compiling a sound (MIDI) file. 
         private bool damperPedal;
         private float dynamics = 100; // Dynamics(or MIDI velocity) are expressed as a percentage of the default forte value(90 for MIDI 1.0).
-        private float tempoValue = 60;  // Tempo is expressed in quarter notes per minute. Use 60 as default
-        private bool  tempoValid;        // This Soundelement contains a valid tempo
+        private float tempoValue;  // Tempo is expressed in quarter notes per minute. Use 60 as default
+        private bool  tempoValid; // This Soundelement contains a valid tempo
 
         public float TempoValue
         {
@@ -43,8 +43,11 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
-        private SoundElement()
-        { }
+        private SoundElement(float tempo)
+        {
+            this.tempoValue = tempo;
+            this.tempoValid = true;
+        }
         
 
         /// <summary>
@@ -58,13 +61,20 @@ namespace MusicXmlReaderModel
             {
                 switch (a.Name)
                 {
-                    case "tempo": tempoValid =  Utilities.Parse(a.Value, ref tempoValue, (float)0, (float)float.MaxValue, "SoundElement: Invalid value of tempo"); break;
+                    case "tempo":  tempoValid =  Utilities.Parse(a.Value, ref tempoValue, (float)0, (float)float.MaxValue, "SoundElement: Invalid value of tempo"); break;
                     case "damper-pedal":        Utilities.ParseYesNoAttributeValue(functionName, a.Name, a.Value, ref damperPedal); break;
                     case "dynamics":            Utilities.Parse(a.Value, ref dynamics, (float)0, (float) float.MaxValue, "SoundElement: Invalid value of dynamics"); break;
                     default: Logger.LogOnce(string.Format("{0}.{1} Unsupported attribute. Name='{2}' Value= '{3}'", className, functionName, a.Name, a.Value)); break;                                       
                 }
             }
         }
+
+
+        public static SoundElement Create(float tempo)
+        {
+            return new SoundElement(tempo);
+        }
+
 
         public static SoundElement Create(XmlNode node)
         {
