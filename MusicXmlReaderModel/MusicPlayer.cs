@@ -342,12 +342,14 @@ namespace MusicXmlReaderUI
                 if (null != noteElement.InstrumentElement)
                 {
                     // If the noteElement contains information about the instrument, use that
-                    unpitchedMidiInstrument = (UnpitchedMidiInstrumentEnum) noteElement.MidiUnpitchedInstrumentNumber; 
+                    unpitchedMidiInstrument = (UnpitchedMidiInstrumentEnum) noteElement.MidiUnpitchedInstrumentNumber;
+                    //Logger.Log(string.Format("{0}.{1}: From note",className,functionName));
                 }
                 else
                 {
                     // Otherwise default to the instrument in the ScorePartElement
                     unpitchedMidiInstrument = (UnpitchedMidiInstrumentEnum)noteElement.ScorePartElement.MidiUnpitchedInstrumentNumber;
+                    Logger.LogOnce(string.Format("{0}.{1}: NoteElement.InstrumentElement is null", className, functionName));
                 }
                 // Neither Step, Alter, Octave nor Transpose are needed
                 return new MidiNote(unpitchedMidiInstrument, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
