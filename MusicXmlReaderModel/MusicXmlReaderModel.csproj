@@ -60,6 +60,7 @@
     <Compile Include="Elements\RootElement.cs" />
     <Compile Include="Elements\SlashElement.cs" />
     <Compile Include="Elements\UnpitchedElement.cs" />
+    <Compile Include="Elements\VirtualInstrumentElement.cs" />
     <Compile Include="MetaInformation.cs" />
     <Compile Include="DebugTools.cs" />
     <Compile Include="Elements\AccidentalElement.cs" />

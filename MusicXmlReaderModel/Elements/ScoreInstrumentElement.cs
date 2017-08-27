@@ -11,7 +11,7 @@ namespace MusicXmlReaderModel
         string instrumentName = "";
         string instrumentAbbreviation = "";
         string solo = "";
-        string virtualInstrument = "";
+        VirtualInstrumentElement virtualInstrument;
 
         public string Id
         {
@@ -74,8 +74,9 @@ namespace MusicXmlReaderModel
                         solo = n.InnerText;
                         break;
                     case "virtual-instrument":
-                        virtualInstrument = n.InnerText;
-                        Logger.LogOnce(string.Format("{0}.{1}: Found Unsupported element 'virtual-instrument'='{2}'", className, functionName, virtualInstrument));                   
+                        virtualInstrument = VirtualInstrumentElement.Create(n);
+                        //virtualInstrument = n.InnerText;
+                        //Logger.LogOnce(string.Format("{0}.{1}: Found Unsupported element 'virtual-instrument'='{2}'", className, functionName, virtualInstrument));                   
                         break;
                     default:
                         Logger.Log(string.Format("ScoreInstrumentElement: Unsupported element {0}", n.InnerText));
