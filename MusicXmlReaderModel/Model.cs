@@ -156,6 +156,7 @@ namespace MusicXmlReaderModel
                     status = string.Format("{0} {1}", ResourcesForModel.Status_BuildingDataStructuresFor, xmlFileName);
                     WriteStatusInformation(status); 
                     Init();  // Initialize the basic Model data structures.
+                    musicPlayer.ResetInstrumentMapping(); // Initialize the MusicPlayer data structures
                     theMusicXmlFileName = fullXmlFileName;
                     status = string.Format("{0} {1}", xmlFileName,ResourcesForModel.Status_WasSuccessfullyLoaded);
                     WriteStatusInformation(status);
@@ -361,13 +362,7 @@ namespace MusicXmlReaderModel
                     this.currentPartId = partElement.PartId;
                     // Look up the partition in the partList
                     this.currentScorePartElement = partList.GetPartFromId(partElement.PartId);
-                    // Set up the the MusicPlayer to use the specified midi program for the specified midiChannel
-                    if ((0 != this.currentScorePartElement.MidiChannel) && (0 != this.currentScorePartElement.MidiProgram))
-                        {
-#warning TODO: The instrument should NOT be changed during parsing, but during music playing !!!!
-                        // TO DO The instrument should NOT be changed during parsing, but during music playing !!!!
-                        musicPlayer.ChangeInstrument(this.currentScorePartElement.MidiChannel, this.currentScorePartElement.MidiProgram);
-                        }
+                    // Intialization of instruments has been moved to MusicPlayer (where it belongs)
                     break;
                 case "work":
                     SimpleTextElement workElement = SimpleTextElement.Create(node, "Titel"); // TODO: Localize

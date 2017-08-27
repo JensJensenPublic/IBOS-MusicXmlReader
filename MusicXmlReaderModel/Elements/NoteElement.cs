@@ -376,6 +376,14 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public int MidiProgram
+        {
+            get
+            {
+                return scorePartElement.MidiProgram;
+            }
+        }
+
         public float MidiVolume
         {
             get

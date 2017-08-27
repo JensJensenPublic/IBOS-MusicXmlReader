@@ -50,6 +50,8 @@ namespace MusicXmlReaderUI
         float userTempoFactor = (float)1;
         //int latestSelectedIndex = -1; // Used to avoid playing notes only because a filter has changed
         object latestSelectedObject = null; // Used to avoid playing notes only because a filter has changed
+        int[] currentMidiInstruments = new int[MidiCommand.MumberOfMidiChannels+1]; // Midi Channels are numbered from 1 to 17 (not from 0 to 16)
+
 
         /// <summary>
         /// Constructor
@@ -61,6 +63,7 @@ namespace MusicXmlReaderUI
             this.objects = objects;
             Logger.Log(string.Format("{0}.{1} Initializing tempo to {2}", className, functionName, defaultMusicPlayerTempo));
             this.tempo = defaultMusicPlayerTempo; // Quarter notes per minute.  Use 60 as a default
+            ResetInstrumentMapping();
             // Temp start
             //MidiCommand midiCommand = new MidiCommand();
             //midiCommand.ChangeInstrument(19, midiOut); // 19 = Guitar
@@ -75,33 +78,50 @@ namespace MusicXmlReaderUI
 
         }
 
-        ///// <summary>
-        ///// Simple impementation for changing instrument for all channels!
-        ///// See instrument numbers at
-        ///// https://en.wikipedia.org/wiki/General_MIDI
-        ///// TO DO: refine as needed.
-        ///// </summary>
-        ///// <param name="instrument"></param>
-        //public void ChangeInstrumentForAllChannels(int instrument)
-        //{
-        //    MidiCommand midiCommand = new MidiCommand();
-        //    midiCommand.ChangeInstrument(instrument,this.midiOut); // 20 = Church Organ
-        //}
-
+#warning TODO call this whenever a new file is loaded.
 
         /// <summary>
-        /// Simple implementation for changing instrument for a single midi channel
-        /// See instrument numbers at
-        /// https://en.wikipedia.org/wiki/General_MIDI
+        /// This method must be called whenever a new MusicXml file is loaded
+        /// Needed to assure that the right midi instrument is assigned to each midi channel
         /// </summary>
-        /// <param name="channel">Must be an integer in [1..16]</param>
-        /// <param name="instrument">Must be an integer in [1.127]</param>
-        public void ChangeInstrument(int channel, int instrument)
+        public void ResetInstrumentMapping()
+        {
+            for (int i = 0; (i < currentMidiInstruments.Length); i++)
+            {
+                currentMidiInstruments[i] = -1;
+            }
+        }
+
+
+    ///// <summary>
+    ///// Simple impementation for changing instrument for all channels!
+    ///// See instrument numbers at
+    ///// https://en.wikipedia.org/wiki/General_MIDI
+    ///// TO DO: refine as needed.
+    ///// </summary>
+    ///// <param name="instrument"></param>
+    //public void ChangeInstrumentForAllChannels(int instrument)
+    //{
+    //    MidiCommand midiCommand = new MidiCommand();
+    //    midiCommand.ChangeInstrument(instrument,this.midiOut); // 20 = Church Organ
+    //}
+
+
+    /// <summary>
+    /// Simple implementation for changing instrument for a single midi channel
+    /// See instrument numbers at
+    /// https://en.wikipedia.org/wiki/General_MIDI
+    /// </summary>
+    /// <param name="channel">Must be an integer in [1..16]</param>
+    /// <param name="instrument">Must be an integer in [1.127]</param>
+    public void ChangeInstrument(int channel, int instrument)
         {
             Logger.Log(string.Format("MusicPlayer.ChangeInstrument(channel={0} instrument={1})", channel, instrument));
             MidiCommand midiCommand = new MidiCommand();
             midiCommand.ChangeInstrument(channel, instrument, this.midiOut);
         }
+
+        
 
 
         /// <summary>
@@ -332,6 +352,8 @@ namespace MusicXmlReaderUI
         MidiNote CreateMidinote(NoteElement noteElement, MidiOut midiout)
         {
             string functionName = "CreateMidinote";
+
+
             if (noteElement.UnPitched)
             {
 
@@ -356,7 +378,17 @@ namespace MusicXmlReaderUI
             }
             else
             {
+                // The following code has been moved from Model.cs,    WriteElement(XmlNode node)   case "part":
                 // This is a normal, pitched note.
+                // First set up for a new midi instrument if needed.
+                int midiChannel = noteElement.MidiChannel;
+                int midiProgram = noteElement.MidiProgram;
+                if (midiProgram != this.currentMidiInstruments[midiChannel])
+                {
+                    Logger.Log(string.Format("{0}.{1}: Changing MidiInstrument[{2}] from {3} to {4}", className, functionName, midiChannel, currentMidiInstruments[midiChannel], midiProgram));
+                    ChangeInstrument(midiChannel, midiProgram);
+                    this.currentMidiInstruments[midiChannel] = midiProgram;
+                }
                 return new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut); // 161
             }
         }
