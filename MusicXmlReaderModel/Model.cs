@@ -146,7 +146,7 @@ namespace MusicXmlReaderModel
                     string status = "";
                     metaInformation = MetaInformation.Create();
                     metaInformation.FileName = MetaInfoItem.Create(ResourcesForModel.MetaInfoText_FileName, Path.GetFileName(fullXmlFileName));
-                    Logger.Log(string.Format("{0}.{1}: Loaded '{2}'", className, functionName, Path.GetFileName(fullXmlFileName)));
+                    Logger.Log(string.Format("{0}.{1}: Loaded >>>>>>>>>> '{2}' <<<<<<<<<<", className, functionName, Path.GetFileName(fullXmlFileName)));
                     Logger.Log(string.Format("{0}.{1}: From   '{2}'", className, functionName,Path.GetDirectoryName(fullXmlFileName)));
                     allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file
                     status = string.Format("{0} {1}", ResourcesForModel.Status_Interpreting, xmlFileName);

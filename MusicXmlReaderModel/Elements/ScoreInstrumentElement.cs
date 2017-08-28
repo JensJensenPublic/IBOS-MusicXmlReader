@@ -21,11 +21,36 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public bool IsVirtualInstrument
+        {
+            get
+            {
+                return ((null != virtualInstrument) && (!string.IsNullOrEmpty(virtualInstrument.VirtualName)));
+            }
+        }
+
         public string InstrumentName
         {
             get
             {
-                return instrumentName;
+                string functionName = "InstrumentName";
+                string result = "";
+                int count = 0;
+                if (!string.IsNullOrEmpty(instrumentName)) // Lowest priority
+                {
+                    result = instrumentName;
+                    count++;
+                }
+                if (IsVirtualInstrument) // Highest priority
+                {
+                    result = virtualInstrument.VirtualName;
+                    count++;                  
+                }
+                if (0 == count)
+                {
+                    Logger.LogOnce(string.Format("{0}.{1} No Instrument name found.", className, functionName));
+                }
+                return result;
             }
         }
 
