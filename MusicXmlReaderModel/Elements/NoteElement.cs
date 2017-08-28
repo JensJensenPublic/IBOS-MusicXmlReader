@@ -834,10 +834,19 @@ namespace MusicXmlReaderModel
                 }
 
                 MidiInstrumentElement midiInstrumentElement = scorePartElement.GetMidiInstrument(this.InstrumentElement.Id);
-                ScoreInstrumentElement scoreInstrumentElement= scorePartElement.GetScoreInstrument(this.InstrumentElement.Id);
+                ScoreInstrumentElement scoreInstrumentElement = scorePartElement.GetScoreInstrument(this.InstrumentElement.Id);
                 // int nnn = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
+                if (null == midiInstrumentElement)
+                {
+#warning TODO Make a real implementation of sound from virtual instruments !
+                    Logger.LogOnce(string.Format("{0}.{1}: MidiInstrumentElement is null. Using default value", className, functionName));
+                    this.midiUnpitchedInstrumentNumber = 50 - 1;
+                }
+                else
+                { 
 #warning Verify that we need to convert from base 1 to base 0 !
-                this.midiUnpitchedInstrumentNumber = midiInstrumentElement.MidiUnpitchedInstrumentNumber - 1; // https://musescore.org/en/node/89756
+                    this.midiUnpitchedInstrumentNumber = midiInstrumentElement.MidiUnpitchedInstrumentNumber - 1; // https://musescore.org/en/node/89756
+                }
                 this.scoreUnpitchedInstrumentName = scoreInstrumentElement.InstrumentName;
 
                 // Log varions unusual conditions using varinats of the same formatstring
