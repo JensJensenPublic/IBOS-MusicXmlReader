@@ -840,7 +840,8 @@ namespace MusicXmlReaderModel
                 {
 #warning TODO Make a real implementation of sound from virtual instruments !
                     Logger.LogOnce(string.Format("{0}.{1}: MidiInstrumentElement is null. Using default value", className, functionName));
-                    this.midiUnpitchedInstrumentNumber = 50 - 1;
+                    this.midiUnpitchedInstrumentNumber = - 1; // Let the MusicPlayer decide what do do !
+                    // this.midiUnpitchedInstrumentNumber = 50 - 1;
                 }
                 else
                 { 
