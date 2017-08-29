@@ -15,6 +15,11 @@ namespace MusicXmlReaderModel
         private TransposeElement transposeElement;
         private bool hasNotes; // Used by  MusicBraille to show an octave mark with first note in each part
 
+        private string identification;
+        private string partNameDispley;
+        private string partAbbreviation;
+        private string partAbbreviationDisplay;
+
         private List<ScoreInstrumentElement> scoreInstruments = new List<ScoreInstrumentElement>() ;
         private List<MidiInstrumentElement> midiInstruments = new List<MidiInstrumentElement>();
 
@@ -131,9 +136,18 @@ namespace MusicXmlReaderModel
                         break;
 
                     case "identification":
+                        identification = n.InnerText;
+                        break; 
                     case "part-name-display":
+                        partNameDispley = n.InnerText;
+                        break;
                     case "part-abbreviation":
+                        partAbbreviation = n.InnerText;
+                        break;
                     case "part-abbreviation-display":
+                        partAbbreviationDisplay = n.InnerText;
+                        break;
+
                     case "group":
                         Logger.Log(string.Format("{0}.{1}: Unimplemented element found: Name={2} InnerText={3}", className, functionName, n.Name, n.InnerText));
                         break;
@@ -149,7 +163,7 @@ namespace MusicXmlReaderModel
             {
                 midiInstrumentElement = MidiInstrumentElement.CreateDefault();
             }
-            
+
         }
 
         public static ScorePartElement Create(XmlNode node)
@@ -266,6 +280,39 @@ namespace MusicXmlReaderModel
             set
             {
                 hasNotes = value;
+            }
+        }
+
+        public string Identification
+        {
+            get
+            {
+                return identification;
+            }
+        }
+
+        public string PartNameDispley
+        {
+            get
+            {
+                return partNameDispley;
+            }
+        }
+
+        public string PartAbbreviation
+        {
+            get
+            {
+                return partAbbreviation;
+            }
+        }
+
+
+        public string PartAbbreviationDisplay
+        {
+            get
+            {
+                return partAbbreviationDisplay;
             }
         }
     }
