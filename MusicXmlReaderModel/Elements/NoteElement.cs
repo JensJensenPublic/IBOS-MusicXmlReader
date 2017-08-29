@@ -857,9 +857,9 @@ namespace MusicXmlReaderModel
 
 
                 if (!MidiNote.IsKnownUnpitchedMidiInstrument((UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber))
-                {
-                    const string logFormatString = "{0}.{1}: Creating unpitched MidiNote for unexpected {2}={3} in '{4}'";
-                    Logger.LogOnce(string.Format(logFormatString, className, functionName,"MidiInstrument", midiUnpitchedInstrumentNumber, Model.TheStaticXmlFileName));
+                {      
+                    Logger.LogOnce(string.Format("{0}.{1}: Creating unpitched MidiNote for unexpected MidiInstrument={2} MidiProgram={3} in '{4}'",
+                        className, functionName, midiUnpitchedInstrumentNumber, MidiProgram,  Model.TheStaticXmlFileName));
                 }         
 
             }
