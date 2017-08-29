@@ -827,7 +827,7 @@ namespace MusicXmlReaderModel
             // We need to be sure that all elements have been interpreted before we can handle unpitched notes.
             if (unpitched)
             {
-
+                const string logFormatString = "{0}.{1}: Creating unpitched MidiNote for unexpected {2}={3}";
                 if (null == scorePartElement)
                 {
                     return;
@@ -838,24 +838,23 @@ namespace MusicXmlReaderModel
                 // int nnn = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
                 if (scoreInstrumentElement.IsVirtualInstrument)
                 {
-#warning TODO Make a real implementation of sound from virtual instruments !
-                    Logger.LogOnce(string.Format("{0}.{1}: MidiInstrumentElement is null. Using default value", className, functionName));      
-                    this.midiUnpitchedInstrumentNumber = (int)GetUnpitchedMidiInstrumentNumber(scoreInstrumentElement.VirtualInstrumentElement);        
-                    // We also need to use channel 10 !                
+#warning TODO Make a real implementation of sound from virtual instruments !    
+                    this.midiUnpitchedInstrumentNumber = (int)GetUnpitchedMidiInstrumentNumber(scoreInstrumentElement.VirtualInstrumentElement);
                 }
                 else
                 { 
 #warning Verify that we need to convert from base 1 to base 0 !
                     this.midiUnpitchedInstrumentNumber = midiInstrumentElement.MidiUnpitchedInstrumentNumber - 1; // https://musescore.org/en/node/89756
+                    if (MidiNote.MidiChannelForUnpitchedInstruments != this.MidiChannel) // Non-virtual unpiched notes must be assigned to channel 10
+                    {   
+                        Logger.LogOnce(string.Format(logFormatString, className, functionName, "MidiChannel", MidiChannel));
+                    }
+
                 }
                 this.scoreUnpitchedInstrumentName = scoreInstrumentElement.InstrumentName;
 
                 // Log varions unusual conditions using varinats of the same formatstring
-                const string logFormatString = "{0}.{1}: Creating unpitched MidiNote for unexpected {2}={3}";
-                if (MidiNote.MidiChannelForUnpitchedInstruments != this.MidiChannel)
-                {
-                    Logger.LogOnce(string.Format(logFormatString, className, functionName,"MidiChannel",MidiChannel));
-                }
+
 
                 if (!MidiNote.IsKnownUnpitchedMidiInstrument((UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber))
                 {
