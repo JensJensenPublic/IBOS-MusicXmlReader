@@ -11,7 +11,7 @@ namespace MusicXmlReaderModel
         string instrumentName = "";
         string instrumentAbbreviation = "";
         string solo = "";
-        VirtualInstrumentElement virtualInstrument;
+        VirtualInstrumentElement virtualInstrumentElement;
 
         public string Id
         {
@@ -25,9 +25,19 @@ namespace MusicXmlReaderModel
         {
             get
             {
-                return ((null != virtualInstrument) && (!string.IsNullOrEmpty(virtualInstrument.VirtualName)));
+                return ((null != virtualInstrumentElement) && (!string.IsNullOrEmpty(virtualInstrumentElement.VirtualName)));
             }
         }
+
+        public VirtualInstrumentElement VirtualInstrumentElement
+        {
+
+            get
+            {
+                return virtualInstrumentElement;
+            }
+        }
+
 
         public string InstrumentName
         {
@@ -43,7 +53,7 @@ namespace MusicXmlReaderModel
                 }
                 if (IsVirtualInstrument) // Highest priority
                 {
-                    result = virtualInstrument.VirtualName;
+                    result = virtualInstrumentElement.VirtualName;
                     count++;                  
                 }
                 if (0 == count)
@@ -99,7 +109,7 @@ namespace MusicXmlReaderModel
                         solo = n.InnerText;
                         break;
                     case "virtual-instrument":
-                        virtualInstrument = VirtualInstrumentElement.Create(n);
+                        virtualInstrumentElement = VirtualInstrumentElement.Create(n);
                         //virtualInstrument = n.InnerText;
                         //Logger.LogOnce(string.Format("{0}.{1}: Found Unsupported element 'virtual-instrument'='{2}'", className, functionName, virtualInstrument));                   
                         break;
@@ -119,7 +129,7 @@ namespace MusicXmlReaderModel
         public override string ToString() // Only used by .cmd version. Not localized
         {
             return (string.Format("ScoreInstrument: Id='{0}' Sound='{1}' Navn='{2}' Forkortelse='{3}' Solo='{4}' VirtualInstrument='{5}'",
-                                   id, instrumentSound, instrumentName, instrumentAbbreviation, solo, virtualInstrument));
+                                   id, instrumentSound, instrumentName, instrumentAbbreviation, solo, virtualInstrumentElement));
         }
     }
 }

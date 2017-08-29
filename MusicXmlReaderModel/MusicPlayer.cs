@@ -373,8 +373,8 @@ namespace MusicXmlReaderUI
                     unpitchedMidiInstrument = (UnpitchedMidiInstrumentEnum)noteElement.ScorePartElement.MidiUnpitchedInstrumentNumber;
                     Logger.LogOnce(string.Format("{0}.{1}: NoteElement.InstrumentElement is null", className, functionName));
                 }
-                // Neither Step, Alter, Octave nor Transpose are needed
-                return new MidiNote(unpitchedMidiInstrument, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
+                // Neither Step, Alter, Octave nor Transpose are needed. Use midi channel 10 for unpitched notes !           
+                return new MidiNote(unpitchedMidiInstrument, noteElement.DynamicsIntValue, 10, midiOut);
             }
             else
             {
@@ -392,7 +392,6 @@ namespace MusicXmlReaderUI
                 return new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut); // 161
             }
         }
-
 
 
         /// <summary>

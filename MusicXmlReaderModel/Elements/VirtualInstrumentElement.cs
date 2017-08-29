@@ -13,7 +13,7 @@ namespace MusicXmlReaderModel
     /// <summary>
     /// https://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-virtual-instrument.htm
     /// </summary>
-    class VirtualInstrumentElement : Element
+    public class VirtualInstrumentElement : Element
     {
         const string className = "VirtualInstrumentElement";
 

@@ -836,12 +836,12 @@ namespace MusicXmlReaderModel
                 MidiInstrumentElement midiInstrumentElement = scorePartElement.GetMidiInstrument(this.InstrumentElement.Id);
                 ScoreInstrumentElement scoreInstrumentElement = scorePartElement.GetScoreInstrument(this.InstrumentElement.Id);
                 // int nnn = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
-                if (null == midiInstrumentElement)
+                if (scoreInstrumentElement.IsVirtualInstrument)
                 {
 #warning TODO Make a real implementation of sound from virtual instruments !
-                    Logger.LogOnce(string.Format("{0}.{1}: MidiInstrumentElement is null. Using default value", className, functionName));
-                    this.midiUnpitchedInstrumentNumber = - 1; // Let the MusicPlayer decide what do do !
-                    // this.midiUnpitchedInstrumentNumber = 50 - 1;
+                    Logger.LogOnce(string.Format("{0}.{1}: MidiInstrumentElement is null. Using default value", className, functionName));      
+                    this.midiUnpitchedInstrumentNumber = (int)GetUnpitchedMidiInstrumentNumber(scoreInstrumentElement.VirtualInstrumentElement);        
+                    // We also need to use channel 10 !                
                 }
                 else
                 { 
@@ -865,6 +865,34 @@ namespace MusicXmlReaderModel
             }
 
         }
+
+
+        private UnpitchedMidiInstrumentEnum GetUnpitchedMidiInstrumentNumber(VirtualInstrumentElement virtualInstrumentElement)
+        {
+            const string functionName = "GetUnpitchedMidiInstrumentNumber";
+            UnpitchedMidiInstrumentEnum result = UnpitchedMidiInstrumentEnum.SideStick;
+            if (null != virtualInstrumentElement)
+            {
+                switch (virtualInstrumentElement.VirtualName)
+                {
+                    case "Woodblocks":
+                        result = UnpitchedMidiInstrumentEnum.LowConga; break;
+                    case "Orchestral percussion":
+                        result = UnpitchedMidiInstrumentEnum.CrashCymbal1; break;                
+                    default:
+                        Logger.LogOnce(string.Format("{0}.{1}: Unsupported virtual instrument='{2}'.'{3}'", className, functionName, virtualInstrumentElement.VirtualLibrary, virtualInstrumentElement.VirtualName));
+                        break;
+                }
+
+            }
+            Logger.LogOnce(string.Format("{0}.{1}: returned '{2}' for '{3}'.'{4}'", className, functionName, result, virtualInstrumentElement.VirtualLibrary, virtualInstrumentElement.VirtualName));
+            return result;
+        }
+
+
+
+
+
 
         /// <summary>
         /// Generate a log entry if the value for CommonDivisions is not large enough!
