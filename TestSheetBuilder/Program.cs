@@ -79,6 +79,8 @@ namespace TestSheetBuilder
                 sb.Append(string.Format("<duration>{0}</duration>", 1)); // In this way we can keep everything inside one measure!
                 sb.Append(string.Format("<instrument id=\"P{0}-I{1}\"/>", part,instrument));
                 sb.Append(string.Format("<voice>{0}</voice>", 1));
+                sb.Append(string.Format("<type>{0}</type>","whole"));
+
                 sb.Append(string.Format("<stem>{0}</stem>", "up"));
 
                 sb.Append(string.Format("<lyric>"));
