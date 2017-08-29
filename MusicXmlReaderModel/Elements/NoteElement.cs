@@ -827,7 +827,6 @@ namespace MusicXmlReaderModel
             // We need to be sure that all elements have been interpreted before we can handle unpitched notes.
             if (unpitched)
             {
-                const string logFormatString = "{0}.{1}: Creating unpitched MidiNote for unexpected {2}={3}";
                 if (null == scorePartElement)
                 {
                     return;
@@ -846,8 +845,9 @@ namespace MusicXmlReaderModel
 #warning Verify that we need to convert from base 1 to base 0 !
                     this.midiUnpitchedInstrumentNumber = midiInstrumentElement.MidiUnpitchedInstrumentNumber - 1; // https://musescore.org/en/node/89756
                     if (MidiNote.MidiChannelForUnpitchedInstruments != this.MidiChannel) // Non-virtual unpiched notes must be assigned to channel 10
-                    {   
-                        Logger.LogOnce(string.Format(logFormatString, className, functionName, "MidiChannel", MidiChannel));
+                    {
+                        const string logFormatString = "{0}.{1}: Creating unpitched MidiNote for unexpected {2}={3} in '{4}'";
+                        Logger.LogOnce(string.Format(logFormatString, className, functionName, "MidiChannel", MidiChannel, Model.TheStaticXmlFileName));
                     }
 
                 }
@@ -858,8 +858,9 @@ namespace MusicXmlReaderModel
 
                 if (!MidiNote.IsKnownUnpitchedMidiInstrument((UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber))
                 {
-                    Logger.LogOnce(string.Format(logFormatString, className, functionName,"MidiInstrument", midiUnpitchedInstrumentNumber));
-                }          
+                    const string logFormatString = "{0}.{1}: Creating unpitched MidiNote for unexpected {2}={3} in '{4}'";
+                    Logger.LogOnce(string.Format(logFormatString, className, functionName,"MidiInstrument", midiUnpitchedInstrumentNumber, Model.TheStaticXmlFileName));
+                }         
 
             }
 

@@ -16,6 +16,7 @@ namespace MusicXmlReaderModel
     /// </summary>
     public class Model
     {
+        static public string TheStaticXmlFileName = "";
         string className = "Model";
         string theMusicXmlFileName = "";
         bool is64Bit; // This program is compiled and for the following architechture: false:x86 true:x64 
@@ -131,6 +132,7 @@ namespace MusicXmlReaderModel
                 }
 
                 xmlFileName = System.IO.Path.GetFileName(fullXmlFileName);
+                TheStaticXmlFileName = xmlFileName ; // Make the fikename globally available without a reference to a Model instance.
 
                 XmlDocument doc = new XmlDocument();
                 XmlTextReader reader = new XmlTextReader(fullXmlFileName);
