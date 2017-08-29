@@ -290,7 +290,7 @@ namespace JSJ.MusicSynthesis
             this.channelCode = (midiChannel - 1) % 16;
             startCommand = new byte[3];
             startCommand[0] = (byte)(0x90 + channelCode); // Command "Start"
-            startCommand[1] = (byte)(unpitchedMidiInstrument);
+            startCommand[1] = (byte)((int)unpitchedMidiInstrument % MidiCommand.MumberOfMidiInstruments); // 128 Midi Instruments
             startCommand[2] = (byte)velocity;
             StartPlaying(midiOut);
         }
