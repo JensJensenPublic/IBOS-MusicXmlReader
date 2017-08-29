@@ -852,7 +852,7 @@ namespace MusicXmlReaderModel
 
                 // Log varions unusual conditions using varinats of the same formatstring
                 const string logFormatString = "{0}.{1}: Creating unpitched MidiNote for unexpected {2}={3}";
-                if (10 != this.MidiChannel)
+                if (MidiNote.MidiChannelForUnpitchedInstruments != this.MidiChannel)
                 {
                     Logger.LogOnce(string.Format(logFormatString, className, functionName,"MidiChannel",MidiChannel));
                 }

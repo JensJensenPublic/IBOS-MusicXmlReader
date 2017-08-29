@@ -374,7 +374,7 @@ namespace MusicXmlReaderUI
                     Logger.LogOnce(string.Format("{0}.{1}: NoteElement.InstrumentElement is null", className, functionName));
                 }
                 // Neither Step, Alter, Octave nor Transpose are needed. Use midi channel 10 for unpitched notes !           
-                return new MidiNote(unpitchedMidiInstrument, noteElement.DynamicsIntValue, 10, midiOut);
+                return new MidiNote(unpitchedMidiInstrument, noteElement.DynamicsIntValue, MidiNote.MidiChannelForUnpitchedInstruments, midiOut);
             }
             else
             {

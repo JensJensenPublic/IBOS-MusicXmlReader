@@ -107,6 +107,7 @@ namespace JSJ.MusicSynthesis
 
     public class MidiNote
     {
+        public static int MidiChannelForUnpitchedInstruments = 10;
         int channelCode;
         private byte[] startCommand;
         object hSynthesizedTone; // Handle to the to currently playing tone representing this MidiNote
