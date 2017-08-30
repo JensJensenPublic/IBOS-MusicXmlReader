@@ -882,7 +882,7 @@ namespace MusicXmlReaderModel
                 }
 
             }
-            Logger.LogOnce(string.Format("{0}.{1}: returned '{2}' for '{3}'.'{4}'", className, functionName, result, virtualInstrumentElement.VirtualLibrary, virtualInstrumentElement.VirtualName));
+            Logger.LogOnce(string.Format("{0}.{1}: Returned '{2}' for '{3}'.'{4}'", className, functionName, result, virtualInstrumentElement.VirtualLibrary, virtualInstrumentElement.VirtualName));
             return result;
         }
 
@@ -898,9 +898,10 @@ namespace MusicXmlReaderModel
 #warning TODO fill in right contents
                     case "Bass Drum 1":
                         result = UnpitchedMidiInstrumentEnum.BassDrum1; ; break;
+                    case "Drum1 Rim":
                     case "Bass Drum 1 Rim Knock":
                         result = UnpitchedMidiInstrumentEnum.LowConga; break;
-                    case "Bass Brum 2":
+                    case "Bass Drum 2":
                         result = UnpitchedMidiInstrumentEnum.CrashCymbal1; break;
                     case "Bass Drum 2 Rim Knock":
                         result = UnpitchedMidiInstrumentEnum.LowConga; break;
@@ -908,12 +909,23 @@ namespace MusicXmlReaderModel
                         result = UnpitchedMidiInstrumentEnum.Claves; break;
                     case "Spock Rim":
                         result = UnpitchedMidiInstrumentEnum.Sticks; break;
+                    case "Drum 1":
+                    case "Drum1":
+                    case "Drum 2":
+                    case "Drum2":
+                    case "Drum 3":
+                    case "Drum3":
                     case "Drum 4":
                     case "Drum4":
+                    case "Drum 5":
+                    case "Drum5":
                         result = UnpitchedMidiInstrumentEnum.BassDrum1; ; break;
                     case "Drum 4 Buzz":
                     case "Drum4 Buzz":
                         result = UnpitchedMidiInstrumentEnum.BassDrum1; break;
+                    case "Drum 4 Rim":
+                    case "Drum4 Rim":
+                        result = UnpitchedMidiInstrumentEnum.LowConga; break;
                     case "Smash":
                         result = UnpitchedMidiInstrumentEnum.Slap; break;
                     case "Zing":
@@ -929,8 +941,12 @@ namespace MusicXmlReaderModel
                         break;
                 }
             }
-            Logger.LogOnce(string.Format("{0}.{1}: Creating unpitched MidiNote for unexpected MidiInstrument={2} MidiProgram={3} ScoreInstrumentName='{4}' Id={5} Result={6} in '{7}'",
-                className, functionName, midiUnpitchedInstrumentNumber, MidiProgram, scoreInstrumentElement.InstrumentName, scoreInstrumentElement.Id,result, Model.TheStaticXmlFileName));
+            Logger.LogOnce(string.Format("{0}.{1}: Returned '{2}' for ScoreInstrumentName='{3}'",
+                            className, functionName, result, scoreInstrumentElement.InstrumentName));
+
+            // More detailed logging
+//            Logger.LogOnce(string.Format("{0}.{1}: Creating unpitched MidiNote for unexpected MidiInstrument={2} MidiProgram={3} ScoreInstrumentName='{4}' Id={5} Result={6} in '{7}'",
+//                className, functionName, midiUnpitchedInstrumentNumber, MidiProgram, scoreInstrumentElement.InstrumentName, scoreInstrumentElement.Id,result, Model.TheStaticXmlFileName));
             return result;
         }
         
