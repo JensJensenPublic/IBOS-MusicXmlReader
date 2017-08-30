@@ -646,7 +646,7 @@ namespace MusicXmlReaderModel
             this.scorePartElement = scorePartElement;
             this.measureNumber = measureNumber;
             this.currentTimeElement = currentTimeElement;
-            const string functionName = "NoteElement constructor"; // For logging            
+            const string functionName = "NoteElement"; // For logging            
             //this.partId = scorePartElement.partId;
             //this.partNumber = scorePartElement.partNumber;
             //this.midiChannel = (null == scorePartElement.midiInstrumentElement) ? 1 : scorePartElement.midiInstrumentElement.MidiChannel; // Use channel 1 as a default
@@ -837,11 +837,13 @@ namespace MusicXmlReaderModel
                 // int nnn = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
                 if (scoreInstrumentElement.IsVirtualInstrument)
                 {
+                    // This is a virtual instrument, not a Midi instrument.
 #warning TODO Make a real implementation of sound from virtual instruments !    
                     this.midiUnpitchedInstrumentNumber = (int)GetUnpitchedMidiInstrumentNumber(scoreInstrumentElement.VirtualInstrumentElement);
                 }
                 else
                 { 
+                    // This is a Midi instrument, not a virtual instrument.
 #warning Verify that we need to convert from base 1 to base 0 !
                     this.midiUnpitchedInstrumentNumber = midiInstrumentElement.MidiUnpitchedInstrumentNumber - 1; // https://musescore.org/en/node/89756
                     if (MidiNote.MidiChannelForUnpitchedInstruments != this.MidiChannel) // Non-virtual unpiched notes must be assigned to channel 10
@@ -850,20 +852,15 @@ namespace MusicXmlReaderModel
                         Logger.LogOnce(string.Format(logFormatString, className, functionName, "MidiChannel", MidiChannel, Model.TheStaticXmlFileName));
                     }
 
+
+                    if (!MidiNote.IsKnownUnpitchedMidiInstrument((UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber))
+                    {
+                        // We do not cupport this unpitched instrument !. Replace it by a known instrument, based on the instrument name.
+                        this.midiUnpitchedInstrumentNumber = (int)GetUnpitchedMidiInstrumentNumber(scoreInstrumentElement);
+                    }
                 }
                 this.scoreUnpitchedInstrumentName = scoreInstrumentElement.InstrumentName;
-
-                // Log varions unusual conditions using varinats of the same formatstring
-
-
-                if (!MidiNote.IsKnownUnpitchedMidiInstrument((UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber))
-                {      
-                    Logger.LogOnce(string.Format("{0}.{1}: Creating unpitched MidiNote for unexpected MidiInstrument={2} MidiProgram={3} in '{4}'",
-                        className, functionName, midiUnpitchedInstrumentNumber, MidiProgram,  Model.TheStaticXmlFileName));
-                }         
-
             }
-
         }
 
 
@@ -890,9 +887,53 @@ namespace MusicXmlReaderModel
         }
 
 
-
-
-
+        private UnpitchedMidiInstrumentEnum GetUnpitchedMidiInstrumentNumber(ScoreInstrumentElement scoreInstrumentElement)
+        {
+            const string functionName = "GetUnpitchedMidiInstrumentNumber";
+            UnpitchedMidiInstrumentEnum result = UnpitchedMidiInstrumentEnum.SideStick;
+            if (null != scoreInstrumentElement)
+            {
+                switch (scoreInstrumentElement.InstrumentName)
+                {
+#warning TODO fill in right contents
+                    case "Bass Drum 1":
+                        result = UnpitchedMidiInstrumentEnum.BassDrum1; ; break;
+                    case "Bass Drum 1 Rim Knock":
+                        result = UnpitchedMidiInstrumentEnum.LowConga; break;
+                    case "Bass Brum 2":
+                        result = UnpitchedMidiInstrumentEnum.CrashCymbal1; break;
+                    case "Bass Drum 2 Rim Knock":
+                        result = UnpitchedMidiInstrumentEnum.LowConga; break;
+                    case "Spock":
+                        result = UnpitchedMidiInstrumentEnum.Claves; break;
+                    case "Spock Rim":
+                        result = UnpitchedMidiInstrumentEnum.Sticks; break;
+                    case "Drum 4":
+                    case "Drum4":
+                        result = UnpitchedMidiInstrumentEnum.BassDrum1; ; break;
+                    case "Drum 4 Buzz":
+                    case "Drum4 Buzz":
+                        result = UnpitchedMidiInstrumentEnum.BassDrum1; break;
+                    case "Smash":
+                        result = UnpitchedMidiInstrumentEnum.Slap; break;
+                    case "Zing":
+                        result = UnpitchedMidiInstrumentEnum.Vibraslap; break;
+                    case "Bass Drum 5":
+                        result = UnpitchedMidiInstrumentEnum.BassDrum1; ; break;
+                    case "Bass Drum 5 Rim Knock":
+                        result = UnpitchedMidiInstrumentEnum.LowConga; break;
+                    case "Drum1 Buzz":
+                         result = UnpitchedMidiInstrumentEnum.BassDrum1; break;
+                    default:
+                        Logger.LogOnce(string.Format("{0}.{1}: Unsupported instrument='{2}'", className, functionName, scoreInstrumentElement.InstrumentName));
+                        break;
+                }
+            }
+            Logger.LogOnce(string.Format("{0}.{1}: Creating unpitched MidiNote for unexpected MidiInstrument={2} MidiProgram={3} ScoreInstrumentName='{4}' Id={5} Result={6} in '{7}'",
+                className, functionName, midiUnpitchedInstrumentNumber, MidiProgram, scoreInstrumentElement.InstrumentName, scoreInstrumentElement.Id,result, Model.TheStaticXmlFileName));
+            return result;
+        }
+        
 
         /// <summary>
         /// Generate a log entry if the value for CommonDivisions is not large enough!
