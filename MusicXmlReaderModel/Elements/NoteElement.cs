@@ -893,49 +893,51 @@ namespace MusicXmlReaderModel
             UnpitchedMidiInstrumentEnum result = UnpitchedMidiInstrumentEnum.SideStick;
             if (null != scoreInstrumentElement)
             {
-                switch (scoreInstrumentElement.InstrumentName)
+                switch (scoreInstrumentElement.InstrumentName.Replace(" ","")) // Ignore spaces
                 {
-#warning TODO fill in right contents
-                    case "Bass Drum 1":
-                        result = UnpitchedMidiInstrumentEnum.BassDrum1; ; break;
-                    case "Drum1 Rim":
-                    case "Bass Drum 1 Rim Knock":
-                        result = UnpitchedMidiInstrumentEnum.LowConga; break;
-                    case "Bass Drum 2":
-                        result = UnpitchedMidiInstrumentEnum.CrashCymbal1; break;
-                    case "Bass Drum 2 Rim Knock":
-                        result = UnpitchedMidiInstrumentEnum.LowConga; break;
-                    case "Spock":
-                        result = UnpitchedMidiInstrumentEnum.Claves; break;
-                    case "Spock Rim":
-                        result = UnpitchedMidiInstrumentEnum.Sticks; break;
-                    case "Drum 1":
+#warning TODO fill in more contents
+
+                    // Drums:
                     case "Drum1":
-                    case "Drum 2":
                     case "Drum2":
-                    case "Drum 3":
                     case "Drum3":
-                    case "Drum 4":
                     case "Drum4":
-                    case "Drum 5":
                     case "Drum5":
                         result = UnpitchedMidiInstrumentEnum.BassDrum1; ; break;
-                    case "Drum 4 Buzz":
-                    case "Drum4 Buzz":
+                    case "BassDrum1":
+                    case "BassDrum2":
+                    case "BassDrum3":
+                    case "BassDrum4":
+                    case "BassDrum5":
+                        result = UnpitchedMidiInstrumentEnum.AcousticBassDrum; ; break;
+                    case "Drum1Rim":
+                    case "Drum2Rim":
+                    case "Drum3Rim":
+                    case "Drum4Rim":
+                    case "Drum5Rim":
+                    result = UnpitchedMidiInstrumentEnum.LowConga; break;
+                    case "Drum1Buzz":
+                    case "Drum2Buzz":
+                    case "Drum3Buzz":
+                    case "Drum4Buzz":
+                    case "Drum5Buzz":
                         result = UnpitchedMidiInstrumentEnum.BassDrum1; break;
-                    case "Drum 4 Rim":
-                    case "Drum4 Rim":
+                    case "BassDrum1RimKnock":
+                    case "BassDrum2RimKnock":
+                    case "BassDrum3RimKnock":
+                    case "BassDrum4RimKnock":
+                    case "BassDrum5RimKnock":
                         result = UnpitchedMidiInstrumentEnum.LowConga; break;
+
+                    // Other percussion instruments
+                    case "Spock":
+                        result = UnpitchedMidiInstrumentEnum.Claves; break;
+                    case "SpockRim":
+                        result = UnpitchedMidiInstrumentEnum.Sticks; break;
                     case "Smash":
                         result = UnpitchedMidiInstrumentEnum.Slap; break;
                     case "Zing":
                         result = UnpitchedMidiInstrumentEnum.Vibraslap; break;
-                    case "Bass Drum 5":
-                        result = UnpitchedMidiInstrumentEnum.BassDrum1; ; break;
-                    case "Bass Drum 5 Rim Knock":
-                        result = UnpitchedMidiInstrumentEnum.LowConga; break;
-                    case "Drum1 Buzz":
-                         result = UnpitchedMidiInstrumentEnum.BassDrum1; break;
                     default:
                         Logger.LogOnce(string.Format("{0}.{1}: Unsupported instrument='{2}'", className, functionName, scoreInstrumentElement.InstrumentName));
                         break;
