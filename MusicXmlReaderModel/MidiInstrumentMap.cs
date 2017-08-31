@@ -25,7 +25,7 @@ namespace MusicXmlReaderModel
             if ((null == virtualInstrumentElement) || (null == virtualInstrumentElement.VirtualName))
             {
 
-                Logger.LogOnce(string.Format("{0}.{1}: Unnamed virtual is mapped to {2}",
+                Logger.LogOnce(string.Format("{0}.{1}: Unnamed virtual instrument is mapped to {2}",
                     className, functionName, PitchedMidiInstrumentEnum.AcousticGrandPiano));
                 return PitchedMidiInstrumentEnum.AcousticGrandPiano;
             }
@@ -39,7 +39,10 @@ namespace MusicXmlReaderModel
                 case "trumpet": return PitchedMidiInstrumentEnum.Trumpet;
                 case "trombone": return PitchedMidiInstrumentEnum.Trombone;
                 case "classicalguitar": return PitchedMidiInstrumentEnum.AcousticGuitarNylon;
-                case "'orchestralpercussion": return PitchedMidiInstrumentEnum.Woodblock;
+                case "orchestralpercussion": return PitchedMidiInstrumentEnum.Woodblock;
+                case "acousticbass": return PitchedMidiInstrumentEnum.AcousticBass;
+                case "acousticpiano": return PitchedMidiInstrumentEnum.AcousticGrandPiano;
+                case "Woodblocks": return PitchedMidiInstrumentEnum.Woodblock;
                 default:
                     Logger.LogOnce(string.Format("{0}.{1}: Unsupported virtual instrument={2} is mapped to {3}",
                         className, functionName, virtualInstrumentElement.VirtualName, PitchedMidiInstrumentEnum.AcousticGrandPiano));
