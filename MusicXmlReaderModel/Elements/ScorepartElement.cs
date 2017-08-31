@@ -159,12 +159,23 @@ namespace MusicXmlReaderModel
                 }
             }
 
+            if ((null == midiInstrumentElement) && (null != scoreInstrumentElement) && (null != scoreInstrumentElement.VirtualInstrumentElement))
+            {
+                // Obtain a "Best effort" Midi instrument from the name of the virtual instrument
+                int midiProgram = (int) MidiInstrumentMap.GetPitchedMidiInstrument(scoreInstrumentElement.VirtualInstrumentElement);    
+                midiInstrumentElement = MidiInstrumentElement.CreateDefault(midiProgram);
+            }
+
             if (null == midiInstrumentElement)
             {
+                // Lst chance handler
                 midiInstrumentElement = MidiInstrumentElement.CreateDefault();
             }
 
         }
+
+
+
 
         public static ScorePartElement Create(XmlNode node)
         {

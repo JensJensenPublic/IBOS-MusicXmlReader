@@ -61,6 +61,12 @@ namespace MusicXmlReaderModel
             Logger.Log(string.Format("Creating default MidiInstrumentElement: midiProgram={0} midiChannel={1} midiVolume={2}", midiProgram, midiChannel, midiVolume));
         }
 
+        private MidiInstrumentElement(int midiProgram)
+        {
+            this.midiProgram = midiProgram; 
+            Logger.Log(string.Format("Creating default MidiInstrumentElement: midiProgram={0} midiChannel={1} midiVolume={2}", midiProgram, midiChannel, midiVolume));
+        }
+
         /// <summary>
         /// Private constructor, used by the Crate() method
         /// </summary>
@@ -132,6 +138,11 @@ namespace MusicXmlReaderModel
         public static MidiInstrumentElement CreateDefault()
         {
             return new MidiInstrumentElement();
+        }
+
+        public static MidiInstrumentElement CreateDefault(int midiProgram)
+        {
+            return new MidiInstrumentElement(midiProgram);
         }
 
         public override string ToString() // No need for localisation. Not used, or only used for debug messages.
