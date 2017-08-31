@@ -875,7 +875,7 @@ namespace MusicXmlReaderModel
                     case "Woodblocks":
                         result = UnpitchedMidiInstrumentEnum.LowConga; break;
                     case "Orchestral percussion":
-                        result = UnpitchedMidiInstrumentEnum.CrashCymbal1; break;                
+                        result = UnpitchedMidiInstrumentEnum.BassDrum1; break;                
                     default:
                         Logger.LogOnce(string.Format("{0}.{1}: Unsupported virtual instrument='{2}'.'{3}'", className, functionName, virtualInstrumentElement.VirtualLibrary, virtualInstrumentElement.VirtualName));
                         break;
