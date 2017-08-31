@@ -63,7 +63,8 @@ namespace MusicXmlReaderModel
 
         private MidiInstrumentElement(int midiProgram)
         {
-            this.midiProgram = midiProgram; 
+            this.midiProgram = midiProgram;
+            this.midiChannel = MidiPitchedChannelMap.GetNextChannel(midiProgram);
             Logger.Log(string.Format("Creating default MidiInstrumentElement: midiProgram={0} midiChannel={1} midiVolume={2}", midiProgram, midiChannel, midiVolume));
         }
 

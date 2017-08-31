@@ -152,7 +152,8 @@ namespace MusicXmlReaderModel
                     Logger.Log(string.Format("{0}.{1}: From   '{2}'", className, functionName,Path.GetDirectoryName(fullXmlFileName)));
                     allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file
                     status = string.Format("{0} {1}", ResourcesForModel.Status_Interpreting, xmlFileName);
-                    WriteStatusInformation(status);  
+                    WriteStatusInformation(status);
+                    MidiPitchedChannelMap.Reset();
                     Recurse(doc.ChildNodes);                          // Build  the list holding all MusicXml elements read from file
                     Logger.Log(string.Format("{0}.{1}: Parsed '{2}'", className, functionName,xmlFileName));
                     status = string.Format("{0} {1}", ResourcesForModel.Status_BuildingDataStructuresFor, xmlFileName);

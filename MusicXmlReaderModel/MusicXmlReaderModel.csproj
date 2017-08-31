@@ -120,6 +120,7 @@
     <Compile Include="Logger.cs" />
     <Compile Include="LoggerCounters.cs" />
     <Compile Include="MidiInstrumentMap.cs" />
+    <Compile Include="MidiPitchedChannelMap.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="MusicBrailleState.cs" />
     <Compile Include="MusicPlayer.cs" />

@@ -839,7 +839,7 @@ namespace MusicXmlReaderModel
                 {
                     // This is a virtual instrument, not a Midi instrument.
 #warning TODO Make a real implementation of sound from virtual instruments !    
-                    this.midiUnpitchedInstrumentNumber = (int)GetUnpitchedMidiInstrumentNumber(scoreInstrumentElement.VirtualInstrumentElement);
+                    this.midiUnpitchedInstrumentNumber = (int)MidiInstrumentMap.GetUnpitchedMidiInstrumentNumber(scoreInstrumentElement.VirtualInstrumentElement);
                 }
                 else
                 { 
@@ -856,7 +856,7 @@ namespace MusicXmlReaderModel
                     if (!MidiNote.IsKnownUnpitchedMidiInstrument((UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber))
                     {
                         // We do not cupport this unpitched instrument !. Replace it by a known instrument, based on the instrument name.
-                        this.midiUnpitchedInstrumentNumber = (int)GetUnpitchedMidiInstrumentNumber(scoreInstrumentElement);
+                        this.midiUnpitchedInstrumentNumber = (int)MidiInstrumentMap.GetUnpitchedMidiInstrumentNumber(scoreInstrumentElement);
                     }
                 }
                 this.scoreUnpitchedInstrumentName = scoreInstrumentElement.InstrumentName;
@@ -864,93 +864,6 @@ namespace MusicXmlReaderModel
         }
 
 
-        private UnpitchedMidiInstrumentEnum GetUnpitchedMidiInstrumentNumber(VirtualInstrumentElement virtualInstrumentElement)
-        {
-            const string functionName = "GetUnpitchedMidiInstrumentNumber";
-            UnpitchedMidiInstrumentEnum result = UnpitchedMidiInstrumentEnum.SideStick;
-            if (null != virtualInstrumentElement)
-            {
-                switch (virtualInstrumentElement.VirtualName)
-                {
-                    case "Woodblocks":
-                        result = UnpitchedMidiInstrumentEnum.LowConga; break;
-                    case "Orchestral percussion":
-                        result = UnpitchedMidiInstrumentEnum.BassDrum1; break;                
-                    default:
-                        Logger.LogOnce(string.Format("{0}.{1}: Unsupported virtual instrument='{2}'.'{3}'", className, functionName, virtualInstrumentElement.VirtualLibrary, virtualInstrumentElement.VirtualName));
-                        break;
-                }
-
-            }
-            Logger.LogOnce(string.Format("{0}.{1}: Returned '{2}' for '{3}'.'{4}'", className, functionName, result, virtualInstrumentElement.VirtualLibrary, virtualInstrumentElement.VirtualName));
-            return result;
-        }
-
-
-        private UnpitchedMidiInstrumentEnum GetUnpitchedMidiInstrumentNumber(ScoreInstrumentElement scoreInstrumentElement)
-        {
-            const string functionName = "GetUnpitchedMidiInstrumentNumber";
-            UnpitchedMidiInstrumentEnum result = UnpitchedMidiInstrumentEnum.SideStick;
-            if (null != scoreInstrumentElement)
-            {
-                switch (scoreInstrumentElement.InstrumentName.Replace(" ","")) // Ignore spaces
-                {
-#warning TODO fill in more contents
-
-                    // Drums:
-                    case "Drum1":
-                    case "Drum2":
-                    case "Drum3":
-                    case "Drum4":
-                    case "Drum5":
-                        result = UnpitchedMidiInstrumentEnum.BassDrum1; ; break;
-                    case "BassDrum1":
-                    case "BassDrum2":
-                    case "BassDrum3":
-                    case "BassDrum4":
-                    case "BassDrum5":
-                        result = UnpitchedMidiInstrumentEnum.AcousticBassDrum; ; break;
-                    case "Drum1Rim":
-                    case "Drum2Rim":
-                    case "Drum3Rim":
-                    case "Drum4Rim":
-                    case "Drum5Rim":
-                    result = UnpitchedMidiInstrumentEnum.LowConga; break;
-                    case "Drum1Buzz":
-                    case "Drum2Buzz":
-                    case "Drum3Buzz":
-                    case "Drum4Buzz":
-                    case "Drum5Buzz":
-                        result = UnpitchedMidiInstrumentEnum.BassDrum1; break;
-                    case "BassDrum1RimKnock":
-                    case "BassDrum2RimKnock":
-                    case "BassDrum3RimKnock":
-                    case "BassDrum4RimKnock":
-                    case "BassDrum5RimKnock":
-                        result = UnpitchedMidiInstrumentEnum.LowConga; break;
-
-                    // Other percussion instruments
-                    case "Spock":
-                        result = UnpitchedMidiInstrumentEnum.Claves; break;
-                    case "SpockRim":
-                        result = UnpitchedMidiInstrumentEnum.Sticks; break;
-                    case "Smash":
-                        result = UnpitchedMidiInstrumentEnum.Slap; break;
-                    case "Zing":
-                        result = UnpitchedMidiInstrumentEnum.Vibraslap; break;
-                    default:
-                        Logger.LogOnce(string.Format("{0}.{1}: Unsupported instrument='{2}'", className, functionName, scoreInstrumentElement.InstrumentName));
-                        break;
-                }
-            }
-            Logger.LogOnce(string.Format("{0}.{1}: Returned '{2}' for ScoreInstrumentName='{3}'",
-                            className, functionName, result, scoreInstrumentElement.InstrumentName));
-
-            // More detailed logging
-//            Logger.LogOnce(string.Format("{0}.{1}: Creating unpitched MidiNote for unexpected MidiInstrument={2} MidiProgram={3} ScoreInstrumentName='{4}' Id={5} Result={6} in '{7}'",
-//                className, functionName, midiUnpitchedInstrumentNumber, MidiProgram, scoreInstrumentElement.InstrumentName, scoreInstrumentElement.Id,result, Model.TheStaticXmlFileName));
-            return result;
-        }
         
 
         /// <summary>
