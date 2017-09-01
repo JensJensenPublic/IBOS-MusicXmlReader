@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JSJ.MusicSynthesis;
 
 namespace MusicXmlReaderModel
 {
@@ -45,9 +46,8 @@ namespace MusicXmlReaderModel
                 }
             }
 
-            // Instrumont not in use. Assign a new channel
+            // Instrument not in use. Assign a new channel
             int result = nextFreeChannel;
-#warning ToDo reuse existing channel for same instrument.
             channels[nextFreeChannel] = instrumentNumber;
             nextFreeChannel++;
             if (10 == nextFreeChannel)
@@ -58,7 +58,8 @@ namespace MusicXmlReaderModel
             {
                 nextFreeChannel = firstChannel; // Start reusing channels
             }
-            Logger.LogOnce(string.Format("{0}.{1}: Mapped Instrument={2} to Channel={3}", className, functionName, instrumentNumber, result));
+            PitchedMidiInstrumentEnum pitchedMidiInstrumentEnum = (PitchedMidiInstrumentEnum)instrumentNumber;
+            Logger.LogOnce(string.Format("{0}.{1}: Using Channel={2} for Instrument={3} ({4})", className, functionName, result,  instrumentNumber, pitchedMidiInstrumentEnum.ToString()));
             return result;
         }
 

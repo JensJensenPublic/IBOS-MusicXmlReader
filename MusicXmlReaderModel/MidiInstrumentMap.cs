@@ -42,7 +42,7 @@ namespace MusicXmlReaderModel
                 case "orchestralpercussion": return PitchedMidiInstrumentEnum.Woodblock;
                 case "acousticbass": return PitchedMidiInstrumentEnum.AcousticBass;
                 case "acousticpiano": return PitchedMidiInstrumentEnum.AcousticGrandPiano;
-                case "Woodblocks": return PitchedMidiInstrumentEnum.Woodblock;
+                case "woodblocks": return PitchedMidiInstrumentEnum.Woodblock;
                 default:
                     Logger.LogOnce(string.Format("{0}.{1}: Unsupported virtual instrument={2} is mapped to {3}",
                         className, functionName, virtualInstrumentElement.VirtualName, PitchedMidiInstrumentEnum.AcousticGrandPiano));
