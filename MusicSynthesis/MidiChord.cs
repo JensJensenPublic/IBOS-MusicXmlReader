@@ -44,8 +44,8 @@ namespace JSJ.MusicSynthesis
         static readonly Interval[] Minor7ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh };
         static readonly Interval[] MajorMinorChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.MajorSeventh };
         static readonly Interval[] Aug7ChordIntervals    = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.AugmentedFifth, Interval.MinorSeventh };
-        static readonly Interval[] HalfDim7ChordIntervals= new Interval[] { Interval.Unison, Interval.MinorThird, Interval.Fourth, Interval.MinorSeventh };
-        static readonly Interval[] FullDim7ChordIntervals= new Interval[] { Interval.Unison, Interval.MinorThird, Interval.Fourth, Interval.DiminishedSeventh };
+        static readonly Interval[] HalfDim7ChordIntervals= new Interval[] { Interval.Unison, Interval.MinorThird, Interval.Tritone, Interval.MinorSeventh };
+        static readonly Interval[] FullDim7ChordIntervals= new Interval[] { Interval.Unison, Interval.MinorThird, Interval.Tritone, Interval.DiminishedSeventh };
         // Ninths:
         static readonly Interval[] Dom9ChordIntervals    = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth };
         static readonly Interval[] Major9ChordIntervals  = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MajorSeventh, Interval.Ninth };
