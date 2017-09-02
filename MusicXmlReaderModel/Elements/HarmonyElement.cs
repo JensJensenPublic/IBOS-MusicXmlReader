@@ -2,6 +2,7 @@
 using JSJ.MusicSynthesis;
 using System.Collections.Generic;
 using MusicSynthesis;
+using System.Collections.Generic;
 
 namespace MusicXmlReaderModel
 {
@@ -220,13 +221,30 @@ namespace MusicXmlReaderModel
         public string[] ToDetailStrings()
         {
 #warning IoDo Implement
-            return new string[] {
-                "H",
-                "G",
-                "Eb",
-                "C",
-                ToLocalizedString() // Becifring Cm7
-                };
+
+            Interval[] intervals =  MidiChord.GetChordIntervals(this.chordType); // In this way we will use the same definitions for the sound and the text
+            List<string> intervalNames = new List<string>();
+            intervalNames.Add(ToLocalizedString());
+            foreach (Interval interval in intervals)
+            {
+                intervalNames.Add(interval.ToString());
+            };
+            // Transform to a format usable in the interface
+            int length = intervalNames.Count;
+            string[] result = new string[intervalNames.Count];
+            for (int i = 0; (i < length); i++)
+            {
+                result[i] = intervalNames[i];
+            }
+            return result;
+            //return new string[] {
+            //    "Seventh H",
+            //    "Fifth G",
+            //    "Third Eb",
+            //    "Root C",
+            //    "Bass E",
+            //    ToLocalizedString() // Becifring Cm7
+            //    };
         }
 
     }
