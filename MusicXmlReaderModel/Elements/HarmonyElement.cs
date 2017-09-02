@@ -217,7 +217,18 @@ namespace MusicXmlReaderModel
             return s;
         }
 
-    }
+        public string[] ToDetailStrings()
+        {
+#warning IoDo Implement
+            return new string[] {
+                "H",
+                "G",
+                "Eb",
+                "C",
+                ToLocalizedString() // Becifring Cm7
+                };
+        }
 
+    }
 }
 

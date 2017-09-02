@@ -824,7 +824,8 @@ namespace MusicXmlReader
                     if ((null != selectedEvent) && (selectedEvent is EventDescription))
                     {
                         EventDescription currentEventDescription = (listBoxTimes.Items[listBoxTimes.SelectedIndex]) as EventDescription;
-                        listBoxDetails.Items.AddRange(model.GetCurrentEventDetails(currentEventDescription));
+                        string[] items = (e.Shift) ? model.GetCurrentHarmonyDetails(currentEventDescription) : model.GetCurrentEventDetails(currentEventDescription);
+                        listBoxDetails.Items.AddRange(items);
                         int itemCount = listBoxDetails.Items.Count;
                         if (0 != itemCount)
                         {

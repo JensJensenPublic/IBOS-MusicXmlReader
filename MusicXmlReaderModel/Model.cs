@@ -887,7 +887,12 @@ namespace MusicXmlReaderModel
             return myMusicXmlDirectory;
         }
 
-
+        public string[] GetCurrentHarmonyDetails(EventDescription eventDescription)
+        {
+            HarmonyElement h = eventDescription.HarmonyElement;
+            return h.ToDetailStrings();
+        }
+                
         /// <summary>
         /// Returns detail information about the event currently selected in the main listbox, one line per part.
         /// In this way the user can investigate exactly which notes belong to which part
