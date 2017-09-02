@@ -223,28 +223,23 @@ namespace MusicXmlReaderModel
 #warning IoDo Implement
 
             Interval[] intervals =  MidiChord.GetChordIntervals(this.chordType); // In this way we will use the same definitions for the sound and the text
+            ChromaticStep root = this.chromaticRootStep;
             List<string> intervalNames = new List<string>();
             intervalNames.Add(ToLocalizedString());
             foreach (Interval interval in intervals)
             {
-                intervalNames.Add(interval.ToString());
+                int iStep = (((int)root) + ((int)interval)) % 12; // Do simple arithmetics !
+                ChromaticStep step = (ChromaticStep)(iStep);
+                intervalNames.Add(string.Format("{0} : {1}", interval.ToString(), step.ToString())); // For instance : "Third: E"
             };
             // Transform to a format usable in the interface
             int length = intervalNames.Count;
-            string[] result = new string[intervalNames.Count];
+            string[] result = new string[length];
             for (int i = 0; (i < length); i++)
             {
-                result[i] = intervalNames[i];
+                result[i] = intervalNames[i]; // Should Reverse direction in the harmony case
             }
             return result;
-            //return new string[] {
-            //    "Seventh H",
-            //    "Fifth G",
-            //    "Third Eb",
-            //    "Root C",
-            //    "Bass E",
-            //    ToLocalizedString() // Becifring Cm7
-            //    };
         }
 
     }
