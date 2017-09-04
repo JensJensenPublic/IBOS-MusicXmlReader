@@ -230,7 +230,8 @@ namespace MusicXmlReaderModel
             {
                 int iStep = (((int)root) + ((int)intervals[i])) % 12; // Do simple arithmetics !
                 ChromaticStep step = (ChromaticStep)(iStep);
-                intervalNames.Add(string.Format("{0} : {1}", intervals[i].ToString(), step.ToString())); // For instance : "Third: E"
+                string function = MidiChord.ToLocalizedChordFunction(intervals[i]);
+                intervalNames.Add(string.Format("{0} : {1}",function , step.ToString())); // For instance : "Third: E"
             };
             // Transform to a format usable in the interface
             int length = intervalNames.Count;

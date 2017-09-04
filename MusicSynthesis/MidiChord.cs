@@ -185,6 +185,34 @@ namespace JSJ.MusicSynthesis
     
         }
 
+        public static string ToLocalizedChordFunction(Interval interval)
+        {
+            switch (interval)
+            {
+                case Interval.Unison: return ResourcesForMusicSynthesis.Chord_Function_Tonic; // Tonic / Grundtone
+                case Interval.MinorSecond: return ResourcesForMusicSynthesis.Chord_Function_Minor_Second;
+                case Interval.MajorSecond: return ResourcesForMusicSynthesis.Chord_Function_Major_Second;
+                case Interval.MinorThird: return ResourcesForMusicSynthesis.Chord_Function_Minor_Third;
+                case Interval.MajorThird: return ResourcesForMusicSynthesis.Chord_Function_Major_Third;
+                case Interval.Fourth: return ResourcesForMusicSynthesis.Chord_Function_Fourth;
+                case Interval.Tritone: return ResourcesForMusicSynthesis.Chord_Function_Tritone; //  Dimished Fifth / Formindsket kvint
+                case Interval.PerfectFifth: return ResourcesForMusicSynthesis.Chord_Function_Perfect_Fifth;
+                case Interval.AugmentedFifth: return ResourcesForMusicSynthesis.Chord_Function_Augmented_Fifth;
+                // case Interval.MinorSixth: return ""; == Interval.AugmentedFifth
+                case Interval.MajorSixth: return ResourcesForMusicSynthesis.Chord_Function_Major_Sixth;
+                // case Interval.DiminishedSeventh: return ""; == Interval.MajorSixth
+                case Interval.MinorSeventh: return ResourcesForMusicSynthesis.Chord_Function_Minor_Seventh;
+                case Interval.MajorSeventh: return ResourcesForMusicSynthesis.Chord_Function_Major_Seventh;
+                case Interval.Octave: return ResourcesForMusicSynthesis.Chord_Function_Octave;
+                case Interval.MinorNinth: return ResourcesForMusicSynthesis.Chord_Function_Minor_Ninth;
+                case Interval.Ninth: return ResourcesForMusicSynthesis.Chord_Function_Ninth;
+                case Interval.Eleventh: return ResourcesForMusicSynthesis.Chord_Function_Eleventh;
+                case Interval.Thirteenth: return ResourcesForMusicSynthesis.Chord_Function_Thirteenth;
+                default: 
+                    // Log ?                   
+                    return "";
+            }
+        }
 
         public static string LocalizeChordType(ChordType chordType) // TODO Localize !!
         {

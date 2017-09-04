@@ -61,6 +61,159 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Augmented Fifth.
+        /// </summary>
+        internal static string Chord_Function_Augmented_Fifth {
+            get {
+                return ResourceManager.GetString("Chord_Function_Augmented_Fifth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eleventh.
+        /// </summary>
+        internal static string Chord_Function_Eleventh {
+            get {
+                return ResourceManager.GetString("Chord_Function_Eleventh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fourth.
+        /// </summary>
+        internal static string Chord_Function_Fourth {
+            get {
+                return ResourceManager.GetString("Chord_Function_Fourth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Major Second.
+        /// </summary>
+        internal static string Chord_Function_Major_Second {
+            get {
+                return ResourceManager.GetString("Chord_Function_Major_Second", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Major Seventh.
+        /// </summary>
+        internal static string Chord_Function_Major_Seventh {
+            get {
+                return ResourceManager.GetString("Chord_Function_Major_Seventh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Major Sixth.
+        /// </summary>
+        internal static string Chord_Function_Major_Sixth {
+            get {
+                return ResourceManager.GetString("Chord_Function_Major_Sixth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Major Third.
+        /// </summary>
+        internal static string Chord_Function_Major_Third {
+            get {
+                return ResourceManager.GetString("Chord_Function_Major_Third", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minor Ninth.
+        /// </summary>
+        internal static string Chord_Function_Minor_Ninth {
+            get {
+                return ResourceManager.GetString("Chord_Function_Minor_Ninth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minor Second.
+        /// </summary>
+        internal static string Chord_Function_Minor_Second {
+            get {
+                return ResourceManager.GetString("Chord_Function_Minor_Second", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minor Seventh.
+        /// </summary>
+        internal static string Chord_Function_Minor_Seventh {
+            get {
+                return ResourceManager.GetString("Chord_Function_Minor_Seventh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minor Third.
+        /// </summary>
+        internal static string Chord_Function_Minor_Third {
+            get {
+                return ResourceManager.GetString("Chord_Function_Minor_Third", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ninth.
+        /// </summary>
+        internal static string Chord_Function_Ninth {
+            get {
+                return ResourceManager.GetString("Chord_Function_Ninth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Octave.
+        /// </summary>
+        internal static string Chord_Function_Octave {
+            get {
+                return ResourceManager.GetString("Chord_Function_Octave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fifth.
+        /// </summary>
+        internal static string Chord_Function_Perfect_Fifth {
+            get {
+                return ResourceManager.GetString("Chord_Function_Perfect_Fifth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thirteenth.
+        /// </summary>
+        internal static string Chord_Function_Thirteenth {
+            get {
+                return ResourceManager.GetString("Chord_Function_Thirteenth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tonic.
+        /// </summary>
+        internal static string Chord_Function_Tonic {
+            get {
+                return ResourceManager.GetString("Chord_Function_Tonic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diminished Fifth.
+        /// </summary>
+        internal static string Chord_Function_Tritone {
+            get {
+                return ResourceManager.GetString("Chord_Function_Tritone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to aug.
         /// </summary>
         internal static string ChordKind_Aug {
