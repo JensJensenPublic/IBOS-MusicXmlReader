@@ -15,6 +15,16 @@ namespace TestSheetBuilder
         const string epilogFileName = "epilog.xml";
         const string testSheetFileName = "TestSheet.xml";
 
+        static string SimpleElement(string name, string value)
+        {
+            return string.Format("<{0}>{1}</{0}>\n", name, value);
+        }
+
+        static string SimpleElement(string name, int value)
+        {
+            return string.Format("<{0}>{1}</{0}>\n", name, value.ToString());
+        }
+
         static string GetPartList(int numberOfParts, int firstInstrument, int lastInstrument)
         {
             StringBuilder sb = new StringBuilder();
@@ -38,11 +48,11 @@ namespace TestSheetBuilder
                 for (int instrument = firstInstrument; (instrument <= lastInstrument); instrument++)
                 {
                     sb.Append(string.Format("<midi-instrument id=\"P{0}-I{1}\">\n", part, instrument));
-                    sb.Append(string.Format("<midi-channel>{0}</midi-channel>\n", 10));
-                    sb.Append(string.Format("<midi-program>{0}</midi-program>\n", 1));
-                    sb.Append(string.Format("<midi-unpitched>{0}</midi-unpitched>\n", instrument));
-                    sb.Append(string.Format("<volume>{0}</volume>\n", 78));
-                    sb.Append(string.Format("<pan>{0}</pan>\n",0));
+                    sb.Append(SimpleElement("midi-channel", 10));
+                    sb.Append(SimpleElement("midi-program", 1));
+                    sb.Append(SimpleElement("midi-unpitched",instrument));
+                    sb.Append(SimpleElement("volume", 78));
+                    sb.Append(SimpleElement("pan", 0));
                     sb.Append(string.Format("</midi-instrument>\n"));
                 }
 
