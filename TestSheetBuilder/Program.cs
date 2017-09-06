@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JSJ.MusicSynthesis;
 
 namespace TestSheetBuilder
 {
@@ -97,7 +98,8 @@ namespace TestSheetBuilder
                 sb.Append(string.Format("<stem>{0}</stem>\n", "up"));
 
                 sb.Append(string.Format("<lyric>\n"));
-                sb.Append(string.Format("<text>{0}</text>\n",instrument)); // Show the instrument number as text
+                string s = ((UnpitchedMidiInstrumentEnum)(instrument - 1)).ToString();
+                sb.Append(string.Format("<text>MusicXml={0} Midi={1}({2})</text>\n",instrument,instrument-1, s)); // Show the instrument number as text
                 sb.Append(string.Format("</lyric>\n"));
 
                 sb.Append(string.Format("</note>\n"));

@@ -55,6 +55,12 @@
   <ItemGroup>
     <Content Include="MusicXml\Prolog.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MusicSynthesis\MusicSynthesis.csproj">
+      <Project>{529d2c78-0fbc-4bf1-b5ae-f348695546c2}</Project>
+      <Name>MusicSynthesis</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
