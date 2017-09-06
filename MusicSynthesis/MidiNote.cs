@@ -189,6 +189,10 @@ namespace JSJ.MusicSynthesis
     // GM-compatible instruments must have the sounds on the keys shown here.
     // While many current instruments also have additional sounds above or below the range show here,
     // and may even have additional "kits" with variations of these sounds, only these sounds are supported by General MIDI Level 1 devices.
+    // NOTE:
+    // According to the example given in http://www.musicxml.com/tutorial/percussion/multiple-instruments/
+    // the Instrument number in the MusicXml file is equal to the (Midi Instrument number below) + 1 
+    // For instance A Crash Cymbal in is represented by 50 in the MusicXml file and by 49 in the table below.
     public enum UnpitchedMidiInstrumentEnum
     {
         Pitched = 0,
