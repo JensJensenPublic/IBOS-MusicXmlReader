@@ -14,6 +14,39 @@ namespace TestSheetBuilder
         const string prologFileName = "prolog.xml";
         const string epilogFileName = "epilog.xml";
         const string testSheetFileName = "TestSheet.xml";
+        static List<string> staticChords;
+
+
+        static List<string> InitChords()
+        {
+            List<string> chords = new List<string>() { };
+            chords.Add("major");
+            chords.Add("minor");
+            chords.Add("augmented");
+            chords.Add("diminished");
+            chords.Add("dominant");
+            chords.Add("major-seventh");
+            chords.Add("minor-seventh");
+            chords.Add("diminished-seventh");
+            chords.Add("augmented-seventh");
+            chords.Add("half-diminished");
+            chords.Add("major-minor");
+            chords.Add("major-sixth");
+            chords.Add("minor-sixth");
+            chords.Add("dominant-ninth");
+            chords.Add("major-ninth");
+            chords.Add("dominant-11th");
+            chords.Add("major-11th");
+            chords.Add("minor-11th");
+            chords.Add("dominant-13th");
+            chords.Add("major-13th");
+            chords.Add("minor-13th");
+            chords.Add("suspended-second");
+            chords.Add("suspended-fourth");
+            return chords;
+        }
+
+
 
         static string SimpleElement(string name, string value)
         {
@@ -51,7 +84,7 @@ namespace TestSheetBuilder
                     sb.Append(string.Format("<midi-instrument id=\"P{0}-I{1}\">\n", part, instrument));
                     sb.Append(SimpleElement("midi-channel", 10));
                     sb.Append(SimpleElement("midi-program", 1));
-                    sb.Append(SimpleElement("midi-unpitched",instrument));
+                    sb.Append(SimpleElement("midi-unpitched", instrument));
                     sb.Append(SimpleElement("volume", 78));
                     sb.Append(SimpleElement("pan", 0));
                     sb.Append(string.Format("</midi-instrument>\n"));
@@ -60,6 +93,25 @@ namespace TestSheetBuilder
                 sb.Append(string.Format("</score-part>\n"));
             }
             sb.Append("</part-list>\n");
+            return sb.ToString();
+        }
+
+
+        static string Harmony(int index)
+        {
+            if (index >= staticChords.Count)
+            {
+                return "";
+            }
+            string kind = staticChords[index];
+            StringBuilder sb = new StringBuilder();
+            sb.Append(string.Format("<harmony>\n"));
+            sb.Append(string.Format("<root>\n"));
+            sb.Append(SimpleElement("root-step", "C"));
+            sb.Append(string.Format("</root>\n"));
+            sb.Append(SimpleElement("kind", kind));
+            sb.Append(SimpleElement("staff", 1));
+            sb.Append(string.Format("</harmony>\n"));
             return sb.ToString();
         }
 
@@ -116,6 +168,10 @@ namespace TestSheetBuilder
 
                 sb.Append(string.Format("</note>\n"));
 
+                sb.Append(Harmony(instrument)); // Hack: Use instrument to vary Harmony kind !
+
+
+
                 sb.Append(string.Format("</measure>\n"));
             }
 
@@ -131,6 +187,7 @@ namespace TestSheetBuilder
             Console.WriteLine(string.Format("{0}.{1}:Starting", className, functionName));
             // The MusicXml file must be found in the execution directory.
             string prologFullFilename = Path.Combine(System.Environment.CurrentDirectory, prologFileName);
+            staticChords = InitChords();
             if (!File.Exists(prologFullFilename))
             {
                 Console.WriteLine(string.Format("{0}.{1}: {2} not found. Exiting", className, functionName, prologFullFilename));
