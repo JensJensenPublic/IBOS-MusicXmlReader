@@ -22,7 +22,7 @@ namespace TestSheetBuilder
 
         static string SimpleElement(string name, int value)
         {
-            return string.Format("<{0}>{1}</{0}>\n", name, value.ToString());
+            return SimpleElement(name, value.ToString());
         }
 
         static string GetPartList(int numberOfParts, int firstInstrument, int lastInstrument)
@@ -33,13 +33,14 @@ namespace TestSheetBuilder
             for (int part = 1; (part <= numberOfParts); part++)
             {
                 sb.Append(string.Format("<score-part id=\"P{0}\">\n", part));
-                sb.Append(string.Format("<part-name>Part{0}</part-name>\n", part));
-                sb.Append(string.Format("<part-abbreviation>P{0}</part-abbreviation>\n", part));
+                sb.Append(SimpleElement("part-name", string.Format("Part{0}", part)));
+                sb.Append(SimpleElement("part-abbreviation", string.Format("P{0}", part)));
 
                 for (int instrument = firstInstrument; (instrument <= lastInstrument); instrument++)
                 {
                     sb.Append(string.Format("<score-instrument id=\"P{0}-I{1}\">\n", part, instrument));
-                    sb.Append(string.Format("<instrument-name>Instrument{0}</instrument-name>\n", instrument));
+                    // sb.Append(string.Format("<instrument-name>Instrument{0}</instrument-name>\n", instrument));
+                    sb.Append(SimpleElement("instrument-name", string.Format("Instrument{0}", instrument)));
                     sb.Append(string.Format("</score-instrument>\n"));
                 }
 
