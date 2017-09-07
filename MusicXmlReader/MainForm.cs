@@ -824,7 +824,20 @@ namespace MusicXmlReader
                     if ((null != selectedEvent) && (selectedEvent is EventDescription))
                     {
                         EventDescription currentEventDescription = (listBoxTimes.Items[listBoxTimes.SelectedIndex]) as EventDescription;
-                        string[] items = (e.Shift) ? model.GetCurrentHarmonyDetails(currentEventDescription) : model.GetCurrentEventDetails(currentEventDescription);
+                        // For some strange reasom we can not use the Ctrl key to select between part-details and harmony-details !
+                        // When Up/Down is pressed while CTRL is down, the pressing of Ctrl is NOT reflected in e.
+                        // It works fine with SHIFT and ALT, but we want to use the CTRL key for this !
+                        string[] items;
+                        if (e.Shift)
+                        {
+                            items = model.GetCurrentEventDetails(currentEventDescription); //  Show details about current parts
+                        }
+                        else
+                        {
+                            items = model.GetCurrentHarmonyDetails(currentEventDescription); // Show details about the current harmony
+                        }
+
+
                         listBoxDetails.Items.AddRange(items);
                         int itemCount = listBoxDetails.Items.Count;
                         if (0 != itemCount)
