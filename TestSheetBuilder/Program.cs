@@ -98,16 +98,16 @@ namespace TestSheetBuilder
                 sb.Append(string.Format("<note>\n"));
 
                 sb.Append(string.Format("<unpitched>\n"));
-                sb.Append(string.Format("<display-step>F</display-step>\n"));
-                sb.Append(string.Format("<display-octave>4</display-octave>\n"));
+                sb.Append(SimpleElement("display-step", "F"));
+                sb.Append(SimpleElement("display-octave", "4"));
                 sb.Append(string.Format("</unpitched>\n"));
 
-                sb.Append(string.Format("<duration>{0}</duration>\n", 128)); 
+                sb.Append(SimpleElement("duration", 128));
                 sb.Append(string.Format("<instrument id=\"P{0}-I{1}\"/>\n", part,instrument));
-                sb.Append(string.Format("<voice>{0}</voice>\n", 1));
-                sb.Append(string.Format("<type>{0}</type>\n","whole"));
+                sb.Append(SimpleElement("voice", 1));
+                sb.Append(SimpleElement("type", "whole"));
 
-                sb.Append(string.Format("<stem>{0}</stem>\n", "up"));
+                sb.Append(SimpleElement("stem", "up"));
 
                 sb.Append(string.Format("<lyric>\n"));
                 string s = ((UnpitchedMidiInstrumentEnum)(instrument - 1)).ToString();
