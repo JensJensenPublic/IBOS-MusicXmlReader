@@ -78,16 +78,17 @@ namespace TestSheetBuilder
                 if (addAttributes)
                 {
                     sb.Append(string.Format("<attributes>\n"));
-                    sb.Append(string.Format("<divisions>{0}</divisions>\n", 32)); // A quarter note is devided into 32 divisions, each an 128th
+        
+                    sb.Append(SimpleElement("divisions",32));
 
-                    sb.Append(string.Format("<time>\n"));
-                    sb.Append(string.Format("<beats>{0}</beats>\n", 4));
-                    sb.Append(string.Format("<beat-type>{0}</beat-type>\n", 4));
+                    sb.Append(string.Format("<time>\n"));             
+                    sb.Append(SimpleElement("beats", 4));           
+                    sb.Append(SimpleElement("beat-type", 4));
                     sb.Append(string.Format("</time>\n"));
 
-                    sb.Append(string.Format("<clef>\n"));
-                    sb.Append(string.Format("<sign>{0}</sign>\n", "percussion"));
-                    sb.Append(string.Format("<line>{0}</line>\n", 2));
+                    sb.Append(string.Format("<clef>\n"));    
+                    sb.Append(SimpleElement("sign", "percussion"));   
+                    sb.Append(SimpleElement("line", 2));
                     sb.Append(string.Format("</clef>\n"));
 
                     sb.Append(string.Format("</attributes>\n"));
