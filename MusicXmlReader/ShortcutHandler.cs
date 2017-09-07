@@ -155,8 +155,8 @@ namespace MusicXmlReader
 
 
         // Tempo control of AutoPlay
-        static public readonly Keys tempoIncrement = ((Keys)((Keys.Control | Keys.Up)));
-        static public readonly Keys tempoDecrement = ((Keys)((Keys.Control | Keys.Down)));
+        static public readonly Keys tempoIncrement = ((Keys)((Keys.Alt | Keys.Up)));
+        static public readonly Keys tempoDecrement = ((Keys)((Keys.Alt | Keys.Down)));
 
 
         // UserSettingsTreeview:

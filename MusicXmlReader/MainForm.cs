@@ -810,7 +810,7 @@ namespace MusicXmlReader
                 return;
             }
 
-            else if (shortCutHandler.IsDetailsShortcut(e))
+            if (shortCutHandler.IsDetailsShortcut(e))
             {
                 if (-1 == listBoxTimes.SelectedIndex)
                 {
@@ -824,11 +824,9 @@ namespace MusicXmlReader
                     if ((null != selectedEvent) && (selectedEvent is EventDescription))
                     {
                         EventDescription currentEventDescription = (listBoxTimes.Items[listBoxTimes.SelectedIndex]) as EventDescription;
-                        // For some strange reasom we can not use the Ctrl key to select between part-details and harmony-details !
-                        // When Up/Down is pressed while CTRL is down, the pressing of Ctrl is NOT reflected in e.
-                        // It works fine with SHIFT and ALT, but we want to use the CTRL key for this !
+
                         string[] items;
-                        if (e.Shift)
+                        if (e.Control)
                         {
                             items = model.GetCurrentEventDetails(currentEventDescription); //  Show details about current parts
                         }
