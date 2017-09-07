@@ -889,8 +889,15 @@ namespace MusicXmlReaderModel
 
         public string[] GetCurrentHarmonyDetails(EventDescription eventDescription)
         {
-            HarmonyElement h = eventDescription.HarmonyElement;
-            return h.ToDetailStrings();
+            if (null != eventDescription.HarmonyElement)
+            {
+                HarmonyElement h = eventDescription.HarmonyElement;
+                return h.ToDetailStrings();
+            }
+            else
+            {
+                return new string[0]; // No harmony. Return an empty array.
+            }
         }
                 
         /// <summary>
