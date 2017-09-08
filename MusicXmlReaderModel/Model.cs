@@ -892,7 +892,7 @@ namespace MusicXmlReaderModel
             if (null != eventDescription.HarmonyElement)
             {
                 HarmonyElement h = eventDescription.HarmonyElement;
-                return h.ToDetailStrings();
+                return h.ToLocalizedDetailStrings();
             }
             else
             {

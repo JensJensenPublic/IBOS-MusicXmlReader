@@ -592,6 +592,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bass.
+        /// </summary>
+        internal static string HarmonyElement_BassTone {
+            get {
+                return ResourceManager.GetString("HarmonyElement_BassTone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chord.
         /// </summary>
         internal static string HarmonyElement_Chord {

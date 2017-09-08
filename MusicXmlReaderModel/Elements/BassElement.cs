@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using JSJ.MusicSynthesis;
 
 namespace MusicXmlReaderModel
 {
@@ -44,6 +45,11 @@ namespace MusicXmlReaderModel
         public static BassElement Create(XmlNode node)
         {
             return new BassElement(node);
+        }
+
+        public override string ToString()
+        {
+           return MidiNote.GetChromaticString(this.bassStep, this.BassAlter);
         }
 
     }

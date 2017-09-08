@@ -775,4 +775,7 @@
   <data name="Status_ItIsNotAValidMusicXmlFile" xml:space="preserve">
     <value>Filen er ikke en korrekt MusicXML file</value>
   </data>
+  <data name="HarmonyElement_BassTone" xml:space="preserve">
+    <value>Bastone</value>
+  </data>
 </root>

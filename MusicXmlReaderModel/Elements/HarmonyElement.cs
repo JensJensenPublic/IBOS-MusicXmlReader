@@ -214,31 +214,43 @@ namespace MusicXmlReaderModel
         public string ToLocalizedString()
         {
             string delimiter = ""; // (string.IsNullOrEmpty(localizedChordType)) ? "" : "-"; // Only show delimiter if needed
-            string s = string.Format("{0}:{1}{2}{3}", ResourcesForModel.HarmonyElement_Chord, chromaticRootStep, delimiter, localizedChordType);
+            string bassTone = (null != bassElement) ? string.Format("/{0}",bassElement.ToString()) : ""; // Only show bassTone if needed
+            string s = string.Format("{0} {1}{2}{3}{4}", ResourcesForModel.HarmonyElement_Chord, chromaticRootStep, delimiter, localizedChordType, bassTone);
             return s;
         }
 
-        public string[] ToDetailStrings()
+        /// <summary>
+        /// Returns a localized, detailed description of the harmony. For instance in danish, "C/E" is represented as
+        /// Kvint G
+        /// Stor terts E
+        /// Grundtone C
+        /// Bastone C
+        /// Becifring C/E
+        /// </summary>
+        /// <returns></returns>
+        public string[] ToLocalizedDetailStrings()
         {
-#warning IoDo Implement
-
             Interval[] intervals =  MidiChord.GetChordIntervals(this.chordType); // In this way we will use the same definitions for the sound and the text
             ChromaticStep root = this.chromaticRootStep;
-            List<string> intervalNames = new List<string>();
-            intervalNames.Add(ToLocalizedString());
-            for (int i = 0; (i < intervals.Length);i++)
+            List<string> strings = new List<string>();
+            strings.Add(ToLocalizedString()); // The full representation of the chord 
+            if ((null != this.bassElement) && (this.chromaticRootStep != this.chromaticBassStep))
+            {
+                strings.Add(string.Format("{0} {1}",ResourcesForModel.HarmonyElement_BassTone,bassElement.ToString())); // The bass tone if different from the root. For instance "Bass E" 
+            }            
+            for (int i = 0; (i < intervals.Length);i++) // Each note in the Harmony, represented by function and by name. 
             {
                 int iStep = (((int)root) + ((int)intervals[i])) % 12; // Do simple arithmetics !
                 ChromaticStep step = (ChromaticStep)(iStep);
                 string function = MidiChord.ToLocalizedChordFunction(intervals[i]);
-                intervalNames.Add(string.Format("{0} : {1}",function , step.ToString())); // For instance : "Third: E"
+                strings.Add(string.Format("{0} {1}",function , step.ToString())); // For instance : "Third E"
             };
             // Transform to a format usable in the interface
-            int length = intervalNames.Count;
+            int length = strings.Count;
             string[] result = new string[length];
             for (int i = 0; (i < length); i++)
             {
-                result[i] = intervalNames[length-(i+1)]; // Should Reverse direction in the harmony case
+                result[i] = strings[length-(i+1)]; // Should Reverse direction in the harmony case
             }
             return result;
         }
