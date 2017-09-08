@@ -294,4 +294,7 @@
   <data name="Message_UnspecifiedInitializationError" xml:space="preserve">
     <value>Fejl under programmets opstart</value>
   </data>
+  <data name="Message_DoYouWantToExitTheProgram" xml:space="preserve">
+    <value>Ønsker du at afslutte programmet?</value>
+  </data>
 </root>

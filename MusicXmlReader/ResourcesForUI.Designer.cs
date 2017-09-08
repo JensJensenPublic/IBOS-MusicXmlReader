@@ -124,6 +124,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you want to exit the program?.
+        /// </summary>
+        internal static string Message_DoYouWantToExitTheProgram {
+            get {
+                return ResourceManager.GetString("Message_DoYouWantToExitTheProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to read MusicXml file.
         /// </summary>
         internal static string Message_FailedToReadMusicXmlFile {

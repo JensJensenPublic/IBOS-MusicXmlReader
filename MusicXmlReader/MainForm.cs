@@ -84,7 +84,7 @@ namespace MusicXmlReader
             }
         }
 
-        private void LoadIcon()
+           private void LoadIcon()
         {
             const string functionName = "LoadIcon";
             string iconFile = "";
@@ -1113,6 +1113,22 @@ namespace MusicXmlReader
         {
 
         }
+
+        #region ignoreAltF4
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // The form is closing
+            if (e.CloseReason == CloseReason.ApplicationExitCall)
+            {
+                // The reason is that the user pressed ALT+F4
+                if (DialogResult.Yes != MessageBox.Show(ResourcesForUI.Message_DoYouWantToExitTheProgram, ApplicationName, MessageBoxButtons.YesNo))
+                {
+                    e.Cancel = true;
+                }
+            }
+            //altF4Pressed = false;
+        }
+        #endregion
 
 
 
