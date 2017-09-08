@@ -116,7 +116,7 @@ namespace MusicXmlReaderModel
         private void InitPlayerSettings()
         {
             InitPlayerSetting(PlayerSettings.MeasureBeats, ResourcesForModel.UserSettings_PlayerNames_Beats, false);  // "Taktslag",
-            InitPlayerSetting(PlayerSettings.Harmonies, ResourcesForModel.UserSettings_PlayerNames_Harmonies, false);  // "Harmonier",
+            InitPlayerSetting(PlayerSettings.Harmonies, ResourcesForModel.UserSettings_PlayerNames_Harmonies, true);  // "Harmonier",
         }
 
         public bool GetPlayerSettings(PlayerSettings i)
