@@ -397,8 +397,8 @@ namespace MusicXmlReaderModel
                     return true; 
                 default:
                     if (null != caption)
-                    {                    
-                        ShowWarning(ModelMessageEnum.FailedToConnectToScreenReader, "", "");     // The application has UI
+                    {            
+                        // ShowWarning(ModelMessageEnum.FailedToConnectToScreenReader, "", "");     // The application has UI
                     }
                     else
                     {
