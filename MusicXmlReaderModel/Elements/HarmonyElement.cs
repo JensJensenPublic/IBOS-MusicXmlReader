@@ -215,7 +215,7 @@ namespace MusicXmlReaderModel
         {
             string delimiter = ""; // (string.IsNullOrEmpty(localizedChordType)) ? "" : "-"; // Only show delimiter if needed
             string bassTone = (null != bassElement) ? string.Format("/{0}",bassElement.ToString()) : ""; // Only show bassTone if needed
-            string s = string.Format("{0} {1}{2}{3}{4}", ResourcesForModel.HarmonyElement_Chord, chromaticRootStep, delimiter, localizedChordType, bassTone);
+            string s = string.Format("{0}{1}{2}{3}", chromaticRootStep, delimiter, localizedChordType, bassTone);
             return s;
         }
 
@@ -233,7 +233,7 @@ namespace MusicXmlReaderModel
             Interval[] intervals =  MidiChord.GetChordIntervals(this.chordType); // In this way we will use the same definitions for the sound and the text
             ChromaticStep root = this.chromaticRootStep;
             List<string> strings = new List<string>();
-            strings.Add(ToLocalizedString()); // The full representation of the chord 
+            strings.Add(string.Format("{0} {1}", ResourcesForModel.HarmonyElement_Chord,ToLocalizedString())); // The full representation of the chord 
             if ((null != this.bassElement) && (this.chromaticRootStep != this.chromaticBassStep))
             {
                 strings.Add(string.Format("{0} {1}",ResourcesForModel.HarmonyElement_BassTone,bassElement.ToString())); // The bass tone if different from the root. For instance "Bass E" 

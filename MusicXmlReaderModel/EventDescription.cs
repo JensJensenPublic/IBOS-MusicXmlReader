@@ -759,7 +759,7 @@ namespace MusicXmlReaderModel
             string harmony = "";
             if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
             {
-                harmony = string.Format("{0}{1}  ",harmonyElement.ChromaticStep, harmonyElement.ToLocalizedString()); // Use same formatting as used in the status line !!
+                harmony = string.Format("{0}", harmonyElement.ToLocalizedString()); // Use same formatting as used in the status line and details list!!
             }
 
 
