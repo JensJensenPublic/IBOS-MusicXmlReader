@@ -15,6 +15,7 @@ namespace TestSheetBuilder
         const string epilogFileName = "epilog.xml";
         const string testSheetFileName = "TestSheet.xml";
         static List<string> staticChords;
+        static List<string> staticBasses;
 
 
         static List<string> InitChords()
@@ -47,8 +48,22 @@ namespace TestSheetBuilder
         }
 
 
+        static List<string> InitBasses()
+        {
+            List<string> basses = new List<string>() { };
+            basses.Add(""); // No Bass Note
+            basses.Add("A");
+            basses.Add("B");
+            basses.Add("C");
+            basses.Add("D");
+            basses.Add("E");
+            basses.Add("F");
+            basses.Add("G");
+            return basses;
+        }
 
-        static string SimpleElement(string name, string value)
+
+            static string SimpleElement(string name, string value)
         {
             return string.Format("<{0}>{1}</{0}>\n", name, value);
         }
@@ -97,19 +112,34 @@ namespace TestSheetBuilder
         }
 
 
+        /// <summary>
+        /// Generate all 23*8 combinations of kind and bass for root=C
+        /// 23 values of kind
+        /// 8  values of root (Including no root)
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         static string Harmony(int index)
         {
-            if (index >= staticChords.Count)
-            {
-                return "";
-            }
-            string kind = staticChords[index];
+            int iKind = index % staticChords.Count; // Vary kind first
+            int iBass = index / staticChords.Count; // Vary bass next
+            string kind = staticChords[iKind];
+            string bass = staticBasses[iBass];
             StringBuilder sb = new StringBuilder();
             sb.Append(string.Format("<harmony>\n"));
             sb.Append(string.Format("<root>\n"));
             sb.Append(SimpleElement("root-step", "C"));
             sb.Append(string.Format("</root>\n"));
+
             sb.Append(SimpleElement("kind", kind));
+
+            if (!string.IsNullOrEmpty(bass))
+            {
+                sb.Append(string.Format("<bass>\n"));
+                sb.Append(SimpleElement("bass-step", bass));
+                sb.Append(string.Format("</bass>\n"));
+            }
+
             sb.Append(SimpleElement("staff", 1));
             sb.Append(string.Format("</harmony>\n"));
             return sb.ToString();
@@ -188,6 +218,7 @@ namespace TestSheetBuilder
             // The MusicXml file must be found in the execution directory.
             string prologFullFilename = Path.Combine(System.Environment.CurrentDirectory, prologFileName);
             staticChords = InitChords();
+            staticBasses = InitBasses();
             if (!File.Exists(prologFullFilename))
             {
                 Console.WriteLine(string.Format("{0}.{1}: {2} not found. Exiting", className, functionName, prologFullFilename));
