@@ -44,6 +44,7 @@ namespace MusicXmlReaderModel
 
         public ScoreInstrumentElement GetScoreInstrument(string name)
         {
+            string functionName = "GetScoreInstrument";
             ScoreInstrumentElement result = null;
             foreach (ScoreInstrumentElement scoreInstrumentElement in scoreInstruments)
             {
@@ -53,12 +54,13 @@ namespace MusicXmlReaderModel
                 }
 
             }
-
+            Logger.LogOnce(string.Format("{0}.{1}: ScoreInstrument with Name={2} not found", className, functionName, name));
             return result; 
         }
 
         public MidiInstrumentElement GetMidiInstrument(string name)
         {
+            string functionName = "GetMidiInstrument";
             MidiInstrumentElement result = null;
             foreach (MidiInstrumentElement midiInstrumentElement in midiInstruments)
             {
@@ -68,9 +70,8 @@ namespace MusicXmlReaderModel
                 }
 
             }
-
-            return result;
-     
+            Logger.LogOnce(string.Format("{0}.{1}: MidiInstrument with Name={2} not found", className, functionName, name));
+            return result;     
         }
 
 
