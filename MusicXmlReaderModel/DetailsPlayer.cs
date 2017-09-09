@@ -69,8 +69,8 @@ namespace MusicXmlReaderModel
             for (int i = 0; (i < intervals.Length); i++) // Each note in the Harmony, represented by function and by name. 
             {
                 int iSum = ((int)root) + ((int)intervals[i]); // Do simple arithmetics !
-                int iStep   = iSum % 12;
-                int iOctave = iSum / 12;
+                int iStep   = iSum % (int)ChromaticStep.NumberOfSteps; // 12
+                int iOctave = iSum / (int)ChromaticStep.NumberOfSteps; // 12
                 ChromaticStep step = (ChromaticStep)(iStep);                
                 string function = MidiChord.ToLocalizedChordFunction(intervals[i]);
                 detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", function, step.ToString()), step, iOctave + chordOctave)); // For instance : "Third E"
