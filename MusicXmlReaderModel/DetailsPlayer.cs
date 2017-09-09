@@ -8,6 +8,13 @@ using NAudio.Midi;
 
 namespace MusicXmlReaderModel
 {
+
+
+    /// <summary>
+    /// Class for showing (and playing) items in the details window.
+    /// The first 2 kinds of details are parts and harmonies, but it is easy to implement more, for instance
+    /// pitched and unpitched instruments used in the score, by just adding the appropriate .Create() methods
+    /// </summary>
     class DetailsPlayer
     {
         private MidiOut midiOut;
