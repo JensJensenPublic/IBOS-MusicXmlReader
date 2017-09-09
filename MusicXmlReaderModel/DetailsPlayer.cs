@@ -62,6 +62,7 @@ namespace MusicXmlReaderModel
                 string function = MidiChord.ToLocalizedChordFunction(intervals[i]);
                 detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", function, step.ToString()), step)); // For instance : "Third E"
             };
+            detailsDescriptions.Reverse();
         }
 
 
