@@ -12,13 +12,22 @@ namespace MusicXmlReaderModel
         private string stringRepresentation = "";
         private HarmonyElement harmonyElement;
         private EventDescription eventDescription;
-        private ChromaticStep pitchRepresentation = ChromaticStep.NumberOfSteps;
+        private ChromaticStep step = ChromaticStep.NumberOfSteps;
+        private int octave;
 
-        public ChromaticStep PitchRepresentation
+        public ChromaticStep Step
         {
             get
             {
-                return pitchRepresentation;
+                return step;
+            }
+        }
+
+        public int Octave
+        {
+            get
+            {
+                return octave;
             }
         }
 
@@ -42,9 +51,10 @@ namespace MusicXmlReaderModel
             this.harmonyElement = harmonyElement;
         }
 
-        private DetailsDescription(string s, ChromaticStep pitchRepresentation)
+        private DetailsDescription(string s, ChromaticStep pitchRepresentation, int octave)
         {
-            this.pitchRepresentation = pitchRepresentation;
+            this.step = pitchRepresentation;
+            this.octave = octave;
             stringRepresentation = s;
         }
 
@@ -77,9 +87,9 @@ namespace MusicXmlReaderModel
         /// <param name="s"></param>
         /// <param name="pitchRepresentation"></param>
         /// <returns></returns>
-        public static DetailsDescription Create(string s, ChromaticStep pitchRepresentation)
+        public static DetailsDescription Create(string s, ChromaticStep pitchRepresentation, int octave)
         {
-            return new DetailsDescription(s, pitchRepresentation);
+            return new DetailsDescription(s, pitchRepresentation, octave);
         }
 
         /// <summary>

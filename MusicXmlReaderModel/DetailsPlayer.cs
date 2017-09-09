@@ -17,6 +17,9 @@ namespace MusicXmlReaderModel
     /// </summary>
     class DetailsPlayer
     {
+        private const int bassOctave = 3; // Play the Bass note (if any) in 3. octave
+        private const int chordOctave = 4; // Build the chord starting in 4. octave, possibly spreading into 5. octave
+        private const int velocity = 90;
         private MidiOut midiOut;
         private List<DetailsDescription> detailsDescriptions = new List<DetailsDescription>();
         public List<DetailsDescription> DetailsDescriptionList
@@ -60,14 +63,17 @@ namespace MusicXmlReaderModel
             detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", ResourcesForModel.HarmonyElement_Chord,chordName ), harmonyElement)); // The full representation of the chord 
             if ((null != harmonyElement.BassElement) && (harmonyElement.ChromaticRootStep != harmonyElement.ChromaticBassStep))
             {
-                detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", ResourcesForModel.HarmonyElement_BassTone, harmonyElement.BassElement.ToString()), harmonyElement.ChromaticBassStep)); // The bass tone if different from the root. For instance "Bass E" 
+                string s = string.Format("{0} {1}", ResourcesForModel.HarmonyElement_BassTone, harmonyElement.BassElement.ToString());
+                detailsDescriptions.Add(DetailsDescription.Create(s, harmonyElement.ChromaticBassStep,bassOctave)); // The bass tone if different from the root. For instance "Bass E" 
             }
             for (int i = 0; (i < intervals.Length); i++) // Each note in the Harmony, represented by function and by name. 
             {
-                int iStep = (((int)root) + ((int)intervals[i])) % 12; // Do simple arithmetics !
-                ChromaticStep step = (ChromaticStep)(iStep);
+                int iSum = ((int)root) + ((int)intervals[i]); // Do simple arithmetics !
+                int iStep   = iSum % 12;
+                int iOctave = iSum / 12;
+                ChromaticStep step = (ChromaticStep)(iStep);                
                 string function = MidiChord.ToLocalizedChordFunction(intervals[i]);
-                detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", function, step.ToString()), step)); // For instance : "Third E"
+                detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", function, step.ToString()), step, iOctave + chordOctave)); // For instance : "Third E"
             };
             detailsDescriptions.Reverse();
         }
@@ -141,15 +147,13 @@ namespace MusicXmlReaderModel
             {
                 currentDetailsMidiChord.StopPlaying(midiOut);
             }
-            MidiNote midiNote = new MidiNote(detailsDescription.PitchRepresentation, 4, 70, Interval.Unison);
+            MidiNote midiNote = new MidiNote(detailsDescription.Step, detailsDescription.Octave, velocity, Interval.Unison);
             midiNote.StartPlaying(midiOut);
 
             HarmonyElement hE = detailsDescription.HarmonyElement;
             if (null != hE)
-            {
-                int octave = 4;
-                int velocity = 90;            
-                currentDetailsMidiChord = new MidiChord(hE.ChromaticRootStep,octave,velocity,hE.ChordType,hE.ChromaticBassStep,null,null);
+            {              
+                currentDetailsMidiChord = new MidiChord(hE.ChromaticRootStep, chordOctave, velocity,hE.ChordType,hE.ChromaticBassStep,null,null);
                 currentDetailsMidiChord.StartPlaying(midiOut);
             }
             

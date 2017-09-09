@@ -227,43 +227,6 @@ namespace MusicXmlReaderModel
             string s = string.Format("{0}{1}{2}{3}", chromaticRootStep, delimiter, localizedChordType, bassTone);
             return s;
         }
-
-        /// <summary>
-        /// Returns a localized, detailed description of the harmony. For instance in danish, "C/E" is represented as
-        /// Kvint G
-        /// Stor terts E
-        /// Grundtone C
-        /// Bastone C
-        /// Becifring C/E
-        /// </summary>
-        /// <returns></returns>
-        public DetailsDescription[] ToLocalizedDetailStrings()
-        {
-            Interval[] intervals =  MidiChord.GetChordIntervals(this.chordType); // In this way we will use the same definitions for the sound and the text
-            ChromaticStep root = this.chromaticRootStep;
-            List<DetailsDescription> detailsDescriptions = new List<DetailsDescription>();
-            detailsDescriptions.Add(DetailsDescription.Create( string.Format("{0} {1}", ResourcesForModel.HarmonyElement_Chord,ToLocalizedString()),root)); // The full representation of the chord 
-            if ((null != this.bassElement) && (this.chromaticRootStep != this.chromaticBassStep))
-            {
-                detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}",ResourcesForModel.HarmonyElement_BassTone,bassElement.ToString()),chromaticBassStep)); // The bass tone if different from the root. For instance "Bass E" 
-            }            
-            for (int i = 0; (i < intervals.Length);i++) // Each note in the Harmony, represented by function and by name. 
-            {
-                int iStep = (((int)root) + ((int)intervals[i])) % 12; // Do simple arithmetics !
-                ChromaticStep step = (ChromaticStep)(iStep);
-                string function = MidiChord.ToLocalizedChordFunction(intervals[i]);
-                detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}",function , step.ToString()),step)); // For instance : "Third E"
-            };
-            // Transform to a format usable in the interface
-            int length = detailsDescriptions.Count;
-            DetailsDescription[] result = new DetailsDescription[length];
-            for (int i = 0; (i < length); i++)
-            {
-                result[i] = DetailsDescription.Create(detailsDescriptions[length-(i+1)].ToString(), detailsDescriptions[length - (i + 1)].PitchRepresentation); // Should Reverse direction in the harmony case
-            }
-            return result;
-        }
-
     }
 }
 
