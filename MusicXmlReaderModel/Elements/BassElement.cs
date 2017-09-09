@@ -12,7 +12,7 @@ namespace MusicXmlReaderModel
     /// <summary>
     /// Class for handling HarmonyElement.bass 
     /// </summary>
-    class BassElement : PitchElementBase
+    public class BassElement : PitchElementBase
     {
         private string bassStep;
         private string bassAlter;

@@ -5,6 +5,7 @@ using NAudio.Midi;
 using System.Xml;
 using JSJ.ScreenReaderAPI;
 using MusicXmlReaderUI; // Interfaces
+using JSJ.MusicSynthesis; // Avoid by making new class
 
 namespace MusicXmlReaderModel
 {
@@ -887,89 +888,46 @@ namespace MusicXmlReaderModel
             return myMusicXmlDirectory;
         }
 
-        public string[] GetCurrentHarmonyDetails(EventDescription eventDescription)
+        private DetailsPlayer detailsPlayer= null; 
+ 
+        public DetailsDescription[] GetCurrentHarmonyDetails(EventDescription eventDescription)
         {
             if (null != eventDescription.HarmonyElement)
             {
-                HarmonyElement h = eventDescription.HarmonyElement;
-                return h.ToLocalizedDetailStrings();
+                detailsPlayer = DetailsPlayer.Create(eventDescription.HarmonyElement,midiOut);
+                return detailsPlayer.DetailsDescriptionArray;              
             }
             else
             {
-                return new string[0]; // No harmony. Return an empty array.
+                return new DetailsDescription[0]; // No harmony. Return an empty array.
             }
         }
-                
-        /// <summary>
-        /// Returns detail information about the event currently selected in the main listbox, one line per part.
-        /// In this way the user can investigate exactly which notes belong to which part
-        /// </summary>
-        /// <returns></returns>
-        public string[] GetCurrentEventDetails(EventDescription eventDescription)
+
+
+        public DetailsDescription[] GetCurrentEventDetails(EventDescription eventDescription)
         {
-            //if (!UserSettings.MusicAsSpeech)
-            //{
-            //    return new string[0];
-            //}
 
-            List<string> details = new List<string>();
-            for (int i = 0; (i < numberOfParts); i++)
+            if (null != eventDescription)
             {
-                List<NoteElement> notesForPart = eventDescription.NoteLists[i];
-                if ((null != notesForPart) && (0 != notesForPart.Count))
-                {
-                    // String variables for desribing the detail as text
-                    string partId = "";
-                    string partName = "";
-                    string notes = "";
-                    string lyrics = "";
-
-                    if ((UserSettings.MusicAsSpeech) && (UserSettings.partsToRead[i]))
-                    {
-                        // The eventdescription contains notes for this part so we dig out the part parameters:
-                        ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
-                        partId = scorePartElement.partId;
-                        partName = scorePartElement.partName;
-                        // By using  eventDescription.NotesForOnePart for formatting the notes we assure the usage of identical formatting.
-                        notes = eventDescription.NotesForOnePart(notesForPart);
-                        // By using  eventDescription.LyricsForOnePart for formatting the lyrics we assure the usage of identical formatting.
-                        lyrics = eventDescription.LyricsForOnePart(notesForPart);
-                    }
-
-                    // String variables for desribing the detail as MusicBraille
-                    string musicBraille = "";
-                    if ((UserSettings.MusicAsMusicBraille) && (UserSettings.partsToBraille[i]))
-                    {
-                        BrailleBuilder musicBrailleDetails = eventDescription.NotesForOnePartAsBraille(notesForPart);
-                        musicBraille = musicBrailleDetails.ToBrailleString();
-                    }
-
-                    // Compose all details, always showing MusicBraille first
-                    string detailString = string.Format("{0} {1} {2} {3} {4}", musicBraille, partId, partName, notes, lyrics);
-                    details.Add(detailString);
-
-                }
-
-
+                detailsPlayer = DetailsPlayer.Create(eventDescription,partList,userSettings,midiOut);
+                return detailsPlayer.DetailsDescriptionArray;
+            }
+            else
+            {
+                return new DetailsDescription[0]; // No Event. Return an empty array.
             }
 
-            // Add any harmonies after the last part
-            HarmonyElement harmonyElement = eventDescription.HarmonyElement;
-            if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
+        }
+        
+        public void SelectedDetailsIndexChanged(DetailsDescription detailsDescription)
+        {
+            if (null != detailsPlayer)
             {
-                string harmony = string.Format("{0}{1}  ", harmonyElement.ChromaticStep, harmonyElement.LocalizedChordType); // Use same formatting as used in the status line !!
-                details.Add(harmony);
+                detailsPlayer.SelectedDetailsIndexChanged(detailsDescription);
             }
-
-            // Transform to a format usable in the interface
-            int length = details.Count;
-            string[] result = new string[details.Count];
-            for (int i = 0; (i < length); i++)
-            {
-                result[i] = details[i];
-            }
-            return result;
         }
 
     }
+
+
 }

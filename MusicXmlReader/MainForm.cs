@@ -825,9 +825,9 @@ namespace MusicXmlReader
                     {
                         EventDescription currentEventDescription = (listBoxTimes.Items[listBoxTimes.SelectedIndex]) as EventDescription;
 
-                        string[] items;
+                        DetailsDescription[] items = new DetailsDescription[0];
                         if (e.Control)
-                        {
+                        {   
                             items = model.GetCurrentEventDetails(currentEventDescription); //  Show details about current parts
                         }
                         else
@@ -1128,9 +1128,15 @@ namespace MusicXmlReader
             }
             //altF4Pressed = false;
         }
+
+        private void listBoxDetails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = listBoxDetails.SelectedIndex;
+            object o = listBoxDetails.Items[index];
+            DetailsDescription detailsDescription = o as DetailsDescription;
+            model.SelectedDetailsIndexChanged(detailsDescription);
+        }
         #endregion
-
-
 
         #endregion
         //*************************************************************************************************

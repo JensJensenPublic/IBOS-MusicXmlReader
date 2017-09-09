@@ -45,6 +45,16 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public BassElement BassElement
+        {
+            get
+            {
+                return bassElement;
+            }
+
+        }
+
+
         public string RootAlter
         {
             get
@@ -52,12 +62,20 @@ namespace MusicXmlReaderModel
                 return rootAlter;
             }
         }
-
-        public ChromaticStep ChromaticStep
+        
+        public ChromaticStep ChromaticRootStep
         {
             get
             {
                 return chromaticRootStep;
+            }
+        }
+
+        public ChromaticStep ChromaticBassStep
+        {
+            get
+            {
+                return chromaticBassStep;
             }
         }
 
@@ -74,15 +92,6 @@ namespace MusicXmlReaderModel
             get
             {
                 return localizedChordType;
-            }
-        }
-
-
-        public ChromaticStep ChromaticBassStep
-        {
-            get
-            {
-                return chromaticBassStep;
             }
         }
 
@@ -228,29 +237,29 @@ namespace MusicXmlReaderModel
         /// Becifring C/E
         /// </summary>
         /// <returns></returns>
-        public string[] ToLocalizedDetailStrings()
+        public DetailsDescription[] ToLocalizedDetailStrings()
         {
             Interval[] intervals =  MidiChord.GetChordIntervals(this.chordType); // In this way we will use the same definitions for the sound and the text
             ChromaticStep root = this.chromaticRootStep;
-            List<string> strings = new List<string>();
-            strings.Add(string.Format("{0} {1}", ResourcesForModel.HarmonyElement_Chord,ToLocalizedString())); // The full representation of the chord 
+            List<DetailsDescription> detailsDescriptions = new List<DetailsDescription>();
+            detailsDescriptions.Add(DetailsDescription.Create( string.Format("{0} {1}", ResourcesForModel.HarmonyElement_Chord,ToLocalizedString()),root)); // The full representation of the chord 
             if ((null != this.bassElement) && (this.chromaticRootStep != this.chromaticBassStep))
             {
-                strings.Add(string.Format("{0} {1}",ResourcesForModel.HarmonyElement_BassTone,bassElement.ToString())); // The bass tone if different from the root. For instance "Bass E" 
+                detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}",ResourcesForModel.HarmonyElement_BassTone,bassElement.ToString()),chromaticBassStep)); // The bass tone if different from the root. For instance "Bass E" 
             }            
             for (int i = 0; (i < intervals.Length);i++) // Each note in the Harmony, represented by function and by name. 
             {
                 int iStep = (((int)root) + ((int)intervals[i])) % 12; // Do simple arithmetics !
                 ChromaticStep step = (ChromaticStep)(iStep);
                 string function = MidiChord.ToLocalizedChordFunction(intervals[i]);
-                strings.Add(string.Format("{0} {1}",function , step.ToString())); // For instance : "Third E"
+                detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}",function , step.ToString()),step)); // For instance : "Third E"
             };
             // Transform to a format usable in the interface
-            int length = strings.Count;
-            string[] result = new string[length];
+            int length = detailsDescriptions.Count;
+            DetailsDescription[] result = new DetailsDescription[length];
             for (int i = 0; (i < length); i++)
             {
-                result[i] = strings[length-(i+1)]; // Should Reverse direction in the harmony case
+                result[i] = DetailsDescription.Create(detailsDescriptions[length-(i+1)].ToString(), detailsDescriptions[length - (i + 1)].PitchRepresentation); // Should Reverse direction in the harmony case
             }
             return result;
         }

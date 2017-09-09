@@ -561,6 +561,7 @@
             this.listBoxDetails.Size = new System.Drawing.Size(950, 30);
             this.listBoxDetails.TabIndex = 11;
             this.listBoxDetails.TabStop = false;
+            this.listBoxDetails.SelectedIndexChanged += new System.EventHandler(this.listBoxDetails_SelectedIndexChanged);
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDetails_KeyDown);
             // 
             // MainForm
