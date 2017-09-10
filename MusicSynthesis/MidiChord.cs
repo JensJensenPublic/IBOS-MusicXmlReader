@@ -289,10 +289,7 @@ namespace JSJ.MusicSynthesis
             }
             if (step != bassStep)
             {
-                if (null != logLines)
-                {
-                    logLines.Add(string.Format("{0}.{1} Root={2} Bass={3} BassStep not implemented yet", className, functionName, step, bassStep));
-                }
+                midinotes.Add(new MidiNote(bassStep, (octave - 1), velocity, Interval.Unison));
             }
             if (null != degreeDescriptions)
             {
