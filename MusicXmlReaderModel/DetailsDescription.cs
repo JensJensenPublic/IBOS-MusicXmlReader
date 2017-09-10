@@ -12,8 +12,16 @@ namespace MusicXmlReaderModel
         private string stringRepresentation = "";
         private HarmonyElement harmonyElement;
         private EventDescription eventDescription;
-        private ChromaticStep step = ChromaticStep.NumberOfSteps;
+        private ChromaticStep step = ChromaticStep.NumberOfSteps; // The value meaning "no step"
         private int octave;
+
+        public bool ContainsStep
+        {
+            get
+            {
+                return (step != ChromaticStep.NumberOfSteps);
+            }
+        }
 
         public ChromaticStep Step
         {
