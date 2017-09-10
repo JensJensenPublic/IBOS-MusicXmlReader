@@ -78,6 +78,12 @@ namespace MusicXmlReaderModel
             detailsDescriptions.Reverse();
         }
 
+        private DetailsPlayer(PartlistElement partList)
+        {
+            int numberOfParts = partList.NumberOfParts();
+            detailsDescriptions = new List<DetailsDescription>();
+            detailsDescriptions.Add(DetailsDescription.Create(string.Format("Found {0} parts", numberOfParts)));
+        }
 
 
         private DetailsPlayer(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MidiOut midiOut)
@@ -148,7 +154,7 @@ namespace MusicXmlReaderModel
                 currentDetailsMidiChord.StopPlaying(midiOut);
             }
 
-            if (detailsDescription.ContainsStep) 
+             if (detailsDescription.ContainsStep) 
             {
                 // This DetailDescription describes a single note
                 MidiNote midiNote = new MidiNote(detailsDescription.Step, detailsDescription.Octave, velocity, Interval.Unison);
@@ -178,7 +184,13 @@ namespace MusicXmlReaderModel
 
         public static DetailsPlayer Create(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MidiOut midiOut)
         {
-            return new DetailsPlayer(eventDescription, partList, userSettings,midiOut);
+            return new DetailsPlayer(eventDescription, partList, userSettings, midiOut);
         }
+
+        public static DetailsPlayer Create(PartlistElement partList)
+        {
+            return new DetailsPlayer(partList);
+        }
+
     }
 }

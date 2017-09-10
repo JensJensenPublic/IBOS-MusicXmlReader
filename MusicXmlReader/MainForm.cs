@@ -812,6 +812,7 @@ namespace MusicXmlReader
 
             if (shortCutHandler.IsDetailsShortcut(e))
             {
+                // NOTE ARROW + ALT alone has already been taken by tempo increment/decrement !!!
                 if (-1 == listBoxTimes.SelectedIndex)
                 {
                     // It has no meaning to inspect details when nothing is selected !
@@ -826,9 +827,13 @@ namespace MusicXmlReader
                         EventDescription currentEventDescription = (listBoxTimes.Items[listBoxTimes.SelectedIndex]) as EventDescription;
 
                         DetailsDescription[] items = new DetailsDescription[0];
-                        if (e.Control)
+                        if ((e.Control) && (!e.Alt))
                         {   
                             items = model.GetCurrentEventDetails(currentEventDescription); //  Show details about current parts
+                        }
+                        else if ((e.Control) && (e.Alt))
+                        {
+                            items = model.GetAllPartDetails(); // Show details about ALL parts 
                         }
                         else
                         {

@@ -918,7 +918,21 @@ namespace MusicXmlReaderModel
             }
 
         }
-        
+
+        public DetailsDescription[] GetAllPartDetails()
+        {
+            if (null != partList)
+            {
+                detailsPlayer = DetailsPlayer.Create(partList);
+                return detailsPlayer.DetailsDescriptionArray;
+            }
+            else
+            {
+                return new DetailsDescription[0]; // No partlist found. Return an empty array.
+            }
+        }
+
+
         public void SelectedDetailsIndexChanged(DetailsDescription detailsDescription)
         {
             if (null != detailsPlayer)
