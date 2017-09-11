@@ -154,19 +154,22 @@ namespace MusicXmlReaderModel
                 currentDetailsMidiChord.StopPlaying(midiOut);
             }
 
-             if (detailsDescription.ContainsStep) 
+            if (null != detailsDescription)
             {
-                // This DetailDescription describes a single note
-                MidiNote midiNote = new MidiNote(detailsDescription.Step, detailsDescription.Octave, velocity, Interval.Unison);
-                midiNote.StartPlaying(midiOut);
-            }
+                if (detailsDescription.ContainsStep)
+                {
+                    // This DetailDescription describes a single note
+                    MidiNote midiNote = new MidiNote(detailsDescription.Step, detailsDescription.Octave, velocity, Interval.Unison);
+                    midiNote.StartPlaying(midiOut);
+                }
 
-            HarmonyElement hE = detailsDescription.HarmonyElement;
-            if (null != hE)
-            {
-                // This DetailDescription describes a harmony       
-                currentDetailsMidiChord = new MidiChord(hE.ChromaticRootStep, chordOctave, velocity,hE.ChordType,hE.ChromaticBassStep,null,null);
-                currentDetailsMidiChord.StartPlaying(midiOut);
+                HarmonyElement hE = detailsDescription.HarmonyElement;
+                if (null != hE)
+                {
+                    // This DetailDescription describes a harmony       
+                    currentDetailsMidiChord = new MidiChord(hE.ChromaticRootStep, chordOctave, velocity, hE.ChordType, hE.ChromaticBassStep, null, null);
+                    currentDetailsMidiChord.StartPlaying(midiOut);
+                }
             }
             
 

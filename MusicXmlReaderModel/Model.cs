@@ -924,6 +924,11 @@ namespace MusicXmlReaderModel
             if (null != partList)
             {
                 detailsPlayer = DetailsPlayer.Create(partList);
+                string[] details = partList.ToUserFriendlyStrings();
+                foreach (string detail in details)
+                {
+                    detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(detail));
+                }
                 return detailsPlayer.DetailsDescriptionArray;
             }
             else

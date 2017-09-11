@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using JSJ.MusicSynthesis;
 
 namespace MusicXmlReaderModel
 {
@@ -10,7 +11,15 @@ namespace MusicXmlReaderModel
         private int midiChannel = 1; // Use midi channel 1 as default
         private float midiVolume = 127 ; // Use midi volume 127 as default
         private int midiUnpitchedInstrumentNumber = 0;
-        private string pan;
+        private int pan;
+
+        public bool Pitched
+        {
+            get
+            {
+                return (midiUnpitchedInstrumentNumber == (int)UnpitchedMidiInstrumentEnum.Pitched);
+            }
+        }
 
         public string Id
         {
@@ -118,7 +127,9 @@ namespace MusicXmlReaderModel
                         //}                        
                         break;
                     case "pan":
-                        pan = n.InnerText;
+                        int pan = 0;
+                        Utilities.Parse(n.InnerText, ref pan, -180, +180, "MidiInstrumentElement: Invalid value of pan ",false);
+                        //pan = n.InnerText;
                         break;
                     case "midi-unpitched":
                         Utilities.Parse(n.InnerText, ref midiUnpitchedInstrumentNumber, 1, 255, "MidiInstrumentElement: Invalid value of midi-instrument", false);
@@ -150,5 +161,17 @@ namespace MusicXmlReaderModel
         {
             return (string.Format("Midi-Instrument: Id='{0}' Program={1} Kanal={2} Volumen={3} Pan='{4}' Midi-Unpitched={5}", id, midiProgram, midiChannel, midiVolume, pan, midiUnpitchedInstrumentNumber));
         }
+
+        public string ToUserFriendlyString()
+        {
+            string programString = string.Format("{0}={1}","program",midiProgram);
+            string channelString = string.Format("{0}={1}","channel",midiChannel);
+            string volumeString = string.Format("{0}={1}", "volume", midiVolume);
+            string panString = (0 == pan) ? "" : string.Format("{0}={1}", "pan",pan);
+            string unpitchedString =  Pitched ?  "" :  string.Format("{0}={1}", "Instrument", midiUnpitchedInstrumentNumber); // Only if relevant !
+            string result = string.Format("{0} {1} {2} {3} {4}",programString,channelString,volumeString,panString,unpitchedString);  
+            return result;
+        }
+
     }
 }

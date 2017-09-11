@@ -112,6 +112,37 @@ namespace MusicXmlReaderModel
             return string.Format( "{0} {1} {2}:" , ResourcesForModel.PartListElement_Message,scorePartElements.Count, ResourcesForModel.PartListElement_Parts);
         }
 
+
+        /// <summary>
+        ///  SAme as ToStrings, but using different formatting
+        /// </summary>
+        /// <returns></returns>
+        public string[] ToUserFriendlyStrings()
+        {
+            List<string> list = new List<string>();
+            foreach (ScorePartElement scorePartElement in partArray)
+            {
+                // Build up all substrings first:
+                string partId = scorePartElement.partId;
+                string partName = scorePartElement.partName;  
+                string scoreInstrumentString = (null == scorePartElement.ScoreInstrumentElement) ? "" : scorePartElement.ScoreInstrumentElement.ToUserFriendlyString();
+                string midiInstrumentString = (null == scorePartElement.MidiInstrumentElement) ? "" : scorePartElement.MidiInstrumentElement.ToUserFriendlyString();
+                // Concatenate
+                string total = string.Format("{0} {1} {2} {3}", partId, partName, scoreInstrumentString, midiInstrumentString);
+                list.Add(total);
+                //scorePartElement.ScoreInstrumentString: id, instrumentSound, instrumentName, instrumentAbbreviation, solo, virtualInstrumentElement;
+                // MidiInstrumentString: id, midiProgram, midiChannel, midiVolume, pan, midiUnpitchedInstrumentNumber));
+            }
+            // Convert from List to Array:
+            string[] strings = new string[list.Count];
+            for (int i = 0; (i < list.Count); i++)
+            {
+                strings[i] = list[i];
+            }
+            return strings;
+        }
+
+
         public string[] ToStrings() 
         {
             List<string> list = new List<string>();

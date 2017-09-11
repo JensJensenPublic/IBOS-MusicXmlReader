@@ -23,6 +23,22 @@ namespace MusicXmlReaderModel
         private List<ScoreInstrumentElement> scoreInstruments = new List<ScoreInstrumentElement>() ;
         private List<MidiInstrumentElement> midiInstruments = new List<MidiInstrumentElement>();
 
+        public ScoreInstrumentElement ScoreInstrumentElement
+        {
+            get
+            {
+                return scoreInstrumentElement;
+            }
+        }
+
+        public MidiInstrumentElement MidiInstrumentElement
+        {
+            get
+            {
+                return midiInstrumentElement;
+            }
+        }
+
         // Only needed during debuggine
         public List<ScoreInstrumentElement> ScoreInstruments
         {
@@ -327,5 +343,7 @@ namespace MusicXmlReaderModel
                 return partAbbreviationDisplay;
             }
         }
+        
+
     }
 }
