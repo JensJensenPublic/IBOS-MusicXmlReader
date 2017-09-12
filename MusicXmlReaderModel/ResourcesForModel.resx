@@ -777,4 +777,10 @@
   <data name="HarmonyElement_BassTone" xml:space="preserve">
     <value>Bass</value>
   </data>
+  <data name="DetailsPlayer_Part" xml:space="preserve">
+    <value>Part</value>
+  </data>
+  <data name="DetailsPlayer_Parts" xml:space="preserve">
+    <value>Parts</value>
+  </data>
 </root>

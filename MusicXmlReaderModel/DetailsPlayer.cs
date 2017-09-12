@@ -78,11 +78,18 @@ namespace MusicXmlReaderModel
             detailsDescriptions.Reverse();
         }
 
+
+        /// <summary>
+        /// Build a list of all parts
+        /// NOTE: The contents of this list does NOT depend of the position of the cursor on the List-Window, only of the parts defined in the MusicXml file.
+        /// </summary>
+        /// <param name="partList"></param>
         private DetailsPlayer(PartlistElement partList)
         {
             int numberOfParts = partList.NumberOfParts();
             detailsDescriptions = new List<DetailsDescription>();
-            detailsDescriptions.Add(DetailsDescription.Create(string.Format("Found {0} parts", numberOfParts)));
+            string text = (1 == numberOfParts) ? ResourcesForModel.DetailsPlayer_Part : ResourcesForModel.DetailsPlayer_Parts; // Singularis / Pluralis
+            detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", numberOfParts, text)));
         }
 
 

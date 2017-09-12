@@ -520,6 +520,24 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Part.
+        /// </summary>
+        internal static string DetailsPlayer_Part {
+            get {
+                return ResourceManager.GetString("DetailsPlayer_Part", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parts.
+        /// </summary>
+        internal static string DetailsPlayer_Parts {
+            get {
+                return ResourceManager.GetString("DetailsPlayer_Parts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discontinue.
         /// </summary>
         internal static string EndingElement_Discontinue {

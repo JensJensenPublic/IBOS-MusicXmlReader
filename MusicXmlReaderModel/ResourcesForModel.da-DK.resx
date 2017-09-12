@@ -778,4 +778,12 @@
   <data name="HarmonyElement_BassTone" xml:space="preserve">
     <value>Bastone</value>
   </data>
+  <data name="DetailsPlayer_Part" xml:space="preserve">
+    <value>Stemme</value>
+    <comment>Singularis</comment>
+  </data>
+  <data name="DetailsPlayer_Parts" xml:space="preserve">
+    <value>Stemmer</value>
+    <comment>Pluralis</comment>
+  </data>
 </root>
