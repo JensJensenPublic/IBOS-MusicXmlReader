@@ -5,6 +5,8 @@ namespace MusicXmlReaderModel
 {
     public class MidiInstrumentElement : Element
     {
+        // https://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-midi-instrument.htm
+
         private string className = "MidiInstrumentElement";
         private string id;
         private int midiProgram = 1; // Use Grand Acoustic Piano as default
@@ -104,35 +106,18 @@ namespace MusicXmlReaderModel
                 {
                     case "midi-channel":
                         Utilities.Parse(n.InnerText, ref midiChannel, 1, 16, "MidiInstrumentElement: Invalid value of midi-channel",false);
-                        //midiChannel = int.Parse(n.InnerText);
-                        //if ((midiChannel < 1) || (MidiChannel > 16))
-                        //{
-                        //    Model.Log(string.Format("MidiInstrumentElement: Invalid value of midi-channel {0} found", midiChannel));
-                        //}
                         break;
                     case "midi-program":
-                        Utilities.Parse(n.InnerText, ref midiProgram, 1, 255, "MidiInstrumentElement: Invalid value of midi-program",false);
-                        //midiProgram = int.Parse (n.InnerText);
-                        //if ((midiProgram < 1) || (midiProgram > 255))
-                        //{
-                        //    Model.Log(string.Format("MidiInstrumentElement: Invalid value of midi-program {0} found", midiProgram));
-                        //}
+                        Utilities.Parse(n.InnerText, ref midiProgram, 1, 128, "MidiInstrumentElement: Invalid value of midi-program",false);
                         break;
                     case "volume":
-                        Utilities.Parse(n.InnerText, ref midiVolume, 1, 255, "MidiInstrumentElement: Invalid value of volume ");
-                        //midiVolume = float.Parse(n.InnerText);
-                        //if ((midiProgram < 1) || (midiProgram > 255))
-                        //{
-                        //    Model.Log(string.Format("MidiInstrumentElement: Invalid value of midi-volume {0} found", midiVolume));
-                        //}                        
+                        Utilities.Parse(n.InnerText, ref midiVolume, 0, 100, "MidiInstrumentElement: Invalid value of volume ");                      
                         break;
                     case "pan":
-                        int pan = 0;
                         Utilities.Parse(n.InnerText, ref pan, -180, +180, "MidiInstrumentElement: Invalid value of pan ",false);
-                        //pan = n.InnerText;
                         break;
                     case "midi-unpitched":
-                        Utilities.Parse(n.InnerText, ref midiUnpitchedInstrumentNumber, 1, 255, "MidiInstrumentElement: Invalid value of midi-instrument", false);
+                        Utilities.Parse(n.InnerText, ref midiUnpitchedInstrumentNumber, 1, 128, "MidiInstrumentElement: Invalid value of midi-instrument", false);
                         break;
                     default:
                         Logger.Log(string.Format("{0}.{1}: Unimplemented element: InnerText={2} Value={3}", className, functionName, n.Name,n.InnerText));
@@ -164,11 +149,15 @@ namespace MusicXmlReaderModel
 
         public string ToUserFriendlyString()
         {
-            string programString = string.Format("{0}={1}","program",midiProgram);
-            string channelString = string.Format("{0}={1}","channel",midiChannel);
-            string volumeString = string.Format("{0}={1}", "volume", midiVolume);
-            string panString = (0 == pan) ? "" : string.Format("{0}={1}", "pan",pan);
-            string unpitchedString =  Pitched ?  "" :  string.Format("{0}={1}", "Instrument", midiUnpitchedInstrumentNumber); // Only if relevant !
+#warning ToDo Localize PitchedMidiInstrumentEnum
+            int iProgram = MidiProgram - 0; // The representation is 1-based in MusicXml , 0-based in Midi ???? WHY NOT ???
+            string programString = (!Pitched)? "" : string.Format("{0}={1}('{2}')","MidiProgram", iProgram, (PitchedMidiInstrumentEnum)iProgram);
+            string channelString = string.Format("{0}={1}","MidiChannel",midiChannel);
+            string volumeString = string.Format("{0}={1}", "MidiVolume", (int)(midiVolume + 0.5));
+            string panString = (0 == pan) ? "" : string.Format("{0}={1}", "MidiPan",pan);
+#warning ToDo Localize UnpitchedMidiInstrumentEnum
+            int iMidi = MidiUnpitchedInstrumentNumber - 1; // The representation is 1-based in MusicXml , 0-based in Midi
+            string unpitchedString =  Pitched ?  "" :  string.Format("{0}={1}(´{2}')", "Unpitched MidiInstrument",iMidi, ((UnpitchedMidiInstrumentEnum)iMidi)).ToString(); // Only if relevant !
             string result = string.Format("{0} {1} {2} {3} {4}",programString,channelString,volumeString,panString,unpitchedString);  
             return result;
         }

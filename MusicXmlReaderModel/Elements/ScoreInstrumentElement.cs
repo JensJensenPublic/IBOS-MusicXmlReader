@@ -4,6 +4,7 @@ namespace MusicXmlReaderModel
 {
     public class ScoreInstrumentElement : Element
     {
+        // https://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-score-instrument.htm
 
         const string className = "ScoreInstrumentElement";
         string id = "";
