@@ -97,7 +97,7 @@ namespace MusicXmlReaderModel
                         Logger.LogOnce(string.Format("{0}.{1} Unexpected element={2}",className,functionName,n.Name));
                         break;
                 }
-                Logger.Log(string.Format("{0}.{1} chromatic={2} diatonic={3} octaveChange={4} double={5} ",
+                Logger.LogOnce(string.Format("{0}.{1} chromatic={2} diatonic={3} octaveChange={4} double={5} ",
                     className, functionName, diatonicValue, chromaticValue, octaveChangeValue, doubleValue));
             }
         }
