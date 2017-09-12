@@ -9,11 +9,14 @@ namespace MusicXmlReaderModel
 
         private string className = "MidiInstrumentElement";
         private string id;
+        private string midiName = "";
         private int midiProgram = 1; // Use Grand Acoustic Piano as default
         private int midiChannel = 1; // Use midi channel 1 as default
+        private int midiBank = 0; // Use midi bank 0 as default
         private float midiVolume = 127 ; // Use midi volume 127 as default
         private int midiUnpitchedInstrumentNumber = 0;
         private int pan;
+        private int elevation;
 
         public bool Pitched
         {
@@ -104,19 +107,40 @@ namespace MusicXmlReaderModel
             {
                 switch (n.Name)
                 {
+                    case "midi-name":
+                        // The midi-name element corresponds to a ProgramName meta-event within a Standard MIDI File.
+                        midiName = n.InnerText; // Pure text, nothing to check 
+                        break;  
                     case "midi-channel":
+                        // The midi-channel element specifies a MIDI 1.0 channel number ranging from 1 to 16.
                         Utilities.Parse(n.InnerText, ref midiChannel, 1, 16, "MidiInstrumentElement: Invalid value of midi-channel",false);
                         break;
                     case "midi-program":
+                        // The midi-program element specifies a MIDI 1.0 program number ranging from 1 to 128.
                         Utilities.Parse(n.InnerText, ref midiProgram, 1, 128, "MidiInstrumentElement: Invalid value of midi-program",false);
                         break;
+                    case "midi-bank":
+                        // The midi-bank element specifies a MIDI 1.0 bank number ranging from 1 to 16,384.
+                        Utilities.Parse(n.InnerText, ref midiBank,1,16384, "MidiInstrumentElement: Invalid value of midi-bank", false);
+                        break;
                     case "volume":
+                        // The volume element value is a percentage of the maximum ranging from 0 to 100, with decimal values allowed.
+                        // This corresponds to a scaling value for the MIDI 1.0 channel volume controller.
                         Utilities.Parse(n.InnerText, ref midiVolume, 0, 100, "MidiInstrumentElement: Invalid value of volume ");                      
                         break;
                     case "pan":
-                        Utilities.Parse(n.InnerText, ref pan, -180, +180, "MidiInstrumentElement: Invalid value of pan ",false);
+                        // The pan and elevation elements allow placing of sound in a 3-D space relative to the listener. Both are expressed in degrees ranging from -180 to 180.
+                        // For pan, 0 is straight ahead, -90 is hard left, 90 is hard right, and -180 and 180 are directly behind the listener.
+                        Utilities.Parse(n.InnerText, ref pan, -180, +180, "MidiInstrumentElement: Invalid value of pan ", false);
+                        break;
+                    case "elevation":
+                        // The elevation and pan elements allow placing of sound in a 3-D space relative to the listener. Both are expressed in degrees ranging from -180 to 180.
+                        // For elevation, 0 is level with the listener, 90 is directly above, and -90 is directly below.
+                        Utilities.Parse(n.InnerText, ref elevation, -180, +180, "MidiInstrumentElement: Invalid value of elevation ", false);
                         break;
                     case "midi-unpitched":
+                        // For unpitched instruments, the midi-unpitched element specifies a MIDI 1.0 note number ranging from 1 to 128. It is usually used with MIDI banks for percussion.
+                        // Note that MIDI 1.0 note numbers are generally specified from 0 to 127 rather than the 1 to 128 numbering used in this element.
                         Utilities.Parse(n.InnerText, ref midiUnpitchedInstrumentNumber, 1, 128, "MidiInstrumentElement: Invalid value of midi-instrument", false);
                         break;
                     default:
@@ -154,11 +178,13 @@ namespace MusicXmlReaderModel
             string programString = (!Pitched)? "" : string.Format("{0}={1}('{2}')","MidiProgram", iProgram, (PitchedMidiInstrumentEnum)iProgram);
             string channelString = string.Format("{0}={1}","MidiChannel",midiChannel);
             string volumeString = string.Format("{0}={1}", "MidiVolume", (int)(midiVolume + 0.5));
-            string panString = (0 == pan) ? "" : string.Format("{0}={1}", "MidiPan",pan);
+            string bankString = (0 == midiBank) ? "" : string.Format("{0}={1}", "MidiBank", midiBank);
+            string panString = (0 == pan) ? "" : string.Format("{0}={1}", "MidiPan", pan);
+            string elevationString = (0 == elevation) ? "" : string.Format("{0}={1}", "MidiElevation",elevation);
 #warning ToDo Localize UnpitchedMidiInstrumentEnum
             int iMidi = MidiUnpitchedInstrumentNumber - 1; // The representation is 1-based in MusicXml , 0-based in Midi
             string unpitchedString =  Pitched ?  "" :  string.Format("{0}={1}(´{2}')", "Unpitched MidiInstrument",iMidi, ((UnpitchedMidiInstrumentEnum)iMidi)).ToString(); // Only if relevant !
-            string result = string.Format("{0} {1} {2} {3} {4}",programString,channelString,volumeString,panString,unpitchedString);  
+            string result = string.Format("{0} {1} {2} {3} {4} {5} {6}",programString,channelString,bankString,volumeString,panString,elevationString,unpitchedString);  
             return result;
         }
 
