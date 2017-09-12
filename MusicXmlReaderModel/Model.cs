@@ -253,12 +253,15 @@ namespace MusicXmlReaderModel
                 // throw new Exception("For test only");
                 midiOut = new MidiOut(deviceNumber);
                 MidiOutCapabilities mc = MidiOut.DeviceInfo(deviceNumber);
-                Logger.Log(string.Format("{0}.{1}: Created MidiOut({2}) for '{3}' '{4}'", className, functionName,deviceNumber,  mc.ProductName, mc.Technology));
+                Logger.Log(string.Format("{0}.{1}: Created MidiOut({2}) for ProductName='{3}' Technology='{4}' ProductId={5} Notes={6} ",
+                    className, functionName, deviceNumber, mc.ProductName,  mc.Technology, mc.ProductId, mc.Notes ));
+                Logger.Log(string.Format("{0}.{1}: Supports: AllChannels={2} MidiStreamOut={3} PatchCatching={4} SeparateLeftAndRightVolume={5} VolumeControl={6})",
+                    className, functionName, mc.SupportsAllChannels, mc.SupportsMidiStreamOut, mc.SupportsPatchCaching, mc.SupportsSeparateLeftAndRightVolume, mc.SupportsVolumeControl));
             }
             catch (Exception e)
             {
                 Logger.Log(string.Format("{0}.{1}: Creation of MidiOut({2}) failed. Exception.Message='{3}'", className, functionName, deviceNumber, e.Message));
-                Utilities.ShowWarning(ModelMessageEnum.UnspecifiedInitializationError, string.Format("MidiOut({0})=null",deviceNumber), "");
+                Utilities.ShowWarning(ModelMessageEnum.UnspecifiedInitializationError, string.Format("MidiOut({0})=null", deviceNumber), "");
                 // Do NOT rethrow, as this will prevent the creation of the Model and make the Logfile unavailable !!        
             }
             return midiOut;
