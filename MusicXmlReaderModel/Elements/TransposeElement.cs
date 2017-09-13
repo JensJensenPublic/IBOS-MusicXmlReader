@@ -82,15 +82,22 @@ namespace MusicXmlReaderModel
             {
                 switch (n.Name)
                 {
-                    case "diatonic": Utilities.Parse(n.InnerText, ref diatonicValue, -7 , +7, "", false); // -7 / +7 is just a guess ! 
+                    case "diatonic":
+                        // The diatonic element specifies the number of pitch steps needed to go from written to sounding pitch.This allows for correct spelling of enharmonic transpositions.
+                        Utilities.Parse(n.InnerText, ref diatonicValue, -7 , +7, "", false); // -7 / +7 is just a guess ! 
                         break;
                     case "chromatic":
+                        // The chromatic element represents the number of semitones needed to get from written to sounding pitch. This value does not include octave-change values
+                        // The values for both elements need to be added to the written pitch to get the correct sounding pitch
                         Utilities.Parse(n.InnerText, ref chromaticValue, -12, +12, "", false); // -12 / +12 is just a guess ! 
                         break;
                     case "octave-change":
+                        // The octave-change element indicates how many octaves to add to get from written pitch to sounding pitch.
                         Utilities.Parse(n.InnerText, ref octaveChangeValue, -2, +2, "", false); // -2 / +2 is just a guess ! 
                         break;
                     case "double":
+                        // If the double element is present, it indicates that the music is doubled one octave down from what is currently written 
+                        // (As is the case for mixed cello / bass parts in orchestral literature).
                         doubleValue = true;
                         break;
                     default:
