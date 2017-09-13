@@ -54,15 +54,20 @@ namespace MusicXmlReaderModel
             {
                 switch (n.Name)
                 {
-                    case "virtual-library": virtualLibrary = n.InnerText; break;
-                    case "virtual-name":    virtualName = n.InnerText; break;
+                    case "virtual-library": virtualLibrary = n.InnerText; break; // The virtual-library element indicates the virtual instrument library name.
+                    case "virtual-name":    virtualName = n.InnerText; break;    // The virtual-name element indicates the library-specific name for the virtual instrument.
                     default:
                         Logger.LogOnce(string.Format("{0}.{1}: Unexpected Element. Name={2} InnerText={3} ", className, functionName, n.Name, n.InnerText));
                         break;
                 }
-                if ((null != virtualLibrary) && (null != virtualName))
+                if ((string.IsNullOrEmpty(virtualLibrary)) || (string.IsNullOrEmpty(virtualName)))
                 {
-                    Logger.LogOnce(string.Format("{0}.{1}: VirtualLibrary='{2}' VirtualName='{3}'", className, functionName, virtualLibrary, virtualName));
+                    Logger.LogOnce(string.Format("{0}.{1}: Unexpected null or empty string : VirtualLibrary='{2}' VirtualName='{3}'", className, functionName, virtualLibrary, virtualName));
+                }
+                else
+                { 
+                    // No need to log the normal case:
+                // Logger.LogOnce(string.Format("{0}.{1}: VirtualLibrary='{2}' VirtualName='{3}'", className, functionName, virtualLibrary, virtualName));
                 }
             }
         }
