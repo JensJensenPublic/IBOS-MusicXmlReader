@@ -85,6 +85,7 @@ namespace MusicXmlReaderModel
                     case "diatonic":
                         // The diatonic element specifies the number of pitch steps needed to go from written to sounding pitch.This allows for correct spelling of enharmonic transpositions.
                         Utilities.Parse(n.InnerText, ref diatonicValue, -7 , +7, "", false); // -7 / +7 is just a guess ! 
+                        Logger.LogOnce(string.Format("{0}.{1} diatonic={2} is decoded, but not used yet. ",className, functionName, diatonicValue));
                         break;
                     case "chromatic":
                         // The chromatic element represents the number of semitones needed to get from written to sounding pitch. This value does not include octave-change values
@@ -99,13 +100,15 @@ namespace MusicXmlReaderModel
                         // If the double element is present, it indicates that the music is doubled one octave down from what is currently written 
                         // (As is the case for mixed cello / bass parts in orchestral literature).
                         doubleValue = true;
+                        Logger.LogOnce(string.Format("{0}.{1} doubleValue={2} is decoded, but not used yet. ", className, functionName, doubleValue));
                         break;
                     default:
                         Logger.LogOnce(string.Format("{0}.{1} Unexpected element={2}",className,functionName,n.Name));
                         break;
                 }
-                Logger.LogOnce(string.Format("{0}.{1} chromatic={2} diatonic={3} octaveChange={4} double={5} ",
-                    className, functionName, diatonicValue, chromaticValue, octaveChangeValue, doubleValue));
+
+                // Logger.LogOnce(string.Format("{0}.{1} chromatic={2} diatonic={3} octaveChange={4} double={5} ", className, functionName, diatonicValue, chromaticValue, octaveChangeValue, doubleValue));
+
             }
         }
 

@@ -161,7 +161,7 @@ namespace MusicXmlReaderModel
         {
             get
             {
-                return (null == transposeElement) ? 0 : transposeElement.ChromaticValue;
+                return (null == transposeElement) ? 0 : (transposeElement.ChromaticValue + (12 * transposeElement.OctaveChangeValue));
             }
         }
 
