@@ -127,9 +127,9 @@ namespace MusicXmlReaderModel
             return new ScoreInstrumentElement(node);
         }
 
-        public override string ToString() // Only used by .cmd version. Not localized
+        public override string ToString() // Only used by Logger and .cmd version. Not localized!!
         {
-            return (string.Format("ScoreInstrument: Id='{0}' Sound='{1}' Navn='{2}' Forkortelse='{3}' Solo='{4}' VirtualInstrument='{5}'",
+            return (string.Format("ScoreInstrument: Id='{0}' Sound='{1}' Name='{2}' Abbeviation='{3}' Solo='{4}' VirtualInstrument={5}",
                                    id, instrumentSound, instrumentName, instrumentAbbreviation, solo, virtualInstrumentElement));
         }
 
