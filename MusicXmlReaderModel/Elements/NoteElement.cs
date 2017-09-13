@@ -832,7 +832,7 @@ namespace MusicXmlReaderModel
                     return;
                 }
 
-                MidiInstrumentElement midiInstrumentElement = scorePartElement.GetMidiInstrument(this.InstrumentElement.Id);
+
                 ScoreInstrumentElement scoreInstrumentElement = scorePartElement.GetScoreInstrument(this.InstrumentElement.Id);
                 // int nnn = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
                 if (scoreInstrumentElement.IsVirtualInstrument)
@@ -842,9 +842,9 @@ namespace MusicXmlReaderModel
                     this.midiUnpitchedInstrumentNumber = (int)MidiInstrumentMap.GetUnpitchedMidiInstrumentNumber(scoreInstrumentElement.VirtualInstrumentElement);
                 }
                 else
-                { 
+                {
                     // This is a Midi instrument, not a virtual instrument.
-#warning Verify that we need to convert from base 1 to base 0 !
+                    MidiInstrumentElement midiInstrumentElement = scorePartElement.GetMidiInstrument(this.InstrumentElement.Id);
                     this.midiUnpitchedInstrumentNumber = midiInstrumentElement.MidiUnpitchedInstrumentNumber - 1; // https://musescore.org/en/node/89756
                     if (MidiNote.MidiChannelForUnpitchedInstruments != this.MidiChannel) // Non-virtual unpiched notes must be assigned to channel 10
                     {
