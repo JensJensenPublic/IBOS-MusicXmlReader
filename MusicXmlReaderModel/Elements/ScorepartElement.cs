@@ -180,12 +180,12 @@ namespace MusicXmlReaderModel
             {
                 // Obtain a "Best effort" Midi instrument from the name of the virtual instrument
                 int midiProgram = (int) MidiInstrumentMap.GetPitchedMidiInstrument(scoreInstrumentElement.VirtualInstrumentElement);    
-                midiInstrumentElement = MidiInstrumentElement.CreateDefault(midiProgram);
+                midiInstrumentElement = MidiInstrumentElement.CreateSubstituteForVirtualInstrument(scoreInstrumentElement.VirtualInstrumentElement.ToString(), midiProgram);
             }
 
             if (null == midiInstrumentElement)
             {
-                // Lst chance handler
+                // Last chance handler
                 midiInstrumentElement = MidiInstrumentElement.CreateDefault();
             }
 

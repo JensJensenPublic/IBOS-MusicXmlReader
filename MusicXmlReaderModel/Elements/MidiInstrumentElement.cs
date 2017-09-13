@@ -72,14 +72,12 @@ namespace MusicXmlReaderModel
         /// </summary>
         private MidiInstrumentElement()
         {
-            Logger.Log(string.Format("Creating default MidiInstrumentElement: midiProgram={0} midiChannel={1} midiVolume={2}", midiProgram, midiChannel, midiVolume));
         }
 
         private MidiInstrumentElement(int midiProgram)
         {
             this.midiProgram = midiProgram;
             this.midiChannel = MidiPitchedChannelMap.GetNextChannel(midiProgram);
-            Logger.Log(string.Format("Creating default MidiInstrumentElement: midiProgram={0} midiChannel={1} midiVolume={2}", midiProgram, midiChannel, midiVolume));
         }
 
         /// <summary>
@@ -158,12 +156,20 @@ namespace MusicXmlReaderModel
 
         public static MidiInstrumentElement CreateDefault()
         {
-            return new MidiInstrumentElement();
+            MidiInstrumentElement result = new MidiInstrumentElement();
+            string functionName = "CreateDefault";
+            Logger.Log(string.Format("{0}.{1}({2}) midiProgram={3} midiChannel={4} midiVolume={5}",
+                result.className, functionName, "", result.midiProgram, result.midiChannel, result.midiVolume));
+            return result;
         }
 
-        public static MidiInstrumentElement CreateDefault(int midiProgram)
+        public static MidiInstrumentElement CreateSubstituteForVirtualInstrument(string virtualInstrumentName,int midiProgram)
         {
-            return new MidiInstrumentElement(midiProgram);
+            string functionName = "CreateSubstituteForVirtualInstrument";
+            MidiInstrumentElement result =  new MidiInstrumentElement(midiProgram);
+            Logger.Log(string.Format("{0}.{1}({2},{3}) midiProgram={4} midiChannel={5} midiVolume={6}",
+            result.className, functionName, virtualInstrumentName, midiProgram, result.midiProgram, result.midiChannel, result.midiVolume));
+            return result;
         }
 
         public override string ToString() // No need for localisation. Not used, or only used for debug messages.

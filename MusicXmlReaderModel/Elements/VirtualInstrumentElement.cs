@@ -70,7 +70,7 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            return string.Format("'{0}'.'{1}'",((null ==virtualLibrary)? "null" : virtualLibrary), ((null == virtualName) ? "null" : virtualName));
+            return string.Format("'{0}.{1}'",((null ==virtualLibrary)? "null" : virtualLibrary), ((null == virtualName) ? "null" : virtualName));
         }
 
         static public VirtualInstrumentElement Create(XmlNode node)
