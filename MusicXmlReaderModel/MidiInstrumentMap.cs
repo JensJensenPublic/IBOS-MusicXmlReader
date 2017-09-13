@@ -76,7 +76,7 @@ namespace MusicXmlReaderModel
                 }
 
             }
-            Logger.LogOnce(string.Format("{0}.{1}: Returned '{2}' for '{3}'.'{4}'", className, functionName, result, virtualInstrumentElement.VirtualLibrary, virtualInstrumentElement.VirtualName));
+            // Logger.LogOnce(string.Format("{0}.{1}: Returned '{2}' for '{3}'.'{4}'", className, functionName, result, virtualInstrumentElement.VirtualLibrary, virtualInstrumentElement.VirtualName));
             return result;
         }
 
@@ -143,8 +143,7 @@ namespace MusicXmlReaderModel
                         break;
                 }
             }
-            Logger.LogOnce(string.Format("{0}.{1}: Returned '{2}' for ScoreInstrumentName='{3}'",
-                            className, functionName, result, scoreInstrumentElement.InstrumentName));
+            // Logger.LogOnce(string.Format("{0}.{1}: Returned '{2}' for ScoreInstrumentName='{3}'",className, functionName, result, scoreInstrumentElement.InstrumentName));
 
             // More detailed logging
             //            Logger.LogOnce(string.Format("{0}.{1}: Creating unpitched MidiNote for unexpected MidiInstrument={2} MidiProgram={3} ScoreInstrumentName='{4}' Id={5} Result={6} in '{7}'",

@@ -36,14 +36,14 @@ namespace MusicXmlReaderModel
                     case "port":
                         // The optional port attribute is a number from 1 to 16 that can be used with the unofficial MIDI port (or cable) meta event. 
                         Utilities.Parse(a.Value, ref port, 1, 16, "",true);
-                        Logger.LogOnce(string.Format("{0}.{1}: Attribute: Name={2} value={3}", className, functionName, a.Name, a.Value));
+                        // Logger.LogOnce(string.Format("{0}.{1}: Attribute: Name={2} value={3}", className, functionName, a.Name, a.Value));
                         break;
 
                     case "id":
                         // The optional id attribute refers to the score-instrument assigned to this device.
                         // If missing, the device assignment affects all score-instrument elements in the score-part.
                         id = a.Name;
-                        Logger.LogOnce(string.Format("{0}.{1}: Attribute: Name={2} value={3}", className, functionName, a.Name, a.Value));
+                        // Logger.LogOnce(string.Format("{0}.{1}: Attribute: Name={2} value={3}", className, functionName, a.Name, a.Value));
                         break;
 
                     default:
