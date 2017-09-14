@@ -75,6 +75,7 @@ namespace MusicXmlReaderModel
         private MetaInfoItem movementNumber = MetaInfoItem.Create();
         private MetaInfoItem creator = MetaInfoItem.Create();
         private MetaInfoItem source = MetaInfoItem.Create();
+        private MetaInfoItem encoding = MetaInfoItem.Create();
 
         public MetaInfoItem FileName
         {
@@ -152,8 +153,20 @@ namespace MusicXmlReaderModel
             {
                 source = value;
             }
-        }  
+        }
 
+        public MetaInfoItem Encoding
+        {
+            get
+            {
+                return encoding;
+            }
+
+            set
+            {
+                encoding = value;
+            }
+        }
 
         // Prevent construction
         private MetaInformation()

@@ -401,7 +401,8 @@ namespace MusicXmlReaderModel
                     break;
                 case "encoding":
                     // Is described in "software", "encoding-date", "encoder", "encoding-description"
-                    //allMusicXmlObjecsts.Add(SimpleTextElement.Create(node));         
+                    //allMusicXmlObjecsts.Add(SimpleTextElement.Create(node)); 
+                            
                     break;
                 case "software":
                     allMusicXmlObjecsts.Add(SimpleTextElement.Create(node, "Software"));
@@ -419,6 +420,7 @@ namespace MusicXmlReaderModel
                     SimpleTextElement encodingDescriptionElement = SimpleTextElement.Create(node, "Kodnings-beskrivelse");
                     allMusicXmlObjecsts.Add(encodingDescriptionElement);
                     Logger.LogOnce(string.Format("{0}.{1}: Encoding='{2}'",className,functionName,node.InnerText));
+                    metaInformation.Encoding = MetaInfoItem.Create(encodingDescriptionElement.Name, encodingDescriptionElement.Text);
                     continueRecursion = false;
                     break;
                 case "direction":

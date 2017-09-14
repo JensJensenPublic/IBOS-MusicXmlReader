@@ -533,14 +533,15 @@ namespace MusicXmlReader
         /// <returns></returns>
         private string GetStatusFromMetaInformation()
         {
-            string result = string.Format("{0}  {1}  {2}  {3}  {4}  {5}  {6}"
-                                            , "" // 0 No need to repeat the application nema here !
+            string result = string.Format("{0}   {1}   {2}   {3}   {4}   {5}   {6}   {7}"
+                                            , "" // 0 No need to repeat the application name here !
                                             , model.MetaInformation.FileName // 1
                                             , model.MetaInformation.MovementTitle // 2
                                             , model.MetaInformation.MovementNumber // 3
                                             , model.MetaInformation.Work // 4
                                             , model.MetaInformation.Source // 5 
                                             , model.MetaInformation.Creator // 6
+                                            , model.MetaInformation.Encoding // 7
                                          );
             return result;
         }
