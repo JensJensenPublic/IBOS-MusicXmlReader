@@ -807,4 +807,13 @@
   <data name="MidiInstrumentElement_MidiVolume" xml:space="preserve">
     <value>Midi-lydstyrke</value>
   </data>
+  <data name="ScoreInstrumentElement_Solo" xml:space="preserve">
+    <value>Solo</value>
+  </data>
+  <data name="ScoreInstrumentElement_Sound" xml:space="preserve">
+    <value>Lyd</value>
+  </data>
+  <data name="ScoreInstrumentElement_VirtualInstrument" xml:space="preserve">
+    <value>Virtuelt instrument</value>
+  </data>
 </root>

@@ -1501,6 +1501,33 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Solo.
+        /// </summary>
+        internal static string ScoreInstrumentElement_Solo {
+            get {
+                return ResourceManager.GetString("ScoreInstrumentElement_Solo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sound.
+        /// </summary>
+        internal static string ScoreInstrumentElement_Sound {
+            get {
+                return ResourceManager.GetString("ScoreInstrumentElement_Sound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virtual Instrument.
+        /// </summary>
+        internal static string ScoreInstrumentElement_VirtualInstrument {
+            get {
+                return ResourceManager.GetString("ScoreInstrumentElement_VirtualInstrument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MuseScore for IBOS MusicXmlReader.
         /// </summary>
         internal static string Shortcut_MuseScore {

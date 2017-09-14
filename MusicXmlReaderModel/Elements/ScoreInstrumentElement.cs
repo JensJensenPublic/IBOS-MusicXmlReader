@@ -137,9 +137,9 @@ namespace MusicXmlReaderModel
         {
             //scorePartElement.ScoreInstrumentString: id, instrumentSound, instrumentName, instrumentAbbreviation, solo, virtualInstrumentElement;
             // Only show the caption for existing values
-            string soundString = string.IsNullOrEmpty(instrumentSound) ? "" : string.Format("{0}='{1}'", "Lyd", instrumentSound);
-            string soloString = string.IsNullOrEmpty(solo) ? "" : string.Format("{0}:'{1}'", "Solo", solo);
-            string viString = (null == virtualInstrumentElement) ? "" : string.Format("{0}:'{1}'", "Virtual Instrument", virtualInstrumentElement.ToString());
+            string soundString = string.IsNullOrEmpty(instrumentSound) ? "" : string.Format("{0}='{1}'", ResourcesForModel.ScoreInstrumentElement_Sound, instrumentSound);
+            string soloString = string.IsNullOrEmpty(solo) ? "" : string.Format("{0}:'{1}'", ResourcesForModel.ScoreInstrumentElement_Solo, solo);
+            string viString = (null == virtualInstrumentElement) ? "" : string.Format("{0}:'{1}'",ResourcesForModel.ScoreInstrumentElement_VirtualInstrument, virtualInstrumentElement.ToString());
             string result = string.Format("{0} {1} {2}", soundString,soloString,viString);
             return result;
         }

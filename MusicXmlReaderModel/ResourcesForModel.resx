@@ -804,4 +804,13 @@
   <data name="MidiInstrumentElement_MidiVolume" xml:space="preserve">
     <value>MidiVolume</value>
   </data>
+  <data name="ScoreInstrumentElement_Solo" xml:space="preserve">
+    <value>Solo</value>
+  </data>
+  <data name="ScoreInstrumentElement_Sound" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="ScoreInstrumentElement_VirtualInstrument" xml:space="preserve">
+    <value>Virtual Instrument</value>
+  </data>
 </root>
