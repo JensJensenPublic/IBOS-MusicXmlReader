@@ -128,7 +128,7 @@ namespace MusicXmlReaderModel
 
             if (type != NoteHeadTypeEnum.unDefined)
             {
-                Logger.LogOnce(string.Format("{0}.{1}: NoteElementType='{2}'", className, functionName, type.ToString()));
+                // Logger.LogOnce(string.Format("{0}.{1}: NoteElementType='{2}'", className, functionName, type.ToString()));
             }
 
         }

@@ -445,7 +445,7 @@ namespace MusicXmlReaderModel
                 if (notations.TupletElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start)
                 {
                     Append(new List<byte>(TupletOf3), "TupletStart");
-                    Logger.LogOnce(string.Format("{0}.{1} Added tuplet start", className, functionName));
+                    // Logger.LogOnce(string.Format("{0}.{1} Added tuplet start", className, functionName));
                 }
             }
                         
@@ -518,7 +518,7 @@ namespace MusicXmlReaderModel
                 if (notations.TupletElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop)
                 {
                     Append(new List<byte>(TupletOf3), "TupletStop");
-                    Logger.LogOnce(string.Format("{0}.{1} Added tuplet stop", className, functionName));
+                    // Logger.LogOnce(string.Format("{0}.{1} Added tuplet stop", className, functionName));
                 }
             }
 
