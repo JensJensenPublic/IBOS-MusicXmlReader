@@ -783,4 +783,25 @@
   <data name="DetailsPlayer_Parts" xml:space="preserve">
     <value>Parts</value>
   </data>
+  <data name="MidiInstrumentElement_MidiBank" xml:space="preserve">
+    <value>MidiBank</value>
+  </data>
+  <data name="MidiInstrumentElement_MidiChannel" xml:space="preserve">
+    <value>MidiChannel</value>
+  </data>
+  <data name="MidiInstrumentElement_MidiElevation" xml:space="preserve">
+    <value>MidiElevation</value>
+  </data>
+  <data name="MidiInstrumentElement_MidiPan" xml:space="preserve">
+    <value>MidiPan</value>
+  </data>
+  <data name="MidiInstrumentElement_MidiProgram" xml:space="preserve">
+    <value>MidiProgram</value>
+  </data>
+  <data name="MidiInstrumentElement_MidiUnpitchedInstrument" xml:space="preserve">
+    <value>MidiInstrument</value>
+  </data>
+  <data name="MidiInstrumentElement_MidiVolume" xml:space="preserve">
+    <value>MidiVolume</value>
+  </data>
 </root>

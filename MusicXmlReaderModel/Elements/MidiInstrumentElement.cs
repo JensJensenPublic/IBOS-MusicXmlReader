@@ -181,15 +181,15 @@ namespace MusicXmlReaderModel
         {
 #warning ToDo Localize PitchedMidiInstrumentEnum
             int iProgram = MidiProgram - 0; // The representation is 1-based in MusicXml , 0-based in Midi ???? WHY NOT ???
-            string programString = (!Pitched)? "" : string.Format("{0}={1}('{2}')","MidiProgram", iProgram, (PitchedMidiInstrumentEnum)iProgram);
-            string channelString = string.Format("{0}={1}","MidiChannel",midiChannel);
-            string volumeString = string.Format("{0}={1}", "MidiVolume", (int)(midiVolume + 0.5));
-            string bankString = (0 == midiBank) ? "" : string.Format("{0}={1}", "MidiBank", midiBank);
-            string panString = (0 == pan) ? "" : string.Format("{0}={1}", "MidiPan", pan);
-            string elevationString = (0 == elevation) ? "" : string.Format("{0}={1}", "MidiElevation",elevation);
+            string programString = (!Pitched)? "" : string.Format("{0}={1}('{2}')",ResourcesForModel.MidiInstrumentElement_MidiProgram, iProgram, (PitchedMidiInstrumentEnum)iProgram);
+            string channelString = string.Format("{0}={1}",ResourcesForModel.MidiInstrumentElement_MidiChannel,midiChannel);
+            string volumeString = string.Format("{0}={1}",ResourcesForModel.MidiInstrumentElement_MidiVolume, (int)(midiVolume + 0.5));
+            string bankString = (0 == midiBank) ? "" : string.Format("{0}={1}",ResourcesForModel.MidiInstrumentElement_MidiBank, midiBank);
+            string panString = (0 == pan) ? "" : string.Format("{0}={1}",ResourcesForModel.MidiInstrumentElement_MidiPan, pan);
+            string elevationString = (0 == elevation) ? "" : string.Format("{0}={1}",ResourcesForModel.MidiInstrumentElement_MidiElevation,elevation);
 #warning ToDo Localize UnpitchedMidiInstrumentEnum
             int iMidi = MidiUnpitchedInstrumentNumber - 1; // The representation is 1-based in MusicXml , 0-based in Midi
-            string unpitchedString =  Pitched ?  "" :  string.Format("{0}={1}(´{2}')", "Unpitched MidiInstrument",iMidi, ((UnpitchedMidiInstrumentEnum)iMidi)).ToString(); // Only if relevant !
+            string unpitchedString =  Pitched ?  "" :  string.Format("{0}={1}(´{2}')",ResourcesForModel.MidiInstrumentElement_MidiUnpitchedInstrument,iMidi, ((UnpitchedMidiInstrumentEnum)iMidi)).ToString(); // Only if relevant !
             string result = string.Format("{0} {1} {2} {3} {4} {5} {6}",programString,channelString,bankString,volumeString,panString,elevationString,unpitchedString);  
             return result;
         }

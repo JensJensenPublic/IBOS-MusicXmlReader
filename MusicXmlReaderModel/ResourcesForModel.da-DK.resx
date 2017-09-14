@@ -786,4 +786,25 @@
     <value>Stemmer</value>
     <comment>Pluralis</comment>
   </data>
+  <data name="MidiInstrumentElement_MidiBank" xml:space="preserve">
+    <value>Midi-bank</value>
+  </data>
+  <data name="MidiInstrumentElement_MidiChannel" xml:space="preserve">
+    <value>Midi-kanal</value>
+  </data>
+  <data name="MidiInstrumentElement_MidiElevation" xml:space="preserve">
+    <value>Midi-elevation</value>
+  </data>
+  <data name="MidiInstrumentElement_MidiPan" xml:space="preserve">
+    <value>Midi-pan</value>
+  </data>
+  <data name="MidiInstrumentElement_MidiProgram" xml:space="preserve">
+    <value>Midi-program</value>
+  </data>
+  <data name="MidiInstrumentElement_MidiUnpitchedInstrument" xml:space="preserve">
+    <value>Midi-instrument</value>
+  </data>
+  <data name="MidiInstrumentElement_MidiVolume" xml:space="preserve">
+    <value>Midi-lydstyrke</value>
+  </data>
 </root>
