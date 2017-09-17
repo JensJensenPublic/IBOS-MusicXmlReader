@@ -24,6 +24,7 @@ namespace MusicXmlReaderModel
         private string className = "DegreeElement";
         private int degreeValue;
         private DegreeAlterEnum degreeAlter;
+        private int degreeAlterInteger;
         private DegreeTypeEnum  degreeType;
 
         public int DegreeValue
@@ -32,6 +33,14 @@ namespace MusicXmlReaderModel
             {
                 return degreeValue;
             }  
+        }
+
+        public int DegreeAlterInteger
+        {
+            get
+            {
+                return degreeAlterInteger;
+            }
         }
 
         public DegreeAlterEnum DegreeAlter
@@ -86,10 +95,22 @@ namespace MusicXmlReaderModel
                         // the degree alteration; it is no by default
                         switch (n.InnerText)
                         {
-                            case "-1": degreeAlter = DegreeAlterEnum.flat; break;
-                            case "0":  degreeAlter = DegreeAlterEnum.none; break;
-                            case "":   degreeAlter = DegreeAlterEnum.none; break;
-                            case "1":  degreeAlter = DegreeAlterEnum.sharp; break;
+                            case "-1":
+                                degreeAlter = DegreeAlterEnum.flat;
+                                degreeAlterInteger = -1;    
+                                break;
+                            case "0":
+                                degreeAlter = DegreeAlterEnum.none;
+                                degreeAlterInteger = 0;
+                                break;
+                            case "":
+                                degreeAlter = DegreeAlterEnum.none;
+                                degreeAlterInteger = 0;
+                                break;
+                            case "1":
+                                degreeAlter = DegreeAlterEnum.sharp;
+                                degreeAlterInteger = 1;
+                                break;
                             default:   degreeAlter = DegreeAlterEnum.unknown;
                                        Logger.LogOnce(string.Format("{0}.{1} found unexpected value for degree-alter:{2}", className, functionName, n.InnerText));
                                        break;

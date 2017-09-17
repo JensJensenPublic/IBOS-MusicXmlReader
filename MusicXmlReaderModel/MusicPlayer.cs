@@ -239,7 +239,8 @@ namespace MusicXmlReaderUI
                         latestHarmonyPlayed.StartPlaying(midiOut);
                         foreach (string error in errors)
                         {
-                            Logger.LogOnce(error);
+                            // Logger.LogOnce(error);
+                            Logger.Log(error);
                         }
                     }
                     else

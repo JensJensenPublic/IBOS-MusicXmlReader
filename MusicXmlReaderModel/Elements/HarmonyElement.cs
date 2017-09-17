@@ -139,7 +139,7 @@ namespace MusicXmlReaderModel
 
                     case "degree":
                         DegreeElement degreeElement = DegreeElement.Create(n); // Handles the logging of unimplemented values                                                                           
-                        degrees.Add(MidiChordDegreeDescription.Create(degreeElement.DegreeValue,degreeElement.DegreeType));
+                        degrees.Add(MidiChordDegreeDescription.Create(degreeElement.DegreeValue,degreeElement.DegreeType,degreeElement.DegreeAlterInteger));
                         break; 
 
                     case "bass": //bassStep = n.InnerText; // Avoid repeating log for each different InnerTxt (bass note) TODO: Decode step and alter in a way similar to PitchElement

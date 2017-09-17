@@ -18,12 +18,38 @@ namespace JSJ.MusicSynthesis
     public enum FullToneStep { C = 0, D = 2, E = 4, F = 5, G = 7, A = 9, B = 11 };
 
 
+    /// <summary>
+    /// Maps the identifier to an integer, representing 1/100 of the number of cents that the interval spans
+    /// https://en.wikipedia.org/wiki/Interval_(music) lists all the intervals and compound intervals:
+    /// </summary>
     public enum Interval
     {
-        Unison = 0, MinorSecond = 1, MajorSecond = 2, MinorThird = 3, MajorThird = 4, Fourth = 5,
-        Tritone = 6, PerfectFifth = 7, AugmentedFifth = 8, MinorSixth = 8, MajorSixth = 9, DiminishedSeventh = 9, MinorSeventh = 10, MajorSeventh = 11, Octave = 12, MinorNinth = 13, Ninth = 14, // ??
-        Eleventh = 17,  // ??
-        Thirteenth = 21 // ??
+        Unison = 0,          // https://en.wikipedia.org/wiki/Eleventh
+        MinorSecond = 1,     // https://en.wikipedia.org/wiki/Eleventh
+        MajorSecond = 2,     // https://en.wikipedia.org/wiki/Eleventh
+        MinorThird = 3,      // https://en.wikipedia.org/wiki/Eleventh
+        MajorThird = 4,      // https://en.wikipedia.org/wiki/Eleventh
+        Fourth = 5,          // https://en.wikipedia.org/wiki/Eleventh
+        AugmentedFourth = 6, // https://en.wikipedia.org/wiki/Eleventh ( or DiminishedFifth or Tritone)
+        PerfectFifth = 7,    // https://en.wikipedia.org/wiki/Eleventh  
+        MinorSixth = 8,      // https://en.wikipedia.org/wiki/Eleventh
+        MajorSixth = 9,      // https://en.wikipedia.org/wiki/Eleventh
+        MinorSeventh = 10,   // https://en.wikipedia.org/wiki/Eleventh
+        MajorSeventh = 11,   // https://en.wikipedia.org/wiki/Eleventh
+        Octave = 12,         // https://en.wikipedia.org/wiki/Eleventh (or DiminishedNinth)
+        MinorNinth = 13,     // https://en.wikipedia.org/wiki/Eleventh (or AugmentedOctave)
+        MajorNinth = 14,     // https://en.wikipedia.org/wiki/Eleventh (or DiminishedTenth)
+        MinorTenth = 15,     // https://en.wikipedia.org/wiki/Eleventh (or AugmentedNinth)
+        MajorTenth = 16,     // https://en.wikipedia.org/wiki/Eleventh (or DiminishedEleventh)
+        Eleventh = 17,       // https://en.wikipedia.org/wiki/Eleventh (or AugmentedTenth) 
+        AugmentedEleventh=18,// https://en.wikipedia.org/wiki/Eleventh (or DiminishedTwelvth )
+        Twelfth = 19,        // https://en.wikipedia.org/wiki/Eleventh (or DiminishedThirteenth)
+        MinorThirteenth = 20,// https://en.wikipedia.org/wiki/Eleventh (or AugmentedTwelwth)
+        MajorThirteenth = 21,// https://en.wikipedia.org/wiki/Eleventh (or DiminishedFourteenth)
+        MinorFourteenth = 22,// https://en.wikipedia.org/wiki/Eleventh (or AugmentedThirteenth)
+        MajorFourteenth = 23,// https://en.wikipedia.org/wiki/Eleventh (or DiminishedFifteenth
+        Fifteenth = 24,      // https://en.wikipedia.org/wiki/Eleventh (or AugmentedFourteenth)
+        AugmentedFifteenth=25// https://en.wikipedia.org/wiki/Eleventh
     };
 
 

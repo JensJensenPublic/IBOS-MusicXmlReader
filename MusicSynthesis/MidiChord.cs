@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using NAudio.Midi;
 using MusicSynthesis;
+using System.Text;
 
 namespace JSJ.MusicSynthesis
 {
@@ -35,7 +36,7 @@ namespace JSJ.MusicSynthesis
         static readonly Interval[] MajorChordIntervals  = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth };
         static readonly Interval[] MinorChordIntervals  = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth };
         static readonly Interval[] DimChordIntervals    = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.Fourth };
-        static readonly Interval[] AugChordIntervals    = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.AugmentedFifth };
+        static readonly Interval[] AugChordIntervals    = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.MinorSixth };
         static readonly Interval[] Major6ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.MajorSixth };
         static readonly Interval[] Minor6ChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.MajorSixth };
         // Sevenths:
@@ -43,21 +44,21 @@ namespace JSJ.MusicSynthesis
         static readonly Interval[] Major7ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MajorSeventh };
         static readonly Interval[] Minor7ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh };
         static readonly Interval[] MajorMinorChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.MajorSeventh };
-        static readonly Interval[] Aug7ChordIntervals    = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.AugmentedFifth, Interval.MinorSeventh };
-        static readonly Interval[] HalfDim7ChordIntervals= new Interval[] { Interval.Unison, Interval.MinorThird, Interval.Tritone, Interval.MinorSeventh };
-        static readonly Interval[] FullDim7ChordIntervals= new Interval[] { Interval.Unison, Interval.MinorThird, Interval.Tritone, Interval.DiminishedSeventh };
+        static readonly Interval[] Aug7ChordIntervals    = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.MinorSixth, Interval.MinorSeventh };
+        static readonly Interval[] HalfDim7ChordIntervals= new Interval[] { Interval.Unison, Interval.MinorThird, Interval.AugmentedFourth, Interval.MinorSeventh };
+        static readonly Interval[] FullDim7ChordIntervals= new Interval[] { Interval.Unison, Interval.MinorThird, Interval.AugmentedFourth, Interval.MajorSixth };
         // Ninths:
-        static readonly Interval[] Dom9ChordIntervals    = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth };
-        static readonly Interval[] Major9ChordIntervals  = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MajorSeventh, Interval.Ninth };
-        static readonly Interval[] Minor9ChordIntervals  = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth };
+        static readonly Interval[] Dom9ChordIntervals    = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.MajorNinth };
+        static readonly Interval[] Major9ChordIntervals  = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MajorSeventh, Interval.MajorNinth };
+        static readonly Interval[] Minor9ChordIntervals  = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.MajorNinth };
         // Elevenths:
-        static readonly Interval[] Dom11ChordIntervals   = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth, Interval.Eleventh };
-        static readonly Interval[] Major11ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MajorSeventh, Interval.Ninth, Interval.Eleventh };
-        static readonly Interval[] Minor11ChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth, Interval.Eleventh };
+        static readonly Interval[] Dom11ChordIntervals   = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.MajorNinth, Interval.Eleventh };
+        static readonly Interval[] Major11ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MajorSeventh, Interval.MajorNinth, Interval.Eleventh };
+        static readonly Interval[] Minor11ChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.MajorNinth, Interval.Eleventh };
         // Thirteenths:
-        static readonly Interval[] Dom13ChordIntervals   = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth, Interval.Eleventh, Interval.Thirteenth };
-        static readonly Interval[] Major13ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MajorSeventh, Interval.Ninth, Interval.Eleventh, Interval.Thirteenth };
-        static readonly Interval[] Minor13ChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.Ninth, Interval.Eleventh, Interval.Thirteenth};
+        static readonly Interval[] Dom13ChordIntervals   = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.MajorNinth, Interval.Eleventh, Interval.MajorThirteenth };
+        static readonly Interval[] Major13ChordIntervals = new Interval[] { Interval.Unison, Interval.MajorThird, Interval.PerfectFifth, Interval.MajorSeventh, Interval.MajorNinth, Interval.Eleventh, Interval.MajorThirteenth };
+        static readonly Interval[] Minor13ChordIntervals = new Interval[] { Interval.Unison, Interval.MinorThird, Interval.PerfectFifth, Interval.MinorSeventh, Interval.MajorNinth, Interval.Eleventh, Interval.MajorThirteenth};
         // Sustained 
         static readonly Interval[] Sus2ChordIntervals    = new Interval[] { Interval.Unison, Interval.MajorSecond, Interval.MajorSeventh };
         static readonly Interval[] Sus4ChordIntervals    = new Interval[] { Interval.Unison, Interval.Fourth, Interval.MinorSeventh };
@@ -189,15 +190,16 @@ namespace JSJ.MusicSynthesis
         {
             switch (interval)
             {
+#warning To Do fix and add more localization !!
                 case Interval.Unison: return ResourcesForMusicSynthesis.Chord_Function_Tonic; // Tonic / Grundtone
                 case Interval.MinorSecond: return ResourcesForMusicSynthesis.Chord_Function_Minor_Second;
                 case Interval.MajorSecond: return ResourcesForMusicSynthesis.Chord_Function_Major_Second;
                 case Interval.MinorThird: return ResourcesForMusicSynthesis.Chord_Function_Minor_Third;
                 case Interval.MajorThird: return ResourcesForMusicSynthesis.Chord_Function_Major_Third;
                 case Interval.Fourth: return ResourcesForMusicSynthesis.Chord_Function_Fourth;
-                case Interval.Tritone: return ResourcesForMusicSynthesis.Chord_Function_Tritone; //  Dimished Fifth / Formindsket kvint
+                case Interval.AugmentedFourth: return ResourcesForMusicSynthesis.Chord_Function_Tritone; //  Dimished Fifth / Formindsket kvint
                 case Interval.PerfectFifth: return ResourcesForMusicSynthesis.Chord_Function_Perfect_Fifth;
-                case Interval.AugmentedFifth: return ResourcesForMusicSynthesis.Chord_Function_Augmented_Fifth;
+                case Interval.MinorSixth: return ResourcesForMusicSynthesis.Chord_Function_Augmented_Fifth;
                 // case Interval.MinorSixth: return ""; == Interval.AugmentedFifth
                 case Interval.MajorSixth: return ResourcesForMusicSynthesis.Chord_Function_Major_Sixth;
                 // case Interval.DiminishedSeventh: return ""; == Interval.MajorSixth
@@ -205,9 +207,9 @@ namespace JSJ.MusicSynthesis
                 case Interval.MajorSeventh: return ResourcesForMusicSynthesis.Chord_Function_Major_Seventh;
                 case Interval.Octave: return ResourcesForMusicSynthesis.Chord_Function_Octave;
                 case Interval.MinorNinth: return ResourcesForMusicSynthesis.Chord_Function_Minor_Ninth;
-                case Interval.Ninth: return ResourcesForMusicSynthesis.Chord_Function_Ninth;
+                case Interval.MajorNinth: return ResourcesForMusicSynthesis.Chord_Function_Ninth;
                 case Interval.Eleventh: return ResourcesForMusicSynthesis.Chord_Function_Eleventh;
-                case Interval.Thirteenth: return ResourcesForMusicSynthesis.Chord_Function_Thirteenth;
+                case Interval.MajorThirteenth: return ResourcesForMusicSynthesis.Chord_Function_Thirteenth;
                 default: 
                     // Log ?                   
                     return "";
@@ -272,6 +274,125 @@ namespace JSJ.MusicSynthesis
 
 
         /// <summary>
+        /// Map from the diatonic domain to the cromatic domain
+        /// </summary>
+        /// <param name="degree"></param>
+        /// <param name="interval"></param>
+        /// <returns></returns>
+        private bool GetChordInterval(int degree, out Interval interval)
+        {
+            Interval result = Interval.Unison; 
+            bool implemented = true;
+            switch (degree)
+            {
+                case 1:
+                    result = Interval.Unison; break;
+                case 2:
+                    result = Interval.MajorSecond; break;
+                case 3:
+                    result = Interval.MajorThird; break;
+                case 4:
+                    result = Interval.Fourth; break;
+                case 5:
+                    result = Interval.PerfectFifth; break;
+                case 6:
+                    result = Interval.MajorSixth; break;  
+                case 7:
+                    result = Interval.MinorSeventh; break;
+                case 8:
+                    result = Interval.Octave; break;
+                case 9:
+                    result = Interval.MajorNinth; break;
+                case 10: 
+                    result = Interval.MajorTenth; break;
+                case 11:
+                    result = Interval.Eleventh; break;
+                case 12:
+                    result = Interval.Twelfth; break;
+                case 13:
+                    result = Interval.MajorThirteenth; break;
+                case 14:
+                    result = Interval.MajorFourteenth; break;
+                case 15:
+                    result = Interval.Fifteenth; break;   
+                default:
+                    implemented = false;
+                    result = Interval.Unison; break; //  What else could we do here ??
+            }
+
+            interval = result;
+
+            if (!implemented)
+            {
+#warning Find out what to do !
+            }
+
+            return implemented;
+        }
+
+
+        private string ToString(List<Interval> intervals)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (Interval interval in intervals)
+            {
+                sb.Append(interval.ToString() + " ");
+            }
+            return sb.ToString();
+        }
+
+        private void ModifyIntervals(ref Interval[] intervals, List<MidiChordDegreeDescription> degreeDescriptions, List<string> logLines)
+        {
+            string functionName = "ModifyIntervals";
+            // Convert to List<> while manipulating!
+            List<Interval> intervalList = new List<Interval>(intervals);
+            logLines.Add(string.Format("{0}.{1}.Entry: {2}", className, functionName, ToString(intervalList))); // Log at entry
+            foreach (MidiChordDegreeDescription degreeDescription in degreeDescriptions)
+            {
+                Interval interval;
+                bool implementedDegreeValue = (GetChordInterval(degreeDescription.Degree, out interval));
+                if (!implementedDegreeValue)
+                {
+                    logLines.Add(string.Format("{0}.{1} Unimplemented Degree ={2}", className, functionName, degreeDescription.Degree.ToString()));
+                }
+                else          
+                {
+                    switch (degreeDescription.DegreeType)
+                    {
+                        case DegreeTypeEnum.none: break;
+                        case DegreeTypeEnum.add:
+                            intervalList.Add((Interval) ((int)interval + degreeDescription.Alter));
+                            break;
+                        case DegreeTypeEnum.alter:
+                            intervalList.Remove(interval);
+                            intervalList.Add((Interval)((int)interval) + degreeDescription.Alter);
+                            break;
+                        case DegreeTypeEnum.subtract:
+                            intervalList.Remove(interval);
+                            break;
+                        case DegreeTypeEnum.unknown:
+                            if (null != logLines)
+                            {
+                                logLines.Add(string.Format("{0}.{1} Type={2} Value={3} Degree not implemented yet", className, functionName, degreeDescription.DegreeType.ToString(), degreeDescription.Degree.ToString()));
+                            }
+                            break;
+                        default:
+                            if (null != logLines)
+                            {
+                                logLines.Add(string.Format("{0}.{1} Unimplemented DegreeType={2}", className, functionName, degreeDescription.DegreeType.ToString()));
+                            }
+                            break;
+                    }
+                }
+            }
+            intervalList.Sort();
+            logLines.Add(string.Format("{0}.{1}.Exit:  {2}", className, functionName, ToString(intervalList))); // Log at exit
+            intervals = intervalList.ToArray();          
+        }
+
+        
+
+        /// <summary>
         /// Constructor
         /// Does NOT start playing the chord.
         /// </summary>
@@ -279,10 +400,14 @@ namespace JSJ.MusicSynthesis
         /// <param name="octave"></param>
         /// <param name="velocity"></param>
         /// <param name="chordType"></param>
-        public MidiChord(ChromaticStep step, int octave,  int velocity, ChordType chordType, ChromaticStep bassStep, List<MidiChordDegreeDescription> degreeDescriptions, List<string> logLines)
+        public MidiChord(ChromaticStep step, int octave, int velocity, ChordType chordType, ChromaticStep bassStep, List<MidiChordDegreeDescription> degreeDescriptions, List<string> logLines)
         {
             string functionName = "MidiChord";
             Interval[] intervals = GetChordIntervals(chordType);
+            if ((null != degreeDescriptions) && ( 0 != degreeDescriptions.Count))
+            {
+                ModifyIntervals(ref intervals, degreeDescriptions, logLines);
+            }
             foreach (Interval interval in intervals)
             {
                 midinotes.Add(new MidiNote(step, octave, velocity, interval));
@@ -291,38 +416,6 @@ namespace JSJ.MusicSynthesis
             {
                 midinotes.Add(new MidiNote(bassStep, (octave - 1), velocity, Interval.Unison));
             }
-            if (null != degreeDescriptions)
-            {
-                 foreach (MidiChordDegreeDescription degreeDescription in degreeDescriptions)
-                {
-                    switch(degreeDescription.DegreeType)
-                    {
-                        case DegreeTypeEnum.none: break;
-
-                        case DegreeTypeEnum.add:
-                        case DegreeTypeEnum.alter:
-                        case DegreeTypeEnum.subtract:
-                        case DegreeTypeEnum.unknown:
-                            if (null != logLines)
-                            {
-                                logLines.Add(string.Format("{0}.{1} Type={2} Value={3} Degree not implemented yet", className, functionName, degreeDescription.DegreeType.ToString(), degreeDescription.Degree.ToString()));
-                            }
-                            break;
-                        default: 
-                            if (null != logLines)
-                            {
-                                logLines.Add(string.Format("{0}.{1} Unimplemented DegreeType={2}", className, functionName, degreeDescription.DegreeType.ToString()));
-                            }
-                            break;
-
-                    }
-                }
-
-            }
-
-
-
-
         }
 
 
