@@ -394,7 +394,7 @@ namespace JSJ.MusicSynthesis
         /// <param name="octave"></param>
         /// <param name="velocity"></param>
         /// <param name="chordType"></param>
-        public MidiChord(ChromaticStep step, int octave, int velocity, ChordType chordType, ChromaticStep bassStep, List<MidiChordDegreeDescription> degreeDescriptions, List<string> logLines)
+        public MidiChord(ChromaticStep step, int octave, int velocity, ChordType chordType, ChromaticStep bassStep, List<MidiChordDegreeDescription> degreeDescriptions)
         {
             // string functionName = "MidiChord";
             Interval[] intervals = GetChordIntervals(chordType);

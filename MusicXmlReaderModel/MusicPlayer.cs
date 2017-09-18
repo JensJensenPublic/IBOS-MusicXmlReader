@@ -254,14 +254,8 @@ namespace MusicXmlReaderUI
                     if (ChordType.UnImplemented != h.ChordType)
                     {
                         List<string> errors = new List<string>(); // MidiChord has no access to the logging system. Instead we log errors in this way: 
-                        latestHarmonyPlayed = new MidiChord(h.ChromaticRootStep, 4, 127, h.ChordType, h.ChromaticBassStep, h.Degrees, errors); // The last 2 parameters will be used for non-standard harmonies 
-                        latestHarmonyPlayed.StartPlaying(midiOut);
-                        foreach (string error in errors)
-                        {
-                            // Logger.LogOnce(error);
-                            Logger.Log(error);
-                        }
-                    }
+                        latestHarmonyPlayed = new MidiChord(h.ChromaticRootStep, 4, 127, h.ChordType, h.ChromaticBassStep, h.Degrees); // The last 2 parameters will be used for non-standard harmonies 
+                        latestHarmonyPlayed.StartPlaying(midiOut);                    }
                     else
                     {
                         Logger.Log(string.Format("MusicPlayer: Becifring {0} er ikke implementeret", h.Kind));

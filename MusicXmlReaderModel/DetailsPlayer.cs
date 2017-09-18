@@ -174,7 +174,7 @@ namespace MusicXmlReaderModel
                 if (null != hE)
                 {
                     // This DetailDescription describes a harmony       
-                    currentDetailsMidiChord = new MidiChord(hE.ChromaticRootStep, chordOctave, velocity, hE.ChordType, hE.ChromaticBassStep, null, null);
+                    currentDetailsMidiChord = new MidiChord(hE.ChromaticRootStep, chordOctave, velocity, hE.ChordType, hE.ChromaticBassStep, null);
                     currentDetailsMidiChord.StartPlaying(midiOut);
                 }
             }
