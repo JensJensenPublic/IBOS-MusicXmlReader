@@ -341,19 +341,19 @@ namespace JSJ.MusicSynthesis
             return sb.ToString();
         }
 
-        private void ModifyIntervals(ref Interval[] intervals, List<MidiChordDegreeDescription> degreeDescriptions, List<string> logLines)
+        private void ModifyIntervals(ref Interval[] intervals, List<MidiChordDegreeDescription> degreeDescriptions)
         {
             string functionName = "ModifyIntervals";
             // Convert to List<> while manipulating!
             List<Interval> intervalList = new List<Interval>(intervals);
-            logLines.Add(string.Format("{0}.{1}.Entry: {2}", className, functionName, ToString(intervalList))); // Log at entry
+            MusicSynthesisLogger.Log(string.Format("{0}.{1}.Entry: {2}", className, functionName, ToString(intervalList))); // Log at entry
             foreach (MidiChordDegreeDescription degreeDescription in degreeDescriptions)
             {
                 Interval interval;
                 bool implementedDegreeValue = (GetChordInterval(degreeDescription.Degree, out interval));
                 if (!implementedDegreeValue)
                 {
-                    logLines.Add(string.Format("{0}.{1} Unimplemented Degree ={2}", className, functionName, degreeDescription.Degree.ToString()));
+                    MusicSynthesisLogger.Log(string.Format("{0}.{1} Unimplemented Degree ={2}", className, functionName, degreeDescription.Degree.ToString()));
                 }
                 else          
                 {
@@ -371,22 +371,16 @@ namespace JSJ.MusicSynthesis
                             intervalList.Remove(interval);
                             break;
                         case DegreeTypeEnum.unknown:
-                            if (null != logLines)
-                            {
-                                logLines.Add(string.Format("{0}.{1} Type={2} Value={3} Degree not implemented yet", className, functionName, degreeDescription.DegreeType.ToString(), degreeDescription.Degree.ToString()));
-                            }
+                            MusicSynthesisLogger.Log(string.Format("{0}.{1} Type={2} Value={3} Degree not implemented yet", className, functionName, degreeDescription.DegreeType.ToString(), degreeDescription.Degree.ToString())); 
                             break;
                         default:
-                            if (null != logLines)
-                            {
-                                logLines.Add(string.Format("{0}.{1} Unimplemented DegreeType={2}", className, functionName, degreeDescription.DegreeType.ToString()));
-                            }
+                            MusicSynthesisLogger.Log(string.Format("{0}.{1} Unimplemented DegreeType={2}", className, functionName, degreeDescription.DegreeType.ToString()));
                             break;
                     }
                 }
             }
             intervalList.Sort();
-            logLines.Add(string.Format("{0}.{1}.Exit:  {2}", className, functionName, ToString(intervalList))); // Log at exit
+            MusicSynthesisLogger.Log(string.Format("{0}.{1}.Exit:  {2}", className, functionName, ToString(intervalList))); // Log at exit
             intervals = intervalList.ToArray();          
         }
 
@@ -402,11 +396,11 @@ namespace JSJ.MusicSynthesis
         /// <param name="chordType"></param>
         public MidiChord(ChromaticStep step, int octave, int velocity, ChordType chordType, ChromaticStep bassStep, List<MidiChordDegreeDescription> degreeDescriptions, List<string> logLines)
         {
-            string functionName = "MidiChord";
+            // string functionName = "MidiChord";
             Interval[] intervals = GetChordIntervals(chordType);
             if ((null != degreeDescriptions) && ( 0 != degreeDescriptions.Count))
             {
-                ModifyIntervals(ref intervals, degreeDescriptions, logLines);
+                ModifyIntervals(ref intervals, degreeDescriptions);
             }
             foreach (Interval interval in intervals)
             {

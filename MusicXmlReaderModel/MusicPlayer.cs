@@ -17,7 +17,7 @@ namespace MusicXmlReaderUI
 
     enum MusicPlayerThreadStateEnum { unknown = 0, stopped, running };
 
-    public class MusicPlayer
+    public class MusicPlayer : IMusicSynthesisClient
     {
         string className = "MusicPlayer";
         public static int defaultMusicPlayerTempo = 120; // Quarter notes per minute.  Use 120 as a default. Same as MuseScore does !
@@ -52,6 +52,24 @@ namespace MusicXmlReaderUI
         object latestSelectedObject = null; // Used to avoid playing notes only because a filter has changed
         int[] currentMidiInstruments = new int[MidiCommand.MumberOfMidiChannels+1]; // Midi Channels are numbered from 1 to 17 (not from 0 to 16)
 
+        /// <summary>
+        /// Implement IMusicSynthesisClient
+        /// </summary>
+        /// <param name="s"></param>
+        public void Log(string s)
+        {
+            Logger.Log(s);
+        }
+
+        /// <summary>
+        /// Implement IMusicSynthesisClient
+        /// </summary>
+        /// <param name="s"></param>
+        public void LogOnce(string s)
+        {
+            Logger.LogOnce(s);
+        }
+
 
         /// <summary>
         /// Constructor
@@ -64,6 +82,7 @@ namespace MusicXmlReaderUI
             Logger.Log(string.Format("{0}.{1} Initializing tempo to {2}", className, functionName, defaultMusicPlayerTempo));
             this.tempo = defaultMusicPlayerTempo; // Quarter notes per minute.  Use 60 as a default
             ResetInstrumentMapping();
+            MusicSynthesisLogger.Init(this as IMusicSynthesisClient);
             // Temp start
             //MidiCommand midiCommand = new MidiCommand();
             //midiCommand.ChangeInstrument(19, midiOut); // 19 = Guitar

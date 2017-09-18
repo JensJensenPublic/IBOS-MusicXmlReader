@@ -43,6 +43,7 @@ namespace MusicXmlReader
                 Logger.Log(string.Format("{0}.{1} Starting: Date={2}", className, functionName, System.DateTime.Now.ToLongDateString()));
                 Application.ApplicationExit += Application_ApplicationExit;
                 LogSystemInformation();
+          
                 // If the execution directory contains a file named "Language.txt" containing the string "en-US"
                 // the application language will be changed to english evin if running on a danish PC!
                 LogGLobalisationInformation();

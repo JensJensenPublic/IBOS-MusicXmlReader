@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMusicSynthesisClient.cs" />
+    <Compile Include="MusicSynthesisLogger.cs" />
     <Compile Include="MidiChord.cs" />
     <Compile Include="MidiChordDegreeDescription.cs" />
     <Compile Include="MidiCommand.cs" />
