@@ -49,6 +49,12 @@ namespace MusicSynthesis
             }
         }
 
+        public override string ToString()
+        {
+            return string.Format("(Degree={0} Type={1} Alter={2})", degree, degreeType, alter);
+        }
+
+
         public static MidiChordDegreeDescription Create(int degree, DegreeTypeEnum DegreeType, int alter)
         {
             return new MidiChordDegreeDescription(degree, DegreeType,alter);

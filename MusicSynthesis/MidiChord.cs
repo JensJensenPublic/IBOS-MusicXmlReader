@@ -341,12 +341,23 @@ namespace JSJ.MusicSynthesis
             return sb.ToString();
         }
 
+        private string ToString(List<MidiChordDegreeDescription> descriptions)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (MidiChordDegreeDescription description in descriptions)
+            {
+                sb.Append(description.ToString() + " ");
+            }
+            return sb.ToString();
+        }
+
+
         private void ModifyIntervals(ref Interval[] intervals, List<MidiChordDegreeDescription> degreeDescriptions)
         {
             string functionName = "ModifyIntervals";
             // Convert to List<> while manipulating!
             List<Interval> intervalList = new List<Interval>(intervals);
-            MusicSynthesisLogger.Log(string.Format("{0}.{1}.Entry: {2}", className, functionName, ToString(intervalList))); // Log at entry
+            MusicSynthesisLogger.Log(string.Format("{0}.{1}.Entry: {2} {3}", className, functionName, ToString(intervalList),ToString(degreeDescriptions))); // Log at entry
             foreach (MidiChordDegreeDescription degreeDescription in degreeDescriptions)
             {
                 Interval interval;
