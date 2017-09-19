@@ -195,6 +195,79 @@ namespace MusicXmlReaderModel
             return ok;
         }
 
+
+        public int ImportNewestDownloads()
+        {
+            string functionName = "ImportNewestDownloads";
+            int filesCopied = 0;
+            try
+            {
+                bool defaultUser = false;
+                string downloadPath = KnownFolders.GetPath(KnownFolder.Downloads, defaultUser); // Get the path to the current user.
+                string destinationPath = InitialDirectory;
+                Logger.Log(string.Format("{0}.{1}: DownloadPath={2} DestinationPath={3}", className, functionName, downloadPath, destinationPath));
+                string[] files =  Directory.GetFiles(downloadPath);
+                //Logger.Log(string.Format("{0}.{1}: Files={2}", className, functionName, files.GetLength(0)));
+                List<string> musicXmlFiles = new List<string>();
+                foreach (string file in files)
+                {
+                    string extension = Path.GetExtension(file);
+                    if ((".xml" == extension) || (".mxl" == extension))
+                    {
+                        musicXmlFiles.Add(file);
+                    }
+                }
+                //Logger.Log(string.Format("{0}.{1}: MusicXml files={2}", className, functionName, musicXmlFiles.Count));
+                List<string> todaysMusicXmlFiles = new List<string>();
+                DateTime toDay = DateTime.Now.Date;
+                foreach (string file in musicXmlFiles)
+                {
+
+                    FileInfo fi = new FileInfo(file);
+                    DateTime fileDate = fi.LastWriteTimeUtc.Date;
+                    if ((fileDate.Year == toDay.Year) && (fileDate.Month == toDay.Month) && (fileDate.Day == toDay.Day))
+                    {
+                        todaysMusicXmlFiles.Add(file);
+
+                    }
+                }
+                Logger.Log(string.Format("{0}.{1}: Files={2} MusicXml={3} Today={4}", 
+                    className, functionName, files.GetLength(0), musicXmlFiles.Count, todaysMusicXmlFiles.Count));
+
+                // Copy files
+
+                foreach (string file in todaysMusicXmlFiles)
+                {
+                    string shortFileName = Path.GetFileName(file);
+                    string destFileName = Path.Combine(destinationPath, shortFileName);
+                    if (File.Exists(Path.Combine(destinationPath, shortFileName)))
+                    {
+                        Logger.Log(string.Format("{0}.{1}: Skipping {2} because it has already been imported", className, functionName, file));
+                    }
+                    else
+                    {
+                        try
+                        {
+                            File.Copy(file, destFileName, false); // False <==> Do not overwrite existing
+                            Logger.Log(string.Format("{0}.{1}: Copied {2}", className, functionName, file));
+                            filesCopied++;
+                        }
+                        catch (Exception e)
+                        {
+                            Logger.Log(string.Format("{0}.{1}: Failed to copy {2} Exception.Message={3}", className, functionName,file, e.Message));
+                        }
+                    }
+                }
+                
+            }
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("{0}.{1} Failed. Exception.Message={2}", className, functionName, e.Message)); 
+            }
+            return filesCopied;
+        }
+
+
         /// <summary>
         /// To use a console in a Windows Forms application change:
         /// Project Properties -> Application -> Output Type -> Console Application

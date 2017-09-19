@@ -86,6 +86,7 @@
             this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.listBoxDetails = new System.Windows.Forms.ListBox();
+            this.importNewestDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,7 +109,8 @@
             this.filesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openMusicXmlFileToolStripMenuItem,
             this.toolStripSeparator1,
-            this.exitToolStripMenuItem});
+            this.exitToolStripMenuItem,
+            this.importNewestDownloadsToolStripMenuItem});
             this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
             this.filesToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.filesToolStripMenuItem.Text = "&Files";
@@ -564,6 +566,13 @@
             this.listBoxDetails.SelectedIndexChanged += new System.EventHandler(this.listBoxDetails_SelectedIndexChanged);
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDetails_KeyDown);
             // 
+            // importNewestDownloadsToolStripMenuItem
+            // 
+            this.importNewestDownloadsToolStripMenuItem.Name = "importNewestDownloadsToolStripMenuItem";
+            this.importNewestDownloadsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.importNewestDownloadsToolStripMenuItem.Text = "&Import Newest Downloads";
+            this.importNewestDownloadsToolStripMenuItem.Click += new System.EventHandler(this.importNewestDownloadsToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -652,6 +661,7 @@
         private System.Windows.Forms.TextBox textBoxStatusInformation;
         private System.Windows.Forms.ToolStripMenuItem keyboardShortcutsToolStripMenuItem;
         private System.Windows.Forms.ListBox listBoxDetails;
+        private System.Windows.Forms.ToolStripMenuItem importNewestDownloadsToolStripMenuItem;
     }
 }
 

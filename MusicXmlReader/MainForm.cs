@@ -1143,6 +1143,11 @@ namespace MusicXmlReader
             DetailsDescription detailsDescription = o as DetailsDescription;
             model.SelectedDetailsIndexChanged(detailsDescription);
         }
+
+        private void importNewestDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int filesCopied = model.ImportNewestDownloads();
+        }
         #endregion
 
         #endregion
