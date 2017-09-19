@@ -1147,6 +1147,9 @@ namespace MusicXmlReader
         private void importNewestDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int filesCopied = model.ImportNewestDownloads();
+#warning Localize
+            string message = string.Format("Imported {0} MusicXml files", filesCopied);
+            WriteStatusInformation(message);
         }
         #endregion
 
