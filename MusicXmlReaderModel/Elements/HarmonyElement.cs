@@ -1,8 +1,9 @@
 ﻿using System.Xml;
 using JSJ.MusicSynthesis;
 using System.Collections.Generic;
-using MusicSynthesis;
+//using MusicSynthesis;
 using System.Collections.Generic;
+using System.Text;
 
 namespace MusicXmlReaderModel
 {
@@ -21,7 +22,7 @@ namespace MusicXmlReaderModel
         RootElement rootElement; // The "C" in "C/G"
         BassElement bassElement; // The "G" in "C/G"
         // List<DegreeElement> degreeElements = new List<DegreeElement>(); // (add11) etc
-        List<MusicSynthesis.MidiChordDegreeDescription> degrees = new List<MusicSynthesis.MidiChordDegreeDescription>(); // (add11) etc
+        List<MidiChordDegreeDescription> degrees = new List<MidiChordDegreeDescription>(); // (add11) etc
 
         // Derived variables
         ChromaticStep chromaticRootStep;
@@ -219,12 +220,23 @@ namespace MusicXmlReaderModel
                 string.IsNullOrEmpty(rootStep) ? "" : rootStep,
                 string.IsNullOrEmpty(rootAlter) ? "" : rootAlter);
         }
+
+        private string ToString(List<MidiChordDegreeDescription> degrees)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (MidiChordDegreeDescription degree in degrees)
+            {
+                sb.Append(degree.ToLocalizedString());
+            }
+            return sb.ToString();
+        }
         
         public string ToLocalizedString()
         {
             string delimiter = ""; // (string.IsNullOrEmpty(localizedChordType)) ? "" : "-"; // Only show delimiter if needed
             string bassTone = (null != bassElement) ? string.Format("/{0}",bassElement.ToString()) : ""; // Only show bassTone if needed
-            string s = string.Format("{0}{1}{2}{3}", chromaticRootStep, delimiter, localizedChordType, bassTone);
+            string degreeString = ((null != degrees) && (0 != degrees.Count)) ? ToString(degrees) : ""; // Only show degrees if needed  
+            string s = string.Format("{0}{1}{2}{3} {4}", chromaticRootStep, delimiter, localizedChordType, bassTone, degreeString);
             return s;
         }
     }
