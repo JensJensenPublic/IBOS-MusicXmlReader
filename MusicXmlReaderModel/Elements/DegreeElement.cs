@@ -135,10 +135,7 @@ namespace MusicXmlReaderModel
                         Logger.LogOnce(string.Format("{0}.{1} found unknown degree element. Name={2} InnerText={3}", className, functionName, n.Name, n.InnerText)); break;
                 }
             }
-            // Log this until we implement a visualization of the DegreeElement !
-            //Logger.LogOnce(string.Format("{0}.{1} found DegreeElement: Value={2} Alter={3} Type= {4} But the value is not used yet", className, functionName, degreeValue, degreeAlter, degreeType));
-            Logger.LogOnce(string.Format("{0}.{1} found DegreeElement: {2}  But the value is not used yet", className, functionName, this.ToString()));
-            //Logger.LogOnce(string.Format("{0}.{1} found DegreeElement. But the value is not used yet.", className, functionName));
+            // Logger.LogOnce(string.Format("{0}.{1} found DegreeElement: {2}", className, functionName, this.ToString()));
         }
 
         private string DegreeTypeToString()
