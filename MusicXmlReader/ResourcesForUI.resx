@@ -297,4 +297,7 @@
   <data name="Message_DoYouWantToExitTheProgram" xml:space="preserve">
     <value>Do you want to exit the program?</value>
   </data>
+  <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
+    <value>&amp;Import newest downloads</value>
+  </data>
 </root>

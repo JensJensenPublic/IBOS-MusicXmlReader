@@ -340,6 +340,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Import newest downloads.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_ImportNewestDownloads {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_ImportNewestDownloads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Open MusicXml File.
         /// </summary>
         internal static string ToolStripMenuItem_Files_OpenMusicXmlFile {

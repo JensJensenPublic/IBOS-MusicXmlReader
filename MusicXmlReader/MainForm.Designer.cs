@@ -108,9 +108,9 @@
             // 
             this.filesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openMusicXmlFileToolStripMenuItem,
+            this.importNewestDownloadsToolStripMenuItem,
             this.toolStripSeparator1,
-            this.exitToolStripMenuItem,
-            this.importNewestDownloadsToolStripMenuItem});
+            this.exitToolStripMenuItem});
             this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
             this.filesToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.filesToolStripMenuItem.Text = "&Files";

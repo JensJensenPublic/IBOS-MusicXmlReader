@@ -120,8 +120,9 @@ namespace MusicXmlReader
             helpToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help ; 
 
             // Children of  fileToolStripMenuItem
-            openMusicXmlFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile; ;
+            openMusicXmlFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile; 
             openMusicXmlFileToolStripMenuItem.ShortcutKeys = ShortcutHandler.openMusicXmlFile;
+            importNewestDownloadsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ImportNewestDownloads;
             exitToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_Exit;
             exitToolStripMenuItem.ShortcutKeys = ShortcutHandler.exitApplication;
 
