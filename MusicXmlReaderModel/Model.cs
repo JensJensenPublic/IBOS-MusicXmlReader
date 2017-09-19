@@ -286,6 +286,7 @@ namespace MusicXmlReaderModel
             s = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments); // C:\Users\Jens\Documents
             s = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Recent);      // C:\Users\Jens\AppData\Roaming\Microsoft\Windows\Recent
             s = System.IO.Path.GetPathRoot(System.Environment.SystemDirectory);                 // C:\
+            s = KnownFolders.GetPath(KnownFolder.Downloads, false);   
 #endif
 
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
