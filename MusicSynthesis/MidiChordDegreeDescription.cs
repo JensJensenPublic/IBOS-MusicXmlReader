@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MusicSynthesis; // Needed because The Localisation files are defined there !
 
 namespace JSJ.MusicSynthesis
 {
@@ -71,9 +72,9 @@ namespace JSJ.MusicSynthesis
             string alterSymbol = "";
             switch (alter)
             {
-                case -1: alterSymbol = "b"; break;
-                case  0: alterSymbol = ""; break;
-                case  1: alterSymbol = "#"; break;
+                case -1: alterSymbol = ResourcesForMusicSynthesis.MidiChordDegreeDescription_flat; break;
+                case  0: alterSymbol = ResourcesForMusicSynthesis.MidiChordDegreeDescription_natural ; break;
+                case  1: alterSymbol = ResourcesForMusicSynthesis.MidiChordDegreeDescription_sharp; break;
                 default:
                     alterSymbol = "";
                     MusicSynthesisLogger.Log(string.Format("{0}.{1}: Unexpected value of alter={2}", className, functionName, alter));
@@ -83,21 +84,17 @@ namespace JSJ.MusicSynthesis
             string degreeTypeString = "";
             switch (degreeType)
             {
-                case DegreeTypeEnum.add:
-                    degreeTypeString = "add"; break; // Probably no need to localize?
-                case DegreeTypeEnum.alter:
-                    degreeTypeString = ""; break;
-                case DegreeTypeEnum.none:
-                    degreeTypeString = ""; break;
-                case DegreeTypeEnum.subtract:
-                    degreeTypeString = "-"; break;
+                case DegreeTypeEnum.add:        degreeTypeString = ResourcesForMusicSynthesis.DegreeTypeEnum_add; break; 
+                case DegreeTypeEnum.alter:      degreeTypeString = ResourcesForMusicSynthesis.DegreeTypeEnum_alter; break;
+                case DegreeTypeEnum.none:       degreeTypeString = ""; break;
+                case DegreeTypeEnum.subtract:   degreeTypeString = ResourcesForMusicSynthesis.DegreeTypeEnum_subtract; break;
                 default:
                     degreeTypeString = "";
                     MusicSynthesisLogger.Log(string.Format("{0}.{1}: Unexpected value of degreeType={2}", className, functionName, degreeType));
                     break;
             }
 
-            return string.Format("{0}{1}{2} ", degreeTypeString, alterSymbol, degree); // For instance "#11
+            return string.Format("{0} {1} {2} ", degreeTypeString, alterSymbol, degree); // For instance "add kryds 11
         }
 
 

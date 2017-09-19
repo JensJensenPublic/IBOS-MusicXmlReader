@@ -240,4 +240,22 @@
   <data name="Chord_Function_Tritone" xml:space="preserve">
     <value>Diminished Fifth</value>
   </data>
+  <data name="DegreeTypeEnum_add" xml:space="preserve">
+    <value>add</value>
+  </data>
+  <data name="DegreeTypeEnum_alter" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DegreeTypeEnum_subtract" xml:space="preserve">
+    <value>sub</value>
+  </data>
+  <data name="MidiChordDegreeDescription_flat" xml:space="preserve">
+    <value>flat</value>
+  </data>
+  <data name="MidiChordDegreeDescription_natural" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MidiChordDegreeDescription_sharp" xml:space="preserve">
+    <value>sharp</value>
+  </data>
 </root>

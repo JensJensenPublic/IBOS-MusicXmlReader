@@ -428,5 +428,59 @@ namespace MusicSynthesis {
                 return ResourceManager.GetString("ChordKind_Sus4", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add.
+        /// </summary>
+        internal static string DegreeTypeEnum_add {
+            get {
+                return ResourceManager.GetString("DegreeTypeEnum_add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string DegreeTypeEnum_alter {
+            get {
+                return ResourceManager.GetString("DegreeTypeEnum_alter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sub.
+        /// </summary>
+        internal static string DegreeTypeEnum_subtract {
+            get {
+                return ResourceManager.GetString("DegreeTypeEnum_subtract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to flat.
+        /// </summary>
+        internal static string MidiChordDegreeDescription_flat {
+            get {
+                return ResourceManager.GetString("MidiChordDegreeDescription_flat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string MidiChordDegreeDescription_natural {
+            get {
+                return ResourceManager.GetString("MidiChordDegreeDescription_natural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sharp.
+        /// </summary>
+        internal static string MidiChordDegreeDescription_sharp {
+            get {
+                return ResourceManager.GetString("MidiChordDegreeDescription_sharp", resourceCulture);
+            }
+        }
     }
 }
