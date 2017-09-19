@@ -51,7 +51,7 @@ namespace MusicSynthesis
 
         public override string ToString()
         {
-            return string.Format("(Degree={0} Type={1} Alter={2})", degree, degreeType, alter);
+            return string.Format("({0}:{1}({2}))", degree, degreeType, alter); // For instance "5:alter(1)"
         }
 
 
