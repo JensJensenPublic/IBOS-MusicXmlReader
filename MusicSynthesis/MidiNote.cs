@@ -39,7 +39,7 @@ namespace JSJ.MusicSynthesis
         Octave = 12,         // https://en.wikipedia.org/wiki/Eleventh (or DiminishedNinth)
         MinorNinth = 13,     // https://en.wikipedia.org/wiki/Eleventh (or AugmentedOctave)
         MajorNinth = 14,     // https://en.wikipedia.org/wiki/Eleventh (or DiminishedTenth)
-        MinorTenth = 15,     // https://en.wikipedia.org/wiki/Eleventh (or AugmentedNinth)
+        AugmentedNinth = 15, // https://en.wikipedia.org/wiki/Eleventh (or MinorTenth)
         MajorTenth = 16,     // https://en.wikipedia.org/wiki/Eleventh (or DiminishedEleventh)
         Eleventh = 17,       // https://en.wikipedia.org/wiki/Eleventh (or AugmentedTenth) 
         AugmentedEleventh=18,// https://en.wikipedia.org/wiki/Eleventh (or DiminishedTwelvth )

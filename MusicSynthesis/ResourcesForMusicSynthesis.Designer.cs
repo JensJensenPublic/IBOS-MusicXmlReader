@@ -61,6 +61,15 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Augmented Fifteenth.
+        /// </summary>
+        internal static string Chord_Function_Augmented_Fifteenth {
+            get {
+                return ResourceManager.GetString("Chord_Function_Augmented_Fifteenth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Augmented Fifth.
         /// </summary>
         internal static string Chord_Function_Augmented_Fifth {
@@ -70,11 +79,38 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Augmented Eleventh.
+        /// </summary>
+        internal static string Chord_Function_AugmentedEleventh {
+            get {
+                return ResourceManager.GetString("Chord_Function_AugmentedEleventh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Augmented Ninth.
+        /// </summary>
+        internal static string Chord_Function_AugmentedNinth {
+            get {
+                return ResourceManager.GetString("Chord_Function_AugmentedNinth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Eleventh.
         /// </summary>
         internal static string Chord_Function_Eleventh {
             get {
                 return ResourceManager.GetString("Chord_Function_Eleventh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fifteenth.
+        /// </summary>
+        internal static string Chord_Function_Fifteenth {
+            get {
+                return ResourceManager.GetString("Chord_Function_Fifteenth", resourceCulture);
             }
         }
         
@@ -124,6 +160,24 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Major Fourteenth.
+        /// </summary>
+        internal static string Chord_Function_MajorFourteenth {
+            get {
+                return ResourceManager.GetString("Chord_Function_MajorFourteenth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Major Thirteenth.
+        /// </summary>
+        internal static string Chord_Function_MajorThirteenth {
+            get {
+                return ResourceManager.GetString("Chord_Function_MajorThirteenth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minor Ninth.
         /// </summary>
         internal static string Chord_Function_Minor_Ninth {
@@ -156,6 +210,24 @@ namespace MusicSynthesis {
         internal static string Chord_Function_Minor_Third {
             get {
                 return ResourceManager.GetString("Chord_Function_Minor_Third", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minor Fourteenth.
+        /// </summary>
+        internal static string Chord_Function_MinorFourteenth {
+            get {
+                return ResourceManager.GetString("Chord_Function_MinorFourteenth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minor Thirteenth.
+        /// </summary>
+        internal static string Chord_Function_MinorThirteenth {
+            get {
+                return ResourceManager.GetString("Chord_Function_MinorThirteenth", resourceCulture);
             }
         }
         
@@ -210,6 +282,15 @@ namespace MusicSynthesis {
         internal static string Chord_Function_Tritone {
             get {
                 return ResourceManager.GetString("Chord_Function_Tritone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Twelfth.
+        /// </summary>
+        internal static string Chord_Function_Twelfth {
+            get {
+                return ResourceManager.GetString("Chord_Function_Twelfth", resourceCulture);
             }
         }
         

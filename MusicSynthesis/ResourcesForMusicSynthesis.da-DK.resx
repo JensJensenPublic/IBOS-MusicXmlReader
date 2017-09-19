@@ -189,14 +189,32 @@
   <data name="ChordKind_Sus4" xml:space="preserve">
     <value>sus4</value>
   </data>
+  <data name="Chord_Function_AugmentedEleventh" xml:space="preserve">
+    <value>Forstørret Ellever</value>
+  </data>
+  <data name="Chord_Function_AugmentedNinth" xml:space="preserve">
+    <value>Forstørret Nier</value>
+  </data>
+  <data name="Chord_Function_Augmented_Fifteenth" xml:space="preserve">
+    <value>Forstørret Femtener</value>
+  </data>
   <data name="Chord_Function_Augmented_Fifth" xml:space="preserve">
     <value>Forstørret kvint</value>
   </data>
   <data name="Chord_Function_Eleventh" xml:space="preserve">
     <value>Ellever</value>
   </data>
+  <data name="Chord_Function_Fifteenth" xml:space="preserve">
+    <value>Femtener</value>
+  </data>
   <data name="Chord_Function_Fourth" xml:space="preserve">
     <value>Kvart</value>
+  </data>
+  <data name="Chord_Function_MajorFourteenth" xml:space="preserve">
+    <value>Stor Fjortener</value>
+  </data>
+  <data name="Chord_Function_MajorThirteenth" xml:space="preserve">
+    <value>Stor Trettener</value>
   </data>
   <data name="Chord_Function_Major_Second" xml:space="preserve">
     <value>Stor second</value>
@@ -209,6 +227,12 @@
   </data>
   <data name="Chord_Function_Major_Third" xml:space="preserve">
     <value>Stor terts</value>
+  </data>
+  <data name="Chord_Function_MinorFourteenth" xml:space="preserve">
+    <value>Lille Fjortener</value>
+  </data>
+  <data name="Chord_Function_MinorThirteenth" xml:space="preserve">
+    <value>Lille Trettener</value>
   </data>
   <data name="Chord_Function_Minor_Ninth" xml:space="preserve">
     <value>Lille nier</value>
@@ -239,6 +263,9 @@
   </data>
   <data name="Chord_Function_Tritone" xml:space="preserve">
     <value>Formindsket kvint</value>
+  </data>
+  <data name="Chord_Function_Twelfth" xml:space="preserve">
+    <value>Tolver</value>
   </data>
   <data name="DegreeTypeEnum_add" xml:space="preserve">
     <value>add</value>

@@ -189,14 +189,32 @@
   <data name="ChordKind_Sus4" xml:space="preserve">
     <value>sus4</value>
   </data>
+  <data name="Chord_Function_AugmentedEleventh" xml:space="preserve">
+    <value>Augmented Eleventh</value>
+  </data>
+  <data name="Chord_Function_AugmentedNinth" xml:space="preserve">
+    <value>Augmented Ninth</value>
+  </data>
+  <data name="Chord_Function_Augmented_Fifteenth" xml:space="preserve">
+    <value>Augmented Fifteenth</value>
+  </data>
   <data name="Chord_Function_Augmented_Fifth" xml:space="preserve">
     <value>Augmented Fifth</value>
   </data>
   <data name="Chord_Function_Eleventh" xml:space="preserve">
     <value>Eleventh</value>
   </data>
+  <data name="Chord_Function_Fifteenth" xml:space="preserve">
+    <value>Fifteenth</value>
+  </data>
   <data name="Chord_Function_Fourth" xml:space="preserve">
     <value>Fourth</value>
+  </data>
+  <data name="Chord_Function_MajorFourteenth" xml:space="preserve">
+    <value>Major Fourteenth</value>
+  </data>
+  <data name="Chord_Function_MajorThirteenth" xml:space="preserve">
+    <value>Major Thirteenth</value>
   </data>
   <data name="Chord_Function_Major_Second" xml:space="preserve">
     <value>Major Second</value>
@@ -209,6 +227,12 @@
   </data>
   <data name="Chord_Function_Major_Third" xml:space="preserve">
     <value>Major Third</value>
+  </data>
+  <data name="Chord_Function_MinorFourteenth" xml:space="preserve">
+    <value>Minor Fourteenth</value>
+  </data>
+  <data name="Chord_Function_MinorThirteenth" xml:space="preserve">
+    <value>Minor Thirteenth</value>
   </data>
   <data name="Chord_Function_Minor_Ninth" xml:space="preserve">
     <value>Minor Ninth</value>
@@ -239,6 +263,9 @@
   </data>
   <data name="Chord_Function_Tritone" xml:space="preserve">
     <value>Diminished Fifth</value>
+  </data>
+  <data name="Chord_Function_Twelfth" xml:space="preserve">
+    <value>Twelfth</value>
   </data>
   <data name="DegreeTypeEnum_add" xml:space="preserve">
     <value>add</value>

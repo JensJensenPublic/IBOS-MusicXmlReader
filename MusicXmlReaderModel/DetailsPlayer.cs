@@ -56,7 +56,8 @@ namespace MusicXmlReaderModel
         private DetailsPlayer(HarmonyElement harmonyElement, MidiOut midiOut)
         {
             this.midiOut = midiOut;
-            Interval[] intervals = MidiChord.GetChordIntervals(harmonyElement.ChordType); // In this way we will use the same definitions for the sound and the text
+            // Interval[] intervals = MidiChord.GetChordIntervals(harmonyElement.ChordType); // In this way we will use the same definitions for the sound and the text  
+            Interval[] intervals = MidiChord.GetModifiedChordIntervals(harmonyElement.ChordType, harmonyElement.Degrees);        
             ChromaticStep root = harmonyElement.ChromaticRootStep;
             detailsDescriptions = new List<DetailsDescription>();
             string chordName = harmonyElement.ToLocalizedString();

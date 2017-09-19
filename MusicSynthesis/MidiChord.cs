@@ -29,6 +29,7 @@ namespace JSJ.MusicSynthesis
     public class MidiChord
     {
         private string className = "MidiChord";
+        private static string ClassName = "MidiChord";
 
         // The following static arrays describe the intervals found in the varions chords as described in
         // http://www.musicxml.com/UserManuals/MusicXML/Content/ST-MusicXML-kind-value.htm 
@@ -141,6 +142,7 @@ namespace JSJ.MusicSynthesis
         }
 
         /// <summary>
+        /// Returns the intervals of a chord as the sum of the intervals described in the chordtype and the modifications described in degrees
         /// Maps from an enum identifying a chord to the intervals representing the chord
         /// </summary>
         /// <param name="chordType"></param>
@@ -186,8 +188,23 @@ namespace JSJ.MusicSynthesis
     
         }
 
+        /// <summary>
+        /// Returns the intervals of a chord as the sum of the intervals described in the chordtype and the modifications described in degrees
+        /// </summary>
+        /// <param name="chordType"></param>
+        /// <param name="degrees"></param>
+        /// <returns></returns>
+        public static Interval[] GetModifiedChordIntervals(ChordType chordType, List<MidiChordDegreeDescription> degrees)
+        {
+            Interval[] intervals = GetChordIntervals(chordType);
+            ModifyIntervals(ref intervals, degrees);
+            return intervals;
+        }
+
+
         public static string ToLocalizedChordFunction(Interval interval)
         {
+            string functionName = "ToLocalizedChordFunction";
             switch (interval)
             {
 #warning To Do fix and add more localization !!
@@ -208,11 +225,19 @@ namespace JSJ.MusicSynthesis
                 case Interval.Octave: return ResourcesForMusicSynthesis.Chord_Function_Octave;
                 case Interval.MinorNinth: return ResourcesForMusicSynthesis.Chord_Function_Minor_Ninth;
                 case Interval.MajorNinth: return ResourcesForMusicSynthesis.Chord_Function_Ninth;
+                case Interval.AugmentedNinth: return ResourcesForMusicSynthesis.Chord_Function_AugmentedNinth;
                 case Interval.Eleventh: return ResourcesForMusicSynthesis.Chord_Function_Eleventh;
+                case Interval.AugmentedEleventh: return ResourcesForMusicSynthesis.Chord_Function_AugmentedEleventh;
+                case Interval.Twelfth: return ResourcesForMusicSynthesis.Chord_Function_Twelfth;
+                case Interval.MinorThirteenth: return ResourcesForMusicSynthesis.Chord_Function_MinorThirteenth;
                 case Interval.MajorThirteenth: return ResourcesForMusicSynthesis.Chord_Function_Thirteenth;
-                default: 
-                    // Log ?                   
-                    return "";
+                case Interval.MinorFourteenth: return ResourcesForMusicSynthesis.Chord_Function_MinorFourteenth;
+                case Interval.MajorFourteenth: return ResourcesForMusicSynthesis.Chord_Function_MajorFourteenth;
+                case Interval.Fifteenth: return ResourcesForMusicSynthesis.Chord_Function_Fifteenth;
+                case Interval.AugmentedFifteenth: return ResourcesForMusicSynthesis.Chord_Function_Augmented_Fifteenth;
+                default:
+                    MusicSynthesisLogger.Log(string.Format("{0}.{1}: Unsupported interval={2}", ClassName, functionName, interval));                  
+                    return "???";
             }
         }
 
@@ -279,7 +304,7 @@ namespace JSJ.MusicSynthesis
         /// <param name="degree"></param>
         /// <param name="interval"></param>
         /// <returns></returns>
-        private bool GetChordInterval(int degree, out Interval interval)
+        private static bool GetChordInterval(int degree, out Interval interval)
         {
             Interval result = Interval.Unison; 
             bool implemented = true;
@@ -331,7 +356,7 @@ namespace JSJ.MusicSynthesis
         }
 
 
-        private string ToString(List<Interval> intervals)
+        private static string ToString(List<Interval> intervals)
         {
             StringBuilder sb = new StringBuilder();
             foreach (Interval interval in intervals)
@@ -341,7 +366,7 @@ namespace JSJ.MusicSynthesis
             return sb.ToString();
         }
 
-        private string ToString(List<MidiChordDegreeDescription> descriptions)
+        private static string ToString(List<MidiChordDegreeDescription> descriptions)
         {
             StringBuilder sb = new StringBuilder();
             foreach (MidiChordDegreeDescription description in descriptions)
@@ -352,19 +377,19 @@ namespace JSJ.MusicSynthesis
         }
 
 
-        private void ModifyIntervals(ref Interval[] intervals, List<MidiChordDegreeDescription> degreeDescriptions)
+        private static void ModifyIntervals(ref Interval[] intervals, List<MidiChordDegreeDescription> degreeDescriptions)
         {
             string functionName = "ModifyIntervals";
             // Convert to List<> while manipulating!
             List<Interval> intervalList = new List<Interval>(intervals);
-            MusicSynthesisLogger.Log(string.Format("{0}.{1}.Entry: {2} {3}", className, functionName, ToString(intervalList),ToString(degreeDescriptions))); // Log at entry
+            MusicSynthesisLogger.Log(string.Format("{0}.{1}.Entry: {2} {3}", ClassName, functionName, ToString(intervalList),ToString(degreeDescriptions))); // Log at entry
             foreach (MidiChordDegreeDescription degreeDescription in degreeDescriptions)
             {
                 Interval interval;
                 bool implementedDegreeValue = (GetChordInterval(degreeDescription.Degree, out interval));
                 if (!implementedDegreeValue)
                 {
-                    MusicSynthesisLogger.Log(string.Format("{0}.{1} Unimplemented Degree ={2}", className, functionName, degreeDescription.Degree.ToString()));
+                    MusicSynthesisLogger.Log(string.Format("{0}.{1} Unimplemented Degree ={2}", ClassName, functionName, degreeDescription.Degree.ToString()));
                 }
                 else          
                 {
@@ -382,20 +407,20 @@ namespace JSJ.MusicSynthesis
                             intervalList.Remove(interval);
                             break;
                         case DegreeTypeEnum.unknown:
-                            MusicSynthesisLogger.Log(string.Format("{0}.{1} Type={2} Value={3} Degree not implemented yet", className, functionName, degreeDescription.DegreeType.ToString(), degreeDescription.Degree.ToString())); 
+                            MusicSynthesisLogger.Log(string.Format("{0}.{1} Type={2} Value={3} Degree not implemented yet", ClassName, functionName, degreeDescription.DegreeType.ToString(), degreeDescription.Degree.ToString())); 
                             break;
                         default:
-                            MusicSynthesisLogger.Log(string.Format("{0}.{1} Unimplemented DegreeType={2}", className, functionName, degreeDescription.DegreeType.ToString()));
+                            MusicSynthesisLogger.Log(string.Format("{0}.{1} Unimplemented DegreeType={2}", ClassName, functionName, degreeDescription.DegreeType.ToString()));
                             break;
                     }
                 }
             }
             intervalList.Sort();
-            MusicSynthesisLogger.Log(string.Format("{0}.{1}.Exit:  {2}", className, functionName, ToString(intervalList))); // Log at exit
+            MusicSynthesisLogger.Log(string.Format("{0}.{1}.Exit:  {2}", ClassName, functionName, ToString(intervalList))); // Log at exit
             intervals = intervalList.ToArray();          
         }
 
-        
+
 
         /// <summary>
         /// Constructor
