@@ -1148,8 +1148,8 @@ namespace MusicXmlReader
         private void importNewestDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int filesCopied = model.ImportNewestDownloads();
-#warning Localize
-            string message = string.Format("Imported {0} MusicXml files", filesCopied);
+            string fileString = (1 == filesCopied) ? ResourcesForUI.Status_file : ResourcesForUI.Status_files;
+            string message = string.Format("{0} {1}  MusicXml {2}",  ResourcesForUI.Status_Imported ,filesCopied, fileString);
             WriteStatusInformation(message);
         }
         #endregion

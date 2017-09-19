@@ -268,6 +268,33 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to file.
+        /// </summary>
+        internal static string Status_file {
+            get {
+                return ResourceManager.GetString("Status_file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to files.
+        /// </summary>
+        internal static string Status_files {
+            get {
+                return ResourceManager.GetString("Status_files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imported.
+        /// </summary>
+        internal static string Status_Imported {
+            get {
+                return ResourceManager.GetString("Status_Imported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status line.
         /// </summary>
         internal static string StatusLine_Accessible_Name {

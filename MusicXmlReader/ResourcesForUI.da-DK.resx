@@ -297,6 +297,15 @@
   <data name="Message_DoYouWantToExitTheProgram" xml:space="preserve">
     <value>Ønsker du at afslutte programmet?</value>
   </data>
+  <data name="Status_file" xml:space="preserve">
+    <value>fil</value>
+  </data>
+  <data name="Status_files" xml:space="preserve">
+    <value>filer</value>
+  </data>
+  <data name="Status_Imported" xml:space="preserve">
+    <value>Importerede</value>
+  </data>
   <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
     <value>&amp;Importer nyeste overførsler</value>
   </data>
