@@ -664,6 +664,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to or.
+        /// </summary>
+        internal static string KeyElement_Or {
+            get {
+                return ResourceManager.GetString("KeyElement_Or", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Measure-repeat.
         /// </summary>
         internal static string MeasureRepeatElement_Name {

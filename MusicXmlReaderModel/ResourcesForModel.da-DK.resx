@@ -816,4 +816,7 @@
   <data name="ScoreInstrumentElement_VirtualInstrument" xml:space="preserve">
     <value>Virtuelt instrument</value>
   </data>
+  <data name="KeyElement_Or" xml:space="preserve">
+    <value>eller</value>
+  </data>
 </root>
