@@ -79,7 +79,7 @@ namespace MusicXmlReaderModel
         /// <param name="node"></param>
         private ScoreInstrumentElement(XmlNode node)
         {
-            const string functionName = "ScoreInstrumentElement";
+            // const string functionName = "ScoreInstrumentElement";
 
             // Dig out attributes
             foreach (XmlAttribute a in node.Attributes)

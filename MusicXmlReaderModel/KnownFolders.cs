@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System;
 using System.Runtime.InteropServices;
 
 // Code found at https://stackoverflow.com/questions/10667012/getting-downloads-folder-in-c

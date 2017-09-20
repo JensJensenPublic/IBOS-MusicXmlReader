@@ -1,8 +1,6 @@
 ﻿using System.Xml;
 using JSJ.MusicSynthesis;
 using System.Collections.Generic;
-//using MusicSynthesis;
-using System.Collections.Generic;
 using System.Text;
 
 namespace MusicXmlReaderModel
