@@ -390,9 +390,27 @@ namespace MusicXmlReader
                 string.IsNullOrEmpty(localizedExtraMessage) ? "": "\r\n"+localizedExtraMessage);    // Possible extra message             
             MessageBox.Show(formattedMessage, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
-#endregion
+        #endregion
 
 
+        /// <summary>
+        ///  Clear the contents of the listbox showing the timed events (important when loading a new file)
+        /// </summary>
+        private void ClearUI()
+        {         
+            listBoxTimes.Items.Clear();
+            listBoxTimes.Refresh();
+            listBoxDetails.Items.Clear();
+            listBoxDetails.Refresh();
+            textBoxBraille.Clear();
+            textBoxBraille.Refresh();
+            textBoxText.Clear();
+            textBoxText.Refresh();
+            textBoxStatusInformation.Clear();
+            textBoxStatusInformation.Refresh();
+            userSettingsTreeView.CollapseAll();
+            userSettingsTreeView.Refresh();
+        }
 
 
 
@@ -425,6 +443,10 @@ namespace MusicXmlReader
                 return; // Let the user press ESC without warning him
             }
 
+            // Clear all UI BEFORE starting the time consuming Load operation: 
+            ClearUI();
+
+            // Start filling the UI with information about the NEW file
             textBoxStatusInformation.Focus();
             string shortFileName = System.IO.Path.GetFileName(openFileDialog.FileName);
             string message = string.Format("{0} '{1}'",ResourcesForUI.TextBox_Messages_Reading_File, shortFileName);
@@ -432,6 +454,7 @@ namespace MusicXmlReader
 
             Logger.ClearStatistics();  // Clear statistics to be collected while loading, parsing and rendering the MusicXml file:
 
+            // Now follows the time-consuming operation, where the Model loads and interpretes a new MusicXml file.
             if (!model.LoadMusicXmlFile(openFileDialog.FileName)) // Load the selected .xml file into the Model and build all internal data structures.
             {
                 // Simple error handling
@@ -445,16 +468,7 @@ namespace MusicXmlReader
                 return;
             }
 
-            // Clear the contents of the listbox showing the timed events (important when loading a new file)
-            listBoxTimes.Items.Clear();
-            listBoxTimes.Refresh();
-            // Clear the contents of all other user controls
-            textBoxBraille.Clear();
-            textBoxBraille.Refresh();
-            textBoxText.Clear();
-            textBoxText.Refresh();
-            textBoxStatusInformation.Clear();
-            textBoxStatusInformation.Refresh();
+
 
 
             autoReload = false; // While loading the listbox all changes are  made by user and must be ignored
