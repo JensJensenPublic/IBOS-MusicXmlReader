@@ -31,6 +31,7 @@
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.filesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMusicXmlFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importNewSampleFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importNewestDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,7 +88,6 @@
             this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.listBoxDetails = new System.Windows.Forms.ListBox();
-            this.importNewSampleFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,9 +110,9 @@
             this.filesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openMusicXmlFileToolStripMenuItem,
             this.importNewestDownloadsToolStripMenuItem,
+            this.importNewSampleFilesToolStripMenuItem,
             this.toolStripSeparator1,
-            this.exitToolStripMenuItem,
-            this.importNewSampleFilesToolStripMenuItem});
+            this.exitToolStripMenuItem});
             this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
             this.filesToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.filesToolStripMenuItem.Text = "&Files";
@@ -124,6 +124,13 @@
             this.openMusicXmlFileToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.openMusicXmlFileToolStripMenuItem.Text = "&Open MusicXml File";
             this.openMusicXmlFileToolStripMenuItem.Click += new System.EventHandler(this.openMusicXmlFileToolStripMenuItem_Click);
+            // 
+            // importNewSampleFilesToolStripMenuItem
+            // 
+            this.importNewSampleFilesToolStripMenuItem.Name = "importNewSampleFilesToolStripMenuItem";
+            this.importNewSampleFilesToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.importNewSampleFilesToolStripMenuItem.Text = "Import New Sample files";
+            this.importNewSampleFilesToolStripMenuItem.Click += new System.EventHandler(this.importNewSampleFilesToolStripMenuItem_Click);
             // 
             // importNewestDownloadsToolStripMenuItem
             // 
@@ -575,13 +582,6 @@
             this.listBoxDetails.SelectedIndexChanged += new System.EventHandler(this.listBoxDetails_SelectedIndexChanged);
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDetails_KeyDown);
             this.listBoxDetails.Leave += new System.EventHandler(this.listBoxDetails_Leave);
-            // 
-            // importNewSampleFilesToolStripMenuItem
-            // 
-            this.importNewSampleFilesToolStripMenuItem.Name = "importNewSampleFilesToolStripMenuItem";
-            this.importNewSampleFilesToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.importNewSampleFilesToolStripMenuItem.Text = "Import New Sample files";
-            this.importNewSampleFilesToolStripMenuItem.Click += new System.EventHandler(this.importNewSampleFilesToolStripMenuItem_Click);
             // 
             // MainForm
             // 
