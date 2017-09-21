@@ -20,7 +20,8 @@ namespace MusicXmlReaderModel
         static public string TheStaticXmlFileName = "";
         string className = "Model";
         string theMusicXmlFileName = "";
-        string myMusicXmlDirectory = "";
+        string myMusicXmlDirectory = ""; // Typically "C:\Users\<user>\\Documents\IBOS Nodelæser"
+        string myMusicXmlSampleDirectory = ""; //  Typically "C:\Users\<user>\\Documents\IBOS Nodelæser\Eksempler"
         bool is64Bit; // This program is compiled and for the following architechture: false:x86 true:x64 
         List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
         MidiOut midiOut;
@@ -941,21 +942,21 @@ namespace MusicXmlReaderModel
             string sourceDirName = InitialDirectory;
             string functionName = "InitMusicXmlFiles";
             string documentPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments); // C:\Users\<Username>\Documents       
-            myMusicXmlDirectory = Path.Combine(documentPath, applicationName); //  // C:\Users\<Username>\Documents\IBOS Nodelæser
+            myMusicXmlDirectory = Path.Combine(documentPath, applicationName);              //   C:\Users\<Username>\Documents\IBOS Nodelæser
+            myMusicXmlSampleDirectory = Path.Combine(myMusicXmlDirectory, sampleDirName);   //   C:\Users\<Username>\Documents\IBOS Nodelæser\Eksempler
             int nFiles = 0;
             int nDirs = 0;
             if (!Directory.Exists(myMusicXmlDirectory))
             {
-                string fullDestinationDirName = Path.Combine(myMusicXmlDirectory, sampleDirName);
                 try
                 {
                     // Create the destination directory:
                     Directory.CreateDirectory(myMusicXmlDirectory);  // C:\Users\<Username>\Documents\IBOS MusicXmlReader            
-                    Directory.CreateDirectory(fullDestinationDirName);  // C:\Users\<Username>\Documents\IBOS MusicXmlReader\Eksempler
+                    Directory.CreateDirectory(myMusicXmlSampleDirectory);  // C:\Users\<Username>\Documents\IBOS MusicXmlReader\Eksempler
                     Logger.Log(string.Format("{0}.{1}: Calling DirectoryCopy(Source,Dest) where", className, functionName));
                     Logger.Log(string.Format(" Source='{0}'", sourceDirName));
-                    Logger.Log(string.Format(" Dest=  '{0}'", fullDestinationDirName));
-                    Utilities.DirectoryCopy(sourceDirName, fullDestinationDirName, true, ref nFiles, ref nDirs);  // true to copy subdirs
+                    Logger.Log(string.Format(" Dest=  '{0}'", myMusicXmlSampleDirectory));
+                    Utilities.DirectoryCopy(sourceDirName, myMusicXmlSampleDirectory, true, ref nFiles, ref nDirs);  // true to copy subdirs
                     Logger.Log(string.Format("{0}.{1}: DirectoryCopy() successfully copied {2} files in {3} directories", className, functionName, nFiles, nDirs));
                     // throw (new Exception("For test only"));
                 }
