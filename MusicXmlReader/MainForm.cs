@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Globalization;
 using MusicXmlReaderUI;
 using MusicXmlReaderModel;
+using System.Collections.Generic;
 
 namespace MusicXmlReader
 {
@@ -1162,9 +1163,16 @@ namespace MusicXmlReader
 
         private void importNewestDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int filesCopied = model.ImportNewestDownloads();
-            string fileString = (1 == filesCopied) ? ResourcesForUI.Status_file : ResourcesForUI.Status_files;
-            string message = string.Format("{0} {1}  MusicXml {2}",  ResourcesForUI.Status_Imported ,filesCopied, fileString);
+            List<string> filesCopied = model.ImportNewestDownloads();
+            string message = "";
+            if (1 == filesCopied.Count)
+            {
+                message = string.Format("{0} {1}", ResourcesForUI.Status_Imported, filesCopied[0]); // Exactly one file: Show the name: "Copied Stardust.xml"
+            }
+            else
+            {
+                message = string.Format("{0} {1}  MusicXml {2}", ResourcesForUI.Status_Imported, filesCopied.Count, ResourcesForUI.Status_files); // Any other number: "Copied n files"
+            }
             WriteStatusInformation(message);
         }
 

@@ -197,10 +197,10 @@ namespace MusicXmlReaderModel
         }
 
 
-        public int ImportNewestDownloads()
+        public List<string> ImportNewestDownloads()
         {
             string functionName = "ImportNewestDownloads";
-            int filesCopied = 0;
+            List<string> result = new List<string>();
             try
             {
                 bool defaultUser = false;
@@ -251,7 +251,7 @@ namespace MusicXmlReaderModel
                         {
                             File.Copy(file, destFileName, false); // False <==> Do not overwrite existing
                             Logger.Log(string.Format("{0}.{1}: Copied {2}", className, functionName, file));
-                            filesCopied++;
+                            result.Add(Path.GetFileName(file));
                         }
                         catch (Exception e)
                         {
@@ -265,7 +265,7 @@ namespace MusicXmlReaderModel
             {
                 Logger.Log(string.Format("{0}.{1} Failed. Exception.Message={2}", className, functionName, e.Message)); 
             }
-            return filesCopied;
+            return result;
         }
 
 
