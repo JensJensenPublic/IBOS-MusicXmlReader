@@ -508,10 +508,10 @@ namespace MusicXmlReader
         {
             string functionName = "GetOpenFileInitialDirectory";
             string result = myMusicXmlDirectory;  // When running a user session we want to use the files in the <user>\Documents\IBOS NNodelæser directory 
-            if (model.InitialDirectory.Contains("Visual Studio"))
-            {
-                result = model.InitialDirectory;   // When running a debug session we want to use the files in the debug\bin directory
-            }
+            //if (model.InitialDirectory.Contains("Visual Studio"))
+            //{
+            //    result = model.InitialDirectory;   // When running a debug session we want to use the files in the debug\bin directory
+            //}
             Logger.Log(string.Format("{0}.{1} returns {2}",className,functionName,result));
             return result;
         }
