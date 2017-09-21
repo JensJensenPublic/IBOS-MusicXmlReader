@@ -973,12 +973,15 @@ namespace MusicXmlReaderModel
         {
             if (null != eventDescription.HarmonyElement)
             {
-                detailsPlayer = DetailsPlayer.Create(eventDescription.HarmonyElement,midiOut);
-                return detailsPlayer.DetailsDescriptionArray;              
+                detailsPlayer = DetailsPlayer.Create(eventDescription.HarmonyElement, midiOut);
+                return detailsPlayer.DetailsDescriptionArray;
             }
             else
             {
-                return new DetailsDescription[0]; // No harmony. Return an empty array.
+                // Return message to the user that no chord was found.
+                DetailsDescription[] noDescriptions = new DetailsDescription[1];
+                noDescriptions[0] =  DetailsDescription.Create(ResourcesForModel.DetailsDescription_NoChordFound);
+                return noDescriptions;
             }
         }
 

@@ -520,6 +520,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No chord.
+        /// </summary>
+        internal static string DetailsDescription_NoChordFound {
+            get {
+                return ResourceManager.GetString("DetailsDescription_NoChordFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Part.
         /// </summary>
         internal static string DetailsPlayer_Part {

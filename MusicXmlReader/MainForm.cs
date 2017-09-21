@@ -876,6 +876,7 @@ namespace MusicXmlReader
 
                     if (0 == listBoxDetails.Items.Count) // For whatever reason
                     {
+#warning Localize
                         listBoxDetails.Items.Add("No details found");
                     }
          
