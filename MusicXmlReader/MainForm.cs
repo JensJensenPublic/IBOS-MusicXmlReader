@@ -1181,6 +1181,11 @@ namespace MusicXmlReader
             model.ListBoxDetailsLeave();
             listBoxDetails.Items.Clear();
         }
+
+        private void importNewSampleFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ImportNewSampleFiles();
+        }
         #endregion
 
         #endregion

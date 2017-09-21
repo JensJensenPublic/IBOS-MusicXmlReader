@@ -969,6 +969,24 @@ namespace MusicXmlReaderModel
             return myMusicXmlDirectory;
         }
 
+
+        /// <summary>
+        /// Imports all new sample files and directories.
+        /// Assumes that member variables defining all paths have already been set up by InitMusicXmlFiles()
+        /// </summary>
+        public void ImportNewSampleFiles()
+        {
+            string functionName = "ImportNewSampleFiles";
+            string sourceDirName = InitialDirectory;
+            int nDirs = 0;
+            int nFiles = 0;
+            Logger.Log(string.Format("{0}.{1}: Calling DirectoryCopy(Source,Dest) where", className, functionName));
+            Logger.Log(string.Format(" Source='{0}'", sourceDirName));
+            Logger.Log(string.Format(" Dest=  '{0}'", myMusicXmlSampleDirectory));
+            Utilities.DirectoryCopy(sourceDirName, myMusicXmlSampleDirectory, true, ref nFiles, ref nDirs);
+            Logger.Log(string.Format("{0}.{1}: DirectoryCopy() successfully copied {2} files in {3} directories", className, functionName, nFiles, nDirs));
+        }
+
         private DetailsPlayer detailsPlayer= null; 
  
         public DetailsDescription[] GetCurrentHarmonyDetails(EventDescription eventDescription)
