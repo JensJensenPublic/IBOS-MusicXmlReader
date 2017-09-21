@@ -1167,6 +1167,12 @@ namespace MusicXmlReader
             string message = string.Format("{0} {1}  MusicXml {2}",  ResourcesForUI.Status_Imported ,filesCopied, fileString);
             WriteStatusInformation(message);
         }
+
+        private void listBoxDetails_Leave(object sender, EventArgs e)
+        {
+            model.ListBoxDetailsLeave();
+            listBoxDetails.Items.Clear();
+        }
         #endregion
 
         #endregion

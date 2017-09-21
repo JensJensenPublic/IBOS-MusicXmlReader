@@ -31,6 +31,7 @@
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.filesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMusicXmlFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importNewestDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,7 +87,6 @@
             this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.listBoxDetails = new System.Windows.Forms.ListBox();
-            this.importNewestDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,6 +122,13 @@
             this.openMusicXmlFileToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.openMusicXmlFileToolStripMenuItem.Text = "&Open MusicXml File";
             this.openMusicXmlFileToolStripMenuItem.Click += new System.EventHandler(this.openMusicXmlFileToolStripMenuItem_Click);
+            // 
+            // importNewestDownloadsToolStripMenuItem
+            // 
+            this.importNewestDownloadsToolStripMenuItem.Name = "importNewestDownloadsToolStripMenuItem";
+            this.importNewestDownloadsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.importNewestDownloadsToolStripMenuItem.Text = "&Import Newest Downloads";
+            this.importNewestDownloadsToolStripMenuItem.Click += new System.EventHandler(this.importNewestDownloadsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -565,13 +572,7 @@
             this.listBoxDetails.TabStop = false;
             this.listBoxDetails.SelectedIndexChanged += new System.EventHandler(this.listBoxDetails_SelectedIndexChanged);
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDetails_KeyDown);
-            // 
-            // importNewestDownloadsToolStripMenuItem
-            // 
-            this.importNewestDownloadsToolStripMenuItem.Name = "importNewestDownloadsToolStripMenuItem";
-            this.importNewestDownloadsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.importNewestDownloadsToolStripMenuItem.Text = "&Import Newest Downloads";
-            this.importNewestDownloadsToolStripMenuItem.Click += new System.EventHandler(this.importNewestDownloadsToolStripMenuItem_Click);
+            this.listBoxDetails.Leave += new System.EventHandler(this.listBoxDetails_Leave);
             // 
             // MainForm
             // 

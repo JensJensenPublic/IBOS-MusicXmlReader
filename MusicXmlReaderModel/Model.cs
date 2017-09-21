@@ -1028,6 +1028,14 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public void ListBoxDetailsLeave()
+        {
+            if (null != detailsPlayer)
+            {
+                detailsPlayer.ListBoxDetailsLeave();
+            }
+        }
+
     }
 
 

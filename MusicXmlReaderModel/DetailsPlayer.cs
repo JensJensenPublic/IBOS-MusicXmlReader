@@ -183,6 +183,21 @@ namespace MusicXmlReaderModel
 
         }
 
+        public void ListBoxDetailsLeave()
+        {
+            // Stop any note
+            if (null != currentDetailsMidiNote)
+            {
+                currentDetailsMidiNote.StopPlaying(midiOut);
+            }
+
+            // stop any chord
+            if (null != currentDetailsMidiChord)
+            {
+                currentDetailsMidiChord.StopPlaying(midiOut);
+            }
+        }
+
 
 
 
