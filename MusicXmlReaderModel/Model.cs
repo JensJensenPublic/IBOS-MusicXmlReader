@@ -20,6 +20,7 @@ namespace MusicXmlReaderModel
         static public string TheStaticXmlFileName = "";
         string className = "Model";
         string theMusicXmlFileName = "";
+        string myMusicXmlDirectory = "";
         bool is64Bit; // This program is compiled and for the following architechture: false:x86 true:x64 
         List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
         MidiOut midiOut;
@@ -204,7 +205,7 @@ namespace MusicXmlReaderModel
             {
                 bool defaultUser = false;
                 string downloadPath = KnownFolders.GetPath(KnownFolder.Downloads, defaultUser); // Get the path to the current user.
-                string destinationPath = InitialDirectory;
+                string destinationPath = myMusicXmlDirectory;
                 Logger.Log(string.Format("{0}.{1}: DownloadPath={2} DestinationPath={3}", className, functionName, downloadPath, destinationPath));
                 string[] files =  Directory.GetFiles(downloadPath);
                 //Logger.Log(string.Format("{0}.{1}: Files={2}", className, functionName, files.GetLength(0)));
@@ -940,7 +941,7 @@ namespace MusicXmlReaderModel
             string sourceDirName = InitialDirectory;
             string functionName = "InitMusicXmlFiles";
             string documentPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments); // C:\Users\<Username>\Documents       
-            string myMusicXmlDirectory = Path.Combine(documentPath, applicationName); //  // C:\Users\<Username>\Documents\IBOS Nodelæser
+            myMusicXmlDirectory = Path.Combine(documentPath, applicationName); //  // C:\Users\<Username>\Documents\IBOS Nodelæser
             int nFiles = 0;
             int nDirs = 0;
             if (!Directory.Exists(myMusicXmlDirectory))
