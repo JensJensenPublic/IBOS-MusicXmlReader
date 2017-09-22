@@ -946,6 +946,7 @@ namespace MusicXmlReaderModel
             myMusicXmlSampleDirectory = Path.Combine(myMusicXmlDirectory, sampleDirName);   //   C:\Users\<Username>\Documents\IBOS Nodelæser\Eksempler
             int nFiles = 0;
             int nDirs = 0;
+            List<string> fileNames = new List<string>();
             if (!Directory.Exists(myMusicXmlDirectory))
             {
                 try
@@ -956,7 +957,7 @@ namespace MusicXmlReaderModel
                     Logger.Log(string.Format("{0}.{1}: Calling DirectoryCopy(Source,Dest) where", className, functionName));
                     Logger.Log(string.Format(" Source='{0}'", sourceDirName));
                     Logger.Log(string.Format(" Dest=  '{0}'", myMusicXmlSampleDirectory));
-                    Utilities.DirectoryCopy(sourceDirName, myMusicXmlSampleDirectory, true, ref nFiles, ref nDirs);  // true to copy subdirs
+                    Utilities.DirectoryCopy(sourceDirName, myMusicXmlSampleDirectory, true, ref nFiles, ref nDirs,fileNames);  // true to copy subdirs
                     Logger.Log(string.Format("{0}.{1}: DirectoryCopy() successfully copied {2} files in {3} directories", className, functionName, nFiles, nDirs));
                     // throw (new Exception("For test only"));
                 }
@@ -974,17 +975,19 @@ namespace MusicXmlReaderModel
         /// Imports all new sample files and directories.
         /// Assumes that member variables defining all paths have already been set up by InitMusicXmlFiles()
         /// </summary>
-        public void ImportNewSampleFiles()
+        public List<string> ImportNewSampleFiles()
         {
             string functionName = "ImportNewSampleFiles";
             string sourceDirName = InitialDirectory;
+            List<string> result = new List<string>();
             int nDirs = 0;
             int nFiles = 0;
             Logger.Log(string.Format("{0}.{1}: Calling DirectoryCopy(Source,Dest) where", className, functionName));
             Logger.Log(string.Format(" Source='{0}'", sourceDirName));
             Logger.Log(string.Format(" Dest=  '{0}'", myMusicXmlSampleDirectory));
-            Utilities.DirectoryCopy(sourceDirName, myMusicXmlSampleDirectory, true, ref nFiles, ref nDirs);
+            Utilities.DirectoryCopy(sourceDirName, myMusicXmlSampleDirectory, true, ref nFiles, ref nDirs,result);
             Logger.Log(string.Format("{0}.{1}: DirectoryCopy() successfully copied {2} files in {3} directories", className, functionName, nFiles, nDirs));
+            return result;
         }
 
         private DetailsPlayer detailsPlayer= null; 

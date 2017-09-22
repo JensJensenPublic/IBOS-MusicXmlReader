@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Xml;
+using System.Collections.Generic;
 
 namespace MusicXmlReaderModel
 {
@@ -680,7 +681,7 @@ namespace MusicXmlReaderModel
         /// <param name="sourceDirName"></param>
         /// <param name="destDirName"></param>
         /// <param name="copySubDirs"></param>
-        public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs,ref int nFiles, ref int nDirs)
+        public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs,ref int nFiles, ref int nDirs, List<string> fileNames)
         {            
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
@@ -702,6 +703,10 @@ namespace MusicXmlReaderModel
                 if (!File.Exists(temppath))
                 {
                     file.CopyTo(temppath, false);
+                    if (null != fileNames)
+                    {
+                        fileNames.Add(file.Name);
+                    }
                     nFiles++;
                 }
             }
@@ -712,7 +717,7 @@ namespace MusicXmlReaderModel
                 foreach (DirectoryInfo subdir in dirs)
                 {
                     string temppath = Path.Combine(destDirName, subdir.Name);
-                    DirectoryCopy(subdir.FullName, temppath, copySubDirs,ref nFiles, ref nDirs);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs,ref nFiles, ref nDirs, fileNames);
                 }
             }
         }

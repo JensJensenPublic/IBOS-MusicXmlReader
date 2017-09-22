@@ -1161,19 +1161,26 @@ namespace MusicXmlReader
             model.SelectedDetailsIndexChanged(detailsDescription);
         }
 
-        private void importNewestDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void ShowImportMessageBox(List<string> fileNames)
         {
-            List<string> filesCopied = model.ImportNewestDownloads();
             string message = "";
-            if (1 == filesCopied.Count)
+            if (1 == fileNames.Count)
             {
-                message = string.Format("{0} {1}", ResourcesForUI.Status_Imported, filesCopied[0]); // Exactly one file: Show the name: "Copied Stardust.xml"
+                message = string.Format("{0} {1}", ResourcesForUI.Status_Imported, fileNames[0]); // Exactly one file: Show the name: "Copied Stardust.xml"
             }
             else
             {
-                message = string.Format("{0} {1}  MusicXml {2}", ResourcesForUI.Status_Imported, filesCopied.Count, ResourcesForUI.Status_files); // Any other number: "Copied n files"
+                message = string.Format("{0} {1}  MusicXml {2}", ResourcesForUI.Status_Imported, fileNames.Count, ResourcesForUI.Status_files); // Any other number: "Copied n files"
             }
-            WriteStatusInformation(message);
+                MessageBox.Show(message, ApplicationName, MessageBoxButtons.OK);
+        }
+        
+
+        private void importNewestDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<string> fileNames = model.ImportNewestDownloads();
+            ShowImportMessageBox(fileNames);
         }
 
         private void listBoxDetails_Leave(object sender, EventArgs e)
@@ -1184,7 +1191,8 @@ namespace MusicXmlReader
 
         private void importNewSampleFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ImportNewSampleFiles();
+            List<string> fileNames = model.ImportNewSampleFiles();
+            ShowImportMessageBox(fileNames);
         }
         #endregion
 
