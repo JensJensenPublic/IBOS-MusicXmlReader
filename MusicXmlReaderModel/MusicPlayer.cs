@@ -152,7 +152,7 @@ namespace MusicXmlReaderUI
         public void SelectedIndexChanged(int selectedIndex, object selectedObject)
         {
             if (playing) return;
-             if (null == selectedObject) return;
+                if (null == selectedObject) return;
 
              if (selectedObject == latestSelectedObject) return; 
 //#if Windows
@@ -668,7 +668,9 @@ namespace MusicXmlReaderUI
                 int n = notesCurrentlyPlaying.Count;
                 for (int i = 0; (i < n); i++)
                 {
-                    notesCurrentlyPlaying[i].StopPlaying(this.midiOut);
+                    MidiNote midiNote = notesCurrentlyPlaying[i];
+                    midiNote.StopPlaying(this.midiOut);
+                    Logger.Log(string.Format("{0}.{1}: Stopped  {2} from playing", className, functionName, midiNote.ToString()));
                 }
                 Logger.Log(string.Format("{0}.{1}: Stopped {2} notes from playing", className, functionName, n));
             }

@@ -137,8 +137,19 @@ namespace MusicXmlReaderModel
                         {
                             case "minor": mode = ModeEnum.minor; break;
                             case "major": mode = ModeEnum.major; break;
+                            case "none": mode = ModeEnum.unknown; break;
+                            case "dorian":
+                            case "phrygian":
+                            case "lydian":
+                            case "mixolydian":
+                            case "aeolian":
+                            case "ionian":
+                            case "locrian":
+                                Logger.LogOnce(string.Format("{0}: node={1} has unsupported value={2}", functionName, n.Name, n.InnerText));
+                                mode = ModeEnum.unknown;
+                                break; // Actually "unsupported"
                             default:
-                                Logger.Log(string.Format("{0}: node={1} has illegal value={2}", functionName, n.Name, n.InnerText)); break;
+                                Logger.LogOnce(string.Format("{0}: node={1} has illegal value={2}", functionName, n.Name, n.InnerText)); break;
 
                         }
                         break;

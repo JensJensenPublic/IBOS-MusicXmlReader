@@ -246,6 +246,26 @@ namespace JSJ.MusicSynthesis
             StartPlaying(midiOut);
         }
 
+
+        /// <summary>
+        /// For debugging only !
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            string byte1 = "";
+            if (9 == channelCode)
+            {
+                byte1 = string.Format("Instrument={0}", startCommand[1]);            
+            }
+            else
+            {
+                byte1 = string.Format("Pitch={0}", startCommand[1]);
+            }
+            return string.Format("ChannelCode={0} {1} Velocity={2}", this.channelCode, byte1, startCommand[2]);
+        }
+        
+
         public void StartPlaying(MidiOut midiOut)
         {
             if (null == midiOut) return;
