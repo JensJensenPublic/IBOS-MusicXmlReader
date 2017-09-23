@@ -832,14 +832,14 @@ namespace MusicXmlReader
 // Start new code 1.0.5.1
 #if true
             else if (shortCutHandler.IsPreviousMeasureShortcut(e))
-            {
-                model.SelectMeasure(-1);
+            {     
+                model.SelectMeasure(listBoxTimes.SelectedIndex ,- 1);
                 e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control. 
                 return;
             }
             else if (shortCutHandler.IsNextMeasureShortcut(e))
             {
-                model.SelectMeasure(+1);
+                model.SelectMeasure(listBoxTimes.SelectedIndex,+ 1);
                 e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
                 return;
             }

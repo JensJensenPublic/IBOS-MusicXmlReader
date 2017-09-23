@@ -1043,10 +1043,10 @@ namespace MusicXmlReaderModel
             }
         }
 
-        public void SelectMeasure(int move)
+        public void SelectMeasure(int selectedIndex,int move)
         {
             string functionName = "SelectMeasure";
-            Logger.Log(string.Format("{0}.{1}({2}): Not implemented yet !",className,functionName, move));
+            Logger.Log(string.Format("{0}.{1}(SelectedIndex={2},Move={3}): Not implemented yet !",className,functionName, selectedIndex,move));
         }
 
 
