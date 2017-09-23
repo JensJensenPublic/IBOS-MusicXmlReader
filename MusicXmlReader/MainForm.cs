@@ -1195,6 +1195,13 @@ namespace MusicXmlReader
             List<string> fileNames = model.ImportNewSampleFiles();
             ShowImportMessageBox(fileNames);
         }
+
+        private void linkToNewestSoftwareToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // string url = "http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html";
+            string url = ResourcesForUI.ToolStripMenuItem_Help_SoftwareUpdateLink;
+            model.ExternalToolsHandler.OpenUrl(url);         
+        }
         #endregion
 
         #endregion

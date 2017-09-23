@@ -314,4 +314,7 @@
   <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
     <value>Import newest samples</value>
   </data>
+  <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
+    <value>http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html</value>
+  </data>
 </root>

@@ -430,6 +430,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html.
+        /// </summary>
+        internal static string ToolStripMenuItem_Help_SoftwareUpdateLink {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Help_SoftwareUpdateLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Tools.
         /// </summary>
         internal static string ToolStripMenuItem_Tools {

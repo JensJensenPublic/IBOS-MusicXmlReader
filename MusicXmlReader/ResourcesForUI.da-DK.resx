@@ -312,4 +312,7 @@
   <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
     <value>Importer nyeste eksempler</value>
   </data>
+  <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
+    <value>http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html</value>
+  </data>
 </root>

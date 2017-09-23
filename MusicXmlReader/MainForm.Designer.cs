@@ -31,8 +31,8 @@
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.filesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMusicXmlFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importNewSampleFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importNewestDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importNewSampleFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,6 +88,7 @@
             this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.listBoxDetails = new System.Windows.Forms.ListBox();
+            this.linkToNewestSoftwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -125,19 +126,19 @@
             this.openMusicXmlFileToolStripMenuItem.Text = "&Open MusicXml File";
             this.openMusicXmlFileToolStripMenuItem.Click += new System.EventHandler(this.openMusicXmlFileToolStripMenuItem_Click);
             // 
-            // importNewSampleFilesToolStripMenuItem
-            // 
-            this.importNewSampleFilesToolStripMenuItem.Name = "importNewSampleFilesToolStripMenuItem";
-            this.importNewSampleFilesToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.importNewSampleFilesToolStripMenuItem.Text = "Import New Sample files";
-            this.importNewSampleFilesToolStripMenuItem.Click += new System.EventHandler(this.importNewSampleFilesToolStripMenuItem_Click);
-            // 
             // importNewestDownloadsToolStripMenuItem
             // 
             this.importNewestDownloadsToolStripMenuItem.Name = "importNewestDownloadsToolStripMenuItem";
             this.importNewestDownloadsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.importNewestDownloadsToolStripMenuItem.Text = "&Import Newest Downloads";
             this.importNewestDownloadsToolStripMenuItem.Click += new System.EventHandler(this.importNewestDownloadsToolStripMenuItem_Click);
+            // 
+            // importNewSampleFilesToolStripMenuItem
+            // 
+            this.importNewSampleFilesToolStripMenuItem.Name = "importNewSampleFilesToolStripMenuItem";
+            this.importNewSampleFilesToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.importNewSampleFilesToolStripMenuItem.Text = "Import New Sample files";
+            this.importNewSampleFilesToolStripMenuItem.Click += new System.EventHandler(this.importNewSampleFilesToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -478,7 +479,8 @@
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutIBOSMusicXmlReaderToolStripMenuItem,
-            this.keyboardShortcutsToolStripMenuItem});
+            this.keyboardShortcutsToolStripMenuItem,
+            this.linkToNewestSoftwareToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
@@ -486,14 +488,14 @@
             // aboutIBOSMusicXmlReaderToolStripMenuItem
             // 
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Name = "aboutIBOSMusicXmlReaderToolStripMenuItem";
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = "About ";
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Click += new System.EventHandler(this.aboutIBOSMusicXmlReaderToolStripMenuItem_Click);
             // 
             // keyboardShortcutsToolStripMenuItem
             // 
             this.keyboardShortcutsToolStripMenuItem.Name = "keyboardShortcutsToolStripMenuItem";
-            this.keyboardShortcutsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.keyboardShortcutsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.keyboardShortcutsToolStripMenuItem.Text = "Keyboard shortcuts";
             this.keyboardShortcutsToolStripMenuItem.Click += new System.EventHandler(this.keyboardShortcutsToolStripMenuItem_Click);
             // 
@@ -582,6 +584,13 @@
             this.listBoxDetails.SelectedIndexChanged += new System.EventHandler(this.listBoxDetails_SelectedIndexChanged);
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDetails_KeyDown);
             this.listBoxDetails.Leave += new System.EventHandler(this.listBoxDetails_Leave);
+            // 
+            // linkToNewestSoftwareToolStripMenuItem
+            // 
+            this.linkToNewestSoftwareToolStripMenuItem.Name = "linkToNewestSoftwareToolStripMenuItem";
+            this.linkToNewestSoftwareToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.linkToNewestSoftwareToolStripMenuItem.Text = "Link to newest software";
+            this.linkToNewestSoftwareToolStripMenuItem.Click += new System.EventHandler(this.linkToNewestSoftwareToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -673,6 +682,7 @@
         private System.Windows.Forms.ListBox listBoxDetails;
         private System.Windows.Forms.ToolStripMenuItem importNewestDownloadsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importNewSampleFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem linkToNewestSoftwareToolStripMenuItem;
     }
 }
 
