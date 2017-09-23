@@ -311,4 +311,7 @@
   <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
     <value>&amp;Import newest downloads</value>
   </data>
+  <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
+    <value>Import newest samples</value>
+  </data>
 </root>
