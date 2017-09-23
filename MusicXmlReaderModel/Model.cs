@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using NAudio.Midi;
 using System.Xml;
 using JSJ.ScreenReaderAPI;
-using MusicXmlReaderUI; // Interfaces
+//using MusicXmlReaderUI; // Interfaces
 using JSJ.MusicSynthesis; // Avoid by making new class
 
 namespace MusicXmlReaderModel
@@ -896,6 +896,7 @@ namespace MusicXmlReaderModel
             try
             {
                 musicPlayer.StopPlaying();
+                musicPlayer.DamperThreadStop();
             }
             catch (Exception e)
             {
@@ -996,7 +997,7 @@ namespace MusicXmlReaderModel
         {
             if (null != eventDescription.HarmonyElement)
             {
-                detailsPlayer = DetailsPlayer.Create(eventDescription.HarmonyElement, midiOut);
+                detailsPlayer = DetailsPlayer.Create(eventDescription.HarmonyElement, musicPlayer);
                 return detailsPlayer.DetailsDescriptionArray;
             }
             else
@@ -1014,7 +1015,7 @@ namespace MusicXmlReaderModel
 
             if (null != eventDescription)
             {
-                detailsPlayer = DetailsPlayer.Create(eventDescription,partList,userSettings,midiOut);
+                detailsPlayer = DetailsPlayer.Create(eventDescription,partList,userSettings,musicPlayer);
                 return detailsPlayer.DetailsDescriptionArray;
             }
             else

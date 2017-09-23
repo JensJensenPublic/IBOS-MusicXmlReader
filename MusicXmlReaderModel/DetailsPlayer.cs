@@ -20,7 +20,7 @@ namespace MusicXmlReaderModel
         private const int bassOctave = 3; // Play the Bass note (if any) in 3. octave
         private const int chordOctave = 4; // Build the chord starting in 4. octave, possibly spreading into 5. octave
         private const int velocity = 90;
-        private MidiOut midiOut;
+        private MusicPlayer musicPlayer;
         private List<DetailsDescription> detailsDescriptions = new List<DetailsDescription>();
         public List<DetailsDescription> DetailsDescriptionList
         {
@@ -53,9 +53,9 @@ namespace MusicXmlReaderModel
         /// Becifring C/E
         /// </summary>
         /// <returns></returns>
-        private DetailsPlayer(HarmonyElement harmonyElement, MidiOut midiOut)
+        private DetailsPlayer(HarmonyElement harmonyElement, MusicPlayer musicPlayer)
         {
-            this.midiOut = midiOut;
+            this.musicPlayer = musicPlayer;
             // Interval[] intervals = MidiChord.GetChordIntervals(harmonyElement.ChordType); // In this way we will use the same definitions for the sound and the text  
             Interval[] intervals = MidiChord.GetModifiedChordIntervals(harmonyElement.ChordType, harmonyElement.Degrees);        
             ChromaticStep root = harmonyElement.ChromaticRootStep;
@@ -94,9 +94,8 @@ namespace MusicXmlReaderModel
         }
 
 
-        private DetailsPlayer(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MidiOut midiOut)
+        private DetailsPlayer(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MusicPlayer musicPlayer)
         {
-            this.midiOut = midiOut;
             int numberOfParts = partList.NumberOfParts();
             detailsDescriptions = new List<DetailsDescription>();
             for (int i = 0; (i < numberOfParts); i++)
@@ -155,11 +154,11 @@ namespace MusicXmlReaderModel
         {
             if (null != currentDetailsMidiNote)
             {
-                currentDetailsMidiNote.StopPlaying(midiOut);
+                musicPlayer.StopMidiNote(currentDetailsMidiNote);
             }
             if (null != currentDetailsMidiChord)
             {
-                currentDetailsMidiChord.StopPlaying(midiOut);
+                musicPlayer.StopMidiChord(currentDetailsMidiChord);
             }
 
             if (null != detailsDescription)
@@ -167,8 +166,8 @@ namespace MusicXmlReaderModel
                 if (detailsDescription.ContainsStep)
                 {
                     // This DetailDescription describes a single note
-                    MidiNote midiNote = new MidiNote(detailsDescription.Step, detailsDescription.Octave, velocity, Interval.Unison);
-                    midiNote.StartPlaying(midiOut);
+                    currentDetailsMidiNote = new MidiNote(detailsDescription.Step, detailsDescription.Octave, velocity, Interval.Unison);
+                    musicPlayer.StartMidiNote(currentDetailsMidiNote);
                 }
 
                 HarmonyElement hE = detailsDescription.HarmonyElement;
@@ -176,7 +175,7 @@ namespace MusicXmlReaderModel
                 {
                     // This DetailDescription describes a harmony       
                     currentDetailsMidiChord = new MidiChord(hE.ChromaticRootStep, chordOctave, velocity, hE.ChordType, hE.ChromaticBassStep, null);
-                    currentDetailsMidiChord.StartPlaying(midiOut);
+                    musicPlayer.StartMidiChord(currentDetailsMidiChord);
                 }
             }
             
@@ -188,13 +187,13 @@ namespace MusicXmlReaderModel
             // Stop any note
             if (null != currentDetailsMidiNote)
             {
-                currentDetailsMidiNote.StopPlaying(midiOut);
+                musicPlayer.StopMidiNote(currentDetailsMidiNote);
             }
 
             // stop any chord
             if (null != currentDetailsMidiChord)
             {
-                currentDetailsMidiChord.StopPlaying(midiOut);
+                musicPlayer.StopMidiChord(currentDetailsMidiChord);
             }
         }
 
@@ -202,15 +201,15 @@ namespace MusicXmlReaderModel
 
 
 
-        public static DetailsPlayer Create(HarmonyElement harmonyElement,MidiOut midiOut)
+        public static DetailsPlayer Create(HarmonyElement harmonyElement,MusicPlayer musicPlayer)
         {
-            return new DetailsPlayer(harmonyElement,midiOut);
+            return new DetailsPlayer(harmonyElement,musicPlayer);
         }
 
 
-        public static DetailsPlayer Create(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MidiOut midiOut)
+        public static DetailsPlayer Create(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MusicPlayer musicPlayer)
         {
-            return new DetailsPlayer(eventDescription, partList, userSettings, midiOut);
+            return new DetailsPlayer(eventDescription, partList, userSettings, musicPlayer);
         }
 
         public static DetailsPlayer Create(PartlistElement partList)

@@ -5,7 +5,7 @@ using NAudio.Midi;
 using MusicXmlReaderModel;
 
 
-namespace MusicXmlReaderUI
+namespace MusicXmlReaderModel
 {
 
     public interface IObjectCollection
@@ -69,8 +69,6 @@ namespace MusicXmlReaderUI
         {
             Logger.LogOnce(s);
         }
-
-
         /// <summary>
         /// Constructor
         /// </summary>
@@ -94,7 +92,10 @@ namespace MusicXmlReaderUI
             //ChangeInstrument(1, 43);  // Change channel 1 to Cello
             //ChangeInstrument(1, 25);  // Change channel 1 to Acoustic Guitar
 
-
+            damperThread = new System.Threading.Thread(new System.Threading.ThreadStart(DamperThreadStart));
+            //playerThread.Priority = System.Threading.ThreadPriority.Lowest; // Handle UI even when playing complicated stuff
+            // Logger.Log(string.Format("Starting DamperThread at priority={0}", playerThread.Priority.ToString()));
+            damperThread.Start();
         }
 
 #warning TODO call this whenever a new file is loaded.
@@ -196,6 +197,7 @@ namespace MusicXmlReaderUI
                             { // This is a real note, not a pause
                                 if (userSettings.partsToPlay[noteElement.PartNumber])
                                 {
+                                    DamperThreadReset();
 //                                   MidiNote midiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
                                     MidiNote midiNote = CreateMidinote(noteElement,midiOut);
                                     notesCurrentlyPlaying.Add(midiNote);
@@ -253,6 +255,7 @@ namespace MusicXmlReaderUI
                     HarmonyElement h = eventDescription.HarmonyElement;
                     if (ChordType.UnImplemented != h.ChordType)
                     {
+                        DamperThreadReset();
                         List<string> errors = new List<string>(); // MidiChord has no access to the logging system. Instead we log errors in this way: 
                         latestHarmonyPlayed = new MidiChord(h.ChromaticRootStep, 4, 127, h.ChordType, h.ChromaticBassStep, h.Degrees); // The last 2 parameters will be used for non-standard harmonies 
                         latestHarmonyPlayed.StartPlaying(midiOut);                    }
@@ -541,6 +544,7 @@ namespace MusicXmlReaderUI
         }
 
         private System.Threading.Thread playerThread;
+        private System.Threading.Thread damperThread;
         private volatile bool playing = false;
 
         public UserSettings UserSettings
@@ -583,6 +587,52 @@ namespace MusicXmlReaderUI
             PlayerThreadStart(objects);
 
         }
+
+        #region DamperThread
+#warning TODO Isolate DmperThread in separate class
+        private bool reset;
+        private bool running;
+        public void DamperThreadReset()
+        {
+            reset = true; ;
+        }
+        public void DamperThreadStop()
+        {
+            running = false; ;
+        }
+
+        private void DamperThreadStart()
+        {
+            string functionName = "DamperThreadStart";
+            const int delay = 10;
+            int DamperThreadCounter = delay;
+            running = true;
+            Logger.Log(string.Format("{0}.{1}.Start", className, functionName));
+            while (running)
+            {
+                System.Threading.Thread.Sleep(100);
+                if (reset)
+                {
+                    reset = false;
+                    DamperThreadCounter = delay;
+                }
+
+                DamperThreadCounter--;
+                if ((DamperThreadCounter < 0) && !playing)
+                {
+                    StopAllNotesPlaying();
+                    if (null != latestHarmonyPlayed)
+                    {
+                        latestHarmonyPlayed.StopPlaying(midiOut); // "StopAllHarmoniesPlaying"
+                        latestHarmonyPlayed = null;
+                    }
+                    DamperThreadCounter = delay;
+                }
+            }
+            Logger.Log(string.Format("{0}.{1}.Exit", className, functionName));
+        }
+        #endregion
+
 
         private void PlayerThreadStart(IObjectCollection objects)
         {
@@ -665,14 +715,18 @@ namespace MusicXmlReaderUI
             try
             {
                 // throw new Exception("For test"); // For test only !!!
-                int n = notesCurrentlyPlaying.Count;
-                for (int i = 0; (i < n); i++)
+                if (null != notesCurrentlyPlaying)
                 {
-                    MidiNote midiNote = notesCurrentlyPlaying[i];
-                    midiNote.StopPlaying(this.midiOut);
-                    Logger.Log(string.Format("{0}.{1}: Stopped  {2} from playing", className, functionName, midiNote.ToString()));
+                    int n = notesCurrentlyPlaying.Count;
+                    for (int i = 0; (i < n); i++)
+                    {
+                        MidiNote midiNote = notesCurrentlyPlaying[i];
+                        midiNote.StopPlaying(this.midiOut);
+                        // Logger.Log(string.Format("{0}.{1}: Stopped  {2} from playing", className, functionName, midiNote.ToString()));
+
+                    }
+                    // Logger.Log(string.Format("{0}.{1}: Stopped {2} notes from playing", className, functionName, n));
                 }
-                Logger.Log(string.Format("{0}.{1}: Stopped {2} notes from playing", className, functionName, n));
             }
             catch (Exception e)
             {
@@ -815,8 +869,31 @@ namespace MusicXmlReaderUI
 
         }
 
+        #region SimpleStartStopInterface
+        public void StopMidiNote(MidiNote midiNote)
+        {
+            midiNote.StopPlaying(midiOut);
+            notesCurrentlyPlaying.Remove(midiNote);
+        }
 
+        public void StopMidiChord(MidiChord midiChord)
+        {
+            midiChord.StopPlaying(midiOut);            
+        }
+        
+        public void StartMidiNote(MidiNote midiNote)
+        {
+            DamperThreadReset();
+            midiNote.StartPlaying(midiOut);
+            notesCurrentlyPlaying.Add(midiNote);              
+        }
 
-
+        public void StartMidiChord(MidiChord midiChord)
+        {
+            DamperThreadReset();
+            midiChord.StartPlaying(midiOut);
+            latestHarmonyPlayed = midiChord;
+        }
+        #endregion
     }
 }
