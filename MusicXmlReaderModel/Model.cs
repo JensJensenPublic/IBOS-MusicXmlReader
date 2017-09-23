@@ -1043,6 +1043,12 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public void SelectMeasure(int move)
+        {
+            string functionName = "SelectMeasure";
+            Logger.Log(string.Format("{0}.{1}({2}): Not implemented yet !",className,functionName, move));
+        }
+
 
         public void SelectedDetailsIndexChanged(DetailsDescription detailsDescription)
         {

@@ -829,7 +829,22 @@ namespace MusicXmlReader
                 model.musicPlayer.StopAllNotesPlaying();
                 return;
             }
-
+// Start new code 1.0.5.1
+#if true
+            else if (shortCutHandler.IsPreviousMeasureShortcut(e))
+            {
+                model.SelectMeasure(-1);
+                e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control. 
+                return;
+            }
+            else if (shortCutHandler.IsNextMeasureShortcut(e))
+            {
+                model.SelectMeasure(+1);
+                e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
+                return;
+            }
+#endif
+// End new code 1.0.5.1
             if (shortCutHandler.IsDetailsShortcut(e))
             {
                 // NOTE ARROW + ALT alone has already been taken by tempo increment/decrement !!!

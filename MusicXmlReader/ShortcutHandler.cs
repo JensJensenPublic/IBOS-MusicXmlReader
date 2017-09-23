@@ -183,7 +183,17 @@ namespace MusicXmlReader
         {
             return ((e.KeyCode == detailsPreviousPart) || (e.KeyCode == detailsNextPart));
         }
-                        
+
+        public bool IsNextMeasureShortcut(KeyEventArgs e)
+        {
+            return (e.KeyData == (Keys.Control | Keys.Right));
+        }
+
+        public bool IsPreviousMeasureShortcut(KeyEventArgs e)
+        {
+            return (e.KeyData == (Keys.Control | Keys.Left));
+        }
+                    
         static public readonly Keys StopAllNotesPlaying = Keys.Escape;
 
 
