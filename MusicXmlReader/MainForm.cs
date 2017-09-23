@@ -160,6 +160,7 @@ namespace MusicXmlReader
             // Children of  helpToolStripMenuItem
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = string.Format("{0} {1}",ResourcesForUI.ToolStripMenuItem_Help_About,ApplicationName);
             this.keyboardShortcutsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help_Shortcuts;
+            this.linkToNewestSoftwareToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help_SoftwareUpdate;
 
 
         }
