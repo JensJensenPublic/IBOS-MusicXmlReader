@@ -1053,7 +1053,7 @@ namespace MusicXmlReaderModel
         {
             string functionName = "SelectMeasure";
             const int noMeasure = -1; // Marks that this event is not at the start of a measure
-            Logger.Log(string.Format("{0}.{1}(SelectedIndex={2},Move={3})",className,functionName, selectedIndex,move));
+            // Logger.Log(string.Format("{0}.{1}(SelectedIndex={2},Move={3})",className,functionName, selectedIndex,move));
             try
             {
                 // Find the first event containing a measure nmuber in either backwards or forwards direction
