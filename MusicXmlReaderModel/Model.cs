@@ -1048,26 +1048,22 @@ namespace MusicXmlReaderModel
         /// Move selection to the start of the next or previous measure
         /// </summary>
         /// <param name="selectedIndex"></param>
-        /// <param name="move"></param>
+        /// <param name="move"> +1: Next Measure,  -1: Previous Measure</param>
         public void SelectMeasure(int selectedIndex,int move)
         {
             string functionName = "SelectMeasure";
+            const int noMeasure = -1; // Marks that this event is not at the start of a measure
             Logger.Log(string.Format("{0}.{1}(SelectedIndex={2},Move={3})",className,functionName, selectedIndex,move));
             try
             {
-                EventDescription currentEvent = (this.objects.GetObjectAtIndex(selectedIndex) as EventDescription);
-                int currentMeasureNumber = currentEvent.MeasureNumber;
-                int newMeasureNumber = currentMeasureNumber + move;
+                // Find the first event containing a measure nmuber in either backwards or forwards direction
                 for (int i = selectedIndex; ((i+move) >= 0) && ((i + move) < this.objects.GetNumberOfObjects());)
                 {
                     i += move;
                     EventDescription nextEvent = (this.objects.GetObjectAtIndex(i) as EventDescription);
-                    if (nextEvent.MeasureNumber == newMeasureNumber)
+                    if (nextEvent.MeasureNumber != noMeasure)
                     {
-                        if ((i >= 0) && (i < this.objects.GetNumberOfObjects()))
-                        {
-                            objects.SetSelectedIndex(i);
-                        }
+                        objects.SetSelectedIndex(i);
                         return;
                     }
                 }
