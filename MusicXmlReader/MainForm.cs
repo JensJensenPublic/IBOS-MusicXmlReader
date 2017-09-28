@@ -26,8 +26,8 @@ namespace MusicXmlReader
         Model model;        // The Model containing all of the business logic.        
         bool autoReload;    // Used to optimize performance when changing large parts of the UI within short time
         UserSettingsHandler userSettingsHandler; // Contains all settings that can be configured by the user
-        MusicPlayerStateEnum musicPlayerState = MusicPlayerStateEnum.stopped; // Assume the musicplayer is innitially stopped
-        ShortcutHandler shortCutHandler;
+        // MusicPlayerStateEnum musicPlayerState = MusicPlayerStateEnum.stopped; // Assume the musicplayer is innitially stopped
+        // ShortcutHandler shortCutHandler;
         UserCommandInterpreter commandInterpreter;
         string myMusicXmlDirectory; // Default location for MusicXml files belonging to thos user. Wil be populated with sample filer!
 
@@ -50,7 +50,7 @@ namespace MusicXmlReader
                 LogGLobalisationInformation();
                 // Do any UI localization before we create the model. In this way we avoid showing unlocalized texts
                 // if an error is reported by a messagebox.
-                musicPlayerState = MusicPlayerStateEnum.stopped;
+                // musicPlayerState = MusicPlayerStateEnum.stopped;
                 //LocalizeStartStopButton(musicPlayerState);
                 ApplicationName = ResourcesForUI.MainForm_ApplicationName;
                 LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
@@ -72,7 +72,7 @@ namespace MusicXmlReader
                 userSettingsHandler.Init(); // Builds up the fixed part of the treeview
                 userSettingsTreeView.CollapseAll();
                 // Create a handler for handling all Keyboard shortcuts
-                shortCutHandler = ShortcutHandler.Create(this, model);
+                // shortCutHandler = ShortcutHandler.Create(this, model);
                 commandInterpreter = UserCommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
                 LoadIcon();
                 // throw (new Exception("For test only")); // Insert this line to test the Last Resort handler below
@@ -886,38 +886,31 @@ namespace MusicXmlReader
 
         }
 
+        enum CheckboxOperation { Unknown, Check, Uncheck, ToggleAndCopy};
+
         /// <summary>
-        /// Occurs when a key is pressed while treeView has focus         
+        /// Candle chsckboxes, distributed in the tree
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void userSettingsTreeView_KeyDown(object sender, KeyEventArgs e)
+        /// <param name="checkboxOperation"></param>
+        /// <returns></returns>
+        bool UpdateCheckBoxes(CheckboxOperation checkboxOperation)
         {
-            if (e.KeyData == ShortcutHandler.listBoxFocus)
-            {
-                listBoxTimes.Focus(); // Easy way to move the focus to the main listbox
-                return;
-            }
-
-            if (null == userSettingsTreeView.SelectedNode)
-            {
-                return;
-            }
-
+            string functionName = "UpdateCheckBoxes";
+            Logger.Log(string.Format("{0}.{1}({2})", className, functionName, checkboxOperation));
+            bool result = false;
             bool newValue;
-            bool toggleAndCopy;
             // We only handle the shortcuts specified in shortCutHandler
-            if (!shortCutHandler.IsTreeViewMultiControlShortcut(e,out newValue,out toggleAndCopy)) return;
-            if (toggleAndCopy)
+            switch (checkboxOperation)
             {
-                // new valye is the togled value of the node that was clisked!
-                newValue = !userSettingsTreeView.SelectedNode.Checked;
-                e.Handled = true;  // Prevents that the control wil toggle this checkbox once more !                
+                case CheckboxOperation.Check:           newValue = true; break;
+                case CheckboxOperation.Uncheck:         newValue = false; break;
+                case CheckboxOperation.ToggleAndCopy:   newValue = !userSettingsTreeView.SelectedNode.Checked; result = true; break;
+                default: return false;
             }
-
+            
             // We only handle level 2 nodes
-            if (2 != userSettingsTreeView.SelectedNode.Level) return;
- 
+            if (2 != userSettingsTreeView.SelectedNode.Level) return result;
+
             string level2Text = userSettingsTreeView.SelectedNode.Text;
             string level1Name = userSettingsTreeView.SelectedNode.Parent.Name;
 
@@ -942,6 +935,35 @@ namespace MusicXmlReader
             }
             autoReload = saveAutoReload; // Restore
             ConditionalLoadListBoxTimes(); // Reload once instead of multiple times
+            return result;
+        }
+
+
+        /// <summary>
+        /// Occurs when a key is pressed while treeView has focus         
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void userSettingsTreeView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == ShortcutHandler.listBoxFocus)
+            {
+                listBoxTimes.Focus(); // Easy way to move the focus to the main listbox
+                return;
+            }
+
+            if (null == userSettingsTreeView.SelectedNode)
+            {
+                return;
+            }
+
+            switch (e.KeyData)
+            {
+                case ShortcutHandler.uncheckAll:     e.Handled = UpdateCheckBoxes(CheckboxOperation.Uncheck); break;
+                case ShortcutHandler.checkAll:       e.Handled = UpdateCheckBoxes(CheckboxOperation.Check); break;
+                case ShortcutHandler.toggleAndCopy:  e.Handled = UpdateCheckBoxes(CheckboxOperation.ToggleAndCopy); break;
+                default: break;
+            }
         }
         
         /// <summary>

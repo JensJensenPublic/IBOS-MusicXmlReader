@@ -120,7 +120,7 @@ namespace MusicXmlReader
     /// <summary>
     /// Class for defining all keyboard shortcuts at on single place instead of scattering them around the code
     /// </summary>
-    public class ShortcutHandler
+    public static class ShortcutHandler
     {
         // The following static variables list the shortcut keys used in this program
         // This list must be carefully maintained in order to keep track of all Keyboard Shortcuts used
@@ -160,18 +160,10 @@ namespace MusicXmlReader
 
 
         // UserSettingsTreeview:
-        static public readonly Keys[] checkAll   = new Keys[] { ((Keys)((Keys.Control | Keys.D1))) };
-        static public readonly Keys[] uncheckAll = new Keys[] { ((Keys)((Keys.Control | Keys.D0))) };
-        static public readonly Keys[] toggleAndCopy = new Keys[] { ((Keys)((Keys.Control | Keys.Space))) };
+        public const Keys checkAll   = Keys.Control | Keys.D1;
+        public const Keys uncheckAll = Keys.Control | Keys.D0;
+        public const Keys toggleAndCopy = Keys.Control | Keys.Space;
 
-        public bool IsTreeViewMultiControlShortcut(KeyEventArgs e, out bool newValue,out bool toggle)
-        {
-            bool check   = checkAll.Contains(e.KeyData);
-            bool unCheck = uncheckAll.Contains(e.KeyData);
-            toggle = toggleAndCopy.Contains(e.KeyData);
-            newValue = check;
-            return (check || unCheck || toggle);
-        }
         static public readonly Keys listBoxFocus = (Keys)(Keys.Control | Keys.L);
 
         static public readonly Keys detailsNextDetail =     (Keys.Up);      // Enter Details mode and select the last part (or harmony, if available)
@@ -193,23 +185,6 @@ namespace MusicXmlReader
         //public const Keys DetailsInstrumentsButtom= Keys.I | Keys.C;
 
         public const Keys StopAllNotesPlaying = Keys.Escape;
-
-        private ShortcutHandler()
-        { }
-
-        private MainForm mainForm;
-        private Model model;
-
-        private ShortcutHandler(MainForm mainForm, Model model)
-        {
-            this.mainForm = mainForm;
-            this.model = model;
-        }
-
-        static public ShortcutHandler Create(MainForm mainForm, Model model)
-        {
-            return new ShortcutHandler(mainForm, model);
-        }
 
     }
 }
