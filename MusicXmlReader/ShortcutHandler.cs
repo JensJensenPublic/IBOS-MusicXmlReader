@@ -149,14 +149,14 @@ namespace MusicXmlReader
         //
 
         // Start / Stop of Autoplay
-        static public readonly Keys startPlaying = ((Keys)((Keys.Control | Keys.P)));
-        static public readonly Keys stopPlaying  = ((Keys)((Keys.Control | Keys.Shift | Keys.P)));
-        static public readonly Keys[] togglePlaying = new Keys[] {Keys.Space};
+        public const Keys startPlaying = Keys.Control | Keys.P;
+        public const Keys stopPlaying  = Keys.Control | Keys.Shift | Keys.P;
+        public const Keys togglePlaying = Keys.Space;
 
 
         // Tempo control of AutoPlay
-        static public readonly Keys tempoIncrement = ((Keys)((Keys.Alt | Keys.Up)));
-        static public readonly Keys tempoDecrement = ((Keys)((Keys.Alt | Keys.Down)));
+        public const Keys tempoIncrement = (Keys.Alt | Keys.Up);
+        public const Keys tempoDecrement = (Keys.Alt | Keys.Down);
 
 
         // UserSettingsTreeview:
@@ -174,28 +174,25 @@ namespace MusicXmlReader
         }
         static public readonly Keys listBoxFocus = (Keys)(Keys.Control | Keys.L);
 
-        static public readonly Keys detailsNextPart     = (Keys)(Keys.Up);      // Enter Details mode and select the last part (or harmony, if available)
-        static public readonly Keys detailsPreviousPart = (Keys)(Keys.Down);    // Enter Details mode and select the first part
-        static public readonly Keys detailsNextEvent    = (Keys)(Keys.Right);   // Leave Details mode and select the next event
-        static public readonly Keys detailsPreviousEvent= (Keys)(Keys.Left);    // Leave Details mode and select the previous event
+        static public readonly Keys detailsNextDetail =     (Keys.Up);      // Enter Details mode and select the last part (or harmony, if available)
+        static public readonly Keys detailsPreviousDetail = (Keys.Down);    // Enter Details mode and select the first part
+        static public readonly Keys detailsTopDetail =      (Keys.Home);    // Remain in Details mode and select the top part (or harmony, if available)
+        static public readonly Keys detailsBottumDetail =   (Keys.End);     // Remain  Details mode and select the bottum part
+        static public readonly Keys detailsNextEvent    =   (Keys.Right);   // Leave Details mode and select the next event
+        static public readonly Keys detailsPreviousEvent=   (Keys.Left);    // Leave Details mode and select the previous event
 
-        public bool IsDetailsShortcut(KeyEventArgs e)
-        {
-            return ((e.KeyCode == detailsPreviousPart) || (e.KeyCode == detailsNextPart));
-        }
+        public const Keys NextMeasure = Keys.Control | Keys.Right;
+        public const Keys PreviousMeasure = Keys.Control | Keys.Left;
 
-        public bool IsNextMeasureShortcut(KeyEventArgs e)
-        {
-            return (e.KeyData == (Keys.Control | Keys.Right));
-        }
+        // For loading details
+        public const Keys DetailsHarmonyTop =       Keys.Up;
+        public const Keys DetailsPartsTop =         Keys.Up | Keys.Control;
+        public const Keys DetailsInstruments = Keys.I;
+        public const Keys DetailsHarmonyBottum =    Keys.Down;
+        public const Keys DetailsPartsBottum =      Keys.Down | Keys.Control;
+        //public const Keys DetailsInstrumentsButtom= Keys.I | Keys.C;
 
-        public bool IsPreviousMeasureShortcut(KeyEventArgs e)
-        {
-            return (e.KeyData == (Keys.Control | Keys.Left));
-        }
-                    
-        static public readonly Keys StopAllNotesPlaying = Keys.Escape;
-
+        public const Keys StopAllNotesPlaying = Keys.Escape;
 
         private ShortcutHandler()
         { }
@@ -214,47 +211,5 @@ namespace MusicXmlReader
             return new ShortcutHandler(mainForm, model);
         }
 
-        //  KeyData:
-        //  A System.Windows.Forms.Keys representing the key code for the key that was pressed,
-        //  combined with modifier flags that indicate which combination of CTRL, SHIFT,
-        //  and ALT keys was pressed at the same time
-
-
-        public bool IsStartPlayingShortcut(KeyEventArgs e)
-        {
-            return (e.KeyData == startPlaying);
-        }
-
-        public bool IsTempoDecrementShortcut(KeyEventArgs e)
-        {
-            return (e.KeyData == tempoDecrement);        
-        }
-
-        public bool IsTempoIncrementShortcut(KeyEventArgs e)
-        {
-            return (e.KeyData == tempoIncrement);
-        }
-
-        public bool IsStopPlayingShortcut(KeyEventArgs e)
-        {
-            return (e.KeyData == stopPlaying);
-        }
-
-        public bool IsTogglePlayingShortcut(KeyEventArgs e)
-        {
-            foreach (Keys key in togglePlaying)
-            {
-                if (e.KeyData == key)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public bool IsStopAllNotesPlayingShortcut(KeyEventArgs e)
-        {
-            return (e.KeyData == StopAllNotesPlaying);
-        }
     }
 }

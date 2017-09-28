@@ -744,9 +744,15 @@ namespace MusicXmlReader
             string functionName = "listBoxDetails_KeyDown";
             try // This is new code for version 1.0.0.0 so better safe than sorry
             {
-                if (shortCutHandler.IsDetailsShortcut(e))
+                //if (shortCutHandler.IsDetailsShortcut(e))
+                if (
+                       (e.KeyCode == ShortcutHandler.detailsPreviousDetail)
+                    || (e.KeyCode == ShortcutHandler.detailsNextDetail)
+                    || (e.KeyCode == ShortcutHandler.detailsTopDetail)
+                    || (e.KeyCode == ShortcutHandler.detailsBottumDetail)                    
+                    )
                 {
-                    // On keys.Right and keys.Left:
+                    // On keys.Right and keys.Left, Key.Home, Key.End:
                     // Do nothing special, but pass the key to the listbox without suppressing it !
                 }
                 else
@@ -776,6 +782,65 @@ namespace MusicXmlReader
             return;
         }
 
+        private enum DetailsEnum { Unknown, Harmonies, Parts, Instruments };
+
+
+
+        /// <summary>
+        /// Shows details in the Details listbox
+        /// </summary>
+        /// <param name="detailsEnum">Determines which kind of details to show</param>
+        /// <param name="fromTop">Show details either from top or bottum</param>
+        private void ShowDetails(DetailsEnum detailsEnum, bool fromTop)
+        {
+            string functionName = "ShowDetails";
+            // NOTE ARROW + ALT alone has already been taken by tempo increment/decrement !!!
+            if (-1 == listBoxTimes.SelectedIndex)
+            {
+                // It has no meaning to inspect details when nothing is selected !
+                return;
+            }
+            try // This is new code for version 1.0.0.0 so better safe than sorry
+            {
+                listBoxDetails.Items.Clear();
+                object selectedEvent = listBoxTimes.Items[listBoxTimes.SelectedIndex];
+                if ((null != selectedEvent) && (selectedEvent is EventDescription))
+                {
+                    EventDescription currentEventDescription = (listBoxTimes.Items[listBoxTimes.SelectedIndex]) as EventDescription;
+
+                    DetailsDescription[] items = new DetailsDescription[0];
+                    switch (detailsEnum)
+                    {
+                        case DetailsEnum.Parts: items = model.GetCurrentEventDetails(currentEventDescription); break;//  Show details about current parts
+                        case DetailsEnum.Harmonies: items = model.GetCurrentHarmonyDetails(currentEventDescription); break; // Show details about the current harmony
+                        case DetailsEnum.Instruments: items = model.GetAllPartDetails(); break;
+                        default: break;
+                    };
+
+                    listBoxDetails.Items.AddRange(items);
+                    int itemCount = listBoxDetails.Items.Count;
+                    if (0 != itemCount)
+                    {
+                        listBoxDetails.SelectedIndex = fromTop ? 0 : (itemCount - 1);
+                    }
+                }
+
+                if (0 == listBoxDetails.Items.Count) // For whatever reason
+                {
+#warning Localize
+                    listBoxDetails.Items.Add("No details found");
+                }
+
+                listBoxDetails.Focus();
+                // e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
+            }
+            catch (Exception exception)
+            {
+                Logger.Log(string.Format("{0}.{1} ({2},{3}) threw an exception: Message={4}", className, functionName, detailsEnum , fromTop, exception.Message));
+            }
+            return;
+        }
+
 
 
         /// <summary>
@@ -785,129 +850,36 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void listBoxTimes_KeyDown(object sender, KeyEventArgs e)
         {
-            string functionName = "listBoxTimes_KeyDown";
-            if (shortCutHandler.IsTogglePlayingShortcut(e))
-            {
-                model.ToggleStartStopPlaying(listBoxTimes.SelectedIndex);
-                e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
-                                            // This avoids flickering caused by the special interpretation of SPACE to the underlying Listbox 
-                return;            
-            }
+            // string functionName = "listBoxTimes_KeyDown";
 
-            if (shortCutHandler.IsTempoDecrementShortcut(e))
-            {
-                model.ChangeUserTempo(-1);
-                e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control. 
-                return;
-            }
+            bool handled = true; // Will be set to false again by the "default:" case if the key is not handled  by one of the specific cases.
+            switch (e.KeyData) // KeyDate contains information about the control keys (<CTRL> <ALT> <SHIFT>  etc )as well as about the normal ley
+            {    
+                // Most functionality is passed directly to the Model
+                case ShortcutHandler.togglePlaying:         model.ToggleStartStopPlaying(listBoxTimes.SelectedIndex); break; // Keys.Space
+                case ShortcutHandler.tempoDecrement:        model.ChangeUserTempo(-1); break;
+                case ShortcutHandler.tempoIncrement:        model.ChangeUserTempo(+1); break;
+                case ShortcutHandler.startPlaying:          model.StartPlayingPoly(listBoxTimes.SelectedIndex); break;
+                case ShortcutHandler.stopPlaying:           model.StopPlaying(); break;
+                case ShortcutHandler.StopAllNotesPlaying:   model.musicPlayer.StopAllNotesPlaying(); break;
+                case ShortcutHandler.PreviousMeasure:       model.SelectMeasure(listBoxTimes.SelectedIndex, -1); break;
+                case ShortcutHandler.NextMeasure:           model.SelectMeasure(listBoxTimes.SelectedIndex, +1); break;
 
-            if (shortCutHandler.IsTempoIncrementShortcut(e))
-            {
-                model.ChangeUserTempo(1);
-                e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
-                return;
-            }
+                // The "Details functionality is handled locally before being passed to the Model:
+                case ShortcutHandler.DetailsHarmonyTop:     ShowDetails(DetailsEnum.Harmonies, true); break;    // Start from top
+                case ShortcutHandler.DetailsPartsTop:       ShowDetails(DetailsEnum.Parts, true); break;        // Start from top     
+                case ShortcutHandler.DetailsHarmonyBottum:  ShowDetails(DetailsEnum.Harmonies, false); break;   // Start from bottum
+                case ShortcutHandler.DetailsPartsBottum:    ShowDetails(DetailsEnum.Parts, false); break;       //  Start from bottum
+                case ShortcutHandler.DetailsInstruments:    ShowDetails(DetailsEnum.Instruments, true); break;  // Always shown from top
+                //case ShortcutHandler.DetailsInstrumentsButtom:  ShowDetails(DetailsEnum.Instruments, false); break;
 
-
-            if (shortCutHandler.IsStartPlayingShortcut(e))
-            {
-                model.StartPlayingPoly(listBoxTimes.SelectedIndex);
-                musicPlayerState = MusicPlayerStateEnum.running;
-                return;
+                default: handled = false; break;
             }
-
-
-            else if (shortCutHandler.IsStopPlayingShortcut(e))
+            if (handled)
             {
-                model.StopPlaying();
-                musicPlayerState = MusicPlayerStateEnum.stopped;
-                return;
-            }
-
-            else if (shortCutHandler.IsStopAllNotesPlayingShortcut(e))
-            {
-                model.musicPlayer.StopAllNotesPlaying();
-                return;
-            }
-// Start new code 1.0.5.1
-#if true
-            else if (shortCutHandler.IsPreviousMeasureShortcut(e))
-            {     
-                model.SelectMeasure(listBoxTimes.SelectedIndex ,- 1);
-                e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control. 
-                return;
-            }
-            else if (shortCutHandler.IsNextMeasureShortcut(e))
-            {
-                model.SelectMeasure(listBoxTimes.SelectedIndex,+ 1);
                 e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
                 return;
-            }
-#endif
-// End new code 1.0.5.1
-            if (shortCutHandler.IsDetailsShortcut(e))
-            {
-                // NOTE ARROW + ALT alone has already been taken by tempo increment/decrement !!!
-                if (-1 == listBoxTimes.SelectedIndex)
-                {
-                    // It has no meaning to inspect details when nothing is selected !
-                    return;
-                }
-                try // This is new code for version 1.0.0.0 so better safe than sorry
-                {          
-                    listBoxDetails.Items.Clear();
-                    object selectedEvent = listBoxTimes.Items[listBoxTimes.SelectedIndex];
-                    if ((null != selectedEvent) && (selectedEvent is EventDescription))
-                    {
-                        EventDescription currentEventDescription = (listBoxTimes.Items[listBoxTimes.SelectedIndex]) as EventDescription;
-
-                        DetailsDescription[] items = new DetailsDescription[0];
-                        if ((e.Control) && (!e.Alt))
-                        {   
-                            items = model.GetCurrentEventDetails(currentEventDescription); //  Show details about current parts
-                        }
-                        else if ((e.Control) && (e.Alt))
-                        {
-                            items = model.GetAllPartDetails(); // Show details about ALL parts 
-                        }
-                        else
-                        {
-                            items = model.GetCurrentHarmonyDetails(currentEventDescription); // Show details about the current harmony
-                        }
-
-
-                        listBoxDetails.Items.AddRange(items);
-                        int itemCount = listBoxDetails.Items.Count;
-                        if (0 != itemCount)
-                        {
-                            // Select either the first or the last item
-                            if (e.KeyCode == ShortcutHandler.detailsPreviousPart)
-                            {
-                                listBoxDetails.SelectedIndex = (itemCount - 1); // Select the last item
-                            }
-                            if (e.KeyCode == ShortcutHandler.detailsNextPart)
-                            {
-                                listBoxDetails.SelectedIndex = 0; // Select the first item
-                            }
-                        }
-                    }
-
-                    if (0 == listBoxDetails.Items.Count) // For whatever reason
-                    {
-#warning Localize
-                        listBoxDetails.Items.Add("No details found");
-                    }
-         
-                    listBoxDetails.Focus();
-                    e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
-                }
-                catch (Exception exception)
-                {
-                    Logger.Log(string.Format("{0}.{1} KeyCode={2} threw an exception: Message={3}", className, functionName, e.KeyCode.ToString(), exception.Message));
-                }
-                return;
-            }
-
+            };
 
             // Let the command interpreter handle it 
             commandInterpreter.Add(e);
@@ -924,6 +896,11 @@ namespace MusicXmlReader
             if (e.KeyData == ShortcutHandler.listBoxFocus)
             {
                 listBoxTimes.Focus(); // Easy way to move the focus to the main listbox
+                return;
+            }
+
+            if (null == userSettingsTreeView.SelectedNode)
+            {
                 return;
             }
 
