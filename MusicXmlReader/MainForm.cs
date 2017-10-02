@@ -739,40 +739,39 @@ namespace MusicXmlReader
 
         #region keyhandlers
 
+
+
+        private void ReturnToListboxTimes(int move)
+        {
+            // On All other keys will return focus to the mail listbox
+            listBoxDetails.Items.Clear();
+            int selectedIndex = listBoxTimes.SelectedIndex;
+            int newIndex = selectedIndex + move;
+            if ((newIndex >= 0) && (newIndex < listBoxTimes.Items.Count))
+            {
+                // Select the next detail if possible
+                listBoxTimes.SelectedIndex = newIndex;
+            }
+            // In all other cases just return to the original index and move focus
+            listBoxTimes.Focus();
+        }
+
+
         private void listBoxDetails_KeyDown(object sender, KeyEventArgs e)
         {
             string functionName = "listBoxDetails_KeyDown";
             try // This is new code for version 1.0.0.0 so better safe than sorry
             {
-                //if (shortCutHandler.IsDetailsShortcut(e))
-                if (
-                       (e.KeyCode == ShortcutHandler.detailsPreviousDetail)
-                    || (e.KeyCode == ShortcutHandler.detailsNextDetail)
-                    || (e.KeyCode == ShortcutHandler.detailsTopDetail)
-                    || (e.KeyCode == ShortcutHandler.detailsBottumDetail)                    
-                    )
+                switch (e.KeyCode)
                 {
-                    // On keys.Right and keys.Left, Key.Home, Key.End:
-                    // Do nothing special, but pass the key to the listbox without suppressing it !
-                }
-                else
-                {
-                    // All other keys will return focus to the mail listbox
-                    listBoxDetails.Items.Clear();
-                    int selectedIndex = listBoxTimes.SelectedIndex;
-                    // keys.Right will select the next detail if possible
-                    if ((e.KeyCode == ShortcutHandler.detailsNextEvent) && ((selectedIndex + 1) < listBoxTimes.Items.Count))
-                    {
-                        listBoxTimes.SelectedIndex = selectedIndex + 1;
-                    }
-                    // keys.Left will select the previous detail if possible
-                    if ((e.KeyCode == ShortcutHandler.detailsPreviousEvent) && (selectedIndex > 0))
-                    {
-                        listBoxTimes.SelectedIndex = selectedIndex - 1;
-                    }
-                    // In all other cases just return to the original index and move focus
-                    listBoxTimes.Focus();
-                    e.SuppressKeyPress = true;
+                    // On keys.Right and keys.Left, Key.Home, Key.End: Do nothing special, but pass the key to the listbox without suppressing it !
+                    case ShortcutHandler.detailsPreviousDetail: break; // Pass on to default handler
+                    case ShortcutHandler.detailsNextDetail: break; // Pass on to default handler
+                    case ShortcutHandler.detailsTopDetail: break; // Pass on to default handler
+                    case ShortcutHandler.detailsBottumDetail: break; // Pass on to default handler
+                    case ShortcutHandler.detailsNextEvent:     ReturnToListboxTimes(+1); e.SuppressKeyPress = true;  break;
+                    case ShortcutHandler.detailsPreviousEvent: ReturnToListboxTimes(-1); e.SuppressKeyPress = true; break;
+                    default: ReturnToListboxTimes(0); e.SuppressKeyPress = true;  break;
                 }
             }
             catch (Exception exception)
@@ -783,8 +782,6 @@ namespace MusicXmlReader
         }
 
         private enum DetailsEnum { Unknown, Harmonies, Parts, Instruments };
-
-
 
         /// <summary>
         /// Shows details in the Details listbox
