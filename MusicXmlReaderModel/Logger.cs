@@ -140,17 +140,29 @@ namespace MusicXmlReaderModel
             }
         }
 
-
+        public static void List(String s)
+        {
+            Log(s, false);
+        }
 
 
         public static void Log(string s)
+        {
+            Log(s, true);
+        }
+
+        private static void Log(string s, bool showTimeStamp)
         {
             if (string.IsNullOrEmpty(logFileFullName)) return; // Open() must be called before using the Logger !
             try
             {
                 Trace(s);
-                System.DateTime now = System.DateTime.Now;
-                string time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
+                string time = "";
+                if (showTimeStamp)
+                {
+                    System.DateTime now = System.DateTime.Now;
+                    time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
+                }
                 System.IO.File.AppendAllText(logFileFullName, time + " " + s + "\r\n");
             }
             catch (Exception)

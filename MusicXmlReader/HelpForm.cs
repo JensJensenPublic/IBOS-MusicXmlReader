@@ -30,7 +30,7 @@ namespace MusicXmlReader
             foreach (string s in strings)
             {
                 listBoxHelp.Items.Add(s);
-                // MusicXmlReaderModel.Logger.Log(s); // Enable this line to generate documentation
+                // MusicXmlReaderModel.Logger.List(s); // Enable this line to generate documentation in the logfile !!
             }
 
         }
