@@ -38,7 +38,7 @@
             this.listBoxHelp.ItemHeight = 14;
             this.listBoxHelp.Location = new System.Drawing.Point(13, 13);
             this.listBoxHelp.Name = "listBoxHelp";
-            this.listBoxHelp.Size = new System.Drawing.Size(485, 228);
+            this.listBoxHelp.Size = new System.Drawing.Size(800, 592);
             this.listBoxHelp.TabIndex = 0;
             this.listBoxHelp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxHelp_KeyDown);
             // 
@@ -46,6 +46,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(510, 261);
             this.Controls.Add(this.listBoxHelp);
             this.Name = "HelpForm";
