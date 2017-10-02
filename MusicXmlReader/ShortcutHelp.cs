@@ -67,6 +67,7 @@ namespace MusicXmlReader
 
 
             // Følgende standard Windows / JAWS tastatur genveje kan anvendes generelt
+            // The following standard Windows / JAWS keyboard shortcuts can be used 
             AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_Windows_JAWS);
             AddLine(Combine(Plus(control, "O"),  ResourcesForHelp.Shortcut_OpenFileOpenDialog));
@@ -79,12 +80,13 @@ namespace MusicXmlReader
             AddLine(Combine(Plus(insert, "B"), ResourcesForHelp.Shortcut_ReadMessagebox));
 
             // Følgende specielle tastaturgenveje og kommandoer kan anvendes i forbindelse med Nodelisten           
+            // The following special keyboard skortcuts and commands can be used in connection with the note list
             AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteList);
             AddLine(Combine(arrowLeft, ResourcesForHelp.Shortcut_PreviousLine)); 
             AddLine(Combine(arrowRight, ResourcesForHelp.Shortcut_NextLine));
-            AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_NextPart));
-            AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_PreviousPart));
+            //AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_NextPart));   // Description has been moved to the description of the  detail list
+            //AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_PreviousPart)); // Description has been moved to the description of the  detail list
             AddLine(Combine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList));
             AddLine(Combine(Plus(control, "P"), ResourcesForHelp.Shortcut_StartPlaying));
             AddLine(Combine(Plus(control, shift, "P"), ResourcesForHelp.Shortcut_StopPlaying));
@@ -95,6 +97,7 @@ namespace MusicXmlReader
             AddLine(Combine("ESC", ResourcesForHelp.Shortcut_StopCurrentNote));
 
             // Følgende specielle tastaturgenveje kan bruges i forbindelse med redigering af nodefilteret:
+            // The following special keyboard shortcuts can be used in connection with the node filter
             AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteFilter);
             AddLine(Combine(Plus(control, "A"), ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter));
@@ -106,6 +109,31 @@ namespace MusicXmlReader
             AddLine(Combine(space, ResourcesForHelp.Shortcut_ToggleValue));
             AddLine(Combine(Plus(control, "0"), ResourcesForHelp.Shortcut_TurnOffGlobally));
             AddLine(Combine(Plus(control, "1"), ResourcesForHelp.Shurtcut_TurnOnGlobally));
+
+
+            // Følgende specielle tastaturgenveje kan bruges i forbindelse med styring af afspilingshastighed
+            // The following general keyboard shortcuts can be used for controlling the tempo
+            AddLine("\r");
+#if false
+            AddLine(ResourcesForHelp.shortcut_Caption_Tempo);
+            AddLine(Combine(Plus(alt, arrowUp), ResourcesForHelp.Shortcut_IncreaseTempo));
+            AddLine(Combine(Plus(alt, arrowDown), ResourcesForHelp.Shortcut_DecreaseTempo)); 
+#endif
+
+            // Følgende specielle tastaturgenveje  kan anvendes i forbindelse med Detaljelisten 
+            //The following special keyboard shortcuts can be used in connection with the detail list
+            AddLine("\r");
+#if false
+            AddLine(ResourcesForHelp.shortcut_Caption_DetailList);
+            AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_ChordTop));
+            AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_ChordName));
+            AddLine(Combine(Plus(control, arrowUp, ResourcesForHelp.Shortcut_PartTop));
+            AddLine(Combine(Plus(control, arrowDown), ResourcesForHelp.Shortcut_PartBottomPart));
+            AddLine(Combine(Plus(control, "I"), ResourcesForHelp.Shortcut_Instruments));
+            AddLine(Combine(Plus(control, "F"), ResourcesForHelp.Shortcut_FixedKeySignature));
+            AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_NextDetail));
+            AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_PreviousDetail));
+#endif
 
             return strings;
         }
