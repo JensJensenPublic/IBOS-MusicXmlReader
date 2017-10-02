@@ -658,7 +658,7 @@ namespace MusicXmlReaderModel
         /// <param name="noteElement">The NoteElement to add</param>
         public void AddNote(NoteElement noteElement,KeyElement currentKeyElement)
         {
-            string functionName = "AddNote";
+            // string functionName = "AddNote";
             int fifths = (null == currentKeyElement) ? 0 : currentKeyElement.Fifths;
 
             // Get midified values for Alter and antural, taking in account the current key.
@@ -666,7 +666,7 @@ namespace MusicXmlReaderModel
             bool natural = false;
             if (!PitchMap.Map(noteElement.PitchValue, fifths, ref alter, ref natural))
             {
-                Logger.LogOnce(string.Format("{0}.{1}", className, functionName));
+                // Logger.LogOnce(string.Format("{0}.{1}", className, functionName)); // No need tolog here. It is dine in PitchMap.Map !
             }
 
             if (natural)
