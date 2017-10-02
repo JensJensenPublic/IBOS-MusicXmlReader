@@ -136,13 +136,13 @@ namespace MusicXmlReaderModel
 
             }
 
-            // Add any harmonies after the last part
-            HarmonyElement harmonyElement = eventDescription.HarmonyElement;
-            if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
-            {
-                string harmony = string.Format("{0}{1}  ", harmonyElement.ChromaticRootStep, harmonyElement.LocalizedChordType); // Use same formatting as used in the status line !!
-                detailsDescriptions.Add(DetailsDescription.Create(harmony));
-            }
+            // Do NOT add any harmonies after the last part! HArmonies have their own meshanisms !
+            //HarmonyElement harmonyElement = eventDescription.HarmonyElement;
+            //if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
+            //{
+            //    string harmony = string.Format("{0}{1}  ", harmonyElement.ChromaticRootStep, harmonyElement.LocalizedChordType); // Use same formatting as used in the status line !!
+            //    detailsDescriptions.Add(DetailsDescription.Create(harmony));
+            //}
         }
 
 
