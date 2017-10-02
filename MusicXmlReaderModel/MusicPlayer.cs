@@ -4,7 +4,6 @@ using JSJ.MusicSynthesis;
 using NAudio.Midi;
 using MusicXmlReaderModel;
 
-
 namespace MusicXmlReaderModel
 {
 
@@ -20,6 +19,7 @@ namespace MusicXmlReaderModel
     public class MusicPlayer : IMusicSynthesisClient
     {
         string className = "MusicPlayer";
+        bool VerboseLogging = false;
         public static int defaultMusicPlayerTempo = 120; // Quarter notes per minute.  Use 120 as a default. Same as MuseScore does !
         //MidiNote latestNotePlayed = null;
         MidiChord latestHarmonyPlayed = null;
@@ -136,7 +136,10 @@ namespace MusicXmlReaderModel
     /// <param name="instrument">Must be an integer in [1.127]</param>
     public void ChangeInstrument(int channel, int instrument)
         {
-            Logger.Log(string.Format("MusicPlayer.ChangeInstrument(channel={0} instrument={1})", channel, instrument));
+            if (VerboseLogging)
+            {
+                Logger.Log(string.Format("MusicPlayer.ChangeInstrument(channel={0} instrument={1})", channel, instrument));
+            }
             MidiCommand midiCommand = new MidiCommand();
             midiCommand.ChangeInstrument(channel, instrument, this.midiOut);
         }
@@ -402,7 +405,10 @@ namespace MusicXmlReaderModel
                 int midiProgram = noteElement.MidiProgram;
                 if (midiProgram != this.currentMidiInstruments[midiChannel])
                 {
-                    Logger.Log(string.Format("{0}.{1}: Changing MidiInstrument[{2}] from {3} to {4}", className, functionName, midiChannel, currentMidiInstruments[midiChannel], midiProgram));
+                    if (VerboseLogging)
+                    {
+                        // Logger.Log(string.Format("{0}.{1}: Changing MidiInstrument[{2}] from {3} to {4}", className, functionName, midiChannel, currentMidiInstruments[midiChannel], midiProgram));
+                    }
                     ChangeInstrument(midiChannel, midiProgram);
                     this.currentMidiInstruments[midiChannel] = midiProgram;
                 }

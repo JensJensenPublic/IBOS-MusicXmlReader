@@ -179,7 +179,7 @@ namespace MusicXmlReader
         // For loading details
         public const Keys DetailsHarmonyTop =       Keys.Up;
         public const Keys DetailsPartsTop =         Keys.Up | Keys.Control;
-        public const Keys DetailsInstruments = Keys.I;
+        public const Keys DetailsInstruments =      Keys.I  | Keys.Control;
         public const Keys DetailsHarmonyBottum =    Keys.Down;
         public const Keys DetailsPartsBottum =      Keys.Down | Keys.Control;
         //public const Keys DetailsInstrumentsButtom= Keys.I | Keys.C;
