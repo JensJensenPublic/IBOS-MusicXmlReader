@@ -21,7 +21,7 @@ namespace MusicXmlReaderUI
     {
         static Model model;
 
-        static void Recurse(string dir)
+        static void Recurse(string dir, ref int successes, ref int failures)
         {
             string[] files = System.IO.Directory.GetFiles(dir);
             foreach (string file in files)
@@ -35,13 +35,21 @@ namespace MusicXmlReaderUI
                     Console.WriteLine(string.Format("Model.LoadMusicXmlFile({0}) {1}", file, ok ? "succeeded" : "failed"));
                     DumpEvents(ok,model.EventDescriptionList,file);                         
                     Logger.DumpStatistics(); // Dump count of unimplemented elements and attributes for this file
+                    if (ok)
+                    {
+                        successes++;
+                    }
+                    else
+                    {
+                        failures++;
+                    }
                 }
 
             }
             string[] subDirs = System.IO.Directory.GetDirectories(dir);
             foreach(string subDir in subDirs)
             {
-                Recurse(subDir);
+                Recurse(subDir,ref successes, ref failures);
             }
 
         }
@@ -154,13 +162,16 @@ namespace MusicXmlReaderUI
             string archiveDirName  = @"C:\Users\Jens\Dropbox\Root\MusicXml sample file archive"; // All sample files
 
             // Recurse through all directories and load all musicXml files found
+            int successes = 0;
+            int failures = 0;
 
-            Recurse(testFileDirName);
 
-            Recurse(archiveDirName);
+            Recurse(testFileDirName, ref successes,ref failures);
 
+            Recurse(archiveDirName, ref successes, ref failures);
 
             Logger.DumpGlobalStatistics();  // Statistics summed over all MusicXml files.
+            Logger.Log(string.Format("{0} succeses, {1} failures", successes, failures));
 
             model.ExternalToolsHandler.ReadLogFile();            // Open Notepad with the Logfile
             model.ExternalToolsHandler.OpenLogFileLocation();    // Open File Explorer in the directory holding the LogFile
