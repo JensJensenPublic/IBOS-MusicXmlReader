@@ -822,4 +822,8 @@
   <data name="KeyElement_Or" xml:space="preserve">
     <value>eller</value>
   </data>
+  <data name="BarlineElement_EndOfScore" xml:space="preserve">
+    <value>Slut</value>
+    <comment>As in a movie</comment>
+  </data>
 </root>

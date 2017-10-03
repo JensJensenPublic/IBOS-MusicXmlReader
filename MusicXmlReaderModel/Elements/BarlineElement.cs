@@ -52,6 +52,20 @@ namespace MusicXmlReaderModel
 
 
         /// <summary>
+        /// Returns true iff this bar is the last bar in the sheet
+        /// </summary>
+        public bool IsLastBar
+        {
+            get
+            {
+                return ((location == BarlineLocationEnum.right)
+                && (barStyleElement != null)
+                && (barStyleElement.BarStyle == BarStyleEnum.lightHeavy));
+            }
+        }
+        
+
+        /// <summary>
         /// To force the use of the Create() method
         /// </summary>
         private BarlineElement()

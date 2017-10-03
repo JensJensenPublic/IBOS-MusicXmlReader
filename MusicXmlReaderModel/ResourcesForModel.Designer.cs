@@ -358,6 +358,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The End.
+        /// </summary>
+        internal static string BarlineElement_EndOfScore {
+            get {
+                return ResourceManager.GetString("BarlineElement_EndOfScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to left.
         /// </summary>
         internal static string BarlineElement_Position_left {

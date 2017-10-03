@@ -625,7 +625,7 @@ namespace MusicXmlReaderModel
             BrailleBuilder bbAfterNotes = BrailleBuilder.Create();
             // Look for repeat forward/backward and insert, but only one of each per event description !!
             // Look for a termination (Danish "Helslutning") and insert the appropriate sequence
-            bool foundTermination = false;
+            bool lastBar = false;
             if (null != barlineElements)
             {  
                 foreach (BarlineElement barlineElement in barlineElements)
@@ -652,22 +652,18 @@ namespace MusicXmlReaderModel
                                                        className, functionName, barlineElement.RepeatElement.RepeatDirection.ToString())); break;
                         } 
                     }
-                    else
+
+                    if (barlineElement.IsLastBar)
                     {
-                        if ((barlineElement.Location == BarlineLocationEnum.right)
-                        && (barlineElement.EndingElement == null)
-                        && (barlineElement.RepeatElement == null)
-                        && (barlineElement.BarStyleElement != null)
-                        && (barlineElement.BarStyleElement.BarStyle == BarStyleEnum.lightHeavy))
-                        {
-                            foundTermination = true;
-                        }
+                        lastBar = true;
                     }
-                }
-                if (foundTermination)
+
+                } // foreach
+
+                if (lastBar)
                 {
                     bbAfterNotes.Append(BrailleBuilder.fullEnd, "FullEnd");
-                    Logger.LogOnce(string.Format("{0}.{1} Found a termination", className, functionName));
+                    // Logger.LogOnce(string.Format("{0}.{1}: Found last bar", className, functionName));
                 }
             }
 
@@ -725,6 +721,7 @@ namespace MusicXmlReaderModel
             // A BarlineElement can contain a RepeatElements containing repetition information.
             string repeatBackward = "";
             string repeatForward = "";
+            string endOfScore = "";
             if (null != barlineElements)
             {
                 foreach (BarlineElement barlineElement in barlineElements)
@@ -739,8 +736,12 @@ namespace MusicXmlReaderModel
                         {
                             repeatBackward = barlineElement.RepeatElement.ToString() + " ";
                         }
-                    }   
-                } 
+                    }
+                    if (barlineElement.IsLastBar)
+                    {
+                        endOfScore = ResourcesForModel.BarlineElement_EndOfScore + " ";
+                    }
+                }
             }
 
             string measure = "";
@@ -866,7 +867,7 @@ namespace MusicXmlReaderModel
 
             // Finnally compose the result by concatenating all the substrings in the sequence wanted
             // The first event description (to a certain extent) reflects the sequence in which information is aquired by the eye when scanning a music sheet for prima vista use.
-            return measure + soundString + timeString + keyString + clefString + repeatBackward + repeatForward + divisions + dynamicsString + measureStyleString + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString  ;
+            return measure + soundString + timeString + keyString + clefString + repeatBackward + repeatForward + divisions + dynamicsString + measureStyleString + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endOfScore + endEventString  ;
         }
     }
 }
