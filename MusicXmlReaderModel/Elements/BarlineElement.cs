@@ -103,7 +103,7 @@ namespace MusicXmlReaderModel
                         break;
                     case "fermata":
                         fermataElement = FermataElement.Create(n);
-                        Logger.LogOnce(string.Format("{0.1}: Child element='{2}'", className,functionName, n.Name));
+                        Logger.LogOnce(string.Format("{0}.{1}: Child element='{2}'", className,functionName, n.Name));
                         break;
                     case "wavy-line":
                     case "segno":
