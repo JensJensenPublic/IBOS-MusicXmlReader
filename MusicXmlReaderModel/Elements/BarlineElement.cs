@@ -11,12 +11,14 @@ namespace MusicXmlReaderModel
     /// </summary>
     public class BarlineElement : EventElement
     {
+        private string className = "BarlineElement";
         // If location is left, it should be the first element in the measure, aside from the print, bookmark, and link elements.
         // If location is right, it should be the last element, again with the possible exception of the print, bookmark, and link elements. 
         BarlineLocationEnum location = BarlineLocationEnum.right; // Explicitly mentioned in .htm above !
         RepeatElement repeatElement;
         EndingElement endingElement;
         BarStyleElement barStyleElement;
+        FermataElement fermataElement;
 
         public BarlineLocationEnum Location
         {
@@ -99,10 +101,14 @@ namespace MusicXmlReaderModel
                         barStyleElement = BarStyleElement.Create(n);
                         //Logger.LogOnce(string.Format("{0}: Child element='{1}'", functionName, n.Name));
                         break;
+                    case "fermata":
+                        fermataElement = FermataElement.Create(n);
+                        Logger.LogOnce(string.Format("{0.1}: Child element='{2}'", className,functionName, n.Name));
+                        break;
                     case "wavy-line":
                     case "segno":
                     case "coda":
-                    case "fermata": 
+
                         //Logger.LogOnce(string.Format("{0}: Explicitly ignoring child element. Name={1} Value={2} ", functionName, n.Name, n.InnerText));
                         break; // Ignore graphical information that can not be represented in Music Braille anyway       
 

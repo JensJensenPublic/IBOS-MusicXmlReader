@@ -7,6 +7,7 @@ namespace MusicXmlReaderModel
     {
         // http://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-notations.htm
 
+        string  className = "NotationsElement";
         private SlurElement slurElement;
         private TiedElement tiedElement;
         private TupletElement tupletElement;
@@ -127,6 +128,7 @@ namespace MusicXmlReaderModel
         /// <param name="node"></param>
         private NotationsElement(XmlNode node)
         {
+            string functionName = "NotationsElement";
             // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-slur.htm?Highlight=slur
             // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-articulations.htm
             // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-footnote.htm
@@ -145,7 +147,7 @@ namespace MusicXmlReaderModel
             // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-tuplet.htm
 
             // http://www.musikipedia.dk/musikordbog-engelsk
-                
+
 
             // Dig out elements
             // Some of these elements are graphical representations of another element representing the sound! Example: tied/tie
@@ -161,7 +163,9 @@ namespace MusicXmlReaderModel
                     case "accidental-mark": accidentalMarkElement = AccidentalMarkElement.Create(child); break; // (Løst) fortegn (faste fortegn betegnes: key signature)
                     case "arpeggiate": arpeggiateElement = ArpeggiateElement.Create(child); break; // Brudt akkord
                     case "dynamics": dynamicsElement = DynamicsElement.Create(child); break; // Dynamik
-                    case "fermata": fermataElement = FermataElement.Create(child); break; // Fermat
+                    case "fermata": fermataElement = FermataElement.Create(child);
+                        Logger.LogOnce(string.Format("{0.1}: Child element='{2}'", className, functionName, child.Name));
+                        break; // Fermat
                     case "glissando": glissandoElement = GlissandoElement.Create(child); break; // Glissando
                     case "non-arpeggiate": ok = false; break; // Ikke brudt
                     case "ornaments": ornamentsElement = OrnamentsElement.Create(child); break; // Ornamenter
