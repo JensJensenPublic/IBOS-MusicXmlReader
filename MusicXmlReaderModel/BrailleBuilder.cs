@@ -551,10 +551,14 @@ namespace MusicXmlReaderModel
 
             if (null != notations.FermataElement)
             {
-                if ((notations.FermataElement.FermataType == FermataElement.FermataTypeEnum.inverted)
-                    || (notations.FermataElement.FermataType == FermataElement.FermataTypeEnum.upright))
+                if (   (notations.FermataElement.FermataType == FermataElement.FermataTypeEnum.inverted)
+                    || (notations.FermataElement.FermataType == FermataElement.FermataTypeEnum.upright ))
                 {
-                    Append(FermatoOnNote, "Fermata");
+                    Append(fermata, "Fermata"); // This is the fermata             {(dot1+dot2+dot6),(dot1+dot2+dot3)} symbol as desired by Lars Petersen
+                                                // Neither the FermatoOnNote       {(dot1+dot4+dot5+dot6)}
+                                                // nor     the FermataBetweenNotes {(dot4),               (dot1+dot2+dot6),(dot1+dot2+dot3)}
+                                                // nor     the FermataOverBarLine  {(dot4+dot5+dot6),     (dot1+dot2+dot6),(dot1+dot2+dot3)}
+                   
                 }
             }
 
