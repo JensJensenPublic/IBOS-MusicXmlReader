@@ -5,6 +5,7 @@ using System.Globalization;
 // using MusicXmlReaderUI;
 using MusicXmlReaderModel;
 using System.Collections.Generic;
+using System.IO;
 
 namespace MusicXmlReader
 {
@@ -486,14 +487,40 @@ namespace MusicXmlReader
 
             // Start filling the UI with information about the NEW file
             textBoxStatusInformation.Focus();
-            string shortFileName = System.IO.Path.GetFileName(openFileDialog.FileName);
+            string fullFileName = openFileDialog.FileName;
+            string shortFileName = System.IO.Path.GetFileName(fullFileName);
+            string extension = System.IO.Path.GetExtension(fullFileName);
+            string xmlFileName = "";
             string message = string.Format("{0} '{1}'",ResourcesForUI.TextBox_Messages_Reading_File, shortFileName);
             WriteStatusInformation(message);
+      
+            switch (extension)
+            {
+                case ".mxl": // Attempt to convert from .mxl to .xml first
+                    xmlFileName = model.MxlToXml(openFileDialog.FileName);
+                    if (string.IsNullOrEmpty(xmlFileName))
+                    {
+                        message = string.Format("{0} '{1}' {2}", ResourcesForUI.TextBox_Messages_FailedToConvert_File, shortFileName, ResourcesForUI.TextBox_Messages_ToMusicXml); 
+                        WriteStatusInformation(message);
+                        MessageBox.Show(message, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;                   
+                    }
+                    break;
+                case ".xml": // Continue
+                    xmlFileName = fullFileName;
+                    break;
+                default: // Report unsupported fileformat
+                    message = string.Format("{0} '{1}'", ResourcesForUI.TextBox_Messages_UnsupportedFileFormat, shortFileName); 
+                    WriteStatusInformation(message);
+                    MessageBox.Show(message, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+            }
+
 
             Logger.ClearStatistics();  // Clear statistics to be collected while loading, parsing and rendering the MusicXml file:
 
             // Now follows the time-consuming operation, where the Model loads and interpretes a new MusicXml file.
-            if (!model.LoadMusicXmlFile(openFileDialog.FileName)) // Load the selected .xml file into the Model and build all internal data structures.
+            if (!model.LoadMusicXmlFile(xmlFileName)) // Load the selected .xml file into the Model and build all internal data structures.
             {
                 // Simple error handling
                 message = string.Format("{0} '{1}'", ResourcesForUI.TextBox_Messages_FailedToRead_File, shortFileName); // Short filename for UI

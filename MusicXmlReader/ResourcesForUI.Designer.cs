@@ -313,6 +313,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to convert.
+        /// </summary>
+        internal static string TextBox_Messages_FailedToConvert_File {
+            get {
+                return ResourceManager.GetString("TextBox_Messages_FailedToConvert_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to read.
         /// </summary>
         internal static string TextBox_Messages_FailedToRead_File {
@@ -336,6 +345,24 @@ namespace MusicXmlReader {
         internal static string TextBox_Messages_TheProgramIsExiting {
             get {
                 return ResourceManager.GetString("TextBox_Messages_TheProgramIsExiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to MusicXml (.xml).
+        /// </summary>
+        internal static string TextBox_Messages_ToMusicXml {
+            get {
+                return ResourceManager.GetString("TextBox_Messages_ToMusicXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsupported file format.
+        /// </summary>
+        internal static string TextBox_Messages_UnsupportedFileFormat {
+            get {
+                return ResourceManager.GetString("TextBox_Messages_UnsupportedFileFormat", resourceCulture);
             }
         }
         

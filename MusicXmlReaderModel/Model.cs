@@ -99,6 +99,31 @@ namespace MusicXmlReaderModel
         }
 
 
+
+        /// <summary>
+        /// Pack the call to Utilities.Utilities.MxlToXml into a ProgressReporter.
+        /// </summary>
+        /// <param name="fullXmlFileName"></param>
+        /// <returns></returns>
+        public string MxlToXml(string fullXmlFileName)
+        {
+            string functionName = "ConvertFromMxlToXml";
+            string extension = Path.GetExtension(fullXmlFileName);
+            if (".mxl" != extension)
+            {
+                Logger.Log(string.Format("{0}.{1} was called with unexpected file extension:{2}", className, functionName, extension));
+                return "";
+            }
+            // This is a compressed MusicXml file in the .mxl format
+            string mxlFileName = System.IO.Path.GetFileName(fullXmlFileName);
+            string progressConverting = string.Format("{0} {1} {2}", ResourcesForModel.Progress_Converting, mxlFileName, ResourcesForModel.Progress_FromMxlToXml);
+            conversionProgressWriter = ProgressWriter.Create(1000, iDebugDisplayerClient, progressConverting);
+            fullXmlFileName = Utilities.MxlToXml(fullXmlFileName, executingDirectory);
+            conversionProgressWriter.Stop();
+            return fullXmlFileName;
+        }
+        
+
         /// <summary>
         /// Stops on any error and returns false
         /// </summary>
@@ -119,23 +144,8 @@ namespace MusicXmlReaderModel
                     fullXmlFileName = System.IO.Path.Combine(executingDirectory, defaultFileName);
                 }
 
-
                 xmlFileName = System.IO.Path.GetFileName(fullXmlFileName); // Report a filename even if an exception is thrown during conversion !
-
-
-                if (".mxl" == Path.GetExtension(fullXmlFileName))
-                {
-                    // This is a compressed MusicXml file in the .mxl format
-                    string mxlFileName = System.IO.Path.GetFileName(fullXmlFileName);
-                    string progressConverting = string.Format("{0} {1} {2}", ResourcesForModel.Progress_Converting, mxlFileName,ResourcesForModel.Progress_FromMxlToXml);
-                    conversionProgressWriter = ProgressWriter.Create(1000, iDebugDisplayerClient, progressConverting); 
-                    fullXmlFileName = Utilities.MxlToXml(fullXmlFileName, executingDirectory);
-                    conversionProgressWriter.Stop();
-                    // ToDo Error handling
-                }
-
-                xmlFileName = System.IO.Path.GetFileName(fullXmlFileName);
-                TheStaticXmlFileName = xmlFileName ; // Make the fikename globally available without a reference to a Model instance.
+                TheStaticXmlFileName = xmlFileName ; // Make the filename globally available without a reference to a Model instance.
 
                 XmlDocument doc = new XmlDocument();
                 XmlTextReader reader = new XmlTextReader(fullXmlFileName);

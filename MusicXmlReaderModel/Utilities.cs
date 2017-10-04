@@ -648,7 +648,7 @@ namespace MusicXmlReaderModel
                 if (0 != exitCode)
                 {         
                     Logger.Log(string.Format("{0}.{1}({2}) failed: {3} returned exitcode={4}. ", className, methodName, fullMxlFileName, exeFileName, exitCode));
-#warning "ToDo: Exit here!"
+                    return result;
                 }
 
                 // Move the newly generated .xml file from the temp directory to the original directory.

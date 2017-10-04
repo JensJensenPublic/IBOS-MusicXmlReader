@@ -326,4 +326,13 @@
   <data name="ListBoxDetails_NoDetailsFound" xml:space="preserve">
     <value>No details found</value>
   </data>
+  <data name="TextBox_Messages_FailedToConvert_File" xml:space="preserve">
+    <value>Failed to convert</value>
+  </data>
+  <data name="TextBox_Messages_ToMusicXml" xml:space="preserve">
+    <value>to MusicXml (.xml)</value>
+  </data>
+  <data name="TextBox_Messages_UnsupportedFileFormat" xml:space="preserve">
+    <value>Unsupported file format</value>
+  </data>
 </root>
