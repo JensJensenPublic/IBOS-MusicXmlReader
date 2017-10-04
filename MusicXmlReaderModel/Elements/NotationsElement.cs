@@ -164,7 +164,7 @@ namespace MusicXmlReaderModel
                     case "arpeggiate": arpeggiateElement = ArpeggiateElement.Create(child); break; // Brudt akkord
                     case "dynamics": dynamicsElement = DynamicsElement.Create(child); break; // Dynamik
                     case "fermata": fermataElement = FermataElement.Create(child);
-                        Logger.LogOnce(string.Format("{0}.{1}: Child element='{2}'", className, functionName, child.Name));
+                        // Logger.LogOnce(string.Format("{0}.{1}: Child element='{2}'", className, functionName, child.Name));
                         break; // Fermat
                     case "glissando": glissandoElement = GlissandoElement.Create(child); break; // Glissando
                     case "non-arpeggiate": ok = false; break; // Ikke brudt
