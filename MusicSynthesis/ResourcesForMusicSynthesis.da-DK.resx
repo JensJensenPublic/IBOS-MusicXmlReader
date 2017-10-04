@@ -201,6 +201,9 @@
   <data name="Chord_Function_Augmented_Fifth" xml:space="preserve">
     <value>Forstørret kvint</value>
   </data>
+  <data name="Chord_Function_Augmented_Fourth" xml:space="preserve">
+    <value>Forstørret kvart</value>
+  </data>
   <data name="Chord_Function_Eleventh" xml:space="preserve">
     <value>Ellever</value>
   </data>
@@ -242,6 +245,9 @@
   </data>
   <data name="Chord_Function_Minor_Seventh" xml:space="preserve">
     <value>Lille septim</value>
+  </data>
+  <data name="Chord_Function_Minor_Sixth" xml:space="preserve">
+    <value>Lille sekst</value>
   </data>
   <data name="Chord_Function_Minor_Third" xml:space="preserve">
     <value>Lille terts</value>

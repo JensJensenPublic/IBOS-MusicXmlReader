@@ -201,6 +201,9 @@
   <data name="Chord_Function_Augmented_Fifth" xml:space="preserve">
     <value>Augmented Fifth</value>
   </data>
+  <data name="Chord_Function_Augmented_Fourth" xml:space="preserve">
+    <value>Augmented Fourth</value>
+  </data>
   <data name="Chord_Function_Eleventh" xml:space="preserve">
     <value>Eleventh</value>
   </data>
@@ -242,6 +245,9 @@
   </data>
   <data name="Chord_Function_Minor_Seventh" xml:space="preserve">
     <value>Minor Seventh</value>
+  </data>
+  <data name="Chord_Function_Minor_Sixth" xml:space="preserve">
+    <value>Minor Sixth</value>
   </data>
   <data name="Chord_Function_Minor_Third" xml:space="preserve">
     <value>Minor Third</value>

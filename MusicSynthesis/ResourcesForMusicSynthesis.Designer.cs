@@ -79,6 +79,15 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Augmented Fourth.
+        /// </summary>
+        internal static string Chord_Function_Augmented_Fourth {
+            get {
+                return ResourceManager.GetString("Chord_Function_Augmented_Fourth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Augmented Eleventh.
         /// </summary>
         internal static string Chord_Function_AugmentedEleventh {
@@ -201,6 +210,15 @@ namespace MusicSynthesis {
         internal static string Chord_Function_Minor_Seventh {
             get {
                 return ResourceManager.GetString("Chord_Function_Minor_Seventh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minor Sixth.
+        /// </summary>
+        internal static string Chord_Function_Minor_Sixth {
+            get {
+                return ResourceManager.GetString("Chord_Function_Minor_Sixth", resourceCulture);
             }
         }
         
