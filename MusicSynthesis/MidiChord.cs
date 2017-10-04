@@ -28,7 +28,6 @@ namespace JSJ.MusicSynthesis
 
     public class MidiChord
     {
-        private string className = "MidiChord";
         private static string ClassName = "MidiChord";
 
         // The following static arrays describe the intervals found in the varions chords as described in
