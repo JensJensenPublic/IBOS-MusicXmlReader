@@ -413,7 +413,41 @@ namespace MusicXmlReader
             textBoxStatusInformation.Refresh();
             userSettingsTreeView.CollapseAll();
             userSettingsTreeView.Refresh();
+#warning todo clear title line with respect to existing file name !
         }
+
+        private List<string> SelectFilesForImport(object sender, EventArgs e)
+        {
+            string functionName = "SelectFilesForImport";
+            List<string> fileNameList = new List<string>();
+            openFileDialog.InitialDirectory = KnownFolders.GetPath(KnownFolder.Downloads, false); // defaultuser = false: Get the path to the current user.
+            openFileDialog.FileName = ""; // No default
+            openFileDialog.Filter = string.Format("{0}|*.xml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files  
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.CheckPathExists = true;
+            openFileDialog.Multiselect = true; // Allow inporting several files at once
+            openFileDialog.ShowDialog();
+
+            // The dialog has focus on the textbox for entering the file name.
+            // Press <shift> <tab> twice to focus on the first line in the selection listbox.
+
+            if (0 == openFileDialog.FileNames.GetLength(0))
+            {
+                Logger.Log(String.Format("{0}.{1} No files selected by user", className, functionName));
+                return fileNameList;
+            }
+
+      
+            foreach (string fileName in openFileDialog.FileNames)
+            {
+                Logger.Log(String.Format("{0}.{1} User selected {2}", className, functionName, fileName));
+                fileNameList.Add(fileName);
+            }
+
+            return fileNameList;
+        }
+
+
 
 
 
@@ -1184,17 +1218,41 @@ namespace MusicXmlReader
             }
             else
             {
-                message = string.Format("{0} {1}  MusicXml {2}", ResourcesForUI.Status_Imported, fileNames.Count, ResourcesForUI.Status_files); // Any other number: "Copied n files"
+                int maxCount = 20; // Limited by the size of the massageBox
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine(string.Format("{0} {1}  MusicXml {2}:", ResourcesForUI.Status_Imported, fileNames.Count, ResourcesForUI.Status_files)); // Any other number: "Copied n files"
+                sb.AppendLine();
+                for (int i = 0; (i <maxCount) && (i < fileNames.Count); i++)
+                {
+                    sb.AppendLine(fileNames[i]);
+                }
+
+                if (fileNames.Count >= maxCount)
+                {
+                    sb.AppendLine("..."); // Localize later if wanted !
+                }
+
+                message = sb.ToString();
             }
-                MessageBox.Show(message, ApplicationName, MessageBoxButtons.OK);
+            MessageBox.Show(message, ApplicationName, MessageBoxButtons.OK);
         }
-        
+
 
         private void importNewestDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<string> fileNames = model.ImportNewestDownloads();
             ShowImportMessageBox(fileNames);
         }
+
+
+        private void importDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<string> selectedFiles = SelectFilesForImport(sender, e);
+            List<string> importedFiles = model.ImportSelectedDownloads(selectedFiles);
+            ShowImportMessageBox(importedFiles);
+        }
+
+
 
         private void listBoxDetails_Leave(object sender, EventArgs e)
         {
@@ -1214,6 +1272,8 @@ namespace MusicXmlReader
             string url = ResourcesForUI.ToolStripMenuItem_Help_SoftwareUpdateLink;
             model.ExternalToolsHandler.OpenUrl(url);         
         }
+
+    
         #endregion
 
         #endregion

@@ -79,6 +79,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutIBOSMusicXmlReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.keyboardShortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.linkToNewestSoftwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.listBoxTimes = new System.Windows.Forms.ListBox();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
@@ -88,7 +89,7 @@
             this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.listBoxDetails = new System.Windows.Forms.ListBox();
-            this.linkToNewestSoftwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,6 +111,7 @@
             // 
             this.filesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openMusicXmlFileToolStripMenuItem,
+            this.importDownloadsToolStripMenuItem,
             this.importNewestDownloadsToolStripMenuItem,
             this.importNewSampleFilesToolStripMenuItem,
             this.toolStripSeparator1,
@@ -499,6 +501,13 @@
             this.keyboardShortcutsToolStripMenuItem.Text = "Keyboard shortcuts";
             this.keyboardShortcutsToolStripMenuItem.Click += new System.EventHandler(this.keyboardShortcutsToolStripMenuItem_Click);
             // 
+            // linkToNewestSoftwareToolStripMenuItem
+            // 
+            this.linkToNewestSoftwareToolStripMenuItem.Name = "linkToNewestSoftwareToolStripMenuItem";
+            this.linkToNewestSoftwareToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.linkToNewestSoftwareToolStripMenuItem.Text = "Link to newest software";
+            this.linkToNewestSoftwareToolStripMenuItem.Click += new System.EventHandler(this.linkToNewestSoftwareToolStripMenuItem_Click);
+            // 
             // userSettingsTreeView
             // 
             this.userSettingsTreeView.AccessibleName = "Note filter";
@@ -585,12 +594,12 @@
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDetails_KeyDown);
             this.listBoxDetails.Leave += new System.EventHandler(this.listBoxDetails_Leave);
             // 
-            // linkToNewestSoftwareToolStripMenuItem
+            // importDownloadsToolStripMenuItem
             // 
-            this.linkToNewestSoftwareToolStripMenuItem.Name = "linkToNewestSoftwareToolStripMenuItem";
-            this.linkToNewestSoftwareToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.linkToNewestSoftwareToolStripMenuItem.Text = "Link to newest software";
-            this.linkToNewestSoftwareToolStripMenuItem.Click += new System.EventHandler(this.linkToNewestSoftwareToolStripMenuItem_Click);
+            this.importDownloadsToolStripMenuItem.Name = "importDownloadsToolStripMenuItem";
+            this.importDownloadsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.importDownloadsToolStripMenuItem.Text = "&Import Downloads";
+            this.importDownloadsToolStripMenuItem.Click += new System.EventHandler(this.importDownloadsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -683,6 +692,7 @@
         private System.Windows.Forms.ToolStripMenuItem importNewestDownloadsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importNewSampleFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem linkToNewestSoftwareToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importDownloadsToolStripMenuItem;
     }
 }
 

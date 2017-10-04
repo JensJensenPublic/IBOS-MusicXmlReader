@@ -198,6 +198,48 @@ namespace MusicXmlReaderModel
         }
 
 
+        /// <summary>
+        /// Common mechanism for importing files independent of the selection method:
+        /// </summary>
+        /// <param name="fileNames"></param>
+        /// <param name="destinationPath"></param>
+        private List<string> ImportFiles(List<string> fileNames, string destinationPath)
+        {
+            string functionName = "ImportFiles";
+            List<string> result = new List<string>(); 
+            foreach (string file in fileNames)
+            {
+                string shortFileName = Path.GetFileName(file);
+                string destFileName = Path.Combine(destinationPath, shortFileName);
+                if (File.Exists(Path.Combine(destinationPath, shortFileName)))
+                {
+                    Logger.Log(string.Format("{0}.{1}: Skipping {2} because it has already been imported", className, functionName, file));
+                }
+                else
+                {
+                    try
+                    {
+                        File.Copy(file, destFileName, false); // False <==> Do not overwrite existing
+                        Logger.Log(string.Format("{0}.{1}: Copied {2}", className, functionName, file));
+                        result.Add(Path.GetFileName(file));
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Log(string.Format("{0}.{1}: Failed to copy {2} Exception.Message={3}", className, functionName, file, e.Message));
+                    }
+                }
+            }
+            return result;
+        }
+
+
+        public List<string> ImportSelectedDownloads(List<string> fileNames)
+        {
+            // string functionName = "ImportSelectedDownloads";
+            return ImportFiles(fileNames, myMusicXmlDirectory);
+        }
+
+        
         public List<string> ImportNewestDownloads()
         {
             string functionName = "ImportNewestDownloads";
@@ -238,29 +280,8 @@ namespace MusicXmlReaderModel
 
                 // Copy files
 
-                foreach (string file in todaysMusicXmlFiles)
-                {
-                    string shortFileName = Path.GetFileName(file);
-                    string destFileName = Path.Combine(destinationPath, shortFileName);
-                    if (File.Exists(Path.Combine(destinationPath, shortFileName)))
-                    {
-                        Logger.Log(string.Format("{0}.{1}: Skipping {2} because it has already been imported", className, functionName, file));
-                    }
-                    else
-                    {
-                        try
-                        {
-                            File.Copy(file, destFileName, false); // False <==> Do not overwrite existing
-                            Logger.Log(string.Format("{0}.{1}: Copied {2}", className, functionName, file));
-                            result.Add(Path.GetFileName(file));
-                        }
-                        catch (Exception e)
-                        {
-                            Logger.Log(string.Format("{0}.{1}: Failed to copy {2} Exception.Message={3}", className, functionName,file, e.Message));
-                        }
-                    }
-                }
-                
+                result = ImportFiles(todaysMusicXmlFiles, destinationPath);
+
             }
             catch (Exception e)
             {
