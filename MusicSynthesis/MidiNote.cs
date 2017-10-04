@@ -61,7 +61,7 @@ namespace JSJ.MusicSynthesis
         public static int MidiChannelForUnpitchedInstruments = 10;
         int channelCode;
         private byte[] startCommand;
-        object hSynthesizedTone; // Handle to the to currently playing tone representing this MidiNote
+        // object hSynthesizedTone; // Handle to the to currently playing tone representing this MidiNote. MAy be needed in other implementations
 
         static public bool IsKnownUnpitchedMidiInstrument(UnpitchedMidiInstrumentEnum instrument)
         {

@@ -18,7 +18,7 @@ namespace MusicXmlReaderModel
         static private int nextFreeChannel;
         static private int firstChannel = 1;
         static private int lastChannel = 16;
-        static private int unPitchedChannel = 10;
+        // static private int unPitchedChannel = 10;
 
         /// <summary>
         /// Resets the assignment of channels 

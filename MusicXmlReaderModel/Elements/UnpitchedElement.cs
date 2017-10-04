@@ -11,7 +11,7 @@ namespace MusicXmlReaderModel
 
     public class UnpitchedElement : PitchElementBase
     {
-        string className = "UnpitchedElement";
+        // string className = "UnpitchedElement";
         FullStepEnum displayStep;
         int displayOctave;
 
