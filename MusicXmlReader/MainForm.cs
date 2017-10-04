@@ -859,8 +859,7 @@ namespace MusicXmlReader
 
                 if (0 == listBoxDetails.Items.Count) // For whatever reason
                 {
-#warning Localize
-                    listBoxDetails.Items.Add("No details found");
+                    listBoxDetails.Items.Add(ResourcesForUI.ListBoxDetails_NoDetailsFound); // Just a fallback ! The detail-implementation can deliver its own one-liner!
                 }
 
                 listBoxDetails.Focus();

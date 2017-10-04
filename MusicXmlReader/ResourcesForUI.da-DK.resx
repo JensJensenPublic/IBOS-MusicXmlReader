@@ -321,4 +321,7 @@
   <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
     <value>Importer overførsler</value>
   </data>
+  <data name="ListBoxDetails_NoDetailsFound" xml:space="preserve">
+    <value>Ingen detaljer</value>
+  </data>
 </root>

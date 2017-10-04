@@ -88,6 +88,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No details found.
+        /// </summary>
+        internal static string ListBoxDetails_NoDetailsFound {
+            get {
+                return ResourceManager.GetString("ListBoxDetails_NoDetailsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note list.
         /// </summary>
         internal static string ListView_Accessible_Name {
