@@ -95,8 +95,6 @@ namespace MusicXmlReaderModel
             {
                 switch (scoreInstrumentElement.InstrumentName.Replace(" ", "")) // Ignore spaces
                 {
-#warning TODO fill in more contents
-
                     // Drums:
                     case "Drum1":
                     case "Drum2":

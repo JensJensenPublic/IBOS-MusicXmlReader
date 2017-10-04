@@ -98,8 +98,6 @@ namespace MusicXmlReaderModel
             damperThread.Start();
         }
 
-#warning TODO call this whenever a new file is loaded.
-
         /// <summary>
         /// This method must be called whenever a new MusicXml file is loaded
         /// Needed to assure that the right midi instrument is assigned to each midi channel
