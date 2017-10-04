@@ -516,11 +516,6 @@ namespace MusicXmlReaderModel
             const string functionName = "AddBrailleNotationsAfterNoteOrRest";
             if (null == notations) return;
 
-            if ((null != notations.SlurElement) && (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start))
-            {
-                Append(Slur, "SlurStart");
-            }
-
 
             // Until we implement the shorthand for describing multiple triplets we do not need to mark the end of a triplet !
             //if (null != notations.TupletElement)
