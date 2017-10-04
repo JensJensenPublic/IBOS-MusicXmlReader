@@ -654,6 +654,7 @@ namespace MusicXmlReaderModel
                 // Move the newly generated .xml file from the temp directory to the original directory.
                 FileInfo[] files = new DirectoryInfo(tempDirectory).GetFiles();
                 Logger.Log(string.Format("{0}.{1}: TempDirectory={2} contains {3} files:", className, methodName, tempDirectory, files.Length));
+                int numberOfFiles = 0;
                 foreach (FileInfo fileInfo in files)
                 {
                     Logger.Log(string.Format(" {0}",fileInfo.Name));
@@ -664,11 +665,17 @@ namespace MusicXmlReaderModel
                         bool overwriteExisting = true;
                         File.Copy(source, dest, overwriteExisting);
                         result = dest;
-#warning "ToDo: Check that only one file meets this criterium !"
+                        numberOfFiles++;
                     }
                     File.Delete(fileInfo.FullName); // Allows us to delete the directory
                 }
+                if (1 != numberOfFiles)
+                {
+                    Logger.LogOnce(string.Format("{0}.{1}: Unexpectedly found {2} files", className, methodName, numberOfFiles));
+                }
             }
+          
+
             DeleteTempDirectory(tempDirectory);
             Logger.Log(string.Format("{0}.{1}({2},{3}) returned {4}.", className, methodName, fullMxlFileName, executingDirectory, (null == result) ? "null" : result));
             return result;
