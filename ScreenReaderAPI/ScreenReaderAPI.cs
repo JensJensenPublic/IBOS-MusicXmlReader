@@ -58,7 +58,6 @@ namespace JSJ.ScreenReaderAPI
 
             // Secondly check if NVDA is available
             // NOTE ! For the time being the program crashes when running on NVDA under the Visual Studio debugger
-#warning    // TO DO: Make the program run on NVDA under the Visual Studio Debugger
             if (null == screenReaderAPI)
             {
                 screenReaderAPI = (is64Bit) ? (ScreenReaderAPI)NvdaControlerClient64Wrapper.Create(logger) : NvdaControlerClient32Wrapper.Create(logger);

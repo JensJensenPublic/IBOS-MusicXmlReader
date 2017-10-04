@@ -179,8 +179,6 @@ namespace MusicXmlReaderModel
 
         public string ToUserFriendlyString()
         {
-#warning ToDo Localize PitchedMidiInstrumentEnum
-#warning ToDo Localize UnpitchedMidiInstrumentEnum
             int iProgram = MidiProgram - 0; // The representation is 1-based in MusicXml , 0-based in Midi ???? WHY NOT ???
             int iMidi = MidiUnpitchedInstrumentNumber - 1; // The representation is 1-based in MusicXml , 0-based in Midi
             string nameString = (Pitched) ? // nameString contains program information for pitch instruments and Instrument name for unpitched instruments.

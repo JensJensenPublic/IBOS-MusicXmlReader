@@ -414,7 +414,7 @@ namespace MusicXmlReader
             textBoxStatusInformation.Refresh();
             userSettingsTreeView.CollapseAll();
             userSettingsTreeView.Refresh();
-#warning todo clear title line with respect to existing file name !
+            this.Text = ApplicationName; // Remove the name of the previously loaded MusicXml file from the title line
         }
 
         private List<string> SelectFilesForImport(object sender, EventArgs e)

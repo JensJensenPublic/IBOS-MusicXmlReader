@@ -505,7 +505,6 @@ namespace MusicXmlReaderModel
         {
             get
             {
-#warning TODO Find out why MuseScore unpitched instrument numbers differ by 1 from what should be extected
                 // Take the name from the ScoreInstrument. Take the number from the midiInstrument 
                 return string.Format("{0} ({1}={2})", this.ScoreUnpitchedInstrumentName, midiUnpitchedInstrumentNumber, (UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber);
             }
@@ -837,8 +836,7 @@ namespace MusicXmlReaderModel
                 // int nnn = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
                 if (scoreInstrumentElement.IsVirtualInstrument)
                 {
-                    // This is a virtual instrument, not a Midi instrument.
-#warning TODO Make a real implementation of sound from virtual instruments !    
+                    // This is a virtual instrument, not a Midi instrument.   
                     this.midiUnpitchedInstrumentNumber = (int)MidiInstrumentMap.GetUnpitchedMidiInstrumentNumber(scoreInstrumentElement.VirtualInstrumentElement);
                 }
                 else
