@@ -302,6 +302,7 @@ namespace JSJ.MusicSynthesis
         /// <returns></returns>
         private static bool GetChordInterval(int degree, out Interval interval)
         {
+            string functionName = "GetChordInterval";
             Interval result = Interval.Unison; 
             bool implemented = true;
             switch (degree)
@@ -345,7 +346,9 @@ namespace JSJ.MusicSynthesis
 
             if (!implemented)
             {
-#warning Find out what to do !
+                MusicSynthesisLogger.Log(string.Format("{0}.{1} Unimplemented degree={2}", ClassName, functionName, degree));
+                result = Interval.Unison; // The lesser of many evils
+
             }
 
             return implemented;
