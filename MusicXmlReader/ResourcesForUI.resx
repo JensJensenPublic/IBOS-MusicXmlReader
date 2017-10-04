@@ -320,4 +320,7 @@
   <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
     <value>http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html</value>
   </data>
+  <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
+    <value>Import downloads</value>
+  </data>
 </root>
