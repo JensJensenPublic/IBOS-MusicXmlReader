@@ -311,12 +311,21 @@ namespace MusicXmlReaderModel
             this.text.Append(s);
         }
 
-        public void Append(List<byte> bytes)
+        /// <summary>
+        /// Kept private in order to prevent  new List<byte>(n) with n as a size instead of a single list element!
+        /// </summary>
+        /// <param name="bytes"></param>
+        private void Append(List<byte> bytes)
         {
             this.braille.AddRange(bytes);
         }
 
-        public void Append(List<byte> bytes,string text)
+        /// <summary>
+        /// Kept private in order to prevent  new List<byte>(n) with n as a size instead of a single list element!
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="text"></param>
+        private void Append(List<byte> bytes,string text)
         {
             this.braille.AddRange(bytes);
             this.text.Append(text);
@@ -444,7 +453,7 @@ namespace MusicXmlReaderModel
             {
                 if (notations.TupletElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start)
                 {
-                    Append(new List<byte>(TupletOf3), "TupletStart");
+                    Append(TupletOf3, "TupletStart");
                     // Logger.LogOnce(string.Format("{0}.{1} Added tuplet start", className, functionName));
                 }
             }
@@ -513,14 +522,15 @@ namespace MusicXmlReaderModel
             }
 
 
-            if (null != notations.TupletElement)
-            {
-                if (notations.TupletElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop)
-                {
-                    Append(new List<byte>(TupletOf3), "TupletStop");
-                    // Logger.LogOnce(string.Format("{0}.{1} Added tuplet stop", className, functionName));
-                }
-            }
+            // Until we implement the shorthand for describing multiple triplets we do not need to mark the end of a triplet !
+            //if (null != notations.TupletElement)
+            //{
+            //    if (notations.TupletElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop)
+            //    {
+            //        Append(TupletOf3, "TupletStop");
+            //        // Logger.LogOnce(string.Format("{0}.{1} Added tuplet stop", className, functionName));
+            //    }
+            //}
 
             
             if (null != notations.TiedElement)
