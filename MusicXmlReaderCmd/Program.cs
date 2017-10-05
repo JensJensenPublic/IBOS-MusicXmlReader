@@ -20,32 +20,49 @@ namespace MusicXmlReaderUI
     class Program
     {
         static Model model;
+        static string executingDirectory = ""; // Needed in the call to  Utilities.MxlToXml()
+        const string failed = "**********failed**********";
 
         static void Recurse(string dir, ref int successes, ref int failures)
         {
             string[] files = System.IO.Directory.GetFiles(dir);
+   
             foreach (string file in files)
             {
                 string extension = System.IO.Path.GetExtension(file);
-                if (
-                     ( 0 == string.Compare(".xml",extension ))
-#warning todo Handle .mxl !
-                    //                ||   (0 == string.Compare(".mxl", extension)) // Compressed XML 
-                    ) 
+                bool ok;
+                switch (extension)
                 {
-                    Logger.ClearStatistics(); // Start counting unimplemented elements and attributes for this file
-                    bool ok = model.LoadMusicXmlFile(file); // Loads and parses the file
-                    Console.WriteLine(string.Format("Model.LoadMusicXmlFile({0}) {1}", file, ok ? "succeeded" : "failed"));
-                    DumpEvents(ok,model.EventDescriptionList,file);                         
-                    Logger.DumpStatistics(); // Dump count of unimplemented elements and attributes for this file
-                    if (ok)
-                    {
-                        successes++;
-                    }
-                    else
-                    {
-                        failures++;
-                    }
+        
+                    case ".mxl":
+                        Logger.ClearStatistics(); // Start counting diagnostic messages for this file
+                        string xmlFileName = Utilities.MxlToXml(file, executingDirectory);
+                        ok = !string.IsNullOrEmpty(xmlFileName);
+                        string message = string.Format("Utilities.MxlToXml({0}) {1}", file, ok ? "succeeded" : failed);  
+                        string shortMessage = string.Format("Utilities.MxlToXml {0}", ok ? "succeeded" : failed);
+                        Logger.Log(message);
+                        Logger.LogOnce(ok ? shortMessage : message); // Only log filename if an error occurred
+                        Logger.DumpStatistics(); // Dump count of diagnostic messages for this file
+                        break;
+
+                    case ".xml":
+                        Logger.ClearStatistics(); // Start counting unimplemented elements and attributes for this file
+                        ok = model.LoadMusicXmlFile(file); // Loads and parses the file
+                        Console.WriteLine(string.Format("Model.LoadMusicXmlFile({0}) {1}", file, ok ? "succeeded" : failed));
+                        DumpEvents(ok, model.EventDescriptionList, file);
+                        Logger.DumpStatistics(); // Dump count of unimplemented elements and attributes for this file
+                        if (ok)
+                        {
+                            successes++;
+                        }
+                        else
+                        {
+                            failures++;
+                        }
+                        break;
+                    default:
+                        break;
+
                 }
 
             }
@@ -151,6 +168,8 @@ namespace MusicXmlReaderUI
         static void Main(string[] args)
         {
             Logger.Open("MusicXmlReaderCmd.log");
+            string executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
 #if false
             // Used for testing localisation
             System.Threading.Thread thisThread;
