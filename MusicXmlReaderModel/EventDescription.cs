@@ -20,6 +20,9 @@ namespace MusicXmlReaderModel
         string musicBrailleAsTextRepresentation;
         string textRepresentation;
 
+        private bool isLastEvent;
+        private bool isFirstEvent;
+
         /// <summary>
         /// Notes to be played at this time
         /// </summary>
@@ -48,6 +51,24 @@ namespace MusicXmlReaderModel
 
         private StatusInformation statusInformation; // Contains Status information valid for this eventdescription
 
+        /// <summary>
+        /// Marks the event as the first event in the EventList
+        /// </summary>
+        public bool IsFirstEvent
+        {
+            get { return isFirstEvent; }
+            set { isFirstEvent = value; }
+        }
+
+        /// <summary>
+        /// Marks the event as the last event in the EventList
+        /// </summary>
+        public bool IsLastEvent
+        {
+            get { return isLastEvent; }
+            set { isLastEvent = value; }
+        }
+        
         public int MeasureNumber
         {
             get
@@ -660,12 +681,19 @@ namespace MusicXmlReaderModel
 
                 } // foreach
 
-                if (lastBar)
+            }
+
+            if ((lastBar) || (this.isLastEvent))
+            {
+                // By inspecting this.isLastEvent we even handle the case where the terminating Barline is missing !
+                bbAfterNotes.Append(BrailleBuilder.fullEnd, "FullEnd");
+                // Logger.LogOnce(string.Format("{0}.{1}: Found last bar", className, functionName));
+                if (!lastBar)
                 {
-                    bbAfterNotes.Append(BrailleBuilder.fullEnd, "FullEnd");
-                    // Logger.LogOnce(string.Format("{0}.{1}: Found last bar", className, functionName));
+                    Logger.LogOnce(string.Format("{0}.{1}: Missing terminating bar!", className, functionName));
                 }
             }
+
 
             // Finnally compose the result by concatenating all the substrings in the sequence wanted
             //return measure + repeatForward + divisions + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString + keyString + clefString + timeString + repeatBackward;
@@ -714,6 +742,7 @@ namespace MusicXmlReaderModel
         /// Depending on settings ToString  will generate a mix of the results of ToBraille and ToNormalTextString() 
         public string ToNormalTextString()
         {
+            string functionName = "ToNormalTextString";
             if (!userSettings.MusicAsSpeech) return "";
 
             string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime) : "";
@@ -722,6 +751,7 @@ namespace MusicXmlReaderModel
             string repeatBackward = "";
             string repeatForward = "";
             string endOfScore = "";
+            bool lastBar = false;
             if (null != barlineElements)
             {
                 foreach (BarlineElement barlineElement in barlineElements)
@@ -739,8 +769,18 @@ namespace MusicXmlReaderModel
                     }
                     if (barlineElement.IsLastBar)
                     {
-                        endOfScore = ResourcesForModel.BarlineElement_EndOfScore + " ";
+                        lastBar = true;
                     }
+                }
+            }
+
+            if ((lastBar || this.IsLastEvent))
+            {
+                // By inspecting this.isLastEvent we even handle the case where the terminating Barline is missing !
+                endOfScore = ResourcesForModel.BarlineElement_EndOfScore + " ";
+                if (!lastBar)
+                {
+                    Logger.LogOnce(string.Format("{0}.{1}: Missing terminating bar!", className, functionName));
                 }
             }
 

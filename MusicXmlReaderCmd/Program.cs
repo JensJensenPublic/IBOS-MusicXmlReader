@@ -27,8 +27,11 @@ namespace MusicXmlReaderUI
             foreach (string file in files)
             {
                 string extension = System.IO.Path.GetExtension(file);
-                if (( 0 == string.Compare(".xml",extension ))
-                ||   (0 == string.Compare(".mxl", extension))) // Compressed XML
+                if (
+                     ( 0 == string.Compare(".xml",extension ))
+#warning todo Handle .mxl !
+                    //                ||   (0 == string.Compare(".mxl", extension)) // Compressed XML 
+                    ) 
                 {
                     Logger.ClearStatistics(); // Start counting unimplemented elements and attributes for this file
                     bool ok = model.LoadMusicXmlFile(file); // Loads and parses the file

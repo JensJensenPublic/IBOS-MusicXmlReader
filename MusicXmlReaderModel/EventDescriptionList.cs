@@ -59,6 +59,13 @@ namespace MusicXmlReaderModel
                 currentEventDescription.AddNode(eventElement, currentStatusInformation);
             }
 
+            if (this.events.Count > 0)
+            {
+                // For marking the end of a score, even if the terminating light/heavy BarElement is missing which is seen for MusicXml files created by Lime 9.05 for Windows.
+                this.events[0].IsFirstEvent = true;
+                this.events[this.events.Count-1].IsLastEvent = true;
+            }
+
         }
 
         public static EventDescriptionList Create(TimeDescriptionList timeDescriptionList, int numberOfParts, UserSettings userSettings, StatusInformation currentStatusInformation)
