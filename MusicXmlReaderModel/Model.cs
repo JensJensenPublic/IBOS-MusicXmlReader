@@ -22,6 +22,7 @@ namespace MusicXmlReaderModel
         string theMusicXmlFileName = "";
         string myMusicXmlDirectory = ""; // Typically "C:\Users\<user>\\Documents\IBOS Nodelæser"
         string myMusicXmlSampleDirectory = ""; //  Typically "C:\Users\<user>\\Documents\IBOS Nodelæser\Eksempler"
+        string myMusicXmlDownloadDirectory = ""; //  Typically "C:\Users\<user>\\Documents\IBOS Nodelæser\Overførsler"
         bool is64Bit; // This program is compiled and for the following architechture: false:x86 true:x64 
         List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
         MidiOut midiOut;
@@ -99,13 +100,17 @@ namespace MusicXmlReaderModel
         }
 
 
+        public string MxlToXml(string fullXmlFileName)
+        {
+            return MxlToXml(fullXmlFileName, null);
+        }
 
         /// <summary>
         /// Pack the call to Utilities.Utilities.MxlToXml into a ProgressReporter.
         /// </summary>
         /// <param name="fullXmlFileName"></param>
         /// <returns></returns>
-        public string MxlToXml(string fullXmlFileName)
+        public string MxlToXml(string fullXmlFileName, string destinationDirectory)
         {
             string functionName = "ConvertFromMxlToXml";
             string extension = Path.GetExtension(fullXmlFileName);
@@ -118,7 +123,7 @@ namespace MusicXmlReaderModel
             string mxlFileName = System.IO.Path.GetFileName(fullXmlFileName);
             string progressConverting = string.Format("{0} {1} {2}", ResourcesForModel.Progress_Converting, mxlFileName, ResourcesForModel.Progress_FromMxlToXml);
             conversionProgressWriter = ProgressWriter.Create(1000, iDebugDisplayerClient, progressConverting);
-            fullXmlFileName = Utilities.MxlToXml(fullXmlFileName, executingDirectory);
+            fullXmlFileName = Utilities.MxlToXml(fullXmlFileName, destinationDirectory);
             conversionProgressWriter.Stop();
             return fullXmlFileName;
         }
@@ -216,29 +221,55 @@ namespace MusicXmlReaderModel
         private List<string> ImportFiles(List<string> fileNames, string destinationPath)
         {
             string functionName = "ImportFiles";
+            // Be sure the destination path exists
+            TryCreateDirectory(myMusicXmlDownloadDirectory); // Typically C:\Users\<Username>\Documents\IBOS MusicXmlReader\Overførsler
             List<string> result = new List<string>(); 
             foreach (string file in fileNames)
             {
                 string shortFileName = Path.GetFileName(file);
                 string destFileName = Path.Combine(destinationPath, shortFileName);
-                if (File.Exists(Path.Combine(destinationPath, shortFileName)))
+                string extension = Path.GetExtension(shortFileName);
+                //if (File.Exists(Path.Combine(destinationPath, shortFileName)))
+                //{
+                //    Logger.Log(string.Format("{0}.{1}: Skipping {2} because it has already been imported", className, functionName, file));
+                //    break;
+                //}
+                string verb = ""; // Only used for logging
+                try
                 {
-                    Logger.Log(string.Format("{0}.{1}: Skipping {2} because it has already been imported", className, functionName, file));
-                }
-                else
+                    switch (extension)
+                    {
+                        case ".xml": // Copy the file
+                            verb = "copy";
+                            File.Copy(file, destFileName, false); // False <==> Do not overwrite existing
+                            Logger.Log(string.Format("{0}.{1}: Copied {2}", className, functionName, file));
+                            result.Add(Path.GetFileName(file));
+                            break;
+                        case ".mxl": // Convert from .xlm to .xml
+                            verb = "convert";
+                            string xmlFileName;
+                            xmlFileName = MxlToXml(file,destinationPath);
+                            if (!string.IsNullOrEmpty(xmlFileName))
+                            {
+                                Logger.Log(string.Format("{0}.{1}: Converted {2} to xml", className, functionName, file));
+                                result.Add(Path.GetFileName(file));
+                            }
+                            else
+                            {
+                                Logger.Log(string.Format("{0}.{1}: Failed to convert {2} to xml", className, functionName, file));
+                            }
+                            break;
+                        default:
+                            verb = "skip";
+                            Logger.Log(string.Format("{0}.{1}: Skipping import of {2} because it has an unsupported extension: {3} ", className, functionName, file, extension));
+                            break;
+                    } // switch
+                } // try
+                catch (Exception e)
                 {
-                    try
-                    {
-                        File.Copy(file, destFileName, false); // False <==> Do not overwrite existing
-                        Logger.Log(string.Format("{0}.{1}: Copied {2}", className, functionName, file));
-                        result.Add(Path.GetFileName(file));
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.Log(string.Format("{0}.{1}: Failed to copy {2} Exception.Message={3}", className, functionName, file, e.Message));
-                    }
+                    Logger.Log(string.Format("{0}.{1}: Failed to {2} {3} Exception.Message={4}", className, functionName, verb,file, e.Message));
                 }
-            }
+            } // foraech
             return result;
         }
 
@@ -246,7 +277,7 @@ namespace MusicXmlReaderModel
         public List<string> ImportSelectedDownloads(List<string> fileNames)
         {
             // string functionName = "ImportSelectedDownloads";
-            return ImportFiles(fileNames, myMusicXmlDirectory);
+            return ImportFiles(fileNames, myMusicXmlDownloadDirectory);
         }
 
         
@@ -396,8 +427,8 @@ namespace MusicXmlReaderModel
 #endif
 
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
-            executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            executingDirectory = System.IO.Path.GetDirectoryName(executingAssembly);
+            executingDirectory = Utilities.GetExecutingDirectory();
+            executingAssembly = Utilities.GetExecutingAssembly();
             is64Bit = IntPtr.Size == 8;
             InitTestConsole(true); // Please see the Log methode for details!
             Logger.Log(string.Format("{0}.{1}: Date={2}", className, methodName, System.DateTime.Now.ToLongDateString()));
@@ -969,23 +1000,25 @@ namespace MusicXmlReaderModel
         /// <param name="applicationName">Localized application name</param>
         /// <param name="sampleDirName">Location of sample files, distributed with the installation files</param>
         /// <returns></returns>
-        public string InitMusicXmlFiles(string applicationName, string sampleDirName)
+        public string InitMusicXmlFiles(string applicationName, string sampleDirName, string downloadDirName)
         {
             string sourceDirName = InitialDirectory;
             string functionName = "InitMusicXmlFiles";
             string documentPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments); // C:\Users\<Username>\Documents       
             myMusicXmlDirectory = Path.Combine(documentPath, applicationName);              //   C:\Users\<Username>\Documents\IBOS Nodelæser
             myMusicXmlSampleDirectory = Path.Combine(myMusicXmlDirectory, sampleDirName);   //   C:\Users\<Username>\Documents\IBOS Nodelæser\Eksempler
+            myMusicXmlDownloadDirectory = Path.Combine(myMusicXmlDirectory, downloadDirName);   //   C:\Users\<Username>\Documents\IBOS Nodelæser\Overførsler
             int nFiles = 0;
             int nDirs = 0;
             List<string> fileNames = new List<string>();
-            if (!Directory.Exists(myMusicXmlDirectory))
+            if (!Directory.Exists(myMusicXmlDirectory)) 
             {
                 try
                 {
                     // Create the destination directory:
                     Directory.CreateDirectory(myMusicXmlDirectory);  // C:\Users\<Username>\Documents\IBOS MusicXmlReader            
                     Directory.CreateDirectory(myMusicXmlSampleDirectory);  // C:\Users\<Username>\Documents\IBOS MusicXmlReader\Eksempler
+                    Directory.CreateDirectory(myMusicXmlDownloadDirectory);  // C:\Users\<Username>\Documents\IBOS MusicXmlReader\Overførsler
                     Logger.Log(string.Format("{0}.{1}: Calling DirectoryCopy(Source,Dest) where", className, functionName));
                     Logger.Log(string.Format(" Source='{0}'", sourceDirName));
                     Logger.Log(string.Format(" Dest=  '{0}'", myMusicXmlSampleDirectory));
@@ -995,19 +1028,40 @@ namespace MusicXmlReaderModel
                 }
                 catch (Exception e)
                 {
-                    Logger.Log(string.Format("{0}.{1}: Exception during DirectoryCopy(): Message='{2}'",
-                        className, functionName, e.Message));
+                    Logger.Log(string.Format("{0}.{1}: Exception during DirectoryCopy(): Message='{2}'", className, functionName, e.Message));
                 }
             }
+
             return myMusicXmlDirectory;
         }
 
+        private void TryCreateDirectory(string path)
+        {
+            string functionName = "TryCreateDirectory";
+            if (!Directory.Exists(path))
+            {
+                try
+                {
+                    Directory.CreateDirectory(path);
+                }
+                catch (Exception e)
+                {
+                    Logger.Log(string.Format("{0}.{1} Failed: Exception.Message='{2}'", className, functionName, e.Message));
+                }
+            }
+        }
 
-        /// <summary>
-        /// Imports all new sample files and directories.
-        /// Assumes that member variables defining all paths have already been set up by InitMusicXmlFiles()
-        /// </summary>
-        public List<string> ImportNewSampleFiles()
+
+
+
+
+
+
+/// <summary>
+/// Imports all new sample files and directories.
+/// Assumes that member variables defining all paths have already been set up by InitMusicXmlFiles()
+/// </summary>
+public List<string> ImportNewSampleFiles()
         {
             string functionName = "ImportNewSampleFiles";
             string sourceDirName = InitialDirectory;

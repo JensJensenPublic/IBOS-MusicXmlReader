@@ -621,7 +621,18 @@ namespace MusicXmlReaderModel
             }
             // Logger.Log(string.Format("{0}.{1}-", className, functionName));
         }
-        
+
+        public static string GetExecutingDirectory()
+        {
+            string executingAssembly = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            return System.IO.Path.GetDirectoryName(executingAssembly);
+        }
+
+        public static string GetExecutingAssembly()
+        {
+            return System.Reflection.Assembly.GetExecutingAssembly().Location;
+        }
+
 
         /// <summary>
         /// Convert a .mxl file (compressed MusicXml) to .xml (MusicXml) relying on the external program 7z.exe
@@ -629,9 +640,10 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="fullMxlFileName">Full path  of .mxl file to be converted </param>
         /// <returns>Full path of the resulting .xml file</returns>
-        public static string MxlToXml(string fullMxlFileName,string executingDirectory)
+        public static string MxlToXml(string fullMxlFileName,string destinationDirectory)
         {
             string methodName = "MxlToXml";
+            string executingDirectory = GetExecutingDirectory();
             string result = "";
             // Use the temp directory created and used by the Logger
             string tempDirectory = Path.Combine(Logger.MusicXmlReaderTempDirectory, "tempDirectoryUsedByMxlToXml"); // Probably a unique name
@@ -654,17 +666,20 @@ namespace MusicXmlReaderModel
                 // Move the newly generated .xml file from the temp directory to the original directory.
                 FileInfo[] files = new DirectoryInfo(tempDirectory).GetFiles();
                 Logger.Log(string.Format("{0}.{1}: TempDirectory={2} contains {3} files:", className, methodName, tempDirectory, files.Length));
+                // As default place the .xml file in the same directory as the .mxl file 
+                string destXlm = string.IsNullOrEmpty(destinationDirectory) ? fullMxlFileName : Path.Combine(destinationDirectory, Path.GetFileName(fullMxlFileName));
+                string destXml = Path.ChangeExtension(destXlm, "xml");
                 int numberOfFiles = 0;
                 foreach (FileInfo fileInfo in files)
                 {
                     Logger.Log(string.Format(" {0}",fileInfo.Name));
                     if ("container.xml" != fileInfo.Name)
                     {
-                        string source = fileInfo.FullName;
-                        string dest = Path.ChangeExtension(fullMxlFileName, "xml");
+                        string source = fileInfo.FullName;           
+
                         bool overwriteExisting = true;
-                        File.Copy(source, dest, overwriteExisting);
-                        result = dest;
+                        File.Copy(source, destXml, overwriteExisting);
+                        result = destXml;
                         numberOfFiles++;
                     }
                     File.Delete(fileInfo.FullName); // Allows us to delete the directory

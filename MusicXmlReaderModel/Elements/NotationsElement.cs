@@ -128,7 +128,8 @@ namespace MusicXmlReaderModel
         /// <param name="node"></param>
         private NotationsElement(XmlNode node)
         {
-            string functionName = "NotationsElement";
+            //string functionName = "NotationsElement";
+
             // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-slur.htm?Highlight=slur
             // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-articulations.htm
             // http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#EL-MusicXML-footnote.htm

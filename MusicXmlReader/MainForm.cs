@@ -66,7 +66,8 @@ namespace MusicXmlReader
                 WriteStatusInformation(model.ScreenReaderName);
 
                 // XCopy MusicXml samples from the "MusicXml samples" directory in the installation files to myMusicXmlDirectory during first activation !   
-                myMusicXmlDirectory = model.InitMusicXmlFiles(ApplicationName, ResourcesForUI.DirectoryNames_Samples);
+#warning TODO Localize
+                myMusicXmlDirectory = model.InitMusicXmlFiles(ApplicationName, ResourcesForUI.DirectoryNames_Samples,"Downloads");
 
                 // Create a handler for the user settinge, in this case modelled as a treeview.
                 userSettingsHandler = UserSettingsHandler.Create(this, this.userSettingsTreeView, model);
@@ -298,6 +299,7 @@ namespace MusicXmlReader
         delegate object GetObjectAtIndexCallback(int index);
         public object GetObjectAtIndex(int index)
         {
+            string functionName = "GetObjectAtIndex";
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
@@ -308,6 +310,12 @@ namespace MusicXmlReader
             }
             else
             {
+#warning TODO Investigate crash and remove logging when done !
+                if ((index < 0) || (index >= listBoxTimes.Items.Count))
+                {
+                    Logger.Log(string.Format("{0}.{1} Index out of range:{2}", className, functionName, index));
+                    return null;
+                }
                 return listBoxTimes.Items[index];
             }
         }
@@ -1236,18 +1244,21 @@ namespace MusicXmlReader
         }
 
 
-        private void ShowImportMessageBox(List<string> fileNames)
+        private string ShowImportMessageBox(List<string> fileNames)
         {
-            string message = "";
+            string firstMessage = "";
+            string allMessages = "";
             if (1 == fileNames.Count)
             {
-                message = string.Format("{0} {1}", ResourcesForUI.Status_Imported, fileNames[0]); // Exactly one file: Show the name: "Copied Stardust.xml"
+                firstMessage = string.Format("{0} {1}", ResourcesForUI.Status_Imported, fileNames[0]); // Exactly one file: Show the name: "Copied Stardust.xml"
+                allMessages = firstMessage;
             }
             else
             {
                 int maxCount = 20; // Limited by the size of the massageBox
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine(string.Format("{0} {1}  MusicXml {2}:", ResourcesForUI.Status_Imported, fileNames.Count, ResourcesForUI.Status_files)); // Any other number: "Copied n files"
+                firstMessage =  string.Format("{0} {1}  MusicXml {2}:", ResourcesForUI.Status_Imported, fileNames.Count, ResourcesForUI.Status_files); // Any other number: "Copied n files"
+                sb.AppendLine(firstMessage);
                 sb.AppendLine();
                 for (int i = 0; (i <maxCount) && (i < fileNames.Count); i++)
                 {
@@ -1259,24 +1270,29 @@ namespace MusicXmlReader
                     sb.AppendLine("..."); // Localize later if wanted !
                 }
 
-                message = sb.ToString();
+                allMessages = sb.ToString();
             }
-            MessageBox.Show(message, ApplicationName, MessageBoxButtons.OK);
+            MessageBox.Show(allMessages, ApplicationName, MessageBoxButtons.OK);
+            return firstMessage;
         }
 
 
         private void importNewestDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<string> fileNames = model.ImportNewestDownloads();
-            ShowImportMessageBox(fileNames);
+            List<string> importedFiles = model.ImportNewestDownloads();
+            string status = ShowImportMessageBox(importedFiles);
+            WriteStatusInformation(status);
         }
 
 
         private void importDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<string> selectedFiles = SelectFilesForImport(sender, e);
+#warning TODO Localize
+            WriteStatusInformation("Importing selected files");
             List<string> importedFiles = model.ImportSelectedDownloads(selectedFiles);
-            ShowImportMessageBox(importedFiles);
+            string status = ShowImportMessageBox(importedFiles);
+            WriteStatusInformation(status);
         }
 
 
@@ -1290,7 +1306,8 @@ namespace MusicXmlReader
         private void importNewSampleFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<string> fileNames = model.ImportNewSampleFiles();
-            ShowImportMessageBox(fileNames);
+            string status = ShowImportMessageBox(fileNames);
+            WriteStatusInformation(status);
         }
 
         private void linkToNewestSoftwareToolStripMenuItem_Click(object sender, EventArgs e)
