@@ -65,9 +65,8 @@ namespace MusicXmlReader
                 this.Text = ApplicationName;
                 WriteStatusInformation(model.ScreenReaderName);
 
-                // XCopy MusicXml samples from the "MusicXml samples" directory in the installation files to myMusicXmlDirectory during first activation !   
-#warning TODO Localize
-                myMusicXmlDirectory = model.InitMusicXmlFiles(ApplicationName, ResourcesForUI.DirectoryNames_Samples,"Downloads");
+                // XCopy MusicXml samples from the "MusicXml samples" directory in the installation files to myMusicXmlDirectory during first activation ! 
+                myMusicXmlDirectory = model.InitMusicXmlFiles(ApplicationName, ResourcesForUI.DirectoryNames_Samples, ResourcesForUI.DirectoryNames_Downloads);
 
                 // Create a handler for the user settinge, in this case modelled as a treeview.
                 userSettingsHandler = UserSettingsHandler.Create(this, this.userSettingsTreeView, model);
@@ -1288,8 +1287,7 @@ namespace MusicXmlReader
         private void importDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<string> selectedFiles = SelectFilesForImport(sender, e);
-#warning TODO Localize
-            WriteStatusInformation("Importing selected files");
+            WriteStatusInformation(ResourcesForUI.Status_ImportingSelectedFiles);
             List<string> importedFiles = model.ImportSelectedDownloads(selectedFiles);
             string status = ShowImportMessageBox(importedFiles);
             WriteStatusInformation(status);

@@ -7,7 +7,7 @@ namespace MusicXmlReaderModel
     {
         // http://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-notations.htm
 
-        string  className = "NotationsElement";
+        // string  className = "NotationsElement";
         private SlurElement slurElement;
         private TiedElement tiedElement;
         private TupletElement tupletElement;

@@ -79,6 +79,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Downloads.
+        /// </summary>
+        internal static string DirectoryNames_Downloads {
+            get {
+                return ResourceManager.GetString("DirectoryNames_Downloads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Samples.
         /// </summary>
         internal static string DirectoryNames_Samples {
@@ -300,6 +309,15 @@ namespace MusicXmlReader {
         internal static string Status_Imported {
             get {
                 return ResourceManager.GetString("Status_Imported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Importing selected files.
+        /// </summary>
+        internal static string Status_ImportingSelectedFiles {
+            get {
+                return ResourceManager.GetString("Status_ImportingSelectedFiles", resourceCulture);
             }
         }
         

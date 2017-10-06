@@ -333,4 +333,10 @@
   <data name="TextBox_Messages_UnsupportedFileFormat" xml:space="preserve">
     <value>Usupporteret filformat</value>
   </data>
+  <data name="DirectoryNames_Downloads" xml:space="preserve">
+    <value>Overførsler</value>
+  </data>
+  <data name="Status_ImportingSelectedFiles" xml:space="preserve">
+    <value>Importerer udvalgte filer</value>
+  </data>
 </root>

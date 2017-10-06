@@ -335,4 +335,10 @@
   <data name="TextBox_Messages_UnsupportedFileFormat" xml:space="preserve">
     <value>Unsupported file format</value>
   </data>
+  <data name="DirectoryNames_Downloads" xml:space="preserve">
+    <value>Downloads</value>
+  </data>
+  <data name="Status_ImportingSelectedFiles" xml:space="preserve">
+    <value>Importing selected files</value>
+  </data>
 </root>
