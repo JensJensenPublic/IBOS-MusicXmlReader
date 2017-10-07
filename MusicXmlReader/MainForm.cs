@@ -21,7 +21,7 @@ namespace MusicXmlReader
     {
         string className = "MainForm";
         enum MusicPlayerStateEnum { unknown, stopped, running };
-        string ApplicationName = "";  // Locakized application name. Will be re-initialized later using localization!
+        string applicationName = "";  // Locakized application name. Will be re-initialized later using localization!
         string executingAssemblyFullPath  = ""; // The (unlocalized) name and location of the program, 
         string executingAssemblyShortName = ""; // The (unlocalized) short name of the program, used by for instance JAWS to name configuration file! 
         Model model;        // The Model containing all of the business logic.        
@@ -31,6 +31,16 @@ namespace MusicXmlReader
         // ShortcutHandler shortCutHandler;
         UserCommandInterpreter commandInterpreter;
         string myMusicXmlDirectory; // Default location for MusicXml files belonging to thos user. Wil be populated with sample filer!
+        ImportHandler importHandler;
+
+        public string ApplicationName
+        {
+            get
+            {
+                return applicationName;
+            }
+        }
+
 
         public MainForm()
         {
@@ -53,7 +63,7 @@ namespace MusicXmlReader
                 // if an error is reported by a messagebox.
                 // musicPlayerState = MusicPlayerStateEnum.stopped;
                 //LocalizeStartStopButton(musicPlayerState);
-                ApplicationName = ResourcesForUI.MainForm_ApplicationName;
+                applicationName = ResourcesForUI.MainForm_ApplicationName;
                 LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
                 listBoxTimes.AccessibleName = ResourcesForUI.ListView_Accessible_Name; // Overwrite all items in listBoxTimes with localized texts
                 userSettingsTreeView.AccessibleName = ResourcesForUI.TreeView_Accessible_Name; // Overwrite all items in userSettingsTreeview with localized texts
@@ -61,12 +71,13 @@ namespace MusicXmlReader
 
 
                 Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 
-                model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), ApplicationName);
-                this.Text = ApplicationName;
+                model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), applicationName);
+                importHandler = ImportHandler.Create(model,this);
+                this.Text = applicationName;
                 WriteStatusInformation(model.ScreenReaderName);
 
                 // XCopy MusicXml samples from the "MusicXml samples" directory in the installation files to myMusicXmlDirectory during first activation ! 
-                myMusicXmlDirectory = model.InitMusicXmlFiles(ApplicationName, ResourcesForUI.DirectoryNames_Samples, ResourcesForUI.DirectoryNames_Downloads);
+                myMusicXmlDirectory = model.InitMusicXmlFiles(applicationName, ResourcesForUI.DirectoryNames_Samples, ResourcesForUI.DirectoryNames_Downloads);
 
                 // Create a handler for the user settinge, in this case modelled as a treeview.
                 userSettingsHandler = UserSettingsHandler.Create(this, this.userSettingsTreeView, model);
@@ -160,7 +171,7 @@ namespace MusicXmlReader
             jAWSSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_JAWS_Settings;
 
             // Children of  helpToolStripMenuItem
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = string.Format("{0} {1}",ResourcesForUI.ToolStripMenuItem_Help_About,ApplicationName);
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = string.Format("{0} {1}",ResourcesForUI.ToolStripMenuItem_Help_About,applicationName);
             this.keyboardShortcutsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help_Shortcuts;
             this.linkToNewestSoftwareToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help_SoftwareUpdate;
 
@@ -400,7 +411,7 @@ namespace MusicXmlReader
                 localizedMessage,                                                                   // The message
                 string.IsNullOrEmpty(parameter) ? "" : "'"+parameter+"'",                           // Possible parameter
                 string.IsNullOrEmpty(localizedExtraMessage) ? "": "\r\n"+localizedExtraMessage);    // Possible extra message             
-            MessageBox.Show(formattedMessage, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(formattedMessage, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         #endregion
 
@@ -422,39 +433,9 @@ namespace MusicXmlReader
             textBoxStatusInformation.Refresh();
             userSettingsTreeView.CollapseAll();
             userSettingsTreeView.Refresh();
-            this.Text = ApplicationName; // Remove the name of the previously loaded MusicXml file from the title line
+            this.Text = applicationName; // Remove the name of the previously loaded MusicXml file from the title line
         }
 
-        private List<string> SelectFilesForImport()
-        {
-            string functionName = "SelectFilesForImport";
-            List<string> fileNameList = new List<string>();
-            openFileDialog.InitialDirectory = KnownFolders.GetPath(KnownFolder.Downloads, false); // defaultuser = false: Get the path to the current user.
-            openFileDialog.FileName = ""; // No default
-            openFileDialog.Filter = string.Format("{0}|*.xml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files  
-            openFileDialog.CheckFileExists = true;
-            openFileDialog.CheckPathExists = true;
-            openFileDialog.Multiselect = true; // Allow inporting several files at once
-            openFileDialog.ShowDialog();
-
-            // The dialog has focus on the textbox for entering the file name.
-            // Press <shift> <tab> twice to focus on the first line in the selection listbox.
-
-            if (0 == openFileDialog.FileNames.GetLength(0))
-            {
-                Logger.Log(String.Format("{0}.{1} No files selected by user", className, functionName));
-                return fileNameList;
-            }
-
-      
-            foreach (string fileName in openFileDialog.FileNames)
-            {
-                Logger.Log(String.Format("{0}.{1} User selected {2}", className, functionName, fileName));
-                fileNameList.Add(fileName);
-            }
-
-            return fileNameList;
-        }
 
 
 
@@ -509,7 +490,7 @@ namespace MusicXmlReader
                     {
                         message = string.Format("{0} '{1}' {2}", ResourcesForUI.TextBox_Messages_FailedToConvert_File, shortFileName, ResourcesForUI.TextBox_Messages_ToMusicXml); 
                         WriteStatusInformation(message);
-                        MessageBox.Show(message, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;                   
                     }
                     break;
@@ -519,7 +500,7 @@ namespace MusicXmlReader
                 default: // Report unsupported fileformat
                     message = string.Format("{0} '{1}'", ResourcesForUI.TextBox_Messages_UnsupportedFileFormat, shortFileName); 
                     WriteStatusInformation(message);
-                    MessageBox.Show(message, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
             }
 
@@ -533,10 +514,10 @@ namespace MusicXmlReader
                 message = string.Format("{0} '{1}'", ResourcesForUI.TextBox_Messages_FailedToRead_File, shortFileName); // Short filename for UI
                 WriteStatusInformation(message);
                 ShowWarning((int)ModelMessageEnum.FailedToReadMusicXmlFile, shortFileName, "");
-                MessageBox.Show(message, ApplicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Logger.Log(string.Format("Failed to read {0}", openFileDialog.FileName)); // Full filename for UI
                 Logger.DumpStatistics(); // Dump all statistics collected by LogOnce() until now
-                this.Text = ApplicationName; // Remove any exixting filename from the title bar
+                this.Text = applicationName; // Remove any exixting filename from the title bar
                 return;
             }
 
@@ -608,7 +589,7 @@ namespace MusicXmlReader
         private string GetTitleInfo()
         {
             string result = string.Format("{0}  {1}  {2}"
-                                            , ApplicationName // 0
+                                            , applicationName // 0
                                             , model.MetaInformation.FileName // 1
                                             , model.MetaInformation.MovementTitle // 2
                                             );
@@ -1091,7 +1072,7 @@ namespace MusicXmlReader
         private void aboutIBOSMusicXmlReaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Version version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
-            string caption = ApplicationName;
+            string caption = applicationName;
             string text = string.Format("{0}={1}", ResourcesForUI.ToolStripMenuItem_Help_About_Version, version.ToString());
             MessageBox.Show(text, caption);
         }
@@ -1099,7 +1080,7 @@ namespace MusicXmlReader
 
         private void keyboardShortcutsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string caption = ApplicationName + " " + ResourcesForUI.ToolStripMenuItem_Help_Shortcuts;
+            string caption = applicationName + " " + ResourcesForUI.ToolStripMenuItem_Help_Shortcuts;
             Form helpForm = new HelpForm();
             helpForm.Show();
             // MessageBox.Show(ShortcutHelp.Create().ToString(), caption);
@@ -1226,7 +1207,7 @@ namespace MusicXmlReader
             if (e.CloseReason == CloseReason.ApplicationExitCall)
             {
                 // The reason is that the user pressed ALT+F4
-                if (DialogResult.Yes != MessageBox.Show(ResourcesForUI.Message_DoYouWantToExitTheProgram, ApplicationName, MessageBoxButtons.YesNo))
+                if (DialogResult.Yes != MessageBox.Show(ResourcesForUI.Message_DoYouWantToExitTheProgram, applicationName, MessageBoxButtons.YesNo))
                 {
                     e.Cancel = true;
                 }
@@ -1242,76 +1223,29 @@ namespace MusicXmlReader
             model.SelectedDetailsIndexChanged(detailsDescription);
         }
 
-
-        private string GetImportMessage(List<string> fileNames)
-        {
-            if (1 == fileNames.Count)
-            {
-                return string.Format("{0} {1}", ResourcesForUI.Status_Imported, fileNames[0]); // Exactly one file: Show the name: "Copied Stardust.xml"   
-            }
-            else
-            {
-                return string.Format("{0} {1}  MusicXml {2}", ResourcesForUI.Status_Imported, fileNames.Count, ResourcesForUI.Status_files); // Any other number: "Copied n files"
-            }
-        }
-
-
-        private void ShowImportMessageBox(string message, List<string> fileNames)
-        {
-            int maxCount = 20; // Limited by the size of the massageBox
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine(message);
-            sb.AppendLine();
-            for (int i = 0; (i < maxCount) && (i < fileNames.Count); i++)
-            {
-                sb.AppendLine(fileNames[i]);
-            }
-
-            if (fileNames.Count >= maxCount)
-            {
-                sb.AppendLine("..."); // Localize later if wanted !
-            }
-            MessageBox.Show(sb.ToString(), ApplicationName, MessageBoxButtons.OK);
-        }
-
-        private void Import(List<string> selectedFiles)
-        {
-            WriteStatusInformation(ResourcesForUI.Status_ImportingSelectedFiles);
-            List<string> importedFiles = model.ImportSelectedDownloads(selectedFiles);
-            string message = GetImportMessage(importedFiles);
-            WriteStatusInformation(message);
-            ShowImportMessageBox(message, importedFiles);
-        }
-
-        private void importNewestDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            List<string> selectedFiles = model.SelectNewestDownloads(); // Select all files, downloaded today
-            Import(selectedFiles);
-        }
-
-        private void importDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            List<string> selectedFiles = SelectFilesForImport(); // Let user select files 
-            Import(selectedFiles);
-        }
-
         private void listBoxDetails_Leave(object sender, EventArgs e)
         {
             model.ListBoxDetailsLeave();
             listBoxDetails.Items.Clear();
         }
 
+        #region Import
         private void importNewSampleFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int nDirs = 0;
-            int nFiles = 0;
-            // The samples are structured in a directory structure, so the code difffers from the code in the "Import Download" cases
-            List<string> sampleFiles = model.ImportNewSampleFiles(ref nFiles, ref nDirs);
-            WriteStatusInformation(ResourcesForUI.Status_ImportingSampleFiles);
-            string message = GetImportMessage(sampleFiles);
-            WriteStatusInformation(message);
-            ShowImportMessageBox(message, sampleFiles);
+            importHandler.ImportNewSample();
         }
+
+        private void importNewestDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            importHandler.ImportNewestDownloads();
+        }
+
+        private void importDownloadsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            importHandler.ImportDownloads(openFileDialog);
+        }
+        #endregion // Import
+
 
         private void linkToNewestSoftwareToolStripMenuItem_Click(object sender, EventArgs e)
         {
