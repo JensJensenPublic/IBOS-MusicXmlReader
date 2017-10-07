@@ -336,6 +336,9 @@
   <data name="DirectoryNames_Downloads" xml:space="preserve">
     <value>Overførsler</value>
   </data>
+  <data name="Status_ImportingSampleFiles" xml:space="preserve">
+    <value>Importerer eksempler</value>
+  </data>
   <data name="Status_ImportingSelectedFiles" xml:space="preserve">
     <value>Importerer udvalgte filer</value>
   </data>

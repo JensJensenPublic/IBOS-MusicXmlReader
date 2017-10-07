@@ -313,6 +313,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Importing sample files.
+        /// </summary>
+        internal static string Status_ImportingSampleFiles {
+            get {
+                return ResourceManager.GetString("Status_ImportingSampleFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Importing selected files.
         /// </summary>
         internal static string Status_ImportingSelectedFiles {

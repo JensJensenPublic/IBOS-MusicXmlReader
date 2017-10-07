@@ -338,6 +338,9 @@
   <data name="DirectoryNames_Downloads" xml:space="preserve">
     <value>Downloads</value>
   </data>
+  <data name="Status_ImportingSampleFiles" xml:space="preserve">
+    <value>Importing sample files</value>
+  </data>
   <data name="Status_ImportingSelectedFiles" xml:space="preserve">
     <value>Importing selected files</value>
   </data>

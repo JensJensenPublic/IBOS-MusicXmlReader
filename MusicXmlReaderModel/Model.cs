@@ -222,8 +222,8 @@ namespace MusicXmlReaderModel
         {
             string functionName = "ImportFiles";
             // Be sure the destination path exists
-            TryCreateDirectory(myMusicXmlDownloadDirectory); // Typically C:\Users\<Username>\Documents\IBOS MusicXmlReader\Overførsler
-            List<string> result = new List<string>(); 
+            List<string> result = new List<string>();
+            TryCreateDirectory(destinationPath);
             foreach (string file in fileNames)
             {
                 string shortFileName = Path.GetFileName(file);
@@ -280,10 +280,13 @@ namespace MusicXmlReaderModel
             return ImportFiles(fileNames, myMusicXmlDownloadDirectory);
         }
 
-        
-        public List<string> ImportNewestDownloads()
+
+
+
+
+        public List<string> SelectNewestDownloads()
         {
-            string functionName = "ImportNewestDownloads";
+            string functionName = "SelectNewestDownloads";
             List<string> result = new List<string>();
             try
             {
@@ -319,9 +322,7 @@ namespace MusicXmlReaderModel
                 Logger.Log(string.Format("{0}.{1}: Files={2} MusicXml={3} Today={4}", 
                     className, functionName, files.GetLength(0), musicXmlFiles.Count, todaysMusicXmlFiles.Count));
 
-                // Copy files
-
-                result = ImportFiles(todaysMusicXmlFiles, destinationPath);
+                result = todaysMusicXmlFiles;
 
             }
             catch (Exception e)
@@ -1061,13 +1062,12 @@ namespace MusicXmlReaderModel
 /// Imports all new sample files and directories.
 /// Assumes that member variables defining all paths have already been set up by InitMusicXmlFiles()
 /// </summary>
-public List<string> ImportNewSampleFiles()
+public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
         {
             string functionName = "ImportNewSampleFiles";
             string sourceDirName = InitialDirectory;
+            TryCreateDirectory(myMusicXmlSampleDirectory); // MAy have been deleted by the user
             List<string> result = new List<string>();
-            int nDirs = 0;
-            int nFiles = 0;
             Logger.Log(string.Format("{0}.{1}: Calling DirectoryCopy(Source,Dest) where", className, functionName));
             Logger.Log(string.Format(" Source='{0}'", sourceDirName));
             Logger.Log(string.Format(" Dest=  '{0}'", myMusicXmlSampleDirectory));
