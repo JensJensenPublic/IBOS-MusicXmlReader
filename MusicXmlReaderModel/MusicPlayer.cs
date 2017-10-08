@@ -49,7 +49,7 @@ namespace MusicXmlReaderModel
         //int   userTempo = 100; // Percentage of tempo indicated in score
         float userTempoFactor = (float)1;
         //int latestSelectedIndex = -1; // Used to avoid playing notes only because a filter has changed
-        object latestSelectedObject = null; // Used to avoid playing notes only because a filter has changed
+        EventDescription latestSelectedEventDescription = null; // Used to avoid playing notes only because a filter has changed
         int[] currentMidiInstruments = new int[MidiCommand.MumberOfMidiChannels+1]; // Midi Channels are numbered from 1 to 17 (not from 0 to 16)
 
         /// <summary>
@@ -142,38 +142,28 @@ namespace MusicXmlReaderModel
             midiCommand.ChangeInstrument(channel, instrument, this.midiOut);
         }
 
-        
-
 
         /// <summary>
         /// Used when the playing manually.
         /// The user selects an EventDescription at a time. This may contain several notes to be played simultaneously
         /// </summary>
-        /// <param name="selectedIndex"></param>
-        /// <param name="selectedObject"></param>
-        public void SelectedIndexChanged(int selectedIndex, object selectedObject)
+        /// <param name="eventDescription"></param>
+        public void SelectedIndexChanged(EventDescription eventDescription)
         {
             if (playing) return;
-                if (null == selectedObject) return;
+            if (null == eventDescription) return;
+            if (eventDescription == latestSelectedEventDescription) return;
 
-             if (selectedObject == latestSelectedObject) return; 
-//#if Windows
-//            // if (selectedIndex == latestSelectedIndex) return; // Maybe compare objects instead
-//#elif Android
-//#else
-//#error "Compiling for unknown platform"
-//#endif
+            //#if Windows
+            //            // if (selectedIndex == latestSelectedIndex) return; // Maybe compare objects instead
+            //#elif Android
+            //#else
+            //#error "Compiling for unknown platform"
+            //#endif
 
             // latestSelectedIndex = selectedIndex;
-            latestSelectedObject = selectedObject;
-            if ((selectedObject is NoteElement))
-            {
-                NoteElement noteElement = selectedObject as NoteElement;
-                if (noteElement.IsPause) return; // This is a pause
-                // new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
-            }
-            else if ((selectedObject is EventDescription))
-            {
+            latestSelectedEventDescription = eventDescription;
+
                 // Firat stop all notes currently playing:
                 if (null != notesCurrentlyPlaying)
                 {
@@ -183,9 +173,6 @@ namespace MusicXmlReaderModel
                     }
                     notesCurrentlyPlaying.Clear();
                 }
-
-
-                EventDescription eventDescription = selectedObject as EventDescription;
 
                 if (userSettings.MusicAsSound) // Start playing notes in selected ports
                 {
@@ -206,7 +193,7 @@ namespace MusicXmlReaderModel
                             }
                         }
                     }
-                }
+                
 
                 PlayHarmonies(eventDescription);   // Handle harmonies
              

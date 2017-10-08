@@ -629,16 +629,16 @@ namespace MusicXmlReader
 
 
 
-#region ListBoxTimes
+        #region ListBoxTimes
 
-        //private void listBoxTimes_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    int index = listBoxTimes.SelectedIndex;
-        //    // Model.Trace(string.Format("ListBoxTimes_SelectedIndexChanged(i={0})", index));
-        //    object o = listBoxTimes.Items[index];
-        //    model.musicPlayer.SelectedIndexChanged(index, o);
-        //    model.brailleDisplayer.SelectedIndexChanged(index, o);
-        //}
+        private void ListBoxTimesIndexChanged(int index)
+        {
+            object o = listBoxTimes.Items[index];
+            EventDescription eventDescription = o as EventDescription;
+            model.musicPlayer.SelectedIndexChanged(eventDescription);
+            model.brailleDisplayer.SelectedIndexChanged(eventDescription);
+            model.textDisplayer.SelectedIndexChanged(eventDescription);
+        }
 
         private void ListBoxTimes_GotFocus(object sender, EventArgs e)
         {
@@ -648,10 +648,7 @@ namespace MusicXmlReader
             if (-1 != index)
             {
                 // If an index is selected do as if Selected Index changed
-                object o = listBoxTimes.Items[index];
-                model.musicPlayer.SelectedIndexChanged(index, o);
-                model.brailleDisplayer.SelectedIndexChanged(index, o);
-                model.textDisplayer.SelectedIndexChanged(index, o);
+                ListBoxTimesIndexChanged(index);
             }
         }
 
@@ -665,10 +662,7 @@ namespace MusicXmlReader
         {
             int index = listBoxTimes.SelectedIndex;
             // Model.Trace(string.Format("ListBoxTimes_SelectedIndexChanged(i={0})", index));
-            object o = listBoxTimes.Items[index];
-            model.musicPlayer.SelectedIndexChanged(index, o);
-            model.brailleDisplayer.SelectedIndexChanged(index, o);
-            model.textDisplayer.SelectedIndexChanged(index, o);
+            ListBoxTimesIndexChanged(index);
         }
 
         private bool savedSpeechState;

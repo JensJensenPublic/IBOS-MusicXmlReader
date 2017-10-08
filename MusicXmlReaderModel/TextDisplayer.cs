@@ -31,19 +31,12 @@ namespace MusicXmlReaderModel
         /// or
         /// The user selects an EventDescription at a time. This may contain several notes to be played simultaneously
         /// </summary>
-        /// <param name="selectedIndex"></param>
-        /// <param name="selectedObject"></param>
-        public void SelectedIndexChanged(int selectedIndex, object selectedObject)
+        /// <param name="eventDescription"></param>
+        public void SelectedIndexChanged(EventDescription eventDescription)
         {
-            //StopRefreshing(); // Stop refreshing the Braille Display; Also happens when controllooses focus      
-
             //if (playing) return;
-            if (null == selectedObject) return;
-            if ((selectedObject is EventDescription))
-            {
-                EventDescription eventDescription = selectedObject as EventDescription;
-                iDebugDisplayerClient.WriteNormalTextString(eventDescription.TextRepresentation);
-            }
+            if (null == eventDescription) return;
+            iDebugDisplayerClient.WriteNormalTextString(eventDescription.TextRepresentation);
         }
     }
 }

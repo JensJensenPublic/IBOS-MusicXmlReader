@@ -88,55 +88,38 @@ namespace MusicXmlReaderModel
         /// or
         /// The user selects an EventDescription at a time. This may contain several notes to be played simultaneously
         /// </summary>
-        /// <param name="selectedIndex"></param>
-        /// <param name="selectedObject"></param>
-        public void SelectedIndexChanged(int selectedIndex, object selectedObject)
+        /// <param name="eventDescription"></param>
+        public void SelectedIndexChanged(EventDescription eventDescription)
         {
             string methodName = "SelectedIndexChanged";
             //StopRefreshing(); // Stop refreshing the Braille Display; Also happens when controllooses focus      
 
             //if (playing) return;
-            if (null == selectedObject) return;
-            if ((selectedObject is NoteElement))
+            if (null == eventDescription) return;
+
+            //BrailleBuilder bb = eventDescription.ToBraille();
+            //StringBuilder text = new StringBuilder();
+            //brailleDisplayerClient.WriteBrailleString(bb.ToBrailleString());
+            //brailleDisplayerClient.WriteTextString(bb.Text.ToString()); 
+            brailleDisplayerClient.WriteBrailleString(eventDescription.MusicBrailleRepresentation);
+            brailleDisplayerClient.WriteTextString(eventDescription.MusicBrailleAsTextRepresentation);
+            if (null != eventDescription.StatusInformation)
             {
-                //NoteElement noteElement = selectedObject as NoteElement;
-                //if (noteElement.IsPause) return; // This is a pause
-                //// new MidiNote(noteElement.Step, noteElement.Alter, noteElement.Octave, 127, midiOut);
-            }
-            else if ((selectedObject is EventDescription))
-            {
-
-                EventDescription eventDescription = selectedObject as EventDescription;
-
-                //BrailleBuilder bb = eventDescription.ToBraille();
-                //StringBuilder text = new StringBuilder();
-                //brailleDisplayerClient.WriteBrailleString(bb.ToBrailleString());
-                //brailleDisplayerClient.WriteTextString(bb.Text.ToString()); 
-                brailleDisplayerClient.WriteBrailleString(eventDescription.MusicBrailleRepresentation);
-                brailleDisplayerClient.WriteTextString(eventDescription.MusicBrailleAsTextRepresentation);
-                if (null != eventDescription.StatusInformation)
-                {
-                    brailleDisplayerClient.WriteStatusInformation(eventDescription.StatusInformation.ToString());
-                }
-                else
-                {
-                    Logger.LogOnce(string.Format("{0}.{1} : eventDescription.StatusInformation is null", className, methodName));
-                }
-
-                screenReaderAPI.Silence(); // Prevent overloading the internal queue in NVDA when rapidly changing between different events                  
-                if (ScreenReaderAPI.ScreenReaderType.NVDA == screenReaderAPI.GetScreenReaderType())
-                {
-                    // NVDA will read the MusicBraille characters as "Braille 1,2,3,4,5,6,7,8"
-                    // So in the NVDA case the MusicBraille characters must NOT shown in the listbox.
-                    // The MusicBraille characteres are thus not automatically shown on the Braille display.
-                    // Instead we must explicitly write them to the Braille display:
-                    screenReaderAPI.Braille(eventDescription.ToMusicBrailleAndTextBrailleString(), true);
-                }  
+                brailleDisplayerClient.WriteStatusInformation(eventDescription.StatusInformation.ToString());
             }
             else
             {
-                // This is not an event description
-                StopRefreshing(); // Stop refreshing the Braille Display; Also happens when controllooses focus 
+                Logger.LogOnce(string.Format("{0}.{1} : eventDescription.StatusInformation is null", className, methodName));
+            }
+
+            screenReaderAPI.Silence(); // Prevent overloading the internal queue in NVDA when rapidly changing between different events                  
+            if (ScreenReaderAPI.ScreenReaderType.NVDA == screenReaderAPI.GetScreenReaderType())
+            {
+                // NVDA will read the MusicBraille characters as "Braille 1,2,3,4,5,6,7,8"
+                // So in the NVDA case the MusicBraille characters must NOT shown in the listbox.
+                // The MusicBraille characteres are thus not automatically shown on the Braille display.
+                // Instead we must explicitly write them to the Braille display:
+                screenReaderAPI.Braille(eventDescription.ToMusicBrailleAndTextBrailleString(), true);
             }
             return;
         }
