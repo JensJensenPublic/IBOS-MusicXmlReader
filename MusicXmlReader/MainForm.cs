@@ -178,19 +178,6 @@ namespace MusicXmlReader
 
         }
 
-
-#if false
-        void LocalizeStartStopButton(MusicPlayerStateEnum musicPlayerState)
-        {
-            switch (musicPlayerState)
-            {
-                case MusicPlayerStateEnum.running: buttonStart.Text = ResourcesForUI.ButtonStart_StopPlaying;  break;
-                case MusicPlayerStateEnum.stopped: buttonStart.Text = ResourcesForUI.ButtonStart_StartPlaying; break;
-                default: break;
-            }
-        }
-#endif
-
 #region supportcode
 
 
@@ -437,11 +424,6 @@ namespace MusicXmlReader
         }
 
 
-
-
-
-
-
         /// <summary>
         /// Open a standard File Dialog allowing the user select a MusicXml file.
         /// Clear statistic counters describing the operations on the file selected.
@@ -520,9 +502,6 @@ namespace MusicXmlReader
                 this.Text = applicationName; // Remove any exixting filename from the title bar
                 return;
             }
-
-
-
 
             autoReload = false; // While loading the listbox all changes are  made by user and must be ignored
 
@@ -614,12 +593,6 @@ namespace MusicXmlReader
                                          );
             return result;
         }
-
-
-        //private void LoadTextBoxStatusInformation()
-        //{
-        //    textBoxStatusInformation.Text = GetStatusFromMetaInformation();
-        //}
 
 
         /// <summary>
@@ -718,18 +691,7 @@ namespace MusicXmlReader
             userSettingsHandler.MusicAsBraille.Checked = savedMusicBrailleState;
             listBoxTimes.Refresh();
         }
-
-        
-        private void buttonStart_Click(object sender, EventArgs e)
-        {
-
-            model.TogglePlaying(listBoxTimes.SelectedIndex);
-            //LocalizeStartStopButton(musicPlayerState);
-        }
-
-        //
-        //*************************************************************************************************
-        //
+  
 
 #region tools
 
@@ -1012,15 +974,7 @@ namespace MusicXmlReader
             }
         }
         
-        /// <summary>
-        /// Occurs when a key is pressed and the textBoxNormalTExt has focus
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void textBoxNormalText_KeyDown(object sender, KeyEventArgs e)
-        {
-        }        
-
+ 
         #endregion keyhandlers 
         //
         //*************************************************************************************************
