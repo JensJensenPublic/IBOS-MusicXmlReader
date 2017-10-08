@@ -61,9 +61,8 @@ namespace MusicXmlReaderModel
         }
     
         public override string ToString()
-        {
-            // Explicitly do not use {0}
-             return string.Format("{1}",ResourcesForModel.AccidentalMarkElement_text,LocalizeAccicdentalMark(accidentalMark)); 
+        { 
+             return string.Format("{0}",LocalizeAccicdentalMark(accidentalMark)); 
         }
     }
 }
