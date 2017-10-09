@@ -38,5 +38,21 @@ namespace PlatformDependencies
 #error Compiling for unknown platform
 #endif
         }
+
+
+        public static int GetKnownFolderPath(Guid guid, uint dwFlags, IntPtr hToken, out IntPtr ppszPath)
+        {
+#if Windows
+            return NativeMethods.SHGetKnownFolderPath(guid, dwFlags, hToken, out ppszPath);
+#elif Android
+            // Not implemented (yet)
+            ppszPath = null;
+            return -1;
+#else
+#error Compiling for unknown platform
+#endif
+        }
+
     }
+
 }

@@ -36,5 +36,11 @@ namespace PlatformDependencies
         internal static extern bool SystemParametersInfo(uint uiAction, uint uiParam, ref int param, uint fWinIni);
         #endregion
 
+        #region SHGetKnownFolderPath
+        [DllImport("Shell32.dll")]
+        internal static extern int SHGetKnownFolderPath(    [MarshalAs(UnmanagedType.LPStruct)]Guid rfid, uint dwFlags, IntPtr hToken,    out IntPtr ppszPath);
+        #endregion SHGetKnownFolderPath
+
+
     }
 }

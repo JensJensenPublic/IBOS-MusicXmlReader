@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using PlatformDependencies;
 
 // Code found at https://stackoverflow.com/questions/10667012/getting-downloads-folder-in-c
 
@@ -61,7 +62,7 @@ namespace MusicXmlReaderModel
             bool defaultUser)
         {
             IntPtr outPath;
-            int result = SHGetKnownFolderPath(new Guid(_knownFolderGuids[(int)knownFolder]),
+            int result = PlatformDependencies.StaticFunctions.GetKnownFolderPath(new Guid(_knownFolderGuids[(int)knownFolder]),
                 (uint)flags, new IntPtr(defaultUser ? -1 : 0), out outPath);
             if (result >= 0)
             {
@@ -74,10 +75,10 @@ namespace MusicXmlReaderModel
             }
         }
 
-        [DllImport("Shell32.dll")]
-        private static extern int SHGetKnownFolderPath(
-            [MarshalAs(UnmanagedType.LPStruct)]Guid rfid, uint dwFlags, IntPtr hToken,
-            out IntPtr ppszPath);
+        //[DllImport("Shell32.dll")]
+        //private static extern int SHGetKnownFolderPath(
+        //    [MarshalAs(UnmanagedType.LPStruct)]Guid rfid, uint dwFlags, IntPtr hToken,
+        //    out IntPtr ppszPath);
 
         [Flags]
         private enum KnownFolderFlags : uint
