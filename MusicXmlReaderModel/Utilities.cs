@@ -302,8 +302,14 @@ namespace MusicXmlReaderModel
                 throw new Exception("Can't find PE header");
 
             MachineType machineType = (MachineType)br.ReadUInt16();
-            br.Close();
-            fs.Close();
+
+            if (br != null)
+            {
+                br.Close();
+            }
+
+            // Calling fs.Close() or fs.Dispose() here will cause a warning !
+
             return machineType;
         }
 
