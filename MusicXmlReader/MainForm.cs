@@ -200,7 +200,7 @@ namespace MusicXmlReader
             try
             {
                 string currentCultureName = CultureInfo.CurrentUICulture.Name;
-                Logger.Log(string.Format("CultureInfo.CurrentUICulture.Name={0}", currentCultureName));
+                Logger.Log(string.Format("CultureInfo.CurrentUICulture.Name={0} ResourceFile={1}", currentCultureName, ResourcesForUI.ResourceFileName));
                 string LanguageFileName = (System.IO.Path.Combine(System.Environment.CurrentDirectory, "Language.txt"));
                 if (System.IO.File.Exists(LanguageFileName))
                 {

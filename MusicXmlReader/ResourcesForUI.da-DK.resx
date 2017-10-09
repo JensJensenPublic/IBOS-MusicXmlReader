@@ -342,4 +342,8 @@
   <data name="Status_ImportingSelectedFiles" xml:space="preserve">
     <value>Importerer udvalgte filer</value>
   </data>
+  <data name="ResourceFileName" xml:space="preserve">
+    <value>ResourcesForUI.da-DK.resx</value>
+    <comment>The name of the currently used resource file</comment>
+  </data>
 </root>

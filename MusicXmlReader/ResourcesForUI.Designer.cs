@@ -286,6 +286,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ResourcesForUI.resx.
+        /// </summary>
+        internal static string ResourceFileName {
+            get {
+                return ResourceManager.GetString("ResourceFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to file.
         /// </summary>
         internal static string Status_file {

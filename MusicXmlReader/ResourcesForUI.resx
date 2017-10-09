@@ -344,4 +344,8 @@
   <data name="Status_ImportingSelectedFiles" xml:space="preserve">
     <value>Importing selected files</value>
   </data>
+  <data name="ResourceFileName" xml:space="preserve">
+    <value>ResourcesForUI.resx</value>
+    <comment>The name of the currently used resource file</comment>
+  </data>
 </root>
