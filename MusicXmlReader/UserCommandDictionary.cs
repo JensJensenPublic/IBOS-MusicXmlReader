@@ -99,8 +99,11 @@ namespace MusicXmlReader
             }
         }
 
-
-        private static Dictionary<System.Windows.Forms.Keys, UserCommandEnum> commandDictionary;
+#warning ToDo Del op i 3 eller flere dictionaries, 1 pr control så den samme Key kan være forskellige kommandoer i forskellige controller
+        private static Dictionary<System.Windows.Forms.Keys, UserCommandEnum> noteListcommandDictionary;
+        private static Dictionary<System.Windows.Forms.Keys, UserCommandEnum> noteFiltercommandDictionary;
+        private static Dictionary<System.Windows.Forms.Keys, UserCommandEnum> detailsListcommandDictionary;
+        // private static Dictionary<System.Windows.Forms.Keys, UserCommandEnum> ???commandDictionary;
         private static Dictionary<string, System.Windows.Forms.Keys> specialKeyDictionary;
         private static Dictionary<string, System.Windows.Forms.Keys> alphabeticKeyDictionary;
 
@@ -144,47 +147,47 @@ namespace MusicXmlReader
             alphabeticKeyDictionary.Add("1", Keys.D1);
 
             // We recognize the following commands from the user
-            commandDictionary = new Dictionary<System.Windows.Forms.Keys, UserCommandEnum>(40);  // Never more than 40 members
+            noteListcommandDictionary = new Dictionary<System.Windows.Forms.Keys, UserCommandEnum>(40);  // Never more than 40 members
             // For controlling the NoteList
-            commandDictionary.Add(Keys.Left, UserCommandEnum.PreviousEvent);    // No localization needed
-            commandDictionary.Add(Keys.Right, UserCommandEnum.NextEvent);       // No localization needed
-            commandDictionary.Add(Keys.Left  | Keys.Control, UserCommandEnum.PreviousMeasure);
-            commandDictionary.Add(Keys.Right | Keys.Control, UserCommandEnum.NextMeasure);
-            commandDictionary.Add(GetKeys("CONTROL+L"), UserCommandEnum.GotoNoteList);      // May be localized if desired!
-            commandDictionary.Add(GetKeys("CONTROL+P"), UserCommandEnum.StartPlaying);      // May be localized if desired!
-            commandDictionary.Add(GetKeys("CONTROL+SHIFT+P"), UserCommandEnum.StopPlaying); // May be localized if desired!
-            commandDictionary.Add(Keys.Space, UserCommandEnum.Toggle); // Either PlayState or Checkboxvalue
-            commandDictionary.Add(GetKeys("CONTROL+T"), UserCommandEnum.TempoChange);       // May be localized if desired! // Takes parameters 
-            commandDictionary.Add(GetKeys("CONTROL+R"), UserCommandEnum.Repeat);            // May be localized if desired! // Takes parameters  
-            commandDictionary.Add(GetKeys("CONTROL+G"), UserCommandEnum.Goto);              // May be localized if desired! // Takes parameters 
+            noteListcommandDictionary.Add(Keys.Left, UserCommandEnum.PreviousEvent);    // No localization needed
+            noteListcommandDictionary.Add(Keys.Right, UserCommandEnum.NextEvent);       // No localization needed
+            noteListcommandDictionary.Add(Keys.Left  | Keys.Control, UserCommandEnum.PreviousMeasure);
+            noteListcommandDictionary.Add(Keys.Right | Keys.Control, UserCommandEnum.NextMeasure);
+            noteListcommandDictionary.Add(GetKeys("CONTROL+L"), UserCommandEnum.GotoNoteList);      // May be localized if desired!
+            noteListcommandDictionary.Add(GetKeys("CONTROL+P"), UserCommandEnum.StartPlaying);      // May be localized if desired!
+            noteListcommandDictionary.Add(GetKeys("CONTROL+SHIFT+P"), UserCommandEnum.StopPlaying); // May be localized if desired!
+            noteListcommandDictionary.Add(Keys.Space, UserCommandEnum.Toggle); // Either PlayState or Checkboxvalue
+            noteListcommandDictionary.Add(GetKeys("CONTROL+T"), UserCommandEnum.TempoChange);       // May be localized if desired! // Takes parameters 
+            noteListcommandDictionary.Add(GetKeys("CONTROL+R"), UserCommandEnum.Repeat);            // May be localized if desired! // Takes parameters  
+            noteListcommandDictionary.Add(GetKeys("CONTROL+G"), UserCommandEnum.Goto);              // May be localized if desired! // Takes parameters 
             // For controlling the NoteFilter
-            commandDictionary.Add(GetKeys("ALT+A"), UserCommandEnum.FilterNotesAll);        // May be localized if desired!
-            commandDictionary.Add(GetKeys("ALT+F"), UserCommandEnum.FilterNotes);           // May be localized if desired!
-            commandDictionary.Add(GetKeys("ALT+M"), UserCommandEnum.FilterNotesForMusic);   // May be localized if desired!
-            commandDictionary.Add(GetKeys("ALT+T"), UserCommandEnum.FilterNotesForText);    // May be localized if desired!
-            commandDictionary.Add(GetKeys("ALT+B"), UserCommandEnum.FilterNotesForBraille); // May be localized if desired!
-            commandDictionary.Add(GetKeys("ALT+S"), UserCommandEnum.FilterNotesForParts);   // May be localized if desired!  // Stemmer / Parts
+            noteListcommandDictionary.Add(GetKeys("ALT+A"), UserCommandEnum.FilterNotesAll);        // May be localized if desired!
+            noteListcommandDictionary.Add(GetKeys("ALT+F"), UserCommandEnum.FilterNotes);           // May be localized if desired!
+            noteListcommandDictionary.Add(GetKeys("ALT+M"), UserCommandEnum.FilterNotesForMusic);   // May be localized if desired!
+            noteListcommandDictionary.Add(GetKeys("ALT+T"), UserCommandEnum.FilterNotesForText);    // May be localized if desired!
+            noteListcommandDictionary.Add(GetKeys("ALT+B"), UserCommandEnum.FilterNotesForBraille); // May be localized if desired!
+            noteListcommandDictionary.Add(GetKeys("ALT+S"), UserCommandEnum.FilterNotesForParts);   // May be localized if desired!  // Stemmer / Parts
             // commandDictionary.Add(Keys.Space,       UserCommandEnum.FilterNotesToggle);  
-            commandDictionary.Add(GetKeys("ALT+0"), UserCommandEnum.FilterNotesOff);        // May be localized if desired!
-            commandDictionary.Add(GetKeys("ALT+1"), UserCommandEnum.FilterNotesOn);         // May be localized if desired!
+            noteListcommandDictionary.Add(GetKeys("ALT+0"), UserCommandEnum.FilterNotesOff);        // May be localized if desired!
+            noteListcommandDictionary.Add(GetKeys("ALT+1"), UserCommandEnum.FilterNotesOn);         // May be localized if desired!
 
             // For controlling tempo
-            commandDictionary.Add(Keys.Alt | Keys.PageUp, UserCommandEnum.TempoUp);
-            commandDictionary.Add(Keys.Alt | Keys.PageDown, UserCommandEnum.TempoDown);
+            noteListcommandDictionary.Add(Keys.Alt | Keys.PageUp, UserCommandEnum.TempoUp);
+            noteListcommandDictionary.Add(Keys.Alt | Keys.PageDown, UserCommandEnum.TempoDown);
 
             // To start viewing details or viewing details
-            commandDictionary.Add(Keys.Up, UserCommandEnum.Up);
-            commandDictionary.Add(Keys.Down, UserCommandEnum.Down);
-            commandDictionary.Add(Keys.Control | Keys.Up, UserCommandEnum.TopPart);
-            commandDictionary.Add(Keys.Control | Keys.Down, UserCommandEnum.BottomPart);
-            commandDictionary.Add(GetKeys("CONTROL+I"), UserCommandEnum.FirstInstrument); // Later: ResourcesForUI.UserCommandFirstInstrument 
+            noteListcommandDictionary.Add(Keys.Up, UserCommandEnum.Up);
+            noteListcommandDictionary.Add(Keys.Down, UserCommandEnum.Down);
+            noteListcommandDictionary.Add(Keys.Control | Keys.Up, UserCommandEnum.TopPart);
+            noteListcommandDictionary.Add(Keys.Control | Keys.Down, UserCommandEnum.BottomPart);
+            noteListcommandDictionary.Add(GetKeys("CONTROL+I"), UserCommandEnum.FirstInstrument); // Later: ResourcesForUI.UserCommandFirstInstrument 
         }
 
         public UserCommandEnum Lookup(Keys keys)
         {
             string functionName = "Lookup";
             UserCommandEnum result = UserCommandEnum.Unknown;
-            commandDictionary.TryGetValue(keys,out result);
+            noteListcommandDictionary.TryGetValue(keys,out result);
             Logger.Log(string.Format("{0}.{1}({2}) returned {3}", className, functionName, keys, result));
             return result;
         }

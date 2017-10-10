@@ -575,7 +575,7 @@ namespace MusicXmlReaderModel
 
         private void PlayerThreadStartPoly()
         {
-            PlayerThreadStart(objects);
+             PlayerThreadStart(objects);
 
         }
 
@@ -761,7 +761,16 @@ namespace MusicXmlReaderModel
             string functionName = "StartPlaying";
             Logger.Log(string.Format("{0}.{1}(Parts={2},StartIndex={3})", className, functionName, numberOfParts, startIndex));
 
-            if (musicPlayerThreadState == MusicPlayerThreadStateEnum.running) return false;
+            if (musicPlayerThreadState == MusicPlayerThreadStateEnum.running)
+            {
+                Logger.Log(string.Format("{0}.{1} failed because musicPlayerThreadState={2}", className, functionName, musicPlayerThreadState));
+                return false;
+            }
+             if (numberOfParts < 1)
+            {
+                Logger.Log(string.Format("{0}.{1} failed because numberOfParts={2}", className, functionName, numberOfParts));
+                return false;
+            }
             this.startIndex = startIndex;
             this.numberOfParts = numberOfParts;
             playerThreadId = (playerThreadId + 1) % 1000; // No silly overrun
