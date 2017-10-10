@@ -422,6 +422,8 @@ namespace MusicXmlReader
             textBoxStatusInformation.Refresh();
             userSettingsTreeView.CollapseAll();
             userSettingsTreeView.Refresh();
+            textBoxNormalText.Clear();
+            textBoxNormalText.Refresh();
             this.Text = applicationName; // Remove the name of the previously loaded MusicXml file from the title line
         }
 
