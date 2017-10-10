@@ -87,6 +87,8 @@ namespace MusicXmlReader
                 // shortCutHandler = ShortcutHandler.Create(this, model);
                 commandInterpreter = UserCommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
                 LoadIcon();
+                // UserCommandDictionary.Init(); 
+
                 // throw (new Exception("For test only")); // Insert this line to test the Last Resort handler below
             }
             catch (Exception e)

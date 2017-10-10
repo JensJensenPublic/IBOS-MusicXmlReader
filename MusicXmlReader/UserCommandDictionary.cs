@@ -18,7 +18,7 @@ namespace MusicXmlReader
     /// </summary>
     public class UserCommandDictionary
     {
-        private string className = "UserCommandDictionary";
+        private static string className = "UserCommandDictionary";
 
         public enum UserCommandEnum
         {
@@ -69,7 +69,7 @@ namespace MusicXmlReader
         /// </summary>
         /// <param name="licalizedInput"></param>
         /// <returns></returns>
-        private Keys GetKeys(string localizedInput)
+        private static Keys GetKeys(string localizedInput)
         {
             string functionName = "GetKeys";
             char[] separators = new char[]{ '+' };
@@ -94,7 +94,7 @@ namespace MusicXmlReader
                     }
                     return result; 
                 default:
-                    Logger.Log(string.Format("{0}.{1} Unexpected input= '{2}'", className, functionName, localizedInput);
+                    Logger.Log(string.Format("{0}.{1} Unexpected input= '{2}'", className, functionName, localizedInput));
                     return Keys.None;
             }
         }
@@ -104,16 +104,16 @@ namespace MusicXmlReader
         private static Dictionary<string, System.Windows.Forms.Keys> specialKeyDictionary;
         private static Dictionary<string, System.Windows.Forms.Keys> alphabeticKeyDictionary;
 
-        public void Init()
+        public static void Init()
         {         
             // We recognize the following special keys
-            specialKeyDictionary = new Dictionary<string, System.Windows.Forms.Keys>();
+            specialKeyDictionary = new Dictionary<string, System.Windows.Forms.Keys>(3); // Never more than these 3 members
             specialKeyDictionary.Add("CONTROL", Keys.Control);  // May be localized if desired!
-            specialKeyDictionary.Add("ALT", Keys.Control);      // May be localized if desired!
-            specialKeyDictionary.Add("SHIFT", Keys.Control);    // May be localized if desired!
+            specialKeyDictionary.Add("ALT", Keys.Alt);      // May be localized if desired!
+            specialKeyDictionary.Add("SHIFT", Keys.Shift);    // May be localized if desired!
 
             // We recognize the following alphabetic keys
-            alphabeticKeyDictionary = new Dictionary<string, System.Windows.Forms.Keys>();
+            alphabeticKeyDictionary = new Dictionary<string, System.Windows.Forms.Keys>(40);  // Never more than 40 members
             alphabeticKeyDictionary.Add("A", Keys.A);
             alphabeticKeyDictionary.Add("B", Keys.B);
             alphabeticKeyDictionary.Add("C", Keys.C);
@@ -140,9 +140,11 @@ namespace MusicXmlReader
             alphabeticKeyDictionary.Add("X", Keys.X);
             alphabeticKeyDictionary.Add("Y", Keys.Y);
             alphabeticKeyDictionary.Add("Z", Keys.Z);
+            alphabeticKeyDictionary.Add("0", Keys.D0);
+            alphabeticKeyDictionary.Add("1", Keys.D1);
 
             // We recognize the following commands from the user
-            commandDictionary = new Dictionary<System.Windows.Forms.Keys, UserCommandEnum>();
+            commandDictionary = new Dictionary<System.Windows.Forms.Keys, UserCommandEnum>(40);  // Never more than 40 members
             // For controlling the NoteList
             commandDictionary.Add(Keys.Left, UserCommandEnum.PreviousEvent);    // No localization needed
             commandDictionary.Add(Keys.Right, UserCommandEnum.NextEvent);       // No localization needed
@@ -162,7 +164,7 @@ namespace MusicXmlReader
             commandDictionary.Add(GetKeys("ALT+T"), UserCommandEnum.FilterNotesForText);    // May be localized if desired!
             commandDictionary.Add(GetKeys("ALT+B"), UserCommandEnum.FilterNotesForBraille); // May be localized if desired!
             commandDictionary.Add(GetKeys("ALT+S"), UserCommandEnum.FilterNotesForParts);   // May be localized if desired!  // Stemmer / Parts
-            commandDictionary.Add(Keys.Space,       UserCommandEnum.FilterNotesToggle);  
+            // commandDictionary.Add(Keys.Space,       UserCommandEnum.FilterNotesToggle);  
             commandDictionary.Add(GetKeys("ALT+0"), UserCommandEnum.FilterNotesOff);        // May be localized if desired!
             commandDictionary.Add(GetKeys("ALT+1"), UserCommandEnum.FilterNotesOn);         // May be localized if desired!
 
