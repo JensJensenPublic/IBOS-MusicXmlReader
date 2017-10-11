@@ -56,10 +56,12 @@ namespace MusicXmlReader
             FilterNotesToggle,
             FilterNotesOff,
             FilterNotesOn,
-            Up,
-            Down,
+            DetailsUp,
+            DetailsDown,
             TopPart,
-            BottomPart
+            BottomPart,
+            TopOfChord,
+            ChordName
         };
 
 
@@ -100,6 +102,7 @@ namespace MusicXmlReader
         }
 
 #warning ToDo Del op i 3 eller flere dictionaries, 1 pr control så den samme Key kan være forskellige kommandoer i forskellige controller
+        private static Dictionary<UserCommandEnum, System.Windows.Forms.Keys> commandDictionary; // Map from Command to key
         private static Dictionary<System.Windows.Forms.Keys, UserCommandEnum> noteListcommandDictionary;
         private static Dictionary<System.Windows.Forms.Keys, UserCommandEnum> noteFiltercommandDictionary;
         private static Dictionary<System.Windows.Forms.Keys, UserCommandEnum> detailsListcommandDictionary;
@@ -147,43 +150,68 @@ namespace MusicXmlReader
             alphabeticKeyDictionary.Add("1", Keys.D1);
 
             // We recognize the following commands from the user
-            noteListcommandDictionary = new Dictionary<System.Windows.Forms.Keys, UserCommandEnum>(40);  // Never more than 40 members
+            commandDictionary = new Dictionary<UserCommandEnum,System.Windows.Forms.Keys>(40);  // Never more than 40 members
             // For controlling the NoteList
-            noteListcommandDictionary.Add(Keys.Left, UserCommandEnum.PreviousEvent);    // No localization needed
-            noteListcommandDictionary.Add(Keys.Right, UserCommandEnum.NextEvent);       // No localization needed
-            noteListcommandDictionary.Add(Keys.Left  | Keys.Control, UserCommandEnum.PreviousMeasure);
-            noteListcommandDictionary.Add(Keys.Right | Keys.Control, UserCommandEnum.NextMeasure);
-            noteListcommandDictionary.Add(GetKeys("CONTROL+L"), UserCommandEnum.GotoNoteList);      // May be localized if desired!
-            noteListcommandDictionary.Add(GetKeys("CONTROL+P"), UserCommandEnum.StartPlaying);      // May be localized if desired!
-            noteListcommandDictionary.Add(GetKeys("CONTROL+SHIFT+P"), UserCommandEnum.StopPlaying); // May be localized if desired!
-            noteListcommandDictionary.Add(Keys.Space, UserCommandEnum.Toggle); // Either PlayState or Checkboxvalue
-            noteListcommandDictionary.Add(GetKeys("CONTROL+T"), UserCommandEnum.TempoChange);       // May be localized if desired! // Takes parameters 
-            noteListcommandDictionary.Add(GetKeys("CONTROL+R"), UserCommandEnum.Repeat);            // May be localized if desired! // Takes parameters  
-            noteListcommandDictionary.Add(GetKeys("CONTROL+G"), UserCommandEnum.Goto);              // May be localized if desired! // Takes parameters 
+            commandDictionary.Add(UserCommandEnum.PreviousEvent,        Keys.Left );                // No localization needed
+            commandDictionary.Add(UserCommandEnum.NextEvent,            Keys.Right );               // No localization needed
+            commandDictionary.Add(UserCommandEnum.PreviousMeasure,      Keys.Left  | Keys.Control);
+            commandDictionary.Add(UserCommandEnum.NextMeasure,          Keys.Right | Keys.Control);
+            commandDictionary.Add(UserCommandEnum.GotoNoteList,         GetKeys("CONTROL+L"));      // May be localized if desired!
+            commandDictionary.Add(UserCommandEnum.StartPlaying,         GetKeys("CONTROL+P"));      // May be localized if desired!
+            commandDictionary.Add(UserCommandEnum.StopPlaying,          GetKeys("CONTROL+SHIFT+P")); // May be localized if desired!
+            commandDictionary.Add(UserCommandEnum.Toggle,               Keys.Space);                // Either PlayState 
+            commandDictionary.Add(UserCommandEnum.TempoChange,          GetKeys("CONTROL+T"));       // May be localized if desired! // Takes parameters 
+            commandDictionary.Add(UserCommandEnum.Repeat,               GetKeys("CONTROL+R"));            // May be localized if desired! // Takes parameters  
+            commandDictionary.Add(UserCommandEnum.Goto,                 GetKeys("CONTROL+G"));              // May be localized if desired! // Takes parameters 
             // For controlling the NoteFilter
-            noteListcommandDictionary.Add(GetKeys("ALT+A"), UserCommandEnum.FilterNotesAll);        // May be localized if desired!
-            noteListcommandDictionary.Add(GetKeys("ALT+F"), UserCommandEnum.FilterNotes);           // May be localized if desired!
-            noteListcommandDictionary.Add(GetKeys("ALT+M"), UserCommandEnum.FilterNotesForMusic);   // May be localized if desired!
-            noteListcommandDictionary.Add(GetKeys("ALT+T"), UserCommandEnum.FilterNotesForText);    // May be localized if desired!
-            noteListcommandDictionary.Add(GetKeys("ALT+B"), UserCommandEnum.FilterNotesForBraille); // May be localized if desired!
-            noteListcommandDictionary.Add(GetKeys("ALT+S"), UserCommandEnum.FilterNotesForParts);   // May be localized if desired!  // Stemmer / Parts
-            // commandDictionary.Add(Keys.Space,       UserCommandEnum.FilterNotesToggle);  
-            noteListcommandDictionary.Add(GetKeys("ALT+0"), UserCommandEnum.FilterNotesOff);        // May be localized if desired!
-            noteListcommandDictionary.Add(GetKeys("ALT+1"), UserCommandEnum.FilterNotesOn);         // May be localized if desired!
+            commandDictionary.Add(UserCommandEnum.FilterNotesAll,       GetKeys("ALT+A"));        // May be localized if desired!
+            commandDictionary.Add(UserCommandEnum.FilterNotes,          GetKeys("ALT+F"));           // May be localized if desired!
+            commandDictionary.Add(UserCommandEnum.FilterNotesForMusic,  GetKeys("ALT+M"));   // May be localized if desired!
+            commandDictionary.Add(UserCommandEnum.FilterNotesForText,   GetKeys("ALT+T"));    // May be localized if desired!
+            commandDictionary.Add(UserCommandEnum.FilterNotesForBraille,GetKeys("ALT+B")); // May be localized if desired!
+            commandDictionary.Add(UserCommandEnum.FilterNotesForParts,  GetKeys("ALT+S"));   // May be localized if desired!  // Stemmer / Parts
+            commandDictionary.Add(UserCommandEnum.FilterNotesToggle,    Keys.Space      );  // Toggle checkbox
+            commandDictionary.Add(UserCommandEnum.FilterNotesOff,       GetKeys("ALT+0"));        // May be localized if desired!
+            commandDictionary.Add(UserCommandEnum.FilterNotesOn,        GetKeys("ALT+1"));         // May be localized if desired!
 
             // For controlling tempo
-            noteListcommandDictionary.Add(Keys.Alt | Keys.PageUp, UserCommandEnum.TempoUp);
-            noteListcommandDictionary.Add(Keys.Alt | Keys.PageDown, UserCommandEnum.TempoDown);
+            commandDictionary.Add(UserCommandEnum.TempoUp,              Keys.Alt | Keys.PageUp);
+            commandDictionary.Add(UserCommandEnum.TempoDown,            Keys.Alt | Keys.PageDown);
 
-            // To start viewing details or viewing details
-            noteListcommandDictionary.Add(Keys.Up, UserCommandEnum.Up);
-            noteListcommandDictionary.Add(Keys.Down, UserCommandEnum.Down);
-            noteListcommandDictionary.Add(Keys.Control | Keys.Up, UserCommandEnum.TopPart);
-            noteListcommandDictionary.Add(Keys.Control | Keys.Down, UserCommandEnum.BottomPart);
-            noteListcommandDictionary.Add(GetKeys("CONTROL+I"), UserCommandEnum.FirstInstrument); // Later: ResourcesForUI.UserCommandFirstInstrument 
+            // While viewing details
+            commandDictionary.Add(UserCommandEnum.DetailsUp,            Keys.Up);
+            commandDictionary.Add(UserCommandEnum.DetailsDown,          Keys.Down);
+
+            // To start viewing details
+            commandDictionary.Add(UserCommandEnum.TopOfChord,           Keys.Control | Keys.Up);
+            commandDictionary.Add(UserCommandEnum.ChordName,            Keys.Control | Keys.Down);
+            commandDictionary.Add(UserCommandEnum.FirstPart,            Keys.Control | Keys.Up);
+            commandDictionary.Add(UserCommandEnum.LastPart,             Keys.Control | Keys.Down);
+            commandDictionary.Add(UserCommandEnum.FirstInstrument,      GetKeys("CONTROL+I")); // Later: ResourcesForUI.UserCommandFirstInstrument 
+
+
+            // The following commands are accepted by the noteList:
+            noteListcommandDictionary = new Dictionary<System.Windows.Forms.Keys, UserCommandEnum>(); // The following commands are accepted by the noteList:
+            Add(noteListcommandDictionary, UserCommandEnum.PreviousEvent);
+            Add(noteListcommandDictionary, UserCommandEnum.NextEvent);
+
+
+            // The following commands are accepted by the detailList:
+
+
+            // The following commands are accepted by the filterTree:
+
         }
 
-        public UserCommandEnum Lookup(Keys keys)
+        private static void Add(Dictionary<System.Windows.Forms.Keys, UserCommandEnum> directory, UserCommandEnum command)
+        {
+            Keys keys = Keys.None;
+            commandDictionary.TryGetValue(command, out keys);
+            directory.Add(keys, command); 
+        }
+
+
+        public UserCommandEnum LookupInNoteList(Keys keys)
         {
             string functionName = "Lookup";
             UserCommandEnum result = UserCommandEnum.Unknown;
