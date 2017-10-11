@@ -102,15 +102,15 @@ namespace MusicXmlReader
             // The following special keyboard shortcuts can be used in connection with the node filter
             AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteFilter);
-            AddLine(Combine(Plus(control, "A"), ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter));
-            AddLine(Combine(Plus(control, "F"), ResourcesForHelp.Shortcut_EditNoteFilter));
-            AddLine(Combine(Plus(control, "M"), ResourcesForHelp.Shortcut_EditMusicPlaying));
-            AddLine(Combine(Plus(control, "T"), ResourcesForHelp.Shortcut_EditText));
-            AddLine(Combine(Plus(control, "B"), ResourcesForHelp.Shortcut_EditMusicBraille));
-            AddLine(Combine(Plus(control, "S"), ResourcesForHelp.Shortcut_EditVoices));
+            AddLine(Combine(Plus(alt, "A"), ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter));
+            AddLine(Combine(Plus(alt, "F"), ResourcesForHelp.Shortcut_EditNoteFilter));
+            AddLine(Combine(Plus(alt, "M"), ResourcesForHelp.Shortcut_EditMusicPlaying));
+            AddLine(Combine(Plus(alt, "T"), ResourcesForHelp.Shortcut_EditText));
+            AddLine(Combine(Plus(alt, "B"), ResourcesForHelp.Shortcut_EditMusicBraille));
+            AddLine(Combine(Plus(alt, "S"), ResourcesForHelp.Shortcut_EditVoices));
             AddLine(Combine(space, ResourcesForHelp.Shortcut_ToggleValue));
-            AddLine(Combine(Plus(control, "0"), ResourcesForHelp.Shortcut_TurnOffGlobally));
-            AddLine(Combine(Plus(control, "1"), ResourcesForHelp.Shurtcut_TurnOnGlobally));
+            AddLine(Combine(Plus(alt, "0"), ResourcesForHelp.Shortcut_TurnOffGlobally));
+            AddLine(Combine(Plus(alt, "1"), ResourcesForHelp.Shurtcut_TurnOnGlobally));
 
 
             // Følgende specielle tastaturgenveje kan bruges i forbindelse med styring af afspilingshastighed

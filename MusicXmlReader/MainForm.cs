@@ -967,7 +967,7 @@ namespace MusicXmlReader
             {
                 case ShortcutHandler.uncheckAll:     e.Handled = UpdateCheckBoxes(CheckboxOperation.Uncheck); break;
                 case ShortcutHandler.checkAll:       e.Handled = UpdateCheckBoxes(CheckboxOperation.Check); break;
-                case ShortcutHandler.toggleAndCopy:  e.Handled = UpdateCheckBoxes(CheckboxOperation.ToggleAndCopy); break;
+//                case ShortcutHandler.toggleAndCopy:  e.Handled = UpdateCheckBoxes(CheckboxOperation.ToggleAndCopy); break; // Removed, undocumented feature
                 default: break;
             }
         }

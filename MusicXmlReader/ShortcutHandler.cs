@@ -132,13 +132,13 @@ namespace MusicXmlReader
         public const Keys exitApplication =     Keys.Alt | Keys.F4;
 
         // EditToolStripMenuItem:
-        public const Keys editAllItems =    Keys.Control | Keys.A; // Expand all items and select tree root
-        public const Keys editItems =       Keys.Control | Keys.F; // Focus, but keep expansion and selection
-        public const Keys editMusic =       Keys.Control | Keys.M; // Expand Music and selest Music tree
-        public const Keys editText =        Keys.Control | Keys.T; // Expand Text and selest Text tree
-        public const Keys editBraille =     Keys.Control | Keys.B; // Expand Braille and selest Braille tree
-        public const Keys editParts =       Keys.Control | Keys.S; // Expand Parts and selest Music Parts
-        public const Keys editDetails =     Keys.Control | Keys.D; // Expand Detail and select Music Details
+        public const Keys editAllItems =    Keys.Alt | Keys.A; // Expand all items and select tree root
+        public const Keys editItems =       Keys.Alt | Keys.F; // Focus, but keep expansion and selection
+        public const Keys editMusic =       Keys.Alt | Keys.M; // Expand Music and selest Music tree
+        public const Keys editText =        Keys.Alt | Keys.T; // Expand Text and selest Text tree
+        public const Keys editBraille =     Keys.Alt | Keys.B; // Expand Braille and selest Braille tree
+        public const Keys editParts =       Keys.Alt | Keys.S; // Expand Parts and selest Music Parts
+        public const Keys editDetails =     Keys.Alt | Keys.D; // Expand Detail and select Music Details
 
 
         // ViewToolStripMenuItem: 
@@ -160,9 +160,9 @@ namespace MusicXmlReader
 
 
         // UserSettingsTreeview:
-        public const Keys checkAll   =      Keys.Control | Keys.D1;
-        public const Keys uncheckAll =      Keys.Control | Keys.D0;
-        public const Keys toggleAndCopy =   Keys.Control | Keys.Space;
+        public const Keys checkAll   =      Keys.Alt | Keys.D1;
+        public const Keys uncheckAll =      Keys.Alt | Keys.D0;
+        //public const Keys toggleAndCopy =   Keys.Control | Keys.Space;
 
         public const Keys listBoxFocus =    Keys.Control | Keys.L;
 
