@@ -30,16 +30,16 @@ namespace MusicXmlReader
 
 
         /// <summary>
-        /// Convert to chars A..Z or digits 0 .. 9
+        /// Convert to chars CONTROL+A..CONTROL+Z or digits 0 .. 9
         /// </summary>
         /// <param name="keys"></param>
         /// <returns></returns>
         private string KeyToString(Keys keys)
         {
             int key = (int)keys;
-            if (((int)Keys.A <= key) && (key <= (int)Keys.Z))
+            if (((int)(Keys.A |Keys.Control)<= key) && (key <= (int)(Keys.Z | Keys.Control)))
             {
-                int c = (int)'A' + key - (int)Keys.A ;
+                int c = (int)'A' + key - (int)(Keys.A |Keys.Control) ;
                 return ((char)c).ToString();
             }
 
