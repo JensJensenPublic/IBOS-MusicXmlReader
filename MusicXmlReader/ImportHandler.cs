@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 using MusicXmlReaderModel;
 
 namespace MusicXmlReader
@@ -32,7 +33,7 @@ namespace MusicXmlReader
         {
             if (1 == fileNames.Count)
             {
-                return string.Format("{0} {1}", ResourcesForUI.Status_Imported, fileNames[0]); // Exactly one file: Show the name: "Copied Stardust.xml"   
+                return string.Format("{0} {1}", ResourcesForUI.Status_Imported, Path.GetFileNameWithoutExtension(fileNames[0])); // Exactly one file: Show the name: "Copied Stardust.xml"   
             }
             else
             {
@@ -46,14 +47,17 @@ namespace MusicXmlReader
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(message);
             sb.AppendLine();
-            for (int i = 0; (i < maxCount) && (i < fileNames.Count); i++)
+            if (fileNames.Count > 1) // If exactly 1 file was imported it was listed in the caption. No need to repeat it here !
             {
-                sb.AppendLine(fileNames[i]);
-            }
+                for (int i = 0; (i < maxCount) && (i < fileNames.Count); i++)
+                {
+                    sb.AppendLine(Path.GetFileNameWithoutExtension(fileNames[i])); // Hide the extension
+                }
 
-            if (fileNames.Count >= maxCount)
-            {
-                sb.AppendLine("..."); // Localize later if wanted !
+                if (fileNames.Count >= maxCount)
+                {
+                    sb.AppendLine("..."); // Localize later if wanted !
+                }
             }
             MessageBox.Show(sb.ToString(), mainForm.ApplicationName, MessageBoxButtons.OK);
         }
