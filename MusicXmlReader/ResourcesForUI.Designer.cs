@@ -448,7 +448,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Import newest downloads.
+        ///   Looks up a localized string similar to &amp;Import todays downloads.
         /// </summary>
         internal static string ToolStripMenuItem_Files_ImportNewestDownloads {
             get {

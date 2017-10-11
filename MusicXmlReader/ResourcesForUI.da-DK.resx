@@ -307,7 +307,7 @@
     <value>Importerede</value>
   </data>
   <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
-    <value>&amp;Importer nyeste overførsler</value>
+    <value>&amp;Importer dagens overførsler</value>
   </data>
   <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
     <value>Importer nyeste eksempler</value>
