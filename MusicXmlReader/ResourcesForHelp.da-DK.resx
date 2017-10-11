@@ -261,4 +261,10 @@
   <data name="Shortcut_PreviousPart" xml:space="preserve">
     <value>Vælg foregående stemme</value>
   </data>
+  <data name="Shortcut_NextMeasure" xml:space="preserve">
+    <value>Vælg næste takt</value>
+  </data>
+  <data name="Shortcut_PreviousMeasure" xml:space="preserve">
+    <value>Vælg foregående takt</value>
+  </data>
 </root>

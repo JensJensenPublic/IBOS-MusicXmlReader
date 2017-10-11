@@ -336,7 +336,7 @@
     <value>Unsupported file format</value>
   </data>
   <data name="DirectoryNames_Downloads" xml:space="preserve">
-    <value>Downloads</value>
+    <value>MusicXml downloads</value>
   </data>
   <data name="Status_ImportingSampleFiles" xml:space="preserve">
     <value>Importing sample files</value>

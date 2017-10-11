@@ -304,6 +304,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select next measure.
+        /// </summary>
+        internal static string Shortcut_NextMeasure {
+            get {
+                return ResourceManager.GetString("Shortcut_NextMeasure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select next part.
         /// </summary>
         internal static string Shortcut_NextPart {
@@ -327,6 +336,15 @@ namespace MusicXmlReader {
         internal static string Shortcut_PreviousLine {
             get {
                 return ResourceManager.GetString("Shortcut_PreviousLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select previous measure.
+        /// </summary>
+        internal static string Shortcut_PreviousMeasure {
+            get {
+                return ResourceManager.GetString("Shortcut_PreviousMeasure", resourceCulture);
             }
         }
         

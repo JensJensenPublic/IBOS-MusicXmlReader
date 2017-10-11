@@ -261,4 +261,10 @@
   <data name="Shortcut_PreviousPart" xml:space="preserve">
     <value>Select previous part</value>
   </data>
+  <data name="Shortcut_NextMeasure" xml:space="preserve">
+    <value>Select next measure</value>
+  </data>
+  <data name="Shortcut_PreviousMeasure" xml:space="preserve">
+    <value>Select previous measure</value>
+  </data>
 </root>

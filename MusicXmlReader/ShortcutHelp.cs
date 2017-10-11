@@ -83,8 +83,10 @@ namespace MusicXmlReader
             // The following special keyboard skortcuts and commands can be used in connection with the note list
             AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteList);
-            AddLine(Combine(arrowLeft, ResourcesForHelp.Shortcut_PreviousLine)); 
+            AddLine(Combine(arrowLeft, ResourcesForHelp.Shortcut_PreviousLine));
             AddLine(Combine(arrowRight, ResourcesForHelp.Shortcut_NextLine));
+            AddLine(Combine(Plus(control,arrowLeft), ResourcesForHelp.Shortcut_PreviousMeasure)); 
+            AddLine(Combine(Plus(control,arrowRight), ResourcesForHelp.Shortcut_NextMeasure)); 
             //AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_NextPart));   // Description has been moved to the description of the  detail list
             //AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_PreviousPart)); // Description has been moved to the description of the  detail list
             AddLine(Combine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList));

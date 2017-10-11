@@ -79,7 +79,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Downloads.
+        ///   Looks up a localized string similar to MusicXml downloads.
         /// </summary>
         internal static string DirectoryNames_Downloads {
             get {
