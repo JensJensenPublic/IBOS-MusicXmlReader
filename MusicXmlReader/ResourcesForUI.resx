@@ -348,4 +348,7 @@
     <value>ResourcesForUI.resx</value>
     <comment>The name of the currently used resource file</comment>
   </data>
+  <data name="SelectFileDialog_Title" xml:space="preserve">
+    <value>Select downloaded files for import</value>
+  </data>
 </root>

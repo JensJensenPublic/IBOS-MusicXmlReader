@@ -295,6 +295,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select downloaded files for import.
+        /// </summary>
+        internal static string SelectFileDialog_Title {
+            get {
+                return ResourceManager.GetString("SelectFileDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to file.
         /// </summary>
         internal static string Status_file {

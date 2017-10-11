@@ -81,6 +81,7 @@ namespace MusicXmlReader
         {
             string functionName = "SelectFilesForImport";
             List<string> fileNameList = new List<string>();
+            openFileDialog.Title = ResourcesForUI.SelectFileDialog_Title;
             openFileDialog.InitialDirectory = KnownFolders.GetPath(KnownFolder.Downloads, false); // defaultuser = false: Get the path to the current user.
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.xml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files  

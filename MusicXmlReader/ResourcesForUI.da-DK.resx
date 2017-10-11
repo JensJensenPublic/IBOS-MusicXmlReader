@@ -346,4 +346,7 @@
     <value>ResourcesForUI.da-DK.resx</value>
     <comment>The name of the currently used resource file</comment>
   </data>
+  <data name="SelectFileDialog_Title" xml:space="preserve">
+    <value>Udvælg overførte filer til import</value>
+  </data>
 </root>
