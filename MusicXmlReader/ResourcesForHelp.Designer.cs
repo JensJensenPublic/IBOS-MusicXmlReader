@@ -115,6 +115,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shortcuts used for controlling the tempo.
+        /// </summary>
+        internal static string Shortcut_Caption_Tempo {
+            get {
+                return ResourceManager.GetString("Shortcut_Caption_Tempo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Standard Windows / JAWS shortcuts.
         /// </summary>
         internal static string shortcut_Caption_Windows_JAWS {
@@ -129,6 +138,15 @@ namespace MusicXmlReader {
         internal static string Shortcut_CloseProgram {
             get {
                 return ResourceManager.GetString("Shortcut_CloseProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decrease tempo.
+        /// </summary>
+        internal static string Shortcut_DecreaseTempo {
+            get {
+                return ResourceManager.GetString("Shortcut_DecreaseTempo", resourceCulture);
             }
         }
         
@@ -205,6 +223,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Increase tempo.
+        /// </summary>
+        internal static string Shortcut_IncreaseTempo {
+            get {
+                return ResourceManager.GetString("Shortcut_IncreaseTempo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ALT.
         /// </summary>
         internal static string shortcut_Key_alt {
@@ -252,9 +279,18 @@ namespace MusicXmlReader {
         /// <summary>
         ///   Looks up a localized string similar to PAGEDOWN.
         /// </summary>
-        internal static string shortcut_Key_pageDown {
+        internal static string Shortcut_Key_pageDown {
             get {
-                return ResourceManager.GetString("shortcut_Key_pageDown", resourceCulture);
+                return ResourceManager.GetString("Shortcut_Key_pageDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PAGEUP.
+        /// </summary>
+        internal static string Shortcut_Key_pageUp {
+            get {
+                return ResourceManager.GetString("Shortcut_Key_pageUp", resourceCulture);
             }
         }
         

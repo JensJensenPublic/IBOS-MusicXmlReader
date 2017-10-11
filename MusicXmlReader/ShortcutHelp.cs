@@ -55,7 +55,8 @@ namespace MusicXmlReader
             string alt = ResourcesForHelp.shortcut_Key_alt;
             string tab = ResourcesForHelp.shortcut_Key_tab;
             string followedBy = ResourcesForHelp.shortcut_Text_followedBy;
-            string pageDown  = ResourcesForHelp.shortcut_Key_pageDown;
+            string pageUp = ResourcesForHelp.Shortcut_Key_pageUp;
+            string pageDown = ResourcesForHelp.Shortcut_Key_pageDown;
             string shift = ResourcesForHelp.shortcut_Key_shift;
             string arrowLeft = ResourcesForHelp.Shortcut_ArrowLeft;
             string arrowRight = ResourcesForHelp.Shortcut_ArrowRight;
@@ -116,10 +117,10 @@ namespace MusicXmlReader
             // Følgende specielle tastaturgenveje kan bruges i forbindelse med styring af afspilingshastighed
             // The following general keyboard shortcuts can be used for controlling the tempo
             AddLine("\r");
-#if false
-            AddLine(ResourcesForHelp.shortcut_Caption_Tempo);
-            AddLine(Combine(Plus(alt, arrowUp), ResourcesForHelp.Shortcut_IncreaseTempo));
-            AddLine(Combine(Plus(alt, arrowDown), ResourcesForHelp.Shortcut_DecreaseTempo)); 
+#if true
+            AddLine(ResourcesForHelp.Shortcut_Caption_Tempo);
+            AddLine(Combine(Plus(alt, pageUp),   ResourcesForHelp.Shortcut_IncreaseTempo));
+            AddLine(Combine(Plus(alt, pageDown), ResourcesForHelp.Shortcut_DecreaseTempo)); 
 #endif
 
             // Følgende specielle tastaturgenveje  kan anvendes i forbindelse med Detaljelisten 

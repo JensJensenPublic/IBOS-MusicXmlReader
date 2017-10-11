@@ -168,7 +168,7 @@
   <data name="Shortcut_Key_insert" xml:space="preserve">
     <value>INSERT</value>
   </data>
-  <data name="shortcut_Key_pageDown" xml:space="preserve">
+  <data name="Shortcut_Key_pageDown" xml:space="preserve">
     <value>PAGEDOWN</value>
   </data>
   <data name="shortcut_Key_shift" xml:space="preserve">
@@ -260,6 +260,18 @@
   </data>
   <data name="Shortcut_PreviousPart" xml:space="preserve">
     <value>Select previous part</value>
+  </data>
+  <data name="Shortcut_Caption_Tempo" xml:space="preserve">
+    <value>Shortcuts used for controlling the tempo</value>
+  </data>
+  <data name="Shortcut_DecreaseTempo" xml:space="preserve">
+    <value>Decrease tempo</value>
+  </data>
+  <data name="Shortcut_IncreaseTempo" xml:space="preserve">
+    <value>Increase tempo</value>
+  </data>
+  <data name="Shortcut_Key_pageUp" xml:space="preserve">
+    <value>PAGEUP</value>
   </data>
   <data name="Shortcut_NextMeasure" xml:space="preserve">
     <value>Select next measure</value>

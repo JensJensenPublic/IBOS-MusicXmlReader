@@ -267,4 +267,16 @@
   <data name="Shortcut_PreviousMeasure" xml:space="preserve">
     <value>Vælg foregående takt</value>
   </data>
+  <data name="Shortcut_Caption_Tempo" xml:space="preserve">
+    <value>Genvejstaster for kontrol af tempo</value>
+  </data>
+  <data name="Shortcut_DecreaseTempo" xml:space="preserve">
+    <value>Formindsk tempo</value>
+  </data>
+  <data name="Shortcut_IncreaseTempo" xml:space="preserve">
+    <value>Forøg tempo</value>
+  </data>
+  <data name="Shortcut_Key_pageUp" xml:space="preserve">
+    <value>PAGEUP</value>
+  </data>
 </root>
