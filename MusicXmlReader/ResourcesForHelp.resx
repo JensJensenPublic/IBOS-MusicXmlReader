@@ -261,20 +261,47 @@
   <data name="Shortcut_PreviousPart" xml:space="preserve">
     <value>Select previous part</value>
   </data>
+  <data name="Shortcut_Caption_DetailList" xml:space="preserve">
+    <value>Shortcuts used for controlling the details list</value>
+  </data>
   <data name="Shortcut_Caption_Tempo" xml:space="preserve">
     <value>Shortcuts used for controlling the tempo</value>
+  </data>
+  <data name="Shortcut_ChordName" xml:space="preserve">
+    <value>Snow the name of the chord</value>
+  </data>
+  <data name="Shortcut_ChordTop" xml:space="preserve">
+    <value>Show top note in chord</value>
   </data>
   <data name="Shortcut_DecreaseTempo" xml:space="preserve">
     <value>Decrease tempo</value>
   </data>
+  <data name="Shortcut_FixedKeySignature" xml:space="preserve">
+    <value>Show fised signature keys</value>
+  </data>
   <data name="Shortcut_IncreaseTempo" xml:space="preserve">
     <value>Increase tempo</value>
+  </data>
+  <data name="Shortcut_Instruments" xml:space="preserve">
+    <value>Show instruments</value>
   </data>
   <data name="Shortcut_Key_pageUp" xml:space="preserve">
     <value>PAGEUP</value>
   </data>
+  <data name="Shortcut_NextDetail" xml:space="preserve">
+    <value>Show next detail</value>
+  </data>
   <data name="Shortcut_NextMeasure" xml:space="preserve">
     <value>Select next measure</value>
+  </data>
+  <data name="Shortcut_PartBottom" xml:space="preserve">
+    <value>Show bottom part</value>
+  </data>
+  <data name="Shortcut_PartTop" xml:space="preserve">
+    <value>Show top part</value>
+  </data>
+  <data name="Shortcut_PreviousDetail" xml:space="preserve">
+    <value>Show previous detail</value>
   </data>
   <data name="Shortcut_PreviousMeasure" xml:space="preserve">
     <value>Select previous measure</value>

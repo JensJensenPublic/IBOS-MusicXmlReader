@@ -97,6 +97,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shortcuts used for controlling the details list.
+        /// </summary>
+        internal static string Shortcut_Caption_DetailList {
+            get {
+                return ResourceManager.GetString("Shortcut_Caption_DetailList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shortcuts used for controlling the note filter.
         /// </summary>
         internal static string shortcut_Caption_NoteFilter {
@@ -129,6 +138,24 @@ namespace MusicXmlReader {
         internal static string shortcut_Caption_Windows_JAWS {
             get {
                 return ResourceManager.GetString("shortcut_Caption_Windows_JAWS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snow the name of the chord.
+        /// </summary>
+        internal static string Shortcut_ChordName {
+            get {
+                return ResourceManager.GetString("Shortcut_ChordName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show top note in chord.
+        /// </summary>
+        internal static string Shortcut_ChordTop {
+            get {
+                return ResourceManager.GetString("Shortcut_ChordTop", resourceCulture);
             }
         }
         
@@ -214,6 +241,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show fised signature keys.
+        /// </summary>
+        internal static string Shortcut_FixedKeySignature {
+            get {
+                return ResourceManager.GetString("Shortcut_FixedKeySignature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Go to measure n.
         /// </summary>
         internal static string Shortcut_GoToMeasureN {
@@ -228,6 +264,15 @@ namespace MusicXmlReader {
         internal static string Shortcut_IncreaseTempo {
             get {
                 return ResourceManager.GetString("Shortcut_IncreaseTempo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show instruments.
+        /// </summary>
+        internal static string Shortcut_Instruments {
+            get {
+                return ResourceManager.GetString("Shortcut_Instruments", resourceCulture);
             }
         }
         
@@ -331,6 +376,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show next detail.
+        /// </summary>
+        internal static string Shortcut_NextDetail {
+            get {
+                return ResourceManager.GetString("Shortcut_NextDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select next note.
         /// </summary>
         internal static string Shortcut_NextLine {
@@ -363,6 +417,33 @@ namespace MusicXmlReader {
         internal static string Shortcut_OpenFileOpenDialog {
             get {
                 return ResourceManager.GetString("Shortcut_OpenFileOpenDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show bottom part.
+        /// </summary>
+        internal static string Shortcut_PartBottom {
+            get {
+                return ResourceManager.GetString("Shortcut_PartBottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show top part.
+        /// </summary>
+        internal static string Shortcut_PartTop {
+            get {
+                return ResourceManager.GetString("Shortcut_PartTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show previous detail.
+        /// </summary>
+        internal static string Shortcut_PreviousDetail {
+            get {
+                return ResourceManager.GetString("Shortcut_PreviousDetail", resourceCulture);
             }
         }
         

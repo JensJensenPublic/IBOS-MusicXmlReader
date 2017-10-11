@@ -69,7 +69,7 @@ namespace MusicXmlReader
 
             // Følgende standard Windows / JAWS tastatur genveje kan anvendes generelt
             // The following standard Windows / JAWS keyboard shortcuts can be used 
-            AddLine("\r");
+            // AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_Windows_JAWS);
             AddLine(Combine(Plus(control, "O"),  ResourcesForHelp.Shortcut_OpenFileOpenDialog));
             AddLine(Combine(Plus(alt, "F4"),     ResourcesForHelp.Shortcut_CloseProgram));
@@ -117,26 +117,23 @@ namespace MusicXmlReader
             // Følgende specielle tastaturgenveje kan bruges i forbindelse med styring af afspilingshastighed
             // The following general keyboard shortcuts can be used for controlling the tempo
             AddLine("\r");
-#if true
             AddLine(ResourcesForHelp.Shortcut_Caption_Tempo);
             AddLine(Combine(Plus(alt, pageUp),   ResourcesForHelp.Shortcut_IncreaseTempo));
             AddLine(Combine(Plus(alt, pageDown), ResourcesForHelp.Shortcut_DecreaseTempo)); 
-#endif
+
 
             // Følgende specielle tastaturgenveje  kan anvendes i forbindelse med Detaljelisten 
             //The following special keyboard shortcuts can be used in connection with the detail list
             AddLine("\r");
-#if false
-            AddLine(ResourcesForHelp.shortcut_Caption_DetailList);
+            AddLine(ResourcesForHelp.Shortcut_Caption_DetailList);
             AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_ChordTop));
             AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_ChordName));
-            AddLine(Combine(Plus(control, arrowUp, ResourcesForHelp.Shortcut_PartTop));
-            AddLine(Combine(Plus(control, arrowDown), ResourcesForHelp.Shortcut_PartBottomPart));
+            AddLine(Combine(Plus(control, arrowUp), ResourcesForHelp.Shortcut_PartTop));
+            AddLine(Combine(Plus(control, arrowDown), ResourcesForHelp.Shortcut_PartBottom));
             AddLine(Combine(Plus(control, "I"), ResourcesForHelp.Shortcut_Instruments));
-            AddLine(Combine(Plus(control, "F"), ResourcesForHelp.Shortcut_FixedKeySignature));
+            // AddLine(Combine(Plus(control, "F"), ResourcesForHelp.Shortcut_FixedKeySignature)); // Not implemented yet !
             AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_NextDetail));
             AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_PreviousDetail));
-#endif
 
             return strings;
         }

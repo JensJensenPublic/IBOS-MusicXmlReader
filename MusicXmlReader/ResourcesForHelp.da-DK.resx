@@ -267,16 +267,43 @@
   <data name="Shortcut_PreviousMeasure" xml:space="preserve">
     <value>Vælg foregående takt</value>
   </data>
+  <data name="Shortcut_Caption_DetailList" xml:space="preserve">
+    <value>Genvejstaster for kontrol af detaljelisten</value>
+  </data>
   <data name="Shortcut_Caption_Tempo" xml:space="preserve">
     <value>Genvejstaster for kontrol af tempo</value>
+  </data>
+  <data name="Shortcut_ChordName" xml:space="preserve">
+    <value>Vis becifringens navn</value>
+  </data>
+  <data name="Shortcut_ChordTop" xml:space="preserve">
+    <value>Vis becifringens øverste tone</value>
   </data>
   <data name="Shortcut_DecreaseTempo" xml:space="preserve">
     <value>Formindsk tempo</value>
   </data>
+  <data name="Shortcut_FixedKeySignature" xml:space="preserve">
+    <value>Vis faste fortegn</value>
+  </data>
   <data name="Shortcut_IncreaseTempo" xml:space="preserve">
     <value>Forøg tempo</value>
   </data>
+  <data name="Shortcut_Instruments" xml:space="preserve">
+    <value>Vis instrumenter</value>
+  </data>
   <data name="Shortcut_Key_pageUp" xml:space="preserve">
     <value>PAGEUP</value>
+  </data>
+  <data name="Shortcut_NextDetail" xml:space="preserve">
+    <value>Vis næste detalje</value>
+  </data>
+  <data name="Shortcut_PartBottom" xml:space="preserve">
+    <value>Vis nederste stemme</value>
+  </data>
+  <data name="Shortcut_PartTop" xml:space="preserve">
+    <value>Vis øverste stemme</value>
+  </data>
+  <data name="Shortcut_PreviousDetail" xml:space="preserve">
+    <value>Vis foregående detalje</value>
   </data>
 </root>
