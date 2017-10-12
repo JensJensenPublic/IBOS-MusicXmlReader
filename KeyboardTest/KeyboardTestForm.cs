@@ -76,9 +76,14 @@ namespace KeyboardTest
 
         private void Show(string text,KeyPressEventArgs e)
         {
-            string line = string.Format("{0} Char={1}",
+            int intValue = (int)e.KeyChar;
+            Char char16 = (Char)intValue;
+            string line = string.Format("{0} Char={1} Value={2} CHAR16={3}",
                 text, //0
-                e.KeyChar);
+                e.KeyChar, // 1
+                intValue, //2
+                char16) // 3
+                ;
             Show(line);   
         }
 
@@ -91,12 +96,12 @@ namespace KeyboardTest
                 listBox.Refresh();
             }
             keysDown++;
-            Show("KeyDown",e);
+            //Show("KeyDown",e);
         }
 
         private void listBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Show("KeyPress",e);
+            Show("KeyPress",e);
         }
 
         private void listBox_KeyUp(object sender, KeyEventArgs e)
