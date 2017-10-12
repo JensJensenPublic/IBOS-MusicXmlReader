@@ -77,10 +77,11 @@ namespace KeyboardTest
         private void Show(ListBox listBox, string text, KeyPressEventArgs e)
         {
             int intValue = (int)e.KeyChar;
+            Keys keysValue = (Keys)e.KeyChar;
             Char char16 = (Char)intValue;
-            string line = string.Format("{0} Char={1} Dec={2} Hex={3:X} CHAR16={4}",
+               string line = string.Format("{0} Char={1} Dec={2} Hex={3:X} CHAR16={4}",
                 text, //0
-                e.KeyChar, // 1
+                keysValue, // 1
                 intValue, //2
                 intValue, //3
                 char16) // 4
