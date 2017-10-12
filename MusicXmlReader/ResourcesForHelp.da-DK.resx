@@ -280,13 +280,13 @@
     <value>Vis becifringens øverste tone</value>
   </data>
   <data name="Shortcut_DecreaseTempo" xml:space="preserve">
-    <value>Formindsk tempo</value>
+    <value>Formindsk afspilningstempo</value>
   </data>
   <data name="Shortcut_FixedKeySignature" xml:space="preserve">
     <value>Vis faste fortegn</value>
   </data>
   <data name="Shortcut_IncreaseTempo" xml:space="preserve">
-    <value>Forøg tempo</value>
+    <value>Forøg afspilningstempo</value>
   </data>
   <data name="Shortcut_Instruments" xml:space="preserve">
     <value>Vis instrumenter</value>

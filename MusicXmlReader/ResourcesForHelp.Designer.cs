@@ -178,7 +178,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Decrease tempo.
+        ///   Looks up a localized string similar to Decrease playback tempo.
         /// </summary>
         internal static string Shortcut_DecreaseTempo {
             get {
@@ -304,7 +304,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Increase tempo.
+        ///   Looks up a localized string similar to Increase playback tempo.
         /// </summary>
         internal static string Shortcut_IncreaseTempo {
             get {

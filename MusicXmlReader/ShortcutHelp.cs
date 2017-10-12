@@ -106,6 +106,8 @@ namespace MusicXmlReader
             AddLine(Combine(Plus(control,"Rn,m " + enter), ResourcesForHelp.Shortcut_RepeatFromNtoM));
             AddLine(Combine(Plus(control,"Gn " + enter), ResourcesForHelp.Shortcut_GoToMeasureN));
             AddLine(Combine("ESC", ResourcesForHelp.Shortcut_StopCurrentNote));
+            AddLine(Combine(Plus(alt, pageUp), ResourcesForHelp.Shortcut_IncreaseTempo));
+            AddLine(Combine(Plus(alt, pageDown), ResourcesForHelp.Shortcut_DecreaseTempo));
 
             // Følgende specielle tastaturgenveje kan bruges i forbindelse med redigering af nodefilteret:
             // The following special keyboard shortcuts can be used in connection with the node filter
@@ -117,18 +119,9 @@ namespace MusicXmlReader
             AddLine(Combine(Plus(alt, "T"), ResourcesForHelp.Shortcut_EditText));
             AddLine(Combine(Plus(alt, "B"), ResourcesForHelp.Shortcut_EditMusicBraille));
             AddLine(Combine(Plus(alt, "S"), ResourcesForHelp.Shortcut_EditVoices));
-            AddLine(Combine(space, ResourcesForHelp.Shortcut_ToggleValue));
             AddLine(Combine(Plus(alt, "0"), ResourcesForHelp.Shortcut_TurnOffGlobally));
             AddLine(Combine(Plus(alt, "1"), ResourcesForHelp.Shurtcut_TurnOnGlobally));
-
-
-            // Følgende specielle tastaturgenveje kan bruges i forbindelse med styring af afspilingshastighed
-            // The following general keyboard shortcuts can be used for controlling the tempo
-            AddLine("\r");
-            AddLine(ResourcesForHelp.Shortcut_Caption_Tempo);
-            AddLine(Combine(Plus(alt, pageUp),   ResourcesForHelp.Shortcut_IncreaseTempo));
-            AddLine(Combine(Plus(alt, pageDown), ResourcesForHelp.Shortcut_DecreaseTempo)); 
-
+            AddLine(Combine(space, ResourcesForHelp.Shortcut_ToggleValue));
 
             // Følgende specielle tastaturgenveje  kan anvendes i forbindelse med Detaljelisten 
             //The following special keyboard shortcuts can be used in connection with the detail list

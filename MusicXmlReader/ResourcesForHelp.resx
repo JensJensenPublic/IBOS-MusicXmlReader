@@ -274,13 +274,13 @@
     <value>Show top note in chord</value>
   </data>
   <data name="Shortcut_DecreaseTempo" xml:space="preserve">
-    <value>Decrease tempo</value>
+    <value>Decrease playback tempo</value>
   </data>
   <data name="Shortcut_FixedKeySignature" xml:space="preserve">
     <value>Show fised signature keys</value>
   </data>
   <data name="Shortcut_IncreaseTempo" xml:space="preserve">
-    <value>Increase tempo</value>
+    <value>Increase playback tempo</value>
   </data>
   <data name="Shortcut_Instruments" xml:space="preserve">
     <value>Show instruments</value>
