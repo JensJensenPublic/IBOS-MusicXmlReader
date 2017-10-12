@@ -49,58 +49,63 @@ namespace KeyboardTest
 
 
 
-
+        private void Show(string line)
+        {
+            listBox.Items.Add(line);
+            listBox.Refresh();
+            if (listBox.Items.Count > 0)
+            {
+                listBox.SelectedIndex = listBox.Items.Count - 1; // Force JAWS to read the last line
+            }
+        }
 
 
 
         private void Show(string text,KeyEventArgs e)
         {
-            string line = string.Format("{0}{1}{2}{3} Code={4} Data={5} Vakue={6}",
+            string line = string.Format("{0}{1}{2}{3} {4} ",
                 text,                           // 0
                 e.Alt ? " ALT" : "",            // 1
                 e.Control ? " CONTROL" : "",    // 2
-                e.Shift ? " SHIFT" : "",         // 3
-                e.KeyCode,                       // 4
-                e.KeyData,                       // 5
-                e.KeyValue                      // 6
+                e.Shift ? " SHIFT" : "",        // 3
+                e.KeyCode                       // 4
                 );
-            listBox.Items.Add(line);
+            Show(line);
         }
 
         private void Show(string text,KeyPressEventArgs e)
         {
             string line = string.Format("{0} Char={1}",
                 text, //0
-                e.KeyChar);    
-           listBox.Items.Add(line);
+                e.KeyChar);
+            Show(line);   
         }
 
         private void listBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (0 == keysDown)
             {
+                // When the first key in a sequence is pressed we clear the screen
                 listBox.Items.Clear();
                 listBox.Refresh();
             }
             keysDown++;
-            Show("KeyDown",e); 
+            Show("KeyDown",e);
         }
 
         private void listBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Show("KeyPress",e);
+            // Show("KeyPress",e);
         }
 
         private void listBox_KeyUp(object sender, KeyEventArgs e)
         {
             keysDown--;
-            Show("KeyUp  ",e);
+            //Show("KeyUp  ",e);
         }
-
 
         private void listBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             return;
         }
 
