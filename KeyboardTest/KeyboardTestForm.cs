@@ -40,21 +40,52 @@ namespace KeyboardTest
 
         }
 
-        private void listBox_KeyDown(object sender, KeyEventArgs e)
+        //private void Show(string text)
+        //{
+        //    listBox.Items.Add(text);
+        //}
+
+
+
+
+
+
+
+        private void Show(string text,KeyEventArgs e)
         {
-            listBox.Items.Add("KeyDown");
-            return;
+            string line = string.Format("{0}{1}{2}{3} Code={4} Data={5} Vakue={6}",
+                text,                           // 0
+                e.Alt ? " ALT" : "",            // 1
+                e.Control ? " CONTROL" : "",    // 2
+                e.Shift ? " SHIFT" : "",         // 3
+                e.KeyCode,                       // 4
+                e.KeyData,                       // 5
+                e.KeyValue                      // 6
+                );
+            listBox.Items.Add(line);
         }
 
+        private void Show(string text,KeyPressEventArgs e)
+        {
+            string line = string.Format("{0} Char={1}",
+                text, //0
+                e.KeyChar);    
+           listBox.Items.Add(line);
+        }
+
+        private void listBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            Show("KeyDown",e); 
+        }
 
         private void listBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            listBox.Items.Add("KeyPress");
+            Show("KeyPress",e);
         }
 
         private void listBox_KeyUp(object sender, KeyEventArgs e)
         {
-            listBox.Items.Add("KeyUp");
+            Show("KeyUp  ",e);
         }
 
 
@@ -64,5 +95,10 @@ namespace KeyboardTest
             return;
         }
 
+        private void listBox_Click(object sender, EventArgs e)
+        {
+            listBox.Items.Clear();
+            listBox.Refresh();
+        }
     }
 }

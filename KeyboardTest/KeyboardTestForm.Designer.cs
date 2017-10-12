@@ -36,8 +36,9 @@
             this.listBox.FormattingEnabled = true;
             this.listBox.Location = new System.Drawing.Point(12, 9);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(260, 238);
+            this.listBox.Size = new System.Drawing.Size(783, 238);
             this.listBox.TabIndex = 0;
+            this.listBox.Click += new System.EventHandler(this.listBox_Click);
             this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             this.listBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox_KeyDown);
             this.listBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.listBox_KeyPress);
@@ -47,7 +48,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(807, 261);
             this.Controls.Add(this.listBox);
             this.Name = "KeyboardTestForm";
             this.Text = "Form1";
