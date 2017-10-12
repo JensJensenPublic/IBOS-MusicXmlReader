@@ -63,12 +63,13 @@ namespace KeyboardTest
 
         private void Show(string text,KeyEventArgs e)
         {
-            string line = string.Format("{0}{1}{2}{3} {4} ",
+            string line = string.Format("{0}{1}{2}{3} {4} Value={5}",
                 text,                           // 0
                 e.Alt ? " ALT" : "",            // 1
                 e.Control ? " CONTROL" : "",    // 2
                 e.Shift ? " SHIFT" : "",        // 3
-                e.KeyCode                       // 4
+                e.KeyCode,                       // 4
+                e.KeyValue                      // 5
                 );
             Show(line);
         }
