@@ -49,7 +49,7 @@ namespace KeyboardTest
 
 
 
-        private void Show(string line)
+        private void Show(ListBox listBox, string line)
         {
             listBox.Items.Add(line);
             listBox.Refresh();
@@ -61,7 +61,7 @@ namespace KeyboardTest
 
 
 
-        private void Show(string text,KeyEventArgs e)
+        private void Show(string text, KeyEventArgs e)
         {
             string line = string.Format("{0}{1}{2}{3} {4} Value={5}",
                 text,                           // 0
@@ -71,10 +71,10 @@ namespace KeyboardTest
                 e.KeyCode,                       // 4
                 e.KeyValue                      // 5
                 );
-            Show(line);
+            Show(listBoxForKeyDown, line);
         }
 
-        private void Show(string text,KeyPressEventArgs e)
+        private void Show(ListBox listBox, string text, KeyPressEventArgs e)
         {
             int intValue = (int)e.KeyChar;
             Char char16 = (Char)intValue;
@@ -84,42 +84,93 @@ namespace KeyboardTest
                 intValue, //2
                 char16) // 3
                 ;
-            Show(line);   
+            Show(listBox, line);
         }
 
-        private void listBox_KeyDown(object sender, KeyEventArgs e)
+        void OnKeyDown(object sender, KeyEventArgs e)
         {
             if (0 == keysDown)
             {
                 // When the first key in a sequence is pressed we clear the screen
-                listBox.Items.Clear();
-                listBox.Refresh();
+                listBoxForKeyDown.Items.Clear();
+                listBoxForKeyDown.Refresh();
+                listBoxForKeyPress.Items.Clear();
+                listBoxForKeyPress.Refresh();
             }
             keysDown++;
-            //Show("KeyDown",e);
+            Show("KeyDown", e);
+        }
+
+        #region keyHandlers
+        private void listBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            OnKeyDown(sender, e);
+        }
+
+        private void OnKeyPress(object sender, KeyPressEventArgs e)
+        {
+            Show(listBoxForKeyPress, "KeyPress", e);
+        }
+
+
+        private void OnKeyUp(object sender, KeyEventArgs e)
+        {
+            keysDown--;
         }
 
         private void listBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Show("KeyPress",e);
+            OnKeyPress(sender, e);
         }
 
         private void listBox_KeyUp(object sender, KeyEventArgs e)
         {
-            keysDown--;
-            //Show("KeyUp  ",e);
+            OnKeyUp(sender, e); 
         }
 
+
+        private void listBoxForKeyPress_KeyDown(object sender, KeyEventArgs e)
+        {
+            OnKeyDown(sender, e);
+        }
+
+        private void listBoxForKeyPress_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Show(listBoxForKeyPress, "KeyPress", e);
+        }
+
+        private void listBoxForKeyPress_KeyUp(object sender, KeyEventArgs e)
+        {
+            keysDown--;
+        }
+        #endregion keyHandlers
+
+        #region IndexChangedHandlers
         private void listBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             return;
         }
 
+        private void listBoxForKeyPress_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        #endregion IndexChangedHandlers
+
+        #region clickHandlers
         private void listBox_Click(object sender, EventArgs e)
         {
             keysDown = 0;
-            listBox.Items.Clear();
-            listBox.Refresh();
+            listBoxForKeyDown.Items.Clear();
+            listBoxForKeyDown.Refresh();
         }
+
+        private void listBoxForKeyPress_Click(object sender, EventArgs e)
+        {
+            listBoxForKeyPress.Items.Clear();
+            listBoxForKeyPress.Refresh();
+        }
+        #endregion clickHandlers
+
     }
 }
