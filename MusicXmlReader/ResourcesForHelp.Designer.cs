@@ -106,6 +106,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Standard JAWS  shortcuts.
+        /// </summary>
+        internal static string Shortcut_Caption_JAWS {
+            get {
+                return ResourceManager.GetString("Shortcut_Caption_JAWS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shortcuts used for controlling the note filter.
         /// </summary>
         internal static string shortcut_Caption_NoteFilter {
@@ -133,11 +142,11 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Standard Windows / JAWS shortcuts.
+        ///   Looks up a localized string similar to Standard Windows  shortcuts.
         /// </summary>
-        internal static string shortcut_Caption_Windows_JAWS {
+        internal static string Shortcut_Caption_Windows {
             get {
-                return ResourceManager.GetString("shortcut_Caption_Windows_JAWS", resourceCulture);
+                return ResourceManager.GetString("Shortcut_Caption_Windows", resourceCulture);
             }
         }
         
@@ -232,6 +241,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to End.
+        /// </summary>
+        internal static string Shortcut_End {
+            get {
+                return ResourceManager.GetString("Shortcut_End", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expand and edit the note filter.
         /// </summary>
         internal static string Shortcut_ExpandAndEditNoteFilter {
@@ -250,11 +268,38 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to bottom line.
+        /// </summary>
+        internal static string Shortcut_GoToBottomLine {
+            get {
+                return ResourceManager.GetString("Shortcut_GoToBottomLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Go to measure n.
         /// </summary>
         internal static string Shortcut_GoToMeasureN {
             get {
                 return ResourceManager.GetString("Shortcut_GoToMeasureN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to top line.
+        /// </summary>
+        internal static string Shortcut_GoToTopLine {
+            get {
+                return ResourceManager.GetString("Shortcut_GoToTopLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        internal static string Shortcut_Home {
+            get {
+                return ResourceManager.GetString("Shortcut_Home", resourceCulture);
             }
         }
         

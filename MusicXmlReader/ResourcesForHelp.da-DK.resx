@@ -123,8 +123,8 @@
   <data name="shortcut_Caption_NoteList" xml:space="preserve">
     <value>Genvejstaster for kontrol af nodelisten </value>
   </data>
-  <data name="shortcut_Caption_Windows_JAWS" xml:space="preserve">
-    <value>Genvejstaster som bruges generelt af Windows eller JAWS</value>
+  <data name="Shortcut_Caption_Windows" xml:space="preserve">
+    <value>Genvejstaster som bruges generelt af Windows</value>
   </data>
   <data name="Shortcut_CloseProgram" xml:space="preserve">
     <value>Luk programmet</value>
@@ -305,5 +305,20 @@
   </data>
   <data name="Shortcut_PreviousDetail" xml:space="preserve">
     <value>Vis foregående detalje</value>
+  </data>
+  <data name="Shortcut_Caption_JAWS" xml:space="preserve">
+    <value>Genvejstaster som bruges generelt af JAWS</value>
+  </data>
+  <data name="Shortcut_End" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="Shortcut_GoToBottomLine" xml:space="preserve">
+    <value>Gå til nederste linie</value>
+  </data>
+  <data name="Shortcut_GoToTopLine" xml:space="preserve">
+    <value>Gå til øverste linie</value>
+  </data>
+  <data name="Shortcut_Home" xml:space="preserve">
+    <value>Home</value>
   </data>
 </root>

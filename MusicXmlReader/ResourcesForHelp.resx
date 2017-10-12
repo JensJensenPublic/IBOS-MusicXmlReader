@@ -123,8 +123,8 @@
   <data name="shortcut_Caption_NoteList" xml:space="preserve">
     <value>Shortcuts used for controlling the note list</value>
   </data>
-  <data name="shortcut_Caption_Windows_JAWS" xml:space="preserve">
-    <value>Standard Windows / JAWS shortcuts</value>
+  <data name="Shortcut_Caption_Windows" xml:space="preserve">
+    <value>Standard Windows  shortcuts</value>
   </data>
   <data name="Shortcut_CloseProgram" xml:space="preserve">
     <value>Close program</value>
@@ -305,5 +305,20 @@
   </data>
   <data name="Shortcut_PreviousMeasure" xml:space="preserve">
     <value>Select previous measure</value>
+  </data>
+  <data name="Shortcut_Caption_JAWS" xml:space="preserve">
+    <value>Standard JAWS  shortcuts</value>
+  </data>
+  <data name="Shortcut_End" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="Shortcut_GoToBottomLine" xml:space="preserve">
+    <value>Go to bottom line</value>
+  </data>
+  <data name="Shortcut_GoToTopLine" xml:space="preserve">
+    <value>Go to top line</value>
+  </data>
+  <data name="Shortcut_Home" xml:space="preserve">
+    <value>Home</value>
   </data>
 </root>

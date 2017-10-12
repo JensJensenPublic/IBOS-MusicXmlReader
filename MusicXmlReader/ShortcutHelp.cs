@@ -62,6 +62,8 @@ namespace MusicXmlReader
             string arrowRight = ResourcesForHelp.Shortcut_ArrowRight;
             string arrowUp = ResourcesForHelp.Shortcut_ArrowUp;
             string arrowDown = ResourcesForHelp.Shortcut_ArrowDown;
+            string home = ResourcesForHelp.Shortcut_Home;
+            string end = ResourcesForHelp.Shortcut_End;
 
 
             sb = new StringBuilder();
@@ -70,11 +72,17 @@ namespace MusicXmlReader
             // Følgende standard Windows / JAWS tastatur genveje kan anvendes generelt
             // The following standard Windows / JAWS keyboard shortcuts can be used 
             // AddLine("\r");
-            AddLine(ResourcesForHelp.shortcut_Caption_Windows_JAWS);
+            AddLine(ResourcesForHelp.Shortcut_Caption_Windows);
             AddLine(Combine(Plus(control, "O"),  ResourcesForHelp.Shortcut_OpenFileOpenDialog));
             AddLine(Combine(Plus(alt, "F4"),     ResourcesForHelp.Shortcut_CloseProgram));
             AddLine(Combine(alt, ResourcesForHelp.Shortcut_SelectMenuLine));
             AddLine(Combine(tab, ResourcesForHelp.Shortcut_ToggleBetweenListAndFilter));
+
+            AddLine(Combine(Plus(control, home), ResourcesForHelp.Shortcut_GoToTopLine));
+            AddLine(Combine(Plus(control, end), ResourcesForHelp.Shortcut_GoToBottomLine));
+
+            AddLine("\r");
+            AddLine(ResourcesForHelp.Shortcut_Caption_JAWS);
             AddLine(Combine(Plus(insert,space) + " " + followedBy + " s",ResourcesForHelp.Shortcut_ToggleJAWSSpeechOnOff));
             AddLine(Combine(Plus(insert,pageDown), ResourcesForHelp.Shortcut_ReadStatusLine));
             AddLine(Combine(Plus(insert, "T"), ResourcesForHelp.Shortcut_ReadTitleLine));
