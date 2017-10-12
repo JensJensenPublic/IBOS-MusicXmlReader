@@ -12,6 +12,8 @@ namespace KeyboardTest
 {
     public partial class KeyboardTestForm : Form
     {
+        private int keysDown = 0;
+
         public KeyboardTestForm()
         {
             InitializeComponent();
@@ -75,6 +77,12 @@ namespace KeyboardTest
 
         private void listBox_KeyDown(object sender, KeyEventArgs e)
         {
+            if (0 == keysDown)
+            {
+                listBox.Items.Clear();
+                listBox.Refresh();
+            }
+            keysDown++;
             Show("KeyDown",e); 
         }
 
@@ -85,6 +93,7 @@ namespace KeyboardTest
 
         private void listBox_KeyUp(object sender, KeyEventArgs e)
         {
+            keysDown--;
             Show("KeyUp  ",e);
         }
 
@@ -97,6 +106,7 @@ namespace KeyboardTest
 
         private void listBox_Click(object sender, EventArgs e)
         {
+            keysDown = 0;
             listBox.Items.Clear();
             listBox.Refresh();
         }
