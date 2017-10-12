@@ -79,12 +79,11 @@ namespace KeyboardTest
             int intValue = (int)e.KeyChar;
             Keys keysValue = (Keys)e.KeyChar;
             Char char16 = (Char)intValue;
-               string line = string.Format("{0} Char={1} Dec={2} Hex={3:X} CHAR16={4}",
+               string line = string.Format("{0}  Dec={1} Hex={2:X} CHAR16='{3}'",
                 text, //0
-                keysValue, // 1
+                intValue, //1
                 intValue, //2
-                intValue, //3
-                char16) // 4
+                char16) // 3
                 ;
             Show(listBox, line);
         }
