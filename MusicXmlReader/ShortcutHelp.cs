@@ -106,8 +106,8 @@ namespace MusicXmlReader
             AddLine(Combine(Plus(control,"Rn,m " + enter), ResourcesForHelp.Shortcut_RepeatFromNtoM));
             AddLine(Combine(Plus(control,"Gn " + enter), ResourcesForHelp.Shortcut_GoToMeasureN));
             AddLine(Combine("ESC", ResourcesForHelp.Shortcut_StopCurrentNote));
-            AddLine(Combine(Plus(alt, pageUp), ResourcesForHelp.Shortcut_IncreaseTempo));
-            AddLine(Combine(Plus(alt, pageDown), ResourcesForHelp.Shortcut_DecreaseTempo));
+            AddLine(Combine(Plus(control, pageUp), ResourcesForHelp.Shortcut_IncreaseTempo));
+            AddLine(Combine(Plus(control, pageDown), ResourcesForHelp.Shortcut_DecreaseTempo));
 
             // Følgende specielle tastaturgenveje kan bruges i forbindelse med redigering af nodefilteret:
             // The following special keyboard shortcuts can be used in connection with the node filter

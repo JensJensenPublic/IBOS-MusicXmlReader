@@ -155,8 +155,8 @@ namespace MusicXmlReader
 
 
         // Tempo control of AutoPlay
-        public const Keys tempoIncrement = Keys.Alt | Keys.PageUp;
-        public const Keys tempoDecrement = Keys.Alt | Keys.PageDown;
+        public const Keys tempoIncrement = Keys.Control | Keys.PageUp;
+        public const Keys tempoDecrement = Keys.Control | Keys.PageDown;
 
 
         // UserSettingsTreeview:
