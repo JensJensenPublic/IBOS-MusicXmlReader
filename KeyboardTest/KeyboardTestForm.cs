@@ -49,7 +49,7 @@ namespace KeyboardTest
 
 
 
-        private void Show(ListBox listBox, string line)
+        private void Show(string line)
         {
             listBox.Items.Add(line);
             listBox.Refresh();
@@ -71,79 +71,45 @@ namespace KeyboardTest
                 e.KeyCode,                       // 4
                 e.KeyValue                      // 5
                 );
-            Show(listBoxForKeyDown, line);
+            Show(line);
         }
-
-        private void Show(ListBox listBox, string text, KeyPressEventArgs e)
-        {
-            int intValue = (int)e.KeyChar;
-            Keys keysValue = (Keys)e.KeyChar;
-            Char char16 = (Char)intValue;
-               string line = string.Format("{0}  Dec={1} Hex={2:X} CHAR16='{3}'",
-                text, //0
-                intValue, //1
-                intValue, //2
-                char16) // 3
-                ;
-            Show(listBox, line);
-        }
-
-        void OnKeyDown(object sender, KeyEventArgs e)
-        {
-            if (0 == keysDown)
-            {
-                // When the first key in a sequence is pressed we clear the screen
-                listBoxForKeyDown.Items.Clear();
-                listBoxForKeyDown.Refresh();
-                listBoxForKeyPress.Items.Clear();
-                listBoxForKeyPress.Refresh();
-            }
-            keysDown++;
-            Show("KeyDown", e);
-        }
+               
 
         #region keyHandlers
         private void listBox_KeyDown(object sender, KeyEventArgs e)
         {
-            OnKeyDown(sender, e);
+            if (0 == keysDown)
+            {
+                // When the first key in a sequence is pressed we clear the screen
+                listBox.Items.Clear();
+                listBox.Refresh();
+            }
+            keysDown++;
+            Show("KeyDown", e);
         }
-
-        private void OnKeyPress(object sender, KeyPressEventArgs e)
-        {
-            Show(listBoxForKeyPress, "KeyPress", e);
-        }
-
-
-        private void OnKeyUp(object sender, KeyEventArgs e)
-        {
-            keysDown--;
-        }
+                
 
         private void listBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            OnKeyPress(sender, e);
+            string text = "KeyPress";
+            int intValue = (int)e.KeyChar;
+            Keys keysValue = (Keys)e.KeyChar;
+            Char char16 = (Char)intValue;
+            string line = string.Format("{0}  Dec={1} Hex={2:X} CHAR16='{3}'",
+             text, //0
+             intValue, //1
+             intValue, //2
+             char16) // 3
+             ;
+            Show(line);
         }
 
         private void listBox_KeyUp(object sender, KeyEventArgs e)
         {
-            OnKeyUp(sender, e); 
-        }
-
-
-        private void listBoxForKeyPress_KeyDown(object sender, KeyEventArgs e)
-        {
-            OnKeyDown(sender, e);
-        }
-
-        private void listBoxForKeyPress_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            Show(listBoxForKeyPress, "KeyPress", e);
-        }
-
-        private void listBoxForKeyPress_KeyUp(object sender, KeyEventArgs e)
-        {
             keysDown--;
+            Show("KeyUp", e);
         }
+        
         #endregion keyHandlers
 
         #region IndexChangedHandlers
@@ -151,26 +117,17 @@ namespace KeyboardTest
         {
             return;
         }
-
-        private void listBoxForKeyPress_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+  
         #endregion IndexChangedHandlers
 
         #region clickHandlers
         private void listBox_Click(object sender, EventArgs e)
         {
             keysDown = 0;
-            listBoxForKeyDown.Items.Clear();
-            listBoxForKeyDown.Refresh();
+            listBox.Items.Clear();
+            listBox.Refresh();
         }
 
-        private void listBoxForKeyPress_Click(object sender, EventArgs e)
-        {
-            listBoxForKeyPress.Items.Clear();
-            listBoxForKeyPress.Refresh();
-        }
         #endregion clickHandlers
 
     }
