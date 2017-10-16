@@ -55,7 +55,12 @@ namespace KeyboardTest
             listBox.Refresh();
             if (listBox.Items.Count > 0)
             {
-                listBox.SelectedIndex = listBox.Items.Count - 1; // Force JAWS to read the last line
+                listBox.SelectedIndex= listBox.Items.Count - 1; // force jaws to read the last line
+            }
+            Console.WriteLine(line);
+            if (line.StartsWith("KeyUp"))
+            {
+                Console.WriteLine("");
             }
         }
 
@@ -95,7 +100,7 @@ namespace KeyboardTest
             int intValue = (int)e.KeyChar;
             Keys keysValue = (Keys)e.KeyChar;
             Char char16 = (Char)intValue;
-            string line = string.Format("{0}  Dec={1} Hex={2:X} CHAR16='{3}'",
+            string line = string.Format("{0}  Dec={1} Hex={2:X} CHAR16={3}",
              text, //0
              intValue, //1
              intValue, //2
