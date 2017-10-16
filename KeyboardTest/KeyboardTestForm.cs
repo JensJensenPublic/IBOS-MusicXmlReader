@@ -12,10 +12,12 @@ namespace KeyboardTest
 {
     public partial class KeyboardTestForm : Form
     {
-        private int keysDown = 0;
+        //        private int keysDown = 0;
+        private List<int> keysDown;
 
         public KeyboardTestForm()
         {
+            keysDown = new List<int>();
             InitializeComponent();
         }
 
@@ -83,13 +85,18 @@ namespace KeyboardTest
         #region keyHandlers
         private void listBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (0 == keysDown)
+            if (!keysDown.Contains(e.KeyValue))
+            {
+                keysDown.Add(e.KeyValue);
+            }
+
+            if (1 == keysDown.Count)
             {
                 // When the first key in a sequence is pressed we clear the screen
                 listBox.Items.Clear();
                 listBox.Refresh();
             }
-            keysDown++;
+
             Show("KeyDown", e);
         }
                 
@@ -111,7 +118,7 @@ namespace KeyboardTest
 
         private void listBox_KeyUp(object sender, KeyEventArgs e)
         {
-            keysDown--;
+            keysDown.Remove(e.KeyValue);
             Show("KeyUp", e);
         }
         
@@ -128,9 +135,11 @@ namespace KeyboardTest
         #region clickHandlers
         private void listBox_Click(object sender, EventArgs e)
         {
-            keysDown = 0;
+            int count = keysDown.Count;
+            keysDown.Clear();
             listBox.Items.Clear();
             listBox.Refresh();
+            Show(string.Format("MouseClick removed {0} keys", count));
         }
 
         #endregion clickHandlers
