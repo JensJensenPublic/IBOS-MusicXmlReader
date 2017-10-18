@@ -123,61 +123,100 @@ namespace MusicXmlReader
             model.OnApplicationExit(); // Let the Model clean up its resources etc 
         }
 
+#if false
+        // For development onlY!
+        private List<string> shortcutStrings;
+        private List<Keys> shortCutKeys;
+
+        private string Add(string text)
+        {
+            shortcutStrings.Add(text);
+            int index = text.IndexOf("&");
+            if (text.Length >= index + 1)
+            {
+                // The character following the & will be interpreted as a shortcut combined with the ALT key
+                char ch = text.ToUpper()[index+1];
+                Keys keys = Keys.Alt | (Keys.A + ch - 'A');
+                Add(keys);
+            }
+            return text;
+        }
+
+        private Keys Add(Keys keys)
+        {
+            string functionName = "Add";
+            if (shortCutKeys.Contains(keys))
+            {
+                Logger.Log(String.Format("{0}.{1}: Duplicate key = {2}",className,functionName, keys.ToString()));
+            }
+            else
+            {
+                shortCutKeys.Add(keys);
+            }
+           
+            return keys;
+        }
+#endif
+ 
+
+
         void LocalizeMenuStrip()
         {
+
             //MenuStrip.Text = "??";
             // Children of MenuStrip
-            filesToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files;
-            editToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Edit; 
-            // viewToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_View;  // Removed,but may be reintroduced later !!!
-            toolsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools;
-            archivesToolStripMenuItem.Text = ResourcesForUI.ToolsStripMenuItem_Archives;
-            helpToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help ; 
+            filesToolStripMenuItem.Text =   ResourcesForUI.ToolStripMenuItem_Files;
+            editToolStripMenuItem.Text =    ResourcesForUI.ToolStripMenuItem_Edit;
+            // viewToolStripMenuItem.Text = Add(ResourcesForUI.ToolStripMenuItem_View);  // Removed,but may be reintroduced later !!!
+            toolsToolStripMenuItem.Text =   ResourcesForUI.ToolStripMenuItem_Tools;
+            archivesToolStripMenuItem.Text= ResourcesForUI.ToolsStripMenuItem_Archives;
+            helpToolStripMenuItem.Text =    ResourcesForUI.ToolStripMenuItem_Help ; 
 
             // Children of  fileToolStripMenuItem
-            openMusicXmlFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile; 
-            openMusicXmlFileToolStripMenuItem.ShortcutKeys = ShortcutHandler.openMusicXmlFile;
-            importDownloadsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ImportDownloads;
-            importNewestDownloadsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ImportNewestDownloads;
-            importNewSampleFilesToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ImportNewestSamples;
-            exitToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_Exit;
-            exitToolStripMenuItem.ShortcutKeys = ShortcutHandler.exitApplication;
+            openMusicXmlFileToolStripMenuItem.Text =        ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile; 
+            openMusicXmlFileToolStripMenuItem.ShortcutKeys= ShortcutHandler.openMusicXmlFile;
+            importDownloadsToolStripMenuItem.Text =         ResourcesForUI.ToolStripMenuItem_Files_ImportDownloads;
+            importNewestDownloadsToolStripMenuItem.Text =   ResourcesForUI.ToolStripMenuItem_Files_ImportNewestDownloads;
+            importNewSampleFilesToolStripMenuItem.Text =    ResourcesForUI.ToolStripMenuItem_Files_ImportNewestSamples;
+            exitToolStripMenuItem.Text =                    ResourcesForUI.ToolStripMenuItem_Files_Exit;
+            exitToolStripMenuItem.ShortcutKeys =            ShortcutHandler.exitApplication;
 
             // Children of editToolStripMenuItem
             // Texts:  NOTE! Use the same texts as used in the treeview to which these items refer!!
-            allItemsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_All_Items;
-            filterItemsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeWiew_Items;
-            musicRepresentationToolStripMenuItem.Text = "&"+ResourcesForUI.TreeView_MusicAsSound;
-            textRepresentationToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsSpeech;
-            brailleRepresentationToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsBraille;
-            partsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsSound_Parts;
-            detailsToolStripMenuItem.Text = "&" + ResourcesForUI.TreeView_MusicAsSound_Details;
+            allItemsToolStripMenuItem.Text =                "&" + ResourcesForUI.TreeView_All_Items;
+            filterItemsToolStripMenuItem.Text =             "&" + ResourcesForUI.TreeWiew_Items;
+            musicRepresentationToolStripMenuItem.Text =     "&" + ResourcesForUI.TreeView_MusicAsSound;
+            textRepresentationToolStripMenuItem.Text =      "&" + ResourcesForUI.TreeView_MusicAsSpeech;
+            brailleRepresentationToolStripMenuItem.Text =   "&" + ResourcesForUI.TreeView_MusicAsBraille;
+            partsToolStripMenuItem.Text =                   "&" + ResourcesForUI.TreeView_MusicAsSound_Parts;
+            detailsToolStripMenuItem.Text =                 "&" + ResourcesForUI.TreeView_MusicAsSound_Details;
 
             // Shortcuts
-            allItemsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editAllItems;
-            filterItemsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editItems;
-            musicRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editMusic;
-            textRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editText;
-            brailleRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editBraille;
-            partsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editParts;
-            detailsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editDetails;
+            filterItemsToolStripMenuItem.ShortcutKeys = Keys.None; // They should all be set to Keys.None !
+            //allItemsToolStripMenuItem.ShortcutKeys =            Add(ShortcutHandler.editAllItems);
+            //filterItemsToolStripMenuItem.ShortcutKeys =         Add(ShortcutHandler.editItems);
+            //musicRepresentationToolStripMenuItem.ShortcutKeys = Add(ShortcutHandler.editMusic);
+            //textRepresentationToolStripMenuItem.ShortcutKeys =  Add(ShortcutHandler.editText);
+            //brailleRepresentationToolStripMenuItem.ShortcutKeys=Add(ShortcutHandler.editBraille);
+            //partsToolStripMenuItem.ShortcutKeys =               Add(ShortcutHandler.editParts);
+            //detailsToolStripMenuItem.ShortcutKeys =             Add(ShortcutHandler.editDetails);
 
-           // Children of  toolsToolStripMenuItem
-            museScoreToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_MuseScore;
-            sibeliusToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Sibelius;
-            logfileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Logfile;
-            openXMLFileLocationToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_OpenXmlFileLocation;
-            openLogFileLocationToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Logfile_Location;
-            inspectAsXMLToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_InspectAsXml;
-            viewAsInterpretedXMLToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_ViewAsInterpretedXml;
-            jAWSSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_JAWS_Settings;
+            // Children of  toolsToolStripMenuItem
+            museScoreToolStripMenuItem.Text =                   ResourcesForUI.ToolStripMenuItem_Tools_MuseScore;
+            sibeliusToolStripMenuItem.Text =                    ResourcesForUI.ToolStripMenuItem_Tools_Sibelius;
+            logfileToolStripMenuItem.Text =                     ResourcesForUI.ToolStripMenuItem_Tools_Logfile;
+            openXMLFileLocationToolStripMenuItem.Text =         ResourcesForUI.ToolStripMenuItem_Tools_OpenXmlFileLocation;
+            openLogFileLocationToolStripMenuItem.Text =         ResourcesForUI.ToolStripMenuItem_Tools_Logfile_Location;
+            inspectAsXMLToolStripMenuItem.Text =                ResourcesForUI.ToolStripMenuItem_Tools_InspectAsXml;
+            viewAsInterpretedXMLToolStripMenuItem.Text =        ResourcesForUI.ToolStripMenuItem_Tools_ViewAsInterpretedXml;
+            jAWSSettingsToolStripMenuItem.Text =                ResourcesForUI.ToolStripMenuItem_Tools_JAWS_Settings;
 
             // Children of  helpToolStripMenuItem
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = string.Format("{0} {1}",ResourcesForUI.ToolStripMenuItem_Help_About,applicationName);
-            this.keyboardShortcutsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help_Shortcuts;
-            this.linkToNewestSoftwareToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help_SoftwareUpdate;
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text= string.Format("{0} {1}",ResourcesForUI.ToolStripMenuItem_Help_About,applicationName);
+            this.keyboardShortcutsToolStripMenuItem.Text =      ResourcesForUI.ToolStripMenuItem_Help_Shortcuts;
+            this.linkToNewestSoftwareToolStripMenuItem.Text =   ResourcesForUI.ToolStripMenuItem_Help_SoftwareUpdate;
 
-
+            // CheckShortCuts();
         }
 
 #region supportcode
@@ -286,9 +325,9 @@ namespace MusicXmlReader
         }
 
 
-        #endregion
+#endregion
 
-        #region  IObjectCollection
+#region  IObjectCollection
 
         public int GetNumberOfObjects()
         {
@@ -402,7 +441,7 @@ namespace MusicXmlReader
                 string.IsNullOrEmpty(localizedExtraMessage) ? "": "\r\n"+localizedExtraMessage);    // Possible extra message             
             MessageBox.Show(formattedMessage, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
-        #endregion
+#endregion
 
 
         /// <summary>
@@ -633,7 +672,7 @@ namespace MusicXmlReader
 
 
 
-        #region ListBoxTimes
+#region ListBoxTimes
 
         private void ListBoxTimesIndexChanged(int index)
         {
@@ -736,7 +775,7 @@ namespace MusicXmlReader
         }
 
 
-        #endregion // tools ***********************************************************************
+#endregion // tools ***********************************************************************
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -747,7 +786,7 @@ namespace MusicXmlReader
             Application.Exit();
         }
 
-        #region keyhandlers
+#region keyhandlers
 
 
 
@@ -973,11 +1012,11 @@ namespace MusicXmlReader
         }
         
  
-        #endregion keyhandlers 
+#endregion keyhandlers 
         //
         //*************************************************************************************************
         //
-        #region Edit
+#region Edit
         // Items above the delimiter line are represented by level 0 nodes in the tree
 
         private void musicRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1015,12 +1054,12 @@ namespace MusicXmlReader
             userSettingsHandler.ShowFilterItems(false);
         }
 
-        #endregion // Edit
+#endregion // Edit
         //
         //*************************************************************************************************
         //
 
-        #region Help
+#region Help
         private void aboutIBOSMusicXmlReaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Version version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
@@ -1038,9 +1077,9 @@ namespace MusicXmlReader
             // MessageBox.Show(ShortcutHelp.Create().ToString(), caption);
         }
 
-        #endregion
+#endregion
 
-        #region Archives
+#region Archives
 
         private void httpsmusescorecomsheetmusicToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1152,7 +1191,7 @@ namespace MusicXmlReader
 
         }
 
-        #region ignoreAltF4
+#region ignoreAltF4
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             // The form is closing
@@ -1181,7 +1220,7 @@ namespace MusicXmlReader
             listBoxDetails.Items.Clear();
         }
 
-        #region Import
+#region Import
         private void importNewSampleFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             importHandler.ImportNewSample();
@@ -1196,7 +1235,7 @@ namespace MusicXmlReader
         {
             importHandler.ImportDownloads(openFileDialog);
         }
-        #endregion // Import
+#endregion // Import
 
 
         private void linkToNewestSoftwareToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1207,9 +1246,9 @@ namespace MusicXmlReader
         }
 
     
-        #endregion
+#endregion
 
-        #endregion
+#endregion
         //*************************************************************************************************
 
     }
