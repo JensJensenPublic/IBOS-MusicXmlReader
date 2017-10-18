@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="shortcut_Caption_NoteFilter" xml:space="preserve">
-    <value>Shortcuts used for controlling the note filter</value>
+    <value>Shortcuts used for editing the note filter</value>
   </data>
   <data name="shortcut_Caption_NoteList" xml:space="preserve">
     <value>Shortcuts used for controlling the note list</value>
@@ -262,7 +262,7 @@
     <value>Select previous part</value>
   </data>
   <data name="Shortcut_Caption_DetailList" xml:space="preserve">
-    <value>Shortcuts used for controlling the details list</value>
+    <value>Shortcuts used for viewing the details list</value>
   </data>
   <data name="Shortcut_Caption_Tempo" xml:space="preserve">
     <value>Shortcuts used for controlling the tempo</value>

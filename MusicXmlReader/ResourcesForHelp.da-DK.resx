@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="shortcut_Caption_NoteFilter" xml:space="preserve">
-    <value>Genvejstaster for kontrol af nodefilteret</value>
+    <value>Genvejstaster for redigering af nodefilteret</value>
   </data>
   <data name="shortcut_Caption_NoteList" xml:space="preserve">
     <value>Genvejstaster for kontrol af nodelisten </value>
@@ -268,7 +268,7 @@
     <value>Vælg foregående takt</value>
   </data>
   <data name="Shortcut_Caption_DetailList" xml:space="preserve">
-    <value>Genvejstaster for kontrol af detaljelisten</value>
+    <value>Genvejstaster for visning af detaljelisten</value>
   </data>
   <data name="Shortcut_Caption_Tempo" xml:space="preserve">
     <value>Genvejstaster for kontrol af tempo</value>
