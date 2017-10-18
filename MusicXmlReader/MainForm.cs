@@ -838,14 +838,52 @@ namespace MusicXmlReader
         private enum DetailsEnum { Unknown, Harmonies, Parts, Instruments };
 
         /// <summary>
-        /// Shows details in the Details listbox
+        /// Show global details, i.e. details which are not related to a specific event, but are global for the whole score,
+        /// such the list of instruments.
+        /// </summary>
+        /// <param name=""></param>
+        /// <param name="fromTop"></param>
+        private void ShowGlobalDetails(DetailsEnum detailsEnum, bool fromTop)
+        {
+            string functionName = "ShowGlobalDetails";
+            try
+            {
+                if (DetailsEnum.Instruments != detailsEnum) return; // This function only supports these sorts of details.
+                listBoxDetails.Items.Clear();
+                DetailsDescription[] items = model.GetAllPartDetails();
+
+                listBoxDetails.Items.AddRange(items);
+                int itemCount = listBoxDetails.Items.Count;
+                if (0 != itemCount)
+                {
+                    listBoxDetails.SelectedIndex = fromTop ? 0 : (itemCount - 1);
+                }
+                
+                if (0 == listBoxDetails.Items.Count) // For whatever reason
+                {
+                    listBoxDetails.Items.Add(ResourcesForUI.ListBoxDetails_NoDetailsFound); // Just a fallback ! The detail-implementation can deliver its own one-liner!
+                }
+                
+                listBoxDetails.Focus();
+            }
+            catch (Exception exception)
+            {
+                Logger.Log(string.Format("{0}.{1} ({2},{3}) threw an exception: Message={4}", className, functionName, detailsEnum, fromTop, exception.Message));
+            }
+            return;
+        }
+
+
+        /// <summary>
+        /// Shows details which are related to an event in the Details listbox
         /// </summary>
         /// <param name="detailsEnum">Determines which kind of details to show</param>
         /// <param name="fromTop">Show details either from top or bottum</param>
-        private void ShowDetails(DetailsEnum detailsEnum, bool fromTop)
+        private void ShowEventDetails(DetailsEnum detailsEnum, bool fromTop)
         {
-            string functionName = "ShowDetails";
+            string functionName = "ShowEventDetails";
             // NOTE ARROW + ALT alone has already been taken by tempo increment/decrement !!!
+            if ((DetailsEnum.Harmonies != detailsEnum) && (DetailsEnum.Parts != detailsEnum)) return; // This function only supports these sorts of details.
             if (-1 == listBoxTimes.SelectedIndex)
             {
                 // It has no meaning to inspect details when nothing is selected !
@@ -916,11 +954,11 @@ namespace MusicXmlReader
                 case ShortcutHandler.NextMeasure:           model.SelectMeasure(listBoxTimes.SelectedIndex, +1); break;
 
                 // The "Details functionality is handled locally before being passed to the Model:
-                case ShortcutHandler.DetailsHarmonyTop:     ShowDetails(DetailsEnum.Harmonies, true); break;    // Start from top
-                case ShortcutHandler.DetailsPartsTop:       ShowDetails(DetailsEnum.Parts, true); break;        // Start from top     
-                case ShortcutHandler.DetailsHarmonyBottum:  ShowDetails(DetailsEnum.Harmonies, false); break;   // Start from bottum
-                case ShortcutHandler.DetailsPartsBottum:    ShowDetails(DetailsEnum.Parts, false); break;       //  Start from bottum
-                case ShortcutHandler.DetailsInstruments:    ShowDetails(DetailsEnum.Instruments, true); break;  // Always shown from top
+                case ShortcutHandler.DetailsHarmonyTop:     ShowEventDetails(DetailsEnum.Harmonies, true); break;    // Start from top
+                case ShortcutHandler.DetailsPartsTop:       ShowEventDetails(DetailsEnum.Parts, true); break;        // Start from top     
+                case ShortcutHandler.DetailsHarmonyBottum:  ShowEventDetails(DetailsEnum.Harmonies, false); break;   // Start from bottum
+                case ShortcutHandler.DetailsPartsBottum:    ShowEventDetails(DetailsEnum.Parts, false); break;       //  Start from bottum
+                case ShortcutHandler.DetailsInstruments:    ShowGlobalDetails(DetailsEnum.Instruments, true); break;  // Always shown from top
                 //case ShortcutHandler.DetailsInstrumentsButtom:  ShowDetails(DetailsEnum.Instruments, false); break;
 
                 default: handled = false; break;
@@ -1265,7 +1303,7 @@ namespace MusicXmlReader
 
         private void instrumentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowDetails(DetailsEnum.Instruments, true);
+            ShowGlobalDetails(DetailsEnum.Instruments, true);
         }
 
 

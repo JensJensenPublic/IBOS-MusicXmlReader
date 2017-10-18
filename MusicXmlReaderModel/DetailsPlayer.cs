@@ -89,8 +89,8 @@ namespace MusicXmlReaderModel
         {
             int numberOfParts = partList.NumberOfParts();
             detailsDescriptions = new List<DetailsDescription>();
-            string text = (1 == numberOfParts) ? ResourcesForModel.DetailsPlayer_Part : ResourcesForModel.DetailsPlayer_Parts; // Singularis / Pluralis
-            detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", numberOfParts, text)));
+        //    string text = (1 == numberOfParts) ? ResourcesForModel.DetailsPlayer_Part : ResourcesForModel.DetailsPlayer_Parts; // Singularis / Pluralis
+        //    detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", numberOfParts, text)));
         }
 
 
