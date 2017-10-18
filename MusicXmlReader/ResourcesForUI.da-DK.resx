@@ -362,7 +362,7 @@
     <value>Udvælg overførte filer til import</value>
   </data>
   <data name="ToolsStripMenuItem_View_Instruments" xml:space="preserve">
-    <value>&amp;Instrumenter</value>
+    <value>&amp;Instrument - detaljer</value>
   </data>
   <data name="TreeView_CheckAll" xml:space="preserve">
     <value>&amp;1: Markér alle</value>

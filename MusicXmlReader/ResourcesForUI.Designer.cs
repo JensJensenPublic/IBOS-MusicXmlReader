@@ -421,7 +421,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Instruments.
+        ///   Looks up a localized string similar to &amp;Instrument details.
         /// </summary>
         internal static string ToolsStripMenuItem_View_Instruments {
             get {
