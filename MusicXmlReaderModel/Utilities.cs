@@ -763,6 +763,14 @@ namespace MusicXmlReaderModel
             return s.Replace("&", "");
         }
 
+        public static string GetShortcutName(string s)
+        {
+            if (null == s) return "";
+            int index = s.IndexOf('&'); // returns -1 if not found
+            if (-1 == index) return "";
+            if (s.Length <= (index + 1)) return "";
+            return s[index + 1].ToString();
+        }
 
     }
 }

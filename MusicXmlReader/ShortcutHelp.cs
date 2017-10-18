@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReader
 {
@@ -113,14 +114,15 @@ namespace MusicXmlReader
             // The following special keyboard shortcuts can be used in connection with the node filter
             AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteFilter);
-            AddLine(Combine(Plus(alt, "A"), ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter));
-            AddLine(Combine(Plus(alt, "F"), ResourcesForHelp.Shortcut_EditNoteFilter));
-            AddLine(Combine(Plus(alt, "M"), ResourcesForHelp.Shortcut_EditMusicPlaying));
-            AddLine(Combine(Plus(alt, "T"), ResourcesForHelp.Shortcut_EditText));
-            AddLine(Combine(Plus(alt, "B"), ResourcesForHelp.Shortcut_EditMusicBraille));
-            AddLine(Combine(Plus(alt, "S"), ResourcesForHelp.Shortcut_EditVoices));
-            AddLine(Combine(Plus(alt, "0"), ResourcesForHelp.Shortcut_TurnOffGlobally));
-            AddLine(Combine(Plus(alt, "1"), ResourcesForHelp.Shurtcut_TurnOnGlobally));
+            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_All_Items)),    ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter));
+            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeWiew_Items)),        ResourcesForHelp.Shortcut_EditNoteFilter));
+            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSound)), ResourcesForHelp.Shortcut_EditMusicPlaying));
+            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSpeech)),ResourcesForHelp.Shortcut_EditText));
+            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsBraille)), ResourcesForHelp.Shortcut_EditMusicBraille));
+            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSpeech_Parts)), ResourcesForHelp.Shortcut_EditVoices));
+            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSpeech_Details)), ResourcesForHelp.Shortcut_EditDetails));
+            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_UncheckAll)),   ResourcesForHelp.Shortcut_TurnOffGlobally));
+            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_CheckAll)),     ResourcesForHelp.Shurtcut_TurnOnGlobally));
             AddLine(Combine(space, ResourcesForHelp.Shortcut_ToggleValue));
 
             // Følgende specielle tastaturgenveje  kan anvendes i forbindelse med Detaljelisten 
