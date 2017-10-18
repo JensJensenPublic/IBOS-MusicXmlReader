@@ -646,7 +646,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All filter items.
+        ///   Looks up a localized string similar to &amp;All filter items.
         /// </summary>
         internal static string TreeView_All_Items {
             get {
@@ -664,7 +664,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Braille Music representation.
+        ///   Looks up a localized string similar to &amp;Braille Music representation.
         /// </summary>
         internal static string TreeView_MusicAsBraille {
             get {
@@ -673,7 +673,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Details.
+        ///   Looks up a localized string similar to &amp;Details.
         /// </summary>
         internal static string TreeView_MusicAsBraille_Details {
             get {
@@ -682,7 +682,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Parts.
+        ///   Looks up a localized string similar to &amp;Parts.
         /// </summary>
         internal static string TreeView_MusicAsBraille_Parts {
             get {
@@ -691,7 +691,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Music playback.
+        ///   Looks up a localized string similar to &amp;Music playback.
         /// </summary>
         internal static string TreeView_MusicAsSound {
             get {
@@ -700,7 +700,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Details.
+        ///   Looks up a localized string similar to &amp;Details.
         /// </summary>
         internal static string TreeView_MusicAsSound_Details {
             get {
@@ -709,7 +709,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Parts.
+        ///   Looks up a localized string similar to &amp;Parts.
         /// </summary>
         internal static string TreeView_MusicAsSound_Parts {
             get {
@@ -718,7 +718,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text representation.
+        ///   Looks up a localized string similar to &amp;Text representation.
         /// </summary>
         internal static string TreeView_MusicAsSpeech {
             get {
@@ -727,7 +727,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Details.
+        ///   Looks up a localized string similar to &amp;Details.
         /// </summary>
         internal static string TreeView_MusicAsSpeech_Details {
             get {
@@ -736,7 +736,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Parts.
+        ///   Looks up a localized string similar to &amp;Parts.
         /// </summary>
         internal static string TreeView_MusicAsSpeech_Parts {
             get {
@@ -745,7 +745,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Filter items.
+        ///   Looks up a localized string similar to &amp;Filter items.
         /// </summary>
         internal static string TreeWiew_Items {
             get {

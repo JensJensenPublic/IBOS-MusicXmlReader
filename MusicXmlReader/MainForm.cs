@@ -183,13 +183,13 @@ namespace MusicXmlReader
 
             // Children of editToolStripMenuItem
             // Texts:  NOTE! Use the same texts as used in the treeview to which these items refer!!
-            allItemsToolStripMenuItem.Text =                "&" + ResourcesForUI.TreeView_All_Items;
-            filterItemsToolStripMenuItem.Text =             "&" + ResourcesForUI.TreeWiew_Items;
-            musicRepresentationToolStripMenuItem.Text =     "&" + ResourcesForUI.TreeView_MusicAsSound;
-            textRepresentationToolStripMenuItem.Text =      "&" + ResourcesForUI.TreeView_MusicAsSpeech;
-            brailleRepresentationToolStripMenuItem.Text =   "&" + ResourcesForUI.TreeView_MusicAsBraille;
-            partsToolStripMenuItem.Text =                   "&" + ResourcesForUI.TreeView_MusicAsSound_Parts;
-            detailsToolStripMenuItem.Text =                 "&" + ResourcesForUI.TreeView_MusicAsSound_Details;
+            allItemsToolStripMenuItem.Text =                ResourcesForUI.TreeView_All_Items;
+            filterItemsToolStripMenuItem.Text =             ResourcesForUI.TreeWiew_Items;
+            musicRepresentationToolStripMenuItem.Text =     ResourcesForUI.TreeView_MusicAsSound;
+            textRepresentationToolStripMenuItem.Text =      ResourcesForUI.TreeView_MusicAsSpeech;
+            brailleRepresentationToolStripMenuItem.Text =   ResourcesForUI.TreeView_MusicAsBraille;
+            partsToolStripMenuItem.Text =                   ResourcesForUI.TreeView_MusicAsSound_Parts;
+            detailsToolStripMenuItem.Text =                 ResourcesForUI.TreeView_MusicAsSound_Details;
 
             // Shortcuts
             filterItemsToolStripMenuItem.ShortcutKeys = Keys.None; // They should all be set to Keys.None !

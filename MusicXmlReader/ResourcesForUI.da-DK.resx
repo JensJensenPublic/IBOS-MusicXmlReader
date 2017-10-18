@@ -223,37 +223,48 @@
     <value>&amp;Vis</value>
   </data>
   <data name="TreeView_All_Items" xml:space="preserve">
-    <value>Alle filtre</value>
+    <value>&amp;Alle filtre</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsBraille" xml:space="preserve">
-    <value>Braille (punktnode) visning</value>
+    <value>&amp;Braille (punktnode) visning</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsBraille_Details" xml:space="preserve">
-    <value>Detaljer</value>
+    <value>&amp;Detaljer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsBraille_Parts" xml:space="preserve">
-    <value>Stemmer</value>
+    <value>&amp;Stemmer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsSound" xml:space="preserve">
-    <value>Musik afspilning</value>
+    <value>&amp;Musik afspilning</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsSound_Details" xml:space="preserve">
-    <value>Detaljer</value>
+    <value>&amp;Detaljer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsSound_Parts" xml:space="preserve">
-    <value>Stemmer</value>
+    <value>&amp;Stemmer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsSpeech" xml:space="preserve">
-    <value>Tekst visning</value>
+    <value>&amp;Tekst visning</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsSpeech_Details" xml:space="preserve">
-    <value>Detaljer</value>
+    <value>&amp;Detaljer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsSpeech_Parts" xml:space="preserve">
-    <value>Stemmer</value>
+    <value>&amp;Stemmer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeWiew_Items" xml:space="preserve">
-    <value>Filtre</value>
+    <value>&amp;Filtre</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="Message_NotAllowedWhilePlaying" xml:space="preserve">
     <value>Ikke tilladt under afspilning</value>
@@ -263,6 +274,7 @@
   </data>
   <data name="Treeview_for" xml:space="preserve">
     <value>for</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="ListView_Accessible_Name" xml:space="preserve">
     <value>NodeListe</value>

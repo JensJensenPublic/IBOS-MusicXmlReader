@@ -182,6 +182,12 @@ namespace MusicXmlReader
         //    treeView.Nodes[2].Nodes[detailsNodeIndex].Collapse(); // Expand Braille.Details
         //}
 
+        private string NoAmp(string s)
+        {
+            return Utilities.RemoveAmpersant(s);
+        }
+
+
 
         public void Init()
         {
@@ -190,26 +196,27 @@ namespace MusicXmlReader
             //
             // Build up the fixed part of the tree, which does not depend on the actual MusicXmlfile
             // The .Name in level 1 nodes is used for horisontal navigation between nodes with similar semantics.
+            // The losalized textstrings may contain "&" because they are also used for assigning localized menu shortcuts !! All occurrences of "&" are removed !! 
             //
             string f = " " + ResourcesForUI.Treeview_for + " ";
 
-            musicAsSound  = treeView.Nodes.Insert(MusicNodeIndex ,ResourcesForUI.TreeView_MusicAsSound);
-            musicAsSoundVoices = musicAsSound.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Parts + f + ResourcesForUI.TreeView_MusicAsSound);
-            musicAsSoundVoices.Name = ResourcesForUI.TreeView_MusicAsSound_Parts;
-            musicAsSoundDetails = musicAsSound.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Details + f + ResourcesForUI.TreeView_MusicAsSound);
-            musicAsSoundDetails.Name = ResourcesForUI.TreeView_MusicAsSound_Details;
+            musicAsSound  = treeView.Nodes.Insert(MusicNodeIndex ,NoAmp(ResourcesForUI.TreeView_MusicAsSound));
+            musicAsSoundVoices = musicAsSound.Nodes.Insert(partsNodeIndex,NoAmp(ResourcesForUI.TreeView_MusicAsSound_Parts + f + ResourcesForUI.TreeView_MusicAsSound));
+            musicAsSoundVoices.Name = NoAmp(ResourcesForUI.TreeView_MusicAsSound_Parts);
+            musicAsSoundDetails = musicAsSound.Nodes.Insert(detailsNodeIndex,NoAmp(ResourcesForUI.TreeView_MusicAsSound_Details + f + ResourcesForUI.TreeView_MusicAsSound));
+            musicAsSoundDetails.Name = NoAmp(ResourcesForUI.TreeView_MusicAsSound_Details);
 
-            musicAsText = treeView.Nodes.Insert(TextNodeIndex, ResourcesForUI.TreeView_MusicAsSpeech);
-            musicAsTextVoices = musicAsText.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsSpeech_Parts + f + ResourcesForUI.TreeView_MusicAsSpeech);
-            musicAsTextVoices.Name = ResourcesForUI.TreeView_MusicAsSpeech_Parts;
-            musicAsTextDetails = musicAsText.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSpeech_Details + f + ResourcesForUI.TreeView_MusicAsSpeech);
-            musicAsTextDetails.Name = ResourcesForUI.TreeView_MusicAsSpeech_Details;
+            musicAsText = treeView.Nodes.Insert(TextNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsSpeech));
+            musicAsTextVoices = musicAsText.Nodes.Insert(partsNodeIndex,NoAmp(ResourcesForUI.TreeView_MusicAsSpeech_Parts + f + ResourcesForUI.TreeView_MusicAsSpeech));
+            musicAsTextVoices.Name = NoAmp(ResourcesForUI.TreeView_MusicAsSpeech_Parts);
+            musicAsTextDetails = musicAsText.Nodes.Insert(detailsNodeIndex,NoAmp(ResourcesForUI.TreeView_MusicAsSpeech_Details + f + ResourcesForUI.TreeView_MusicAsSpeech));
+            musicAsTextDetails.Name = NoAmp(ResourcesForUI.TreeView_MusicAsSpeech_Details);
 
-            musicAsBraille = treeView.Nodes.Insert(BrailleNodeIndex ,ResourcesForUI.TreeView_MusicAsBraille);
-            musicAsBrailleVoices = musicAsBraille.Nodes.Insert(partsNodeIndex,ResourcesForUI.TreeView_MusicAsBraille_Parts + f + ResourcesForUI.TreeView_MusicAsBraille);
-            musicAsBrailleVoices.Name = ResourcesForUI.TreeView_MusicAsBraille_Parts;
-            musicAsBrailleDetails = musicAsBraille.Nodes.Insert(detailsNodeIndex,ResourcesForUI.TreeView_MusicAsSound_Details + f + ResourcesForUI.TreeView_MusicAsBraille);
-            musicAsBrailleDetails.Name = ResourcesForUI.TreeView_MusicAsSound_Details;
+            musicAsBraille = treeView.Nodes.Insert(BrailleNodeIndex ,NoAmp(ResourcesForUI.TreeView_MusicAsBraille));
+            musicAsBrailleVoices = musicAsBraille.Nodes.Insert(partsNodeIndex,NoAmp(ResourcesForUI.TreeView_MusicAsBraille_Parts + f + ResourcesForUI.TreeView_MusicAsBraille));
+            musicAsBrailleVoices.Name = NoAmp(ResourcesForUI.TreeView_MusicAsBraille_Parts);
+            musicAsBrailleDetails = musicAsBraille.Nodes.Insert(detailsNodeIndex,NoAmp(ResourcesForUI.TreeView_MusicAsSound_Details + f + ResourcesForUI.TreeView_MusicAsBraille));
+            musicAsBrailleDetails.Name = NoAmp(ResourcesForUI.TreeView_MusicAsSound_Details);
         }
 
 

@@ -223,37 +223,48 @@
     <value>&amp;View</value>
   </data>
   <data name="TreeView_All_Items" xml:space="preserve">
-    <value>All filter items</value>
+    <value>&amp;All filter items</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsBraille" xml:space="preserve">
-    <value>Braille Music representation</value>
+    <value>&amp;Braille Music representation</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsBraille_Details" xml:space="preserve">
-    <value>Details</value>
+    <value>&amp;Details</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsBraille_Parts" xml:space="preserve">
-    <value>Parts</value>
+    <value>&amp;Parts</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsSound" xml:space="preserve">
-    <value>Music playback</value>
+    <value>&amp;Music playback</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsSound_Details" xml:space="preserve">
-    <value>Details</value>
+    <value>&amp;Details</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsSound_Parts" xml:space="preserve">
-    <value>Parts</value>
+    <value>&amp;Parts</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsSpeech" xml:space="preserve">
-    <value>Text representation</value>
+    <value>&amp;Text representation</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsSpeech_Details" xml:space="preserve">
-    <value>Details</value>
+    <value>&amp;Details</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeView_MusicAsSpeech_Parts" xml:space="preserve">
-    <value>Parts</value>
+    <value>&amp;Parts</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="TreeWiew_Items" xml:space="preserve">
-    <value>Filter items</value>
+    <value>&amp;Filter items</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="Message_NotAllowedWhilePlaying" xml:space="preserve">
     <value>Not allowed while playing music</value>
@@ -263,6 +274,7 @@
   </data>
   <data name="Treeview_for" xml:space="preserve">
     <value>for</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="ListView_Accessible_Name" xml:space="preserve">
     <value>Note list</value>

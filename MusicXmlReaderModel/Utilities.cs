@@ -751,5 +751,18 @@ namespace MusicXmlReaderModel
         }
 
 
+        /// <summary>
+        /// Remove any occurance of the "&" character from the string.
+        /// Used in the UI for using the same localized text resource both for assigning an ALT shortcut (marked by the "&") and as a normal string (aftert removing the "&")
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string RemoveAmpersant(string s)
+        {
+            if (null == s) return s;
+            return s.Replace("&", "");
+        }
+
+
     }
 }
