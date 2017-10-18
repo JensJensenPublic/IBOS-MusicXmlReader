@@ -83,7 +83,7 @@ namespace MusicXmlReaderModel
 
         public override string ToString() 
         {
-            return string.Format("{0}:{1}",ResourcesForModel.SoundElement_Tempo, tempoValue);
+            return string.Format("{0}:{1}",ResourcesForModel.SoundElement_Tempo, ((int)tempoValue).ToString());
         }
 
         ///// <summary>
