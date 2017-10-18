@@ -31,6 +31,7 @@
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.filesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMusicXmlFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importNewestDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importNewSampleFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -45,6 +46,9 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.partsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.detailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.uncheckAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.museScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sibeliusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,7 +93,6 @@
             this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.listBoxDetails = new System.Windows.Forms.ListBox();
-            this.importDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,6 +130,13 @@
             this.openMusicXmlFileToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.openMusicXmlFileToolStripMenuItem.Text = "&Open MusicXml File";
             this.openMusicXmlFileToolStripMenuItem.Click += new System.EventHandler(this.openMusicXmlFileToolStripMenuItem_Click);
+            // 
+            // importDownloadsToolStripMenuItem
+            // 
+            this.importDownloadsToolStripMenuItem.Name = "importDownloadsToolStripMenuItem";
+            this.importDownloadsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.importDownloadsToolStripMenuItem.Text = "&Import Downloads";
+            this.importDownloadsToolStripMenuItem.Click += new System.EventHandler(this.importDownloadsToolStripMenuItem_Click);
             // 
             // importNewestDownloadsToolStripMenuItem
             // 
@@ -166,7 +176,10 @@
             this.brailleRepresentationToolStripMenuItem,
             this.toolStripSeparator2,
             this.partsToolStripMenuItem,
-            this.detailsToolStripMenuItem});
+            this.detailsToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.uncheckAllToolStripMenuItem,
+            this.checkAllToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "&Edit";
@@ -181,7 +194,6 @@
             // filterItemsToolStripMenuItem
             // 
             this.filterItemsToolStripMenuItem.Name = "filterItemsToolStripMenuItem";
-            this.filterItemsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.filterItemsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.filterItemsToolStripMenuItem.Text = "Filter items";
             this.filterItemsToolStripMenuItem.Click += new System.EventHandler(this.filterItemsToolStripMenuItem_Click);
@@ -230,6 +242,25 @@
             this.detailsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.detailsToolStripMenuItem.Text = "Details";
             this.detailsToolStripMenuItem.Click += new System.EventHandler(this.detailsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(217, 6);
+            // 
+            // uncheckAllToolStripMenuItem
+            // 
+            this.uncheckAllToolStripMenuItem.Name = "uncheckAllToolStripMenuItem";
+            this.uncheckAllToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.uncheckAllToolStripMenuItem.Text = "0: Uncheck all";
+            this.uncheckAllToolStripMenuItem.Click += new System.EventHandler(this.uncheckAllToolStripMenuItem_Click);
+            // 
+            // checkAllToolStripMenuItem
+            // 
+            this.checkAllToolStripMenuItem.Name = "checkAllToolStripMenuItem";
+            this.checkAllToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.checkAllToolStripMenuItem.Text = "1: Check all";
+            this.checkAllToolStripMenuItem.Click += new System.EventHandler(this.checkAllToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -594,13 +625,6 @@
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDetails_KeyDown);
             this.listBoxDetails.Leave += new System.EventHandler(this.listBoxDetails_Leave);
             // 
-            // importDownloadsToolStripMenuItem
-            // 
-            this.importDownloadsToolStripMenuItem.Name = "importDownloadsToolStripMenuItem";
-            this.importDownloadsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.importDownloadsToolStripMenuItem.Text = "&Import Downloads";
-            this.importDownloadsToolStripMenuItem.Click += new System.EventHandler(this.importDownloadsToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -693,6 +717,9 @@
         private System.Windows.Forms.ToolStripMenuItem importNewSampleFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem linkToNewestSoftwareToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importDownloadsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem uncheckAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkAllToolStripMenuItem;
     }
 }
 

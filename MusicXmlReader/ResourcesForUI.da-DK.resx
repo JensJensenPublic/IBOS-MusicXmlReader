@@ -361,4 +361,10 @@
   <data name="SelectFileDialog_Title" xml:space="preserve">
     <value>Udvælg overførte filer til import</value>
   </data>
+  <data name="TreeView_CheckAll" xml:space="preserve">
+    <value>&amp;1: Markér alle</value>
+  </data>
+  <data name="TreeView_UncheckAll" xml:space="preserve">
+    <value>&amp;0: Fjern markering fra alle</value>
+  </data>
 </root>

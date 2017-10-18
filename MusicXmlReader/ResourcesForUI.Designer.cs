@@ -655,6 +655,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;1: Checkall.
+        /// </summary>
+        internal static string TreeView_CheckAll {
+            get {
+                return ResourceManager.GetString("TreeView_CheckAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to for.
         /// </summary>
         internal static string Treeview_for {
@@ -741,6 +750,15 @@ namespace MusicXmlReader {
         internal static string TreeView_MusicAsSpeech_Parts {
             get {
                 return ResourceManager.GetString("TreeView_MusicAsSpeech_Parts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;0: Uncheck all.
+        /// </summary>
+        internal static string TreeView_UncheckAll {
+            get {
+                return ResourceManager.GetString("TreeView_UncheckAll", resourceCulture);
             }
         }
         

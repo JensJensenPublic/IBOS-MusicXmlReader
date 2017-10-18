@@ -161,8 +161,9 @@ namespace MusicXmlReader
 
 
         // UserSettingsTreeview:
-        public const Keys checkAll   =      Keys.Alt | Keys.D1;
-        public const Keys uncheckAll =      Keys.Alt | Keys.D0;
+        // NOTE: The handling of these shoretcuts have been moved to the menuitems where it belongs !
+        //public const Keys checkAll   =      Keys.Alt | Keys.D1;
+        // public const Keys uncheckAll =      Keys.Alt | Keys.D0;
         //public const Keys toggleAndCopy =   Keys.Control | Keys.Space;
 
         public const Keys listBoxFocus =    Keys.Control | Keys.L;

@@ -190,9 +190,10 @@ namespace MusicXmlReader
             brailleRepresentationToolStripMenuItem.Text =   ResourcesForUI.TreeView_MusicAsBraille;
             partsToolStripMenuItem.Text =                   ResourcesForUI.TreeView_MusicAsSound_Parts;
             detailsToolStripMenuItem.Text =                 ResourcesForUI.TreeView_MusicAsSound_Details;
+            uncheckAllToolStripMenuItem.Text =              ResourcesForUI.TreeView_UncheckAll;
+            checkAllToolStripMenuItem.Text =                ResourcesForUI.TreeView_CheckAll;
 
-            // Shortcuts
-            filterItemsToolStripMenuItem.ShortcutKeys = Keys.None; // They should all be set to Keys.None !
+            // Shortcuts 
             //allItemsToolStripMenuItem.ShortcutKeys =            Add(ShortcutHandler.editAllItems);
             //filterItemsToolStripMenuItem.ShortcutKeys =         Add(ShortcutHandler.editItems);
             //musicRepresentationToolStripMenuItem.ShortcutKeys = Add(ShortcutHandler.editMusic);
@@ -952,7 +953,10 @@ namespace MusicXmlReader
                 case CheckboxOperation.ToggleAndCopy:   newValue = !userSettingsTreeView.SelectedNode.Checked; result = true; break;
                 default: return false;
             }
-            
+
+            // This only has meaning if a node is selected !
+            if (null == userSettingsTreeView.SelectedNode) return result; 
+
             // We only handle level 2 nodes
             if (2 != userSettingsTreeView.SelectedNode.Level) return result;
 
@@ -1002,13 +1006,13 @@ namespace MusicXmlReader
                 return;
             }
 
-            switch (e.KeyData)
-            {
-                case ShortcutHandler.uncheckAll:     e.Handled = UpdateCheckBoxes(CheckboxOperation.Uncheck); break;
-                case ShortcutHandler.checkAll:       e.Handled = UpdateCheckBoxes(CheckboxOperation.Check); break;
-//                case ShortcutHandler.toggleAndCopy:  e.Handled = UpdateCheckBoxes(CheckboxOperation.ToggleAndCopy); break; // Removed, undocumented feature
-                default: break;
-            }
+//            switch (e.KeyData)
+//            {
+//                case ShortcutHandler.uncheckAll:     e.Handled = UpdateCheckBoxes(CheckboxOperation.Uncheck); break;
+//                case ShortcutHandler.checkAll:       e.Handled = UpdateCheckBoxes(CheckboxOperation.Check); break;
+////                case ShortcutHandler.toggleAndCopy:  e.Handled = UpdateCheckBoxes(CheckboxOperation.ToggleAndCopy); break; // Removed, undocumented feature
+//                default: break;
+//            }
         }
         
  
@@ -1245,10 +1249,20 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.OpenUrl(url);         
         }
 
-    
-#endregion
+        private void uncheckAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateCheckBoxes(CheckboxOperation.Uncheck);
+        }
 
-#endregion
+        private void checkAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateCheckBoxes(CheckboxOperation.Check);
+        }
+
+
+        #endregion
+
+        #endregion
         //*************************************************************************************************
 
     }
