@@ -167,7 +167,7 @@ namespace MusicXmlReader
             // Children of MenuStrip
             filesToolStripMenuItem.Text =   ResourcesForUI.ToolStripMenuItem_Files;
             editToolStripMenuItem.Text =    ResourcesForUI.ToolStripMenuItem_Edit;
-            // viewToolStripMenuItem.Text = Add(ResourcesForUI.ToolStripMenuItem_View);  // Removed,but may be reintroduced later !!!
+            viewToolStripMenuItem.Text =    ResourcesForUI.ToolStripMenuItem_View;
             toolsToolStripMenuItem.Text =   ResourcesForUI.ToolStripMenuItem_Tools;
             archivesToolStripMenuItem.Text= ResourcesForUI.ToolsStripMenuItem_Archives;
             helpToolStripMenuItem.Text =    ResourcesForUI.ToolStripMenuItem_Help ; 
@@ -201,6 +201,10 @@ namespace MusicXmlReader
             //brailleRepresentationToolStripMenuItem.ShortcutKeys=Add(ShortcutHandler.editBraille);
             //partsToolStripMenuItem.ShortcutKeys =               Add(ShortcutHandler.editParts);
             //detailsToolStripMenuItem.ShortcutKeys =             Add(ShortcutHandler.editDetails);
+
+            //Children of viewToolStripMenuItem:
+            instrumentsToolStripMenuItem.Text = ResourcesForUI.ToolsStripMenuItem_View_Instruments;
+
 
             // Children of  toolsToolStripMenuItem
             museScoreToolStripMenuItem.Text =                   ResourcesForUI.ToolStripMenuItem_Tools_MuseScore;
@@ -1257,6 +1261,11 @@ namespace MusicXmlReader
         private void checkAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UpdateCheckBoxes(CheckboxOperation.Check);
+        }
+
+        private void instrumentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowDetails(DetailsEnum.Instruments, true);
         }
 
 

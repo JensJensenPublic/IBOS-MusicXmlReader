@@ -363,6 +363,9 @@
   <data name="SelectFileDialog_Title" xml:space="preserve">
     <value>Select downloaded files for import</value>
   </data>
+  <data name="ToolsStripMenuItem_View_Instruments" xml:space="preserve">
+    <value>&amp;Instruments</value>
+  </data>
   <data name="TreeView_CheckAll" xml:space="preserve">
     <value>&amp;1: Checkall</value>
   </data>

@@ -421,6 +421,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Instruments.
+        /// </summary>
+        internal static string ToolsStripMenuItem_View_Instruments {
+            get {
+                return ResourceManager.GetString("ToolsStripMenuItem_View_Instruments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Edit.
         /// </summary>
         internal static string ToolStripMenuItem_Edit {
