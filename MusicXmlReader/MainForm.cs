@@ -193,14 +193,17 @@ namespace MusicXmlReader
             uncheckAllToolStripMenuItem.Text =              ResourcesForUI.TreeView_UncheckAll;
             checkAllToolStripMenuItem.Text =                ResourcesForUI.TreeView_CheckAll;
 
-            // Shortcuts 
-            //allItemsToolStripMenuItem.ShortcutKeys =            Add(ShortcutHandler.editAllItems);
-            //filterItemsToolStripMenuItem.ShortcutKeys =         Add(ShortcutHandler.editItems);
-            //musicRepresentationToolStripMenuItem.ShortcutKeys = Add(ShortcutHandler.editMusic);
-            //textRepresentationToolStripMenuItem.ShortcutKeys =  Add(ShortcutHandler.editText);
-            //brailleRepresentationToolStripMenuItem.ShortcutKeys=Add(ShortcutHandler.editBraille);
-            //partsToolStripMenuItem.ShortcutKeys =               Add(ShortcutHandler.editParts);
-            //detailsToolStripMenuItem.ShortcutKeys =             Add(ShortcutHandler.editDetails);
+            // Direct Shortcuts 
+            // allItemsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editAllItems; // See comment in ShortcutHandler.cs
+            filterItemsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editFilter;             // Select the Filter top node
+            musicRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editMusic;      // Select the Music Filter top node
+            textRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editText;        // Select the Text filter top node
+            brailleRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editBraille;  // Select the Braille Music filter top node
+            // partsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editParts;  // See comment in ShortcutHandler.cs
+            // detailsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editDetails; // See comment in ShortcutHandler.cs
+            uncheckAllToolStripMenuItem.ShortcutKeys = ShortcutHandler.uncheckAll;
+            checkAllToolStripMenuItem.ShortcutKeys = ShortcutHandler.checkAll;
+
 
             //Children of viewToolStripMenuItem:
             instrumentsToolStripMenuItem.Text = ResourcesForUI.ToolsStripMenuItem_View_Instruments;
