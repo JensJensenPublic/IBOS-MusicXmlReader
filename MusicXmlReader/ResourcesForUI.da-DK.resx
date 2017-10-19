@@ -319,10 +319,10 @@
     <value>Importerede</value>
   </data>
   <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
-    <value>&amp;Importer dagens overførsler</value>
+    <value>Importer &amp;dagens overførsler</value>
   </data>
   <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
-    <value>Importer nyeste eksempler</value>
+    <value>Importer nyeste &amp;eksempler</value>
   </data>
   <data name="ToolStripMenuItem_Help_SoftwareUpdate" xml:space="preserve">
     <value>Link til nyeste software</value>
@@ -331,7 +331,7 @@
     <value>http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html</value>
   </data>
   <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
-    <value>Importer overførsler</value>
+    <value>Importer &amp;overførsler</value>
   </data>
   <data name="ListBoxDetails_NoDetailsFound" xml:space="preserve">
     <value>Ingen detaljer</value>

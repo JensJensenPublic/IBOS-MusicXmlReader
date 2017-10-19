@@ -321,10 +321,10 @@
     <value>Imported</value>
   </data>
   <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
-    <value>&amp;Import todays downloads</value>
+    <value>Import &amp;todays downloads</value>
   </data>
   <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
-    <value>Import newest samples</value>
+    <value>Import newest &amp;samples</value>
   </data>
   <data name="ToolStripMenuItem_Help_SoftwareUpdate" xml:space="preserve">
     <value>Link to newest software</value>
@@ -333,7 +333,7 @@
     <value>http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html</value>
   </data>
   <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
-    <value>Import downloads</value>
+    <value>Import &amp;downloads</value>
   </data>
   <data name="ListBoxDetails_NoDetailsFound" xml:space="preserve">
     <value>No details found</value>

@@ -457,7 +457,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import downloads.
+        ///   Looks up a localized string similar to Import &amp;downloads.
         /// </summary>
         internal static string ToolStripMenuItem_Files_ImportDownloads {
             get {
@@ -466,7 +466,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Import todays downloads.
+        ///   Looks up a localized string similar to Import &amp;todays downloads.
         /// </summary>
         internal static string ToolStripMenuItem_Files_ImportNewestDownloads {
             get {
@@ -475,7 +475,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Import newest samples.
+        ///   Looks up a localized string similar to Import newest &amp;samples.
         /// </summary>
         internal static string ToolStripMenuItem_Files_ImportNewestSamples {
             get {
