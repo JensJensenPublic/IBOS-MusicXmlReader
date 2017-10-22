@@ -247,7 +247,7 @@
     <value>PIL-OP</value>
   </data>
   <data name="Shortcut_MenuCaption" xml:space="preserve">
-    <value>Hjælp til tastaturgenveje</value>
+    <value>Hjælp til tastatur-genveje</value>
   </data>
   <data name="Shortcut_NextLine" xml:space="preserve">
     <value>Vælg næste node</value>

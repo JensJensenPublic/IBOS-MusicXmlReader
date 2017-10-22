@@ -157,8 +157,27 @@ namespace MusicXmlReader
             return keys;
         }
 #endif
- 
 
+
+        /// <summary>
+        /// As default JAWS does not render the Shortcut key, only the access key
+        /// By setting the AccessibleName property we can overwrite the default to anything we wish:
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="keys"></param>
+        /// <returns></returns>
+        string GenerateAccessibleName(string text, Keys keys)
+        {
+            if ( Keys.None == keys) return text;
+            Keys controls = keys & (Keys.Control | Keys.Shift | Keys.Alt);
+            Keys others = keys & ~ controls; 
+            return Utilities.RemoveAmpersant(text) + " " + controls.ToString() + " " + others.ToString(); // Say the control char before the other character.
+        }
+
+        void GenerateAccessibleName(ref ToolStripMenuItem menuItem)
+        {
+            menuItem.AccessibleName = GenerateAccessibleName(menuItem.Text, menuItem.ShortcutKeys);
+        }
 
         void LocalizeMenuStrip()
         {
@@ -175,14 +194,16 @@ namespace MusicXmlReader
             // Children of  fileToolStripMenuItem
             openMusicXmlFileToolStripMenuItem.Text =        ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile; 
             openMusicXmlFileToolStripMenuItem.ShortcutKeys= ShortcutHandler.openMusicXmlFile;
+            GenerateAccessibleName(ref openMusicXmlFileToolStripMenuItem);
             importDownloadsToolStripMenuItem.Text =         ResourcesForUI.ToolStripMenuItem_Files_ImportDownloads;
             importNewestDownloadsToolStripMenuItem.Text =   ResourcesForUI.ToolStripMenuItem_Files_ImportNewestDownloads;
             importNewSampleFilesToolStripMenuItem.Text =    ResourcesForUI.ToolStripMenuItem_Files_ImportNewestSamples;
             exitToolStripMenuItem.Text =                    ResourcesForUI.ToolStripMenuItem_Files_Exit;
             exitToolStripMenuItem.ShortcutKeys =            ShortcutHandler.exitApplication;
+            GenerateAccessibleName(ref exitToolStripMenuItem);
 
-            // Children of editToolStripMenuItem
-            // Texts:  NOTE! Use the same texts as used in the treeview to which these items refer!!
+          // Children of editToolStripMenuItem
+          // Texts:  NOTE! Use the same texts as used in the treeview to which these items refer!!
             allItemsToolStripMenuItem.Text =                ResourcesForUI.TreeView_All_Items;
             filterItemsToolStripMenuItem.Text =             ResourcesForUI.TreeWiew_Items;
             musicRepresentationToolStripMenuItem.Text =     ResourcesForUI.TreeView_MusicAsSound;
@@ -196,13 +217,19 @@ namespace MusicXmlReader
             // Direct Shortcuts 
             // allItemsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editAllItems; // See comment in ShortcutHandler.cs
             filterItemsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editFilter;             // Select the Filter top node
+            GenerateAccessibleName(ref filterItemsToolStripMenuItem);
             musicRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editMusic;      // Select the Music Filter top node
+            GenerateAccessibleName(ref musicRepresentationToolStripMenuItem);
             textRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editText;        // Select the Text filter top node
+            GenerateAccessibleName(ref textRepresentationToolStripMenuItem);
             brailleRepresentationToolStripMenuItem.ShortcutKeys = ShortcutHandler.editBraille;  // Select the Braille Music filter top node
+            GenerateAccessibleName(ref brailleRepresentationToolStripMenuItem);
             // partsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editParts;  // See comment in ShortcutHandler.cs
             // detailsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editDetails; // See comment in ShortcutHandler.cs
             uncheckAllToolStripMenuItem.ShortcutKeys = ShortcutHandler.uncheckAll;
+            GenerateAccessibleName(ref uncheckAllToolStripMenuItem);
             checkAllToolStripMenuItem.ShortcutKeys = ShortcutHandler.checkAll;
+            GenerateAccessibleName(ref checkAllToolStripMenuItem);
 
 
             //Children of viewToolStripMenuItem:

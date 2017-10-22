@@ -298,7 +298,7 @@
     <value>Statuslinie</value>
   </data>
   <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
-    <value>Tastaturgenveje</value>
+    <value>Tastatur-genveje</value>
   </data>
   <data name="Message_LocationNotDetermined" xml:space="preserve">
     <value>Filens placering kunne ikke bestemmes</value>
