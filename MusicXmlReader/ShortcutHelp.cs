@@ -42,6 +42,11 @@ namespace MusicXmlReader
             strings.Add(line);
         }
 
+        private void AddLine(string keys, string text)
+        {
+            strings.Add(Combine(keys,text));
+        }
+
         private List<string> strings = new List<string>();
 
         public List<string> ToStrings()
@@ -74,69 +79,69 @@ namespace MusicXmlReader
             // The following standard Windows / JAWS keyboard shortcuts can be used 
             // AddLine("\r");
             AddLine(ResourcesForHelp.Shortcut_Caption_Windows);
-            AddLine(Combine(Plus(control, "O"),  ResourcesForHelp.Shortcut_OpenFileOpenDialog));
-            AddLine(Combine(Plus(alt, "F4"),     ResourcesForHelp.Shortcut_CloseProgram));
-            AddLine(Combine(alt, ResourcesForHelp.Shortcut_SelectMenuLine));
-            AddLine(Combine(tab, ResourcesForHelp.Shortcut_ToggleBetweenListAndFilter));
+            AddLine(Plus(control, "O"),  ResourcesForHelp.Shortcut_OpenFileOpenDialog);
+            AddLine(Plus(alt, "F4"),     ResourcesForHelp.Shortcut_CloseProgram);
+            AddLine(alt, ResourcesForHelp.Shortcut_SelectMenuLine);
+            AddLine(tab, ResourcesForHelp.Shortcut_ToggleBetweenListAndFilter);
 
-            AddLine(Combine(Plus(control, home), ResourcesForHelp.Shortcut_GoToTopLine));
-            AddLine(Combine(Plus(control, end), ResourcesForHelp.Shortcut_GoToBottomLine));
+            AddLine(Plus(control, home), ResourcesForHelp.Shortcut_GoToTopLine);
+            AddLine(Plus(control, end), ResourcesForHelp.Shortcut_GoToBottomLine);
 
             AddLine("\r");
             AddLine(ResourcesForHelp.Shortcut_Caption_JAWS);
-            AddLine(Combine(Plus(insert,space) + " " + followedBy + " s",ResourcesForHelp.Shortcut_ToggleJAWSSpeechOnOff));
-            AddLine(Combine(Plus(insert,pageDown), ResourcesForHelp.Shortcut_ReadStatusLine));
-            AddLine(Combine(Plus(insert, "T"), ResourcesForHelp.Shortcut_ReadTitleLine));
-            AddLine(Combine(Plus(insert, "B"), ResourcesForHelp.Shortcut_ReadMessagebox));
+            AddLine(Plus(insert,space) + " " + followedBy + " s",ResourcesForHelp.Shortcut_ToggleJAWSSpeechOnOff);
+            AddLine(Plus(insert,pageDown), ResourcesForHelp.Shortcut_ReadStatusLine);
+            AddLine(Plus(insert, "T"), ResourcesForHelp.Shortcut_ReadTitleLine);
+            AddLine(Plus(insert, "B"), ResourcesForHelp.Shortcut_ReadMessagebox);
 
             // Følgende specielle tastaturgenveje og kommandoer kan anvendes i forbindelse med Nodelisten           
             // The following special keyboard skortcuts and commands can be used in connection with the note list
             AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteList);
-            AddLine(Combine(arrowLeft, ResourcesForHelp.Shortcut_PreviousLine));
-            AddLine(Combine(arrowRight, ResourcesForHelp.Shortcut_NextLine));
-            AddLine(Combine(Plus(control,arrowLeft), ResourcesForHelp.Shortcut_PreviousMeasure)); 
-            AddLine(Combine(Plus(control,arrowRight), ResourcesForHelp.Shortcut_NextMeasure)); 
-            //AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_NextPart));   // Description has been moved to the description of the  detail list
-            //AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_PreviousPart)); // Description has been moved to the description of the  detail list
-            AddLine(Combine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList));
-            AddLine(Combine(Plus(control, "P"), ResourcesForHelp.Shortcut_StartPlaying));
-            AddLine(Combine(Plus(control, shift, "P"), ResourcesForHelp.Shortcut_StopPlaying));
-            AddLine(Combine(Plus(space), ResourcesForHelp.Shortcut_TogglePlay));
-            AddLine(Combine("Tn " + enter, ResourcesForHelp.Shortcut_SetTempo));
-            AddLine(Combine("Rn,m " + enter, ResourcesForHelp.Shortcut_RepeatFromNtoM));
-            AddLine(Combine("Gn " + enter, ResourcesForHelp.Shortcut_GoToMeasureN));
-            AddLine(Combine("ESC", ResourcesForHelp.Shortcut_StopCurrentNote));
-            AddLine(Combine(Plus(control, pageUp), ResourcesForHelp.Shortcut_IncreaseTempo));
-            AddLine(Combine(Plus(control, pageDown), ResourcesForHelp.Shortcut_DecreaseTempo));
+            AddLine(arrowLeft, ResourcesForHelp.Shortcut_PreviousLine);
+            AddLine(arrowRight, ResourcesForHelp.Shortcut_NextLine);
+            AddLine(Plus(control,arrowLeft), ResourcesForHelp.Shortcut_PreviousMeasure); 
+            AddLine(Plus(control,arrowRight), ResourcesForHelp.Shortcut_NextMeasure); 
+            //AddLine(arrowDown, ResourcesForHelp.Shortcut_NextPart);   // Description has been moved to the description of the  detail list
+            //AddLine(arrowUp, ResourcesForHelp.Shortcut_PreviousPart); // Description has been moved to the description of the  detail list
+            AddLine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList);
+            AddLine(Plus(control, "P"), ResourcesForHelp.Shortcut_StartPlaying);
+            AddLine(Plus(control, shift, "P"), ResourcesForHelp.Shortcut_StopPlaying);
+            AddLine(Plus(space), ResourcesForHelp.Shortcut_TogglePlay);
+            AddLine("Tn " + enter, ResourcesForHelp.Shortcut_SetTempo);
+            AddLine("Rn,m " + enter, ResourcesForHelp.Shortcut_RepeatFromNtoM);
+            AddLine("Gn " + enter, ResourcesForHelp.Shortcut_GoToMeasureN);
+            AddLine("ESC", ResourcesForHelp.Shortcut_StopCurrentNote);
+            AddLine(Plus(control, pageUp), ResourcesForHelp.Shortcut_IncreaseTempo);
+            AddLine(Plus(control, pageDown), ResourcesForHelp.Shortcut_DecreaseTempo);
 
             // Følgende specielle tastaturgenveje kan bruges i forbindelse med redigering af nodefilteret:
             // The following special keyboard shortcuts can be used in connection with the node filter
             AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteFilter);
-            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_All_Items)),    ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter));
-            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeWiew_Items)),        ResourcesForHelp.Shortcut_EditNoteFilter));
-            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSound)), ResourcesForHelp.Shortcut_EditMusicPlaying));
-            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSpeech)),ResourcesForHelp.Shortcut_EditText));
-            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsBraille)), ResourcesForHelp.Shortcut_EditMusicBraille));
-            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSpeech_Parts)), ResourcesForHelp.Shortcut_EditVoices));
-            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSpeech_Details)), ResourcesForHelp.Shortcut_EditDetails));
-            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_UncheckAll)),   ResourcesForHelp.Shortcut_TurnOffGlobally));
-            AddLine(Combine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_CheckAll)),     ResourcesForHelp.Shurtcut_TurnOnGlobally));
-            AddLine(Combine(space, ResourcesForHelp.Shortcut_ToggleValue));
+            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_All_Items)),    ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter);
+            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeWiew_Items)),        ResourcesForHelp.Shortcut_EditNoteFilter);
+            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSound)), ResourcesForHelp.Shortcut_EditMusicPlaying);
+            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSpeech)),ResourcesForHelp.Shortcut_EditText);
+            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsBraille)), ResourcesForHelp.Shortcut_EditMusicBraille);
+            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSpeech_Parts)), ResourcesForHelp.Shortcut_EditVoices);
+            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSpeech_Details)), ResourcesForHelp.Shortcut_EditDetails);
+            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_UncheckAll)),   ResourcesForHelp.Shortcut_TurnOffGlobally);
+            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_CheckAll)),     ResourcesForHelp.Shurtcut_TurnOnGlobally);
+            AddLine(space, ResourcesForHelp.Shortcut_ToggleValue);
 
             // Følgende specielle tastaturgenveje  kan anvendes i forbindelse med Detaljelisten 
             //The following special keyboard shortcuts can be used in connection with the detail list
             AddLine("\r");
             AddLine(ResourcesForHelp.Shortcut_Caption_DetailList);
-            AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_ChordTop));
-            AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_ChordName));
-            AddLine(Combine(Plus(control, arrowUp), ResourcesForHelp.Shortcut_PartTop));
-            AddLine(Combine(Plus(control, arrowDown), ResourcesForHelp.Shortcut_PartBottom));
-            AddLine(Combine(Plus(control, "I"), ResourcesForHelp.Shortcut_Instruments));
-            // AddLine(Combine(Plus(control, "F"), ResourcesForHelp.Shortcut_FixedKeySignature)); // Not implemented yet !
-            AddLine(Combine(arrowDown, ResourcesForHelp.Shortcut_NextDetail));
-            AddLine(Combine(arrowUp, ResourcesForHelp.Shortcut_PreviousDetail));
+            AddLine(arrowUp, ResourcesForHelp.Shortcut_ChordTop);
+            AddLine(arrowDown, ResourcesForHelp.Shortcut_ChordName);
+            AddLine(Plus(control, arrowUp), ResourcesForHelp.Shortcut_PartTop);
+            AddLine(Plus(control, arrowDown), ResourcesForHelp.Shortcut_PartBottom);
+            AddLine(Plus(control, "I"), ResourcesForHelp.Shortcut_Instruments);
+            // AddLine(Plus(control, "F"), ResourcesForHelp.Shortcut_FixedKeySignature)); // Not implemented yet !
+            AddLine(arrowDown, ResourcesForHelp.Shortcut_NextDetail);
+            AddLine(arrowUp, ResourcesForHelp.Shortcut_PreviousDetail);
 
             return strings;
         }
