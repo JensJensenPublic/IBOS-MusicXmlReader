@@ -9,6 +9,7 @@ namespace MusicXmlReader
 {
     class ShortcutHelp
     {
+        string className = "ShortcutHelp"; 
         StringBuilder sb;
 
         private ShortcutHelp()
@@ -44,14 +45,26 @@ namespace MusicXmlReader
 
         private void AddLine(string keys, string text)
         {
+            // string functionName = "AddLine";
             strings.Add(Combine(keys,text));
+            if (uniqueKeys.Contains(keys))
+            {
+                // Logger.Log(string.Format("{0}.{1} Duplicate key={2} When adding '{3}'", className, functionName, keys,text));
+            }
+            else
+            {
+                uniqueKeys.Add(keys);
+            }
+
         }
 
         private List<string> strings = new List<string>();
+        private List<string> uniqueKeys = new List<string>(); 
 
         public List<string> ToStrings()
         {
             strings = new List<string>();
+            uniqueKeys = new List<string>();
             // The following texts must be localized!   
             string control = ResourcesForHelp.Shortcut_Key_Control;
             string space = ResourcesForHelp.Shortcut_Key_space;
