@@ -32,6 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Official Documentation", "O
 		Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser version 1.1.0.0.doc = Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser version 1.1.0.0.doc
 		Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser.odt = Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser.odt
 		Documentation\Official Documentation\Installationsvejledning for IBOS Nodelæser.odt = Documentation\Official Documentation\Installationsvejledning for IBOS Nodelæser.odt
+		Documentation\Official Documentation\User's manual for IBOS MusicXmlReader version 1.1.0.0.doc = Documentation\Official Documentation\User's manual for IBOS MusicXmlReader version 1.1.0.0.doc
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Release Notes", "Release Notes", "{DC119A17-C15E-403A-9163-4CD93B8F880B}"
