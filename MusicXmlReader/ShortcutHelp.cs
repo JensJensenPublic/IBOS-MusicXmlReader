@@ -111,12 +111,17 @@ namespace MusicXmlReader
             // The following special keyboard skortcuts and commands can be used in connection with the note list
             AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteList);
+            // First all combinations of ARROWS and CONTROL
             AddLine(arrowLeft, ResourcesForHelp.Shortcut_PreviousLine);
             AddLine(arrowRight, ResourcesForHelp.Shortcut_NextLine);
             AddLine(Plus(control,arrowLeft), ResourcesForHelp.Shortcut_PreviousMeasure); 
-            AddLine(Plus(control,arrowRight), ResourcesForHelp.Shortcut_NextMeasure); 
-            //AddLine(arrowDown, ResourcesForHelp.Shortcut_NextPart);   // Description has been moved to the description of the  detail list
-            //AddLine(arrowUp, ResourcesForHelp.Shortcut_PreviousPart); // Description has been moved to the description of the  detail list
+            AddLine(Plus(control,arrowRight), ResourcesForHelp.Shortcut_NextMeasure);
+            AddLine(arrowUp, ResourcesForHelp.Shortcut_ChordTop);
+            AddLine(arrowDown, ResourcesForHelp.Shortcut_ChordName);
+            AddLine(Plus(control, arrowUp), ResourcesForHelp.Shortcut_PartTop);
+            AddLine(Plus(control, arrowDown), ResourcesForHelp.Shortcut_PartBottom);
+            AddLine(Plus(control, "I"), ResourcesForHelp.Shortcut_Instruments);
+            // AddLine(Plus(control, "F"), ResourcesForHelp.Shortcut_FixedKeySignature)); // Not implemented yet !
             AddLine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList);
             AddLine(Plus(control, "P"), ResourcesForHelp.Shortcut_StartPlaying);
             AddLine(Plus(control, shift, "P"), ResourcesForHelp.Shortcut_StopPlaying);
@@ -126,7 +131,7 @@ namespace MusicXmlReader
             AddLine("Gn " + enter, ResourcesForHelp.Shortcut_GoToMeasureN);
             AddLine("ESC", ResourcesForHelp.Shortcut_StopCurrentNote);
             AddLine(Plus(control, pageUp), ResourcesForHelp.Shortcut_IncreaseTempo);
-            AddLine(Plus(control, pageDown), ResourcesForHelp.Shortcut_DecreaseTempo);
+            AddLine(Plus(control, pageDown), ResourcesForHelp.Shortcut_DecreaseTempo); 
 
             // Følgende specielle tastaturgenveje kan bruges i forbindelse med redigering af nodefilteret:
             // The following special keyboard shortcuts can be used in connection with the node filter
@@ -146,13 +151,7 @@ namespace MusicXmlReader
             // Følgende specielle tastaturgenveje  kan anvendes i forbindelse med Detaljelisten 
             //The following special keyboard shortcuts can be used in connection with the detail list
             AddLine("\r");
-            AddLine(ResourcesForHelp.Shortcut_Caption_DetailList);
-            AddLine(arrowUp, ResourcesForHelp.Shortcut_ChordTop);
-            AddLine(arrowDown, ResourcesForHelp.Shortcut_ChordName);
-            AddLine(Plus(control, arrowUp), ResourcesForHelp.Shortcut_PartTop);
-            AddLine(Plus(control, arrowDown), ResourcesForHelp.Shortcut_PartBottom);
-            AddLine(Plus(control, "I"), ResourcesForHelp.Shortcut_Instruments);
-            // AddLine(Plus(control, "F"), ResourcesForHelp.Shortcut_FixedKeySignature)); // Not implemented yet !
+            AddLine(ResourcesForHelp.Shortcut_Caption_DetailList); 
             AddLine(arrowDown, ResourcesForHelp.Shortcut_NextDetail);
             AddLine(arrowUp, ResourcesForHelp.Shortcut_PreviousDetail);
 
