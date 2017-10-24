@@ -529,7 +529,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About.
+        ///   Looks up a localized string similar to &amp;About.
         /// </summary>
         internal static string ToolStripMenuItem_Help_About {
             get {
@@ -547,7 +547,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keyboard shortcuts.
+        ///   Looks up a localized string similar to &amp;Keyboard shortcuts.
         /// </summary>
         internal static string ToolStripMenuItem_Help_Shortcuts {
             get {
@@ -565,7 +565,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Link to newest software.
+        ///   Looks up a localized string similar to Link to newest &amp;software.
         /// </summary>
         internal static string ToolStripMenuItem_Help_SoftwareUpdate {
             get {

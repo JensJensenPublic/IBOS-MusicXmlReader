@@ -283,7 +283,7 @@
     <value>Nodefilter</value>
   </data>
   <data name="ToolStripMenuItem_Help_About" xml:space="preserve">
-    <value>Om</value>
+    <value>&amp;Om</value>
   </data>
   <data name="ToolStripMenuItem_Help_About_Version" xml:space="preserve">
     <value>Version</value>
@@ -298,7 +298,7 @@
     <value>Statuslinie</value>
   </data>
   <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
-    <value>Tastatur-genveje</value>
+    <value>&amp;Tastatur-genveje</value>
   </data>
   <data name="Message_LocationNotDetermined" xml:space="preserve">
     <value>Filens placering kunne ikke bestemmes</value>
@@ -325,7 +325,7 @@
     <value>Importér nyeste &amp;eksempler</value>
   </data>
   <data name="ToolStripMenuItem_Help_SoftwareUpdate" xml:space="preserve">
-    <value>Link til nyeste software</value>
+    <value>Link til nyeste &amp;software</value>
   </data>
   <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
     <value>http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html</value>

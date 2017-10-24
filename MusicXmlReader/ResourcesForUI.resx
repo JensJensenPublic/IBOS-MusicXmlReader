@@ -283,7 +283,7 @@
     <value>Note filter</value>
   </data>
   <data name="ToolStripMenuItem_Help_About" xml:space="preserve">
-    <value>About</value>
+    <value>&amp;About</value>
   </data>
   <data name="ToolStripMenuItem_Help_About_Version" xml:space="preserve">
     <value>Version</value>
@@ -298,7 +298,7 @@
     <value>Status line</value>
   </data>
   <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
-    <value>Keyboard shortcuts</value>
+    <value>&amp;Keyboard shortcuts</value>
   </data>
   <data name="Message_LocationNotDetermined" xml:space="preserve">
     <value>Location of file could not be determined</value>
@@ -327,7 +327,7 @@
     <value>Import newest &amp;samples</value>
   </data>
   <data name="ToolStripMenuItem_Help_SoftwareUpdate" xml:space="preserve">
-    <value>Link to newest software</value>
+    <value>Link to newest &amp;software</value>
   </data>
   <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
     <value>http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html</value>
