@@ -578,7 +578,7 @@ namespace MusicXmlReaderModel
         }
 
 
-        private static void CreateEmptyTempDirectory(string directoryName)
+        public static void CreateEmptyTempDirectory(string directoryName)
         {
             if (Directory.Exists(directoryName))
             {

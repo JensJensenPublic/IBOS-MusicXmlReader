@@ -915,10 +915,18 @@ namespace MusicXmlReader
             string loalizedDocumentationDocument = Path.Combine(localizedDocumentationDirectory, localizedFileName);
             try
             {
-                // throw new Exception("TEST");
+                // throw new Exception("TEST"); // For test only !!
                 // Open the user's manual by the application associated with its extension, for instance Word for a .doc file
-#warning To do: Copy the file to the user's temp directory before opening it !!!
-                System.Diagnostics.Process process = System.Diagnostics.Process.Start(loalizedDocumentationDocument);
+                // But first copy the file to the user's temp directory before opening it !!!
+                // We do not want to expose the installation path, and in some installations the user probably can't access it except for execution !
+                string tempDirectory = Path.Combine(Logger.MusicXmlReaderTempDirectory, "tempDirectoryUsedByShowUsersManual"); // Probably a unique name
+                Utilities.CreateEmptyTempDirectory(tempDirectory);
+                string tempDocumentFileName = Path.Combine(tempDirectory, localizedFileName);
+                bool overWrite = true;
+                System.IO.File.Copy(loalizedDocumentationDocument, tempDocumentFileName,overWrite);
+                // For instance: C:\Users\<user>\AppData\Local\Temp\MusicXmlReader\tempDirectoryUsedByShowUsersManual\Brugervejledning.doc
+                System.Diagnostics.Process process = System.Diagnostics.Process.Start(tempDocumentFileName);
+                Logger.Log(string.Format("{0}.{1}: Process.Start({2}) succeeded", className, functionName, tempDocumentFileName));
             }
             catch (Exception e)
             {
