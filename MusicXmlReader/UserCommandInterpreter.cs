@@ -37,9 +37,11 @@ namespace MusicXmlReader
         private string KeyToString(Keys keys)
         {
             int key = (int)keys;
-            if (((int)(Keys.A |Keys.Control)<= key) && (key <= (int)(Keys.Z | Keys.Control)))
+            Keys controlKeys = Keys.None;   // When using alphanumeric keys alone
+            //int controlKeys = Keys.Control; // When using alphanumeric keys combined with the CONTROL, SHIFT or ALT
+            if (((int)(Keys.A | controlKeys) <= key) && (key <= (int)(Keys.Z | controlKeys)))
             {
-                int c = (int)'A' + key - (int)(Keys.A |Keys.Control) ;
+                int c = (int)'A' + key - (int)(Keys.A | controlKeys) ;
                 return ((char)c).ToString();
             }
 

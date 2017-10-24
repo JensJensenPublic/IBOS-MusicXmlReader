@@ -103,9 +103,9 @@ namespace MusicXmlReader
             AddLine(Combine(Plus(control, "P"), ResourcesForHelp.Shortcut_StartPlaying));
             AddLine(Combine(Plus(control, shift, "P"), ResourcesForHelp.Shortcut_StopPlaying));
             AddLine(Combine(Plus(space), ResourcesForHelp.Shortcut_TogglePlay));
-            AddLine(Combine(Plus(control,"Tn " + enter), ResourcesForHelp.Shortcut_SetTempo));
-            AddLine(Combine(Plus(control,"Rn,m " + enter), ResourcesForHelp.Shortcut_RepeatFromNtoM));
-            AddLine(Combine(Plus(control,"Gn " + enter), ResourcesForHelp.Shortcut_GoToMeasureN));
+            AddLine(Combine("Tn " + enter, ResourcesForHelp.Shortcut_SetTempo));
+            AddLine(Combine("Rn,m " + enter, ResourcesForHelp.Shortcut_RepeatFromNtoM));
+            AddLine(Combine("Gn " + enter, ResourcesForHelp.Shortcut_GoToMeasureN));
             AddLine(Combine("ESC", ResourcesForHelp.Shortcut_StopCurrentNote));
             AddLine(Combine(Plus(control, pageUp), ResourcesForHelp.Shortcut_IncreaseTempo));
             AddLine(Combine(Plus(control, pageDown), ResourcesForHelp.Shortcut_DecreaseTempo));
