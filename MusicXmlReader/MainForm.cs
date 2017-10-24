@@ -250,6 +250,7 @@ namespace MusicXmlReader
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text= string.Format("{0} {1}",ResourcesForUI.ToolStripMenuItem_Help_About,applicationName);
             this.keyboardShortcutsToolStripMenuItem.Text =      ResourcesForUI.ToolStripMenuItem_Help_Shortcuts;
             this.linkToNewestSoftwareToolStripMenuItem.Text =   ResourcesForUI.ToolStripMenuItem_Help_SoftwareUpdate;
+            this.usersManualToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help_ShowUsersManual;
 
             // CheckShortCuts();
         }
@@ -904,6 +905,31 @@ namespace MusicXmlReader
         }
 
 
+        private void ShowUsersManual()
+        {
+            string functionName = "ShowUsersManual";
+            // Construct the localized full path of the user's manual
+            string documentationDirectory = System.IO.Path.Combine(Utilities.GetExecutingDirectory(), "Documentation"); // Not to be localized !!
+            string localizedDocumentationDirectory = Path.Combine(documentationDirectory, ResourcesForUI.DirectoryNames_CultureString); //  "da-DK" or "en-US");
+            string localizedFileName = ResourcesForUI.FileNames_UsersManual;//  "Brugervejledning.doc");
+            string loalizedDocumentationDocument = Path.Combine(localizedDocumentationDirectory, localizedFileName);
+            try
+            {
+                // throw new Exception("TEST");
+                // Open the user's manual by the application associated with its extension, for instance Word for a .doc file
+#warning To do: Copy the file to the user's temp directory before opening it !!!
+                System.Diagnostics.Process process = System.Diagnostics.Process.Start(loalizedDocumentationDocument);
+            }
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("{0}.{1} threw an exception: Message={2}", className, functionName, e.Message));
+                string formattedMessage = string.Format("{0} {1}", ResourcesForUI.Message_FailedToShow, localizedFileName); // Show filename only, no path !
+                MessageBox.Show(formattedMessage, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+
         /// <summary>
         /// Shows details which are related to an event in the Details listbox
         /// </summary>
@@ -1334,6 +1360,11 @@ namespace MusicXmlReader
         private void instrumentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowGlobalDetails(DetailsEnum.Instruments, true);
+        }
+
+        private void usersManualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowUsersManual();
         }
 
 

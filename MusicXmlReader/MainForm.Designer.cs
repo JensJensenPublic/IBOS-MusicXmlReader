@@ -49,6 +49,8 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.uncheckAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.instrumentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.museScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sibeliusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,8 +95,7 @@
             this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.listBoxDetails = new System.Windows.Forms.ListBox();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.instrumentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usersManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -264,6 +265,21 @@
             this.checkAllToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.checkAllToolStripMenuItem.Text = "1: Check all";
             this.checkAllToolStripMenuItem.Click += new System.EventHandler(this.checkAllToolStripMenuItem_Click);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.instrumentsToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "&View";
+            // 
+            // instrumentsToolStripMenuItem
+            // 
+            this.instrumentsToolStripMenuItem.Name = "instrumentsToolStripMenuItem";
+            this.instrumentsToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.instrumentsToolStripMenuItem.Text = "&Instruments";
+            this.instrumentsToolStripMenuItem.Click += new System.EventHandler(this.instrumentsToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -516,7 +532,8 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutIBOSMusicXmlReaderToolStripMenuItem,
             this.keyboardShortcutsToolStripMenuItem,
-            this.linkToNewestSoftwareToolStripMenuItem});
+            this.linkToNewestSoftwareToolStripMenuItem,
+            this.usersManualToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "&Help";
@@ -628,20 +645,12 @@
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDetails_KeyDown);
             this.listBoxDetails.Leave += new System.EventHandler(this.listBoxDetails_Leave);
             // 
-            // viewToolStripMenuItem
+            // usersManualToolStripMenuItem
             // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.instrumentsToolStripMenuItem});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "&View";
-            // 
-            // instrumentsToolStripMenuItem
-            // 
-            this.instrumentsToolStripMenuItem.Name = "instrumentsToolStripMenuItem";
-            this.instrumentsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.instrumentsToolStripMenuItem.Text = "&Instruments";
-            this.instrumentsToolStripMenuItem.Click += new System.EventHandler(this.instrumentsToolStripMenuItem_Click);
+            this.usersManualToolStripMenuItem.Name = "usersManualToolStripMenuItem";
+            this.usersManualToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.usersManualToolStripMenuItem.Text = "User´s manual";
+            this.usersManualToolStripMenuItem.Click += new System.EventHandler(this.usersManualToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -740,6 +749,7 @@
         private System.Windows.Forms.ToolStripMenuItem checkAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem instrumentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usersManualToolStripMenuItem;
     }
 }
 

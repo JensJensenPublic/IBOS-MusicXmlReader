@@ -79,6 +79,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to en-US.
+        /// </summary>
+        internal static string DirectoryNames_CultureString {
+            get {
+                return ResourceManager.GetString("DirectoryNames_CultureString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MusicXml downloads.
         /// </summary>
         internal static string DirectoryNames_Downloads {
@@ -93,6 +102,15 @@ namespace MusicXmlReader {
         internal static string DirectoryNames_Samples {
             get {
                 return ResourceManager.GetString("DirectoryNames_Samples", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users Manual.doc.
+        /// </summary>
+        internal static string FileNames_UsersManual {
+            get {
+                return ResourceManager.GetString("FileNames_UsersManual", resourceCulture);
             }
         }
         
@@ -156,6 +174,15 @@ namespace MusicXmlReader {
         internal static string Message_FailedToReadMusicXmlFile {
             get {
                 return ResourceManager.GetString("Message_FailedToReadMusicXmlFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Message_FailedToShow {
+            get {
+                return ResourceManager.GetString("Message_FailedToShow", resourceCulture);
             }
         }
         
@@ -525,6 +552,15 @@ namespace MusicXmlReader {
         internal static string ToolStripMenuItem_Help_Shortcuts {
             get {
                 return ResourceManager.GetString("ToolStripMenuItem_Help_Shortcuts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show &amp;user&apos;s manual.
+        /// </summary>
+        internal static string ToolStripMenuItem_Help_ShowUsersManual {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Help_ShowUsersManual", resourceCulture);
             }
         }
         

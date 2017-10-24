@@ -372,4 +372,19 @@
   <data name="TreeView_UncheckAll" xml:space="preserve">
     <value>&amp;0: Uncheck all</value>
   </data>
+  <data name="DirectoryNames_CultureString" xml:space="preserve">
+    <value>en-US</value>
+    <comment>Used tolookup this resource file !</comment>
+  </data>
+  <data name="FileNames_UsersManual" xml:space="preserve">
+    <value>Users Manual.doc</value>
+    <comment>Must use valid filename synrax !</comment>
+  </data>
+  <data name="Message_FailedToShow" xml:space="preserve">
+    <value />
+    <comment>Failed to show</comment>
+  </data>
+  <data name="ToolStripMenuItem_Help_ShowUsersManual" xml:space="preserve">
+    <value>Show &amp;user's manual</value>
+  </data>
 </root>

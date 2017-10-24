@@ -370,4 +370,18 @@
   <data name="TreeView_UncheckAll" xml:space="preserve">
     <value>&amp;0: Fjern markering fra alle</value>
   </data>
+  <data name="DirectoryNames_CultureString" xml:space="preserve">
+    <value>da-DK</value>
+    <comment>Used to look up this file !</comment>
+  </data>
+  <data name="FileNames_UsersManual" xml:space="preserve">
+    <value>Brugervejledning.doc</value>
+    <comment>Must use valid filename syntax</comment>
+  </data>
+  <data name="Message_FailedToShow" xml:space="preserve">
+    <value>Kunne ikke vise</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_ShowUsersManual" xml:space="preserve">
+    <value>Vis &amp;Brugervejledning</value>
+  </data>
 </root>
