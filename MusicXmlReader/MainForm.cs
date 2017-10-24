@@ -912,9 +912,25 @@ namespace MusicXmlReader
             string documentationDirectory = System.IO.Path.Combine(Utilities.GetExecutingDirectory(), "Documentation"); // Not to be localized !!
             string localizedDocumentationDirectory = Path.Combine(documentationDirectory, ResourcesForUI.DirectoryNames_CultureString); //  "da-DK" or "en-US");
             string localizedFileName = ResourcesForUI.FileNames_UsersManual;//  "Brugervejledning.doc");
+            string localizedFilenameEstension = Path.GetExtension(localizedFileName);
+            string LocalizedFilenameWithoutEstension = Path.GetFileNameWithoutExtension(localizedFileName);
             string loalizedDocumentationDocument = Path.Combine(localizedDocumentationDirectory, localizedFileName);
+            string sourcefilename = localizedFileName;
             try
             {
+                // In some languages (such as danish) the filename contains special characters such as "æ" in "IBOS Nodelæser"
+                // During the Build process we can not handle the "æ" so we look at the start of filename and the extension only.
+                // This has to do with limitations in the .cmd file used for copying documentation files during build.
+                foreach (string filename in Directory.GetFiles(localizedDocumentationDirectory))
+                {
+                    if ((Path.GetFileNameWithoutExtension(filename).StartsWith(LocalizedFilenameWithoutEstension))
+                    &&  (localizedFilenameEstension == Path.GetExtension(filename)))
+                    {
+                        sourcefilename = filename;
+                        break;
+                    }
+
+                }
                 // throw new Exception("TEST"); // For test only !!
                 // Open the user's manual by the application associated with its extension, for instance Word for a .doc file
                 // But first copy the file to the user's temp directory before opening it !!!
@@ -923,7 +939,7 @@ namespace MusicXmlReader
                 Utilities.CreateEmptyTempDirectory(tempDirectory);
                 string tempDocumentFileName = Path.Combine(tempDirectory, localizedFileName);
                 bool overWrite = true;
-                System.IO.File.Copy(loalizedDocumentationDocument, tempDocumentFileName,overWrite);
+                System.IO.File.Copy(sourcefilename, tempDocumentFileName, overWrite);
                 // For instance: C:\Users\<user>\AppData\Local\Temp\MusicXmlReader\tempDirectoryUsedByShowUsersManual\Brugervejledning.doc
                 System.Diagnostics.Process process = System.Diagnostics.Process.Start(tempDocumentFileName);
                 Logger.Log(string.Format("{0}.{1}: Process.Start({2}) succeeded", className, functionName, tempDocumentFileName));
