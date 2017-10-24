@@ -178,7 +178,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Failed to show.
         /// </summary>
         internal static string Message_FailedToShow {
             get {
