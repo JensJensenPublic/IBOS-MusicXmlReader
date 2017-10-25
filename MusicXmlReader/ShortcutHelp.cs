@@ -72,7 +72,7 @@ namespace MusicXmlReader
         private string Combine(string s1, string s2)
         {
             // Accept a simple formatting to save development time !!
-            return string.Format("{0,-20} \t {1}", s1, s2); // Make all s1 25 chars long and use a TAB
+            return string.Format("{0,-25} \t {1}", s1, s2); // Make all s1 25 chars long and use a TAB
         }
 
         private void AddLine(string line)
@@ -104,9 +104,9 @@ namespace MusicXmlReader
         /// <param name="altString">A string containing the ALT string after the first occurance of "&"</param>
         /// <param name="keys">The combination of ALT, CONTROL, SHIFT and a normal character used by teh CTRL shortcut</param>
         /// <param name="text">The localized text to be associated with the two shortcuts</param>
-        private void AddAltControlLine(string altString, Keys keys, string text)
-        {
-            string altText = Plus(alt, Utilities.GetShortcutName(altString));
+        private void AddAltControlLine(string mainMenuString, string altString, Keys keys, string text)
+        {   
+            string altText = Plus(alt, mainMenuString, Utilities.GetShortcutName(altString));
             string controlText = ToText(keys);
             string or = (string.IsNullOrEmpty(altText) || string.IsNullOrEmpty(controlText)) ? "" : " " + ResourcesForHelp.Conjunction_Or + " ";
             AddLine(altText + or + controlText, text);
@@ -187,15 +187,16 @@ namespace MusicXmlReader
             // The following special keyboard shortcuts can be used in connection with the node filter
             AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteFilter);
-            AddAltControlLine(ResourcesForUI.TreeView_All_Items,            ShortcutHandler.NoKeys,     ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter);
-            AddAltControlLine(ResourcesForUI.TreeWiew_Items,                ShortcutHandler.editFilter, ResourcesForHelp.Shortcut_EditNoteFilter);
-            AddAltControlLine(ResourcesForUI.TreeView_MusicAsSound,         ShortcutHandler.editMusic,  ResourcesForHelp.Shortcut_EditMusicPlaying);
-            AddAltControlLine(ResourcesForUI.TreeView_MusicAsSpeech,        ShortcutHandler.editText,   ResourcesForHelp.Shortcut_EditText);
-            AddAltControlLine(ResourcesForUI.TreeView_MusicAsBraille,       ShortcutHandler.editBraille,ResourcesForHelp.Shortcut_EditMusicBraille);
-            AddAltControlLine(ResourcesForUI.TreeView_MusicAsSpeech_Parts,  ShortcutHandler.NoKeys,     ResourcesForHelp.Shortcut_EditVoices);
-            AddAltControlLine(ResourcesForUI.TreeView_MusicAsSpeech_Details,ShortcutHandler.NoKeys,     ResourcesForHelp.Shortcut_EditDetails);
-            AddAltControlLine(ResourcesForUI.TreeView_UncheckAll,           ShortcutHandler.uncheckAll, ResourcesForHelp.Shortcut_TurnOffGlobally);
-            AddAltControlLine(ResourcesForUI.TreeView_CheckAll,             ShortcutHandler.checkAll,   ResourcesForHelp.Shurtcut_TurnOnGlobally);
+            string edit = Utilities.GetShortcutName(ResourcesForUI.ToolStripMenuItem_Edit); // Get a string representing the Acccess key for the "Edit" Menu
+            AddAltControlLine(edit, ResourcesForUI.TreeView_All_Items,            ShortcutHandler.NoKeys,     ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter);
+            AddAltControlLine(edit, ResourcesForUI.TreeWiew_Items,                ShortcutHandler.editFilter, ResourcesForHelp.Shortcut_EditNoteFilter);
+            AddAltControlLine(edit, ResourcesForUI.TreeView_MusicAsSound,         ShortcutHandler.editMusic,  ResourcesForHelp.Shortcut_EditMusicPlaying);
+            AddAltControlLine(edit, ResourcesForUI.TreeView_MusicAsSpeech,        ShortcutHandler.editText,   ResourcesForHelp.Shortcut_EditText);
+            AddAltControlLine(edit, ResourcesForUI.TreeView_MusicAsBraille,       ShortcutHandler.editBraille,ResourcesForHelp.Shortcut_EditMusicBraille);
+            AddAltControlLine(edit, ResourcesForUI.TreeView_MusicAsSpeech_Parts,  ShortcutHandler.NoKeys,     ResourcesForHelp.Shortcut_EditVoices);
+            AddAltControlLine(edit, ResourcesForUI.TreeView_MusicAsSpeech_Details,ShortcutHandler.NoKeys,     ResourcesForHelp.Shortcut_EditDetails);
+            AddAltControlLine(edit, ResourcesForUI.TreeView_UncheckAll,           ShortcutHandler.uncheckAll, ResourcesForHelp.Shortcut_TurnOffGlobally);
+            AddAltControlLine(edit, ResourcesForUI.TreeView_CheckAll,             ShortcutHandler.checkAll,   ResourcesForHelp.Shurtcut_TurnOnGlobally);
             AddLine(space, ResourcesForHelp.Shortcut_ToggleValue);
             AddLine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList);
 
