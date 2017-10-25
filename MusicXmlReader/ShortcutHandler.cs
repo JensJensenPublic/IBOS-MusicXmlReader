@@ -167,8 +167,8 @@ namespace MusicXmlReader
 
         public const Keys listBoxFocus =    Keys.Control | Keys.L;
 
-        public const Keys detailsNextDetail =       Keys.Up;      // Enter Details mode and select the last detail, if available)
-        public const Keys detailsPreviousDetail =   Keys.Down;    // Enter Details mode and select the first detail, if available
+        public const Keys detailsNextDetail =       Keys.Up;      // Enter     Details mode and select the last detail, if available)
+        public const Keys detailsPreviousDetail =   Keys.Down;    // Enter     Details mode and select the first detail, if available
         public const Keys detailsTopDetail =        Keys.Home;    // Remain in Details mode and select the top detail  if available)
         public const Keys detailsBottumDetail =     Keys.End;     // Remain in Details mode and select the bottum detail, if available 
         public const Keys detailsNextEvent =        Keys.Right;   // Leave Details mode and select the next event
