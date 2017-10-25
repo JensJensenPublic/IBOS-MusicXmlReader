@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MusicXmlReaderModel;
+using System.Windows.Forms;
 
 namespace MusicXmlReader
 {
@@ -11,9 +12,45 @@ namespace MusicXmlReader
     {
         string className = "ShortcutHelp"; 
         StringBuilder sb;
+        // The following texts are all localized!   
+        string control = "";
+        string space = "";
+        string escape = "";
+        string enter = "";
+        string insert = "";
+        string alt = "";
+        string tab = "";
+        string followedBy = "";
+        string pageUp = "";
+        string pageDown = "";
+        string shift = "";
+        string arrowLeft = "";
+        string arrowRight = "";
+        string arrowUp = "";
+        string arrowDown = "";
+        string home = "";
+        string end = "";
 
         private ShortcutHelp()
         {
+            // The following texts are all localized!   
+          control = ResourcesForHelp.Shortcut_Key_Control;
+          space = ResourcesForHelp.Shortcut_Key_space;
+          escape = ResourcesForHelp.Shortcut_Key_escape;
+          enter = ResourcesForHelp.Shortcut_Key_enter;
+          insert = ResourcesForHelp.Shortcut_Key_insert;
+          alt = ResourcesForHelp.shortcut_Key_alt;
+          tab = ResourcesForHelp.shortcut_Key_tab;
+          followedBy = ResourcesForHelp.shortcut_Text_followedBy;
+          pageUp = ResourcesForHelp.Shortcut_Key_pageUp;
+          pageDown = ResourcesForHelp.Shortcut_Key_pageDown;
+          shift = ResourcesForHelp.shortcut_Key_shift;
+          arrowLeft = ResourcesForHelp.Shortcut_ArrowLeft;
+          arrowRight = ResourcesForHelp.Shortcut_ArrowRight;
+          arrowUp = ResourcesForHelp.Shortcut_ArrowUp;
+          arrowDown = ResourcesForHelp.Shortcut_ArrowDown;
+          home = ResourcesForHelp.Shortcut_Home;
+          end = ResourcesForHelp.Shortcut_End;
         }
 
         private string Plus(string s1)
@@ -43,6 +80,25 @@ namespace MusicXmlReader
             strings.Add(line);
         }
 
+        string ToText(Keys keys)
+        {
+            if (Keys.None == keys) return "";
+            string controlString    = (0 != (keys & Keys.Control))  ? control + "+" : "";
+            string altString        = (0 != (keys & Keys.Alt))      ? alt + "+" : "";
+            string shiftString      = (0 != (keys & Keys.Shift))    ? shift + "+" : "";
+            Keys character = keys & ~(Keys.Control | Keys.Alt | Keys.Shift);
+            return controlString + altString + shiftString + character.ToString();
+        }
+
+        private void AddAltControlLine(string altString, Keys keys, string text)
+        {
+            string altText = Plus(alt, Utilities.GetShortcutName(altString));
+            string controlText = ToText(keys);
+            string or = (string.IsNullOrEmpty(altText) || string.IsNullOrEmpty(controlText)) ? "" : " " + ResourcesForHelp.Conjunction_Or + " ";
+            AddLine(altText + or + controlText, text);
+        }
+
+
         private void AddLine(string keys, string text)
         {
             // string functionName = "AddLine";
@@ -65,25 +121,6 @@ namespace MusicXmlReader
         {
             strings = new List<string>();
             uniqueKeys = new List<string>();
-            // The following texts must be localized!   
-            string control = ResourcesForHelp.Shortcut_Key_Control;
-            string space = ResourcesForHelp.Shortcut_Key_space;
-            string escape = ResourcesForHelp.Shortcut_Key_escape;
-            string enter = ResourcesForHelp.Shortcut_Key_enter;
-            string insert = ResourcesForHelp.Shortcut_Key_insert;
-            string alt = ResourcesForHelp.shortcut_Key_alt;
-            string tab = ResourcesForHelp.shortcut_Key_tab;
-            string followedBy = ResourcesForHelp.shortcut_Text_followedBy;
-            string pageUp = ResourcesForHelp.Shortcut_Key_pageUp;
-            string pageDown = ResourcesForHelp.Shortcut_Key_pageDown;
-            string shift = ResourcesForHelp.shortcut_Key_shift;
-            string arrowLeft = ResourcesForHelp.Shortcut_ArrowLeft;
-            string arrowRight = ResourcesForHelp.Shortcut_ArrowRight;
-            string arrowUp = ResourcesForHelp.Shortcut_ArrowUp;
-            string arrowDown = ResourcesForHelp.Shortcut_ArrowDown;
-            string home = ResourcesForHelp.Shortcut_Home;
-            string end = ResourcesForHelp.Shortcut_End;
-
 
             sb = new StringBuilder();
 
@@ -136,15 +173,15 @@ namespace MusicXmlReader
             // The following special keyboard shortcuts can be used in connection with the node filter
             AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteFilter);
-            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_All_Items)),    ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter);
-            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeWiew_Items)),        ResourcesForHelp.Shortcut_EditNoteFilter);
-            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSound)), ResourcesForHelp.Shortcut_EditMusicPlaying);
-            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSpeech)),ResourcesForHelp.Shortcut_EditText);
-            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsBraille)), ResourcesForHelp.Shortcut_EditMusicBraille);
-            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSpeech_Parts)), ResourcesForHelp.Shortcut_EditVoices);
-            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_MusicAsSpeech_Details)), ResourcesForHelp.Shortcut_EditDetails);
-            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_UncheckAll)),   ResourcesForHelp.Shortcut_TurnOffGlobally);
-            AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_CheckAll)),     ResourcesForHelp.Shurtcut_TurnOnGlobally);
+            AddAltControlLine(ResourcesForUI.TreeView_All_Items,            ShortcutHandler.NoKeys,     ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter);
+            AddAltControlLine(ResourcesForUI.TreeWiew_Items,                ShortcutHandler.editFilter, ResourcesForHelp.Shortcut_EditNoteFilter);
+            AddAltControlLine(ResourcesForUI.TreeView_MusicAsSound,         ShortcutHandler.editMusic,  ResourcesForHelp.Shortcut_EditMusicPlaying);
+            AddAltControlLine(ResourcesForUI.TreeView_MusicAsSpeech,        ShortcutHandler.editText,   ResourcesForHelp.Shortcut_EditText);
+            AddAltControlLine(ResourcesForUI.TreeView_MusicAsBraille,       ShortcutHandler.editBraille,ResourcesForHelp.Shortcut_EditMusicBraille);
+            AddAltControlLine(ResourcesForUI.TreeView_MusicAsSpeech_Parts,  ShortcutHandler.NoKeys,     ResourcesForHelp.Shortcut_EditVoices);
+            AddAltControlLine(ResourcesForUI.TreeView_MusicAsSpeech_Details,ShortcutHandler.NoKeys,     ResourcesForHelp.Shortcut_EditDetails);
+            AddAltControlLine(ResourcesForUI.TreeView_UncheckAll,           ShortcutHandler.uncheckAll, ResourcesForHelp.Shortcut_TurnOffGlobally);
+            AddAltControlLine(ResourcesForUI.TreeView_CheckAll,             ShortcutHandler.checkAll,   ResourcesForHelp.Shurtcut_TurnOnGlobally);
             AddLine(space, ResourcesForHelp.Shortcut_ToggleValue);
             AddLine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList);
 

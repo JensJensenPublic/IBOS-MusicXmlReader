@@ -187,5 +187,7 @@ namespace MusicXmlReader
 
         public const Keys StopAllNotesPlaying = Keys.Escape;
 
+        public const Keys NoKeys = Keys.None; // Means that no shortcut key is defined
+
     }
 }

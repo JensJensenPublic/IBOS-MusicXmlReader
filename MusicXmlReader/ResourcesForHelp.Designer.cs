@@ -61,6 +61,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to or.
+        /// </summary>
+        internal static string Conjunction_Or {
+            get {
+                return ResourceManager.GetString("Conjunction_Or", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ARROW-DOWN.
         /// </summary>
         internal static string Shortcut_ArrowDown {

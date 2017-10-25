@@ -321,6 +321,9 @@
   <data name="Shortcut_Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="Conjunction_Or" xml:space="preserve">
+    <value>or</value>
+  </data>
   <data name="Shortcut_CancelCurrentOperation" xml:space="preserve">
     <value>Cancel current operation</value>
   </data>
