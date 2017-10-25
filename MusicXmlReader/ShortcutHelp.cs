@@ -80,16 +80,30 @@ namespace MusicXmlReader
             strings.Add(line);
         }
 
+        
         string ToText(Keys keys)
         {
             if (Keys.None == keys) return "";
             string controlString    = (0 != (keys & Keys.Control))  ? control + "+" : "";
             string altString        = (0 != (keys & Keys.Alt))      ? alt + "+" : "";
             string shiftString      = (0 != (keys & Keys.Shift))    ? shift + "+" : "";
-            Keys character = keys & ~(Keys.Control | Keys.Alt | Keys.Shift);
-            return controlString + altString + shiftString + character.ToString();
+            Keys simpleKey = keys & ~(Keys.Control | Keys.Alt | Keys.Shift);
+            string charString = simpleKey.ToString(); // Will generate "D0" to "D9" for the digits !
+            if ((simpleKey >= Keys.D0) && (simpleKey <= Keys.D9))
+            {
+                char c = (char)('0' + (char)(simpleKey - Keys.D0));
+                charString = c.ToString();
+            } 
+            return controlString + altString + shiftString + charString;
         }
 
+
+        /// <summary>
+        /// Generate a localized line of helptext for complicated items containing ALT and CONTROL shortcuts at the same time
+        /// </summary>
+        /// <param name="altString">A string containing the ALT string after the first occurance of "&"</param>
+        /// <param name="keys">The combination of ALT, CONTROL, SHIFT and a normal character used by teh CTRL shortcut</param>
+        /// <param name="text">The localized text to be associated with the two shortcuts</param>
         private void AddAltControlLine(string altString, Keys keys, string text)
         {
             string altText = Plus(alt, Utilities.GetShortcutName(altString));
