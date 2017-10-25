@@ -106,7 +106,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shortcuts used for viewing the details list.
+        ///   Looks up a localized string similar to Shortcuts for viewing details.
         /// </summary>
         internal static string Shortcut_Caption_DetailList {
             get {

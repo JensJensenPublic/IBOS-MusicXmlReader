@@ -92,14 +92,13 @@ namespace MusicXmlReader
             // The following standard Windows / JAWS keyboard shortcuts can be used 
             // AddLine("\r");
             AddLine(ResourcesForHelp.Shortcut_Caption_Windows);
-            AddLine(Plus(control, "O"),  ResourcesForHelp.Shortcut_OpenFileOpenDialog);
-            AddLine(Plus(alt, "F4"),     ResourcesForHelp.Shortcut_CloseProgram);
             AddLine(alt, ResourcesForHelp.Shortcut_SelectMenuLine);
             AddLine(tab, ResourcesForHelp.Shortcut_ToggleBetweenListAndFilter);
             AddLine(escape, ResourcesForHelp.Shortcut_CancelCurrentOperation);
-
+            AddLine(Plus(control, "O"), ResourcesForHelp.Shortcut_OpenFileOpenDialog);
+            AddLine(Plus(alt, "F4"), ResourcesForHelp.Shortcut_CloseProgram);
             AddLine(Plus(control, home), ResourcesForHelp.Shortcut_GoToTopLine);
-            AddLine(Plus(control, end), ResourcesForHelp.Shortcut_GoToBottomLine);
+            AddLine(Plus(control, end), ResourcesForHelp.Shortcut_GoToBottomLine);  
 
             AddLine("\r");
             AddLine(ResourcesForHelp.Shortcut_Caption_JAWS);
@@ -123,7 +122,6 @@ namespace MusicXmlReader
             AddLine(Plus(control, arrowDown), ResourcesForHelp.Shortcut_PartBottom);
             AddLine(Plus(control, "I"), ResourcesForHelp.Shortcut_Instruments);
             // AddLine(Plus(control, "F"), ResourcesForHelp.Shortcut_FixedKeySignature)); // Not implemented yet !
-            AddLine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList);
             AddLine(Plus(control, "P"), ResourcesForHelp.Shortcut_StartPlaying);
             AddLine(Plus(control, shift, "P"), ResourcesForHelp.Shortcut_StopPlaying);
             AddLine(Plus(space), ResourcesForHelp.Shortcut_TogglePlay);
@@ -148,6 +146,7 @@ namespace MusicXmlReader
             AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_UncheckAll)),   ResourcesForHelp.Shortcut_TurnOffGlobally);
             AddLine(Plus(alt, Utilities.GetShortcutName(ResourcesForUI.TreeView_CheckAll)),     ResourcesForHelp.Shurtcut_TurnOnGlobally);
             AddLine(space, ResourcesForHelp.Shortcut_ToggleValue);
+            AddLine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList);
 
             // Følgende specielle tastaturgenveje  kan anvendes i forbindelse med Detaljelisten 
             //The following special keyboard shortcuts can be used in connection with the detail list

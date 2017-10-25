@@ -262,7 +262,7 @@
     <value>Select previous part</value>
   </data>
   <data name="Shortcut_Caption_DetailList" xml:space="preserve">
-    <value>Shortcuts used for viewing the details list</value>
+    <value>Shortcuts for viewing details</value>
   </data>
   <data name="Shortcut_Caption_Tempo" xml:space="preserve">
     <value>Shortcuts used for controlling the tempo</value>
