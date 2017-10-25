@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MusicXmlReaderModel;
 
+// https://msdn.microsoft.com/en-us/library/hh994769%28v=vs.110%29.aspx?f=255&MSPPError=-2147217396
+// Describes good practice for designing with Access Keys and Shortcut Keys
+
+
 // https://support.microsoft.com/en-us/kb/126449 contains the following list of standard Windows keyboard shortcuts
 //F1: Help
 //CTRL+ESC: Open Start menu
