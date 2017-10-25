@@ -96,6 +96,7 @@ namespace MusicXmlReader
             AddLine(Plus(alt, "F4"),     ResourcesForHelp.Shortcut_CloseProgram);
             AddLine(alt, ResourcesForHelp.Shortcut_SelectMenuLine);
             AddLine(tab, ResourcesForHelp.Shortcut_ToggleBetweenListAndFilter);
+            AddLine(escape, ResourcesForHelp.Shortcut_CancelCurrentOperation);
 
             AddLine(Plus(control, home), ResourcesForHelp.Shortcut_GoToTopLine);
             AddLine(Plus(control, end), ResourcesForHelp.Shortcut_GoToBottomLine);

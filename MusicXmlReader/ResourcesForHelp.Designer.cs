@@ -97,6 +97,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel current operation.
+        /// </summary>
+        internal static string Shortcut_CancelCurrentOperation {
+            get {
+                return ResourceManager.GetString("Shortcut_CancelCurrentOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shortcuts used for viewing the details list.
         /// </summary>
         internal static string Shortcut_Caption_DetailList {

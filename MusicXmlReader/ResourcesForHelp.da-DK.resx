@@ -321,4 +321,7 @@
   <data name="Shortcut_Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="Shortcut_CancelCurrentOperation" xml:space="preserve">
+    <value>Afbryd igangværende handling</value>
+  </data>
 </root>
