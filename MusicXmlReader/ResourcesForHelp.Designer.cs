@@ -133,6 +133,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shortcuts for menu.
+        /// </summary>
+        internal static string Shortcut_Caption_Menu {
+            get {
+                return ResourceManager.GetString("Shortcut_Caption_Menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shortcuts used for editing the note filter.
         /// </summary>
         internal static string shortcut_Caption_NoteFilter {

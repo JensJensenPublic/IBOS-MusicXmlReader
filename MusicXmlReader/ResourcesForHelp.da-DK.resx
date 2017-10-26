@@ -327,4 +327,7 @@
   <data name="Shortcut_CancelCurrentOperation" xml:space="preserve">
     <value>Afbryd igangværende handling</value>
   </data>
+  <data name="Shortcut_Caption_Menu" xml:space="preserve">
+    <value>Genvejstaster for menuen</value>
+  </data>
 </root>
