@@ -81,21 +81,6 @@ namespace MusicXmlReader
         }
 
         
-        string ToText(Keys keys)
-        {
-            if (Keys.None == keys) return "";
-            string controlString    = (0 != (keys & Keys.Control))  ? control + "+" : "";
-            string altString        = (0 != (keys & Keys.Alt))      ? alt + "+" : "";
-            string shiftString      = (0 != (keys & Keys.Shift))    ? shift + "+" : "";
-            Keys simpleKey = keys & ~(Keys.Control | Keys.Alt | Keys.Shift);
-            string charString = simpleKey.ToString(); // Will generate "D0" to "D9" for the digits !
-            if ((simpleKey >= Keys.D0) && (simpleKey <= Keys.D9))
-            {
-                char c = (char)('0' + (char)(simpleKey - Keys.D0));
-                charString = c.ToString();
-            } 
-            return controlString + altString + shiftString + charString;
-        }
 
 
         /// <summary>
@@ -107,7 +92,7 @@ namespace MusicXmlReader
         private void AddAltControlLine(string mainMenuString, string altString, Keys keys, string text)
         {   
             string altText = Plus(alt, mainMenuString, Utilities.GetShortcutName(altString));
-            string controlText = ToText(keys);
+            string controlText = UiUtilities.KeysToString(keys);
             string or = (string.IsNullOrEmpty(altText) || string.IsNullOrEmpty(controlText)) ? "" : " " + ResourcesForHelp.Conjunction_Or + " ";
             AddLine(altText + or + controlText, text);
         }
