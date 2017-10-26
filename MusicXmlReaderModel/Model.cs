@@ -442,8 +442,8 @@ namespace MusicXmlReaderModel
             debugTools = DebugTools.Create(); // Used for logging and tracing from screenReaderAPI.
             screenReaderAPI = ScreenReaderAPI.Create(is64Bit, debugTools);
             externalToolsHandler = ExternalToolsHandler.Create();
-#warning TODO remove call to Utilities.CheckScreenReader
-            Utilities.CheckScreenReader(screenReaderAPI.ScreenReaderName, caption); // Check for DummyScreenReader
+
+            // Utilities.CheckScreenReader(screenReaderAPI.ScreenReaderName, caption); // Check for DummyScreenReader
 
             midiOut = CreateMidiOut(0);
             musicPlayer = new MusicPlayer(objects, midiOut);

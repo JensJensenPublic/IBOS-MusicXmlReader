@@ -1209,6 +1209,17 @@ namespace MusicXmlReader
             Version version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
             string caption = applicationName;
             string text = string.Format("{0}={1}", ResourcesForUI.ToolStripMenuItem_Help_About_Version, version.ToString());
+            switch (model.ScreenReaderName)
+            {
+                case "JAWS": break; // JAWS is the default screenreader
+                case "DummyScreenReader": break;     // We ignore when no screenreader is running
+                default:
+                    // Any other screenreader will be reported.
+                    text = text + "\r\r" + ResourcesForUI.Message_ConnectedToNonDefaultScreenReader + ": " + model.ScreenReaderName;
+                    text = text + "\r" + ResourcesForUI.Message_MayNotWorkAsExpected;
+                    break;
+            }
+                
             MessageBox.Show(text, caption);
         }
 
