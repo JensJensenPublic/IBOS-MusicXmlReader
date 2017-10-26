@@ -80,10 +80,16 @@ namespace MusicXmlReader
             strings.Add(line);
         }
 
-        private void AddCaption(string text)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns>Returns the value of the access key specified by "&" if any</returns>
+        private string AddCaption(string text)
         {
             AddLine("\r");
             AddLine(ResourcesForHelp.Shortcut_Caption_Menu + " " + Utilities.RemoveAmpersant(text));
+            return Utilities.GetShortcutName(text);
         }
 
 
@@ -161,8 +167,7 @@ namespace MusicXmlReader
             AddLine(Plus(insert, "T"), ResourcesForHelp.Shortcut_ReadTitleLine);
             AddLine(Plus(insert, "B"), ResourcesForHelp.Shortcut_ReadMessagebox);
 
-            AddCaption(ResourcesForUI.ToolStripMenuItem_Files);
-            string files = Utilities.GetShortcutName(ResourcesForUI.ToolStripMenuItem_Files); // Get a string representing the Acccess key for the "Files" Menu
+            string files = AddCaption(ResourcesForUI.ToolStripMenuItem_Files);
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile, ShortcutHandler.openMusicXmlFile);
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportDownloads, ShortcutHandler.NoKeys);
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportNewestDownloads, ShortcutHandler.NoKeys);
@@ -170,8 +175,7 @@ namespace MusicXmlReader
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_Exit, ShortcutHandler.exitApplication);
 
             // The following special keyboard shortcuts can be used in connection with the node filter
-            AddCaption(ResourcesForUI.ToolStripMenuItem_Edit);
-            string edit = Utilities.GetShortcutName(ResourcesForUI.ToolStripMenuItem_Edit); // Get a string representing the Acccess key for the "Edit" Menu
+            string edit = AddCaption(ResourcesForUI.ToolStripMenuItem_Edit);
             AddAltControlLine(edit, ResourcesForUI.TreeView_All_Items, ShortcutHandler.NoKeys, ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter);
             AddAltControlLine(edit, ResourcesForUI.TreeWiew_Items, ShortcutHandler.editFilter, ResourcesForHelp.Shortcut_EditNoteFilter);
             AddAltControlLine(edit, ResourcesForUI.TreeView_MusicAsSound, ShortcutHandler.editMusic, ResourcesForHelp.Shortcut_EditMusicPlaying);
@@ -184,12 +188,10 @@ namespace MusicXmlReader
             AddLine(space, ResourcesForHelp.Shortcut_ToggleValue);
             AddLine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList);
 
-            AddCaption(ResourcesForUI.ToolStripMenuItem_View);
-            string view = Utilities.GetShortcutName(ResourcesForUI.ToolStripMenuItem_View); // Get a string representing the Acccess key for the "View" Menu
+            string view = AddCaption(ResourcesForUI.ToolStripMenuItem_View);
             AddAltControlLine(view, ResourcesForUI. ToolsStripMenuItem_View_Instruments, ShortcutHandler.NoKeys);
 
-            AddCaption(ResourcesForUI.ToolStripMenuItem_Tools);
-            string tools = Utilities.GetShortcutName(ResourcesForUI.ToolStripMenuItem_Tools); // Get a string representing the Acccess key for the "Tools" Menu
+            string tools = AddCaption(ResourcesForUI.ToolStripMenuItem_Tools);
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_MuseScore);
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_Sibelius);
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_Logfile);
@@ -199,12 +201,10 @@ namespace MusicXmlReader
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_ViewAsInterpretedXml);
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_JAWS_Settings);
 
-            AddCaption(ResourcesForUI.ToolsStripMenuItem_Archives);
-            string noteArchives = Utilities.GetShortcutName(ResourcesForUI.ToolsStripMenuItem_Archives); // Get a string representing the Acccess key for the "Note Archives" Menu
+            string noteArchives = AddCaption(ResourcesForUI.ToolsStripMenuItem_Archives);
             AddLine("(Ingen)");
 
-            AddCaption(ResourcesForUI.ToolStripMenuItem_Help);
-            string help = Utilities.GetShortcutName(ResourcesForUI.ToolStripMenuItem_Tools); // Get a string representing the Acccess key for the "Help" Menu
+            string help = AddCaption(ResourcesForUI.ToolStripMenuItem_Help);
             AddAltControlLine(help, ResourcesForUI.ToolStripMenuItem_Help_About); 
             AddAltControlLine(help, ResourcesForUI.ToolStripMenuItem_Help_Shortcuts); 
             AddAltControlLine(help, ResourcesForUI.ToolStripMenuItem_Help_SoftwareUpdate); 
