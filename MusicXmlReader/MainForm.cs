@@ -169,9 +169,7 @@ namespace MusicXmlReader
         string GenerateAccessibleName(string text, Keys keys)
         {
             if ( Keys.None == keys) return text;
-            Keys controls = keys & (Keys.Control | Keys.Shift | Keys.Alt);
-            Keys others = keys & ~ controls; 
-            return Utilities.RemoveAmpersant(text) + " " + controls.ToString() + " " + others.ToString(); // Say the control char before the other character.
+            return Utilities.RemoveAmpersant(text) + " " +  UiUtilities.KeysToString(keys); // Say the control char before the other character.
         }
 
         void GenerateAccessibleName(ref ToolStripMenuItem menuItem)
