@@ -97,6 +97,12 @@ namespace MusicXmlReader
             AddLine(altText + or + controlText, text);
         }
 
+        private void AddAltControlLine(string mainMenuString, string altString, Keys keys)
+        {
+            AddAltControlLine(mainMenuString, altString, keys, Utilities.RemoveAmpersant(altString));
+        }
+
+
 
         private void AddLine(string keys, string text)
         {
@@ -146,11 +152,11 @@ namespace MusicXmlReader
             AddLine("\r");
             AddLine("Genvejstaster for menuen 'Filer'");
             string files = Utilities.GetShortcutName(ResourcesForUI.ToolStripMenuItem_Files); // Get a string representing the Acccess key for the "Files" Menu
-            AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile, ShortcutHandler.openMusicXmlFile, "");//, ResourcesForHelp.);
-            AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportDownloads, ShortcutHandler.NoKeys, ""); // ResourcesForHelp.);
-            AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportNewestDownloads, ShortcutHandler.NoKeys, "");// ResourcesForHelp.);
-            AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportNewestSamples, ShortcutHandler.NoKeys, "");// ResourcesForHelp.);
-            AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_Exit, ShortcutHandler.exitApplication, "");// ResourcesForHelp.);
+            AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile, ShortcutHandler.openMusicXmlFile);
+            AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportDownloads, ShortcutHandler.NoKeys);
+            AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportNewestDownloads, ShortcutHandler.NoKeys);
+            AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportNewestSamples, ShortcutHandler.NoKeys);
+            AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_Exit, ShortcutHandler.exitApplication);
 
             // The following special keyboard shortcuts can be used in connection with the node filter
             AddLine("\r");
@@ -173,21 +179,21 @@ namespace MusicXmlReader
             // AddLine(ResourcesForHelp.shortcut_Caption_NoteFilter);
             AddLine("Genvejstaster for menuen 'Vis'");
             string view = Utilities.GetShortcutName(ResourcesForUI.ToolStripMenuItem_View); // Get a string representing the Acccess key for the "View" Menu
-            AddAltControlLine(view, ResourcesForUI. ToolsStripMenuItem_View_Instruments, ShortcutHandler.NoKeys, "");
+            AddAltControlLine(view, ResourcesForUI. ToolsStripMenuItem_View_Instruments, ShortcutHandler.NoKeys);
 
 
             AddLine("\r");
             // AddLine(ResourcesForHelp.shortcut_Caption_NoteFilter);
             AddLine("Genvejstaster for menuen 'Værktøjer'");
             string tools = Utilities.GetShortcutName(ResourcesForUI.ToolStripMenuItem_Tools); // Get a string representing the Acccess key for the "Tools" Menu
-            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_MuseScore, ShortcutHandler.NoKeys, ""); // ResourcesForHelp);
-            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_Sibelius, ShortcutHandler.NoKeys, ""); // ResourcesForHelp);
-            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_Logfile, ShortcutHandler.NoKeys, ""); // ResourcesForHelp);
-            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_Logfile_Location, ShortcutHandler.NoKeys, ""); // ResourcesForHelp);
-            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_OpenXmlFileLocation, ShortcutHandler.NoKeys, ""); // ResourcesForHelp);
-            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_InspectAsXml, ShortcutHandler.NoKeys, ""); // ResourcesForHelp);
-            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_ViewAsInterpretedXml, ShortcutHandler.NoKeys, ""); // ResourcesForHelp);
-            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_JAWS_Settings, ShortcutHandler.NoKeys, ""); // ResourcesForHelp);
+            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_MuseScore, ShortcutHandler.NoKeys);
+            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_Sibelius, ShortcutHandler.NoKeys);
+            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_Logfile, ShortcutHandler.NoKeys);
+            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_Logfile_Location, ShortcutHandler.NoKeys);
+            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_OpenXmlFileLocation, ShortcutHandler.NoKeys);
+            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_InspectAsXml, ShortcutHandler.NoKeys);
+            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_ViewAsInterpretedXml, ShortcutHandler.NoKeys);
+            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_JAWS_Settings, ShortcutHandler.NoKeys);
 
 
             AddLine("\r");
@@ -200,10 +206,10 @@ namespace MusicXmlReader
             // AddLine(ResourcesForHelp.shortcut_Caption_NoteFilter);
             AddLine("Genvejstaster for menuen 'Hjælp'");
             string help = Utilities.GetShortcutName(ResourcesForUI.ToolStripMenuItem_Tools); // Get a string representing the Acccess key for the "Help" Menu
-            AddAltControlLine(help, ResourcesForUI.ToolStripMenuItem_Help_About  , ShortcutHandler.NoKeys, ""); // ResourcesForHelp);
-            AddAltControlLine(help, ResourcesForUI.ToolStripMenuItem_Help_Shortcuts, ShortcutHandler.NoKeys, ""); // ResourcesForHelp);
-            AddAltControlLine(help, ResourcesForUI.ToolStripMenuItem_Help_SoftwareUpdate, ShortcutHandler.NoKeys, ""); // ResourcesForHelp);
-            AddAltControlLine(help, ResourcesForUI.ToolStripMenuItem_Help_ShowUsersManual, ShortcutHandler.NoKeys, ""); // ResourcesForHelp);
+            AddAltControlLine(help, ResourcesForUI.ToolStripMenuItem_Help_About  , ShortcutHandler.NoKeys); 
+            AddAltControlLine(help, ResourcesForUI.ToolStripMenuItem_Help_Shortcuts, ShortcutHandler.NoKeys); 
+            AddAltControlLine(help, ResourcesForUI.ToolStripMenuItem_Help_SoftwareUpdate, ShortcutHandler.NoKeys); 
+            AddAltControlLine(help, ResourcesForUI.ToolStripMenuItem_Help_ShowUsersManual, ShortcutHandler.NoKeys); 
 
 
             // Følgende specielle tastaturgenveje og kommandoer kan anvendes i forbindelse med Nodelisten           
