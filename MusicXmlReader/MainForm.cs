@@ -68,6 +68,7 @@ namespace MusicXmlReader
                 listBoxTimes.AccessibleName = ResourcesForUI.ListView_Accessible_Name; // Overwrite all items in listBoxTimes with localized texts
                 userSettingsTreeView.AccessibleName = ResourcesForUI.TreeView_Accessible_Name; // Overwrite all items in userSettingsTreeview with localized texts
                 textBoxStatusInformation.AccessibleName = ResourcesForUI.StatusLine_Accessible_Name; // Overwrite with localized text
+                listBoxDetails.AccessibleRole = AccessibleRole.None; // ListboxDetails is intensionally kept anonymous to the user. It is only used for outputting texts via JAWS
 
 
                 Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 
@@ -820,9 +821,13 @@ namespace MusicXmlReader
             Application.Exit();
         }
 
-#region keyhandlers
+        #region keyhandlers
 
-
+        private void LeaveListboxTimes()
+        {
+            listBoxTimes.Hide(); // Hide in order to prevent JAWS 
+        }
+                
 
         private void ReturnToListboxTimes(int move)
         {
@@ -836,6 +841,7 @@ namespace MusicXmlReader
                 listBoxTimes.SelectedIndex = newIndex;
             }
             // In all other cases just return to the original index and move focus
+            listBoxTimes.Show(); // Was hidden in order to prevent JAWS 
             listBoxTimes.Focus();
         }
 
@@ -893,8 +899,9 @@ namespace MusicXmlReader
                 {
                     listBoxDetails.Items.Add(ResourcesForUI.ListBoxDetails_NoDetailsFound); // Just a fallback ! The detail-implementation can deliver its own one-liner!
                 }
-                
-                listBoxDetails.Focus();
+
+                LeaveListboxTimes();
+                listBoxDetails.Focus(); 
             }
             catch (Exception exception)
             {
@@ -998,7 +1005,9 @@ namespace MusicXmlReader
                     listBoxDetails.Items.Add(ResourcesForUI.ListBoxDetails_NoDetailsFound); // Just a fallback ! The detail-implementation can deliver its own one-liner!
                 }
 
+                LeaveListboxTimes();
                 listBoxDetails.Focus();
+
                 // e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
             }
             catch (Exception exception)
