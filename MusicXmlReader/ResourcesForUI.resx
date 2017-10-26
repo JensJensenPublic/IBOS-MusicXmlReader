@@ -184,7 +184,7 @@
     <value>&amp;Files</value>
   </data>
   <data name="ToolStripMenuItem_Files_Exit" xml:space="preserve">
-    <value>&amp;Exit</value>
+    <value>E&amp;xit</value>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFile" xml:space="preserve">
     <value>&amp;Open MusicXml File</value>

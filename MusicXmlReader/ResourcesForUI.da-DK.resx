@@ -184,7 +184,7 @@
     <value>&amp;Filer</value>
   </data>
   <data name="ToolStripMenuItem_Files_Exit" xml:space="preserve">
-    <value>Afslut</value>
+    <value>&amp;Afslut</value>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFile" xml:space="preserve">
     <value>&amp;Åbn MusicXml fil</value>
@@ -202,13 +202,13 @@
     <value>&amp;Logfil</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Logfile_Location" xml:space="preserve">
-    <value>Logfil placering</value>
+    <value>Logfil &amp;placering</value>
   </data>
   <data name="ToolStripMenuItem_Tools_MuseScore" xml:space="preserve">
     <value>&amp;MuseScore</value>
   </data>
   <data name="ToolStripMenuItem_Tools_OpenXmlFileLocation" xml:space="preserve">
-    <value>MusicXml fil placering</value>
+    <value>&amp;MusicXml fil placering</value>
   </data>
   <data name="ToolStripMenuItem_Tools_SaveAsText" xml:space="preserve">
     <value>Gem som &amp;tekst</value>
@@ -217,7 +217,7 @@
     <value>&amp;Sibelius</value>
   </data>
   <data name="ToolStripMenuItem_Tools_ViewAsInterpretedXml" xml:space="preserve">
-    <value>MusicXml fil som fortolket XML</value>
+    <value>MusicXml fil som &amp;fortolket XML</value>
   </data>
   <data name="ToolStripMenuItem_View" xml:space="preserve">
     <value>&amp;Vis</value>

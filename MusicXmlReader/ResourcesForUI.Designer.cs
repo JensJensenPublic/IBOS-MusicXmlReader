@@ -475,7 +475,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;Exit.
+        ///   Looks up a localized string similar to E&amp;xit.
         /// </summary>
         internal static string ToolStripMenuItem_Files_Exit {
             get {
