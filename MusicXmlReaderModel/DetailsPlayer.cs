@@ -94,7 +94,27 @@ namespace MusicXmlReaderModel
         }
 
 
-        private DetailsPlayer(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MusicPlayer musicPlayer)
+        private DetailsPlayer(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MusicPlayer musicPlayer, bool noteLevel)
+        {
+            if (noteLevel)
+            {
+                NoteDetailsPlayer(eventDescription, partList, userSettings, musicPlayer);
+            }
+            else
+            {
+                PartDetailsPlayer(eventDescription, partList, userSettings, musicPlayer);
+            }
+        }
+
+
+        /// <summary>
+        /// Reports dettails at the Part level
+        /// </summary>
+        /// <param name="eventDescription"></param>
+        /// <param name="partList"></param>
+        /// <param name="userSettings"></param>
+        /// <param name="musicPlayer"></param>
+        private void PartDetailsPlayer(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MusicPlayer musicPlayer)
         {
             int numberOfParts = partList.NumberOfParts();
             detailsDescriptions = new List<DetailsDescription>();
@@ -144,6 +164,63 @@ namespace MusicXmlReaderModel
             //    detailsDescriptions.Add(DetailsDescription.Create(harmony));
             //}
         }
+
+
+        /// <summary>
+        /// Reports details at the Note level
+        /// </summary>
+        /// <param name="eventDescription"></param>
+        /// <param name="partList"></param>
+        /// <param name="userSettings"></param>
+        /// <param name="musicPlayer"></param>
+        private void NoteDetailsPlayer(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MusicPlayer musicPlayer)
+        {
+            int numberOfParts = partList.NumberOfParts();
+            detailsDescriptions = new List<DetailsDescription>();
+            for (int i = 0; (i < numberOfParts); i++)
+            {
+                List<NoteElement> notesForPart = eventDescription.NoteLists[i];
+                if ((null != notesForPart) && (0 != notesForPart.Count))
+                {
+                    // String variables for desribing the detail as text
+                    string partId = "";
+                    string partName = "";
+                    string notes = "";
+                    string lyrics = "";
+
+                    if ((userSettings.MusicAsSpeech) && (userSettings.partsToRead[i]))
+                    {
+                        // The eventdescription contains notes for this part so we dig out the part parameters:
+                        ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
+                        partId = scorePartElement.partId;
+                        partName = scorePartElement.partName;
+                        // By using  eventDescription.NotesForOnePart for formatting the notes we assure the usage of identical formatting.
+                        foreach (NoteElement noteElement in eventDescription.NoteLists[i])
+                        {
+                            //notes = string.Format("",noteElement.)
+                            notes = noteElement.ToDetailsString();
+                            string musicBraille = "";
+                            string detailString = string.Format("{0} {1} {2} {3} {4}", musicBraille, partId, partName, notes, lyrics);
+                            detailsDescriptions.Add(DetailsDescription.Create(detailString));
+                            // partId   = ""; // Only list first time
+                            partName = ""; // Only list first time
+                        }
+                    }
+                }
+            }
+
+            // Do NOT add any harmonies after the last part! HArmonies have their own meshanisms !
+            //HarmonyElement harmonyElement = eventDescription.HarmonyElement;
+            //if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
+            //{
+            //    string harmony = string.Format("{0}{1}  ", harmonyElement.ChromaticRootStep, harmonyElement.LocalizedChordType); // Use same formatting as used in the status line !!
+            //    detailsDescriptions.Add(DetailsDescription.Create(harmony));
+            //}
+        }
+
+
+
+
 
 
 
@@ -207,9 +284,9 @@ namespace MusicXmlReaderModel
         }
 
 
-        public static DetailsPlayer Create(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MusicPlayer musicPlayer)
+        public static DetailsPlayer Create(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MusicPlayer musicPlayer, bool noteLevel)
         {
-            return new DetailsPlayer(eventDescription, partList, userSettings, musicPlayer);
+            return new DetailsPlayer(eventDescription, partList, userSettings, musicPlayer, noteLevel);
         }
 
         public static DetailsPlayer Create(PartlistElement partList)

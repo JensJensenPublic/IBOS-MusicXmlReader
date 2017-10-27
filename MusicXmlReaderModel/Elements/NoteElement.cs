@@ -1057,10 +1057,10 @@ namespace MusicXmlReaderModel
             string measureString = "";
             if (0 != measureNumber)
             {
-                measureString = string.Format("{0} {1}",ResourcesForModel.NoteElement_measure_text, measureNumber);
+                measureString = string.Format("{0} {1}", ResourcesForModel.NoteElement_measure_text, measureNumber);
             }
 
-            string notationsString = (null != notations) ? notations.ToString() : ""; 
+            string notationsString = (null != notations) ? notations.ToString() : "";
 
             // Primarily for debugging
             string partString = string.Format("{0} ", PartId);
@@ -1070,14 +1070,34 @@ namespace MusicXmlReaderModel
             {
                 // This is a note.
                 return String.Format("{0}{1}{2} {3} {4} {5} {6} {7}",
-                    timeString, partString, measureString, pitchElement.Name, pitchElement.Octave, localizedType, localizedTie,notationsString);
+                    timeString, partString, measureString, pitchElement.Name, pitchElement.Octave, localizedType, localizedTie, notationsString);
             }
             else
-            {      
+            {
                 // This is a pause,not a note.     
-                return(String.Format("{0}{1}{2} {3}", timeString, partString, measureString, LocalizePause(noteDuration,dot)));
-            }         
+                return (String.Format("{0}{1}{2} {3}", timeString, partString, measureString, LocalizePause(noteDuration, dot)));
+            }
         }
 
-    }    
+
+        /// <summary>
+        /// Special implementation used for showing details
+        /// </summary>
+        /// <returns></returns>
+        public string ToDetailsString()
+        {
+            string notationsString = (null != notations) ? notations.ToString() : "";
+            if (!IsPause)
+            {
+                // This is a note.
+                return String.Format("{0} {1} {2} {3} {4}",pitchElement.Name, pitchElement.Octave, localizedType, localizedTie, notationsString);
+            }
+            else
+            {
+                // This is a pause,not a note.     
+                return (String.Format("{0}", LocalizePause(noteDuration, dot)));
+            }
+        }
+        
+    }
 }

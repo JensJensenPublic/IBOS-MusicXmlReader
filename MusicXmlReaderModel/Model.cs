@@ -1096,12 +1096,12 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
         }
 
 
-        public DetailsDescription[] GetCurrentEventDetails(EventDescription eventDescription)
+        public DetailsDescription[] GetCurrentEventDetails(EventDescription eventDescription, bool noteLevel)
         {
 
             if (null != eventDescription)
             {
-                detailsPlayer = DetailsPlayer.Create(eventDescription,partList,userSettings,musicPlayer);
+                detailsPlayer = DetailsPlayer.Create(eventDescription,partList,userSettings,musicPlayer,noteLevel);
                 return detailsPlayer.DetailsDescriptionArray;
             }
             else

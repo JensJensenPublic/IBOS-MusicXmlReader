@@ -485,8 +485,10 @@ namespace MusicXmlReader
         {         
             listBoxTimes.Items.Clear();
             listBoxTimes.Refresh();
+            listBoxTimes.Show();
             listBoxDetails.Items.Clear();
             listBoxDetails.Refresh();
+            listBoxDetails.AutoSize = false;
             textBoxBraille.Clear();
             textBoxBraille.Refresh();
             textBoxText.Clear();
@@ -872,7 +874,7 @@ namespace MusicXmlReader
             return;
         }
 
-        private enum DetailsEnum { Unknown, Harmonies, Parts, Instruments };
+        private enum DetailsEnum { Unknown, Harmonies, Parts, Notes, Instruments };
 
         /// <summary>
         /// Show global details, i.e. details which are not related to a specific event, but are global for the whole score,
@@ -970,7 +972,7 @@ namespace MusicXmlReader
         {
             string functionName = "ShowEventDetails";
             // NOTE ARROW + ALT alone has already been taken by tempo increment/decrement !!!
-            if ((DetailsEnum.Harmonies != detailsEnum) && (DetailsEnum.Parts != detailsEnum)) return; // This function only supports these sorts of details.
+            if ((DetailsEnum.Harmonies != detailsEnum) && (DetailsEnum.Parts != detailsEnum) && (DetailsEnum.Notes != detailsEnum) ) return; // This function only supports these sorts of details.
             if (-1 == listBoxTimes.SelectedIndex)
             {
                 // It has no meaning to inspect details when nothing is selected !
@@ -987,7 +989,8 @@ namespace MusicXmlReader
                     DetailsDescription[] items = new DetailsDescription[0];
                     switch (detailsEnum)
                     {
-                        case DetailsEnum.Parts: items = model.GetCurrentEventDetails(currentEventDescription); break;//  Show details about current parts
+                        case DetailsEnum.Parts: items = model.GetCurrentEventDetails(currentEventDescription, false); break;//  Show details about current parts
+                        case DetailsEnum.Notes: items = model.GetCurrentEventDetails(currentEventDescription, true); break;//  Show details about current parts
                         case DetailsEnum.Harmonies: items = model.GetCurrentHarmonyDetails(currentEventDescription); break; // Show details about the current harmony
                         case DetailsEnum.Instruments: items = model.GetAllPartDetails(); break;
                         default: break;
@@ -1044,9 +1047,11 @@ namespace MusicXmlReader
 
                 // The "Details functionality is handled locally before being passed to the Model:
                 case ShortcutHandler.DetailsHarmonyTop:     ShowEventDetails(DetailsEnum.Harmonies, true); break;    // Start from top
-                case ShortcutHandler.DetailsPartsTop:       ShowEventDetails(DetailsEnum.Parts, true); break;        // Start from top     
+                case ShortcutHandler.DetailsPartsTop:       ShowEventDetails(DetailsEnum.Parts, true); break;        // Start from top  
+                case ShortcutHandler.DetailsNotesTop:       ShowEventDetails(DetailsEnum.Notes, true); break;        // Start from top  
                 case ShortcutHandler.DetailsHarmonyBottum:  ShowEventDetails(DetailsEnum.Harmonies, false); break;   // Start from bottum
                 case ShortcutHandler.DetailsPartsBottum:    ShowEventDetails(DetailsEnum.Parts, false); break;       //  Start from bottum
+                case ShortcutHandler.DetailsNotesBottum:    ShowEventDetails(DetailsEnum.Notes, false); break;       //  Start from bottum
                 case ShortcutHandler.DetailsInstruments:    ShowGlobalDetails(DetailsEnum.Instruments, true); break;  // Always shown from top
                 //case ShortcutHandler.DetailsInstrumentsButtom:  ShowDetails(DetailsEnum.Instruments, false); break;
 
