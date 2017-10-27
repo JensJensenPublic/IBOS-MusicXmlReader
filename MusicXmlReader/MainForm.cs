@@ -32,8 +32,6 @@ namespace MusicXmlReader
         UserCommandInterpreter commandInterpreter;
         string myMusicXmlDirectory; // Default location for MusicXml files belonging to thos user. Wil be populated with sample filer!
         ImportHandler importHandler;
-        private int listBoxTimesDefaultHeight; // Initialized in constructor
-        private int listBoxDetailsDefaultHeight; // Initialized in constructor
 
         public string ApplicationName
         {
@@ -90,9 +88,6 @@ namespace MusicXmlReader
                 // shortCutHandler = ShortcutHandler.Create(this, model);
                 commandInterpreter = UserCommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
                 LoadIcon();
-                listBoxTimesDefaultHeight = listBoxTimes.Height;        // For swopping heights
-                listBoxDetailsDefaultHeight = listBoxDetails.Height;    // For swopping heights
-                                                 // UserCommandDictionary.Init(); 
 
         // throw (new Exception("For test only")); // Insert this line to test the Last Resort handler below
     }
@@ -829,10 +824,8 @@ namespace MusicXmlReader
 
         private void LeaveListboxTimes()
         {
-            // Swap sizes
-            listBoxTimes.Height   = listBoxDetailsDefaultHeight;
-            listBoxDetails.Height = listBoxTimesDefaultHeight;
-            listBoxTimes.Hide(); // Hide in order to prevent JAWS 
+            listBoxTimes.Hide(); // Hide in order to prevent JAWS from speaking from it
+            listBoxDetails.AutoSize = true; // Use the area normally occupied by listBoxTimes
         }
                 
 
@@ -847,10 +840,8 @@ namespace MusicXmlReader
                 // Select the next detail if possible
                 listBoxTimes.SelectedIndex = newIndex;
             }
-            // In all other cases just return to the original index and move focus
-            // Swap them back
-            listBoxTimes.Height   = listBoxTimesDefaultHeight;
-            listBoxDetails.Height = listBoxDetailsDefaultHeight;
+            // In all other cases just return to the original index and move focus  
+            listBoxDetails.AutoSize = false; // Stop using the area temporarily borrowed from ListBoxTimes
             listBoxTimes.Show(); // Was hidden in order to prevent JAWS 
             listBoxTimes.Focus();
         }
