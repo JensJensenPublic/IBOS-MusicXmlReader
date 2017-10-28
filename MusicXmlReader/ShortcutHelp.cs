@@ -85,13 +85,17 @@ namespace MusicXmlReader
         /// </summary>
         /// <param name="text"></param>
         /// <returns>Returns the value of the access key specified by "&" if any</returns>
-        private string AddCaption(string text)
+        private string AddCaption(string text, string extraText)
         {
             AddLine("\r");
-            AddLine(ResourcesForHelp.Shortcut_Caption_Menu + " " + Utilities.RemoveAmpersant(text));
+            AddLine(ResourcesForHelp.Shortcut_Caption_Menu + " " + Utilities.RemoveAmpersant(text) + " " + extraText);
             return Utilities.GetShortcutName(text);
         }
 
+        private string AddCaption(string text)
+        {
+            return AddCaption(text, "");
+        }
 
         /// <summary>
         /// Generate a localized line of helptext for complicated items containing ALT and CONTROL shortcuts at the same time
@@ -175,7 +179,7 @@ namespace MusicXmlReader
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_Exit, ShortcutHandler.exitApplication);
 
             // The following special keyboard shortcuts can be used in connection with the node filter
-            string edit = AddCaption(ResourcesForUI.ToolStripMenuItem_Edit);
+            string edit = AddCaption(ResourcesForUI.ToolStripMenuItem_Edit,ResourcesForHelp.ToolStripMenuItem_Edit_ExtraText);
             AddAltControlLine(edit, ResourcesForUI.TreeView_All_Items, ShortcutHandler.NoKeys, ResourcesForHelp.Shortcut_ExpandAndEditNoteFilter);
             AddAltControlLine(edit, ResourcesForUI.TreeWiew_Items, ShortcutHandler.editFilter, ResourcesForHelp.Shortcut_EditNoteFilter);
             AddAltControlLine(edit, ResourcesForUI.TreeView_MusicAsSound, ShortcutHandler.editMusic, ResourcesForHelp.Shortcut_EditMusicPlaying);

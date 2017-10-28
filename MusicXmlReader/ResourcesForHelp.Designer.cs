@@ -698,5 +698,14 @@ namespace MusicXmlReader {
                 return ResourceManager.GetString("Shurtcut_TurnOnGlobally", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (for editing the note filter).
+        /// </summary>
+        internal static string ToolStripMenuItem_Edit_ExtraText {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Edit_ExtraText", resourceCulture);
+            }
+        }
     }
 }

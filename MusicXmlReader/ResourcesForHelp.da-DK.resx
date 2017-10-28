@@ -330,4 +330,7 @@
   <data name="Shortcut_Caption_Menu" xml:space="preserve">
     <value>Genvejstaster for menuen</value>
   </data>
+  <data name="ToolStripMenuItem_Edit_ExtraText" xml:space="preserve">
+    <value>(for redigering af nodefilteret)</value>
+  </data>
 </root>
