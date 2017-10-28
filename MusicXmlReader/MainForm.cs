@@ -1369,6 +1369,8 @@ namespace MusicXmlReader
         {
             model.ListBoxDetailsLeave();
             listBoxDetails.Items.Clear();
+            listBoxDetails.AutoSize = false;
+            listBoxTimes.Show();
         }
 
 #region Import
