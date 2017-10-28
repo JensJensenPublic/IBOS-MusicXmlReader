@@ -1134,13 +1134,17 @@ namespace MusicXmlReader
             if (e.KeyData == ShortcutHandler.listBoxFocus)
             {
                 listBoxTimes.Focus(); // Easy way to move the focus to the main listbox
+                e.SuppressKeyPress = true;
                 return;
             }
 
             if (null == userSettingsTreeView.SelectedNode)
             {
+                e.SuppressKeyPress = true;
                 return;
             }
+
+            // Otherwise let the treeview itself handle it
 
 //            switch (e.KeyData)
 //            {
