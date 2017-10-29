@@ -482,7 +482,8 @@ namespace MusicXmlReader
         ///  Clear the contents of the listbox showing the timed events (important when loading a new file)
         /// </summary>
         private void ClearUI()
-        {         
+        {
+            listBoxTimesEmptyLineIndex = -1; // No empty line inserted
             listBoxTimes.Items.Clear();
             listBoxTimes.Refresh();
             listBoxTimes.Show();
@@ -826,7 +827,7 @@ namespace MusicXmlReader
 
         private void LeaveListboxTimes()
         {
-            listBoxTimes.Hide(); // Hide in order to prevent JAWS from speaking from it
+            //listBoxTimes.Hide(); // Hide in order to prevent JAWS from speaking from it
             listBoxDetails.AutoSize = true; // Use the area normally occupied by listBoxTimes
         }
                 
@@ -1421,6 +1422,61 @@ namespace MusicXmlReader
         {
             ShowUsersManual();
         }
+
+        /// <summary>
+        /// Unfortunately listBoxTimes_Enter and listBoxTimes_Enter seem to be needed in order to prevent JAWS from reading the selected line in listBoxTimes
+        /// after reading the item from the control we are entering, A better solution is wanted !
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listBoxTimes_Enter(object sender, EventArgs e)
+        {
+            string functionName = "listBoxTimes_Enter";
+            if (listBoxTimesEmptyLineIndex != -1)
+            {
+                // listBoxTimes.SelectedIndex = listBoxTimesEmptyLineIndex+1; // Avoid removing the selected item !
+                try
+                {
+                    // This is new for 1.1.0.0 so better safe than sorry !
+                    // For the time being we must accept (and catch) an exception here to avoid that JAWS reads the NEXT line after returning !
+                    listBoxTimes.Items.RemoveAt(listBoxTimesEmptyLineIndex);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(string.Format("{0}.{1} Exception.Message={2}", className, functionName, ex.Message));
+                }
+                listBoxTimes.SelectedIndex = listBoxTimesEmptyLineIndex; // Select the original selection
+                listBoxTimesEmptyLineIndex = -1; // Mark that no extra line is inserted
+            }
+        }
+
+        /// <summary>
+        /// Unfortunately listBoxTimes_Enter and listBoxTimes_Enter seem to be needed in order to prevent JAWS from reading the selected line in listBoxTimes
+        /// after reading the item from the control we are entering, A better solution is wanted !
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listBoxTimes_Leave(object sender, EventArgs e)
+        {
+            string functionName = "listBoxTimes_Leave";
+            if (listBoxTimes.SelectedIndex != -1)
+            {
+                try
+                {
+                    // This is new for 1.1.0.0 so better safe than sorry !
+                    listBoxTimes.Items.Insert(listBoxTimes.SelectedIndex, ""); // Insert an empty line in order to make JAWS read it instead of the real line
+                    listBoxTimes.SelectedIndex--;
+                    listBoxTimesEmptyLineIndex = listBoxTimes.SelectedIndex;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(string.Format("{0}.{1} Exception.Message={2}", className, functionName, ex.Message));
+                }
+
+            }
+        }
+
+        int listBoxTimesEmptyLineIndex = -1; // Mark that no extra line is inserted
 
 
         #endregion

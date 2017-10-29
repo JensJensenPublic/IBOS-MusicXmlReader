@@ -86,6 +86,7 @@
             this.aboutIBOSMusicXmlReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.keyboardShortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.linkToNewestSoftwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usersManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.listBoxTimes = new System.Windows.Forms.ListBox();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
@@ -95,7 +96,6 @@
             this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.listBoxDetails = new System.Windows.Forms.ListBox();
-            this.usersManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -559,6 +559,13 @@
             this.linkToNewestSoftwareToolStripMenuItem.Text = "Link to newest software";
             this.linkToNewestSoftwareToolStripMenuItem.Click += new System.EventHandler(this.linkToNewestSoftwareToolStripMenuItem_Click);
             // 
+            // usersManualToolStripMenuItem
+            // 
+            this.usersManualToolStripMenuItem.Name = "usersManualToolStripMenuItem";
+            this.usersManualToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.usersManualToolStripMenuItem.Text = "User´s manual";
+            this.usersManualToolStripMenuItem.Click += new System.EventHandler(this.usersManualToolStripMenuItem_Click);
+            // 
             // userSettingsTreeView
             // 
             this.userSettingsTreeView.AccessibleName = "Note filter";
@@ -578,7 +585,9 @@
             this.listBoxTimes.Size = new System.Drawing.Size(950, 420);
             this.listBoxTimes.TabIndex = 0;
             this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
+            this.listBoxTimes.Enter += new System.EventHandler(this.listBoxTimes_Enter);
             this.listBoxTimes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxTimes_KeyDown);
+            this.listBoxTimes.Leave += new System.EventHandler(this.listBoxTimes_Leave);
             // 
             // textBoxBraille
             // 
@@ -644,13 +653,6 @@
             this.listBoxDetails.SelectedIndexChanged += new System.EventHandler(this.listBoxDetails_SelectedIndexChanged);
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDetails_KeyDown);
             this.listBoxDetails.Leave += new System.EventHandler(this.listBoxDetails_Leave);
-            // 
-            // usersManualToolStripMenuItem
-            // 
-            this.usersManualToolStripMenuItem.Name = "usersManualToolStripMenuItem";
-            this.usersManualToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.usersManualToolStripMenuItem.Text = "User´s manual";
-            this.usersManualToolStripMenuItem.Click += new System.EventHandler(this.usersManualToolStripMenuItem_Click);
             // 
             // MainForm
             // 
