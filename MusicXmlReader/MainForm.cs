@@ -1443,7 +1443,10 @@ namespace MusicXmlReader
                 }
                 catch (Exception ex)
                 {
-                    Logger.Log(string.Format("{0}.{1} Exception.Message={2}", className, functionName, ex.Message));
+                    if (!(ex is ArgumentOutOfRangeException)) // Ignore exception for "index = -1"
+                    {
+                        Logger.Log(string.Format("{0}.{1} Exception.Message={2}", className, functionName, ex.Message));
+                    }
                 }
                 listBoxTimes.SelectedIndex = listBoxTimesEmptyLineIndex; // Select the original selection
                 listBoxTimesEmptyLineIndex = -1; // Mark that no extra line is inserted
