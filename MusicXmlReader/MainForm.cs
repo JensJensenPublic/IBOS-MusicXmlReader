@@ -862,8 +862,8 @@ namespace MusicXmlReader
                     case ShortcutHandler.detailsNextDetail: break; // Pass on to default handler
                     case ShortcutHandler.detailsTopDetail: break; // Pass on to default handler
                     case ShortcutHandler.detailsBottumDetail: break; // Pass on to default handler
-                    case ShortcutHandler.detailsNextEvent:     ReturnToListboxTimes(+1); e.SuppressKeyPress = true;  break;
-                    case ShortcutHandler.detailsPreviousEvent: ReturnToListboxTimes(-1); e.SuppressKeyPress = true; break;
+                    case ShortcutHandler.detailsNextEvent:     ReturnToListboxTimes(0); e.SuppressKeyPress = true;  break; // +1 confuses JAWS
+                    case ShortcutHandler.detailsPreviousEvent: ReturnToListboxTimes(0); e.SuppressKeyPress = true; break;  // -1 confuses JAWS
                     case Keys.ControlKey: e.SuppressKeyPress = true; break; // Allow for decoding CTRL+UP and CTRL+DOWN later
                     default: ReturnToListboxTimes(0); e.SuppressKeyPress = true;  break;
                 }
