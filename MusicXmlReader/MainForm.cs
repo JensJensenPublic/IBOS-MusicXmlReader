@@ -827,7 +827,6 @@ namespace MusicXmlReader
 
         private void LeaveListboxTimes()
         {
-            //listBoxTimes.Hide(); // Hide in order to prevent JAWS from speaking from it
             listBoxDetails.AutoSize = true; // Use the area normally occupied by listBoxTimes
         }
                 
@@ -845,7 +844,6 @@ namespace MusicXmlReader
             }
             // In all other cases just return to the original index and move focus  
             listBoxDetails.AutoSize = false; // Stop using the area temporarily borrowed from ListBoxTimes
-            listBoxTimes.Show(); // Was hidden in order to prevent JAWS 
             listBoxTimes.Focus();
         }
 
