@@ -113,6 +113,7 @@
             this.MenuStrip.Size = new System.Drawing.Size(1219, 24);
             this.MenuStrip.TabIndex = 3;
             this.MenuStrip.Text = "menuStrip1";
+            this.MenuStrip.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MenuStrip_KeyDown);
             // 
             // filesToolStripMenuItem
             // 

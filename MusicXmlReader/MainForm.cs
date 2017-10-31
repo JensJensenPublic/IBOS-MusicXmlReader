@@ -1480,6 +1480,53 @@ namespace MusicXmlReader
         int listBoxTimesEmptyLineIndex = -1; // Mark that no extra line is inserted
 
 
+
+        /// <summary>
+        /// Experimental code for acting on invalid character input to the ToolStripMenu
+        /// by playing a beep and returning focus.
+        /// Sometimes removes fosus permanently
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuStrip_KeyDown(object sender, KeyEventArgs e)
+        {
+            // return; // Insert "return" here to disable the functionality
+
+            string functionName = "MenuStrip_KeyDown";
+            // Logger.Log(string.Format("{0}.{1} Entry", className, functionName));
+            string keyAsString = e.KeyCode.ToString();
+            bool passOn = (e.KeyCode == Keys.Menu); //Pass ESC on for default handling
+
+            foreach (ToolStripMenuItem toolStripMenuItem in MenuStrip.Items)
+            {
+                string text = toolStripMenuItem.Text;
+                string shortcutName = Utilities.GetShortcutName(text);
+                if (keyAsString == shortcutName)
+                {
+                    passOn = true; // Pass all characters found  as "&" shortcuts unchanged.
+                    break;
+                }
+            }
+
+            if (passOn)
+            {
+                Logger.Log(string.Format("{0}.{1} passing '{2}' for default handling", className, functionName, keyAsString));
+                return; 
+            }
+
+
+            // On any other key: Report the unexpected key by a Beep and send an ESC to return focus to the previous control
+            System.Media.SystemSounds.Beep.Play();
+            System.Windows.Forms.SendKeys.Send(@"{ESC}");
+            Logger.Log(string.Format("{0}.{1} Beep and ESC for {2}", className, functionName, keyAsString));
+        }
+
+   
+
+
+
+
+
         #endregion
 
         #endregion
