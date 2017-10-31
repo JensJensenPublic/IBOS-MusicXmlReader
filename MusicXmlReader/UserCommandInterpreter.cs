@@ -37,8 +37,8 @@ namespace MusicXmlReader
         private string KeyToString(Keys keys)
         {
             int key = (int)keys;
-            Keys controlKeys = Keys.None;   // When using alphanumeric keys alone
-            //int controlKeys = Keys.Control; // When using alphanumeric keys combined with the CONTROL, SHIFT or ALT
+            // Keys controlKeys = Keys.None;   // When using alphanumeric keys alone
+            Keys controlKeys = Keys.Control; // When using alphanumeric keys combined with the CONTROL, SHIFT or ALT
             if (((int)(Keys.A | controlKeys) <= key) && (key <= (int)(Keys.Z | controlKeys)))
             {
                 int c = (int)'A' + key - (int)(Keys.A | controlKeys) ;
@@ -51,8 +51,10 @@ namespace MusicXmlReader
                 return ((char)c).ToString();
             }
 
-            if (Keys.Oemcomma == keys) return ",";   
-         
+            if (Keys.Oemcomma == keys) return ",";
+
+#warning ToDo Find another key here instead of Keys.Multiply which requires a numeric keyboard !! 
+            if ((Keys.Control | Keys.Multiply) == keys) return "*";
 
             return ""; 
         }
@@ -199,13 +201,10 @@ namespace MusicXmlReader
                     string[] parameters = s.Substring(1).Split(new char[] { ',' });
                     switch (s[0])
                     {
-                        //case 'R': RepeatIndices(parameters, s); break;
                         case 'R': RepeatMeasures(parameters, s); break;
-                        // case 'G': GotoIndex(parameters, s); break;
                         case 'G': GotoMeasure(parameters, s); break;
-                        case 'T': Tempo(parameters, s); break;
-
-                        default: break;
+                        case '*': Tempo(parameters, s); break;
+                        default: System.Media.SystemSounds.Beep.Play(); break;
                     }
                 }
 
