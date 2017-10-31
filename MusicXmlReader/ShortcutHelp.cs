@@ -233,10 +233,10 @@ namespace MusicXmlReader
             AddLine(Plus(control, "P"), ResourcesForHelp.Shortcut_StartPlaying);
             AddLine(Plus(control, shift, "P"), ResourcesForHelp.Shortcut_StopPlaying);
             AddLine(Plus(space), ResourcesForHelp.Shortcut_TogglePlay);
-            AddLine("Tn " + enter, ResourcesForHelp.Shortcut_SetTempo);
-            AddLine("Rn,m " + enter, ResourcesForHelp.Shortcut_RepeatFromNtoM);
-            AddLine("Gn " + enter, ResourcesForHelp.Shortcut_GoToMeasureN);
             AddLine("ESC", ResourcesForHelp.Shortcut_StopCurrentNote);
+            AddLine(Plus(control, "R") + "n,m " + enter, ResourcesForHelp.Shortcut_RepeatFromNtoM);
+            AddLine(Plus(control, "G") + "n " + enter, ResourcesForHelp.Shortcut_GoToMeasureN);
+            AddLine(Plus(control,"*") + "n " + enter, ResourcesForHelp.Shortcut_SetTempo);
             AddLine(Plus(control, pageUp), ResourcesForHelp.Shortcut_IncreaseTempo);
             AddLine(Plus(control, pageDown), ResourcesForHelp.Shortcut_DecreaseTempo); 
 
