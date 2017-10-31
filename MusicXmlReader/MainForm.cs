@@ -1021,6 +1021,31 @@ namespace MusicXmlReader
         }
 
 
+        /// <summary>
+        /// Generate audible beep when user attends to move outside listbox
+        /// </summary>
+        /// <param name="listBox"></param>
+        /// <param name="move"></param>
+        private void WarnAtEnd(ListBox listBox, int move)
+        {
+            string functionName = "WarnAtEnd";
+            try
+            {
+                int newindex = listBox.SelectedIndex + move;
+                int firstIndex = 0;
+                int lastIndex = listBox.Items.Count - 1;
+                if (((newindex < firstIndex) || (newindex > lastIndex)) && (listBox.SelectedIndex != -1)) // Only warn when selected.
+                {
+                    System.Media.SystemSounds.Beep.Play();
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("{0}.{1} Exception.Message={2}", className, functionName, e.Message));
+            }
+        }
+
+
 
         /// <summary>
         /// Occurs when a key is pressed while listBoxTimes has focus
@@ -1043,6 +1068,10 @@ namespace MusicXmlReader
                 case ShortcutHandler.StopAllNotesPlaying:   model.musicPlayer.StopAllNotesPlaying(); break;
                 case ShortcutHandler.PreviousMeasure:       model.SelectMeasure(listBoxTimes.SelectedIndex, -1); break;
                 case ShortcutHandler.NextMeasure:           model.SelectMeasure(listBoxTimes.SelectedIndex, +1); break;
+                case ShortcutHandler.NextEvent:             WarnAtEnd(listBoxTimes, +1);  handled = false; break; // Let the listbox handle it
+                case ShortcutHandler.PreviousEvent:         WarnAtEnd(listBoxTimes, -1); handled = false; break; // Let the listbox handle it
+
+
 
                 // The "Details functionality is handled locally before being passed to the Model:
                 case ShortcutHandler.DetailsHarmonyTop:     ShowEventDetails(DetailsEnum.Harmonies, true); break;    // Start from top

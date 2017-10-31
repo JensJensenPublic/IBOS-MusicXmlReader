@@ -181,6 +181,9 @@ namespace MusicXmlReader
         public const Keys NextMeasure =             Keys.Control | Keys.Right;
         public const Keys PreviousMeasure =         Keys.Control | Keys.Left;
 
+        public const Keys NextEvent =               Keys.Right;
+        public const Keys PreviousEvent =           Keys.Left;
+
         // For loading details
         public const Keys DetailsHarmonyTop =       Keys.Up;
         public const Keys DetailsPartsTop =         Keys.Up | Keys.Control;
