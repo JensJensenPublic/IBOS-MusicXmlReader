@@ -1097,6 +1097,27 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             }
         }
 
+        //public List<DetailsDescription> GetSingleNoteDetailsList(DetailsDescription currentDetails)
+        //{
+        //    detailsPlayer = DetailsPlayer.Create(musicPlayer);
+        //    List<DetailsDescription> result = new List<DetailsDescription>();
+        //    foreach (NoteElement note in currentDetails.Notes)
+        //    {
+        //        // listBoxDetails.Items.Add(note.ToDetailsString());
+        //        result.Add(DetailsDescription.Create(note.ToDetailsString(), note)); // Hold the note itself and its string representation
+        //    }
+        //    return result;
+        //}
+
+        public DetailsDescription[] GetSingleNoteDetails(DetailsDescription currentDetails)
+        {
+            detailsPlayer = DetailsPlayer.Create(musicPlayer);
+            foreach (NoteElement note in (currentDetails as NoteListDetailsDescription).Notes)
+            {
+                detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(note.ToDetailsString(), note)); // Hold the note itself and its string representation
+            }
+            return detailsPlayer.DetailsDescriptionArray; ;
+        }
 
         public DetailsDescription[] GetCurrentEventDetails(EventDescription eventDescription, bool noteLevel)
         {
@@ -1117,7 +1138,7 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
         {
             if (null != partList)
             {
-                detailsPlayer = DetailsPlayer.Create(partList);
+                detailsPlayer = DetailsPlayer.Create(partList,musicPlayer);
                 string[] details = partList.ToUserFriendlyStrings();
                 foreach (string detail in details)
                 {

@@ -13,7 +13,7 @@ using System.Management;
 namespace PlatformDependencies
 {
 #if Windows
-    static class DeviceInfo
+    public static class DeviceInfo
     {
 
         static private void Log(string s)
@@ -32,7 +32,7 @@ namespace PlatformDependencies
               
         }
 
-        static List<USBDeviceInfo> GetUSBDevices()
+        static public List<USBDeviceInfo> GetUSBDevices()
         {
             List<USBDeviceInfo> devices = new List<USBDeviceInfo>();
 
@@ -79,7 +79,7 @@ namespace PlatformDependencies
 #endif
 
 
-    class USBDeviceInfo
+    public class USBDeviceInfo
     {
         public USBDeviceInfo(string deviceID, string pnpDeviceID, string description)
         {

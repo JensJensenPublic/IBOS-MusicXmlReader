@@ -71,7 +71,6 @@ namespace MusicXmlReaderModel
         string localizedPauseType = ""; //  If this is a pause, not a note
         string localizedTie = "";
         PitchElement pitchElement;
-        UnpitchedElement unpitchedElement;
         TransposeElement transposeElement; // Used if the cuttent scorepart describes an "non-C" instrument such as an A-clarinet.
         string syllabic; // Child of lyric
         string text;     // Child of lyric
@@ -104,24 +103,7 @@ namespace MusicXmlReaderModel
         float dynamicsFloatValue = 100;
         int dynamicsValue = 90;
         bool isFirstNoteInScorePart;
-        int midiUnpitchedInstrumentNumber;
-        string scoreUnpitchedInstrumentName;
 
-        public int MidiUnpitchedInstrumentNumber
-        {
-            get
-            {
-                return midiUnpitchedInstrumentNumber;
-            }
-        }
-
-        public string ScoreUnpitchedInstrumentName
-        {
-            get
-            {
-                return scoreUnpitchedInstrumentName;
-            }
-        }
 
 
 
@@ -141,27 +123,11 @@ namespace MusicXmlReaderModel
             }
         }
 
-        public bool UnPitched
-        {
-            get
-            {
-                return unpitched;
-            }
-        }
-
-        public UnpitchedElement UnpitchedElement
-        {
-            get
-            {
-                return unpitchedElement;
-            }
-        }
-
         public int Transpose
         {
             get
             {
-                return (null == transposeElement) ? 0 : (transposeElement.ChromaticValue + (12 * transposeElement.OctaveChangeValue));
+                return (null == transposeElement) ? 0 : transposeElement.ChromaticValue;
             }
         }
 
@@ -276,17 +242,6 @@ namespace MusicXmlReaderModel
             }
         }
 
- 
-        public ScorePartElement ScorePartElement
-        {
-            get
-            {
-                return scorePartElement;
-            }
-        }
-
-
-
         /// <summary>
         /// Per definition a note without a pitch is a pause !
         /// </summary>
@@ -373,14 +328,6 @@ namespace MusicXmlReaderModel
             get
             {
                 return scorePartElement.MidiChannel; // Use channel 1 as a default
-            }
-        }
-
-        public int MidiProgram
-        {
-            get
-            {
-                return scorePartElement.MidiProgram;
             }
         }
 
@@ -501,39 +448,6 @@ namespace MusicXmlReaderModel
             }
         }
 
-        public string UnpitchedText
-        {
-            get
-            {
-                // Take the name from the ScoreInstrument. Take the number from the midiInstrument 
-                return string.Format("{0} ({1}={2})", this.ScoreUnpitchedInstrumentName, midiUnpitchedInstrumentNumber, (UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber);
-            }
-
-
-//            get
-//            {
-//                UnpitchedMidiInstrumentEnum unpitchedMidiInstrument = (UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber;
-//                if (MidiNote.IsKnownUnpitchedMidiInstrument(unpitchedMidiInstrument))
-//                {
-//                    return string.Format("{0}({1})", unpitchedMidiInstrument.ToString(), ((int)unpitchedMidiInstrument).ToString());
-//#warning ToDo  Implement localization of names of unpitched instruments
-//                }
-//                else
-//                {
-//                    return string.Format("{0}({1})",ResourcesForModel.NoteElement_unpitched_text, unpitchedMidiInstrument);
-//                }
-//            }
-        }
-
-        public InstrumentElement InstrumentElement
-        {
-            get
-            {
-                return instrumentElement;
-            }
-        }
-
-
         
         /// <summary>
         /// To force the use of the Create() method
@@ -645,7 +559,7 @@ namespace MusicXmlReaderModel
             this.scorePartElement = scorePartElement;
             this.measureNumber = measureNumber;
             this.currentTimeElement = currentTimeElement;
-            const string functionName = "NoteElement"; // For logging            
+            const string functionName = "NoteElement constructor"; // For logging            
             //this.partId = scorePartElement.partId;
             //this.partNumber = scorePartElement.partNumber;
             //this.midiChannel = (null == scorePartElement.midiInstrumentElement) ? 1 : scorePartElement.midiInstrumentElement.MidiChannel; // Use channel 1 as a default
@@ -773,28 +687,19 @@ namespace MusicXmlReaderModel
                         break;
                     case "unpitched":
                         unpitched = true;
-                        // Logger.LogOnce(string.Format("{0}: Unpitched note is not completely implemented yet", functionName));
-                        unpitchedElement = UnpitchedElement.Create(child);     
+                        Logger.LogOnce(string.Format("{0}: Unpitched note is not implemented yet", functionName));
                         break; // Just mark the note as unpitched
                     case "cue": // http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-cue.htm
                         isCueNote = true; break; ; // Just mark the note as a cue note
                     case "notehead": // http://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-notehead.htm
                         noteHeadElement = NoteHeadElement.Create(child);
-                        // Logger.LogOnce(string.Format("{0}: NoteHeadElement is decoded to '{1}' but not used yet.", functionName, noteHeadElement.ToString()));
                         break;
                     //default:  throw new ArgumentException();
-                    default: Logger.LogOnce(string.Format("{0}.{1}: Unknown child element. Name='{2}'", className, functionName, child.Name)); break;
+                    default: Logger.LogOnce(string.Format("{0}: Unknown child.Name '{1}'", functionName, child.Name)); break;
                 }
                 if (unimplemented)
                 {
                     Logger.LogOnce(string.Format("{0}: child.Name '{1}' is not implemented yet", functionName, child.Name));
-                }
-
-                if ((null == pitchElement) && unpitched && (null != unpitchedElement)) // Experiment for handling unpitched notes
-                {
-                    // Logger.LogOnce(string.Format("{0}: Replacing unpitched note displayed as {1}{2} by pitched equivalent",
-                    //    functionName, unpitchedElement.DisplayStep, unpitchedElement.DisplayOctave));
-                    pitchElement = PitchElement.Create(unpitchedElement.DisplayStep, unpitchedElement.DisplayOctave);
                 }
 
                 CheckDuration(); // Primarily for debugging. Checks that the value of commonDivisions is large enough! The call can be omitted!
@@ -817,52 +722,7 @@ namespace MusicXmlReaderModel
                 scorePartElement.HasNotes = true;
             }
 
-            // Allow the TupletElement to access the timeModification Element in order to describe tuplets in details
-            if ((null != notations) && (null != notations.TupletElement))
-            {
-                notations.TupletElement.TimeModificationElement = this.timeModificationElement;
-            }
-
-            // We need to be sure that all elements have been interpreted before we can handle unpitched notes.
-            if (unpitched)
-            {
-                if (null == scorePartElement)
-                {
-                    return;
-                }
-
-
-                ScoreInstrumentElement scoreInstrumentElement = scorePartElement.GetScoreInstrument(this.InstrumentElement.Id);
-                // int nnn = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
-                if (scoreInstrumentElement.IsVirtualInstrument)
-                {
-                    // This is a virtual instrument, not a Midi instrument.   
-                    this.midiUnpitchedInstrumentNumber = (int)MidiInstrumentMap.GetUnpitchedMidiInstrumentNumber(scoreInstrumentElement.VirtualInstrumentElement);
-                }
-                else
-                {
-                    // This is a Midi instrument, not a virtual instrument.
-                    MidiInstrumentElement midiInstrumentElement = scorePartElement.GetMidiInstrument(this.InstrumentElement.Id);
-                    this.midiUnpitchedInstrumentNumber = midiInstrumentElement.MidiUnpitchedInstrumentNumber - 1; // https://musescore.org/en/node/89756
-                    if (MidiNote.MidiChannelForUnpitchedInstruments != this.MidiChannel) // Non-virtual unpiched notes must be assigned to channel 10
-                    {
-                        const string logFormatString = "{0}.{1}: Creating unpitched MidiNote for unexpected {2}={3} in '{4}'";
-                        Logger.LogOnce(string.Format(logFormatString, className, functionName, "MidiChannel", MidiChannel, Model.TheStaticXmlFileName));
-                    }
-
-
-                    if (!MidiNote.IsKnownUnpitchedMidiInstrument((UnpitchedMidiInstrumentEnum)midiUnpitchedInstrumentNumber))
-                    {
-                        // We do not cupport this unpitched instrument !. Replace it by a known instrument, based on the instrument name.
-                        this.midiUnpitchedInstrumentNumber = (int)MidiInstrumentMap.GetUnpitchedMidiInstrumentNumber(scoreInstrumentElement);
-                    }
-                }
-                this.scoreUnpitchedInstrumentName = scoreInstrumentElement.InstrumentName;
-            }
         }
-
-
-        
 
         /// <summary>
         /// Generate a log entry if the value for CommonDivisions is not large enough!
@@ -911,13 +771,6 @@ namespace MusicXmlReaderModel
             // The duration element is an integer that represents a note’s duration in terms of divisions per quarter note.
             // The divisions element indicates how many divisions per quarter note are used to indicate a note's duration
             // Check if the duration of the node is exactly a full measure, taking in acount the beattype:
-            if (null == currentTimeElement)
-            {
-                string message = string.Format("{0}.{1}: CurrentTimeElement is null",className,functionName);
-                Logger.Log(message);
-                throw new Exception(message);
-            }
-
             int nominator = duration * currentTimeElement.BeatType;
             int denominator = divisions * 4;
             int quotient = nominator / denominator;
@@ -1057,10 +910,10 @@ namespace MusicXmlReaderModel
             string measureString = "";
             if (0 != measureNumber)
             {
-                measureString = string.Format("{0} {1}", ResourcesForModel.NoteElement_measure_text, measureNumber);
+                measureString = string.Format("{0} {1}",ResourcesForModel.NoteElement_measure_text, measureNumber);
             }
 
-            string notationsString = (null != notations) ? notations.ToString() : "";
+            string notationsString = (null != notations) ? notations.ToString() : ""; 
 
             // Primarily for debugging
             string partString = string.Format("{0} ", PartId);
@@ -1070,37 +923,14 @@ namespace MusicXmlReaderModel
             {
                 // This is a note.
                 return String.Format("{0}{1}{2} {3} {4} {5} {6} {7}",
-                    timeString, partString, measureString, pitchElement.Name, pitchElement.Octave, localizedType, localizedTie, notationsString);
+                    timeString, partString, measureString, pitchElement.Name, pitchElement.Octave, localizedType, localizedTie,notationsString);
             }
             else
-            {
+            {      
                 // This is a pause,not a note.     
-                return (String.Format("{0}{1}{2} {3}", timeString, partString, measureString, LocalizePause(noteDuration, dot)));
-            }
+                return(String.Format("{0}{1}{2} {3}", timeString, partString, measureString, LocalizePause(noteDuration,dot)));
+            }         
         }
 
-
-        /// <summary>
-        /// Special implementation used for showing details
-        /// </summary>
-        /// <returns></returns>
-        public string ToDetailsString()
-        {
-            string notationsString = (null != notations) ? notations.ToString() : "";
-            if (!IsPause)
-            {
-                // This is a note.
-                // By using pitchElement.Step instead of pitchElement.Name we also report how unpitched notes are notated!
-                //return String.Format("{0} {1} {2} {3} {4}", pitchElement.Name, pitchElement.Octave, localizedType, localizedTie, notationsString);
-                string name = this.Pitched ? pitchElement.Name : pitchElement.Step.ToString();
-                return String.Format("{0} {1} {2} {3} {4}",name, pitchElement.Octave, localizedType, localizedTie, notationsString);
-            }
-            else
-            {
-                // This is a pause,not a note.     
-                return (String.Format("{0}", LocalizePause(noteDuration, dot)));
-            }
-        }
-        
-    }
+    }    
 }

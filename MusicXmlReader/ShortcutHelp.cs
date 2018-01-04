@@ -10,48 +10,9 @@ namespace MusicXmlReader
 {
     class ShortcutHelp
     {
-        string className = "ShortcutHelp"; 
-        StringBuilder sb;
-        // The following texts are all localized!   
-        string control = "";
-        string space = "";
-        string escape = "";
-        string enter = "";
-        string insert = "";
-        string alt = "";
-        string tab = "";
-        string followedBy = "";
-        string pageUp = "";
-        string pageDown = "";
-        string shift = "";
-        string arrowLeft = "";
-        string arrowRight = "";
-        string arrowUp = "";
-        string arrowDown = "";
-        string home = "";
-        string end = "";
 
-        private ShortcutHelp()
-        {
-            // The following texts are all localized!   
-          control = ResourcesForHelp.Shortcut_Key_Control;
-          space = ResourcesForHelp.Shortcut_Key_space;
-          escape = ResourcesForHelp.Shortcut_Key_escape;
-          enter = ResourcesForHelp.Shortcut_Key_enter;
-          insert = ResourcesForHelp.Shortcut_Key_insert;
-          alt = ResourcesForHelp.shortcut_Key_alt;
-          tab = ResourcesForHelp.shortcut_Key_tab;
-          followedBy = ResourcesForHelp.shortcut_Text_followedBy;
-          pageUp = ResourcesForHelp.Shortcut_Key_pageUp;
-          pageDown = ResourcesForHelp.Shortcut_Key_pageDown;
-          shift = ResourcesForHelp.shortcut_Key_shift;
-          arrowLeft = ResourcesForHelp.Shortcut_ArrowLeft;
-          arrowRight = ResourcesForHelp.Shortcut_ArrowRight;
-          arrowUp = ResourcesForHelp.Shortcut_ArrowUp;
-          arrowDown = ResourcesForHelp.Shortcut_ArrowDown;
-          home = ResourcesForHelp.Shortcut_Home;
-          end = ResourcesForHelp.Shortcut_End;
-        }
+        // string className = "ShortcutHelp"; 
+        StringBuilder sb;
 
         private string Plus(string s1)
         {
@@ -60,14 +21,20 @@ namespace MusicXmlReader
 
         private string Plus(string s1, string s2)
         {
-            return s1 + "+" + s2;
+            return UiUtilities.Plus(s1, s2);
+            //string plus = (string.IsNullOrEmpty(s1) || string.IsNullOrEmpty(s2)) ? "" : "+";
+            //return s1 + plus + s2;
         }
         
 
         private string Plus(string s1, string s2, string s3)
         {
-            return s1 + "+" + s2 + "+" + s3;
+            return UiUtilities.Plus(s1, s2, s3);
+            ////return s1 + "+" + s2 + "+" + s3;
+            //return Plus(Plus(s1, s2), s3);
         }
+
+
 
         private string Combine(string s1, string s2)
         {
@@ -105,7 +72,7 @@ namespace MusicXmlReader
         /// <param name="text">The localized text to be associated with the two shortcuts</param>
         private void AddAltControlLine(string mainMenuString, string altString, Keys keys, string text)
         {   
-            string altText = Plus(alt, mainMenuString, Utilities.GetShortcutName(altString));
+            string altText = Plus(ResourcesForHelp.shortcut_Key_alt, mainMenuString, Utilities.GetShortcutName(altString));
             string controlText = UiUtilities.KeysToString(keys);
             string or = (string.IsNullOrEmpty(altText) || string.IsNullOrEmpty(controlText)) ? "" : " " + ResourcesForHelp.Conjunction_Or + " ";
             AddLine(altText + or + controlText, text);
@@ -138,6 +105,71 @@ namespace MusicXmlReader
 
         }
 
+        private void  AddLine(Keys keys, string text)
+        {
+            string controlKeys = UiUtilities.LocalizeControlKey(keys);
+            string simpleKeys = UiUtilities.LocalizeSimpleKey(keys);
+            AddLine(Plus(controlKeys, simpleKeys),  text);        
+        }
+
+
+
+        /// <summary>
+        /// For commands taking parameters as a simple parameter string
+        /// </summary>
+        /// <param name="firstKeys"></param>
+        /// <param name="parameterText"></param>
+        /// <param name="lastKeys"></param>
+        /// <param name="text"></param>
+        private void AddLine(Keys firstKeys, string parameterText, Keys lastKeys,string text)
+        {
+            string firstControlKeys = UiUtilities.LocalizeControlKey(firstKeys);
+            string firstSimpleKeys = UiUtilities.LocalizeSimpleKey(firstKeys);
+            string firstString = Plus(firstControlKeys, firstSimpleKeys);
+
+            string lastControlKeys = UiUtilities.LocalizeControlKey(lastKeys);
+            string lastSimpleKeys = UiUtilities.LocalizeSimpleKey(lastKeys);
+            string lastString = Plus(lastControlKeys, lastSimpleKeys);
+
+            AddLine(firstString+parameterText+lastString, text); // Concatenate without glue characters!
+        }
+
+
+        /// <summary>
+        /// For shortcuts starting with a 2-key combination, where the first key is not in {Alt, Control, Shift}
+        /// </summary>
+        /// <param name="firstKeys"></param>
+        /// <param name="lastKeys"></param>
+        /// <param name="parameterText"></param>
+        /// <param name="text"></param>
+        private void AddLine(Keys firstKeys,  Keys lastKeys, string parameterText, string text)
+        {
+            string firstControlKeys = UiUtilities.LocalizeControlKey(firstKeys);
+            string firstSimpleKeys = UiUtilities.LocalizeSimpleKey(firstKeys);
+            string firstString = Plus(firstControlKeys, firstSimpleKeys);
+
+            string lastControlKeys = UiUtilities.LocalizeControlKey(lastKeys);
+            string lastSimpleKeys = UiUtilities.LocalizeSimpleKey(lastKeys);
+            string lastString = Plus(lastControlKeys, lastSimpleKeys);
+
+            AddLine(firstString + "+" + lastString + parameterText, text); // Concatenate without glue characters!
+        }
+
+
+
+
+
+        /// <summary>
+        /// Used for generating list of shortcuts. No localization needed.
+        /// </summary>
+        private static string TempoLimitString
+        {
+            get
+            {
+                return string.Format(" ({0}<n<{1})", UiUtilities.TempoFactorMinimum, UiUtilities.TempoFactorMaximum);
+            }
+        }
+
 
 
 
@@ -156,20 +188,20 @@ namespace MusicXmlReader
             // The following standard Windows / JAWS keyboard shortcuts can be used 
             // AddLine("\r");
             AddLine(ResourcesForHelp.Shortcut_Caption_Windows);
-            AddLine(alt, ResourcesForHelp.Shortcut_SelectMenuLine);
-            AddLine(tab, ResourcesForHelp.Shortcut_ToggleBetweenListAndFilter);
-            AddLine(escape, ResourcesForHelp.Shortcut_CancelCurrentOperation);
-            AddLine(Plus(control, "O"), ResourcesForHelp.Shortcut_OpenFileOpenDialog);
-            AddLine(Plus(alt, "F4"), ResourcesForHelp.Shortcut_CloseProgram);
-            AddLine(Plus(control, home), ResourcesForHelp.Shortcut_GoToTopLine);
-            AddLine(Plus(control, end), ResourcesForHelp.Shortcut_GoToBottomLine);  
-
+            AddLine(Keys.Alt, ResourcesForHelp.Shortcut_SelectMenuLine);
+            AddLine(Keys.Tab, ResourcesForHelp.Shortcut_ToggleBetweenListAndFilter);
+            AddLine(Keys.Escape, ResourcesForHelp.Shortcut_CancelCurrentOperation);
+            AddLine(Keys.Control | Keys.O, ResourcesForHelp.Shortcut_OpenFileOpenDialog);
+            AddLine(Keys.Alt | Keys.F4, ResourcesForHelp.Shortcut_CloseProgram);
+            AddLine(Keys.Control | Keys.Home, ResourcesForHelp.Shortcut_GoToTopLine);
+            AddLine(Keys.Control | Keys.End, ResourcesForHelp.Shortcut_GoToBottomLine);
+             
             AddLine("\r");
             AddLine(ResourcesForHelp.Shortcut_Caption_JAWS);
-            AddLine(Plus(insert,space) + " " + followedBy + " s",ResourcesForHelp.Shortcut_ToggleJAWSSpeechOnOff);
-            AddLine(Plus(insert,pageDown), ResourcesForHelp.Shortcut_ReadStatusLine);
-            AddLine(Plus(insert, "T"), ResourcesForHelp.Shortcut_ReadTitleLine);
-            AddLine(Plus(insert, "B"), ResourcesForHelp.Shortcut_ReadMessagebox);
+            AddLine(Keys.Insert, Keys.Space, " s ",ResourcesForHelp.Shortcut_ToggleJAWSSpeechOnOff);
+            AddLine(Keys.Insert, Keys.PageDown, "", ResourcesForHelp.Shortcut_ReadStatusLine);
+            AddLine(Keys.Insert, Keys.T, "",ResourcesForHelp.Shortcut_ReadTitleLine); 
+            AddLine(Keys.Insert, Keys.B, "", ResourcesForHelp.Shortcut_ReadMessagebox);
 
             string files = AddCaption(ResourcesForUI.ToolStripMenuItem_Files);
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile, ShortcutHandler.openMusicXmlFile);
@@ -189,8 +221,8 @@ namespace MusicXmlReader
             AddAltControlLine(edit, ResourcesForUI.TreeView_MusicAsSpeech_Details, ShortcutHandler.NoKeys, ResourcesForHelp.Shortcut_EditDetails);
             AddAltControlLine(edit, ResourcesForUI.TreeView_UncheckAll, ShortcutHandler.uncheckAll, ResourcesForHelp.Shortcut_TurnOffGlobally);
             AddAltControlLine(edit, ResourcesForUI.TreeView_CheckAll, ShortcutHandler.checkAll, ResourcesForHelp.Shurtcut_TurnOnGlobally);
-            AddLine(space, ResourcesForHelp.Shortcut_ToggleValue);
-            AddLine(Plus(control, "L"), ResourcesForHelp.Shortcut_SelectNoteList);
+            AddLine(Keys.Space, ResourcesForHelp.Shortcut_ToggleValue);
+            AddLine(Keys.Control | Keys.L, ResourcesForHelp.Shortcut_SelectNoteList);
 
             string view = AddCaption(ResourcesForUI.ToolStripMenuItem_View);
             AddAltControlLine(view, ResourcesForUI. ToolsStripMenuItem_View_Instruments, ShortcutHandler.NoKeys);
@@ -220,32 +252,40 @@ namespace MusicXmlReader
             AddLine("\r");
             AddLine(ResourcesForHelp.shortcut_Caption_NoteList);
             // First all combinations of ARROWS and CONTROL
-            AddLine(arrowLeft, ResourcesForHelp.Shortcut_PreviousLine);
-            AddLine(arrowRight, ResourcesForHelp.Shortcut_NextLine);
-            AddLine(Plus(control,arrowLeft), ResourcesForHelp.Shortcut_PreviousMeasure); 
-            AddLine(Plus(control,arrowRight), ResourcesForHelp.Shortcut_NextMeasure);
-            AddLine(arrowUp, ResourcesForHelp.Shortcut_ChordTop);
-            AddLine(arrowDown, ResourcesForHelp.Shortcut_ChordName);
-            AddLine(Plus(control, arrowUp), ResourcesForHelp.Shortcut_PartTop);
-            AddLine(Plus(control, arrowDown), ResourcesForHelp.Shortcut_PartBottom);
-            AddLine(Plus(control, "I"), ResourcesForHelp.Shortcut_Instruments);
+            AddLine(ShortcutHandler.PreviousEvent, ResourcesForHelp.Shortcut_PreviousLine);
+            AddLine(ShortcutHandler.NextEvent, ResourcesForHelp.Shortcut_NextLine);
+            AddLine(ShortcutHandler.PreviousMeasure, ResourcesForHelp.Shortcut_PreviousMeasure); 
+            AddLine(ShortcutHandler.NextMeasure, ResourcesForHelp.Shortcut_NextMeasure);
+            AddLine(ShortcutHandler.DetailsHarmonyTop, ResourcesForHelp.Shortcut_ChordTop);
+            AddLine(ShortcutHandler.DetailsHarmonyBottom, ResourcesForHelp.Shortcut_ChordName);
+            AddLine(ShortcutHandler.DetailsPartsTop, ResourcesForHelp.Shortcut_PartTop);
+            AddLine(ShortcutHandler.DetailsPartsBottom, ResourcesForHelp.Shortcut_PartBottom);
+            AddLine(ShortcutHandler.DetailsInstruments, ResourcesForHelp.Shortcut_Instruments);
             // AddLine(Plus(control, "F"), ResourcesForHelp.Shortcut_FixedKeySignature)); // Not implemented yet !
-            AddLine(Plus(control, "P"), ResourcesForHelp.Shortcut_StartPlaying);
-            AddLine(Plus(control, shift, "P"), ResourcesForHelp.Shortcut_StopPlaying);
-            AddLine(Plus(space), ResourcesForHelp.Shortcut_TogglePlay);
-            AddLine("ESC", ResourcesForHelp.Shortcut_StopCurrentNote);
-            AddLine(Plus(control, "R") + "n,m " + enter, ResourcesForHelp.Shortcut_RepeatFromNtoM);
-            AddLine(Plus(control, "G") + "n " + enter, ResourcesForHelp.Shortcut_GoToMeasureN);
-            AddLine(Plus(control,"*") + "n " + enter, ResourcesForHelp.Shortcut_SetTempo);
-            AddLine(Plus(control, pageUp), ResourcesForHelp.Shortcut_IncreaseTempo);
-            AddLine(Plus(control, pageDown), ResourcesForHelp.Shortcut_DecreaseTempo); 
+            AddLine(ShortcutHandler.startPlaying, ResourcesForHelp.Shortcut_StartPlaying);
+            AddLine(ShortcutHandler.stopPlaying, ResourcesForHelp.Shortcut_StopPlaying);
+            AddLine(ShortcutHandler.togglePlaying, ResourcesForHelp.Shortcut_TogglePlay);
+            AddLine(ShortcutHandler.StopAllNotesPlaying, ResourcesForHelp.Shortcut_StopCurrentNote);
+
+            // Start of commands taking parameters and handled by the CommandInterpreter
+            //AddLine(Plus(control, "R") + "n,m " + enter, ResourcesForHelp.Shortcut_RepeatFromNtoM); // UD
+            AddLine(ShortcutHandler.CommandRepeat," n,m ",Keys.Enter, ResourcesForHelp.Shortcut_RepeatFromNtoM);
+            //AddLine(Plus(control, "G") + "n " + enter, ResourcesForHelp.Shortcut_GoToMeasureN);     // UD
+            AddLine(ShortcutHandler.CommandGoto," n " ,Keys.Enter , ResourcesForHelp.Shortcut_GoToMeasureN); 
+            //AddLine(Plus(control, "*") + "n " + enter, ResourcesForHelp.Shortcut_SetTempo);          // UD
+            AddLine(ShortcutHandler.CommandTempo," n ", Keys.Enter, ResourcesForHelp.Shortcut_SetTempo + TempoLimitString);
+            // End of commands taking parameters and handled by the CommandInterpreter
+
+
+            AddLine(ShortcutHandler.tempoIncrement, ResourcesForHelp.Shortcut_IncreaseTempo);
+            AddLine(ShortcutHandler.tempoDecrement, ResourcesForHelp.Shortcut_DecreaseTempo);
 
             // Følgende specielle tastaturgenveje  kan anvendes i forbindelse med Detaljelisten 
             //The following special keyboard shortcuts can be used in connection with the detail list
             AddLine("\r");
-            AddLine(ResourcesForHelp.Shortcut_Caption_DetailList); 
-            AddLine(arrowDown, ResourcesForHelp.Shortcut_NextDetail);
-            AddLine(arrowUp, ResourcesForHelp.Shortcut_PreviousDetail);
+            AddLine(ResourcesForHelp.Shortcut_Caption_DetailList);
+            AddLine(Keys.Down, ResourcesForHelp.Shortcut_NextDetail);
+            AddLine(Keys.Up, ResourcesForHelp.Shortcut_PreviousDetail);
 
             return strings;
         }

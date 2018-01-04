@@ -28,6 +28,11 @@ namespace MusicXmlReader
             command = new StringBuilder();
         }
 
+        private void Beep()
+        {
+            UiUtilities.Beep();
+        }
+
 
         /// <summary>
         /// Convert to chars CONTROL+A..CONTROL+Z or digits 0 .. 9
@@ -54,8 +59,14 @@ namespace MusicXmlReader
             if (Keys.Oemcomma == keys) return ",";
 
 #warning ToDo Find another key here instead of Keys.Multiply which requires a numeric keyboard !! 
-            if ((Keys.Control | Keys.Multiply) == keys) return "*";          // On the numeric keyboard
-            if ((Keys.Control | Keys.Shift | Keys.Oem2) == keys) return "*"; // The asterix on some keyboards   
+            if ((Keys.Control | Keys.Multiply) == keys)
+            {
+                return "*";          // On the numeric keyboard
+            }
+            if ((Keys.Control | Keys.Shift | Keys.Oem2) == keys)
+            {
+                return "*"; // The asterisk on some keyboards  
+            } 
 
             return ""; 
         }
@@ -80,6 +91,7 @@ namespace MusicXmlReader
             }
             else
             {
+                Beep();
                 Logger.Log(string.Format("{0}.{1} Illegal command:'{2}'", className, functionName, command));
             }    
         }
@@ -105,6 +117,7 @@ namespace MusicXmlReader
             }
             else
             {
+                Beep();
                 Logger.Log(string.Format("{0}.{1} Illegal command:'{2}'", className, functionName, command));
             }
         }
@@ -174,15 +187,16 @@ namespace MusicXmlReader
             int n1 = 0;
             if ((1 == paramaters.Length)
             && (int.TryParse(paramaters[0], out n1)) // First parameter
-            && (n1 >= 10)
-            && (n1 <= 1000)
+            && (n1 >= UiUtilities.TempoFactorMinimum)
+            && (n1 <= UiUtilities.TempoFactorMaximum)
             )
             {
                 model.SetUserTempo(n1);
             }
             else
             {
-                Logger.Log(string.Format("{0}.{1} Illegal command:'{2}'", className, functionName, command));
+                Beep();
+                Logger.Log(string.Format("{0}.{1} Illegal TempoCommand:'{2}'", className, functionName, command));
             }
         }
 
@@ -191,6 +205,7 @@ namespace MusicXmlReader
 
         public void Add(KeyEventArgs args)
         {
+            string functionName = "Add";
             if (args.KeyData == Keys.Return)
             {
                 // Interpret and execute command
@@ -202,10 +217,12 @@ namespace MusicXmlReader
                     string[] parameters = s.Substring(1).Split(new char[] { ',' });
                     switch (s[0])
                     {
-                        case 'R': RepeatMeasures(parameters, s); break;
-                        case 'G': GotoMeasure(parameters, s); break;
-                        case '*': Tempo(parameters, s); break;
-                        default: System.Media.SystemSounds.Beep.Play(); break;
+                        case ShortcutHandler.Repeat:        RepeatMeasures(parameters, s); break;
+                        case ShortcutHandler.GoTo:          GotoMeasure(parameters, s); break;
+                        case ShortcutHandler.NormalTempo:   Tempo(parameters, s); break;
+                        default:
+                            Logger.Log(string.Format("{0}.{1} Illegal Command={2}", className, functionName, s));
+                            System.Media.SystemSounds.Beep.Play(); break;
                     }
                 }
 

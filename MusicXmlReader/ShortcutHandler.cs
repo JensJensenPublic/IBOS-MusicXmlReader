@@ -10,6 +10,9 @@ using MusicXmlReaderModel;
 // Describes good practice for designing with Access Keys and Shortcut Keys
 
 
+// MuseScore shortcuts are describet in
+// https://musescore.org/da/handbook/nodeindtastning#keyboard
+
 // https://support.microsoft.com/en-us/kb/126449 contains the following list of standard Windows keyboard shortcuts
 //F1: Help
 //CTRL+ESC: Open Start menu
@@ -171,10 +174,15 @@ namespace MusicXmlReader
 
         public const Keys listBoxFocus =    Keys.Control | Keys.L;
 
-        public const Keys detailsNextDetail =       Keys.Up;      // Enter     Details mode and select the last detail, if available)
-        public const Keys detailsPreviousDetail =   Keys.Down;    // Enter     Details mode and select the first detail, if available
+        // Use the "+" semantics known from a tree to start showing single notes 
+        //public const Keys detailsOpenSingleNotesFromBottom  = Keys.Add;                 // Enter     Details mode and select the last detail, if available)
+        //public const Keys detailsOpenSingleNotesFromTop     = Keys.Add | Keys.Shift;    // Enter     Details mode and select the first detail, if available
+
+        // Alternatively use navigation keys to start showing single notes 
+        public const Keys detailsSingleNotesFromBottom =       Keys.Up;      // Enter     Details mode and select the last detail, if available)
+        public const Keys detailsSingleNotesFromTop =   Keys.Down;    // Enter     Details mode and select the first detail, if available
         public const Keys detailsTopDetail =        Keys.Home;    // Remain in Details mode and select the top detail  if available)
-        public const Keys detailsBottumDetail =     Keys.End;     // Remain in Details mode and select the bottum detail, if available 
+        public const Keys detailsBottomDetail =     Keys.End;     // Remain in Details mode and select the bottum detail, if available 
         public const Keys detailsNextEvent =        Keys.Right;   // Leave Details mode and select the next event
         public const Keys detailsPreviousEvent =    Keys.Left;    // Leave Details mode and select the previous event
 
@@ -184,19 +192,30 @@ namespace MusicXmlReader
         public const Keys NextEvent =               Keys.Right;
         public const Keys PreviousEvent =           Keys.Left;
 
+        public const Keys DetailsNextPart = Keys.Control | Keys.Down;
+        public const Keys DetailsPreviousPart = Keys.Control | Keys.Up;
+
         // For loading details
         public const Keys DetailsHarmonyTop =       Keys.Up;
         public const Keys DetailsPartsTop =         Keys.Up | Keys.Control;
         public const Keys DetailsNotesTop =         Keys.Up | Keys.Control | Keys.Shift;
         public const Keys DetailsInstruments =      Keys.I  | Keys.Control;
-        public const Keys DetailsHarmonyBottum =    Keys.Down;
-        public const Keys DetailsPartsBottum =      Keys.Down | Keys.Control;
-        public const Keys DetailsNotesBottum =      Keys.Down | Keys.Control | Keys.Shift;
+        public const Keys DetailsHarmonyBottom =    Keys.Down;
+        public const Keys DetailsPartsBottom =      Keys.Down | Keys.Control;
+        public const Keys DetailsNotesBottom =      Keys.Down | Keys.Control | Keys.Shift;
         //public const Keys DetailsInstrumentsButtom= Keys.I | Keys.C;
 
         public const Keys StopAllNotesPlaying = Keys.Escape;
 
         public const Keys NoKeys = Keys.None; // Means that no shortcut key is defined
+
+#warning ToDo Use 1 defintion per command instead of 2 !!
+        public const Keys CommandRepeat = Keys.R | Keys.Control;
+        public const char Repeat = 'R';
+        public const Keys CommandGoto   = Keys.G | Keys.Control;
+        public const char GoTo = 'G'; 
+        public const Keys CommandTempo  = Keys.N | Keys.Control; // % of Normal Tempo 
+        public const char NormalTempo = 'N';
 
     }
 }

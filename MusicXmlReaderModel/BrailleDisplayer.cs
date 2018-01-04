@@ -28,7 +28,7 @@ namespace MusicXmlReaderModel
         private string className = "BrailleDisplayer";
         public static readonly char UnicodeBrailleBase = (char)0x2800;
 
-        private PlatformDependencies.FSBrlDspAPIWrapper fSBrlDspAPIWrapper; // Used by experimental code for accessing a Freedom Scientific Braille display directly.
+        // private PlatformDependencies.FSBrlDspAPIWrapper fSBrlDspAPIWrapper; // Used by experimental code for accessing a Freedom Scientific Braille display directly.
         private IDebugDisplayerClient brailleDisplayerClient; // The client receiving MusicBraille bytes, represented as UniCode
         private string emptyBrailleString;
         //private NvdaControllerClientWrapper nvda;
@@ -40,11 +40,16 @@ namespace MusicXmlReaderModel
 
          private BrailleDisplayer(IDebugDisplayerClient brailleDisplayerClient, int displaySize,ScreenReaderAPI screenReaderAPI)
         {
+            string functionName = "BrailleDisplayer";
             this.brailleDisplayerClient = brailleDisplayerClient;
             this.displaySize = displaySize;
             this.screenReaderAPI = screenReaderAPI;
-            fSBrlDspAPIWrapper = PlatformDependencies.FSBrlDspAPIWrapper.Create(); // For direct access to physical Braille Display
-            fSBrlDspAPIWrapper.Open(); // TODO Insert this line again after placing FSBrlDspApi.dll in the 3.Party directory.
+
+            Logger.Log(string.Format("{0}.{1} Skipping PlatformDependencies.FSBrlDspAPIWrapper.Create() and fSBrlDspAPIWrapper.Open()", className, functionName));
+            // NOTE: The following 2 lines seem to make Perkins input from the FOCUS14 fail !!!
+            //fSBrlDspAPIWrapper = PlatformDependencies.FSBrlDspAPIWrapper.Create(); // For direct access to physical Braille Display
+            //fSBrlDspAPIWrapper.Open(); // TODO Insert this line again after placing FSBrlDspApi.dll in the 3.Party directory.
+
             // nvda = NvdaControllerClientWrapper.Create(); // For access to physical Braille Display through NVDA 
             emptyBrailleString = new StringBuilder().Append(UnicodeBrailleBase, displaySize).ToString();
 

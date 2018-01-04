@@ -20,6 +20,7 @@ namespace MusicXmlReader
     public partial class MainForm : Form, IDebugDisplayerClient, IObjectCollection, IUtilityClient
     {
         string className = "MainForm";
+        bool consoleTrace = false;
         enum MusicPlayerStateEnum { unknown, stopped, running };
         string applicationName = "";  // Locakized application name. Will be re-initialized later using localization!
         string executingAssemblyFullPath  = ""; // The (unlocalized) name and location of the program, 
@@ -32,6 +33,7 @@ namespace MusicXmlReader
         UserCommandInterpreter commandInterpreter;
         string myMusicXmlDirectory; // Default location for MusicXml files belonging to thos user. Wil be populated with sample filer!
         ImportHandler importHandler;
+        DetailsHandler detailsHandler;
 
         public string ApplicationName
         {
@@ -87,6 +89,7 @@ namespace MusicXmlReader
                 // Create a handler for handling all Keyboard shortcuts
                 // shortCutHandler = ShortcutHandler.Create(this, model);
                 commandInterpreter = UserCommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
+                detailsHandler = DetailsHandler.Create(listBoxTimes,listBoxDetails,model);
                 LoadIcon();
 
         // throw (new Exception("For test only")); // Insert this line to test the Last Resort handler below
@@ -825,91 +828,10 @@ namespace MusicXmlReader
 
         #region keyhandlers
 
-        private void LeaveListboxTimes()
-        {
-            listBoxDetails.AutoSize = true; // Use the area normally occupied by listBoxTimes
-        }
-                
-
-        private void ReturnToListboxTimes(int move)
-        {
-            // On All other keys will return focus to the mail listbox
-            listBoxDetails.Items.Clear();
-            int selectedIndex = listBoxTimes.SelectedIndex;
-            int newIndex = selectedIndex + move;
-            if ((newIndex >= 0) && (newIndex < listBoxTimes.Items.Count))
-            {
-                // Select the next detail if possible
-                listBoxTimes.SelectedIndex = newIndex;
-            }
-            // In all other cases just return to the original index and move focus  
-            listBoxDetails.AutoSize = false; // Stop using the area temporarily borrowed from ListBoxTimes
-            listBoxTimes.Focus();
-        }
-
 
         private void listBoxDetails_KeyDown(object sender, KeyEventArgs e)
         {
-            string functionName = "listBoxDetails_KeyDown";
-            try // This is new code for version 1.0.0.0 so better safe than sorry
-            {
-                switch (e.KeyCode)
-                {
-                    // On keys.Right and keys.Left, Key.Home, Key.End: Do nothing special, but pass the key to the listbox without suppressing it !
-                    case ShortcutHandler.detailsPreviousDetail: break; // Pass on to default handler
-                    case ShortcutHandler.detailsNextDetail: break; // Pass on to default handler
-                    case ShortcutHandler.detailsTopDetail: break; // Pass on to default handler
-                    case ShortcutHandler.detailsBottumDetail: break; // Pass on to default handler
-                    case ShortcutHandler.detailsNextEvent:     ReturnToListboxTimes(0); e.SuppressKeyPress = true;  break; // +1 confuses JAWS
-                    case ShortcutHandler.detailsPreviousEvent: ReturnToListboxTimes(0); e.SuppressKeyPress = true; break;  // -1 confuses JAWS
-                    case Keys.ControlKey: e.SuppressKeyPress = true; break; // Allow for decoding CTRL+UP and CTRL+DOWN later
-                    default: ReturnToListboxTimes(0); e.SuppressKeyPress = true;  break;
-                }
-            }
-            catch (Exception exception)
-            {
-                Logger.Log(string.Format("{0}.{1} KeyCode={2} threw an exception: Message={3}", className, functionName, e.KeyCode.ToString(), exception.Message));
-            }
-            return;
-        }
-
-        private enum DetailsEnum { Unknown, Harmonies, Parts, Notes, Instruments };
-
-        /// <summary>
-        /// Show global details, i.e. details which are not related to a specific event, but are global for the whole score,
-        /// such the list of instruments.
-        /// </summary>
-        /// <param name=""></param>
-        /// <param name="fromTop"></param>
-        private void ShowGlobalDetails(DetailsEnum detailsEnum, bool fromTop)
-        {
-            string functionName = "ShowGlobalDetails";
-            try
-            {
-                if (DetailsEnum.Instruments != detailsEnum) return; // This function only supports these sorts of details.
-                listBoxDetails.Items.Clear();
-                DetailsDescription[] items = model.GetAllPartDetails();
-
-                listBoxDetails.Items.AddRange(items);
-                int itemCount = listBoxDetails.Items.Count;
-                if (0 != itemCount)
-                {
-                    listBoxDetails.SelectedIndex = fromTop ? 0 : (itemCount - 1);
-                }
-                
-                if (0 == listBoxDetails.Items.Count) // For whatever reason
-                {
-                    listBoxDetails.Items.Add(ResourcesForUI.ListBoxDetails_NoDetailsFound); // Just a fallback ! The detail-implementation can deliver its own one-liner!
-                }
-
-                LeaveListboxTimes();
-                listBoxDetails.Focus(); 
-            }
-            catch (Exception exception)
-            {
-                Logger.Log(string.Format("{0}.{1} ({2},{3}) threw an exception: Message={4}", className, functionName, detailsEnum, fromTop, exception.Message));
-            }
-            return;
+            detailsHandler.KeyDown(sender, e);
         }
 
 
@@ -962,90 +884,21 @@ namespace MusicXmlReader
 
 
 
-        /// <summary>
-        /// Shows details which are related to an event in the Details listbox
-        /// </summary>
-        /// <param name="detailsEnum">Determines which kind of details to show</param>
-        /// <param name="fromTop">Show details either from top or bottum</param>
-        private void ShowEventDetails(DetailsEnum detailsEnum, bool fromTop)
-        {
-            string functionName = "ShowEventDetails";
-            // NOTE ARROW + ALT alone has already been taken by tempo increment/decrement !!!
-            if ((DetailsEnum.Harmonies != detailsEnum) && (DetailsEnum.Parts != detailsEnum) && (DetailsEnum.Notes != detailsEnum) ) return; // This function only supports these sorts of details.
-            if (-1 == listBoxTimes.SelectedIndex)
-            {
-                // It has no meaning to inspect details when nothing is selected !
-                return;
-            }
-            try // This is new code for version 1.0.0.0 so better safe than sorry
-            {
-                listBoxDetails.Items.Clear();
-                object selectedEvent = listBoxTimes.Items[listBoxTimes.SelectedIndex];
-                if ((null != selectedEvent) && (selectedEvent is EventDescription))
-                {
-                    EventDescription currentEventDescription = (listBoxTimes.Items[listBoxTimes.SelectedIndex]) as EventDescription;
-
-                    DetailsDescription[] items = new DetailsDescription[0];
-                    switch (detailsEnum)
-                    {
-                        case DetailsEnum.Parts: items = model.GetCurrentEventDetails(currentEventDescription, false); break;//  Show details about current parts
-                        case DetailsEnum.Notes: items = model.GetCurrentEventDetails(currentEventDescription, true); break;//  Show details about current parts
-                        case DetailsEnum.Harmonies: items = model.GetCurrentHarmonyDetails(currentEventDescription); break; // Show details about the current harmony
-                        case DetailsEnum.Instruments: items = model.GetAllPartDetails(); break;
-                        default: break;
-                    };
-
-                    listBoxDetails.Items.AddRange(items);
-                    int itemCount = listBoxDetails.Items.Count;
-                    if (0 != itemCount)
-                    {
-                        listBoxDetails.SelectedIndex = fromTop ? 0 : (itemCount - 1);
-                    }
-                }
-
-                if (0 == listBoxDetails.Items.Count) // For whatever reason
-                {
-                    listBoxDetails.Items.Add(ResourcesForUI.ListBoxDetails_NoDetailsFound); // Just a fallback ! The detail-implementation can deliver its own one-liner!
-                }
-
-                LeaveListboxTimes();
-                listBoxDetails.Focus();
-
-                // e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
-            }
-            catch (Exception exception)
-            {
-                Logger.Log(string.Format("{0}.{1} ({2},{3}) threw an exception: Message={4}", className, functionName, detailsEnum , fromTop, exception.Message));
-            }
-            return;
-        }
-
 
         /// <summary>
-        /// Generate audible beep when user attends to move outside listbox
+        /// Generate an audible Beep if the listBox is empty
         /// </summary>
         /// <param name="listBox"></param>
-        /// <param name="move"></param>
-        private void WarnAtEnd(ListBox listBox, int move)
+        private void WarnIfEmpty(ListBox listBox)
         {
-            string functionName = "WarnAtEnd";
-            try
+            if (0 == listBox.Items.Count)
             {
-                int newindex = listBox.SelectedIndex + move;
-                int firstIndex = 0;
-                int lastIndex = listBox.Items.Count - 1;
-                if (((newindex < firstIndex) || (newindex > lastIndex)) && (listBox.SelectedIndex != -1)) // Only warn when selected.
-                {
-                    System.Media.SystemSounds.Beep.Play();
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Log(string.Format("{0}.{1} Exception.Message={2}", className, functionName, e.Message));
+                UiUtilities.Beep();
             }
         }
+        
 
-
+   
 
         /// <summary>
         /// Occurs when a key is pressed while listBoxTimes has focus
@@ -1057,6 +910,7 @@ namespace MusicXmlReader
             // string functionName = "listBoxTimes_KeyDown";
 
             bool handled = true; // Will be set to false again by the "default:" case if the key is not handled  by one of the specific cases.
+            bool warnIfEmpty = true; // Will be set to false on commands that do not require that a MusicXml file is loaded.
             switch (e.KeyData) // KeyDate contains information about the control keys (<CTRL> <ALT> <SHIFT>  etc )as well as about the normal ley
             {    
                 // Most functionality is passed directly to the Model
@@ -1065,26 +919,36 @@ namespace MusicXmlReader
                 case ShortcutHandler.tempoIncrement:        model.ChangeUserTempo(+1); break;
                 case ShortcutHandler.startPlaying:          model.StartPlayingPoly(listBoxTimes.SelectedIndex); break;
                 case ShortcutHandler.stopPlaying:           model.StopPlaying(); break;
-                case ShortcutHandler.StopAllNotesPlaying:   model.musicPlayer.StopAllNotesPlaying(); break;
+                case ShortcutHandler.StopAllNotesPlaying:   model.musicPlayer.StopAllNotesPlaying(); warnIfEmpty = false;  break;
                 case ShortcutHandler.PreviousMeasure:       model.SelectMeasure(listBoxTimes.SelectedIndex, -1); break;
                 case ShortcutHandler.NextMeasure:           model.SelectMeasure(listBoxTimes.SelectedIndex, +1); break;
-                case ShortcutHandler.NextEvent:             WarnAtEnd(listBoxTimes, +1);  handled = false; break; // Let the listbox handle it
-                case ShortcutHandler.PreviousEvent:         WarnAtEnd(listBoxTimes, -1); handled = false; break; // Let the listbox handle it
+                case ShortcutHandler.NextEvent:             UiUtilities.WarnAtEnd(listBoxTimes, +1);  handled = false; break; // Let the listbox handle it
+                case ShortcutHandler.PreviousEvent:         UiUtilities.WarnAtEnd(listBoxTimes, -1); handled = false; break; // Let the listbox handle it
 
 
 
                 // The "Details functionality is handled locally before being passed to the Model:
-                case ShortcutHandler.DetailsHarmonyTop:     ShowEventDetails(DetailsEnum.Harmonies, true); break;    // Start from top
-                case ShortcutHandler.DetailsPartsTop:       ShowEventDetails(DetailsEnum.Parts, true); break;        // Start from top  
-                case ShortcutHandler.DetailsNotesTop:       ShowEventDetails(DetailsEnum.Notes, true); break;        // Start from top  
-                case ShortcutHandler.DetailsHarmonyBottum:  ShowEventDetails(DetailsEnum.Harmonies, false); break;   // Start from bottum
-                case ShortcutHandler.DetailsPartsBottum:    ShowEventDetails(DetailsEnum.Parts, false); break;       //  Start from bottum
-                case ShortcutHandler.DetailsNotesBottum:    ShowEventDetails(DetailsEnum.Notes, false); break;       //  Start from bottum
-                case ShortcutHandler.DetailsInstruments:    ShowGlobalDetails(DetailsEnum.Instruments, true); break;  // Always shown from top
+                case ShortcutHandler.DetailsHarmonyTop:     detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Harmonies, true); break;    // Start from top
+                case ShortcutHandler.DetailsPartsTop:       detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Parts, true); break;        // Start from top  
+                case ShortcutHandler.DetailsNotesTop:       detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Notes, true); break;        // Start from top  
+                case ShortcutHandler.DetailsHarmonyBottom:  detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Harmonies, false); break;   // Start from bottom
+                case ShortcutHandler.DetailsPartsBottom:    detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Parts, false); break;       //  Start from bottom
+                case ShortcutHandler.DetailsNotesBottom:    detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Notes, false); break;       //  Start from bottom
+                case ShortcutHandler.DetailsInstruments:    detailsHandler.ShowGlobalDetails(DetailsHandler.DetailsEnum.Instruments, true); break;  // Always shown from top
                 //case ShortcutHandler.DetailsInstrumentsButtom:  ShowDetails(DetailsEnum.Instruments, false); break;
 
-                default: handled = false; break;
+                default:
+                    handled = false;        // This event must be handled either by the CommandInterpreter or by the Listbox itself
+                    warnIfEmpty = false;    // Do not issue a warning beep even if no valid MusicXml file is loaded,
+                    break;
             }
+
+            if (warnIfEmpty)
+            {
+                // Issue a warning if no data is loaded and the command thus has no meaning
+                WarnIfEmpty(listBoxTimes);
+            }
+
             if (handled)
             {
                 e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
@@ -1159,12 +1023,15 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void userSettingsTreeView_KeyDown(object sender, KeyEventArgs e)
         {
+
+            if (consoleTrace) Console.WriteLine("userSettingsTreeView_KeyDown");
             if (e.KeyData == ShortcutHandler.listBoxFocus)
             {
                 listBoxTimes.Focus(); // Easy way to move the focus to the main listbox
                 e.SuppressKeyPress = true;
                 return;
             }
+                 
 
             if (null == userSettingsTreeView.SelectedNode)
             {
@@ -1442,7 +1309,7 @@ namespace MusicXmlReader
 
         private void instrumentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowGlobalDetails(DetailsEnum.Instruments, true);
+            detailsHandler.ShowGlobalDetails(DetailsHandler.DetailsEnum.Instruments, true);
         }
 
         private void usersManualToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1550,7 +1417,18 @@ namespace MusicXmlReader
             Logger.Log(string.Format("{0}.{1} Beep and ESC for {2}", className, functionName, keyAsString));
         }
 
-   
+        private void userSettingsTreeView_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (consoleTrace) Console.WriteLine("userSettingsTreeView_KeyPress");
+        }
+
+        private void userSettingsTreeView_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (consoleTrace) Console.WriteLine("userSettingsTreeView_KeyUp");
+        }
+
+
+
 
 
 

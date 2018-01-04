@@ -52,6 +52,23 @@ namespace JSJ.MusicSynthesis
         AugmentedFifteenth=25// https://en.wikipedia.org/wiki/Eleventh
     };
 
+    /// <summary>
+    /// NOTE: These are NOT general definitions, just an exampleof a typical values
+    /// </summary>
+    public enum Dynamics
+    {
+        pppp = 10,
+        ppp = 23,
+        pp = 36,
+        p = 49,
+        mp = 62,
+        mf = 75,
+        f = 88,
+        ff = 101,
+        fff = 114,
+        ffff = 127
+    }
+
 
 
     //public enum ChordType { Major, Minor, Augmented, Major6, Minor6, Major7, Minor7, Aug7, FullDim7, Major7maj, MinorMajor, Dom9, Major9, Minor9, Dom11, Major11, Minor11, Dom13,Major13, Minor13, Dim, HalfDim7, Sus2, Sus4, UnImplemented };

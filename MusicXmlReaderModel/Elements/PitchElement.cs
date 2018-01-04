@@ -22,7 +22,7 @@ namespace MusicXmlReaderModel
             }
         }
 
-        int SemiToneWithinOctave(FullStepEnum step)
+        public int SemiToneWithinOctave(FullStepEnum step)
         {
             switch (step)
             {

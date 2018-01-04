@@ -8,8 +8,6 @@ using NAudio.Midi;
 
 namespace MusicXmlReaderModel
 {
-
-
     /// <summary>
     /// Class for showing (and playing) items in the details window.
     /// The first 2 kinds of details are parts and harmonies, but it is easy to implement more, for instance
@@ -17,8 +15,10 @@ namespace MusicXmlReaderModel
     /// </summary>
     class DetailsPlayer
     {
+        private const string className = "DetailsPlayer";
         private const int bassOctave = 3; // Play the Bass note (if any) in 3. octave
-        private const int chordOctave = 4; // Build the chord starting in 4. octave, possibly spreading into 5. octave
+        private DetailsDescription detailsDescriptionCurrentlyPlaying;
+
         private const int velocity = 90;
         private MusicPlayer musicPlayer;
         private List<DetailsDescription> detailsDescriptions = new List<DetailsDescription>();
@@ -44,6 +44,12 @@ namespace MusicXmlReaderModel
             }
         }
 
+        private DetailsPlayer(MusicPlayer musicPlayer)
+        {
+            this.musicPlayer = musicPlayer;
+        }
+
+
         /// <summary>
         /// Builds a localized, detailed description of the harmony. For instance in danish, "C/E" is represented as
         /// Kvint G
@@ -55,17 +61,18 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         private DetailsPlayer(HarmonyElement harmonyElement, MusicPlayer musicPlayer)
         {
+            const int chordOctave   = 4; // Build the chord starting in 4. octave, possibly spreading into 5. octave
+            const int dynamics      = (int)Dynamics.mf; // Dynamics "velocity" of each note. Percentage of max velocity.
             this.musicPlayer = musicPlayer;
-            // Interval[] intervals = MidiChord.GetChordIntervals(harmonyElement.ChordType); // In this way we will use the same definitions for the sound and the text  
             Interval[] intervals = MidiChord.GetModifiedChordIntervals(harmonyElement.ChordType, harmonyElement.Degrees);        
             ChromaticStep root = harmonyElement.ChromaticRootStep;
             detailsDescriptions = new List<DetailsDescription>();
             string chordName = harmonyElement.ToLocalizedString();
-            detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", ResourcesForModel.HarmonyElement_Chord,chordName ), harmonyElement)); // The full representation of the chord 
+            detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", ResourcesForModel.HarmonyElement_Chord,chordName ), harmonyElement, chordOctave)); // The full representation of the chord 
             if ((null != harmonyElement.BassElement) && (harmonyElement.ChromaticRootStep != harmonyElement.ChromaticBassStep))
             {
                 string s = string.Format("{0} {1}", ResourcesForModel.HarmonyElement_BassTone, harmonyElement.BassElement.ToString());
-                detailsDescriptions.Add(DetailsDescription.Create(s, harmonyElement.ChromaticBassStep,bassOctave)); // The bass tone if different from the root. For instance "Bass E" 
+                detailsDescriptions.Add(DetailsDescription.Create(s, harmonyElement.ChromaticBassStep,bassOctave,dynamics)); // The bass tone if different from the root. For instance "Bass E" 
             }
             for (int i = 0; (i < intervals.Length); i++) // Each note in the Harmony, represented by function and by name. 
             {
@@ -74,7 +81,8 @@ namespace MusicXmlReaderModel
                 int iOctave = iSum / (int)ChromaticStep.NumberOfSteps; // 12
                 ChromaticStep step = (ChromaticStep)(iStep);                
                 string function = MidiChord.ToLocalizedChordFunction(intervals[i]);
-                detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", function, step.ToString()), step, iOctave + chordOctave)); // For instance : "Third E"
+                string s = string.Format("{0} {1}", function, step.ToString());
+                detailsDescriptions.Add(DetailsDescription.Create(s, step, iOctave + chordOctave,dynamics)); // For instance : "Third E"
             };
             detailsDescriptions.Reverse();
         }
@@ -85,9 +93,10 @@ namespace MusicXmlReaderModel
         /// NOTE: The contents of this list does NOT depend of the position of the cursor on the List-Window, only of the parts defined in the MusicXml file.
         /// </summary>
         /// <param name="partList"></param>
-        private DetailsPlayer(PartlistElement partList)
+        private DetailsPlayer(PartlistElement partList,MusicPlayer musicPlayer)
         {
             int numberOfParts = partList.NumberOfParts();
+            this.musicPlayer = musicPlayer;
             detailsDescriptions = new List<DetailsDescription>();
         //    string text = (1 == numberOfParts) ? ResourcesForModel.DetailsPlayer_Part : ResourcesForModel.DetailsPlayer_Parts; // Singularis / Pluralis
         //    detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", numberOfParts, text)));
@@ -98,7 +107,7 @@ namespace MusicXmlReaderModel
         {
             if (noteLevel)
             {
-                NoteDetailsPlayer(eventDescription, partList, userSettings, musicPlayer);
+              //  NoteDetailsPlayer(eventDescription, partList, userSettings, musicPlayer);
             }
             else
             {
@@ -117,6 +126,7 @@ namespace MusicXmlReaderModel
         private void PartDetailsPlayer(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MusicPlayer musicPlayer)
         {
             int numberOfParts = partList.NumberOfParts();
+            this.musicPlayer = musicPlayer;
             detailsDescriptions = new List<DetailsDescription>();
             for (int i = 0; (i < numberOfParts); i++)
             {
@@ -151,12 +161,12 @@ namespace MusicXmlReaderModel
 
                     // Compose all details, always showing MusicBraille first
                     string detailString = string.Format("{0} {1} {2} {3} {4}", musicBraille, partId, partName, notes, lyrics);
-                    detailsDescriptions.Add(DetailsDescription.Create(detailString));
+                    detailsDescriptions.Add(DetailsDescription.Create(detailString, eventDescription.NoteLists[i]));
                 }
 
             }
 
-            // Do NOT add any harmonies after the last part! HArmonies have their own meshanisms !
+            // Do NOT add any harmonies after the last part! Harmonies have their own mechanisms !
             //HarmonyElement harmonyElement = eventDescription.HarmonyElement;
             //if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
             //{
@@ -166,115 +176,90 @@ namespace MusicXmlReaderModel
         }
 
 
-        /// <summary>
-        /// Reports details at the Note level
-        /// </summary>
-        /// <param name="eventDescription"></param>
-        /// <param name="partList"></param>
-        /// <param name="userSettings"></param>
-        /// <param name="musicPlayer"></param>
-        private void NoteDetailsPlayer(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MusicPlayer musicPlayer)
-        {
-            int numberOfParts = partList.NumberOfParts();
-            detailsDescriptions = new List<DetailsDescription>();
-            for (int i = 0; (i < numberOfParts); i++)
-            {
-                List<NoteElement> notesForPart = eventDescription.NoteLists[i];
-                if ((null != notesForPart) && (0 != notesForPart.Count))
-                {
-                    // String variables for desribing the detail as text
-                    string partId = "";
-                    string partName = "";
-                    string notes = "";
-                    string lyrics = "";
+        ///// <summary>
+        ///// Reports details at the Note level
+        ///// </summary>
+        ///// <param name="eventDescription"></param>
+        ///// <param name="partList"></param>
+        ///// <param name="userSettings"></param>
+        ///// <param name="musicPlayer"></param>
+        //private void NoteDetailsPlayer(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MusicPlayer musicPlayer)
+        //{
+        //    int numberOfParts = partList.NumberOfParts();
+        //    detailsDescriptions = new List<DetailsDescription>();
+        //    for (int i = 0; (i < numberOfParts); i++)
+        //    {
+        //        List<NoteElement> notesForPart = eventDescription.NoteLists[i];
+        //        if ((null != notesForPart) && (0 != notesForPart.Count))
+        //        {
+        //            // String variables for desribing the detail as text
+        //            string partId = "";
+        //            string partName = "";
+        //            string notes = "";
+        //            string lyrics = "";
 
-                    if ((userSettings.MusicAsSpeech) && (userSettings.partsToRead[i]))
-                    {
-                        // The eventdescription contains notes for this part so we dig out the part parameters:
-                        ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
-                        partId = scorePartElement.partId;
-                        partName = scorePartElement.partName;
-                        // By using  eventDescription.NotesForOnePart for formatting the notes we assure the usage of identical formatting.
-                        foreach (NoteElement noteElement in eventDescription.NoteLists[i])
-                        {
-                            //notes = string.Format("",noteElement.)
-                            notes = noteElement.ToDetailsString();
-                            string musicBraille = "";
-                            string detailString = string.Format("{0} {1} {2} {3} {4}", musicBraille, partId, partName, notes, lyrics);
-                            detailsDescriptions.Add(DetailsDescription.Create(detailString));
-                            // partId   = ""; // Only list first time
-                            partName = ""; // Only list first time
-                        }
-                    }
-                }
-            }
+        //            if ((userSettings.MusicAsSpeech) && (userSettings.partsToRead[i]))
+        //            {
+        //                // The eventdescription contains notes for this part so we dig out the part parameters:
+        //                ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
+        //                partId = scorePartElement.partId;
+        //                partName = scorePartElement.partName;
+        //                // By using  eventDescription.NotesForOnePart for formatting the notes we assure the usage of identical formatting.
+        //                foreach (NoteElement noteElement in eventDescription.NoteLists[i])
+        //                {
+        //                    //notes = string.Format("",noteElement.)
+        //                    notes = noteElement.ToDetailsString();
+        //                    string musicBraille = "";
+        //                    string detailString = string.Format("{0} {1} {2} {3} {4}", musicBraille, partId, partName, notes, lyrics);
+        //                    detailsDescriptions.Add(DetailsDescription.Create(detailString));
+        //                    // partId   = ""; // Only list first time
+        //                    partName = ""; // Only list first time
+        //                }
+        //            }
+        //        }
+        //    }
 
-            // Do NOT add any harmonies after the last part! HArmonies have their own meshanisms !
-            //HarmonyElement harmonyElement = eventDescription.HarmonyElement;
-            //if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
-            //{
-            //    string harmony = string.Format("{0}{1}  ", harmonyElement.ChromaticRootStep, harmonyElement.LocalizedChordType); // Use same formatting as used in the status line !!
-            //    detailsDescriptions.Add(DetailsDescription.Create(harmony));
-            //}
-        }
-
-
-
-
-
-
-
-        private MidiNote currentDetailsMidiNote = null;
-        private MidiChord currentDetailsMidiChord = null;
+        //    // Do NOT add any harmonies after the last part! HArmonies have their own meshanisms !
+        //    //HarmonyElement harmonyElement = eventDescription.HarmonyElement;
+        //    //if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
+        //    //{
+        //    //    string harmony = string.Format("{0}{1}  ", harmonyElement.ChromaticRootStep, harmonyElement.LocalizedChordType); // Use same formatting as used in the status line !!
+        //    //    detailsDescriptions.Add(DetailsDescription.Create(harmony));
+        //    //}
+        //}
 
         public void SelectedDetailsIndexChanged(DetailsDescription detailsDescription)
         {
-            if (null != currentDetailsMidiNote)
+            string functionName = "SelectedDetailsIndexChanged";
+            try
             {
-                musicPlayer.StopMidiNote(currentDetailsMidiNote);
-            }
-            if (null != currentDetailsMidiChord)
-            {
-                musicPlayer.StopMidiChord(currentDetailsMidiChord);
-            }
-
-            if (null != detailsDescription)
-            {
-                if (detailsDescription.ContainsStep)
+                if (null != detailsDescriptionCurrentlyPlaying)
                 {
-                    // This DetailDescription describes a single note
-                    currentDetailsMidiNote = new MidiNote(detailsDescription.Step, detailsDescription.Octave, velocity, Interval.Unison);
-                    musicPlayer.StartMidiNote(currentDetailsMidiNote);
+                    detailsDescriptionCurrentlyPlaying.Stop(musicPlayer);
                 }
 
-                HarmonyElement hE = detailsDescription.HarmonyElement;
-                if (null != hE)
+                if (null != detailsDescription)
                 {
-                    // This DetailDescription describes a harmony       
-                    currentDetailsMidiChord = new MidiChord(hE.ChromaticRootStep, chordOctave, velocity, hE.ChordType, hE.ChromaticBassStep, null);
-                    musicPlayer.StartMidiChord(currentDetailsMidiChord);
+                    detailsDescription.Play(musicPlayer);
+                    detailsDescriptionCurrentlyPlaying = detailsDescription;
                 }
             }
-            
-
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("{0}.{1} failed. Message= {2}", className, functionName, e.Message));
+                System.Media.SystemSounds.Hand.Play();
+            }
         }
 
         public void ListBoxDetailsLeave()
         {
             // Stop any note
-            if (null != currentDetailsMidiNote)
-            {
-                musicPlayer.StopMidiNote(currentDetailsMidiNote);
-            }
 
-            // stop any chord
-            if (null != currentDetailsMidiChord)
+            if (null != detailsDescriptionCurrentlyPlaying)
             {
-                musicPlayer.StopMidiChord(currentDetailsMidiChord);
+                detailsDescriptionCurrentlyPlaying.Stop(musicPlayer);
             }
         }
-
-
 
 
 
@@ -289,9 +274,15 @@ namespace MusicXmlReaderModel
             return new DetailsPlayer(eventDescription, partList, userSettings, musicPlayer, noteLevel);
         }
 
-        public static DetailsPlayer Create(PartlistElement partList)
+        public static DetailsPlayer Create(PartlistElement partList, MusicPlayer musicPlayer)
         {
-            return new DetailsPlayer(partList);
+            return new DetailsPlayer(partList,musicPlayer);
+        }
+
+
+        public static DetailsPlayer Create(MusicPlayer musicPlayer)
+        {
+            return new DetailsPlayer(musicPlayer);
         }
 
     }

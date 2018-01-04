@@ -333,4 +333,7 @@
   <data name="ToolStripMenuItem_Edit_ExtraText" xml:space="preserve">
     <value>(for editing the note filter)</value>
   </data>
+  <data name="Shortcut_Asterisk" xml:space="preserve">
+    <value>ASTERISK</value>
+  </data>
 </root>

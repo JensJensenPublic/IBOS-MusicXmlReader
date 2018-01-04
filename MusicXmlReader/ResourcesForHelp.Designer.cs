@@ -106,6 +106,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ASTERISK.
+        /// </summary>
+        internal static string Shortcut_Asterisk {
+            get {
+                return ResourceManager.GetString("Shortcut_Asterisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel current operation.
         /// </summary>
         internal static string Shortcut_CancelCurrentOperation {

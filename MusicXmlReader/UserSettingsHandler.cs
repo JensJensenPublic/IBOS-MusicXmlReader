@@ -14,6 +14,7 @@ namespace MusicXmlReader
     {
 
         private string className = "UserSettingsHandler";
+        private bool consoleTrace = false;
         private TreeView treeView;
 
         private TreeNode musicAsSound;
@@ -91,6 +92,7 @@ namespace MusicXmlReader
         private void TreeView_AfterCheck(object sender, TreeViewEventArgs e)
         {
             string functionName = "TreeView_AfterCheck";
+            if (consoleTrace) Console.WriteLine(functionName);
             TreeNode level0Node = null;
             if (null == model.UserSettings)
             {

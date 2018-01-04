@@ -333,4 +333,7 @@
   <data name="ToolStripMenuItem_Edit_ExtraText" xml:space="preserve">
     <value>(for redigering af nodefilteret)</value>
   </data>
+  <data name="Shortcut_Asterisk" xml:space="preserve">
+    <value>STJERNE</value>
+  </data>
 </root>
