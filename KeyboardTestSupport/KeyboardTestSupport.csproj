@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AAFF9629-680D-478E-9541-871CEFEB7FD2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KeyboardTestSupport</RootNamespace>
+    <AssemblyName>KeyboardTestSupport</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DeviceSpecificKeys.cs" />
+    <Compile Include="IbosMusicXmlReaderKeys.cs" />
+    <Compile Include="ITestStepReporter.cs" />
+    <Compile Include="Keyboard.cs" />
+    <Compile Include="KeyboardBraillant.cs" />
+    <Compile Include="KeyboardBrailleNoteTouch.cs" />
+    <Compile Include="KeyboardFocus14.cs" />
+    <Compile Include="KeyboardHimsEdge.cs" />
+    <Compile Include="KeyboardPolaris.cs" />
+    <Compile Include="KeyboardPronto.cs" />
+    <Compile Include="KeyboardStandard.cs" />
+    <Compile Include="KeyboardSubclassTemplate.cs" />
+    <Compile Include="KeyboardU2.cs" />
+    <Compile Include="KeyEvent.cs" />
+    <Compile Include="KeyEventSequence.cs" />
+    <Compile Include="KeySequenceList.cs" />
+    <Compile Include="PerkinsKeySequence.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpeechSynthesizer.cs" />
+    <Compile Include="TestDefinitions.cs" />
+    <Compile Include="TestSequencer.cs" />
+    <Compile Include="TestStep.cs" />
+    <Compile Include="Utilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PlatformDependencies\PlatformDependencies.csproj">
+      <Project>{4c049d5d-2905-4fa2-822c-7e75596e366d}</Project>
+      <Name>PlatformDependencies</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ScreenReaderAPI\ScreenReaderAPI.csproj">
+      <Project>{86c4fa8a-cb25-4d09-b959-3287322bbb8a}</Project>
+      <Name>ScreenReaderAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
