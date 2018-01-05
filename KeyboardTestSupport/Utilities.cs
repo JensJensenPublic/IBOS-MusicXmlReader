@@ -133,10 +133,15 @@ namespace KeyboardTest
 
             foreach (var usbDevice in usbDevices)
             {
-                string s = usbDevice.Description.ToUpper();
-                if (s.ToUpper().Contains("FOCUS")) return KeyboardNameEnum.Focus14;
-                if (s.ToUpper().Contains("HIMS")) return KeyboardNameEnum.HimsEdge;
-                if (s.ToUpper().Contains("BRAILLENOTE TOUCH")) return KeyboardNameEnum.BrailleNoteTouch;
+                string description = usbDevice.Description.ToUpper();
+                string deviceID = usbDevice.DeviceID.ToUpper();
+                if (description.Contains("FOCUS")) return KeyboardNameEnum.Focus14;
+                if (description.Contains("HIMS")) return KeyboardNameEnum.HimsEdge;
+                // if (description.Contains("BRAILLENOTE TOUCH")) return KeyboardNameEnum.BrailleNoteTouch;
+                // When in Terminal Mode, BrailleNote Touch returns the rather anonymous description "USB-inputenhed" so we must use VID and PID instead !!
+                if ((deviceID.Contains("VID_1C71")) && (deviceID.Contains("PID_C00A"))) return KeyboardNameEnum.BrailleNoteTouch; 
+                //   BrailleNote Touch:  Device ID: USB\VID_1C71 & PID_C00A\650400001164, PNP Device ID: USB\VID_1C71 & PID_C00A\650400001164, Description: USB - inputenhed
+
                 //..
             }
             return KeyboardNameEnum.Unknown;

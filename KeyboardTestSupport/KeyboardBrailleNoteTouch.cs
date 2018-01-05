@@ -9,6 +9,8 @@ namespace KeyboardTest
     // Comment:      The Android device
 
 
+    // Device ID: USB\VID_1C71&PID_C00A\650400001164, PNP Device ID: USB\VID_1C71&PID_C00A\650400001164, Description: USB-inputenhed
+
     public class KeyboardBrailleNoteTouch : Keyboard
     {
         private string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
