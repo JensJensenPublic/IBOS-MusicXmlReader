@@ -69,11 +69,9 @@ namespace KeyboardDemo
             Utilities.LogJawsConfiguration();
 
             Console.WriteLine("Detecting keyboard");
-            try
-            {
+            try            {
 
-                keyboardName = Utilities.LogUsbDevices();
-                Console.WriteLine(string.Format("Keyboard={0}", keyboardName.ToString()));
+                WriteKeyboardName(Utilities.LogUsbDevices());             
             }
             catch (Exception e)
             {
@@ -464,6 +462,8 @@ namespace KeyboardDemo
         public void WriteKeyboardName(KeyboardNameEnum keyboardName)
         {
             this.keyboardName = keyboardName;
+            Console.WriteLine(string.Format("Keyboard={0}", keyboardName.ToString()));
+            this.Text = string.Format("{0} for {1}", applicationName, keyboardName);
         }
 
         public KeyboardNameEnum ReadKeyboardName()
