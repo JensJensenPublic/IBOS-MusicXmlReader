@@ -134,8 +134,9 @@ namespace KeyboardTest
             foreach (var usbDevice in usbDevices)
             {
                 string s = usbDevice.Description.ToUpper();
-                if (s.Contains("FOCUS")) return KeyboardNameEnum.Focus14;
-                if (s.Contains("HIMS")) return KeyboardNameEnum.HimsEdge;
+                if (s.ToUpper().Contains("FOCUS")) return KeyboardNameEnum.Focus14;
+                if (s.ToUpper().Contains("HIMS")) return KeyboardNameEnum.HimsEdge;
+                if (s.ToUpper().Contains("BRAILLENOTE TOUCH")) return KeyboardNameEnum.BrailleNoteTouch;
                 //..
             }
             return KeyboardNameEnum.Unknown;
