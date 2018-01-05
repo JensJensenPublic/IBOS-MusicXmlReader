@@ -41,27 +41,25 @@ namespace KeyboardTest
         {
             switch (keys)
             {
-                case Keys.A: return PerkinsKeySequence.Create(new List<int> { 1 }); // For ComboBox only. "a" is used to represent all letters
-
+                case Keys.A: return PerkinsKeySequence.Create(new List<int> { 1 }); // WORKS For ComboBox only. "a" is used to represent all letters
 
                 // Single key presses representing simple digits 0.9
-                case Keys.D1: return PerkinsKeySequence.Create(new List<int> { 1, 8 }); // For ComboBox only. "1" is used to represent all letters
-
+                case Keys.D1: return PerkinsKeySequence.Create(new List<int> { 1, 8 }); // WORKS For ComboBox only. "1" is used to represent all letters
 
                 // Double key presses representing conbinations of CONTROL or ALT with a simple letter. SHIFT is probably not needed !
-                case Keys.Control | Keys.A: return PerkinsKeySequence.Create(new List<int> { CTRL, 8, CHORD }, new List<int> { 1 }); // For general use. "a" is used to represent all letters
-                case Keys.Alt | Keys.A: return PerkinsKeySequence.Create(new List<int> { ALT, 8, CHORD }, new List<int> { 1 }); // For general use. "a" is used to represent all letters
+                case Keys.Control | Keys.A: return PerkinsKeySequence.Create(new List<int> { CTRL, 8, CHORD }, new List<int> { 1 }); // WORKS For general use. "a" is used to represent all letters
+                case Keys.Alt | Keys.A: return PerkinsKeySequence.Create(new List<int> { ALT, 8, CHORD }, new List<int> { 1 }); // WORKS For general use. "a" is used to represent all letters
                                                                                                                                  //testSteps.Add(TestStep.Create(Keys.Shift | Keys.A, new List<int> { SHIFT, 8, CHORD }, new List<int> { 1 })); // For general use. "a" is used to represent all letters
 
                 // Shortcut-keys, used by Windows or JAWS:
-                case Keys.Control | Keys.O: return PerkinsKeySequence.Create(new List<int> { CTRL, 8, CHORD }, new List<int> { 1, 3, 5 }); // Windows: Open FileOpen dialogue
-                case Keys.Alt | Keys.F4: return PerkinsKeySequence.Create(new List<int> { ALT, FUNCTION, 8, CHORD }, new List<int> { 1, 4, 5 }); // Windows: Close program ( {1,4,5} = "D" = "4" )
-                case Keys.Alt: return PerkinsKeySequence.Create(new List<int> { 1, 3, 4, CHORD }); // Windows: Open Menu line ( {1,3,4} = "M" )
-                case Keys.Tab: return PerkinsKeySequence.Create(new List<int> { 4, 6, CHORD }); // Windows: Next Control in current form
+                case Keys.Control | Keys.O: return PerkinsKeySequence.Create(new List<int> { CTRL, 8, CHORD }, new List<int> { 1, 3, 5 }); // WORKS Windows: Open FileOpen dialogue
+                case Keys.Alt | Keys.F4: return PerkinsKeySequence.Create(new List<int> { ALT, FUNCTION, 8, CHORD }, new List<int> { 1, 4, 5 }); // WORKS Windows: Close program ( {1,4,5} = "D" = "4" )
+                //case Keys.Alt: return PerkinsKeySequence.Create(new List<int> { 1, 3, 4, CHORD }); // FAILS Windows: Open Menu line ( {1,3,4} = "M" )
+                case Keys.Tab: return PerkinsKeySequence.Create(new List<int> { 4, 6, CHORD }); // WORKS Windows: Next Control in current form
 
-                case Keys.Insert | Keys.Space:     return PerkinsKeySequence.Create(new List<int> { 1, 2, 4, CHORD }); // JAWS: Toggle speech On/Off
-                case Keys.Insert | Keys.T:     return PerkinsKeySequence.Create(new List<int> { 5, 8, CHORD }, new List<int> { 2, 3, 4, 5 }); // JAWS: Read Title line ( {2,3,4,5} = T) 
-                case Keys.Insert | Keys.B:     return PerkinsKeySequence.Create(new List<int> { 5, 8, CHORD }, new List<int> { 1, 2 }); // JAWS: Read Message  ( {1,2} = B)
+                case Keys.Insert | Keys.Space:     return PerkinsKeySequence.Create(new List<int> { 1, 2, 4, CHORD }); // FAILS  JAWS: Toggle speech On/Off
+                case Keys.Insert | Keys.T:     return PerkinsKeySequence.Create(new List<int> { 5, 8, CHORD }, new List<int> { 2, 3, 4, 5 }); // FAILS JAWS: Read Title line ( {2,3,4,5} = T) 
+                case Keys.Insert | Keys.B:     return PerkinsKeySequence.Create(new List<int> { 5, 8, CHORD }, new List<int> { 1, 2 }); // FAILS JAWS: Read Message  ( {1,2} = B)
 
 
                 // Double key presses representing conbinations of CONTROL SHIFT ALT with a simple digit. Probably not needed anyway !!!
@@ -73,29 +71,29 @@ namespace KeyboardTest
                 // Single key presses representing control functions
                 ////////////////////////////////////////////////////
 
-                case Keys.Space:     return PerkinsKeySequence.Create(new List<int> { SPACE });
-                case Keys.Enter:     return PerkinsKeySequence.Create(new List<int> { 8 });
-                case Keys.Back:     return PerkinsKeySequence.Create(new List<int> { 7 });
-                case Keys.Escape:     return PerkinsKeySequence.Create(new List<int> { 1, 3, 4, 5, CHORD });
+                case Keys.Space:     return PerkinsKeySequence.Create(new List<int> { SPACE }); // WORKS
+                case Keys.Enter:     return PerkinsKeySequence.Create(new List<int> { 8 }); // WORKS
+                case Keys.Back:     return PerkinsKeySequence.Create(new List<int> { 7 }); // WORKS
+                case Keys.Escape:     return PerkinsKeySequence.Create(new List<int> { 1, 3, 4, 5, CHORD }); // FAILS
                 // case Keys.Tab:     return PerkinsKeySequence.Create(new List<int> { 4, 6, CHORD });
                 //localSteps.Add(TestStep.Create(Keys.Home, new List<int> { 1, 3, CHORD }));
                 //localSteps.Add(TestStep.Create(Keys.End, new List<int> { 4, 6, CHORD })); 
-                //localSteps.Add(TestStep.Create(Keys.PageUp, new List<int> { 2, 3, 7, CHORD }));
-                //localSteps.Add(TestStep.Create(Keys.PageDown, new List<int> { 5, 6, 7, CHORD })); 
+                //localSteps.Add(TestStep.Create(Keys.PageUp, new List<int> { 2, 3, 7, CHORD }));        
+                case Keys.PageDown: return PerkinsKeySequence.Create(new List<int> { 1, 3, 4, CHORD }); // FAILS
                 //////////////////////////////////////////////////////
                 //// Single key presses representing arrow-navigation
                 //////////////////////////////////////////////////////
-                case Keys.Right:     return PerkinsKeySequence.Create(new List<int> { 6, CHORD });
-                case Keys.Left:     return PerkinsKeySequence.Create(new List<int> { 3, CHORD });
-                case Keys.Up:     return PerkinsKeySequence.Create(new List<int> { 1, CHORD });
-                case Keys.Down:     return PerkinsKeySequence.Create(new List<int> { 4, CHORD });
+                case Keys.Right:     return PerkinsKeySequence.Create(new List<int> { 6, CHORD } ); // WORKS;
+                case Keys.Left:     return PerkinsKeySequence.Create(new List<int> { 3, CHORD }); // WORKS;
+                case Keys.Up:     return PerkinsKeySequence.Create(new List<int> { 1, CHORD }); // WORKS;
+                case Keys.Down:     return PerkinsKeySequence.Create(new List<int> { 4, CHORD }); // WORKS;
                 //////////////////////////////////////////////////////
                 //// Double key presses representing arrow-navigation
                 //////////////////////////////////////////////////////
-                //localSteps.Add(TestStep.Create(Keys.Control | Keys.Right, new List<int> { 5, CHORD })); // WORKS
-                //localSteps.Add(TestStep.Create(Keys.Control | Keys.Left, new List<int> { 2, CHORD })); // WORKS 
-                case Keys.Control | Keys.Up:     return PerkinsKeySequence.Create(new List<int> { 3, 8, CHORD }, new List<int> { 1, CHORD }); // WORKS Requires a sequence of chords!
-                case Keys.Control | Keys.Down:     return PerkinsKeySequence.Create(new List<int> { 3, 8, CHORD }, new List<int> { 4, CHORD }); // WORKS Requires a sequence of chords!
+                case Keys.Control | Keys.Right: return PerkinsKeySequence.Create(new List<int> { 3, 8, CHORD }, new List<int> { 6, CHORD }); // WORKS
+                case Keys.Control | Keys.Left: return PerkinsKeySequence.Create(new List<int> { 3, 8, CHORD }, new List<int> { 3, CHORD }); // WORKS
+                case Keys.Control | Keys.Up:     return PerkinsKeySequence.Create(new List<int> { 3, 8, CHORD }, new List<int> { 1, CHORD }); // WORKS 
+                case Keys.Control | Keys.Down:     return PerkinsKeySequence.Create(new List<int> { 3, 8, CHORD }, new List<int> { 4, CHORD }); // WORKS 
 
 #if false
 
