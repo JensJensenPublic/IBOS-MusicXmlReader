@@ -73,15 +73,15 @@ namespace KeyboardTest
                 // Single key presses representing control functions
                 ////////////////////////////////////////////////////
 
-                case Keys.Space:     return PerkinsKeySequence.Create(new List<int> { SPACE }); // WORKS
-                case Keys.Enter:     return PerkinsKeySequence.Create(new List<int> { 8 }); // WORKS
+                case Keys.Space:    return PerkinsKeySequence.Create(new List<int> { SPACE }); // WORKS
+                case Keys.Enter:    return PerkinsKeySequence.Create(new List<int> { 8 }); // WORKS
                 case Keys.Back:     return PerkinsKeySequence.Create(new List<int> { 7 }); // WORKS
-                case Keys.Escape:     return PerkinsKeySequence.Create(new List<int> { 1, 3, 4, 5, CHORD }); // FAILS
-                // case Keys.Tab:     return PerkinsKeySequence.Create(new List<int> { 4, 6, CHORD });
-                //localSteps.Add(TestStep.Create(Keys.Home, new List<int> { 1, 3, CHORD }));
-                //localSteps.Add(TestStep.Create(Keys.End, new List<int> { 4, 6, CHORD })); 
-                //localSteps.Add(TestStep.Create(Keys.PageUp, new List<int> { 2, 3, 7, CHORD }));        
-                case Keys.PageDown: return PerkinsKeySequence.Create(new List<int> { 1, 3, 4, CHORD }); // FAILS
+                case Keys.Escape:   return PerkinsKeySequence.Create(new List<int> { 1, 5, SPACE }); // WORKS
+                // case Keys.Tab:   return PerkinsKeySequence.Create(new List<int> { 4, 6, SPACE }); // Defined above
+                case Keys.Home:     return PerkinsKeySequence.Create(new List<int> { 2, 3, SPACE }); // WORKS
+                case Keys.End:      return PerkinsKeySequence.Create(new List<int> { 5, 6, SPACE }); // WORKS
+                case Keys.PageUp:   return PerkinsKeySequence.Create(new List<int> { 1, 2, SPACE }); // WORKS
+                case Keys.PageDown: return PerkinsKeySequence.Create(new List<int> { 4, 5, SPACE }); // WORKS Reported as "Next"
                 //////////////////////////////////////////////////////
                 //// Single key presses representing arrow-navigation
                 //////////////////////////////////////////////////////
@@ -97,21 +97,15 @@ namespace KeyboardTest
                 case Keys.Control | Keys.Up:     return PerkinsKeySequence.Create(new List<int> { 3, 8, CHORD }, new List<int> { 1, CHORD }); // WORKS 
                 case Keys.Control | Keys.Down:     return PerkinsKeySequence.Create(new List<int> { 3, 8, CHORD }, new List<int> { 4, CHORD }); // WORKS 
 
-#if false
 
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // Single key presses representing characters and reported as PACKET combined with the UNICODE value on KeyPressed
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-            localSteps.Add(TestStep.Create(Keys.Oemcomma, new List<int> { 2 })); // For entering numric parameters. WORKS, Is reported as a PACKET
-            // testSteps.Add(TestStep.Create(Keys.Oemcomma,  new List<int> { 6 })); // For entering numric parameters(Accordnig to .pdf) FAILS
-            localSteps.Add(TestStep.Create(Keys.OemPeriod, new List<int> { 3 })); //  For entering numric parameters WORKS, Is reported as a PACKET
-            //testSteps.Add(TestStep.Create(Keys.OemPeriod, new List<int> { 4,6 })); // , For entering numric parameters (Accordnig to .pdf) FAIL
-            // testSteps.Add(TestStep.Create(Keys.Multiply | Keys.Control , new List<int> { 3, 8, CHORD }, new List<int> { 3 }));
-            // Experiments show that even if {3,5} generates Keys.Multiply, { 3, 8, CHORD }, { 3, 5 } does NOT generate Keys.Mulitply | Keys.Control !! We probably need to avoid using CTRL+* !!
-#endif
+                case Keys.Oemcomma: return PerkinsKeySequence.Create(new List<int> { 2 });  // WORKS For entering numric parameters. Is reported as a PACKET as digits and alpha characters
+                case Keys.OemPeriod: return PerkinsKeySequence.Create(new List<int> { 3 }); // WORKS For entering numric parameters. Is reported as a PACKET as digits and alpha characters
 
-            default: return PerkinsKeySequence.Create(); // A PerkinsKEySequence without contents
+                default: return PerkinsKeySequence.Create(); // A PerkinsKEySequence without contents
             }
         }
     
