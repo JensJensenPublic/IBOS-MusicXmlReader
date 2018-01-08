@@ -35,7 +35,17 @@ namespace KeyboardTest
         RightPanningButton11b = 15 ,
         RightRockerBar10bDown = 16,
         RightRockerBar10bUp   = 17,
-        RightSelectorButton9b = 18
+        RightSelectorButton9b = 18,
+        // HIMS EDGE
+        // The 8 black buttons, numbered from left to right
+        EdgeESC = 19,
+        EdgeTAB = 20,
+        EdgeCTRL = 21,
+        EdgeALT = 22,
+        EdgeSHIFT = 23,
+        EdgeINSERT = 24,
+        EdgeWINDOWS = 25,
+        EdgeAPPLICATION = 26,
 
     };
 

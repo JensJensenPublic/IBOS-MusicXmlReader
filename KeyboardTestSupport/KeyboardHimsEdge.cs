@@ -27,13 +27,12 @@ namespace KeyboardTest
         // Convenience definitions:
         const int SPACE = (int)DSKey.MELLEMRUM;
         const int CHORD = SPACE;
-        const int CTRL = (int)ModifierKeysEnum.CTRL;
-        const int SHIFT = (int)ModifierKeysEnum.SHIFT;
-        const int ALT = (int)ModifierKeysEnum.ALT;
-        const int JAWS = (int)ModifierKeysEnum.JAWS;
-        const int WINDOWS = (int)ModifierKeysEnum.WINDOWS;
-        const int INSERT = (int)ModifierKeysEnum.INSERT;
-        const int FUNCTION = (int)ModifierKeysEnum.FunctionKeys;
+        const int CTRL = (int)DSKey.EdgeCTRL;
+        const int SHIFT = (int)DSKey.EdgeSHIFT;
+        const int ALT = (int)DSKey.EdgeALT;
+        const int JAWS = (int)DSKey.EdgeINSERT;
+        const int WINDOWS = (int)DSKey.EdgeWINDOWS;
+        const int INSERT = (int)DSKey.EdgeINSERT;
 
 
         /// <summary>
@@ -48,10 +47,10 @@ namespace KeyboardTest
 
         protected override PerkinsKeySequence GetPKS(KeySequenceList jawsKeySequence)
         {
-            if (jawsKeySequence == KeySequenceList.JawsToggleSpeech) return PerkinsKeySequence.Create(new List<int> { 1, 2, 4, CHORD }, new List<int> { 2, 3, 4 });
-            if (jawsKeySequence == KeySequenceList.JAWSReadStatusLine) return PerkinsKeySequence.Create(new List<int> { INSERT, 8, CHORD }, new List<int> { 5, 6, 7, CHORD });
-            if (jawsKeySequence == KeySequenceList.JAWSReadTitleLine) return PerkinsKeySequence.Create(new List<int> { INSERT, 8, CHORD }, new List<int> { 2, 3, 4, 5 });
-            if (jawsKeySequence == KeySequenceList.JAWSReadMessage) return PerkinsKeySequence.Create(new List<int> { INSERT, 8, CHORD }, new List<int> { 1, 2 });
+            if (jawsKeySequence == KeySequenceList.JawsToggleSpeech) return PerkinsKeySequence.Create();
+            if (jawsKeySequence == KeySequenceList.JAWSReadStatusLine) return PerkinsKeySequence.Create();
+            if (jawsKeySequence == KeySequenceList.JAWSReadTitleLine) return PerkinsKeySequence.Create();
+            if (jawsKeySequence == KeySequenceList.JAWSReadMessage) return PerkinsKeySequence.Create();
             // Add more definitions here
             return PerkinsKeySequence.Create();
         }
@@ -67,14 +66,19 @@ namespace KeyboardTest
                 case Keys.D1: return PerkinsKeySequence.Create(new List<int> { 1, 8 }); // For ComboBox only. "1" is used to represent all letters
 
                 // Double key presses representing conbinations of CONTROL or ALT with a simple letter. SHIFT is probably not needed !
-                case Keys.Control | Keys.A: return PerkinsKeySequence.Create(new List<int> { CTRL, 8, CHORD }, new List<int> { 1 }); // For general use. "a" is used to represent all letters
-                case Keys.Alt | Keys.A: return PerkinsKeySequence.Create(new List<int> { ALT, 8, CHORD }, new List<int> { 1 }); // For general use. "a" is used to represent all letters
+                case Keys.Control | Keys.A: return PerkinsKeySequence.Create(new List<int> { CTRL, 1 });    // For general use. "a" is used to represent all letters
+                case Keys.Control | Keys.G: return PerkinsKeySequence.Create();
+                case Keys.Control | Keys.R: return PerkinsKeySequence.Create();
+                case Keys.Control | Keys.N: return PerkinsKeySequence.Create();
+                case Keys.Control | Keys.M: return PerkinsKeySequence.Create();
+
+                case Keys.Alt | Keys.A: return PerkinsKeySequence.Create(new List<int> { ALT, 1 });         // For general use. "a" is used to represent all letters
                                                                                                                                 //testSteps.Add(TestStep.Create(Keys.Shift | Keys.A, new List<int> { SHIFT, 8, CHORD }, new List<int> { 1 })); // For general use. "a" is used to represent all letters
                                                                                                                                 // Shortcut-keys, used by Windows or JAWS:
-                case Keys.Control | Keys.O: return PerkinsKeySequence.Create(new List<int> { CTRL, 8, CHORD }, new List<int> { 1, 3, 5 }); // Windows: Open FileOpen dialogue                                                                                                     
-                case Keys.Alt | Keys.F4: return PerkinsKeySequence.Create(new List<int> { ALT, FUNCTION, 8, CHORD }, new List<int> { 1, 4, 5 }); // Windows: Close program ( {1,4,5} = "D" = "4" )                                                                                                                 
-                case Keys.Alt: return PerkinsKeySequence.Create(new List<int> { 1, 3, 4, CHORD }); // Windows: Open Menu line ( {1,3,4} = "M" ) // FAILS
-                case Keys.Tab: return PerkinsKeySequence.Create(new List<int> { 4, 5, CHORD }); // Windows: Next Control in current form // WORKS
+                case Keys.Control | Keys.O: return PerkinsKeySequence.Create(); // Windows: Open FileOpen dialogue                                                                                                     
+         //       case Keys.Alt | Keys.F4: return PerkinsKeySequence.Create(new List<int> { ALT, FUNCTION, 8, CHORD }, new List<int> { 1, 4, 5 }); // Windows: Close program ( {1,4,5} = "D" = "4" )                                                                                                                 
+                case Keys.Alt: return PerkinsKeySequence.Create(); // Windows: Open Menu line ( {1,3,4} = "M" ) // FAILS
+                case Keys.Tab: return PerkinsKeySequence.Create(); // Windows: Next Control in current form // WORKS
 
                 // Note: Insert is not represented as a simple flag as CONTROL, ALT and DELETE, so we need to express combinations with Insert with another key as 2 Keys !
                 //       This is accomplished by the Jaws() convenience method.
@@ -88,15 +92,15 @@ namespace KeyboardTest
                 // Single key presses representing control functions
                 ////////////////////////////////////////////////////
 
-                case Keys.Space: return PerkinsKeySequence.Create(new List<int> { SPACE }); // For general use
-                case Keys.Enter: return PerkinsKeySequence.Create(new List<int> { 8 }); //                    
-                case Keys.Back: return PerkinsKeySequence.Create(new List<int> { 7 }); //                     
+                case Keys.Space: return PerkinsKeySequence.Create(new List<int> { SPACE }); 
+                case Keys.Enter: return PerkinsKeySequence.Create(new List<int> { 8 });                     
+                case Keys.Back: return PerkinsKeySequence.Create(new List<int> { 7 });                      
                 case Keys.Escape: return PerkinsKeySequence.Create(new List<int> { 1, 5, CHORD }); //         
-                case Keys.Tab | Keys.Shift: return PerkinsKeySequence.Create(new List<int> { 1, 2, CHORD });
-                case Keys.Home: return PerkinsKeySequence.Create(new List<int> { 1, 3, CHORD }); // WORKS
-                case Keys.End: return PerkinsKeySequence.Create(new List<int> { 4, 6, CHORD }); // WORKS
-                case Keys.PageUp: return PerkinsKeySequence.Create(new List<int> { 2, 3, 7, CHORD }); // WORKS
-                case Keys.PageDown: return PerkinsKeySequence.Create(new List<int> { 5, 6, 7, CHORD }); // WORKS Reported as "Next"
+                case Keys.Tab | Keys.Shift: return PerkinsKeySequence.Create();
+                case Keys.Home: return PerkinsKeySequence.Create();
+                case Keys.End: return PerkinsKeySequence.Create();
+                case Keys.PageUp: return PerkinsKeySequence.Create();
+                case Keys.PageDown: return PerkinsKeySequence.Create(); 
                 ////////////////////////////////////////////////////
                 // Single key presses representing arrow-navigation
                 ////////////////////////////////////////////////////
@@ -110,16 +114,14 @@ namespace KeyboardTest
                 ////////////////////////////////////////////////////
                 case Keys.Control | Keys.Right: return PerkinsKeySequence.Create(new List<int> { 5, CHORD }); // WORKS
                 case Keys.Control | Keys.Left: return PerkinsKeySequence.Create(new List<int> { 2, CHORD }); // WORKS 
-                case Keys.Control | Keys.Up: return PerkinsKeySequence.Create(new List<int> { 3, 8, CHORD }, new List<int> { 1, CHORD }); // WORKS Requires a sequence of chords!
-                case Keys.Control | Keys.Down: return PerkinsKeySequence.Create(new List<int> { 3, 8, CHORD }, new List<int> { 4, CHORD }); // WORKS Requires a sequence of chords!
+                case Keys.Control | Keys.Up: return PerkinsKeySequence.Create(); // WORKS Requires a sequence of chords!
+                case Keys.Control | Keys.Down: return PerkinsKeySequence.Create(); // WORKS Requires a sequence of chords!
 
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // Single key presses representing characters and reported as PACKET combined with the UNICODE value on KeyPressed
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 case Keys.Oemcomma: return PerkinsKeySequence.Create(new List<int> { 2 }); // For entering numric parameters. WORKS, Is reported as a PACKET
-                // testSteps.Add(TestStep.Create(Keys.Oemcomma,  new List<int> { 6 })); // For entering numric parameters(Accordnig to .pdf) FAILS
-                case Keys.OemPeriod: return PerkinsKeySequence.Create(new List<int> { 3 }); //  For entering numric parameters WORKS, Is reported as a PACKET
-                //testSteps.Add(TestStep.Create(Keys.OemPeriod, new List<int> { 4,6 })); // , For entering numric parameters (Accordnig to .pdf) FAIL
+                case Keys.OemPeriod: return PerkinsKeySequence.Create(new List<int> { 3 }); //  For entering numric parameters WORKS, Is reported as a PACKET          
                 // testSteps.Add(TestStep.Create(Keys.Multiply | Keys.Control , new List<int> { 3, 8, CHORD }, new List<int> { 3 }));
                 // Experiments show that even if {3,5} generates Keys.Multiply, { 3, 8, CHORD }, { 3, 5 } does NOT generate Keys.Mulitply | Keys.Control !! We probably need to avoid using CTRL+* !!
 
