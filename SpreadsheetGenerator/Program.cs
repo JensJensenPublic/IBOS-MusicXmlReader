@@ -114,17 +114,21 @@ namespace SpreadsheetGenerator
             // Add one row per testStep
             foreach (TestStep testStep in testSteps)
             {
-                row = new Row() { RowIndex = index++ };
-                sheetData.Append(row);
-                rowTexts = new List<string>() {  };
-                rowTexts.Add(testStep.Keys.ToString());
-
-                foreach (Keyboard keyboard in keyboards)
+                string quertyKeys = testStep.GetKeyRepresentation();
+                if (!string.IsNullOrEmpty(quertyKeys)) // Skip if this testStep only contains comments
                 {
-                    PerkinsKeySequence perkinsKeySequence = (testStep.Keys == Keys.None) ? keyboard.GetPerkinsSequence(testStep.KeySequenceList) : keyboard.GetPerkinsSequence(testStep.Keys);                                    
-                    rowTexts.Add(perkinsKeySequence.ToString());
+                    row = new Row() { RowIndex = index++ };
+                    sheetData.Append(row);
+                    rowTexts = new List<string>() { };
+                    rowTexts.Add(quertyKeys);
+
+                    foreach (Keyboard keyboard in keyboards)
+                    {
+                        PerkinsKeySequence perkinsKeySequence = (testStep.Keys == Keys.None) ? keyboard.GetPerkinsSequence(testStep.KeySequenceList) : keyboard.GetPerkinsSequence(testStep.Keys);
+                        rowTexts.Add(perkinsKeySequence.ToString());
+                    }
+                    addCells(row, rowTexts);
                 }
-                addCells(row, rowTexts);
             }
 
 #endif

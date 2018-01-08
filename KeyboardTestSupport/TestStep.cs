@@ -29,6 +29,18 @@ namespace KeyboardTest
         }
 
 
+        /// <summary>
+        /// Returns a string describing the Key representation of this TestStep. 
+        /// Internally the Key representation is either contained in this.keys or in this.keySequenceList.
+        /// </summary>
+        /// <returns></returns>
+        public string GetKeyRepresentation()
+        {
+            if (Keys.None != keys) return keys.ToString();
+            if (null != keySequenceList) return keySequenceList.ToString();
+            return "";
+        }
+
 
         public  string ToString(Keyboard keyboard)
         {                
