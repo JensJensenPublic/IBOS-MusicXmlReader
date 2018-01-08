@@ -272,6 +272,13 @@ namespace KeyboardTest
             return k;
         }
 
+        public static KeyboardU2 CreateKeyboardHimsU2Keyboard()
+        {
+            KeyboardU2 k = new KeyboardU2();
+            k.InitTests();
+            return k;
+        }
+        
 
         private void Warn(Keys keys)
         {

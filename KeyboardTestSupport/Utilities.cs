@@ -9,7 +9,7 @@ using System.IO;
 namespace KeyboardTest
 {
 
-    public enum KeyboardNameEnum { Unknown, Focus14, Braillant, HimsEdge, BrailleNoteTouch }
+    public enum KeyboardNameEnum { Unknown, Focus14, Braillant, HimsEdge, BrailleNoteTouch,HimsU2 }
 
     public class Utilities
     {
@@ -137,9 +137,10 @@ namespace KeyboardTest
                 string deviceID = usbDevice.DeviceID.ToUpper();
                 if (description.Contains("FOCUS")) return KeyboardNameEnum.Focus14;
                 if (description.Contains("HIMS")) return KeyboardNameEnum.HimsEdge;
+                if (deviceID.Contains("BRAILLESENSEU2")) return KeyboardNameEnum.HimsU2;
                 // if (description.Contains("BRAILLENOTE TOUCH")) return KeyboardNameEnum.BrailleNoteTouch;
                 // When in Terminal Mode, BrailleNote Touch returns the rather anonymous description "USB-inputenhed" so we must use VID and PID instead !!
-                if ((deviceID.Contains("VID_1C71")) && (deviceID.Contains("PID_C00A"))) return KeyboardNameEnum.BrailleNoteTouch; 
+                    if ((deviceID.Contains("VID_1C71")) && (deviceID.Contains("PID_C00A"))) return KeyboardNameEnum.BrailleNoteTouch; 
                 //   BrailleNote Touch:  Device ID: USB\VID_1C71 & PID_C00A\650400001164, PNP Device ID: USB\VID_1C71 & PID_C00A\650400001164, Description: USB - inputenhed
 
                 //..

@@ -416,7 +416,8 @@ namespace KeyboardDemo
                 case KeyboardTest.KeyboardNameEnum.Braillant: keyboard = Keyboard.CreateBraillantKeyboard(); break;
                 case KeyboardNameEnum.BrailleNoteTouch: keyboard = Keyboard.CreateBrailleNoteTouchKeyboard(); break;
                 case KeyboardNameEnum.Focus14:   keyboard = Keyboard.CreateFocus14Keyboard(); break;
-                case KeyboardNameEnum.HimsEdge:      keyboard = Keyboard.CreateKeyboardHimsEdgeKeyboard(); break;
+                case KeyboardNameEnum.HimsEdge: keyboard = Keyboard.CreateKeyboardHimsEdgeKeyboard(); break;
+                case KeyboardNameEnum.HimsU2: keyboard = Keyboard.CreateKeyboardHimsU2Keyboard(); break;
                 default:
                     keyboard = Keyboard.CreateFocus14Keyboard();
                     Report(string.Format("Unsupported keyboard:{0}.  Using FOCUS14 instead", keyboardName.ToString())); break;
