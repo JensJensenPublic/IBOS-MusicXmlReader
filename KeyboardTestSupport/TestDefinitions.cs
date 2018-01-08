@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace KeyboardTest
 {
-    class TestDefinitions
+    public class TestDefinitions
     {
 
         static public TestDefinitions Create()
