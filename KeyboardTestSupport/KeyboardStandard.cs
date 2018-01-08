@@ -10,6 +10,9 @@ namespace KeyboardTest
     public class KeyboardStandard : Keyboard
     {
 
+        private string deviceName = "Standard";
+        public override string DeviceName { get { return deviceName; } }
+
         protected override PerkinsKeySequence GetPKS(KeySequenceList jawsKeySequence)
         {
             return null;

@@ -14,7 +14,8 @@ namespace KeyboardTest
 
     public class KeyboardBraillant : Keyboard
     {
-        string deviceName = "Braillant";
+        private string deviceName = "Braillant";
+        public override string DeviceName { get { return deviceName;} }
         private string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
 
         // Note ModifierKeysEnum differs between various keyboards !!

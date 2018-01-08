@@ -11,6 +11,8 @@ namespace KeyboardTest
     class KeyboardU2 : Keyboard
     {
 
+        private string deviceName = "HIMS U2";
+        public override string DeviceName { get { return deviceName; } }
 
         protected override PerkinsKeySequence GetPKS(KeySequenceList jawsKeySequence)
         {

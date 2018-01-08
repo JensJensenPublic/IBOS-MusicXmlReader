@@ -10,6 +10,7 @@ namespace KeyboardTest
     class KeyboardPronto : Keyboard
     {
         string deviceName = "Pronto";
+        public override string DeviceName { get { return deviceName; } }
 
 
         protected override PerkinsKeySequence GetPKS(KeySequenceList jawsKeySequence)

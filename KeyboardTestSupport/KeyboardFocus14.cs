@@ -19,6 +19,9 @@ namespace KeyboardTest
         // Distributor:  Instrulog
         // Comment:  
 
+        private string deviceName = "Focus";
+        public override string DeviceName { get { return deviceName; } }
+
         private string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
 
         public enum ModifierKeysEnum { FunctionKeys = 1, INSERT = 2, CTRL = 3, WINDOWS = 4, JAWS = 5, ALT = 6, SHIFT = 7 } // From the .pdf file above

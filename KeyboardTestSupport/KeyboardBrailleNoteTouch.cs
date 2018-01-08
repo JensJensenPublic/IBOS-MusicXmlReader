@@ -15,6 +15,7 @@ namespace KeyboardTest
     {
         private string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
         string deviceName = "BrailleNote Touch";
+        public override string DeviceName { get { return deviceName; } }
 
         enum ModifierKeysEnum { FunctionKeys = 4, INSERT = 6, CTRL = 3, WINDOWS = 1, JAWS = 5, ALT = 2, SHIFT = 7 } // Copied from Braillant. Only a best guess !!
 

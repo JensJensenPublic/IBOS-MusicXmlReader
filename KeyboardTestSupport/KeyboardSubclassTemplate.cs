@@ -10,7 +10,7 @@ namespace KeyboardTest
     class KeyboardSubclassTemplate : Keyboard
     {
         string deviceName = "";
-
+        public override string DeviceName { get { return deviceName; } }
 
         protected override PerkinsKeySequence GetPKS(KeySequenceList jawsKeySequence)
         {

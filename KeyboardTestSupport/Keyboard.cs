@@ -34,7 +34,12 @@ namespace KeyboardTest
         // http://8dotbraille.com/
         // https://www.freedomscientific.com/Content/Documents/Manuals/Focus/Focus14Blue/Focus-14-Blue-Online-Users-Guide.htm
 
+        public abstract string DeviceName { get; } 
 
+        public override string ToString()
+        {
+            return DeviceName;
+        }
 
 
         /// <summary>

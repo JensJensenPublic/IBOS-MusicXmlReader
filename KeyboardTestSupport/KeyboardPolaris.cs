@@ -9,7 +9,8 @@ namespace KeyboardTest
 
     class KeyboardPolaris : Keyboard
     {
-        string deviceName = "Polaris";
+        private string deviceName = "Polaris";
+        public override string DeviceName { get { return deviceName; } }
 
         protected override PerkinsKeySequence GetPKS(KeySequenceList jawsKeySequence)
         {
