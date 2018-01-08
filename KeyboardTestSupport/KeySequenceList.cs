@@ -72,16 +72,20 @@ namespace KeyboardTest
 
             if (0 != prolog.Count)
             {
+                string conc = "";
                 foreach (Keys key in prolog)
                 {
-                    sb.Append(key.ToString() + " ");
+                    // sb.Append(key.ToString() + " ");
+                    sb.Append(conc + Utilities.KeysToString(key));
+                    conc = "+";
                  }  
             }
 
             if (keys != Keys.None)
             {
                 sb.Append(" efterfulgt af ");
-                sb.Append(keys);
+                sb.Append(Utilities.KeysToString(keys));
+                //sb.Append(keys);
             }
             return sb.ToString();
         }

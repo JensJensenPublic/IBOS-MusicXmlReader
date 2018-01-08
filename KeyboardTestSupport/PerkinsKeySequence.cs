@@ -10,7 +10,7 @@ namespace KeyboardTest
     {
         private List<List<int>> keys;
         public  List<List<int>> Keys    { get { return keys; } }
-        private string stringRepresentation = "Not implemented yet";
+        private string stringRepresentation = "Ikke implementeret!";
 
         private PerkinsKeySequence(List<List<int>> keys)
         {

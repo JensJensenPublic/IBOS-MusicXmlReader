@@ -141,7 +141,10 @@ namespace SpreadsheetGenerator
 
         }
 
-        static void addCell(Row row, string reference, string value)
+
+
+
+static void addCell(Row row, string reference, string value)
         {
             Cell refCell = null;
             Cell newCell2 = new Cell() { CellReference = reference };

@@ -36,10 +36,15 @@ namespace KeyboardTest
         /// <returns></returns>
         public string GetKeyRepresentation()
         {
-            if (Keys.None != keys) return keys.ToString();
-            if (null != keySequenceList) return keySequenceList.ToString();
+            if (Keys.None != keys) return Utilities.KeysToString(keys);//  keys.ToString();
+
+            if (null != keySequenceList) return keySequenceList.ToString(); 
             return "";
         }
+
+
+        //public string GetKeyRepresentation()
+
 
 
         public  string ToString(Keyboard keyboard)
