@@ -69,9 +69,10 @@ namespace KeyboardDemo
             Utilities.LogJawsConfiguration();
 
             Console.WriteLine("Detecting keyboard");
+            KeyboardNameEnum keyboardNameEnum;
             try            {
-
-                WriteKeyboardName(Utilities.LogUsbDevices());             
+                keyboardNameEnum = Utilities.LogUsbDevices();
+                WriteKeyboardName(keyboardNameEnum);             
             }
             catch (Exception e)
             {
@@ -464,6 +465,14 @@ namespace KeyboardDemo
             this.keyboardName = keyboardName;
             Console.WriteLine(string.Format("Keyboard={0}", keyboardName.ToString()));
             this.Text = string.Format("{0} for {1}", applicationName, keyboardName);
+
+            switch (keyboardName)
+            {
+                case KeyboardNameEnum.HimsEdge: Report("Tryk 2 3 4 5 7 MELLEMRUM for at aktivere Hims Edge indtastningstilstand!"); break;
+                default: break;
+            }
+
+
         }
 
         public KeyboardNameEnum ReadKeyboardName()
