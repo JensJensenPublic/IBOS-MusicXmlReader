@@ -1507,7 +1507,8 @@ namespace MusicXmlReader
 
         private void goToToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string name = "GoTo";
+#warning ToDo Add localization
+            string name = "Localize(GoTo)";
             const string functionName = "goToToolStripMenuItem_Click";
             Logger.Log(string.Format("{0}.{1}", className, functionName));
             SingleIntParameterDescription p = new SingleIntParameterDescription(name);
@@ -1534,7 +1535,8 @@ namespace MusicXmlReader
         {
             const string functionName = "ofNominalTempoToolStripMenuItem_Click";
             Logger.Log(string.Format("{0}.{1}", className, functionName));
-            string name = "% af &Normalt Tempo ";
+#warning ToDo Add localization
+            string name = "Localize(% of &Normalt Tempo)";
             SingleIntParameterDescription p = new SingleIntParameterDescription(name);
             // string input = ShowParameterInputForm(p, ParmFormKeyEventNode, ComboBoxKeyEventNode, TextBoxKeyEventNode);
             string input = ShowParameterInputForm(p); // , ParmFormKeyEventNode, ComboBoxKeyEventNode, TextBoxKeyEventNode);

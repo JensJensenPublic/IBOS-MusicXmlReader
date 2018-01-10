@@ -60,7 +60,8 @@ namespace MusicXmlReader
     {
         public RepeatParameterDescription()
         {
-            name = "Repeat";
+#warning ToDo Add localization
+            name = "Localize(Repeat)";
         }
 
         private bool IsNullEmptyOrInt(string s,out int value)
@@ -127,41 +128,42 @@ namespace MusicXmlReader
         }
     }
 
-    public class TempoParameterDescription : ParameterDescription
-    {
-        public TempoParameterDescription()
-        {
-            name = "% af Normalt tempo";
-        }
+//    public class TempoParameterDescription : ParameterDescription
+//    {
+//        public TempoParameterDescription()
+//        {
+//#warning ToDo Add localization
+//            name = "Localize(% af Normalt tempo)";
+//        }
 
-        public override bool CheckSyntax(string s, out List<int> values)
-        {
-            values = new List<int>();
-            int value;
-            if (0 == s.Length) return true;
-            if (int.TryParse(s, out value))
-            {
-                values.Add(value);
-                return true;
-            }
-            return false;
-        }
+//        public override bool CheckSyntax(string s, out List<int> values)
+//        {
+//            values = new List<int>();
+//            int value;
+//            if (0 == s.Length) return true;
+//            if (int.TryParse(s, out value))
+//            {
+//                values.Add(value);
+//                return true;
+//            }
+//            return false;
+//        }
 
-        public override bool CheckSyntax(string s)
-        {
-            return CheckSyntax(s, out dummyParameterList);
-        }
+//        public override bool CheckSyntax(string s)
+//        {
+//            return CheckSyntax(s, out dummyParameterList);
+//        }
 
-        public bool CheckSyntax(string s,out int tempo)
-        {
-            tempo = 0;
-            if (CheckSyntax(s, out dummyParameterList) && (1 == dummyParameterList.Count))
-            {
-                tempo = dummyParameterList[0];
-                return true;
-            }
-            return false;
-        }        
-    }
+//        public bool CheckSyntax(string s,out int tempo)
+//        {
+//            tempo = 0;
+//            if (CheckSyntax(s, out dummyParameterList) && (1 == dummyParameterList.Count))
+//            {
+//                tempo = dummyParameterList[0];
+//                return true;
+//            }
+//            return false;
+//        }        
+//    }
 }
 

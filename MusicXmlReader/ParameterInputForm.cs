@@ -13,24 +13,45 @@ namespace MusicXmlReader
     public partial class ParameterInputForm : Form
     {
         private ParameterDescription parameterDescription;
-        public ParameterDescription ParameterDescription { get { return parameterDescription; } set { parameterDescription = value; } }
+        public ParameterDescription ParameterDescription
+        {
+            get
+            {
+                return parameterDescription;
+            }
+            set
+            {
+                parameterDescription = value;
+                this.Name = parameterDescription.Name; // parameterDescription.Name must contain the localized name of the form !!!
+            }
+        }
+
         public string ComboBoxInput { get { return comboBox1.Text; } }
         public ParameterInputForm()
         {
             InitializeComponent();
         }
 
+
+        /// <summary>
+        /// Handle input by looking at the KeyPress event.
+        /// Perkins-keyboards typically do not generate usable KeyDown events !
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             {
-                Console.WriteLine((int) e.KeyChar);
-                if (13 == (int)e.KeyChar)
+                const char RETURN = (char)13;
+                const char ESC    = (char)27;
+                switch (e.KeyChar)
                 {
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                    return;
+                    case RETURN: this.DialogResult = DialogResult.OK; this.Close(); return;
+                    case ESC:    this.DialogResult = DialogResult.Cancel; this.Close(); return;
+                    default: break;
                 }
 
+                // Check the syntax of the resulting input and report any error by a beep
                 bool ok = parameterDescription.CheckSyntax(comboBox1.Text + e.KeyChar.ToString());
                 if (!ok)
                 {
