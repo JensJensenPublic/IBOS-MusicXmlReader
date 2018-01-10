@@ -967,8 +967,8 @@ namespace MusicXmlReader
                 return;
             };
 
-            // Let the command interpreter handle it 
-            commandInterpreter.Add(e);
+            //// Let the command interpreter handle it 
+            //commandInterpreter.Add(e);
 
         }
 
@@ -1439,7 +1439,123 @@ namespace MusicXmlReader
             if (consoleTrace) Console.WriteLine("userSettingsTreeView_KeyUp");
         }
 
+        #region Repeat,GoTo,NormalTempo ***********************************************************************************
 
+
+        private void ReportSyntax(bool ok, string name, int value, string input)
+        {
+            const string functionName = "ReportSyntax";
+            string s;
+            if (ok)
+            {
+                s = name + value.ToString(); // For test 
+            }
+            else
+            {
+                s = name + ": Invalid systax " + input;
+            }
+            Logger.Log(string.Format("{0}.{1} {2}", className, functionName, s));
+        }
+
+
+        private string ShowParameterInputForm(ParameterDescription p)
+        {
+            const string functionName = "ShowParameterInputForm";
+            ParameterInputForm parameterInputForm = new ParameterInputForm();
+            parameterInputForm.ParameterDescription = p;
+            parameterInputForm.Text = p.Name;
+            // Show testDialog as a modal dialog and determine if DialogResult = OK.
+            // Show testDialog as a modal dialog and determine if DialogResult = OK.
+            DialogResult dialogResult = parameterInputForm.ShowDialog(this);
+            Logger.Log(string.Format("{0}.{1} returned {2}", className, functionName, dialogResult));
+            string result = parameterInputForm.ComboBoxInput;
+            parameterInputForm.Dispose();
+            return result;
+        }
+
+        private void repeatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            const string functionName = "repeatToolStripMenuItem_Click";
+            Logger.Log(string.Format("{0}.{1}",className,functionName));
+            RepeatParameterDescription p = new RepeatParameterDescription();
+            string input = ShowParameterInputForm(p); 
+            int n1 = 0;
+            int n2 = 0;
+            bool ok = (p.CheckSyntax(input, out n1, out n2));
+            string s;
+            if (ok)
+            {
+                s = "Repeat from " + n1 + " to " + n2;
+            }
+            else
+            {
+                s = "Repeat: Invalid systax " + input;
+            }
+            Logger.Log(string.Format("{0}.{1} {2}", className, functionName, s));
+            int iStart = 0;
+            int iStop = 0;
+            if ( ok  && (n1 >= 0) && (n2 >= 0) && (model.MeasureToIndex(n1, ref iStart))  && (model.MeasureToIndex(n2 + 1, ref iStop)))
+            {
+                model.StartRepeating(iStart, iStop + 1); // Means "Repeat [measure n1 to measure n2]"
+            }
+            else
+            {
+                model.StopRepeating();
+            }
+            
+        }
+
+        private void goToToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string name = "GoTo";
+            const string functionName = "goToToolStripMenuItem_Click";
+            Logger.Log(string.Format("{0}.{1}", className, functionName));
+            SingleIntParameterDescription p = new SingleIntParameterDescription(name);
+            string input = ShowParameterInputForm(p);
+            int value = 0;
+            bool ok = (p.CheckSyntax(input, out value));
+            ReportSyntax(ok, name, value, input);
+            int index = 0;
+            if ( ok && (value >= 0) && model.MeasureToIndex(value, ref index))
+            {
+                listBoxTimes.SelectedIndex = index;
+            }
+            else
+            {
+                //Beep();
+                Logger.Log(string.Format("{0}.{1} Illegal command:'{2}'", className, functionName, input));
+            }
+
+
+
+        }
+
+        private void ofNominalTempoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            const string functionName = "ofNominalTempoToolStripMenuItem_Click";
+            Logger.Log(string.Format("{0}.{1}", className, functionName));
+            string name = "% af &Normalt Tempo ";
+            SingleIntParameterDescription p = new SingleIntParameterDescription(name);
+            // string input = ShowParameterInputForm(p, ParmFormKeyEventNode, ComboBoxKeyEventNode, TextBoxKeyEventNode);
+            string input = ShowParameterInputForm(p); // , ParmFormKeyEventNode, ComboBoxKeyEventNode, TextBoxKeyEventNode);
+            int value = 0;
+            bool ok = (p.CheckSyntax(input, out value));
+            ReportSyntax(ok, name, value, input);
+
+            if (ok && (value >= UiUtilities.TempoFactorMinimum) && (value <= UiUtilities.TempoFactorMaximum))
+            {
+                model.SetUserTempo(value);
+            }
+            else
+            {
+                // Beep();
+                Logger.Log(string.Format("{0}.{1} Illegal TempoCommand:'{2}'", className, functionName, input));
+            }
+
+
+        }
+
+        #endregion ****************************************************************************************
 
 
 

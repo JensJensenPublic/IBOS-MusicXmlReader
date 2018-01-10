@@ -211,11 +211,11 @@ namespace MusicXmlReader
 
 #warning ToDo Use 1 defintion per command instead of 2 !!
         public const Keys CommandRepeat = Keys.R | Keys.Control;
-        public const char Repeat = 'R';
+        //public const char Repeat = 'R';
         public const Keys CommandGoto   = Keys.G | Keys.Control;
-        public const char GoTo = 'G'; 
+        //public const char GoTo = 'G'; 
         public const Keys CommandTempo  = Keys.N | Keys.Control; // % of Normal Tempo 
-        public const char NormalTempo = 'N';
+        //public const char NormalTempo = 'N';
 
     }
 }

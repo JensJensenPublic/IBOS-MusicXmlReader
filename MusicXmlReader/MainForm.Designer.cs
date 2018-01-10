@@ -96,6 +96,10 @@
             this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.listBoxDetails = new System.Windows.Forms.ListBox();
+            this.repeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.goToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ofNominalTempoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -184,7 +188,11 @@
             this.detailsToolStripMenuItem,
             this.toolStripSeparator4,
             this.uncheckAllToolStripMenuItem,
-            this.checkAllToolStripMenuItem});
+            this.checkAllToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.repeatToolStripMenuItem,
+            this.goToToolStripMenuItem,
+            this.ofNominalTempoToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "&Edit";
@@ -278,7 +286,7 @@
             // instrumentsToolStripMenuItem
             // 
             this.instrumentsToolStripMenuItem.Name = "instrumentsToolStripMenuItem";
-            this.instrumentsToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.instrumentsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.instrumentsToolStripMenuItem.Text = "&Instruments";
             this.instrumentsToolStripMenuItem.Click += new System.EventHandler(this.instrumentsToolStripMenuItem_Click);
             // 
@@ -657,6 +665,35 @@
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDetails_KeyDown);
             this.listBoxDetails.Leave += new System.EventHandler(this.listBoxDetails_Leave);
             // 
+            // repeatToolStripMenuItem
+            // 
+            this.repeatToolStripMenuItem.Name = "repeatToolStripMenuItem";
+            this.repeatToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.repeatToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.repeatToolStripMenuItem.Text = "&Repeat";
+            this.repeatToolStripMenuItem.Click += new System.EventHandler(this.repeatToolStripMenuItem_Click);
+            // 
+            // goToToolStripMenuItem
+            // 
+            this.goToToolStripMenuItem.Name = "goToToolStripMenuItem";
+            this.goToToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.goToToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.goToToolStripMenuItem.Text = "&GoTo";
+            this.goToToolStripMenuItem.Click += new System.EventHandler(this.goToToolStripMenuItem_Click);
+            // 
+            // ofNominalTempoToolStripMenuItem
+            // 
+            this.ofNominalTempoToolStripMenuItem.Name = "ofNominalTempoToolStripMenuItem";
+            this.ofNominalTempoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.ofNominalTempoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.ofNominalTempoToolStripMenuItem.Text = "% of &Normal tempo";
+            this.ofNominalTempoToolStripMenuItem.Click += new System.EventHandler(this.ofNominalTempoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(219, 6);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -755,6 +792,10 @@
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem instrumentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usersManualToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem repeatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem goToToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ofNominalTempoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }
 

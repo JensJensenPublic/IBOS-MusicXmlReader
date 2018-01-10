@@ -203,46 +203,46 @@ namespace MusicXmlReader
 
 
 
-        public void Add(KeyEventArgs args)
-        {
-            string functionName = "Add";
-            if (args.KeyData == Keys.Return)
-            {
-                // Interpret and execute command
-                string s = command.ToString();
-                command.Clear();
+        //public void Add(KeyEventArgs args)
+        //{
+        //    string functionName = "Add";
+        //    if (args.KeyData == Keys.Return)
+        //    {
+        //        // Interpret and execute command
+        //        string s = command.ToString();
+        //        command.Clear();
         
-                if (s.Length > 0)
-                {
-                    string[] parameters = s.Substring(1).Split(new char[] { ',' });
-                    switch (s[0])
-                    {
-                        case ShortcutHandler.Repeat:        RepeatMeasures(parameters, s); break;
-                        case ShortcutHandler.GoTo:          GotoMeasure(parameters, s); break;
-                        case ShortcutHandler.NormalTempo:   Tempo(parameters, s); break;
-                        default:
-                            Logger.Log(string.Format("{0}.{1} Illegal Command={2}", className, functionName, s));
-                            System.Media.SystemSounds.Beep.Play(); break;
-                    }
-                }
+        //        if (s.Length > 0)
+        //        {
+        //            string[] parameters = s.Substring(1).Split(new char[] { ',' });
+        //            switch (s[0])
+        //            {
+        //                case ShortcutHandler.Repeat:        RepeatMeasures(parameters, s); break;
+        //                case ShortcutHandler.GoTo:          GotoMeasure(parameters, s); break;
+        //                case ShortcutHandler.NormalTempo:   Tempo(parameters, s); break;
+        //                default:
+        //                    Logger.Log(string.Format("{0}.{1} Illegal Command={2}", className, functionName, s));
+        //                    System.Media.SystemSounds.Beep.Play(); break;
+        //            }
+        //        }
 
-                command.Clear();
-            }
-            else if (Keys.Back == args.KeyData)
-            {
-                if (command.Length > 0)
-                {
-                    command.Remove(command.Length - 1, 1); // Remove last character
-                }                   
-            }
-            else
-            {
-                command.Append(KeyToString(args.KeyData));
-            }
+        //        command.Clear();
+        //    }
+        //    else if (Keys.Back == args.KeyData)
+        //    {
+        //        if (command.Length > 0)
+        //        {
+        //            command.Remove(command.Length - 1, 1); // Remove last character
+        //        }                   
+        //    }
+        //    else
+        //    {
+        //        command.Append(KeyToString(args.KeyData));
+        //    }
 
-            textBox.Text = command.ToString();
+        //    textBox.Text = command.ToString();
 
-        }
+        //}
 
         public static UserCommandInterpreter Create(TextBox textBox,ListBox listBox,Model model)
         {
