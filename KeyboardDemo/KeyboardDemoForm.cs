@@ -214,11 +214,11 @@ namespace KeyboardDemo
             string name = "GoTo";
             ReportMenuItemClick(name,sender);
             return;
-            SingleIntParameterDescription p = new SingleIntParameterDescription(name);
-            string input = ShowParameterInputForm(p);
-            int value = 0;
-            bool ok = (p.CheckSyntax(input, out value));
-            ReportSyntax(ok, name, value, input);
+            //SingleIntParameterDescription p = new SingleIntParameterDescription(name);
+            //string input = ShowParameterInputForm(p);
+            //int value = 0;
+            //bool ok = (p.CheckSyntax(input, out value));
+            //ReportSyntax(ok, name, value, input);
         }
 
         /// <summary>
@@ -230,20 +230,20 @@ namespace KeyboardDemo
         {
             ReportMenuItemClick("Repeat",sender);
             return;
-            RepeatParameterDescription p = new RepeatParameterDescription();
-            //string input = ShowParameterInputForm(p, ParmFormKeyEventNode, ComboBoxKeyEventNode, TextBoxKeyEventNode);
-            string input = ShowParameterInputForm(p); //, ParmFormKeyEventNode, ComboBoxKeyEventNode, TextBoxKeyEventNode);
-            int first = 0;
-            int last  = 0;
-            bool ok = (p.CheckSyntax(input, out first, out last)) ;
-            if (ok)
-            {
-                this.Text = "Repeat from " + first + " to " + last;
-            }
-            else
-            {
-                this.Text = "Repeat: Invalid systax " + input;
-            }
+            //RepeatParameterDescription p = new RepeatParameterDescription();
+            ////string input = ShowParameterInputForm(p, ParmFormKeyEventNode, ComboBoxKeyEventNode, TextBoxKeyEventNode);
+            //string input = ShowParameterInputForm(p); //, ParmFormKeyEventNode, ComboBoxKeyEventNode, TextBoxKeyEventNode);
+            //int first = 0;
+            //int last  = 0;
+            //bool ok = (p.CheckSyntax(input, out first, out last)) ;
+            //if (ok)
+            //{
+            //    this.Text = "Repeat from " + first + " to " + last;
+            //}
+            //else
+            //{
+            //    this.Text = "Repeat: Invalid systax " + input;
+            //}
     
         }
 
@@ -257,12 +257,12 @@ namespace KeyboardDemo
             string name = "% af &Normalt Tempo ";
             ReportMenuItemClick(name,sender);
             return;
-            TempoParameterDescription p = new TempoParameterDescription();
-            // string input = ShowParameterInputForm(p, ParmFormKeyEventNode, ComboBoxKeyEventNode, TextBoxKeyEventNode);
-            string input = ShowParameterInputForm(p); // , ParmFormKeyEventNode, ComboBoxKeyEventNode, TextBoxKeyEventNode);
-            int value = 0;
-            bool ok = (p.CheckSyntax(input, out value));
-            ReportSyntax(ok, name, value, input);
+            //TempoParameterDescription p = new TempoParameterDescription();
+            //// string input = ShowParameterInputForm(p, ParmFormKeyEventNode, ComboBoxKeyEventNode, TextBoxKeyEventNode);
+            //string input = ShowParameterInputForm(p); // , ParmFormKeyEventNode, ComboBoxKeyEventNode, TextBoxKeyEventNode);
+            //int value = 0;
+            //bool ok = (p.CheckSyntax(input, out value));
+            //ReportSyntax(ok, name, value, input);
         }
 
 
