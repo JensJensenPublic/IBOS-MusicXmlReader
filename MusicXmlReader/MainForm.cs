@@ -203,7 +203,7 @@ namespace MusicXmlReader
             exitToolStripMenuItem.ShortcutKeys =            ShortcutHandler.exitApplication;
             GenerateAccessibleName(ref exitToolStripMenuItem);
 
-          // Children of editToolStripMenuItem
+          // Children of editToolStripMenuItem, referring to the Treeview
           // Texts:  NOTE! Use the same texts as used in the treeview to which these items refer!!
             allItemsToolStripMenuItem.Text =                ResourcesForUI.TreeView_All_Items;
             filterItemsToolStripMenuItem.Text =             ResourcesForUI.TreeWiew_Items;
@@ -214,6 +214,12 @@ namespace MusicXmlReader
             detailsToolStripMenuItem.Text =                 ResourcesForUI.TreeView_MusicAsSound_Details;
             uncheckAllToolStripMenuItem.Text =              ResourcesForUI.TreeView_UncheckAll;
             checkAllToolStripMenuItem.Text =                ResourcesForUI.TreeView_CheckAll;
+
+            // Children of editToolStripMenuItem referring to the ParameterInputForm
+            repeatToolStripMenuItem.Text =                  ResourcesForUI.ParameterInputForm_Repeat;
+            goToToolStripMenuItem.Text=                     ResourcesForUI.ParameterInputForm_GoTo;
+            ofNominalTempoToolStripMenuItem.Text =          ResourcesForUI.ParameterInputForm_PctOfNominalTempo;
+
 
             // Direct Shortcuts 
             // allItemsToolStripMenuItem.ShortcutKeys = ShortcutHandler.editAllItems; // See comment in ShortcutHandler.cs

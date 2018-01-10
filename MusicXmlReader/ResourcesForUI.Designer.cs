@@ -313,6 +313,33 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Go to measure.
+        /// </summary>
+        internal static string ParameterInputForm_GoTo {
+            get {
+                return ResourceManager.GetString("ParameterInputForm_GoTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to % of &amp;Normal tempo.
+        /// </summary>
+        internal static string ParameterInputForm_PctOfNominalTempo {
+            get {
+                return ResourceManager.GetString("ParameterInputForm_PctOfNominalTempo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Repeat measures.
+        /// </summary>
+        internal static string ParameterInputForm_Repeat {
+            get {
+                return ResourceManager.GetString("ParameterInputForm_Repeat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ResourcesForUI.resx.
         /// </summary>
         internal static string ResourceFileName {

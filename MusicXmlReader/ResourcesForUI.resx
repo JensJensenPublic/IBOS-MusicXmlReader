@@ -387,4 +387,13 @@
   <data name="ToolStripMenuItem_Help_ShowUsersManual" xml:space="preserve">
     <value>Show &amp;user's manual</value>
   </data>
+  <data name="ParameterInputForm_GoTo" xml:space="preserve">
+    <value>&amp;Go to measure</value>
+  </data>
+  <data name="ParameterInputForm_PctOfNominalTempo" xml:space="preserve">
+    <value>% of &amp;Normal tempo</value>
+  </data>
+  <data name="ParameterInputForm_Repeat" xml:space="preserve">
+    <value>&amp;Repeat measures</value>
+  </data>
 </root>
