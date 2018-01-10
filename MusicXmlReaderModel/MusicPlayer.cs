@@ -562,7 +562,7 @@ namespace MusicXmlReaderModel
         private System.Threading.Thread playerThread; // The MusicPlayer Main thread
         private System.Threading.Thread damperThread; // Helper thread for stopping notes playing forever
         private System.Threading.Thread uiProxyThread; // Helper thread for decoupling long-lasting UI operations with respect to timing
-        private System.Threading.AutoResetEvent uiProxyEvent;
+        private static System.Threading.AutoResetEvent uiProxyEvent; // Avoid CA1001 by making this static.
         private int uiProxyEventIndex;
 
         private volatile bool playing = false;
