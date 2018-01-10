@@ -30,7 +30,7 @@ namespace MusicXmlReader
         UserSettingsHandler userSettingsHandler; // Contains all settings that can be configured by the user
         // MusicPlayerStateEnum musicPlayerState = MusicPlayerStateEnum.stopped; // Assume the musicplayer is innitially stopped
         // ShortcutHandler shortCutHandler;
-        UserCommandInterpreter commandInterpreter;
+        //UserCommandInterpreter commandInterpreter;
         string myMusicXmlDirectory; // Default location for MusicXml files belonging to thos user. Wil be populated with sample filer!
         ImportHandler importHandler;
         DetailsHandler detailsHandler;
@@ -88,7 +88,7 @@ namespace MusicXmlReader
                 userSettingsTreeView.CollapseAll();
                 // Create a handler for handling all Keyboard shortcuts
                 // shortCutHandler = ShortcutHandler.Create(this, model);
-                commandInterpreter = UserCommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
+                // commandInterpreter = UserCommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
                 detailsHandler = DetailsHandler.Create(listBoxTimes,listBoxDetails,model);
                 LoadIcon();
 

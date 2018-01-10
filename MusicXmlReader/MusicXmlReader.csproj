@@ -86,7 +86,6 @@
     </Compile>
     <Compile Include="ShortcutHelp.cs" />
     <Compile Include="UiUtilities.cs" />
-    <Compile Include="UserCommandInterpreter.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
