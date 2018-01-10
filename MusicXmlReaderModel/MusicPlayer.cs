@@ -409,8 +409,20 @@ namespace MusicXmlReaderModel
         /// <param name="eventDescription">The eventDescription to play as sound</param>
         private void Play(EventDescription eventDescription)
         {
+#if true
+            // Use this version for production !
             // Sleep until the StartTime of the next event occurs.
             System.Threading.Thread.Sleep(MilliSecondsToSleep(eventDescription.StartTime));
+#else
+            // Use this version for analyzing timing
+#warning Musicplayer is logging timing information
+            int waitExpected = MilliSecondsToSleep(eventDescription.StartTime);
+            DateTime beforeWait = DateTime.Now;
+            System.Threading.Thread.Sleep(waitExpected);
+            DateTime afterWait = DateTime.Now;
+            int waitObtained = (afterWait - beforeWait).Milliseconds;
+            Logger.Log(string.Format("Wait: Expected={0} Obtained={1} Dif={2}", waitExpected, waitObtained, waitObtained-waitExpected));
+#endif
 
             // Stop playing these notes: 
             if (null != eventDescription.EndEventElements)
@@ -579,7 +591,7 @@ namespace MusicXmlReaderModel
 
         }
 
-        #region DamperThread
+#region DamperThread
 #warning TODO Isolate DmperThread in separate class
         private bool reset;
         private bool running;
@@ -622,7 +634,7 @@ namespace MusicXmlReaderModel
             }
             Logger.Log(string.Format("{0}.{1}.Exit", className, functionName));
         }
-        #endregion
+#endregion
 
 
         private void PlayerThreadStart(IObjectCollection objects)
@@ -869,7 +881,7 @@ namespace MusicXmlReaderModel
 
         }
 
-        #region SimpleStartStopInterface
+#region SimpleStartStopInterface
         public void StopMidiNote(MidiNote midiNote)
         {
             midiNote.StopPlaying(midiOut);
@@ -894,6 +906,6 @@ namespace MusicXmlReaderModel
             midiChord.StartPlaying(midiOut);
             latestHarmonyPlayed = midiChord;
         }
-        #endregion
+#endregion
     }
 }
