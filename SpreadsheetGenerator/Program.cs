@@ -27,6 +27,8 @@ namespace SpreadsheetGenerator
 {
     class Program
     {
+        // The  [STAThread] attribute  is required because the program ures Windows Forms 
+        [STAThread]
         static void Main(string[] args)
         {
 
