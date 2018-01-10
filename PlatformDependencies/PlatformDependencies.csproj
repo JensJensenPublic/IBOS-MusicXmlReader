@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeviceInfo.cs" />
-    <Compile Include="FSBrlDspAPI.Wrapper.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticFunctions.cs" />

@@ -6,7 +6,11 @@ namespace PlatformDependencies
 {
     internal class NativeMethods
     {
-        #region FSBrlDspAPI
+#if false
+#region FSBrlDspAPI
+
+        // These native methods were used by FSBrlDspAPIWrapper.cs, which has been excluded from the MusicXmlREaderModel.
+
         [DllImport("FSBrlDspAPI.dll", CharSet = CharSet.Ansi)]
         internal static extern int fbOpen(String portName, Int32 h, UInt32 umsgNotify); // Works
 
@@ -27,19 +31,20 @@ namespace PlatformDependencies
 
         [DllImport("FSBrlDspAPI.dll", CharSet = CharSet.Ansi)] // Works
         internal static extern bool fbWrite(Int32 h, int nStart, int nLength, IntPtr pBytes);
-        #endregion
+#endregion
+#endif
 
-        #region SystemParametersInfo
+#region SystemParametersInfo
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         // internal       static extern bool SystemParametersInfo(uint uiAction, uint uiParam, IntPtr pvParam, uint fWinIni);
         internal static extern bool SystemParametersInfo(uint uiAction, uint uiParam, ref int param, uint fWinIni);
-        #endregion
+#endregion
 
-        #region SHGetKnownFolderPath
+#region SHGetKnownFolderPath
         [DllImport("Shell32.dll")]
         internal static extern int SHGetKnownFolderPath(    [MarshalAs(UnmanagedType.LPStruct)]Guid rfid, uint dwFlags, IntPtr hToken,    out IntPtr ppszPath);
-        #endregion SHGetKnownFolderPath
+#endregion SHGetKnownFolderPath
 
 
     }
