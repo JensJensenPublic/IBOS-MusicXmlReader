@@ -609,7 +609,7 @@ namespace MusicXmlReaderModel
         }
 
 #region DamperThread
-#warning TODO Isolate DmperThread in separate class
+// TODO Isolate DamperThread in separate class
         private bool reset;
         private bool running;
         public void DamperThreadReset()

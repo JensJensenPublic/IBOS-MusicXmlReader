@@ -49,6 +49,8 @@ namespace KeyboardTest
             this.keys = keys;
         }
 
+#if false
+        // Probably not needed after changing implementation
         public override bool Equals(object obj)
         {
             if (!(obj is KeySequenceList)) return false;
@@ -65,6 +67,7 @@ namespace KeyboardTest
             }
             return true;
         }
+#endif
 
         public override string ToString()
         {

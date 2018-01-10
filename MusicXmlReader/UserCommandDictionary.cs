@@ -101,7 +101,7 @@ namespace MusicXmlReader
             }
         }
 
-#warning ToDo Del op i 3 eller flere dictionaries, 1 pr control så den samme Key kan være forskellige kommandoer i forskellige controller
+
         private static Dictionary<UserCommandEnum, System.Windows.Forms.Keys> commandDictionary; // Map from Command to key
         private static Dictionary<System.Windows.Forms.Keys, UserCommandEnum> noteListcommandDictionary;
         private static Dictionary<System.Windows.Forms.Keys, UserCommandEnum> noteFiltercommandDictionary;

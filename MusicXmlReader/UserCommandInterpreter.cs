@@ -58,7 +58,7 @@ namespace MusicXmlReader
 
             if (Keys.Oemcomma == keys) return ",";
 
-#warning ToDo Find another key here instead of Keys.Multiply which requires a numeric keyboard !! 
+// ToDo Find another key here instead of Keys.Multiply which requires a numeric keyboard !! 
             if ((Keys.Control | Keys.Multiply) == keys)
             {
                 return "*";          // On the numeric keyboard
