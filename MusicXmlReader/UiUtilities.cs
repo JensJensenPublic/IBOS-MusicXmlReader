@@ -100,8 +100,7 @@ namespace MusicXmlReader
         public static string KeysToString(Keys keys)
         {
             if (Keys.None == keys) return "";
-#warning ToDo move to ResourcesForUi ?
-#warning ToDo Also use from localization of menues to generate AccessibleNAme 
+
             string control = ResourcesForHelp.Shortcut_Key_Control;
             string alt = ResourcesForHelp.shortcut_Key_alt;
             string shift = ResourcesForHelp.shortcut_Key_shift;

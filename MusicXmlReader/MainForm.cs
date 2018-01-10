@@ -391,7 +391,6 @@ namespace MusicXmlReader
             }
             else
             {
-#warning TODO Investigate crash and remove logging when done !
                 if ((index < 0) || (index >= listBoxTimes.Items.Count))
                 {
                     Logger.Log(string.Format("{0}.{1} Index out of range:{2}", className, functionName, index));
