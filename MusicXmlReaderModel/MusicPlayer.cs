@@ -96,6 +96,14 @@ namespace MusicXmlReaderModel
             //playerThread.Priority = System.Threading.ThreadPriority.Lowest; // Handle UI even when playing complicated stuff
             // Logger.Log(string.Format("Starting DamperThread at priority={0}", playerThread.Priority.ToString()));
             damperThread.Start();
+
+            //UiProxyAutoResetEvent 
+            uiProxyEvent = new System.Threading.AutoResetEvent(false);
+            uiProxyThread = new System.Threading.Thread(new System.Threading.ThreadStart(UiProxyThreadStart));
+            uiProxyThread.Priority = System.Threading.ThreadPriority.BelowNormal; // Assure that playerThread can continue after signalling
+            uiProxyThread.Start();
+
+
         }
 
         /// <summary>
@@ -329,9 +337,14 @@ namespace MusicXmlReaderModel
         /// <returns>Number of MilliSeconds to wait.</returns>
         private int MilliSecondsToSleep(Int64 startTime)
         {
+            const string functionName = "MilliSecondsToSleep";
             float mSPerMinute = 60000; // Used to conpensate for the use of different Units by the other variables
             float eventTimeInMilliSeconds = ((float)(startTime - this.musicXmlTimeOffset) * mSPerMinute) / ((float)NoteElement.commonDivisions * (float)this.tempo * userTempoFactor);
             long sleep = ((long)eventTimeInMilliSeconds - (this.stopWatch.ElapsedMilliseconds - this.firstStopWatchTime));
+            if (sleep <= 0)
+            {
+                Logger.Log(string.Format("{0}.{1} Sleep={2} <= 0",className, functionName, sleep));
+            }
             return (int)Math.Max(0, sleep);
         }
 
@@ -421,7 +434,7 @@ namespace MusicXmlReaderModel
             System.Threading.Thread.Sleep(waitExpected);
             DateTime afterWait = DateTime.Now;
             int waitObtained = (afterWait - beforeWait).Milliseconds;
-            Logger.Log(string.Format("Wait: Expected={0} Obtained={1} Dif={2}", waitExpected, waitObtained, waitObtained-waitExpected));
+            Logger.Log(string.Format("Wait: Wanted={0} Obtained={1} Dif={2}", waitExpected, waitObtained, waitObtained-waitExpected));
 #endif
 
             // Stop playing these notes: 
@@ -546,8 +559,12 @@ namespace MusicXmlReaderModel
             return;
         }
 
-        private System.Threading.Thread playerThread;
-        private System.Threading.Thread damperThread;
+        private System.Threading.Thread playerThread; // The MusicPlayer Main thread
+        private System.Threading.Thread damperThread; // Helper thread for stopping notes playing forever
+        private System.Threading.Thread uiProxyThread; // Helper thread for decoupling long-lasting UI operations with respect to timing
+        private System.Threading.AutoResetEvent uiProxyEvent;
+        private int uiProxyEventIndex;
+
         private volatile bool playing = false;
 
         public UserSettings UserSettings
@@ -634,7 +651,25 @@ namespace MusicXmlReaderModel
             }
             Logger.Log(string.Format("{0}.{1}.Exit", className, functionName));
         }
-#endregion
+        #endregion
+
+        #region UiProxyThread
+        private void UiProxyThreadStart()
+        {
+            string functionName = "UiProxyThreadStart";
+            running = true;
+            Logger.Log(string.Format("{0}.{1}.Start", className, functionName));
+            while (running)
+            {
+                //Logger.Log(string.Format("{0}.{1}.Is waiting", className, functionName));
+                uiProxyEvent.WaitOne();
+                //Logger.Log(string.Format("{0}.{1}.Was signalled. Index={2}", className, functionName, uiProxyEventIndex));
+                objects.SetSelectedIndex(uiProxyEventIndex);
+            }
+            Logger.Log(string.Format("{0}.{1}.Stop", className, functionName));
+        }
+        #endregion
+
 
 
         private void PlayerThreadStart(IObjectCollection objects)
@@ -648,7 +683,7 @@ namespace MusicXmlReaderModel
             Logger.Log(string.Format("PlayerThread(Id={0}) starting", threadId));
             this.stopWatch = new System.Diagnostics.Stopwatch();
             this.stopWatch.Start();
-            //this.nextActionTime = 0;
+            //this.nextActionTime = 0;               
 
 
 
@@ -685,7 +720,12 @@ namespace MusicXmlReaderModel
                         if (o.GetType() == typeof(EventDescription))
                         {
                             // Only select notes (and pauses) to allow for correct timing!
-                            objects.SetSelectedIndex(i);
+#if true
+                            uiProxyEventIndex = i;
+                            uiProxyEvent.Set(); // By signalling a helper thread we avoid hanging the main MusicPlayer thread while the UI is updating
+#else
+                            // objects.SetSelectedIndex(i); // By calling SetSelectedIndex directly we may hang the Main player for several ms in the UI thread, corrupting timing !!
+#endif
                             //SetSelectedIndex(listBox, i); // Select the corresponding line in the Listbox,  handling Cross-thread issue
                         }
                     }

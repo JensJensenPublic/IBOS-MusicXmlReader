@@ -706,13 +706,25 @@ namespace MusicXmlReader
 
         private void openMusicXmlFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            const string functionName = "openMusicXmlFileToolStripMenuItem_Click";
             // Show a standard Select File dialog to allow the user to select and open a MusicXml file
             SelectAndOpenMusicXmlFile(sender, e);
+
+            if (listBoxTimes.Items.Count > 0)
+            {
+                // Note: This is a HACK, which forces the JIT compiler to handle the code for scrolling outside the initially visible part of the listbox.
+                // This is needed to prevent unstable rhythm during autoplaying when the cursor leaves the initially visible part of the listbox
+                // and thus forces the first scroll operation.
+                Logger.Log(string.Format("{0}.{1} Changing SelectedIndex to {2} and back to 0", className, functionName, listBoxTimes.Items.Count - 1));
+                listBoxTimes.SelectedIndex = (listBoxTimes.Items.Count - 1);
+                listBoxTimes.SelectedIndex = (0);
+            }
+
         }
 
 
 
-#region ListBoxTimes
+        #region ListBoxTimes
 
         private void ListBoxTimesIndexChanged(int index)
         {
