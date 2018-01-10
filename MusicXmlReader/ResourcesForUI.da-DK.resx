@@ -388,7 +388,7 @@
     <value>&amp;Gå til takt</value>
   </data>
   <data name="ParameterInputForm_PctOfNominalTempo" xml:space="preserve">
-    <value>% af &amp;Normal tempo</value>
+    <value>% af &amp;Normalt tempo</value>
   </data>
   <data name="ParameterInputForm_Repeat" xml:space="preserve">
     <value>&amp;Repetér takter</value>

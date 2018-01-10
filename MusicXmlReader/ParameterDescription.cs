@@ -60,8 +60,7 @@ namespace MusicXmlReader
     {
         public RepeatParameterDescription()
         {
-#warning ToDo Add localization
-            name = "Localize(Repeat)";
+            name = MusicXmlReaderModel.Utilities.RemoveAmpersant(ResourcesForUI.ParameterInputForm_Repeat);
         }
 
         private bool IsNullEmptyOrInt(string s,out int value)
