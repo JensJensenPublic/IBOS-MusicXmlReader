@@ -145,10 +145,13 @@ namespace MusicXmlReader
         public const Keys editMusic = Keys.Control | Keys.M; // Expand Music and selest Music tree
         public const Keys editText = Keys.Control | Keys.T; // Expand Text and selest Text tree
         public const Keys editBraille = Keys.Control | Keys.B; // Expand Braille and selest Braille tree
-        //public const Keys editParts = Keys.Control | Keys.S; // Expand Parts and selest Music Parts      // We want to reserve the global CONTROL S for "Save" !
-        //public const Keys editDetails = Keys.Control | Keys.D; // Expand Detail and select Music Details // 
-
-
+        // public const Keys editParts = Keys.Control | Keys.S; // Expand Parts and selest Music Parts      // We want to reserve the global CONTROL S for "Save" !
+        // public const Keys editDetails = Keys.Control | Keys.D; // Expand Detail and select Music Details // 
+        // Shortcut keys (Set up in the Edit menu) for activating the ParameterInputForm
+        public const Keys CommandRepeat = Keys.R | Keys.Control; // Repeat from Measure to Measure
+        public const Keys CommandGoto = Keys.G | Keys.Control; // GoTo Measure
+        public const Keys CommandTempo = Keys.N | Keys.Control; // % of Normal Tempo 
+ 
         // ViewToolStripMenuItem: 
         //
         // ToolsToolStripMenuItem: 
@@ -209,13 +212,7 @@ namespace MusicXmlReader
 
         public const Keys NoKeys = Keys.None; // Means that no shortcut key is defined
 
-#warning ToDo Use 1 defintion per command instead of 2 !!
-        public const Keys CommandRepeat = Keys.R | Keys.Control;
-        //public const char Repeat = 'R';
-        public const Keys CommandGoto   = Keys.G | Keys.Control;
-        //public const char GoTo = 'G'; 
-        public const Keys CommandTempo  = Keys.N | Keys.Control; // % of Normal Tempo 
-        //public const char NormalTempo = 'N';
+
 
     }
 }
