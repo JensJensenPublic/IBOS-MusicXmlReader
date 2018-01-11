@@ -11,6 +11,20 @@ namespace KeyboardTest
 
     // Device ID: USB\VID_1C71&PID_C00A\650400001164, PNP Device ID: USB\VID_1C71&PID_C00A\650400001164, Description: USB-inputenhed
 
+
+    // http://www.humanware.com/microsite/bntouch/faq.php
+    //
+    // Q: How do I connect my BrailleNote Touch to my PC to function as a display with JAWS?
+    // A: First, download the HumanWare Braille Display tool from www.humanware.com/touch_support
+    // Run the tool on your computer and install the jaws driver if you are running a version less than JAWS 18.
+    // Follow the installation prompts and complete the JAWS installation.
+    // Now connect the USB cable from the Touch to your PC.
+    // Open the Braille Terminal app from the main menu and select USB as your connection method.
+    // Windows will begin installing the new driver and in a couple of minutes, your Touch will be ready to use as a display for your Windows PC.
+    // Open your JAWS settings, select Braille and ensure that the default display is set to BrailleNote Touch.
+    // Now, restart JAWS and you will see your Touch’s display activate.You can now control JAWS and read content in Braille using your BrailleNote Touch.
+
+
     public class KeyboardBrailleNoteTouch : Keyboard
     {
         private string className = MethodBase.GetCurrentMethod().DeclaringType.Name;
