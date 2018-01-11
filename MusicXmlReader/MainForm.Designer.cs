@@ -49,6 +49,10 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.uncheckAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.repeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.goToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ofNominalTempoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.instrumentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,13 +97,8 @@
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.textBoxNormalText = new System.Windows.Forms.TextBox();
-            this.textBoxCommand = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.listBoxDetails = new System.Windows.Forms.ListBox();
-            this.repeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.goToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ofNominalTempoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -200,80 +199,109 @@
             // allItemsToolStripMenuItem
             // 
             this.allItemsToolStripMenuItem.Name = "allItemsToolStripMenuItem";
-            this.allItemsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.allItemsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.allItemsToolStripMenuItem.Text = "All filter items";
             this.allItemsToolStripMenuItem.Click += new System.EventHandler(this.allItemsToolStripMenuItem_Click);
             // 
             // filterItemsToolStripMenuItem
             // 
             this.filterItemsToolStripMenuItem.Name = "filterItemsToolStripMenuItem";
-            this.filterItemsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.filterItemsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.filterItemsToolStripMenuItem.Text = "Filter items";
             this.filterItemsToolStripMenuItem.Click += new System.EventHandler(this.filterItemsToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(217, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(219, 6);
             // 
             // musicRepresentationToolStripMenuItem
             // 
             this.musicRepresentationToolStripMenuItem.Name = "musicRepresentationToolStripMenuItem";
-            this.musicRepresentationToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.musicRepresentationToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.musicRepresentationToolStripMenuItem.Text = "Music representation";
             this.musicRepresentationToolStripMenuItem.Click += new System.EventHandler(this.musicRepresentationToolStripMenuItem_Click);
             // 
             // textRepresentationToolStripMenuItem
             // 
             this.textRepresentationToolStripMenuItem.Name = "textRepresentationToolStripMenuItem";
-            this.textRepresentationToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.textRepresentationToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.textRepresentationToolStripMenuItem.Text = "Text representation";
             this.textRepresentationToolStripMenuItem.Click += new System.EventHandler(this.textRepresentationToolStripMenuItem_Click);
             // 
             // brailleRepresentationToolStripMenuItem
             // 
             this.brailleRepresentationToolStripMenuItem.Name = "brailleRepresentationToolStripMenuItem";
-            this.brailleRepresentationToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.brailleRepresentationToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.brailleRepresentationToolStripMenuItem.Text = "Braille Music representation";
             this.brailleRepresentationToolStripMenuItem.Click += new System.EventHandler(this.brailleRepresentationToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(217, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(219, 6);
             // 
             // partsToolStripMenuItem
             // 
             this.partsToolStripMenuItem.Name = "partsToolStripMenuItem";
-            this.partsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.partsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.partsToolStripMenuItem.Text = "Parts";
             this.partsToolStripMenuItem.Click += new System.EventHandler(this.partsToolStripMenuItem_Click);
             // 
             // detailsToolStripMenuItem
             // 
             this.detailsToolStripMenuItem.Name = "detailsToolStripMenuItem";
-            this.detailsToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.detailsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.detailsToolStripMenuItem.Text = "Details";
             this.detailsToolStripMenuItem.Click += new System.EventHandler(this.detailsToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(217, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(219, 6);
             // 
             // uncheckAllToolStripMenuItem
             // 
             this.uncheckAllToolStripMenuItem.Name = "uncheckAllToolStripMenuItem";
-            this.uncheckAllToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.uncheckAllToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.uncheckAllToolStripMenuItem.Text = "0: Uncheck all";
             this.uncheckAllToolStripMenuItem.Click += new System.EventHandler(this.uncheckAllToolStripMenuItem_Click);
             // 
             // checkAllToolStripMenuItem
             // 
             this.checkAllToolStripMenuItem.Name = "checkAllToolStripMenuItem";
-            this.checkAllToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.checkAllToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.checkAllToolStripMenuItem.Text = "1: Check all";
             this.checkAllToolStripMenuItem.Click += new System.EventHandler(this.checkAllToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(219, 6);
+            // 
+            // repeatToolStripMenuItem
+            // 
+            this.repeatToolStripMenuItem.Name = "repeatToolStripMenuItem";
+            this.repeatToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.repeatToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.repeatToolStripMenuItem.Text = "&Repeat";
+            this.repeatToolStripMenuItem.Click += new System.EventHandler(this.repeatToolStripMenuItem_Click);
+            // 
+            // goToToolStripMenuItem
+            // 
+            this.goToToolStripMenuItem.Name = "goToToolStripMenuItem";
+            this.goToToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.goToToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.goToToolStripMenuItem.Text = "&GoTo";
+            this.goToToolStripMenuItem.Click += new System.EventHandler(this.goToToolStripMenuItem_Click);
+            // 
+            // ofNominalTempoToolStripMenuItem
+            // 
+            this.ofNominalTempoToolStripMenuItem.Name = "ofNominalTempoToolStripMenuItem";
+            this.ofNominalTempoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.ofNominalTempoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.ofNominalTempoToolStripMenuItem.Text = "% of &Normal tempo";
+            this.ofNominalTempoToolStripMenuItem.Click += new System.EventHandler(this.ofNominalTempoToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -286,7 +314,7 @@
             // instrumentsToolStripMenuItem
             // 
             this.instrumentsToolStripMenuItem.Name = "instrumentsToolStripMenuItem";
-            this.instrumentsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.instrumentsToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.instrumentsToolStripMenuItem.Text = "&Instruments";
             this.instrumentsToolStripMenuItem.Click += new System.EventHandler(this.instrumentsToolStripMenuItem_Click);
             // 
@@ -579,9 +607,9 @@
             // 
             this.userSettingsTreeView.AccessibleName = "Note filter";
             this.userSettingsTreeView.CheckBoxes = true;
-            this.userSettingsTreeView.Location = new System.Drawing.Point(10, 60);
+            this.userSettingsTreeView.Location = new System.Drawing.Point(10, 28);
             this.userSettingsTreeView.Name = "userSettingsTreeView";
-            this.userSettingsTreeView.Size = new System.Drawing.Size(250, 420);
+            this.userSettingsTreeView.Size = new System.Drawing.Size(250, 451);
             this.userSettingsTreeView.TabIndex = 1;
             this.userSettingsTreeView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userSettingsTreeView_KeyDown);
             this.userSettingsTreeView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.userSettingsTreeView_KeyPress);
@@ -634,15 +662,6 @@
             this.textBoxNormalText.TabIndex = 8;
             this.textBoxNormalText.TabStop = false;
             // 
-            // textBoxCommand
-            // 
-            this.textBoxCommand.Location = new System.Drawing.Point(12, 28);
-            this.textBoxCommand.Name = "textBoxCommand";
-            this.textBoxCommand.ReadOnly = true;
-            this.textBoxCommand.Size = new System.Drawing.Size(247, 20);
-            this.textBoxCommand.TabIndex = 9;
-            this.textBoxCommand.TabStop = false;
-            // 
             // textBoxStatusInformation
             // 
             this.textBoxStatusInformation.Location = new System.Drawing.Point(10, 606);
@@ -665,35 +684,6 @@
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDetails_KeyDown);
             this.listBoxDetails.Leave += new System.EventHandler(this.listBoxDetails_Leave);
             // 
-            // repeatToolStripMenuItem
-            // 
-            this.repeatToolStripMenuItem.Name = "repeatToolStripMenuItem";
-            this.repeatToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.repeatToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.repeatToolStripMenuItem.Text = "&Repeat";
-            this.repeatToolStripMenuItem.Click += new System.EventHandler(this.repeatToolStripMenuItem_Click);
-            // 
-            // goToToolStripMenuItem
-            // 
-            this.goToToolStripMenuItem.Name = "goToToolStripMenuItem";
-            this.goToToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-            this.goToToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.goToToolStripMenuItem.Text = "&GoTo";
-            this.goToToolStripMenuItem.Click += new System.EventHandler(this.goToToolStripMenuItem_Click);
-            // 
-            // ofNominalTempoToolStripMenuItem
-            // 
-            this.ofNominalTempoToolStripMenuItem.Name = "ofNominalTempoToolStripMenuItem";
-            this.ofNominalTempoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.ofNominalTempoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.ofNominalTempoToolStripMenuItem.Text = "% of &Normal tempo";
-            this.ofNominalTempoToolStripMenuItem.Click += new System.EventHandler(this.ofNominalTempoToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(219, 6);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -701,7 +691,6 @@
             this.ClientSize = new System.Drawing.Size(1219, 641);
             this.Controls.Add(this.listBoxDetails);
             this.Controls.Add(this.textBoxStatusInformation);
-            this.Controls.Add(this.textBoxCommand);
             this.Controls.Add(this.textBoxNormalText);
             this.Controls.Add(this.textBoxText);
             this.Controls.Add(this.textBoxBraille);
@@ -756,7 +745,6 @@
         private System.Windows.Forms.ToolStripMenuItem filterItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem archivesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem httpsmusescorecomsheetmusicToolStripMenuItem1;
-        private System.Windows.Forms.TextBox textBoxCommand;
         private System.Windows.Forms.ToolStripMenuItem aboutIBOSMusicXmlReaderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jAWSSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem;
