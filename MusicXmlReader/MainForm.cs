@@ -238,6 +238,14 @@ namespace MusicXmlReader
             checkAllToolStripMenuItem.ShortcutKeys = ShortcutHandler.checkAll;
             GenerateAccessibleName(ref checkAllToolStripMenuItem);
 
+            // Direct shortcuts for the 3 commands opening the ParameterInputForm
+            repeatToolStripMenuItem.ShortcutKeys = ShortcutHandler.CommandRepeat;
+            GenerateAccessibleName(ref repeatToolStripMenuItem);
+            goToToolStripMenuItem.ShortcutKeys = ShortcutHandler.CommandGoto;
+            GenerateAccessibleName(ref goToToolStripMenuItem);
+            ofNominalTempoToolStripMenuItem.ShortcutKeys = ShortcutHandler.CommandTempo;
+            GenerateAccessibleName(ref ofNominalTempoToolStripMenuItem);
+
 
             //Children of viewToolStripMenuItem:
             instrumentsToolStripMenuItem.Text = ResourcesForUI.ToolsStripMenuItem_View_Instruments;
