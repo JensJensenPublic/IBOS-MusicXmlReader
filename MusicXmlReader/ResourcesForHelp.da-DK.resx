@@ -336,4 +336,7 @@
   <data name="Shortcut_Asterisk" xml:space="preserve">
     <value>STJERNE</value>
   </data>
+  <data name="ToolStripMenuItem_Edit_ParameterInputText" xml:space="preserve">
+    <value>(for indtastning af talværdier)</value>
+  </data>
 </root>

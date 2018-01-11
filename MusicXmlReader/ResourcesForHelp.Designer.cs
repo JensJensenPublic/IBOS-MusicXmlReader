@@ -716,5 +716,14 @@ namespace MusicXmlReader {
                 return ResourceManager.GetString("ToolStripMenuItem_Edit_ExtraText", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (for entry of numeric parameters).
+        /// </summary>
+        internal static string ToolStripMenuItem_Edit_ParameterInputText {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Edit_ParameterInputText", resourceCulture);
+            }
+        }
     }
 }

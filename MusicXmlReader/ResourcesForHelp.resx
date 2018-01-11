@@ -336,4 +336,7 @@
   <data name="Shortcut_Asterisk" xml:space="preserve">
     <value>ASTERISK</value>
   </data>
+  <data name="ToolStripMenuItem_Edit_ParameterInputText" xml:space="preserve">
+    <value>(for entry of numeric parameters)</value>
+  </data>
 </root>

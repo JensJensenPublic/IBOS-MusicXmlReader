@@ -225,7 +225,7 @@ namespace MusicXmlReader
             AddLine(Keys.Control | Keys.L, ResourcesForHelp.Shortcut_SelectNoteList);
 
             // Start of commands taking parameters and handled by the ParameterInputForm
-            AddCaption(ResourcesForUI.ToolStripMenuItem_Edit, ""); // ResourcesForHelp.ToolStripMenuItem_Edit_ParameterInputText);
+            AddCaption(ResourcesForUI.ToolStripMenuItem_Edit, ResourcesForHelp.ToolStripMenuItem_Edit_ParameterInputText);
             AddAltControlLine(edit, ResourcesForUI.ParameterInputForm_Repeat, ShortcutHandler.CommandRepeat, "'n,m' : " + ResourcesForHelp.Shortcut_RepeatFromNtoM);
             AddAltControlLine(edit, ResourcesForUI.ParameterInputForm_GoTo, ShortcutHandler.CommandGoto, "'n'   : " + ResourcesForHelp.Shortcut_GoToMeasureN);
             AddAltControlLine(edit, ResourcesForUI.ParameterInputForm_PctOfNominalTempo, ShortcutHandler.CommandTempo, "'n'   : " + ResourcesForHelp.Shortcut_SetTempo + TempoLimitString);
