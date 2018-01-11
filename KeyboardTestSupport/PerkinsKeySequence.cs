@@ -40,6 +40,18 @@ namespace KeyboardTest
             return new PerkinsKeySequence(new List<List<int>> { keys });
         }
 
+        /// <summary>
+        /// A special PerkinsKeySequence consisting of 2 of more keys pressed at the same time followed by 2 of more keys pressed at the same time followed by 2 of more keys pressed at the same time
+        /// Used for instance by Focus for "JAWS speech on/off"
+        /// </summary>
+        /// <param name="keys0"></param>
+        /// <param name="keys1"></param>
+        /// <returns></returns>
+        static public PerkinsKeySequence Create(List<int> keys0, List<int> keys1, List<int> keys2)
+        {
+            return new PerkinsKeySequence(new List<List<int>> { keys0, keys1, keys2 });
+        }
+                
 
         /// <summary>
         /// A typical PerkinsKeySequence consisting of 2 of more keys pressed at the same time followed by 2 of more keys pressed at the same time

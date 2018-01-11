@@ -75,7 +75,7 @@ namespace KeyboardTest
         /// <returns></returns>
         protected override PerkinsKeySequence GetPKS(KeySequenceList jawsKeySequence)
         {
-            if (jawsKeySequence == KeySequenceList.JawsToggleSpeech)    return PerkinsKeySequence.Create(new List<int> { 1, 2, 4, CHORD }, new List<int> { 2, 3, 4 });
+            if (jawsKeySequence == KeySequenceList.JawsToggleSpeech)    return PerkinsKeySequence.Create(new List<int> { INSERT, 8, CHORD }, new List<int> { SPACE}, new List<int> { 2, 3, 4 });
             if (jawsKeySequence == KeySequenceList.JAWSReadStatusLine)  return PerkinsKeySequence.Create(new List<int> { INSERT, 8, CHORD }, new List<int> { 5, 6, 7, CHORD });
             if (jawsKeySequence == KeySequenceList.JAWSReadTitleLine)   return PerkinsKeySequence.Create(new List<int> { INSERT, 8, CHORD }, new List<int> { 2, 3, 4, 5 });
             if (jawsKeySequence == KeySequenceList.JAWSReadMessage)     return PerkinsKeySequence.Create(new List<int> { INSERT, 8, CHORD }, new List<int> { 1, 2 });
