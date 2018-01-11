@@ -611,14 +611,14 @@ namespace MusicXmlReaderModel
 #region DamperThread
 // TODO Isolate DamperThread in separate class
         private bool reset;
-        private bool running;
+        private bool damperThreadRunning;
         public void DamperThreadReset()
         {
             reset = true; ;
         }
         public void DamperThreadStop()
         {
-            running = false; ;
+            damperThreadRunning = false;
         }
 
         private void DamperThreadStart()
@@ -626,9 +626,9 @@ namespace MusicXmlReaderModel
             string functionName = "DamperThreadStart";
             const int delay = 10;
             int DamperThreadCounter = delay;
-            running = true;
+            damperThreadRunning = true;
             Logger.Log(string.Format("{0}.{1}.Start", className, functionName));
-            while (running)
+            while (damperThreadRunning)
             {
                 System.Threading.Thread.Sleep(100);
                 if (reset)
@@ -654,12 +654,20 @@ namespace MusicXmlReaderModel
         #endregion
 
         #region UiProxyThread
+        bool uiProxyThreadRunning = false;
+
+        public void UiProxyThreadStop()
+        { 
+            uiProxyThreadRunning = false;
+            uiProxyEvent.Set();
+        }
+
         private void UiProxyThreadStart()
-        {
+        { 
             string functionName = "UiProxyThreadStart";
-            running = true;
+            uiProxyThreadRunning = true;
             Logger.Log(string.Format("{0}.{1}.Start", className, functionName));
-            while (running)
+            while (uiProxyThreadRunning)
             {
                 //Logger.Log(string.Format("{0}.{1}.Is waiting", className, functionName));
                 uiProxyEvent.WaitOne();

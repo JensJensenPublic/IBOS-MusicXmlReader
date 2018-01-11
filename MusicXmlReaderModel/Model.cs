@@ -963,6 +963,7 @@ namespace MusicXmlReaderModel
             {
                 musicPlayer.StopPlaying();
                 musicPlayer.DamperThreadStop();
+                musicPlayer.UiProxyThreadStop();
             }
             catch (Exception e)
             {

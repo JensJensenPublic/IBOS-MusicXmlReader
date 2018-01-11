@@ -98,7 +98,7 @@ namespace PlatformDependencies
 #elif Android
             return false;
 #else
-#error Compiling for unknown platform
+// #error Compiling for unknown platform
 #endif
 
 
