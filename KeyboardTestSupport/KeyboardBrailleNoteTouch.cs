@@ -46,10 +46,11 @@ namespace KeyboardTest
 
         protected override PerkinsKeySequence GetPKS(KeySequenceList jawsKeySequence)
         {
-            if (jawsKeySequence == KeySequenceList.JawsToggleSpeech) return PerkinsKeySequence.Create(new List<int> { 1, 2, 4, CHORD }, new List<int> { 2, 3, 4 }); // Not tested !
-            if (jawsKeySequence == KeySequenceList.JAWSReadStatusLine) return PerkinsKeySequence.Create(new List<int> { INSERT, 8, CHORD }, new List<int> { 5, 6, 7, CHORD }); // Not tested !
-            if (jawsKeySequence == KeySequenceList.JAWSReadTitleLine) return PerkinsKeySequence.Create(new List<int> { INSERT, 8, CHORD }, new List<int> { 2, 3, 4, 5 }); // Not tested !
-            if (jawsKeySequence == KeySequenceList.JAWSReadMessage) return PerkinsKeySequence.Create(new List<int> { INSERT, 8, CHORD }, new List<int> { 1, 2 }); // Not tested !
+            if (jawsKeySequence == KeySequenceList.JawsToggleSpeech) return PerkinsKeySequence.Create(new List<int> { 1, 2, 4, CHORD }); // Works !
+            //if (jawsKeySequence == KeySequenceList.JAWSReadStatusLine) return PerkinsKeySequence.Create(new List<int> { INSERT, 8, CHORD }, new List<int> { 5, 6, 7, CHORD }); //FAILS
+            if (jawsKeySequence == KeySequenceList.JAWSReadStatusLine) return PerkinsKeySequence.Create(); // Until we find out what to do!
+            if (jawsKeySequence == KeySequenceList.JAWSReadTitleLine) return PerkinsKeySequence.Create(new List<int> { INSERT, 8, CHORD }, new List<int> { 2, 3, 4, 5 }); // Works
+            if (jawsKeySequence == KeySequenceList.JAWSReadMessage) return PerkinsKeySequence.Create(new List<int> { INSERT, 8, CHORD }, new List<int> { 1, 2 }); // Works
             // Add more definitions here
             return PerkinsKeySequence.Create();
         }
