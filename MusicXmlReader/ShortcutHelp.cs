@@ -224,6 +224,17 @@ namespace MusicXmlReader
             AddLine(Keys.Space, ResourcesForHelp.Shortcut_ToggleValue);
             AddLine(Keys.Control | Keys.L, ResourcesForHelp.Shortcut_SelectNoteList);
 
+            // Start of commands taking parameters and handled by the ParameterInputForm
+            AddCaption(ResourcesForUI.ToolStripMenuItem_Edit, ""); // ResourcesForHelp.ToolStripMenuItem_Edit_ParameterInputText);
+            AddAltControlLine(edit, ResourcesForUI.ParameterInputForm_Repeat, ShortcutHandler.CommandRepeat, "'n,m' : " + ResourcesForHelp.Shortcut_RepeatFromNtoM);
+            AddAltControlLine(edit, ResourcesForUI.ParameterInputForm_GoTo, ShortcutHandler.CommandGoto, "'n'   : " + ResourcesForHelp.Shortcut_GoToMeasureN);
+            AddAltControlLine(edit, ResourcesForUI.ParameterInputForm_PctOfNominalTempo, ShortcutHandler.CommandTempo, "'n'   : " + ResourcesForHelp.Shortcut_SetTempo + TempoLimitString);
+
+            //AddLine(ShortcutHandler.CommandRepeat, " n,m ", Keys.Enter, ResourcesForHelp.Shortcut_RepeatFromNtoM);
+            //AddLine(ShortcutHandler.CommandGoto, " n ", Keys.Enter, ResourcesForHelp.Shortcut_GoToMeasureN);
+            //AddLine(ShortcutHandler.CommandTempo, " n ", Keys.Enter, ResourcesForHelp.Shortcut_SetTempo + TempoLimitString);
+            // End of commands taking parameters and handled by the ParameterInputForm
+
             string view = AddCaption(ResourcesForUI.ToolStripMenuItem_View);
             AddAltControlLine(view, ResourcesForUI. ToolsStripMenuItem_View_Instruments, ShortcutHandler.NoKeys);
 
@@ -267,15 +278,7 @@ namespace MusicXmlReader
             AddLine(ShortcutHandler.togglePlaying, ResourcesForHelp.Shortcut_TogglePlay);
             AddLine(ShortcutHandler.StopAllNotesPlaying, ResourcesForHelp.Shortcut_StopCurrentNote);
 
-            // Start of commands taking parameters and handled by the CommandInterpreter
-            //AddLine(Plus(control, "R") + "n,m " + enter, ResourcesForHelp.Shortcut_RepeatFromNtoM); // UD
-            AddLine(ShortcutHandler.CommandRepeat," n,m ",Keys.Enter, ResourcesForHelp.Shortcut_RepeatFromNtoM);
-            //AddLine(Plus(control, "G") + "n " + enter, ResourcesForHelp.Shortcut_GoToMeasureN);     // UD
-            AddLine(ShortcutHandler.CommandGoto," n " ,Keys.Enter , ResourcesForHelp.Shortcut_GoToMeasureN); 
-            //AddLine(Plus(control, "*") + "n " + enter, ResourcesForHelp.Shortcut_SetTempo);          // UD
-            AddLine(ShortcutHandler.CommandTempo," n ", Keys.Enter, ResourcesForHelp.Shortcut_SetTempo + TempoLimitString);
-            // End of commands taking parameters and handled by the CommandInterpreter
-
+ 
 
             AddLine(ShortcutHandler.tempoIncrement, ResourcesForHelp.Shortcut_IncreaseTempo);
             AddLine(ShortcutHandler.tempoDecrement, ResourcesForHelp.Shortcut_DecreaseTempo);
