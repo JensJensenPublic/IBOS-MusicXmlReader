@@ -138,8 +138,12 @@ namespace SpreadsheetGenerator
                 // Close the document.
                 spreadsheetDocument.Close();
 
-            Console.WriteLine("The spreadsheet document has been created.\nPress a key.");
+            Console.WriteLine(string.Format("The spreadsheet document has been created as {0}\nPress a key to view it.",fileName));
             Console.ReadKey();
+
+            System.Diagnostics.Process.Start(fileName); // Run associated program, for instance "LibreOffice Calc ??"  or "Microsoft Excel"
+
+     
 
         }
 
