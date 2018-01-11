@@ -65,8 +65,16 @@ namespace KeyboardTest
 
                 // Double key presses representing conbinations of CONTROL or ALT with a simple letter. SHIFT is probably not needed !
                 case Keys.Control | Keys.A: return PerkinsKeySequence.Create(new List<int> { CTRL, 8, CHORD }, new List<int> { 1 }); // WORKS For general use. "a" is used to represent all letters
+                case Keys.Control | Keys.G: return PerkinsKeySequence.Create(new List<int> { CTRL, 8, CHORD }, new List<int> { 1, 2, 4, 5 }); // 
+                case Keys.Control | Keys.R: return PerkinsKeySequence.Create(new List<int> { CTRL, 8, CHORD }, new List<int> { 1, 2, 3, 5 }); //
+                case Keys.Control | Keys.N: return PerkinsKeySequence.Create(new List<int> { CTRL, 8, CHORD }, new List<int> { 1, 3, 4, 5 }); // 
+                case Keys.Control | Keys.M: return PerkinsKeySequence.Create(new List<int> { CTRL, 8, CHORD }, new List<int> { 1, 3, 4 }); // 
+
                 case Keys.Alt | Keys.A: return PerkinsKeySequence.Create(new List<int> { ALT, 8, CHORD }, new List<int> { 1 }); // WORKS For general use. "a" is used to represent all letters
-                                                                                                                                 //testSteps.Add(TestStep.Create(Keys.Shift | Keys.A, new List<int> { SHIFT, 8, CHORD }, new List<int> { 1 })); // For general use. "a" is used to represent all letters
+                case Keys.Alt | Keys.F: return PerkinsKeySequence.Create(new List<int> { ALT, 8, CHORD }, new List<int> { 1, 2, 4 });    // For general use. "ALT-f" opens the "&Filer" menu
+                case Keys.Alt | Keys.R: return PerkinsKeySequence.Create(new List<int> { ALT, 8, CHORD }, new List<int> { 1, 2, 3, 5 }); // For general use. "ALT-r" opens the "&Rediger" menu
+
+                //testSteps.Add(TestStep.Create(Keys.Shift | Keys.A, new List<int> { SHIFT, 8, CHORD }, new List<int> { 1 })); // For general use. "a" is used to represent all letters
 
                 // Shortcut-keys, used by Windows or JAWS:
                 case Keys.Control | Keys.O: return PerkinsKeySequence.Create(new List<int> { CTRL, 8, CHORD }, new List<int> { 1, 3, 5 }); // WORKS Windows: Open FileOpen dialogue
