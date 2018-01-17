@@ -901,8 +901,14 @@ namespace MusicXmlReaderModel
                 string lyrics = LyricsForOnePart(noteElementList); // Represents all texts for all parts
                 // Assume that: The step is described with 3 characters. The octave with 1 character and max 2 notes per part !
                 //sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
-                sbNotes.Append(string.Format("{0,9} ", notes));  //  fix width to 9 
-                sbTexts.Append(string.Format("{0} ", lyrics));
+                if (!string.IsNullOrWhiteSpace(notes)) // Avoid adding an extra blank if no text is available 
+                {
+                    sbNotes.Append(string.Format("{0,9} ", notes));  //  fix width to 9 
+                }
+                if (!string.IsNullOrWhiteSpace(lyrics))  // Avoid adding an extra blank if no text is available
+                {
+                    sbTexts.Append(string.Format("{0} ", lyrics));
+                }
             }
 
             // Finnally compose the result by concatenating all the substrings in the sequence wanted
