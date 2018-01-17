@@ -79,6 +79,51 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All parts.
+        /// </summary>
+        internal static string DetailState_AllParts {
+            get {
+                return ResourceManager.GetString("DetailState_AllParts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chords.
+        /// </summary>
+        internal static string DetailState_Harmonies {
+            get {
+                return ResourceManager.GetString("DetailState_Harmonies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Instruments.
+        /// </summary>
+        internal static string DetailState_Instruments {
+            get {
+                return ResourceManager.GetString("DetailState_Instruments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single notes.
+        /// </summary>
+        internal static string DetailState_SingleNotes {
+            get {
+                return ResourceManager.GetString("DetailState_SingleNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single parts.
+        /// </summary>
+        internal static string DetailState_SingleParts {
+            get {
+                return ResourceManager.GetString("DetailState_SingleParts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to en-US.
         /// </summary>
         internal static string DirectoryNames_CultureString {

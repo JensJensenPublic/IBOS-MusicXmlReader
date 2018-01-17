@@ -393,4 +393,19 @@
   <data name="ParameterInputForm_Repeat" xml:space="preserve">
     <value>&amp;Repetér takter</value>
   </data>
+  <data name="DetailState_AllParts" xml:space="preserve">
+    <value>Alle stemmer</value>
+  </data>
+  <data name="DetailState_Harmonies" xml:space="preserve">
+    <value>Becifringer</value>
+  </data>
+  <data name="DetailState_Instruments" xml:space="preserve">
+    <value>Instrumenter</value>
+  </data>
+  <data name="DetailState_SingleNotes" xml:space="preserve">
+    <value>Enkelt-noder</value>
+  </data>
+  <data name="DetailState_SingleParts" xml:space="preserve">
+    <value>Enkelt-stemmer</value>
+  </data>
 </root>

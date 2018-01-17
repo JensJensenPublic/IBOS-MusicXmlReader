@@ -396,4 +396,19 @@
   <data name="ParameterInputForm_Repeat" xml:space="preserve">
     <value>&amp;Repeat measures</value>
   </data>
+  <data name="DetailState_AllParts" xml:space="preserve">
+    <value>All parts</value>
+  </data>
+  <data name="DetailState_Harmonies" xml:space="preserve">
+    <value>Chords</value>
+  </data>
+  <data name="DetailState_Instruments" xml:space="preserve">
+    <value>Instruments</value>
+  </data>
+  <data name="DetailState_SingleNotes" xml:space="preserve">
+    <value>Single notes</value>
+  </data>
+  <data name="DetailState_SingleParts" xml:space="preserve">
+    <value>Single parts</value>
+  </data>
 </root>

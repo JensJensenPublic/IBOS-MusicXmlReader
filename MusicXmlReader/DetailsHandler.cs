@@ -23,6 +23,20 @@ namespace MusicXmlReader
         private int savedIndex = -1;
         private DetailsEnum savedDetails = DetailsEnum.Unknown;
 
+        private string Localize(DetailsEnum state)
+        {
+            switch (state)
+            {
+                case DetailsEnum.Harmonies: return "";
+                case DetailsEnum.Instruments: return "";
+                case DetailsEnum.Notes: return ResourcesForUI.DetailState_AllParts;
+                case DetailsEnum.NotesForPart: return ResourcesForUI.DetailState_SingleNotes;
+                case DetailsEnum.Parts: return ResourcesForUI.DetailState_SingleParts;
+                case DetailsEnum.Unknown: return "";
+                default: return "";
+            }
+        }
+
 
         /// <summary>
         /// Convenience methode for changing the Current details state
@@ -33,7 +47,7 @@ namespace MusicXmlReader
         {
             Logger.Log(string.Format("{0}.{1} Changing current details state from {2} to {3}", className, functionName, currentDetails, newDetails));
             currentDetails = newDetails;
-            client.WriteStatusInformation(currentDetails.ToString()); // Report detail state through the status line
+            client.WriteStatusInformation(Localize(currentDetails)); // Report detail state through the status line
         }
 
         /// <summary>
