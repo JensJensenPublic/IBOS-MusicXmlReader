@@ -103,6 +103,12 @@ namespace MusicXmlReader
             }
         }
 
+        private void Beep()
+        {
+            System.Media.SystemSounds.Beep.Play();
+        }
+
+
            private void LoadIcon()
         {
             const string functionName = "LoadIcon";
@@ -1478,10 +1484,10 @@ namespace MusicXmlReader
             parameterInputForm.ParameterDescription = p;
             parameterInputForm.Text = p.Name;
             // Show testDialog as a modal dialog and determine if DialogResult = OK.
-            // Show testDialog as a modal dialog and determine if DialogResult = OK.
             DialogResult dialogResult = parameterInputForm.ShowDialog(this);
             Logger.Log(string.Format("{0}.{1} returned {2}", className, functionName, dialogResult));
-            string result = parameterInputForm.ComboBoxInput;
+            // Returning an empty string will cause a warning Beep. This may not be the optimal behaviour  ??            
+            string result = (dialogResult == DialogResult.OK) ? parameterInputForm.ComboBoxInput : "";
             parameterInputForm.Dispose();
             return result;
         }
@@ -1502,6 +1508,7 @@ namespace MusicXmlReader
             }
             else
             {
+                Beep();
                 s = "Repeat: Invalid systax " + input;
             }
             Logger.Log(string.Format("{0}.{1} {2}", className, functionName, s));
@@ -1513,6 +1520,7 @@ namespace MusicXmlReader
             }
             else
             {
+                Beep();
                 model.StopRepeating();
             }
             
@@ -1535,8 +1543,8 @@ namespace MusicXmlReader
             }
             else
             {
-                //Beep();
-                Logger.Log(string.Format("{0}.{1} Illegal command:'{2}'", className, functionName, input));
+                Beep();
+                Logger.Log(string.Format("{0}.{1} Illegal GoTo-command:'{2}'", className, functionName, input));
             }
 
 
@@ -1561,8 +1569,8 @@ namespace MusicXmlReader
             }
             else
             {
-                // Beep();
-                Logger.Log(string.Format("{0}.{1} Illegal TempoCommand:'{2}'", className, functionName, input));
+                Beep();
+                Logger.Log(string.Format("{0}.{1} Illegal Tempo-Command:'{2}'", className, functionName, input));
             }
 
 

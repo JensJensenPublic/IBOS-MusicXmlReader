@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReader
 {
     public partial class ParameterInputForm : Form
     {
+        private string className = "ParameterInputForm";
         private ParameterDescription parameterDescription;
         public ParameterDescription ParameterDescription
         {
@@ -41,24 +43,31 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
+            // const string functionName = "comboBox1_KeyPress";
+            const char RETURN = (char)13;
+            const char ESC = (char)27;
+            switch (e.KeyChar)
             {
-                const char RETURN = (char)13;
-                const char ESC    = (char)27;
-                switch (e.KeyChar)
-                {
-                    case RETURN: this.DialogResult = DialogResult.OK; this.Close(); return;
-                    case ESC:    this.DialogResult = DialogResult.Cancel; this.Close(); return;
-                    default: break;
-                }
+                case RETURN:
+                    this.DialogResult = DialogResult.OK;
+                    e.Handled = true;   // Prevent "Ding" when closing form with valid value                 
+                    this.Close();
+                    break;
+                case ESC:
+                    this.DialogResult = DialogResult.Cancel;
+                    this.Close();
+                    return;
+                default:
+                    break;
+            }
 
-                // Check the syntax of the resulting input and report any error by a beep
-                bool ok = parameterDescription.CheckSyntax(comboBox1.Text + e.KeyChar.ToString());
-                if (!ok)
-                {
-                    System.Media.SystemSounds.Beep.Play();
-                    Console.WriteLine("{0} Syntax error!", Name);
-                }
-
+            // Check the syntax of the resulting input and report any error by a beep
+            string input = comboBox1.Text + e.KeyChar.ToString();
+            bool ok = parameterDescription.CheckSyntax(input);
+            if (!ok)
+            {
+                System.Media.SystemSounds.Beep.Play();
+                // Logger.Log(string.Format("{0}.{1}: Name={2} Input={3} Syntax error!", className, functionName, Name, input));
             }
         }
     }
