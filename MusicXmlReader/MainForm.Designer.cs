@@ -618,6 +618,8 @@
             // listBoxTimes
             // 
             this.listBoxTimes.AccessibleName = "Note list";
+            this.listBoxTimes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxTimes.FormattingEnabled = true;
             this.listBoxTimes.Location = new System.Drawing.Point(265, 60);
             this.listBoxTimes.Name = "listBoxTimes";
@@ -630,6 +632,8 @@
             // 
             // textBoxBraille
             // 
+            this.textBoxBraille.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxBraille.BackColor = System.Drawing.Color.Black;
             this.textBoxBraille.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxBraille.ForeColor = System.Drawing.Color.White;
@@ -642,6 +646,8 @@
             // 
             // textBoxText
             // 
+            this.textBoxText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxText.Location = new System.Drawing.Point(10, 579);
             this.textBoxText.Name = "textBoxText";
             this.textBoxText.ReadOnly = true;
@@ -655,6 +661,8 @@
             // 
             // textBoxNormalText
             // 
+            this.textBoxNormalText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxNormalText.Location = new System.Drawing.Point(11, 485);
             this.textBoxNormalText.Name = "textBoxNormalText";
             this.textBoxNormalText.ReadOnly = true;
@@ -664,6 +672,8 @@
             // 
             // textBoxStatusInformation
             // 
+            this.textBoxStatusInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxStatusInformation.Location = new System.Drawing.Point(10, 606);
             this.textBoxStatusInformation.Name = "textBoxStatusInformation";
             this.textBoxStatusInformation.ReadOnly = true;
@@ -674,6 +684,8 @@
             // 
             // listBoxDetails
             // 
+            this.listBoxDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxDetails.FormattingEnabled = true;
             this.listBoxDetails.Location = new System.Drawing.Point(265, 28);
             this.listBoxDetails.Name = "listBoxDetails";
