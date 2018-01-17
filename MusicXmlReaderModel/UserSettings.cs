@@ -103,7 +103,8 @@ namespace MusicXmlReaderModel
         // Global Player Settings (for all parts)
         //*****************************************************************************************
 
-        public enum PlayerSettings { MeasureBeats = 0, Harmonies = 1,NumberOfPlayerSettings=2}
+//        public enum PlayerSettings { MeasureBeats = 0, Harmonies = 1, NumberOfPlayerSettings = 2 }
+        public enum PlayerSettings { Harmonies = 0, NumberOfPlayerSettings = 1 }
         public readonly string[] playerSettingsNames = new string[(int)PlayerSettings.NumberOfPlayerSettings];
         public bool[] playerSettingsValues = new bool[(int)PlayerSettings.NumberOfPlayerSettings];
 
@@ -115,7 +116,8 @@ namespace MusicXmlReaderModel
 
         private void InitPlayerSettings()
         {
-            InitPlayerSetting(PlayerSettings.MeasureBeats, ResourcesForModel.UserSettings_PlayerNames_Beats, false);  // "Taktslag",
+#warning ToDo Implement and re-enable PlayerSettings.MeasureBeats
+            // InitPlayerSetting(PlayerSettings.MeasureBeats, ResourcesForModel.UserSettings_PlayerNames_Beats, false);  // "Taktslag", 
             InitPlayerSetting(PlayerSettings.Harmonies, ResourcesForModel.UserSettings_PlayerNames_Harmonies, true);  // "Harmonier",
         }
 
