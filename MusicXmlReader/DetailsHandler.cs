@@ -15,18 +15,48 @@ namespace MusicXmlReader
         private ListBox listBoxTimes;
         private ListBox listBoxDetails;
         private Model model;
-        private DetailsEnum currentDetails = DetailsEnum.Unknown;       
+        private IDebugDisplayerClient client;
+        private DetailsEnum currentDetails = DetailsEnum.Unknown;
 
-        private DetailsHandler(ListBox listBoxTimes, ListBox listBoxDetails, Model model)
+        // The following 3 variables contain the saved first-level details state when handling second-level details (such as SingleNotes) 
+        private List<DetailsDescription> savedItems;
+        private int savedIndex = -1;
+        private DetailsEnum savedDetails = DetailsEnum.Unknown;
+
+
+        /// <summary>
+        /// Convenience methode for changing the Current details state
+        /// </summary>
+        /// <param name="functionName"></param>
+        /// <param name="newDetails"></param>
+        private void SetCurrentDetails(string functionName, DetailsEnum newDetails)
+        {
+            Logger.Log(string.Format("{0}.{1} Changing current details state from {2} to {3}", className, functionName, currentDetails, newDetails));
+            currentDetails = newDetails;
+            client.WriteStatusInformation(currentDetails.ToString()); // Report detail state through the status line
+        }
+
+        /// <summary>
+        /// Convenience methode for changing the Current details state
+        /// </summary>
+        /// <param name="functionName"></param>
+        /// <param name="newDetails"></param>
+        private void SetSavedDetails(string functionName, DetailsEnum newDetails)
+        {
+            Logger.Log(string.Format("{0}.{1} Changing saved   details state from {2} to {3}", className, functionName, savedDetails, newDetails));
+            savedDetails = newDetails;
+        }
+        
+
+        private DetailsHandler(ListBox listBoxTimes, ListBox listBoxDetails, Model model,IDebugDisplayerClient client)
         {
             this.listBoxTimes = listBoxTimes;
             this.listBoxDetails = listBoxDetails;
             this.model = model;
+            this.client = client;
         }
 
-        private List<DetailsDescription> savedItems;
-        private int savedIndex = -1;
-        private DetailsEnum savedDetails = DetailsEnum.Unknown;
+
 
         //DetailsDescription currentDetailsDescription;
 
@@ -40,7 +70,7 @@ namespace MusicXmlReader
         /// <returns></returns>
         public int ShowPartAsSingleNotes(bool fromTop)
         {      
-            string functionName = "ShowPartDetails";
+            string functionName = "ShowPartAsSingleNotes";
             //Logger.Log(string.Format("{0}.{1} Entry", className, functionName));
             if (DetailsEnum.Parts != currentDetails)
             {
@@ -63,7 +93,7 @@ namespace MusicXmlReader
                 // Save the original contents
                 savedItems = new List<DetailsDescription>();
                 savedIndex = listBoxDetails.SelectedIndex;
-                savedDetails = currentDetails;  
+                SetSavedDetails(functionName,currentDetails);
                 foreach (object o in listBoxDetails.Items)
                 {
                     savedItems.Add((DetailsDescription)o);
@@ -78,7 +108,7 @@ namespace MusicXmlReader
                 {
                     listBoxDetails.Items.Add(detailsDescription);
                 }
-                currentDetails = DetailsEnum.NotesForPart;
+                SetCurrentDetails(functionName,DetailsEnum.NotesForPart);
                 listBoxDetails.AutoSize = true; // Allow listbox to grow to the new size needed
                 listBoxDetails.SelectedIndex = fromTop ? 0 : listBoxDetails.Items.Count - 1;
                 return 0 ;
@@ -90,18 +120,29 @@ namespace MusicXmlReader
         /// </summary>
         public void ReturnFromPartDetails()
         {
+            string functionName = "ReturnFromPartDetails";
             listBoxDetails.Items.Clear();
             listBoxDetails.AutoSize = false;
-            foreach (DetailsDescription detailsDescription in savedItems)
+            if (null != savedItems)
             {
-                listBoxDetails.Items.Add(detailsDescription);
+                foreach (DetailsDescription detailsDescription in savedItems)
+                {
+                    listBoxDetails.Items.Add(detailsDescription);
+                }
+            }
+            else
+            {
+                // Logger.Log(string.Format("{0}.{1} savedItems is null", className, functionName));
             }
             savedItems = null;
-            if ((0 <= savedIndex) && (savedIndex <= listBoxDetails.Items.Count))
+            if ((0 <= savedIndex) && (savedIndex < listBoxDetails.Items.Count))
             {
                 listBoxDetails.SelectedIndex = savedIndex;
             }
-            currentDetails = savedDetails;
+
+            SetCurrentDetails(functionName, savedDetails);
+            SetSavedDetails(functionName, DetailsEnum.Unknown);  // Primitive solution! We need a stack of stated if we wan to elaborate further on this !!   
+
             listBoxDetails.AutoSize = true;
         }
 
@@ -153,8 +194,8 @@ namespace MusicXmlReader
                 }
 
                 LeaveListboxTimes();
-                listBoxDetails.Focus();
-                currentDetails = detailsEnum;
+                listBoxDetails.Focus();                
+                SetCurrentDetails(functionName,detailsEnum);
 
                 // e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
             }
@@ -287,9 +328,9 @@ namespace MusicXmlReader
             listBoxDetails.AutoSize = true; // Use the area normally occupied by listBoxTimes
         }
 
-        static public DetailsHandler Create(ListBox listBoxTimes, ListBox listBoxDetails, Model model)
+        static public DetailsHandler Create(ListBox listBoxTimes, ListBox listBoxDetails, Model model, IDebugDisplayerClient client)
         {
-            return new DetailsHandler(listBoxTimes,listBoxDetails,model);
+            return new DetailsHandler(listBoxTimes,listBoxDetails,model,client);
         }
 
     }

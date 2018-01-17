@@ -89,7 +89,7 @@ namespace MusicXmlReader
                 // Create a handler for handling all Keyboard shortcuts
                 // shortCutHandler = ShortcutHandler.Create(this, model);
                 // commandInterpreter = UserCommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
-                detailsHandler = DetailsHandler.Create(listBoxTimes,listBoxDetails,model);
+                detailsHandler = DetailsHandler.Create(listBoxTimes,listBoxDetails,model,this as IDebugDisplayerClient);
                 LoadIcon();
 
         // throw (new Exception("For test only")); // Insert this line to test the Last Resort handler below
