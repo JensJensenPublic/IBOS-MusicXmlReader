@@ -158,6 +158,11 @@ namespace MusicXmlReader
             SetSavedDetails(functionName, DetailsEnum.Unknown);  // Primitive solution! We need a stack of stated if we wan to elaborate further on this !!   
 
             listBoxDetails.AutoSize = true;
+            if (DetailsEnum.Unknown == currentDetails)
+            {
+                // Restore the original listbox
+                ReturnToListboxTimes(0);
+            }
         }
 
 
