@@ -699,7 +699,6 @@
             this.Controls.Add(this.MenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.MenuStrip;
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "MainForm";
