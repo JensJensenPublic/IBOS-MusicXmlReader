@@ -1090,10 +1090,16 @@ namespace MusicXmlReaderModel
             if (!IsPause)
             {
                 // This is a note.
-                // By using pitchElement.Step instead of pitchElement.Name we also report how unpitched notes are notated!
+                // By using pitchElement.Step instead of pitchElement.Name we might also report how unpitched notes are notated - if we wanted to!
                 //return String.Format("{0} {1} {2} {3} {4}", pitchElement.Name, pitchElement.Octave, localizedType, localizedTie, notationsString);
-                string name = this.Pitched ? pitchElement.Name : pitchElement.Step.ToString();
-                return String.Format("{0} {1} {2} {3} {4}",name, pitchElement.Octave, localizedType, localizedTie, notationsString);
+                string name = pitchElement.Name;
+                string octave = pitchElement.Octave.ToString();
+                if (this.UnPitched)
+                {
+                    name = (null != UnpitchedText) ? UnpitchedText : "";    // For unpitched instruments we report the instrument here instead of the pitch!
+                    octave = "";                 
+                }
+                return String.Format("{0} {1} {2} {3} {4}",name, octave, localizedType, localizedTie, notationsString);
             }
             else
             {
