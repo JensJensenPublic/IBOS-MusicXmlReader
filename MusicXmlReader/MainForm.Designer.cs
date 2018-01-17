@@ -636,7 +636,7 @@
             this.textBoxBraille.Location = new System.Drawing.Point(10, 511);
             this.textBoxBraille.Name = "textBoxBraille";
             this.textBoxBraille.ReadOnly = true;
-            this.textBoxBraille.Size = new System.Drawing.Size(1200, 62);
+            this.textBoxBraille.Size = new System.Drawing.Size(1205, 62);
             this.textBoxBraille.TabIndex = 5;
             this.textBoxBraille.TabStop = false;
             // 
@@ -645,7 +645,7 @@
             this.textBoxText.Location = new System.Drawing.Point(10, 579);
             this.textBoxText.Name = "textBoxText";
             this.textBoxText.ReadOnly = true;
-            this.textBoxText.Size = new System.Drawing.Size(1200, 20);
+            this.textBoxText.Size = new System.Drawing.Size(1205, 20);
             this.textBoxText.TabIndex = 6;
             this.textBoxText.TabStop = false;
             // 
@@ -655,10 +655,10 @@
             // 
             // textBoxNormalText
             // 
-            this.textBoxNormalText.Location = new System.Drawing.Point(10, 485);
+            this.textBoxNormalText.Location = new System.Drawing.Point(11, 485);
             this.textBoxNormalText.Name = "textBoxNormalText";
             this.textBoxNormalText.ReadOnly = true;
-            this.textBoxNormalText.Size = new System.Drawing.Size(1203, 20);
+            this.textBoxNormalText.Size = new System.Drawing.Size(1204, 20);
             this.textBoxNormalText.TabIndex = 8;
             this.textBoxNormalText.TabStop = false;
             // 
@@ -667,7 +667,7 @@
             this.textBoxStatusInformation.Location = new System.Drawing.Point(10, 606);
             this.textBoxStatusInformation.Name = "textBoxStatusInformation";
             this.textBoxStatusInformation.ReadOnly = true;
-            this.textBoxStatusInformation.Size = new System.Drawing.Size(1200, 20);
+            this.textBoxStatusInformation.Size = new System.Drawing.Size(1205, 20);
             this.textBoxStatusInformation.TabIndex = 10;
             this.textBoxStatusInformation.TabStop = false;
             this.textBoxStatusInformation.Text = "Status Information";
