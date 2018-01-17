@@ -91,6 +91,8 @@ namespace MusicXmlReader
                 // commandInterpreter = UserCommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
                 detailsHandler = DetailsHandler.Create(listBoxTimes,listBoxDetails,model,this as IDebugDisplayerClient);
                 LoadIcon();
+                // https://stackoverflow.com/questions/16305454/getting-the-left-and-right-arrow-keys-to-select-the-previous-next-menu-instead-o
+                Logger.Log(string.Format("SystemInformation.RightAlignedMenus={0}", System.Windows.Forms.SystemInformation.RightAlignedMenus.ToString()));
 
         // throw (new Exception("For test only")); // Insert this line to test the Last Resort handler below
     }

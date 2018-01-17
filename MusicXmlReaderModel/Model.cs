@@ -454,7 +454,7 @@ namespace MusicXmlReaderModel
             this.objects = objects;
             this.iDebugDisplayerClient = iDebugDisplayerClient;
             Logger.LogSystemParameters();
-            Logger.LogDebugerAttachment();
+            Logger.LogDebuggerAttachment();
         }
 
         /// <summary>

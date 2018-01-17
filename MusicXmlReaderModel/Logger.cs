@@ -254,9 +254,9 @@ namespace MusicXmlReaderModel
             }
         }
 
-        public static void LogDebugerAttachment()
+        public static void LogDebuggerAttachment()
         {
-            string methodName = "LogDebugerAttachment";
+            string methodName = "LogDebuggerAttachment";
             bool b = System.Diagnostics.Debugger.IsAttached;
             Log(string.Format("{0}.{1} reported {2}",className, methodName, b));
         }
