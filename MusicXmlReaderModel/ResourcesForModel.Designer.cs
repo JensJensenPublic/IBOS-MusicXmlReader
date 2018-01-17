@@ -2005,7 +2005,7 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Harmonies.
+        ///   Looks up a localized string similar to Chord symbols.
         /// </summary>
         internal static string UserSettings_BrailleNames_Harmonies {
             get {
@@ -2050,7 +2050,7 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Harmonies.
+        ///   Looks up a localized string similar to Chord symbols.
         /// </summary>
         internal static string UserSettings_PlayerNames_Harmonies {
             get {
@@ -2086,7 +2086,7 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Harmonies.
+        ///   Looks up a localized string similar to Chord symbols.
         /// </summary>
         internal static string UserSettings_ReaderNames_Harmonies {
             get {
@@ -2095,7 +2095,7 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Harmony Codes.
+        ///   Looks up a localized string similar to Chord symbol codes.
         /// </summary>
         internal static string UserSettings_ReaderNames_HarmonyCodes {
             get {

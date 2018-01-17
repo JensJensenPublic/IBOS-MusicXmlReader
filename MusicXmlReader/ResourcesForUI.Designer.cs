@@ -727,7 +727,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;1: Checkall.
+        ///   Looks up a localized string similar to &amp;1: Check all.
         /// </summary>
         internal static string TreeView_CheckAll {
             get {

@@ -361,7 +361,7 @@
     <value>unstress</value>
   </data>
   <data name="UserSettings_BrailleNames_Harmonies" xml:space="preserve">
-    <value>Harmonies</value>
+    <value>Chord symbols</value>
   </data>
   <data name="UserSettings_BrailleNames_MeasureNumbers" xml:space="preserve">
     <value>Measure Numbers</value>
@@ -376,7 +376,7 @@
     <value>Beats</value>
   </data>
   <data name="UserSettings_PlayerNames_Harmonies" xml:space="preserve">
-    <value>Harmonies</value>
+    <value>Chord symbols</value>
   </data>
   <data name="UserSettings_ReaderNames_Divisions" xml:space="preserve">
     <value>Divisions</value>
@@ -387,10 +387,10 @@
     <comment>Developer feature</comment>
   </data>
   <data name="UserSettings_ReaderNames_Harmonies" xml:space="preserve">
-    <value>Harmonies</value>
+    <value>Chord symbols</value>
   </data>
   <data name="UserSettings_ReaderNames_HarmonyCodes" xml:space="preserve">
-    <value>Harmony Codes</value>
+    <value>Chord symbol codes</value>
     <comment>Developer feature</comment>
   </data>
   <data name="UserSettings_ReaderNames_MeasureNumbers" xml:space="preserve">
