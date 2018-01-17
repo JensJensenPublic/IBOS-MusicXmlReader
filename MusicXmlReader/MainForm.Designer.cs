@@ -606,6 +606,8 @@
             // userSettingsTreeView
             // 
             this.userSettingsTreeView.AccessibleName = "Note filter";
+            this.userSettingsTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.userSettingsTreeView.CheckBoxes = true;
             this.userSettingsTreeView.Location = new System.Drawing.Point(10, 28);
             this.userSettingsTreeView.Name = "userSettingsTreeView";
@@ -618,7 +620,8 @@
             // listBoxTimes
             // 
             this.listBoxTimes.AccessibleName = "Note list";
-            this.listBoxTimes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.listBoxTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxTimes.FormattingEnabled = true;
             this.listBoxTimes.Location = new System.Drawing.Point(265, 60);
@@ -632,7 +635,7 @@
             // 
             // textBoxBraille
             // 
-            this.textBoxBraille.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxBraille.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxBraille.BackColor = System.Drawing.Color.Black;
             this.textBoxBraille.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -646,7 +649,7 @@
             // 
             // textBoxText
             // 
-            this.textBoxText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxText.Location = new System.Drawing.Point(10, 579);
             this.textBoxText.Name = "textBoxText";
@@ -661,7 +664,7 @@
             // 
             // textBoxNormalText
             // 
-            this.textBoxNormalText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxNormalText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxNormalText.Location = new System.Drawing.Point(11, 485);
             this.textBoxNormalText.Name = "textBoxNormalText";
@@ -672,7 +675,7 @@
             // 
             // textBoxStatusInformation
             // 
-            this.textBoxStatusInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxStatusInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxStatusInformation.Location = new System.Drawing.Point(10, 606);
             this.textBoxStatusInformation.Name = "textBoxStatusInformation";
