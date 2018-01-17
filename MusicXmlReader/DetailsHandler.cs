@@ -173,7 +173,7 @@ namespace MusicXmlReader
         /// <param name="fromTop">Show details either from top or bottum</param>
         public void ShowEventDetails(DetailsEnum detailsEnum, bool fromTop)
         {
-            string functionName = "ShowEventDetails";
+            string functionName = "ShowEventDetails     ";
             // NOTE ARROW + ALT alone has already been taken by tempo increment/decrement !!!
             if ((DetailsEnum.Harmonies != detailsEnum) && (DetailsEnum.Parts != detailsEnum) && (DetailsEnum.Notes != detailsEnum)) return; // This function only supports these sorts of details.
             if (-1 == listBoxTimes.SelectedIndex)
