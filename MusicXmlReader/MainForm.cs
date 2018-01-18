@@ -103,7 +103,7 @@ namespace MusicXmlReader
                 Logger.Log(string.Format("->MainMenu.RightToLeftLayout={0}",this.RightToLeftLayout.ToString()));
 #warning Remove experiments !!
 #endif
-// MenuStripWorkAround(); // Does not solve the problem !! !!
+                //MenuStripWorkAround(); // Does not solve the problem !! !!
 #if false
                 if (SystemInformation.RightAlignedMenus)
                 {
@@ -129,6 +129,7 @@ namespace MusicXmlReader
             System.Media.SystemSounds.Beep.Play();
         }
 
+#if false
         private void MenuStripWorkAround()
         {
             // NO! this does not solve the problem ! It changes the appearance of the dropdowns, but not the behaviour !!!
@@ -138,8 +139,9 @@ namespace MusicXmlReader
             //Begin workaround
             const string functionName = "MenuStripWorkAround";
 
-            //if (SystemInformation.RightAlignedMenus)
+            // if (SystemInformation.RightAlignedMenus)
             {
+                MainMenuStrip.RightToLeft = RightToLeft.Yes;
                 foreach (ToolStripMenuItem toolStripMenuItem in this.MenuStrip.Items)
                 {                 
                     toolStripMenuItem.RightToLeft = RightToLeft.Yes;
@@ -159,7 +161,7 @@ namespace MusicXmlReader
             }
 
         }
-
+#endif
 
 
         private void LoadIcon()
