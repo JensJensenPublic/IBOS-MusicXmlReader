@@ -95,6 +95,7 @@ namespace MusicXmlReader
                 // Investigate The Left/Right problem (Error 296)
 #if true
                 // https://stackoverflow.com/questions/16305454/getting-the-left-and-right-arrow-keys-to-select-the-previous-next-menu-instead-o
+                // https://connect.microsoft.com/VisualStudio/feedback/details/786382/menustrip-control-issues-with-rightalignedmenus
                 Logger.Log(string.Format("->SystemInformation.RightAlignedMenus={0}", System.Windows.Forms.SystemInformation.RightAlignedMenus.ToString()));
                 Logger.Log(string.Format("->MainMenu.RightToLeft={0}", this.RightToLeft.ToString()));
                 Logger.Log(string.Format("->MainMenu.RightToLeftLayout={0}",this.RightToLeftLayout.ToString()));
@@ -103,6 +104,14 @@ namespace MusicXmlReader
                 // this.RightToLeft = RightToLeft.Yes; // Places the menu items towards the right edge of the form.
                 // this.RightToLeftLayout = true; 
 #endif
+                // MenuStripWorkAround(); // Does not solve the problem !! !!
+
+                if (SystemInformation.RightAlignedMenus)
+                {
+#warning Find a real solution instead of this terrible hack !
+                    Beep();
+                    MessageBox.Show(ResourcesForUI.Message_RightAlignedMenus);
+                }
 
                 // throw (new Exception("For test only")); // Insert this line to test the Last Resort handler below
             }
@@ -120,8 +129,28 @@ namespace MusicXmlReader
             System.Media.SystemSounds.Beep.Play();
         }
 
+        private void MenuStripWorkAround()
+        {
+            // NO! this does not solve the problem ! It changes the appearance of the dropdowns, but not the behaviour !!!
 
-           private void LoadIcon()
+            // https://connect.microsoft.com/VisualStudio/feedback/details/786382/menustrip-control-issues-with-rightalignedmenus
+            //Begin workaround
+            const string functionName = "MenuStripWorkAround";
+
+            if (SystemInformation.RightAlignedMenus)
+            {
+                foreach (ToolStripItem toolStripItem in this.MenuStrip.Items)
+                {
+                    toolStripItem.RightToLeft = RightToLeft.Yes;
+                    Logger.Log(string.Format("{0}.{1} Setting RightToLeft to 'yes' for {2} ", className, functionName, toolStripItem.Name));
+                }
+            }
+
+        }
+
+
+
+        private void LoadIcon()
         {
             const string functionName = "LoadIcon";
             string iconFile = "";

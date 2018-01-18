@@ -304,6 +304,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please go to Control Panel - Devices - Pen &amp; Windows Ink and change &apos;Choose which hand you write with&apos; from &apos;Right Hand&apos; to &apos;Left Hand&apos; .
+        /// </summary>
+        internal static string Message_RightAlignedMenus {
+            get {
+                return ResourceManager.GetString("Message_RightAlignedMenus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stop plaing first.
         /// </summary>
         internal static string Message_StopPlayingFirst {

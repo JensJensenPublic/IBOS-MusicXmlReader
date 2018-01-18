@@ -408,4 +408,7 @@
   <data name="DetailState_SingleParts" xml:space="preserve">
     <value>Enkelt-stemmer</value>
   </data>
+  <data name="Message_RightAlignedMenus" xml:space="preserve">
+    <value>Gå venligst til Indstillinger - Enheder - Pen &amp; Windows Ink og skift 'Vælg hvilken hånd du skriver med' fra 'Højre hånd' til 'Venstre hånd'</value>
+  </data>
 </root>
