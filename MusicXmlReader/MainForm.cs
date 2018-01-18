@@ -92,26 +92,26 @@ namespace MusicXmlReader
                 detailsHandler = DetailsHandler.Create(listBoxTimes,listBoxDetails,model,this as IDebugDisplayerClient);
                 LoadIcon();
 
-                // Investigate The Left/Right problem (Error 296)
+
 #if true
+                // Investigate The Left/Right problem (Error 296)
                 // https://stackoverflow.com/questions/16305454/getting-the-left-and-right-arrow-keys-to-select-the-previous-next-menu-instead-o
                 // https://connect.microsoft.com/VisualStudio/feedback/details/786382/menustrip-control-issues-with-rightalignedmenus
+                // https://connect.microsoft.com/VisualStudio/feedback/details/796965/menustrip-right-left-arrow-keys-work-reversely-when-a-submenu-is-open-dropped-down
                 Logger.Log(string.Format("->SystemInformation.RightAlignedMenus={0}", System.Windows.Forms.SystemInformation.RightAlignedMenus.ToString()));
                 Logger.Log(string.Format("->MainMenu.RightToLeft={0}", this.RightToLeft.ToString()));
                 Logger.Log(string.Format("->MainMenu.RightToLeftLayout={0}",this.RightToLeftLayout.ToString()));
 #warning Remove experiments !!
-                Logger.Log("**** NOTE: EXPERIMENTS. REMOVE ");
-                // this.RightToLeft = RightToLeft.Yes; // Places the menu items towards the right edge of the form.
-                // this.RightToLeftLayout = true; 
 #endif
-                // MenuStripWorkAround(); // Does not solve the problem !! !!
-
+// MenuStripWorkAround(); // Does not solve the problem !! !!
+#if false
                 if (SystemInformation.RightAlignedMenus)
                 {
 #warning Find a real solution instead of this terrible hack !
                     Beep();
                     MessageBox.Show(ResourcesForUI.Message_RightAlignedMenus);
                 }
+#endif
 
                 // throw (new Exception("For test only")); // Insert this line to test the Last Resort handler below
             }
@@ -134,15 +134,27 @@ namespace MusicXmlReader
             // NO! this does not solve the problem ! It changes the appearance of the dropdowns, but not the behaviour !!!
 
             // https://connect.microsoft.com/VisualStudio/feedback/details/786382/menustrip-control-issues-with-rightalignedmenus
+            // https://connect.microsoft.com/VisualStudio/feedback/details/796965/menustrip-right-left-arrow-keys-work-reversely-when-a-submenu-is-open-dropped-down
             //Begin workaround
             const string functionName = "MenuStripWorkAround";
 
-            if (SystemInformation.RightAlignedMenus)
+            //if (SystemInformation.RightAlignedMenus)
             {
-                foreach (ToolStripItem toolStripItem in this.MenuStrip.Items)
-                {
-                    toolStripItem.RightToLeft = RightToLeft.Yes;
-                    Logger.Log(string.Format("{0}.{1} Setting RightToLeft to 'yes' for {2} ", className, functionName, toolStripItem.Name));
+                foreach (ToolStripMenuItem toolStripMenuItem in this.MenuStrip.Items)
+                {                 
+                    toolStripMenuItem.RightToLeft = RightToLeft.Yes;
+                    Logger.Log(string.Format("{0}.{1} Setting RightToLeft to 'Yes' for {2} ", className, functionName, toolStripMenuItem.Name));
+                    foreach (object o in toolStripMenuItem.DropDownItems)
+                    {
+                        if (o is ToolStripDropDownItem)
+                        {
+                            ToolStripDropDownItem toolStripDropDownItem = o as ToolStripDropDownItem;
+                            Logger.Log(string.Format("{0}.{1} Setting RightToLeft to 'No' for {2} ", className, functionName, toolStripDropDownItem.Name));
+                            toolStripDropDownItem.RightToLeft = RightToLeft.No;
+                            
+                        }
+                    }                 
+
                 }
             }
 
@@ -792,7 +804,7 @@ namespace MusicXmlReader
 
 
 
-        #region ListBoxTimes
+#region ListBoxTimes
 
         private void ListBoxTimesIndexChanged(int index)
         {
@@ -906,7 +918,7 @@ namespace MusicXmlReader
             Application.Exit();
         }
 
-        #region keyhandlers
+#region keyhandlers
 
 
         private void listBoxDetails_KeyDown(object sender, KeyEventArgs e)
@@ -1507,7 +1519,7 @@ namespace MusicXmlReader
             if (consoleTrace) Console.WriteLine("userSettingsTreeView_KeyUp");
         }
 
-        #region Repeat,GoTo,NormalTempo ***********************************************************************************
+#region Repeat,GoTo,NormalTempo ***********************************************************************************
 
 
         private void ReportSyntax(bool ok, string name, int value, string input)
@@ -1625,16 +1637,16 @@ namespace MusicXmlReader
 
         }
 
-        #endregion ****************************************************************************************
+#endregion ****************************************************************************************
 
 
 
 
 
 
-        #endregion
+#endregion
 
-        #endregion
+#endregion
         //*************************************************************************************************
 
     }
