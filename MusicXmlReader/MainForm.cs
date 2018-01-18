@@ -91,11 +91,21 @@ namespace MusicXmlReader
                 // commandInterpreter = UserCommandInterpreter.Create(this.textBoxCommand, this.listBoxTimes, model);
                 detailsHandler = DetailsHandler.Create(listBoxTimes,listBoxDetails,model,this as IDebugDisplayerClient);
                 LoadIcon();
-                // https://stackoverflow.com/questions/16305454/getting-the-left-and-right-arrow-keys-to-select-the-previous-next-menu-instead-o
-                Logger.Log(string.Format("SystemInformation.RightAlignedMenus={0}", System.Windows.Forms.SystemInformation.RightAlignedMenus.ToString()));
 
-        // throw (new Exception("For test only")); // Insert this line to test the Last Resort handler below
-    }
+                // Investigate The Left/Right problem (Error 296)
+#if true
+                // https://stackoverflow.com/questions/16305454/getting-the-left-and-right-arrow-keys-to-select-the-previous-next-menu-instead-o
+                Logger.Log(string.Format("->SystemInformation.RightAlignedMenus={0}", System.Windows.Forms.SystemInformation.RightAlignedMenus.ToString()));
+                Logger.Log(string.Format("->MainMenu.RightToLeft={0}", this.RightToLeft.ToString()));
+                Logger.Log(string.Format("->MainMenu.RightToLeftLayout={0}",this.RightToLeftLayout.ToString()));
+#warning Remove experiments !!
+                Logger.Log("**** NOTE: EXPERIMENTS. REMOVE ");
+                // this.RightToLeft = RightToLeft.Yes; // Places the menu items towards the right edge of the form.
+                // this.RightToLeftLayout = true; 
+#endif
+
+                // throw (new Exception("For test only")); // Insert this line to test the Last Resort handler below
+            }
             catch (Exception e)
             {
                 // Last resort handler: An unhandled exception occured.
@@ -419,6 +429,7 @@ namespace MusicXmlReader
         delegate void SetSelectedIndexCallback(int index);
         public void SetSelectedIndex(int index)
         {
+            const string functionName = "SetSelectedIndex";
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
@@ -429,8 +440,15 @@ namespace MusicXmlReader
             }
             else
             {
-                //listBoxTimes.Focus(); // Maybe not needed. How can we force the Screeen-reader to read the selected line? 
-                listBoxTimes.SelectedIndex = index;
+                //listBoxTimes.Focus(); // Maybe not needed. How can we force the Screeen-reader to read the selected line?
+                if (listBoxTimes.Items.Count > index) // Prevent crash during program exit
+                {
+                    listBoxTimes.SelectedIndex = index;
+                }
+                else
+                {
+                    Logger.Log(string.Format("{0}.{1} Attempted to set index={2} when Items.Count={3}", className, functionName, index, listBoxTimes.Items.Count));
+                }
                 // System.Threading.Thread.Sleep(100); // HACK Pause the UI thread and let the Screenreader get a chance
             }
         }
