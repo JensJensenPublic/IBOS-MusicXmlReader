@@ -5,6 +5,7 @@ namespace MusicXmlReaderModel
 {
     public class ScorePartElement : Element
     {
+        bool verbose = false;
         const string className = "ScorePartElement";
         public string partId = ""; // For instance "P1"
         public string partName = ""; // For instance "Soprano"
@@ -122,7 +123,7 @@ namespace MusicXmlReaderModel
                 {
                     case "id":
                         partId = a.Value;
-                        Logger.Log(string.Format("{0}.{1}: Part={2}", className, functionName, partId));
+                        if (verbose) Logger.Log(string.Format("{0}.{1}: Part={2}", className, functionName, partId));
                         break;
                     default:
                         Logger.LogOnce(string.Format("{0}.{1}: Unexpected attribute: Name={2} Value={3}", className, functionName, a.Name, a.Value));
@@ -138,18 +139,18 @@ namespace MusicXmlReaderModel
                     case "part-name": partName = n.InnerText; break;
                     case "score-instrument":
                         scoreInstrumentElement = ScoreInstrumentElement.Create(n);
-                        Logger.Log(string.Format(scoreInstrumentElement.ToString())); // Not of interest for the normal user !
+                        if (verbose) Logger.Log(string.Format(scoreInstrumentElement.ToString())); // Not of interest for the normal user !
                         scoreInstruments.Add(scoreInstrumentElement);
                         break;                
                     case "midi-instrument":
                         midiInstrumentElement = MidiInstrumentElement.Create(n);
-                        Logger.Log(string.Format(midiInstrumentElement.ToString())); // Not of interest for the normal user !
+                        if (verbose) Logger.Log(string.Format(midiInstrumentElement.ToString())); // Not of interest for the normal user !
                         midiInstruments.Add(midiInstrumentElement);
                         break;
 
                     case "midi-device":
                         midiDeviceElement = MidiDeviceElement.Create(n);
-                        Logger.Log(string.Format("{0}.{1}: midi-device found. Port={2})", className, functionName,midiDeviceElement.Port)); // Not of interest for the normal user !
+                        if (verbose) Logger.Log(string.Format("{0}.{1}: midi-device found. Port={2})", className, functionName,midiDeviceElement.Port)); // Not of interest for the normal user !
                         break;
 
                     case "identification":
