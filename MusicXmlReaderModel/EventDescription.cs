@@ -825,7 +825,7 @@ namespace MusicXmlReaderModel
                     // For the time being we only handle Tempo here. Later we may handle other velues!
                     if (soundElement.TempoValid)
                     {
-                        soundString = string.Format("{0}:{1} ", ResourcesForModel.EventDescription_tempo, soundElement.TempoValue); 
+                        soundString = string.Format("{0}:{1} ", ResourcesForModel.EventDescription_tempo, soundElement.TempoValueAsInt.ToString()); 
                     }
                 }
             }

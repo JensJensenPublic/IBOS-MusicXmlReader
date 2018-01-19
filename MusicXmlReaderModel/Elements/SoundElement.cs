@@ -24,6 +24,16 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public int TempoValueAsInt
+        {
+            get
+            {
+                return (int)System.Math.Round(TempoValue, 0);
+            }
+        }
+
+
+
         public bool DamperPedal
         {
             get
@@ -83,7 +93,7 @@ namespace MusicXmlReaderModel
 
         public override string ToString() 
         {
-            return string.Format("{0}:{1}",ResourcesForModel.SoundElement_Tempo, ((int)tempoValue).ToString());
+            return string.Format("{0}:{1}",ResourcesForModel.SoundElement_Tempo, TempoValueAsInt);
         }
 
         ///// <summary>

@@ -211,7 +211,7 @@ namespace MusicXmlReaderModel
                 string resultingTempo = "";
                 try
                 {
-                    int originalTempo = (int) currentSoundElement.TempoValue;
+                    int originalTempo = currentSoundElement.TempoValueAsInt;
                     float modifiedTempo = originalTempo * currentTempoModification / 100;
                     resultingTempo = string.Format("={0}", modifiedTempo); // efine number of decimals to 0
                 }
