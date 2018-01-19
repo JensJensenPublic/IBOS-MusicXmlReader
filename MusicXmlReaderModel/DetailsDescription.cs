@@ -182,6 +182,7 @@ namespace MusicXmlReaderModel
     public class SingleNoteDetailsDescription : DetailsDescription
     {
         private NoteElement note;               // If this DetailsDescription represents a note
+        public  NoteElement NoteElement { get { return note; } }
         MidiNote currentDetailsMidiNote;
 
         public SingleNoteDetailsDescription(string s, NoteElement note) : base(s)

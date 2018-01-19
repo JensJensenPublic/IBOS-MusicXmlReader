@@ -116,6 +116,7 @@ namespace MusicXmlReader
                 DetailsDescription[] newItems = model.GetSingleNoteDetails(currentDetailsDescription);
                 listBoxDetails.Items.Clear();
                 listBoxDetails.AutoSize = false; // Force the listbox to scrink
+                Array.Sort(newItems, Compare);
 
                 //Load the new items
                 foreach (DetailsDescription detailsDescription in newItems)
@@ -128,6 +129,38 @@ namespace MusicXmlReader
                 return 0 ;
             }
         }
+
+        public int Compare(DetailsDescription x, DetailsDescription y)
+        {
+            const string functionName = "Compare";
+            try
+            {
+                // throw new Exception("test");
+                if ((x is SingleNoteDetailsDescription) && (y is SingleNoteDetailsDescription))
+                {
+                    NoteElement noteX = (x as SingleNoteDetailsDescription).NoteElement;
+                    NoteElement noteY = (y as SingleNoteDetailsDescription).NoteElement;
+                    // Put pauses and rests at the bottom of the list (last in list)
+                    if ((noteX.UnPitched) || (null == noteX.PitchValue) || (noteX.IsPause)) return +1;
+                    if ((noteY.UnPitched) || (null == noteY.PitchValue) || (noteY.IsPause)) return -1;
+                    // Both NoteElements describe real, pitched notes!
+                    // Put high pitch at the top of the list (first in list)
+                    if (noteX.Octave > noteY.Octave) return -1;
+                    if (noteX.Octave < noteY.Octave) return +1;
+                    // Same octeve
+                    if (noteX.Step > noteY.Step) return -1;
+                    if (noteX.Step < noteY.Step) return +1;
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Log(String.Format("{0}.{1} Exception for x={2} y={3} Message={4}", className, functionName, x.ToString(), y.ToString(), e.Message));
+
+            }
+                return 0;
+        }
+
+
 
         /// <summary>
         /// Restore the original contents
