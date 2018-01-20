@@ -384,9 +384,9 @@ namespace MusicXmlReader
             return ((0x2800 <= c) && (c <= 0x28ff));
         }
 
-#region IBrailleDisplayerClient
+    #region IBrailleDisplayerClient
 
-        public void WriteNormalTextString(string s)
+    public void WriteNormalTextString(string s)
         {
             textBoxNormalText.Text = s;
         }
@@ -562,7 +562,7 @@ namespace MusicXmlReader
         }
 #endregion
 
-
+        
         /// <summary>
         ///  Clear the contents of the listbox showing the timed events (important when loading a new file)
         /// </summary>
@@ -617,18 +617,22 @@ namespace MusicXmlReader
                 return; // Let the user press ESC without warning him
             }
 
-            // Clear all UI BEFORE starting the time consuming Load operation: 
-            ClearUI();
+            model.Silence();   // Stop Screenreader talking about the OpenfileDialog, we just left !!
+
+            // Clear all UI BEFORE starting the time consuming Load operation:
+           ClearUI();
 
             // Start filling the UI with information about the NEW file
-            textBoxStatusInformation.Focus();
+            textBoxNormalText.Focus(); // Move focus to the (empty) textBoxNormalText to prevent JAWS form talking too much !!
+
             string fullFileName = openFileDialog.FileName;
             string shortFileName = System.IO.Path.GetFileName(fullFileName);
             string extension = System.IO.Path.GetExtension(fullFileName);
             string xmlFileName = "";
-            string message = string.Format("{0} '{1}'",ResourcesForUI.TextBox_Messages_Reading_File, shortFileName);
-            WriteStatusInformation(message);
-      
+            string message = string.Format("{0} '{1}'",ResourcesForUI.TextBox_Messages_Reading_File, shortFileName); 
+            WriteStatusInformation(message); // Still write messages to the Status line, but without without Focus on the StatusLine
+            textBoxNormalText.Text = ResourcesForUI.TextBox_Messages_Reading_File; // As textBoxNormalText has Focus, this will be read by the ScreenReader !
+
             switch (extension)
             {
                 case ".mxl": // Attempt to convert from .mxl to .xml first
@@ -637,7 +641,9 @@ namespace MusicXmlReader
                     {
                         message = string.Format("{0} '{1}' {2}", ResourcesForUI.TextBox_Messages_FailedToConvert_File, shortFileName, ResourcesForUI.TextBox_Messages_ToMusicXml); 
                         WriteStatusInformation(message);
-                        MessageBox.Show(message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        textBoxStatusInformation.Focus();
+                        Beep();
+                        MessageBox.Show(message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning); 
                         return;                   
                     }
                     break;
@@ -647,6 +653,8 @@ namespace MusicXmlReader
                 default: // Report unsupported fileformat
                     message = string.Format("{0} '{1}'", ResourcesForUI.TextBox_Messages_UnsupportedFileFormat, shortFileName); 
                     WriteStatusInformation(message);
+                    textBoxStatusInformation.Focus();
+                    Beep();
                     MessageBox.Show(message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
             }
@@ -681,21 +689,18 @@ namespace MusicXmlReader
             //this.userSettingsTreeView.ExpandAll();
             userSettingsHandler.CheckSelectedNotes();
             // Use the status line for meta information ontil overwritten by real status information
-            WriteStatusInformation(GetStatusFromMetaInformation()); 
+            WriteStatusInformation(GetStatusFromMetaInformation());
 
-            // Let the Model do the hard work of transforming to e timed representation.
-            LoadListBoxTimes();
-
+            // Transfer from model to ListboxTimes
+            model.Silence();
+            foreach (EventDescription eventDescription in model.EventDescriptionList.Events)
+            {
+                listBoxTimes.Items.Add(eventDescription);
+            }
+ 
             Logger.DumpStatistics(); // Dump all statistics collected by LogOnce() during parsing, interpreting and rendering the file
 
-            autoReload = true; // From now on all changes are  made by user and must be handled
-
-            // Focus on the listbox representing the time representation
-            listBoxTimes.Focus();
-            //listBoxTimes.SelectedIndex = 0;
-
-            //this.Text = string.Format("{0}       {1}",GetTitleInfo(),ApplicationName); // Show the name of the file just loaded in the Title-Line, accessible by <INSERT> + T
-            this.Text = GetTitleInfo();
+           this.Text = GetTitleInfo();
 
             model.SetUserTempo(100); // Play at 100% of tempo specified in MusicXml file
           
@@ -789,6 +794,10 @@ namespace MusicXmlReader
         private void openMusicXmlFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             const string functionName = "openMusicXmlFileToolStripMenuItem_Click";
+
+            model.Silence();
+            textBoxNormalText.Focus(); // Move focus to the (empty) textBoxNormalText to prevent JAWS form talking too much !!
+
             // Show a standard Select File dialog to allow the user to select and open a MusicXml file
             SelectAndOpenMusicXmlFile(sender, e);
 
@@ -799,8 +808,13 @@ namespace MusicXmlReader
                 // and thus forces the first scroll operation.
                 Logger.Log(string.Format("{0}.{1} Changing SelectedIndex to {2} and back to 0", className, functionName, listBoxTimes.Items.Count - 1));
                 listBoxTimes.SelectedIndex = (listBoxTimes.Items.Count - 1);
-                listBoxTimes.SelectedIndex = (0);
+                listBoxTimes.SelectedIndex = 0;
             }
+
+  
+            // At last move focus (from the NormalText textbox) to the mail Listbox to make the Screenreader do its job
+            listBoxTimes.Focus();
+            autoReload = true;
 
         }
 

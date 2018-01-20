@@ -86,6 +86,25 @@ namespace MusicXmlReaderModel
             return ok;
         }
 
+
+        /// <summary>
+        /// Calls the "Silence" method in th ScreenReaderAPI which maps to different methods depending in the
+        /// current screenreader.
+        /// For JAWS the native Method "JfwApiJFWStopSpeech()" is called
+        /// </summary>
+        public void Silence()
+        {
+            string functionName = "Silence";
+            if (null != screenReaderAPI)
+            {
+                screenReaderAPI.Silence();   // Stop Screenreader talking about the OpenfileDialog, we just left !!
+            }
+            else
+            {
+                Logger.LogOnce(string.Format("{0}.{1}: screenReaderAPI=null", className, functionName));
+            }
+        }
+
         /// <summary>
         /// Writes the text to the status line in the UI handling X-thread issues etc!
         /// </summary>
