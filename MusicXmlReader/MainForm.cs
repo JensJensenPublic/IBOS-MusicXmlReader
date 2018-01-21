@@ -599,7 +599,7 @@ namespace MusicXmlReader
         /// </summary>
         /// <param name="sender"> Not used</param>
         /// <param name="e">Not used</param>
-        private void SelectAndOpenMusicXmlFile(object sender, EventArgs e)
+        private bool SelectAndOpenMusicXmlFile(object sender, EventArgs e)
         {
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.xml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files
@@ -614,10 +614,10 @@ namespace MusicXmlReader
 
             if (string.IsNullOrEmpty(openFileDialog.FileName))
             {
-                return; // Let the user press ESC without warning him
+                return false; // Let the user press ESC without warning him
             }
 
-            model.Silence();   // Stop Screenreader talking about the OpenfileDialog, we just left !!
+            // model.Silence();   // Stop Screenreader talking about the OpenfileDialog, we just left !!
 
             // Clear all UI BEFORE starting the time consuming Load operation:
            ClearUI();
@@ -644,7 +644,7 @@ namespace MusicXmlReader
                         textBoxStatusInformation.Focus();
                         Beep();
                         MessageBox.Show(message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning); 
-                        return;                   
+                        return false;                   
                     }
                     break;
                 case ".xml": // Continue
@@ -656,7 +656,7 @@ namespace MusicXmlReader
                     textBoxStatusInformation.Focus();
                     Beep();
                     MessageBox.Show(message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    return false;
             }
 
 
@@ -673,7 +673,7 @@ namespace MusicXmlReader
                 Logger.Log(string.Format("Failed to read {0}", openFileDialog.FileName)); // Full filename for UI
                 Logger.DumpStatistics(); // Dump all statistics collected by LogOnce() until now
                 this.Text = applicationName; // Remove any exixting filename from the title bar
-                return;
+                return false;
             }
 
             autoReload = false; // While loading the listbox all changes are  made by user and must be ignored
@@ -692,7 +692,7 @@ namespace MusicXmlReader
             WriteStatusInformation(GetStatusFromMetaInformation());
 
             // Transfer from model to ListboxTimes
-            model.Silence();
+            // model.Silence();
             foreach (EventDescription eventDescription in model.EventDescriptionList.Events)
             {
                 listBoxTimes.Items.Add(eventDescription);
@@ -703,7 +703,8 @@ namespace MusicXmlReader
            this.Text = GetTitleInfo();
 
             model.SetUserTempo(100); // Play at 100% of tempo specified in MusicXml file
-          
+
+            return true;
         }
 
         private string GetFileOpenInitialDirectory()
@@ -795,7 +796,7 @@ namespace MusicXmlReader
         {
             const string functionName = "openMusicXmlFileToolStripMenuItem_Click";
 
-            model.Silence();
+            // model.Silence();
             textBoxNormalText.Focus(); // Move focus to the (empty) textBoxNormalText to prevent JAWS form talking too much !!
 
             // Show a standard Select File dialog to allow the user to select and open a MusicXml file
