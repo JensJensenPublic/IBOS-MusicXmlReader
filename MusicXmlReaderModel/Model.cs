@@ -95,14 +95,23 @@ namespace MusicXmlReaderModel
         public void Silence()
         {
             string functionName = "Silence";
-            if (null != screenReaderAPI)
+
+            try
             {
-                screenReaderAPI.Silence();   // Stop Screenreader talking about the OpenfileDialog, we just left !!
+                //throw new Exception("test");
+                if (null != screenReaderAPI)
+                {
+                    screenReaderAPI.Silence();   // Stop Screenreader talking about the OpenfileDialog, we just left !!
+                }
+                else
+                {
+                    Logger.LogOnce(string.Format("{0}.{1}: screenReaderAPI=null", className, functionName));
+                }
             }
-            else
-            {
-                Logger.LogOnce(string.Format("{0}.{1}: screenReaderAPI=null", className, functionName));
-            }
+            catch (Exception e)
+           {
+                Logger.LogOnce(string.Format("{0}.{1}: Exception.Message={2}", className, functionName, e.Message));
+           }
         }
 
         /// <summary>
