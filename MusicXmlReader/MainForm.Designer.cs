@@ -621,6 +621,7 @@
             // listBoxTimes
             // 
             this.listBoxTimes.AccessibleName = "Note list";
+            this.listBoxTimes.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.listBoxTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -704,6 +705,7 @@
             // 
             this.textBoxScreenReader.AccessibleDescription = "\"\"";
             this.textBoxScreenReader.AccessibleName = "\"\"";
+            this.textBoxScreenReader.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.textBoxScreenReader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxScreenReader.Location = new System.Drawing.Point(281, 34);
