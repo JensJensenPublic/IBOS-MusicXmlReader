@@ -99,6 +99,7 @@
             this.textBoxNormalText = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.listBoxDetails = new System.Windows.Forms.ListBox();
+            this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -699,11 +700,23 @@
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDetails_KeyDown);
             this.listBoxDetails.Leave += new System.EventHandler(this.listBoxDetails_Leave);
             // 
+            // textBoxScreenReader
+            // 
+            this.textBoxScreenReader.AccessibleDescription = "\"\"";
+            this.textBoxScreenReader.AccessibleName = "\"\"";
+            this.textBoxScreenReader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxScreenReader.Location = new System.Drawing.Point(281, 34);
+            this.textBoxScreenReader.Name = "textBoxScreenReader";
+            this.textBoxScreenReader.Size = new System.Drawing.Size(926, 20);
+            this.textBoxScreenReader.TabIndex = 12;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1219, 641);
+            this.Controls.Add(this.textBoxScreenReader);
             this.Controls.Add(this.listBoxDetails);
             this.Controls.Add(this.textBoxStatusInformation);
             this.Controls.Add(this.textBoxNormalText);
@@ -798,6 +811,8 @@
         private System.Windows.Forms.ToolStripMenuItem goToToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ofNominalTempoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxScreenReader;
     }
 }
 

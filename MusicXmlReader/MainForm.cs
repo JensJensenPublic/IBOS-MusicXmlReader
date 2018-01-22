@@ -66,6 +66,7 @@ namespace MusicXmlReader
                 // musicPlayerState = MusicPlayerStateEnum.stopped;
                 //LocalizeStartStopButton(musicPlayerState);
                 applicationName = ResourcesForUI.MainForm_ApplicationName;
+                textBoxScreenReader.Hide(); // This textbox gets Focus used during long-lasting operation and thus draws the Screenreaders attensio to itself, avoiding too much Speech !
                 LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
                 listBoxTimes.AccessibleName = ResourcesForUI.ListView_Accessible_Name; // Overwrite all items in listBoxTimes with localized texts
                 userSettingsTreeView.AccessibleName = ResourcesForUI.TreeView_Accessible_Name; // Overwrite all items in userSettingsTreeview with localized texts
@@ -623,7 +624,7 @@ namespace MusicXmlReader
            ClearUI();
 
             // Start filling the UI with information about the NEW file
-            textBoxNormalText.Focus(); // Move focus to the (empty) textBoxNormalText to prevent JAWS form talking too much !!
+//            textBoxNormalText.Focus(); // Move focus to the (empty) textBoxNormalText to prevent JAWS form talking too much !!
 
             string fullFileName = openFileDialog.FileName;
             string shortFileName = System.IO.Path.GetFileName(fullFileName);
@@ -631,7 +632,9 @@ namespace MusicXmlReader
             string xmlFileName = "";
             string message = string.Format("{0} '{1}'",ResourcesForUI.TextBox_Messages_Reading_File, shortFileName); 
             WriteStatusInformation(message); // Still write messages to the Status line, but without without Focus on the StatusLine
-            textBoxNormalText.Text = ResourcesForUI.TextBox_Messages_Reading_File; // As textBoxNormalText has Focus, this will be read by the ScreenReader !
+            //textBoxScreenReader.Text = ResourcesForUI.TextBox_Messages_Reading_File; // As textBoxNormalText has Focus, this will be read by the ScreenReader !
+            textBoxScreenReader.Text = shortFileName; // As textBoxNormalText has Focus, this will be read by the ScreenReader !
+            textBoxScreenReader.Refresh();
 
             switch (extension)
             {
@@ -797,31 +800,45 @@ namespace MusicXmlReader
             const string functionName = "openMusicXmlFileToolStripMenuItem_Click";
 
             // model.Silence();
-            textBoxNormalText.Focus(); // Move focus to the (empty) textBoxNormalText to prevent JAWS form talking too much !!
-
-            // Show a standard Select File dialog to allow the user to select and open a MusicXml file
-            SelectAndOpenMusicXmlFile(sender, e);
-
-            if (listBoxTimes.Items.Count > 0)
+   
+            try
             {
-                // Note: This is a HACK, which forces the JIT compiler to handle the code for scrolling outside the initially visible part of the listbox.
-                // This is needed to prevent unstable rhythm during autoplaying when the cursor leaves the initially visible part of the listbox
-                // and thus forces the first scroll operation.
-                Logger.Log(string.Format("{0}.{1} Changing SelectedIndex to {2} and back to 0", className, functionName, listBoxTimes.Items.Count - 1));
-                listBoxTimes.SelectedIndex = (listBoxTimes.Items.Count - 1);
-                listBoxTimes.SelectedIndex = 0;
-            }
+                // throw new Exception("Test");
+                textBoxScreenReader.Text = "";
+                textBoxScreenReader.Refresh();         
+                textBoxScreenReader.Show();
+                textBoxScreenReader.Focus(); // Move focus to the (empty) textBoxScreenreader to prevent JAWS form talking too much !! 
 
-  
+                // Show a standard Select File dialog to allow the user to select and open a MusicXml file
+                SelectAndOpenMusicXmlFile(sender, e);
+
+                if (listBoxTimes.Items.Count > 0)
+                {
+                    // Note: This is a HACK, which forces the JIT compiler to handle the code for scrolling outside the initially visible part of the listbox.
+                    // This is needed to prevent unstable rhythm during autoplaying when the cursor leaves the initially visible part of the listbox
+                    // and thus forces the first scroll operation.
+                    Logger.Log(string.Format("{0}.{1} Changing SelectedIndex to {2} and back to 0", className, functionName, listBoxTimes.Items.Count - 1));
+                    listBoxTimes.SelectedIndex = (listBoxTimes.Items.Count - 1);
+                    listBoxTimes.SelectedIndex = 0;
+                }
+
+            }
+            catch (Exception exception)
+            {
+                // Be sure to restore the UI state !
+                Beep();
+                Logger.Log(string.Format("{0}.{1} Exception. Message={2}", className, functionName, exception.Message));
+            }
             // At last move focus (from the NormalText textbox) to the mail Listbox to make the Screenreader do its job
             listBoxTimes.Focus();
+            textBoxScreenReader.Hide();
             autoReload = true;
 
         }
 
 
 
-#region ListBoxTimes
+        #region ListBoxTimes
 
         private void ListBoxTimesIndexChanged(int index)
         {
@@ -1653,17 +1670,12 @@ namespace MusicXmlReader
 
 
         }
+        
+        #endregion ****************************************************************************************
 
-#endregion ****************************************************************************************
+        #endregion
 
-
-
-
-
-
-#endregion
-
-#endregion
+        #endregion
         //*************************************************************************************************
 
     }
