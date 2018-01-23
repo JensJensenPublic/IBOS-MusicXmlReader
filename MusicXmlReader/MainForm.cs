@@ -311,7 +311,8 @@ namespace MusicXmlReader
 
             //Children of viewToolStripMenuItem:
             instrumentsToolStripMenuItem.Text = ResourcesForUI.ToolsStripMenuItem_View_Instruments;
-
+            instrumentsToolStripMenuItem.ShortcutKeys = ShortcutHandler.DetailsInstruments;
+            GenerateAccessibleName(ref instrumentsToolStripMenuItem);
 
             // Children of  toolsToolStripMenuItem
             museScoreToolStripMenuItem.Text =                   ResourcesForUI.ToolStripMenuItem_Tools_MuseScore;
@@ -1060,7 +1061,8 @@ namespace MusicXmlReader
                 case ShortcutHandler.DetailsHarmonyBottom:  detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Harmonies, false); break;   // Start from bottom
                 case ShortcutHandler.DetailsPartsBottom:    detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Parts, false); break;       //  Start from bottom
                 case ShortcutHandler.DetailsNotesBottom:    detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Notes, false); break;       //  Start from bottom
-                case ShortcutHandler.DetailsInstruments:    detailsHandler.ShowGlobalDetails(DetailsHandler.DetailsEnum.Instruments, true); break;  // Always shown from top
+                // DetailsInstruments are handled directly from MenuLine->View because they do not depend on which item is selected in the NoteList.
+                //case ShortcutHandler.DetailsInstruments:    detailsHandler.ShowGlobalDetails(DetailsHandler.DetailsEnum.Instruments, true); break;  // Always shown from top
                 //case ShortcutHandler.DetailsInstrumentsButtom:  ShowDetails(DetailsEnum.Instruments, false); break;
 
                 default:
