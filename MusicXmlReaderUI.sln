@@ -32,23 +32,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Official Documentation", "O
 		Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser version 1.1.0.0.doc = Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser version 1.1.0.0.doc
 		Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser version 2.0.0.0.doc = Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser version 2.0.0.0.doc
 		Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser.odt = Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser.odt
+		Documentation\Official Documentation\Installation guide for IBOS MusicXmlReader version 2.0.0.0.doc = Documentation\Official Documentation\Installation guide for IBOS MusicXmlReader version 2.0.0.0.doc
 		Documentation\Official Documentation\Installationsvejledning for IBOS Nodelæser version 2.0.0.0.doc = Documentation\Official Documentation\Installationsvejledning for IBOS Nodelæser version 2.0.0.0.doc
 		Documentation\Official Documentation\Installationsvejledning for IBOS Nodelæser.doc = Documentation\Official Documentation\Installationsvejledning for IBOS Nodelæser.doc
 		Documentation\Official Documentation\Installationsvejledning for IBOS Nodelæser.odt = Documentation\Official Documentation\Installationsvejledning for IBOS Nodelæser.odt
 		Documentation\Official Documentation\User's manual for IBOS MusicXmlReader version 1.1.0.0.doc = Documentation\Official Documentation\User's manual for IBOS MusicXmlReader version 1.1.0.0.doc
+		Documentation\Official Documentation\User's manual for IBOS MusicXmlReader version 2.0.0.0.doc = Documentation\Official Documentation\User's manual for IBOS MusicXmlReader version 2.0.0.0.doc
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Release Notes", "Release Notes", "{DC119A17-C15E-403A-9163-4CD93B8F880B}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser version 2.0.0.0.doc = Documentation\Official Documentation\Brugervejledning for IBOS Nodelæser version 2.0.0.0.doc
 		Documentation\Official Documentation\Release Notes\Ekstra vejledning til installation af version 0.5.0.0.odt = Documentation\Official Documentation\Release Notes\Ekstra vejledning til installation af version 0.5.0.0.odt
+		Documentation\Official Documentation\Release Notes\Release Notes for IBOS MusicXmlReader version 2.0.0.0.doc = Documentation\Official Documentation\Release Notes\Release Notes for IBOS MusicXmlReader version 2.0.0.0.doc
+		Documentation\Official Documentation\Release Notes\Release Notes for IBOS Nodelæser version 2.0.0.0.doc = Documentation\Official Documentation\Release Notes\Release Notes for IBOS Nodelæser version 2.0.0.0.doc
 		Documentation\Official Documentation\Release Notes\Release Notes for version 0.5.0.0.odt = Documentation\Official Documentation\Release Notes\Release Notes for version 0.5.0.0.odt
 		Documentation\Official Documentation\Release Notes\Release Notes for version 0.6.0.0.odt = Documentation\Official Documentation\Release Notes\Release Notes for version 0.6.0.0.odt
 		Documentation\Official Documentation\Release Notes\Release Notes for version 0.7.0.0.odt = Documentation\Official Documentation\Release Notes\Release Notes for version 0.7.0.0.odt
 		Documentation\Official Documentation\Release Notes\Release Notes for version 1.0.0.0.odt = Documentation\Official Documentation\Release Notes\Release Notes for version 1.0.0.0.odt
 		Documentation\Official Documentation\Release Notes\Release Notes for version 1.0.5.0.odt = Documentation\Official Documentation\Release Notes\Release Notes for version 1.0.5.0.odt
 		Documentation\Official Documentation\Release Notes\Release Notes for version 1.1.0.0.doc = Documentation\Official Documentation\Release Notes\Release Notes for version 1.1.0.0.doc
-		Documentation\Official Documentation\Release Notes\Release Notes for version 2.0.0.0.doc = Documentation\Official Documentation\Release Notes\Release Notes for version 2.0.0.0.doc
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlatformDependencies", "PlatformDependencies\PlatformDependencies.csproj", "{5C29F3B2-FE9D-4306-98D6-00D3730D8EBC}"
