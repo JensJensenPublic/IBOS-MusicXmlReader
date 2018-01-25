@@ -400,7 +400,7 @@
     <value>All parts</value>
   </data>
   <data name="DetailState_Harmonies" xml:space="preserve">
-    <value>Chords</value>
+    <value>Chord symbols</value>
   </data>
   <data name="DetailState_Instruments" xml:space="preserve">
     <value>Instruments</value>

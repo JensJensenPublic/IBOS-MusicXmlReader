@@ -106,7 +106,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chords.
+        ///   Looks up a localized string similar to Chord symbols.
         /// </summary>
         internal static string DetailState_Harmonies {
             get {
