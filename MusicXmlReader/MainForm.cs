@@ -1574,7 +1574,7 @@ namespace MusicXmlReader
         }
 
 
-        private string ShowParameterInputForm(ParameterDescription p)
+        private DialogResult ShowParameterInputForm(ParameterDescription p, out string parameters)
         {
             const string functionName = "ShowParameterInputForm";
             ParameterInputForm parameterInputForm = new ParameterInputForm();
@@ -1582,11 +1582,10 @@ namespace MusicXmlReader
             parameterInputForm.Text = p.Name;
             // Show testDialog as a modal dialog and determine if DialogResult = OK.
             DialogResult dialogResult = parameterInputForm.ShowDialog(this);
-            Logger.Log(string.Format("{0}.{1} returned {2}", className, functionName, dialogResult));
-            // Returning an empty string will cause a warning Beep. This may not be the optimal behaviour  ??            
-            string result = (dialogResult == DialogResult.OK) ? parameterInputForm.ComboBoxInput : "";
+            Logger.Log(string.Format("{0}.{1} returned {2}", className, functionName, dialogResult));          
+            parameters = parameterInputForm.ComboBoxInput;
             parameterInputForm.Dispose();
-            return result;
+            return dialogResult;
         }
 
         private void repeatToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1594,7 +1593,8 @@ namespace MusicXmlReader
             const string functionName = "repeatToolStripMenuItem_Click";
             Logger.Log(string.Format("{0}.{1}",className,functionName));
             RepeatParameterDescription p = new RepeatParameterDescription();
-            string input = ShowParameterInputForm(p); 
+            string input = "";
+            if (DialogResult.OK != ShowParameterInputForm(p, out input)) return;                 
             int n1 = 0;
             int n2 = 0;
             bool ok = (p.CheckSyntax(input, out n1, out n2));
@@ -1629,7 +1629,8 @@ namespace MusicXmlReader
             const string functionName = "goToToolStripMenuItem_Click";
             Logger.Log(string.Format("{0}.{1}", className, functionName));
             SingleIntParameterDescription p = new SingleIntParameterDescription(name);
-            string input = ShowParameterInputForm(p);
+            string input = ""; ;
+            if (DialogResult.OK != ShowParameterInputForm(p, out input)) return;
             int value = 0;
             bool ok = (p.CheckSyntax(input, out value));
             ReportSyntax(ok, name, value, input);
@@ -1642,10 +1643,7 @@ namespace MusicXmlReader
             {
                 Beep();
                 Logger.Log(string.Format("{0}.{1} Illegal GoTo-command:'{2}'", className, functionName, input));
-            }
-
-
-
+            }  
         }
 
         private void ofNominalTempoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1654,8 +1652,8 @@ namespace MusicXmlReader
             Logger.Log(string.Format("{0}.{1}", className, functionName));
             string name = Utilities.RemoveAmpersant(ResourcesForUI.ParameterInputForm_PctOfNominalTempo); // "Localize(% of &Normalt Tempo)";
             SingleIntParameterDescription p = new SingleIntParameterDescription(name);
-            // string input = ShowParameterInputForm(p, ParmFormKeyEventNode, ComboBoxKeyEventNode, TextBoxKeyEventNode);
-            string input = ShowParameterInputForm(p); // , ParmFormKeyEventNode, ComboBoxKeyEventNode, TextBoxKeyEventNode);
+            string input = "";
+            if (DialogResult.OK != ShowParameterInputForm(p, out input)) return;
             int value = 0;
             bool ok = (p.CheckSyntax(input, out value));
             ReportSyntax(ok, name, value, input);

@@ -44,6 +44,7 @@ namespace MusicXmlReader
         private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             // const string functionName = "comboBox1_KeyPress";
+            this.DialogResult = DialogResult.None;
             const char RETURN = (char)13;
             const char ESC = (char)27;
             switch (e.KeyChar)
@@ -55,6 +56,7 @@ namespace MusicXmlReader
                     break;
                 case ESC:
                     this.DialogResult = DialogResult.Cancel;
+                    e.Handled = true;   // Prevent "Ding" when closing form with ESC, independently of value  
                     this.Close();
                     return;
                 default:
@@ -62,12 +64,15 @@ namespace MusicXmlReader
             }
 
             // Check the syntax of the resulting input and report any error by a beep
-            string input = comboBox1.Text + e.KeyChar.ToString();
-            bool ok = parameterDescription.CheckSyntax(input);
-            if (!ok)
+            if (DialogResult.OK == this.DialogResult) // Avoid Ding on ESC
             {
-                System.Media.SystemSounds.Beep.Play();
-                // Logger.Log(string.Format("{0}.{1}: Name={2} Input={3} Syntax error!", className, functionName, Name, input));
+                string input = comboBox1.Text + e.KeyChar.ToString();
+                bool ok = parameterDescription.CheckSyntax(input);
+                if (!ok)
+                {
+                    System.Media.SystemSounds.Beep.Play();
+                    // Logger.Log(string.Format("{0}.{1}: Name={2} Input={3} Syntax error!", className, functionName, Name, input));
+                }
             }
         }
     }
