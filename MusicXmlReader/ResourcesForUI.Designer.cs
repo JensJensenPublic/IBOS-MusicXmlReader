@@ -79,6 +79,24 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to bottom.
+        /// </summary>
+        internal static string DetailsState_Bottom {
+            get {
+                return ResourceManager.GetString("DetailsState_Bottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to top.
+        /// </summary>
+        internal static string DetailsState_Top {
+            get {
+                return ResourceManager.GetString("DetailsState_Top", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All parts.
         /// </summary>
         internal static string DetailState_AllParts {

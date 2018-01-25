@@ -414,4 +414,10 @@
   <data name="Message_RightAlignedMenus" xml:space="preserve">
     <value>Please go to Control Panel - Devices - Pen &amp; Windows Ink and change 'Choose which hand you write with' from 'Right Hand' to 'Left Hand' </value>
   </data>
+  <data name="DetailsState_Bottom" xml:space="preserve">
+    <value>bottom</value>
+  </data>
+  <data name="DetailsState_Top" xml:space="preserve">
+    <value>top</value>
+  </data>
 </root>

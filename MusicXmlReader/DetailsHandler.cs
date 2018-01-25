@@ -118,11 +118,16 @@ namespace MusicXmlReader
                 listBoxDetails.AutoSize = false; // Force the listbox to scrink
                 Array.Sort(newItems, Compare);
 
+                string detailName = Localize(DetailsEnum.NotesForPart);
+                // Insert text markers at top 
+                listBoxDetails.Items.Add(new StringDetailsDescription(detailName + " " +  ResourcesForUI.DetailsState_Top));
                 //Load the new items
                 foreach (DetailsDescription detailsDescription in newItems)
                 {
                     listBoxDetails.Items.Add(detailsDescription);
                 }
+                // Insert text markers at bottom
+                listBoxDetails.Items.Add(new StringDetailsDescription(detailName + " " + ResourcesForUI.DetailsState_Bottom));
                 SetCurrentDetails(functionName,DetailsEnum.NotesForPart);
                 listBoxDetails.AutoSize = true; // Allow listbox to grow to the new size needed
                 listBoxDetails.SelectedIndex = fromTop ? 0 : listBoxDetails.Items.Count - 1;
