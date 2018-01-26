@@ -227,30 +227,22 @@ namespace MusicXmlReader
                 {
                     EventDescription currentEventDescription = (listBoxTimes.Items[listBoxTimes.SelectedIndex]) as EventDescription;
 
-                    string topText    = ""; // Text to be shown at top of the list of details
-                    string bottomText = "";  // Text to be shown at bottom of the list of details
+                    string detailsName = Localize(detailsEnum);
+                    string topText    = detailsName + " " + ResourcesForUI.DetailsState_Top;    // Text to be shown at top of the list of details
+                    string bottomText = detailsName + " " + ResourcesForUI.DetailsState_Bottom;  // Text to be shown at bottom of the list of details
                     DetailsDescription[] items = new DetailsDescription[0];
                     switch (detailsEnum)
                     {
-                        case DetailsEnum.Parts:
-                            items = model.GetCurrentEventDetails(currentEventDescription, false);
-                            break;//  Show details about current parts
-                        case DetailsEnum.Notes:
-                            items = model.GetCurrentEventDetails(currentEventDescription, true);
-                            break;//  Show details about current parts
-                        case DetailsEnum.Harmonies:
-                            items = model.GetCurrentHarmonyDetails(currentEventDescription);
-                            topText = ResourcesForUI.DetailsState_Top;
-                            bottomText = ResourcesForUI.DetailsState_Bottom;
-                            break; // Show details about the current harmony
-                        case DetailsEnum.Instruments: items = model.GetAllPartDetails();
-                            break;
+                        case DetailsEnum.Parts: items = model.GetCurrentEventDetails(currentEventDescription, false); break;//  Show details about current parts
+                        case DetailsEnum.Notes: items = model.GetCurrentEventDetails(currentEventDescription, true);  break;//  Show details about current parts
+                        case DetailsEnum.Harmonies: items = model.GetCurrentHarmonyDetails(currentEventDescription);  break; // Show details about the current harmony
+                        case DetailsEnum.Instruments: items = model.GetAllPartDetails(); break;
                         default: break;
                     };
 
-                    if (!string.IsNullOrEmpty(topText)) listBoxDetails.Items.Add(new StringDetailsDescription(Localize(detailsEnum) + " " + topText));
+                    if (!string.IsNullOrEmpty(topText)) listBoxDetails.Items.Add(new StringDetailsDescription(topText));
                     listBoxDetails.Items.AddRange(items);        
-                    if (!string.IsNullOrEmpty(bottomText)) listBoxDetails.Items.Add(new StringDetailsDescription(Localize(detailsEnum)+ " " + bottomText));
+                    if (!string.IsNullOrEmpty(bottomText)) listBoxDetails.Items.Add(new StringDetailsDescription(bottomText));
 
                     int itemCount = listBoxDetails.Items.Count;
                     if (0 != itemCount)
