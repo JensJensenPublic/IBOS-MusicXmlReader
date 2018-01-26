@@ -455,12 +455,15 @@ namespace MusicXmlReader
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
+#if true
+            // If we don't need InvokeRequired we can also skip moving SelectedIndex back and forth (line 825)
             if (listBoxTimes.InvokeRequired)
             {
                 GetObjectAtIndexCallback d = new GetObjectAtIndexCallback(GetObjectAtIndex);
                 return listBoxTimes.Invoke(d, new object[] { index });
             }
             else
+#endif
             {
                 if ((index < 0) || (index >= listBoxTimes.Items.Count))
                 {
@@ -818,8 +821,11 @@ namespace MusicXmlReader
                     // Note: This is a HACK, which forces the JIT compiler to handle the code for scrolling outside the initially visible part of the listbox.
                     // This is needed to prevent unstable rhythm during autoplaying when the cursor leaves the initially visible part of the listbox
                     // and thus forces the first scroll operation.
+#if true
+                    // Not needed if we kan avoid the "if InvoceRequired mechanism above (Line 459)
                     Logger.Log(string.Format("{0}.{1} Changing SelectedIndex to {2} and back to 0", className, functionName, listBoxTimes.Items.Count - 1));
                     listBoxTimes.SelectedIndex = (listBoxTimes.Items.Count - 1);
+#endif
                     listBoxTimes.SelectedIndex = 0;
                 }
 
@@ -839,7 +845,7 @@ namespace MusicXmlReader
 
 
 
-        #region ListBoxTimes
+#region ListBoxTimes
 
         private void ListBoxTimesIndexChanged(int index)
         {
@@ -1671,11 +1677,11 @@ namespace MusicXmlReader
 
         }
         
-        #endregion ****************************************************************************************
+#endregion ****************************************************************************************
 
-        #endregion
+#endregion
 
-        #endregion
+#endregion
         //*************************************************************************************************
 
     }
