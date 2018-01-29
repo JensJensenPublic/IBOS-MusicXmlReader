@@ -410,6 +410,7 @@ namespace MusicXmlReader
             WriteStatusInformation(s, ++currentSequenceNumber);
         }
 
+        private string latestStatusInformation = "";
 
         delegate void WriteStatusInformationCallback(string s,long sequenceNumber);
         private void WriteStatusInformation(string s, long sequenceNumber)
@@ -429,6 +430,7 @@ namespace MusicXmlReader
                     // Logger.Log(string.Format("{0}.{1}.INR: Showed Status:{2}", className, functionName, s));
                     textBoxStatusInformation.Text = s;
                     textBoxStatusInformation.Refresh();
+                    latestStatusInformation = s;
                 }
                 else
                 {
@@ -1676,12 +1678,20 @@ namespace MusicXmlReader
 
 
         }
-        
-#endregion ****************************************************************************************
 
-#endregion
+        private void MainForm_SizeChanged(object sender, EventArgs e)
+        {
+            string functionName = "MainForm_SizeChanged";
+            Logger.Log(string.Format("{0}.{1} Form size changed to Width={2} Height={3} Restoring StatusInformation to '{4}'", className, functionName,this.Width,this.Height, latestStatusInformation));
+            this.textBoxStatusInformation.Text = latestStatusInformation; // Restore prevopus contents after resize !!
+            this.Refresh();
+        }
 
-#endregion
+        #endregion ****************************************************************************************
+
+        #endregion
+
+        #endregion
         //*************************************************************************************************
 
     }
