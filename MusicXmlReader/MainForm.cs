@@ -1679,6 +1679,14 @@ namespace MusicXmlReader
 
         }
 
+        /// <summary>
+        /// Seems to be needed to compensate for an error in the communication between WINDOWS and JAWS:
+        /// After a form Resize the INSERT+PAGEDOWN JAWS shortcut no longer reads the control positioned at the bottom of the form, in this case the Status Line.
+        /// Instead some other undefined information is read, appa rantly depending on the contents of the other controls on the form.
+        /// The HACK below seems to compensate for this error.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
             string functionName = "MainForm_SizeChanged";
