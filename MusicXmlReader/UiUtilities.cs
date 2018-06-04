@@ -30,7 +30,25 @@ namespace MusicXmlReader
         /// </summary>
         public static void Beep()
         {
-            System.Media.SystemSounds.Beep.Play();
+#if false
+#warning ToDo Find out why SystemSounds.Beep.Play does not work on JSJ's private PC when User= JSJ ! And remove the hack below!
+            bool ok = false;
+            string fileName = @"C:\Windows\media\Windows Background.wav";
+            try
+            {           
+                new System.Media.SoundPlayer(fileName).Play();
+                ok = true;
+            }
+            catch (Exception)
+            {
+                Logger.LogCF(string.Format(": Failed to play {0}", fileName));
+            }
+            if (!ok)
+#endif
+            {
+                System.Media.SystemSound myBeep = System.Media.SystemSounds.Beep;
+                myBeep.Play();
+            }
         }
 
 
