@@ -63,7 +63,6 @@
     <Compile Include="Elements\SlashElement.cs" />
     <Compile Include="Elements\UnpitchedElement.cs" />
     <Compile Include="Elements\VirtualInstrumentElement.cs" />
-    <Compile Include="EventDescriptionTextRepresentation.cs" />
     <Compile Include="IntegerFraction.cs" />
     <Compile Include="KnownFolders.cs" />
     <Compile Include="MeasureFraction.cs" />
