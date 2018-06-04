@@ -15,6 +15,7 @@ namespace MusicXmlReaderModel
         private TimeElement currentTimeElement;
         private HarmonyElement currentHarmonyElement;
         private MetronomeElement currentMetronomeElement;
+        private MeasureFraction currentMeasureFraction;
 
         // The tempo modufication is defined from the client, not from the xml file
         // so it is modelled as a static variable and is ´referenced in the copy constructor! 
@@ -122,6 +123,14 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public MeasureFraction CurrentMeasureFraction
+        {
+            get { return currentMeasureFraction; }
+            set { currentMeasureFraction = value; }
+        }
+
+
+
         #endregion // Encapsulation
 
         private void LogChange(string attrubuteName, int oldValue, int newValue)
@@ -177,16 +186,17 @@ namespace MusicXmlReaderModel
         }
 
 
-        private string GetTempoString()
+        public string GetTempoString()
         {
             string functionName = "GetTempoString";
-            string tempo = null;
+            string tempo = null;            
 
             if (null != currentMetronomeElement)
             {
                 // As default use the tempo specified in the MetronomeElement
                 tempo = currentMetronomeElement.ToString();
             }
+
             if (null != currentSoundElement)
             {
                 // Use the tempo specified in the soundElement if it exists
@@ -225,17 +235,45 @@ namespace MusicXmlReaderModel
             return result;
         }
 
+        private string Format(string elementType, Element element)
+        {
+            if (null == element)
+            {
+                Logger.LogCF(string.Format(": {0} == null",elementType));
+                return "??";
+            }
+            return element.Caption + " " + ((null == element) ? "?" : element.ToString());
+        }
 
+        private string Format(string elementType,Element element, string s)
+        {
+            if (null == element)
+            {
+                Logger.LogCF(string.Format(": {0} == null", elementType));
+                return "??";
+            }
+            return element.Caption + " " + s;
+        }
 
+        private string Format(MeasureFraction fraction)
+        {
+            return  ((null == CurrentMeasureFraction) ? "?" : currentMeasureFraction.ToString()); 
+        }
+
+        /// <summary>
+        /// Describes the format of the status information when shown in the status line
+        /// Please compare to DetailsPlayer.Format()
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            string s = string.Format("{0} {1} {2} {3} {4}",
-                (null == currentMeasureElement) ? "?" : currentMeasureElement.ToString(), // 0
-                (null == currentTimeElement) ? "?" : currentTimeElement.ToString(), //1
-                (null == currentKeyElement) ? "?" : currentKeyElement.ToString(),        // 2
-                (null == currentHarmonyElement) ? "" : currentHarmonyElement.ToLocalizedString(), //3 // Ignore the case where no narmony is found
-                GetTempoString()); // 4 The string describing the tempo is more complex than the others and need a special mothod.
-                //  GetMetronomeString()); // 5
+            string s = string.Format("{0} {1} {2} {3} {4} {5}",
+                Format("MeasureElement",currentMeasureElement), // 0
+                Format(currentMeasureFraction), // 1
+                Format("TimeElement",currentTimeElement), // 2 
+                Format("KeyElement",currentKeyElement), // 3
+                (null == currentHarmonyElement) ? "NC" : Format("HarmonyElement",currentHarmonyElement), // 4 NC means "No Chord"
+                Format("MetronomeElement",currentMetronomeElement, GetTempoString())); //5
             return s;
         }
 

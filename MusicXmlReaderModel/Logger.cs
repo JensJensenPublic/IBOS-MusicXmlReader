@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Diagnostics; // For finding calling method
+using System.Reflection;  // For finding calling method
+
 
 namespace MusicXmlReaderModel
 {
@@ -8,6 +11,20 @@ namespace MusicXmlReaderModel
     {
         static string className = "Logger";
         // TODO: Adress possible multithreading problems !!
+
+        // Used for instance for appending the name of the .xml file under test when running a test application
+        static private string postString = null;
+        static public string PostString
+        {
+            get
+            {
+                return (postString== null) ? "" : postString;
+            }
+            set
+            {
+                postString = value;
+            }
+        }
 
 
         //        private static string GetPlatformTempDirectory()
@@ -151,6 +168,35 @@ namespace MusicXmlReaderModel
             Log(s, true);
         }
 
+
+        /// <summary>
+        /// Same as Log, but automatically adds ClassName and FunctionNAme of the calling function.
+        /// </summary>
+        /// <param name="s"></param>
+        public static void LogCF(string s)
+        {
+            StackTrace stackTrace = new StackTrace();
+            MethodBase methodBase = stackTrace.GetFrame(1).GetMethod();
+            Type type = methodBase.ReflectedType;
+            //string Namespace = type.Namespace;
+            Log(string.Format("{0}.{1}{2}", type.Name, methodBase.Name, s));
+            //Console.WriteLine(Namespace + "." + Class.Name + "." + methodBase.Name);
+        }
+
+        /// <summary>
+        /// Same as LogOnce, but automatically adds ClassName and FunctionNAme of the calling function.
+        /// </summary>
+        /// <param name="s"></param>
+        public static void LogCFOnce(string s)
+        {
+            StackTrace stackTrace = new StackTrace();
+            MethodBase methodBase = stackTrace.GetFrame(1).GetMethod();
+            Type type = methodBase.ReflectedType;
+            //string Namespace = type.Namespace;
+            LogOnce(string.Format("{0}.{1}{2}", type.Name, methodBase.Name, s));
+            //Console.WriteLine(Namespace + "." + Class.Name + "." + methodBase.Name);
+        }
+
         private static void Log(string s, bool showTimeStamp)
         {
             if (string.IsNullOrEmpty(logFileFullName)) return; // Open() must be called before using the Logger !
@@ -176,8 +222,9 @@ namespace MusicXmlReaderModel
         /// Instead a statistics is kept for counting how many times the string is logged.
         /// </summary>
         /// <param name="s"></param>
-        public static void LogOnce(string s)
+        public static void LogOnce(string s0)
         {
+            string s = s0 + PostString;
             if (localCounters.Add(s))
             {
                 Log(s);

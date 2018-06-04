@@ -21,6 +21,12 @@ namespace MusicXmlReader
 
         /// <summary>
         /// Assure common implementation of Beep();
+        /// NOTE:
+        /// Sometimes the Beep stops working for a single user!.
+        /// In that case:
+        /// 1)  Go to ControlPanel->Sound->Sounds->ProgramEvents
+        /// 2)  Select "DefaultBeep" and change the value from "Windows Background.wav" to something else - and back!
+        /// 3)  Press OK
         /// </summary>
         public static void Beep()
         {
@@ -146,6 +152,124 @@ namespace MusicXmlReader
         {
             System.Media.SystemSounds.Hand.Play();
         }
+
+        public static void LogControlPositions(Control.ControlCollection controls)
+        {
+            string functionName = "LogControlPositions";
+            Control lowestControl = null;
+            foreach (Control control in controls)
+            {
+                //Log(control, functionName + ".Loop");
+                if ((null == lowestControl) || (GetBottom(control) > GetBottom(lowestControl)))
+                {
+                    lowestControl = control;
+                }
+                //LogControlPositions(control.Controls);
+            }
+
+            if (null != lowestControl)
+            {
+                Log(lowestControl, functionName + ".Result");
+            }
+
+        }
+
+        static void Log(Control control, string functionName)
+        {
+            Logger.Log(string.Format("{0}.{1} Name={2} Text={3} Bottom={4}", className, functionName, control.Name, control.Text,GetBottom(control)));
+        }
+
+        static int GetBottom(Control control)
+        {
+            int top = control.Location.Y;
+            int height = control.Height;
+            return top + height;
+        }
+
+
+        public static void LogSystemInformation()
+        {
+            Logger.Log(string.Format("Executing Assembly='{0}'", System.Reflection.Assembly.GetExecutingAssembly()));
+            Logger.Log(string.Format("ComputerName={0} UserName={1} UserDomainName={2}",
+                SystemInformation.ComputerName, SystemInformation.UserName, SystemInformation.UserDomainName));
+            Logger.Log(string.Format("OSVersion={0} ProcessorCount={1} Is64BitOperatingSystem={2} Is64BitProcess={3}",
+            System.Environment.OSVersion, System.Environment.ProcessorCount, System.Environment.Is64BitOperatingSystem, System.Environment.Is64BitProcess));
+        }
+
+
+        /// <summary>
+        /// Log information and implement a temporary mechanism for overwriting the locale on the machine
+        /// by placing a simple textfile in the executing directory
+        /// </summary>
+        public static void LogGLobalisationInformation()
+        {
+            try
+            {
+                string currentCultureName = System.Globalization.CultureInfo.CurrentUICulture.Name;
+                Logger.Log(string.Format("CultureInfo.CurrentUICulture.Name={0} ResourceFile={1}", currentCultureName, ResourcesForUI.ResourceFileName));
+                string LanguageFileName = (System.IO.Path.Combine(System.Environment.CurrentDirectory, "Language.txt"));
+                if (System.IO.File.Exists(LanguageFileName))
+                {
+                    string newCultureName = System.IO.File.ReadAllText(LanguageFileName);
+                    Logger.Log(string.Format("Changing UICulture for UI thread to {0}", newCultureName));
+                    System.Threading.Thread thisThread = System.Threading.Thread.CurrentThread;
+                    thisThread.CurrentUICulture = new System.Globalization.CultureInfo(newCultureName);
+                    Logger.Log(string.Format("thisThread.CurrentUICulture={0}", thisThread.CurrentUICulture.Name));
+                }
+
+            }
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("LogGLobalisationInformation threw an exception. Message={0}", e.Message));
+            }
+
+        }
+
+        /// <summary>
+        /// Assume that a string contains Braille if it is not empty and the first char is a Braille char
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        private static bool isBraille(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return false;
+            char c = s[0];
+            return ((0x2800 <= c) && (c <= 0x28ff));
+        }
+
+        /// <summary>
+        /// Defines the contents of the title-line
+        /// </summary>
+        /// <returns></returns>
+        public static string GetTitleInfo(string applicationName,Model model)
+        {
+            string result = string.Format("{0}  {1}  {2}"
+                                            , applicationName // 0
+                                            , model.MetaInformation.FileName // 1
+                                            , model.MetaInformation.MovementTitle // 2
+                                            );
+            return result;
+        }
+
+        /// <summary>
+        /// Defines the (initial) contents of the status line
+        /// </summary>
+        /// <returns></returns>
+        public static string GetStatusFromMetaInformation(Model model)
+        {
+            string result = string.Format("{0}   {1}   {2}   {3}   {4}   {5}   {6}   {7}"
+                                            , "" // 0 No need to repeat the application name here !
+                                            , model.MetaInformation.FileName // 1
+                                            , model.MetaInformation.MovementTitle // 2
+                                            , model.MetaInformation.MovementNumber // 3
+                                            , model.MetaInformation.Work // 4
+                                            , model.MetaInformation.Source // 5 
+                                            , model.MetaInformation.Creator // 6
+                                            , model.MetaInformation.Encoding // 7
+                                         );
+            return result;
+        }
+
 
 
     }

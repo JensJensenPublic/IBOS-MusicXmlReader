@@ -11,6 +11,7 @@ namespace MusicXmlReaderModel
 
         private int number = 0;
         private bool implicitMeasure = false; // 	Measures with an implicit attribute set to "yes" never display a measure number, regardless of the measure-numbering setting
+        public override string Caption { get { return ResourcesForModel.NoteElement_measure_text; } }
 
         /// <summary>
         /// To force the use of the Create() method
@@ -66,7 +67,7 @@ namespace MusicXmlReaderModel
             string measureString = "";
             if (0 != Number)
             {
-                measureString = string.Format("{0} {1}", ResourcesForModel.NoteElement_measure_text,Number);
+                measureString = Number.ToString();
             }
             return measureString;
         }

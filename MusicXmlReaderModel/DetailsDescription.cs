@@ -17,18 +17,20 @@ namespace MusicXmlReaderModel
     /// </summary>
     public abstract class DetailsDescription
     {
+        private string caption = "";                        // Can be used for annonucing the DetailsType without relying on ListBox.AccessibleName.
+        public string Caption { set { caption = value + " "; } }
         public abstract void Play(MusicPlayer musicPlayer); // Play the sound representation
         public abstract void Stop(MusicPlayer musicPlayer); // Stop playing the sound representation
         public override string ToString()                   // REturn the text representation
         {
-            return stringRepresentation;
+            return caption + stringRepresentation;
         }
 
         protected string stringRepresentation = ""; // The string to be reported as a sinble line in a listbox
 
         protected DetailsDescription(string s)
         { 
-            stringRepresentation = s;
+            stringRepresentation = s;            
         }
 
         protected MidiNote GetMidiNote(NoteElement noteElement)

@@ -592,6 +592,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not printed.
+        /// </summary>
+        internal static string EventDescription_NotPrinted {
+            get {
+                return ResourceManager.GetString("EventDescription_NotPrinted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tempo.
         /// </summary>
         internal static string EventDescription_tempo {
@@ -1393,7 +1402,7 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to D-flat.
+        ///   Looks up a localized string similar to E-flat.
         /// </summary>
         internal static string PitchElement_eFlat {
             get {

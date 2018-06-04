@@ -9,6 +9,7 @@ namespace MusicXmlReaderModel
     public class EventElement : Element
     {
         protected Int64 startTime;
+        protected EventDescription owningEventDescription;
 
         /// <summary>
         /// Unit is milliSeconds. Is 0 at start of part.
@@ -26,5 +27,22 @@ namespace MusicXmlReaderModel
             }
 
         }
+
+        public EventDescription OwningEventDescription
+        {
+            get
+            {
+                return owningEventDescription;
+            }
+
+            set
+            {
+                owningEventDescription = value;
+            }
+
+        }
+
+
+
     }
 }

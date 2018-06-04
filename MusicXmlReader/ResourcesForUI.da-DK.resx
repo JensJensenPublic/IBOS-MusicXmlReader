@@ -417,4 +417,15 @@
   <data name="DetailsState_Top" xml:space="preserve">
     <value>top</value>
   </data>
+  <data name="DetailState_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="TreeView_CheckOthers" xml:space="preserve">
+    <value>Markér andre stemmer eller detaljer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_UncheckOthers" xml:space="preserve">
+    <value>Fjern markering fra andre stemmer eller detaljer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
 </root>

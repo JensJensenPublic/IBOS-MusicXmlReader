@@ -21,6 +21,7 @@ namespace JSJ.MusicSynthesis
         // Suspended
         Sus2, Sus4,                                                 // 2 sus
         // 
+        None,                                                       // Explicitly: "No Chord"
         UnImplemented,                                              // Mentioned in the MusicXml definition, but not implemented here        
         Unknown                                                     // Not mentioned in the MusicXml definition, 
     };
@@ -132,8 +133,9 @@ namespace JSJ.MusicSynthesis
                 case "power":
                 case "Tristan":
                 case "other": // The "other" kind is used when the harmony is entirely composed of add elements.
-                case "none":  // The "none"  kind is used to explicitly encode absence of chords or functional 
                     return ChordType.UnImplemented;
+                case "none":  // The "none"  kind is used to explicitly encode absence of chords or functional 
+                    return ChordType.None;
 
                 //  Chords, NOT mentioned in http://usermanuals.musicxml.com/MusicXML/Content/ST-MusicXML-kind-value.htm
                 default: return ChordType.Unknown;
@@ -237,6 +239,14 @@ namespace JSJ.MusicSynthesis
             }
         }
 
+        public static string LocalizedChordKindNone
+        {
+            get
+            {
+                return ResourcesForMusicSynthesis.ChordKind_None;
+            }
+        }
+
         public static string LocalizeChordType(ChordType chordType) // TODO Localize !!
         {
             switch (chordType)
@@ -278,6 +288,9 @@ namespace JSJ.MusicSynthesis
                 // Suspended
                 case ChordType.Sus2:    return ResourcesForMusicSynthesis.ChordKind_Sus2;   // "sus2";
                 case ChordType.Sus4:    return ResourcesForMusicSynthesis.ChordKind_Sus4;   // "sus4";
+
+                // "No Chord"
+                case ChordType.None: return ""; // Must be handled at higher level !!
 
                 default: return "Ikke implementeret";
             }

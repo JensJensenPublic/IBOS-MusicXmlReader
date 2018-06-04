@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6E0D8239-0AF3-426C-81D3-2E2C155D0848}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MusicXmlReader</RootNamespace>
     <AssemblyName>IBOS MusicXmlReader</AssemblyName>
@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DetailsHandler.cs" />
+    <Compile Include="Experiments.cs" />
     <Compile Include="HelpForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +73,11 @@
       <DependentUpon>HelpForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ImportHandler.cs" />
+    <Compile Include="ListboxTimesHandler.cs" />
+    <Compile Include="MainForm.MenuStripHandler.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageHandler.cs" />
     <Compile Include="ParameterDescription.cs" />
     <Compile Include="ParameterInputForm.cs">
       <SubType>Form</SubType>
@@ -79,6 +85,7 @@
     <Compile Include="ParameterInputForm.Designer.cs">
       <DependentUpon>ParameterInputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ParameterInputHandler.cs" />
     <Compile Include="ResourcesForHelp.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

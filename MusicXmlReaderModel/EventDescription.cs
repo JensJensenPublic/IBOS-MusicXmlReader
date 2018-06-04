@@ -51,6 +51,10 @@ namespace MusicXmlReaderModel
 
         private StatusInformation statusInformation; // Contains Status information valid for this eventdescription
 
+        //        public MeasureFractionHistory MeasureFractions;
+        private MeasureFraction measureFraction;
+        public MeasureFraction MeasureFraction { get { return measureFraction; } set{ measureFraction = value; }  }
+
         /// <summary>
         /// Marks the event as the first event in the EventList
         /// </summary>
@@ -180,6 +184,22 @@ namespace MusicXmlReaderModel
                 return metronomeBeatsPerMinute;
             }
         }
+
+        public int NoteCount
+        {
+            get
+            {
+                if (null == noteLists) return 0;
+                int result = 0;
+                foreach (List<NoteElement> noteList in noteLists)
+                {
+                    result += noteList.Count;
+                }
+                return result;
+            }
+        }
+
+
 
         /// <summary>
         /// To force the use of the Create() method
@@ -329,15 +349,15 @@ namespace MusicXmlReaderModel
                 directionElements.Add(directionElement);
 
                 if ((null != directionElement.DirectionTypeElement)
-                &&  (null != directionElement.DirectionTypeElement.MetronomeElement) &&
-                    directionElement.DirectionTypeElement.MetronomeElement.BeatsPerMinuteBool                    
+                && (null != directionElement.DirectionTypeElement.MetronomeElement) &&
+                    directionElement.DirectionTypeElement.MetronomeElement.BeatsPerMinuteBool
                 )
                 {
                     this.metronomeBeatsPerMinute = directionElement.DirectionTypeElement.MetronomeElement.BeatsPerMinuteInt;
                     // The MetronomeElement contains Tempo information to be used by the MusicPlayer and the StatusInformation !
                     currentStatusInformation.CurrentMetronomeElement = directionElement.DirectionTypeElement.MetronomeElement;
                 }
-              
+
             }
 
             else if (eventElement is MeasureStyleElement)
@@ -348,6 +368,15 @@ namespace MusicXmlReaderModel
                 }
                 measureStyleElements.Add(eventElement as MeasureStyleElement);
             }
+            else if (eventElement is AttributesElement)
+            {
+                // Explicitly do nothing
+            }
+            else
+            {
+                Logger.Log(string.Format("{0}.{1} Unsupported eventElement Type={2}", className, functionName, eventElement.GetType()));
+            }
+
 
         }
 
@@ -433,8 +462,9 @@ namespace MusicXmlReaderModel
                     {
                         // This is a pause
                         // Here the type and the word "pause" are cocatenated such as "punkteret halvnodepause"
-                        string type = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteTypes) ? noteElement.LocalizedPauseType : "pause"; 
-                        note = string.Format("{0}",type);
+                        string type = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteTypes) ? noteElement.LocalizedPauseType : "pause";
+                        string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
+                        note = string.Format("{0} {1}",type, notations);
                     }
                     else
                     {
@@ -448,7 +478,8 @@ namespace MusicXmlReaderModel
                         string cueString = noteElement.CueNoteString;                        
                         string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
                         //                      note = string.Format("{0,-4} {1}", pitchAndOctave, type); // Always use 4 chars for pitch and Octave. Examples: "C   ","Cis4"
-                        note = string.Format("{0} {1} {2} {3} {4}", accidental, pitchAndOctave, type, cueString, notations);    // Do not use extra chars for Pitch and Octave. Examples: "C","Cis4"
+                        string printability = noteElement.PrintObjectAttributeValue ? "" : string.Format("({0})", ResourcesForModel.EventDescription_NotPrinted); // TODO USe Resources !
+                        note = string.Format("{0} {1} {2} {3} {4} {5}", accidental, pitchAndOctave, type, cueString, notations, printability);    // Do not use extra chars for Pitch and Octave. Examples: "C","Cis4"
                     }
 
                     // string note = string.IsNullOrEmpty(noteElement.Step) ? "Pause" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave + " " +noteElement.LocalizedType;
@@ -800,7 +831,7 @@ namespace MusicXmlReaderModel
             string harmony = "";
             if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
             {
-                harmony = string.Format("{0}", harmonyElement.ToLocalizedString()); // Use same formatting as used in the status line and details list!!
+                harmony = string.Format("{0}", harmonyElement.ToString()); // Use same formatting as used in the status line and details list!!
             }
 
 

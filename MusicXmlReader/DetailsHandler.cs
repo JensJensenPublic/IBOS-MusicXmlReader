@@ -8,10 +8,10 @@ namespace MusicXmlReader
     /// <summary>
     /// For isolating all functionality related to rendering of "Details" 
     /// </summary>
-    class DetailsHandler
+    public class DetailsHandler
     {
         string className = "MusicXmlReader";
-        public enum DetailsEnum { Unknown, Harmonies, Parts, Notes, NotesForPart, Instruments };
+        public enum DetailsEnum { Unknown, Harmonies, Parts, Notes, NotesForPart, Instruments, Status };
         private ListBox listBoxTimes;
         private ListBox listBoxDetails;
         private Model model;
@@ -22,9 +22,11 @@ namespace MusicXmlReader
         private List<DetailsDescription> savedItems;
         private int savedIndex = -1;
         private DetailsEnum savedDetails = DetailsEnum.Unknown;
+        public enum DetailsDirection { Unknown, FromTop, FromBottom };
 
         private string Localize(DetailsEnum state)
         {
+            string functionName = "Localize";
             switch (state)
             {
                 case DetailsEnum.Harmonies: return ResourcesForUI.DetailState_Harmonies;
@@ -32,8 +34,12 @@ namespace MusicXmlReader
                 case DetailsEnum.Notes: return ResourcesForUI.DetailState_AllParts;
                 case DetailsEnum.NotesForPart: return ResourcesForUI.DetailState_SingleNotes;
                 case DetailsEnum.Parts: return ResourcesForUI.DetailState_SingleParts;
+                case DetailsEnum.Status: return ResourcesForUI.DetailState_Status;
                 case DetailsEnum.Unknown: return "";
-                default: return "";
+                default:
+                    Logger.Log(string.Format("{0}.{1}: Unsupported value of DetailsEnum:{2}", className, functionName, state));
+                    UiUtilities.Beep();
+                    return "";
             }
         }
 
@@ -60,38 +66,67 @@ namespace MusicXmlReader
             Logger.Log(string.Format("{0}.{1} Changing saved   details state from {2} to {3}", className, functionName, savedDetails, newDetails));
             savedDetails = newDetails;
         }
-        
 
-        private DetailsHandler(ListBox listBoxTimes, ListBox listBoxDetails, Model model,IDebugDisplayerClient client)
+
+        private DetailsHandler(ListBox listBoxTimes, ListBox listBoxDetails, Model model, IDebugDisplayerClient client)
         {
             this.listBoxTimes = listBoxTimes;
             this.listBoxDetails = listBoxDetails;
             this.model = model;
             this.client = client;
+            this.listBoxDetails.AccessibleRole = AccessibleRole.None; // ListboxDetails is intensionally kept anonymous to the user. It is only used for outputting texts via JAWS
+            this.listBoxDetails.SelectedIndexChanged += new System.EventHandler(SelectedIndexChanged);
+            this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(KeyDown);
+            this.listBoxDetails.Leave += new System.EventHandler(Leave);
+            this.listBoxDetails.Enter += new System.EventHandler(Enter);
+
         }
 
 
 
-        //DetailsDescription currentDetailsDescription;
-
+        /// <summary>
+        /// Simple common convenience method for adding items to the listbox.
+        /// </summary>
+        /// <param name="items">Items to add</param>
+        /// <param name="detailsEnum">The type of detail </param>
+        /// <param name="detailsDirection">Determines the item initially selected</param>
+        private void AddItems(DetailsDescription[] items, DetailsEnum detailsEnum, DetailsDirection detailsDirection,string functionName)
+        {
+            if (0 == items.Length)
+            {
+                // Just a fallback ! The detail-implementation can deliver its own one-liner!
+                items[0] = StringDetailsDescription.Create(ResourcesForUI.ListBoxDetails_NoDetailsFound); 
+            }
+            // Now items contains at least one item !
+            int index = (DetailsDirection.FromTop == detailsDirection) ? 0 : items.Length - 1;
+            items[index].Caption = Localize(detailsEnum);
+            listBoxDetails.Items.AddRange(items);
+            listBoxDetails.SelectedIndex = index;
+            SetCurrentDetails(functionName, detailsEnum);
+        }
 
 
         /// <summary>
         /// If the details currently shown describes a part, start showing the single notes of the part, either from top or bottom.
-        /// Otherwise just ignore and log an error.
+        /// Otherwise just pass on to default handling
         /// </summary>
-        /// <param name="move"></param>
-        /// <returns></returns>
-        public int ShowPartAsSingleNotes(bool fromTop)
-        {      
+        /// <param name="detailsDirection"></param>
+        /// <param name="move" The number of positions that the default handler is expected to move the cursor></param>
+        /// <returns>true <==> The keypress should be supporeesd by the default key handler</returns>
+        private bool DetailsSingleNotes(DetailsDirection detailsDirection, out int move)
+        {
             string functionName = "ShowPartAsSingleNotes";
             //Logger.Log(string.Format("{0}.{1} Entry", className, functionName));
             if (DetailsEnum.Parts != currentDetails)
             {
-                // This function should not be called in this case !
-                UiUtilities.Hand();
-                Logger.Log(string.Format("{0}.{1}: Error: CurrentDetails= {2}", className, functionName, currentDetails));
-                return 0 ; 
+                // Handle as any other keypress
+                switch (detailsDirection)
+                {
+                    case DetailsDirection.FromTop:    move = +1; break;
+                    case DetailsDirection.FromBottom: move = -1; break;
+                    default: move = 0; break; 
+                }
+                return false; // Pass on to default handling: Do not suppress keypress
             }
             else
             {
@@ -101,37 +136,30 @@ namespace MusicXmlReader
                 {
                     UiUtilities.Hand();
                     Logger.Log(string.Format("{0}.{1}: currentDetailsDescription is null", className, functionName));
-                    return 0;
+                    move = 0;
+                    return false;
                 }
 
                 // Save the original contents
                 savedItems = new List<DetailsDescription>();
                 savedIndex = listBoxDetails.SelectedIndex;
-                SetSavedDetails(functionName,currentDetails);
+                SetSavedDetails(functionName, currentDetails);
                 foreach (object o in listBoxDetails.Items)
                 {
                     savedItems.Add((DetailsDescription)o);
                 }
-                
+
                 DetailsDescription[] newItems = model.GetSingleNoteDetails(currentDetailsDescription);
                 listBoxDetails.Items.Clear();
                 listBoxDetails.AutoSize = false; // Force the listbox to scrink
                 Array.Sort(newItems, Compare);
 
-                string detailName = Localize(DetailsEnum.NotesForPart);
-                // Insert text markers at top 
-                listBoxDetails.Items.Add(new StringDetailsDescription(detailName + " " +  ResourcesForUI.DetailsState_Top));
-                //Load the new items
-                foreach (DetailsDescription detailsDescription in newItems)
-                {
-                    listBoxDetails.Items.Add(detailsDescription);
-                }
-                // Insert text markers at bottom
-                listBoxDetails.Items.Add(new StringDetailsDescription(detailName + " " + ResourcesForUI.DetailsState_Bottom));
-                SetCurrentDetails(functionName,DetailsEnum.NotesForPart);
+                AddItems(newItems, DetailsEnum.NotesForPart, detailsDirection,functionName);
+
                 listBoxDetails.AutoSize = true; // Allow listbox to grow to the new size needed
-                listBoxDetails.SelectedIndex = fromTop ? 0 : listBoxDetails.Items.Count - 1;
-                return 0 ;
+
+                move = 0;    // Do not check for illegal cursor move. 
+                return true; // Suppress the keypress: It has already been fully handled above.
             }
         }
 
@@ -162,7 +190,7 @@ namespace MusicXmlReader
                 Logger.Log(String.Format("{0}.{1} Exception for x={2} y={3} Message={4}", className, functionName, x.ToString(), y.ToString(), e.Message));
 
             }
-                return 0;
+            return 0;
         }
 
 
@@ -209,11 +237,13 @@ namespace MusicXmlReader
         /// </summary>
         /// <param name="detailsEnum">Determines which kind of details to show</param>
         /// <param name="fromTop">Show details either from top or bottum</param>
-        public void ShowEventDetails(DetailsEnum detailsEnum, bool fromTop)
+        public void ShowEventDetails(DetailsEnum detailsEnum, DetailsDirection detailsDirection)
         {
             string functionName = "ShowEventDetails     ";
+            const bool atNoteLevel = true;
+            const bool atPartLevel = false;
             // NOTE ARROW + ALT alone has already been taken by tempo increment/decrement !!!
-            if ((DetailsEnum.Harmonies != detailsEnum) && (DetailsEnum.Parts != detailsEnum) && (DetailsEnum.Notes != detailsEnum)) return; // This function only supports these sorts of details.
+            if ((DetailsEnum.Harmonies != detailsEnum) && (DetailsEnum.Parts != detailsEnum) && (DetailsEnum.Notes != detailsEnum) && (DetailsEnum.Status != detailsEnum)) return; // This function only supports these sorts of details.
             if (-1 == listBoxTimes.SelectedIndex)
             {
                 // It has no meaning to inspect details when nothing is selected !
@@ -226,50 +256,34 @@ namespace MusicXmlReader
                 if ((null != selectedEvent) && (selectedEvent is EventDescription))
                 {
                     EventDescription currentEventDescription = (listBoxTimes.Items[listBoxTimes.SelectedIndex]) as EventDescription;
-
-                    string detailsName = Localize(detailsEnum);
-                    string topText    = detailsName + " " + ResourcesForUI.DetailsState_Top;    // Text to be shown at top of the list of details
-                    string bottomText = detailsName + " " + ResourcesForUI.DetailsState_Bottom;  // Text to be shown at bottom of the list of details
                     DetailsDescription[] items = new DetailsDescription[0];
                     switch (detailsEnum)
                     {
-                        case DetailsEnum.Parts: items = model.GetCurrentEventDetails(currentEventDescription, false); break;//  Show details about current parts
-                        case DetailsEnum.Notes: items = model.GetCurrentEventDetails(currentEventDescription, true);  break;//  Show details about current parts
-                        case DetailsEnum.Harmonies: items = model.GetCurrentHarmonyDetails(currentEventDescription);  break; // Show details about the current harmony
-                        case DetailsEnum.Instruments: items = model.GetAllPartDetails(); break;
+                        case DetailsEnum.Parts: items = model.GetCurrentEventDetails(currentEventDescription, atPartLevel); break;//  Show details about current parts
+                        case DetailsEnum.Notes: items = model.GetCurrentEventDetails(currentEventDescription, atNoteLevel); break;//  Show details about current parts
+                        case DetailsEnum.Harmonies: items = model.GetCurrentHarmonyDetails(currentEventDescription); break; // Show details about the current harmony
+                        //case DetailsEnum.Instruments: items = model.GetAllPartDetails(); break;
+                        case DetailsEnum.Status: items = model.GetCurrentStatusDetails(currentEventDescription); break;
                         default: break;
                     };
 
-                    if (!string.IsNullOrEmpty(topText)) listBoxDetails.Items.Add(new StringDetailsDescription(topText));
-                    listBoxDetails.Items.AddRange(items);        
-                    if (!string.IsNullOrEmpty(bottomText)) listBoxDetails.Items.Add(new StringDetailsDescription(bottomText));
-
-                    int itemCount = listBoxDetails.Items.Count;
-                    if (0 != itemCount)
-                    {
-                        listBoxDetails.SelectedIndex = fromTop ? 0 : (itemCount - 1);
-                    }
+                    AddItems(items, detailsEnum, detailsDirection, functionName);
+                    LeaveListboxTimes();
+                    listBoxDetails.Focus();
                 }
-
-                if (0 == listBoxDetails.Items.Count) // For whatever reason
+                else
                 {
-                    listBoxDetails.Items.Add(ResourcesForUI.ListBoxDetails_NoDetailsFound); // Just a fallback ! The detail-implementation can deliver its own one-liner!
+                    Logger.Log(string.Format("{0}.{1}: No event found",className,functionName));
+                    UiUtilities.Beep();
                 }
-
-                LeaveListboxTimes();
-                listBoxDetails.Focus();                
-                SetCurrentDetails(functionName,detailsEnum);
-
                 // e.SuppressKeyPress = true;  // Prevent sending this key event to the underlying control.
             }
             catch (Exception exception)
             {
-                Logger.Log(string.Format("{0}.{1} ({2},{3}) threw an exception: Message={4}", className, functionName, detailsEnum, fromTop, exception.Message));
+                Logger.Log(string.Format("{0}.{1} ({2},{3}) threw an exception: Message={4}", className, functionName, detailsEnum, detailsDirection.ToString(), exception.Message));
             }
             return;
         }
-
-
 
         /// <summary>
         /// Show global details, i.e. details which are not related to a specific event, but are global for the whole score,
@@ -277,7 +291,7 @@ namespace MusicXmlReader
         /// </summary>
         /// <param name=""></param>
         /// <param name="fromTop"></param>
-        public void ShowGlobalDetails(DetailsEnum detailsEnum, bool fromTop)
+        public void ShowGlobalDetails(DetailsEnum detailsEnum, DetailsDirection detailsDirection)
         {
             string functionName = "ShowGlobalDetails";
             try
@@ -285,29 +299,13 @@ namespace MusicXmlReader
                 if (DetailsEnum.Instruments != detailsEnum) return; // This function only supports these sorts of details.
                 listBoxDetails.Items.Clear();
                 DetailsDescription[] items = model.GetAllPartDetails();
-
-                string detailName = Localize(detailsEnum);
-                // Insert text markers at top 
-                listBoxDetails.Items.Add(new StringDetailsDescription(detailName + " " + ResourcesForUI.DetailsState_Top));
-                listBoxDetails.Items.AddRange(items);
-                listBoxDetails.Items.Add(new StringDetailsDescription(detailName + " " + ResourcesForUI.DetailsState_Bottom));
-                int itemCount = listBoxDetails.Items.Count;
-                if (0 != itemCount)
-                {
-                    listBoxDetails.SelectedIndex = fromTop ? 0 : (itemCount - 1);
-                }
-
-                if (0 == listBoxDetails.Items.Count) // For whatever reason
-                {
-                    listBoxDetails.Items.Add(ResourcesForUI.ListBoxDetails_NoDetailsFound); // Just a fallback ! The detail-implementation can deliver its own one-liner!
-                }
-
+                AddItems(items, detailsEnum, detailsDirection,functionName);
                 LeaveListboxTimes();
                 listBoxDetails.Focus();
             }
             catch (Exception exception)
             {
-                Logger.Log(string.Format("{0}.{1} ({2},{3}) threw an exception: Message={4}", className, functionName, detailsEnum, fromTop, exception.Message));
+                Logger.Log(string.Format("{0}.{1} ({2},{3}) threw an exception: Message={4}", className, functionName, detailsEnum, detailsDirection.ToString(), exception.Message));
             }
             return;
         }
@@ -345,28 +343,8 @@ namespace MusicXmlReader
                 switch (e.KeyData)
                 {
                     // On keys.Right and keys.Left, Key.Home, Key.End: Do nothing special, but pass the key to the listbox without suppressing it !
-                    case ShortcutHandler.detailsSingleNotesFromTop:                 
-                        if (DetailsEnum.Parts == currentDetails) 
-                        {
-                            ShowPartAsSingleNotes(true) ;
-                            e.SuppressKeyPress = true; // Do NOT pass on to default handler
-                        }
-                        else
-                        {
-                            move = +1; //  Pass on to default handler 
-                        }
-                        break; // (Down)  After that: Pass on to default handler                                                                                                   
-                    case ShortcutHandler.detailsSingleNotesFromBottom:  
-                        if (DetailsEnum.Parts == currentDetails)
-                        {  
-                            ShowPartAsSingleNotes(false);
-                            e.SuppressKeyPress = true; // Do NOT pass on to default handler
-                        }
-                        else
-                        {
-                            move = -1; //  Pass on to default handler 
-                        }
-                        break;
+                    case ShortcutHandler.detailsSingleNotesFromTop:    e.SuppressKeyPress = DetailsSingleNotes(DetailsDirection.FromTop, out move); break;                                                                                                  
+                    case ShortcutHandler.detailsSingleNotesFromBottom: e.SuppressKeyPress = DetailsSingleNotes(DetailsDirection.FromBottom, out move ); break;
                     //case ShortcutHandler.detailsOpenSingleNotesFromTop:    ShowPartAsSingleNotes(true); e.SuppressKeyPress = true; break; // Same semantics as in a tree: Expand details !
                     //case ShortcutHandler.detailsOpenSingleNotesFromBottom: ShowPartAsSingleNotes(false); e.SuppressKeyPress = true; break; // Same semantics as in a tree: Expand details !
                     case ShortcutHandler.DetailsNextPart:       move = +1; break;  // (Down)  Pass on to default handler
@@ -375,6 +353,8 @@ namespace MusicXmlReader
                     case ShortcutHandler.detailsBottomDetail: break; // Pass on to default handler
                     case ShortcutHandler.detailsNextEvent: ReturnToListboxTimes(0); e.SuppressKeyPress = true; break; // +1 confuses JAWS
                     case ShortcutHandler.detailsPreviousEvent: ReturnToListboxTimes(0); e.SuppressKeyPress = true; break;  // -1 confuses JAWS
+                    case ShortcutHandler.DetailsStatusBottom: move = -1; break; //  Pass on to default handler
+                    case ShortcutHandler.DetailsStatusTop: move = +1; break;   //    Pass on to default handler
                     case Keys.Control | Keys.ControlKey: e.SuppressKeyPress = true; break; // Allow for decoding CTRL+UP and CTRL+DOWN later
                     case Keys.Shift  |  Keys.ShiftKey:   e.SuppressKeyPress = true; break; // Allow for decoding SHIFT+?? and SHIFT+?? later
                     case Keys.Escape:    ReturnFromPartDetails(); e.SuppressKeyPress = true; break; // TEST
@@ -389,6 +369,29 @@ namespace MusicXmlReader
             }
             return;
         }
+
+        private void Leave(object sender, EventArgs e)
+        {
+            listBoxDetails.BackColor = MainForm.NonFocusedColor;
+            model.ListBoxDetailsLeave();
+            listBoxDetails.Items.Clear();
+            listBoxDetails.AutoSize = false;
+            listBoxTimes.Show();
+        }
+
+        private void Enter(object sender, EventArgs e)
+        {
+            listBoxDetails.BackColor = MainForm.FocusedColor;
+        }
+
+        private void SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = listBoxDetails.SelectedIndex;
+            object o = listBoxDetails.Items[index];
+            DetailsDescription detailsDescription = o as DetailsDescription;
+            model.SelectedDetailsIndexChanged(detailsDescription);
+        }
+
 
         private void LeaveListboxTimes()
         {

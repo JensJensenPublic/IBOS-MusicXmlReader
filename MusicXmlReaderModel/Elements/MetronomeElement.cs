@@ -7,12 +7,14 @@ using System.Xml;
 
 namespace MusicXmlReaderModel
 {
-    public class MetronomeElement
+    public class MetronomeElement : Element
     {
         private const string className = "MetronomeElement";
         private string beatsPerMinuteText = "";
         private int beatsPerMinuteInt = -1;
         private bool beatsPerMinuteBool = false;
+
+        public override string Caption { get { return ResourcesForModel.MetronomeElement_Tempo; } }
 
         /// <summary>
         /// The text value for "per-minute"
@@ -93,7 +95,7 @@ namespace MusicXmlReaderModel
         {
             if (BeatsPerMinuteBool)
             {
-                return string.Format("{0}={1}", ResourcesForModel.MetronomeElement_Tempo, beatsPerMinuteInt.ToString()); 
+                return beatsPerMinuteInt.ToString(); 
             }
             return "";
         }

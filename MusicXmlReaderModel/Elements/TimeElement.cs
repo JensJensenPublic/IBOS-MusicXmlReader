@@ -10,6 +10,7 @@ namespace MusicXmlReaderModel
 
         private int beats;
         private int beatType;
+        public override string Caption { get { return ResourcesForModel.TimeElement_pulse; } }
 
         public int Beats
         {
@@ -97,7 +98,7 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            return string.Format("{0}:{1}-{2}",  ResourcesForModel.TimeElement_pulse,  localizedBeats, localizedBeatType);
+            return string.Format("{0}-{1}",  localizedBeats, localizedBeatType);
         }
 
         /// <summary>

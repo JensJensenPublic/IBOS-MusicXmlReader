@@ -171,8 +171,20 @@ namespace MusicXmlReader
 
 
         // UserSettingsTreeview:
-        public const Keys checkAll   =      Keys.Control | Keys.D1;
-        public const Keys uncheckAll =      Keys.Control | Keys.D0;
+
+
+        // NOTE: It is difficult to find the right assignment of shortcuts for the desired functionality:
+        // 1: Handle all nodes with same Name       For the time being Keys.Control | Keys.D0 / Keys.D1
+        // 2: Handle all nodes with same parent      For the time being Keys.Control | Keys.Down / Keys.Up
+        // 3: Handle all nodes with same parent and for each of them all nodes with same name: For the time being not implemented! 
+        // Some shortcut values are unusable because they make the program crash during initialization, others because they simply don't work!
+
+        public const Keys checkAll = Keys.Control | Keys.D1;   // Check all occurances of same part (or detail) for all settings
+        public const Keys uncheckAll = Keys.Control | Keys.D0; // Uncheck all occurances of same part (or detail) for all settings
+        public const Keys checkOthers = Keys.Control | Keys.Up; // Check other parts (or details) within same setting
+        public const Keys uncheckOthers = Keys.Control | Keys.Down; // Uncheck other parts (or details) within same setting
+//        public const Keys checkOthers = Keys.Shift | Keys.D1; // Check other parts (or details) within same setting
+//        public const Keys uncheckOthers =  Keys.Shift | Keys.D2; // Uncheck other parts (or details) within same setting
         //public const Keys toggleAndCopy =   Keys.Control | Keys.Space;
 
         public const Keys listBoxFocus =    Keys.Control | Keys.L;
@@ -182,8 +194,7 @@ namespace MusicXmlReader
         //public const Keys detailsOpenSingleNotesFromTop     = Keys.Add | Keys.Shift;    // Enter     Details mode and select the first detail, if available
 
         // Alternatively use navigation keys to start showing single notes 
-        public const Keys detailsSingleNotesFromBottom =       Keys.Up;      // Enter     Details mode and select the last detail, if available)
-        public const Keys detailsSingleNotesFromTop =   Keys.Down;    // Enter     Details mode and select the first detail, if available
+
         public const Keys detailsTopDetail =        Keys.Home;    // Remain in Details mode and select the top detail  if available)
         public const Keys detailsBottomDetail =     Keys.End;     // Remain in Details mode and select the bottum detail, if available 
         public const Keys detailsNextEvent =        Keys.Right;   // Leave Details mode and select the next event
@@ -199,13 +210,17 @@ namespace MusicXmlReader
         public const Keys DetailsPreviousPart = Keys.Control | Keys.Up;
 
         // For loading details
-        public const Keys DetailsHarmonyTop =       Keys.Up;
-        public const Keys DetailsPartsTop =         Keys.Up | Keys.Control;
-        public const Keys DetailsNotesTop =         Keys.Up | Keys.Control | Keys.Shift;
-        public const Keys DetailsInstruments =      Keys.I  | Keys.Control;
-        public const Keys DetailsHarmonyBottom =    Keys.Down;
-        public const Keys DetailsPartsBottom =      Keys.Down | Keys.Control;
-        public const Keys DetailsNotesBottom =      Keys.Down | Keys.Control | Keys.Shift;
+        public const Keys DetailsHarmonyTop =           Keys.Down;
+        public const Keys DetailsPartsTop =             Keys.Down | Keys.Control;
+        public const Keys DetailsNotesTop =             Keys.Down | Keys.Control | Keys.Shift;
+        public const Keys DetailsStatusTop =            Keys.Down | Keys.Shift;
+        public const Keys detailsSingleNotesFromTop =   Keys.Down;  
+        public const Keys DetailsInstruments =          Keys.I  | Keys.Control;
+        public const Keys DetailsHarmonyBottom =        Keys.Up;
+        public const Keys DetailsPartsBottom =          Keys.Up | Keys.Control;
+        public const Keys DetailsNotesBottom =          Keys.Up | Keys.Control | Keys.Shift;
+        public const Keys DetailsStatusBottom =         Keys.Up | Keys.Shift;
+        public const Keys detailsSingleNotesFromBottom= Keys.Up;  
         //public const Keys DetailsInstrumentsButtom= Keys.I | Keys.C;
 
         public const Keys StopAllNotesPlaying = Keys.Escape;

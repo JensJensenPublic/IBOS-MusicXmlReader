@@ -615,9 +615,6 @@
             this.userSettingsTreeView.Name = "userSettingsTreeView";
             this.userSettingsTreeView.Size = new System.Drawing.Size(250, 451);
             this.userSettingsTreeView.TabIndex = 1;
-            this.userSettingsTreeView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.userSettingsTreeView_KeyDown);
-            this.userSettingsTreeView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.userSettingsTreeView_KeyPress);
-            this.userSettingsTreeView.KeyUp += new System.Windows.Forms.KeyEventHandler(this.userSettingsTreeView_KeyUp);
             // 
             // listBoxTimes
             // 
@@ -631,10 +628,6 @@
             this.listBoxTimes.Name = "listBoxTimes";
             this.listBoxTimes.Size = new System.Drawing.Size(950, 420);
             this.listBoxTimes.TabIndex = 0;
-            this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(this.listBoxTimes_SelectedIndexChanged);
-            this.listBoxTimes.Enter += new System.EventHandler(this.listBoxTimes_Enter);
-            this.listBoxTimes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxTimes_KeyDown);
-            this.listBoxTimes.Leave += new System.EventHandler(this.listBoxTimes_Leave);
             // 
             // textBoxBraille
             // 
@@ -698,9 +691,6 @@
             this.listBoxDetails.Size = new System.Drawing.Size(950, 30);
             this.listBoxDetails.TabIndex = 11;
             this.listBoxDetails.TabStop = false;
-            this.listBoxDetails.SelectedIndexChanged += new System.EventHandler(this.listBoxDetails_SelectedIndexChanged);
-            this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDetails_KeyDown);
-            this.listBoxDetails.Leave += new System.EventHandler(this.listBoxDetails_Leave);
             // 
             // textBoxScreenReader
             // 
@@ -816,7 +806,6 @@
         private System.Windows.Forms.ToolStripMenuItem goToToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ofNominalTempoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxScreenReader;
     }
 }

@@ -183,6 +183,9 @@
   <data name="ChordKind_Minor9" xml:space="preserve">
     <value>m9</value>
   </data>
+  <data name="ChordKind_None" xml:space="preserve">
+    <value>Ingen Becifring</value>
+  </data>
   <data name="ChordKind_Sus2" xml:space="preserve">
     <value>sus2</value>
   </data>

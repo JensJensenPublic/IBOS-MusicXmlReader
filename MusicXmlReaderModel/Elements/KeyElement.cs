@@ -13,6 +13,7 @@ namespace MusicXmlReaderModel
         private int fifths = 0;
         private ModeEnum mode;
 
+        public override string Caption { get { return ResourcesForModel.KeyElement_key; } }
 
         /// <summary>
         /// Returns the position on the circle of fifts:
@@ -184,7 +185,7 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            return string.Format("{0}:{1}",ResourcesForModel.KeyElement_key, localizedKey);
+            return localizedKey;
         }
 
         public string ToShortString()

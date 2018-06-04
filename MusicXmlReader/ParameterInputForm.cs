@@ -43,7 +43,8 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void comboBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // const string functionName = "comboBox1_KeyPress";
+            bool verbose = true; // Avoid warning
+            const string functionName = "comboBox1_KeyPress";
             this.DialogResult = DialogResult.None;
             const char RETURN = (char)13;
             const char ESC = (char)27;
@@ -71,7 +72,10 @@ namespace MusicXmlReader
                 if (!ok)
                 {
                     System.Media.SystemSounds.Beep.Play();
-                    // Logger.Log(string.Format("{0}.{1}: Name={2} Input={3} Syntax error!", className, functionName, Name, input));
+                    if (verbose)
+                    {
+                        Logger.Log(string.Format("{0}.{1}: Syntax error: Name='{2}' Input={3}", className, functionName, Name, input));
+                    }
                 }
             }
         }

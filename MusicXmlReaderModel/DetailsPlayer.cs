@@ -67,7 +67,7 @@ namespace MusicXmlReaderModel
             Interval[] intervals = MidiChord.GetModifiedChordIntervals(harmonyElement.ChordType, harmonyElement.Degrees);        
             ChromaticStep root = harmonyElement.ChromaticRootStep;
             detailsDescriptions = new List<DetailsDescription>();
-            string chordName = harmonyElement.ToLocalizedString();
+            string chordName = harmonyElement.ToString();
             detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", ResourcesForModel.HarmonyElement_Chord,chordName ), harmonyElement, chordOctave)); // The full representation of the chord 
             if ((null != harmonyElement.BassElement) && (harmonyElement.ChromaticRootStep != harmonyElement.ChromaticBassStep))
             {
@@ -114,6 +114,65 @@ namespace MusicXmlReaderModel
                 PartDetailsPlayer(eventDescription, partList, userSettings, musicPlayer);
             }
         }
+
+        /// <summary>
+        /// Add the textual description of an Element
+        /// </summary>
+        /// <param name="element"></param>
+        private void AddStatusText(Element element)
+        {
+            if (null == element) return;
+            detailsDescriptions.Add(DetailsDescription.Create(element.ToString()));
+        }
+
+        /// <summary>
+        /// Add a simple line of text
+        /// </summary>
+        /// <param name="text"></param>
+        private void AddStatusText(string text)
+        { 
+            detailsDescriptions.Add(DetailsDescription.Create((null == text) ? "" : text));
+        }
+
+        private void AddStatusText(string pre, Element element, string post)
+        {
+            string s1 = (null == pre) ? "" : pre;
+            string s2 = (null == element) ? "" : element.ToString();
+            string s3 = (null == post) ? "" : post;
+            AddStatusText(s1 + s2 + s3);
+        }
+
+        private string Format(EventElement eventElement)
+        {
+            return  (null == eventElement) ? "null" : eventElement.Caption + " " + eventElement.ToString();
+        }
+
+        private string Format(Element element, string s)
+        {
+            return element.Caption + " " + s;
+        }
+
+        private string Format(MeasureFraction fraction)
+        {
+            return  " " + ((null == fraction) ? "?" : fraction.ToString());
+        }
+
+        /// <summary>
+        /// Describes the format of the status information when shown in the Details window
+        /// Please compare to StatusInformation.Format()
+        /// </summary>
+        /// <param name="statusInformation"></param>
+        private DetailsPlayer(StatusInformation statusInformation)
+        {
+            detailsDescriptions = new List<DetailsDescription>();
+            //AddStatusText(Format(statusInformation.CurrentMeasureElement) + " + " + statusInformation.CurrentMeasureFractions.ToString());
+            AddStatusText(Format(statusInformation.CurrentMeasureElement) + Format(statusInformation.CurrentMeasureFraction)); // + " + statusInformation.CurrentMeasureFractions.ToString());
+            AddStatusText(Format(statusInformation.CurrentKeyElement));
+            AddStatusText(Format(statusInformation.CurrentMetronomeElement,statusInformation.GetTempoString())); 
+            AddStatusText(Format(statusInformation.CurrentHarmonyElement));
+            AddStatusText(Format(statusInformation.CurrentTimeElement));
+        }
+
 
 
         /// <summary>
@@ -175,6 +234,8 @@ namespace MusicXmlReaderModel
             //}
         }
 
+
+     
 
         ///// <summary>
         ///// Reports details at the Note level
@@ -285,5 +346,10 @@ namespace MusicXmlReaderModel
             return new DetailsPlayer(musicPlayer);
         }
 
+        public static DetailsPlayer Create(StatusInformation statusInformation)
+        {
+            return new DetailsPlayer(statusInformation);
+        }
+        
     }
 }

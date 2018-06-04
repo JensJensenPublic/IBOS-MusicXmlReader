@@ -237,6 +237,7 @@ namespace MusicXmlReaderModel
         private void PlayHarmonies(EventDescription eventDescription)
         {
             // Handle harmonies 
+            int harmonyVelocity = 50; // Attempt to balance with the "real" notes played
             if (null != eventDescription.HarmonyElement)
             {
                 if (null != latestHarmonyPlayed)
@@ -249,11 +250,22 @@ namespace MusicXmlReaderModel
                 {
                     // Play the harmony related to this event
                     HarmonyElement h = eventDescription.HarmonyElement;
+                    if (ChordType.None == h.ChordType)
+                    {
+                        Logger.Log(string.Format("MusicPlayer: Becifring {0}", h.Kind));
+                        if (null != latestHarmonyPlayed)
+                        {
+                            latestHarmonyPlayed.StopPlaying(midiOut);
+                            latestHarmonyPlayed = null;
+                        }
+                        return;
+                    }
+
                     if (ChordType.UnImplemented != h.ChordType)
                     {
                         DamperThreadReset();
                         List<string> errors = new List<string>(); // MidiChord has no access to the logging system. Instead we log errors in this way: 
-                        latestHarmonyPlayed = new MidiChord(h.ChromaticRootStep, 4, 127, h.ChordType, h.ChromaticBassStep, h.Degrees); // The last 2 parameters will be used for non-standard harmonies 
+                        latestHarmonyPlayed = new MidiChord(h.ChromaticRootStep, 4, harmonyVelocity, h.ChordType, h.ChromaticBassStep, h.Degrees); // The last 2 parameters will be used for non-standard harmonies 
                         latestHarmonyPlayed.StartPlaying(midiOut);                    }
                     else
                     {
@@ -534,31 +546,6 @@ namespace MusicXmlReaderModel
 
         }
 
-
-        /// <summary>
-        /// Used when playing automatically. The user just starts a thread for playing.
-        /// </summary>
-        /// <param name="selectedObject"></param>
-        internal void AutoPlay(object selectedObject)
-        {
-            if (null == selectedObject) return;
-
-            string typeName = selectedObject.GetType().Name;
-            switch (typeName)
-            {
-                //case "NoteElement":     Play(selectedObject as NoteElement); break;
-                case "EventDescription": Play(selectedObject as EventDescription); break;
-                case "SoundElement": this.tempo = (int) (selectedObject as SoundElement).TempoValue; break;
-                case "NoteElement":
-                case "MeasureElement":
-                case "ScorePartElement":
-                case "PartElement":
-                case "SimpleTextElement":
-                    break;
-            }
-            return;
-        }
-
         private System.Threading.Thread playerThread; // The MusicPlayer Main thread
         private System.Threading.Thread damperThread; // Helper thread for stopping notes playing forever
         private System.Threading.Thread uiProxyThread; // Helper thread for decoupling long-lasting UI operations with respect to timing
@@ -723,19 +710,14 @@ namespace MusicXmlReaderModel
                 {
                     for (int i = firstIndex; ((i < lastIndex) && (playing)); i++)
                     {
-                        object o = objects.GetObjectAtIndex(i); // listBox.Items[i];
-                        AutoPlay(o); // Play the next note, using the correct timing!
-                        if (o.GetType() == typeof(EventDescription))
-                        {
-                            // Only select notes (and pauses) to allow for correct timing!
+                        EventDescription eventDescription = (EventDescription)objects.GetObjectAtIndex(i); // listBox.Items[i];
+                        Play(eventDescription); // Play the next eventDescription, using the correct timing!
 #if true
-                            uiProxyEventIndex = i;
-                            uiProxyEvent.Set(); // By signalling a helper thread we avoid hanging the main MusicPlayer thread while the UI is updating
+                        uiProxyEventIndex = i;
+                        uiProxyEvent.Set(); // By signalling a helper thread we avoid hanging the main MusicPlayer thread while the UI is updating
 #else
                             // objects.SetSelectedIndex(i); // By calling SetSelectedIndex directly we may hang the Main player for several ms in the UI thread, corrupting timing !!
 #endif
-                            //SetSelectedIndex(listBox, i); // Select the corresponding line in the Listbox,  handling Cross-thread issue
-                        }
                     }
                 }
                 catch (Exception e)

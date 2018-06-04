@@ -54,7 +54,7 @@ namespace MusicXmlReaderModel
         //FullStepEnum step = FullStepEnum.Unknown ;   // Represents a diatonoc step: A,B,C,D,E,F, G or a pause
         //int alter = 0 ;     // Represents the number of semitones the note is altered. 
         //int octave = 0;
-        int duration = 0;
+        int duration = 0;   // The value of the child element "duration"
         bool chord = false; // Means that this note starts at the same time as the previous note, not after the previous note.
         //string type = "unspecified";
         NoteTypeEnum noteDuration = NoteTypeEnum.unknown;
@@ -83,6 +83,7 @@ namespace MusicXmlReaderModel
         AccidentalElement accidentalElement;
         NoteHeadElement noteHeadElement; // Special graphical variants of hoathead
         TimeModificationElement timeModificationElement; // Tuplet information 
+        public TimeModificationElement TimeModificationElement { get { return timeModificationElement; } } // Tuplet information 
 
         // MeasureNumber and MeasureNumber are not found inside the XML describing the note, but are derived from the XML surrounding the note.
         int measureNumber;
@@ -633,6 +634,142 @@ namespace MusicXmlReaderModel
             }
         }
 
+        private Int64 NoteTypeEnumToInt64(NoteTypeEnum nte)
+        {       
+            switch (nte)
+            {
+                case NoteTypeEnum.nt1024th:  return commonDivisions / 256;
+                case NoteTypeEnum.nt512th:   return commonDivisions / 128;
+                case NoteTypeEnum.nt256th:   return commonDivisions / 64;
+                case NoteTypeEnum.nt128th:   return commonDivisions / 32;
+                case NoteTypeEnum.nt64th:    return commonDivisions / 16;
+                case NoteTypeEnum.nt32nd:    return commonDivisions / 8;
+                case NoteTypeEnum.nt16th:    return commonDivisions / 4;
+                case NoteTypeEnum.eight:     return commonDivisions / 2;
+                case NoteTypeEnum.quarter:   return commonDivisions * 1;
+                case NoteTypeEnum.half:      return commonDivisions * 2;
+                case NoteTypeEnum.whole:     return commonDivisions * 4;
+                case NoteTypeEnum.breve:
+                case NoteTypeEnum.longus: 
+                case NoteTypeEnum.maxima: 
+                case NoteTypeEnum.measure:
+                case NoteTypeEnum.unspecifiedRest:
+                default:                    return -1;
+            }
+        }
+
+
+        private int NoteTypeEnumToDenominator(NoteTypeEnum nte)
+        {
+            switch (nte)
+            {
+                case NoteTypeEnum.nt1024th: return 1024;
+                case NoteTypeEnum.nt512th: return 512;
+                case NoteTypeEnum.nt256th: return 256;
+                case NoteTypeEnum.nt128th: return 128;
+                case NoteTypeEnum.nt64th: return 64;
+                case NoteTypeEnum.nt32nd: return 32;
+                case NoteTypeEnum.nt16th: return 16;
+                case NoteTypeEnum.eight: return 8;
+                case NoteTypeEnum.quarter: return 4;
+                case NoteTypeEnum.half: return 2;
+                case NoteTypeEnum.whole: return 1;
+                case NoteTypeEnum.breve:
+                case NoteTypeEnum.longus:
+                case NoteTypeEnum.maxima:
+                case NoteTypeEnum.measure:
+                case NoteTypeEnum.unspecifiedRest:
+                default: return -1;
+            }
+        }
+
+
+
+
+        /// <summary>
+        /// Experimental code!
+        /// Used for computing the exact note duration without rounding errors.
+        /// Needed to compute the exact position for instance in case of swing notes and triplets, where we can not rely on the "duration" element
+        /// </summary>
+        /// <param name="nte"></param>
+        /// <param name=""></param>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public Int64 ArithmeticDurationInCommonDivisions
+        {
+            get
+            {
+                Int64 rawDuration = NoteTypeEnumToInt64(this.noteDuration);
+                if (-1 == rawDuration)
+                {
+                    Logger.LogCF(string.Format(" = {0}: Raw duration can not be evaluated for {1}", rawDuration,this.noteDuration.ToString()));
+                    return -1;
+                }
+                if (null == this.timeModificationElement)
+                {
+                    // Logger.LogCF(string.Format(" = {0}: No time modification found", rawDuration));
+                    // return rawDuration; // This is not a tuplet
+                    return -1;// This is not a tuplet
+                }
+                // This is a tuplet. The exact duration can be represented as an integer. See comments above to "commonDivisions"
+                int actual = this.timeModificationElement.ActualNotes;
+                int normal = this.timeModificationElement.NormalNotes;
+                Int64 exactDuration = rawDuration * normal / actual;
+                // Logger.LogCF(string.Format(" = {0}: Duration={1} ActualNotes={2} NormalNotes={3}", exactDuration, this.noteDuration.ToString(),actual, normal));
+                return exactDuration;     
+            }
+        }
+
+
+        //public string TupleDurationString()
+        //{
+        //    int actual = 1;
+        //    int normal = 1;
+        //    if (null == this.timeModificationElement)
+        //    {
+        //        Logger.LogCFOnce(": TimeModificationElement is null. Using Actual=1 Normal=1");
+        //    }
+        //    else
+        //    {
+        //        actual = this.timeModificationElement.ActualNotes;
+        //        normal = this.timeModificationElement.NormalNotes;
+        //    }
+        //    Int64 rawDuration = NoteTypeEnumToInt64(this.noteDuration);
+        //    int denominator = NoteTypeEnumToDenominator(this.noteDuration);
+        //    //Logger.LogCF(string.Format(": {0} Actual={1} Normal={2}", this.noteDuration.ToString(), actual, normal));
+        //    // string result =  string.Format("{0}/{1}", rawDuration * normal / commonDivisions, actual);
+        //    string result = (-1 == denominator) ? "?" : string.Format("{0}/{1}", normal, actual * denominator);
+        //    Logger.LogCF(string.Format(": NoteDuration={0} Actual={1} Normal={2} returns {3}", this.noteDuration.ToString(), actual, normal, result));
+        //    return result;
+        //}
+
+        public TupletFraction TupleDuration()
+        {
+            int actual = 1;
+            int normal = 1;
+            if (null == this.timeModificationElement)
+            {
+                Logger.LogCFOnce(": TimeModificationElement is null. Using Actual=1 Normal=1");
+            }
+            else
+            {
+                actual = this.timeModificationElement.ActualNotes;
+                normal = this.timeModificationElement.NormalNotes;
+            }
+            int duration = NoteTypeEnumToDenominator(this.noteDuration);
+            if (this.dot)
+            {
+#warning ToDo  Find a beter way to represent this !!!!!
+                normal = normal * 3;
+                actual = actual * 2;
+            }
+            //IntegerFraction result = new TupletFraction(normal, actual * denominator);
+            TupletFraction result = TupletFraction.Create(normal, actual , duration,LocalizeType(noteDuration, false));
+            // Logger.LogCF(string.Format(": NoteDuration={0} Actual={1} Normal={2} returns {3}/{4}", this.noteDuration.ToString(), actual, normal, result.Nominator,result.Denominator));
+            return result;
+        }
+
+
 
 
 
@@ -708,6 +845,8 @@ namespace MusicXmlReaderModel
                         transposeElement = scorePartElement.TransposeElement;
                         break;
                     case "duration": duration = int.Parse(child.InnerText); break;
+                    // The duration element is an integer that represents a note’s duration in terms of divisions per quarter note
+                    // JSJ: "Represent the sound, not what is notated, for example in the case of swing notes
                     case "chord": chord = true; break;
                     case "type":
                         noteDuration = GetDuration(child.InnerText);
@@ -806,6 +945,7 @@ namespace MusicXmlReaderModel
             localizedType = LocalizeType(noteDuration, dot);
             localizedPauseType = (IsPause) ? LocalizePause(noteDuration, dot) : "";
             localizedTie = LocalizeTie(tieType);
+      
 
             // Model.GetNoteTiming(out this.startTime, out this.endTime, int.Parse(this.duration));
 

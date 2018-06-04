@@ -142,6 +142,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string DetailState_Status {
+            get {
+                return ResourceManager.GetString("DetailState_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to en-US.
         /// </summary>
         internal static string DirectoryNames_CultureString {
@@ -808,6 +817,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Check other parts or details.
+        /// </summary>
+        internal static string TreeView_CheckOthers {
+            get {
+                return ResourceManager.GetString("TreeView_CheckOthers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to for.
         /// </summary>
         internal static string Treeview_for {
@@ -903,6 +921,15 @@ namespace MusicXmlReader {
         internal static string TreeView_UncheckAll {
             get {
                 return ResourceManager.GetString("TreeView_UncheckAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Uncheck other parts or details.
+        /// </summary>
+        internal static string TreeView_UncheckOthers {
+            get {
+                return ResourceManager.GetString("TreeView_UncheckOthers", resourceCulture);
             }
         }
         

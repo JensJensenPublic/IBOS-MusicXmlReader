@@ -339,4 +339,13 @@
   <data name="ToolStripMenuItem_Edit_ParameterInputText" xml:space="preserve">
     <value>(for indtastning af talværdier)</value>
   </data>
+  <data name="Shortcut_Caption_NoteFilter_Special" xml:space="preserve">
+    <value>Følgende specielle tastaturgenveje og kommandoer kan anvendes i forbindelse med Nodefilteret</value>
+  </data>
+  <data name="Shurtcut_TurnOffOtherPartsOrDetails" xml:space="preserve">
+    <value>Sluk alle andre stemmer eller detaljer</value>
+  </data>
+  <data name="Shurtcut_TurnOnOtherPartsOrDetails" xml:space="preserve">
+    <value>Tænd alle andre stemmer eller detaljer</value>
+  </data>
 </root>

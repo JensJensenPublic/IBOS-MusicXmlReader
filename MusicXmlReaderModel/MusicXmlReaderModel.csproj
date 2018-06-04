@@ -63,7 +63,12 @@
     <Compile Include="Elements\SlashElement.cs" />
     <Compile Include="Elements\UnpitchedElement.cs" />
     <Compile Include="Elements\VirtualInstrumentElement.cs" />
+    <Compile Include="EventDescriptionTextRepresentation.cs" />
+    <Compile Include="IntegerFraction.cs" />
     <Compile Include="KnownFolders.cs" />
+    <Compile Include="MeasureFraction.cs" />
+    <Compile Include="MeasureFraction.Logger.cs" />
+    <Compile Include="MeasureFractionHistory.cs" />
     <Compile Include="MetaInformation.cs" />
     <Compile Include="DebugTools.cs" />
     <Compile Include="Elements\AccidentalElement.cs" />
@@ -140,6 +145,7 @@
     <Compile Include="StatusInformation.cs" />
     <Compile Include="TextDisplayer.cs" />
     <Compile Include="TimeDescriptionList.cs" />
+    <Compile Include="TupletFraction.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>

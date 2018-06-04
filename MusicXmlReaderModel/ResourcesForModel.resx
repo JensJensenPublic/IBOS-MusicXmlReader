@@ -262,7 +262,7 @@
     <value>E</value>
   </data>
   <data name="PitchElement_eFlat" xml:space="preserve">
-    <value>D-flat</value>
+    <value>E-flat</value>
   </data>
   <data name="PitchElement_eSharp" xml:space="preserve">
     <value>E-sharp</value>
@@ -822,5 +822,8 @@
   <data name="BarlineElement_EndOfScore" xml:space="preserve">
     <value>The End</value>
     <comment>As in a movie</comment>
+  </data>
+  <data name="EventDescription_NotPrinted" xml:space="preserve">
+    <value>Not printed</value>
   </data>
 </root>

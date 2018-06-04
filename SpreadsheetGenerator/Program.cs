@@ -18,16 +18,11 @@ using KeyboardTest;
 //  DocumentFormat.OpenXml
 //  WindowsBase
 
-// Download and install "Open XML SDK 2.5" for Microsoft Office from
-// https://www.microsoft.com/en-us/download/details.aspx?id=30425
-// Select OpenXMLSDKV25.msi and OpenXMLSDKToolV25.msi
-
 
 namespace SpreadsheetGenerator
 {
     class Program
     {
-        // The  [STAThread] attribute  is required because the program ures Windows Forms 
         [STAThread]
         static void Main(string[] args)
         {
@@ -116,21 +111,17 @@ namespace SpreadsheetGenerator
             // Add one row per testStep
             foreach (TestStep testStep in testSteps)
             {
-                string quertyKeys = testStep.GetKeyRepresentation();
-                if (!string.IsNullOrEmpty(quertyKeys)) // Skip if this testStep only contains comments
-                {
-                    row = new Row() { RowIndex = index++ };
-                    sheetData.Append(row);
-                    rowTexts = new List<string>() { };
-                    rowTexts.Add(quertyKeys);
+                row = new Row() { RowIndex = index++ };
+                sheetData.Append(row);
+                rowTexts = new List<string>() {  };
+                rowTexts.Add(testStep.Keys.ToString());
 
-                    foreach (Keyboard keyboard in keyboards)
-                    {
-                        PerkinsKeySequence perkinsKeySequence = (testStep.Keys == Keys.None) ? keyboard.GetPerkinsSequence(testStep.KeySequenceList) : keyboard.GetPerkinsSequence(testStep.Keys);
-                        rowTexts.Add(perkinsKeySequence.ToString());
-                    }
-                    addCells(row, rowTexts);
+                foreach (Keyboard keyboard in keyboards)
+                {
+                    PerkinsKeySequence perkinsKeySequence = (testStep.Keys == Keys.None) ? keyboard.GetPerkinsSequence(testStep.KeySequenceList) : keyboard.GetPerkinsSequence(testStep.Keys);                                    
+                    rowTexts.Add(perkinsKeySequence.ToString());
                 }
+                addCells(row, rowTexts);
             }
 
 #endif
@@ -138,19 +129,12 @@ namespace SpreadsheetGenerator
                 // Close the document.
                 spreadsheetDocument.Close();
 
-            Console.WriteLine(string.Format("The spreadsheet document has been created as {0}\nPress a key to view it.",fileName));
+            Console.WriteLine("The spreadsheet document has been created.\nPress a key.");
             Console.ReadKey();
-
-            System.Diagnostics.Process.Start(fileName); // Run associated program, for instance "LibreOffice Calc ??"  or "Microsoft Excel"
-
-     
 
         }
 
-
-
-
-static void addCell(Row row, string reference, string value)
+        static void addCell(Row row, string reference, string value)
         {
             Cell refCell = null;
             Cell newCell2 = new Cell() { CellReference = reference };

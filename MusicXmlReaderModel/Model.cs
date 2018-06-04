@@ -502,7 +502,7 @@ namespace MusicXmlReaderModel
                         this.latestMeasureNumber = this.currentMeasureNumber;
                     }
                     NoteElement note = NoteElement.Create(node, this.divisions, this.currentMeasureNumber, this.currentScorePartElement, this.currentTimeElement); // New version
-                    allMusicXmlObjecsts.Add(note);
+                    allMusicXmlObjecsts.Add(note);               
                     continueRecursion = false;
                     break;
                 case "part-list":
@@ -838,6 +838,7 @@ namespace MusicXmlReaderModel
             timeDescriptionList = TimeDescriptionList.Create(partDescriptionList, divisions);
             currentStatusInformation = StatusInformation.Create(MusicPlayer.defaultMusicPlayerTempo);
             eventDescriptionList = EventDescriptionList.Create(timeDescriptionList, numberOfParts, userSettings, currentStatusInformation);
+            eventDescriptionList.InitMeasureFractions(); // NOTE! New code for handling fractions of measures !!
         }
 
 
@@ -1122,6 +1123,23 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
                 // Return message to the user that no chord was found.
                 DetailsDescription[] noDescriptions = new DetailsDescription[1];
                 noDescriptions[0] =  DetailsDescription.Create(ResourcesForModel.DetailsDescription_NoChordFound);
+                return noDescriptions;
+            }
+        }
+
+        public DetailsDescription[] GetCurrentStatusDetails(EventDescription eventDescription)
+        {
+            if (null != eventDescription.StatusInformation)
+            {
+                detailsPlayer = DetailsPlayer.Create(eventDescription.StatusInformation);
+                return detailsPlayer.DetailsDescriptionArray;
+            }
+            else
+            {
+                // Return message to the user that no chord was found.
+                DetailsDescription[] noDescriptions = new DetailsDescription[1];
+                //noDescriptions[0] = DetailsDescription.Create(ResourcesForModel.DetailsDescription_NoStatusFound);
+                noDescriptions[0] = DetailsDescription.Create(ResourcesForModel.DetailsDescription_NoChordFound);  // TODO Fix
                 return noDescriptions;
             }
         }

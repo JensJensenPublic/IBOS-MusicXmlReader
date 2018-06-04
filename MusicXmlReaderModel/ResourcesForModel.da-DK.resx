@@ -826,4 +826,7 @@
     <value>Slut</value>
     <comment>As in a movie</comment>
   </data>
+  <data name="EventDescription_NotPrinted" xml:space="preserve">
+    <value>Ikke printet</value>
+  </data>
 </root>

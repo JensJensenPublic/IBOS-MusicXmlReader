@@ -221,8 +221,7 @@ namespace MusicXmlReader
             AddAltControlLine(edit, ResourcesForUI.TreeView_MusicAsSpeech_Details, ShortcutHandler.NoKeys, ResourcesForHelp.Shortcut_EditDetails);
             AddAltControlLine(edit, ResourcesForUI.TreeView_UncheckAll, ShortcutHandler.uncheckAll, ResourcesForHelp.Shortcut_TurnOffGlobally);
             AddAltControlLine(edit, ResourcesForUI.TreeView_CheckAll, ShortcutHandler.checkAll, ResourcesForHelp.Shurtcut_TurnOnGlobally);
-            AddLine(Keys.Space, ResourcesForHelp.Shortcut_ToggleValue);
-            AddLine(Keys.Control | Keys.L, ResourcesForHelp.Shortcut_SelectNoteList);
+
 
             // Start of commands taking parameters and handled by the ParameterInputForm
             AddCaption(ResourcesForUI.ToolStripMenuItem_Edit, ResourcesForHelp.ToolStripMenuItem_Edit_ParameterInputText);
@@ -289,6 +288,18 @@ namespace MusicXmlReader
             AddLine(ResourcesForHelp.Shortcut_Caption_DetailList);
             AddLine(Keys.Down, ResourcesForHelp.Shortcut_NextDetail);
             AddLine(Keys.Up, ResourcesForHelp.Shortcut_PreviousDetail);
+
+            // Følgende specielle tastaturgenveje og kommandoer kan anvendes i forbindelse med Nodefilteret           
+            // The following special keyboard skortcuts and commands can be used in connection with the note filter
+            AddLine("\r");
+            AddLine(ResourcesForHelp.Shortcut_Caption_NoteFilter_Special);
+            AddLine(ShortcutHandler.uncheckOthers, ResourcesForHelp.Shurtcut_TurnOffOtherPartsOrDetails);
+            AddLine(ShortcutHandler.checkOthers, ResourcesForHelp.Shurtcut_TurnOnOtherPartsOrDetails);
+            AddLine(Keys.Space, ResourcesForHelp.Shortcut_ToggleValue);
+            AddLine(Keys.Control | Keys.L, ResourcesForHelp.Shortcut_SelectNoteList);
+
+
+
 
             return strings;
         }

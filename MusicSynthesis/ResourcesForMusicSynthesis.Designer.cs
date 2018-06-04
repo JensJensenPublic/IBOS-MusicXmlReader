@@ -511,6 +511,15 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Chord.
+        /// </summary>
+        internal static string ChordKind_None {
+            get {
+                return ResourceManager.GetString("ChordKind_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to sus2.
         /// </summary>
         internal static string ChordKind_Sus2 {

@@ -28,6 +28,9 @@ namespace MusicXmlReaderModel
         ChordType chordType;
         string localizedChordType;
 
+        public override string Caption { get { return ResourcesForModel.HarmonyElement_Chord; } }
+
+
         public string Kind
         {
             get
@@ -194,6 +197,10 @@ namespace MusicXmlReaderModel
             }
 
             chordType = MidiChord.GetChordType(kind);
+            if (ChordType.None == chordType)
+            {
+                Logger.LogOnce(string.Format("{0}.{1} found 'No Chord' kind={2}", className, functionName, kind));
+            }
             if (ChordType.UnImplemented == chordType)
             {
                 Logger.LogOnce(string.Format("{0}.{1} found unimplemented harmony kind={2}", className, functionName, kind));
@@ -210,14 +217,14 @@ namespace MusicXmlReaderModel
             return new HarmonyElement(node);
         }
 
-        public override string ToString() // LOCALIZE
-        {
-            return string.Format("{0}: Akkord: {1} {2} {3}",
-                startTime,
-                string.IsNullOrEmpty(kind) ? "" : kind,
-                string.IsNullOrEmpty(rootStep) ? "" : rootStep,
-                string.IsNullOrEmpty(rootAlter) ? "" : rootAlter);
-        }
+        //public override string ToString() // LOCALIZE
+        //{
+        //    return string.Format("{0}: Akkord: {1} {2} {3}",
+        //        startTime,
+        //        string.IsNullOrEmpty(kind) ? "" : kind,
+        //        string.IsNullOrEmpty(rootStep) ? "" : rootStep,
+        //        string.IsNullOrEmpty(rootAlter) ? "" : rootAlter);
+        //}
 
         private string ToString(List<MidiChordDegreeDescription> degrees)
         {
@@ -229,13 +236,20 @@ namespace MusicXmlReaderModel
             return sb.ToString();
         }
         
-        public string ToLocalizedString()
+        public override string ToString()
         {
-            string delimiter = ""; // (string.IsNullOrEmpty(localizedChordType)) ? "" : "-"; // Only show delimiter if needed
-            string bassTone = (null != bassElement) ? string.Format("/{0}",bassElement.ToString()) : ""; // Only show bassTone if needed
-            string degreeString = ((null != degrees) && (0 != degrees.Count)) ? ToString(degrees) : ""; // Only show degrees if needed  
-            string s = string.Format("{0}{1}{2}{3} {4}", chromaticRootStep, delimiter, localizedChordType, bassTone, degreeString);
-            return s;
+            if (chordType == ChordType.None)
+            {
+                return MidiChord.LocalizedChordKindNone; 
+            }
+            else
+            {
+                string delimiter = ""; // (string.IsNullOrEmpty(localizedChordType)) ? "" : "-"; // Only show delimiter if needed
+                string bassTone = (null != bassElement) ? string.Format("/{0}", bassElement.ToString()) : ""; // Only show bassTone if needed
+                string degreeString = ((null != degrees) && (0 != degrees.Count)) ? ToString(degrees) : ""; // Only show degrees if needed  
+                string s = string.Format("{0}{1}{2}{3} {4}", chromaticRootStep, delimiter, localizedChordType, bassTone, degreeString);
+                return s;
+            }
         }
     }
 }

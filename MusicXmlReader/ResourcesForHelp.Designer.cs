@@ -160,6 +160,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The following special keyboard skortcuts and commands can be used in connection with the note filter.
+        /// </summary>
+        internal static string Shortcut_Caption_NoteFilter_Special {
+            get {
+                return ResourceManager.GetString("Shortcut_Caption_NoteFilter_Special", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shortcuts used for controlling the note list.
         /// </summary>
         internal static string shortcut_Caption_NoteList {
@@ -691,7 +700,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turn selected voice or detail off globally.
+        ///   Looks up a localized string similar to Turn selected part or detail off globally.
         /// </summary>
         internal static string Shortcut_TurnOffGlobally {
             get {
@@ -700,11 +709,29 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turn selected voice or detail on globally.
+        ///   Looks up a localized string similar to Turn all other parts or details off.
+        /// </summary>
+        internal static string Shurtcut_TurnOffOtherPartsOrDetails {
+            get {
+                return ResourceManager.GetString("Shurtcut_TurnOffOtherPartsOrDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turn selected part or detail on globally.
         /// </summary>
         internal static string Shurtcut_TurnOnGlobally {
             get {
                 return ResourceManager.GetString("Shurtcut_TurnOnGlobally", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turn all other parts or details on.
+        /// </summary>
+        internal static string Shurtcut_TurnOnOtherPartsOrDetails {
+            get {
+                return ResourceManager.GetString("Shurtcut_TurnOnOtherPartsOrDetails", resourceCulture);
             }
         }
         

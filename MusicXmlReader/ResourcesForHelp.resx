@@ -226,10 +226,10 @@
     <value>Toggle value on / off</value>
   </data>
   <data name="Shortcut_TurnOffGlobally" xml:space="preserve">
-    <value>Turn selected voice or detail off globally</value>
+    <value>Turn selected part or detail off globally</value>
   </data>
   <data name="Shurtcut_TurnOnGlobally" xml:space="preserve">
-    <value>Turn selected voice or detail on globally</value>
+    <value>Turn selected part or detail on globally</value>
   </data>
   <data name="Shortcut_ReadMessagebox" xml:space="preserve">
     <value>Read message box</value>
@@ -338,5 +338,14 @@
   </data>
   <data name="ToolStripMenuItem_Edit_ParameterInputText" xml:space="preserve">
     <value>(for entry of numeric parameters)</value>
+  </data>
+  <data name="Shortcut_Caption_NoteFilter_Special" xml:space="preserve">
+    <value>The following special keyboard skortcuts and commands can be used in connection with the note filter</value>
+  </data>
+  <data name="Shurtcut_TurnOffOtherPartsOrDetails" xml:space="preserve">
+    <value>Turn all other parts or details off</value>
+  </data>
+  <data name="Shurtcut_TurnOnOtherPartsOrDetails" xml:space="preserve">
+    <value>Turn all other parts or details on</value>
   </data>
 </root>

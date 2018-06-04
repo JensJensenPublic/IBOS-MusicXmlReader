@@ -7,6 +7,7 @@ namespace MusicXmlReaderModel
 
     public class EventDescriptionList
     {
+        private string className = "EventDescriptionList";
 
         UserSettings userSettings;
 
@@ -57,8 +58,15 @@ namespace MusicXmlReaderModel
                     events.Add(currentEventDescription);
                 }
                 currentEventDescription.AddNode(eventElement, currentStatusInformation);
+                eventElement.OwningEventDescription = currentEventDescription; // Let every EventElement know to which EventDescription it belongs
             }
 
+            if (null != currentEventDescription)
+            {
+                // Save a copy of the currrent  status information with the (LAST) eventDescription, we have just finished:
+                currentEventDescription.StatusInformation = StatusInformation.Create(currentStatusInformation);
+            }
+            
             if (this.events.Count > 0)
             {
                 // For marking the end of a score, even if the terminating light/heavy BarElement is missing which is seen for MusicXml files created by Lime 9.05 for Windows.
@@ -67,6 +75,89 @@ namespace MusicXmlReaderModel
             }
 
         }
+
+        public void InitMeasureFractions()
+        {
+            string functionName = "InitMeasureFractions";
+            try
+            {
+                //throw new Exception("For test only");
+                int currentMeasureNumber = -1;
+                Int64 currentStartTime = 0;
+                Int64 currentMeasureStartTime = 0;
+                //MeasureFraction previousMeasureFraction = null; // Used when we need to express the time as a sum of 2 fraction, for instance 1/4 + 1/3 (Triplets)
+                // MeasureFractionHistory currentMeasureFractionList = null;
+                foreach (EventDescription eventDescription in this.Events)
+                {
+
+                    //// Create l list of all arithmetic durations for notes in this eventDescription
+                    //List<Int64> ads = new List<Int64>(); 
+                    //foreach (List<NoteElement> noteList in eventDescription.NoteLists)
+                    //{
+                    //    foreach (NoteElement noteElement in noteList)
+                    //    {
+                    //        Int64 temp = noteElement.ArithmeticDurationInCommonDivisions;
+                    //        if (-1 != temp)
+                    //        {
+                    //            ads.Add(temp);
+                    //        }
+                    //    }
+                    //}
+                                        
+                    //if (0 != ads.Count)
+                    //{
+                    //    System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                    //    foreach (Int64 value in ads)
+                    //    {
+                    //        sb.Append(" " + value.ToString());
+                    //    }
+                    //    Logger.LogCF(string.Format("ads.count = {0} : {1}", ads.Count, sb.ToString()));
+                    //}
+
+
+
+                    bool newMeasure = (-1 != eventDescription.MeasureNumber) && (currentMeasureNumber != eventDescription.MeasureNumber);
+
+                    MeasureFraction newMeasureFraction;
+                    if (newMeasure)
+                    {
+                        // This is the first eventDescription within a new measure
+                        currentMeasureStartTime = eventDescription.StartTime;
+                        //newMeasureFraction = MeasureFraction.Create(eventDescription, 0);
+                        newMeasureFraction = MeasureFraction.Create(eventDescription, eventDescription.StartTime, currentMeasureStartTime);
+
+                    }
+                    else
+                    {
+                        // This is not the first eventDescription within the measure
+                        newMeasureFraction = MeasureFraction.Create(eventDescription, currentStartTime, currentMeasureStartTime);     
+                    }
+
+                    newMeasureFraction.Evaluate();
+                    eventDescription.MeasureFraction = newMeasureFraction;
+                    //eventDescription.MeasureFractions = MeasureFractionHistory.Create(null, newMeasureFraction);
+
+
+                    eventDescription.StatusInformation.CurrentMeasureFraction = eventDescription.MeasureFraction;
+                    currentStartTime = eventDescription.StartTime;
+                    currentMeasureNumber = eventDescription.MeasureNumber;
+                    //currentMeasureFraction = eventDescription.measureFraction;
+                    if (-1 != currentMeasureNumber)
+                    {
+                        // Logger.Log(string.Format("{0}.{1} Measure={2}", className, functionName, currentMeasureNumber));
+                    }
+
+                    // Logger.Log(string.Format(" Fractions= {0}", eventDescription.MeasureFractions.ToString()));
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Log(string.Format("{0}.{1} threw an exception. Message='{2}'", className, functionName, e.Message));
+            }
+
+        }
+
+
 
         public static EventDescriptionList Create(TimeDescriptionList timeDescriptionList, int numberOfParts, UserSettings userSettings, StatusInformation currentStatusInformation)
         {

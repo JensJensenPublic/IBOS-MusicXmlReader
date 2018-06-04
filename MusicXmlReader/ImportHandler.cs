@@ -15,6 +15,7 @@ namespace MusicXmlReader
         private Model model;
         private MainForm mainForm;
         private string className = "ImportHandler";
+        private string applicationName;
 
         /// <summary>
         /// Prevent construction
@@ -23,10 +24,11 @@ namespace MusicXmlReader
         {
         }
 
-        private ImportHandler(Model model, MainForm mainForm)
+        private ImportHandler(Model model, MainForm mainForm, string applicationName)
         {
             this.model = model;
             this.mainForm = mainForm;
+            this.applicationName = applicationName;
         }
 
         private string GetImportMessage(List<string> fileNames)
@@ -59,7 +61,7 @@ namespace MusicXmlReader
                     sb.AppendLine("..."); // Localize later if wanted !
                 }
             }
-            MessageBox.Show(sb.ToString(), mainForm.ApplicationName, MessageBoxButtons.OK);
+            MessageBox.Show(sb.ToString(), applicationName, MessageBoxButtons.OK);
         }
 
         private void Import(List<string> selectedFiles)
@@ -127,9 +129,9 @@ namespace MusicXmlReader
             ShowImportMessageBox(message, sampleFiles);
         }
 
-        public static ImportHandler Create(Model model, MainForm mainForm)
+        public static ImportHandler Create(Model model, MainForm mainForm, string applicationName)
         {
-            return new ImportHandler(model, mainForm);
+            return new ImportHandler(model, mainForm, applicationName);
         }
     }
 }

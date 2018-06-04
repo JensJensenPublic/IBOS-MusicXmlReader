@@ -10,12 +10,15 @@ using MusicXmlReaderModel;
 
 namespace MusicXmlReader
 {
-    class UserSettingsHandler
+    public class UserSettingsHandler
     {
+        public enum CheckboxOperation { Unknown, Check, Uncheck, ToggleAndCopy };
+        public enum CheckboxRelation  { Unknown, SameName, SameParent };
 
         private string className = "UserSettingsHandler";
         private bool consoleTrace = false;
         private TreeView treeView;
+        private ListBoxTimesHandler listBoxTimesHandler;
 
         private TreeNode musicAsSound;
         private TreeNode musicAsSoundVoices;
@@ -38,10 +41,7 @@ namespace MusicXmlReader
         private const int partsNodeIndex = 0;
         private const int detailsNodeIndex = 1;
 
-
-        private MainForm mainForm;
-        //private UserSettings userSettings;
-        //private PartlistElement partList; 
+ 
         private Model model;
 
         public TreeNode MusicAsSound
@@ -75,13 +75,193 @@ namespace MusicXmlReader
         }
 
 
-        private UserSettingsHandler(MainForm mainForm, TreeView treeView,Model model)
-        {
-            this.mainForm = mainForm;
+        private UserSettingsHandler(TreeView treeView,Model model, ListBoxTimesHandler listBoxTimesHandler)
+        {  
             this.treeView = treeView;
+            this.listBoxTimesHandler = listBoxTimesHandler;
             this.treeView.AfterCheck += TreeView_AfterCheck;
-            this.model = model;       
+            this.model = model;
+            this.treeView.AccessibleName = ResourcesForUI.TreeView_Accessible_Name;
+            this.treeView.KeyDown += new System.Windows.Forms.KeyEventHandler(TreeView_KeyDown);
+            this.treeView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(TreeView_KeyPress);
+            this.treeView.KeyUp += new System.Windows.Forms.KeyEventHandler(TreeView_KeyUp);
+            this.treeView.Enter += TreeView_Enter;
+            this.treeView.Leave += TreeView_Leave;
         }
+
+        private void TreeView_Leave(object sender, EventArgs e)
+        {
+            this.treeView.BackColor = MainForm.NonFocusedColor;
+        }
+
+        private void TreeView_Enter(object sender, EventArgs e)
+        {
+            this.treeView.BackColor = MainForm.FocusedColor;
+        }
+
+        public void Reset()
+        {
+            treeView.CollapseAll();
+            treeView.Refresh();
+        }
+
+        private void TreeView_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (consoleTrace) Console.WriteLine("userSettingsTreeView_KeyPress"); 
+        }
+
+        private void TreeView_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (consoleTrace) Console.WriteLine("userSettingsTreeView_KeyUp");
+        }
+
+
+        private bool UpdateNotesWithSameName(bool newValue, int level)
+        {
+            // We only handle level 2 nodes
+            if (2 != level) return false;
+
+            // Locate and check/uncheck all nodes with same parent-name and same node-name
+            string level1Name = treeView.SelectedNode.Parent.Name;
+            string level2Text = treeView.SelectedNode.Text;
+            foreach (TreeNode level0Node in treeView.Nodes)
+            {
+                foreach (TreeNode level1Node in level0Node.Nodes)
+                {
+                    if (0 == string.Compare(level1Name, level1Node.Name))
+                    {
+                        foreach (TreeNode level2Node in level1Node.Nodes)
+                        {
+                            if (0 == string.Compare(level2Text, level2Node.Text))
+                            {
+                                level2Node.Checked = newValue;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
+        private bool UpdateNotesWithSameParent(bool newValue, int level)
+        {      
+            TreeNodeCollection nodes;
+            switch (level) // We only handle level 0 nodes and 2 nodes
+            {
+                case 0: nodes = treeView.Nodes; break; // Level 0 nodes have no parent !
+                case 2: nodes = treeView.SelectedNode.Parent.Nodes; break;
+                default: return false;
+            }
+
+            foreach (TreeNode node in nodes)
+            {
+                if (node != treeView.SelectedNode)
+                {
+                    node.Checked = newValue;
+                }
+            }
+            return true;
+        }
+
+
+        /// <summary>
+        /// Candle chsckboxes, distributed in the tree
+        /// </summary>
+        /// <param name="checkboxOperation"></param>
+        /// <returns></returns>
+        public bool UpdateCheckBoxes(CheckboxOperation checkboxOperation, CheckboxRelation checkboxRelation)
+        {
+            string functionName = "UpdateCheckBoxes";
+            Logger.Log(string.Format("{0}.{1}({2},{3})", className, functionName, checkboxOperation, checkboxRelation));
+            bool result = false;
+            bool newValue;
+            // We only handle the shortcuts specified in shortCutHandler
+            switch (checkboxOperation)
+            {
+                case CheckboxOperation.Check: newValue = true; break;
+                case CheckboxOperation.Uncheck: newValue = false; break;
+                case CheckboxOperation.ToggleAndCopy: newValue = !treeView.SelectedNode.Checked; result = true; break;
+                default: return false;
+            }
+
+            // This only has meaning if a node is selected !
+            if (null == treeView.SelectedNode) return result;
+
+
+            bool saveAutoReload = listBoxTimesHandler.AutoReload;
+            listBoxTimesHandler.AutoReload = false; // Avoid loading the listbox for each and every change
+
+            switch (checkboxRelation)
+            {
+                case CheckboxRelation.SameName: UpdateNotesWithSameName(newValue, treeView.SelectedNode.Level); break;
+                case CheckboxRelation.SameParent: UpdateNotesWithSameParent(newValue, treeView.SelectedNode.Level); break;
+                default: break; // TODO fix this case
+            }
+
+            this.treeView.Refresh(); // Refresh the treeView before we start refreshing the listbox  (which may take some time !)
+
+#warning Maybe we should not refresh the listbox until it gets focus ??
+
+            listBoxTimesHandler.AutoReload = saveAutoReload; // Restore
+            listBoxTimesHandler.ConditionalLoad(); // Reload once instead of multiple times
+            return result;
+        }
+
+
+        ///// <summary>
+        ///// Update all other checkboxes on this lecel in this subtree
+        ///// For instance in order to turn all other voices off or on
+        ///// </summary>
+        ///// <param name="checkboxOperation"></param>
+        //public void UpdateOtherCheckboxes(CheckboxOperation checkboxOperation)
+        //{
+        //    string functionName = "UpdateOtherCheckboxes";
+        //    //Logger.Log(string.Format("{0}.{1}({2}) Not implemented yet !!", className, functionName, checkboxOperation));
+        //    //UiUtilities.Beep();
+        //    UpdateCheckBoxes(checkboxOperation, CheckboxRelation.SameParent);
+        //}
+
+
+        /// <summary>
+        /// Occurs when a key is pressed while treeView has focus         
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void TreeView_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (consoleTrace) Console.WriteLine("userSettingsTreeView_KeyDown");
+            if (e.KeyData == ShortcutHandler.listBoxFocus)
+            {
+                listBoxTimesHandler.Focus(); // Easy way to move the focus to the main listbox
+                e.SuppressKeyPress = true;
+                return;
+            }
+
+
+            if (null == treeView.SelectedNode)
+            {
+                e.SuppressKeyPress = true;
+                return;
+            }
+
+
+            switch (e.KeyData)
+            {
+                case ShortcutHandler.uncheckOthers: e.Handled = UpdateCheckBoxes(CheckboxOperation.Uncheck, CheckboxRelation.SameParent); e.SuppressKeyPress = true; break;
+                case ShortcutHandler.checkOthers:   e.Handled = UpdateCheckBoxes(CheckboxOperation.Check, CheckboxRelation.SameParent); e.SuppressKeyPress = true; break;
+                // For the time being the cneckAll and uncheckAll commands are called through the menuline, which is not formally correct, 
+                // because they should only be active when the Treeview has focus. They may be activated by the 2 lines below !
+                //case ShortcutHandler.uncheckAll: e.Handled = UpdateCheckBoxes(CheckboxOperation.Uncheck, CheckboxRelation.SameParent); e.SuppressKeyPress = true; break;
+                //case ShortcutHandler.checkAll: e.Handled = UpdateCheckBoxes(CheckboxOperation.Check, CheckboxRelation.SameParent); e.SuppressKeyPress = true; break;
+                default: break;
+            }
+
+            // Otherwise let the treeview itself handle it
+
+        }
+
+
 
 
         /// <summary>
@@ -154,14 +334,14 @@ namespace MusicXmlReader
             if (!((null != level0Node) && (0 == level0Node.Index)))
             {
                 // Skip the update of the Listbox if this was a change of a sound parameter, which is not reflected there.
-                mainForm.ConditionalLoadListBoxTimes();
+                listBoxTimesHandler.ConditionalLoad();
             }
 
         }
 
-        public static UserSettingsHandler Create(MainForm mainForm,TreeView treeView,Model model)
+        public static UserSettingsHandler Create(TreeView treeView,Model model, ListBoxTimesHandler listBoxTimesHandler)
         {
-            return new UserSettingsHandler(mainForm,treeView,model);
+            return new UserSettingsHandler(treeView,model,listBoxTimesHandler);
         }
 
         public void clearAll()
@@ -191,6 +371,9 @@ namespace MusicXmlReader
 
 
 
+        /// <summary>
+        /// Overwrite relwvant node names with localized texts
+        /// </summary>
         public void Init()
         {
             clearAll();
@@ -366,6 +549,9 @@ namespace MusicXmlReader
                 treeView.SelectedNode = musicAsSound.Nodes[UserSettingsHandler.detailsNodeIndex];
             }
         }
+
+
+
 
         #endregion
 
