@@ -244,7 +244,23 @@ namespace MusicXmlReader
             // model.Silence();
             foreach (EventDescription eventDescription in model.EventDescriptionList.Events)
             {
+#if false
+                // Makes "Next measure" (CTRL Right)   and "Previous measure" (CTRL left) fail
+                string s = eventDescription.ToString();
+                if (string.IsNullOrWhiteSpace(s))
+                {
+                    string warning = string.Format("Empty string skipped in measure{0}", eventDescription.StatusInformation.CurrentMeasureElement.ToString());
+                    Logger.LogCF(string.Format(": {0}",warning));
+                    string asterixes = "*************************************************";
+                    listBoxTimes.Items.Add(string.Format("{0} {1} {0}",asterixes,warning));
+                }
+                else
+                {
+                    listBoxTimes.Items.Add(eventDescription);
+                }
+#endif
                 listBoxTimes.Items.Add(eventDescription);
+
             }
 
             Logger.DumpStatistics(); // Dump all statistics collected by LogOnce() during parsing, interpreting and rendering the file
@@ -312,7 +328,7 @@ namespace MusicXmlReader
             Application.Exit();
         }
 
-        #region Edit
+#region Edit
         // Items above the delimiter line are represented by level 0 nodes in the tree
 
         private void musicRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -363,12 +379,12 @@ namespace MusicXmlReader
         //}
 
 
-        #endregion // Edit
+#endregion // Edit
         //
         //*************************************************************************************************
         //
 
-        #region Help
+#region Help
         private void aboutIBOSMusicXmlReaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Version version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
@@ -397,10 +413,10 @@ namespace MusicXmlReader
             // MessageBox.Show(ShortcutHelp.Create().ToString(), caption);
         }
 
-        #endregion
+#endregion
 
 
-        #region tools
+#region tools
 
 
         private void museScoreToolStripMenuItem_Click(object sender, EventArgs e)
@@ -445,10 +461,10 @@ namespace MusicXmlReader
         }
 
 
-        #endregion // tools ***********************************************************************
+#endregion // tools ***********************************************************************
 
 
-        #region Archives
+#region Archives
 
         private void httpsmusescorecomsheetmusicToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -555,11 +571,11 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.OpenUrl(sender.ToString());
         }
 
-        #endregion // archives
+#endregion // archives
 
 
 
-        #region Import
+#region Import
         private void importNewSampleFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             importHandler.ImportNewSample();
@@ -574,7 +590,7 @@ namespace MusicXmlReader
         {
             importHandler.ImportDownloads(openFileDialog);
         }
-        #endregion // Import
+#endregion // Import
 
 
         private void linkToNewestSoftwareToolStripMenuItem_Click(object sender, EventArgs e)
@@ -696,7 +712,7 @@ namespace MusicXmlReader
         }
 
 
-        #region Repeat,GoTo,NormalTempo
+#region Repeat,GoTo,NormalTempo
          
         private void repeatToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -717,7 +733,7 @@ namespace MusicXmlReader
             parameterInputHandler.OfNominalTempoToolStripMenuItem_Click();
         }
 
-        #endregion
+#endregion
 
     }
 }

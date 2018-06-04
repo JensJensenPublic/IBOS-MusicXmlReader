@@ -42,8 +42,8 @@ namespace MusicXmlReaderModel
 
         // A few other elements may be related to a specific event
         private List<SoundElement> soundElements;           // The SoundElements related to this event, if any
-        private List<KeyElement>   keyElements;             // The KeyElements related to this event, if any
-        private List<ClefElement>  clefElements;            // The ClefElements related to this event, if any
+        private List<KeyElement> keyElements;             // The KeyElements related to this event, if any
+        private List<ClefElement> clefElements;            // The ClefElements related to this event, if any
         private List<TimeElement> timeElements;             // The TimeElements related to this event, if any
         private List<BarlineElement> barlineElements;       // The BarlineElements related to this event, if any. In some rare cases more than one!!
         private List<DirectionElement> directionElements;   // The DirectionElements related to this event, if any 
@@ -164,7 +164,7 @@ namespace MusicXmlReaderModel
             }
         }
 
-        internal StatusInformation StatusInformation
+        public StatusInformation StatusInformation
         {
             get
             {
