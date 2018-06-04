@@ -244,22 +244,22 @@ namespace MusicXmlReader
             // model.Silence();
             foreach (EventDescription eventDescription in model.EventDescriptionList.Events)
             {
-#if false
-                // Makes "Next measure" (CTRL Right)   and "Previous measure" (CTRL left) fail
+#if true
                 string s = eventDescription.ToString();
                 if (string.IsNullOrWhiteSpace(s))
                 {
                     string warning = string.Format("Empty string skipped in measure{0}", eventDescription.StatusInformation.CurrentMeasureElement.ToString());
                     Logger.LogCF(string.Format(": {0}",warning));
-                    string asterixes = "*************************************************";
-                    listBoxTimes.Items.Add(string.Format("{0} {1} {0}",asterixes,warning));
+                    // string asterixes = "*************************************************";
+                    // listBoxTimes.Items.Add(string.Format("{0} {1} {0}",asterixes,warning));  // May be used for debugging to show the blank lines
                 }
                 else
                 {
                     listBoxTimes.Items.Add(eventDescription);
                 }
-#endif
+#else
                 listBoxTimes.Items.Add(eventDescription);
+#endif
 
             }
 

@@ -1217,10 +1217,14 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
                 {
                     i += move;
                     EventDescription nextEvent = (this.objects.GetObjectAtIndex(i) as EventDescription);
-                    if (nextEvent.MeasureNumber != noMeasure)
+                    if (null != nextEvent) // We may want to enter a string instead of an EventDescription!
                     {
-                        objects.SetSelectedIndex(i);
-                        return;
+                        if (nextEvent.MeasureNumber != noMeasure)                           
+                        {
+                            // Thie event is the first event in this measure.
+                            objects.SetSelectedIndex(i);
+                            return;
+                        }
                     }
                 }
             }
