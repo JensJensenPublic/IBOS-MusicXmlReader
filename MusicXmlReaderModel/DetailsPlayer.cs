@@ -144,7 +144,14 @@ namespace MusicXmlReaderModel
 
         private string Format(EventElement eventElement)
         {
-            return  (null == eventElement) ? "null" : eventElement.Caption + " " + eventElement.ToString();
+            return (null == eventElement) ? "null" : eventElement.Caption + " " + eventElement.ToString();
+        }
+
+        private string Format(HarmonyElement harmonyElement)
+        {
+            // In this implementation we explicitly return "No Chord" if no harmony is found.
+            // We might also choose to skip the full line (This must be implemented in the function calling Format: (DetailsPlayer(StatusInformation statusInformation))
+            return (null == harmonyElement) ? MidiChord.LocalizedChordKindNone : harmonyElement.Caption + " " + harmonyElement.ToString();
         }
 
         private string Format(Element element, string s)
