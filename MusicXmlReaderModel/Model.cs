@@ -511,7 +511,7 @@ namespace MusicXmlReaderModel
                     allMusicXmlObjecsts.Add(partList);
                     this.numberOfParts = partList.NumberOfParts();
                     // Now we know the number of parts.
-                    userSettings = UserSettings.Create(this.numberOfParts);
+                    userSettings = UserSettings.Create(partList);
                     userSettings.defaultStringFormat = (ScreenReaderAPI.ScreenReaderType.NVDA == screenReaderAPI.GetScreenReaderType()) ? "{1}" : "{0} {1}";
                     continueRecursion = false;
                     break;

@@ -13,6 +13,10 @@ namespace MusicXmlReaderModel
     public class UserSettings
     {
 
+        PartlistElement partList;
+        public PartlistElement PartList { get { return partList; } }
+
+
         // All of these settings are just for exchanging simple information.
         // No need to make the coad less readable by making them private etc:
         public string defaultStringFormat = "{0} {1}";
@@ -28,6 +32,8 @@ namespace MusicXmlReaderModel
         public bool[] partsToPlay; // Play the note values from these partitions
         public bool[] partsToRead; // Read the note values from these partitions
         public bool[] partsToBraille; // Generate MusicBraille for these parts  
+
+        private UserSettingsWriter userSettingsWriter = UserSettingsWriter.Create();
 
         // For controlling other user properties
         // readMeasureNumbers;
@@ -249,8 +255,10 @@ namespace MusicXmlReaderModel
         /// Private constructor, used by the Create() method
         /// </summary>
         /// <param name="node"></param>
-        private UserSettings(int numberOfParts)
+        private UserSettings(PartlistElement partList)
         {
+            this.partList = partList;
+            int numberOfParts = partList.NumberOfParts();
             partsToPlay = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
             partsToRead = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
             partsToBraille = new bool[numberOfParts];    // Must be done here because numberUfParts is not a constant.
@@ -266,11 +274,13 @@ namespace MusicXmlReaderModel
             {
                 throw (new Exception("UserSettings: Wrong size of arrays"));
             }
+
+            // string test = userSettingsWriter.ToXml(this); // Used for initial test only !!
         }
 
-        public static UserSettings Create(int numberOfParts)
+        public static UserSettings Create(PartlistElement partList)
         {
-            return new UserSettings(numberOfParts);
+            return new UserSettings(partList);
         }
 
     }
