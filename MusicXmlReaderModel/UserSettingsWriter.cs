@@ -12,8 +12,17 @@ namespace MusicXmlReaderModel
     {
         private void AddElement(XmlTextWriter xml,string name, bool value)
         {
+            AddElementWithAttribute(xml, name, value, null, null);
+        }
+
+        private void AddElementWithAttribute(XmlTextWriter xml, string id, bool value,string attributeName, string attributeValue)
+        {
             xml.WriteWhitespace("\r\n");
-            xml.WriteStartElement(name);
+            xml.WriteStartElement(id);
+            if (!(string.IsNullOrEmpty(attributeName) || string.IsNullOrEmpty(attributeValue)))
+            {
+                xml.WriteAttributeString(attributeName, attributeValue);
+            }
             xml.WriteValue(value);
             xml.WriteEndElement();
         }
@@ -26,9 +35,12 @@ namespace MusicXmlReaderModel
             for (int i = 0; (i < nNames); i++)
             {
                 ScorePartElement scorePartElement = parts.GetPartFromNumber(i);
-                string name = scorePartElement.partId + " " + scorePartElement.partName;
+                string name = scorePartElement.partId;
                 bool value = values[i];
-                AddElement(xml, name, value);
+                string attributeName = "name";
+                string attributeValue = scorePartElement.partName;
+                //AddElement(xml, name, value);
+                AddElementWithAttribute(xml, name, value, attributeName, attributeValue);
             }
         }
 
