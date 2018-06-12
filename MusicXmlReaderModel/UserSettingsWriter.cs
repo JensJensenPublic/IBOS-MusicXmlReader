@@ -12,10 +12,37 @@ namespace MusicXmlReaderModel
     {
         private void AddElement(XmlTextWriter xml,string name, bool value)
         {
+            xml.WriteWhitespace("\r\n");
             xml.WriteStartElement(name);
             xml.WriteValue(value);
             xml.WriteEndElement();
-            xml.WriteWhitespace("\r\n");
+        }
+
+        private void AddParts(XmlTextWriter xml, PartlistElement parts, bool[] values)
+        {
+            int nNames = parts.NumberOfParts();
+            int nValues = values.Length;
+            if (nNames != nValues) Logger.LogCF(string.Format(": names.Length={0} values.Length={1}", nNames, nValues));
+            for (int i = 0; (i < nNames); i++)
+            {
+                ScorePartElement scorePartElement = parts.GetPartFromNumber(i);
+                string name = scorePartElement.partId + " " + scorePartElement.partName;
+                bool value = values[i];
+                AddElement(xml, name, value);
+            }
+        }
+
+        private void AddDetails(XmlTextWriter xml, string[] names, bool[] values)
+        {
+            int nNames  = names.Length;
+            int nValues = values.Length;
+            if (nNames != nValues) Logger.LogCF(string.Format(": names.Length={0} values.Length={1}", nNames, nValues));
+            for (int i = 0; i < names.Length; i++) // length !!
+            {
+                string name = names[i];
+                bool value = values[i];
+                AddElement(xml, name, value);
+            }
         }
 
 
@@ -32,133 +59,62 @@ namespace MusicXmlReaderModel
                 XmlTextWriter xml = new XmlTextWriter(str);
                 // using (XmlWriter xmlWriter = XmlWriter.Create(sb))
                 {
-                    // Root.
+                    // Version information etc
                     xml.WriteStartDocument();
+
+                    // The root element containing all other elements
+                    xml.WriteWhitespace("\r\n");
                     xml.WriteStartElement("UserSettings");
 
-                    // Music As Speech
+                    // Music As Sound / "Musik afspilning"
 
-                    xml.WriteStartElement("MusicAsSpeech");
-                    xml.WriteValue(userSettings.MusicAsSpeech);
-
-                    //xml.WriteWhitespace("\n");
-
-                    // Parts:
-
-                    for (int i = 0; (i < userSettings.partsToRead.Length); i++)
-                    {
-                        ScorePartElement scorePartElement = userSettings.PartList.GetPartFromNumber(i);
-                        //string name = "PartIndex" + i.ToString();   
-                        //string name = scorePartElement.partName;
-                        //string name = scorePartElement.partId; // Alternatively
-                        //string name = scorePartElement.ToString();
-                        //string name = scorePartElement.partName;
-                        string name = scorePartElement.partId + " " + scorePartElement.partName;
-                        bool value = userSettings.partsToRead[i];
-                        AddElement(xml, name, value);         
-                    }
-                           
-
-                    // Details:
-
-                    int length = userSettings.readerSettingsNames.Length;
-                    for (int i = 0; i < length; i++) // length !!
-                    {
-                        string name = userSettings.readerSettingsNames[i];
-                        bool value = userSettings.readerSettingsValues[i];
-                        AddElement(xml, name, value);
-                    }
-                    xml.WriteEndElement(); // MusicAsSpeech
-
-
-                    // Music As Sound 
-
+                    xml.WriteWhitespace("\r\n");
                     xml.WriteStartElement("MusicAsSound");
                     xml.WriteValue(userSettings.MusicAsSound);
-                    xml.WriteWhitespace("\n");
+                    // Parts for Music As Speech:
+                    AddParts(xml, userSettings.PartList, userSettings.partsToPlay);
+                    AddDetails(xml, userSettings.playerSettingsNames, userSettings.playerSettingsValues);
+                    xml.WriteEndElement();
+                    
+                    // Music As Speech / "Tekst visning"
+                    xml.WriteWhitespace("\r\n");
+                    xml.WriteStartElement("MusicAsSpeech");
+                    xml.WriteValue(userSettings.MusicAsSpeech);
+                    // Parts for Music As Speech:
+                    AddParts(xml, userSettings.PartList, userSettings.partsToRead);
+                    AddDetails(xml, userSettings.readerSettingsNames, userSettings.readerSettingsValues);
+                    xml.WriteEndElement();
 
-                    for (int i = 0; i < userSettings.playerSettingsNames.Length; i++)
-                    {
-                        string name = userSettings.playerSettingsNames[i];
-                        bool value = userSettings.playerSettingsValues[i];
-                        xml.WriteStartElement(name);
-                        xml.WriteValue(value);
-                        xml.WriteWhitespace("\n");
-                        xml.WriteEndElement();
 
-                    }
-
-
-                    xml.WriteEndElement(); // MusicASsSound
-
-                    // MusicAsMusicBraille
-
+                    // Music As MusicBraille / "MusicBraille visning"
+                    xml.WriteWhitespace("\r\n");
                     xml.WriteStartElement("MusicAsMusicBraille");
                     xml.WriteValue(userSettings.MusicAsMusicBraille);
-                    xml.WriteWhitespace("\n");
-
-                    for (int i = 0; i < userSettings.musicBrailleSettingsNames.Length; i++)
-                    {
-                        string name = userSettings.musicBrailleSettingsNames[i];
-                        bool value = userSettings.musicBrailleSettingsValues[i];
-                        xml.WriteStartElement(name);
-                        xml.WriteValue(value);
-                        xml.WriteWhitespace("\n");
-                        xml.WriteEndElement();
-
-                    }
-                    xml.WriteEndElement(); //MusicAsMusicBraille
-
-
+                    // Parts for Music As Speech:
+                    AddParts(xml, userSettings.PartList, userSettings.partsToBraille);
+                    AddDetails(xml, userSettings.musicBrailleSettingsNames, userSettings.musicBrailleSettingsValues);
                     xml.WriteEndElement();
+
+
+
+
+                    xml.WriteWhitespace("\r\n");
+                    xml.WriteEndElement(); // "UserSettings"
                     xml.WriteEndDocument();
-
-                    //ToXml(userSettings.MusicAsSound);
-
-                    //xmlWriter.WriteStartDocument();//  .WriteElementString()
-                    //xmlWriter.WriteStartElement("MusicAsSound");
-                    //xmlWriter.WriteWhitespace("\n");
-                    //xmlWriter.WriteValue(userSettings.MusicAsSound);
-                    //xmlWriter.WriteEndElement();
-
-
-                    //xml.userSettings.MusicAsSound;
-                    ////userSettings.MusicAsSpeech;
-                    ////userSettings.MusicAsMusicBraille;
-
-                    //// Loop over Tuples.
-                    //foreach (var element in array)
-                    //{
-                    //    // Write Employee data.
-                    //    xml.WriteStartElement("Employee");
-
-                    //    xml.WriteElementString("ID", element.Item1.ToString());
-                    //    xml.WriteElementString("First", element.Item2);
-                    //    xml.WriteWhitespace("\n  ");
-                    //    xml.WriteElementString("Last", element.Item3);
-                    //    xml.WriteElementString("Salary", element.Item4.ToString());
-
-                    //    xml.WriteEndElement();
-                    //    xml.WriteWhitespace("\n");
-                    //}
-
-                    //// End.
-                    //xml.WriteEndElement();
-                    //xml.WriteEndDocument();
-
-                    //                xmlWriter.WriteEndDocument();
 
                     // Result is a string.
                     result = str.ToString();
                     Console.WriteLine("Length: {0}", result.Length);
                     Console.WriteLine("Result: {0}", result);
                 }
+
             }
             catch (Exception e)
             {
-                Logger.LogCF(string.Format(": Exception.Message = {0}",e.Message));
+                Logger.LogCF(string.Format(": Exception.Message = {0}", e.Message));
+                return "";
             }
-            Logger.LogCF(result);
+            Logger.LogCF(string.Format(":\r\n{0}\r\n",result));
             return result;
         }
         
