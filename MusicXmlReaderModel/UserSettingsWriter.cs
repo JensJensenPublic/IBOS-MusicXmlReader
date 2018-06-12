@@ -45,8 +45,19 @@ namespace MusicXmlReaderModel
             }
         }
 
+        private void AddMainBranch(XmlTextWriter xml, string caption, bool value, PartlistElement partList, bool[] parts, string[] names, bool[] values)
+        {
+            xml.WriteWhitespace("\r\n");
+            xml.WriteStartElement(caption);
+            xml.WriteValue(value);
+            // Parts for Music As Speech:
+            AddParts(xml, partList, parts);
+            AddDetails(xml, names, values);
+            xml.WriteEndElement();
+        }
 
-        public string ToXml(UserSettings userSettings)
+
+        public string ToXml(UserSettings uS)
         {
             // Code inspired by https://www.dotnetperls.com/xmltextwriter
 
@@ -66,34 +77,38 @@ namespace MusicXmlReaderModel
                     xml.WriteWhitespace("\r\n");
                     xml.WriteStartElement("UserSettings");
 
-                    // Music As Sound / "Musik afspilning"
+                    AddMainBranch(xml, "MusicAsSound", uS.MusicAsSound, uS.PartList, uS.partsToPlay, uS.playerSettingsNames, uS.playerSettingsValues);
+                    AddMainBranch(xml, "MusicAsSpeech", uS.MusicAsSpeech, uS.PartList, uS.partsToRead, uS.readerSettingsNames, uS.readerSettingsValues);
+                    AddMainBranch(xml, "MusicAsMusicBraille", uS.MusicAsMusicBraille, uS.PartList, uS.partsToBraille, uS.musicBrailleSettingsNames, uS.musicBrailleSettingsValues);
 
-                    xml.WriteWhitespace("\r\n");
-                    xml.WriteStartElement("MusicAsSound");
-                    xml.WriteValue(userSettings.MusicAsSound);
-                    // Parts for Music As Speech:
-                    AddParts(xml, userSettings.PartList, userSettings.partsToPlay);
-                    AddDetails(xml, userSettings.playerSettingsNames, userSettings.playerSettingsValues);
-                    xml.WriteEndElement();
+                    //// Music As Sound / "Musik afspilning"
+
+                    //xml.WriteWhitespace("\r\n");
+                    //xml.WriteStartElement("MusicAsSound");
+                    //xml.WriteValue(uS.MusicAsSound);
+                    //// Parts for Music As Speech:
+                    //AddParts(xml, uS.PartList, uS.partsToPlay);
+                    //AddDetails(xml, uS.playerSettingsNames, uS.playerSettingsValues);
+                    //xml.WriteEndElement();
                     
-                    // Music As Speech / "Tekst visning"
-                    xml.WriteWhitespace("\r\n");
-                    xml.WriteStartElement("MusicAsSpeech");
-                    xml.WriteValue(userSettings.MusicAsSpeech);
-                    // Parts for Music As Speech:
-                    AddParts(xml, userSettings.PartList, userSettings.partsToRead);
-                    AddDetails(xml, userSettings.readerSettingsNames, userSettings.readerSettingsValues);
-                    xml.WriteEndElement();
+                    //// Music As Speech / "Tekst visning"
+                    //xml.WriteWhitespace("\r\n");
+                    //xml.WriteStartElement("MusicAsSpeech");
+                    //xml.WriteValue(uS.MusicAsSpeech);
+                    //// Parts for Music As Speech:
+                    //AddParts(xml, uS.PartList, uS.partsToRead);
+                    //AddDetails(xml, uS.readerSettingsNames, uS.readerSettingsValues);
+                    //xml.WriteEndElement();
 
 
-                    // Music As MusicBraille / "MusicBraille visning"
-                    xml.WriteWhitespace("\r\n");
-                    xml.WriteStartElement("MusicAsMusicBraille");
-                    xml.WriteValue(userSettings.MusicAsMusicBraille);
-                    // Parts for Music As Speech:
-                    AddParts(xml, userSettings.PartList, userSettings.partsToBraille);
-                    AddDetails(xml, userSettings.musicBrailleSettingsNames, userSettings.musicBrailleSettingsValues);
-                    xml.WriteEndElement();
+                    //// Music As MusicBraille / "MusicBraille visning"
+                    //xml.WriteWhitespace("\r\n");
+                    //xml.WriteStartElement("MusicAsMusicBraille");
+                    //xml.WriteValue(uS.MusicAsMusicBraille);
+                    //// Parts for Music As Speech:
+                    //AddParts(xml, uS.PartList, uS.partsToBraille);
+                    //AddDetails(xml, uS.musicBrailleSettingsNames, uS.musicBrailleSettingsValues);
+                    //xml.WriteEndElement();
 
 
 
