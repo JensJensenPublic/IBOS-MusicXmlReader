@@ -15,7 +15,7 @@ namespace MusicXmlReaderModel
         private UserSetting()
         { }
 
-        private UserSetting(bool value, string name)
+        private UserSetting(string name, bool value)
         {
             this.value = value;
             this.name = name;
@@ -28,6 +28,10 @@ namespace MusicXmlReaderModel
             {
                 return value;
             }
+            set
+            {
+               this.value  = value; 
+            }
         }
 
         public string Name
@@ -38,9 +42,9 @@ namespace MusicXmlReaderModel
             }
         }
 
-        public static UserSetting Create(bool value, string name)
+        public static UserSetting Create(string name, bool value)
         {
-            return new UserSetting(value, name);
+            return new UserSetting(name, value);
         }
     }
 }

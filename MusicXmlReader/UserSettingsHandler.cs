@@ -320,9 +320,9 @@ namespace MusicXmlReader
                     case 1: // Details
                         switch (e.Node.Parent.Parent.Index) 
                         {
-                            case 0: model.UserSettings.playerSettingsValues[i] = e.Node.Checked; break;
-                            case 1: model.UserSettings.readerSettingsValues[i] = e.Node.Checked; break;
-                            case 2: model.UserSettings.musicBrailleSettingsValues[i] = e.Node.Checked; break;
+                            case 0: model.UserSettings.playerSettings[i].Value = e.Node.Checked; break;
+                            case 1: model.UserSettings.readerSettings[i].Value = e.Node.Checked; break;
+                            case 2: model.UserSettings.musicBrailleSettings[i].Value = e.Node.Checked; break;
                             default: break;
                         } break;
                     default: return;
@@ -433,18 +433,18 @@ namespace MusicXmlReader
             LoadParts(musicAsBrailleVoices, partList);
         }
 
-        private void LoadDetails(TreeNode treeNode, string[] names, bool[] values)
+        private void LoadDetails(TreeNode treeNode, UserSetting[] settings)
         {
-            LoadDetails(treeNode, names, values, int.MaxValue);
+            LoadDetails(treeNode, settings, int.MaxValue);
         }
 
-        private void LoadDetails(TreeNode treeNode, string[] names, bool[] values, int lastNodeToLoad)
+        private void LoadDetails(TreeNode treeNode, UserSetting[] settings, int lastNodeToLoad)
         {
             treeNode.Nodes.Clear();
-            for (int i = 0; (i < names.Length) && (i <= lastNodeToLoad); i++)
+            for (int i = 0; (i < settings.Length) && (i <= lastNodeToLoad); i++)
             {
-                TreeNode node = treeNode.Nodes.Add(names[i]);
-                node.Checked =  values[i];
+                TreeNode node = treeNode.Nodes.Add(settings[i].Name);
+                node.Checked = settings[i].Value;
             }
         }
 
@@ -458,9 +458,9 @@ namespace MusicXmlReader
         { 
             const int lastTextDetail =    7; // "7" is the "Lyrics" node. Do not load last notes for release versions! They are for real hardcore debugging only!
             //const int lastTextDetail = 11; // 11: Load all nodes: For real hardcore debugging only !!!!!!!
-            LoadDetails(musicAsSoundDetails, userSettings.playerSettingsNames, model.UserSettings.playerSettingsValues);
-            LoadDetails(musicAsTextDetails, userSettings.readerSettingsNames, model.UserSettings.readerSettingsValues, lastTextDetail);  
-            LoadDetails(musicAsBrailleDetails, userSettings.musicBrailleSettingsNames, model.UserSettings.musicBrailleSettingsValues);
+            LoadDetails(musicAsSoundDetails, userSettings.playerSettings);
+            LoadDetails(musicAsTextDetails, userSettings.readerSettings, lastTextDetail);  
+            LoadDetails(musicAsBrailleDetails, userSettings.musicBrailleSettings);
         }
 
         public void CheckSelectedNotes()

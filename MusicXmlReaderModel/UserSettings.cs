@@ -28,9 +28,9 @@ namespace MusicXmlReaderModel
 
 
 
-        // Arrays for controlling individual parts
-        public bool[] partsToPlay; // Play the note values from these partitions
-        public bool[] partsToRead; // Read the note values from these partitions
+        // Arrays for controlling individual parts. NOTE: The names of the parts are defined by the current MusicXML file !
+        public bool[] partsToPlay; // Play the note values from these parts
+        public bool[] partsToRead; // Read the note values from these parts
         public bool[] partsToBraille; // Generate MusicBraille for these parts  
 
         private UserSettingsWriter userSettingsWriter = UserSettingsWriter.Create();
@@ -69,19 +69,16 @@ namespace MusicXmlReaderModel
             EndEvents =11,
             NumberOfReaderSettings =12
         };
-        
 
-        public readonly string[] readerSettingsNames  = new string[(int)ReaderSettings.NumberOfReaderSettings];
-        public bool[] readerSettingsValues = new bool[(int)ReaderSettings.NumberOfReaderSettings];
 
+        public readonly UserSetting[] readerSettings = new UserSetting[(int)ReaderSettings.NumberOfReaderSettings];
         private void InitReaderSetting(ReaderSettings setting , string name, bool value )
         {
-            readerSettingsNames[(int) setting] = name;
-            readerSettingsValues[(int)setting] = value;
+            readerSettings[(int)setting] = UserSetting.Create(name, value);
         }
         
         private void InitReaderSettings()
-        {
+        {           
             InitReaderSetting(ReaderSettings.MeasureNumbers, ResourcesForModel.UserSettings_ReaderNames_MeasureNumbers, true);  // "TaktNumre",
             InitReaderSetting(ReaderSettings.Harmonies,      ResourcesForModel.UserSettings_ReaderNames_Harmonies, true);       // "Harmonier",
             InitReaderSetting(ReaderSettings.Notes,          ResourcesForModel.UserSettings_ReaderNames_Notes, true);           // "Noder",
@@ -98,26 +95,24 @@ namespace MusicXmlReaderModel
         
         public bool GetReaderSettings(ReaderSettings i)
         {
-            return readerSettingsValues[(int)i];
+            return readerSettings[(int)i].Value;
         }
         public void SetReaderSettings(int i, bool b)
         {
-            readerSettingsValues[(int)i] = b;
+            readerSettings[(int)i].Value = b;
         }
 
         //*****************************************************************************************
         // Global Player Settings (for all parts)
         //*****************************************************************************************
 
-//        public enum PlayerSettings { MeasureBeats = 0, Harmonies = 1, NumberOfPlayerSettings = 2 }
         public enum PlayerSettings { Harmonies = 0, NumberOfPlayerSettings = 1 }
-        public readonly string[] playerSettingsNames = new string[(int)PlayerSettings.NumberOfPlayerSettings];
-        public bool[] playerSettingsValues = new bool[(int)PlayerSettings.NumberOfPlayerSettings];
+
+        public readonly UserSetting[] playerSettings = new UserSetting[(int)PlayerSettings.NumberOfPlayerSettings];
 
         private void InitPlayerSetting(PlayerSettings setting, string name, bool value)
         {
-            playerSettingsNames[(int)setting] = name;
-            playerSettingsValues[(int)setting] = value;
+            playerSettings[(int)setting] = UserSetting.Create(name, value);
         }
 
         private void InitPlayerSettings()
@@ -129,11 +124,11 @@ namespace MusicXmlReaderModel
 
         public bool GetPlayerSettings(PlayerSettings i)
         {
-            return playerSettingsValues[(int)i];
+            return playerSettings[(int)i].Value;
         }
         public void SetPlayerSettings(int i, bool b)
         {
-            playerSettingsValues[(int)i] = b;
+            playerSettings[(int)i].Value = b;
         }
 
         //*****************************************************************************************
@@ -141,13 +136,10 @@ namespace MusicXmlReaderModel
         //*****************************************************************************************
 
         public enum MusicBrailleSettings { MeasureNumbers = 0, Harmonies = 1, Notes = 2,  Notations = 3,  NumberOfMusicBrailleSettings = 4 };
-        public readonly string[] musicBrailleSettingsNames = new string[(int)MusicBrailleSettings.NumberOfMusicBrailleSettings];
-        public bool[] musicBrailleSettingsValues = new bool[(int)MusicBrailleSettings.NumberOfMusicBrailleSettings];
-
+        public UserSetting[] musicBrailleSettings = new UserSetting[(int)MusicBrailleSettings.NumberOfMusicBrailleSettings];
         private void InitMusicBrailleSetting(MusicBrailleSettings setting, string name, bool value)
         {
-            musicBrailleSettingsNames[(int)setting] = name;
-            musicBrailleSettingsValues[(int)setting] = value;
+            musicBrailleSettings[(int)setting] = UserSetting.Create(name, value);
         }
 
         private void InitMusicBrailleSettings()
@@ -160,11 +152,11 @@ namespace MusicXmlReaderModel
         
         public bool GetMusicBrailleSettings(MusicBrailleSettings i)
         {
-            return musicBrailleSettingsValues[(int)i];
+            return musicBrailleSettings[(int)i].Value;
         }
         public void SetMusicBrailleSettings(int i, bool b)
         {
-            musicBrailleSettingsValues[(int)i] = b;
+            musicBrailleSettings[(int)i].Value = b;
         }
         
         //*****************************************************************************************
@@ -233,7 +225,7 @@ namespace MusicXmlReaderModel
         public void SetAllMusicBrailleSettings(bool value)
         {
             // First handle all MusicBraille specific settings
-            for (int i = 0; (i < musicBrailleSettingsValues.Length); i++)
+            for (int i = 0; (i < musicBrailleSettings.Length); i++)
             {
                 SetMusicBrailleSettings(i, value);
             }
@@ -244,7 +236,7 @@ namespace MusicXmlReaderModel
         public void SetAllNormalTextSettings(bool value)
         {
             // First handle all Normal text specific settings
-            for (int i = 0; (i < readerSettingsValues.Length); i++)
+            for (int i = 0; (i < readerSettings.Length); i++)
             {
                 SetReaderSettings(i, value);
             }
@@ -267,15 +259,15 @@ namespace MusicXmlReaderModel
             InitMusicBrailleSettings();
 
             userTempo = 100; // Percentage of tempo indicated in score
-            if (((int)ReaderSettings.NumberOfReaderSettings != readerSettingsNames.Length)
-            || ((int)ReaderSettings.NumberOfReaderSettings  != readerSettingsValues.Length)
-            || ((int)PlayerSettings.NumberOfPlayerSettings  != playerSettingsNames.Length)
-            || ((int)PlayerSettings.NumberOfPlayerSettings  != playerSettingsValues.Length))
+            if (((int)ReaderSettings.NumberOfReaderSettings != readerSettings.Length)
+            || ((int)PlayerSettings.NumberOfPlayerSettings != playerSettings.Length)
+            || ((int)MusicBrailleSettings.NumberOfMusicBrailleSettings != musicBrailleSettings.Length))
+
             {
                 throw (new Exception("UserSettings: Wrong size of arrays"));
             }
 
-            // string test = userSettingsWriter.ToXml(this); // Used for initial test only !!
+            string test = userSettingsWriter.ToXml(this); // Used for initial test only !!
         }
 
         public static UserSettings Create(PartlistElement partList)

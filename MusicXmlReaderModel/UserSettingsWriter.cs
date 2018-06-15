@@ -44,27 +44,30 @@ namespace MusicXmlReaderModel
             }
         }
 
-        private void AddDetails(XmlTextWriter xml, string[] names, bool[] values)
+
+        private void AddDetails(XmlTextWriter xml, UserSetting[] settings)
         {
-            int nNames  = names.Length;
-            int nValues = values.Length;
-            if (nNames != nValues) Logger.LogCF(string.Format(": names.Length={0} values.Length={1}", nNames, nValues));
-            for (int i = 0; i < names.Length; i++) // length !!
+            //int nNames = names.Length;
+            //int nValues = values.Length;
+            //if (nNames != nValues) Logger.LogCF(string.Format(": names.Length={0} values.Length={1}", nNames, nValues));
+            for (int i = 0; i < settings.Length; i++) // length !!
             {
-                string name = names[i];
-                bool value = values[i];
+                string name = settings[i].Name;
+                bool value = settings[i].Value;
                 AddElement(xml, name, value);
             }
         }
 
-        private void AddMainBranch(XmlTextWriter xml, string caption, bool value, PartlistElement partList, bool[] parts, string[] names, bool[] values)
+
+
+        private void AddMainBranch(XmlTextWriter xml, string caption, bool value, PartlistElement partList, bool[] parts, UserSetting[] settings)
         {
             xml.WriteWhitespace("\r\n");
             xml.WriteStartElement(caption);
             xml.WriteValue(value);
             // Parts for Music As Speech:
             AddParts(xml, partList, parts);
-            AddDetails(xml, names, values);
+            AddDetails(xml, settings);
             xml.WriteEndElement();
         }
 
@@ -89,9 +92,9 @@ namespace MusicXmlReaderModel
                     xml.WriteWhitespace("\r\n");
                     xml.WriteStartElement("UserSettings");
 
-                    AddMainBranch(xml, "MusicAsSound", uS.MusicAsSound, uS.PartList, uS.partsToPlay, uS.playerSettingsNames, uS.playerSettingsValues);
-                    AddMainBranch(xml, "MusicAsSpeech", uS.MusicAsSpeech, uS.PartList, uS.partsToRead, uS.readerSettingsNames, uS.readerSettingsValues);
-                    AddMainBranch(xml, "MusicAsMusicBraille", uS.MusicAsMusicBraille, uS.PartList, uS.partsToBraille, uS.musicBrailleSettingsNames, uS.musicBrailleSettingsValues);
+                    AddMainBranch(xml, "MusicAsSound", uS.MusicAsSound, uS.PartList, uS.partsToPlay, uS.playerSettings);
+                    AddMainBranch(xml, "MusicAsSpeech", uS.MusicAsSpeech, uS.PartList, uS.partsToRead, uS.readerSettings);
+                    AddMainBranch(xml, "MusicAsMusicBraille", uS.MusicAsMusicBraille, uS.PartList, uS.partsToBraille, uS.musicBrailleSettings);
 
                     //// Music As Sound / "Musik afspilning"
 
