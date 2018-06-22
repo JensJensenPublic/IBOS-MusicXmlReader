@@ -53,6 +53,7 @@ namespace MusicXmlReaderModel
             //xml.WriteWhitespace("\r\n"); // Every new element starts at a new line
             xml.WriteStartElement(this.xmlName);
             //xml.WriteWhitespace("\r\n"); // Every new value starts at a new line
+            xml.WriteAttributeString("id", this.id.ToString());
             xml.WriteValue(value);
             bool firstChild = true;           
             foreach (UserSettingsElement childElement in this.children)
@@ -100,6 +101,42 @@ namespace MusicXmlReaderModel
         {
             return new UserSettingsElementBool(xmlName, id, nChildren, value);
         }
+
+  
+
+        public static UserSettingsElementBool Create(XmlNode xmlNode)
+        {
+            int id = -1;
+            foreach (XmlAttribute attribute in xmlNode.Attributes)
+            {
+                if (attribute.Name == "id") id = int.Parse(attribute.Value);
+            }
+
+            bool value = true;
+
+            UserSettingsElementBool result = UserSettingsElementBool.Create(xmlNode.Name, id, xmlNode.ChildNodes.Count, value);
+            Logger.LogCF(string.Format(": Name={0} id={1} value={2} nChildren={3}", xmlNode.Name, id, value, xmlNode.ChildNodes.Count));
+            //foreach (XmlNode childNode in xmlNode.ChildNodes)
+            for (int i = 0; (i< xmlNode.ChildNodes.Count); i++)
+            {
+                XmlNode child = xmlNode.ChildNodes[i];
+                if (child.NodeType == XmlNodeType.Element)
+                {
+                    result.SetChild(UserSettingsElementBool.Create(child));
+                }
+                if (child.NodeType == XmlNodeType.Text)
+                {
+                    if (!bool.TryParse(child.Value, out value))
+                    {
+                        value = true ;
+                        Logger.LogCF(string.Format(": Defaulting to true"));
+                    }
+                }
+            }
+
+            return result;            
+        }
+
     }
 
     public class UserSettingsElementVoid : UserSettingsElement
@@ -121,6 +158,18 @@ namespace MusicXmlReaderModel
             XmlTextReader reader = new XmlTextReader(fileName);
             reader.WhitespaceHandling = WhitespaceHandling.None;
             doc.Load(reader); // This single operation may last decades of seconds on a slow platform!!
+            foreach (XmlNode node in doc.ChildNodes)
+            {
+                Logger.LogCF(string.Format(": Node.Name={0}", node.Name));
+                switch (node.Name)                {               
+                    case "UserSettings":
+                        UserSettingsElement userSettingsElement = UserSettingsElementBool.Create(node);
+
+                        break;
+                    default: break;
+                }
+            }
+
         }
 
         public static UserSettingsElementVoid Create(string xmlName, int id, int nChildren)
@@ -135,7 +184,9 @@ namespace MusicXmlReaderModel
             Logger.LogCF(string.Format(".Exit"));
             return result;
         }
-        
+
+
+    
 
     }
 
