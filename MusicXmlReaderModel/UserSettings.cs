@@ -336,6 +336,7 @@ namespace MusicXmlReaderModel
                 detailsForSpeech.SetChild(UserSettingsElementBool.Create("Notes", (int)ReaderSettings.Notes, 0, true));
                 detailsForSpeech.SetChild(UserSettingsElementBool.Create("NoteOctaves", (int)ReaderSettings.NoteOctaves, 0, true));
                 detailsForSpeech.SetChild(UserSettingsElementBool.Create("NoteTypes", (int)ReaderSettings.NoteTypes, 0, true));
+                detailsForSpeech.SetChild(UserSettingsElementBool.Create("NoteAccidentals", (int)ReaderSettings.NoteAccidentals, 0, true));
                 detailsForSpeech.SetChild(UserSettingsElementBool.Create("Notations", (int)ReaderSettings.Notations, 0, true));
                 detailsForSpeech.SetChild(UserSettingsElementBool.Create("Lyrics", (int)ReaderSettings.Lyrics, 0, true));
                 detailsForSpeech.SetChild(UserSettingsElementBool.Create("MetaInformation", (int)ReaderSettings.MetaInformation, 0, false));
@@ -360,7 +361,15 @@ namespace MusicXmlReaderModel
                 string fileName = @"c:\temp\UserSettings.xml";
                 System.IO.File.WriteAllText(fileName, xml1);
 
-                UserSettingsElementVoid fromXml = UserSettingsElementVoid.Create(fileName);
+                UserSettingsElementBool fromXml = UserSettingsElementBool.Create(fileName);
+
+                 
+                if (userSettings.IsEqualTo(fromXml))
+                {
+                    Logger.LogCF(string.Format("Usersettings read from file {0} were equal to original usersettings", fileName));
+                    // Unequalities are logged at a lower level
+                }
+
                 Logger.LogCF(string.Format(".Exit"));
             }
             catch (Exception e)

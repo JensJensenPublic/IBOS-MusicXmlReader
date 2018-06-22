@@ -73,6 +73,48 @@ namespace MusicXmlReaderModel
         }
 
 
+        /// <summary>
+        /// For checking serialization
+        /// </summary>
+        /// <param name="that"></param>
+        /// <returns></returns>
+        public  bool IsEqualTo(UserSettingsElement that)
+        {
+
+            if (0 != string.Compare(this.xmlName, that.xmlName))
+            {
+                Logger.LogCF(string.Format(": this.xmlName={0} that.xmlName={1}", this.xmlName, that.xmlName));
+                return false;
+            }
+            if (this.id != that.id)
+            {
+                Logger.LogCF(string.Format(": this.id={0} that.id={1}", this.id, that.id));
+
+                return false;
+            }
+
+            if (this.children.Count() != that.children.Count())
+            {
+                Logger.LogCF(string.Format(": this.children.Count={0} thas.children.Count={1}", this.children.Count(), that.children.Count()));
+                return false;
+            }
+
+            for (int i = 0; (i < this.children.Count()); i++)
+            {
+
+                if (!this.children[i].IsEqualTo(that.children[i]))
+                {
+                    return false;
+                }
+
+            }
+
+
+            return true;
+
+
+        }
+
 
         //public abstract void ToXml(XmlTextWriter xml); // Each subclass must know how to convert its own value to a string
         public abstract void ToXml(XmlWriter xml); // Each subclass must know how to convert its own value to a string
@@ -114,8 +156,19 @@ namespace MusicXmlReaderModel
 
             bool value = true;
 
-            UserSettingsElementBool result = UserSettingsElementBool.Create(xmlNode.Name, id, xmlNode.ChildNodes.Count, value);
-            Logger.LogCF(string.Format(": Name={0} id={1} value={2} nChildren={3}", xmlNode.Name, id, value, xmlNode.ChildNodes.Count));
+            // We need to fit te array size to the number of ild elements, not te number of ildren
+            int nElements = 0;
+            for (int j = 0; (j < xmlNode.ChildNodes.Count); j++)
+            {
+                XmlNode c = xmlNode.ChildNodes[j];
+                if (c.NodeType == XmlNodeType.Element)
+                {
+                    nElements++;
+                }
+            }
+
+            UserSettingsElementBool result = UserSettingsElementBool.Create(xmlNode.Name, id, nElements, value);
+            Logger.LogCF(string.Format(": Name={0} id={1} value={2} nChildren={3}", xmlNode.Name, id, value, nElements));
             //foreach (XmlNode childNode in xmlNode.ChildNodes)
             for (int i = 0; (i< xmlNode.ChildNodes.Count); i++)
             {
@@ -137,6 +190,45 @@ namespace MusicXmlReaderModel
             return result;            
         }
 
+        /// <summary>
+        /// Creates  a UserSettingsElementBool representing a full user settings tree  from an xmlfile
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static UserSettingsElementBool Create(string fileName)
+        {
+            Logger.LogCF(".Entry");
+            UserSettingsElementBool result = null;
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                XmlTextReader reader = new XmlTextReader(fileName);
+                reader.WhitespaceHandling = WhitespaceHandling.None;
+                doc.Load(reader); // This single operation may last decades of seconds on a slow platform!!
+                foreach (XmlNode node in doc.ChildNodes)
+                {
+                    Logger.LogCF(string.Format(": Node.Name={0}", node.Name));
+                    switch (node.Name)
+                    {
+                        case "UserSettings":
+                            result = UserSettingsElementBool.Create(node);
+
+                            break;
+                        default: break;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.LogCF(string.Format(": Exception.Message={0}", e.Message));
+                return null;
+            }
+
+            Logger.LogCF(string.Format(".Exit"));
+            return result;
+        }
+
+
     }
 
     public class UserSettingsElementVoid : UserSettingsElement
@@ -154,22 +246,7 @@ namespace MusicXmlReaderModel
 
         private UserSettingsElementVoid(string fileName) 
         {
-            XmlDocument doc = new XmlDocument();
-            XmlTextReader reader = new XmlTextReader(fileName);
-            reader.WhitespaceHandling = WhitespaceHandling.None;
-            doc.Load(reader); // This single operation may last decades of seconds on a slow platform!!
-            foreach (XmlNode node in doc.ChildNodes)
-            {
-                Logger.LogCF(string.Format(": Node.Name={0}", node.Name));
-                switch (node.Name)                {               
-                    case "UserSettings":
-                        UserSettingsElement userSettingsElement = UserSettingsElementBool.Create(node);
-
-                        break;
-                    default: break;
-                }
-            }
-
+ 
         }
 
         public static UserSettingsElementVoid Create(string xmlName, int id, int nChildren)
@@ -177,13 +254,7 @@ namespace MusicXmlReaderModel
             return new UserSettingsElementVoid(xmlName, id, nChildren);
         }
 
-        public static UserSettingsElementVoid Create(string filename)
-        {
-            Logger.LogCF(".Entry");
-            UserSettingsElementVoid result = new UserSettingsElementVoid(filename);
-            Logger.LogCF(string.Format(".Exit"));
-            return result;
-        }
+ 
 
 
     
