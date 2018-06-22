@@ -300,20 +300,20 @@ namespace MusicXmlReaderModel
             Logger.LogCF(string.Format(".Entry"));
             try
             {
-                UserSettingsElement userSettings = UserSettingsElementVoid.Create("UserSettings", 0, 3);
+                UserSettingsElement userSettings = UserSettingsElementVoid.Create(UserSettingNames.UserSettings, 0, 3);
                 // usesSettings contains 3 children: Sound, Speech and MusicBraille, each containtng 2 subtrees
-                UserSettingsElement soundSettings = userSettings.SetChild(UserSettingsElementBool.Create("Sound", 0, 2, true));
-                UserSettingsElement speechSettings = userSettings.SetChild(UserSettingsElementBool.Create("Speech", 1, 2, true));
-                UserSettingsElement musicBrailleSettings = userSettings.SetChild(UserSettingsElementBool.Create("MusicBraille", 2, 2, true));
+                UserSettingsElement soundSettings = userSettings.SetChild(UserSettingsElementBool.Create(UserSettingNames.Sound, 0, 2, true));
+                UserSettingsElement speechSettings = userSettings.SetChild(UserSettingsElementBool.Create(UserSettingNames.Speech, 1, 2, true));
+                UserSettingsElement musicBrailleSettings = userSettings.SetChild(UserSettingsElementBool.Create(UserSettingNames.MusicBraille, 2, 2, true));
                 // SoundSettings contains 2 children "DetailsForSound" and "PartsForSound"
-                UserSettingsElement detailsForSound = soundSettings.SetChild(UserSettingsElementBool.Create("DetailsForSound", 0, (int)PlayerSettings.NumberOfPlayerSettings, true)); // 7?
-                UserSettingsElement partsForSound = soundSettings.SetChild(UserSettingsElementBool.Create("PartsForSound", 1, partList.NumberOfParts(), true));
+                UserSettingsElement detailsForSound = soundSettings.SetChild(UserSettingsElementBool.Create(UserSettingNames.Sound, 0, (int)PlayerSettings.NumberOfPlayerSettings, true)); // 7?
+                UserSettingsElement partsForSound = soundSettings.SetChild(UserSettingsElementBool.Create(UserSettingNames.Parts, 1, partList.NumberOfParts(), true));
                 // SpeechSettings contains 2 children "DetailsForSpeech" and "PartsForSpeech"
-                UserSettingsElement detailsForSpeech = speechSettings.SetChild(UserSettingsElementBool.Create("DetailsForSpeech", 0, (int)ReaderSettings.NumberOfReaderSettings, true)); // 9?
-                UserSettingsElement partsForSpeech = speechSettings.SetChild(UserSettingsElementBool.Create("PartsForSpeech", 1, partList.NumberOfParts(), true));
+                UserSettingsElement detailsForSpeech = speechSettings.SetChild(UserSettingsElementBool.Create(UserSettingNames.Details, 0, (int)ReaderSettings.NumberOfReaderSettings, true)); // 9?
+                UserSettingsElement partsForSpeech = speechSettings.SetChild(UserSettingsElementBool.Create(UserSettingNames.Parts, 1, partList.NumberOfParts(), true));
                 // MusicBrailleSettings contains 2 children "DetailsForSound" and "PartsForSound"
-                UserSettingsElement detailsForMusicBraille = musicBrailleSettings.SetChild(UserSettingsElementBool.Create("DetailsForMusicBraille", 0, (int)MusicBrailleSettings.NumberOfMusicBrailleSettings, true));
-                UserSettingsElement partsForMusicBraille = musicBrailleSettings.SetChild(UserSettingsElementBool.Create("PartsForMusicBraille", 1, partList.NumberOfParts(), true));
+                UserSettingsElement detailsForMusicBraille = musicBrailleSettings.SetChild(UserSettingsElementBool.Create(UserSettingNames.Details, 0, (int)MusicBrailleSettings.NumberOfMusicBrailleSettings, true));
+                UserSettingsElement partsForMusicBraille = musicBrailleSettings.SetChild(UserSettingsElementBool.Create(UserSettingNames.Parts, 1, partList.NumberOfParts(), true));
 
                 // Fill in and enable all parts in each of the 3 branches:
                 for (int i = 0; (i < partList.NumberOfParts()); i++)
@@ -328,29 +328,29 @@ namespace MusicXmlReaderModel
                 // Fill in all details:
 
                 // Details for Sound playing
-                detailsForSound.SetChild(UserSettingsElementBool.Create("Harmonies", (int)PlayerSettings.Harmonies, 0, false));
+                detailsForSound.SetChild(UserSettingsElementBool.Create(UserSettingNames.Harmonies, (int)PlayerSettings.Harmonies, 0, false));
 
                 // Details for Speech
-                detailsForSpeech.SetChild(UserSettingsElementBool.Create("MeasureNumbers", (int)ReaderSettings.MeasureNumbers, 0, true));
-                detailsForSpeech.SetChild(UserSettingsElementBool.Create("Harmonies", (int)ReaderSettings.Harmonies, 0, true));
-                detailsForSpeech.SetChild(UserSettingsElementBool.Create("Notes", (int)ReaderSettings.Notes, 0, true));
-                detailsForSpeech.SetChild(UserSettingsElementBool.Create("NoteOctaves", (int)ReaderSettings.NoteOctaves, 0, true));
-                detailsForSpeech.SetChild(UserSettingsElementBool.Create("NoteTypes", (int)ReaderSettings.NoteTypes, 0, true));
-                detailsForSpeech.SetChild(UserSettingsElementBool.Create("NoteAccidentals", (int)ReaderSettings.NoteAccidentals, 0, true));
-                detailsForSpeech.SetChild(UserSettingsElementBool.Create("Notations", (int)ReaderSettings.Notations, 0, true));
-                detailsForSpeech.SetChild(UserSettingsElementBool.Create("Lyrics", (int)ReaderSettings.Lyrics, 0, true));
-                detailsForSpeech.SetChild(UserSettingsElementBool.Create("MetaInformation", (int)ReaderSettings.MetaInformation, 0, false));
-                detailsForSpeech.SetChild(UserSettingsElementBool.Create("Divisions", (int)ReaderSettings.Divisions, 0, false));
-                detailsForSpeech.SetChild(UserSettingsElementBool.Create("HarmonyCodes", (int)ReaderSettings.HarmonyCodes, 0, false));
-                detailsForSpeech.SetChild(UserSettingsElementBool.Create("Lyrics", (int)ReaderSettings.Lyrics, 0, false));
-                detailsForSpeech.SetChild(UserSettingsElementBool.Create("EndEvents", (int)ReaderSettings.EndEvents, 0, false));
+                detailsForSpeech.SetChild(UserSettingsElementBool.Create(UserSettingNames.MeasureNumbers, (int)ReaderSettings.MeasureNumbers, 0, true));
+                detailsForSpeech.SetChild(UserSettingsElementBool.Create(UserSettingNames.Harmonies, (int)ReaderSettings.Harmonies, 0, true));
+                detailsForSpeech.SetChild(UserSettingsElementBool.Create(UserSettingNames.Notes, (int)ReaderSettings.Notes, 0, true));
+                detailsForSpeech.SetChild(UserSettingsElementBool.Create(UserSettingNames.NoteOctaves, (int)ReaderSettings.NoteOctaves, 0, true));
+                detailsForSpeech.SetChild(UserSettingsElementBool.Create(UserSettingNames.NoteTypes, (int)ReaderSettings.NoteTypes, 0, true));
+                detailsForSpeech.SetChild(UserSettingsElementBool.Create(UserSettingNames.NoteAccidentals, (int)ReaderSettings.NoteAccidentals, 0, true));
+                detailsForSpeech.SetChild(UserSettingsElementBool.Create(UserSettingNames.Notations, (int)ReaderSettings.Notations, 0, true));
+                detailsForSpeech.SetChild(UserSettingsElementBool.Create(UserSettingNames.Lyrics, (int)ReaderSettings.Lyrics, 0, true));
+                detailsForSpeech.SetChild(UserSettingsElementBool.Create(UserSettingNames.MetaInformation, (int)ReaderSettings.MetaInformation, 0, false));
+                detailsForSpeech.SetChild(UserSettingsElementBool.Create(UserSettingNames.Divisions, (int)ReaderSettings.Divisions, 0, false));
+                detailsForSpeech.SetChild(UserSettingsElementBool.Create(UserSettingNames.HarmonyCodes, (int)ReaderSettings.HarmonyCodes, 0, false));
+                detailsForSpeech.SetChild(UserSettingsElementBool.Create(UserSettingNames.Lyrics, (int)ReaderSettings.Lyrics, 0, false));
+                detailsForSpeech.SetChild(UserSettingsElementBool.Create(UserSettingNames.EndEvents, (int)ReaderSettings.EndEvents, 0, false));
 
                 // Detains for Music Braille
-                detailsForMusicBraille.SetChild(UserSettingsElementBool.Create("MeasureNumbers", (int)MusicBrailleSettings.MeasureNumbers, 0, true));
-                detailsForMusicBraille.SetChild(UserSettingsElementBool.Create("Harmonies", (int)MusicBrailleSettings.Harmonies, 0, true));
-                detailsForMusicBraille.SetChild(UserSettingsElementBool.Create("Notes", (int)MusicBrailleSettings.Notes, 0, true));
-                detailsForMusicBraille.SetChild(UserSettingsElementBool.Create("Notations", (int)MusicBrailleSettings.Notations, 0, true));
-                detailsForMusicBraille.SetChild(UserSettingsElementBool.Create("MeasureNumbers", (int)MusicBrailleSettings.MeasureNumbers, 0, true));
+                detailsForMusicBraille.SetChild(UserSettingsElementBool.Create(UserSettingNames.MeasureNumbers, (int)MusicBrailleSettings.MeasureNumbers, 0, true));
+                detailsForMusicBraille.SetChild(UserSettingsElementBool.Create(UserSettingNames.Harmonies, (int)MusicBrailleSettings.Harmonies, 0, true));
+                detailsForMusicBraille.SetChild(UserSettingsElementBool.Create(UserSettingNames.Notes, (int)MusicBrailleSettings.Notes, 0, true));
+                detailsForMusicBraille.SetChild(UserSettingsElementBool.Create(UserSettingNames.Notations, (int)MusicBrailleSettings.Notations, 0, true));
+                detailsForMusicBraille.SetChild(UserSettingsElementBool.Create(UserSettingNames.MeasureNumbers, (int)MusicBrailleSettings.MeasureNumbers, 0, true));
 
 
                 string xml = UserSettings.ToXml(userSettings);
