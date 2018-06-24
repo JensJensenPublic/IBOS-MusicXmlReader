@@ -14,49 +14,36 @@ namespace MusicXmlReaderModel
     {
         protected string xmlName; // Unlocalized name used for identification when serialized
         public string XmlName { get { return xmlName; } }
-        protected int id; // MetaData representing the internal interpretation of this element
-        public int Id { get { return id;} }
-
-        public UserSettingsElement SetChild(UserSettingsElement userSettingsElement)
+  
+        public UserSettingsElement AddChild(UserSettingsElement userSettingsElement)
         {
-            int index = userSettingsElement.id;
-            if ((index < 0) || (index >= children.Length))
-            {
-                Logger.LogCF(string.Format(": XmlName={0} Index={1} is out of bounds [{2} to {3}[", this.xmlName, index, 0, children.Length));
-                return null;
-            }
-            else
-            {
-                children[userSettingsElement.id] = userSettingsElement;
-                return userSettingsElement;
-            }
+            childList.Add(userSettingsElement);
+            return userSettingsElement;
         }
 
         protected UserSettingsElement[] children;
+        protected List<UserSettingsElement> childList;
         // The actual value of the element is represented in a derived class
 
         protected UserSettingsElement()
         {
         }
 
-        protected UserSettingsElement(string xmlName, int id, int nChildren)
+        protected UserSettingsElement(string xmlName)
         {
             this.xmlName = xmlName;
-            this.id = id;
-            this.children = new UserSettingsElement[nChildren];
+            this.childList = new List<UserSettingsElement>();
         }
-
-
+        
         protected void ToXml(XmlWriter xml, string value)
         {
-
             //xml.WriteWhitespace("\r\n"); // Every new element starts at a new line
             xml.WriteStartElement(this.xmlName);
             //xml.WriteWhitespace("\r\n"); // Every new value starts at a new line
-            xml.WriteAttributeString("id", this.id.ToString());
+            // xml.WriteAttributeString("id", this.id.ToString());
             xml.WriteValue(value);
-            bool firstChild = true;           
-            foreach (UserSettingsElement childElement in this.children)
+            bool firstChild = true;
+            foreach (UserSettingsElement childElement in this.childList)
             {
                 if (firstChild)
                 {
@@ -68,6 +55,7 @@ namespace MusicXmlReaderModel
                     childElement.ToXml(xml);
                 }
             }
+
             xml.WriteEndElement();
             xml.WriteWhitespace("\r\n"); // Every new element ends at a new line
         }
@@ -86,32 +74,22 @@ namespace MusicXmlReaderModel
                 Logger.LogCF(string.Format(": this.xmlName={0} that.xmlName={1}", this.xmlName, that.xmlName));
                 return false;
             }
-            if (this.id != that.id)
+ 
+            if (this.childList.Count() != that.childList.Count())
             {
-                Logger.LogCF(string.Format(": this.id={0} that.id={1}", this.id, that.id));
-
+                Logger.LogCF(string.Format(": this.childList.Count={0} that.childList.Count={1}", this.childList.Count(), that.childList.Count()));
                 return false;
             }
 
-            if (this.children.Count() != that.children.Count())
+            for (int i = 0; (i < this.childList.Count()); i++)
             {
-                Logger.LogCF(string.Format(": this.children.Count={0} thas.children.Count={1}", this.children.Count(), that.children.Count()));
-                return false;
-            }
-
-            for (int i = 0; (i < this.children.Count()); i++)
-            {
-
-                if (!this.children[i].IsEqualTo(that.children[i]))
+                if (!this.childList[i].IsEqualTo(that.childList[i]))
                 {
                     return false;
                 }
-
             }
 
-
             return true;
-
 
         }
 
@@ -134,59 +112,42 @@ namespace MusicXmlReaderModel
 
 
         private UserSettingsElementBool() : base() { }// Prevent construction
-        private UserSettingsElementBool(string xmlName, int id, int nChildren, bool value) : base(xmlName, id, nChildren)
+        private UserSettingsElementBool(string xmlName,  bool value) : base(xmlName )
         {
             this.value = value;
         }
 
-        public static UserSettingsElementBool Create(string xmlName, int id, int nChildren, bool value)
+        public static UserSettingsElementBool Create(string xmlName,  bool value)
         {
-            return new UserSettingsElementBool(xmlName, id, nChildren, value);
+            return new UserSettingsElementBool(xmlName,  value);
         }
 
   
 
+        /// <summary>
+        /// Build a tree of UserSettingElements corresponding to the tree represented by xmlNode
+        /// </summary>
+        /// <param name="xmlNode"></param>
+        /// <returns></returns>
         public static UserSettingsElementBool Create(XmlNode xmlNode)
         {
-            int id = -1;
-            foreach (XmlAttribute attribute in xmlNode.Attributes)
+            UserSettingsElementBool result = UserSettingsElementBool.Create(xmlNode.Name, true);
+            foreach (XmlNode child in xmlNode.ChildNodes)
             {
-                if (attribute.Name == "id") id = int.Parse(attribute.Value);
-            }
-
-            bool value = true;
-
-            // We need to fit te array size to the number of ild elements, not te number of ildren
-            int nElements = 0;
-            for (int j = 0; (j < xmlNode.ChildNodes.Count); j++)
-            {
-                XmlNode c = xmlNode.ChildNodes[j];
-                if (c.NodeType == XmlNodeType.Element)
-                {
-                    nElements++;
-                }
-            }
-
-            UserSettingsElementBool result = UserSettingsElementBool.Create(xmlNode.Name, id, nElements, value);
-            Logger.LogCF(string.Format(": Name={0} id={1} value={2} nChildren={3}", xmlNode.Name, id, value, nElements));
-            //foreach (XmlNode childNode in xmlNode.ChildNodes)
-            for (int i = 0; (i< xmlNode.ChildNodes.Count); i++)
-            {
-                XmlNode child = xmlNode.ChildNodes[i];
                 if (child.NodeType == XmlNodeType.Element)
                 {
-                    result.SetChild(UserSettingsElementBool.Create(child));
+                    result.AddChild(UserSettingsElementBool.Create(child));
                 }
                 if (child.NodeType == XmlNodeType.Text)
                 {
-                    if (!bool.TryParse(child.Value, out value))
-                    {
-                        value = true ;
+                    if (!bool.TryParse(child.Value, out result.value))
+                    { 
+                        result.value = true;
                         Logger.LogCF(string.Format(": Defaulting to true"));
                     }
                 }
             }
-
+            Logger.LogCF(string.Format(": Name={0}  value={1} ", xmlNode.Name, result.value));
             return result;            
         }
 
@@ -240,7 +201,7 @@ namespace MusicXmlReaderModel
 
 
         private UserSettingsElementVoid() : base() { }// Prevent construction
-        private UserSettingsElementVoid(string xmlName, int id, int nChildren) : base(xmlName, id, nChildren)
+        private UserSettingsElementVoid(string xmlName,  int nChildren) : base(xmlName)
         {
         }
 
@@ -249,17 +210,10 @@ namespace MusicXmlReaderModel
  
         }
 
-        public static UserSettingsElementVoid Create(string xmlName, int id, int nChildren)
+        public static UserSettingsElementVoid Create(string xmlName,  int nChildren)
         {
-            return new UserSettingsElementVoid(xmlName, id, nChildren);
-        }
-
- 
-
-
-    
+            return new UserSettingsElementVoid(xmlName,  nChildren);
+        } 
 
     }
-
-
 }
