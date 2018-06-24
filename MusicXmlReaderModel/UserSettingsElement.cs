@@ -171,11 +171,8 @@ namespace MusicXmlReaderModel
                     Logger.LogCF(string.Format(": Node.Name={0}", node.Name));
                     switch (node.Name)
                     {
-                        case "UserSettings":
-                            result = UserSettingsElementBool.Create(node);
-
-                            break;
-                        default: break;
+                        case UserSettingNames.UserSettings:  result = UserSettingsElementBool.Create(node);  break;
+                        default: break; //  Logger.LogCF(string.Format(": node.Name={0}", node.Name)); break;
                     }
                 }
             }
