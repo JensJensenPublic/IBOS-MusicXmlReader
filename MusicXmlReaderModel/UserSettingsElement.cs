@@ -68,10 +68,11 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="that"></param>
         /// <returns></returns>
-        public  bool IsEqualTo(UserSettingsElement that)
+        public  bool IsEqualTo(UserSettingsElement that,ref int nElements)
         {
 
-            Logger.LogCF(string.Format(": Comparing this.xmlName={0} to that.xmlName={1}", this.xmlName, that.xmlName));
+            //Logger.LogCF(string.Format(": Comparing this.xmlName={0} to that.xmlName={1}", this.xmlName, that.xmlName));
+            nElements++;
 
             if (0 != string.Compare(this.xmlName, that.xmlName))
             {
@@ -87,7 +88,7 @@ namespace MusicXmlReaderModel
 
             for (int i = 0; (i < this.childList.Count()); i++)
             {
-                if (!this.childList[i].IsEqualTo(that.childList[i]))
+                if (!this.childList[i].IsEqualTo(that.childList[i], ref nElements))
                 {
                     return false;
                 }

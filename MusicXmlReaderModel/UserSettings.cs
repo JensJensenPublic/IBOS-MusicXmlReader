@@ -369,10 +369,11 @@ namespace MusicXmlReaderModel
                 {
                     UserSettingsElement fromXml = UserSettingsElement.CreateFromFile(fileName);
 
-        
-                    if (userSettings.IsEqualTo(fromXml))
+
+                    int nElements = 0;
+                    if (userSettings.IsEqualTo(fromXml,ref nElements))
                     {
-                        Logger.LogCF(string.Format("Usersettings read from file {0} were equal to original usersettings", fileName));
+                        Logger.LogCF(string.Format("Usersettings read from file {0} were equal to original usersettings. Both contain {1} elements", fileName, nElements));
                         // Unequalities are logged at a lower level
                     }
                 }
