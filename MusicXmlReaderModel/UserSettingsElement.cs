@@ -105,6 +105,11 @@ namespace MusicXmlReaderModel
             return new UserSettingsElementBool(xmlName, value);
         }
 
+        public static UserSettingsElement Create(string xmlName, int value)
+        {
+            return new UserSettingsElementInt(xmlName, value);
+        }
+
         public static UserSettingsElement Create(string xmlName,string dummy )
         {
             return new UserSettingsElementVoid(xmlName,"");
@@ -196,6 +201,11 @@ namespace MusicXmlReaderModel
     }
 
 
+    //*****************************************************************************************************************
+    // Classes derived from UserSettingsElement
+    //*****************************************************************************************************************
+
+
     public class UserSettingsElementBool : UserSettingsElement
     {
         private bool value; // The actual value, typically represented by a checkbox in the User Interface
@@ -204,7 +214,6 @@ namespace MusicXmlReaderModel
         {
             base.ToXml(xml, this.value.ToString()); // Convert to string before calling the base class !
         }
-
 
         private UserSettingsElementBool() : base() { }// Prevent construction
         public UserSettingsElementBool(string xmlName, bool value) : base(xmlName, value.GetType())
@@ -216,73 +225,33 @@ namespace MusicXmlReaderModel
         {
             this.value = bool.Parse(value);
         }
-
-
-
-
-
-        ///// <summary>
-        ///// Creates  a UserSettingsElementBool representing a full user settings tree  from an xmlfile
-        ///// </summary>
-        ///// <param name="fileName"></param>
-        ///// <returns></returns>
-        //public static UserSettingsElement Create(string fileName)
-        //{
-        //    Logger.LogCF(".Entry");
-        //    UserSettingsElement result = null;
-        //    try
-        //    {
-        //        XmlDocument doc = new XmlDocument();
-        //        XmlTextReader reader = new XmlTextReader(fileName);
-        //        reader.WhitespaceHandling = WhitespaceHandling.None;
-        //        doc.Load(reader); // This single operation may last decades of seconds on a slow platform!!
-        //        foreach (XmlNode node in doc.ChildNodes)
-        //        {
-        //            Logger.LogCF(string.Format(": Node.Name={0}", node.Name));
-        //            switch (node.Name)
-        //            {
-        //                case UserSettingNames.UserSettings:  result = UserSettingsElementBool.Create(node);  break;
-        //                default: break; //  Logger.LogCF(string.Format(": node.Name={0}", node.Name)); break;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Logger.LogCF(string.Format(": Exception.Message={0}", e.Message));
-        //        return null;
-        //    }
-
-        //    Logger.LogCF(string.Format(".Exit"));
-        //    return result;
-        //}
-
-
     }
 
     public class UserSettingsElementVoid : UserSettingsElement
     {
-
-
         public override void ToXml(XmlWriter xml)
         {
             base.ToXml(xml,""); // This type has no value !
-        }
-
-
+        }        
         private UserSettingsElementVoid() : base() { }// Prevent construction
         public UserSettingsElementVoid(string xmlName, string dummy) : base(xmlName,dummy.GetType()) 
         {
         }
-
-        private UserSettingsElementVoid(string fileName) 
-        {
- 
-        }
-
-        //public static UserSettingsElementVoid Create(string xmlName)
-        //{
-        //    return new UserSettingsElementVoid(xmlName);
-        //} 
-
     }
+
+
+    public class UserSettingsElementInt : UserSettingsElement
+    {
+        private int value; // The actual value, 
+        public override void ToXml(XmlWriter xml)
+        {
+            base.ToXml(xml, this.value.ToString()); // Convert to string before calling the base class !
+        }
+        private UserSettingsElementInt() : base() { }// Prevent construction
+        public UserSettingsElementInt(string xmlName, int value) : base(xmlName, value.GetType())
+        {
+            this.value = value;
+        }
+    }
+
 }

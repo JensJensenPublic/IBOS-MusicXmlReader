@@ -301,12 +301,15 @@ namespace MusicXmlReaderModel
             try
             {
                 UserSettingsElement userSettings = UserSettingsElement.Create(UserSettingNames.UserSettings);
+
+                userSettings.AddChild(UserSettingsElement.Create("UserTempoFactor", 100));
+
                 // usesSettings contains 3 children: Sound, Speech and MusicBraille, each containtng 2 subtrees
                 UserSettingsElement soundSettings = userSettings.AddChild(UserSettingsElement.Create(UserSettingNames.Sound, true));
                 UserSettingsElement speechSettings = userSettings.AddChild(UserSettingsElement.Create(UserSettingNames.Speech, true));
                 UserSettingsElement musicBrailleSettings = userSettings.AddChild(UserSettingsElement.Create(UserSettingNames.MusicBraille, true));
                 // SoundSettings contains 2 children "DetailsForSound" and "PartsForSound"
-                UserSettingsElement detailsForSound = soundSettings.AddChild(UserSettingsElement.Create(UserSettingNames.Sound, true)); // 7?
+                UserSettingsElement detailsForSound = soundSettings.AddChild(UserSettingsElement.Create(UserSettingNames.Details, true)); // 7?
                 UserSettingsElement partsForSound = soundSettings.AddChild(UserSettingsElement.Create(UserSettingNames.Parts, true));
                 // SpeechSettings contains 2 children "DetailsForSpeech" and "PartsForSpeech"
                 UserSettingsElement detailsForSpeech = speechSettings.AddChild(UserSettingsElement.Create(UserSettingNames.Details,  true)); // 9?
