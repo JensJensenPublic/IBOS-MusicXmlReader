@@ -300,9 +300,9 @@ namespace MusicXmlReaderModel
             Logger.LogCF(string.Format(".Entry"));
             try
             {
-                UserSettingsElement userSettings = UserSettingsElement.Create(UserSettingNames.UserSettings);
+                UserSettingsElement userSettings = UserSettingsElement.Create(UserSettingNames.UserSettings,"");
 
-                userSettings.AddChild(UserSettingsElement.Create("UserTempoFactor", 100));
+                // userSettings.AddChild(UserSettingsElement.Create("UserTempoFactor", 100));
 
                 // usesSettings contains 3 children: Sound, Speech and MusicBraille, each containtng 2 subtrees
                 UserSettingsElement soundSettings = userSettings.AddChild(UserSettingsElement.Create(UserSettingNames.Sound, true));
@@ -364,13 +364,22 @@ namespace MusicXmlReaderModel
                 string fileName = @"c:\temp\UserSettings.xml";
                 System.IO.File.WriteAllText(fileName, xml1);
 
-                UserSettingsElement fromXml = UserSettingsElement.Create(fileName);
 
-                 
-                if (userSettings.IsEqualTo(fromXml))
+                try
                 {
-                    Logger.LogCF(string.Format("Usersettings read from file {0} were equal to original usersettings", fileName));
-                    // Unequalities are logged at a lower level
+                    UserSettingsElement fromXml = UserSettingsElement.CreateFromFile(fileName);
+
+        
+                    if (userSettings.IsEqualTo(fromXml))
+                    {
+                        Logger.LogCF(string.Format("Usersettings read from file {0} were equal to original usersettings", fileName));
+                        // Unequalities are logged at a lower level
+                    }
+                }
+                catch (Exception e)
+                {
+
+                    Logger.LogCF(string.Format("Exception.Message= {0}", e.Message));
                 }
 
                 Logger.LogCF(string.Format(".Exit"));

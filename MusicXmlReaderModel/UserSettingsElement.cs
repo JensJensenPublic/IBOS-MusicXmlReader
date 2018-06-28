@@ -71,6 +71,8 @@ namespace MusicXmlReaderModel
         public  bool IsEqualTo(UserSettingsElement that)
         {
 
+            Logger.LogCF(string.Format(": Comparing this.xmlName={0} to that.xmlName={1}", this.xmlName, that.xmlName));
+
             if (0 != string.Compare(this.xmlName, that.xmlName))
             {
                 Logger.LogCF(string.Format(": this.xmlName={0} that.xmlName={1}", this.xmlName, that.xmlName));
@@ -90,6 +92,8 @@ namespace MusicXmlReaderModel
                     return false;
                 }
             }
+
+   
 
             return true;
 
@@ -125,29 +129,34 @@ namespace MusicXmlReaderModel
         {
 
             UserSettingsElement result = null;
-            string dataType = xmlNode.Attributes[0].ToString();
+            string name =  xmlNode.Attributes[0].Name.ToString();
+            string dataType = xmlNode.Attributes[0].Value.ToString();
             switch (dataType)
             {
-                case "bool": result = new UserSettingsElementBool(xmlNode.Name, xmlNode.Value); break;
-                // case "int": result = new UserSettingsElementInt(xmlNode.Name, xmlNode.Value); break;
-                case "void": result = new UserSettingsElementVoid(xmlNode.Name,""); break;
+               // case "System.Boolean": result = new UserSettingsElementBool(xmlNode.Name, (null == xmlNode.Value) ? true : false); break; // Hack !!
+                case "System.Boolean": result = new UserSettingsElementBool(xmlNode.Name, xmlNode.Value); break; 
+                case "System.String": result = new UserSettingsElementVoid(xmlNode.Name, ""); break;
+                case "System.Int32": result = new UserSettingsElementInt(xmlNode.Name, xmlNode.Value); break;
+                default: Logger.LogCF(string.Format("Unsupported datatype={0}", dataType)); break;
+                //case "void": result = new UserSettingsElementVoid(xmlNode.Name,""); break;
 
             }
 
             foreach (XmlNode child in xmlNode.ChildNodes)
             {
+                // Logger.LogCF(string.Format("Child.Name={0}", child.Name));
                 if (child.NodeType == XmlNodeType.Element)
                 {
                     result.AddChild(UserSettingsElement.CreateFromNode(child));
                 }
-                //if (child.NodeType == XmlNodeType.Text)
-                //{
-                //    if (!bool.TryParse(child.Value, out result.value))
-                //    {
-                //        result.value = true;
-                //        Logger.LogCF(string.Format(": Defaulting to true"));
-                //    }
-                //}
+                if (child.NodeType == XmlNodeType.Text)
+                {
+                    //if (!bool.TryParse(child.Value, out result.value))
+                    //{
+                    //    result.value = true;
+                    //    Logger.LogCF(string.Format(": Defaulting to true"));
+                    //}
+                }
             }
             //Logger.LogCF(string.Format(": Name={0}  value={1} ", xmlNode.Name, result.value));
             return result;
@@ -214,28 +223,38 @@ namespace MusicXmlReaderModel
         {
             base.ToXml(xml, this.value.ToString()); // Convert to string before calling the base class !
         }
-
         private UserSettingsElementBool() : base() { }// Prevent construction
         public UserSettingsElementBool(string xmlName, bool value) : base(xmlName, value.GetType())
         {
             this.value = value;
         }
 
-        public UserSettingsElementBool(string xmlName, string value) : base(xmlName, value.GetType())
+
+
+        public UserSettingsElementBool(string xmlName, string value): base (xmlName,bb.GetType()) // We can not call GetType() on value !
         {
-            this.value = bool.Parse(value);
+            if (!Boolean.TryParse(value, out this.value))
+            {
+                this.value = true; // Dafault to true
+            }
         }
+
+        static bool bb = false; // Only used for calling bb.GetType //
     }
+
+
+
 
     public class UserSettingsElementVoid : UserSettingsElement
     {
         public override void ToXml(XmlWriter xml)
         {
-            base.ToXml(xml,""); // This type has no value !
+            base.ToXml(xml,"VOID"); // This type has no value !
         }        
         private UserSettingsElementVoid() : base() { }// Prevent construction
         public UserSettingsElementVoid(string xmlName, string dummy) : base(xmlName,dummy.GetType()) 
         {
+            // No value to set !
         }
     }
 
@@ -252,6 +271,11 @@ namespace MusicXmlReaderModel
         {
             this.value = value;
         }
+        public UserSettingsElementInt(string xmlName, string value) : base(xmlName, value.GetType())
+        {
+            this.value = int.Parse(value);
+        }
+
     }
 
 }
