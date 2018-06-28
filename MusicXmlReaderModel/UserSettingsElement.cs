@@ -15,7 +15,7 @@ namespace MusicXmlReaderModel
         protected string xmlName; // Unlocalized name used for identification when serialized
         public string XmlName { get { return xmlName; } }
 
-        private Type dataType; // The datatype of the element represented
+        private string dataType; // The datatype of the element represented
   
         public UserSettingsElement AddChild(UserSettingsElement userSettingsElement)
         {
@@ -30,7 +30,7 @@ namespace MusicXmlReaderModel
         {
         }
 
-        protected UserSettingsElement(string xmlName,Type type)
+        protected UserSettingsElement(string xmlName,string type)
         {
             this.xmlName = xmlName;
             this.dataType = type;
@@ -42,7 +42,7 @@ namespace MusicXmlReaderModel
             //xml.WriteWhitespace("\r\n"); // Every new element starts at a new line
             xml.WriteStartElement(this.xmlName);
             //xml.WriteWhitespace("\r\n"); // Every new value starts at a new line
-            xml.WriteAttributeString("Type", this.dataType.ToString());
+            xml.WriteAttributeString(UserSettingNames.Type, this.dataType.ToString());
             xml.WriteValue(value);
             bool firstChild = true;
             foreach (UserSettingsElement childElement in this.childList)
@@ -102,7 +102,7 @@ namespace MusicXmlReaderModel
 
         public static UserSettingsElement Create(string xmlName)
         {
-            return new UserSettingsElementVoid(xmlName,"");
+            return new UserSettingsElementVoid(xmlName);
         }
 
         public static UserSettingsElement Create(string xmlName, bool value)
@@ -115,10 +115,10 @@ namespace MusicXmlReaderModel
             return new UserSettingsElementInt(xmlName, value);
         }
 
-        public static UserSettingsElement Create(string xmlName,string dummy )
-        {
-            return new UserSettingsElementVoid(xmlName,"");
-        }
+        //public static UserSettingsElement Create(string xmlName)
+        //{
+        //    return new UserSettingsElementVoid(xmlName);
+        //}
 
 
         /// <summary>
@@ -135,9 +135,10 @@ namespace MusicXmlReaderModel
             switch (dataType)
             {
                // case "System.Boolean": result = new UserSettingsElementBool(xmlNode.Name, (null == xmlNode.Value) ? true : false); break; // Hack !!
-                case "System.Boolean": result = new UserSettingsElementBool(xmlNode.Name, xmlNode.Value); break; 
-                case "System.String": result = new UserSettingsElementVoid(xmlNode.Name, ""); break;
-                case "System.Int32": result = new UserSettingsElementInt(xmlNode.Name, xmlNode.Value); break;
+                case UserSettingNames.TypeBool: result = new UserSettingsElementBool(xmlNode.Name, xmlNode.Value); break; 
+                case UserSettingNames.TypeString: result = new UserSettingsElementVoid(xmlNode.Name); break;
+                case UserSettingNames.TypeInt: result = new UserSettingsElementInt(xmlNode.Name, xmlNode.Value); break;
+                case UserSettingNames.TypeVoid: result = new UserSettingsElementVoid(xmlNode.Name); break;
                 default: Logger.LogCF(string.Format("Unsupported datatype={0}", dataType)); break;
                 //case "void": result = new UserSettingsElementVoid(xmlNode.Name,""); break;
 
@@ -180,7 +181,7 @@ namespace MusicXmlReaderModel
                 doc.Load(reader); // This single operation may last decades of seconds on a slow platform!!
                 foreach (XmlNode node in doc.ChildNodes)
                 {
-                    Logger.LogCF(string.Format(": Node.Name={0}", node.Name));
+                    // Logger.LogCF(string.Format(": Node.Name={0}", node.Name));
                     switch (node.Name)
                     {
                         case UserSettingNames.UserSettings: result = UserSettingsElement.CreateFromNode(node); break;
@@ -225,14 +226,14 @@ namespace MusicXmlReaderModel
             base.ToXml(xml, this.value.ToString()); // Convert to string before calling the base class !
         }
         private UserSettingsElementBool() : base() { }// Prevent construction
-        public UserSettingsElementBool(string xmlName, bool value) : base(xmlName, value.GetType())
+        public UserSettingsElementBool(string xmlName, bool value) : base(xmlName, UserSettingNames.TypeBool)
         {
             this.value = value;
         }
 
 
 
-        public UserSettingsElementBool(string xmlName, string value): base (xmlName,bb.GetType()) // We can not call GetType() on value !
+        public UserSettingsElementBool(string xmlName, string value): base (xmlName,UserSettingNames.TypeBool) // We can not call GetType() on value !
         {
             if (!Boolean.TryParse(value, out this.value))
             {
@@ -253,7 +254,7 @@ namespace MusicXmlReaderModel
             base.ToXml(xml,"VOID"); // This type has no value !
         }        
         private UserSettingsElementVoid() : base() { }// Prevent construction
-        public UserSettingsElementVoid(string xmlName, string dummy) : base(xmlName,dummy.GetType()) 
+        public UserSettingsElementVoid(string xmlName) : base(xmlName,UserSettingNames.TypeVoid) 
         {
             // No value to set !
         }
@@ -268,11 +269,11 @@ namespace MusicXmlReaderModel
             base.ToXml(xml, this.value.ToString()); // Convert to string before calling the base class !
         }
         private UserSettingsElementInt() : base() { }// Prevent construction
-        public UserSettingsElementInt(string xmlName, int value) : base(xmlName, value.GetType())
+        public UserSettingsElementInt(string xmlName, int value) : base(xmlName, UserSettingNames.TypeInt)
         {
             this.value = value;
         }
-        public UserSettingsElementInt(string xmlName, string value) : base(xmlName, value.GetType())
+        public UserSettingsElementInt(string xmlName, string value) : base(xmlName, UserSettingNames.TypeInt)
         {
             this.value = int.Parse(value);
         }

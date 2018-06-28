@@ -300,7 +300,7 @@ namespace MusicXmlReaderModel
             Logger.LogCF(string.Format(".Entry"));
             try
             {
-                UserSettingsElement userSettings = UserSettingsElement.Create(UserSettingNames.UserSettings,"");
+                UserSettingsElement userSettings = UserSettingsElement.Create(UserSettingNames.UserSettings);
 
                 // userSettings.AddChild(UserSettingsElement.Create("UserTempoFactor", 100));
 

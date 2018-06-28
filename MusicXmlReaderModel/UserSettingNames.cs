@@ -38,5 +38,14 @@ namespace MusicXmlReaderModel
         public const string HarmonyCodes = "HarmonyCodes";
         public const string EndEvents = "EndEvents";
 
+
+        // Names used for transferring Type information
+        public const string Type = "Type";
+        public const string TypeVoid = "Void";
+        public const string TypeBool = "Bool";
+        public const string TypeInt = "Int";
+        public const string TypeString = "String";
+
+
     }
 }
