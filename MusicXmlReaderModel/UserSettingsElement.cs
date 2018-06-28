@@ -21,7 +21,6 @@ namespace MusicXmlReaderModel
             return userSettingsElement;
         }
 
-        protected UserSettingsElement[] children;
         protected List<UserSettingsElement> childList;
         // The actual value of the element is represented in a derived class
 
