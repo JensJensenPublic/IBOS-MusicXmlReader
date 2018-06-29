@@ -94,7 +94,17 @@ namespace MusicXmlReaderModel
                 }
             }
 
-   
+
+            if (0 != string.Compare(this.ValueToString(), that.ValueToString()))
+            {
+                Logger.LogCF(string.Format(": this.Name={0} this.Value={1} differ from that.Name={2} that.Value={3}", this.xmlName, this.ValueToString(), that.xmlName, that.ValueToString()));
+                return false;
+            }
+            else
+            {
+                Logger.LogCF(string.Format(": this.Name={0} this.Value={1} equals that.Name={2} that.Value={3} This is OK!", this.xmlName, this.ValueToString(), that.xmlName, that.ValueToString()));
+            }
+
 
             return true;
 
@@ -121,6 +131,21 @@ namespace MusicXmlReaderModel
         //}
 
 
+
+        private static string GetValueString(XmlNode xmlNode)
+        {
+            foreach (XmlNode child in xmlNode.ChildNodes)
+            {
+                if (child.NodeType == XmlNodeType.Text)
+                {
+                    return child.Value;
+                }
+            }
+            return "";
+        }
+
+
+
         /// <summary>
         /// Build a tree of UserSettingElements corresponding to the tree represented by xmlNode
         /// </summary>
@@ -130,14 +155,15 @@ namespace MusicXmlReaderModel
         {
 
             UserSettingsElement result = null;
+            string valueString = GetValueString(xmlNode);
             string name =  xmlNode.Attributes[0].Name.ToString();
             string dataType = xmlNode.Attributes[0].Value.ToString();
             switch (dataType)
             {
                // case "System.Boolean": result = new UserSettingsElementBool(xmlNode.Name, (null == xmlNode.Value) ? true : false); break; // Hack !!
-                case UserSettingNames.TypeBool: result = new UserSettingsElementBool(xmlNode.Name, xmlNode.Value); break; 
-                case UserSettingNames.TypeString: result = new UserSettingsElementVoid(xmlNode.Name); break;
-                case UserSettingNames.TypeInt: result = new UserSettingsElementInt(xmlNode.Name, xmlNode.Value); break;
+                case UserSettingNames.TypeBool: result = new UserSettingsElementBool(xmlNode.Name, valueString); break; 
+                //case UserSettingNames.TypeString: result = new UserSettingsElementString(xmlNode.Name, valueString); break;
+                case UserSettingNames.TypeInt: result = new UserSettingsElementInt(xmlNode.Name, valueString); break;
                 case UserSettingNames.TypeVoid: result = new UserSettingsElementVoid(xmlNode.Name); break;
                 default: Logger.LogCF(string.Format("Unsupported datatype={0}", dataType)); break;
                 //case "void": result = new UserSettingsElementVoid(xmlNode.Name,""); break;
@@ -151,15 +177,8 @@ namespace MusicXmlReaderModel
                 {
                     result.AddChild(UserSettingsElement.CreateFromNode(child));
                 }
-                if (child.NodeType == XmlNodeType.Text)
-                {
-                    //if (!bool.TryParse(child.Value, out result.value))
-                    //{
-                    //    result.value = true;
-                    //    Logger.LogCF(string.Format(": Defaulting to true"));
-                    //}
-                }
             }
+
             //Logger.LogCF(string.Format(": Name={0}  value={1} ", xmlNode.Name, result.value));
             return result;
         }
@@ -207,6 +226,7 @@ namespace MusicXmlReaderModel
 
         //public abstract void ToXml(XmlTextWriter xml); // Each subclass must know how to convert its own value to a string
         public abstract void ToXml(XmlWriter xml); // Each subclass must know how to convert its own value to a string
+        public abstract string ValueToString(); //
 
 
     }
@@ -220,6 +240,11 @@ namespace MusicXmlReaderModel
     public class UserSettingsElementBool : UserSettingsElement
     {
         private bool value; // The actual value, typically represented by a checkbox in the User Interface
+
+        public override string ValueToString()
+        {
+            return value.ToString();
+        }
 
         public override void ToXml(XmlWriter xml)
         {
@@ -249,6 +274,11 @@ namespace MusicXmlReaderModel
 
     public class UserSettingsElementVoid : UserSettingsElement
     {
+        public override string ValueToString()
+        {
+            return "";
+        }
+
         public override void ToXml(XmlWriter xml)
         {
             base.ToXml(xml,"VOID"); // This type has no value !
@@ -264,6 +294,12 @@ namespace MusicXmlReaderModel
     public class UserSettingsElementInt : UserSettingsElement
     {
         private int value; // The actual value, 
+
+        public override string ValueToString()
+        {
+            return value.ToString();
+        }
+
         public override void ToXml(XmlWriter xml)
         {
             base.ToXml(xml, this.value.ToString()); // Convert to string before calling the base class !

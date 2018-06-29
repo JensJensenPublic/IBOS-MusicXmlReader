@@ -302,7 +302,7 @@ namespace MusicXmlReaderModel
             {
                 UserSettingsElement userSettings = UserSettingsElement.Create(UserSettingNames.UserSettings);
 
-                // userSettings.AddChild(UserSettingsElement.Create("UserTempoFactor", 100));
+                userSettings.AddChild(UserSettingsElement.Create("UserTempoFactor", 100));
 
                 // usesSettings contains 3 children: Sound, Speech and MusicBraille, each containtng 2 subtrees
                 UserSettingsElement soundSettings = userSettings.AddChild(UserSettingsElement.Create(UserSettingNames.Sound, true));
