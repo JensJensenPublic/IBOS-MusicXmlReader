@@ -267,13 +267,17 @@ namespace MusicXmlReaderModel
 
         public UserSettingsElementBool(string xmlName, string value): base (xmlName,UserSettingNames.TypeBool) // We can not call GetType() on value !
         {
-            if (!Boolean.TryParse(value, out this.value))
+            //if (!Boolean.TryParse(value, out this.value))
+            //{
+            //    this.value = true; // Dafault to true
+            //}
+            this.value = true; // Default value
+            if (!bool.TryParse(value, out this.value))
             {
-                this.value = true; // Dafault to true
+                Logger.LogCF(string.Format(": bool.TryParse({0}) failed for Name={1}) ", value.ToString(), xmlName));
             }
         }
 
-        static bool bb = false; // Only used for calling bb.GetType //
     }
 
 
@@ -318,7 +322,12 @@ namespace MusicXmlReaderModel
         }
         public UserSettingsElementInt(string xmlName, string value) : base(xmlName, UserSettingNames.TypeInt)
         {
-            this.value = int.Parse(value);
+            this.value = 0; // Default value
+            if (!int.TryParse(value, out this.value))
+            {
+                Logger.LogCF(string.Format(": int.TryParse({0}) failed for Name={1}) ", value.ToString(), xmlName));
+            }
+
         }
 
     }
