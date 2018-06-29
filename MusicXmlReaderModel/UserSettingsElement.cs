@@ -12,6 +12,8 @@ namespace MusicXmlReaderModel
     /// </summary>
     public abstract class UserSettingsElement
     {
+        public static readonly int Version = 0; // The version of the current implementation
+
         protected string xmlName; // Unlocalized name used for identification when serialized
         public string XmlName { get { return xmlName; } }
 
@@ -102,7 +104,7 @@ namespace MusicXmlReaderModel
             }
             else
             {
-                Logger.LogCF(string.Format(": this.Name={0} this.Value={1} equals that.Name={2} that.Value={3} This is OK!", this.xmlName, this.ValueToString(), that.xmlName, that.ValueToString()));
+                // Logger.LogCF(string.Format(": this.Name={0} this.Value={1} equals that.Name={2} that.Value={3} This is OK!", this.xmlName, this.ValueToString(), that.xmlName, that.ValueToString()));
             }
 
 
@@ -123,6 +125,11 @@ namespace MusicXmlReaderModel
         public static UserSettingsElement Create(string xmlName, int value)
         {
             return new UserSettingsElementInt(xmlName, value);
+        }
+
+        public static UserSettingsElement Create(string xmlName, string value)
+        {
+            return new UserSettingsElementString(xmlName, value);
         }
 
         //public static UserSettingsElement Create(string xmlName)
@@ -162,7 +169,7 @@ namespace MusicXmlReaderModel
             {
                // case "System.Boolean": result = new UserSettingsElementBool(xmlNode.Name, (null == xmlNode.Value) ? true : false); break; // Hack !!
                 case UserSettingNames.TypeBool: result = new UserSettingsElementBool(xmlNode.Name, valueString); break; 
-                //case UserSettingNames.TypeString: result = new UserSettingsElementString(xmlNode.Name, valueString); break;
+                case UserSettingNames.TypeString: result = new UserSettingsElementString(xmlNode.Name, valueString); break;
                 case UserSettingNames.TypeInt: result = new UserSettingsElementInt(xmlNode.Name, valueString); break;
                 case UserSettingNames.TypeVoid: result = new UserSettingsElementVoid(xmlNode.Name); break;
                 default: Logger.LogCF(string.Format("Unsupported datatype={0}", dataType)); break;
@@ -312,6 +319,28 @@ namespace MusicXmlReaderModel
         public UserSettingsElementInt(string xmlName, string value) : base(xmlName, UserSettingNames.TypeInt)
         {
             this.value = int.Parse(value);
+        }
+
+    }
+
+
+    public class UserSettingsElementString : UserSettingsElement
+    {
+        private string value; // The actual value, 
+
+        public override string ValueToString()
+        {
+            return value;
+        }
+
+        public override void ToXml(XmlWriter xml)
+        {
+            base.ToXml(xml, this.value.ToString()); // Convert to string before calling the base class !
+        }
+        private UserSettingsElementString() : base() { }// Prevent construction
+        public UserSettingsElementString(string xmlName, string value) : base(xmlName, UserSettingNames.TypeString) // Replaces 2 methods because the second parameter is string
+        {
+            this.value = value;
         }
 
     }

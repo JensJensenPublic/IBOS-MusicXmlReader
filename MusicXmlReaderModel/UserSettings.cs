@@ -295,6 +295,9 @@ namespace MusicXmlReaderModel
         // For test Only: bulid a tree -------------------------------------------------------------------------------------------------------
         //************************************************************************************************************************************
 
+        public static readonly int Version = 0; // The version of the current implementation
+
+
         public void Test(PartlistElement partList)
         {
             Logger.LogCF(string.Format(".Entry"));
@@ -302,9 +305,16 @@ namespace MusicXmlReaderModel
             {
                 UserSettingsElement userSettings = UserSettingsElement.Create(UserSettingNames.UserSettings);
 
-                userSettings.AddChild(UserSettingsElement.Create("UserTempoFactor", 100));
+                // Start with some "Better safe than sorry" versioning information for handling possible backward / forward compatibility issues !
+                userSettings.AddChild(UserSettingsElement.Create("UserSettingsVersion", UserSettings.Version)); // The version of the implementation of UserSettingsElement 
+                userSettings.AddChild(UserSettingsElement.Create("UserSettingElementVersion", UserSettingsElement.Version)); // The version of the implementation of UserSettingsElement 
+                userSettings.AddChild(UserSettingsElement.Create("ApplicationVersion", "0.0.0.0")); // Get the real version from somewhere !
 
-                // usesSettings contains 3 children: Sound, Speech and MusicBraille, each containtng 2 subtrees
+                // Simple user settings
+                userSettings.AddChild(UserSettingsElement.Create("UserTempoFactor", 100));
+  
+
+                // The Filter tree contains 3 children: Sound, Speech and MusicBraille, each containtng 2 subtrees
                 UserSettingsElement soundSettings = userSettings.AddChild(UserSettingsElement.Create(UserSettingNames.Sound, true));
                 UserSettingsElement speechSettings = userSettings.AddChild(UserSettingsElement.Create(UserSettingNames.Speech, true));
                 UserSettingsElement musicBrailleSettings = userSettings.AddChild(UserSettingsElement.Create(UserSettingNames.MusicBraille, true));
