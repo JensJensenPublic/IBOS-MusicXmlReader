@@ -146,6 +146,7 @@
     <Compile Include="TimeDescriptionList.cs" />
     <Compile Include="TupletFraction.cs" />
     <Compile Include="UserSetting.cs" />
+    <Compile Include="UserSettingsElements.cs" />
     <Compile Include="UserSettingNames.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="UserSettingsElement.cs" />
