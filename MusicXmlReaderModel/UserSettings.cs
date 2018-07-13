@@ -29,9 +29,16 @@ namespace MusicXmlReaderModel
 
 
         // Arrays for controlling individual parts. NOTE: The names of the parts are defined by the current MusicXML file !
-        public bool[] partsToPlay; // Play the note values from these parts
-        public bool[] partsToRead; // Read the note values from these parts
-        public bool[] partsToBraille; // Generate MusicBraille for these parts  
+        private bool[] partsToPlay; // Play the note values from these parts
+        private bool[] partsToRead; // Read the note values from these parts
+        private bool[] partsToBraille; // Generate MusicBraille for these parts
+
+        public bool GetPartsToPlay(int index) { return partsToPlay[index]; }
+        public void SetPartsToPlay(int index, bool b) { partsToPlay[index] = b; }
+        public bool GetPartsToRead(int index) { return partsToRead[index]; }
+        public void SetPartsToRead(int index, bool b) { partsToRead[index] = b; }
+        public bool GetPartsToBraille(int index) { return partsToBraille[index]; }
+        public void SetPartsToBraille(int index, bool b) { partsToBraille[index] = b; }
 
         private UserSettingsWriter userSettingsWriter = UserSettingsWriter.Create();
 
@@ -56,7 +63,7 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// NOTE! For compatibility reasons: DO NOT REMOVE MEMBERS FROM THIS ENUM !!!
         /// </summary>
-        public enum ReaderSettings
+        public enum ReaderSettingsEnum
         {
             MeasureNumbers = 0,
             Harmonies = 1,
@@ -74,29 +81,30 @@ namespace MusicXmlReaderModel
         };
 
 
-        public readonly UserSetting[] readerSettings = new UserSetting[(int)ReaderSettings.NumberOfReaderSettings];
-        private void InitReaderSetting(ReaderSettings setting, string name, bool value)
+        private readonly UserSetting[] readerSettings = new UserSetting[(int)ReaderSettingsEnum.NumberOfReaderSettings];
+        public UserSetting[] ReaderSettings { get { return readerSettings; } }
+        private void InitReaderSetting(ReaderSettingsEnum setting, string name, bool value)
         {
             readerSettings[(int)setting] = UserSetting.Create(name, value);
         }
 
         private void InitReaderSettings()
         {
-            InitReaderSetting(ReaderSettings.MeasureNumbers, ResourcesForModel.UserSettings_ReaderNames_MeasureNumbers, true);  // "TaktNumre",
-            InitReaderSetting(ReaderSettings.Harmonies, ResourcesForModel.UserSettings_ReaderNames_Harmonies, true);       // "Harmonier",
-            InitReaderSetting(ReaderSettings.Notes, ResourcesForModel.UserSettings_ReaderNames_Notes, true);           // "Noder",
-            InitReaderSetting(ReaderSettings.NoteOctaves, ResourcesForModel.UserSettings_ReaderNames_Octaves, true);         // "Oktaver",
-            InitReaderSetting(ReaderSettings.NoteTypes, ResourcesForModel.UserSettings_ReaderNames_NoteValues, true);      // "NodeVærdier",
-            InitReaderSetting(ReaderSettings.NoteAccidentals, ResourcesForModel.UserSettings_ReaderNames_Accidentals, false);    // "Læse fortegn"
-            InitReaderSetting(ReaderSettings.Notations, ResourcesForModel.UserSettings_ReaderNames_Notations, true);       // "Notationer",
-            InitReaderSetting(ReaderSettings.Lyrics, ResourcesForModel.UserSettings_ReaderNames_Lyrics, true);          // "Tekst"
-            InitReaderSetting(ReaderSettings.MetaInformation, ResourcesForModel.UserSettings_ReaderNames_Metainformation, true); // "Meta-information",
-            InitReaderSetting(ReaderSettings.Divisions, ResourcesForModel.UserSettings_ReaderNames_Divisions, false);      // "Divisions",
-            InitReaderSetting(ReaderSettings.HarmonyCodes, ResourcesForModel.UserSettings_ReaderNames_HarmonyCodes, false);   // "HarmoniCodes",
-            InitReaderSetting(ReaderSettings.EndEvents, ResourcesForModel.UserSettings_ReaderNames_EndEvents, false);      // "EndEvents"
+            InitReaderSetting(ReaderSettingsEnum.MeasureNumbers, ResourcesForModel.UserSettings_ReaderNames_MeasureNumbers, true);  // "TaktNumre",
+            InitReaderSetting(ReaderSettingsEnum.Harmonies, ResourcesForModel.UserSettings_ReaderNames_Harmonies, true);       // "Harmonier",
+            InitReaderSetting(ReaderSettingsEnum.Notes, ResourcesForModel.UserSettings_ReaderNames_Notes, true);           // "Noder",
+            InitReaderSetting(ReaderSettingsEnum.NoteOctaves, ResourcesForModel.UserSettings_ReaderNames_Octaves, true);         // "Oktaver",
+            InitReaderSetting(ReaderSettingsEnum.NoteTypes, ResourcesForModel.UserSettings_ReaderNames_NoteValues, true);      // "NodeVærdier",
+            InitReaderSetting(ReaderSettingsEnum.NoteAccidentals, ResourcesForModel.UserSettings_ReaderNames_Accidentals, false);    // "Læse fortegn"
+            InitReaderSetting(ReaderSettingsEnum.Notations, ResourcesForModel.UserSettings_ReaderNames_Notations, true);       // "Notationer",
+            InitReaderSetting(ReaderSettingsEnum.Lyrics, ResourcesForModel.UserSettings_ReaderNames_Lyrics, true);          // "Tekst"
+            InitReaderSetting(ReaderSettingsEnum.MetaInformation, ResourcesForModel.UserSettings_ReaderNames_Metainformation, true); // "Meta-information",
+            InitReaderSetting(ReaderSettingsEnum.Divisions, ResourcesForModel.UserSettings_ReaderNames_Divisions, false);      // "Divisions",
+            InitReaderSetting(ReaderSettingsEnum.HarmonyCodes, ResourcesForModel.UserSettings_ReaderNames_HarmonyCodes, false);   // "HarmoniCodes",
+            InitReaderSetting(ReaderSettingsEnum.EndEvents, ResourcesForModel.UserSettings_ReaderNames_EndEvents, false);      // "EndEvents"
         }
 
-        public bool GetReaderSettings(ReaderSettings i)
+        public bool GetReaderSettings(ReaderSettingsEnum i)
         {
             return readerSettings[(int)i].Value;
         }
@@ -113,11 +121,12 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// NOTE! For compatibility reasons: DO NOT REMOVE MEMBERS FROM THIS ENUM !!!
         /// </summary>
-        public enum PlayerSettings { Harmonies = 0, NumberOfPlayerSettings = 1 }
+        public enum PlayerSettingsEnum { Harmonies = 0, NumberOfPlayerSettings = 1 }
 
-        public readonly UserSetting[] playerSettings = new UserSetting[(int)PlayerSettings.NumberOfPlayerSettings];
+        private readonly UserSetting[] playerSettings = new UserSetting[(int)PlayerSettingsEnum.NumberOfPlayerSettings];
+        public UserSetting[] PlayerSettings { get { return playerSettings; } } 
 
-        private void InitPlayerSetting(PlayerSettings setting, string name, bool value)
+        private void InitPlayerSetting(PlayerSettingsEnum setting, string name, bool value)
         {
             playerSettings[(int)setting] = UserSetting.Create(name, value);
         }
@@ -126,10 +135,10 @@ namespace MusicXmlReaderModel
         {
 #warning ToDo Implement and re-enable PlayerSettings.MeasureBeats
             // InitPlayerSetting(PlayerSettings.MeasureBeats, ResourcesForModel.UserSettings_PlayerNames_Beats, false);  // "Taktslag", 
-            InitPlayerSetting(PlayerSettings.Harmonies, ResourcesForModel.UserSettings_PlayerNames_Harmonies, true);  // "Harmonier",
+            InitPlayerSetting(PlayerSettingsEnum.Harmonies, ResourcesForModel.UserSettings_PlayerNames_Harmonies, true);  // "Harmonier",
         }
 
-        public bool GetPlayerSettings(PlayerSettings i)
+        public bool GetPlayerSettings(PlayerSettingsEnum i)
         {
             return playerSettings[(int)i].Value;
         }
@@ -146,23 +155,25 @@ namespace MusicXmlReaderModel
         /// <summary>
         ///  NOTE! For compatibility reasons: DO NOT REMOVE MEMBERS FROM THIS ENUM !!!
         /// </summary>
-        public enum MusicBrailleSettings { MeasureNumbers = 0, Harmonies = 1, Notes = 2, Notations = 3, NumberOfMusicBrailleSettings = 4 };
+        public enum MusicBrailleSettingsEnum { MeasureNumbers = 0, Harmonies = 1, Notes = 2, Notations = 3, NumberOfMusicBrailleSettings = 4 };
 
-        public UserSetting[] musicBrailleSettings = new UserSetting[(int)MusicBrailleSettings.NumberOfMusicBrailleSettings];
-        private void InitMusicBrailleSetting(MusicBrailleSettings setting, string name, bool value)
+        private UserSetting[] musicBrailleSettings = new UserSetting[(int)MusicBrailleSettingsEnum.NumberOfMusicBrailleSettings];
+        public UserSetting[] MusicBrailleSettings { get { return musicBrailleSettings; } }
+
+        private void InitMusicBrailleSetting(MusicBrailleSettingsEnum setting, string name, bool value)
         {
             musicBrailleSettings[(int)setting] = UserSetting.Create(name, value);
         }
 
         private void InitMusicBrailleSettings()
         {
-            InitMusicBrailleSetting(MusicBrailleSettings.MeasureNumbers, ResourcesForModel.UserSettings_BrailleNames_MeasureNumbers, false);//"TaktNumre",
-            InitMusicBrailleSetting(MusicBrailleSettings.Harmonies, ResourcesForModel.UserSettings_BrailleNames_Harmonies, false); //"Harmonier",
-            InitMusicBrailleSetting(MusicBrailleSettings.Notes, ResourcesForModel.UserSettings_BrailleNames_Notes, true);  //"Noder",
-            InitMusicBrailleSetting(MusicBrailleSettings.Notations, ResourcesForModel.UserSettings_BrailleNames_Notations, true);   //"Notationer"
+            InitMusicBrailleSetting(MusicBrailleSettingsEnum.MeasureNumbers, ResourcesForModel.UserSettings_BrailleNames_MeasureNumbers, false);//"TaktNumre",
+            InitMusicBrailleSetting(MusicBrailleSettingsEnum.Harmonies, ResourcesForModel.UserSettings_BrailleNames_Harmonies, false); //"Harmonier",
+            InitMusicBrailleSetting(MusicBrailleSettingsEnum.Notes, ResourcesForModel.UserSettings_BrailleNames_Notes, true);  //"Noder",
+            InitMusicBrailleSetting(MusicBrailleSettingsEnum.Notations, ResourcesForModel.UserSettings_BrailleNames_Notations, true);   //"Notationer"
         }
 
-        public bool GetMusicBrailleSettings(MusicBrailleSettings i)
+        public bool GetMusicBrailleSettings(MusicBrailleSettingsEnum i)
         {
             return musicBrailleSettings[(int)i].Value;
         }
@@ -271,9 +282,9 @@ namespace MusicXmlReaderModel
             InitMusicBrailleSettings();
 
             userTempo = 100; // Percentage of tempo indicated in score
-            if (((int)ReaderSettings.NumberOfReaderSettings != readerSettings.Length)
-            || ((int)PlayerSettings.NumberOfPlayerSettings != playerSettings.Length)
-            || ((int)MusicBrailleSettings.NumberOfMusicBrailleSettings != musicBrailleSettings.Length))
+            if (((int)ReaderSettingsEnum.NumberOfReaderSettings != readerSettings.Length)
+            || ((int)PlayerSettingsEnum.NumberOfPlayerSettings != playerSettings.Length)
+            || ((int)MusicBrailleSettingsEnum.NumberOfMusicBrailleSettings != musicBrailleSettings.Length))
 
             {
                 throw (new Exception("UserSettings: Wrong size of arrays"));

@@ -92,9 +92,9 @@ namespace MusicXmlReaderModel
                     xml.WriteWhitespace("\r\n");
                     xml.WriteStartElement("UserSettings");
 
-                    AddMainBranch(xml, "MusicAsSound", uS.MusicAsSound, uS.PartList, uS.partsToPlay, uS.playerSettings);
-                    AddMainBranch(xml, "MusicAsSpeech", uS.MusicAsSpeech, uS.PartList, uS.partsToRead, uS.readerSettings);
-                    AddMainBranch(xml, "MusicAsMusicBraille", uS.MusicAsMusicBraille, uS.PartList, uS.partsToBraille, uS.musicBrailleSettings);
+//                    AddMainBranch(xml, "MusicAsSound", uS.MusicAsSound, uS.PartList, uS.partsToPlay, uS.playerSettings);
+//                    AddMainBranch(xml, "MusicAsSpeech", uS.MusicAsSpeech, uS.PartList, uS.partsToRead, uS.readerSettings);
+//                    AddMainBranch(xml, "MusicAsMusicBraille", uS.MusicAsMusicBraille, uS.PartList, uS.partsToBraille, uS.musicBrailleSettings);
 
                     //// Music As Sound / "Musik afspilning"
 

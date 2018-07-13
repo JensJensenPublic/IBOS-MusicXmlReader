@@ -205,7 +205,7 @@ namespace MusicXmlReaderModel
                     string notes = "";
                     string lyrics = "";
 
-                    if ((userSettings.MusicAsSpeech) && (userSettings.partsToRead[i]))
+                    if ((userSettings.MusicAsSpeech) && (userSettings.GetPartsToRead(i)))
                     {
                         // The eventdescription contains notes for this part so we dig out the part parameters:
                         ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
@@ -219,7 +219,7 @@ namespace MusicXmlReaderModel
 
                     // String variables for desribing the detail as MusicBraille
                     string musicBraille = "";
-                    if ((userSettings.MusicAsMusicBraille) && (userSettings.partsToBraille[i]))
+                    if ((userSettings.MusicAsMusicBraille) && (userSettings.GetPartsToBraille(i)))
                     {
                         BrailleBuilder musicBrailleDetails = eventDescription.NotesForOnePartAsBraille(notesForPart);
                         musicBraille = musicBrailleDetails.ToBrailleString();

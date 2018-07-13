@@ -311,18 +311,18 @@ namespace MusicXmlReader
                     case 0:  // Voices
                         switch (e.Node.Parent.Parent.Index)
                         {
-                            case 0: model.UserSettings.partsToPlay[i] = e.Node.Checked; break;
-                            case 1: model.UserSettings.partsToRead[i] = e.Node.Checked; break;
-                            case 2: model.UserSettings.partsToBraille[i] = e.Node.Checked; break;
+                            case 0: model.UserSettings.SetPartsToPlay(i, e.Node.Checked); break;
+                            case 1: model.UserSettings.SetPartsToRead(i, e.Node.Checked); break;
+                            case 2: model.UserSettings.SetPartsToBraille(i,e.Node.Checked); break;
                             default: break;       
                         }
                         break;
                     case 1: // Details
                         switch (e.Node.Parent.Parent.Index) 
                         {
-                            case 0: model.UserSettings.playerSettings[i].Value = e.Node.Checked; break;
-                            case 1: model.UserSettings.readerSettings[i].Value = e.Node.Checked; break;
-                            case 2: model.UserSettings.musicBrailleSettings[i].Value = e.Node.Checked; break;
+                            case 0: model.UserSettings.SetPlayerSettings(i,e.Node.Checked); break;
+                            case 1: model.UserSettings.SetReaderSettings(i,e.Node.Checked); break;
+                            case 2: model.UserSettings.SetMusicBrailleSettings(i,e.Node.Checked); break;
                             default: break;
                         } break;
                     default: return;
@@ -458,9 +458,9 @@ namespace MusicXmlReader
         { 
             const int lastTextDetail =    7; // "7" is the "Lyrics" node. Do not load last notes for release versions! They are for real hardcore debugging only!
             //const int lastTextDetail = 11; // 11: Load all nodes: For real hardcore debugging only !!!!!!!
-            LoadDetails(musicAsSoundDetails, userSettings.playerSettings);
-            LoadDetails(musicAsTextDetails, userSettings.readerSettings, lastTextDetail);  
-            LoadDetails(musicAsBrailleDetails, userSettings.musicBrailleSettings);
+            LoadDetails(musicAsSoundDetails, userSettings.PlayerSettings);
+            LoadDetails(musicAsTextDetails, userSettings.ReaderSettings, lastTextDetail);  
+            LoadDetails(musicAsBrailleDetails, userSettings.MusicBrailleSettings);
         }
 
         public void CheckSelectedNotes()

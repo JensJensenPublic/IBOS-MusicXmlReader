@@ -389,7 +389,7 @@ namespace MusicXmlReaderModel
         public BrailleBuilder NotesForOnePartAsBraille(List<NoteElement> noteElementList)
         {
             BrailleBuilder bb = BrailleBuilder.Create();
-            if (!userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettings.Notes)) return bb; // User completely turned off reading of notes
+            if (!userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettingsEnum.Notes)) return bb; // User completely turned off reading of notes
 
 
             foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
@@ -398,9 +398,9 @@ namespace MusicXmlReaderModel
                 {
                     // Add pitch information
                     // If the note is not marked for printing with the PrintObjectAttributeValue we ignore it
-                    if ((userSettings.partsToBraille[noteElement.PartNumber]) && noteElement.PrintObjectAttributeValue)// Might later look at subparts S1/S2 ? 
+                    if ((userSettings.GetPartsToBraille(noteElement.PartNumber)) && noteElement.PrintObjectAttributeValue)// Might later look at subparts S1/S2 ? 
                     {
-                        bool addNotations = userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettings.Notations);
+                        bool addNotations = userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettingsEnum.Notations);
                         BrailleBuilder bb1 = BrailleBuilder.Create(); // TO DO: Why not use bb directly ???
                                                                       // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)
                         if (noteElement.IsPause)
@@ -446,14 +446,14 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public string NotesForOnePart(List<NoteElement> noteElementList)
         {
-            if (!userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notes)) return ""; // User completely turned off reading of notes
+            if (!userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Notes)) return ""; // User completely turned off reading of notes
             if (0 == noteElementList.Count()) return " "; // Nothing happened in this part 
             StringBuilder sb = new StringBuilder();
             foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
             {
                 //string delimiter = string.IsNullOrEmpty(sb) ? "" : "+"; // Use this string to separate notes within one part
                 // Add pitch information
-                if (userSettings.partsToRead[noteElement.PartNumber]) // Might later look at subparts S1/S2 ? 
+                if (userSettings.GetPartsToRead(noteElement.PartNumber)) // Might later look at subparts S1/S2 ? 
                 {
 
                     string note = "";
@@ -462,21 +462,21 @@ namespace MusicXmlReaderModel
                     {
                         // This is a pause
                         // Here the type and the word "pause" are cocatenated such as "punkteret halvnodepause"
-                        string type = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteTypes) ? noteElement.LocalizedPauseType : "pause";
-                        string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
+                        string type = userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.NoteTypes) ? noteElement.LocalizedPauseType : "pause";
+                        string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
                         note = string.Format("{0} {1}",type, notations);
                     }
                     else
                     {
                         // This is a note
                         // Here the sequence is pitch,octave,type such af "Cis4 punkteret halvnode"
-                        string accidental = (userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteAccidentals) && (null != noteElement.AccidentalElement)) ?  noteElement.AccidentalElement.ToString() : "";
+                        string accidental = (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.NoteAccidentals) && (null != noteElement.AccidentalElement)) ?  noteElement.AccidentalElement.ToString() : "";
                         string pitch    = noteElement.PitchValue.Name; // Always use the name of the note
-                        string octave   = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteOctaves) ? noteElement.Octave.ToString() : "";
-                        string type     = userSettings.GetReaderSettings(UserSettings.ReaderSettings.NoteTypes) ? noteElement.LocalizedType : "";
+                        string octave   = userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.NoteOctaves) ? noteElement.Octave.ToString() : "";
+                        string type     = userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.NoteTypes) ? noteElement.LocalizedType : "";
                         string pitchAndOctave = noteElement.UnPitched ? noteElement.UnpitchedText : string.Format("{0}{1}", pitch, octave);
                         string cueString = noteElement.CueNoteString;                        
-                        string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
+                        string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
                         //                      note = string.Format("{0,-4} {1}", pitchAndOctave, type); // Always use 4 chars for pitch and Octave. Examples: "C   ","Cis4"
                         string printability = noteElement.PrintObjectAttributeValue ? "" : string.Format("({0})", ResourcesForModel.EventDescription_NotPrinted); // TODO USe Resources !
                         note = string.Format("{0} {1} {2} {3} {4} {5}", accidental, pitchAndOctave, type, cueString, notations, printability);    // Do not use extra chars for Pitch and Octave. Examples: "C","Cis4"
@@ -498,12 +498,12 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public string LyricsForOnePart(List<NoteElement> noteElementList)
         {
-            if (!userSettings.GetReaderSettings(UserSettings.ReaderSettings.Lyrics)) return ""; 
+            if (!userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Lyrics)) return ""; 
             if (0 == noteElementList.Count()) return ""; // Nothing happened in this part 
             StringBuilder sb = new StringBuilder();
             foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
             {
-                if (userSettings.partsToRead[noteElement.PartNumber])
+                if (userSettings.GetPartsToRead(noteElement.PartNumber))
                 {
                     if (!string.IsNullOrEmpty(noteElement.Text))
                     {
@@ -776,7 +776,7 @@ namespace MusicXmlReaderModel
             string functionName = "ToNormalTextString";
             if (!userSettings.MusicAsSpeech) return "";
 
-            string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime) : "";
+            string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Divisions) ? string.Format("{0,6}: ", startTime) : "";
 
             // A BarlineElement can contain a RepeatElements containing repetition information.
             string repeatBackward = "";
@@ -816,27 +816,27 @@ namespace MusicXmlReaderModel
             }
 
             string measure = "";
-            if (userSettings.GetReaderSettings(UserSettings.ReaderSettings.MeasureNumbers))
+            if (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.MeasureNumbers))
             {
                 measure = ((null != measureElement) && (!measureElement.ImplicitMeasure ))? string.Format("{0} {1,3} ",ResourcesForModel.NoteElement_measure_text, measureElement.Number) : "         "; // Up to 1000 measures
             }
             
             string harmonyCode = "";
-            if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.HarmonyCodes)) && (null != harmonyElement))
+            if ((userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.HarmonyCodes)) && (null != harmonyElement))
             {
                 harmonyCode = string.Format(" {0} {1} {2} : ",harmonyElement.Kind, harmonyElement.RootStep, harmonyElement.RootAlter);
             }
 
 
             string harmony = "";
-            if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
+            if ((userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Harmonies)) && (null != harmonyElement))
             {
                 harmony = string.Format("{0}", harmonyElement.ToString()); // Use same formatting as used in the status line and details list!!
             }
 
 
             string endEventString = "";
-            if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.EndEvents)) && (null != endEventElements))
+            if ((userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.EndEvents)) && (null != endEventElements))
             {
                 endEventString += "(";
                 foreach (EndEventElement endEventElement in endEventElements)
@@ -898,7 +898,7 @@ namespace MusicXmlReaderModel
             }
 
             string dynamicsString = "";
-            if (userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notations) && (null != directionElements))
+            if (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Notations) && (null != directionElements))
             {
                 foreach (DirectionElement directionElement in directionElements)
                 {
@@ -910,7 +910,7 @@ namespace MusicXmlReaderModel
             }
             
             string measureStyleString = "";
-            if (userSettings.GetReaderSettings(UserSettings.ReaderSettings.Notations) && (null != measureStyleElements))
+            if (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Notations) && (null != measureStyleElements))
             {  
                 foreach (MeasureStyleElement measureStyleElement in measureStyleElements)
                 {

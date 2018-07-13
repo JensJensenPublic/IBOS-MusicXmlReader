@@ -938,13 +938,13 @@ namespace MusicXmlReaderModel
 
         public void SetPartsToPlay(int partNumber, bool value)
         {
-            this.userSettings.partsToPlay[partNumber] = value;
+            this.userSettings.SetPartsToPlay(partNumber,value);
             musicPlayer.UserSettings = this.userSettings;
         }
 
         public void SetPartsToRead(int partNumber, bool value)
         {
-            this.userSettings.partsToRead[partNumber] = value;
+            this.userSettings.SetPartsToRead(partNumber,value);
         }
 
         public void StopRefreshingBrailleDevice()

@@ -191,7 +191,7 @@ namespace MusicXmlReaderModel
                         {
                             if (!noteElement.IsPause)
                             { // This is a real note, not a pause
-                                if (userSettings.partsToPlay[noteElement.PartNumber])
+                                if (userSettings.GetPartsToPlay(noteElement.PartNumber))
                                 {
                                     DamperThreadReset();
 //                                   MidiNote midiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
@@ -246,7 +246,7 @@ namespace MusicXmlReaderModel
                     latestHarmonyPlayed = null;
                 }
 
-                if (userSettings.GetPlayerSettings(UserSettings.PlayerSettings.Harmonies))
+                if (userSettings.GetPlayerSettings(UserSettings.PlayerSettingsEnum.Harmonies))
                 {
                     // Play the harmony related to this event
                     HarmonyElement h = eventDescription.HarmonyElement;
@@ -483,7 +483,7 @@ namespace MusicXmlReaderModel
             {
                 for (int i = 0; (i < numberOfParts); i++)    // Itetrate through all parts:
                 {
-                    if (userSettings.partsToPlay[i])
+                    if (userSettings.GetPartsToPlay(i))
                     { 
                         List<NoteElement> noteElementList = eventDescription.NoteLists[i];
                         foreach (NoteElement noteElement in noteElementList)
