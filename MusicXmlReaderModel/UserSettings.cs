@@ -274,6 +274,13 @@ namespace MusicXmlReaderModel
         {
             this.partList = partList;
             int numberOfParts = partList.NumberOfParts();
+
+            // Create a tree structure containing exactly the user settings that can be saved to and restored from the file systems.
+            UserSettingsElements userSettingsElements = UserSettingsElements.Create();
+            userSettingsElements.Init(partList); // Might as well be a part of the Create() method
+            userSettingsElements.Test();
+
+
             partsToPlay = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
             partsToRead = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
             partsToBraille = new bool[numberOfParts];    // Must be done here because numberUfParts is not a constant.
@@ -292,8 +299,7 @@ namespace MusicXmlReaderModel
 
             //string test = userSettingsWriter.ToXml(this); // Used for initial test only !!
 
-            UserSettingsElements userSettingsElements = UserSettingsElements.Create();
-            userSettingsElements.Test(partList);
+
         }
 
         public static UserSettings Create(PartlistElement partList)

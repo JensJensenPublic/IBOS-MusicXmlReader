@@ -16,28 +16,29 @@ namespace MusicXmlReaderModel
         //************************************************************************************************************************************
 
         public readonly int Version = 0; // The version of the current implementation
+        UserSettingsElement root = null; // Represents the root of the tree representing all User Settings. This data structure is optimized for converting to and from XML.
 
 
-        public void Test(PartlistElement partList)
+        public  void Init(PartlistElement partList)
         {
             Logger.LogCF(string.Format(".Entry"));
             try
             {
-                UserSettingsElement userSettings = UserSettingsElement.Create(UserSettingNames.UserSettings);
+                root = UserSettingsElement.Create(UserSettingNames.UserSettings);
 
                 // Start with some "Better safe than sorry" versioning information for handling possible backward / forward compatibility issues !
-                userSettings.AddChild(UserSettingsElement.Create("UserSettingsElementsVersion", this.Version)); // The version of the implementation of UserSettingsElement 
-                userSettings.AddChild(UserSettingsElement.Create("UserSettingElementVersion", UserSettingsElement.Version)); // The version of the implementation of UserSettingsElement 
-                userSettings.AddChild(UserSettingsElement.Create("ApplicationVersion", "0.0.0.0")); // Get the real version from somewhere !
+                root.AddChild(UserSettingsElement.Create("UserSettingsElementsVersion", this.Version)); // The version of the implementation of UserSettingsElement 
+                root.AddChild(UserSettingsElement.Create("UserSettingElementVersion", UserSettingsElement.Version)); // The version of the implementation of UserSettingsElement 
+                root.AddChild(UserSettingsElement.Create("ApplicationVersion", "0.0.0.0")); // Get the real version from somewhere !
 
                 // Simple user settings
-                userSettings.AddChild(UserSettingsElement.Create("UserTempoFactor", 100));
+                root.AddChild(UserSettingsElement.Create("UserTempoFactor", 100));
 
 
                 // The Filter tree contains 3 children: Sound, Speech and MusicBraille, each containtng 2 subtrees
-                UserSettingsElement soundSettings = userSettings.AddChild(UserSettingsElement.Create(UserSettingNames.Sound, true));
-                UserSettingsElement speechSettings = userSettings.AddChild(UserSettingsElement.Create(UserSettingNames.Speech, true));
-                UserSettingsElement musicBrailleSettings = userSettings.AddChild(UserSettingsElement.Create(UserSettingNames.MusicBraille, true));
+                UserSettingsElement soundSettings = root.AddChild(UserSettingsElement.Create(UserSettingNames.Sound, true));
+                UserSettingsElement speechSettings = root.AddChild(UserSettingsElement.Create(UserSettingNames.Speech, true));
+                UserSettingsElement musicBrailleSettings = root.AddChild(UserSettingsElement.Create(UserSettingNames.MusicBraille, true));
                 // SoundSettings contains 2 children "DetailsForSound" and "PartsForSound"
                 UserSettingsElement detailsForSound = soundSettings.AddChild(UserSettingsElement.Create(UserSettingNames.Details, true)); // 7?
                 UserSettingsElement partsForSound = soundSettings.AddChild(UserSettingsElement.Create(UserSettingNames.Parts, true));
@@ -85,41 +86,52 @@ namespace MusicXmlReaderModel
                 detailsForMusicBraille.AddChild(UserSettingsElement.Create(UserSettingNames.Notations, true));
                 detailsForMusicBraille.AddChild(UserSettingsElement.Create(UserSettingNames.MeasureNumbers, true));
 
-
-                string xml = ToXml(userSettings);
-
-                string xml1 = xml.Replace("utf-16", "utf-8"); // HACK !!
-
-
-                string fileName = @"c:\temp\UserSettings.xml";
-                System.IO.File.WriteAllText(fileName, xml1);
-
-
-                try
-                {
-                    UserSettingsElement fromXml = UserSettingsElement.CreateFromFile(fileName);
-
-
-                    int nElements = 0;
-                    if (userSettings.IsEqualTo(fromXml, ref nElements))
-                    {
-                        Logger.LogCF(string.Format("Usersettings read from file {0} were equal to original usersettings. Both contain {1} elements", fileName, nElements));
-                        // Unequalities are logged at a lower level
-                    }
-                }
-                catch (Exception e)
-                {
-
-                    Logger.LogCF(string.Format("Exception.Message= {0}", e.Message));
-                }
-
                 Logger.LogCF(string.Format(".Exit"));
             }
             catch (Exception e)
             {
                 Logger.LogCF(string.Format(": Exception. Message = {0}", e.Message));
+
             }
         }
+
+        public void Test()
+        {
+            Logger.LogCF(string.Format(".Entry"));
+
+            string xml = ToXml(root);
+
+            string xml1 = xml.Replace("utf-16", "utf-8"); // HACK !!
+
+
+            string fileName = @"c:\temp\UserSettings.xml";
+            System.IO.File.WriteAllText(fileName, xml1);
+
+
+            try
+            {
+                UserSettingsElement fromXml = UserSettingsElement.CreateFromFile(fileName);
+
+
+                int nElements = 0;
+                if (root.IsEqualTo(fromXml, ref nElements))
+                {
+                    Logger.LogCF(string.Format("Usersettings read from file {0} were equal to original usersettings. Both contain {1} elements", fileName, nElements));
+                    // Unequalities are logged at a lower level
+                }
+            }
+            catch (Exception e)
+            {
+
+                Logger.LogCF(string.Format("Exception.Message= {0}", e.Message));
+            }
+
+            Logger.LogCF(string.Format(".Exit"));
+
+        }
+
+
+
 
 
         /// <summary>
