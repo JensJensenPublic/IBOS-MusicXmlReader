@@ -134,9 +134,11 @@ namespace MusicXmlReaderModel
 
         }
 
-        public void Save()
+        public string ToXml()
         {
-            ToXml(root);
+            string xml = ToXml(root);
+            string xml1 = xml.Replace("utf-16", "utf-8"); // HACK !!
+            return xml1;
         }
 
         /// <summary>

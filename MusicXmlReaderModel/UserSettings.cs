@@ -382,16 +382,16 @@ namespace MusicXmlReaderModel
 
 
 
-        public void Save()
+        public string ToXml()
         {
-            userSettingsElements.Save();
-            
+            return userSettingsElements.ToXml();
         }
 
         public static UserSettings Create(PartlistElement partList)
         {
             return new UserSettings(partList);
         }
+
     }
 
 

@@ -20,6 +20,7 @@ namespace MusicXmlReaderModel
         static public string TheStaticXmlFileName = "";
         string className = "Model";
         string theMusicXmlFileName = "";
+        string theUserSettingsFileName = "";
         string myMusicXmlDirectory = ""; // Typically "C:\Users\<user>\\Documents\IBOS Nodelæser"
         string myMusicXmlSampleDirectory = ""; //  Typically "C:\Users\<user>\\Documents\IBOS Nodelæser\Eksempler"
         string myMusicXmlDownloadDirectory = ""; //  Typically "C:\Users\<user>\\Documents\IBOS Nodelæser\Overførsler"
@@ -207,6 +208,7 @@ namespace MusicXmlReaderModel
                     Init();  // Initialize the basic Model data structures.
                     musicPlayer.ResetInstrumentMapping(); // Initialize the MusicPlayer data structures
                     theMusicXmlFileName = fullXmlFileName;
+                    theUserSettingsFileName = theMusicXmlFileName + ".IBOS";
                     status = string.Format("{0} {1}", xmlFileName,ResourcesForModel.Status_WasSuccessfullyLoaded);
                     WriteStatusInformation(status);
                 }
@@ -1256,17 +1258,19 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
 
         public void SaveUserSettings()
         {
-            if (null != userSettings)
-            {
-                userSettings.Save();
-            }
-            else
+            if (null == userSettings)
             {
                 Logger.LogCF(": No UserSettings found");
+                return;
             }
+            string xml = userSettings.ToXml();
+
+            // Save the file in the same directory as the MUSICXML file.
+            System.IO.File.WriteAllText(theUserSettingsFileName, xml);
         }
 
     }
 
-
 }
+
+
