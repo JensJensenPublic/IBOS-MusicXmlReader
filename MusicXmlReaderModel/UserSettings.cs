@@ -312,10 +312,13 @@ namespace MusicXmlReaderModel
             //partsToRead = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
             //partsToBraille = new bool[numberOfParts];    // Must be done here because numberUfParts is not a constant.
 
-            InitReaderPartsSettings(partList);
-            InitPlayerPartsSettings(partList);
-            InitMusicBraillePartsSettings(partList);
 
+            // Initialize all settings related to Parts
+            InitPartsSettings(partList,out partsToRead,UserSettingNames.Speech);
+            InitPartsSettings(partList,out partsToPlay,UserSettingNames.Sound);
+            InitPartsSettings(partList,out partsToBraille,UserSettingNames.MusicBraille);
+
+            // Initialize all settings related to Details
             InitReaderDetailsSettings();
             InitPlayerDetailsSettings();
             InitMusicBrailleDetailsSettings();
@@ -332,26 +335,26 @@ namespace MusicXmlReaderModel
             //string test = userSettingsWriter.ToXml(this); // Used for initial test only !!
         }
 
-        private void InitReaderPartsSettings(PartlistElement partList)
+        private void InitPartsSettings(PartlistElement partList,out UserSettingsElementBool[] settings, string name )
         {
-            UserSettingsElement readerSettingsRoot = userSettingsElements.GetUserSettingsElement(UserSettingNames.Speech);
-            UserSettingsElementBool use = readerSettingsRoot.GetNamedElementBool(UserSettingNames.Parts);
-            partsToRead = new UserSettingsElementBool[partList.NumberOfParts()];
+            UserSettingsElement settingsRoot = userSettingsElements.GetUserSettingsElement(name);
+            UserSettingsElementBool use = settingsRoot.GetNamedElementBool(UserSettingNames.Parts);
+            settings = new UserSettingsElementBool[partList.NumberOfParts()];
             int i;            
             for (i = 0; (i < partsToRead.Length); i++)
             {
-                string name = partList.GetPartFromNumber(i).partName;
-                string id = partList.GetPartFromNumber(i).partId;
-                UserSettingsElementBool useb = use.GetNamedElementBool(id);
+                // string partName = partList.GetPartFromNumber(i).partName;
+                string partId = partList.GetPartFromNumber(i).partId;
+                UserSettingsElementBool useb = use.GetNamedElementBool(partId);
                 if (null != useb)
                 {
                     // This Part ID has an entry in the userSettings. 
-                    partsToRead[i] = useb;
+                    settings[i] = useb;
                 }
                 else
                 {
                     // Last resort: Create a new UserSettingeElement, which will not be saved with the file
-                    partsToRead[i] = (UserSettingsElementBool)UserSettingsElementBool.Create("", true);
+                    settings[i] = (UserSettingsElementBool)UserSettingsElementBool.Create("", true);
                 }
             }
         }
