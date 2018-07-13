@@ -150,7 +150,6 @@
     <Compile Include="UserSettingNames.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="UserSettingsElement.cs" />
-    <Compile Include="UserSettingsWriter.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>

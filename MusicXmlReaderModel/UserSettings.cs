@@ -40,7 +40,7 @@ namespace MusicXmlReaderModel
         public bool GetPartsToBraille(int index) { return partsToBraille[index]; }
         public void SetPartsToBraille(int index, bool b) { partsToBraille[index] = b; }
 
-        private UserSettingsWriter userSettingsWriter = UserSettingsWriter.Create();
+//        private UserSettingsWriter userSettingsWriter = UserSettingsWriter.Create();
 
         // For controlling other user properties
         // readMeasureNumbers;
