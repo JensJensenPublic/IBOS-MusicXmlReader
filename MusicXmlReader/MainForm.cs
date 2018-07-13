@@ -318,6 +318,9 @@ namespace MusicXmlReader
             this.Refresh();
         }
 
-
+        private void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.SaveUserSettings();
+        }
     }
 }

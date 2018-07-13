@@ -18,6 +18,10 @@ namespace MusicXmlReaderModel
         public readonly int Version = 0; // The version of the current implementation
         UserSettingsElement root = null; // Represents the root of the tree representing all User Settings. This data structure is optimized for converting to and from XML.
 
+        public UserSettingsElement GetUserSettingsElement(string name)
+        {
+            return root.GetNamedElement(name);
+        }
 
         public  void Init(PartlistElement partList)
         {
@@ -130,9 +134,10 @@ namespace MusicXmlReaderModel
 
         }
 
-
-
-
+        public void Save()
+        {
+            ToXml(root);
+        }
 
         /// <summary>
         /// Concerts a UserSettingElement to XML

@@ -28,6 +28,26 @@ namespace MusicXmlReaderModel
         protected List<UserSettingsElement> childList;
         // The actual value of the element is represented in a derived class
 
+        public UserSettingsElement GetNamedElement(string name)
+        {
+            foreach (UserSettingsElement userSettingsElement in childList)
+            {
+                if (userSettingsElement.xmlName == name)
+                {
+                    return userSettingsElement;
+                }
+            }
+            return null;
+        }
+
+        public UserSettingsElementBool GetNamedElementBool(string name)
+        {
+            UserSettingsElement userSettingsElement = GetNamedElement(name);
+            if (userSettingsElement is UserSettingsElementBool) return (userSettingsElement as UserSettingsElementBool);
+            return null;
+        }
+
+
         protected UserSettingsElement()
         {
         }
@@ -247,6 +267,7 @@ namespace MusicXmlReaderModel
     public class UserSettingsElementBool : UserSettingsElement
     {
         private bool value; // The actual value, typically represented by a checkbox in the User Interface
+        public bool Value { get { return value; } set { this.value = value; } }  // The actual value, typically represented by a checkbox in the User Interface
 
         public override string ValueToString()
         {

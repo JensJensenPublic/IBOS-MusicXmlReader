@@ -1252,6 +1252,20 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             }
         }
 
+
+
+        public void SaveUserSettings()
+        {
+            if (null != userSettings)
+            {
+                userSettings.Save();
+            }
+            else
+            {
+                Logger.LogCF(": No UserSettings found");
+            }
+        }
+
     }
 
 

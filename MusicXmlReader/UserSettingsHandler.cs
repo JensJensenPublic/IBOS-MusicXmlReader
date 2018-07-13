@@ -427,7 +427,6 @@ namespace MusicXmlReader
         /// <param name="partList"></param>
         public void LoadParts(PartlistElement partList)
         {
-            this.
             LoadParts(musicAsSoundVoices, partList);
             LoadParts(musicAsTextVoices, partList);
             LoadParts(musicAsBrailleVoices, partList);
