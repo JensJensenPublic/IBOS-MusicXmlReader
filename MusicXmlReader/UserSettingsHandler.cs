@@ -405,14 +405,17 @@ namespace MusicXmlReader
         }
 
 
-        private void LoadParts(TreeNode treeNode,PartlistElement partList)
+        private void LoadParts(TreeNode treeNode,PartlistElement partList,UserSettings.Category category)
         {
             treeNode.Nodes.Clear();
             for (int i = 0; (i < partList.NumberOfParts()); i++)
             {
                 ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
                 TreeNode node = treeNode.Nodes.Add(string.Format("{0} {1}", scorePartElement.partId, scorePartElement.partName));
-                node.Checked = true; // As default enable all parts
+
+                bool b = model.UserSettings.GetParts(category,i); // Handle other categories than speech !!!
+                 
+                node.Checked = b; // As default enable all parts
                 //checkedListBox.SetItemChecked(i, true);
             }
             //checkedLi.CheckOnClick = true;      
@@ -427,9 +430,9 @@ namespace MusicXmlReader
         /// <param name="partList"></param>
         public void LoadParts(PartlistElement partList)
         {
-            LoadParts(musicAsSoundVoices, partList);
-            LoadParts(musicAsTextVoices, partList);
-            LoadParts(musicAsBrailleVoices, partList);
+            LoadParts(musicAsSoundVoices, partList,UserSettings.Category.Sound);
+            LoadParts(musicAsTextVoices, partList,UserSettings.Category.Speech);
+            LoadParts(musicAsBrailleVoices, partList,UserSettings.Category.MusicBraille);
         }
 
         private void LoadDetails(TreeNode treeNode, UserSetting[] settings)

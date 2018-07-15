@@ -23,6 +23,11 @@ namespace MusicXmlReaderModel
             return root.GetNamedElement(name);
         }
 
+        public void Init(string fileName)
+        {
+            root = UserSettingsElement.CreateFromFile(fileName);
+        }
+
         public  void Init(PartlistElement partList)
         {
             Logger.LogCF(string.Format(".Entry"));
@@ -98,6 +103,12 @@ namespace MusicXmlReaderModel
 
             }
         }
+
+        public void Init(UserSettingsElement root)
+        {
+            this.root = root;
+        } 
+
 
         public void Test()
         {

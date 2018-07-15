@@ -267,7 +267,20 @@ namespace MusicXmlReaderModel
     public class UserSettingsElementBool : UserSettingsElement
     {
         private bool value; // The actual value, typically represented by a checkbox in the User Interface
-        public bool Value { get { return value; } set { this.value = value; } }  // The actual value, typically represented by a checkbox in the User Interface
+        public bool Value
+        {
+            get
+            {
+                bool result = this.value;
+                //Logger.LogCF(string.Format(": Returning {0}", result));
+                return result;
+            }
+            set
+            {
+                //Logger.LogCF(string.Format(": Setting {0}", value));
+                this.value = value;
+            }
+        }  // The actual value, typically represented by a checkbox in the User Interface
 
         public override string ValueToString()
         {

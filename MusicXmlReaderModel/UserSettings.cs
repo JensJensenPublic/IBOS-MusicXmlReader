@@ -12,6 +12,7 @@ namespace MusicXmlReaderModel
     /// </summary>
     public class UserSettings
     {
+        public enum Category { Sound, Speech, MusicBraille};
 
         PartlistElement partList;
         public PartlistElement PartList { get { return partList; } }
@@ -36,10 +37,27 @@ namespace MusicXmlReaderModel
 
         public bool GetPartsToPlay(int index) { return partsToPlay[index].Value; }
         public void SetPartsToPlay(int index, bool b) { partsToPlay[index].Value = b; }
-        public bool GetPartsToRead(int index) { return partsToRead[index].Value; }
+        public bool GetPartsToRead(int index)
+        {
+            bool result = partsToRead[index].Value;
+            //Logger.LogCF(string.Format("({0}) returns {1}",index,result));
+            return result;
+        }
         public void SetPartsToRead(int index, bool b) { partsToRead[index].Value = b; }
         public bool GetPartsToBraille(int index) { return partsToBraille[index].Value; }
         public void SetPartsToBraille(int index, bool b) { partsToBraille[index].Value = b; }
+
+        public bool GetParts(Category category,int index)
+        {
+            switch (category)
+            {
+                case Category.Speech: return GetPartsToRead(index);
+                case Category.Sound: return GetPartsToPlay(index);
+                case Category.MusicBraille: return GetPartsToBraille(index);
+                default: return true;
+            } 
+        }
+
 
 //        private UserSettingsWriter userSettingsWriter = UserSettingsWriter.Create();
 
@@ -297,14 +315,24 @@ namespace MusicXmlReaderModel
         /// Private constructor, used by the Create() method
         /// </summary>
         /// <param name="node"></param>
-        private UserSettings(PartlistElement partList)
+        private UserSettings(PartlistElement partList, string fileName)
         {
             this.partList = partList;
             int numberOfParts = partList.NumberOfParts();
 
             // Create a tree structure containing exactly the user settings that can be saved to and restored from the file systems.
             userSettingsElements = UserSettingsElements.Create();
-            userSettingsElements.Init(partList); // Might as well be a part of the Create() method
+            if (System.IO.File.Exists(fileName))
+            {
+                userSettingsElements.Init(fileName); // Use values read from file
+                Logger.LogCF(string.Format(": Loading User Settings from {0}", fileName));
+            }
+            else
+            {
+                userSettingsElements.Init(partList); // Use default values.
+                Logger.LogCF("Using default user settings");
+            }
+            
             userSettingsElements.Test();
 
 
@@ -387,9 +415,9 @@ namespace MusicXmlReaderModel
             return userSettingsElements.ToXml();
         }
 
-        public static UserSettings Create(PartlistElement partList)
+        public static UserSettings Create(PartlistElement partList, string fileName)
         {
-            return new UserSettings(partList);
+            return new UserSettings(partList,fileName);
         }
 
     }

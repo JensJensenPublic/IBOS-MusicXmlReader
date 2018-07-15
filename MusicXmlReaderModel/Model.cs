@@ -166,6 +166,8 @@ namespace MusicXmlReaderModel
         public bool LoadMusicXmlFile(string fullXmlFileName)
         {
             string functionName = "LoadMusicXmlFile";
+            theMusicXmlFileName = fullXmlFileName;
+            theUserSettingsFileName = theMusicXmlFileName + ".IBOS";
             bool ok = true;
             string xmlFileName = ""; // The MusicXml file currently handled 
             // ProgressWriter progressWriter = null;
@@ -207,8 +209,6 @@ namespace MusicXmlReaderModel
                     WriteStatusInformation(status); 
                     Init();  // Initialize the basic Model data structures.
                     musicPlayer.ResetInstrumentMapping(); // Initialize the MusicPlayer data structures
-                    theMusicXmlFileName = fullXmlFileName;
-                    theUserSettingsFileName = theMusicXmlFileName + ".IBOS";
                     status = string.Format("{0} {1}", xmlFileName,ResourcesForModel.Status_WasSuccessfullyLoaded);
                     WriteStatusInformation(status);
                 }
@@ -513,7 +513,7 @@ namespace MusicXmlReaderModel
                     allMusicXmlObjecsts.Add(partList);
                     this.numberOfParts = partList.NumberOfParts();
                     // Now we know the number of parts.
-                    userSettings = UserSettings.Create(partList);
+                    userSettings = UserSettings.Create(partList, theUserSettingsFileName);
                     userSettings.defaultStringFormat = (ScreenReaderAPI.ScreenReaderType.NVDA == screenReaderAPI.GetScreenReaderType()) ? "{1}" : "{0} {1}";
                     continueRecursion = false;
                     break;
