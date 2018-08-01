@@ -28,51 +28,32 @@ namespace MusicXmlReaderModel
         public bool MusicAsMusicBraille = true;
 
 
-
         // Arrays for controlling individual parts. NOTE: The names of the parts are defined by the current MusicXML file !
         private UserSettingsElementBool[] partsToPlay; // Play the note values from these parts
-        //private bool[] partsToRead; // Read the note values from these parts
         private UserSettingsElementBool[] partsToRead; // Read the note values from these parts
         private UserSettingsElementBool[] partsToBraille; // Generate MusicBraille for these parts
-
-        public bool GetPartsToPlay(int index) { return partsToPlay[index].Value; }
-        public void SetPartsToPlay(int index, bool b) { partsToPlay[index].Value = b; }
-        public bool GetPartsToRead(int index)
-        {
-            bool result = partsToRead[index].Value;
-            //Logger.LogCF(string.Format("({0}) returns {1}",index,result));
-            return result;
-        }
-        public void SetPartsToRead(int index, bool b) { partsToRead[index].Value = b; }
-        public bool GetPartsToBraille(int index) { return partsToBraille[index].Value; }
-        public void SetPartsToBraille(int index, bool b) { partsToBraille[index].Value = b; }
-
+ 
         public bool GetParts(Category category,int index)
         {
             switch (category)
             {
-                case Category.Speech: return GetPartsToRead(index);
-                case Category.Sound: return GetPartsToPlay(index);
-                case Category.MusicBraille: return GetPartsToBraille(index);
-                default: return true;
+                case Category.Speech: return partsToRead[index].Value;
+                case Category.Sound: return partsToPlay[index].Value;
+                case Category.MusicBraille: return partsToBraille[index].Value;
+                default: Logger.LogCF(string.Format("Unsupported category : {0}",category));  return true;
             } 
         }
 
-
-//        private UserSettingsWriter userSettingsWriter = UserSettingsWriter.Create();
-
-        // For controlling other user properties
-        // readMeasureNumbers;
-        // playMeasureBeats;     // Not implemented yet.
-        // readHarmonies;        // After localisation  
-        // playHarmonies;
-        // readNotes;            // Common for all selected voices. Example: Cis
-        // readNoteOctaves;      // Common for all selected voices. Example: 4
-        // readNoteTypes;        // Common for all selected voices. Example: Eight
-        // For controlling other DEVELOPER properties
-        // readDivisions;      
-        // readHarmonyCodes;     // As found in the MusicXml file
-        // readEndEvents;
+        public void SetParts(Category category, int index, bool newValue)
+        {
+            switch (category)
+            {
+                case Category.Speech: partsToRead[index].Value = newValue; break;
+                case Category.Sound:  partsToPlay[index].Value = newValue; break;
+                case Category.MusicBraille: partsToBraille[index].Value = newValue; break;
+                default: Logger.LogCF(string.Format("Unsupported category : {0}", category)); break;
+            }
+        }
 
 
         //*********************************************************
@@ -129,11 +110,12 @@ namespace MusicXmlReaderModel
             InitReaderSetting(ReaderSettingsEnum.HarmonyCodes, ResourcesForModel.UserSettings_ReaderNames_HarmonyCodes, use.GetNamedElement(UserSettingNames.HarmonyCodes));   // "HarmoniCodes",
             InitReaderSetting(ReaderSettingsEnum.EndEvents, ResourcesForModel.UserSettings_ReaderNames_EndEvents, use.GetNamedElement(UserSettingNames.EndEvents));      // "EndEvents"
         }
-
+        
         public bool GetReaderSettings(ReaderSettingsEnum i)
         {
             return readerSettings[(int)i].Value;
         }
+
         public void SetReaderSettings(int i, bool b)
         {
             readerSettings[(int)i].Value = b;
@@ -271,14 +253,14 @@ namespace MusicXmlReaderModel
             // Generate Text for all parts 
             for (int i = 0; (i < partsToRead.Length); i++)
             {
-                SetPartsToRead(i,value);
+                SetParts(UserSettings.Category.Speech,i,value);
                 //partsToRead[i] = value;
             }
 
             // Generate Music Braille for all parts
             for (int i = 0; (i < partsToBraille.Length); i++)
             {
-                SetPartsToBraille(i, value);
+                SetParts(UserSettings.Category.MusicBraille,i, value);
                 //partsToBraille[i] = value;
             }
 

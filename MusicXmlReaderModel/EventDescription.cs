@@ -398,7 +398,7 @@ namespace MusicXmlReaderModel
                 {
                     // Add pitch information
                     // If the note is not marked for printing with the PrintObjectAttributeValue we ignore it
-                    if ((userSettings.GetPartsToBraille(noteElement.PartNumber)) && noteElement.PrintObjectAttributeValue)// Might later look at subparts S1/S2 ? 
+                    if ((userSettings.GetParts(UserSettings.Category.MusicBraille,noteElement.PartNumber)) && noteElement.PrintObjectAttributeValue)// Might later look at subparts S1/S2 ? 
                     {
                         bool addNotations = userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettingsEnum.Notations);
                         BrailleBuilder bb1 = BrailleBuilder.Create(); // TO DO: Why not use bb directly ???
@@ -436,7 +436,9 @@ namespace MusicXmlReaderModel
 
             return bb;
         }
-                
+            
+
+          
 
         /// <summary>
         /// Generate a string representing the (possibly multiple) notes of a single part
@@ -453,7 +455,7 @@ namespace MusicXmlReaderModel
             {
                 //string delimiter = string.IsNullOrEmpty(sb) ? "" : "+"; // Use this string to separate notes within one part
                 // Add pitch information
-                if (userSettings.GetPartsToRead(noteElement.PartNumber)) // Might later look at subparts S1/S2 ? 
+                if (userSettings.GetParts(UserSettings.Category.Speech,noteElement.PartNumber)) // Might later look at subparts S1/S2 ? 
                 {
 
                     string note = "";
@@ -503,7 +505,7 @@ namespace MusicXmlReaderModel
             StringBuilder sb = new StringBuilder();
             foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
             {
-                if (userSettings.GetPartsToRead(noteElement.PartNumber))
+                if (userSettings.GetParts(UserSettings.Category.Speech,noteElement.PartNumber))
                 {
                     if (!string.IsNullOrEmpty(noteElement.Text))
                     {

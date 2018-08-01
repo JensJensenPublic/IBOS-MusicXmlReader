@@ -311,9 +311,9 @@ namespace MusicXmlReader
                     case 0:  // Voices
                         switch (e.Node.Parent.Parent.Index)
                         {
-                            case 0: model.UserSettings.SetPartsToPlay(i, e.Node.Checked); break;
-                            case 1: model.UserSettings.SetPartsToRead(i, e.Node.Checked); break;
-                            case 2: model.UserSettings.SetPartsToBraille(i,e.Node.Checked); break;
+                            case 0: model.UserSettings.SetParts(UserSettings.Category.Sound,i, e.Node.Checked); break;
+                            case 1: model.UserSettings.SetParts(UserSettings.Category.Speech,i, e.Node.Checked); break;
+                            case 2: model.UserSettings.SetParts(UserSettings.Category.MusicBraille,i,e.Node.Checked); break;
                             default: break;       
                         }
                         break;

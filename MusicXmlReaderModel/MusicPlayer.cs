@@ -191,7 +191,7 @@ namespace MusicXmlReaderModel
                         {
                             if (!noteElement.IsPause)
                             { // This is a real note, not a pause
-                                if (userSettings.GetPartsToPlay(noteElement.PartNumber))
+                                if (userSettings.GetParts(UserSettings.Category.Sound,noteElement.PartNumber))
                                 {
                                     DamperThreadReset();
 //                                   MidiNote midiNote = new MidiNote(GetChromaticStep(noteElement.Step), noteElement.Alter, noteElement.Octave, noteElement.Transpose, noteElement.DynamicsIntValue, noteElement.MidiChannel, midiOut);
@@ -483,7 +483,7 @@ namespace MusicXmlReaderModel
             {
                 for (int i = 0; (i < numberOfParts); i++)    // Itetrate through all parts:
                 {
-                    if (userSettings.GetPartsToPlay(i))
+                    if (userSettings.GetParts(UserSettings.Category.Sound,i))
                     { 
                         List<NoteElement> noteElementList = eventDescription.NoteLists[i];
                         foreach (NoteElement noteElement in noteElementList)

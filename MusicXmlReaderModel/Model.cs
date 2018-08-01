@@ -940,13 +940,13 @@ namespace MusicXmlReaderModel
 
         public void SetPartsToPlay(int partNumber, bool value)
         {
-            this.userSettings.SetPartsToPlay(partNumber,value);
+            this.userSettings.SetParts(UserSettings.Category.Sound,partNumber,value);
             musicPlayer.UserSettings = this.userSettings;
         }
 
         public void SetPartsToRead(int partNumber, bool value)
         {
-            this.userSettings.SetPartsToRead(partNumber,value);
+            this.userSettings.SetParts(UserSettings.Category.Speech,partNumber,value);
         }
 
         public void StopRefreshingBrailleDevice()
