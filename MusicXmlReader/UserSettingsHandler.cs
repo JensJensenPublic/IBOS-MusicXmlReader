@@ -404,7 +404,13 @@ namespace MusicXmlReader
             musicAsBrailleDetails.Name = NoAmp(ResourcesForUI.TreeView_MusicAsSound_Details);
         }
 
-
+        /// <summary>
+        /// Initialize a treeNode with children representing the parts defined in the List of Parts.
+        /// The initial value of each child is loadeed from model.UserSettings, which again contains values found in the ".xml.IBOS" settings file for the MusicXml file
+        /// </summary>
+        /// <param name="treeNode">The TreeNode to initialize</param>
+        /// <param name="partList">The List of parts (previously loaded from the MusicXml file)</param>
+        /// <param name="category">The UserSettings category : { Speech, Sound or MusicBraille}</param>
         private void LoadParts(TreeNode treeNode,PartlistElement partList,UserSettings.Category category)
         {
             treeNode.Nodes.Clear();
@@ -412,14 +418,9 @@ namespace MusicXmlReader
             {
                 ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
                 TreeNode node = treeNode.Nodes.Add(string.Format("{0} {1}", scorePartElement.partId, scorePartElement.partName));
-
-                bool b = model.UserSettings.GetParts(category,i); // Handle other categories than speech !!!
-                 
-                node.Checked = b; // As default enable all parts
-                //checkedListBox.SetItemChecked(i, true);
-            }
-            //checkedLi.CheckOnClick = true;      
-
+                bool b = model.UserSettings.GetParts(category,i);                 
+                node.Checked = b;
+            } 
         }
 
 
