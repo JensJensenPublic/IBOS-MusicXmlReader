@@ -32,6 +32,21 @@ namespace MusicXmlReaderModel
         public bool MusicAsMusicBraille { get { return musicAsMusicBraille.Value; } set { musicAsMusicBraille.Value = value; } }
 
 
+        // Level 1 nodes
+
+        private UserSettingsElementBool musicAsSoundParts;
+        private UserSettingsElementBool musicAsSoundDetails;
+        private UserSettingsElementBool musicAsSpeechParts;
+        private UserSettingsElementBool musicAsSpeechDetails;
+        private UserSettingsElementBool musicAsMusicBrailleParts;
+        private UserSettingsElementBool musicAsMusicBrailleDetails;
+
+        public bool MusicAsSpeechParts { get { return musicAsSpeechParts.Value; } set { musicAsSpeechParts.Value = value; } }
+        public bool MusicAsSpeechDetails { get { return musicAsSpeechDetails.Value; } set { musicAsSpeechDetails.Value = value; } }
+        public bool MusicAsSoundParts { get { return musicAsSoundParts.Value; } set { musicAsSoundParts.Value = value; } }
+        public bool MusicAsSoundDetails { get { return musicAsSoundDetails.Value; } set { musicAsSoundDetails.Value = value; } }
+        public bool MusicAsMusicBrailleParts { get { return musicAsMusicBrailleParts.Value; } set { musicAsMusicBrailleParts.Value = value; } }
+        public bool MusicAsMusicBrailleDetails { get { return musicAsMusicBrailleDetails.Value; } set { musicAsMusicBrailleDetails.Value = value; } }
 
         // Arrays for controlling individual parts. NOTE: The names of the parts are defined by the current MusicXML file !
         private UserSettingsElementBool[] partsToPlay; // Play the note values from these parts
@@ -327,7 +342,8 @@ namespace MusicXmlReaderModel
             //partsToRead = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
             //partsToBraille = new bool[numberOfParts];    // Must be done here because numberUfParts is not a constant.
 
-            InitTopNodes();
+            InitLevel0Nodes();
+            InitLevel1Nodes();
 
 
 
@@ -353,7 +369,15 @@ namespace MusicXmlReaderModel
             //string test = userSettingsWriter.ToXml(this); // Used for initial test only !!
         }
 
-        private void InitTopNode(out UserSettingsElementBool node, string name,bool defaultValue)
+
+
+        /// <summary>
+        /// Attempt to match the node with a user setting read from the file
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="name"></param>
+        /// <param name="defaultValue"></param>
+        private void InitLevel0Node(out UserSettingsElementBool node, string name,bool defaultValue)
         {
             UserSettingsElement elementFromFile = userSettingsElements.GetUserSettingsElement(name);
             if (null != elementFromFile)
@@ -369,11 +393,55 @@ namespace MusicXmlReaderModel
         }
 
 
-        private void InitTopNodes()
-        { 
-            InitTopNode(out musicAsSound, UserSettingNames.Sound,true);
-            InitTopNode(out musicAsSpeech, UserSettingNames.Speech,true);
-            InitTopNode(out musicAsMusicBraille, UserSettingNames.MusicBraille,true);
+        private void InitLevel0Nodes()
+        {
+            InitLevel0Node(out musicAsSound, UserSettingNames.Sound, true);
+            InitLevel0Node(out musicAsSpeech, UserSettingNames.Speech, true);
+            InitLevel0Node(out musicAsMusicBraille, UserSettingNames.MusicBraille, true);
+        }
+
+
+
+
+
+        /// <summary>
+        /// Attempt to match the node with a user setting read from the file        /// 
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="name0"></param>
+        /// <param name="name1"></param>
+        /// <param name="defaultValue"></param>
+        private void InitLevel1Node(out UserSettingsElementBool node, string name0, string name1, bool defaultValue)
+        {
+            UserSettingsElement element0FromFile = userSettingsElements.GetUserSettingsElement(name0);
+            UserSettingsElement element1FromFile = null;
+            if (null != element0FromFile)
+            {
+                 element1FromFile = element0FromFile.GetNamedElementBool(name1);
+            }
+
+            if (null != element1FromFile)
+            {
+                node = (UserSettingsElementBool)element1FromFile;
+            }
+            else
+            {
+                // If the userSetting is not found in the file we create it using a default value.
+                string name = name0 + "." + name1;
+                node = (UserSettingsElementBool)UserSettingsElement.Create(name, defaultValue);
+                Logger.LogCF(string.Format(": {0} not found. Using default value={1}", name, defaultValue));
+            }
+        }
+        
+
+        private void InitLevel1Nodes()
+        {
+            InitLevel1Node(out musicAsSoundParts, UserSettingNames.Sound, UserSettingNames.Parts, true);
+            InitLevel1Node(out musicAsSoundDetails, UserSettingNames.Sound,  UserSettingNames.Details,true);
+            InitLevel1Node(out musicAsSpeechParts, UserSettingNames.Speech, UserSettingNames.Parts, true);
+            InitLevel1Node(out musicAsSpeechDetails, UserSettingNames.Speech, UserSettingNames.Details,true);
+            InitLevel1Node(out musicAsMusicBrailleParts, UserSettingNames.MusicBraille,  UserSettingNames.Parts, true);
+            InitLevel1Node(out musicAsMusicBrailleDetails, UserSettingNames.MusicBraille,  UserSettingNames.Details, true);
         }
 
 

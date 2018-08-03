@@ -229,6 +229,9 @@ namespace MusicXmlReader
 
             // The initial values of the user settings are determined by the model.
             // These settings must be reflected in the UI:
+
+            userSettingsHandler.LoadLevel0And1Nodes(model.UserSettings);
+
             // Load the Checkboxes controlling the user settings per part
             userSettingsHandler.LoadParts(model.partList);
             // Load the Checkboxes controlled by a fixed number of settings statically defined in the Model.
@@ -236,7 +239,7 @@ namespace MusicXmlReader
             // Finally expand the tree
             userSettingsHandler.ExpandAllNodes();
             //this.userSettingsTreeView.ExpandAll();
-            userSettingsHandler.CheckSelectedNotes(model.UserSettings);
+
             // Use the status line for meta information ontil overwritten by real status information
             WriteStatusInformation(UiUtilities.GetStatusFromMetaInformation(model));
 

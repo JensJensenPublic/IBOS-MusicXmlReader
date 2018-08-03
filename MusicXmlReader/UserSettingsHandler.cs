@@ -303,6 +303,37 @@ namespace MusicXmlReader
                 }
 
             }
+            else if (level == 1)
+            {
+                if (e.Node.Equals(musicAsSoundVoices))
+                {
+                    model.UserSettings.MusicAsSoundParts = e.Node.Checked;
+                }
+                else if (e.Node.Equals(musicAsSoundDetails))
+                {
+                    model.UserSettings.MusicAsSoundDetails = e.Node.Checked;
+                }
+
+                else if (e.Node.Equals(musicAsTextVoices))
+                {
+                    model.UserSettings.MusicAsSpeechParts = e.Node.Checked;
+                }
+                else if (e.Node.Equals(musicAsTextDetails))
+                {
+                    model.UserSettings.MusicAsSpeechDetails = e.Node.Checked;
+                }
+
+                else if (e.Node.Equals(musicAsBrailleVoices))
+                {
+                    model.UserSettings.MusicAsMusicBrailleParts = e.Node.Checked;
+                }
+                else if (e.Node.Equals(musicAsBrailleDetails))
+                {
+                    model.UserSettings.MusicAsMusicBrailleDetails = e.Node.Checked;
+                }
+            }
+
+
             else if (level == 2)
             {
                 level0Node = e.Node.Parent.Parent;
@@ -311,20 +342,21 @@ namespace MusicXmlReader
                     case 0:  // Voices
                         switch (e.Node.Parent.Parent.Index)
                         {
-                            case 0: model.UserSettings.SetParts(UserSettings.Category.Sound,i, e.Node.Checked); break;
-                            case 1: model.UserSettings.SetParts(UserSettings.Category.Speech,i, e.Node.Checked); break;
-                            case 2: model.UserSettings.SetParts(UserSettings.Category.MusicBraille,i,e.Node.Checked); break;
-                            default: break;       
+                            case 0: model.UserSettings.SetParts(UserSettings.Category.Sound, i, e.Node.Checked); break;
+                            case 1: model.UserSettings.SetParts(UserSettings.Category.Speech, i, e.Node.Checked); break;
+                            case 2: model.UserSettings.SetParts(UserSettings.Category.MusicBraille, i, e.Node.Checked); break;
+                            default: break;
                         }
                         break;
                     case 1: // Details
-                        switch (e.Node.Parent.Parent.Index) 
+                        switch (e.Node.Parent.Parent.Index)
                         {
-                            case 0: model.UserSettings.SetPlayerSettings(i,e.Node.Checked); break;
-                            case 1: model.UserSettings.SetReaderSettings(i,e.Node.Checked); break;
-                            case 2: model.UserSettings.SetMusicBrailleSettings(i,e.Node.Checked); break;
+                            case 0: model.UserSettings.SetPlayerSettings(i, e.Node.Checked); break;
+                            case 1: model.UserSettings.SetReaderSettings(i, e.Node.Checked); break;
+                            case 2: model.UserSettings.SetMusicBrailleSettings(i, e.Node.Checked); break;
                             default: break;
-                        } break;
+                        }
+                        break;
                     default: return;
                 }
             }
@@ -466,22 +498,23 @@ namespace MusicXmlReader
             LoadDetails(musicAsBrailleDetails, userSettings.MusicBrailleSettings);
         }
 
-        public void CheckSelectedNotes(UserSettings userSettings)
+ 
+        public void LoadLevel0And1Nodes(UserSettings userSettings)
         {
             // As default check all nodes at level 0 and 1;
             // The notes at level 2 are checked according to the default values set up by the model.
 
             musicAsText.Checked = userSettings.MusicAsSpeech;
-            musicAsTextVoices.Checked = true;
-            musicAsTextDetails.Checked = true;
+            musicAsTextVoices.Checked = userSettings.MusicAsSpeechParts;
+            musicAsTextDetails.Checked = userSettings.MusicAsSpeechDetails;
 
             musicAsSound.Checked = userSettings.MusicAsSound;
-            musicAsSoundVoices.Checked = true;
-            musicAsSoundDetails.Checked = true;
+            musicAsSoundVoices.Checked = userSettings.MusicAsSoundParts;
+            musicAsSoundDetails.Checked = userSettings.MusicAsSoundDetails;
 
             musicAsBraille.Checked = userSettings.MusicAsMusicBraille;
-            musicAsBrailleVoices.Checked = true;
-            musicAsBrailleDetails.Checked = true;
+            musicAsBrailleVoices.Checked = userSettings.MusicAsMusicBrailleParts;
+            musicAsBrailleDetails.Checked = userSettings.MusicAsMusicBrailleDetails;
         }
 
 
