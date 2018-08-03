@@ -335,12 +335,7 @@ namespace MusicXmlReaderModel
                 Logger.LogCF("Using default user settings");
             }
             
-            userSettingsElements.Test();
-
-
-            //partsToPlay = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
-            //partsToRead = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
-            //partsToBraille = new bool[numberOfParts];    // Must be done here because numberUfParts is not a constant.
+            userSettingsElements.Test(); // May be configured to write the contents of the UserSettings file to the Log
 
             InitLevel0Nodes();
             InitLevel1Nodes();

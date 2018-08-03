@@ -251,8 +251,8 @@ namespace MusicXmlReader
                 string s = eventDescription.ToString();
                 if (string.IsNullOrWhiteSpace(s))
                 {
-                    string warning = string.Format("Empty string skipped in measure{0}", eventDescription.StatusInformation.CurrentMeasureElement.ToString());
-                    Logger.LogCF(string.Format(": {0}",warning));
+                    //string warning = string.Format("Empty string skipped in measure{0}", eventDescription.StatusInformation.CurrentMeasureElement.ToString());
+                    //Logger.LogCF(string.Format(": {0}",warning));
                     // string asterixes = "*************************************************";
                     // listBoxTimes.Items.Add(string.Format("{0} {1} {0}",asterixes,warning));  // May be used for debugging to show the blank lines
                 }

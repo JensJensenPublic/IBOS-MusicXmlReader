@@ -112,6 +112,8 @@ namespace MusicXmlReaderModel
 
         public void Test()
         {
+            return;
+
             Logger.LogCF(string.Format(".Entry"));
 
             string xml = ToXml(root);
