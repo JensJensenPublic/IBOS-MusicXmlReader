@@ -247,7 +247,9 @@ namespace MusicXmlReader
             // model.Silence();
             foreach (EventDescription eventDescription in model.EventDescriptionList.Events)
             {
-#if true
+#if false
+                // NOTE: Removing empty lines has undesired consequences whwn the user removes all speech and MusicBraille output!
+                //       So for the time being we prefer showing the empty linse !!
                 string s = eventDescription.ToString();
                 if (string.IsNullOrWhiteSpace(s))
                 {
