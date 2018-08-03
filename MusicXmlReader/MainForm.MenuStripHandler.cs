@@ -236,7 +236,7 @@ namespace MusicXmlReader
             // Finally expand the tree
             userSettingsHandler.ExpandAllNodes();
             //this.userSettingsTreeView.ExpandAll();
-            userSettingsHandler.CheckSelectedNotes();
+            userSettingsHandler.CheckSelectedNotes(model.UserSettings);
             // Use the status line for meta information ontil overwritten by real status information
             WriteStatusInformation(UiUtilities.GetStatusFromMetaInformation(model));
 

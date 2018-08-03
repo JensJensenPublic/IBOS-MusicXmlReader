@@ -18,14 +18,19 @@ namespace MusicXmlReaderModel
         public PartlistElement PartList { get { return partList; } }
 
 
-        // All of these settings are just for exchanging simple information.
-        // No need to make the coad less readable by making them private etc:
+
         public string defaultStringFormat = "{0} {1}";
 
-        // Top nodes
-        public bool MusicAsSound = true;
-        public bool MusicAsSpeech = true;
-        public bool MusicAsMusicBraille = true;
+        // Level 0 nodes
+
+        private UserSettingsElementBool musicAsSound;
+        private UserSettingsElementBool musicAsSpeech;
+        private UserSettingsElementBool musicAsMusicBraille;
+
+        public bool MusicAsSound { get { return musicAsSound.Value; } set { musicAsSound.Value = value; } }
+        public bool MusicAsSpeech { get { return musicAsSpeech.Value; } set { musicAsSpeech.Value = value; } }
+        public bool MusicAsMusicBraille { get { return musicAsMusicBraille.Value; } set { musicAsMusicBraille.Value = value; } }
+
 
 
         // Arrays for controlling individual parts. NOTE: The names of the parts are defined by the current MusicXML file !
@@ -322,6 +327,9 @@ namespace MusicXmlReaderModel
             //partsToRead = new bool[numberOfParts];       // Must be done here because numberUfParts is not a constant.
             //partsToBraille = new bool[numberOfParts];    // Must be done here because numberUfParts is not a constant.
 
+            InitTopNodes();
+
+
 
             // Initialize all settings related to Parts
             InitPartsSettings(partList,out partsToRead,UserSettingNames.Speech);
@@ -344,6 +352,30 @@ namespace MusicXmlReaderModel
 
             //string test = userSettingsWriter.ToXml(this); // Used for initial test only !!
         }
+
+        private void InitTopNode(out UserSettingsElementBool node, string name,bool defaultValue)
+        {
+            UserSettingsElement elementFromFile = userSettingsElements.GetUserSettingsElement(name);
+            if (null != elementFromFile)
+            {
+                node = (UserSettingsElementBool)elementFromFile;
+            }
+            else
+            {
+                // If the userSetting is not found in the file we create it using a default value.
+                node = (UserSettingsElementBool)UserSettingsElement.Create(name, defaultValue);
+                Logger.LogCF(string.Format(": {0} not found. Using default value={1}", name, defaultValue));
+            }
+        }
+
+
+        private void InitTopNodes()
+        { 
+            InitTopNode(out musicAsSound, UserSettingNames.Sound,true);
+            InitTopNode(out musicAsSpeech, UserSettingNames.Speech,true);
+            InitTopNode(out musicAsMusicBraille, UserSettingNames.MusicBraille,true);
+        }
+
 
         private void InitPartsSettings(PartlistElement partList,out UserSettingsElementBool[] settings, string name )
         {

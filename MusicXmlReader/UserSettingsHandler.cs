@@ -466,20 +466,20 @@ namespace MusicXmlReader
             LoadDetails(musicAsBrailleDetails, userSettings.MusicBrailleSettings);
         }
 
-        public void CheckSelectedNotes()
+        public void CheckSelectedNotes(UserSettings userSettings)
         {
             // As default check all nodes at level 0 and 1;
             // The notes at level 2 are checked according to the default values set up by the model.
 
-            musicAsText.Checked = true;
+            musicAsText.Checked = userSettings.MusicAsSpeech;
             musicAsTextVoices.Checked = true;
             musicAsTextDetails.Checked = true;
 
-            musicAsSound.Checked = true;
+            musicAsSound.Checked = userSettings.MusicAsSound;
             musicAsSoundVoices.Checked = true;
             musicAsSoundDetails.Checked = true;
 
-            musicAsBraille.Checked = true;
+            musicAsBraille.Checked = userSettings.MusicAsMusicBraille;
             musicAsBrailleVoices.Checked = true;
             musicAsBrailleDetails.Checked = true;
         }
