@@ -23,9 +23,10 @@ namespace MusicXmlReaderModel
             return root.GetNamedElement(name);
         }
 
-        public void Init(string fileName)
+        public bool Init(string fileName)
         {
             root = UserSettingsElement.CreateFromFile(fileName);
+            return (root != null);
         }
 
         public  void Init(PartlistElement partList)

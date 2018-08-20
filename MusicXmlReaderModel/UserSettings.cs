@@ -324,17 +324,16 @@ namespace MusicXmlReaderModel
 
             // Create a tree structure containing exactly the user settings that can be saved to and restored from the file systems.
             userSettingsElements = UserSettingsElements.Create();
-            if (System.IO.File.Exists(fileName))
+            if ((System.IO.File.Exists(fileName)) && (userSettingsElements.Init(fileName))) // Use values read from file
             {
-                userSettingsElements.Init(fileName); // Use values read from file
-                Logger.LogCF(string.Format(": Loading User Settings from {0}", fileName));
+                Logger.LogCF(string.Format(": Loaded User Settings from {0}", fileName));
             }
             else
             {
                 userSettingsElements.Init(partList); // Use default values.
-                Logger.LogCF("Using default user settings");
+                Logger.LogCF(": Using default User Settings");
             }
-            
+
             userSettingsElements.Test(); // May be configured to write the contents of the UserSettings file to the Log
 
             InitLevel0Nodes();
