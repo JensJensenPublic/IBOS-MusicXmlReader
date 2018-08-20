@@ -166,6 +166,10 @@ namespace MusicXmlReader
 
             // model.Silence();   // Stop Screenreader talking about the OpenfileDialog, we just left !!
 
+            // Save User settings for currently loaded file (if any) immediately before clearing the UI:
+
+            model.SaveUserSettings();
+
             // Clear all UI BEFORE starting the time consuming Load operation:
             ClearUI();
 

@@ -992,6 +992,7 @@ namespace MusicXmlReaderModel
             string functionName = "OnApplicationExit";
             try
             {
+                this.SaveUserSettings();
                 musicPlayer.StopPlaying();
                 musicPlayer.DamperThreadStop();
                 musicPlayer.UiProxyThreadStop();
@@ -1255,7 +1256,13 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
         }
 
 
-
+        /// <summary>
+        /// A Saves the User settings for the currently loaded MusicXml file.
+        /// Must be called in the following situations:
+        /// 1) When explicitly required by the user through a user control.
+        /// 2) When loading a new MusicXml file
+        /// 3) When the program is exiting
+        /// </summary>
         public void SaveUserSettings()
         {
             if (null == userSettings)
