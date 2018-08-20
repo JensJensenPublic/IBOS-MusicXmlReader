@@ -431,4 +431,7 @@
     <value>&amp;Uncheck other parts or details</value>
     <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
+  <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
+    <value>&amp;User Settings</value>
+  </data>
 </root>
