@@ -90,6 +90,11 @@ namespace MusicXmlReaderModel
             Utilities.RunExeWithFileArgument("iexplore.exe", theMusicXmlFileName);
         }
 
+        public void ReadUserSettingsXmlFile(string fileName)
+        {
+            Utilities.RunExeWithFileArgument("notepad.exe", fileName);
+        }
+
         /// <summary>
         /// Find a shortcut on the desktop with the name specified
         /// </summary>

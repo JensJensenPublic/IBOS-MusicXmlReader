@@ -458,6 +458,11 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.ReadMusicXmlFile(model.TheMusicXmlFileName);
         }
 
+        private void userSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        { 
+            model.ExternalToolsHandler.ReadUserSettingsXmlFile(model.TheUserSettingsFileName);
+        }
+
         private void viewAsInterpretedXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             model.ExternalToolsHandler.ReadInterpretation(model.AllMusicXmlObjecsts, model.TheMusicXmlFileName);

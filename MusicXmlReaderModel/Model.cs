@@ -817,6 +817,14 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public string TheUserSettingsFileName
+        {
+            get
+            {
+                return theUserSettingsFileName;
+            }
+        }
+
         public List<MusicXmlObject> AllMusicXmlObjecsts
         {
             get
