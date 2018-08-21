@@ -21,7 +21,75 @@ namespace MusicXmlReaderModel
         public override string ToString()
         {
             if (0 == nominator) return "0";
-            return this.Nominator + "/" + this.Denominator;
+            //return this.Nominator + "/" + this.Denominator;
+            return string.Format("{0} {1}", this.Nominator, DenominatorString); 
+        }
+
+#warning ToDo: Localization !!!
+
+
+        /// <summary>
+        /// Unfortunately JAWS does not know how to pronounce fractions in the form "N/M" so it must be implemented here !
+        /// </summary>
+        private string DenominatorString
+        {
+            get
+            {
+                if (nominator != 1)
+                {
+                    // Use pluralis
+                    switch (denominator)
+                    {
+                        case  1: return "hele";
+                        case  2: return "halve";
+                        case  3: return "tredjedele";
+                        case  4: return "fjerdedele";
+                        case  5: return "femtedele";
+                        case  6: return "sjettedele"; 
+                        case  8: return "ottendedele";
+                        case 10: return "tiendedele";
+                        case 12: return "tolvtedele";
+                        case 16: return "sekstendedele";
+                        case 18: return "attendelele";
+                        case 24: return "fireogtyvendedele";
+                        case 32: return "toogtredivtedele";
+                        case 64: return "fireogtredsindstyvendedele";
+                        case 128: return "hundredeogotteogtyvendedele";
+                        case 256: return "tohundredeogseksogtredsindstyvendedele";
+                        default: break;
+                    }
+                }
+                else
+                {
+                    // Use singularis
+                    switch (denominator)
+                    {
+                        case 1: return "hel";
+                        case 2: return "halv";
+                        case 3: return "tredjedel";
+                        case 4: return "fjerdedel";
+                        case 5: return "femtedel";
+                        case 6: return "sjettedele";
+                        case 8: return "ottendedel";
+                        case 10: return "tiendedel";
+                        case 12: return "tolvtedel";
+                        case 16: return "sekstendedel";
+                        case 18: return "attendelel";
+                        case 24: return "fireogtyvendedel";
+                        case 32: return "toogtredivtedel";
+                        case 64: return "fireogtredsindstyvendedel";
+                        case 128: return "hundredeogotteogtyvendedel";
+                        case 256: return "tohundredeogseksogtredsindstyvendedel";
+                        default: break;
+                    }
+                }
+
+                // Common fallback for singularis and pluralis:
+                Logger.LogCF(string.Format(": Using default for {0}/{1}", nominator, denominator));
+                return string.Format("{0} {1}", "af", denominator);
+            }
+
+
         }
 
         public void Add(IntegerFraction that)

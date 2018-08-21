@@ -31,11 +31,11 @@ namespace MusicXmlReaderModel
                 // The offset within the measure can be expressed as a simple fraction
                 if (0 == binaryFractionPart.Nominator)
                 {
-                    return string.Format("+{0}", binaryFractionPart.Nominator); // Ignore the denominator
+                    return "+ " + binaryFractionPart.Nominator; // Ignore the denominator
                 }
                 else
                 {
-                    return string.Format("+{0}/{1}", binaryFractionPart.Nominator, binaryFractionPart.Denominator); // Show the denominator
+                    return "+ " + binaryFractionPart.ToString(); // Show the denominator
                 }
             }
             else
