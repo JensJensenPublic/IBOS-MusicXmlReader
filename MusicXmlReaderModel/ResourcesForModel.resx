@@ -826,4 +826,108 @@
   <data name="EventDescription_NotPrinted" xml:space="preserve">
     <value>Not printed</value>
   </data>
+  <data name="IntegerFraction_Denominator_001_P" xml:space="preserve">
+    <value>full</value>
+  </data>
+  <data name="IntegerFraction_Denominator_001_S" xml:space="preserve">
+    <value>full</value>
+  </data>
+  <data name="IntegerFraction_Denominator_002_P" xml:space="preserve">
+    <value>halves</value>
+  </data>
+  <data name="IntegerFraction_Denominator_002_S" xml:space="preserve">
+    <value>half</value>
+  </data>
+  <data name="IntegerFraction_Denominator_003_P" xml:space="preserve">
+    <value>thirds</value>
+  </data>
+  <data name="IntegerFraction_Denominator_003_S" xml:space="preserve">
+    <value>third</value>
+  </data>
+  <data name="IntegerFraction_Denominator_004_P" xml:space="preserve">
+    <value>quarters</value>
+  </data>
+  <data name="IntegerFraction_Denominator_004_S" xml:space="preserve">
+    <value>quarter</value>
+  </data>
+  <data name="IntegerFraction_Denominator_005_P" xml:space="preserve">
+    <value>fifths</value>
+  </data>
+  <data name="IntegerFraction_Denominator_005_S" xml:space="preserve">
+    <value>fifth</value>
+  </data>
+  <data name="IntegerFraction_Denominator_006_P" xml:space="preserve">
+    <value>sixths</value>
+  </data>
+  <data name="IntegerFraction_Denominator_006_S" xml:space="preserve">
+    <value>sixth</value>
+  </data>
+  <data name="IntegerFraction_Denominator_008_P" xml:space="preserve">
+    <value>eights</value>
+  </data>
+  <data name="IntegerFraction_Denominator_008_S" xml:space="preserve">
+    <value>eight</value>
+  </data>
+  <data name="IntegerFraction_Denominator_010_P" xml:space="preserve">
+    <value>tenths</value>
+  </data>
+  <data name="IntegerFraction_Denominator_010_S" xml:space="preserve">
+    <value>tenth</value>
+  </data>
+  <data name="IntegerFraction_Denominator_012_P" xml:space="preserve">
+    <value>twelvths</value>
+  </data>
+  <data name="IntegerFraction_Denominator_012_S" xml:space="preserve">
+    <value>twelvth</value>
+  </data>
+  <data name="IntegerFraction_Denominator_016_P" xml:space="preserve">
+    <value>sixteenths</value>
+  </data>
+  <data name="IntegerFraction_Denominator_016_S" xml:space="preserve">
+    <value>sixteenth</value>
+  </data>
+  <data name="IntegerFraction_Denominator_018_P" xml:space="preserve">
+    <value>eighteenths</value>
+  </data>
+  <data name="IntegerFraction_Denominator_018_S" xml:space="preserve">
+    <value>eighteenth</value>
+  </data>
+  <data name="IntegerFraction_Denominator_024_P" xml:space="preserve">
+    <value>twentyfourths</value>
+  </data>
+  <data name="IntegerFraction_Denominator_024_S" xml:space="preserve">
+    <value>twentyfourth</value>
+  </data>
+  <data name="IntegerFraction_Denominator_032_P" xml:space="preserve">
+    <value>thirtyseconds</value>
+  </data>
+  <data name="IntegerFraction_Denominator_032_S" xml:space="preserve">
+    <value>thirtysecond</value>
+  </data>
+  <data name="IntegerFraction_Denominator_064_P" xml:space="preserve">
+    <value>sixtyfourths</value>
+  </data>
+  <data name="IntegerFraction_Denominator_064_S" xml:space="preserve">
+    <value>sixtyfourth</value>
+  </data>
+  <data name="IntegerFraction_Denominator_128_P" xml:space="preserve">
+    <value>onehundredandtwentyeights</value>
+  </data>
+  <data name="IntegerFraction_Denominator_128_S" xml:space="preserve">
+    <value>onehundredandtwentyeight</value>
+  </data>
+  <data name="IntegerFraction_Denominator_256_P" xml:space="preserve">
+    <value>twohundredandfiftysixths</value>
+  </data>
+  <data name="IntegerFraction_Denominator_256_S" xml:space="preserve">
+    <value>twohundredandfiftysixth</value>
+  </data>
+  <data name="IntegerFraction_Denominator_512_P" xml:space="preserve">
+    <value />
+    <comment>Defining the name and leaving the value empty will return an empty string</comment>
+  </data>
+  <data name="IntegerFraction_Denominator_512_S" xml:space="preserve">
+    <value />
+    <comment>Defining the name and leaving the value empty will return an empty string</comment>
+  </data>
 </root>
