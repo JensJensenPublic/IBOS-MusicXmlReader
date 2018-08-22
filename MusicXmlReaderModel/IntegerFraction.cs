@@ -25,7 +25,6 @@ namespace MusicXmlReaderModel
             return string.Format("{0} {1}", this.Nominator, DenominatorString); 
         }
 
-#warning ToDo: Localization !!!
 
         /// <summary>
         /// Implements the actual lookup of the localized text:
@@ -101,8 +100,9 @@ namespace MusicXmlReaderModel
                 ||   (0 == string.Compare(s, "?")))     // This value is not localized for this specific language
                 {
                     // This "?" mechanism allows default formatting for specific values for specific languages by entering "?" as value in the resource file !
-                    Logger.LogCF(string.Format(": Using default for {0}/{1} for CultureString={2}", nominator, denominator, ResourcesForModel.CultureString));
-                    return string.Format(" {0} {1}", ResourcesForModel.IntegerFraction_Denominator_Default_Conjunction, denominator); // English: " of 512" Danish " af 512"
+                    string defaultValue = string.Format("{0} {1}", ResourcesForModel.IntegerFraction_Denominator_Default_Conjunction, denominator); // English: "of 512" Danish "af 512"
+                    Logger.LogCF(string.Format(": Using DefaultValue='{0}' for {1}/{2} for CultureString='{3}'", defaultValue, nominator, denominator, ResourcesForModel.CultureString));
+                    return defaultValue;
                 }
                 return s; // Everything is OK, return the value from the lookup.
             }
