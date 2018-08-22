@@ -937,4 +937,7 @@
     <value>af</value>
     <comment>Sample: "1 af 7"</comment>
   </data>
+  <data name="CultureString" xml:space="preserve">
+    <value>da-DK</value>
+  </data>
 </root>

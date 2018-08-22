@@ -826,6 +826,9 @@
   <data name="EventDescription_NotPrinted" xml:space="preserve">
     <value>Not printed</value>
   </data>
+  <data name="CultureString" xml:space="preserve">
+    <value>en-US</value>
+  </data>
   <data name="IntegerFraction_Denominator_001_P" xml:space="preserve">
     <value>full</value>
   </data>

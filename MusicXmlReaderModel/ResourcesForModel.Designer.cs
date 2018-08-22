@@ -529,6 +529,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to en-US.
+        /// </summary>
+        internal static string CultureString {
+            get {
+                return ResourceManager.GetString("CultureString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No chord.
         /// </summary>
         internal static string DetailsDescription_NoChordFound {
