@@ -829,4 +829,112 @@
   <data name="EventDescription_NotPrinted" xml:space="preserve">
     <value>Ikke printet</value>
   </data>
+  <data name="IntegerFraction_Denominator_001_P" xml:space="preserve">
+    <value>hele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_001_S" xml:space="preserve">
+    <value>hel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_002_P" xml:space="preserve">
+    <value>halve</value>
+  </data>
+  <data name="IntegerFraction_Denominator_002_S" xml:space="preserve">
+    <value>halv</value>
+  </data>
+  <data name="IntegerFraction_Denominator_003_P" xml:space="preserve">
+    <value>tredjedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_003_S" xml:space="preserve">
+    <value>tredjedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_004_P" xml:space="preserve">
+    <value>fjerdedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_004_S" xml:space="preserve">
+    <value>fjerdedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_005_P" xml:space="preserve">
+    <value>femtedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_005_S" xml:space="preserve">
+    <value>femtedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_006_P" xml:space="preserve">
+    <value>sjettedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_006_S" xml:space="preserve">
+    <value>sjettedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_008_P" xml:space="preserve">
+    <value>ottendedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_008_S" xml:space="preserve">
+    <value>ottendedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_010_P" xml:space="preserve">
+    <value>tiendedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_010_S" xml:space="preserve">
+    <value>tiendedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_012_P" xml:space="preserve">
+    <value>tolvtedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_012_S" xml:space="preserve">
+    <value>tolvtedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_016_P" xml:space="preserve">
+    <value>sekstendedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_016_S" xml:space="preserve">
+    <value>sekstendedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_018_P" xml:space="preserve">
+    <value>attendedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_018_S" xml:space="preserve">
+    <value>attendedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_024_P" xml:space="preserve">
+    <value>fireogtyvendedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_024_S" xml:space="preserve">
+    <value>fireogtyvendedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_032_P" xml:space="preserve">
+    <value>toogtredivtedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_032_S" xml:space="preserve">
+    <value>toogtredivtedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_064_P" xml:space="preserve">
+    <value>fireogtredsindstyvendedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_064_S" xml:space="preserve">
+    <value>fireogtredsindstyvendedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_128_P" xml:space="preserve">
+    <value>ethundredeogotteogtyvendedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_128_S" xml:space="preserve">
+    <value>ethundredeogotteogtyvendedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_256_P" xml:space="preserve">
+    <value>tohundredeogseksoghalvtredsindstyvendedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_256_S" xml:space="preserve">
+    <value>tohundredeogseksoghalvtredsindstyvendedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_512_P" xml:space="preserve">
+    <value>?</value>
+    <comment>"?" means "Use default formatting for this language" ("1 af 512")</comment>
+  </data>
+  <data name="IntegerFraction_Denominator_512_S" xml:space="preserve">
+    <value>?</value>
+    <comment>"?" means "Use default formatting for this language" ("1 af 512")</comment>
+  </data>
+  <data name="IntegerFraction_Denominator_Default_Conjunction" xml:space="preserve">
+    <value>af</value>
+    <comment>Sample: "1 af 7"</comment>
+  </data>
 </root>

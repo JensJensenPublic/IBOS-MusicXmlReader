@@ -923,11 +923,15 @@
     <value>twohundredandfiftysixth</value>
   </data>
   <data name="IntegerFraction_Denominator_512_P" xml:space="preserve">
-    <value />
-    <comment>Defining the name and leaving the value empty will return an empty string</comment>
+    <value>?</value>
+    <comment>"?" means "Use default formatting for this language" ("1 of 512")</comment>
   </data>
   <data name="IntegerFraction_Denominator_512_S" xml:space="preserve">
-    <value />
-    <comment>Defining the name and leaving the value empty will return an empty string</comment>
+    <value>?</value>
+    <comment>"?" means "Use default formatting for this language" ("1 of 512")</comment>
+  </data>
+  <data name="IntegerFraction_Denominator_Default_Conjunction" xml:space="preserve">
+    <value>of</value>
+    <comment>Sample: "1 of 7"</comment>
   </data>
 </root>

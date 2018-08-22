@@ -943,7 +943,7 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to ?.
         /// </summary>
         internal static string IntegerFraction_Denominator_512_P {
             get {
@@ -952,11 +952,20 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to ?.
         /// </summary>
         internal static string IntegerFraction_Denominator_512_S {
             get {
                 return ResourceManager.GetString("IntegerFraction_Denominator_512_S", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_Default_Conjunction {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_Default_Conjunction", resourceCulture);
             }
         }
         
