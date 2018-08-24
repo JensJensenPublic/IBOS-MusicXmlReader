@@ -136,10 +136,12 @@
     <value>Key</value>
   </data>
   <data name="KeyElement_major" xml:space="preserve">
-    <value>major</value>
+    <value>-major</value>
+    <comment>The hyphen is needed to make JAWS pronouciation understandable</comment>
   </data>
   <data name="KeyElement_minor" xml:space="preserve">
-    <value>minor</value>
+    <value>-minor</value>
+    <comment>The hyphen is needed to make JAWS pronouciation understandable</comment>
   </data>
   <data name="NoteElement_128th" xml:space="preserve">
     <value>128th</value>
