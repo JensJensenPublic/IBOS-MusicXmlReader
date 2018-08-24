@@ -26,6 +26,7 @@ namespace MusicXmlReaderModel
         // Level 2 nodes for Details    
 
         public const string MeasureNumbers = "MeasureNumbers";
+        public const string FullMeasureInformation = "FullMeasureInformation";
         public const string Harmonies = "Harmonies";
         public const string Notes = "Notes";
         public const string NoteOctaves = "NoteOctaves";

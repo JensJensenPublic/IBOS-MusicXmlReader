@@ -940,4 +940,7 @@
   <data name="CultureString" xml:space="preserve">
     <value>da-DK</value>
   </data>
+  <data name="UserSettings_ReaderNames_FullMeasureInformation" xml:space="preserve">
+    <value>Fuld taktinformation</value>
+  </data>
 </root>

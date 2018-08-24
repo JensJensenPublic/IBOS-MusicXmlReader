@@ -818,9 +818,22 @@ namespace MusicXmlReaderModel
             }
 
             string measure = "";
-            if (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.MeasureNumbers))
+
+            if (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.FullMeasureInformation)) 
             {
-                measure = ((null != measureElement) && (!measureElement.ImplicitMeasure ))? string.Format("{0} {1,3} ",ResourcesForModel.NoteElement_measure_text, measureElement.Number) : "         "; // Up to 1000 measures
+                // Show Measure Number followed by submeasure information
+                // By using the information found in statusInformation we assure same valuse as in textBox Status Status and ListBoxDetails 
+                string measureNumber = statusInformation.CurrentMeasureElement.Number.ToString();
+                string measureFraction = statusInformation.CurrentMeasureFraction.ToString();
+                measure = string.Format("{0} {1,3} {2}", ResourcesForModel.NoteElement_measure_text, measureNumber, measureFraction);
+            }
+            else
+            {
+                // Measure number only
+                if (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.MeasureNumbers))
+                {
+                    measure = ((null != measureElement) && (!measureElement.ImplicitMeasure)) ? string.Format("{0} {1,3} ", ResourcesForModel.NoteElement_measure_text, measureElement.Number) : "         "; // Up to 1000 measures
+                }
             }
             
             string harmonyCode = "";

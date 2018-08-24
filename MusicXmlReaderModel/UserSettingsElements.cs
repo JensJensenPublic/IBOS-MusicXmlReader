@@ -76,6 +76,7 @@ namespace MusicXmlReaderModel
 
                 // Details for Speech
                 detailsForSpeech.AddChild(UserSettingsElement.Create(UserSettingNames.MeasureNumbers, true));
+                detailsForSpeech.AddChild(UserSettingsElement.Create(UserSettingNames.FullMeasureInformation, false));
                 detailsForSpeech.AddChild(UserSettingsElement.Create(UserSettingNames.Harmonies, true));
                 detailsForSpeech.AddChild(UserSettingsElement.Create(UserSettingNames.Notes, true));
                 detailsForSpeech.AddChild(UserSettingsElement.Create(UserSettingNames.NoteOctaves, true));

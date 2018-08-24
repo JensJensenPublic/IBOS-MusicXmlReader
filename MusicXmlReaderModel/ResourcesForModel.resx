@@ -937,4 +937,7 @@
     <value>of</value>
     <comment>Sample: "1 of 7"</comment>
   </data>
+  <data name="UserSettings_ReaderNames_FullMeasureInformation" xml:space="preserve">
+    <value>Full measure information</value>
+  </data>
 </root>

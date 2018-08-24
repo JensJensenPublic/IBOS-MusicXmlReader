@@ -86,18 +86,19 @@ namespace MusicXmlReaderModel
         public enum ReaderSettingsEnum
         {
             MeasureNumbers = 0,
-            Harmonies = 1,
-            Notes = 2,
-            NoteOctaves = 3,
-            NoteTypes = 4,
-            NoteAccidentals = 5,
-            Notations = 6,
-            Lyrics = 7,
-            MetaInformation = 8,
-            Divisions = 9,
-            HarmonyCodes = 10,
-            EndEvents = 11,
-            NumberOfReaderSettings = 12
+            FullMeasureInformation = 1,
+            Harmonies = 2,
+            Notes = 3,
+            NoteOctaves = 4,
+            NoteTypes = 5,
+            NoteAccidentals = 6,
+            Notations = 7,
+            Lyrics = 8,
+            MetaInformation = 9,
+            Divisions = 10,
+            HarmonyCodes = 11,
+            EndEvents = 12,
+            NumberOfReaderSettings = 13
         };
 
 
@@ -118,6 +119,7 @@ namespace MusicXmlReaderModel
             UserSettingsElement readerSettingsRoot = userSettingsElements.GetUserSettingsElement(UserSettingNames.Speech);
             UserSettingsElementBool use = readerSettingsRoot.GetNamedElementBool(UserSettingNames.Details);
             InitReaderSetting(ReaderSettingsEnum.MeasureNumbers, ResourcesForModel.UserSettings_ReaderNames_MeasureNumbers, use.GetNamedElement(UserSettingNames.MeasureNumbers));  // "TaktNumre",
+            InitReaderSetting(ReaderSettingsEnum.FullMeasureInformation, ResourcesForModel.UserSettings_ReaderNames_FullMeasureInformation, use.GetNamedElement(UserSettingNames.FullMeasureInformation));
             InitReaderSetting(ReaderSettingsEnum.Harmonies, ResourcesForModel.UserSettings_ReaderNames_Harmonies, use.GetNamedElement(UserSettingNames.Harmonies));       // "Harmonier",
             InitReaderSetting(ReaderSettingsEnum.Notes, ResourcesForModel.UserSettings_ReaderNames_Notes, use.GetNamedElement(UserSettingNames.Notes));           // "Noder",
             InitReaderSetting(ReaderSettingsEnum.NoteOctaves, ResourcesForModel.UserSettings_ReaderNames_Octaves, use.GetNamedElement(UserSettingNames.NoteOctaves));         // "Oktaver",

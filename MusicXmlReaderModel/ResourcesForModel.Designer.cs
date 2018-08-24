@@ -2419,6 +2419,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full measure information.
+        /// </summary>
+        internal static string UserSettings_ReaderNames_FullMeasureInformation {
+            get {
+                return ResourceManager.GetString("UserSettings_ReaderNames_FullMeasureInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chord symbols.
         /// </summary>
         internal static string UserSettings_ReaderNames_Harmonies {
