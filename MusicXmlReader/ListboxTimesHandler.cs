@@ -308,6 +308,7 @@ namespace MusicXmlReader
             this.detailsHandler = detailsHandler;
             this.listBoxTimes = listBoxTimes;
             this.listBoxTimes.AccessibleName = ResourcesForUI.ListView_Accessible_Name;
+            this.listBoxTimes.AccessibleRole = AccessibleRole.Default;  // Seems to prevent JAWS from announcing "N of M" when changing line
             this.listBoxTimes.SelectedIndexChanged += new System.EventHandler(SelectedIndexChanged);
             this.listBoxTimes.KeyDown += new System.Windows.Forms.KeyEventHandler(KeyDown);
             this.listBoxTimes.Enter += new System.EventHandler(Enter);

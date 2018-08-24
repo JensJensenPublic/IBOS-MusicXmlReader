@@ -74,7 +74,8 @@ namespace MusicXmlReader
             this.listBoxDetails = listBoxDetails;
             this.model = model;
             this.client = client;
-            this.listBoxDetails.AccessibleRole = AccessibleRole.None; // ListboxDetails is intensionally kept anonymous to the user. It is only used for outputting texts via JAWS
+            this.listBoxDetails.AccessibleName = ""; // Seems to prevent JAWS from announcing "ListBox" at entry
+            this.listBoxDetails.AccessibleRole = AccessibleRole.Default; // Seems to prevent JAWS from announcing "N of M" when changing line
             this.listBoxDetails.SelectedIndexChanged += new System.EventHandler(SelectedIndexChanged);
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(KeyDown);
             this.listBoxDetails.Leave += new System.EventHandler(Leave);
