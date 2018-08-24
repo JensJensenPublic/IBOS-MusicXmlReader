@@ -100,7 +100,7 @@ namespace MusicXmlReader
             }
             // Now items contains at least one item !
             int index = (DetailsDirection.FromTop == detailsDirection) ? 0 : items.Length - 1;
-            items[index].Caption = Localize(detailsEnum);
+            //items[index].Caption = Localize(detailsEnum);
             listBoxDetails.Items.AddRange(items);
             listBoxDetails.SelectedIndex = index;
             SetCurrentDetails(functionName, detailsEnum);
