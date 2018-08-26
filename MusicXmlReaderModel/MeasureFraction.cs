@@ -139,6 +139,11 @@ namespace MusicXmlReaderModel
                         if (endEventElement.StartElement is NoteElement)
                         {
                             NoteElement previousNoteElement = endEventElement.StartElement as NoteElement;
+                            if (previousNoteElement.NoteDuration == NoteTypeEnum.unknown) //   PrintObjectAttributeValue)
+                            {
+                                Logger.LogCFOnce(string.Format(": PreviousNoteElement.NoteDuration = {0}", previousNoteElement.NoteDuration.ToString()));
+                                break; // Relies on reporting of a decimal fraction as a last resort. 
+                            }
                             EventDescription previousEventDescription = previousNoteElement.OwningEventDescription;
                             // Logger.LogCFOnce( string.Format(": {0} OwningEvent: Start={1} {2}", noteElement.ToString(),owner.StartTime.ToString(),owner.MeasureFraction.ToString()));
 
