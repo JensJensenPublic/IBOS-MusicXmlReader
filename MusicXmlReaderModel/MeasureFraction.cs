@@ -192,7 +192,9 @@ namespace MusicXmlReaderModel
             if ((null == binaryFractionPart) && (string.IsNullOrEmpty(this.complexString)))
 
             {
-                Logger.LogCF(string.Format("(): MeasureFraction could not be determined for offset={0} q={1} q/3={2}", offset, quarterNoteDuration, quarterNoteDuration / 3));
+                // Use the following line for debugging only ! (Performance issus)
+                // Logger.LogCF(string.Format("(): MeasureFraction could not be determined for offset={0} q={1} q/3={2}", offset, quarterNoteDuration, quarterNoteDuration / 3));
+                Logger.LogCFOnce(string.Format("(): MeasureFraction could not be determined."));
             }
         }
 
