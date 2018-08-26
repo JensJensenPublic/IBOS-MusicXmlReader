@@ -601,7 +601,7 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Not printed.
+        ///   Looks up a localized string similar to Invisible.
         /// </summary>
         internal static string EventDescription_NotPrinted {
             get {

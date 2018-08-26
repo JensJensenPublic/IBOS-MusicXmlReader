@@ -826,7 +826,7 @@
     <comment>As in a movie</comment>
   </data>
   <data name="EventDescription_NotPrinted" xml:space="preserve">
-    <value>Not printed</value>
+    <value>Invisible</value>
   </data>
   <data name="CultureString" xml:space="preserve">
     <value>en-US</value>
