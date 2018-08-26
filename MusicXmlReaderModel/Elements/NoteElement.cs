@@ -952,7 +952,12 @@ namespace MusicXmlReaderModel
                 // but with the the physical duration specified by the "Duration" element.
                 // In that case we report the duration relative to a full measure: 
                 float durationValue = duration / (float)(4 *divisions); // 4 because we show the value relative to a measure, not a quarter note
-                localizedType = string.Format("{0}={1} {2}={3:0.000} {4}","NodeType","Ukendt","Varighed", durationValue,"measure");
+                localizedType = string.Format("{0}={1} {2}={3:0.000} {4}",
+                    ResourcesForModel.NoteElement_NoteType, // 0
+                    ResourcesForModel.NoteElement_unknown,  // 1
+                    ResourcesForModel.NoteElement_Duration, // 2
+                    durationValue, // 3
+                    ResourcesForModel.NoteElement_MeasureString); // 4
             }
             else
             {

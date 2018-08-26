@@ -1222,6 +1222,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        internal static string NoteElement_Duration {
+            get {
+                return ResourceManager.GetString("NoteElement_Duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to eight.
         /// </summary>
         internal static string NoteElement_eight {
@@ -1299,6 +1308,24 @@ namespace MusicXmlReaderModel {
         internal static string NoteElement_measure_text {
             get {
                 return ResourceManager.GetString("NoteElement_measure_text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to measure.
+        /// </summary>
+        internal static string NoteElement_MeasureString {
+            get {
+                return ResourceManager.GetString("NoteElement_MeasureString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note Type.
+        /// </summary>
+        internal static string NoteElement_NoteType {
+            get {
+                return ResourceManager.GetString("NoteElement_NoteType", resourceCulture);
             }
         }
         

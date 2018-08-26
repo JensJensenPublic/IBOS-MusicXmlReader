@@ -945,4 +945,13 @@
   <data name="UserSettings_ReaderNames_FullMeasureInformation" xml:space="preserve">
     <value>Fuld taktinformation</value>
   </data>
+  <data name="NoteElement_Duration" xml:space="preserve">
+    <value>Varighed</value>
+  </data>
+  <data name="NoteElement_MeasureString" xml:space="preserve">
+    <value>takt</value>
+  </data>
+  <data name="NoteElement_NoteType" xml:space="preserve">
+    <value>Nodetype</value>
+  </data>
 </root>

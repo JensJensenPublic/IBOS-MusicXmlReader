@@ -942,4 +942,13 @@
   <data name="UserSettings_ReaderNames_FullMeasureInformation" xml:space="preserve">
     <value>Full measure information</value>
   </data>
+  <data name="NoteElement_Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="NoteElement_MeasureString" xml:space="preserve">
+    <value>measure</value>
+  </data>
+  <data name="NoteElement_NoteType" xml:space="preserve">
+    <value>Note Type</value>
+  </data>
 </root>
