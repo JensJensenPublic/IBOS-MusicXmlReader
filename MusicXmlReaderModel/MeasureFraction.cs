@@ -43,7 +43,7 @@ namespace MusicXmlReaderModel
                 // As a last resort represent the value as a decimnal fraction
                 Int64 offset = newStartTime - currentMeasurestartTime;
                 float decimalValue = ((float)offset / (float)fullNoteDuration);
-                return string.Format("{0}", decimalValue);
+                return string.Format("{0:0.000}", decimalValue);
             }
         }
 

@@ -942,7 +942,23 @@ namespace MusicXmlReaderModel
 
             noteDuration = GetNoteDuration();
 
-            localizedType = LocalizeType(noteDuration, dot);
+ 
+
+            if (noteDuration == NoteTypeEnum.unknown)
+            {
+#warning ToDo Localize
+                // In some rate cases the NoteElement does not contain a Type value
+                // For instance Tremolo can be implemented by a lot of audible, but invisible noteElements with no NoteType value,
+                // but with the the physical duration specified by the "Duration" element.
+                // In that case we report the duration relative to a full measure: 
+                float durationValue = duration / (float)(4 *divisions); // 4 because we show the value relative to a measure, not a quarter note
+                localizedType = string.Format("{0}={1} {2}={3:0.000} {4}","NodeType","Ukendt","Varighed", durationValue,"measure");
+            }
+            else
+            {
+                localizedType = LocalizeType(noteDuration, dot);
+            }
+
             localizedPauseType = (IsPause) ? LocalizePause(noteDuration, dot) : "";
             localizedTie = LocalizeTie(tieType);
       
