@@ -824,7 +824,15 @@ namespace MusicXmlReaderModel
                 // Show Measure Number followed by submeasure information
                 // By using the information found in statusInformation we assure same valuse as in textBox Status Status and ListBoxDetails 
                 string measureNumber = statusInformation.CurrentMeasureElement.Number.ToString();
-                string measureFraction = statusInformation.CurrentMeasureFraction.ToString();
+                string measureFraction = "???????????";
+                if (null != statusInformation.CurrentMeasureFraction)
+                {
+                    measureFraction = statusInformation.CurrentMeasureFraction.ToString();
+                }
+                else
+                {
+                    Logger.LogCFOnce(string.Format(": StatusInformation.CurrentMeasureFraction is null"));
+                }
                 measure = string.Format("{0} {1,3} {2}", ResourcesForModel.NoteElement_measure_text, measureNumber, measureFraction);
             }
             else
