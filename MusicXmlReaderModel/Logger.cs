@@ -58,6 +58,16 @@ namespace MusicXmlReaderModel
         private static readonly long maxLogfileLength = 1024 * 1024;  // Max length of the current log file before we rename it at start a new logfile
         private static string musicXmlReaderTempDirectory;
 
+        private static int numberOfLogLines = 0;
+        public static int NumberOfLogLines
+        {
+            get
+            {
+                return numberOfLogLines;
+            }
+        }
+
+
         public static string MusicXmlReaderTempDirectory
         {
             get
@@ -210,6 +220,7 @@ namespace MusicXmlReaderModel
                     time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
                 }
                 System.IO.File.AppendAllText(logFileFullName, time + " " + s + "\r\n");
+                numberOfLogLines++;
             }
             catch (Exception)
             {

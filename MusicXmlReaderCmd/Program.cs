@@ -194,7 +194,7 @@ namespace MusicXmlReaderUI
             Recurse(archiveDirName, ref successes, ref failures);
 
             Logger.DumpGlobalStatistics();  // Statistics summed over all MusicXml files.
-            Logger.Log(string.Format("{0} succeses, {1} failures", successes, failures));
+            Logger.Log(string.Format("{0} succeses, {1} failures {2} LogLines", successes, failures, Logger.NumberOfLogLines));
 
             model.ExternalToolsHandler.ReadLogFile();            // Open Notepad with the Logfile
             model.ExternalToolsHandler.OpenLogFileLocation();    // Open File Explorer in the directory holding the LogFile
