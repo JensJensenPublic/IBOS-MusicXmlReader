@@ -822,8 +822,16 @@ namespace MusicXmlReaderModel
             if (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.FullMeasureInformation)) 
             {
                 // Show Measure Number followed by submeasure information
-                // By using the information found in statusInformation we assure same valuse as in textBox Status Status and ListBoxDetails 
-                string measureNumber = statusInformation.CurrentMeasureElement.Number.ToString();
+                // By using the information found in statusInformation we assure same valuse as in textBox Status Status and ListBoxDetails
+                string measureNumber = "???????????";
+                if (null != statusInformation.CurrentMeasureElement)
+                {
+                    measureNumber = statusInformation.CurrentMeasureElement.Number.ToString();
+                }
+                else
+                {
+                    Logger.LogCFOnce(string.Format(": StatusInformation.CurrentMeasureElement is null"));
+                }
                 string measureFraction = "???????????";
                 if (null != statusInformation.CurrentMeasureFraction)
                 {
