@@ -862,6 +862,24 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to twentieths.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_020_P {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_020_P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to twentieth.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_020_S {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_020_S", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to twentyfourths.
         /// </summary>
         internal static string IntegerFraction_Denominator_024_P {

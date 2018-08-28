@@ -48,6 +48,7 @@ namespace MusicXmlReaderModel
                     case 12: return ResourcesForModel.IntegerFraction_Denominator_012_P;
                     case 16: return ResourcesForModel.IntegerFraction_Denominator_016_P;
                     case 18: return ResourcesForModel.IntegerFraction_Denominator_018_P;
+                    case 20: return ResourcesForModel.IntegerFraction_Denominator_020_P;
                     case 24: return ResourcesForModel.IntegerFraction_Denominator_024_P;
                     case 32: return ResourcesForModel.IntegerFraction_Denominator_032_P;
                     case 64: return ResourcesForModel.IntegerFraction_Denominator_064_P;
@@ -73,6 +74,7 @@ namespace MusicXmlReaderModel
                     case 12: return ResourcesForModel.IntegerFraction_Denominator_012_S;
                     case 16: return ResourcesForModel.IntegerFraction_Denominator_016_S;
                     case 18: return ResourcesForModel.IntegerFraction_Denominator_018_S;
+                    case 20: return ResourcesForModel.IntegerFraction_Denominator_020_S;
                     case 24: return ResourcesForModel.IntegerFraction_Denominator_024_S;
                     case 32: return ResourcesForModel.IntegerFraction_Denominator_032_S;
                     case 64: return ResourcesForModel.IntegerFraction_Denominator_064_S;

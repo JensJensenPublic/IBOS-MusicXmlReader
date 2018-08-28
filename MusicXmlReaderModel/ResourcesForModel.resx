@@ -942,6 +942,12 @@
   <data name="UserSettings_ReaderNames_FullMeasureInformation" xml:space="preserve">
     <value>Full measure information</value>
   </data>
+  <data name="IntegerFraction_Denominator_020_P" xml:space="preserve">
+    <value>twentieths</value>
+  </data>
+  <data name="IntegerFraction_Denominator_020_S" xml:space="preserve">
+    <value>twentieth</value>
+  </data>
   <data name="NoteElement_Duration" xml:space="preserve">
     <value>Duration</value>
   </data>
