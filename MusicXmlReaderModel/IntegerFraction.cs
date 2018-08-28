@@ -84,7 +84,7 @@ namespace MusicXmlReaderModel
                     default: break;
                 }             
             }
-            Logger.LogCF(string.Format(": No localization found for {0}/{1}", nominator, denominator));
+            Logger.LogCFOnce(string.Format(": No localization found for {0}/{1}", nominator, denominator));
             return null;
         }
 
