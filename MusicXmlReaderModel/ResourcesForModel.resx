@@ -948,6 +948,22 @@
   <data name="IntegerFraction_Denominator_020_S" xml:space="preserve">
     <value>twentieth</value>
   </data>
+  <data name="IntegerFraction_Denominator_068_P" xml:space="preserve">
+    <value>sixtyeights</value>
+    <comment>Rhapsody in blue !</comment>
+  </data>
+  <data name="IntegerFraction_Denominator_068_S" xml:space="preserve">
+    <value>sixtyeight</value>
+    <comment>Rhapsody in blue !</comment>
+  </data>
+  <data name="IntegerFraction_Denominator_136_P" xml:space="preserve">
+    <value>onehundredandthirtysixths</value>
+    <comment>Rhapsody in blue !</comment>
+  </data>
+  <data name="IntegerFraction_Denominator_136_S" xml:space="preserve">
+    <value>onehundredandthirtysixth</value>
+    <comment>Rhapsody in blue !</comment>
+  </data>
   <data name="NoteElement_Duration" xml:space="preserve">
     <value>Duration</value>
   </data>

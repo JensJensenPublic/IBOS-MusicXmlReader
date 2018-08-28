@@ -934,6 +934,24 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to sixtyeights.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_068_P {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_068_P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sixtyeight.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_068_S {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_068_S", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to onehundredandtwentyeights.
         /// </summary>
         internal static string IntegerFraction_Denominator_128_P {
@@ -948,6 +966,24 @@ namespace MusicXmlReaderModel {
         internal static string IntegerFraction_Denominator_128_S {
             get {
                 return ResourceManager.GetString("IntegerFraction_Denominator_128_S", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to onehundredandthirtysixths.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_136_P {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_136_P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to onehundredandthirtysixth.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_136_S {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_136_S", resourceCulture);
             }
         }
         

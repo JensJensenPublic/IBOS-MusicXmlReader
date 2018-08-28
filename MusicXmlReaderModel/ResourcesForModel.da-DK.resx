@@ -951,6 +951,22 @@
   <data name="IntegerFraction_Denominator_020_S" xml:space="preserve">
     <value>tyvendedel</value>
   </data>
+  <data name="IntegerFraction_Denominator_068_P" xml:space="preserve">
+    <value>otteogtresindstyvendedele</value>
+    <comment>Rhapsody in blue !</comment>
+  </data>
+  <data name="IntegerFraction_Denominator_068_S" xml:space="preserve">
+    <value>otteogtresindstyvendedel</value>
+    <comment>Rhapsody in blue !</comment>
+  </data>
+  <data name="IntegerFraction_Denominator_136_P" xml:space="preserve">
+    <value>ethundredeogseksogtredivtedele</value>
+    <comment>Rhapsody in blue !</comment>
+  </data>
+  <data name="IntegerFraction_Denominator_136_S" xml:space="preserve">
+    <value>ethundredeogseksogtrevdivtedel</value>
+    <comment>Rhapsody in blue !</comment>
+  </data>
   <data name="NoteElement_Duration" xml:space="preserve">
     <value>Varighed</value>
   </data>
