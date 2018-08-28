@@ -948,6 +948,36 @@
   <data name="IntegerFraction_Denominator_020_S" xml:space="preserve">
     <value>twentieth</value>
   </data>
+  <data name="IntegerFraction_Denominator_028_P" xml:space="preserve">
+    <value>twentyeights</value>
+  </data>
+  <data name="IntegerFraction_Denominator_028_S" xml:space="preserve">
+    <value>twentyeight</value>
+  </data>
+  <data name="IntegerFraction_Denominator_030_P" xml:space="preserve">
+    <value>thirtieths</value>
+  </data>
+  <data name="IntegerFraction_Denominator_030_S" xml:space="preserve">
+    <value>thirtieth</value>
+  </data>
+  <data name="IntegerFraction_Denominator_036_P" xml:space="preserve">
+    <value>thirtysixths</value>
+  </data>
+  <data name="IntegerFraction_Denominator_036_S" xml:space="preserve">
+    <value>thirtysixth</value>
+  </data>
+  <data name="IntegerFraction_Denominator_040_P" xml:space="preserve">
+    <value>fortieths</value>
+  </data>
+  <data name="IntegerFraction_Denominator_040_S" xml:space="preserve">
+    <value>fortieth</value>
+  </data>
+  <data name="IntegerFraction_Denominator_048_P" xml:space="preserve">
+    <value>fortyeights</value>
+  </data>
+  <data name="IntegerFraction_Denominator_048_S" xml:space="preserve">
+    <value>fortyeight</value>
+  </data>
   <data name="IntegerFraction_Denominator_068_P" xml:space="preserve">
     <value>sixtyeights</value>
     <comment>Rhapsody in blue !</comment>

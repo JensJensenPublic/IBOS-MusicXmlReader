@@ -951,6 +951,36 @@
   <data name="IntegerFraction_Denominator_020_S" xml:space="preserve">
     <value>tyvendedel</value>
   </data>
+  <data name="IntegerFraction_Denominator_028_P" xml:space="preserve">
+    <value>otteogtyvendedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_028_S" xml:space="preserve">
+    <value>otteogtyvendedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_030_P" xml:space="preserve">
+    <value>tredivtedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_030_S" xml:space="preserve">
+    <value>tredivtedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_036_P" xml:space="preserve">
+    <value>seksogtredivtedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_036_S" xml:space="preserve">
+    <value>seksogtredivtedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_040_P" xml:space="preserve">
+    <value>fyrrindstyvendedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_040_S" xml:space="preserve">
+    <value>fyrrindstyvendedel</value>
+  </data>
+  <data name="IntegerFraction_Denominator_048_P" xml:space="preserve">
+    <value>otteogfyrrindstyvendedele</value>
+  </data>
+  <data name="IntegerFraction_Denominator_048_S" xml:space="preserve">
+    <value>otteogfyrrindstyvendedel</value>
+  </data>
   <data name="IntegerFraction_Denominator_068_P" xml:space="preserve">
     <value>otteogtresindstyvendedele</value>
     <comment>Rhapsody in blue !</comment>

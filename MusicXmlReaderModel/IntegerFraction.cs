@@ -50,7 +50,12 @@ namespace MusicXmlReaderModel
                     case 18: return ResourcesForModel.IntegerFraction_Denominator_018_P;
                     case 20: return ResourcesForModel.IntegerFraction_Denominator_020_P;
                     case 24: return ResourcesForModel.IntegerFraction_Denominator_024_P;
+                    case 28: return ResourcesForModel.IntegerFraction_Denominator_028_P;
+                    case 30: return ResourcesForModel.IntegerFraction_Denominator_030_P;
                     case 32: return ResourcesForModel.IntegerFraction_Denominator_032_P;
+                    case 36: return ResourcesForModel.IntegerFraction_Denominator_036_P;
+                    case 40: return ResourcesForModel.IntegerFraction_Denominator_040_P;
+                    case 48: return ResourcesForModel.IntegerFraction_Denominator_048_P;
                     case 64: return ResourcesForModel.IntegerFraction_Denominator_064_P;
                     case 68: return ResourcesForModel.IntegerFraction_Denominator_068_P;
                     case 128: return ResourcesForModel.IntegerFraction_Denominator_128_P;
@@ -78,7 +83,12 @@ namespace MusicXmlReaderModel
                     case 18: return ResourcesForModel.IntegerFraction_Denominator_018_S;
                     case 20: return ResourcesForModel.IntegerFraction_Denominator_020_S;
                     case 24: return ResourcesForModel.IntegerFraction_Denominator_024_S;
+                    case 28: return ResourcesForModel.IntegerFraction_Denominator_028_S;
+                    case 30: return ResourcesForModel.IntegerFraction_Denominator_030_S;
                     case 32: return ResourcesForModel.IntegerFraction_Denominator_032_S;
+                    case 36: return ResourcesForModel.IntegerFraction_Denominator_036_S;
+                    case 40: return ResourcesForModel.IntegerFraction_Denominator_040_S;
+                    case 48: return ResourcesForModel.IntegerFraction_Denominator_048_S;
                     case 64: return ResourcesForModel.IntegerFraction_Denominator_064_S;
                     case 68: return ResourcesForModel.IntegerFraction_Denominator_068_S;
                     case 128: return ResourcesForModel.IntegerFraction_Denominator_128_S;

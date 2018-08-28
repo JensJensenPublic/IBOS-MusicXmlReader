@@ -898,6 +898,42 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to twentyeights.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_028_P {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_028_P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to twentyeight.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_028_S {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_028_S", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to thirtieths.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_030_P {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_030_P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to thirtieth.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_030_S {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_030_S", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to thirtyseconds.
         /// </summary>
         internal static string IntegerFraction_Denominator_032_P {
@@ -912,6 +948,60 @@ namespace MusicXmlReaderModel {
         internal static string IntegerFraction_Denominator_032_S {
             get {
                 return ResourceManager.GetString("IntegerFraction_Denominator_032_S", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to thirtysixths.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_036_P {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_036_P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to thirtysixth.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_036_S {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_036_S", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fortieths.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_040_P {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_040_P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fortieth.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_040_S {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_040_S", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fortyeights.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_048_P {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_048_P", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fortyeight.
+        /// </summary>
+        internal static string IntegerFraction_Denominator_048_S {
+            get {
+                return ResourceManager.GetString("IntegerFraction_Denominator_048_S", resourceCulture);
             }
         }
         
