@@ -53,6 +53,7 @@ namespace MusicXmlReaderModel
 
         internal SoundElement CurrentSoundElement
         {
+           
             get
             {
                 return currentSoundElement;
@@ -60,10 +61,18 @@ namespace MusicXmlReaderModel
 
             set
             {
+                bool verbose = false; // Change to true during serious debugging !
                 if (value.TempoValid)
                 {
                     // Only change currentSoundElement if the new one contains a valid value
-                    LogChange("Tempo", (null == currentSoundElement) ? -1 : (int) currentSoundElement.TempoValue, (int) value.TempoValue);
+                    if (verbose)
+                    {
+                        LogChange("Tempo", (null == currentSoundElement) ? -1 : (int)currentSoundElement.TempoValue, (int)value.TempoValue);
+                    }
+                    else
+                    {
+                        Logger.LogCFOnce("Tempo changed");
+                    }
                     currentSoundElement = value;
                 }
             }
