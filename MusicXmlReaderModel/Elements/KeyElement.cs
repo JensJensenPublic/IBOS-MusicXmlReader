@@ -3,7 +3,8 @@
 namespace MusicXmlReaderModel
 {
 
-    public enum ModeEnum {unknown,minor,major};
+    public enum ModeEnum {unknown,minor,major, aeolian, dorian, ionian, locrian, lydian,  mixolydian, phrygian };
+
 
     public class KeyElement : EventElement
     {
@@ -134,25 +135,31 @@ namespace MusicXmlReaderModel
                 switch (n.Name)
                 {
                     case "fifths": Utilities.Parse(n.InnerText, ref fifths, -7, +7, functionName,false); break;  
-                    case "mode":    switch (n.InnerText)
+                    case "mode":
+                        bool unsupported = false;
+                        switch (n.InnerText)
                         {
                             case "minor": mode = ModeEnum.minor; break;
                             case "major": mode = ModeEnum.major; break;
-                            case "none": mode = ModeEnum.unknown; break;
-                            case "dorian":
-                            case "phrygian":
-                            case "lydian":
-                            case "mixolydian":
-                            case "aeolian":
-                            case "ionian":
-                            case "locrian":
-                                Logger.LogOnce(string.Format("{0}: node={1} has unsupported value={2}", functionName, n.Name, n.InnerText));
-                                mode = ModeEnum.unknown;
-                                break; // Actually "unsupported"
+                            case "none": mode = ModeEnum.unknown; unsupported = true; break;
+                            case "dorian": mode = ModeEnum.dorian; unsupported = true; break;
+                            case "phrygian": mode = ModeEnum.phrygian; unsupported = true; break;
+                            case "lydian": mode = ModeEnum.lydian; unsupported = true; break;
+                            case "mixolydian": mode = ModeEnum.mixolydian; unsupported = true; break;
+                            case "aeolian": mode = ModeEnum.aeolian; unsupported = true; break;
+                            case "ionian": mode = ModeEnum.ionian; unsupported = true; break;
+                            case "locrian": mode = ModeEnum.locrian; unsupported = true; break; 
                             default:
                                 Logger.LogOnce(string.Format("{0}: node={1} has illegal value={2}", functionName, n.Name, n.InnerText)); break;
 
                         }
+                        if (unsupported)
+                        {
+                            Logger.LogOnce(string.Format("{0}: node={1} has unsupported value={2}", functionName, n.Name, n.InnerText));
+                            mode = ModeEnum.unknown;
+                            break; // Actually "unsupported"
+                        }
+
                         break;
                 }
             }
