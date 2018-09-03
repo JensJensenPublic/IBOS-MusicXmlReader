@@ -30,6 +30,7 @@ namespace MusicXmlReaderModel
             {
                 Int64 nextStartTime = 0; // Each part starts at time = 0 MilliSeconds
                 Int64 previousStartTime = 0;
+                Int64 maxNextStartTime = 0;
                 foreach (Element e in elementList)
                 {
                     if (e is NoteElement)
@@ -60,6 +61,7 @@ namespace MusicXmlReaderModel
                             // Create an EndEventElement to mark the end of this NoteElement                            
                             EndEventElement endEventElement = EndEventElement.Create(noteElement, noteElement.StartTime + noteElement.DurationInCommonDivisions);
                             times.Add(endEventElement);
+                            maxNextStartTime = Math.Max(maxNextStartTime, nextStartTime);
                         }
                     }
                     else if (e is ForwardElement)
@@ -95,6 +97,23 @@ namespace MusicXmlReaderModel
 
                     {
                         // All these elements are EventElements!
+#warning ToDo Refactor !
+                        if (e is MeasureElement)
+                        {
+                            // For investigation problem 391 :
+                            // If a part contains more than 1 voice, some MusicXml files may contai voices that do not fill up all measures completely by rests.                 
+
+                            int number = (e as MeasureElement).Number;
+                            if (nextStartTime != maxNextStartTime)
+                            {
+                                // Model.MetaInformation                 
+                                Logger.LogCFOnce(string.Format(": Adjusts NextStartTime. CurrentEncoding={0}", Logger.CurrentEncoding)); // To verify that this only happens for Sibelius !
+                                                                                                                                         // Logger.LogCF(string.Format(": Measure {0} adjusts NextStartTime from {1} to {2} CurrentEncoding={3}", number, nextStartTime, maxNextStartTime, Logger.CurrentEncoding));
+                                nextStartTime = maxNextStartTime;
+                            }
+                        }
+                        
+
                         EventElement eventElement = e as EventElement;
                         eventElement.StartTime = nextStartTime;
                         times.Add(eventElement);
@@ -105,6 +124,7 @@ namespace MusicXmlReaderModel
                         // Ignore this element.
                         Logger.LogOnce(string.Format("TimeDescriptionList: Unexpected element of type {0} String='{1}'", e.GetType(), e.ToString()));
                     }
+
                 }
 
                 if (0 == (times.Count))

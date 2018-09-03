@@ -26,6 +26,16 @@ namespace MusicXmlReaderModel
             }
         }
 
+        static private string currentEncoding;
+        static public string CurrentEncoding
+        {
+            get { return currentEncoding; }
+            set {
+                currentEncoding = value;
+                LogCF(string.Format(": CurrentEncoding = {0}", currentEncoding));
+            }
+        }
+
 
         //        private static string GetPlatformTempDirectory()
         //        {

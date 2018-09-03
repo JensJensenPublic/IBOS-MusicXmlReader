@@ -165,6 +165,7 @@ namespace MusicXmlReaderModel
             set
             {
                 encoding = value;
+                Logger.CurrentEncoding = encoding.ToString();
             }
         }
 

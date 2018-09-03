@@ -41,7 +41,7 @@ namespace MusicXmlReaderModel
                 {
                     return (userSettingsElement as UserSettingsElementBool).Value;
                 }
-                Logger.LogCF("");
+                //Logger.LogCF("");
                 return false;
             }
             set
@@ -51,7 +51,7 @@ namespace MusicXmlReaderModel
                     (userSettingsElement as UserSettingsElementBool).Value = value;
                     return;
                 }
-                Logger.LogCF("");
+                //Logger.LogCF("");
 //                this.value  = value; 
             }
         }
