@@ -69,6 +69,7 @@ namespace MusicXmlReaderModel
                         // Move the MusciXml program counter without playing anything
                         ForwardElement forwardElement = e as ForwardElement;
                         nextStartTime += forwardElement.DurationInCommonDivisions; /////////////////////////////// FIX THIS TO DO
+                        maxNextStartTime = Math.Max(maxNextStartTime, nextStartTime);
                         //previousStartTime = nextStartTime; // ??????????????????????????????????????????
                     }
 
@@ -107,8 +108,8 @@ namespace MusicXmlReaderModel
                             if (nextStartTime != maxNextStartTime)
                             {
                                 // Model.MetaInformation                 
-                                Logger.LogCFOnce(string.Format(": Adjusts NextStartTime. CurrentEncoding={0}", Logger.CurrentEncoding)); // To verify that this only happens for Sibelius !
-                                                                                                                                         // Logger.LogCF(string.Format(": Measure {0} adjusts NextStartTime from {1} to {2} CurrentEncoding={3}", number, nextStartTime, maxNextStartTime, Logger.CurrentEncoding));
+                                // Logger.LogCFOnce(string.Format(": Adjusts NextStartTime. CurrentEncoding={0}", Logger.CurrentEncoding)); // To verify that this only happens for Sibelius !
+                                Logger.LogCF(string.Format(": Measure {0} adjusts NextStartTime from {1} to {2} CurrentEncoding={3}", number, nextStartTime, maxNextStartTime, Logger.CurrentEncoding));
                                 nextStartTime = maxNextStartTime;
                             }
                         }

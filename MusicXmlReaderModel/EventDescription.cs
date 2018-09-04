@@ -466,7 +466,7 @@ namespace MusicXmlReaderModel
                         // Here the type and the word "pause" are cocatenated such as "punkteret halvnodepause"
                         string type = userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.NoteTypes) ? noteElement.LocalizedPauseType : "pause";
                         string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
-                        note = string.Format("{0} {1}",type, notations);
+                        note = string.Format(" {0} {1}",type, notations);
                     }
                     else
                     {
