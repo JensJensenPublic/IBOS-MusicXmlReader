@@ -21,6 +21,11 @@ namespace MusicXmlReaderModel
         public override string ToString()
         {
             if (0 == nominator) return "0 ";
+            if (-1 == denominator)
+            {
+                Logger.LogCF(string.Format(": Uninitialized denominator. Nominator={0}", nominator));
+                return "*"; 
+            }
             //return this.Nominator + "/" + this.Denominator;
             return string.Format("{0} {1}", this.Nominator, DenominatorString); 
         }

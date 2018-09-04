@@ -77,7 +77,16 @@ namespace MusicXmlReaderModel
                     {
                         // Move the MusciXml program counter without playing anything
                         BackupElement backupElement = e as BackupElement;
+                        bool wasMax = (nextStartTime == maxNextStartTime); 
                         nextStartTime -= backupElement.DurationInCommonDivisions; /////////////////////////////// FIX THIS TO DO
+                        if (wasMax)
+                        {
+                            // maxNextStartTime has been set too high and must be moved back !
+                            //Logger.LogCF(string.Format(".BackupElement: Reducing maxNextStartTime from {0} to {1}", maxNextStartTime, nextStartTime));
+                            //Logger.LogCFOnce(string.Format(".BackupElement: Reducing maxNextStartTime"));
+                            maxNextStartTime = nextStartTime;
+                        }
+
                         //previousStartTime = nextStartTime; // ??????????????????????????????????????????
                     }
 

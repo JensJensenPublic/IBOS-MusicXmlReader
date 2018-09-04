@@ -18,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\Sample MusicXmlReader.JCF = Documentation\Sample MusicXmlReader.JCF
 		Documentation\Simple becifringer.odt = Documentation\Simple becifringer.odt
 		Documentation\TODo liste. Gældende version.xls = Documentation\TODo liste. Gældende version.xls
+		Visual Studio Licens.txt = Visual Studio Licens.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenReaderAPI", "ScreenReaderAPI\ScreenReaderAPI.csproj", "{6444ECF6-7A11-4B21-A31C-EF8E05B0CD32}"
