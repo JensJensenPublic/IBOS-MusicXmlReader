@@ -519,6 +519,7 @@ namespace MusicXmlReaderModel
                     break;
                 case "measure":
                     MeasureElement measureElement = MeasureElement.Create(node);
+                    measureElement.PartId = currentPartId;
                     allMusicXmlObjecsts.Add(measureElement); // Avoid the "Ikke VAlgt" error message from screenreader
                     this.currentMeasureNumber = measureElement.Number;
                     break;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 //using MusicXmlReaderUI;
 
 namespace MusicXmlReaderModel
@@ -28,6 +29,33 @@ namespace MusicXmlReaderModel
             }
         }
 
+
+        /// <summary>
+        /// Validity-check: The number of MeasureElements must be 0 or equal to the number of parts !
+        /// This check will discover  errors causing serious timing mismatches in the interpretation of the MusicXml files!
+        /// </summary>
+        /// <param name="eventDescription"></param>
+        /// <param name="numberOfParts"></param>
+        private void CheckValidity(EventDescription eventDescription, int numberOfParts)
+        {
+            if (null != eventDescription.MeasureElements)
+            {
+                int count = eventDescription.MeasureElements.Count;
+                // Logger.LogCF(string.Format(": Found {0} MeasureElements", count));
+                if (count != numberOfParts)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (MeasureElement measureElement in eventDescription.MeasureElements)
+                    {
+                        // The following information will ease debugging !
+                        sb.Append(string.Format("({0},{1},{2})",measureElement.PartId,  measureElement.Number, measureElement.StartTime));
+                    }
+                    Logger.LogCF(string.Format(": Found {0,2} MeasureElements, expected {1,2} (Part,Number,Time)={2}", count, numberOfParts, sb.ToString()));
+                    Logger.LogCFOnce(string.Format(": Found {0,2} MeasureElements, expected {1,2}", count, numberOfParts));
+                }
+            }
+        } 
+
         /// <summary>
         /// Private constructor, used by the Crate() method
         /// </summary>
@@ -50,7 +78,9 @@ namespace MusicXmlReaderModel
                     if (null != currentEventDescription)
                     {
                         // Save a copy of the currrent status information with the eventDescription, we have just finished:
-                        currentEventDescription.StatusInformation = StatusInformation.Create(currentStatusInformation);                     
+                        currentEventDescription.StatusInformation = StatusInformation.Create(currentStatusInformation);
+                        // Validity-check: The number of MeasureElements must be 0 or equal to the number of parts !
+                        CheckValidity(currentEventDescription, numberOfParts);
                     }
 
                     currentStartTime = eventElement.StartTime;

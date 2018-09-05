@@ -47,9 +47,11 @@ namespace MusicXmlReaderModel
         private List<TimeElement> timeElements;             // The TimeElements related to this event, if any
         private List<BarlineElement> barlineElements;       // The BarlineElements related to this event, if any. In some rare cases more than one!!
         private List<DirectionElement> directionElements;   // The DirectionElements related to this event, if any 
-        private List<MeasureStyleElement> measureStyleElements; // The MeasureStyleElements related to this event, if any 
-
+        private List<MeasureStyleElement> measureStyleElements; // The MeasureStyleElements related to this event, if any              
+        private List<MeasureElement> measureElements; // The MeasureElements related to this event, if any
+        public  List<MeasureElement> MeasureElements { get { return measureElements; } }
         private StatusInformation statusInformation; // Contains Status information valid for this eventdescription
+
 
         //        public MeasureFractionHistory MeasureFractions;
         private MeasureFraction measureFraction;
@@ -250,6 +252,11 @@ namespace MusicXmlReaderModel
             {
                 // Assuming only one measure starts at one time.
                 measureElement = eventElement as MeasureElement; // Assume only one measure per event!
+                if (null == measureElements)
+                {
+                    measureElements = new List<MeasureElement>();
+                }
+                measureElements.Add(measureElement);
                 //currentStatusInformation.MeasureNumber = measureElement.Number;
                 currentStatusInformation.CurrentMeasureElement = measureElement;
             }

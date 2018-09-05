@@ -57,6 +57,11 @@ namespace MusicXmlReaderModel
             }
         }
 
+        // Used for validation and test only !
+        private string partId;
+        public string PartId { get { return partId; } set { partId = value; } }
+
+
         public static MeasureElement Create(XmlNode node)
         {
             return new MeasureElement(node);
