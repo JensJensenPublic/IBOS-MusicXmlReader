@@ -248,7 +248,7 @@ namespace MusicXmlReaderModel
         {
             if (null == element)
             {
-                Logger.LogCF(string.Format(": {0} == null",elementType));
+                Logger.LogCFOnce(string.Format(": {0} == null",elementType));
                 return "??";
             }
             return element.Caption + " " + ((null == element) ? "?" : element.ToString());
@@ -258,7 +258,7 @@ namespace MusicXmlReaderModel
         {
             if (null == element)
             {
-                Logger.LogCF(string.Format(": {0} == null", elementType));
+                Logger.LogCFOnce(string.Format(": {0} == null", elementType));
                 return "??";
             }
             return element.Caption + " " + s;

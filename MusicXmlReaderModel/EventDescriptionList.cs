@@ -51,7 +51,7 @@ namespace MusicXmlReaderModel
                         sb.Append(string.Format("({0},{1},{2})",measureElement.PartId,  measureElement.Number, measureElement.StartTime));
                     }
                     Logger.LogCF(string.Format(": Found {0,2} MeasureElements, expected {1,2} (Part,Number,Time)={2}", count, numberOfParts, sb.ToString()));
-                    Logger.LogCFOnce(string.Format(": Found {0,2} MeasureElements, expected {1,2}", count, numberOfParts));
+                    //Logger.LogCFOnce(string.Format(": Found {0,2} MeasureElements, expected {1,2}", count, numberOfParts));
                 }
             }
         } 

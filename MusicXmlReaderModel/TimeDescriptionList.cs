@@ -70,24 +70,14 @@ namespace MusicXmlReaderModel
                         ForwardElement forwardElement = e as ForwardElement;
                         nextStartTime += forwardElement.DurationInCommonDivisions; /////////////////////////////// FIX THIS TO DO
                         maxNextStartTime = Math.Max(maxNextStartTime, nextStartTime);
-                        //previousStartTime = nextStartTime; // ??????????????????????????????????????????
+
                     }
 
                     else if (e is BackupElement)
                     {
                         // Move the MusciXml program counter without playing anything
                         BackupElement backupElement = e as BackupElement;
-                        bool wasMax = (nextStartTime == maxNextStartTime); 
                         nextStartTime -= backupElement.DurationInCommonDivisions; /////////////////////////////// FIX THIS TO DO
-                        if (wasMax)
-                        {
-                            // maxNextStartTime has been set too high and must be moved back !
-                            //Logger.LogCF(string.Format(".BackupElement: Reducing maxNextStartTime from {0} to {1}", maxNextStartTime, nextStartTime));
-                            //Logger.LogCFOnce(string.Format(".BackupElement: Reducing maxNextStartTime"));
-                            maxNextStartTime = nextStartTime;
-                        }
-
-                        //previousStartTime = nextStartTime; // ??????????????????????????????????????????
                     }
 
                     else if ((e is HarmonyElement)
@@ -110,19 +100,39 @@ namespace MusicXmlReaderModel
 #warning ToDo Refactor !
                         if (e is MeasureElement)
                         {
+                            MeasureElement measureElement = e as MeasureElement;
+                            int number = measureElement.Number;
+                            string partId = (null == measureElement.PartId) ? "" : measureElement.PartId;
+                            MeasureElement previous = measureElement.PreviousMeasureElement;
+                            Int64 startTime = 0; 
+                            Int64 nextMeasureBasedStartTime = 0; 
+                            if (previous != null)
+                            {
+                                // Based on the starttime of the previous MeasureElement and the duration of it.
+                                // Note: The duration of the previous MeasureEmlement is NOT known when it was read from the file, but is known now !
+                                startTime = previous.StartTime;
+                                nextMeasureBasedStartTime = startTime + measureElement.MeasureDuration; // Based on previous MeasureElement in this part ONLY
+                            }
+                            else
+                            {
+                                startTime = 0; // The first measure always starts at time = 0
+                                nextMeasureBasedStartTime = 0;  // The first NoteElement  or pause in the first measure always starts at time = 0
+                            }
+
+                            if ((nextStartTime != nextMeasureBasedStartTime) && (0 != nextMeasureBasedStartTime)) // 0 means "Unknown"
+                            {
+                                // nextStartTime was computed as a sumof durations of NoteElements, BackupElements, ForwardElements etc and is not always accurate !
+                                // nextMeasureBasedStartTime is based only on the starttime and duration of measureElements and is believed to be accurate !
+                                Logger.LogCF(String.Format(": StartTimes differ: Part={0} Measure={1} NextStartTime={2} NextMeasureStartTime={3} PreviousStartTime={4} MeasureDuration={5} Adjusting NextStartTime to {6}",
+                                    partId, number, nextStartTime, nextMeasureBasedStartTime, startTime, measureElement.MeasureDuration, nextMeasureBasedStartTime));
+                                nextStartTime = nextMeasureBasedStartTime; // NEW!!!
+                            }
+
                             // For investigation problem 391 :
                             // If a part contains more than 1 voice, some MusicXml files may contai voices that do not fill up all measures completely by rests.                 
 
-                            int number = (e as MeasureElement).Number;
-                            if (nextStartTime != maxNextStartTime)
-                            {
-                                // Model.MetaInformation                 
-                                // Logger.LogCFOnce(string.Format(": Adjusts NextStartTime. CurrentEncoding={0}", Logger.CurrentEncoding)); // To verify that this only happens for Sibelius !
-                                Logger.LogCF(string.Format(": Measure {0} adjusts NextStartTime from {1} to {2} CurrentEncoding={3}", number, nextStartTime, maxNextStartTime, Logger.CurrentEncoding));
-                                nextStartTime = maxNextStartTime;
-                            }
-                        }
-                        
+                         }
+
 
                         EventElement eventElement = e as EventElement;
                         eventElement.StartTime = nextStartTime;

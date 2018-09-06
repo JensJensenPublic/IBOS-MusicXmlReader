@@ -28,6 +28,21 @@ namespace MusicXmlReaderModel
             }
         }
 
+
+        public System.Int64 MeasureDuration
+        {
+            get
+            {
+                if (0 == beatType)
+                {
+                    Logger.LogCF(": BeatType=0    ******************************************************************************************************");
+                    throw new System.Exception("TimeElement.MeasureDuration: BeatType = 0");
+                }
+                return NoteElement.commonDivisions * 4 * beats / beatType;
+            }
+
+        } // NoteElement.commonDivisions is per quarter Note
+
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
@@ -82,9 +97,12 @@ namespace MusicXmlReaderModel
 
             bool beatsOk = int.TryParse(beats, out this.beats);
             bool beatTypeOk = int.TryParse(beatType, out this.beatType);
-            if (!(beatsOk && beatTypeOk))
+            if (!(beatsOk && beatTypeOk && (this.beatType > 0)))
             {
-                Logger.LogOnce(string.Format("{0}: Invalid TimeElement: Beats={1} BeatType={2}", functionName, beats, beatType));
+                string s = string.Format(": Invalid TimeElement: Beats='{0}' BeatType='{1}'", beats, beatType);
+                Logger.LogCFOnce(s);
+                Logger.LogCF(s);
+                throw new System.Exception(string.Format("TimeElement.ctor: {0}", s));
             }
 
             localizedBeats = this.beats.ToString();

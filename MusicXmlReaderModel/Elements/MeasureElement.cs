@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System;
+using System.Xml;
 
 namespace MusicXmlReaderModel
 {
@@ -12,6 +13,8 @@ namespace MusicXmlReaderModel
         private int number = 0;
         private bool implicitMeasure = false; // 	Measures with an implicit attribute set to "yes" never display a measure number, regardless of the measure-numbering setting
         public override string Caption { get { return ResourcesForModel.NoteElement_measure_text; } }
+        private MeasureElement previousMeasureElement; // The previous MeasureElement within this part. Null for the first MeasureElement.
+        public MeasureElement PreviousMeasureElement { get { return previousMeasureElement; } set { previousMeasureElement = value; } }
 
         /// <summary>
         /// To force the use of the Create() method
@@ -60,6 +63,14 @@ namespace MusicXmlReaderModel
         // Used for validation and test only !
         private string partId;
         public string PartId { get { return partId; } set { partId = value; } }
+
+        private Int64 measureDuration;
+        public Int64 MeasureDuration
+        {
+            get { return measureDuration; }
+            set { measureDuration = value; }
+        }
+
 
 
         public static MeasureElement Create(XmlNode node)

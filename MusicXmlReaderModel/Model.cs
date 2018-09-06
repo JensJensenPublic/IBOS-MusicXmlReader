@@ -34,6 +34,7 @@ namespace MusicXmlReaderModel
         public PartlistElement partList; // Contains the list of parts, describing all instruments used including their midi parameters
         int divisions; // Current number of divisions of a quarternode
         int currentMeasureNumber = 0; // Current measure number
+        MeasureElement currentMeasureElement;
         StatusInformation currentStatusInformation; // Contains information which is valid in a part of the score, such as Key, Beats, Tempo etc.
         int latestMeasureNumber = 0;
         int numberOfParts; // Number of parts
@@ -520,8 +521,12 @@ namespace MusicXmlReaderModel
                 case "measure":
                     MeasureElement measureElement = MeasureElement.Create(node);
                     measureElement.PartId = currentPartId;
+                    measureElement.MeasureDuration = (null == currentTimeElement) ? 0 :  currentTimeElement.MeasureDuration;
+                    // Logger.LogCF(string.Format(": Duration={0}", measureElement.MeasureDuration));
                     allMusicXmlObjecsts.Add(measureElement); // Avoid the "Ikke VAlgt" error message from screenreader
-                    this.currentMeasureNumber = measureElement.Number;
+                    this.currentMeasureNumber = measureElement.Number;               
+                    measureElement.PreviousMeasureElement = currentMeasureElement;
+                    this.currentMeasureElement = measureElement;
                     break;
                 case "score-part":
                     // Describes the meta-data related to a part.
@@ -541,6 +546,7 @@ namespace MusicXmlReaderModel
                     // Look up the partition in the partList
                     this.currentScorePartElement = partList.GetPartFromId(partElement.PartId);
                     // Intialization of instruments has been moved to MusicPlayer (where it belongs)
+                    this.currentMeasureElement = null; 
                     break;
                 case "work":
                     SimpleTextElement workElement = SimpleTextElement.Create(node, "Titel"); // TODO: Localize
