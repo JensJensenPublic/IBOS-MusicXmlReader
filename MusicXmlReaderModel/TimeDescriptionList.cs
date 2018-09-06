@@ -123,8 +123,12 @@ namespace MusicXmlReaderModel
                             {
                                 // nextStartTime was computed as a sumof durations of NoteElements, BackupElements, ForwardElements etc and is not always accurate !
                                 // nextMeasureBasedStartTime is based only on the starttime and duration of measureElements and is believed to be accurate !
+#if true
+                                Logger.LogCFOnce(": StartTimes differ");
+#else
                                 Logger.LogCF(String.Format(": StartTimes differ: Part={0} Measure={1} NextStartTime={2} NextMeasureStartTime={3} PreviousStartTime={4} MeasureDuration={5} Adjusting NextStartTime to {6}",
                                     partId, number, nextStartTime, nextMeasureBasedStartTime, startTime, measureElement.MeasureDuration, nextMeasureBasedStartTime));
+#endif
                                 nextStartTime = nextMeasureBasedStartTime; // NEW!!!
                             }
 
