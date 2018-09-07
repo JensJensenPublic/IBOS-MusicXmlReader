@@ -693,7 +693,13 @@ namespace MusicXmlReaderModel
                     metaInformation.Source = MetaInfoItem.Create(source.Name, source.Text);
                     continueRecursion = false;
                     break;
-
+                case "miscellaneous":
+                    SimpleTextElement miscellaneous = SimpleTextElement.Create(node, "Miscellaneous");
+                    allMusicXmlObjecsts.Add(miscellaneous);
+                    continueRecursion = false;
+                    // Logger.LogCF(string.Format(": Created SimpleTextElement(Name='{0}' Text='{1}')",miscellaneous.Name,miscellaneous.Text));
+                    Logger.LogCFOnce(": Created SimpleTextElement from MiscellaneousElement");
+                    break;
                 // The following elements are ignored for the time being, as they describe graphical properties only!
                 case "offset":
                 case "supports":
