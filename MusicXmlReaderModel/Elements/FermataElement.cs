@@ -9,7 +9,7 @@ namespace MusicXmlReaderModel
     class FermataElement : Element
     {
         string className = "FermataElement";
-        public enum FermataTypeEnum { undefined, upright, inverted}; 
+        public enum FermataTypeEnum { undefined, upright, inverted, angled, square}; // Angled and Square are found in 'C:\Users\Jens\Dropbox\Root\MusicXml sample file archive\LiliPond.org test samples\32a-Notations.xml
         private FermataTypeEnum fermataType = FermataTypeEnum.undefined;
         public FermataTypeEnum FermataType
         {
@@ -26,6 +26,8 @@ namespace MusicXmlReaderModel
             {
                 case "upright": return FermataTypeEnum.upright;
                 case "inverted": return FermataTypeEnum.inverted;
+                case "angled": return FermataTypeEnum.angled;
+                case "square": return FermataTypeEnum.square;
                 default:
                     Logger.LogOnce(string.Format("{0}: Found unexpected fermata value: {1}", function, s));
                     return FermataTypeEnum.undefined;
