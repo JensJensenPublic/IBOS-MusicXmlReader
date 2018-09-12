@@ -15,6 +15,7 @@ namespace MusicXmlReaderModel
         private Int64 newStartTime;
         private Int64 currentMeasurestartTime;
         private IntegerFraction binaryFractionPart; // Contains the part of the measurePosition, that can be expressed as N/2^M N and M integers
+        private IntegerFraction baseBinaryFraction; //
         private List<IntegerFraction> tupleFractions;  // Contains the part of the measurePosition, that can be expressed as a sum of Q/P where Q is an integer and P is a prime 3,5,7,9,11 etc 
 
 
@@ -22,7 +23,6 @@ namespace MusicXmlReaderModel
         private EventDescription eventDescription; // The EventDescription owning this MeasureFraction
 
         private string complexString = "";
-
 
         public override string ToString()
         {
@@ -78,19 +78,90 @@ namespace MusicXmlReaderModel
             return result;
         }
 
+        private bool NotesFound()
+        {
+            // Warn about events containing only EndEvents and no Note Elements
+            int nEndEvents = eventDescription.EndEventElements.Count;
+            int nNotes = eventDescription.NoteCount;
+            if ((nEndEvents > 0) && (0 == nNotes))
+            {
+                // If the MusicXml file is not excact with respect to integer arithmetics, this may cause empty lines and strange MeasureFractions !!
+                Logger.LogCFOnce(string.Format(": Found {0} EndEvents and {1} NoteElements. This will cause an empty line in the NoteList!", nEndEvents, nNotes));
+                complexString = "+??";
+                return false;
+            }
+            return true;
+        }
+
+        private void AddOwner(List<TestItem> allOwners, EventDescription eventDescription, NoteElement noteElement) //  For debugging only !
+        {
+            bool found = false;
+            foreach (TestItem testItem in allOwners)
+            {
+                if (testItem.OwningEvent == eventDescription)
+                {
+                    found = true;
+                    break;
+                }
+
+                if (!found)
+                {
+                    allOwners.Add(new TestItem(eventDescription, noteElement));
+                }
+            }
+        }
+        
+
+        private void Format(string baseString, List<IntegerFraction> tupleFractions)
+        {
+            IntegerFraction firstElement = tupleFractions.ElementAt(0);
+            firstElement.Normalize();
+            long number = 0;
+            foreach (IntegerFraction binaryFraction in tupleFractions)
+            {
+                binaryFraction.Normalize();
+                if (binaryFraction.IsEqualTo(firstElement))
+                {
+                    number++;
+                }
+            }
+
+            if (number == tupleFractions.Count)
+            {
+                // The tuple contains a number of identical fractions, so we can express it in a very shorthand form
+                IntegerFraction integerFraction = new IntegerFraction(number, firstElement.Denominator);
+                this.complexString = baseString + " + " + integerFraction.ToString();
+            }
+            else
+            {
+                // The tuple contains fractions that are not all identical. We must list them all !
+                StringBuilder sb = new StringBuilder(baseString);
+                foreach (IntegerFraction binaryFraction in tupleFractions)
+                {
+                    sb.Append("+");
+                    sb.Append(binaryFraction.ToString());
+                }
+                this.complexString = sb.ToString();
+            }
+
+        }
 
 
-        /// <summary>
-        /// This function must be called during initialization!
-        /// </summary>
-        public void Evaluate()
+
+
+
+/// <summary>
+/// This function must be called during initialization!
+/// </summary>
+public void Evaluate()
         {
             Int64 offset = newStartTime - currentMeasurestartTime;
 
             if (0 == offset)
             {
                 binaryFractionPart = new IntegerFraction(0, 1);
-                return;
+                baseBinaryFraction = binaryFractionPart;
+                return; // binaryFraction contains the result
             }
 
             // Attempt to find integers N and D (for nominator and denominator) 
@@ -106,96 +177,62 @@ namespace MusicXmlReaderModel
             // ...
             List<Int64> denominators = new List<Int64> { 1, 2, 4, 8, 16, 32, 64, 128, 256 };
             binaryFractionPart = EvaluateFraction(offset, denominators);
-
-            // If the value can not be expressed as a simple binary fraction attempt to express it as a sum of binary fraction and a tuplet:
-            if (null == binaryFractionPart)
+            if (null != binaryFractionPart)
             {
-                // Special code for the case where the offset can not be expressed as a simple fraction
-                if (null != eventDescription.EndEventElements)
+                return; // binaryFraction contains the result
+            }
+
+
+            // If the value can not be expressed as a simple binary fraction attempt to express it as a sum of basebinaryfraction and a tuplet:
+            baseBinaryFraction = binaryFractionPart;
+            if (null != eventDescription.EndEventElements)
+            {
+                int count = eventDescription.EndEventElements.Count;
+                // if (count != 1)  Logger.LogCFOnce(string.Format(": {0} owners", count));   
+
+                if (! NotesFound()) return; // Return if no notes end at this eventDescription
+
+                // Find the list of all notes that end at this event
+                List<TestItem> allOwners = new List<TestItem>(); // Only used for code analyzis, not visible to the user !
+                foreach (EndEventElement endEventElement in eventDescription.EndEventElements)
                 {
-                    int count = eventDescription.EndEventElements.Count;
-                    if (count != 1)
+                    this.tupleFractions = new List<IntegerFraction>();
+                    // NOTE: This is NOT strictly correct: This code will use only the last endEventElement encountered, but for the moment this will do !
+                    if (endEventElement.StartElement is NoteElement)
                     {
-                        // Logger.LogCFOnce(string.Format(": {0} owners", count));   
-                    }
-
-                    // Warn about events containing only EndEvents
-                    int nEndEvents = eventDescription.EndEventElements.Count;
-                    int nNotes = eventDescription.NoteCount;     
-                    if ((nEndEvents > 0) && (0 == nNotes))
-                    {
-                        // If the MusicXml file is not excact with respect to integer arithmetics, this may cause empty lines and strange MeasureFractions !!
-                        Logger.LogCFOnce(string.Format(": Found {0} EndEvents and {1} NoteElements. This will cause an empty line in the NoteList!", nEndEvents, nNotes));
-                        complexString = "+??";
-                        return;
-                    }
-
-                    // Find the list of all notes that end at this event
-                    List<TestItem> allOwners = new List<TestItem>(); // Only used for code analyzis, not visible to the user !
-                    foreach (EndEventElement endEventElement in eventDescription.EndEventElements)
-                    {
-                        this.tupleFractions = new List<IntegerFraction>();
-                        // NOTE: This is NOT strictly correct: This code will use only the last eneEventElement encountered, but for the moment this will do !
-                        if (endEventElement.StartElement is NoteElement)
+                        NoteElement previousNoteElement = endEventElement.StartElement as NoteElement;
+                        if (previousNoteElement.NoteDuration == NoteTypeEnum.unknown) //   PrintObjectAttributeValue)
                         {
-                            NoteElement previousNoteElement = endEventElement.StartElement as NoteElement;
-                            if (previousNoteElement.NoteDuration == NoteTypeEnum.unknown) //   PrintObjectAttributeValue)
-                            {
-                                Logger.LogCFOnce(string.Format(": PreviousNoteElement.NoteDuration = {0}", previousNoteElement.NoteDuration.ToString()));
-                                break; // Relies on reporting of a decimal fraction as a last resort. 
-                            }
-                            EventDescription previousEventDescription = previousNoteElement.OwningEventDescription;
-                            // Logger.LogCFOnce( string.Format(": {0} OwningEvent: Start={1} {2}", noteElement.ToString(),owner.StartTime.ToString(),owner.MeasureFraction.ToString()));
-
-                            IntegerFraction baseBinaryFractionPart = previousEventDescription.MeasureFraction.binaryFractionPart; // Use the same binaryfraction
-                            if (null != baseBinaryFractionPart)
-                            {
-                                this.tupleFractions.Add(baseBinaryFractionPart); // Use the latest known binary fraction as a base
-                            }
-                            this.tupleFractions.AddRange(previousEventDescription.MeasureFraction.tupleFractions); // Copy the tuple fractions of previous EventDescription
-                            this.tupleFractions.Add(previousNoteElement.TupleDuration()); // Add tupleduration of previous NoteElement
-                            StringBuilder sb = new StringBuilder();
-                            foreach (IntegerFraction binaryFraction in tupleFractions)
-                            {
-                                sb.Append("+");
-                                binaryFraction.Normalize();
-                                sb.Append(binaryFraction.ToString());
-                            }
-                            this.complexString = sb.ToString();
-
-                            bool found = false;
-                            foreach (TestItem testItem in allOwners)
-                            {
-                                if (testItem.OwningEvent == previousEventDescription)
-                                {
-                                    found = true;
-                                    break;
-                                }
-                            }
-                            if (!found)
-                            {
-                                allOwners.Add(new TestItem(previousEventDescription, previousNoteElement));
-                            }
+                            Logger.LogCFOnce(string.Format(": PreviousNoteElement.NoteDuration = {0}", previousNoteElement.NoteDuration.ToString()));
+                            break; // Relies on reporting of a decimal fraction as a last resort. 
                         }
+                        EventDescription previousEventDescription = previousNoteElement.OwningEventDescription;
+                        // Logger.LogCFOnce( string.Format(": {0} OwningEvent: Start={1} {2}", noteElement.ToString(),owner.StartTime.ToString(),owner.MeasureFraction.ToString()));
+
+
+                        baseBinaryFraction = previousEventDescription.MeasureFraction.baseBinaryFraction; // Use the same baseBinaryfraction as the previous
+
+                        this.tupleFractions.AddRange(previousEventDescription.MeasureFraction.tupleFractions); // Copy the tuple fractions of previous EventDescription
+                        this.tupleFractions.Add(previousNoteElement.TupleDuration()); // Add tupleduration of previous NoteElement
+                        string baseString = "";
+                        if (null != baseBinaryFraction)
+                        {
+                            baseString = "+ " + baseBinaryFraction.ToString(); // Use the latest known binary fraction as a base
+                        }
+
+                        Format(baseString,tupleFractions);
+
+                        AddOwner(allOwners, previousEventDescription, previousNoteElement); //  For debugging only !
                     }
-
-                    Log(allOwners, eventDescription);
                 }
+                Log(allOwners, eventDescription); // For debugging only !!
             }
 
-            //if ((result != null) || !string.IsNullOrEmpty( this.complexString))
-            //{
-            //    //        previousMeasureFraction = this;
-            //}
-            //else
+            if (! string.IsNullOrEmpty(this.complexString)) return;
 
-            if ((null == binaryFractionPart) && (string.IsNullOrEmpty(this.complexString)))
-
-            {
-                // Use the following line for debugging only ! (Performance issus)
-                // Logger.LogCF(string.Format("(): MeasureFraction could not be determined for offset={0} q={1} q/3={2}", offset, quarterNoteDuration, quarterNoteDuration / 3));
-                Logger.LogCFOnce(string.Format("(): MeasureFraction could not be determined."));
-            }
+            // Use the following line for debugging only ! (Performance issus)
+            Logger.LogCF(string.Format("(): MeasureFraction could not be determined for offset={0} q={1} q/3={2}", offset, quarterNoteDuration, quarterNoteDuration / 3));
+            Logger.LogCFOnce(string.Format("(): MeasureFraction could not be determined."));
         }
 
 

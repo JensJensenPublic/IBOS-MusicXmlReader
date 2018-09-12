@@ -31,6 +31,12 @@ namespace MusicXmlReaderModel
         }
 
 
+        public bool IsEqualTo(IntegerFraction that)
+        {
+            return (that != null) && (this.Nominator == that.Nominator) && (this.Denominator == that.Denominator);
+        }
+
+
         /// <summary>
         /// Implements the actual lookup of the localized text:
         /// </summary>

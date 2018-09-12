@@ -180,12 +180,12 @@ namespace MusicXmlReaderModel
             float tempResult;           
             if (!float.TryParse(tempInput, out tempResult))  
             {
-                Logger.Log(string.Format("{0}: Got '{1}' Expected an integer", errorString, input));
+                Logger.LogOnce(string.Format("{0}: Got '{1}' Expected an integer", errorString, input));
                 return false;
             }
             if (tempResult < lowValue || (tempResult > highValue))
             {
-                Logger.Log(string.Format("{0}: Got '{1}' Expected [{2}..{3}]", errorString, input, lowValue, highValue));
+                Logger.LogOnce(string.Format("{0}: Got '{1}' Expected [{2}..{3}]", errorString, input, lowValue, highValue));
                 return false;
             }
             result = tempResult;
