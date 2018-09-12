@@ -228,7 +228,14 @@ public void Evaluate()
             float decimalValue = ((float)offset / (float)fullNoteDuration);
             stringRepresentation = string.Format("+ {0:0.000}", decimalValue);
             // Use the following line for debugging only ! (Performance issus)
-            Logger.LogCF(string.Format("(): MeasureFraction could not be determined for offset={0} q={1} q/3={2} Using decimal value={3}", offset, quarterNoteDuration, quarterNoteDuration / 3,stringRepresentation));
+            bool visible = this.eventDescription.ContainsVisibleNotes;
+            if (visible)
+            {
+                Logger.LogCF(string.Format("(): MeasureFraction could not be determined for offset={0} q={1} q/3={2} Using decimal value={3}", offset, quarterNoteDuration, quarterNoteDuration / 3, stringRepresentation));
+            }
+            {
+                Logger.LogCFOnce("MeasureFraction could not be determined for invisible event. Using decimal value instead. This is OK"); 
+            }
             //Logger.LogCFOnce(string.Format("(): MeasureFraction could not be determined."));
         }
 

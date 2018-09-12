@@ -100,6 +100,23 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public bool ContainsVisibleNotes
+        {
+            get
+            {
+
+                if (null == noteLists) return false;
+                foreach (List<NoteElement> noteList in noteLists)
+                {
+                    foreach (NoteElement noteElement in noteList)
+                    {
+                        if (noteElement.PrintObjectAttributeValue) return true; ;
+                    }
+                }
+                return false;
+            }
+        }
+
         public HarmonyElement HarmonyElement
         {
             get
