@@ -21,7 +21,7 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            return string.Format("'{0}' Type={1} Value={2}", xmlName, this.dataType.ToString(), this.ValueToString());
+            return string.Format("{0} Type={1} Value={2}", xmlName, this.dataType.ToString(), this.ValueToString());
         }
   
         public UserSettingsElement AddChild(UserSettingsElement userSettingsElement)
@@ -64,7 +64,7 @@ namespace MusicXmlReaderModel
             this.childList = new List<UserSettingsElement>();
         }
 
-        public void MergeWith(UserSettingsElement that,ref int found, ref int added)
+        public void MergeWith(string path,UserSettingsElement that,ref int found, ref int added)
         {
             foreach (UserSettingsElement theirNode in that.childList)
             {
@@ -83,15 +83,15 @@ namespace MusicXmlReaderModel
                 {
                     // The node already exists. Merge it with the theirs
                     found++;
-                    ourNode.MergeWith(theirNode,ref found, ref added);
-                    // Logger.LogCF(string.Format(": Found {0}", ourNode.ToString()));
+                    ourNode.MergeWith(path + "." + ourNode.xmlName, theirNode,ref found, ref added);
+                    //Logger.LogCF(string.Format(": Found {0}.{1}",path, ourNode.ToString()));
                 }
                 else
                 {
                     // The node does not exixt. Use theirs. Nothing to merge in this case.
                     added++;
                     this.childList.Add(theirNode);
-                    Logger.LogCF(string.Format(": Added {0}", theirNode.ToString()));
+                    Logger.LogCF(string.Format(": Added {0}.{1}", path,theirNode.ToString()));
                 }
             }
         }
