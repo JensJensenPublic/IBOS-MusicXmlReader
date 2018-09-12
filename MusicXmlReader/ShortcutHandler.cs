@@ -213,13 +213,13 @@ namespace MusicXmlReader
         public const Keys DetailsHarmonyTop =           Keys.Down;
         public const Keys DetailsPartsTop =             Keys.Down | Keys.Control;
         public const Keys DetailsNotesTop =             Keys.Down | Keys.Control | Keys.Shift;
-        public const Keys DetailsStatusTop =            Keys.Down | Keys.Shift;
+        public const Keys DetailsStatusTop =            Keys.Down | Keys.Alt;
         public const Keys detailsSingleNotesFromTop =   Keys.Down;  
         public const Keys DetailsInstruments =          Keys.I  | Keys.Control;
         public const Keys DetailsHarmonyBottom =        Keys.Up;
         public const Keys DetailsPartsBottom =          Keys.Up | Keys.Control;
         public const Keys DetailsNotesBottom =          Keys.Up | Keys.Control | Keys.Shift;
-        public const Keys DetailsStatusBottom =         Keys.Up | Keys.Shift;
+        public const Keys DetailsStatusBottom =         Keys.Up | Keys.Alt;
         public const Keys detailsSingleNotesFromBottom= Keys.Up;  
         //public const Keys DetailsInstrumentsButtom= Keys.I | Keys.C;
 
