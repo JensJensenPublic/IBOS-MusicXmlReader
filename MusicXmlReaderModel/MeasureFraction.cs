@@ -14,37 +14,22 @@ namespace MusicXmlReaderModel
 
         private Int64 newStartTime;
         private Int64 currentMeasurestartTime;
-        private IntegerFraction binaryFractionPart; // Contains the part of the measurePosition, that can be expressed as N/2^M N and M integers
-        private IntegerFraction baseBinaryFraction; //
-        private List<IntegerFraction> tupleFractions;  // Contains the part of the measurePosition, that can be expressed as a sum of Q/P where Q is an integer and P is a prime 3,5,7,9,11 etc 
+        private IntegerFraction binaryFractionPart;     // The part of the measurePosition, that can be expressed as N/2^M N and M integers
+        private IntegerFraction baseBinaryFraction;     // The base part to be used together with tupleFractions
+        private List<IntegerFraction> tupleFractions;   // The part of the measurePosition, that can be expressed as a sum of Q/P where Q is an integer and P is a prime 3,5,7,9,11 etc 
+        private EventDescription eventDescription;      // The EventDescription owning this MeasureFraction
+        private string stringRepresentation = "";       // Initialized by the Evaluate() function during initialization and returned later by tehe ToString() function
 
 
-
-        private EventDescription eventDescription; // The EventDescription owning this MeasureFraction
-
-        private string complexString = "";
-
+        /// <summary>
+        /// Returns the string representation of this object.
+        /// This requires that the Evaluate() function was called durting initialization !
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
-            if (null != binaryFractionPart)
-            {
-                // The offset within the measure can be expressed as a simple fraction
-                return "+ " + binaryFractionPart.ToString();
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(complexString))
-                {
-                    // The offset within the measure can NOT be expressed as a simple fraction, but as a more complex structure
-                    // Is composed of several values
-                    return complexString;
-                }
-
-                // As a last resort represent the value as a decimnal fraction
-                Int64 offset = newStartTime - currentMeasurestartTime;
-                float decimalValue = ((float)offset / (float)fullNoteDuration);
-                return string.Format("{0:0.000}", decimalValue);
-            }
+            if (null == stringRepresentation) Logger.LogCFOnce("; stringRepresentation is null");
+            return stringRepresentation;
         }
 
 
@@ -87,7 +72,7 @@ namespace MusicXmlReaderModel
             {
                 // If the MusicXml file is not excact with respect to integer arithmetics, this may cause empty lines and strange MeasureFractions !!
                 Logger.LogCFOnce(string.Format(": Found {0} EndEvents and {1} NoteElements. This will cause an empty line in the NoteList!", nEndEvents, nNotes));
-                complexString = "+??";
+                stringRepresentation = "+??";
                 return false;
             }
             return true;
@@ -130,7 +115,7 @@ namespace MusicXmlReaderModel
             {
                 // The tuple contains a number of identical fractions, so we can express it in a very shorthand form
                 IntegerFraction integerFraction = new IntegerFraction(number, firstElement.Denominator);
-                this.complexString = baseString + " + " + integerFraction.ToString();
+                this.stringRepresentation = baseString + " + " + integerFraction.ToString();
             }
             else
             {
@@ -141,7 +126,7 @@ namespace MusicXmlReaderModel
                     sb.Append("+");
                     sb.Append(binaryFraction.ToString());
                 }
-                this.complexString = sb.ToString();
+                this.stringRepresentation = sb.ToString();
             }
 
         }
@@ -152,6 +137,12 @@ namespace MusicXmlReaderModel
 
 /// <summary>
 /// This function must be called during initialization!
+/// It takes no parameters, but works on several member variables:.
+/// It may update the following member variables
+///  this. stringrepresentation
+///  this.binaryfractionPart
+///  this.baseBinaryFraction 
+///  this.tupleFractions
 /// </summary>
 public void Evaluate()
         {
@@ -161,7 +152,8 @@ public void Evaluate()
             {
                 binaryFractionPart = new IntegerFraction(0, 1);
                 baseBinaryFraction = binaryFractionPart;
-                return; // binaryFraction contains the result
+                stringRepresentation = "+ " + binaryFractionPart.ToString();
+                return;
             }
 
             // Attempt to find integers N and D (for nominator and denominator) 
@@ -177,14 +169,16 @@ public void Evaluate()
             // ...
             List<Int64> denominators = new List<Int64> { 1, 2, 4, 8, 16, 32, 64, 128, 256 };
             binaryFractionPart = EvaluateFraction(offset, denominators);
+            baseBinaryFraction = binaryFractionPart;
             if (null != binaryFractionPart)
             {
-                return; // binaryFraction contains the result
+                stringRepresentation = "+ " + binaryFractionPart.ToString();
+                return; 
             }
 
 
             // If the value can not be expressed as a simple binary fraction attempt to express it as a sum of basebinaryfraction and a tuplet:
-            baseBinaryFraction = binaryFractionPart;
+      
             if (null != eventDescription.EndEventElements)
             {
                 int count = eventDescription.EndEventElements.Count;
@@ -228,11 +222,14 @@ public void Evaluate()
                 Log(allOwners, eventDescription); // For debugging only !!
             }
 
-            if (! string.IsNullOrEmpty(this.complexString)) return;
+            if (! string.IsNullOrEmpty(this.stringRepresentation)) return;
 
+            // As a last resort represent the value as a decimnal fraction
+            float decimalValue = ((float)offset / (float)fullNoteDuration);
+            stringRepresentation = string.Format("+ {0:0.000}", decimalValue);
             // Use the following line for debugging only ! (Performance issus)
-            Logger.LogCF(string.Format("(): MeasureFraction could not be determined for offset={0} q={1} q/3={2}", offset, quarterNoteDuration, quarterNoteDuration / 3));
-            Logger.LogCFOnce(string.Format("(): MeasureFraction could not be determined."));
+            Logger.LogCF(string.Format("(): MeasureFraction could not be determined for offset={0} q={1} q/3={2} Using decimal value={3}", offset, quarterNoteDuration, quarterNoteDuration / 3,stringRepresentation));
+            //Logger.LogCFOnce(string.Format("(): MeasureFraction could not be determined."));
         }
 
 
