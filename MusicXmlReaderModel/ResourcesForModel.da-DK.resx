@@ -136,12 +136,10 @@
     <value>Toneart</value>
   </data>
   <data name="KeyElement_major" xml:space="preserve">
-    <value>-dur</value>
-    <comment>The hyphen is needed to make JAWS pronouciation understandable</comment>
+    <value> dur</value>
   </data>
   <data name="KeyElement_minor" xml:space="preserve">
-    <value>-mol</value>
-    <comment>The hyphen is needed to make JAWS pronouciation understandable</comment>
+    <value>mol</value>
   </data>
   <data name="NoteElement_128th" xml:space="preserve">
     <value>hundredeogotteogtyvendedel</value>

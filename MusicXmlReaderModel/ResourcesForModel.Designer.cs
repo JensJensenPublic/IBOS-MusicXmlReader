@@ -1141,7 +1141,7 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -major.
+        ///   Looks up a localized string similar to major.
         /// </summary>
         internal static string KeyElement_major {
             get {
@@ -1150,7 +1150,7 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -minor.
+        ///   Looks up a localized string similar to minor.
         /// </summary>
         internal static string KeyElement_minor {
             get {
