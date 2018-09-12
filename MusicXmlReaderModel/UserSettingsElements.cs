@@ -235,9 +235,12 @@ namespace MusicXmlReaderModel
         /// <param name="that"></param>
         public void MergeWith(UserSettingsElements that)
         {
+            int found = 0;
+            int added = 0;
             string thisName = this.root.XmlName;
             string thatName = that.root.XmlName;
-            this.root.MergeWith(that.root);
+            this.root.MergeWith(that.root, ref found, ref added);
+            Logger.LogCF(string.Format(" Found {0}   Added {1}", found, added));
         }
 
 

@@ -59,7 +59,7 @@ namespace MusicXmlReaderModel
             this.childList = new List<UserSettingsElement>();
         }
 
-        public void MergeWith(UserSettingsElement that)
+        public void MergeWith(UserSettingsElement that,ref int found, ref int added)
         {
             foreach (UserSettingsElement theirNode in that.childList)
             {
@@ -77,12 +77,14 @@ namespace MusicXmlReaderModel
                 if (null != ourNode)
                 {
                     // The node already exists. Merge it with the theirs
-                    ourNode.MergeWith(theirNode);
+                    found++;
+                    ourNode.MergeWith(theirNode,ref found, ref added);
                     Logger.LogCF(string.Format(": Found {0}", theirNode.XmlName));
                 }
                 else
                 {
                     // The node does not exixt. Use theirs. Nothing to merge in this case.
+                    added++;
                     this.childList.Add(theirNode);
                     Logger.LogCF(string.Format(": Added {0}", theirNode.XmlName));
                 }
