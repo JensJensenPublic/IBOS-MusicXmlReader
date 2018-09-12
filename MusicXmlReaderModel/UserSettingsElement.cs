@@ -18,6 +18,11 @@ namespace MusicXmlReaderModel
         public string XmlName { get { return xmlName; } }
 
         private string dataType; // The datatype of the element represented
+
+        public override string ToString()
+        {
+            return string.Format("'{0}' Type={1} Value={2}", xmlName, this.dataType.ToString(), this.ValueToString());
+        }
   
         public UserSettingsElement AddChild(UserSettingsElement userSettingsElement)
         {
@@ -79,14 +84,14 @@ namespace MusicXmlReaderModel
                     // The node already exists. Merge it with the theirs
                     found++;
                     ourNode.MergeWith(theirNode,ref found, ref added);
-                    Logger.LogCF(string.Format(": Found {0}", theirNode.XmlName));
+                    // Logger.LogCF(string.Format(": Found {0}", ourNode.ToString()));
                 }
                 else
                 {
                     // The node does not exixt. Use theirs. Nothing to merge in this case.
                     added++;
                     this.childList.Add(theirNode);
-                    Logger.LogCF(string.Format(": Added {0}", theirNode.XmlName));
+                    Logger.LogCF(string.Format(": Added {0}", theirNode.ToString()));
                 }
             }
         }
