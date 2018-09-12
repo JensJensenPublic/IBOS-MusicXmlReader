@@ -228,6 +228,20 @@ namespace MusicXmlReaderModel
 
         //}
 
+
+        /// <summary>
+        /// Merge settings with other settings
+        /// </summary>
+        /// <param name="that"></param>
+        public void MergeWith(UserSettingsElements that)
+        {
+            string thisName = this.root.XmlName;
+            string thatName = that.root.XmlName;
+            this.root.MergeWith(that.root);
+        }
+
+
+
         private UserSettingsElements()
         {
         }

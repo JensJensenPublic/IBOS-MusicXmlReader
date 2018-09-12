@@ -329,6 +329,9 @@ namespace MusicXmlReaderModel
             if ((System.IO.File.Exists(fileName)) && (userSettingsElements.Init(fileName))) // Use values read from file
             {
                 Logger.LogCF(string.Format(": Loaded User Settings from {0}", fileName));
+                UserSettingsElements defaultSettings = UserSettingsElements.Create();
+                defaultSettings.Init(partList);
+                userSettingsElements.MergeWith(defaultSettings);
             }
             else
             {

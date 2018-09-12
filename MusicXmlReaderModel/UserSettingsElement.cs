@@ -58,7 +58,39 @@ namespace MusicXmlReaderModel
             this.dataType = type;
             this.childList = new List<UserSettingsElement>();
         }
-        
+
+        public void MergeWith(UserSettingsElement that)
+        {
+            foreach (UserSettingsElement theirNode in that.childList)
+            {
+                UserSettingsElement ourNode = null;
+                string thatName = theirNode.xmlName;
+                foreach (UserSettingsElement ourNodes in this.childList)
+                {
+                    string thisName = ourNodes.XmlName;
+                    if (thisName.Equals(thatName))
+                    {
+                        ourNode = ourNodes;
+                        break;
+                    }
+                }
+                if (null != ourNode)
+                {
+                    // The node already exists. Merge it with the theirs
+                    ourNode.MergeWith(theirNode);
+                    Logger.LogCF(string.Format(": Found {0}", theirNode.XmlName));
+                }
+                else
+                {
+                    // The node does not exixt. Use theirs. Nothing to merge in this case.
+                    this.childList.Add(theirNode);
+                    Logger.LogCF(string.Format(": Added {0}", theirNode.XmlName));
+                }
+            }
+        }
+
+
+
         protected void ToXml(XmlWriter xml, string value)
         {
             //xml.WriteWhitespace("\r\n"); // Every new element starts at a new line

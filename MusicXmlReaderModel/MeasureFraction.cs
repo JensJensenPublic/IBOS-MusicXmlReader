@@ -197,7 +197,15 @@ public void Evaluate()
                         NoteElement previousNoteElement = endEventElement.StartElement as NoteElement;
                         if (previousNoteElement.NoteDuration == NoteTypeEnum.unknown) //   PrintObjectAttributeValue)
                         {
-                            Logger.LogCFOnce(string.Format(": PreviousNoteElement.NoteDuration = {0}", previousNoteElement.NoteDuration.ToString()));
+                            string commonFormat = "(): PreviousNoteElement.NoteDuration='{0}'  {1}";
+                            if (previousNoteElement.PrintObjectAttributeValue)
+                            {
+                                Logger.LogCFOnce(string.Format(commonFormat, previousNoteElement.NoteDuration.ToString(),""));
+                            }
+                            else
+                            {
+                                Logger.LogCFOnce(string.Format(commonFormat , previousNoteElement.NoteDuration.ToString()," for invisible NoteElement. This is OK"));
+                            }
                             break; // Relies on reporting of a decimal fraction as a last resort. 
                         }
                         EventDescription previousEventDescription = previousNoteElement.OwningEventDescription;
@@ -234,7 +242,7 @@ public void Evaluate()
                 Logger.LogCF(string.Format("(): MeasureFraction could not be determined for offset={0} q={1} q/3={2} Using decimal value={3}", offset, quarterNoteDuration, quarterNoteDuration / 3, stringRepresentation));
             }
             {
-                Logger.LogCFOnce("MeasureFraction could not be determined for invisible event. Using decimal value instead. This is OK"); 
+                Logger.LogCFOnce("(): MeasureFraction could not be determined for invisible event. Using decimal value instead. This is OK"); 
             }
             //Logger.LogCFOnce(string.Format("(): MeasureFraction could not be determined."));
         }
