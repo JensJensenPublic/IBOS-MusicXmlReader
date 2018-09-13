@@ -637,6 +637,24 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show bottom line of status information.
+        /// </summary>
+        internal static string Shortcut_StatusBottom {
+            get {
+                return ResourceManager.GetString("Shortcut_StatusBottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show top line of status information.
+        /// </summary>
+        internal static string Shortcut_StatusTop {
+            get {
+                return ResourceManager.GetString("Shortcut_StatusTop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stop playing the current note.
         /// </summary>
         internal static string Shortcut_StopCurrentNote {

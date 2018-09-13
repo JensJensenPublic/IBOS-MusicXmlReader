@@ -268,6 +268,8 @@ namespace MusicXmlReader
             AddLine(ShortcutHandler.NextMeasure, ResourcesForHelp.Shortcut_NextMeasure);
             AddLine(ShortcutHandler.DetailsHarmonyTop, ResourcesForHelp.Shortcut_ChordTop);
             AddLine(ShortcutHandler.DetailsHarmonyBottom, ResourcesForHelp.Shortcut_ChordName);
+            AddLine(ShortcutHandler.DetailsStatusTop, ResourcesForHelp.Shortcut_StatusTop);
+            AddLine(ShortcutHandler.DetailsStatusBottom, ResourcesForHelp.Shortcut_StatusBottom);
             AddLine(ShortcutHandler.DetailsPartsTop, ResourcesForHelp.Shortcut_PartTop);
             AddLine(ShortcutHandler.DetailsPartsBottom, ResourcesForHelp.Shortcut_PartBottom);
             AddLine(ShortcutHandler.DetailsInstruments, ResourcesForHelp.Shortcut_Instruments);

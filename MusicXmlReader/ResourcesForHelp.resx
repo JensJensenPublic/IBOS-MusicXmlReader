@@ -348,4 +348,10 @@
   <data name="Shurtcut_TurnOnOtherPartsOrDetails" xml:space="preserve">
     <value>Turn all other parts or details on</value>
   </data>
+  <data name="Shortcut_StatusBottom" xml:space="preserve">
+    <value>Show bottom line of status information</value>
+  </data>
+  <data name="Shortcut_StatusTop" xml:space="preserve">
+    <value>Show top line of status information</value>
+  </data>
 </root>

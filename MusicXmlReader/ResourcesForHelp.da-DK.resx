@@ -348,4 +348,10 @@
   <data name="Shurtcut_TurnOnOtherPartsOrDetails" xml:space="preserve">
     <value>Tænd alle andre stemmer eller detaljer</value>
   </data>
+  <data name="Shortcut_StatusBottom" xml:space="preserve">
+    <value>Vis statusinformations nederste linie</value>
+  </data>
+  <data name="Shortcut_StatusTop" xml:space="preserve">
+    <value>Vis statusinformations øverste linie</value>
+  </data>
 </root>
