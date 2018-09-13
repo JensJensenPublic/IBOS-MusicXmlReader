@@ -227,7 +227,10 @@ namespace MusicXmlReaderModel
 
                     // Compose all details, always showing MusicBraille first
                     string detailString = string.Format("{0} {1} {2} {3} {4}", musicBraille, partId, partName, notes, lyrics);
-                    detailsDescriptions.Add(DetailsDescription.Create(detailString, eventDescription.NoteLists[i]));
+                    if (!string.IsNullOrWhiteSpace(detailString))
+                    {
+                        detailsDescriptions.Add(DetailsDescription.Create(detailString, eventDescription.NoteLists[i]));
+                    }
                 }
 
             }
