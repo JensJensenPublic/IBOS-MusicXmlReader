@@ -102,19 +102,33 @@ namespace MusicXmlReader
             this.treeView.BackColor = MainForm.NonFocusedColor;
             // Reload the NoteList if UserSettings have changed
 #warning ToDo Do not call Load if only Sound settings have changed !! They are not reflected in the NoteList !!        
-            string userSettingsAtLeave = model.UserSettings.ToXml();
-            if ((null == userSettingsAtEntry) || (null == userSettingsAtLeave) || (!userSettingsAtLeave.Equals(userSettingsAtEntry)))
+//            string userSettingsAtLeave = model.UserSettings.ToXml();
+
+            string speechSettingsAtLeave = model.UserSettings.ToXml(UserSettings.Category.Speech);
+            string musicBrailleSettingsAtLeave = model.UserSettings.ToXml(UserSettings.Category.MusicBraille);
+
+            //if ((null == userSettingsAtEntry) || (null == userSettingsAtLeave) || (!userSettingsAtLeave.Equals(userSettingsAtEntry)))
+
+            bool speechChanged = (null == speechSettingsAtEntry) || (null == speechSettingsAtLeave) || (!speechSettingsAtLeave.Equals(speechSettingsAtEntry));
+            bool musicBrailleChanged = (null == musicBrailleSettingsAtEntry) || (null == musicBrailleSettingsAtLeave) || (!musicBrailleSettingsAtLeave.Equals(musicBrailleSettingsAtEntry));
+            // Explicitly do not care of the Sound settengs: They are not reflected in the NoteList !!!
+            if (speechChanged || musicBrailleChanged)
             {
                 listBoxTimesHandler.Load();
             }
         }
 
-        private string userSettingsAtEntry;
+        //private string userSettingsAtEntry;
+        private string musicBrailleSettingsAtEntry;
+        private string speechSettingsAtEntry;
+
 
         private void TreeView_Enter(object sender, EventArgs e)
         {
             this.treeView.BackColor = MainForm.FocusedColor;
-            userSettingsAtEntry = model.UserSettings.ToXml();
+            //userSettingsAtEntry = model.UserSettings.ToXml();
+            speechSettingsAtEntry = model.UserSettings.ToXml(UserSettings.Category.Speech);
+            musicBrailleSettingsAtEntry = model.UserSettings.ToXml(UserSettings.Category.MusicBraille);
         }
 
         public void Reset()

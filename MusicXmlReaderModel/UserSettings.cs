@@ -496,6 +496,17 @@ namespace MusicXmlReaderModel
             return userSettingsElements.ToXml();
         }
 
+        public string ToXml(Category category)
+        {
+            switch (category)
+            {
+                case Category.Sound: return userSettingsElements.ToXml(musicAsSound);
+                case Category.Speech: return userSettingsElements.ToXml(musicAsSpeech);
+                case Category.MusicBraille: return userSettingsElements.ToXml(musicAsMusicBraille);
+                default: Logger.LogCF(string.Format(" : Undefined Category={0}", category.ToString())); return "";
+            }
+        }
+
         public static UserSettings Create(PartlistElement partList, string fileName)
         {
             return new UserSettings(partList,fileName);
