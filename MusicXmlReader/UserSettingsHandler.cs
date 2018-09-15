@@ -89,14 +89,32 @@ namespace MusicXmlReader
             this.treeView.Leave += TreeView_Leave;
         }
 
+        private void OnUserSettingTouched()
+        {
+            // Alternative implementations (for sighted people) might want to reflect
+            // changes in the NoteList immediately.
+            // This could be implemented here.
+        }
+
+
         private void TreeView_Leave(object sender, EventArgs e)
         {
             this.treeView.BackColor = MainForm.NonFocusedColor;
+            // Reload the NoteList if UserSettings have changed
+#warning ToDo Do not call Load if only Sound settings have changed !! They are not reflected in the NoteList !!        
+            string userSettingsAtLeave = model.UserSettings.ToXml();
+            if ((null == userSettingsAtEntry) || (null == userSettingsAtLeave) || (!userSettingsAtLeave.Equals(userSettingsAtEntry)))
+            {
+                listBoxTimesHandler.Load();
+            }
         }
+
+        private string userSettingsAtEntry;
 
         private void TreeView_Enter(object sender, EventArgs e)
         {
             this.treeView.BackColor = MainForm.FocusedColor;
+            userSettingsAtEntry = model.UserSettings.ToXml();
         }
 
         public void Reset()
@@ -187,9 +205,10 @@ namespace MusicXmlReader
             // This only has meaning if a node is selected !
             if (null == treeView.SelectedNode) return result;
 
+            this.OnUserSettingTouched();
 
-            bool saveAutoReload = listBoxTimesHandler.AutoReload;
-            listBoxTimesHandler.AutoReload = false; // Avoid loading the listbox for each and every change
+            //bool saveAutoReload = listBoxTimesHandler.AutoReload;
+            //listBoxTimesHandler.AutoReload = false; // Avoid loading the listbox for each and every change
 
             switch (checkboxRelation)
             {
@@ -202,8 +221,12 @@ namespace MusicXmlReader
 
 #warning Maybe we should not refresh the listbox until it gets focus ??
 
-            listBoxTimesHandler.AutoReload = saveAutoReload; // Restore
-            listBoxTimesHandler.ConditionalLoad(); // Reload once instead of multiple times
+            this.OnUserSettingTouched();
+
+            //            listBoxTimesHandler.AutoReload = saveAutoReload; // Restore
+            //            listBoxTimesHandler.ConditionalLoad(); // Reload once instead of multiple times
+
+
             return result;
         }
 
@@ -363,11 +386,11 @@ namespace MusicXmlReader
             // Transfer the settings to the MusicPlayer
             model.musicPlayer.UserSettings = model.UserSettings;
 
-            if (!((null != level0Node) && (0 == level0Node.Index)))
-            {
-                // Skip the update of the Listbox if this was a change of a sound parameter, which is not reflected there.
-                listBoxTimesHandler.ConditionalLoad();
-            }
+            //if (!((null != level0Node) && (0 == level0Node.Index)))
+            //{
+            //    // Skip the update of the Listbox if this was a change of a sound parameter, which is not reflected there.
+            //    listBoxTimesHandler.ConditionalLoad();
+            //}
 
         }
 
