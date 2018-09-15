@@ -193,7 +193,7 @@ namespace MusicXmlReaderModel
             StackTrace stackTrace = new StackTrace();
             MethodBase methodBase = stackTrace.GetFrame(1).GetMethod();
             Type type = methodBase.ReflectedType;
-            Log(string.Format("{0}.{1}: Exception: Message='{2}' StackTrace='{3}'", type.Name, methodBase.Name, e.Message, e.StackTrace.ToString()));
+            Log(string.Format("{0}.{1}: Exception: Message='{2}' StackTrace=\r\n{3}", type.Name, methodBase.Name, e.Message, e.StackTrace.ToString()));
         }
 
         /// <summary>
