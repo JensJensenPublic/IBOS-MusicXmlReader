@@ -220,11 +220,13 @@ namespace MusicXmlReaderModel
                     Logger.Log(string.Format("{0}.{1}: Failed to load '{2}' because it not a valid MusicXml file", className, functionName, xmlFileName));
                     theMusicXmlFileName = "";
                 }
-                //throw (new Exception("For test only")); // For test only
+                // throw (new Exception("For test only")); // For test only
             }
             catch (System.Exception e)
             {
-                Logger.Log(string.Format("{0}.{1}: Failed to load '{2}' Exception.Message='{3}'", className, functionName, xmlFileName, e.Message));
+                         
+                Logger.LogCF(string.Format(": Failed to load '{0}' Exception.Message='{1}'", xmlFileName, e.Message)); // Log Application-specific information.
+                Logger.LogCFE(e); // Log Exception-specific information
 
                 if (null != loaderProgressWriter)
                 {

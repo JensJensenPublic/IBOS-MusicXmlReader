@@ -188,6 +188,13 @@ namespace MusicXmlReaderModel
             Log(s, true);
         }
 
+        public static void LogCFE(Exception e)
+        {
+            StackTrace stackTrace = new StackTrace();
+            MethodBase methodBase = stackTrace.GetFrame(1).GetMethod();
+            Type type = methodBase.ReflectedType;
+            Log(string.Format("{0}.{1}: Exception: Message='{2}' StackTrace='{3}'", type.Name, methodBase.Name, e.Message, e.StackTrace.ToString()));
+        }
 
         /// <summary>
         /// Same as Log, but automatically adds ClassName and FunctionNAme of the calling function.
