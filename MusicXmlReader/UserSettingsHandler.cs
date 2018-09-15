@@ -513,9 +513,9 @@ namespace MusicXmlReader
         /// </summary>
         /// <param name="userSettings"></param>
         public void LoadDetails(UserSettings userSettings)
-        { 
-            const int lastTextDetail =    7; // "7" is the "Lyrics" node. Do not load last notes for release versions! They are for real hardcore debugging only!
-            //const int lastTextDetail = 11; // 11: Load all nodes: For real hardcore debugging only !!!!!!!
+        {  
+            const int lastTextDetail = (int)UserSettings.ReaderSettingsEnum.Lyrics ; // "8" is the "Lyrics" node. Do not load last notes for release versions! They are for real hardcore debugging only!
+            //const int lastTextDetail = (int)UserSettings.ReaderSettingsEnum.NumberOfReaderSettings; //  Load all nodes: For real hardcore debugging only !!!!!!!
             LoadDetails(musicAsSoundDetails, userSettings.PlayerSettings);
             LoadDetails(musicAsTextDetails, userSettings.ReaderSettings, lastTextDetail);  
             LoadDetails(musicAsBrailleDetails, userSettings.MusicBrailleSettings);
