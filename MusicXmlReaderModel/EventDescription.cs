@@ -999,6 +999,17 @@ namespace MusicXmlReaderModel
 
             // Finnally compose the result by concatenating all the substrings in the sequence wanted
             // The first event description (to a certain extent) reflects the sequence in which information is aquired by the eye when scanning a music sheet for prima vista use.
+            if (0 == this.startTime)
+            {
+                // Users suggest that we leave out the following information from the first eventDescription to avoid reading a lot of text just after loading the score.
+                // This information can still be accessed as status details.
+                // And they are still shown whenever they change AFTER the first eventDescription.
+#warning ToDo Let the Ststus information reflect the key (Typically C or G)
+                timeString = "";
+                keyString = "";
+                clefString = "";
+            }
+
             return measure + soundString + timeString + keyString + clefString + repeatBackward + repeatForward + divisions + dynamicsString + measureStyleString + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endOfScore + endEventString  ;
         }
     }
