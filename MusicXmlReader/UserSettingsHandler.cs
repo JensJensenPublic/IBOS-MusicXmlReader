@@ -102,7 +102,12 @@ namespace MusicXmlReader
             this.treeView.BackColor = MainForm.NonFocusedColor;
             // Reload the NoteList if UserSettings have changed
 #warning ToDo Do not call Load if only Sound settings have changed !! They are not reflected in the NoteList !!        
-//            string userSettingsAtLeave = model.UserSettings.ToXml();
+            //            string userSettingsAtLeave = model.UserSettings.ToXml();
+
+            if (null == model.UserSettings)
+            {
+                return; 
+            }
 
             string speechSettingsAtLeave = model.UserSettings.ToXml(UserSettings.Category.Speech);
             string musicBrailleSettingsAtLeave = model.UserSettings.ToXml(UserSettings.Category.MusicBraille);
@@ -126,6 +131,10 @@ namespace MusicXmlReader
         private void TreeView_Enter(object sender, EventArgs e)
         {
             this.treeView.BackColor = MainForm.FocusedColor;
+            if (null == model.UserSettings)
+            {
+                return;
+            }
             //userSettingsAtEntry = model.UserSettings.ToXml();
             speechSettingsAtEntry = model.UserSettings.ToXml(UserSettings.Category.Speech);
             musicBrailleSettingsAtEntry = model.UserSettings.ToXml(UserSettings.Category.MusicBraille);
