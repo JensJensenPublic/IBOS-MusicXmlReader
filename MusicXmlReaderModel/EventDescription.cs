@@ -1005,6 +1005,7 @@ namespace MusicXmlReaderModel
                 // This information can still be accessed as status details.
                 // And they are still shown whenever they change AFTER the first eventDescription.
 #warning ToDo Let the Ststus information reflect the key (Typically C or G)
+                soundString = "";
                 timeString = "";
                 keyString = "";
                 clefString = "";
