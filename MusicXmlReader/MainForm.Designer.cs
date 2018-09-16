@@ -36,7 +36,6 @@
             this.importNewSampleFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,8 +128,7 @@
             this.importNewestDownloadsToolStripMenuItem,
             this.importNewSampleFilesToolStripMenuItem,
             this.toolStripSeparator1,
-            this.exitToolStripMenuItem,
-            this.saveSettingsToolStripMenuItem});
+            this.exitToolStripMenuItem});
             this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
             this.filesToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.filesToolStripMenuItem.Text = "&Files";
@@ -176,13 +174,6 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // saveSettingsToolStripMenuItem
-            // 
-            this.saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
-            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.saveSettingsToolStripMenuItem.Text = "Save Settings";
-            this.saveSettingsToolStripMenuItem.Click += new System.EventHandler(this.saveSettingsToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -824,7 +815,6 @@
         private System.Windows.Forms.ToolStripMenuItem ofNominalTempoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.TextBox textBoxScreenReader;
-        private System.Windows.Forms.ToolStripMenuItem saveSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userSettingsToolStripMenuItem;
     }
 }
