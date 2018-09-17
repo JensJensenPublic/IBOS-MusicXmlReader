@@ -1290,26 +1290,27 @@ namespace MusicXmlReaderModel
             {
                 // This is a pause,not a note.
                 string pause = LocalizePause(noteDuration, dot);
-                if (null == this.pitchElement)
-                {
-                    // In the unpitched case the instrument NOT is implicitly given by the part, so we need to extract it: 
-                    string unpitchedInstrument = "";
-                    try
-                    {
-                        // throw new Exception("test");
-                        // New functionality. Better save than sorry !!
-                        unpitchedInstrument = this.ScorePartElement.ScoreInstrumentElement.InstrumentName;
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.Log(string.Format("{0}.{1}: Exception. Message={2}", className,functionName,e.Message));
-                    }
-                    return string.Format("{0} {1}", unpitchedInstrument, pause);
-                }
-                else
+                //if (null == this.pitchElement)
+                //{
+                //    // In the unpitched case the instrument NOT is implicitly given by the part, so we need to extract it: 
+                //    string unpitchedInstrument = "";
+                //    try
+                //    {
+                //        // throw new Exception("test");
+                //        // New functionality. Better save than sorry !!
+                //        unpitchedInstrument = this.ScorePartElement.ScoreInstrumentElement.InstrumentName;
+                //    }
+                //    catch (Exception e)
+                //    {
+                //        Logger.Log(string.Format("{0}.{1}: Exception. Message={2}", className,functionName,e.Message));
+                //    }
+                //    return string.Format("{0} {1}", unpitchedInstrument, pause);
+                //}
+                //else
                 {
                     // In the pitched case the instrument is implicitly given by the part
-                    return (String.Format("{0}", pause));
+                    string hand = showHand ? LocalizedHand(staff) : "";
+                    return (String.Format("{0} {1}", hand, pause));
                 }
             }
         }
