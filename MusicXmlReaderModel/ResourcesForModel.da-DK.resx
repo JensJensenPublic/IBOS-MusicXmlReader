@@ -1004,4 +1004,13 @@
   <data name="NoteElement_NoteType" xml:space="preserve">
     <value>Nodetype</value>
   </data>
+  <data name="NoteElement_LeftHand" xml:space="preserve">
+    <value>Venstre</value>
+  </data>
+  <data name="NoteElement_RightHand" xml:space="preserve">
+    <value>Højre</value>
+  </data>
+  <data name="NoteElement_Staff" xml:space="preserve">
+    <value>System</value>
+  </data>
 </root>

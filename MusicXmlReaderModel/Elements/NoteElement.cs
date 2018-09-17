@@ -1240,12 +1240,34 @@ namespace MusicXmlReaderModel
             }
         }
 
+        /// <summary>
+        /// Maps the contents of the staff member variable to a localized teststring, assuming that
+        ///  Staff number 1 is played by the right hand
+        ///  Staff number 2 is played by the left hand
+        /// Staff number 0 returns an empty string
+        /// All other staff nunbers return a localized version of "staff" followed by the staff number.
+        /// </summary>
+        /// <param name="staff"></param>
+        /// <returns></returns>
+        private string LocalizedHand(int staff)
+        {
+            switch (staff)
+           {
+                case 0: return "";
+                case 1: return ResourcesForModel.NoteElement_RightHand;
+                case 2: return ResourcesForModel.NoteElement_LeftHand;
+                default:
+                    Logger.LogCFOnce(String.Format("Unexpected value of Staff={0}", staff));
+                    return string.Format("{0} {1}",ResourcesForModel.NoteElement_Staff, staff);
+            }
+        }
+
 
         /// <summary>
         /// Special implementation used for showing details
         /// </summary>
         /// <returns></returns>
-        public string ToDetailsString()
+        public string ToDetailsString(bool showHand)
         {
             string functionName = "ToDetailsString";
             string notationsString = (null != notations) ? notations.ToString() : "";
@@ -1256,12 +1278,13 @@ namespace MusicXmlReaderModel
                 //return String.Format("{0} {1} {2} {3} {4}", pitchElement.Name, pitchElement.Octave, localizedType, localizedTie, notationsString);
                 string name = pitchElement.Name;
                 string octave = pitchElement.Octave.ToString();
+                string hand = showHand ? LocalizedHand(staff) : "";
                 if (this.UnPitched)
                 {
                     name = (null != UnpitchedText) ? UnpitchedText : "";    // For unpitched instruments we report the instrument here instead of the pitch!
                     octave = "";                 
                 }
-                return String.Format("{0} {1} {2} {3} {4}",name, octave, localizedType, localizedTie, notationsString);
+                return String.Format("{0} {1} {2} {3} {4} {5}",hand,name, octave, localizedType, localizedTie, notationsString);
             }
             else
             {

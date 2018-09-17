@@ -1001,4 +1001,13 @@
   <data name="NoteElement_NoteType" xml:space="preserve">
     <value>Note Type</value>
   </data>
+  <data name="NoteElement_LeftHand" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="NoteElement_RightHand" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="NoteElement_Staff" xml:space="preserve">
+    <value>Staff</value>
+  </data>
 </root>

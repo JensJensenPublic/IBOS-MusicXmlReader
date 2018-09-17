@@ -1411,6 +1411,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Left.
+        /// </summary>
+        internal static string NoteElement_LeftHand {
+            get {
+                return ResourceManager.GetString("NoteElement_LeftHand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to long.
         /// </summary>
         internal static string NoteElement_longus {
@@ -1488,6 +1497,24 @@ namespace MusicXmlReaderModel {
         internal static string NoteElement_quarter_rest {
             get {
                 return ResourceManager.GetString("NoteElement_quarter_rest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right.
+        /// </summary>
+        internal static string NoteElement_RightHand {
+            get {
+                return ResourceManager.GetString("NoteElement_RightHand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Staff.
+        /// </summary>
+        internal static string NoteElement_Staff {
+            get {
+                return ResourceManager.GetString("NoteElement_Staff", resourceCulture);
             }
         }
         
