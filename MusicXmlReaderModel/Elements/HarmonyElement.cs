@@ -121,10 +121,12 @@ namespace MusicXmlReaderModel
         {
             string functionName = "HarmonyElement";
             bool implemented = true;
+            bool isFrame = false;
             // Dig out elements
             foreach (XmlNode n in node.ChildNodes)
             {
                 implemented = true;
+                isFrame = false;
                 switch (n.Name)
                 {
                     case "root": 
@@ -152,7 +154,7 @@ namespace MusicXmlReaderModel
 
                     case "function": implemented = false; break;
                     case "inversion": implemented = false; break;
-                    case "frame": implemented = false; break;              
+                    case "frame": implemented = false; isFrame = true; break;  // Use simple logging format            
                     case "footnote": implemented = false; break;
                     case "level": implemented = false; break;
 
@@ -169,7 +171,14 @@ namespace MusicXmlReaderModel
                 }
                 if (!implemented)
                 {
-                    Logger.LogOnce(string.Format("{0}.{1} found unimplemented harmony element. Name={2} InnerText={3}", className, functionName, n.Name, n.InnerText));
+                    if (isFrame)
+                    {
+                        Logger.LogOnce(string.Format("{0}.{1} found unimplemented harmony element. Name={2}", className, functionName, n.Name)); // Avoid logging the InnerTExt
+                    }
+                    else
+                    {
+                        Logger.LogOnce(string.Format("{0}.{1} found unimplemented harmony element. Name={2} InnerText={3}", className, functionName, n.Name, n.InnerText));
+                    }
                 }
             }
 
