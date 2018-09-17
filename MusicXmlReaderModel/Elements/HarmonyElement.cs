@@ -253,7 +253,8 @@ namespace MusicXmlReaderModel
             }
             else
             {
-                string delimiter = ""; // (string.IsNullOrEmpty(localizedChordType)) ? "" : "-"; // Only show delimiter if needed
+                // We need a delimiter to guide JAWS to the right pronounciation of chords!
+                string delimiter = " "; // (string.IsNullOrEmpty(localizedChordType)) ? "" : "-"; // Only show delimiter if needed
                 string bassTone = (null != bassElement) ? string.Format("/{0}", bassElement.ToString()) : ""; // Only show bassTone if needed
                 string degreeString = ((null != degrees) && (0 != degrees.Count)) ? ToString(degrees) : ""; // Only show degrees if needed  
                 string s = string.Format("{0}{1}{2}{3} {4}", chromaticRootStep, delimiter, localizedChordType, bassTone, degreeString);

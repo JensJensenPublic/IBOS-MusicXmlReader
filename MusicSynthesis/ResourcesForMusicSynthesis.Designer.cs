@@ -385,7 +385,7 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to m7b5.
+        ///   Looks up a localized string similar to minor7b5.
         /// </summary>
         internal static string ChordKind_HalfDim7 {
             get {
@@ -448,7 +448,7 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to min(maj7).
+        ///   Looks up a localized string similar to minor(maj7).
         /// </summary>
         internal static string ChordKind_MajorMinor {
             get {
@@ -457,7 +457,7 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to m.
+        ///   Looks up a localized string similar to minor.
         /// </summary>
         internal static string ChordKind_Minor {
             get {
@@ -466,7 +466,7 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to m11.
+        ///   Looks up a localized string similar to minor11.
         /// </summary>
         internal static string ChordKind_Minor11 {
             get {
@@ -475,7 +475,7 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to m13.
+        ///   Looks up a localized string similar to minor13.
         /// </summary>
         internal static string ChordKind_Minor13 {
             get {
@@ -484,7 +484,7 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to m6.
+        ///   Looks up a localized string similar to minor6.
         /// </summary>
         internal static string ChordKind_Minor6 {
             get {
@@ -493,7 +493,7 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to m7.
+        ///   Looks up a localized string similar to minor7.
         /// </summary>
         internal static string ChordKind_Minor7 {
             get {
@@ -502,7 +502,7 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to m9.
+        ///   Looks up a localized string similar to minor9.
         /// </summary>
         internal static string ChordKind_Minor9 {
             get {

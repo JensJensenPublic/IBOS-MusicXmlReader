@@ -142,7 +142,7 @@
     <value>dim7</value>
   </data>
   <data name="ChordKind_HalfDim7" xml:space="preserve">
-    <value>m7b5</value>
+    <value>minor7b5</value>
   </data>
   <data name="ChordKind_Major" xml:space="preserve">
     <value />
@@ -163,25 +163,25 @@
     <value>maj9</value>
   </data>
   <data name="ChordKind_MajorMinor" xml:space="preserve">
-    <value>min(maj7)</value>
+    <value>minor(maj7)</value>
   </data>
   <data name="ChordKind_Minor" xml:space="preserve">
-    <value>m</value>
+    <value>minor</value>
   </data>
   <data name="ChordKind_Minor11" xml:space="preserve">
-    <value>m11</value>
+    <value>minor11</value>
   </data>
   <data name="ChordKind_Minor13" xml:space="preserve">
-    <value>m13</value>
+    <value>minor13</value>
   </data>
   <data name="ChordKind_Minor6" xml:space="preserve">
-    <value>m6</value>
+    <value>minor6</value>
   </data>
   <data name="ChordKind_Minor7" xml:space="preserve">
-    <value>m7</value>
+    <value>minor7</value>
   </data>
   <data name="ChordKind_Minor9" xml:space="preserve">
-    <value>m9</value>
+    <value>minor9</value>
   </data>
   <data name="ChordKind_None" xml:space="preserve">
     <value>No Chord</value>

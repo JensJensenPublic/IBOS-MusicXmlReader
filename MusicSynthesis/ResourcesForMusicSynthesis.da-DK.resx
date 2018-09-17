@@ -142,7 +142,7 @@
     <value>dim7</value>
   </data>
   <data name="ChordKind_HalfDim7" xml:space="preserve">
-    <value>m7b5</value>
+    <value>mol7b5</value>
   </data>
   <data name="ChordKind_Major" xml:space="preserve">
     <value />
@@ -166,22 +166,22 @@
     <value>molmaj</value>
   </data>
   <data name="ChordKind_Minor" xml:space="preserve">
-    <value>m</value>
+    <value>mol</value>
   </data>
   <data name="ChordKind_Minor11" xml:space="preserve">
-    <value>m11</value>
+    <value>mol11</value>
   </data>
   <data name="ChordKind_Minor13" xml:space="preserve">
-    <value>m13</value>
+    <value>mol13</value>
   </data>
   <data name="ChordKind_Minor6" xml:space="preserve">
-    <value>m6</value>
+    <value>mol6</value>
   </data>
   <data name="ChordKind_Minor7" xml:space="preserve">
-    <value>m7</value>
+    <value>mol7</value>
   </data>
   <data name="ChordKind_Minor9" xml:space="preserve">
-    <value>m9</value>
+    <value>mol9</value>
   </data>
   <data name="ChordKind_None" xml:space="preserve">
     <value>Ingen Becifring</value>
