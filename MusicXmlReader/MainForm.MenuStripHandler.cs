@@ -150,7 +150,7 @@ namespace MusicXmlReader
         private bool SelectAndOpenMusicXmlFile(object sender, EventArgs e)
         {
             openFileDialog.FileName = ""; // No default
-            openFileDialog.Filter = string.Format("{0}|*.xml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files
+            openFileDialog.Filter = string.Format("{0}|*.xml;*.musicxml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files
                                                                                                             //            openFileDialog.Filter = string.Format("{0}|*.xml|{0}|*.mxl", ResourcesForUI.OpenFileDialog_Filter,ResourcesForUI.OpenFileDialog_Filter_mxl); // Only present .xml files and .mxl files
             openFileDialog.InitialDirectory = GetFileOpenInitialDirectory();
             openFileDialog.CheckFileExists = true;
@@ -202,6 +202,7 @@ namespace MusicXmlReader
                     }
                     break;
                 case ".xml": // Continue
+                case ".musicxml": // Continue
                     xmlFileName = fullFileName;
                     break;
                 default: // Report unsupported fileformat
