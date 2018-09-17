@@ -168,7 +168,7 @@ namespace MusicXmlReaderModel
         {
             string functionName = "LoadMusicXmlFile";
             theMusicXmlFileName = fullXmlFileName;
-            theUserSettingsFileName = theMusicXmlFileName + ".IBOS";
+            theUserSettingsFileName = theMusicXmlFileName + ".IBOS_MusicXmlReader";
             bool ok = true;
             string xmlFileName = ""; // The MusicXml file currently handled 
             // ProgressWriter progressWriter = null;
