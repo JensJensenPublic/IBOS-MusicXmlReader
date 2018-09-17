@@ -77,7 +77,8 @@ namespace MusicXmlReader
                 // Initially none of the 3 main components has focus.
                 listBoxTimes.BackColor = NonFocusedColor;
                 listBoxDetails.BackColor = NonFocusedColor;
-                userSettingsTreeView.BackColor = NonFocusedColor;                
+                userSettingsTreeView.BackColor = NonFocusedColor;
+                textBoxText.Hide(); // Not for the end user !!Could be reenabled during debugging of Braille Music handling               
 
                 // Create remaining handlers. Some of the need references to others
                 detailsHandler = DetailsHandler.Create(listBoxTimes, listBoxDetails, model, this as IDebugDisplayerClient);
