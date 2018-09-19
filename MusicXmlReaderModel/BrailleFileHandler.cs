@@ -21,7 +21,8 @@ namespace MusicXmlReaderModel
         // According to https://en.wikipedia.org/wiki/Braille_ASCII the following string maps from the Unicode intervel 0x2800.. 0x283F
         // to the following Braille glyphs : "⠀⠁⠂⠃⠄⠅⠆⠇⠈⠉⠊⠋⠌⠍⠎⠏⠐⠑⠒⠓⠔⠕⠖⠗⠘⠙⠚⠛⠜⠝⠞⠟⠠⠡⠢⠣⠤⠥⠦⠧⠨⠩⠪⠫⠬⠭⠮⠯⠰⠱⠲⠳⠴⠵⠶⠷⠸⠹⠺⠻⠼⠽⠾⠿"         
         private const string map = " A1B'K2L@CIF/MSP\"E3H9O6R^DJG>NTQ,*5<-U8V.%[$+X!&;:4\\0Z7(_?W]#Y)=";
-        private byte[] byteMap;//  = new byte[64]();
+        private byte[] byteMap; //  Maps from a UNICODE 0x2800..0x283F char to a byte
+        private char[] charMap; //  Maps from a byte to a UNICODE char in 0x2800..0x283F
 
         public enum FileFormat{BRF_ASCII, BRF_Unicode, PEF};
         private FileFormat fileFormat;
@@ -281,6 +282,24 @@ namespace MusicXmlReaderModel
             {
                 char c = map[i];
                 byteMap[i] = (byte)(c % 256);
+            }
+            // Init the charMap for fast and easy conversion later
+            charMap = new char[256];
+            for (int i = 0; (i < map.Length); i++)
+            {
+                int index = map[i];
+                charMap[index] = (char)(0x2800 + i);
+            }
+            // Check both
+            const int BrailleBase = 0x2800;
+            for (int i = BrailleBase; i < BrailleBase + map.Length; i++)
+            {
+                byte b = byteMap[i - BrailleBase];
+                int result = charMap[b];
+                if (i != result)
+                {
+                    Logger.LogCF(string.Format(": Initialization error: char=0x{0}:x maps to byte={1} which maps to 0x{2:x}", i, b, result));
+                }
             }
         }
 
