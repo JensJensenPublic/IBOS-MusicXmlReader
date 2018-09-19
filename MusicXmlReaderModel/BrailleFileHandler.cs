@@ -13,6 +13,11 @@ namespace MusicXmlReaderModel
     /// </summary>
     class BrailleFileHandler
     {
+        const byte CarriageReturn = 13;
+        const byte LineFeed = 10;
+        const byte FormFeed = 12;
+
+
         // According to https://en.wikipedia.org/wiki/Braille_ASCII the following string maps from the Unicode intervel 0x2800.. 0x283F
         // to the following Braille glyphs : "⠀⠁⠂⠃⠄⠅⠆⠇⠈⠉⠊⠋⠌⠍⠎⠏⠐⠑⠒⠓⠔⠕⠖⠗⠘⠙⠚⠛⠜⠝⠞⠟⠠⠡⠢⠣⠤⠥⠦⠧⠨⠩⠪⠫⠬⠭⠮⠯⠰⠱⠲⠳⠴⠵⠶⠷⠸⠹⠺⠻⠼⠽⠾⠿"         
         private const string map = " A1B'K2L@CIF/MSP\"E3H9O6R^DJG>NTQ,*5<-U8V.%[$+X!&;:4\\0Z7(_?W]#Y)=";
@@ -82,6 +87,75 @@ namespace MusicXmlReaderModel
 
 
         /// <summary>
+        /// Convert  a list of strings to brf(ASCII) taking into account the dimensions of the sheet to print on  
+        /// </summary>
+        /// <param name="unicodeBrailleList"></param>
+        /// <param name="fullFileName"></param>
+        /// <returns></returns>
+        public bool WriteToFile(List<string> unicodeBrailleList, string fullFileName)
+        {
+            int lineWidth = 32; // 32 characters per line
+            int formHeight = 20; // 20 lines per form
+            // StringBuilder scoreStringBuilder = new StringBuilder(); // Represents the whole score
+            List<byte> scoreByteList = new List<byte>();  // Represents the whole score
+            int currentWidth = 0;
+            int currentHeight = 0;
+
+            int numberOfLines = 0; // For statistics only
+            int numberOfForms = 0; // For statistics only
+
+            foreach (string unicodeBraille in unicodeBrailleList)
+            {
+#warning TODO refactor this out !
+                // Represents a single event
+                int length = unicodeBraille.Length;
+                byte[] eventByteArray = new byte[length];
+                for (int i = 0; (i < length); i++)
+                {
+                    Char c = unicodeBraille[i];
+                    if ((c < 0x2800) || (c > 0x283F))
+                    {
+                        string message = string.Format("Illegal value for Unicode Braille = 0x{0:x}", c);
+                        Logger.LogCF(string.Format(": {0}", message));
+                    }
+                    else
+                    {
+                        byte mappedByte = byteMap[c - 0x2800]; // Map from the 0x2800..0x283F interval to the corresponding valie to write to the file
+                        eventByteArray[i] = mappedByte;
+                    }
+                }
+                if (currentWidth + eventByteArray.Length > lineWidth)
+                {
+                    // Insert a CR+LF
+
+                    scoreByteList.Add(CarriageReturn); 
+                    scoreByteList.Add(LineFeed);
+                    numberOfLines++;
+                    currentWidth = 0;
+                    currentHeight += 1;
+                    if (currentHeight >= formHeight)
+                    {
+                        // Insert a FF
+                        scoreByteList.Add(FormFeed);
+                        currentHeight = 0;
+                        numberOfForms++;
+                    }
+                    currentHeight++;
+                }
+                currentWidth += eventByteArray.Length;
+                scoreByteList.AddRange(eventByteArray);
+            }
+         
+            byte[] scoreByteArray = scoreByteList.ToArray();
+
+            Logger.LogCF(string.Format(": Generated {0} forms containing {1} lines", numberOfForms, numberOfLines));
+            return WriteToFile(scoreByteArray, fullFileName);
+        }
+
+
+
+
+        /// <summary>
         /// Writes the byteList to the file specified without any conversion !
         /// </summary>
         /// <param name="byteList"></param>
@@ -146,7 +220,8 @@ namespace MusicXmlReaderModel
             }
             string score = scoreAsMusicBraille.ToString();
             Logger.LogCF(string.Format(": Writing {0} Braille characters from {1} eventdescriptions to {2}", score.Length, eventList.Count,fullFileName));
-            return this.WriteToFile(score, fullFileName);
+            // return this.WriteToFile(score, fullFileName);  // Ignoring width and height
+            return this.WriteToFile(eventList, fullFileName); // Taking in account width and height
         }
 
         /// <summary>
