@@ -63,16 +63,13 @@ namespace MusicXmlReaderModel
         {
             int length = unicodeBraille.Length;
             byte[] byteArray = new byte[length];
-            for(int i = 0; (i<length); i++)
+            for (int i = 0; (i < length); i++)
             {
                 Char c = unicodeBraille[i];
                 if ((c < 0x2800) || (c > 0x283F))
-                {        
-                    if (c != ' ') // Ignore blanks !
-                    {
-                        string message = string.Format("Illegal value for Unicode Braille = 0x{0:x}", c);
-                        Logger.LogCF(string.Format(": {0}", message));
-                    }
+                {
+                    string message = string.Format("Illegal value for Unicode Braille = 0x{0:x}", c);
+                    Logger.LogCF(string.Format(": {0}", message));
                 }
                 else
                 {
@@ -129,27 +126,26 @@ namespace MusicXmlReaderModel
         public bool WriteToFile(EventDescriptionList events, UserSettings userSettings,  string fullFileName)
         {
 #warning TODO Save and restore USerSettings                   
-            // Set up for Music Braille for all parts. No normal text ! nothing else !
-            userSettings.SetAllPartsSettings(true);        // Select all parts 
+            // Set up for Music Braille. No normal text 
             userSettings.SetAllMusicBrailleSettings(true); // Select all Music Braille Settings (For each part selected above)
             userSettings.SetAllNormalTextSettings(false);   // Select no Normal Text settings   (For each part selected above)
             // Convert the parsed file to MusicBraille
-            StringBuilder scoreAsMusicBraille = new StringBuilder();
+            List<string> eventList = new List<string>();                // Keeps the structure: One event per list element
+            StringBuilder scoreAsMusicBraille = new StringBuilder();    // Ignores the structure
             for (int i = 0; (i < events.Events.Count); i++)
             {
                 object o = events.Events[i];
                 if (o is EventDescription)
                 {
                     EventDescription eventDescription = o as EventDescription;
-                    //BrailleBuilder BrailleForEvent = eventDescription.ToMusicBrailleString();
-                    //brailleForScore.Append(BrailleForEvent);
-
-                    string eventAsMusicBraille = o.ToString();
-                    scoreAsMusicBraille.Append(eventAsMusicBraille);
+                    BrailleBuilder bb = eventDescription.ToMusicBrailleString();
+                    string eventAsMusicBraille = bb.ToBrailleString();
+                    eventList.Add( eventAsMusicBraille);                // Keep the structure !
+                    scoreAsMusicBraille.Append(eventAsMusicBraille);    // Just append eerything
                 }
             }
             string score = scoreAsMusicBraille.ToString();
-            Logger.LogCF(string.Format(": Writing {0} Braille characters to {1}", score.Length, fullFileName));
+            Logger.LogCF(string.Format(": Writing {0} Braille characters from {1} eventdescriptions to {2}", score.Length, eventList.Count,fullFileName));
             return this.WriteToFile(score, fullFileName);
         }
 
