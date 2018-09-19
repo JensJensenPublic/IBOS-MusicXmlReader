@@ -323,5 +323,10 @@ namespace MusicXmlReader
         {
             model.SaveUserSettings();
         }
+
+        private void exportMusicBrailleToFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExportMusicBrailleToFile();
+        }
     }
 }

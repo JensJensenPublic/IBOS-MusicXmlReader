@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace MusicXmlReaderModel
 {
@@ -20,6 +21,21 @@ namespace MusicXmlReaderModel
         public enum FileFormat{BRF_ASCII,BBRF_Unicode,PEF};
         private FileFormat fileFormat;
 
+        public string Extension
+        {
+            get
+            {
+                switch (this.fileFormat)
+                {
+                    case FileFormat.BRF_ASCII: return "brf";
+                    case FileFormat.BBRF_Unicode: return "brf";
+                    case FileFormat.PEF: return "pef";
+                    default:
+                        Logger.LogCF(string.Format(": Unsupported fileFormat {0}", this.fileFormat));
+                        return "";
+                }
+            }
+        }
 
         private byte ToByte(Char unicodeValue)
         {
@@ -43,9 +59,23 @@ namespace MusicXmlReaderModel
         }
 
 
-        public bool WriteToFile(List<byte> bytes, string fullFileName)
+        /// <summary>
+        /// Writes the byteList to the file specified without any conversion !
+        /// </summary>
+        /// <param name="byteList"></param>
+        /// <param name="fullFileName"></param>
+        /// <returns></returns>
+        public bool WriteToFile(List<byte> byteList, string fullFileName)
         {
-            throw(new Exception("Not Implemented yet")); 
+            //throw(new Exception("Not Implemented yet"));
+            int length = byteList.Count;
+            byte[] byteArray = new byte[length];
+            byteArray = byteList.ToArray();
+
+            using (BinaryWriter bw = new BinaryWriter(File.Open(fullFileName, FileMode.Create)))
+            {
+                bw.Write(byteArray);
+            }
             bool result = true;
             return result;
         }

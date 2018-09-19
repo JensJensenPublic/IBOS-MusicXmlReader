@@ -1300,6 +1300,23 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             System.IO.File.WriteAllText(theUserSettingsFileName, xml);
         }
 
+        public void ExportMusicBrailleToFile()
+        {
+            // Early testcode !!!
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII);
+            {
+                string fileName = Path.ChangeExtension(theMusicXmlFileName, brailleFileHandler.Extension);
+                List<byte> testBytes = new List<byte>();
+                for (byte i = 0; (i < 64); i++)
+                {
+                    testBytes.Add(i);
+                }
+
+                brailleFileHandler.WriteToFile(testBytes, fileName);
+            }
+
+        }
+
     }
 
 }

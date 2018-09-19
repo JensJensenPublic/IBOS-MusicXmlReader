@@ -101,6 +101,7 @@
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.listBoxDetails = new System.Windows.Forms.ListBox();
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
+            this.exportMusicBrailleToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,6 +128,7 @@
             this.importDownloadsToolStripMenuItem,
             this.importNewestDownloadsToolStripMenuItem,
             this.importNewSampleFilesToolStripMenuItem,
+            this.exportMusicBrailleToFileToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
@@ -712,6 +714,13 @@
             this.textBoxScreenReader.Size = new System.Drawing.Size(926, 20);
             this.textBoxScreenReader.TabIndex = 12;
             // 
+            // exportMusicBrailleToFileToolStripMenuItem
+            // 
+            this.exportMusicBrailleToFileToolStripMenuItem.Name = "exportMusicBrailleToFileToolStripMenuItem";
+            this.exportMusicBrailleToFileToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.exportMusicBrailleToFileToolStripMenuItem.Text = "Export Music Braille to file";
+            this.exportMusicBrailleToFileToolStripMenuItem.Click += new System.EventHandler(this.exportMusicBrailleToFileToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -816,6 +825,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.TextBox textBoxScreenReader;
         private System.Windows.Forms.ToolStripMenuItem userSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportMusicBrailleToFileToolStripMenuItem;
     }
 }
 
