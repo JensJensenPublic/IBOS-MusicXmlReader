@@ -67,13 +67,18 @@ namespace MusicXmlReaderModel
             {
                 Char c = unicodeBraille[i];
                 if ((c < 0x2800) || (c > 0x283F))
-                {
-                    string message = string.Format("Illegal value for Unicode Braille = 0x{0:x}", c);
-                    Logger.LogCF(string.Format(": {0}", message));
-                    return false;
+                {        
+                    if (c != ' ') // Ignore blanks !
+                    {
+                        string message = string.Format("Illegal value for Unicode Braille = 0x{0:x}", c);
+                        Logger.LogCF(string.Format(": {0}", message));
+                    }
                 }
-                byte mappedByte = byteMap[c - 0x2800]; // Map from the 0x2800..0x283F interval to the corresponding valie to write to the file
-                byteArray[i] = mappedByte;
+                else
+                {
+                    byte mappedByte = byteMap[c - 0x2800]; // Map from the 0x2800..0x283F interval to the corresponding valie to write to the file
+                    byteArray[i] = mappedByte;
+                }
             }
             return WriteToFile(byteArray, fullFileName);
         }
@@ -112,7 +117,42 @@ namespace MusicXmlReaderModel
             return result;
         }
 
-        
+
+
+        /// <summary>
+        /// Generates the Music Mraille representation for the score described in events.
+        /// </summary>
+        /// <param name="events"></param>
+        /// <param name="userSettings"></param>
+        /// <param name="fullFileName"></param>
+        /// <returns></returns>
+        public bool WriteToFile(EventDescriptionList events, UserSettings userSettings,  string fullFileName)
+        {
+#warning TODO Save and restore USerSettings                   
+            // Set up for Music Braille for all parts. No normal text ! nothing else !
+            userSettings.SetAllPartsSettings(true);        // Select all parts 
+            userSettings.SetAllMusicBrailleSettings(true); // Select all Music Braille Settings (For each part selected above)
+            userSettings.SetAllNormalTextSettings(false);   // Select no Normal Text settings   (For each part selected above)
+            // Convert the parsed file to MusicBraille
+            StringBuilder scoreAsMusicBraille = new StringBuilder();
+            for (int i = 0; (i < events.Events.Count); i++)
+            {
+                object o = events.Events[i];
+                if (o is EventDescription)
+                {
+                    EventDescription eventDescription = o as EventDescription;
+                    //BrailleBuilder BrailleForEvent = eventDescription.ToMusicBrailleString();
+                    //brailleForScore.Append(BrailleForEvent);
+
+                    string eventAsMusicBraille = o.ToString();
+                    scoreAsMusicBraille.Append(eventAsMusicBraille);
+                }
+            }
+            string score = scoreAsMusicBraille.ToString();
+            Logger.LogCF(string.Format(": Writing {0} Braille characters to {1}", score.Length, fullFileName));
+            return this.WriteToFile(score, fullFileName);
+        }
+
         /// <summary>
         ///  Write an array of 16-bit characters to a file
         /// </summary>

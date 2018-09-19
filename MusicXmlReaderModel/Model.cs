@@ -1307,9 +1307,12 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             {
                 string fileName = Path.ChangeExtension(theMusicXmlFileName, brailleFileHandler.Extension);
 
-                brailleFileHandler.TestByteArray(fileName);
-                brailleFileHandler.TestByteList(fileName);
-                brailleFileHandler.TestUnicodeBraille(fileName);
+                //brailleFileHandler.TestByteArray(fileName);
+                //brailleFileHandler.TestByteList(fileName);
+                //brailleFileHandler.TestUnicodeBraille(fileName);
+
+                brailleFileHandler.WriteToFile(this.eventDescriptionList, this.userSettings, fileName);
+
             }
 
         }
