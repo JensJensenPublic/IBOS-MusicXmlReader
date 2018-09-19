@@ -59,6 +59,26 @@ namespace MusicXmlReaderModel
         }
 
 
+        public bool WriteToFile(string unicodeBraille, string fullFileName)
+        {
+            int length = unicodeBraille.Length;
+            byte[] byteArray = new byte[length];
+            for(int i = 0; (i<length); i++)
+            {
+                Char c = unicodeBraille[i];
+                if ((c < 0x2800) || (c > 0x283F))
+                {
+                    string message = string.Format("Illegal value for Unicode Braille = 0x{0:x}", c);
+                    Logger.LogCF(string.Format(": {0}", message));
+                    return false;
+                }
+                byte mappedByte = byteMap[c - 0x2800]; // Map from the 0x2800..0x283F interval to the corresponding valie to write to the file
+                byteArray[i] = mappedByte;
+            }
+            return WriteToFile(byteArray, fullFileName);
+        }
+
+
         /// <summary>
         /// Writes the byteList to the file specified without any conversion !
         /// </summary>
@@ -71,23 +91,28 @@ namespace MusicXmlReaderModel
             int length = byteList.Count;
             byte[] byteArray = new byte[length];
             byteArray = byteList.ToArray();
+            return WriteToFile(byteArray, fullFileName);
+        }
 
+
+        /// <summary>
+        /// Writes the byteArray to the file without any conversion
+        /// </summary>
+        /// <param name="byteArray"></param>
+        /// <param name="fullFileName"></param>
+        /// <returns></returns>
+        public bool WriteToFile(byte[] byteArray, string fullFileName)
+        {
             using (BinaryWriter bw = new BinaryWriter(File.Open(fullFileName, FileMode.Create)))
             {
                 bw.Write(byteArray);
             }
+#warning ToDO Error handling
             bool result = true;
             return result;
         }
 
-        public bool WriteToFile(string s, string fullFileName)
-        {
-            throw (new Exception("Not Implemented yet"));
-            bool result = true;
-            return result;
-        }
-
-
+        
         /// <summary>
         ///  Write an array of 16-bit characters to a file
         /// </summary>
@@ -99,10 +124,49 @@ namespace MusicXmlReaderModel
             bool result = true;
             return result;
         }
+        // Tests
+
+
+
+        public bool TestByteList(string fileName)
+        {
+            List<byte> byteList = new List<byte>();
+            for (byte i = 0; (i < 64); i++)
+            {
+                byteList.Add(i);
+            }
+            return this.WriteToFile(byteList,fileName + "ByteList.bin");
+        }
+
+        public bool TestByteArray(string fileName)
+        {
+            List<byte> testBytes = new List<byte>();
+            for (byte i = 0; (i < 64); i++)
+            {
+                testBytes.Add(i);
+            }
+            List<byte> byteArray = new List<byte>(testBytes);
+            return this.WriteToFile(byteArray,fileName + "ByteArray.bin");
+        }
+
+        public bool TestUnicodeBraille(string fileName)
+        {
+            int length = 64;
+            StringBuilder sb = new StringBuilder(length);
+            for (int i = 0; (i < length); i++)
+            {
+                char c = (char) (i + 0x2800);
+                sb.Append(c);
+            }
+            string s = sb.ToString();
+            return this.WriteToFile(s,fileName + "Unicode.bin");
+        }
+
+
 
         // Construction
-        
-         
+
+
         private BrailleFileHandler()
         {
         }

@@ -1306,13 +1306,10 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII);
             {
                 string fileName = Path.ChangeExtension(theMusicXmlFileName, brailleFileHandler.Extension);
-                List<byte> testBytes = new List<byte>();
-                for (byte i = 0; (i < 64); i++)
-                {
-                    testBytes.Add(i);
-                }
 
-                brailleFileHandler.WriteToFile(testBytes, fileName);
+                brailleFileHandler.TestByteArray(fileName);
+                brailleFileHandler.TestByteList(fileName);
+                brailleFileHandler.TestUnicodeBraille(fileName);
             }
 
         }
