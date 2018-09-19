@@ -23,7 +23,7 @@ namespace MusicXmlReaderModel
         private const string map = " A1B'K2L@CIF/MSP\"E3H9O6R^DJG>NTQ,*5<-U8V.%[$+X!&;:4\\0Z7(_?W]#Y)=";
         private byte[] byteMap;//  = new byte[64]();
 
-        public enum FileFormat{BRF_ASCII,BBRF_Unicode,PEF};
+        public enum FileFormat{BRF_ASCII, BRF_Unicode, PEF};
         private FileFormat fileFormat;
 
         public string Extension
@@ -33,7 +33,7 @@ namespace MusicXmlReaderModel
                 switch (this.fileFormat)
                 {
                     case FileFormat.BRF_ASCII: return "brf";
-                    case FileFormat.BBRF_Unicode: return "brf";
+                    case FileFormat.BRF_Unicode: return "brf";
                     case FileFormat.PEF: return "pef";
                     default:
                         Logger.LogCF(string.Format(": Unsupported fileFormat {0}", this.fileFormat));
@@ -42,29 +42,34 @@ namespace MusicXmlReaderModel
             }
         }
 
-        private byte ToByte(Char unicodeValue)
-        {
-            int index = unicodeValue - 0x2800;
-            byte b = byteMap[index];
-            return b;
-        }
+        //private byte ToByte(Char unicodeValue)
+        //{
+        //    int index = unicodeValue - 0x2800;
+        //    byte b = byteMap[index];
+        //    return b;
+        //}
 
-        public List<byte> ToBytes(EventDescriptionList events, UserSettings userSettings)
-        {
-            throw (new Exception("Not Implemented yet"));
-            List<byte> bytes = new List<byte>();
-            return bytes;
-        }
+        //public List<byte> ToBytes(EventDescriptionList events, UserSettings userSettings)
+        //{
+        //    throw (new Exception("Not Implemented yet"));
+        //    List<byte> bytes = new List<byte>();
+        //    return bytes;
+        //}
 
-        public List<Char> ToChars(EventDescriptionList events, UserSettings userSettings)
-        {
-            throw (new Exception("Not Implemented yet"));
-            List<Char> bytes = new List<Char>();
-            return bytes;
-        }
+        //public List<Char> ToChars(EventDescriptionList events, UserSettings userSettings)
+        //{
+        //    throw (new Exception("Not Implemented yet"));
+        //    List<Char> bytes = new List<Char>();
+        //    return bytes;
+        //}
 
 
-        public bool WriteToFile(string unicodeBraille, string fullFileName)
+        /// <summary>
+        /// Converts a (Unicode-based) string of Braille characters (0x2800..0x283F) to its RBF-ASCII representation
+        /// </summary>
+        /// <param name="unicodeBraille"></param>
+        /// <returns></returns>
+        private byte[] ToRbfASCII(string unicodeBraille)
         {
             int length = unicodeBraille.Length;
             byte[] byteArray = new byte[length];
@@ -74,6 +79,7 @@ namespace MusicXmlReaderModel
                 if ((c < 0x2800) || (c > 0x283F))
                 {
                     string message = string.Format("Illegal value for Unicode Braille = 0x{0:x}", c);
+                    byteArray[i] = 0x20; // Insert an empty Braille Character  
                     Logger.LogCF(string.Format(": {0}", message));
                 }
                 else
@@ -82,6 +88,13 @@ namespace MusicXmlReaderModel
                     byteArray[i] = mappedByte;
                 }
             }
+            return byteArray;
+        }
+
+
+        public bool WriteToFile(string unicodeBraille, string fullFileName)
+        {
+            byte[] byteArray = ToRbfASCII(unicodeBraille);
             return WriteToFile(byteArray, fullFileName);
         }
 
@@ -96,39 +109,21 @@ namespace MusicXmlReaderModel
         {
             int lineWidth = 32; // 32 characters per line
             int formHeight = 20; // 20 lines per form
-            // StringBuilder scoreStringBuilder = new StringBuilder(); // Represents the whole score
+
             List<byte> scoreByteList = new List<byte>();  // Represents the whole score
             int currentWidth = 0;
             int currentHeight = 0;
-
             int numberOfLines = 0; // For statistics only
             int numberOfForms = 0; // For statistics only
 
             foreach (string unicodeBraille in unicodeBrailleList)
             {
-#warning TODO refactor this out !
-                // Represents a single event
-                int length = unicodeBraille.Length;
-                byte[] eventByteArray = new byte[length];
-                for (int i = 0; (i < length); i++)
-                {
-                    Char c = unicodeBraille[i];
-                    if ((c < 0x2800) || (c > 0x283F))
-                    {
-                        string message = string.Format("Illegal value for Unicode Braille = 0x{0:x}", c);
-                        Logger.LogCF(string.Format(": {0}", message));
-                    }
-                    else
-                    {
-                        byte mappedByte = byteMap[c - 0x2800]; // Map from the 0x2800..0x283F interval to the corresponding valie to write to the file
-                        eventByteArray[i] = mappedByte;
-                    }
-                }
+                byte[] eventByteArray = ToRbfASCII(unicodeBraille); // Represents one single event
                 if (currentWidth + eventByteArray.Length > lineWidth)
                 {
                     // Insert a CR+LF
 
-                    scoreByteList.Add(CarriageReturn); 
+                    scoreByteList.Add(CarriageReturn);
                     scoreByteList.Add(LineFeed);
                     numberOfLines++;
                     currentWidth = 0;
@@ -145,11 +140,9 @@ namespace MusicXmlReaderModel
                 currentWidth += eventByteArray.Length;
                 scoreByteList.AddRange(eventByteArray);
             }
-         
-            byte[] scoreByteArray = scoreByteList.ToArray();
 
             Logger.LogCF(string.Format(": Generated {0} forms containing {1} lines", numberOfForms, numberOfLines));
-            return WriteToFile(scoreByteArray, fullFileName);
+            return WriteToFile(scoreByteList, fullFileName);
         }
 
 
@@ -163,10 +156,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public bool WriteToFile(List<byte> byteList, string fullFileName)
         {
-            //throw(new Exception("Not Implemented yet"));
-            int length = byteList.Count;
-            byte[] byteArray = new byte[length];
-            byteArray = byteList.ToArray();
+            byte[] byteArray = byteList.ToArray();
             return WriteToFile(byteArray, fullFileName);
         }
 
