@@ -1313,6 +1313,8 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
 
                 brailleFileHandler.WriteToFile(this.eventDescriptionList, this.userSettings, fileName);
 
+                brailleFileHandler.ToUnicode(fileName);
+
             }
 
         }

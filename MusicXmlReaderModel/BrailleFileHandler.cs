@@ -92,6 +92,17 @@ namespace MusicXmlReaderModel
             return byteArray;
         }
 
+        private string ToUnicode(byte[] bytes)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; (i < bytes.Length); i++)
+            {
+                byte b = bytes[i];
+                sb.Append(charMap[b]);
+            }
+            return sb.ToString();
+        }
+
 
         public bool WriteToFile(string unicodeBraille, string fullFileName)
         {
@@ -264,6 +275,30 @@ namespace MusicXmlReaderModel
             return this.WriteToFile(s,fileName + "Unicode.bin");
         }
 
+
+        // Test
+
+
+        /// <summary>
+        /// Converts a file in .BRF (ASCII) format to Unicode (Hopefully representing the embossed version of it) 
+        /// </summary>
+        /// <param name="fullFilefileName"></param>
+        public void ToUnicode(string fullFileName)
+        {
+            byte[] bytes;
+            using (BinaryReader br = new BinaryReader(File.Open(fullFileName, FileMode.Open)))
+            {
+                //bytes = br.ReadBytes(int.MaxValue);
+#warning ToDo fix constant
+                bytes = br.ReadBytes(10000);              
+            }
+            string brailleString = ToUnicode(bytes);
+            using (BinaryWriter bw = new BinaryWriter(File.Open(fullFileName + ".txt", FileMode.Create)))
+            {
+                bw.Write(brailleString);
+            }
+
+        }
 
 
         // Construction
