@@ -34,6 +34,7 @@
             this.importDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importNewestDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importNewSampleFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportMusicBrailleToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,7 +102,7 @@
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.listBoxDetails = new System.Windows.Forms.ListBox();
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
-            this.exportMusicBrailleToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brailleFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -163,6 +164,13 @@
             this.importNewSampleFilesToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.importNewSampleFilesToolStripMenuItem.Text = "Import New Sample files";
             this.importNewSampleFilesToolStripMenuItem.Click += new System.EventHandler(this.importNewSampleFilesToolStripMenuItem_Click);
+            // 
+            // exportMusicBrailleToFileToolStripMenuItem
+            // 
+            this.exportMusicBrailleToFileToolStripMenuItem.Name = "exportMusicBrailleToFileToolStripMenuItem";
+            this.exportMusicBrailleToFileToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.exportMusicBrailleToFileToolStripMenuItem.Text = "Export Music Braille to file";
+            this.exportMusicBrailleToFileToolStripMenuItem.Click += new System.EventHandler(this.exportMusicBrailleToFileToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -310,7 +318,8 @@
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.instrumentsToolStripMenuItem});
+            this.instrumentsToolStripMenuItem,
+            this.brailleFileToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.viewToolStripMenuItem.Text = "&View";
@@ -714,12 +723,12 @@
             this.textBoxScreenReader.Size = new System.Drawing.Size(926, 20);
             this.textBoxScreenReader.TabIndex = 12;
             // 
-            // exportMusicBrailleToFileToolStripMenuItem
+            // brailleFileToolStripMenuItem
             // 
-            this.exportMusicBrailleToFileToolStripMenuItem.Name = "exportMusicBrailleToFileToolStripMenuItem";
-            this.exportMusicBrailleToFileToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.exportMusicBrailleToFileToolStripMenuItem.Text = "Export Music Braille to file";
-            this.exportMusicBrailleToFileToolStripMenuItem.Click += new System.EventHandler(this.exportMusicBrailleToFileToolStripMenuItem_Click);
+            this.brailleFileToolStripMenuItem.Name = "brailleFileToolStripMenuItem";
+            this.brailleFileToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.brailleFileToolStripMenuItem.Text = "BrailleFile";
+            this.brailleFileToolStripMenuItem.Click += new System.EventHandler(this.brailleFileToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -826,6 +835,7 @@
         private System.Windows.Forms.TextBox textBoxScreenReader;
         private System.Windows.Forms.ToolStripMenuItem userSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportMusicBrailleToFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem brailleFileToolStripMenuItem;
     }
 }
 

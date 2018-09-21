@@ -633,6 +633,23 @@ namespace MusicXmlReader
             detailsHandler.ShowGlobalDetails(DetailsHandler.DetailsEnum.Instruments, DetailsHandler.DetailsDirection.FromTop);
         }
 
+
+        private void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.SaveUserSettings();
+        }
+
+        private void exportMusicBrailleToFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExportMusicBrailleToFile();
+        }
+
+        private void brailleFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            detailsHandler.ShowGlobalDetails(DetailsHandler.DetailsEnum.BrailleFile, DetailsHandler.DetailsDirection.FromTop);
+        }
+
+
         private void usersManualToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowUsersManual();

@@ -283,7 +283,7 @@ namespace MusicXmlReaderModel
         /// Converts a file in .BRF (ASCII) format to Unicode (Hopefully representing the embossed version of it) 
         /// </summary>
         /// <param name="fullFilefileName"></param>
-        public void ToUnicode(string fullFileName)
+        public string ToUnicode(string fullFileName)
         {
             byte[] bytes;
             using (BinaryReader br = new BinaryReader(File.Open(fullFileName, FileMode.Open)))
@@ -297,6 +297,8 @@ namespace MusicXmlReaderModel
             {
                 bw.Write(brailleString);
             }
+
+            return brailleString;
 
         }
 
@@ -325,6 +327,11 @@ namespace MusicXmlReaderModel
                 int index = map[i];
                 charMap[index] = (char)(0x2800 + i);
             }
+            // Also map 3 controls to their Unicode equivalents
+            charMap[LineFeed] = (char)LineFeed;
+            charMap[FormFeed] = (char)FormFeed;
+            charMap[CarriageReturn] = (char)CarriageReturn;
+
             // Check both
             const int BrailleBase = 0x2800;
             for (int i = BrailleBase; i < BrailleBase + map.Length; i++)

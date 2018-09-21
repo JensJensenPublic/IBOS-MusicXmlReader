@@ -11,7 +11,7 @@ namespace MusicXmlReader
     public class DetailsHandler
     {
         string className = "MusicXmlReader";
-        public enum DetailsEnum { Unknown, Harmonies, Parts, Notes, NotesForPart, Instruments, Status };
+        public enum DetailsEnum { Unknown, Harmonies, Parts, Notes, NotesForPart, Instruments, Status, BrailleFile };
         private ListBox listBoxTimes;
         private ListBox listBoxDetails;
         private Model model;
@@ -297,9 +297,15 @@ namespace MusicXmlReader
             string functionName = "ShowGlobalDetails";
             try
             {
-                if (DetailsEnum.Instruments != detailsEnum) return; // This function only supports these sorts of details.
-                listBoxDetails.Items.Clear();
-                DetailsDescription[] items = model.GetAllPartDetails();
+                DetailsDescription[] items = null;
+                switch (detailsEnum)
+                {
+                    // This function only supports these sorts of details:
+                    case DetailsEnum.Instruments: items = model.GetAllPartDetails(); break;
+                    case DetailsEnum.BrailleFile:  items = model.GetBrailleFileDetails(); break;
+                    default: Logger.LogCF(string.Format(": Unsupported detail '{0}'", detailsEnum.ToString()));     return;
+                }
+                listBoxDetails.Items.Clear();          
                 AddItems(items, detailsEnum, detailsDirection,functionName);
                 LeaveListboxTimes();
                 listBoxDetails.Focus();

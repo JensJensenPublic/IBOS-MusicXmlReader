@@ -1227,6 +1227,27 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
         }
 
 
+        public DetailsDescription[] GetBrailleFileDetails()
+        {
+            // Create a Detailsplayer designed for the purpose
+            detailsPlayer = DetailsPlayer.Create();
+            // Get the contents
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create();
+            string fileName = theMusicXmlFileName + "rbf";
+            brailleFileHandler.WriteToFile(this.eventDescriptionList, this.userSettings, fileName);
+            string brailleFileAsUnicode = brailleFileHandler.ToUnicode(fileName);
+            // Format the contents
+            string[] lines = brailleFileAsUnicode.Split((char)010);
+            string[] forms = brailleFileAsUnicode.Split((char)012); 
+            // Fille in the detailsplayer with the contents  
+            foreach ( string line in lines )
+            {
+                detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(line));
+            }
+            return detailsPlayer.DetailsDescriptionArray;
+        }
+
+
         /// <summary>
         /// Move selection to the start of the next or previous measure
         /// </summary>

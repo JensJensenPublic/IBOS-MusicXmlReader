@@ -102,6 +102,11 @@ namespace MusicXmlReaderModel
         //    detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", numberOfParts, text)));
         }
 
+        private DetailsPlayer()
+        {
+            detailsDescriptions = new List<DetailsDescription>();
+        }
+
 
         private DetailsPlayer(EventDescription eventDescription, PartlistElement partList, UserSettings userSettings, MusicPlayer musicPlayer, bool noteLevel)
         {
@@ -359,6 +364,11 @@ namespace MusicXmlReaderModel
         public static DetailsPlayer Create(StatusInformation statusInformation)
         {
             return new DetailsPlayer(statusInformation);
+        }
+
+        public static  DetailsPlayer Create()
+        {
+            return new DetailsPlayer();
         }
         
     }
