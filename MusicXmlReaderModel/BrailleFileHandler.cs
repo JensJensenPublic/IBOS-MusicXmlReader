@@ -17,6 +17,14 @@ namespace MusicXmlReaderModel
         const byte LineFeed = 10;
         const byte FormFeed = 12;
 
+        // Some general information about Braille file formats:
+        //
+        // https://www.ukaaf.org/wp-content/uploads/2017/03/ReadingElectronicBrailleFinal.pdf
+        // https://en.wikipedia.org/wiki/Braille_ASCII 
+        // https://en.wikipedia.org/wiki/Computer_Braille_Code 
+        // https://en.wikipedia.org/wiki/Unified_English_Braille 
+        // https://en.wikipedia.org/wiki/Braille_Patterns
+
 
         // According to https://en.wikipedia.org/wiki/Braille_ASCII the following string maps from the Unicode intervel 0x2800.. 0x283F
         // to the following Braille glyphs : "⠀⠁⠂⠃⠄⠅⠆⠇⠈⠉⠊⠋⠌⠍⠎⠏⠐⠑⠒⠓⠔⠕⠖⠗⠘⠙⠚⠛⠜⠝⠞⠟⠠⠡⠢⠣⠤⠥⠦⠧⠨⠩⠪⠫⠬⠭⠮⠯⠰⠱⠲⠳⠴⠵⠶⠷⠸⠹⠺⠻⠼⠽⠾⠿"         

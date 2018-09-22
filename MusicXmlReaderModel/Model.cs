@@ -1237,12 +1237,16 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             brailleFileHandler.WriteToFile(this.eventDescriptionList, this.userSettings, fileName);
             string brailleFileAsUnicode = brailleFileHandler.ToUnicode(fileName);
             // Format the contents
-            string[] lines = brailleFileAsUnicode.Split((char)010);
-            string[] forms = brailleFileAsUnicode.Split((char)012); 
-            // Fille in the detailsplayer with the contents  
-            foreach ( string line in lines )
+   
+            string[] forms = brailleFileAsUnicode.Split((char)012); // Split into a number of forms
+            // Fill in the detailsplayer with the contents  
+            foreach ( string form in forms )
             {
-                detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(line));
+                string[] lines = form.Split((char)010); // Split each form into a number of lines
+                foreach (string line in lines)
+                {
+                    detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(line));
+                }
             }
             return detailsPlayer.DetailsDescriptionArray;
         }
