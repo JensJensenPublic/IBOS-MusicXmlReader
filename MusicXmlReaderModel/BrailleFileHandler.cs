@@ -35,6 +35,12 @@ namespace MusicXmlReaderModel
         private byte[] byteMap; //  Maps from a UNICODE 0x2800..0x283F char to a byte.    Is filled in during initialization !
         private char[] charMap; //  Maps from a byte to a UNICODE char in 0x2800..0x283F  Is filled in during initialization !
 
+        // According to https://en.wikipedia.org/wiki/Computer_Braille_Code: (Manually derived from the Web page:
+        // 0x2800
+        // + 0x10 *                                       0                1               2               3
+        // + 0x01 *                                       0123456789ABCDEF 0123456789ABCDEF0123456789ABCDEF012 3456789ABCDEF 
+        private const string Computer_Braille_Code_map = " a1b'k2l@cif/msp\"e3h9o6r^djg>ntq,*5<-u8v.%[$+x!&;:4\\0z7( ?w]#y)="; // No code for 0x38 !!
+
         public enum FileFormat{BRF_ASCII, BRF_Unicode, PEF};
         private FileFormat fileFormat;
 
