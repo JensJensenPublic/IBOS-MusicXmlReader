@@ -1350,20 +1350,27 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
 
         /// <summary>
         /// Generate a simple test patterns consisting of the 64 possible Braille glyphs and write it to 
-        /// the directory used for downloading MusicXml files
+        /// the directory used for Log files
+        /// Finally open an explorer in that directory:
         /// </summary>
         public void GenerateMusicBrailleTestpattern()
         {
-            string directoryName = myMusicXmlDownloadDirectory;
+            string directoryName = Logger.LogFileDirectory;
+
             BrailleFileHandler brailleFileHandler;
 
             // First for BRF_ASCII
             brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII);
             brailleFileHandler.GenerateTestpattern(directoryName);
 
-            // Then for BRF_Unicode
-            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode);
-            brailleFileHandler.GenerateTestpattern(directoryName);
+#warning ToDo implement for Unicode
+            //// Then for BRF_Unicode
+            //brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode);
+            //brailleFileHandler.GenerateTestpattern(directoryName);
+
+            // Open an explorer to inspect the log filed
+            ExternalToolsHandler.OpenLogFileLocation();  
+
         }
 
     }
