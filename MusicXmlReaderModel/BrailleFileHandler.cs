@@ -163,7 +163,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public bool WriteToFile(List<string> unicodeBrailleList, string fullFileName)
         {
-            int lineWidth = 32; // 32 characters per line
+            int lineWidth = 8; //  8 characters per line
             int formHeight = 20; // 20 lines per form
 
             List<byte> scoreByteList = new List<byte>();  // Represents the whole score
@@ -174,16 +174,35 @@ namespace MusicXmlReaderModel
 
             foreach (string unicodeBraille in unicodeBrailleList)
             {
-                byte[] eventByteArray = ToRbfASCII(unicodeBraille); // Represents one single event
-                if (currentWidth + eventByteArray.Length > lineWidth)
+                List<byte>  nextLine;
+                byte[] remainingBytes = ToRbfASCII(unicodeBraille); // Represents one single event
+                List<byte> remainingByteList = remainingBytes.ToList(); 
+                bool done = false;
+                while (!done)                   
                 {
-                    // Insert a CR+LF
+                    if (currentWidth + remainingByteList.Count <= lineWidth)
+                    {
+                        nextLine = remainingByteList;
+                        done = true;
+                        // No need to update remainingBytes
+                    }
+                    else
+                    {
+                        scoreByteList.Add(CarriageReturn);
+                        scoreByteList.Add(LineFeed);
+                        numberOfLines++;
+                        currentWidth = 0;
+                        nextLine = remainingByteList.GetRange(0, lineWidth);
+                        remainingByteList = remainingByteList.GetRange(lineWidth, remainingByteList.Count - lineWidth);
+                        //nextLine = (byte[]) remainingBytes.Take(lineWidth);
+                        //remainingBytes = (byte[])remainingBytes.Skip(lineWidth);
+                    }
+                    currentWidth += nextLine.Count;
+                    scoreByteList.AddRange(nextLine);
+                    currentHeight++;
 
-                    scoreByteList.Add(CarriageReturn);
-                    scoreByteList.Add(LineFeed);
-                    numberOfLines++;
-                    currentWidth = 0;
-                    currentHeight += 1;
+                    // In both cases split in forms if needed
+
                     if (currentHeight >= formHeight)
                     {
                         // Insert a FF
@@ -191,10 +210,30 @@ namespace MusicXmlReaderModel
                         currentHeight = 0;
                         numberOfForms++;
                     }
-                    currentHeight++;
                 }
-                currentWidth += eventByteArray.Length;
-                scoreByteList.AddRange(eventByteArray);
+
+
+                //byte[] eventByteArray = ToRbfASCII(unicodeBraille); // Represents one single event
+                //if (currentWidth + eventByteArray.Length > lineWidth)
+                //{
+                //    // Insert a CR+LF
+
+                //    scoreByteList.Add(CarriageReturn);
+                //    scoreByteList.Add(LineFeed);
+                //    numberOfLines++;
+                //    currentWidth = 0;
+                //    currentHeight += 1;
+                //    if (currentHeight >= formHeight)
+                //    {
+                //        // Insert a FF
+                //        scoreByteList.Add(FormFeed);
+                //        currentHeight = 0;
+                //        numberOfForms++;
+                //    }
+                //    currentHeight++;
+                //}
+                //currentWidth += eventByteArray.Length;
+                //scoreByteList.AddRange(eventByteArray);
             }
 
             Logger.LogCF(string.Format(": Generated {0} forms containing {1} lines", numberOfForms, numberOfLines));
@@ -379,7 +418,9 @@ namespace MusicXmlReaderModel
                 }
             }
             string testPattern = sb.ToString();
-            this.WriteToFile(testPattern, fullFileName);
+            List<string> list = new List<string>();
+            list.Add(testPattern); // A list containing only one item!
+            this.WriteToFile(list, fullFileName);
             Logger.LogCF(string.Format(": Wrote testpattern to {0}", fullFileName));
 
         }
