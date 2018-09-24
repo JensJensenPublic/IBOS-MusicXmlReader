@@ -656,6 +656,11 @@ namespace MusicXmlReader
         }
 
 
+        private void generateMusicBrailleTestpatternToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.GenerateMusicBrailleTestpattern();
+        }
+
         private void ShowUsersManual()
         {
             string functionName = "ShowUsersManual";

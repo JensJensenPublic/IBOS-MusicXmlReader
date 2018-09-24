@@ -121,10 +121,37 @@ namespace MusicXmlReaderModel
         }
 
 
+
+
+        /// <summary>
+        /// Writes a UNICODE  (0x2800..0x283F) string to the file specified after concerting if needed
+        /// </summary>
+        /// <param name="unicodeBraille"></param>
+        /// <param name="fullFileName"></param>
+        /// <returns></returns>
         public bool WriteToFile(string unicodeBraille, string fullFileName)
         {
-            byte[] byteArray = ToRbfASCII(unicodeBraille);
-            return WriteToFile(byteArray, fullFileName);
+            switch (fileFormat)
+            {
+                case FileFormat.BRF_ASCII:
+                    byte[] byteArray = ToRbfASCII(unicodeBraille);
+                    return WriteToFile(byteArray, fullFileName);
+                case FileFormat.BRF_Unicode:
+                    bool result = false;
+                    try
+                    {
+                        System.IO.File.WriteAllText(fullFileName, unicodeBraille);
+                        result = true;
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.LogCFE(e);
+                    }
+                    return result;
+                default:
+                    Logger.LogCF(string.Format(": Unsupported firl format {0}", fileFormat.ToString()));
+                    return false;                   
+            }
         }
 
 
@@ -333,6 +360,28 @@ namespace MusicXmlReaderModel
                     
             }
             return result;          
+        }
+
+
+        /// <summary>
+        /// Generate a testpattern containing all 64 possible 6-point Braille glyphs and write it to a file
+        /// </summary>
+        /// <param name="directoryName"></param>
+        public void GenerateTestpattern(string directoryName)
+        {
+            string fullFileName = Path.Combine(directoryName, "MusicBrailleTestPattern" + "."  + fileFormat.ToString() + "." + Extension);
+            StringBuilder sb = new StringBuilder();
+            {
+                for (int i = 0x2800; i < 0x2840; i++)
+                {
+                    char c = (char)(i);
+                    sb.Append(c);
+                }
+            }
+            string testPattern = sb.ToString();
+            this.WriteToFile(testPattern, fullFileName);
+            Logger.LogCF(string.Format(": Wrote testpattern to {0}", fullFileName));
+
         }
 
 

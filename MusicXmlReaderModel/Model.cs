@@ -1348,6 +1348,24 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
 
         }
 
+        /// <summary>
+        /// Generate a simple test patterns consisting of the 64 possible Braille glyphs and write it to 
+        /// the directory used for downloading MusicXml files
+        /// </summary>
+        public void GenerateMusicBrailleTestpattern()
+        {
+            string directoryName = myMusicXmlDownloadDirectory;
+            BrailleFileHandler brailleFileHandler;
+
+            // First for BRF_ASCII
+            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII);
+            brailleFileHandler.GenerateTestpattern(directoryName);
+
+            // Then for BRF_Unicode
+            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode);
+            brailleFileHandler.GenerateTestpattern(directoryName);
+        }
+
     }
 
 }
