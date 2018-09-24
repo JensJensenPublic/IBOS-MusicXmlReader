@@ -297,26 +297,42 @@ namespace MusicXmlReaderModel
 
 
         /// <summary>
-        /// Converts a file in .BRF (ASCII) format to Unicode (Hopefully representing the embossed version of it) 
+        /// Reads a file containing MusicBraille information and returns its contents as a UNICODE string
+        /// If the file is not already in UNICODE format (0x2800..0x283F), the contents is converted to UNICODE representation on the fly
         /// </summary>
         /// <param name="fullFilefileName"></param>
-        public string ToUnicode(string fullFileName)
+        public string ReadFromFile(string fullFileName)
         {
-            byte[] bytes;
-            using (BinaryReader br = new BinaryReader(File.Open(fullFileName, FileMode.Open)))
+            string result = "";
+            switch (fileFormat)
             {
-                //bytes = br.ReadBytes(int.MaxValue);
+                case FileFormat.BRF_ASCII:
+                    {
+                        byte[] bytes;
+                        using (BinaryReader br = new BinaryReader(File.Open(fullFileName, FileMode.Open)))
+                        {
+                            //bytes = br.ReadBytes(int.MaxValue);
 #warning ToDo fix constant
-                bytes = br.ReadBytes(10000);              
-            }
-            string brailleString = ToUnicode(bytes);
-            using (BinaryWriter bw = new BinaryWriter(File.Open(fullFileName + ".txt", FileMode.Create)))
-            {
-                bw.Write(brailleString);
-            }
+                            bytes = br.ReadBytes(10000);
+                        }
+                        result = ToUnicode(bytes);
+                        break;
+                    }
 
-            return brailleString;
-
+                case FileFormat.BRF_Unicode:
+                    {                       
+                        using (BinaryReader br = new BinaryReader(File.Open(fullFileName, FileMode.Open)))
+                        {
+                            result = System.IO.File.ReadAllText(fullFileName); 
+                        }
+                        break;
+                    }
+                default:
+                    Logger.LogCF(string.Format(" Unsupported file format '{0}'", fileFormat.ToString()));
+                    break;
+                    
+            }
+            return result;          
         }
 
 

@@ -1234,9 +1234,13 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             // Get the contents
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create();
             string fileName = theMusicXmlFileName + "rbf";
-            brailleFileHandler.WriteToFile(this.eventDescriptionList, this.userSettings, fileName);
-            string brailleFileAsUnicode = brailleFileHandler.ToUnicode(fileName);
-            // Format the contents
+            // In order to emulate the "real" behaviour for generating and writing a file with MusicBraille information 
+            // we go to the full proces of writing the file to the filesystem and reading it back !
+#warning ToDo Write the file to the MusicXmlReader testrdirectory, NOT to the user directory !
+            brailleFileHandler.WriteToFile(this.eventDescriptionList, this.userSettings, fileName); // Generate and write the file
+            string brailleFileAsUnicode = brailleFileHandler.ReadFromFile(fileName);                //  Read the fiel back
+
+            // Format the contents for the Detaile window using the formatting information embedded in the file 
    
             string[] forms = brailleFileAsUnicode.Split((char)012); // Split into a number of forms
             // Fill in the detailsplayer with the contents  
@@ -1338,7 +1342,7 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
 
                 brailleFileHandler.WriteToFile(this.eventDescriptionList, this.userSettings, fileName);
 
-                brailleFileHandler.ToUnicode(fileName);
+                // brailleFileHandler.ToUnicode(fileName);
 
             }
 
