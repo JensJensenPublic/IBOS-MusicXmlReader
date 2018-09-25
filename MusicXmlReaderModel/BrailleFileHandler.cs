@@ -81,30 +81,41 @@ namespace MusicXmlReaderModel
         //    return bytes;
         //}
 
+        private byte[] ToRbfASCII(string unicodeBraille)
+        {
+            return ToRbfASCII(unicodeBraille, false);
+        }
+
 
         /// <summary>
         /// Converts a (Unicode-based) string of Braille characters (0x2800..0x283F) to its RBF-ASCII representation
         /// </summary>
         /// <param name="unicodeBraille"></param>
         /// <returns></returns>
-        private byte[] ToRbfASCII(string unicodeBraille)
+        private byte[] ToRbfASCII(string unicodeBraille, bool acceptControls)
         {
             int length = unicodeBraille.Length;
             byte[] byteArray = new byte[length];
             for (int i = 0; (i < length); i++)
             {
                 Char c = unicodeBraille[i];
-                if ((c < 0x2800) || (c > 0x283F))
+                if ((c >= 0x2800) && (c <= 0x283F))
+                {
+                    byte mappedByte = byteMap[c - 0x2800]; // Map from the 0x2800..0x283F interval to the corresponding valie to write to the file
+                    byteArray[i] = mappedByte;
+                }
+                else if (acceptControls &&((c == (char)CarriageReturn) || (c == (char)LineFeed) || (c == (char)FormFeed)))
+                {
+                    byteArray[i] = (byte) c;
+                }
+
+                else
                 {
                     string message = string.Format("Illegal value for Unicode Braille = 0x{0:x}", c);
                     byteArray[i] = 0x20; // Insert an empty Braille Character  
                     Logger.LogCF(string.Format(": {0}", message));
                 }
-                else
-                {
-                    byte mappedByte = byteMap[c - 0x2800]; // Map from the 0x2800..0x283F interval to the corresponding valie to write to the file
-                    byteArray[i] = mappedByte;
-                }
+
             }
             return byteArray;
         }
@@ -121,6 +132,10 @@ namespace MusicXmlReaderModel
         }
 
 
+        public bool WriteToFile(string unicodeBraille, string fullFileName)
+        {
+            return WriteToFile(unicodeBraille, fullFileName, false);
+        }
 
 
         /// <summary>
@@ -129,12 +144,12 @@ namespace MusicXmlReaderModel
         /// <param name="unicodeBraille"></param>
         /// <param name="fullFileName"></param>
         /// <returns></returns>
-        public bool WriteToFile(string unicodeBraille, string fullFileName)
+        public bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls)
         {
             switch (fileFormat)
             {
                 case FileFormat.BRF_ASCII:
-                    byte[] byteArray = ToRbfASCII(unicodeBraille);
+                    byte[] byteArray = ToRbfASCII(unicodeBraille, acceptControls);
                     return WriteToFile(byteArray, fullFileName);
                 case FileFormat.BRF_Unicode:
                     bool result = false;
@@ -155,18 +170,18 @@ namespace MusicXmlReaderModel
         }
 
 
-        /// <summary>
-        /// Convert  a list of strings to brf(ASCII) taking into account the dimensions of the sheet to print on  
+        /// Formats a list of UNICODE strings, each representing a musical event  in to a single UNICODE,
+        /// string taking into account the dimensions of the sheet to print on  
         /// </summary>
         /// <param name="unicodeBrailleList"></param>
         /// <param name="fullFileName"></param>
         /// <returns></returns>
-        public bool WriteToFile(List<string> unicodeBrailleList, string fullFileName)
+        public string Format(List<string> unicodeBrailleList)
         {
             int lineWidth = 8; //  8 characters per line
             int formHeight = 20; // 20 lines per form
 
-            List<byte> scoreByteList = new List<byte>();  // Represents the whole score
+            StringBuilder score = new StringBuilder();  // Represents the whole score
             int currentWidth = 0;
             int currentHeight = 0;
             int numberOfLines = 0; // For statistics only
@@ -174,31 +189,29 @@ namespace MusicXmlReaderModel
 
             foreach (string unicodeBraille in unicodeBrailleList)
             {
-                List<byte>  nextLine;
-                byte[] remainingBytes = ToRbfASCII(unicodeBraille); // Represents one single event
-                List<byte> remainingByteList = remainingBytes.ToList(); 
+                string nextLine;
+                string remainingChars = unicodeBraille; // Represents one single event
                 bool done = false;
-                while (!done)                   
+                while (!done)
                 {
-                    if (currentWidth + remainingByteList.Count <= lineWidth)
+                    if (currentWidth + remainingChars.Length <= lineWidth)
                     {
-                        nextLine = remainingByteList;
+                        nextLine = remainingChars;
                         done = true;
-                        // No need to update remainingBytes
+                        // No need to update remainingChars
                     }
                     else
                     {
-                        scoreByteList.Add(CarriageReturn);
-                        scoreByteList.Add(LineFeed);
+                        score.Append((char)CarriageReturn);
+                        score.Append((char)LineFeed);
                         numberOfLines++;
                         currentWidth = 0;
-                        nextLine = remainingByteList.GetRange(0, lineWidth);
-                        remainingByteList = remainingByteList.GetRange(lineWidth, remainingByteList.Count - lineWidth);
-                        //nextLine = (byte[]) remainingBytes.Take(lineWidth);
-                        //remainingBytes = (byte[])remainingBytes.Skip(lineWidth);
+                        int length = Math.Min(lineWidth, remainingChars.Length);
+                        nextLine =  remainingChars.Substring(0,length);
+                        remainingChars = remainingChars.Substring(length, remainingChars.Length - length);
                     }
-                    currentWidth += nextLine.Count;
-                    scoreByteList.AddRange(nextLine);
+                    currentWidth += nextLine.Length;
+                    score.Append(nextLine);
                     currentHeight++;
 
                     // In both cases split in forms if needed
@@ -206,40 +219,22 @@ namespace MusicXmlReaderModel
                     if (currentHeight >= formHeight)
                     {
                         // Insert a FF
-                        scoreByteList.Add(FormFeed);
+                        score.Append((char)FormFeed);
                         currentHeight = 0;
                         numberOfForms++;
                     }
                 }
-
-
-                //byte[] eventByteArray = ToRbfASCII(unicodeBraille); // Represents one single event
-                //if (currentWidth + eventByteArray.Length > lineWidth)
-                //{
-                //    // Insert a CR+LF
-
-                //    scoreByteList.Add(CarriageReturn);
-                //    scoreByteList.Add(LineFeed);
-                //    numberOfLines++;
-                //    currentWidth = 0;
-                //    currentHeight += 1;
-                //    if (currentHeight >= formHeight)
-                //    {
-                //        // Insert a FF
-                //        scoreByteList.Add(FormFeed);
-                //        currentHeight = 0;
-                //        numberOfForms++;
-                //    }
-                //    currentHeight++;
-                //}
-                //currentWidth += eventByteArray.Length;
-                //scoreByteList.AddRange(eventByteArray);
             }
-
             Logger.LogCF(string.Format(": Generated {0} forms containing {1} lines", numberOfForms, numberOfLines));
-            return WriteToFile(scoreByteList, fullFileName);
+            return score.ToString();
         }
 
+        
+        public bool WriteToFile(List<string> unicodeBrailleList, string fullFileName)
+        {
+            string score = Format(unicodeBrailleList);
+            return WriteToFile(score, fullFileName, true);
+        }
 
 
 

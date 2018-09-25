@@ -1363,10 +1363,9 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII);
             brailleFileHandler.GenerateTestpattern(directoryName);
 
-#warning ToDo implement for Unicode
             //// Then for BRF_Unicode
-            //brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode);
-            //brailleFileHandler.GenerateTestpattern(directoryName);
+            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode);
+            brailleFileHandler.GenerateTestpattern(directoryName);
 
             // Open an explorer to inspect the log filed
             ExternalToolsHandler.OpenLogFileLocation();  
