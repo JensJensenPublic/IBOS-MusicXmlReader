@@ -48,6 +48,8 @@
     <Compile Include="BrailleBuilder.cs" />
     <Compile Include="BrailleDisplayer.cs" />
     <Compile Include="BrailleFileHandler.cs" />
+    <Compile Include="BrailleFileHandler_BRF_ASCII.cs" />
+    <Compile Include="BrailleFileHandler_BRF_Unicode.cs" />
     <Compile Include="DetailsDescription.cs" />
     <Compile Include="DetailsPlayer.cs" />
     <Compile Include="Elements\BassElement.cs" />

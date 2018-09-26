@@ -11,11 +11,11 @@ namespace MusicXmlReaderModel
     /// <summary>
     /// Handles generation of files containing Braille information
     /// </summary>
-    class BrailleFileHandler
+    abstract class BrailleFileHandler
     {
-        const byte CarriageReturn = 13;
-        const byte LineFeed = 10;
-        const byte FormFeed = 12;
+        protected const byte CarriageReturn = 13;
+        protected const byte LineFeed = 10;
+        protected const byte FormFeed = 12;
 
         // Some general information about Braille file formats:
         //
@@ -26,148 +26,11 @@ namespace MusicXmlReaderModel
         // https://en.wikipedia.org/wiki/Braille_Patterns
 
 
-        // According to https://en.wikipedia.org/wiki/Braille_ASCII the following string maps from the Unicode intervel 0x2800.. 0x283F
-        // to the following Braille glyphs : "⠀⠁⠂⠃⠄⠅⠆⠇⠈⠉⠊⠋⠌⠍⠎⠏⠐⠑⠒⠓⠔⠕⠖⠗⠘⠙⠚⠛⠜⠝⠞⠟⠠⠡⠢⠣⠤⠥⠦⠧⠨⠩⠪⠫⠬⠭⠮⠯⠰⠱⠲⠳⠴⠵⠶⠷⠸⠹⠺⠻⠼⠽⠾⠿"   
-        // 0x2800
-        // + 0x10 *                 0                1               2               3
-        // + 0x01 *                 0123456789ABCDEF 0123456789ABCDEF0123456789ABCDEF012 3456789ABCDEF  
-        private const string map = " A1B'K2L@CIF/MSP\"E3H9O6R^DJG>NTQ,*5<-U8V.%[$+X!&;:4\\0Z7(_?W]#Y)="; // Note the 2 '\' used as escape characters !
-        private byte[] byteMap; //  Maps from a UNICODE 0x2800..0x283F char to a byte.    Is filled in during initialization !
-        private char[] charMap; //  Maps from a byte to a UNICODE char in 0x2800..0x283F  Is filled in during initialization !
-
-        // According to https://en.wikipedia.org/wiki/Computer_Braille_Code: (Manually derived from the Web page:
-        // 0x2800
-        // + 0x10 *                                       0                1               2               3
-        // + 0x01 *                                       0123456789ABCDEF 0123456789ABCDEF0123456789ABCDEF012 3456789ABCDEF 
-        private const string Computer_Braille_Code_map = " a1b'k2l@cif/msp\"e3h9o6r^djg>ntq,*5<-u8v.%[$+x!&;:4\\0z7( ?w]#y)="; // No code for 0x38 !!
-
         public enum FileFormat{BRF_ASCII, BRF_Unicode, PEF};
-        private FileFormat fileFormat;
 
-        public string Extension
-        {
-            get
-            {
-                switch (this.fileFormat)
-                {
-                    case FileFormat.BRF_ASCII: return "brf";
-                    case FileFormat.BRF_Unicode: return "brf";
-                    case FileFormat.PEF: return "pef";
-                    default:
-                        Logger.LogCF(string.Format(": Unsupported fileFormat {0}", this.fileFormat));
-                        return "";
-                }
-            }
-        }
-
-        //private byte ToByte(Char unicodeValue)
-        //{
-        //    int index = unicodeValue - 0x2800;
-        //    byte b = byteMap[index];
-        //    return b;
-        //}
-
-        //public List<byte> ToBytes(EventDescriptionList events, UserSettings userSettings)
-        //{
-        //    throw (new Exception("Not Implemented yet"));
-        //    List<byte> bytes = new List<byte>();
-        //    return bytes;
-        //}
-
-        //public List<Char> ToChars(EventDescriptionList events, UserSettings userSettings)
-        //{
-        //    throw (new Exception("Not Implemented yet"));
-        //    List<Char> bytes = new List<Char>();
-        //    return bytes;
-        //}
-
-        private byte[] ToRbfASCII(string unicodeBraille)
-        {
-            return ToRbfASCII(unicodeBraille, false);
-        }
-
-
-        /// <summary>
-        /// Converts a (Unicode-based) string of Braille characters (0x2800..0x283F) to its RBF-ASCII representation
-        /// </summary>
-        /// <param name="unicodeBraille"></param>
-        /// <returns></returns>
-        private byte[] ToRbfASCII(string unicodeBraille, bool acceptControls)
-        {
-            int length = unicodeBraille.Length;
-            byte[] byteArray = new byte[length];
-            for (int i = 0; (i < length); i++)
-            {
-                Char c = unicodeBraille[i];
-                if ((c >= 0x2800) && (c <= 0x283F))
-                {
-                    byte mappedByte = byteMap[c - 0x2800]; // Map from the 0x2800..0x283F interval to the corresponding valie to write to the file
-                    byteArray[i] = mappedByte;
-                }
-                else if (acceptControls &&((c == (char)CarriageReturn) || (c == (char)LineFeed) || (c == (char)FormFeed)))
-                {
-                    byteArray[i] = (byte) c;
-                }
-
-                else
-                {
-                    string message = string.Format("Illegal value for Unicode Braille = 0x{0:x}", c);
-                    byteArray[i] = 0x20; // Insert an empty Braille Character  
-                    Logger.LogCF(string.Format(": {0}", message));
-                }
-
-            }
-            return byteArray;
-        }
-
-        private string ToUnicode(byte[] bytes)
-        {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; (i < bytes.Length); i++)
-            {
-                byte b = bytes[i];
-                sb.Append(charMap[b]);
-            }
-            return sb.ToString();
-        }
-
-
-        public bool WriteToFile(string unicodeBraille, string fullFileName)
-        {
-            return WriteToFile(unicodeBraille, fullFileName, false);
-        }
-
-
-        /// <summary>
-        /// Writes a UNICODE  (0x2800..0x283F) string to the file specified after concerting if needed
-        /// </summary>
-        /// <param name="unicodeBraille"></param>
-        /// <param name="fullFileName"></param>
-        /// <returns></returns>
-        public bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls)
-        {
-            switch (fileFormat)
-            {
-                case FileFormat.BRF_ASCII:
-                    byte[] byteArray = ToRbfASCII(unicodeBraille, acceptControls);
-                    return WriteToFile(byteArray, fullFileName);
-                case FileFormat.BRF_Unicode:
-                    bool result = false;
-                    try
-                    {
-                        System.IO.File.WriteAllText(fullFileName, unicodeBraille);
-                        result = true;
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.LogCFE(e);
-                    }
-                    return result;
-                default:
-                    Logger.LogCF(string.Format(": Unsupported firl format {0}", fileFormat.ToString()));
-                    return false;                   
-            }
-        }
+        abstract public string GetExtension();
+        abstract public string GetFileFormat(); 
+        abstract public bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls);
 
 
         /// Formats a list of UNICODE strings, each representing a musical event  in to a single UNICODE,
@@ -233,40 +96,40 @@ namespace MusicXmlReaderModel
         public bool WriteToFile(List<string> unicodeBrailleList, string fullFileName)
         {
             string score = Format(unicodeBrailleList);
-            return WriteToFile(score, fullFileName, true);
+            return WriteToFile(score, fullFileName, true); // Call the abstract implementation
         }
 
 
 
-        /// <summary>
-        /// Writes the byteList to the file specified without any conversion !
-        /// </summary>
-        /// <param name="byteList"></param>
-        /// <param name="fullFileName"></param>
-        /// <returns></returns>
-        public bool WriteToFile(List<byte> byteList, string fullFileName)
-        {
-            byte[] byteArray = byteList.ToArray();
-            return WriteToFile(byteArray, fullFileName);
-        }
+        ///// <summary>
+        ///// Writes the byteList to the file specified without any conversion !
+        ///// </summary>
+        ///// <param name="byteList"></param>
+        ///// <param name="fullFileName"></param>
+        ///// <returns></returns>
+        //public bool WriteToFile(List<byte> byteList, string fullFileName)
+        //{
+        //    byte[] byteArray = byteList.ToArray();
+        //    return WriteToFile(byteArray, fullFileName);
+        //}
 
 
-        /// <summary>
-        /// Writes the byteArray to the file without any conversion
-        /// </summary>
-        /// <param name="byteArray"></param>
-        /// <param name="fullFileName"></param>
-        /// <returns></returns>
-        public bool WriteToFile(byte[] byteArray, string fullFileName)
-        {
-            using (BinaryWriter bw = new BinaryWriter(File.Open(fullFileName, FileMode.Create)))
-            {
-                bw.Write(byteArray);
-            }
-#warning ToDO Error handling
-            bool result = true;
-            return result;
-        }
+//        /// <summary>
+//        /// Writes the byteArray to the file without any conversion
+//        /// </summary>
+//        /// <param name="byteArray"></param>
+//        /// <param name="fullFileName"></param>
+//        /// <returns></returns>
+//        public bool WriteToFile(byte[] byteArray, string fullFileName)
+//        {
+//            using (BinaryWriter bw = new BinaryWriter(File.Open(fullFileName, FileMode.Create)))
+//            {
+//                bw.Write(byteArray);
+//            }
+//#warning ToDO Error handling
+//            bool result = true;
+//            return result;
+//        }
 
 
 
@@ -304,97 +167,60 @@ namespace MusicXmlReaderModel
             return this.WriteToFile(eventList, fullFileName); // Taking in account width and height
         }
 
-        /// <summary>
-        ///  Write an array of 16-bit characters to a file
-        /// </summary>
-        /// <param name="chars"></param>
-        /// <returns></returns>
-        public bool WriteToFile(List<Char> chars, string fullFileName)
-        {
-            throw (new Exception("Not Implemented yet"));
-            bool result = true;
-            return result;
-        }
-        // Tests
+        ///// <summary>
+        /////  Write an array of 16-bit characters to a file
+        ///// </summary>
+        ///// <param name="chars"></param>
+        ///// <returns></returns>
+        //public bool WriteToFile(List<Char> chars, string fullFileName)
+        //{
+        //    throw (new Exception("Not Implemented yet"));
+        //    bool result = true;
+        //    return result;
+        //}
+        //// Tests
 
 
 
-        public bool TestByteList(string fileName)
-        {
-            List<byte> byteList = new List<byte>();
-            for (byte i = 0; (i < 64); i++)
-            {
-                byteList.Add(i);
-            }
-            return this.WriteToFile(byteList,fileName + "ByteList.bin");
-        }
+        //public bool TestByteList(string fileName)
+        //{
+        //    List<byte> byteList = new List<byte>();
+        //    for (byte i = 0; (i < 64); i++)
+        //    {
+        //        byteList.Add(i);
+        //    }
+        //    return this.WriteToFile(byteList,fileName + "ByteList.bin"); // Calls a non-abstract method for test
+        //}
 
-        public bool TestByteArray(string fileName)
-        {
-            List<byte> testBytes = new List<byte>();
-            for (byte i = 0; (i < 64); i++)
-            {
-                testBytes.Add(i);
-            }
-            List<byte> byteArray = new List<byte>(testBytes);
-            return this.WriteToFile(byteArray,fileName + "ByteArray.bin");
-        }
+        //public bool TestByteArray(string fileName)
+        //{
+        //    List<byte> testBytes = new List<byte>();
+        //    for (byte i = 0; (i < 64); i++)
+        //    {
+        //        testBytes.Add(i);
+        //    }
+        //    List<byte> byteArray = new List<byte>(testBytes);
+        //    return this.WriteToFile(byteArray,fileName + "ByteArray.bin"); // Calls a non-abstract method for test
+        //}
 
-        public bool TestUnicodeBraille(string fileName)
-        {
-            int length = 64;
-            StringBuilder sb = new StringBuilder(length);
-            for (int i = 0; (i < length); i++)
-            {
-                char c = (char) (i + 0x2800);
-                sb.Append(c);
-            }
-            string s = sb.ToString();
-            return this.WriteToFile(s,fileName + "Unicode.bin");
-        }
+        //public bool TestUnicodeBraille(string fileName)
+        //{
+        //    int length = 64;
+        //    StringBuilder sb = new StringBuilder(length);
+        //    for (int i = 0; (i < length); i++)
+        //    {
+        //        char c = (char) (i + 0x2800);
+        //        sb.Append(c);
+        //    }
+        //    string s = sb.ToString();
+        //    return this.WriteToFile(s,fileName + "Unicode.bin",false);
+        //}
 
 
         // Test
 
 
-        /// <summary>
-        /// Reads a file containing MusicBraille information and returns its contents as a UNICODE string
-        /// If the file is not already in UNICODE format (0x2800..0x283F), the contents is converted to UNICODE representation on the fly
-        /// </summary>
-        /// <param name="fullFilefileName"></param>
-        public string ReadFromFile(string fullFileName)
-        {
-            string result = "";
-            switch (fileFormat)
-            {
-                case FileFormat.BRF_ASCII:
-                    {
-                        byte[] bytes;
-                        using (BinaryReader br = new BinaryReader(File.Open(fullFileName, FileMode.Open)))
-                        {
-                            //bytes = br.ReadBytes(int.MaxValue);
-#warning ToDo fix constant
-                            bytes = br.ReadBytes(10000);
-                        }
-                        result = ToUnicode(bytes);
-                        break;
-                    }
-
-                case FileFormat.BRF_Unicode:
-                    {                       
-                        using (BinaryReader br = new BinaryReader(File.Open(fullFileName, FileMode.Open)))
-                        {
-                            result = System.IO.File.ReadAllText(fullFileName); 
-                        }
-                        break;
-                    }
-                default:
-                    Logger.LogCF(string.Format(" Unsupported file format '{0}'", fileFormat.ToString()));
-                    break;
-                    
-            }
-            return result;          
-        }
+        public abstract string ReadFromFile(string fullFileName);
 
 
         /// <summary>
@@ -403,7 +229,7 @@ namespace MusicXmlReaderModel
         /// <param name="directoryName"></param>
         public void GenerateTestpattern(string directoryName)
         {
-            string fullFileName = Path.Combine(directoryName, "MusicBrailleTestPattern" + "."  + fileFormat.ToString() + "." + Extension);
+            string fullFileName = Path.Combine(directoryName, "MusicBrailleTestPattern" + "."  + GetFileFormat() + "." + GetExtension());
             StringBuilder sb = new StringBuilder();
             {
                 for (int i = 0x2800; i < 0x2840; i++)
@@ -423,55 +249,27 @@ namespace MusicXmlReaderModel
 
         // Construction
 
-
-        private BrailleFileHandler()
-        {
-        }
-
-        private BrailleFileHandler(FileFormat fileFormat)
-        {
-            this.fileFormat = fileFormat;
-            // Init the byteMap for fast and easy easy conversion later.
-            byteMap = new byte[map.Length];
-            for (int i = 0; (i < map.Length); i++)
-            {
-                char c = map[i];
-                byteMap[i] = (byte)(c % 256);
-            }
-            // Init the charMap for fast and easy conversion later
-            charMap = new char[256];
-            for (int i = 0; (i < map.Length); i++)
-            {
-                int index = map[i];
-                charMap[index] = (char)(0x2800 + i);
-            }
-            // Also map 3 controls to their Unicode equivalents
-            charMap[LineFeed] = (char)LineFeed;
-            charMap[FormFeed] = (char)FormFeed;
-            charMap[CarriageReturn] = (char)CarriageReturn;
-
-            // Check both
-            const int BrailleBase = 0x2800;
-            for (int i = BrailleBase; i < BrailleBase + map.Length; i++)
-            {
-                byte b = byteMap[i - BrailleBase];
-                int result = charMap[b];
-                if (i != result)
-                {
-                    Logger.LogCF(string.Format(": Initialization error: char=0x{0}:x maps to byte={1} which maps to 0x{2:x}", i, b, result));
-                }
-            }
-        }
-
         public static BrailleFileHandler Create(FileFormat fileFormat)
         {
-            return new BrailleFileHandler(fileFormat);
+            switch (fileFormat)
+            {
+                case FileFormat.BRF_ASCII: return new BrailleFileHandler_BRF_ASCII();
+                case FileFormat.BRF_Unicode: return new BrailleFileHandler_BRF_Unicode();
+                default:
+                    Logger.LogCF(string.Format(": Unsupported file format {0}", fileFormat.ToString()));
+                    return null;
+            }
         }
 
         public static BrailleFileHandler Create()
         {
-            return new BrailleFileHandler(FileFormat.BRF_ASCII);
+            return BrailleFileHandler.Create(FileFormat.BRF_ASCII);
         }
 
     }
+
+    //****************************************************************
+
+    //****************************************************************
+
 }
