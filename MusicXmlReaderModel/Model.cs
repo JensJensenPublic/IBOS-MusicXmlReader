@@ -1233,7 +1233,8 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             detailsPlayer = DetailsPlayer.Create();
             // Get the contents
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII);
-            string fileName = theMusicXmlFileName + "rbf";
+            //BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode);
+            string fileName = theMusicXmlFileName + brailleFileHandler.GetExtension();
             // In order to emulate the "real" behaviour for generating and writing a file with MusicBraille information 
             // we go to the full proces of writing the file to the filesystem and reading it back !
 #warning ToDo Write the file to the MusicXmlReader testrdirectory, NOT to the user directory !

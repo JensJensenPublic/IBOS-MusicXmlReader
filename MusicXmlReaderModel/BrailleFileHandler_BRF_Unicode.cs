@@ -22,24 +22,39 @@ namespace MusicXmlReaderModel
         public override bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls)
         {
             bool result = false;
-            try
+            using (StreamWriter sw = new StreamWriter(File.Open(fullFileName, FileMode.Create)))
             {
-                System.IO.File.WriteAllText(fullFileName, unicodeBraille);
-                result = true;
+                try
+                {
+                    sw.Write(unicodeBraille);
+                    result = true;
+                }
+                catch (Exception e)
+                {
+                    Logger.LogCFE(e);
+                }
             }
-            catch (Exception e)
-            {
-                Logger.LogCFE(e);
-            }
+
             return result;
         }
 
+        /// <summary>
+        ///  Reads a file containing MusicBraille information and returns its contents as a UNICODE string
+        /// </summary>
+        /// <param name="fullFileName"></param>
+        /// <returns></returns>
         public override string ReadFromFile(string fullFileName)
         {
-            string result = "";
-            using (BinaryReader br = new BinaryReader(File.Open(fullFileName, FileMode.Open)))
+            string result = null;
+            try
             {
                 result = System.IO.File.ReadAllText(fullFileName);
+                Logger.LogCF(string.Format(": read {0} characters from {1}", result.Length, fullFileName));
+            }
+            catch (Exception e)
+            {
+                result = null;
+                Logger.LogCFE(e);
             }
             return result;
         }

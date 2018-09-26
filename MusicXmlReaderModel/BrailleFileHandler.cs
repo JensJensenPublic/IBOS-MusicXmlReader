@@ -28,9 +28,18 @@ namespace MusicXmlReaderModel
 
         public enum FileFormat{BRF_ASCII, BRF_Unicode, PEF};
 
+        // The following methods need separate implementations 
         abstract public string GetExtension();
-        abstract public string GetFileFormat(); 
-        abstract public bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls);
+        abstract public string GetFileFormat();
+
+        /// <summary>
+        ///  /// Reads a file containing MusicBraille information and returns its contents as a UNICODE string
+        /// </summary>
+        /// <param name="fullFileName"></param>
+        /// <returns></returns>
+        abstract public string ReadFromFile(string fullFileName);
+
+        abstract public bool   WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls);
 
 
         /// Formats a list of UNICODE strings, each representing a musical event  in to a single UNICODE,
@@ -100,39 +109,6 @@ namespace MusicXmlReaderModel
         }
 
 
-
-        ///// <summary>
-        ///// Writes the byteList to the file specified without any conversion !
-        ///// </summary>
-        ///// <param name="byteList"></param>
-        ///// <param name="fullFileName"></param>
-        ///// <returns></returns>
-        //public bool WriteToFile(List<byte> byteList, string fullFileName)
-        //{
-        //    byte[] byteArray = byteList.ToArray();
-        //    return WriteToFile(byteArray, fullFileName);
-        //}
-
-
-//        /// <summary>
-//        /// Writes the byteArray to the file without any conversion
-//        /// </summary>
-//        /// <param name="byteArray"></param>
-//        /// <param name="fullFileName"></param>
-//        /// <returns></returns>
-//        public bool WriteToFile(byte[] byteArray, string fullFileName)
-//        {
-//            using (BinaryWriter bw = new BinaryWriter(File.Open(fullFileName, FileMode.Create)))
-//            {
-//                bw.Write(byteArray);
-//            }
-//#warning ToDO Error handling
-//            bool result = true;
-//            return result;
-//        }
-
-
-
         /// <summary>
         /// Generates the Music Mraille representation for the score described in events.
         /// </summary>
@@ -167,62 +143,6 @@ namespace MusicXmlReaderModel
             return this.WriteToFile(eventList, fullFileName); // Taking in account width and height
         }
 
-        ///// <summary>
-        /////  Write an array of 16-bit characters to a file
-        ///// </summary>
-        ///// <param name="chars"></param>
-        ///// <returns></returns>
-        //public bool WriteToFile(List<Char> chars, string fullFileName)
-        //{
-        //    throw (new Exception("Not Implemented yet"));
-        //    bool result = true;
-        //    return result;
-        //}
-        //// Tests
-
-
-
-        //public bool TestByteList(string fileName)
-        //{
-        //    List<byte> byteList = new List<byte>();
-        //    for (byte i = 0; (i < 64); i++)
-        //    {
-        //        byteList.Add(i);
-        //    }
-        //    return this.WriteToFile(byteList,fileName + "ByteList.bin"); // Calls a non-abstract method for test
-        //}
-
-        //public bool TestByteArray(string fileName)
-        //{
-        //    List<byte> testBytes = new List<byte>();
-        //    for (byte i = 0; (i < 64); i++)
-        //    {
-        //        testBytes.Add(i);
-        //    }
-        //    List<byte> byteArray = new List<byte>(testBytes);
-        //    return this.WriteToFile(byteArray,fileName + "ByteArray.bin"); // Calls a non-abstract method for test
-        //}
-
-        //public bool TestUnicodeBraille(string fileName)
-        //{
-        //    int length = 64;
-        //    StringBuilder sb = new StringBuilder(length);
-        //    for (int i = 0; (i < length); i++)
-        //    {
-        //        char c = (char) (i + 0x2800);
-        //        sb.Append(c);
-        //    }
-        //    string s = sb.ToString();
-        //    return this.WriteToFile(s,fileName + "Unicode.bin",false);
-        //}
-
-
-        // Test
-
-
-        public abstract string ReadFromFile(string fullFileName);
-
-
         /// <summary>
         /// Generate a testpattern containing all 64 possible 6-point Braille glyphs and write it to a file
         /// </summary>
@@ -241,7 +161,7 @@ namespace MusicXmlReaderModel
             string testPattern = sb.ToString();
             List<string> list = new List<string>();
             list.Add(testPattern); // A list containing only one item!
-            this.WriteToFile(list, fullFileName);
+            this.WriteToFile(list, fullFileName); // Ends up in the abstract implementation
             Logger.LogCF(string.Format(": Wrote testpattern to {0}", fullFileName));
 
         }
@@ -267,9 +187,5 @@ namespace MusicXmlReaderModel
         }
 
     }
-
-    //****************************************************************
-
-    //****************************************************************
 
 }

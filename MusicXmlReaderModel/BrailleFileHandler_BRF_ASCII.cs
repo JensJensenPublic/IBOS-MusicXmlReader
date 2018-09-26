@@ -137,34 +137,46 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="byteArray"></param>
         /// <param name="fullFileName"></param>
-        /// <returns></returns>
+        /// <returns>true <==> success</returns>
         public bool WriteToFile(byte[] byteArray, string fullFileName)
         {
+            bool result = true;
+            // Let the system handle resources:
             using (BinaryWriter bw = new BinaryWriter(File.Open(fullFileName, FileMode.Create)))
             {
-                bw.Write(byteArray);
+                try
+                {
+                    bw.Write(byteArray);
+                }
+                catch (Exception e)
+                {
+                    Logger.LogCFE(e);
+                    result = false;
+                }
             }
-#warning ToDO Error handling
-            bool result = true;
             return result;
         }
 
 
         /// <summary>
         /// Reads a file containing MusicBraille information and returns its contents as a UNICODE string
-        /// If the file is not already in UNICODE format (0x2800..0x283F), the contents is converted to UNICODE representation on the fly
         /// </summary>
         /// <param name="fullFilefileName"></param>
         public override string ReadFromFile(string fullFileName)
         {
             byte[] bytes;
-            using (BinaryReader br = new BinaryReader(File.Open(fullFileName, FileMode.Open)))
+            string result = null;
+            try
             {
-                //bytes = br.ReadBytes(int.MaxValue);
-#warning ToDo fix constant
-                bytes = br.ReadBytes(10000);
+                bytes = File.ReadAllBytes(fullFileName);
+                Logger.LogCF(string.Format(": read {0} bytes from {1}", bytes.Length, fullFileName));
+                result = ToUnicode(bytes);
             }
-            string result = ToUnicode(bytes);
+            catch (Exception e)
+            {
+                result = null;
+                Logger.LogCFE(e);
+            }        
             return result;
         }
     }
