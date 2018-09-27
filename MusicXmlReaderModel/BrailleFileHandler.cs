@@ -152,10 +152,13 @@ namespace MusicXmlReaderModel
             string fullFileName = Path.Combine(directoryName, "MusicBrailleTestPattern" + "."  + GetFileFormat() + GetExtension());
             StringBuilder sb = new StringBuilder();
             {
-                for (int i = 0x2800; i < 0x2840; i++)
+                for (int i0 = 0; (i0 < 16); i0++) // Repeat the test pattern several times
                 {
-                    char c = (char)(i);
-                    sb.Append(c);
+                    for (int i1 = 0x2800; i1 < 0x2840; i1++) // Testpattern: All Unicode values from 0x2800 to 0x283f
+                    {
+                        char c = (char)(i1);
+                        sb.Append(c);
+                    }
                 }
             }
             string testPattern = sb.ToString();
