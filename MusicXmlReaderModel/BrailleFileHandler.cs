@@ -149,7 +149,7 @@ namespace MusicXmlReaderModel
         /// <param name="directoryName"></param>
         public void GenerateTestpattern(string directoryName)
         {
-            string fullFileName = Path.Combine(directoryName, "MusicBrailleTestPattern" + "."  + GetFileFormat() + "." + GetExtension());
+            string fullFileName = Path.Combine(directoryName, "MusicBrailleTestPattern" + "."  + GetFileFormat() + GetExtension());
             StringBuilder sb = new StringBuilder();
             {
                 for (int i = 0x2800; i < 0x2840; i++)
