@@ -126,6 +126,15 @@ namespace MusicXmlReaderModel
             return sb.ToString();
         }
 
+
+
+        /// <summary>
+        /// Writes a string of Braille (in Unicode representation) to a file after converting it to ASCII
+        /// </summary>
+        /// <param name="unicodeBraille"></param>
+        /// <param name="fullFileName"></param>
+        /// <param name="acceptControls"></param>
+        /// <returns></returns>
         public override bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls)
         {
             byte[] byteArray = ToRbfASCII(unicodeBraille, acceptControls);
@@ -138,7 +147,7 @@ namespace MusicXmlReaderModel
         /// <param name="byteArray"></param>
         /// <param name="fullFileName"></param>
         /// <returns>true <==> success</returns>
-        public bool WriteToFile(byte[] byteArray, string fullFileName)
+        private bool WriteToFile(byte[] byteArray, string fullFileName)
         {
             bool result = true;
             // Let the system handle resources:

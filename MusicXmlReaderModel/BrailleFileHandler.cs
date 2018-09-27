@@ -11,7 +11,7 @@ namespace MusicXmlReaderModel
     /// <summary>
     /// Handles generation of files containing Braille information
     /// </summary>
-    abstract class BrailleFileHandler
+    public abstract class BrailleFileHandler
     {
         protected const byte CarriageReturn = 13;
         protected const byte LineFeed = 10;

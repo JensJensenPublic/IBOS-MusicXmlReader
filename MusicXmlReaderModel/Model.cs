@@ -1330,23 +1330,13 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             System.IO.File.WriteAllText(theUserSettingsFileName, xml);
         }
 
-        public void ExportMusicBrailleToFile()
-        {
-            // Early testcode !!!
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII);
+        public bool ExportMusicBrailleToFile(BrailleFileHandler.FileFormat format)
+        {            
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(format);
             {
-                string fileName = Path.ChangeExtension(theMusicXmlFileName, brailleFileHandler.GetExtension());
-
-                //brailleFileHandler.TestByteArray(fileName);
-                //brailleFileHandler.TestByteList(fileName);
-                //brailleFileHandler.TestUnicodeBraille(fileName);
-
-                brailleFileHandler.WriteToFile(this.eventDescriptionList, this.userSettings, fileName);
-
-                // brailleFileHandler.ToUnicode(fileName);
-
+                string fileName = Path.ChangeExtension(theMusicXmlFileName, brailleFileHandler.GetFileFormat() + brailleFileHandler.GetExtension());
+                return brailleFileHandler.WriteToFile(this.eventDescriptionList, this.userSettings, fileName);
             }
-
         }
 
         /// <summary>
