@@ -2,6 +2,7 @@
 using System.IO;
 using System.Xml;
 using System.Collections.Generic;
+using System.Text;
 
 namespace MusicXmlReaderModel
 {
@@ -771,6 +772,45 @@ namespace MusicXmlReaderModel
             if (s.Length <= (index + 1)) return "";
             return s[index + 1].ToString();
         }
+
+
+        /// <summary>
+        /// Converts a string of Braille code to it's text representation, ignoring characters outside 0x2800..0x28ff
+        /// </summary>
+        /// <param name="braille"></param>
+        public static string BrailleToText(string braille)
+        {
+            StringBuilder sbLine = new StringBuilder();
+            string delimiter = ""; // Used between chars, not
+            foreach (char c in braille)
+            {
+                if ((c >= 0x2800) && (c <= 0x283F))
+                {
+                    // This is a valid UNICODE BRaille char in 0x280.. 0x283f
+                    StringBuilder sbChar = new StringBuilder(); // Represents a single char
+                    sbLine.Append(delimiter); // " " 
+                    if (0 != (c & 0x01)) sbChar.Append(" 1");
+                    if (0 != (c & 0x02)) sbChar.Append(" 2");
+                    if (0 != (c & 0x04)) sbChar.Append(" 3");
+                    if (0 != (c & 0x08)) sbChar.Append(" 4");
+                    if (0 != (c & 0x10)) sbChar.Append(" 5");
+                    if (0 != (c & 0x20)) sbChar.Append(" 6");
+                    if (0 != (c & 0x40)) sbChar.Append(" 7");
+                    if (0 != (c & 0x80)) sbChar.Append(" 8");
+                    if (0 == (sbChar.Length))
+                    {
+                        sbChar.Append(" 0"); // Use '0' as a place holder for the empty Braille character
+                    }
+                    delimiter = " , "; // From now on use a visible delimiter 
+                    sbLine.Append(sbChar.ToString()); 
+                }
+            }
+            string result = sbLine.ToString();
+            // Logger.LogCF(string.Format(": Converted {0} to {1}", braille, result));
+            return result;
+
+        }
+
 
     }
 }

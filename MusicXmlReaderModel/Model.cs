@@ -1250,7 +1250,8 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
                 string[] lines = form.Split((char)010); // Split each form into a number of lines
                 foreach (string line in lines)
                 {
-                    detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(line));
+                    string lineAsText = Utilities.BrailleToText(line);
+                    detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(line + " " + lineAsText));
                 }
             }
             return detailsPlayer.DetailsDescriptionArray;
