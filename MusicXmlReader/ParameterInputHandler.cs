@@ -93,8 +93,8 @@ namespace MusicXmlReader
             if (ok)
             {
                 s = "Number of character per line = " + n1 + " Number of lines per form = " + n2;
-                model.SetExportToMusicBrailleParameters(n1, n2);
-                // Pass new values to model here !
+                model.UserPreferences.CharsPerLine = n1;
+                model.UserPreferences.LinesPerForm = n2;
             }
             else
             {

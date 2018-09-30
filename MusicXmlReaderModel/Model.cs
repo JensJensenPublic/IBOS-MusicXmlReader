@@ -42,6 +42,7 @@ namespace MusicXmlReaderModel
         ScorePartElement currentScorePartElement = null;
         TimeElement currentTimeElement; // Contains the current TimeElement
         UserSettings userSettings;
+        UserPreferences userPreferences = UserPreferences.Create();
         ScreenReaderAPI screenReaderAPI;
         DebugTools debugTools;
         ExternalToolsHandler externalToolsHandler;
@@ -51,10 +52,6 @@ namespace MusicXmlReaderModel
 
         string executingAssembly;
         string executingDirectory;
-
-        // For export of MusicBraille These parameters should be exported as "Global UserPreferences" when this feature is implemented.
-        int charsPerLine = 14; // We can use a Focus14 device
-        int linesPerForm = 16;
 
         public string ScreenReaderName
         {
@@ -799,6 +796,11 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public UserPreferences UserPreferences
+        {
+            get { return userPreferences; }
+        }
+
         /// <summary>
         ///  This program is compiled and for the following architechture: false:x86 true:x64 
         /// </summary>
@@ -1236,7 +1238,7 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             // Create a Detailsplayer designed for the purpose
             detailsPlayer = DetailsPlayer.Create();
             // Get the contents
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII, this.charsPerLine, this.linesPerForm);
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
             //BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode);
             string fileName = theMusicXmlFileName + brailleFileHandler.GetExtension();
             // In order to emulate the "real" behaviour for generating and writing a file with MusicBraille information 
@@ -1342,18 +1344,14 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
                 Logger.LogCF(": Nothing to export!");
                 return false; 
             } 
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(format, this.charsPerLine, this.linesPerForm);
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(format, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
             {
                 string fileName = Path.ChangeExtension(theMusicXmlFileName, brailleFileHandler.GetFileFormat() + brailleFileHandler.GetExtension());
                 return brailleFileHandler.WriteToFile(this.eventDescriptionList, this.userSettings, fileName);
             }
         }
 
-        public void SetExportToMusicBrailleParameters(int charsPerLine, int linesPerForm)
-        {
-            this.charsPerLine = charsPerLine;
-            this.linesPerForm = linesPerForm;
-        }
+   
 
         /// <summary>
         /// Generate a simple test patterns consisting of the 64 possible Braille glyphs and write it to 
@@ -1367,11 +1365,11 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             BrailleFileHandler brailleFileHandler;
 
             // First for BRF_ASCII
-            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII, this.charsPerLine, this.linesPerForm);
+            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
             brailleFileHandler.GenerateTestpattern(directoryName);
 
             //// Then for BRF_Unicode
-            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode, this.charsPerLine, this.linesPerForm);
+            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
             brailleFileHandler.GenerateTestpattern(directoryName);
 
             // Open an explorer to inspect the log filed

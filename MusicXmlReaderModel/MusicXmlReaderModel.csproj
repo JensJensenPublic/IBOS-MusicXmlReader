@@ -148,6 +148,7 @@
     <Compile Include="TextDisplayer.cs" />
     <Compile Include="TimeDescriptionList.cs" />
     <Compile Include="TupletFraction.cs" />
+    <Compile Include="UserPreferences.cs" />
     <Compile Include="UserSetting.cs" />
     <Compile Include="UserSettingsElements.cs" />
     <Compile Include="UserSettingNames.cs" />
