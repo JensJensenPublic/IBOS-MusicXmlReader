@@ -641,6 +641,7 @@ namespace MusicXmlReader
 
         private void exportMusicBrailleToFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            parameterInputHandler.exportMusicBrailleToFileToolStripMenuItem_Click(); // Pass on          
             bool ok1 = model.ExportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_ASCII);
             bool ok2 = model.ExportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_Unicode);
             Logger.LogCF(string.Format(": Export to Braille {0}",(ok1 && ok2) ? "succeeded" : "failed"));

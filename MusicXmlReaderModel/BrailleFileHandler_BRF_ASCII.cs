@@ -39,8 +39,11 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// Constructor
         /// </summary>
-        internal BrailleFileHandler_BRF_ASCII()
+        internal BrailleFileHandler_BRF_ASCII(int charsPerLine, int linesPerForm)
         {
+            this.charsPerLine = charsPerLine;
+            this.linesPerForm = linesPerForm;
+
             // Init the byteMap for fast and easy easy conversion later.
             byteMap = new byte[map.Length];
             for (int i = 0; (i < map.Length); i++)

@@ -52,6 +52,10 @@ namespace MusicXmlReaderModel
         string executingAssembly;
         string executingDirectory;
 
+        // For export of MusicBraille These parameters should be exported as "Global UserPreferences" when this feature is implemented.
+        int charsPerLine = 14; // We can use a Focus14 device
+        int linesPerForm = 16;
+
         public string ScreenReaderName
         {
             get { return (null == screenReaderAPI) ? "" : screenReaderAPI.ScreenReaderName; }
@@ -1232,7 +1236,7 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             // Create a Detailsplayer designed for the purpose
             detailsPlayer = DetailsPlayer.Create();
             // Get the contents
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII);
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII, this.charsPerLine, this.linesPerForm);
             //BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode);
             string fileName = theMusicXmlFileName + brailleFileHandler.GetExtension();
             // In order to emulate the "real" behaviour for generating and writing a file with MusicBraille information 
@@ -1332,12 +1336,23 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
         }
 
         public bool ExportMusicBrailleToFile(BrailleFileHandler.FileFormat format)
-        {            
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(format);
+        {
+            if (null == this.eventDescriptionList)
+            {
+                Logger.LogCF(": Nothing to export!");
+                return false; 
+            } 
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(format, this.charsPerLine, this.linesPerForm);
             {
                 string fileName = Path.ChangeExtension(theMusicXmlFileName, brailleFileHandler.GetFileFormat() + brailleFileHandler.GetExtension());
                 return brailleFileHandler.WriteToFile(this.eventDescriptionList, this.userSettings, fileName);
             }
+        }
+
+        public void SetExportToMusicBrailleParameters(int charsPerLine, int linesPerForm)
+        {
+            this.charsPerLine = charsPerLine;
+            this.linesPerForm = linesPerForm;
         }
 
         /// <summary>
@@ -1352,11 +1367,11 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             BrailleFileHandler brailleFileHandler;
 
             // First for BRF_ASCII
-            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII);
+            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII, this.charsPerLine, this.linesPerForm);
             brailleFileHandler.GenerateTestpattern(directoryName);
 
             //// Then for BRF_Unicode
-            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode);
+            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode, this.charsPerLine, this.linesPerForm);
             brailleFileHandler.GenerateTestpattern(directoryName);
 
             // Open an explorer to inspect the log filed

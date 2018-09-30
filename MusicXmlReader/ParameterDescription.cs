@@ -127,6 +127,89 @@ namespace MusicXmlReader
         }
     }
 
+
+
+
+    public class ExportMusicBrailleToFileParameterDescription : ParameterDescription
+    {
+        public ExportMusicBrailleToFileParameterDescription()
+        {
+            name = "ExportMusicBrailleToFileParamete";
+#warning ToDo Localize
+            //name = MusicXmlReaderModel.Utilities.RemoveAmpersant(ResourcesForUI.ParameterInputForm_Repeat);
+        }
+
+        private bool IsNullEmptyOrInt(string s,out int value)
+        {
+            value = 0;
+            return (string.IsNullOrEmpty(s) || int.TryParse(s, out value));
+        }
+
+
+        public override bool CheckSyntax(string s, out List<int> values)
+        {
+            values = new List<int>();
+            int temp0 = 0;
+            int temp1 = 0;
+            if (0 == s.Length) return true;
+            char[] separators = new char[1] { ',' };
+            string[] strings = s.Split(separators);
+            switch (strings.Length)
+            {
+                case 0: return false;
+                case 1: return false;
+                case 2:
+                    string s0 = strings[0];
+                    string s1 = strings[1];
+                    if (IsNullEmptyOrInt(s0, out temp0) && IsNullEmptyOrInt(s1, out temp1))
+                    {
+                        values.Add(temp0);
+                        values.Add(temp1);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                default: return false;
+            }
+        }
+
+        public bool CheckSyntax(string s, out int charsPerLine, out int linesPerForm)
+        {
+            charsPerLine = 0;
+            linesPerForm = 0;
+            if (CheckSyntax(s, out dummyParameterList) && (2 == dummyParameterList.Count))
+            {
+                charsPerLine = dummyParameterList[0];
+                linesPerForm = dummyParameterList[1];
+                return true;
+            }
+            return false;
+        }
+
+
+        public override bool CheckSyntax(string s)
+        {
+            return CheckSyntax(s, out dummyParameterList);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    public class TempoParameterDescription : ParameterDescription
 //    {
 //        public TempoParameterDescription()

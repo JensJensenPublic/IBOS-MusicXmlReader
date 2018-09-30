@@ -17,6 +17,9 @@ namespace MusicXmlReaderModel
         protected const byte LineFeed = 10;
         protected const byte FormFeed = 12;
 
+        protected int charsPerLine = 14;
+        protected int linesPerForm = 32;
+
         // Some general information about Braille file formats:
         //
         // https://www.ukaaf.org/wp-content/uploads/2017/03/ReadingElectronicBrailleFinal.pdf
@@ -50,8 +53,8 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public string Format(List<string> unicodeBrailleList)
         {
-            int lineWidth = 8; //  8 characters per line
-            int formHeight = 20; // 20 lines per form
+            int lineWidth  =  this.charsPerLine;   
+            int formHeight =  this.linesPerForm; 
 
             StringBuilder score = new StringBuilder();  // Represents the whole score
             int currentWidth = 0;
@@ -172,22 +175,23 @@ namespace MusicXmlReaderModel
 
         // Construction
 
-        public static BrailleFileHandler Create(FileFormat fileFormat)
+        public static BrailleFileHandler Create(FileFormat fileFormat, int charsPerLine, int linesPerForm)
         {
             switch (fileFormat)
             {
-                case FileFormat.BRF_ASCII: return new BrailleFileHandler_BRF_ASCII();
-                case FileFormat.BRF_Unicode: return new BrailleFileHandler_BRF_Unicode();
+                case FileFormat.BRF_ASCII: return new BrailleFileHandler_BRF_ASCII(charsPerLine,linesPerForm);
+                case FileFormat.BRF_Unicode: return new BrailleFileHandler_BRF_Unicode(charsPerLine,linesPerForm);
                 default:
                     Logger.LogCF(string.Format(": Unsupported file format {0}", fileFormat.ToString()));
                     return null;
             }
+
         }
 
-        public static BrailleFileHandler Create()
-        {
-            return BrailleFileHandler.Create(FileFormat.BRF_ASCII);
-        }
+        //public static BrailleFileHandler Create()
+        //{
+        //    return BrailleFileHandler.Create(FileFormat.BRF_ASCII);
+        //}
 
     }
 

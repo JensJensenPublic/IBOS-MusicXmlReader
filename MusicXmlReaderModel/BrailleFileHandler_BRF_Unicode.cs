@@ -19,6 +19,14 @@ namespace MusicXmlReaderModel
             return "BRF_Unicode";
         }
 
+        internal BrailleFileHandler_BRF_Unicode(int charsPerLine, int linesPerForm)
+        {
+            this.charsPerLine = charsPerLine;
+            this.linesPerForm = linesPerForm;
+        }
+
+
+
         public override bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls)
         {
             bool result = false;

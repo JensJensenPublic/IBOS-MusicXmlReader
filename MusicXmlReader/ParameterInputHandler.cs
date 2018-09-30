@@ -80,6 +80,34 @@ namespace MusicXmlReader
             }
         }
 
+        public void exportMusicBrailleToFileToolStripMenuItem_Click()
+        {
+            Logger.LogCF("");
+            ExportMusicBrailleToFileParameterDescription p = new ExportMusicBrailleToFileParameterDescription();
+            string input = "";
+            if (DialogResult.OK != ShowParameterInputForm(p, out input)) return ;
+            int n1 = 0;
+            int n2 = 0;
+            bool ok = (p.CheckSyntax(input, out n1, out n2));
+            string s;
+            if (ok)
+            {
+                s = "Number of character per line = " + n1 + " Number of lines per form = " + n2;
+                model.SetExportToMusicBrailleParameters(n1, n2);
+                // Pass new values to model here !
+            }
+            else
+            {
+                UiUtilities.Beep();
+                s = "ExportMusicBrailleToFile: Invalid systax " + input;
+            }
+            Logger.LogCF(string.Format(": {0}", s));
+
+            return;
+        }
+
+
+
         public bool GoToToolStripMenuItem_Click(out int index)
         {
             index = -1;
