@@ -1240,17 +1240,19 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             // Get the contents
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
             //BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode);
-            string fileName = theMusicXmlFileName + brailleFileHandler.GetExtension();
+
+
             // In order to emulate the "real" behaviour for generating and writing a file with MusicBraille information 
             // we go to the full proces of writing the file to the filesystem and reading it back !
-#warning ToDo Write the file to the MusicXmlReader testrdirectory, NOT to the user directory !
-            if (!this.ExportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_ASCII))
-            {
-                return null;
-            }
-            string brailleFileAsUnicode = brailleFileHandler.ReadFromFile(fileName);                //  Read the file back
+            // Explicitly Write the file to the Log , NOT to the user directory !
+            string testFileDirectory = Logger.LogFileDirectory;
+            string testFileName = theMusicXmlFileName + brailleFileHandler.GetExtension();
+            string testFileFullName = Path.Combine(testFileDirectory, Path.GetFileName(testFileName)); 
+            string formattedString = brailleFileHandler.Format(this.eventDescriptionList, this.userSettings);
+            brailleFileHandler.WriteToFile(formattedString, testFileFullName, true);                        // Write the file to the Logger Directory
+            string brailleFileAsUnicode = brailleFileHandler.ReadFromFile(testFileFullName);                //  Read the file back
 
-            // Format the contents for the Detaile window using the formatting information embedded in the file 
+            // Format the contents for the Detail window using the formatting information embedded in the file 
    
             string[] forms = brailleFileAsUnicode.Split((char)012); // Split into a number of forms
             // Fill in the detailsplayer with the contents  
