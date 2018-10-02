@@ -100,7 +100,7 @@ namespace MusicXmlReaderModel
                     }
                 }
             }
-            Logger.LogCF(string.Format(": Generated {0} forms containing {1} lines", numberOfForms, numberOfLines));
+            Logger.LogCF(string.Format("(CharsPerLine={0} ,LinesPerForm={1}): Generated {2} forms containing {3} lines", lineWidth, formHeight, numberOfForms, numberOfLines));
             return score.ToString();
         }
 
