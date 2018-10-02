@@ -639,10 +639,47 @@ namespace MusicXmlReader
             model.SaveUserSettings();
         }
 
+
+
+        /// <summary>
+        /// Second-level item. Use .brf (Unicode)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void brfUnicodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_Unicode);
+        }
+
+        /// <summary>
+        /// Second-level item. Use .brf (ASCII)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void brfASCIIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_ASCII);
+        }
+
+        /// <summary>
+        /// First-level item. Use .brf (Unicode) as default
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exportMusicBrailleToFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_Unicode);
+        }
+
+
+        /// <summary>
+        /// Common handling of all fileformats
+        /// </summary>
+        /// <param name="fileFormat"></param>
+        private void exportMusicBrailleToFile(BrailleFileHandler.FileFormat fileFormat)
+        {
             parameterInputHandler.exportMusicBrailleToFileToolStripMenuItem_Click(); // Prompt the user for formatting parameters
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII, model.UserPreferences.CharsPerLine, model.UserPreferences.LinesPerForm);
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileFormat, model.UserPreferences.CharsPerLine, model.UserPreferences.LinesPerForm);
             string brailleRepresentation = model.GetBrailleRepresentation(brailleFileHandler);
             if (null == brailleRepresentation)
             {
@@ -676,6 +713,8 @@ namespace MusicXmlReader
         {
             detailsHandler.ShowGlobalDetails(DetailsHandler.DetailsEnum.BrailleFile, DetailsHandler.DetailsDirection.FromTop);
         }
+
+
 
 
         private void usersManualToolStripMenuItem_Click(object sender, EventArgs e)
