@@ -684,6 +684,12 @@ namespace MusicXmlReader
         /// <param name="fileFormat"></param>
         private void exportMusicBrailleToFile(BrailleFileHandler.FileFormat fileFormat)
         {
+            if (null == model.EventDescriptionList)
+            { 
+                Logger.LogCF(": No MusicXml file is currently loaded!");
+                UiUtilities.Beep();
+                return;  
+            }
             parameterInputHandler.exportMusicBrailleToFileToolStripMenuItem_Click(); // Prompt the user for formatting parameters
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileFormat, model.UserPreferences.CharsPerLine, model.UserPreferences.LinesPerForm);
             string brailleRepresentation = model.GetBrailleRepresentation(brailleFileHandler);
