@@ -81,13 +81,13 @@ namespace MusicXmlReaderModel
                         score.Append((char)LineFeed);
                         numberOfLines++;
                         currentWidth = 0;
+                        currentHeight++;
                         int length = Math.Min(lineWidth, remainingChars.Length);
                         nextLine =  remainingChars.Substring(0,length);
                         remainingChars = remainingChars.Substring(length, remainingChars.Length - length);
                     }
                     currentWidth += nextLine.Length;
-                    score.Append(nextLine);
-                    currentHeight++;
+                    score.Append(nextLine);                
 
                     // In both cases split in forms if needed
 
