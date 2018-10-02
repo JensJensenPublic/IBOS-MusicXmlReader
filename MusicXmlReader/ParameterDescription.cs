@@ -134,9 +134,7 @@ namespace MusicXmlReader
     {
         public ExportMusicBrailleToFileParameterDescription()
         {
-            name = "ExportMusicBrailleToFileParamete";
-#warning ToDo Localize
-            //name = MusicXmlReaderModel.Utilities.RemoveAmpersant(ResourcesForUI.ParameterInputForm_Repeat);
+            name = ResourcesForUI.ParameterInputForm_BrailleFormatting; // Such as "Insert form size as characters per line , lines per form "
         }
 
         private bool IsNullEmptyOrInt(string s,out int value)

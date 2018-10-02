@@ -394,6 +394,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert form size as characters per line , lines per form.
+        /// </summary>
+        internal static string ParameterInputForm_BrailleFormatting {
+            get {
+                return ResourceManager.GetString("ParameterInputForm_BrailleFormatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Go to measure.
         /// </summary>
         internal static string ParameterInputForm_GoTo {

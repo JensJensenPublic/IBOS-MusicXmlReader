@@ -431,6 +431,9 @@
   <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
     <value>&amp;BrugerIndstillinger</value>
   </data>
+  <data name="ParameterInputForm_BrailleFormatting" xml:space="preserve">
+    <value>Indtast sidestørrelse som tegn per linie , linier per side</value>
+  </data>
   <data name="ToolStripMenuItem_Files_brf_ASCII" xml:space="preserve">
     <value>.brf (&amp;ASCII)</value>
   </data>

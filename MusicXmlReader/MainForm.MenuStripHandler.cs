@@ -690,7 +690,8 @@ namespace MusicXmlReader
                 UiUtilities.Beep();
                 return;  
             }
-            parameterInputHandler.exportMusicBrailleToFileToolStripMenuItem_Click(); // Prompt the user for formatting parameters
+            bool validParams = parameterInputHandler.exportMusicBrailleToFileToolStripMenuItem_Click(); // Prompt the user for formatting parameters
+            if (!validParams) return; // The user entered invalie values
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileFormat, model.UserPreferences.CharsPerLine, model.UserPreferences.LinesPerForm);
             string brailleRepresentation = model.GetBrailleRepresentation(brailleFileHandler);
             if (null == brailleRepresentation)
@@ -706,7 +707,7 @@ namespace MusicXmlReader
             saveBrailleFileDialog.InitialDirectory = Path.GetDirectoryName(model.TheMusicXmlFileName);
             saveBrailleFileDialog.FileName = Path.GetFileNameWithoutExtension(model.TheMusicXmlFileName) + "." +fileFormatName;
             saveBrailleFileDialog.DefaultExt = extension;
-#warning ToDo Localize Filer
+
             // saveBrailleFileDialog.Filter = string.Format("{0}|*.brf", "Braille filer");
             saveBrailleFileDialog.Filter = string.Format("{0}|{1}", fileFormatName, extension);
             DialogResult dialogResult = saveBrailleFileDialog.ShowDialog();

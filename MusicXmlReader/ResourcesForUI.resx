@@ -434,6 +434,9 @@
   <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
     <value>&amp;User Settings</value>
   </data>
+  <data name="ParameterInputForm_BrailleFormatting" xml:space="preserve">
+    <value>Insert form size as characters per line , lines per form</value>
+  </data>
   <data name="ToolStripMenuItem_Files_brf_ASCII" xml:space="preserve">
     <value>.brf (&amp;ASCII)</value>
   </data>

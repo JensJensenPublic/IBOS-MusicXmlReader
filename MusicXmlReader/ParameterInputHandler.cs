@@ -80,12 +80,15 @@ namespace MusicXmlReader
             }
         }
 
-        public void exportMusicBrailleToFileToolStripMenuItem_Click()
+        public bool exportMusicBrailleToFileToolStripMenuItem_Click()
         {
+            bool result = false;
             Logger.LogCF("");
             ExportMusicBrailleToFileParameterDescription p = new ExportMusicBrailleToFileParameterDescription();
             string input = "";
-            if (DialogResult.OK != ShowParameterInputForm(p, out input)) return ;
+            DialogResult dialogResult = ShowParameterInputForm(p, out input);
+            if (DialogResult.Cancel == dialogResult) return true; // Keep parameters unchanged !
+            if (DialogResult.OK != dialogResult) return false;
             int n1 = 0;
             int n2 = 0;
             bool ok = (p.CheckSyntax(input, out n1, out n2));
@@ -95,6 +98,7 @@ namespace MusicXmlReader
                 s = "Number of character per line = " + n1 + " Number of lines per form = " + n2;
                 model.UserPreferences.CharsPerLine = n1;
                 model.UserPreferences.LinesPerForm = n2;
+                result = true;
             }
             else
             {
@@ -103,7 +107,7 @@ namespace MusicXmlReader
             }
             Logger.LogCF(string.Format(": {0}", s));
 
-            return;
+            return result;
         }
 
 
