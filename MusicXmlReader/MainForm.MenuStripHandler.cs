@@ -708,7 +708,7 @@ namespace MusicXmlReader
             saveBrailleFileDialog.DefaultExt = extension;
 #warning ToDo Localize Filer
             // saveBrailleFileDialog.Filter = string.Format("{0}|*.brf", "Braille filer");
-            saveBrailleFileDialog.Filter = string.Format("{0}|.brf", "Braille filer");
+            saveBrailleFileDialog.Filter = string.Format("{0}|{1}", fileFormatName, extension);
             DialogResult dialogResult = saveBrailleFileDialog.ShowDialog();
 
             if (DialogResult.OK == dialogResult)

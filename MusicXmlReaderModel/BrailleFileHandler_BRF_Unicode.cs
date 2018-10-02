@@ -11,7 +11,7 @@ namespace MusicXmlReaderModel
     {
         public override string GetExtension()
         {
-            return ".rbf";
+            return ".brf";
         }
 
         public override string GetFileFormat()
