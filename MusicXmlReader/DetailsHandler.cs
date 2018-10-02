@@ -305,6 +305,13 @@ namespace MusicXmlReader
                     case DetailsEnum.BrailleFile:  items = model.GetBrailleFileDetails(); break;
                     default: Logger.LogCF(string.Format(": Unsupported detail '{0}'", detailsEnum.ToString()));     return;
                 }
+                if (null == items)
+                {
+                    UiUtilities.Beep();
+                    Logger.LogCF(string.Format(": No items found  for DetailsEnum='{0}'", detailsEnum.ToString()));
+                    return;
+                }
+
                 listBoxDetails.Items.Clear();          
                 AddItems(items, detailsEnum, detailsDirection,functionName);
                 LeaveListboxTimes();

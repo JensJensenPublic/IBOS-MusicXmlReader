@@ -1244,8 +1244,11 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             // In order to emulate the "real" behaviour for generating and writing a file with MusicBraille information 
             // we go to the full proces of writing the file to the filesystem and reading it back !
 #warning ToDo Write the file to the MusicXmlReader testrdirectory, NOT to the user directory !
-            brailleFileHandler.WriteToFile(this.eventDescriptionList, this.userSettings, fileName); // Generate and write the file
-            string brailleFileAsUnicode = brailleFileHandler.ReadFromFile(fileName);                //  Read the fiel back
+            if (!this.ExportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_ASCII))
+            {
+                return null;
+            }
+            string brailleFileAsUnicode = brailleFileHandler.ReadFromFile(fileName);                //  Read the file back
 
             // Format the contents for the Detaile window using the formatting information embedded in the file 
    
@@ -1337,7 +1340,13 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             System.IO.File.WriteAllText(theUserSettingsFileName, xml);
         }
 
-        public bool ExportMusicBrailleToFile(BrailleFileHandler.FileFormat format)
+
+        /// <summary>
+        /// Exports as .brf to the directory where the .xml file is found
+        /// </summary>
+        /// <param name="format"></param>
+        /// <returns></returns>
+        private bool ExportMusicBrailleToFile(BrailleFileHandler.FileFormat format)
         {
             if (null == this.eventDescriptionList)
             {
@@ -1347,8 +1356,21 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(format, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
             {
                 string fileName = Path.ChangeExtension(theMusicXmlFileName, brailleFileHandler.GetFileFormat() + brailleFileHandler.GetExtension());
-                return brailleFileHandler.WriteToFile(this.eventDescriptionList, this.userSettings, fileName);
+                string formattedString =  brailleFileHandler.Format(this.eventDescriptionList, this.userSettings);
+                brailleFileHandler.WriteToFile(formattedString, fileName, true);
+                return true;
             }
+        }
+
+
+        /// <summary>
+        /// Converts the current eventdescriptionList to Unicode string representation using the current User Settings
+        /// </summary>
+        /// <param name="brailleFileHandler"></param>
+        /// <returns></returns>
+        public string GetBrailleRepresentation(BrailleFileHandler brailleFileHandler)
+        {
+            return brailleFileHandler.Format(this.eventDescriptionList, this.userSettings);
         }
 
    

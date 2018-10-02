@@ -67,6 +67,7 @@
             this.viewAsInterpretedXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jAWSSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateMusicBrailleTestpatternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,7 +104,7 @@
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.listBoxDetails = new System.Windows.Forms.ListBox();
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
-            this.generateMusicBrailleTestpatternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -420,6 +421,13 @@
             this.userSettingsToolStripMenuItem.Text = "User Settings";
             this.userSettingsToolStripMenuItem.Click += new System.EventHandler(this.userSettingsToolStripMenuItem_Click);
             // 
+            // generateMusicBrailleTestpatternToolStripMenuItem
+            // 
+            this.generateMusicBrailleTestpatternToolStripMenuItem.Name = "generateMusicBrailleTestpatternToolStripMenuItem";
+            this.generateMusicBrailleTestpatternToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.generateMusicBrailleTestpatternToolStripMenuItem.Text = "Generate Music Braille testpattern";
+            this.generateMusicBrailleTestpatternToolStripMenuItem.Click += new System.EventHandler(this.generateMusicBrailleTestpatternToolStripMenuItem_Click);
+            // 
             // archivesToolStripMenuItem
             // 
             this.archivesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -732,13 +740,6 @@
             this.textBoxScreenReader.Size = new System.Drawing.Size(926, 20);
             this.textBoxScreenReader.TabIndex = 12;
             // 
-            // generateMusicBrailleTestpatternToolStripMenuItem
-            // 
-            this.generateMusicBrailleTestpatternToolStripMenuItem.Name = "generateMusicBrailleTestpatternToolStripMenuItem";
-            this.generateMusicBrailleTestpatternToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.generateMusicBrailleTestpatternToolStripMenuItem.Text = "Generate Music Braille testpattern";
-            this.generateMusicBrailleTestpatternToolStripMenuItem.Click += new System.EventHandler(this.generateMusicBrailleTestpatternToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -846,6 +847,7 @@
         private System.Windows.Forms.ToolStripMenuItem exportMusicBrailleToFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brailleFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem generateMusicBrailleTestpatternToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveBrailleFileDialog;
     }
 }
 

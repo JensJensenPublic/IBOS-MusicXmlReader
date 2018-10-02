@@ -119,7 +119,7 @@ namespace MusicXmlReaderModel
         /// <param name="userSettings"></param>
         /// <param name="fullFileName"></param>
         /// <returns></returns>
-        public bool WriteToFile(EventDescriptionList events, UserSettings userSettings,  string fullFileName)
+        public string Format(EventDescriptionList events, UserSettings userSettings)
         {
 #warning TODO Save and restore USerSettings                   
             // Set up for Music Braille. No normal text 
@@ -141,9 +141,11 @@ namespace MusicXmlReaderModel
                 }
             }
             string score = scoreAsMusicBraille.ToString();
-            Logger.LogCF(string.Format(": Writing {0} Braille characters from {1} eventdescriptions to {2}", score.Length, eventList.Count,fullFileName));
-            // return this.WriteToFile(score, fullFileName);  // Ignoring width and height
-            return this.WriteToFile(eventList, fullFileName); // Taking in account width and height
+            //Logger.LogCF(string.Format(": Writing {0} Braille characters from {1} eventdescriptions to {2}", score.Length, eventList.Count,fullFileName));
+            // return this.WriteToFile(score, fullFileName);  // Ignoring width and height 
+            return this.Format(eventList);
+
+            //return this.WriteToFile(eventList, fullFileName); // Taking in account width and height
         }
 
         /// <summary>
