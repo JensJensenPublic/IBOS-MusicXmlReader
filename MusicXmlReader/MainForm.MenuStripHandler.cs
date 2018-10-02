@@ -701,9 +701,11 @@ namespace MusicXmlReader
             
             // Conversion succeeded. Prompt use for filename  
 
-            saveBrailleFileDialog.InitialDirectory = Path.GetDirectoryName(model.TheMusicXmlFileName);     
-            saveBrailleFileDialog.FileName = Path.GetFileNameWithoutExtension(model.TheMusicXmlFileName);
-            saveBrailleFileDialog.DefaultExt = ".rbf";
+            string extension = brailleFileHandler.GetExtension(); // Currently always ".brf" Maybe later ".pef" ?
+            string fileFormatName = brailleFileHandler.GetFileFormat(); // Currently "BRF_Unicode" or "BRF_ASCII"
+            saveBrailleFileDialog.InitialDirectory = Path.GetDirectoryName(model.TheMusicXmlFileName);
+            saveBrailleFileDialog.FileName = Path.GetFileNameWithoutExtension(model.TheMusicXmlFileName) + "." +fileFormatName;
+            saveBrailleFileDialog.DefaultExt = extension;
 #warning ToDo Localize Filer
             // saveBrailleFileDialog.Filter = string.Format("{0}|*.brf", "Braille filer");
             saveBrailleFileDialog.Filter = string.Format("{0}|.brf", "Braille filer");
