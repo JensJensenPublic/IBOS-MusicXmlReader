@@ -46,6 +46,7 @@ namespace MusicXmlReader
             if (!ok)
 #endif
             {
+                Logger.LogCF(": Beep!"); // Primarily for debugging. On JSJ's private PC the Beep sound is unstable !
                 System.Media.SystemSound myBeep = System.Media.SystemSounds.Beep;
                 myBeep.Play();
             }
