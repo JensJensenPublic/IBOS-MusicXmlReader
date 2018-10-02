@@ -77,8 +77,12 @@ namespace MusicXmlReaderModel
                     }
                     else
                     {
-                        score.Append((char)CarriageReturn);
-                        score.Append((char)LineFeed);
+                        if (0 != currentWidth)
+                        {
+                            // No need to insert cf/lf in the start of a form
+                            score.Append((char)CarriageReturn);
+                            score.Append((char)LineFeed);
+                        }
                         numberOfLines++;
                         currentWidth = 0;
                         currentHeight++;
