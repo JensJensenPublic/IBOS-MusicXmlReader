@@ -434,4 +434,13 @@
   <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
     <value>&amp;User Settings</value>
   </data>
+  <data name="ToolStripMenuItem_Files_brf_ASCII" xml:space="preserve">
+    <value>.brf (&amp;ASCII)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_brf_Unicode" xml:space="preserve">
+    <value>.brf (&amp;Unicode)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
+    <value>E&amp;xport Music Braille to file</value>
+  </data>
 </root>

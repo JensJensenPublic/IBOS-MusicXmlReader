@@ -583,11 +583,38 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .brf (&amp;ASCII).
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_brf_ASCII {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_brf_ASCII", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .brf (&amp;Unicode).
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_brf_Unicode {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_brf_Unicode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E&amp;xit.
         /// </summary>
         internal static string ToolStripMenuItem_Files_Exit {
             get {
                 return ResourceManager.GetString("ToolStripMenuItem_Files_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E&amp;xport Music Braille to file.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_ExportMusicBrailleToFile {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_ExportMusicBrailleToFile", resourceCulture);
             }
         }
         

@@ -42,7 +42,7 @@ namespace MusicXmlReader
             archivesToolStripMenuItem.Text = ResourcesForUI.ToolsStripMenuItem_Archives;
             helpToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help;
 
-            // Children of  fileToolStripMenuItem
+            // Children (and grandchildren) of  fileToolStripMenuItem
             openMusicXmlFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile;
             openMusicXmlFileToolStripMenuItem.ShortcutKeys = ShortcutHandler.openMusicXmlFile;
             GenerateAccessibleName(ref openMusicXmlFileToolStripMenuItem);
@@ -51,6 +51,12 @@ namespace MusicXmlReader
             importNewSampleFilesToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ImportNewestSamples;
             exitToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_Exit;
             exitToolStripMenuItem.ShortcutKeys = ShortcutHandler.exitApplication;
+            this.exportMusicBrailleToFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBrailleToFile;
+            // this.exportMusicBrailleToFileToolStripMenuItem.ShortcutKeys = ShortcutHandler....;
+            this.brfUnicodeToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_Unicode;
+            //this.brfUnicodeToolStripMenuItem.ShowShortcutKeys = ShortcutHandler....;
+            this.brfASCIIToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII;
+            //this.brfASCIIToolStripMenuItem.ShortcutKeys = ShortcutHandler....;
             GenerateAccessibleName(ref exitToolStripMenuItem);
 
             // Children of editToolStripMenuItem, referring to the Treeview
