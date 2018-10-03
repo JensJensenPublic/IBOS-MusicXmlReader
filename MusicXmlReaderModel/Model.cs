@@ -524,7 +524,7 @@ namespace MusicXmlReaderModel
                 case "measure":
                     MeasureElement measureElement = MeasureElement.Create(node);
                     measureElement.PartId = currentPartId;
-                    measureElement.MeasureDuration = (null == currentTimeElement) ? 0 :  currentTimeElement.MeasureDuration;
+                    measureElement.MeasureDuration = (null == currentTimeElement) ? 0 :  currentTimeElement.GetMeasureDuration();
                     // Logger.LogCF(string.Format(": Duration={0}", measureElement.MeasureDuration));
                     allMusicXmlObjecsts.Add(measureElement); // Avoid the "Ikke VAlgt" error message from screenreader
                     this.currentMeasureNumber = measureElement.Number;               

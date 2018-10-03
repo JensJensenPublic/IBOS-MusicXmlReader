@@ -29,18 +29,14 @@ namespace MusicXmlReaderModel
         }
 
 
-        public System.Int64 MeasureDuration
+        public System.Int64 GetMeasureDuration()
         {
-            get
+            if (0 == beatType)
             {
-                if (0 == beatType)
-                {
-                    Logger.LogCF(": BeatType=0    ******************************************************************************************************");
-                    throw new System.Exception("TimeElement.MeasureDuration: BeatType = 0");
-                }
-                return NoteElement.commonDivisions * 4 * beats / beatType;
+                Logger.LogCF(": BeatType=0    ******************************************************************************************************");
+                throw new System.Exception("TimeElement.MeasureDuration: BeatType = 0");
             }
-
+            return NoteElement.commonDivisions * 4 * beats / beatType;
         } // NoteElement.commonDivisions is per quarter Note
 
         /// <summary>
