@@ -1010,4 +1010,7 @@
   <data name="NoteElement_Staff" xml:space="preserve">
     <value>Staff</value>
   </data>
+  <data name="DetailsDescription_MusicBraille_FormFeed" xml:space="preserve">
+    <value>New form</value>
+  </data>
 </root>

@@ -1258,7 +1258,7 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             // Fill in the detailsplayer with the contents  
             foreach ( string form in forms )
             {
-                detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create("FormFeed"));
+                detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(ResourcesForModel.DetailsDescription_MusicBraille_FormFeed));
                 string[] lines = form.Split((char)010); // Split each form into a number of lines
                 foreach (string line in lines)
                 {

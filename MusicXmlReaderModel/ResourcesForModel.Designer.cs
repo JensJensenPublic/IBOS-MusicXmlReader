@@ -538,6 +538,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New form.
+        /// </summary>
+        internal static string DetailsDescription_MusicBraille_FormFeed {
+            get {
+                return ResourceManager.GetString("DetailsDescription_MusicBraille_FormFeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No chord.
         /// </summary>
         internal static string DetailsDescription_NoChordFound {
