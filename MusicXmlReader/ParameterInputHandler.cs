@@ -80,14 +80,14 @@ namespace MusicXmlReader
             }
         }
 
-        public bool exportMusicBrailleToFileToolStripMenuItem_Click()
+        public bool GetMusicBrailleFormatParameters(bool cancelMeansUseDefault)
         {
             bool result = false;
             Logger.LogCF("");
             ExportMusicBrailleToFileParameterDescription p = new ExportMusicBrailleToFileParameterDescription();
             string input = "";
             DialogResult dialogResult = ShowParameterInputForm(p, out input);
-            if (DialogResult.Cancel == dialogResult) return true; // Keep parameters unchanged !
+            if (cancelMeansUseDefault && (DialogResult.Cancel == dialogResult) )return true; // Keep parameters unchanged !
             if (DialogResult.OK != dialogResult) return false;
             int n1 = 0;
             int n2 = 0;

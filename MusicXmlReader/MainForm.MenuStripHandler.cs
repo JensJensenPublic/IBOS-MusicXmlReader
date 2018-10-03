@@ -668,13 +668,14 @@ namespace MusicXmlReader
         }
 
         /// <summary>
-        /// First-level item. Use .brf (Unicode) as default
+        /// First-level item. Return, forcing the focus to the upper second-level item.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void exportMusicBrailleToFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_Unicode);
+            return;            
+            // exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_Unicode); // Alternative implementation
         }
 
 
@@ -684,14 +685,14 @@ namespace MusicXmlReader
         /// <param name="fileFormat"></param>
         private void exportMusicBrailleToFile(BrailleFileHandler.FileFormat fileFormat)
         {
-            if (null == model.EventDescriptionList)
-            { 
-                Logger.LogCF(": No MusicXml file is currently loaded!");
+            if (!ScoreIsLoaded()) return; // Beeps and logs.
+            bool acceptCancel = false; //  Do not accept cancel as "use default parameters"
+            bool validParams = parameterInputHandler.GetMusicBrailleFormatParameters(acceptCancel); // Prompt the user for formatting parameters.
+            if (!validParams)
+            {
                 UiUtilities.Beep();
-                return;  
+                return; // The user entered invalid values
             }
-            bool validParams = parameterInputHandler.exportMusicBrailleToFileToolStripMenuItem_Click(); // Prompt the user for formatting parameters
-            if (!validParams) return; // The user entered invalie values
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileFormat, model.UserPreferences.CharsPerLine, model.UserPreferences.LinesPerForm);
             string brailleRepresentation = model.GetBrailleRepresentation(brailleFileHandler);
             if (null == brailleRepresentation)
@@ -724,8 +725,33 @@ namespace MusicXmlReader
 
         }
 
+        private bool ScoreIsLoaded()
+        {
+            if (null == model.EventDescriptionList)
+            {
+                Logger.LogCF(": No MusicXml file is currently loaded!");
+                UiUtilities.Beep();
+                return false;
+            }
+            return true;
+        }
+
+
+        /// <summary>
+        /// Handles Details for BrailleFiles
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void brailleFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!ScoreIsLoaded()) return; // Beeps and logs.
+            bool acceptCancel = true;
+            bool validParams = parameterInputHandler.GetMusicBrailleFormatParameters(acceptCancel); // Prompt the user for formatting parameters
+            if (!validParams)
+            {
+                UiUtilities.Beep();
+                return;
+            }
             detailsHandler.ShowGlobalDetails(DetailsHandler.DetailsEnum.BrailleFile, DetailsHandler.DetailsDirection.FromTop);
         }
 
@@ -740,6 +766,13 @@ namespace MusicXmlReader
 
         private void generateMusicBrailleTestpatternToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool acceptCancel = true; // Accept cancel as "Use default parameters"
+            bool validParams = parameterInputHandler.GetMusicBrailleFormatParameters(acceptCancel); // Prompt the user for formatting parameters
+            if (!validParams)
+            {
+                UiUtilities.Beep();
+                return;
+            }
             model.GenerateMusicBrailleTestpattern();
         }
 
