@@ -80,7 +80,10 @@ namespace MusicXmlReader
             this.listBoxDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(KeyDown);
             this.listBoxDetails.Leave += new System.EventHandler(Leave);
             this.listBoxDetails.Enter += new System.EventHandler(Enter);
-
+            // Assure that listBoxDetails does not exceed listBoxTimes:
+            int height = listBoxTimes.Size.Height;
+            this.listBoxDetails.MaximumSize = new System.Drawing.Size(int.MaxValue, height);
+            Logger.LogCF(string.Format(": Setting listBoxDetails.MaximumSize to ({0},{1})","int.MaxValue", height));
         }
 
 
