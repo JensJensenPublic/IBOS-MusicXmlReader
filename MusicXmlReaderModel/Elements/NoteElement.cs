@@ -1269,7 +1269,6 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public string ToDetailsString(bool showHand)
         {
-            string functionName = "ToDetailsString";
             string notationsString = (null != notations) ? notations.ToString() : "";
             if (!IsPause)
             {

@@ -81,7 +81,6 @@ namespace MusicXmlReaderModel
         /// <param name="node"></param>
         private TimeElement(XmlNode node)
         {
-            const string functionName = "TimeElement";
             string beats = "";
             string beatType = "";
             // Dig out elements

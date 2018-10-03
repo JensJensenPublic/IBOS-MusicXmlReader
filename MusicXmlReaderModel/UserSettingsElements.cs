@@ -114,8 +114,8 @@ namespace MusicXmlReaderModel
 
         public void Test()
         {
-            return;
 
+#if false
             Logger.LogCF(string.Format(".Entry"));
 
             string xml = ToXml(root);
@@ -146,7 +146,8 @@ namespace MusicXmlReaderModel
             }
 
             Logger.LogCF(string.Format(".Exit"));
-
+#endif
+            return;
         }
 
         public string ToXml()

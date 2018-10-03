@@ -100,9 +100,7 @@ namespace MusicXmlReader
         private void TreeView_Leave(object sender, EventArgs e)
         {
             this.treeView.BackColor = MainForm.NonFocusedColor;
-            // Reload the NoteList if UserSettings have changed
-#warning ToDo Do not call Load if only Sound settings have changed !! They are not reflected in the NoteList !!        
-            //            string userSettingsAtLeave = model.UserSettings.ToXml();
+            // Reload the NoteList if UserSettings have changed  
 
             if (null == model.UserSettings)
             {
@@ -241,8 +239,6 @@ namespace MusicXmlReader
             }
 
             this.treeView.Refresh(); // Refresh the treeView before we start refreshing the listbox  (which may take some time !)
-
-#warning Maybe we should not refresh the listbox until it gets focus ??
 
             this.OnUserSettingTouched();
 

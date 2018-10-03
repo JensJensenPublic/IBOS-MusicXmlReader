@@ -125,7 +125,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public string Format(EventDescriptionList events, UserSettings userSettings)
         {
-#warning TODO Save and restore USerSettings                   
+#warning TODO Save and restore UserPreferences                   
             // Set up for Music Braille. No normal text 
             userSettings.SetAllMusicBrailleSettings(true); // Select all Music Braille Settings (For each part selected above)
             userSettings.SetAllNormalTextSettings(false);   // Select no Normal Text settings   (For each part selected above)
