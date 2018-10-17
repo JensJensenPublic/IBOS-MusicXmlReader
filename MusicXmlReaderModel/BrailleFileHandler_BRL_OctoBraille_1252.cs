@@ -24,9 +24,6 @@ namespace MusicXmlReaderModel
          133,229,063,234,150,117,181,118,152,238,248,235,158,120,232,231,  // Maps the Unicode Interval starting at 0x2820
          168,251,161,252,176,122,034,224,139,244,119,239,190,121,249,233}; // Maps the Unicode Interval starting at 0x2830
 
-        private byte[] byteMap; //  Maps from a UNICODE 0x2800..0x283F char to a byte.    Is filled in during initialization !
-        private char[] charMap; //  Maps from a byte to a UNICODE char in 0x2800..0x283F  Is filled in during initialization !
-
         public override string GetExtension()
         {
             return ".brl";
@@ -62,30 +59,9 @@ namespace MusicXmlReaderModel
                 charMap[index] = (char)(0x2800 + i);
             }
 
-            // Finally map 3 controls to their Unicode equivalents
-            charMap[LineFeed] = (char)LineFeed;
-            charMap[FormFeed] = (char)FormFeed;
-            charMap[CarriageReturn] = (char)CarriageReturn;
-            
-
-            // Check both
-            const int BrailleBase = 0x2800;
-            for (int i = BrailleBase; i < BrailleBase + map.Length; i++)
-            {
-                byte b = byteMap[i - BrailleBase];
-                int result = charMap[b];
-                if (i != result)
-                {
-                    Logger.LogCF(string.Format(": Initialization error: char=0x{0:x} maps to byte={1} which maps to 0x{2:x}", i, b, result));
-                }
-            }
-
-  
+            AddControls();
+            CheckTables(map.Length);  
         }
-
-
-
-
 
         /// <summary>
         ///  /// Reads a file containing MusicBraille information and returns its contents as a UNICODE string

@@ -15,8 +15,7 @@ namespace MusicXmlReaderModel
         // + 0x10 *                 0                1               2               3
         // + 0x01 *                 0123456789ABCDEF 0123456789ABCDEF0123456789ABCDEF012 3456789ABCDEF  
         private const string map = " A1B'K2L@CIF/MSP\"E3H9O6R^DJG>NTQ,*5<-U8V.%[$+X!&;:4\\0Z7(_?W]#Y)="; // Note the 2 '\' used as escape characters !
-        private byte[] byteMap; //  Maps from a UNICODE 0x2800..0x283F char to a byte.    Is filled in during initialization !
-        private char[] charMap; //  Maps from a byte to a UNICODE char in 0x2800..0x283F  Is filled in during initialization !
+
 
 #if false
         // According to https://en.wikipedia.org/wiki/Computer_Braille_Code: (Manually derived from the Web page:
@@ -58,22 +57,9 @@ namespace MusicXmlReaderModel
                 int index = map[i];
                 charMap[index] = (char)(0x2800 + i);
             }
-            // Also map 3 controls to their Unicode equivalents
-            charMap[LineFeed] = (char)LineFeed;
-            charMap[FormFeed] = (char)FormFeed;
-            charMap[CarriageReturn] = (char)CarriageReturn;
 
-            // Check both
-            const int BrailleBase = 0x2800;
-            for (int i = BrailleBase; i < BrailleBase + map.Length; i++)
-            {
-                byte b = byteMap[i - BrailleBase];
-                int result = charMap[b];
-                if (i != result)
-                {
-                    Logger.LogCF(string.Format(": Initialization error: char=0x{0}:x maps to byte={1} which maps to 0x{2:x}", i, b, result));
-                }
-            }
+            AddControls();
+            CheckTables(map.Length);
         }
 
 

@@ -20,6 +20,9 @@ namespace MusicXmlReaderModel
         protected int charsPerLine = 14;
         protected int linesPerForm = 32;
 
+        protected byte[] byteMap; //  Maps from a UNICODE 0x2800..0x283F char to a byte.    Is filled in during initialization !
+        protected char[] charMap; //  Maps from a byte to a UNICODE char in 0x2800..0x283F  Is filled in during initialization !
+
         // Some general information about Braille file formats:
         //
         // https://www.ukaaf.org/wp-content/uploads/2017/03/ReadingElectronicBrailleFinal.pdf
@@ -43,6 +46,38 @@ namespace MusicXmlReaderModel
         abstract public string ReadFromFile(string fullFileName);
 
         abstract public bool   WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls);
+
+
+        protected void AddControls()
+        {
+            // Map 3 controls to their Unicode equivalents
+            charMap[LineFeed] = (char)LineFeed;
+            charMap[FormFeed] = (char)FormFeed;
+            charMap[CarriageReturn] = (char)CarriageReturn;
+        }
+
+        protected void CheckTables(int mapLength)
+        {
+            // Check both
+            bool ok = true;
+            const int BrailleBase = 0x2800;
+            for (int i = BrailleBase; i < BrailleBase + mapLength; i++)
+            {
+                byte b = byteMap[i - BrailleBase];
+                int result = charMap[b];
+                if (i != result)
+                {
+                    Logger.LogCF(string.Format(": Initialization error: char=0x{0:x} maps to byte={1} which maps to 0x{2:x}", i, b, result));
+                    ok = false;
+                }
+            }
+            if (ok)
+            {
+                Logger.LogCF(": Passed");
+            }
+        }
+
+
 
 
         /// Formats a list of UNICODE strings, each representing a musical event  in to a single UNICODE,

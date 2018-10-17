@@ -23,6 +23,8 @@ namespace MusicXmlReaderModel
         {
             this.charsPerLine = charsPerLine;
             this.linesPerForm = linesPerForm;
+
+            // No initialisation of conversion tables are needed here !
         }
 
 
