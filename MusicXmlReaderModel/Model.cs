@@ -1397,6 +1397,10 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
             brailleFileHandler.GenerateTestpattern(directoryName);
 
+            //// Finally for BRL OctoBraille
+            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRL_OctoBraille_1252, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
+            brailleFileHandler.GenerateTestpattern(directoryName);
+
             // Open an explorer to inspect the log filed
             ExternalToolsHandler.OpenLogFileLocation();  
 

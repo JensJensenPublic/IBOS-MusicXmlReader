@@ -63,57 +63,12 @@ namespace MusicXmlReaderModel
         }
 
 
-        /// <summary>
-        /// Converts a (Unicode-based) string of Braille characters (0x2800..0x283F) to its RBF-ASCII representation
-        /// </summary>
-        /// <param name="unicodeBraille"></param>
-        /// <returns></returns>
-        private byte[] ToRbfASCII(string unicodeBraille, bool acceptControls)
+
+        private byte[] ToBytes(string unicodeBraille)
         {
-            int length = unicodeBraille.Length;
-            byte[] byteArray = new byte[length];
-            for (int i = 0; (i < length); i++)
-            {
-                Char c = unicodeBraille[i];
-                if ((c >= 0x2800) && (c <= 0x283F))
-                {
-                    byte mappedByte = byteMap[c - 0x2800]; // Map from the 0x2800..0x283F interval to the corresponding valie to write to the file
-                    byteArray[i] = mappedByte;
-                }
-                else if (acceptControls && ((c == (char)CarriageReturn) || (c == (char)LineFeed) || (c == (char)FormFeed)))
-                {
-                    byteArray[i] = (byte)c;
-                }
-
-                else
-                {
-                    string message = string.Format("Illegal value for Unicode Braille = 0x{0:x}", c);
-                    byteArray[i] = 0x20; // Insert an empty Braille Character  
-                    Logger.LogCF(string.Format(": {0}", message));
-                }
-
-            }
-            return byteArray;
+            return ToBytes(unicodeBraille, false);
         }
 
-
-
-        private byte[] ToRbfASCII(string unicodeBraille)
-        {
-            return ToRbfASCII(unicodeBraille, false);
-        }
-
-
-        private string ToUnicode(byte[] bytes)
-        {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; (i < bytes.Length); i++)
-            {
-                byte b = bytes[i];
-                sb.Append(charMap[b]);
-            }
-            return sb.ToString();
-        }
 
 
 
@@ -126,33 +81,8 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public override bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls)
         {
-            byte[] byteArray = ToRbfASCII(unicodeBraille, acceptControls);
+            byte[] byteArray = ToBytes(unicodeBraille, acceptControls);
             return WriteToFile(byteArray, fullFileName);
-        }
-
-        /// <summary>
-        /// Writes the byteArray to the file without any conversion
-        /// </summary>
-        /// <param name="byteArray"></param>
-        /// <param name="fullFileName"></param>
-        /// <returns>true <==> success</returns>
-        private bool WriteToFile(byte[] byteArray, string fullFileName)
-        {
-            bool result = true;
-            // Let the system handle resources:
-            using (BinaryWriter bw = new BinaryWriter(File.Open(fullFileName, FileMode.Create)))
-            {
-                try
-                {
-                    bw.Write(byteArray);
-                }
-                catch (Exception e)
-                {
-                    Logger.LogCFE(e);
-                    result = false;
-                }
-            }
-            return result;
         }
 
 
@@ -162,20 +92,7 @@ namespace MusicXmlReaderModel
         /// <param name="fullFilefileName"></param>
         public override string ReadFromFile(string fullFileName)
         {
-            byte[] bytes;
-            string result = null;
-            try
-            {
-                bytes = File.ReadAllBytes(fullFileName);
-                Logger.LogCF(string.Format(": read {0} bytes from {1}", bytes.Length, fullFileName));
-                result = ToUnicode(bytes);
-            }
-            catch (Exception e)
-            {
-                result = null;
-                Logger.LogCFE(e);
-            }        
-            return result;
+            return ReadBytesFromFile(fullFileName);
         }
     }
 

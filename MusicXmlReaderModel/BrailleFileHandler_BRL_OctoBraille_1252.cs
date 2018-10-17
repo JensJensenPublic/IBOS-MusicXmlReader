@@ -62,23 +62,30 @@ namespace MusicXmlReaderModel
             AddControls();
             CheckTables(map.Length);  
         }
+        
 
         /// <summary>
-        ///  /// Reads a file containing MusicBraille information and returns its contents as a UNICODE string
+        /// Reads a file containing MusicBraille information and returns its contents as a UNICODE string
         /// </summary>
-        /// <param name="fullFileName"></param>
-        /// <returns></returns>
+        /// <param name="fullFilefileName"></param>
         public override string ReadFromFile(string fullFileName)
         {
-            Logger.LogCF("Not implemented yet");
-            return null;
+            return ReadBytesFromFile(fullFileName);
         }
-
+        
+        /// <summary>
+        /// Writes a string of Braille (in Unicode representation) to a file after converting it to ASCII
+        /// </summary>
+        /// <param name="unicodeBraille"></param>
+        /// <param name="fullFileName"></param>
+        /// <param name="acceptControls"></param>
+        /// <returns></returns>
         public override bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls)
         {
-            Logger.LogCF("Not implemented yet");
-            return false;
+            byte[] byteArray = ToBytes(unicodeBraille, acceptControls);
+            return WriteToFile(byteArray, fullFileName);
         }
+        
 
     }
 }
