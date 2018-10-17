@@ -667,6 +667,11 @@ namespace MusicXmlReader
             exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_ASCII);
         }
 
+        private void brlOctoBraille1252ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRL_OctoBraille_1252);
+        }
+
         /// <summary>
         /// First-level item. Return, forcing the focus to the upper second-level item.
         /// </summary>

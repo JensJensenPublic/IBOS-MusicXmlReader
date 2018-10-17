@@ -20,7 +20,7 @@ namespace MusicXmlReaderModel
         private readonly byte[] map = new byte[] 
         // 0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F         
         {032,097,044,098,046,107,059,108,039,099,105,102,191,109,115,112,  // Maps the Unicode Interval starting at 0x2800
-         096,101,058,104,042,111,033,114,129,100,106,103,230,101,255,113,  // Maps the Unicode Interval starting at 0x2810
+         096,101,058,104,042,111,033,114,129,100,106,103,230,110,255,113,  // Maps the Unicode Interval starting at 0x2810
          133,229,063,234,150,117,181,118,152,238,248,235,158,120,232,231,  // Maps the Unicode Interval starting at 0x2820
          168,251,161,252,176,122,034,224,139,244,119,239,190,121,249,233}; // Maps the Unicode Interval starting at 0x2830
 
@@ -61,10 +61,12 @@ namespace MusicXmlReaderModel
                 int index = map[i];
                 charMap[index] = (char)(0x2800 + i);
             }
-            // Also map 3 controls to their Unicode equivalents
+
+            // Finally map 3 controls to their Unicode equivalents
             charMap[LineFeed] = (char)LineFeed;
             charMap[FormFeed] = (char)FormFeed;
             charMap[CarriageReturn] = (char)CarriageReturn;
+            
 
             // Check both
             const int BrailleBase = 0x2800;
@@ -74,9 +76,11 @@ namespace MusicXmlReaderModel
                 int result = charMap[b];
                 if (i != result)
                 {
-                    Logger.LogCF(string.Format(": Initialization error: char=0x{0}:x maps to byte={1} which maps to 0x{2:x}", i, b, result));
+                    Logger.LogCF(string.Format(": Initialization error: char=0x{0:x} maps to byte={1} which maps to 0x{2:x}", i, b, result));
                 }
             }
+
+  
         }
 
 

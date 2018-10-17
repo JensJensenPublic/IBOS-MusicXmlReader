@@ -35,6 +35,9 @@
             this.importNewestDownloadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importNewSampleFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportMusicBrailleToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brfUnicodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brfASCIIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.brlOctoBraille1252ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,8 +108,6 @@
             this.listBoxDetails = new System.Windows.Forms.ListBox();
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.brfUnicodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.brfASCIIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -173,11 +174,33 @@
             // 
             this.exportMusicBrailleToFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.brfUnicodeToolStripMenuItem,
-            this.brfASCIIToolStripMenuItem});
+            this.brfASCIIToolStripMenuItem,
+            this.brlOctoBraille1252ToolStripMenuItem});
             this.exportMusicBrailleToFileToolStripMenuItem.Name = "exportMusicBrailleToFileToolStripMenuItem";
             this.exportMusicBrailleToFileToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.exportMusicBrailleToFileToolStripMenuItem.Text = "Export Music Braille to file";
             this.exportMusicBrailleToFileToolStripMenuItem.Click += new System.EventHandler(this.exportMusicBrailleToFileToolStripMenuItem_Click);
+            // 
+            // brfUnicodeToolStripMenuItem
+            // 
+            this.brfUnicodeToolStripMenuItem.Name = "brfUnicodeToolStripMenuItem";
+            this.brfUnicodeToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.brfUnicodeToolStripMenuItem.Text = ".brf (Unicode)";
+            this.brfUnicodeToolStripMenuItem.Click += new System.EventHandler(this.brfUnicodeToolStripMenuItem_Click);
+            // 
+            // brfASCIIToolStripMenuItem
+            // 
+            this.brfASCIIToolStripMenuItem.Name = "brfASCIIToolStripMenuItem";
+            this.brfASCIIToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.brfASCIIToolStripMenuItem.Text = ".brf (ASCII)";
+            this.brfASCIIToolStripMenuItem.Click += new System.EventHandler(this.brfASCIIToolStripMenuItem_Click);
+            // 
+            // brlOctoBraille1252ToolStripMenuItem
+            // 
+            this.brlOctoBraille1252ToolStripMenuItem.Name = "brlOctoBraille1252ToolStripMenuItem";
+            this.brlOctoBraille1252ToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.brlOctoBraille1252ToolStripMenuItem.Text = ".brl (OctoBraille 1252)";
+            this.brlOctoBraille1252ToolStripMenuItem.Click += new System.EventHandler(this.brlOctoBraille1252ToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -745,20 +768,6 @@
             this.textBoxScreenReader.Size = new System.Drawing.Size(926, 20);
             this.textBoxScreenReader.TabIndex = 12;
             // 
-            // brfUnicodeToolStripMenuItem
-            // 
-            this.brfUnicodeToolStripMenuItem.Name = "brfUnicodeToolStripMenuItem";
-            this.brfUnicodeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.brfUnicodeToolStripMenuItem.Text = ".brf (Unicode)";
-            this.brfUnicodeToolStripMenuItem.Click += new System.EventHandler(this.brfUnicodeToolStripMenuItem_Click);
-            // 
-            // brfASCIIToolStripMenuItem
-            // 
-            this.brfASCIIToolStripMenuItem.Name = "brfASCIIToolStripMenuItem";
-            this.brfASCIIToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.brfASCIIToolStripMenuItem.Text = ".brf (ASCII)";
-            this.brfASCIIToolStripMenuItem.Click += new System.EventHandler(this.brfASCIIToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -869,6 +878,7 @@
         private System.Windows.Forms.SaveFileDialog saveBrailleFileDialog;
         private System.Windows.Forms.ToolStripMenuItem brfUnicodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brfASCIIToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem brlOctoBraille1252ToolStripMenuItem;
     }
 }
 
