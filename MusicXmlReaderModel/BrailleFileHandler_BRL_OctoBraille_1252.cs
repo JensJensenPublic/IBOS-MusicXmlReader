@@ -16,13 +16,16 @@ namespace MusicXmlReaderModel
 
         // The danish 8-dot table almost matches Windows codepage CP1252, except that the table also uses some values which do not map to any character in CP1252,
         // that is 0x81, 0x8d, 0x8f, 0x90 og 0x9d. (Decimal 129, 141, 143, 144, 157.) 
-        // As one of these values (Decimal 129) is used for mapping a 6 dot value we represent the map as integers instead of characters:  
+        // As one of these values (Decimal 129) is used for mapping a 6 dot value we represent the map as integers instead of characters:
         private readonly byte[] map = new byte[] 
         // 0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F         
         {032,097,044,098,046,107,059,108,039,099,105,102,191,109,115,112,  // Maps the Unicode Interval starting at 0x2800
          096,101,058,104,042,111,033,114,129,100,106,103,230,110,116,113,  // Maps the Unicode Interval starting at 0x2810
          133,229,063,234,150,117,181,118,152,238,248,235,158,120,232,231,  // Maps the Unicode Interval starting at 0x2820
          168,251,161,252,176,122,034,224,139,244,119,239,190,121,249,233}; // Maps the Unicode Interval starting at 0x2830
+        // Please find more information in the 2 files (both found in "...\Dropbox\Root\Visual Studio 2015\Projects\MusicXmlReaderUI\Documentation"):
+        // "da-ansi8.dis" and "Braille Sense U2 brugermanual(Ver 8 5_dk).docx"
+
 
         public override string GetExtension()
         {
