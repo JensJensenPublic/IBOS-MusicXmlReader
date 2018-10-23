@@ -169,6 +169,12 @@ namespace MusicXmlReaderModel
             return  " " + ((null == fraction) ? "?" : fraction.ToString());
         }
 
+        private string Format(MetronomeElement metronomeElement, string s)
+        {
+            string caption = (null == metronomeElement) ? ResourcesForModel.MetronomeElement_Tempo : metronomeElement.Caption;
+            return caption + " " + s;
+        }
+
         /// <summary>
         /// Describes the format of the status information when shown in the Details window
         /// Please compare to StatusInformation.Format()

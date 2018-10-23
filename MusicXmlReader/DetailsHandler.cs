@@ -284,6 +284,7 @@ namespace MusicXmlReader
             }
             catch (Exception exception)
             {
+                UiUtilities.Beep();
                 Logger.Log(string.Format("{0}.{1} ({2},{3}) threw an exception: Message={4}", className, functionName, detailsEnum, detailsDirection.ToString(), exception.Message));
             }
             return;
