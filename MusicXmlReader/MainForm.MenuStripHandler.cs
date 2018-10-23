@@ -685,7 +685,33 @@ namespace MusicXmlReader
 
 
         /// <summary>
+        /// Simple implementation for exporting to notetaker. This implementation needs no further input from the user !
+        /// The Braille mapping is based on the current language (See mapping below)
+        /// The formatting parameters are set to 0,0 (No formatting)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void exportMusicBrailleToFileForToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // In this simple implementation the file format is determined by the localization ! 
+            BrailleFileHandler.FileFormat fileFormat;
+            string cultureString = ResourcesForUI.DirectoryNames_CultureString;
+            switch (cultureString)
+            {
+                case "da-DK": fileFormat = BrailleFileHandler.FileFormat.BRL_OctoBraille_1252; break;
+                case "en-US": fileFormat = BrailleFileHandler.FileFormat.BRF_ASCII; break; 
+                default: fileFormat = BrailleFileHandler.FileFormat.BRF_Unicode; break;
+            }
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileFormat, 0,0);
+            ExportMusicBrailleToFile(brailleFileHandler);
+
+        }
+        
+
+
+        /// <summary>
         /// Common handling of all fileformats
+        /// The user is prompted for the formatting parameters
         /// </summary>
         /// <param name="fileFormat"></param>
         private void exportMusicBrailleToFile(BrailleFileHandler.FileFormat fileFormat)
@@ -699,6 +725,16 @@ namespace MusicXmlReader
                 return; // The user entered invalid values
             }
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileFormat, model.UserPreferences.CharsPerLine, model.UserPreferences.LinesPerForm);
+            ExportMusicBrailleToFile(brailleFileHandler);
+        }
+
+
+        /// <summary>
+        /// Commeon handling of all file formats
+        /// </summary>
+        /// <param name="brailleFileHandler"></param>
+        private void  ExportMusicBrailleToFile(BrailleFileHandler brailleFileHandler)
+        {
             string brailleRepresentation = model.GetBrailleRepresentation(brailleFileHandler);
             if (null == brailleRepresentation)
             {

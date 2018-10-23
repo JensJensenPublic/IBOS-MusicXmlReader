@@ -32,7 +32,7 @@ namespace MusicXmlReaderModel
         // https://en.wikipedia.org/wiki/Braille_Patterns
 
 
-        public enum FileFormat{BRF_ASCII, BRF_Unicode, PEF, BRL_OctoBraille_1252};
+        public enum FileFormat{Unknown, BRF_ASCII, BRF_Unicode, PEF, BRL_OctoBraille_1252};
 
         // The following methods need separate implementations 
         abstract public string GetExtension();
@@ -175,6 +175,24 @@ namespace MusicXmlReaderModel
         }
 
 
+        /// <summary>
+        /// Simple formatting for notetaker devices. Just keep the existing format !
+        /// </summary>
+        /// <param name="unicodeBrailleList"></param>
+        /// <returns></returns>
+        private string FormatForNoteTaker(List<string> unicodeBrailleList)
+        {
+            StringBuilder score = new StringBuilder();  // Represents the whole score
+            foreach (string unicodeBraille in unicodeBrailleList)
+            {
+                score.Append(unicodeBraille);
+                score.Append((char)CarriageReturn);
+                score.Append((char)LineFeed);
+            }
+            return score.ToString();
+        }
+
+
 
         /// Formats a list of UNICODE strings, each representing a musical event  in to a single UNICODE,
         /// string taking into account the dimensions of the sheet to print on  
@@ -185,7 +203,12 @@ namespace MusicXmlReaderModel
         public string Format(List<string> unicodeBrailleList)
         {
             int lineWidth  =  this.charsPerLine;   
-            int formHeight =  this.linesPerForm; 
+            int formHeight =  this.linesPerForm;
+
+            if (0 == lineWidth && (0 == formHeight))
+            {
+                return FormatForNoteTaker(unicodeBrailleList);
+            }
 
             StringBuilder score = new StringBuilder();  // Represents the whole score
             int currentWidth = 0;
