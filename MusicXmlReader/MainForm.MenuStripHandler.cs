@@ -866,7 +866,7 @@ namespace MusicXmlReader
             if (null == model.EventDescriptionList)
             {
                 Logger.LogCF(": No MusicXml file is currently loaded!");
-                UiUtilities.Beep();
+                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.UnspecifiedMusicXmlFile, "", "");  
                 return false;
             }
             return true;
