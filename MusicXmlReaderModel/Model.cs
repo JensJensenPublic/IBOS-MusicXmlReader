@@ -1255,10 +1255,16 @@ namespace MusicXmlReaderModel
             // Format the contents for the Detail window using the formatting information embedded in the file 
 
             string[] forms = brailleFileAsUnicode.Split((char)012); // Split into a number of forms
-            // Fill in the detailsplayer with the contents  
+            // Fill in the detailsplayer with the contents
+            int formNumber = 0;  
             foreach (string form in forms)
             {
-                detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(ResourcesForModel.DetailsDescription_MusicBraille_FormFeed));
+                if (0 != formNumber)
+                {
+                    // Add a FormFeed before all foems except the first one.
+                    detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(ResourcesForModel.DetailsDescription_MusicBraille_FormFeed));
+                }
+                formNumber++;
                 string[] lines = form.Split((char)010); // Split each form into a number of lines
                 foreach (string line in lines)
                 {
