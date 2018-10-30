@@ -112,9 +112,9 @@ namespace MusicXmlReaderModel
                 }
             }
             catch (Exception e)
-           {
+            {
                 Logger.LogOnce(string.Format("{0}.{1}: Exception.Message={2}", className, functionName, e.Message));
-           }
+            }
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace MusicXmlReaderModel
             conversionProgressWriter.Stop();
             return fullXmlFileName;
         }
-        
+
 
         /// <summary>
         /// Stops on any error and returns false
@@ -183,13 +183,13 @@ namespace MusicXmlReaderModel
                 }
 
                 xmlFileName = System.IO.Path.GetFileName(fullXmlFileName); // Report a filename even if an exception is thrown during conversion !
-                TheStaticXmlFileName = xmlFileName ; // Make the filename globally available without a reference to a Model instance.
+                TheStaticXmlFileName = xmlFileName; // Make the filename globally available without a reference to a Model instance.
 
                 XmlDocument doc = new XmlDocument();
                 XmlTextReader reader = new XmlTextReader(fullXmlFileName);
                 reader.WhitespaceHandling = WhitespaceHandling.None;
                 string progressLoading = string.Format("{0} {1}", ResourcesForModel.Progress_LoadingFile, xmlFileName);
-                loaderProgressWriter = ProgressWriter.Create(1000, iDebugDisplayerClient, progressLoading); 
+                loaderProgressWriter = ProgressWriter.Create(1000, iDebugDisplayerClient, progressLoading);
                 doc.Load(reader); // This single operation may last decades of seconds on a slow platform!!
                 loaderProgressWriter.Stop();
                 ok = ok && CheckMusicXmlSyntax(doc);
@@ -200,24 +200,24 @@ namespace MusicXmlReaderModel
                     metaInformation = MetaInformation.Create();
                     metaInformation.FileName = MetaInfoItem.Create(ResourcesForModel.MetaInfoText_FileName, Path.GetFileName(fullXmlFileName));
                     Logger.Log(string.Format("{0}.{1}: Loaded >>>>>>>>>> '{2}' <<<<<<<<<<", className, functionName, Path.GetFileName(fullXmlFileName)));
-                    Logger.Log(string.Format("{0}.{1}: From   '{2}'", className, functionName,Path.GetDirectoryName(fullXmlFileName)));
+                    Logger.Log(string.Format("{0}.{1}: From   '{2}'", className, functionName, Path.GetDirectoryName(fullXmlFileName)));
                     allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file
                     status = string.Format("{0} {1}", ResourcesForModel.Status_Interpreting, xmlFileName);
                     WriteStatusInformation(status);
                     MidiPitchedChannelMap.Reset();
                     Recurse(doc.ChildNodes);                          // Build  the list holding all MusicXml elements read from file
-                    Logger.Log(string.Format("{0}.{1}: Parsed '{2}'", className, functionName,xmlFileName));
+                    Logger.Log(string.Format("{0}.{1}: Parsed '{2}'", className, functionName, xmlFileName));
                     status = string.Format("{0} {1}", ResourcesForModel.Status_BuildingDataStructuresFor, xmlFileName);
-                    WriteStatusInformation(status); 
+                    WriteStatusInformation(status);
                     Init();  // Initialize the basic Model data structures.
                     musicPlayer.ResetInstrumentMapping(); // Initialize the MusicPlayer data structures
-                    status = string.Format("{0} {1}", xmlFileName,ResourcesForModel.Status_WasSuccessfullyLoaded);
+                    status = string.Format("{0} {1}", xmlFileName, ResourcesForModel.Status_WasSuccessfullyLoaded);
                     WriteStatusInformation(status);
                 }
                 else
                 {
                     string status = string.Format("{0} '{1}'.   {2}", ResourcesForModel.Status_FailedToLoad, xmlFileName, ResourcesForModel.Status_ItIsNotAValidMusicXmlFile);
-                    WriteStatusInformation(status); 
+                    WriteStatusInformation(status);
                     Logger.Log(string.Format("{0}.{1}: Failed to load '{2}' because it not a valid MusicXml file", className, functionName, xmlFileName));
                     theMusicXmlFileName = "";
                 }
@@ -225,7 +225,7 @@ namespace MusicXmlReaderModel
             }
             catch (System.Exception e)
             {
-                         
+
                 Logger.LogCF(string.Format(": Failed to load '{0}' Exception.Message='{1}'", xmlFileName, e.Message)); // Log Application-specific information.
                 Logger.LogCFE(e); // Log Exception-specific information
 
@@ -282,7 +282,7 @@ namespace MusicXmlReaderModel
                         case ".mxl": // Convert from .xlm to .xml
                             verb = "convert";
                             string xmlFileName;
-                            xmlFileName = MxlToXml(file,destinationPath);
+                            xmlFileName = MxlToXml(file, destinationPath);
                             if (!string.IsNullOrEmpty(xmlFileName))
                             {
                                 Logger.Log(string.Format("{0}.{1}: Converted {2} to xml", className, functionName, file));
@@ -301,7 +301,7 @@ namespace MusicXmlReaderModel
                 } // try
                 catch (Exception e)
                 {
-                    Logger.Log(string.Format("{0}.{1}: Failed to {2} {3} Exception.Message={4}", className, functionName, verb,file, e.Message));
+                    Logger.Log(string.Format("{0}.{1}: Failed to {2} {3} Exception.Message={4}", className, functionName, verb, file, e.Message));
                 }
             } // foraech
             return result;
@@ -328,7 +328,7 @@ namespace MusicXmlReaderModel
                 string downloadPath = KnownFolders.GetPath(KnownFolder.Downloads, defaultUser); // Get the path to the current user.
                 string destinationPath = myMusicXmlDirectory;
                 Logger.Log(string.Format("{0}.{1}: DownloadPath={2} DestinationPath={3}", className, functionName, downloadPath, destinationPath));
-                string[] files =  Directory.GetFiles(downloadPath);
+                string[] files = Directory.GetFiles(downloadPath);
                 //Logger.Log(string.Format("{0}.{1}: Files={2}", className, functionName, files.GetLength(0)));
                 List<string> musicXmlFiles = new List<string>();
                 foreach (string file in files)
@@ -353,7 +353,7 @@ namespace MusicXmlReaderModel
 
                     }
                 }
-                Logger.Log(string.Format("{0}.{1}: Files={2} MusicXml={3} Today={4}", 
+                Logger.Log(string.Format("{0}.{1}: Files={2} MusicXml={3} Today={4}",
                     className, functionName, files.GetLength(0), musicXmlFiles.Count, todaysMusicXmlFiles.Count));
 
                 result = todaysMusicXmlFiles;
@@ -361,7 +361,7 @@ namespace MusicXmlReaderModel
             }
             catch (Exception e)
             {
-                Logger.Log(string.Format("{0}.{1} Failed. Exception.Message={2}", className, functionName, e.Message)); 
+                Logger.Log(string.Format("{0}.{1} Failed. Exception.Message={2}", className, functionName, e.Message));
             }
             return result;
         }
@@ -426,7 +426,7 @@ namespace MusicXmlReaderModel
                 midiOut = new MidiOut(deviceNumber);
                 MidiOutCapabilities mc = MidiOut.DeviceInfo(deviceNumber);
                 Logger.Log(string.Format("{0}.{1}: Created MidiOut({2}) for ProductName='{3}' Technology='{4}' ProductId={5} Notes={6} ",
-                    className, functionName, deviceNumber, mc.ProductName,  mc.Technology, mc.ProductId, mc.Notes ));
+                    className, functionName, deviceNumber, mc.ProductName, mc.Technology, mc.ProductId, mc.Notes));
                 Logger.Log(string.Format("{0}.{1}: Supports: AllChannels={2} MidiStreamOut={3} PatchCatching={4} SeparateLeftAndRightVolume={5} VolumeControl={6})",
                     className, functionName, mc.SupportsAllChannels, mc.SupportsMidiStreamOut, mc.SupportsPatchCaching, mc.SupportsSeparateLeftAndRightVolume, mc.SupportsVolumeControl));
             }
@@ -508,7 +508,7 @@ namespace MusicXmlReaderModel
                         this.latestMeasureNumber = this.currentMeasureNumber;
                     }
                     NoteElement note = NoteElement.Create(node, this.divisions, this.currentMeasureNumber, this.currentScorePartElement, this.currentTimeElement); // New version
-                    allMusicXmlObjecsts.Add(note);               
+                    allMusicXmlObjecsts.Add(note);
                     continueRecursion = false;
                     break;
                 case "part-list":
@@ -524,10 +524,10 @@ namespace MusicXmlReaderModel
                 case "measure":
                     MeasureElement measureElement = MeasureElement.Create(node);
                     measureElement.PartId = currentPartId;
-                    measureElement.MeasureDuration = (null == currentTimeElement) ? 0 :  currentTimeElement.GetMeasureDuration();
+                    measureElement.MeasureDuration = (null == currentTimeElement) ? 0 : currentTimeElement.GetMeasureDuration();
                     // Logger.LogCF(string.Format(": Duration={0}", measureElement.MeasureDuration));
                     allMusicXmlObjecsts.Add(measureElement); // Avoid the "Ikke VAlgt" error message from screenreader
-                    this.currentMeasureNumber = measureElement.Number;               
+                    this.currentMeasureNumber = measureElement.Number;
                     measureElement.PreviousMeasureElement = currentMeasureElement;
                     this.currentMeasureElement = measureElement;
                     break;
@@ -549,7 +549,7 @@ namespace MusicXmlReaderModel
                     // Look up the partition in the partList
                     this.currentScorePartElement = partList.GetPartFromId(partElement.PartId);
                     // Intialization of instruments has been moved to MusicPlayer (where it belongs)
-                    this.currentMeasureElement = null; 
+                    this.currentMeasureElement = null;
                     break;
                 case "work":
                     SimpleTextElement workElement = SimpleTextElement.Create(node, "Titel"); // TODO: Localize
@@ -582,7 +582,7 @@ namespace MusicXmlReaderModel
                 case "encoding":
                     // Is described in "software", "encoding-date", "encoder", "encoding-description"
                     //allMusicXmlObjecsts.Add(SimpleTextElement.Create(node)); 
-                            
+
                     break;
                 case "software":
                     allMusicXmlObjecsts.Add(SimpleTextElement.Create(node, "Software"));
@@ -599,7 +599,7 @@ namespace MusicXmlReaderModel
                 case "encoding-description":
                     SimpleTextElement encodingDescriptionElement = SimpleTextElement.Create(node, "Kodnings-beskrivelse");
                     allMusicXmlObjecsts.Add(encodingDescriptionElement);
-                    Logger.LogOnce(string.Format("{0}.{1}: Encoding='{2}'",className,functionName,node.InnerText));
+                    Logger.LogOnce(string.Format("{0}.{1}: Encoding='{2}'", className, functionName, node.InnerText));
                     metaInformation.Encoding = MetaInfoItem.Create(encodingDescriptionElement.Name, encodingDescriptionElement.Text);
                     continueRecursion = false;
                     break;
@@ -969,13 +969,13 @@ namespace MusicXmlReaderModel
 
         public void SetPartsToPlay(int partNumber, bool value)
         {
-            this.userSettings.SetParts(UserSettings.Category.Sound,partNumber,value);
+            this.userSettings.SetParts(UserSettings.Category.Sound, partNumber, value);
             musicPlayer.UserSettings = this.userSettings;
         }
 
         public void SetPartsToRead(int partNumber, bool value)
         {
-            this.userSettings.SetParts(UserSettings.Category.Speech,partNumber,value);
+            this.userSettings.SetParts(UserSettings.Category.Speech, partNumber, value);
         }
 
         public void StopRefreshingBrailleDevice()
@@ -1049,9 +1049,9 @@ namespace MusicXmlReaderModel
             if (null != screenReaderAPI)
             {
                 screenReaderAPI.OnApplicationExit();
-            } 
+            }
 
-            
+
             Logger.Log(string.Format("{0}.{1} succeeded.", className, functionName));
         }
 
@@ -1077,7 +1077,7 @@ namespace MusicXmlReaderModel
             int nFiles = 0;
             int nDirs = 0;
             List<string> fileNames = new List<string>();
-            if (!Directory.Exists(myMusicXmlDirectory)) 
+            if (!Directory.Exists(myMusicXmlDirectory))
             {
                 try
                 {
@@ -1088,7 +1088,7 @@ namespace MusicXmlReaderModel
                     Logger.Log(string.Format("{0}.{1}: Calling DirectoryCopy(Source,Dest) where", className, functionName));
                     Logger.Log(string.Format(" Source='{0}'", sourceDirName));
                     Logger.Log(string.Format(" Dest=  '{0}'", myMusicXmlSampleDirectory));
-                    Utilities.DirectoryCopy(sourceDirName, myMusicXmlSampleDirectory, true, ref nFiles, ref nDirs,fileNames);  // true to copy subdirs
+                    Utilities.DirectoryCopy(sourceDirName, myMusicXmlSampleDirectory, true, ref nFiles, ref nDirs, fileNames);  // true to copy subdirs
                     Logger.Log(string.Format("{0}.{1}: DirectoryCopy() successfully copied {2} files in {3} directories", className, functionName, nFiles, nDirs));
                     // throw (new Exception("For test only"));
                 }
@@ -1123,11 +1123,11 @@ namespace MusicXmlReaderModel
 
 
 
-/// <summary>
-/// Imports all new sample files and directories.
-/// Assumes that member variables defining all paths have already been set up by InitMusicXmlFiles()
-/// </summary>
-public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
+        /// <summary>
+        /// Imports all new sample files and directories.
+        /// Assumes that member variables defining all paths have already been set up by InitMusicXmlFiles()
+        /// </summary>
+        public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
         {
             string functionName = "ImportNewSampleFiles";
             string sourceDirName = InitialDirectory;
@@ -1136,13 +1136,13 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             Logger.Log(string.Format("{0}.{1}: Calling DirectoryCopy(Source,Dest) where", className, functionName));
             Logger.Log(string.Format(" Source='{0}'", sourceDirName));
             Logger.Log(string.Format(" Dest=  '{0}'", myMusicXmlSampleDirectory));
-            Utilities.DirectoryCopy(sourceDirName, myMusicXmlSampleDirectory, true, ref nFiles, ref nDirs,result);
+            Utilities.DirectoryCopy(sourceDirName, myMusicXmlSampleDirectory, true, ref nFiles, ref nDirs, result);
             Logger.Log(string.Format("{0}.{1}: DirectoryCopy() successfully copied {2} files in {3} directories", className, functionName, nFiles, nDirs));
             return result;
         }
 
-        private DetailsPlayer detailsPlayer= null; 
- 
+        private DetailsPlayer detailsPlayer = null;
+
         public DetailsDescription[] GetCurrentHarmonyDetails(EventDescription eventDescription)
         {
             if (null != eventDescription.HarmonyElement)
@@ -1154,7 +1154,7 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             {
                 // Return message to the user that no chord was found.
                 DetailsDescription[] noDescriptions = new DetailsDescription[1];
-                noDescriptions[0] =  DetailsDescription.Create(ResourcesForModel.DetailsDescription_NoChordFound);
+                noDescriptions[0] = DetailsDescription.Create(ResourcesForModel.DetailsDescription_NoChordFound);
                 return noDescriptions;
             }
         }
@@ -1204,7 +1204,7 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
 
             if (null != eventDescription)
             {
-                detailsPlayer = DetailsPlayer.Create(eventDescription,partList,userSettings,musicPlayer,noteLevel);
+                detailsPlayer = DetailsPlayer.Create(eventDescription, partList, userSettings, musicPlayer, noteLevel);
                 return detailsPlayer.DetailsDescriptionArray;
             }
             else
@@ -1218,7 +1218,7 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
         {
             if (null != partList)
             {
-                detailsPlayer = DetailsPlayer.Create(partList,musicPlayer);
+                detailsPlayer = DetailsPlayer.Create(partList, musicPlayer);
                 string[] details = partList.ToUserFriendlyStrings();
                 foreach (string detail in details)
                 {
@@ -1247,16 +1247,16 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             // Explicitly Write the file to the Log , NOT to the user directory !
             string testFileDirectory = Logger.LogFileDirectory;
             string testFileName = theMusicXmlFileName + brailleFileHandler.GetExtension();
-            string testFileFullName = Path.Combine(testFileDirectory, Path.GetFileName(testFileName)); 
+            string testFileFullName = Path.Combine(testFileDirectory, Path.GetFileName(testFileName));
             string formattedString = brailleFileHandler.Format(this.eventDescriptionList, this.userSettings);
             brailleFileHandler.WriteToFile(formattedString, testFileFullName, true);                        // Write the file to the Logger Directory
             string brailleFileAsUnicode = brailleFileHandler.ReadFromFile(testFileFullName);                //  Read the file back
 
             // Format the contents for the Detail window using the formatting information embedded in the file 
-   
+
             string[] forms = brailleFileAsUnicode.Split((char)012); // Split into a number of forms
             // Fill in the detailsplayer with the contents  
-            foreach ( string form in forms )
+            foreach (string form in forms)
             {
                 detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(ResourcesForModel.DetailsDescription_MusicBraille_FormFeed));
                 string[] lines = form.Split((char)010); // Split each form into a number of lines
@@ -1275,7 +1275,7 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
         /// </summary>
         /// <param name="selectedIndex"></param>
         /// <param name="move"> +1: Next Measure,  -1: Previous Measure</param>
-        public void SelectMeasure(int selectedIndex,int move)
+        public void SelectMeasure(int selectedIndex, int move)
         {
             string functionName = "SelectMeasure";
             const int noMeasure = -1; // Marks that this event is not at the start of a measure
@@ -1283,13 +1283,13 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             try
             {
                 // Find the first event containing a measure nmuber in either backwards or forwards direction
-                for (int i = selectedIndex; ((i+move) >= 0) && ((i + move) < this.objects.GetNumberOfObjects());)
+                for (int i = selectedIndex; ((i + move) >= 0) && ((i + move) < this.objects.GetNumberOfObjects());)
                 {
                     i += move;
                     EventDescription nextEvent = (this.objects.GetObjectAtIndex(i) as EventDescription);
                     if (null != nextEvent) // We may want to enter a string instead of an EventDescription!
                     {
-                        if (nextEvent.MeasureNumber != noMeasure)                           
+                        if (nextEvent.MeasureNumber != noMeasure)
                         {
                             // Thie event is the first event in this measure.
                             objects.SetSelectedIndex(i);
@@ -1300,7 +1300,7 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             }
             catch (Exception e)
             {
-                Logger.Log(string.Format("{0}.{1}(SelectedIndex={2},Move={3}) failed. Message={4}", className, functionName, selectedIndex, move,e.Message));
+                Logger.Log(string.Format("{0}.{1}(SelectedIndex={2},Move={3}) failed. Message={4}", className, functionName, selectedIndex, move, e.Message));
 
             }
         }
@@ -1354,12 +1354,12 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             if (null == this.eventDescriptionList)
             {
                 Logger.LogCF(": Nothing to export!");
-                return false; 
-            } 
+                return false;
+            }
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(format, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
             {
                 string fileName = Path.ChangeExtension(theMusicXmlFileName, brailleFileHandler.GetFileFormat() + brailleFileHandler.GetExtension());
-                string formattedString =  brailleFileHandler.Format(this.eventDescriptionList, this.userSettings);
+                string formattedString = brailleFileHandler.Format(this.eventDescriptionList, this.userSettings);
                 brailleFileHandler.WriteToFile(formattedString, fileName, true);
                 return true;
             }
@@ -1376,7 +1376,7 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             return brailleFileHandler.Format(this.eventDescriptionList, this.userSettings);
         }
 
-   
+
 
         /// <summary>
         /// Generate a simple test patterns consisting of the 64 possible Braille glyphs and write it to 
@@ -1402,12 +1402,35 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             brailleFileHandler.GenerateTestpattern(directoryName);
 
             // Open an explorer to inspect the log filed
-            ExternalToolsHandler.OpenLogFileLocation();  
+            ExternalToolsHandler.OpenLogFileLocation();
 
         }
 
-    }
 
+        /// <summary>
+        /// Returns the number of parts currently used for generation of Music Braille
+        /// This is important for the first version of "Export to Braille"
+        /// </summary>
+        /// <returns></returns>
+        public int NumberOfEnabledMusicBrailleParts()
+        {
+            int result = 0;
+            if (this.userSettings.MusicAsMusicBraille)
+            {
+                // Generation of Music Braille is enabled. Count the number of parts enabled.
+                for (int i = 0; (i < numberOfParts); i++)
+                {
+                    if ((userSettings.GetParts(UserSettings.Category.MusicBraille, i)))
+                    {
+                        result++;
+                    }
+                }
+            }
+            Logger.LogCF(string.Format("returns {0}", result));
+            return result;
+        }
+
+    }
 }
 
 

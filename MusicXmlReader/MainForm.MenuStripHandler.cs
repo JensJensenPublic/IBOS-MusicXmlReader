@@ -684,7 +684,8 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void toNotetakerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!ScoreIsLoaded()) return; // Beeps and logs.
+            if (!ScoreIsLoaded() ) return; // Beeps and logs.
+            if (!ScoreIsSupported()) return; // Shows warning dialog
             // In this simple implementation the file format is determined by the localization ! 
             BrailleFileHandler.FileEncoding fileEncoding = GetCultureDependentEncoding();
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, 0, 0);
@@ -701,6 +702,7 @@ namespace MusicXmlReader
         private void toEmbosserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!ScoreIsLoaded()) return; // Beeps and logs.
+            if (!ScoreIsSupported()) return; // Shows warning dialog
             // In this simple implementation the file format is determined by the localization !
             int defaultEmbosserCharactersPerLine = 40;
             int defaultEmbosserLinesPerPage = 20;
@@ -713,18 +715,21 @@ namespace MusicXmlReader
         private void txtOctoBraille1252ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!ScoreIsLoaded()) return; // Beeps and logs.
+            if (!ScoreIsSupported()) return; // Shows warning dialog
             exportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252);
         }
 
         private void brfASCIIToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (!ScoreIsLoaded()) return; // Beeps and logs.
+            if (!ScoreIsSupported()) return; // Shows warning dialog
             exportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_ASCII);
         }
 
         private void brfUnicodeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (!ScoreIsLoaded()) return; // Beeps and logs.
+            if (!ScoreIsSupported()) return; // Shows warning dialog
             exportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_Unicode);
         }
 
@@ -812,6 +817,7 @@ namespace MusicXmlReader
         private void exportMusicBrailleToFile(BrailleFileHandler.FileEncoding fileEncoding)
         {
             if (!ScoreIsLoaded()) return; // Beeps and logs.
+            if (!ScoreIsSupported()) return; // Shows warning dialog
             bool acceptCancel = false; //  Do not accept cancel as "use default parameters"
             bool validParams = parameterInputHandler.GetMusicBrailleFormatParameters(acceptCancel); // Prompt the user for formatting parameters.
             if (!validParams)
@@ -872,6 +878,19 @@ namespace MusicXmlReader
             return true;
         }
 
+        private bool ScoreIsSupported()
+        {
+            int numberOfParts = model.partList.NumberOfParts();
+            int NumberOfEnabledMusicBrailleParts = model.NumberOfEnabledMusicBrailleParts();
+            Logger.LogCF(string.Format(": Number of parts = {0} Number of Enabled Music Braille Parts = {1}", numberOfParts, NumberOfEnabledMusicBrailleParts));
+            if (NumberOfEnabledMusicBrailleParts > 1)
+            {
+                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.ToManyPartForExportToMusicBraille, "", "");
+            }       
+            return true; // We issue a warning when more than one part is enabled, but we do not prevent the export.
+        }
+
+
 
         /// <summary>
         /// Handles Details for BrailleFiles
@@ -881,6 +900,7 @@ namespace MusicXmlReader
         private void brailleFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!ScoreIsLoaded()) return; // Beeps and logs.
+            if (!ScoreIsSupported()) return; // Shows warning dialog
             bool acceptCancel = true;
             bool validParams = parameterInputHandler.GetMusicBrailleFormatParameters(acceptCancel); // Prompt the user for formatting parameters
             if (!validParams)

@@ -223,6 +223,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Consider exporting one part at a time .
+        /// </summary>
+        internal static string Message_ConsiderExportingOnePartAtATime {
+            get {
+                return ResourceManager.GetString("Message_ConsiderExportingOnePartAtATime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Directory not found.
         /// </summary>
         internal static string Message_DirectoryNotFound {
@@ -237,6 +246,15 @@ namespace MusicXmlReader {
         internal static string Message_DoYouWantToExitTheProgram {
             get {
                 return ResourceManager.GetString("Message_DoYouWantToExitTheProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export of more than one part at a time is not fully supported.
+        /// </summary>
+        internal static string Message_ExportOfMultiplePartsNotSupported {
+            get {
+                return ResourceManager.GetString("Message_ExportOfMultiplePartsNotSupported", resourceCulture);
             }
         }
         

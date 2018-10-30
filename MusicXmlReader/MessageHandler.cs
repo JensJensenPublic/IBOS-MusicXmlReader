@@ -39,6 +39,7 @@ namespace MusicXmlReader
                 case ModelMessageEnum.NotAllowedWhilePlaying: return ResourcesForUI.Message_NotAllowedWhilePlaying;
                 case ModelMessageEnum.LocationNotDetermined: return ResourcesForUI.Message_LocationNotDetermined;
                 case ModelMessageEnum.UnspecifiedInitializationError: return ResourcesForUI.Message_UnspecifiedInitializationError;
+                case ModelMessageEnum.ToManyPartForExportToMusicBraille: return ResourcesForUI.Message_ExportOfMultiplePartsNotSupported;
                 default: return string.Format("{0} {1}", ResourcesForUI.Message_UndefinedMessage, messageEnum.ToString());
             }
         }
@@ -56,6 +57,7 @@ namespace MusicXmlReader
                 case ModelMessageEnum.FailedToReadMusicXmlFile: return ResourcesForUI.Message_PleaseSeeLogFile;
                 case ModelMessageEnum.NotAllowedWhilePlaying: return ResourcesForUI.Message_StopPlayingFirst;
                 case ModelMessageEnum.UnspecifiedInitializationError: return ResourcesForUI.Message_PleaseSeeLogFile;
+                case ModelMessageEnum.ToManyPartForExportToMusicBraille: return ResourcesForUI.Message_ConsiderExportingOnePartAtATime;
                 default: return "";
             }
         }
