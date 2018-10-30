@@ -319,6 +319,5 @@ namespace MusicXmlReader
             this.Refresh();
         }
 
-
     }
 }

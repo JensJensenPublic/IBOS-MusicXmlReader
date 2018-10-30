@@ -51,11 +51,11 @@ namespace MusicXmlReader
             importNewSampleFilesToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ImportNewestSamples;
             exitToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_Exit;
             exitToolStripMenuItem.ShortcutKeys = ShortcutHandler.exitApplication;
-            this.exportMusicBrailleToFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBrailleToFile;
+            //this.exportMusicBrailleToFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBrailleToFile;
             // this.exportMusicBrailleToFileToolStripMenuItem.ShortcutKeys = ShortcutHandler....;
-            this.brfUnicodeToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_Unicode;
+            //this.brfUnicodeToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_Unicode;
             //this.brfUnicodeToolStripMenuItem.ShowShortcutKeys = ShortcutHandler....;
-            this.brfASCIIToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII;
+            //this.brfASCIIToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII;
             //this.brfASCIIToolStripMenuItem.ShortcutKeys = ShortcutHandler....;
             GenerateAccessibleName(ref exitToolStripMenuItem);
 
@@ -645,6 +645,98 @@ namespace MusicXmlReader
             model.SaveUserSettings();
         }
 
+        // Start New UI
+
+        private BrailleFileHandler.FileFormat GetCultureDependentEncoding()
+        {
+            BrailleFileHandler.FileFormat fileFormat;
+            string cultureString = ResourcesForUI.DirectoryNames_CultureString;
+            switch (cultureString)
+            {
+                case "da-DK": fileFormat = BrailleFileHandler.FileFormat.BRL_OctoBraille_1252; break;
+                case "en-US": fileFormat = BrailleFileHandler.FileFormat.BRF_ASCII; break;
+                default: fileFormat = BrailleFileHandler.FileFormat.BRF_Unicode; break;
+            }
+            return fileFormat;
+        }
+
+
+        /// <summary>
+        /// Simple implementation for exporting to notetaker. This implementation needs no further input from the user !
+        /// The Braille mapping is based on the current language (See mapping below)
+        /// The formatting parameters are set to 0,0 (No formatting)        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toNotetakerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!ScoreIsLoaded()) return; // Beeps and logs.
+            // In this simple implementation the file format is determined by the localization ! 
+            BrailleFileHandler.FileFormat fileFormat = GetCultureDependentEncoding();
+            //string cultureString = ResourcesForUI.DirectoryNames_CultureString;
+            //switch (cultureString)
+            //{
+            //    case "da-DK": fileFormat = BrailleFileHandler.FileFormat.BRL_OctoBraille_1252; break;
+            //    case "en-US": fileFormat = BrailleFileHandler.FileFormat.BRF_ASCII; break;
+            //    default: fileFormat = BrailleFileHandler.FileFormat.BRF_Unicode; break;
+            //}
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileFormat, 0, 0);
+            ExportMusicBrailleToFile(brailleFileHandler);
+        }
+
+        /// <summary>
+        /// Simple implementation for exporting to embosser. This implementation needs no further input from the user !
+        /// The Braille mapping is based on the current language (See mapping below)
+        /// The formatting parameters are set to (40,20) (Seems to be the format used by NOTA)    
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void toEmbosserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!ScoreIsLoaded()) return; // Beeps and logs.
+            // In this simple implementation the file format is determined by the localization !
+            int defaultEmbosserCharactersPerLine = 40;
+            int defaultEmbosserLinesPerPage = 20;
+            BrailleFileHandler.FileFormat fileFormat = GetCultureDependentEncoding();
+            //string cultureString = ResourcesForUI.DirectoryNames_CultureString;
+            //switch (cultureString)
+            //{
+            //    case "da-DK": fileFormat = BrailleFileHandler.FileFormat.BRL_OctoBraille_1252; break;
+            //    case "en-US": fileFormat = BrailleFileHandler.FileFormat.BRF_ASCII; break;
+            //    default: fileFormat = BrailleFileHandler.FileFormat.BRF_Unicode; break;
+            //}
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileFormat, defaultEmbosserCharactersPerLine, defaultEmbosserLinesPerPage);
+            ExportMusicBrailleToFile(brailleFileHandler);
+        }
+
+
+        private void txtOctoBraille1252ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!ScoreIsLoaded()) return; // Beeps and logs.
+            exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRL_OctoBraille_1252);
+        }
+
+        private void brfASCIIToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (!ScoreIsLoaded()) return; // Beeps and logs.
+            exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_ASCII);
+        }
+
+        private void brfUnicodeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (!ScoreIsLoaded()) return; // Beeps and logs.
+            exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_Unicode);
+        }
+
+
+        private void inOptionalFormatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Logger.LogCF("Unused");
+        }
+
+
+        // End new UI
+
 
 
         /// <summary>
@@ -654,7 +746,8 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void brfUnicodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_Unicode);
+            Logger.LogCF("Obsolete");
+            //exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_Unicode);
         }
 
         /// <summary>
@@ -664,11 +757,13 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void brfASCIIToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_ASCII);
+            Logger.LogCF("Obsolete");
+            //exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRF_ASCII);
         }
 
         private void brlOctoBraille1252ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Logger.LogCF("Obsolete");
             exportMusicBrailleToFile(BrailleFileHandler.FileFormat.BRL_OctoBraille_1252);
         }
 
@@ -693,18 +788,18 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void exportMusicBrailleToFileForToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // In this simple implementation the file format is determined by the localization ! 
-            BrailleFileHandler.FileFormat fileFormat;
-            string cultureString = ResourcesForUI.DirectoryNames_CultureString;
-            switch (cultureString)
-            {
-                case "da-DK": fileFormat = BrailleFileHandler.FileFormat.BRL_OctoBraille_1252; break;
-                case "en-US": fileFormat = BrailleFileHandler.FileFormat.BRF_ASCII; break; 
-                default: fileFormat = BrailleFileHandler.FileFormat.BRF_Unicode; break;
-            }
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileFormat, 0,0);
-            ExportMusicBrailleToFile(brailleFileHandler);
-
+            Logger.LogCF("Obsolete!!!");
+            //// In this simple implementation the file format is determined by the localization ! 
+            //BrailleFileHandler.FileFormat fileFormat;
+            //string cultureString = ResourcesForUI.DirectoryNames_CultureString;
+            //switch (cultureString)
+            //{
+            //    case "da-DK": fileFormat = BrailleFileHandler.FileFormat.BRL_OctoBraille_1252; break;
+            //    case "en-US": fileFormat = BrailleFileHandler.FileFormat.BRF_ASCII; break; 
+            //    default: fileFormat = BrailleFileHandler.FileFormat.BRF_Unicode; break;
+            //}
+            //BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileFormat, 0,0);
+            //ExportMusicBrailleToFile(brailleFileHandler);
         }
         
 

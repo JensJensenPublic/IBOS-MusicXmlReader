@@ -29,7 +29,7 @@ namespace MusicXmlReaderModel
 
         public override string GetExtension()
         {
-            return ".brl";
+            return ".txt"; // Although the formally correct extension is .brl it looks like .txt is used in the real world!
         }
 
         public override string GetFileFormat()
