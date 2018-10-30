@@ -1238,7 +1238,7 @@ namespace MusicXmlReaderModel
             // Create a Detailsplayer designed for the purpose
             detailsPlayer = DetailsPlayer.Create();
             // Get the contents
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_ASCII, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_ASCII, 0, 0); // Use formating for Notataker device 
             //BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_Unicode);
 
 

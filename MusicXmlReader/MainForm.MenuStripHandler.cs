@@ -903,12 +903,12 @@ namespace MusicXmlReader
             if (!ScoreIsLoaded()) return; // Beeps and logs.
             if (!ScoreIsSupported()) return; // Shows warning dialog
             bool acceptCancel = true;
-            bool validParams = parameterInputHandler.GetMusicBrailleFormatParameters(acceptCancel); // Prompt the user for formatting parameters
-            if (!validParams)
-            {
-                UiUtilities.Beep();
-                return;
-            }
+            //bool validParams = parameterInputHandler.GetMusicBrailleFormatParameters(acceptCancel); // Prompt the user for formatting parameters
+            //if (!validParams)
+            //{
+            //    UiUtilities.Beep();
+            //    return;
+            //}
             detailsHandler.ShowGlobalDetails(DetailsHandler.DetailsEnum.BrailleFile, DetailsHandler.DetailsDirection.FromTop);
         }
 
