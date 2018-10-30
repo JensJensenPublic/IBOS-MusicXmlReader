@@ -649,15 +649,15 @@ namespace MusicXmlReader
 
         private BrailleFileHandler.FileEncoding GetCultureDependentEncoding()
         {
-            BrailleFileHandler.FileEncoding fileFormat;
+            BrailleFileHandler.FileEncoding fileEncoding;
             string cultureString = ResourcesForUI.DirectoryNames_CultureString;
             switch (cultureString)
             {
-                case "da-DK": fileFormat = BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252; break;
-                case "en-US": fileFormat = BrailleFileHandler.FileEncoding.BRF_ASCII; break;
-                default: fileFormat = BrailleFileHandler.FileEncoding.BRF_Unicode; break;
+                case "da-DK": fileEncoding = BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252; break;
+                case "en-US": fileEncoding = BrailleFileHandler.FileEncoding.BRF_ASCII; break;
+                default: fileEncoding = BrailleFileHandler.FileEncoding.BRF_Unicode; break;
             }
-            return fileFormat;
+            return fileEncoding;
         }
 
 
@@ -672,15 +672,8 @@ namespace MusicXmlReader
         {
             if (!ScoreIsLoaded()) return; // Beeps and logs.
             // In this simple implementation the file format is determined by the localization ! 
-            BrailleFileHandler.FileEncoding fileFormat = GetCultureDependentEncoding();
-            //string cultureString = ResourcesForUI.DirectoryNames_CultureString;
-            //switch (cultureString)
-            //{
-            //    case "da-DK": fileFormat = BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252; break;
-            //    case "en-US": fileFormat = BrailleFileHandler.FileEncoding.BRF_ASCII; break;
-            //    default: fileFormat = BrailleFileHandler.FileEncoding.BRF_Unicode; break;
-            //}
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileFormat, 0, 0);
+            BrailleFileHandler.FileEncoding fileEncoding = GetCultureDependentEncoding();
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, 0, 0);
             ExportMusicBrailleToFile(brailleFileHandler);
         }
 
@@ -697,15 +690,8 @@ namespace MusicXmlReader
             // In this simple implementation the file format is determined by the localization !
             int defaultEmbosserCharactersPerLine = 40;
             int defaultEmbosserLinesPerPage = 20;
-            BrailleFileHandler.FileEncoding fileFormat = GetCultureDependentEncoding();
-            //string cultureString = ResourcesForUI.DirectoryNames_CultureString;
-            //switch (cultureString)
-            //{
-            //    case "da-DK": fileFormat = BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252; break;
-            //    case "en-US": fileFormat = BrailleFileHandler.FileEncoding.BRF_ASCII; break;
-            //    default: fileFormat = BrailleFileHandler.FileEncoding.BRF_Unicode; break;
-            //}
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileFormat, defaultEmbosserCharactersPerLine, defaultEmbosserLinesPerPage);
+            BrailleFileHandler.FileEncoding fileEncoding = GetCultureDependentEncoding();
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, defaultEmbosserCharactersPerLine, defaultEmbosserLinesPerPage);
             ExportMusicBrailleToFile(brailleFileHandler);
         }
 
@@ -808,8 +794,8 @@ namespace MusicXmlReader
         /// Common handling of all fileformats
         /// The user is prompted for the formatting parameters
         /// </summary>
-        /// <param name="fileFormat"></param>
-        private void exportMusicBrailleToFile(BrailleFileHandler.FileEncoding fileFormat)
+        /// <param name="fileEncoding"></param>
+        private void exportMusicBrailleToFile(BrailleFileHandler.FileEncoding fileEncoding)
         {
             if (!ScoreIsLoaded()) return; // Beeps and logs.
             bool acceptCancel = false; //  Do not accept cancel as "use default parameters"
@@ -819,7 +805,7 @@ namespace MusicXmlReader
                 UiUtilities.Beep();
                 return; // The user entered invalid values
             }
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileFormat, model.UserPreferences.CharsPerLine, model.UserPreferences.LinesPerForm);
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, model.UserPreferences.CharsPerLine, model.UserPreferences.LinesPerForm);
             ExportMusicBrailleToFile(brailleFileHandler);
         }
 

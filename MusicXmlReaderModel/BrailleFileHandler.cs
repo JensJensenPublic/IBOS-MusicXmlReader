@@ -335,15 +335,15 @@ namespace MusicXmlReaderModel
 
         // Construction
 
-        public static BrailleFileHandler Create(FileEncoding fileFormat, int charsPerLine, int linesPerForm)
+        public static BrailleFileHandler Create(FileEncoding fileEncoding, int charsPerLine, int linesPerForm)
         {
-            switch (fileFormat)
+            switch (fileEncoding)
             {
                 case FileEncoding.BRF_ASCII: return new BrailleFileHandler_BRF_ASCII(charsPerLine,linesPerForm);
                 case FileEncoding.BRF_Unicode: return new BrailleFileHandler_BRF_Unicode(charsPerLine,linesPerForm);
                 case FileEncoding.BRL_OctoBraille_1252: return new BrailleFileHandler_BRL_OctoBraille_1252(charsPerLine, linesPerForm);
                 default:
-                    Logger.LogCF(string.Format(": Unsupported file format {0}", fileFormat.ToString()));
+                    Logger.LogCF(string.Format(": Unsupported file format {0}", fileEncoding.ToString()));
                     return null;
             }
 
