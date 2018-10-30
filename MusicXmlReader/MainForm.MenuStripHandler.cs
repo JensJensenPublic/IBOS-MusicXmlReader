@@ -51,13 +51,27 @@ namespace MusicXmlReader
             importNewSampleFilesToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ImportNewestSamples;
             exitToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_Exit;
             exitToolStripMenuItem.ShortcutKeys = ShortcutHandler.exitApplication;
+            GenerateAccessibleName(ref exitToolStripMenuItem);
+            // Export Music Braille:
+            exportMusicBrailleToolStripMenuItem.Text=  ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBraille; // First level
+            // exportMusicBrailleToolStripMenuItem.ShortcutKeys = ShortcutHandler.exportMusicBraille;
+            // GenerateAccessibleName(ref exportMusicBrailleToolStripMenuItem);
+            toNotetakerToolStripMenuItem.Text =        ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker; // Second level
+            toEmbosserToolStripMenuItem.Text =         ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser; // Second level
+            inOptionalFormatToolStripMenuItem.Text =   ResourcesForUI.ToolStripMenuItem_Files_InOptionalFormat; // Second level
+            txtOctoBraille1252ToolStripMenuItem.Text=  ResourcesForUI.ToolStripMenuItem_Files_TxtOctoBraille1252; // Third level
+            brfASCIIToolStripMenuItem1.Text =          ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII; // Third level
+            brfUnicodeToolStripMenuItem1.Text =        ResourcesForUI.ToolStripMenuItem_Files_BrfUnicode; // Third level
+
+
+
             //this.exportMusicBrailleToFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBrailleToFile;
             // this.exportMusicBrailleToFileToolStripMenuItem.ShortcutKeys = ShortcutHandler....;
             //this.brfUnicodeToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_Unicode;
             //this.brfUnicodeToolStripMenuItem.ShowShortcutKeys = ShortcutHandler....;
             //this.brfASCIIToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII;
             //this.brfASCIIToolStripMenuItem.ShortcutKeys = ShortcutHandler....;
-            GenerateAccessibleName(ref exitToolStripMenuItem);
+         
 
             // Children of editToolStripMenuItem, referring to the Treeview
             // Texts:  NOTE! Use the same texts as used in the treeview to which these items refer!!

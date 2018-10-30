@@ -610,11 +610,38 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .brf (ASCII).
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_BrfASCII {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_BrfASCII", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .brf (Unicode).
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_BrfUnicode {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_BrfUnicode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E&amp;xit.
         /// </summary>
         internal static string ToolStripMenuItem_Files_Exit {
             get {
                 return ResourceManager.GetString("ToolStripMenuItem_Files_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E&amp;xport Music Braille.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_ExportMusicBraille {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_ExportMusicBraille", resourceCulture);
             }
         }
         
@@ -655,11 +682,47 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to in optional format.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_InOptionalFormat {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_InOptionalFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Open MusicXml File.
         /// </summary>
         internal static string ToolStripMenuItem_Files_OpenMusicXmlFile {
             get {
                 return ResourceManager.GetString("ToolStripMenuItem_Files_OpenMusicXmlFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to Embosser.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_ToEmbosser {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_ToEmbosser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to to NoteTaker.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_ToNoteTaker {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_ToNoteTaker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .txt (OctoBraille 1252).
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_TxtOctoBraille1252 {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_TxtOctoBraille1252", resourceCulture);
             }
         }
         
