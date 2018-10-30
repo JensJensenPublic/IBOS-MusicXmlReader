@@ -32,7 +32,7 @@ namespace MusicXmlReaderModel
         // https://en.wikipedia.org/wiki/Braille_Patterns
 
 
-        public enum FileFormat{Unknown, BRF_ASCII, BRF_Unicode, PEF, BRL_OctoBraille_1252};
+        public enum FileEncoding{Unknown, BRF_ASCII, BRF_Unicode, PEF, BRL_OctoBraille_1252};
 
         // The following methods need separate implementations 
         abstract public string GetExtension();
@@ -335,13 +335,13 @@ namespace MusicXmlReaderModel
 
         // Construction
 
-        public static BrailleFileHandler Create(FileFormat fileFormat, int charsPerLine, int linesPerForm)
+        public static BrailleFileHandler Create(FileEncoding fileFormat, int charsPerLine, int linesPerForm)
         {
             switch (fileFormat)
             {
-                case FileFormat.BRF_ASCII: return new BrailleFileHandler_BRF_ASCII(charsPerLine,linesPerForm);
-                case FileFormat.BRF_Unicode: return new BrailleFileHandler_BRF_Unicode(charsPerLine,linesPerForm);
-                case FileFormat.BRL_OctoBraille_1252: return new BrailleFileHandler_BRL_OctoBraille_1252(charsPerLine, linesPerForm);
+                case FileEncoding.BRF_ASCII: return new BrailleFileHandler_BRF_ASCII(charsPerLine,linesPerForm);
+                case FileEncoding.BRF_Unicode: return new BrailleFileHandler_BRF_Unicode(charsPerLine,linesPerForm);
+                case FileEncoding.BRL_OctoBraille_1252: return new BrailleFileHandler_BRL_OctoBraille_1252(charsPerLine, linesPerForm);
                 default:
                     Logger.LogCF(string.Format(": Unsupported file format {0}", fileFormat.ToString()));
                     return null;
@@ -351,7 +351,7 @@ namespace MusicXmlReaderModel
 
         //public static BrailleFileHandler Create()
         //{
-        //    return BrailleFileHandler.Create(FileFormat.BRF_ASCII);
+        //    return BrailleFileHandler.Create(FileEncoding.BRF_ASCII);
         //}
 
     }

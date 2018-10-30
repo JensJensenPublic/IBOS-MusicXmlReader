@@ -1238,8 +1238,8 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             // Create a Detailsplayer designed for the purpose
             detailsPlayer = DetailsPlayer.Create();
             // Get the contents
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
-            //BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode);
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_ASCII, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
+            //BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_Unicode);
 
 
             // In order to emulate the "real" behaviour for generating and writing a file with MusicBraille information 
@@ -1349,7 +1349,7 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
         /// </summary>
         /// <param name="format"></param>
         /// <returns></returns>
-        private bool ExportMusicBrailleToFile(BrailleFileHandler.FileFormat format)
+        private bool ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding format)
         {
             if (null == this.eventDescriptionList)
             {
@@ -1390,15 +1390,15 @@ public List<string> ImportNewSampleFiles(ref int nFiles, ref int nDirs)
             BrailleFileHandler brailleFileHandler;
 
             // First for BRF_ASCII
-            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_ASCII, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
+            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_ASCII, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
             brailleFileHandler.GenerateTestpattern(directoryName);
 
             //// Then for BRF_Unicode
-            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRF_Unicode, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
+            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_Unicode, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
             brailleFileHandler.GenerateTestpattern(directoryName);
 
             //// Finally for BRL OctoBraille
-            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileFormat.BRL_OctoBraille_1252, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
+            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
             brailleFileHandler.GenerateTestpattern(directoryName);
 
             // Open an explorer to inspect the log filed
