@@ -120,8 +120,8 @@ namespace MusicXmlReader
 
             //Children of viewToolStripMenuItem:
             instrumentsToolStripMenuItem.Text = ResourcesForUI.ToolsStripMenuItem_View_Instruments;
-            instrumentsToolStripMenuItem.ShortcutKeys = ShortcutHandler.DetailsInstruments;
-            GenerateAccessibleName(ref instrumentsToolStripMenuItem);
+            instrumentsToolStripMenuItem.ShortcutKeys = ShortcutHandler.DetailsInstruments;      
+            GenerateAccessibleName(ref instrumentsToolStripMenuItem);    
 
             // Children of  toolsToolStripMenuItem
             museScoreToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_MuseScore;
@@ -133,6 +133,7 @@ namespace MusicXmlReader
             viewAsInterpretedXMLToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_ViewAsInterpretedXml;
             jAWSSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_JAWS_Settings;
             userSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_User_Settings;
+            generateMusicBrailleTestpatternToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern;
 
             // Children of  helpToolStripMenuItem
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = string.Format("{0} {1}", ResourcesForUI.ToolStripMenuItem_Help_About, applicationName);

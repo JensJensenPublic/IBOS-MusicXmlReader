@@ -817,6 +817,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate Music Braille &amp;testpattern.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MusicXml file  as raw &amp;Xml.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_InspectAsXml {

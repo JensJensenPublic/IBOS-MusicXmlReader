@@ -473,4 +473,7 @@
   <data name="ToolStripMenuItem_Files_TxtOctoBraille1252" xml:space="preserve">
     <value>.txt (OctoBraille 1252)</value>
   </data>
+  <data name="ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern" xml:space="preserve">
+    <value>Generate Music Braille &amp;testpattern</value>
+  </data>
 </root>
