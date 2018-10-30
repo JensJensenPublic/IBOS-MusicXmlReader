@@ -925,6 +925,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Music Braille for notetaker.
+        /// </summary>
+        internal static string ToolStripMenuItem_View_MusicBrailleForNoteTaker {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_View_MusicBrailleForNoteTaker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note filter.
         /// </summary>
         internal static string TreeView_Accessible_Name {

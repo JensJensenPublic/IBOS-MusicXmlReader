@@ -121,7 +121,8 @@ namespace MusicXmlReader
             //Children of viewToolStripMenuItem:
             instrumentsToolStripMenuItem.Text = ResourcesForUI.ToolsStripMenuItem_View_Instruments;
             instrumentsToolStripMenuItem.ShortcutKeys = ShortcutHandler.DetailsInstruments;      
-            GenerateAccessibleName(ref instrumentsToolStripMenuItem);    
+            GenerateAccessibleName(ref instrumentsToolStripMenuItem);
+            this.brailleFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_View_MusicBrailleForNoteTaker; 
 
             // Children of  toolsToolStripMenuItem
             museScoreToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_MuseScore;
@@ -902,7 +903,7 @@ namespace MusicXmlReader
         {
             if (!ScoreIsLoaded()) return; // Beeps and logs.
             if (!ScoreIsSupported()) return; // Shows warning dialog
-            bool acceptCancel = true;
+            //bool acceptCancel = true;
             //bool validParams = parameterInputHandler.GetMusicBrailleFormatParameters(acceptCancel); // Prompt the user for formatting parameters
             //if (!validParams)
             //{

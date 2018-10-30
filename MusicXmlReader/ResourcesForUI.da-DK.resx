@@ -474,4 +474,7 @@
   <data name="ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern" xml:space="preserve">
     <value>Generér punktnode testmønster</value>
   </data>
+  <data name="ToolStripMenuItem_View_MusicBrailleForNoteTaker" xml:space="preserve">
+    <value>Punktnoder for notatapparat</value>
+  </data>
 </root>
