@@ -206,21 +206,21 @@ namespace MusicXmlReader
         public const Keys NextEvent =               Keys.Right;
         public const Keys PreviousEvent =           Keys.Left;
 
-        public const Keys DetailsNextPart = Keys.Control | Keys.Down;
-        public const Keys DetailsPreviousPart = Keys.Control | Keys.Up;
+        public const Keys DetailsNextPart = Keys.Down;
+        public const Keys DetailsPreviousPart = Keys.Up;
 
         // For loading details
-        public const Keys DetailsHarmonyTop =           Keys.Down;
+        public const Keys DetailsHarmonyTop =           Keys.Down | Keys.Alt | Keys.Control;
         public const Keys DetailsPartsTop =             Keys.Down | Keys.Control;
         public const Keys DetailsNotesTop =             Keys.Down | Keys.Control | Keys.Shift;
         public const Keys DetailsStatusTop =            Keys.Down | Keys.Alt;
-        public const Keys detailsSingleNotesFromTop =   Keys.Down;  
+        public const Keys detailsSingleNotesFromTop =   Keys.Down | Keys.Control; // When already viewing parts
         public const Keys DetailsInstruments =          Keys.I  | Keys.Control;
-        public const Keys DetailsHarmonyBottom =        Keys.Up;
+        public const Keys DetailsHarmonyBottom =        Keys.Up | Keys.Alt | Keys.Control;
         public const Keys DetailsPartsBottom =          Keys.Up | Keys.Control;
         public const Keys DetailsNotesBottom =          Keys.Up | Keys.Control | Keys.Shift;
         public const Keys DetailsStatusBottom =         Keys.Up | Keys.Alt;
-        public const Keys detailsSingleNotesFromBottom= Keys.Up;  
+        public const Keys detailsSingleNotesFromBottom= Keys.Up | Keys.Control; // When already viewing parts
         //public const Keys DetailsInstrumentsButtom= Keys.I | Keys.C;
 
         public const Keys StopAllNotesPlaying = Keys.Escape;
