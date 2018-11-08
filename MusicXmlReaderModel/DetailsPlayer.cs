@@ -68,7 +68,8 @@ namespace MusicXmlReaderModel
             ChromaticStep root = harmonyElement.ChromaticRootStep;
             detailsDescriptions = new List<DetailsDescription>();
             string chordName = harmonyElement.ToString();
-            detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", ResourcesForModel.HarmonyElement_Chord,chordName ), harmonyElement, chordOctave)); // The full representation of the chord 
+            //detailsDescriptions.Add(DetailsDescription.Create(string.Format("{0} {1}", ResourcesForModel.HarmonyElement_Chord, chordName), harmonyElement, chordOctave)); // The full representation of the chord 
+            detailsDescriptions.Add(DetailsDescription.Create(chordName, harmonyElement, chordOctave)); // The full representation of the chord 
             if ((null != harmonyElement.BassElement) && (harmonyElement.ChromaticRootStep != harmonyElement.ChromaticBassStep))
             {
                 string s = string.Format("{0} {1}", ResourcesForModel.HarmonyElement_BassTone, harmonyElement.BassElement.ToString());
