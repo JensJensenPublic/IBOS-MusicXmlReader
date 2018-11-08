@@ -149,18 +149,22 @@
   </data>
   <data name="ChordKind_Major11" xml:space="preserve">
     <value>maj11</value>
+    <comment>Must live with "elvte maj"</comment>
   </data>
   <data name="ChordKind_Major13" xml:space="preserve">
     <value>maj13</value>
+    <comment>Must live with "trettende maj"</comment>
   </data>
   <data name="ChordKind_Major6" xml:space="preserve">
     <value>6</value>
   </data>
   <data name="ChordKind_Major7" xml:space="preserve">
-    <value>maj7</value>
+    <value>maj</value>
+    <comment>Changed from  maj7  to Avoid speaking "syvende maj"</comment>
   </data>
   <data name="ChordKind_Major9" xml:space="preserve">
     <value>maj9</value>
+    <comment>Must live with "niende maj"</comment>
   </data>
   <data name="ChordKind_MajorMinor" xml:space="preserve">
     <value>molmaj</value>
