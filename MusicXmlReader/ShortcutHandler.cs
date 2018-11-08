@@ -206,19 +206,30 @@ namespace MusicXmlReader
         public const Keys NextEvent =               Keys.Right;
         public const Keys PreviousEvent =           Keys.Left;
 
+
+        // MusicXmlReaders of use of ARROW keys with the 8 possible combination-keys:  CTRL ALT SHIFT when JAWS is running
+        // No combination key.... UP/DOWN   
+        // SHIFT................. NOT USED (Reserved for later use for selection)
+        // ALT................... Show Status details
+        // ALT + SHIFT........... NOT USED
+        // CTRI.................. Show part details
+        // CTRL + SHIFT.......... Show harmony details
+        // CTRL + ALT............ NOT USED (Seems to be used by JAWS for some table functionality)
+        // CTRL + ALT + SHIFT.... NOT USED (Seems to be used by JAWS for some table functionality)
+
         public const Keys DetailsNextPart = Keys.Down;
         public const Keys DetailsPreviousPart = Keys.Up;
 
         // For loading details
-        public const Keys DetailsHarmonyTop =           Keys.Down | Keys.Alt | Keys.Control;
-        public const Keys DetailsPartsTop =             Keys.Down | Keys.Control;
-        public const Keys DetailsNotesTop =             Keys.Down | Keys.Control | Keys.Shift;
-        public const Keys DetailsStatusTop =            Keys.Down | Keys.Alt;
-        public const Keys detailsSingleNotesFromTop =   Keys.Down | Keys.Control; // When already viewing parts
+        public const Keys DetailsHarmonyTop =           Keys.Down | Keys.Control | Keys.Shift;  // Directly from the NoteList
+        public const Keys DetailsPartsTop =             Keys.Down | Keys.Control;               // Directly from the NoteList: Split into parts
+        //public const Keys DetailsNotesTop =             Keys.Down | Keys.Control | Keys.Shift;  // Directly from the NoteList: Split directly in notes without respect to parts
+        public const Keys DetailsStatusTop =            Keys.Down | Keys.Alt;                   // Directly from the NoteList
+        public const Keys detailsSingleNotesFromTop =   Keys.Down | Keys.Control;               // From the Details list: Split selected part into notes.
         public const Keys DetailsInstruments =          Keys.I  | Keys.Control;
-        public const Keys DetailsHarmonyBottom =        Keys.Up | Keys.Alt | Keys.Control;
+        public const Keys DetailsHarmonyBottom =        Keys.Up | Keys.Control | Keys.Shift;
         public const Keys DetailsPartsBottom =          Keys.Up | Keys.Control;
-        public const Keys DetailsNotesBottom =          Keys.Up | Keys.Control | Keys.Shift;
+        //public const Keys DetailsNotesBottom =          Keys.Up | Keys.Control | Keys.Shift;
         public const Keys DetailsStatusBottom =         Keys.Up | Keys.Alt;
         public const Keys detailsSingleNotesFromBottom= Keys.Up | Keys.Control; // When already viewing parts
         //public const Keys DetailsInstrumentsButtom= Keys.I | Keys.C;

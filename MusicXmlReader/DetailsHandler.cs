@@ -99,12 +99,15 @@ namespace MusicXmlReader
             if (0 == items.Length)
             {
                 // Just a fallback ! The detail-implementation can deliver its own one-liner!
-                items[0] = StringDetailsDescription.Create(ResourcesForUI.ListBoxDetails_NoDetailsFound); 
+                DetailsDescription item = StringDetailsDescription.Create(ResourcesForUI.ListBoxDetails_NoDetailsFound);
+                listBoxDetails.Items.Add(item);
+            }
+            else
+            {
+                listBoxDetails.Items.AddRange(items);
             }
             // Now items contains at least one item !
             int index = (DetailsDirection.FromTop == detailsDirection) ? 0 : items.Length - 1;
-            //items[index].Caption = Localize(detailsEnum);
-            listBoxDetails.Items.AddRange(items);
             listBoxDetails.SelectedIndex = index;
             SetCurrentDetails(functionName, detailsEnum);
         }
