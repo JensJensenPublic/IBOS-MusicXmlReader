@@ -1241,6 +1241,31 @@ namespace MusicXmlReaderModel
         }
 
         /// <summary>
+        /// Returns a string to be used in the Details window.
+        /// </summary>
+        /// <returns></returns>
+        public string ToDetailsString()
+        {
+            string partString = string.Format("{0} ", PartId);
+            string notationsString = (null != notations) ? notations.ToString() : "";
+            if (!IsPause)
+            {
+                // This is a note.
+                return String.Format("{0} {1} {2} {3}",
+                  partString, pitchElement.Name, pitchElement.Octave, localizedType, localizedTie, notationsString);
+            }
+            else
+            {
+                // This is a pause,not a note.     
+                return (String.Format("{0} {1} {2}",
+                    partString,LocalizePause(noteDuration, dot), notationsString));
+            }
+
+        }
+
+
+
+        /// <summary>
         /// Maps the contents of the staff member variable to a localized teststring, assuming that
         ///  Staff number 1 is played by the right hand
         ///  Staff number 2 is played by the left hand

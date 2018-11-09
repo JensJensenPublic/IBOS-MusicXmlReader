@@ -159,11 +159,11 @@ namespace MusicXmlReader
                 // The "Details functionality is handled locally before being passed to the Model:          
                 case ShortcutHandler.DetailsHarmonyTop: detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Harmonies, FromTop); break;    // Start from top
                 case ShortcutHandler.DetailsPartsTop: detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Parts, FromTop); break;        // Start from top  
-                //case ShortcutHandler.DetailsNotesTop: detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Notes, FromTop); break;        // Start from top  
+                case ShortcutHandler.DetailsNotesTop: detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Notes, FromTop); break;        // Start from top  
                 case ShortcutHandler.DetailsStatusTop:  detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Status, FromTop); break;
                 case ShortcutHandler.DetailsHarmonyBottom: detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Harmonies, FromBottom); break;   // Start from bottom
                 case ShortcutHandler.DetailsPartsBottom: detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Parts, FromBottom); break;       //  Start from bottom
-                //case ShortcutHandler.DetailsNotesBottom: detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Notes, FromBottom); break;       //  Start from bottom
+                case ShortcutHandler.DetailsNotesBottom: detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Notes, FromBottom); break;       //  Start from bottom
                 case ShortcutHandler.DetailsStatusBottom: detailsHandler.ShowEventDetails(DetailsHandler.DetailsEnum.Status, FromBottom); break;
                 // DetailsInstruments are handled directly from MenuLine->View because they do not depend on which item is selected in the NoteList.
                 //case ShortcutHandler.DetailsInstruments:    detailsHandler.ShowGlobalDetails(DetailsHandler.DetailsEnum.Instruments, true); break;  // Always shown from top

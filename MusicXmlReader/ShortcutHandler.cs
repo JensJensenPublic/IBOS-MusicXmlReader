@@ -223,13 +223,13 @@ namespace MusicXmlReader
         // For loading details
         public const Keys DetailsHarmonyTop =           Keys.Down | Keys.Control | Keys.Shift;  // Directly from the NoteList
         public const Keys DetailsPartsTop =             Keys.Down | Keys.Control;               // Directly from the NoteList: Split into parts
-        //public const Keys DetailsNotesTop =             Keys.Down | Keys.Control | Keys.Shift;  // Directly from the NoteList: Split directly in notes without respect to parts
+        public const Keys DetailsNotesTop =             Keys.Down ;  // Directly from the NoteList: Split directly in notes without respect to parts
         public const Keys DetailsStatusTop =            Keys.Down | Keys.Alt;                   // Directly from the NoteList
         public const Keys detailsSingleNotesFromTop =   Keys.Down | Keys.Control;               // From the Details list: Split selected part into notes.
         public const Keys DetailsInstruments =          Keys.I  | Keys.Control;
         public const Keys DetailsHarmonyBottom =        Keys.Up | Keys.Control | Keys.Shift;
         public const Keys DetailsPartsBottom =          Keys.Up | Keys.Control;
-        //public const Keys DetailsNotesBottom =          Keys.Up | Keys.Control | Keys.Shift;
+        public const Keys DetailsNotesBottom =          Keys.Up ;
         public const Keys DetailsStatusBottom =         Keys.Up | Keys.Alt;
         public const Keys detailsSingleNotesFromBottom= Keys.Up | Keys.Control; // When already viewing parts
         //public const Keys DetailsInstrumentsButtom= Keys.I | Keys.C;
