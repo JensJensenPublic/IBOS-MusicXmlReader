@@ -1246,19 +1246,19 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public string ToDetailsString()
         {
-            string partString = string.Format("{0} ", PartId);
+            //string partString = string.Format("{0} ", PartId);
             string notationsString = (null != notations) ? notations.ToString() : "";
             if (!IsPause)
             {
                 // This is a note.
-                return String.Format("{0} {1} {2} {3}",
-                  partString, pitchElement.Name, pitchElement.Octave, localizedType, localizedTie, notationsString);
+                return String.Format("{0} {1} {2} {3} {4}",
+                  pitchElement.Name, pitchElement.Octave, localizedType, localizedTie, notationsString);
             }
             else
             {
                 // This is a pause,not a note.     
-                return (String.Format("{0} {1} {2}",
-                    partString,LocalizePause(noteDuration, dot), notationsString));
+                return (String.Format("{0} {1}",
+                   LocalizePause(noteDuration, dot), notationsString));
             }
 
         }

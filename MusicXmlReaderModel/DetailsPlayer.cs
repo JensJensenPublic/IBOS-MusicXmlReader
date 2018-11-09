@@ -246,18 +246,8 @@ namespace MusicXmlReaderModel
                 }
 
             }
-
-            // Do NOT add any harmonies after the last part! Harmonies have their own mechanisms !
-            //HarmonyElement harmonyElement = eventDescription.HarmonyElement;
-            //if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
-            //{
-            //    string harmony = string.Format("{0}{1}  ", harmonyElement.ChromaticRootStep, harmonyElement.LocalizedChordType); // Use same formatting as used in the status line !!
-            //    detailsDescriptions.Add(DetailsDescription.Create(harmony));
-            //}
         }
-
-
-
+        
 
         /// <summary>
         /// Reports details at the Note level
@@ -280,8 +270,7 @@ namespace MusicXmlReaderModel
                 {
                     // String variables for desribing the detail as text
                     string partId = "";
-                    string partName = "";
-                    string note = "";
+                    string partName = "";                
                     string lyrics = "";
 
                     if ((userSettings.MusicAsSpeech) && (userSettings.GetParts(UserSettings.Category.Speech, i)))
@@ -294,24 +283,16 @@ namespace MusicXmlReaderModel
                         foreach (NoteElement noteElement in eventDescription.NoteLists[i])
                         {
                             //notes = string.Format("",noteElement.)
-                            note = noteElement.ToDetailsString();
-                            //string musicBraille = "";
-                            //string detailString = string.Format("{0} {1} {2} {3} {4}", musicBraille, partId, partName, notes, lyrics);
-                            detailsDescriptions.Add(NoteListDetailsDescription.Create(note, noteElement));
+                            string noteString = noteElement.ToDetailsString(); // Only information from the NoteElement and elements contained within it
+                            string musicBraille = "";
+                            string detailString = string.Format("{0} {1} {2} {3} {4}", musicBraille, partId, partName, noteString, lyrics); // All information, including information from the NoteElement 
+                            detailsDescriptions.Add(NoteListDetailsDescription.Create(detailString, noteElement));
                             // partId   = ""; // Only list first time
                             partName = ""; // Only list first time
                         }
                     }
                 }
             }
-
-            // Do NOT add any harmonies after the last part! HArmonies have their own meshanisms !
-            //HarmonyElement harmonyElement = eventDescription.HarmonyElement;
-            //if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.Harmonies)) && (null != harmonyElement))
-            //{
-            //    string harmony = string.Format("{0}{1}  ", harmonyElement.ChromaticRootStep, harmonyElement.LocalizedChordType); // Use same formatting as used in the status line !!
-            //    detailsDescriptions.Add(DetailsDescription.Create(harmony));
-            //}
         }
 
         public void SelectedDetailsIndexChanged(DetailsDescription detailsDescription)
