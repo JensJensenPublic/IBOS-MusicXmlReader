@@ -372,12 +372,14 @@ namespace MusicXmlReader
                     case ShortcutHandler.DetailsPreviousPart:   move = -1; break;   // (Up)    Pass on to default handler
                     case ShortcutHandler.detailsTopDetail: break; // Pass on to default handler
                     case ShortcutHandler.detailsBottomDetail: break; // Pass on to default handler
-                    case ShortcutHandler.detailsNextEvent: ReturnToListboxTimes(0); e.SuppressKeyPress = true; break; // +1 confuses JAWS
-                    case ShortcutHandler.detailsPreviousEvent: ReturnToListboxTimes(0); e.SuppressKeyPress = true; break;  // -1 confuses JAWS
-                    case ShortcutHandler.DetailsStatusBottom: move = -1; break; //  Pass on to default handler
-                    case ShortcutHandler.DetailsStatusTop: move = +1; break;   //    Pass on to default handler
+                    case ShortcutHandler.detailsNextEvent:      ReturnToListboxTimes(0); e.SuppressKeyPress = true; break; // +1 confuses JAWS
+                    case ShortcutHandler.detailsPreviousEvent:  ReturnToListboxTimes(0); e.SuppressKeyPress = true; break;  // -1 confuses JAWS
+                    case ShortcutHandler.DetailsStatusBottom:   e.SuppressKeyPress = true; UiUtilities.Beep(); break; // Ignore
+                    case ShortcutHandler.DetailsStatusTop:      e.SuppressKeyPress = true; UiUtilities.Beep(); break; // Ignore
+                    case ShortcutHandler.DetailsHarmonyBottom:  e.SuppressKeyPress = true; UiUtilities.Beep(); break; // Ignore
+                    case ShortcutHandler.DetailsHarmonyTop:     e.SuppressKeyPress = true; UiUtilities.Beep(); break; // Ignore
                     case Keys.Control | Keys.ControlKey: e.SuppressKeyPress = true; break; // Allow for decoding CTRL+UP and CTRL+DOWN later
-                    case Keys.Shift  |  Keys.ShiftKey:   e.SuppressKeyPress = true; break; // Allow for decoding SHIFT+?? and SHIFT+?? later
+                    case Keys.Shift | Keys.ShiftKey: e.SuppressKeyPress = true; break; // Allow for decoding SHIFT+?? and SHIFT+?? later
                     case Keys.Escape:    ReturnFromPartDetails(); e.SuppressKeyPress = true; break; // TEST
                     default: ReturnToListboxTimes(0); e.SuppressKeyPress = true; break;
                 }
