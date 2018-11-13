@@ -296,8 +296,55 @@ namespace MusicXmlReaderModel
                         }
                     }
                 }
+
+                detailsDescriptions.Sort(Compare);
+
             }
         }
+
+
+        /// <summary>
+        /// If x and y are both of type SingleNoteDetailsDescription and are both pitched
+        /// the function returns the difference (in semitones) between the frequencies of the 2 notes.
+        /// Otherwise it returns 0
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public int Compare(DetailsDescription x, DetailsDescription y)
+        {
+            try
+            {
+                if (!((x is SingleNoteDetailsDescription) && (y is SingleNoteDetailsDescription)))
+                {
+                    //Logger.LogCF(string.Format("x.Type={0} y.Type={1}", x.GetType(), y.GetType()));
+                    return 0;
+                }
+
+                SingleNoteDetailsDescription nx = x as SingleNoteDetailsDescription;
+                SingleNoteDetailsDescription ny = y as SingleNoteDetailsDescription;
+
+                NoteElement nex = nx.NoteElement;
+                NoteElement ney = ny.NoteElement;
+
+                if (!(nex.Pitched && (ney.Pitched)))
+                {
+                    //Logger.LogCF(string.Format("x.Pitched={0} y.Pitched={1}", nex.Pitched, ney.Pitched));
+                    return 0;
+                }
+                
+                int result = ney.PitchValue.SemiTonesAboveC0 - nex.PitchValue.SemiTonesAboveC0;
+                // Logger.LogCF(string.Format("Result = {0}", result));
+                return result;
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+            return 0;
+
+        }
+
 
         public void SelectedDetailsIndexChanged(DetailsDescription detailsDescription)
         {
