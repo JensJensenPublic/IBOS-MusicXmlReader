@@ -1190,11 +1190,11 @@ namespace MusicXmlReaderModel
 
         public DetailsDescription[] GetSingleNoteDetails(DetailsDescription currentDetails)
         {
-            bool showHand = true;
+            //bool showHand = true;
             detailsPlayer = DetailsPlayer.Create(musicPlayer);
             foreach (NoteElement note in (currentDetails as NoteListDetailsDescription).Notes)
             {
-                detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(note.ToDetailsString(showHand), note)); // Hold the note itself and its string representation
+                detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(note.ToDetailsString(), note)); // Hold the note itself and its string representation
             }
             return detailsPlayer.DetailsDescriptionArray; ;
         }

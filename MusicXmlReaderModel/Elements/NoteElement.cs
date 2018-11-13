@@ -1330,57 +1330,57 @@ namespace MusicXmlReaderModel
         }
 
 
-        /// <summary>
-        /// Special implementation used for showing details
-        /// </summary>
-        /// <returns></returns>
-        public string ToDetailsString(bool showHand)
-        {
-#warning ToDo: Replace by ToDetailsString(), which should be common for showing details directly from the NoteList and from  Part Detail
-            string notationsString = (null != notations) ? notations.ToString() : "";
-            if (!IsPause)
-            {
-                // This is a note.
-                // By using pitchElement.Step instead of pitchElement.Name we might also report how unpitched notes are notated - if we wanted to!
-                //return String.Format("{0} {1} {2} {3} {4}", pitchElement.Name, pitchElement.Octave, localizedType, localizedTie, notationsString);
-                string name = pitchElement.Name;
-                string octave = pitchElement.Octave.ToString();
-                string hand = showHand ? LocalizedHand() : "";
-                if (this.UnPitched)
-                {
-                    name = (null != UnpitchedText) ? UnpitchedText : "";    // For unpitched instruments we report the instrument here instead of the pitch!
-                    octave = "";                 
-                }
-                return String.Format("{0} {1} {2} {3} {4} {5}",hand,name, octave, localizedType, localizedTie, notationsString);
-            }
-            else
-            {
-                // This is a pause,not a note.
-                string pause = LocalizePause(noteDuration, dot);
-                //if (null == this.pitchElement)
-                //{
-                //    // In the unpitched case the instrument NOT is implicitly given by the part, so we need to extract it: 
-                //    string unpitchedInstrument = "";
-                //    try
-                //    {
-                //        // throw new Exception("test");
-                //        // New functionality. Better save than sorry !!
-                //        unpitchedInstrument = this.ScorePartElement.ScoreInstrumentElement.InstrumentName;
-                //    }
-                //    catch (Exception e)
-                //    {
-                //        Logger.Log(string.Format("{0}.{1}: Exception. Message={2}", className,functionName,e.Message));
-                //    }
-                //    return string.Format("{0} {1}", unpitchedInstrument, pause);
-                //}
-                //else
-                {
-                    // In the pitched case the instrument is implicitly given by the part
-                    string hand = showHand ? LocalizedHand() : "";
-                    return (String.Format("{0} {1}", hand, pause));
-                }
-            }
-        }
+//        /// <summary>
+//        /// Special implementation used for showing details
+//        /// </summary>
+//        /// <returns></returns>
+//        public string ToDetailsString(bool showHand)
+//        {
+//#warning ToDo: Replace by ToDetailsString(), which should be common for showing details directly from the NoteList and from  Part Detail
+//            string notationsString = (null != notations) ? notations.ToString() : "";
+//            if (!IsPause)
+//            {
+//                // This is a note.
+//                // By using pitchElement.Step instead of pitchElement.Name we might also report how unpitched notes are notated - if we wanted to!
+//                //return String.Format("{0} {1} {2} {3} {4}", pitchElement.Name, pitchElement.Octave, localizedType, localizedTie, notationsString);
+//                string name = pitchElement.Name;
+//                string octave = pitchElement.Octave.ToString();
+//                string hand = showHand ? LocalizedHand() : "";
+//                if (this.UnPitched)
+//                {
+//                    name = (null != UnpitchedText) ? UnpitchedText : "";    // For unpitched instruments we report the instrument here instead of the pitch!
+//                    octave = "";                 
+//                }
+//                return String.Format("{0} {1} {2} {3} {4} {5}",hand,name, octave, localizedType, localizedTie, notationsString);
+//            }
+//            else
+//            {
+//                // This is a pause,not a note.
+//                string pause = LocalizePause(noteDuration, dot);
+//                //if (null == this.pitchElement)
+//                //{
+//                //    // In the unpitched case the instrument NOT is implicitly given by the part, so we need to extract it: 
+//                //    string unpitchedInstrument = "";
+//                //    try
+//                //    {
+//                //        // throw new Exception("test");
+//                //        // New functionality. Better save than sorry !!
+//                //        unpitchedInstrument = this.ScorePartElement.ScoreInstrumentElement.InstrumentName;
+//                //    }
+//                //    catch (Exception e)
+//                //    {
+//                //        Logger.Log(string.Format("{0}.{1}: Exception. Message={2}", className,functionName,e.Message));
+//                //    }
+//                //    return string.Format("{0} {1}", unpitchedInstrument, pause);
+//                //}
+//                //else
+//                {
+//                    // In the pitched case the instrument is implicitly given by the part
+//                    string hand = showHand ? LocalizedHand() : "";
+//                    return (String.Format("{0} {1}", hand, pause));
+//                }
+//            }
+//        }
         
     }
 }
