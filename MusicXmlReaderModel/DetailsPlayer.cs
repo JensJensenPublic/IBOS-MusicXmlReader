@@ -279,7 +279,7 @@ namespace MusicXmlReaderModel
                         partId = scorePartElement.partId;
                         partName = scorePartElement.partName;
                         string partString = string.IsNullOrEmpty(partName) ? partId : partName; // Prefere PartName for PartId, i.i "Violin" for "P1"
-                        bool showLeftRightHand = (partName == "Piano");
+                        bool showLeftRightHand = ((partName == "Piano") || (partName == "Organ"));
 #warning ToDO Add Organ  etc !!
                         // By using  eventDescription.NotesForOnePart for formatting the notes we assure the usage of identical formatting.
                         foreach (NoteElement noteElement in eventDescription.NoteLists[i])
