@@ -106,7 +106,7 @@ namespace MusicXmlReaderModel
         int dynamicsValue = 90;
         bool isFirstNoteInScorePart;
         int midiUnpitchedInstrumentNumber;
-        string scoreUnpitchedInstrumentName;
+        string scoreUnpitchedInstrumentName; 
 
         public int MidiUnpitchedInstrumentNumber
         {
@@ -1240,6 +1240,7 @@ namespace MusicXmlReaderModel
             }
         }
 
+#if false
         /// <summary>
         /// Returns a string to be used in the Details window.
         /// </summary>
@@ -1262,6 +1263,47 @@ namespace MusicXmlReaderModel
             }
 
         }
+#else
+        /// <summary>
+        /// Returns a string to be used in the Details window. 
+        /// Modelled over EventDescription.NotesForOnePart() but (by design!) does not filter by UserSettings
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public string ToDetailsString()
+        {
+            string note = "";
+            if (this.IsPause)
+            {
+                // This is a pause
+                // Here the type and the word "pause" are cocatenated such as "punkteret halvnodepause"
+                string type =  this.LocalizedPauseType;
+                string notations = (null != this.Notations) ? this.Notations.ToString() : "";
+                note = string.Format(" {0} {1}", type, notations);
+            }
+            else
+            {
+                // This is a note
+                // Here the sequence is pitch,octave,type such af "Cis4 punkteret halvnode" 
+                string accidental =  (null != this.AccidentalElement) ? this.AccidentalElement.ToString() : "";
+                string pitch = this.PitchValue.Name; // Always use the name of the note
+                string octave = this.Octave.ToString();
+                string type =  this.LocalizedType;
+                string pitchAndOctave = this.UnPitched ? this.UnpitchedText : string.Format("{0}{1}", pitch, octave); // Special handling of unpitched notes !
+                string cueString = this.CueNoteString;
+                string notations =  (null != this.Notations) ? this.Notations.ToString() : "";
+                string printability = this.PrintObjectAttributeValue ? "" : string.Format("({0})", ResourcesForModel.EventDescription_NotPrinted);
+                note = string.Format("{0} {1} {2} {3} {4} {5}", accidental, pitchAndOctave, type, cueString, notations, printability);    // Do not use extra chars for Pitch and Octave. Examples: "C","Cis4"
+            }
+            return note;
+        }
+
+#endif
+
+
+
+
+
 
 
 
@@ -1274,9 +1316,9 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="staff"></param>
         /// <returns></returns>
-        private string LocalizedHand(int staff)
+        public string LocalizedHand()
         {
-            switch (staff)
+            switch (this.staff)
            {
                 case 0: return "";
                 case 1: return ResourcesForModel.NoteElement_RightHand;
@@ -1294,6 +1336,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public string ToDetailsString(bool showHand)
         {
+#warning ToDo: Replace by ToDetailsString(), which should be common for showing details directly from the NoteList and from  Part Detail
             string notationsString = (null != notations) ? notations.ToString() : "";
             if (!IsPause)
             {
@@ -1302,7 +1345,7 @@ namespace MusicXmlReaderModel
                 //return String.Format("{0} {1} {2} {3} {4}", pitchElement.Name, pitchElement.Octave, localizedType, localizedTie, notationsString);
                 string name = pitchElement.Name;
                 string octave = pitchElement.Octave.ToString();
-                string hand = showHand ? LocalizedHand(staff) : "";
+                string hand = showHand ? LocalizedHand() : "";
                 if (this.UnPitched)
                 {
                     name = (null != UnpitchedText) ? UnpitchedText : "";    // For unpitched instruments we report the instrument here instead of the pitch!
@@ -1333,7 +1376,7 @@ namespace MusicXmlReaderModel
                 //else
                 {
                     // In the pitched case the instrument is implicitly given by the part
-                    string hand = showHand ? LocalizedHand(staff) : "";
+                    string hand = showHand ? LocalizedHand() : "";
                     return (String.Format("{0} {1}", hand, pause));
                 }
             }
