@@ -1267,6 +1267,9 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// Returns a string to be used in the Details window. 
         /// Modelled over EventDescription.NotesForOnePart() but (by design!) does not filter by UserSettings
+        /// This method is called from 2 different places:
+        /// 1) When showing details directry from the NoteList
+        /// 2) When showing details from the Part details 
         /// 
         /// </summary>
         /// <returns></returns>
