@@ -48,7 +48,7 @@ namespace MusicXmlReaderUI
 
                     case ".xml":
                         Logger.ClearStatistics(); // Start counting unimplemented elements and attributes for this file
-                        ok = model.LoadMusicXmlFile(file); // Loads and parses the file
+                        ok = model.LoadMusicXmlFile(file,false); // Loads and parses the file
                         Console.WriteLine(string.Format("Model.LoadMusicXmlFile({0}) {1}", file, ok ? "succeeded" : failed));
                         DumpEvents(ok, model.EventDescriptionList, file);
                         Logger.DumpStatistics(); // Dump count of unimplemented elements and attributes for this file

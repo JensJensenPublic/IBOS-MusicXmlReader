@@ -159,20 +159,44 @@ namespace MusicXmlReaderModel
             return fullXmlFileName;
         }
 
+        private bool UseDefaultUserSettings()
+        {
+            bool result = true;
+            try
+            {
+                if (File.Exists(theUserSettingsFileName))
+                {
+                    File.Delete(theUserSettingsFileName);
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+                result = false;
+            }
+            Logger.LogCF(string.Format("({0}) returns {1}", theUserSettingsFileName, result));
+            return result;
+        }
+
 
         /// <summary>
         /// Stops on any error and returns false
         /// </summary>
         /// <param name="fullXmlFileName"></param>
         /// <returns></returns>
-        public bool LoadMusicXmlFile(string fullXmlFileName)
+        public bool LoadMusicXmlFile(string fullXmlFileName,bool useDefaultSettings)
         {
             string functionName = "LoadMusicXmlFile";
             theMusicXmlFileName = fullXmlFileName;
             theUserSettingsFileName = theMusicXmlFileName + ".IBOS_MusicXmlReader";
+            if (useDefaultSettings)
+            {
+                UseDefaultUserSettings();
+            }
             bool ok = true;
             string xmlFileName = ""; // The MusicXml file currently handled 
             // ProgressWriter progressWriter = null;
+            XmlTextReader reader = null;
             try
             {
                 string defaultFileName = "Node.xml";
@@ -186,7 +210,7 @@ namespace MusicXmlReaderModel
                 TheStaticXmlFileName = xmlFileName; // Make the filename globally available without a reference to a Model instance.
 
                 XmlDocument doc = new XmlDocument();
-                XmlTextReader reader = new XmlTextReader(fullXmlFileName);
+                reader = new XmlTextReader(fullXmlFileName);
                 reader.WhitespaceHandling = WhitespaceHandling.None;
                 string progressLoading = string.Format("{0} {1}", ResourcesForModel.Progress_LoadingFile, xmlFileName);
                 loaderProgressWriter = ProgressWriter.Create(1000, iDebugDisplayerClient, progressLoading);
@@ -242,7 +266,10 @@ namespace MusicXmlReaderModel
 
                 ok = false;
             }
-
+            if (null != reader)
+            {
+                reader.Close(); // Need to close the reader in order to let other processes access the .xml file (For instance when reopening a .mxl file) !!!!
+            }
             return ok;
         }
 

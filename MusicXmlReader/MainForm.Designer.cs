@@ -111,6 +111,7 @@
             this.listBoxDetails = new System.Windows.Forms.ListBox();
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -134,6 +135,7 @@
             // 
             this.filesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openMusicXmlFileToolStripMenuItem,
+            this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem,
             this.importDownloadsToolStripMenuItem,
             this.importNewestDownloadsToolStripMenuItem,
             this.importNewSampleFilesToolStripMenuItem,
@@ -148,28 +150,28 @@
             // 
             this.openMusicXmlFileToolStripMenuItem.Name = "openMusicXmlFileToolStripMenuItem";
             this.openMusicXmlFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openMusicXmlFileToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.openMusicXmlFileToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
             this.openMusicXmlFileToolStripMenuItem.Text = "&Open MusicXml File";
             this.openMusicXmlFileToolStripMenuItem.Click += new System.EventHandler(this.openMusicXmlFileToolStripMenuItem_Click);
             // 
             // importDownloadsToolStripMenuItem
             // 
             this.importDownloadsToolStripMenuItem.Name = "importDownloadsToolStripMenuItem";
-            this.importDownloadsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.importDownloadsToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
             this.importDownloadsToolStripMenuItem.Text = "&Import Downloads";
             this.importDownloadsToolStripMenuItem.Click += new System.EventHandler(this.importDownloadsToolStripMenuItem_Click);
             // 
             // importNewestDownloadsToolStripMenuItem
             // 
             this.importNewestDownloadsToolStripMenuItem.Name = "importNewestDownloadsToolStripMenuItem";
-            this.importNewestDownloadsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.importNewestDownloadsToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
             this.importNewestDownloadsToolStripMenuItem.Text = "&Import Newest Downloads";
             this.importNewestDownloadsToolStripMenuItem.Click += new System.EventHandler(this.importNewestDownloadsToolStripMenuItem_Click);
             // 
             // importNewSampleFilesToolStripMenuItem
             // 
             this.importNewSampleFilesToolStripMenuItem.Name = "importNewSampleFilesToolStripMenuItem";
-            this.importNewSampleFilesToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.importNewSampleFilesToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
             this.importNewSampleFilesToolStripMenuItem.Text = "Import New Sample files";
             this.importNewSampleFilesToolStripMenuItem.Click += new System.EventHandler(this.importNewSampleFilesToolStripMenuItem_Click);
             // 
@@ -180,7 +182,7 @@
             this.toEmbosserToolStripMenuItem,
             this.inOptionalFormatToolStripMenuItem});
             this.exportMusicBrailleToolStripMenuItem.Name = "exportMusicBrailleToolStripMenuItem";
-            this.exportMusicBrailleToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.exportMusicBrailleToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
             this.exportMusicBrailleToolStripMenuItem.Text = "Export Music Braille";
             // 
             // toNotetakerToolStripMenuItem
@@ -232,13 +234,13 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(220, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(368, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -795,6 +797,15 @@
             this.textBoxScreenReader.Size = new System.Drawing.Size(926, 20);
             this.textBoxScreenReader.TabIndex = 12;
             // 
+            // openMusicXmlFileUsingDefaultSettingsToolStripMenuItem
+            // 
+            this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.Name = "openMusicXmlFileUsingDefaultSettingsToolStripMenuItem";
+            this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.O)));
+            this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.Text = "Open MusicXml File using default settings";
+            this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.Click += new System.EventHandler(this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -909,6 +920,7 @@
         private System.Windows.Forms.ToolStripMenuItem txtOctoBraille1252ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brfASCIIToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem brfUnicodeToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem openMusicXmlFileUsingDefaultSettingsToolStripMenuItem;
     }
 }
 

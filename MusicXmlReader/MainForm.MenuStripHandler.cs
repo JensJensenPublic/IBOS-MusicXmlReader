@@ -169,7 +169,7 @@ namespace MusicXmlReader
         /// </summary>
         /// <param name="sender"> Not used</param>
         /// <param name="e">Not used</param>
-        private bool SelectAndOpenMusicXmlFile(object sender, EventArgs e)
+        private bool SelectAndOpenMusicXmlFile(object sender, EventArgs e,bool useDefaultSettings)
         {
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.xml;*.musicxml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files
@@ -239,8 +239,11 @@ namespace MusicXmlReader
 
             Logger.ClearStatistics();  // Clear statistics to be collected while loading, parsing and rendering the MusicXml file:
 
+  
+
+
             // Now follows the time-consuming operation, where the Model loads and interpretes a new MusicXml file.
-            if (!model.LoadMusicXmlFile(xmlFileName)) // Load the selected .xml file into the Model and build all internal data structures.
+            if (!model.LoadMusicXmlFile(xmlFileName,useDefaultSettings)) // Load the selected .xml file into the Model and build all internal data structures.
             {
                 // Simple error handling
                 message = string.Format("{0} '{1}'", ResourcesForUI.TextBox_Messages_FailedToRead_File, shortFileName); // Short filename for UI
@@ -306,13 +309,25 @@ namespace MusicXmlReader
         }
 
 
+        /// <summary>
+        /// Same as openMusicXmlFileToolStripMenuItem_Click(), but delete the UserSettings file before opening !
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void openMusicXmlFileUsingDefaultSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenMusicXmlFile(sender, e, true);
+        }
 
 
         private void openMusicXmlFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            const string functionName = "openMusicXmlFileToolStripMenuItem_Click";
-
-            // model.Silence();
+            OpenMusicXmlFile(sender, e, false);
+        }
+         
+        private void OpenMusicXmlFile(object sender, EventArgs e,bool useDefaultSettings)
+        { 
+        // model.Silence();
 
             try
             {
@@ -323,7 +338,7 @@ namespace MusicXmlReader
                 textBoxScreenReader.Focus(); // Move focus to the (empty) textBoxScreenreader to prevent JAWS form talking too much !! 
 
                 // Show a standard Select File dialog to allow the user to select and open a MusicXml file
-                SelectAndOpenMusicXmlFile(sender, e);
+                SelectAndOpenMusicXmlFile(sender, e, useDefaultSettings);
 
                 if (listBoxTimes.Items.Count > 0)
                 {
@@ -332,7 +347,7 @@ namespace MusicXmlReader
                     // and thus forces the first scroll operation.
 #if true
                     // Not needed if we kan avoid the "if InvoceRequired mechanism above (Line 459)
-                    Logger.Log(string.Format("{0}.{1} Changing SelectedIndex to {2} and back to 0", className, functionName, listBoxTimes.Items.Count - 1));
+                    Logger.LogCF(string.Format(": Changing SelectedIndex to {0} and back to 0", listBoxTimes.Items.Count - 1));
                     listBoxTimes.SelectedIndex = (listBoxTimes.Items.Count - 1);
 #endif
                     listBoxTimes.SelectedIndex = 0;
@@ -343,7 +358,7 @@ namespace MusicXmlReader
             {
                 // Be sure to restore the UI state !
                 UiUtilities.Beep();
-                Logger.Log(string.Format("{0}.{1} Exception. Message={2}", className, functionName, exception.Message));
+                Logger.LogCFE(exception);
             }
             // At last move focus (from the NormalText textbox) to the mail Listbox to make the Screenreader do its job
             listBoxTimesHandler.Focus();

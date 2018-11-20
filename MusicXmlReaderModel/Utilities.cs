@@ -686,7 +686,9 @@ namespace MusicXmlReaderModel
                         string source = fileInfo.FullName;           
 
                         bool overwriteExisting = true;
+                        //Logger.LogCF(string.Format(": Starting File.Copy({0} to {1}", source, destXml));
                         File.Copy(source, destXml, overwriteExisting);
+                        //Logger.LogCF(string.Format(": Finished File.Copy({0} to {1}", source, destXml));
                         result = destXml;
                         numberOfFiles++;
                     }

@@ -199,7 +199,7 @@ namespace MusicXmlReaderModel
                     // Result is a string.
                     result = str.ToString();
                     Logger.LogCF(string.Format(" : Length={0}", result.Length));
-                    Logger.LogCF(string.Format(":\r\n{0}\r\n", result));
+                    // Logger.LogCF(string.Format(":\r\n{0}\r\n", result));     // Logs the full result !!
 
                 }
 
