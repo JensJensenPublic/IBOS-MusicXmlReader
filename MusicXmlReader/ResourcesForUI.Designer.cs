@@ -718,6 +718,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open MusicXml file using &amp;default settings.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to to Embosser.
         /// </summary>
         internal static string ToolStripMenuItem_Files_ToEmbosser {

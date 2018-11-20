@@ -477,4 +477,7 @@
   <data name="ToolStripMenuItem_View_MusicBrailleForNoteTaker" xml:space="preserve">
     <value>Punktnoder for notatapparat</value>
   </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
+    <value>Åbn MusicXml fil med &amp;standard instillinger</value>
+  </data>
 </root>

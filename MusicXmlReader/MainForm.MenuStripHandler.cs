@@ -46,6 +46,9 @@ namespace MusicXmlReader
             openMusicXmlFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile;
             openMusicXmlFileToolStripMenuItem.ShortcutKeys = ShortcutHandler.openMusicXmlFile;
             GenerateAccessibleName(ref openMusicXmlFileToolStripMenuItem);
+            openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings;
+            openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.ShortcutKeys = ShortcutHandler.openMusicXmlFileUsingDefaultSettings;
+            GenerateAccessibleName(ref openMusicXmlFileUsingDefaultSettingsToolStripMenuItem);
             importDownloadsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ImportDownloads;
             importNewestDownloadsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ImportNewestDownloads;
             importNewSampleFilesToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ImportNewestSamples;

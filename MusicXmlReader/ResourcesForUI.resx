@@ -479,4 +479,7 @@
   <data name="ToolStripMenuItem_View_MusicBrailleForNoteTaker" xml:space="preserve">
     <value>Music Braille for notetaker</value>
   </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
+    <value>Open MusicXml file using &amp;default settings</value>
+  </data>
 </root>

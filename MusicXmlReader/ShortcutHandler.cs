@@ -136,6 +136,7 @@ namespace MusicXmlReader
 
         // FileToolStripMenuItem: 
         public const Keys openMusicXmlFile =    Keys.Control | Keys.O;
+        public const Keys openMusicXmlFileUsingDefaultSettings = Keys.Control | Keys.Shift | Keys.O;
         public const Keys exitApplication =     Keys.Alt | Keys.F4;
 
         // EditToolStripMenuItem:
