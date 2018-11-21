@@ -867,8 +867,12 @@ namespace MusicXmlReader
 
             string extension = brailleFileHandler.GetExtension(); // Currently always ".brf" Maybe later ".pef" ?
             string fileFormatName = brailleFileHandler.GetFileFormat(); // Currently "BRF_Unicode" or "BRF_ASCII"
+            string fileNameAttribute = model.MusicBrailleFilenameAttribute;
             saveBrailleFileDialog.InitialDirectory = Path.GetDirectoryName(model.TheMusicXmlFileName);
-            saveBrailleFileDialog.FileName = Path.GetFileNameWithoutExtension(model.TheMusicXmlFileName) + "." +fileFormatName;
+            saveBrailleFileDialog.FileName =
+                Path.GetFileNameWithoutExtension(model.TheMusicXmlFileName)                // The name (without extension) of the MusicXml file 
+                + (string.IsNullOrEmpty(fileNameAttribute) ? "" : "." + fileNameAttribute) // The name of the part,  "tutti", "multi" or an empty string
+                + "." +fileFormatName;                                                     // The name of the file format used 
             saveBrailleFileDialog.DefaultExt = extension;
 
             // saveBrailleFileDialog.Filter = string.Format("{0}|*.brf", "Braille filer");
@@ -901,7 +905,7 @@ namespace MusicXmlReader
         private bool ScoreIsSupported()
         {
             int numberOfParts = model.partList.NumberOfParts();
-            int NumberOfEnabledMusicBrailleParts = model.NumberOfEnabledMusicBrailleParts();
+            int NumberOfEnabledMusicBrailleParts = model.NumberOfEnabledMusicBrailleParts;
             Logger.LogCF(string.Format(": Number of parts = {0} Number of Enabled Music Braille Parts = {1}", numberOfParts, NumberOfEnabledMusicBrailleParts));
             if (NumberOfEnabledMusicBrailleParts > 1)
             {

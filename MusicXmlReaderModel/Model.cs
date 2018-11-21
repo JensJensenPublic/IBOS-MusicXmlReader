@@ -1440,14 +1440,37 @@ namespace MusicXmlReaderModel
         }
 
 
+        ///// <summary>
+        ///// Returns the number of parts currently used for generation of Music Braille
+        ///// This is important for the first version of "Export to Braille"
+        ///// </summary>
+        ///// <returns></returns>
+        //public int NumberOfEnabledMusicBrailleParts()
+        //{
+        //    int result = 0;
+        //    if (this.userSettings.MusicAsMusicBraille)
+        //    {
+        //        // Generation of Music Braille is enabled. Count the number of parts enabled.
+        //        for (int i = 0; (i < numberOfParts); i++)
+        //        {
+        //            if ((userSettings.GetParts(UserSettings.Category.MusicBraille, i)))
+        //            {
+        //                result++;
+        //            }
+        //        }
+        //    }
+        //    Logger.LogCF(string.Format("returns {0}", result));
+        //    return result;
+        //}
+
         /// <summary>
-        /// Returns the number of parts currently used for generation of Music Braille
+        /// Returns the list of parts currently used for generation of Music Braille
         /// This is important for the first version of "Export to Braille"
         /// </summary>
         /// <returns></returns>
-        public int NumberOfEnabledMusicBrailleParts()
+        private List<string> GetEnabledMusicBrailleParts()
         {
-            int result = 0;
+            List<string> result = new List<string>();
             if (this.userSettings.MusicAsMusicBraille)
             {
                 // Generation of Music Braille is enabled. Count the number of parts enabled.
@@ -1455,13 +1478,46 @@ namespace MusicXmlReaderModel
                 {
                     if ((userSettings.GetParts(UserSettings.Category.MusicBraille, i)))
                     {
-                        result++;
+                        // Use the name if it exists, otherwise the id))
+                        string name = partList.GetPartFromNumber(i).partName;
+                        string id = partList.GetPartFromNumber(i).partId;
+                        string s = string.IsNullOrEmpty(name) ? id : name;
+                        result.Add(s);
                     }
                 }
             }
-            Logger.LogCF(string.Format("returns {0}", result));
+            Logger.LogCF(string.Format("returns {0}", result.Count));
             return result;
         }
+
+        public int NumberOfEnabledMusicBrailleParts
+        {
+            get { return GetEnabledMusicBrailleParts().Count; }
+        }
+
+
+        /// <summary>
+        /// Returns a string describing the contents of the currently genereted MusicBraille file:
+        /// (Upper rules take precedence)
+        /// If exactly one part is enabled the name of the part is returned
+        /// If all parts are enabled a localized string "tutti" is returned
+        /// If some, but not all parts are enabled a localized string "multi" is returned
+        /// An empty string is returned
+        /// </summary>
+        public string MusicBrailleFilenameAttribute
+        {
+#warning todo: localize
+            get
+            {
+                List<string> enabledParts = GetEnabledMusicBrailleParts();
+                if (1 == enabledParts.Count) return enabledParts[0];           // Exactly one part
+                if (numberOfParts == enabledParts.Count) return "tutti";       // All parts
+                if (enabledParts.Count > 0) return "multi";                    // Some but not all
+                return ""; 
+            }
+
+        }
+
 
     }
 }
