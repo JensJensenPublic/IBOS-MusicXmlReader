@@ -258,10 +258,12 @@ namespace MusicXmlReaderModel
         {
             Logger.LogCF(".Entry");
             UserSettingsElement result = null;
+            XmlDocument doc = null;
+            XmlTextReader reader = null;
             try
             {
-                XmlDocument doc = new XmlDocument();
-                XmlTextReader reader = new XmlTextReader(fileName);
+                doc = new XmlDocument();
+                reader = new XmlTextReader(fileName);
                 reader.WhitespaceHandling = WhitespaceHandling.None;
                 doc.Load(reader); // This single operation may last decades of seconds on a slow platform!!
                 foreach (XmlNode node in doc.ChildNodes)
@@ -277,8 +279,12 @@ namespace MusicXmlReaderModel
             catch (Exception e)
             {
                 Logger.LogCF(string.Format(": Exception.Message={0}", e.Message));
-                return null;
+                result = null;
             }
+
+            // Get rid of resources
+            // if (null != doc) doc.Close()
+            if (null != reader) reader.Close();
 
             Logger.LogCF(string.Format(".Exit"));
             return result;

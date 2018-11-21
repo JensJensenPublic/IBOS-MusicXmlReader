@@ -169,12 +169,14 @@ namespace MusicXmlReaderModel
 
             // Use StringWriter as backing for XmlTextWriter.
             string result = "";
+            StringWriter str = null;
+            XmlTextWriter xml = null;
             try
             {
                 // StringBuilder sb = new StringBuilder();
-                StringWriter str = new StringWriter();
+                str = new StringWriter();
 
-                XmlTextWriter xml = new XmlTextWriter(str);
+                xml = new XmlTextWriter(str);
 
 
                 //XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
@@ -207,8 +209,13 @@ namespace MusicXmlReaderModel
             catch (Exception e)
             {
                 Logger.LogCF(string.Format("Exception Message={0}", e.Message));
-                return null;
+                result = null;
             }
+
+            // Be sure to get rid of resources
+            if (null != str) str.Close();
+            if (null != xml) xml.Close();
+
             return result;
         }
 
