@@ -19,39 +19,10 @@ namespace MusicXmlReader
         public const int TempoFactorMinimum = 10;
         public const int TempoFactorMaximum = 1000;
 
-        /// <summary>
-        /// Assure common implementation of Beep();
-        /// NOTE:
-        /// Sometimes the Beep stops working for a single user!.
-        /// In that case:
-        /// 1)  Go to ControlPanel->Sound->Sounds->ProgramEvents
-        /// 2)  Select "DefaultBeep" and change the value from "Windows Background.wav" to something else - and back!
-        /// 3)  Press OK
-        /// </summary>
         public static void Beep()
         {
-#if false
-#warning ToDo Find out why SystemSounds.Beep.Play does not work on JSJ's private PC when User= JSJ ! And remove the hack below!
-            bool ok = false;
-            string fileName = @"C:\Windows\media\Windows Background.wav";
-            try
-            {           
-                new System.Media.SoundPlayer(fileName).Play();
-                ok = true;
-            }
-            catch (Exception)
-            {
-                Logger.LogCF(string.Format(": Failed to play {0}", fileName));
-            }
-            if (!ok)
-#endif
-            {
-                Logger.LogCF(": Beep!"); // Primarily for debugging. On JSJ's private PC the Beep sound is unstable !
-                System.Media.SystemSound myBeep = System.Media.SystemSounds.Beep;
-                myBeep.Play();
-            }
+            Utilities.Beep(); // Implementation moved to Utilities
         }
-
 
         private const Keys controlMask =  (Keys.Control | Keys.Alt | Keys.Shift);
 

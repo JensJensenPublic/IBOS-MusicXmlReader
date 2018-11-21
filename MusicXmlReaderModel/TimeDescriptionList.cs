@@ -28,14 +28,19 @@ namespace MusicXmlReaderModel
                 nextMeasureBasedStartTime = 0;  // The first NoteElement  or pause in the first measure always starts at time = 0
             }
 
-            if ((nextStartTime != nextMeasureBasedStartTime) && (0 != nextMeasureBasedStartTime)) // 0 means "Unknown"
+            if (
+                (nextStartTime != nextMeasureBasedStartTime)
+            &&  (0 != nextMeasureBasedStartTime) // 0 means "Unknown"
+            &&  (number != 1)    // The first measure is not always complete so we can not rely on this mechanism here
+               )
             {
                 // nextStartTime was computed as a sumof durations of NoteElements, BackupElements, ForwardElements etc and is not always accurate !
                 // nextMeasureBasedStartTime is based only on the starttime and duration of measureElements and is believed to be accurate !
-#if true
-                Logger.LogCFOnce(": StartTimes differ. Aligning!");
+                Utilities.Beep();        
+#if false
+                Logger.LogCFOnce(": StartTimes differ. Aligning!");               
 #else
-                                Logger.LogCF(String.Format(": StartTimes differ: Part={0} Measure={1} NextStartTime={2} NextMeasureStartTime={3} PreviousStartTime={4} MeasureDuration={5} Adjusting NextStartTime to {6}",
+                Logger.LogCF(String.Format(": StartTimes differ: Part={0} Measure={1} NextStartTime={2} NextMeasureStartTime={3} PreviousStartTime={4} MeasureDuration={5} Adjusting NextStartTime to {6}",
                                     partId, number, nextStartTime, nextMeasureBasedStartTime, startTime, measureElement.MeasureDuration, nextMeasureBasedStartTime));
 #endif
                 return nextMeasureBasedStartTime;
