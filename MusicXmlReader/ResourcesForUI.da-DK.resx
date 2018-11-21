@@ -444,10 +444,10 @@
     <value>E&amp;xportér Musik Braille til fil</value>
   </data>
   <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
-    <value>Overvej at eksportere én stemme ad gangen</value>
+    <value>Overvej at eksportere én stemme ad gangen!</value>
   </data>
   <data name="Message_ExportOfMultiplePartsNotSupported" xml:space="preserve">
-    <value>Export af mere end én stemme ad gangen er ikke fuldt understøttet.</value>
+    <value>Når flere stemmer eksporteres samtidig, vil noder fra de forskellige stemmer blive sammenblandet og kan ikke senere adskilles.</value>
   </data>
   <data name="ToolStripMenuItem_Files_BrfASCII" xml:space="preserve">
     <value>.brf (ASCII)</value>

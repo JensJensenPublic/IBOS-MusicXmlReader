@@ -447,10 +447,10 @@
     <value>E&amp;xport Music Braille to file</value>
   </data>
   <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
-    <value>Consider exporting one part at a time </value>
+    <value>Consider exporting one part at a time! </value>
   </data>
   <data name="Message_ExportOfMultiplePartsNotSupported" xml:space="preserve">
-    <value>Export of more than one part at a time is not fully supported</value>
+    <value>When multiple parts are exported at the same time, notes from different parts will be mixed and can not be separated afterwards.</value>
   </data>
   <data name="ToolStripMenuItem_Files_BrfASCII" xml:space="preserve">
     <value>.brf (ASCII)</value>
