@@ -1013,4 +1013,10 @@
   <data name="DetailsDescription_MusicBraille_FormFeed" xml:space="preserve">
     <value>New form</value>
   </data>
+  <data name="MusicBrailleFilenameAttribute_Multi" xml:space="preserve">
+    <value>multi</value>
+  </data>
+  <data name="MusicBrailleFilenameAttribute_Tutti" xml:space="preserve">
+    <value>tutti</value>
+  </data>
 </root>

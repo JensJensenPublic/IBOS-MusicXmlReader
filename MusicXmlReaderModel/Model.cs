@@ -1506,13 +1506,12 @@ namespace MusicXmlReaderModel
         /// </summary>
         public string MusicBrailleFilenameAttribute
         {
-#warning todo: localize
             get
             {
                 List<string> enabledParts = GetEnabledMusicBrailleParts();
                 if (1 == enabledParts.Count) return enabledParts[0];           // Exactly one part
-                if (numberOfParts == enabledParts.Count) return "tutti";       // All parts
-                if (enabledParts.Count > 0) return "multi";                    // Some but not all
+                if (numberOfParts == enabledParts.Count) return ResourcesForModel.MusicBrailleFilenameAttribute_Tutti;      // All parts
+                if (enabledParts.Count > 0) return ResourcesForModel.MusicBrailleFilenameAttribute_Multi;                   // Some but not all
                 return ""; 
             }
 

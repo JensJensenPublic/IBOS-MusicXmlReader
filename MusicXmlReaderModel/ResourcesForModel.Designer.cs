@@ -1276,6 +1276,24 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to multi.
+        /// </summary>
+        internal static string MusicBrailleFilenameAttribute_Multi {
+            get {
+                return ResourceManager.GetString("MusicBrailleFilenameAttribute_Multi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tutti.
+        /// </summary>
+        internal static string MusicBrailleFilenameAttribute_Tutti {
+            get {
+                return ResourceManager.GetString("MusicBrailleFilenameAttribute_Tutti", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 128th.
         /// </summary>
         internal static string NoteElement_128th {
