@@ -1215,13 +1215,16 @@ namespace MusicXmlReaderModel
         //    return result;
         //}
 
+
         public DetailsDescription[] GetSingleNoteDetails(DetailsDescription currentDetails)
         {
             //bool showHand = true;
             detailsPlayer = DetailsPlayer.Create(musicPlayer);
             foreach (NoteElement note in (currentDetails as NoteListDetailsDescription).Notes)
             {
-                detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(note.ToDetailsString(), note)); // Hold the note itself and its string representation
+                string leftRightHand = note.GetLeftRightString();       
+                string noteString = leftRightHand + note.ToDetailsString();
+                detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(noteString, note)); // Hold the note itself and its string representation
             }
             return detailsPlayer.DetailsDescriptionArray; ;
         }

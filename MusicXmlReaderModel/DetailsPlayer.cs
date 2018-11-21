@@ -268,31 +268,20 @@ namespace MusicXmlReaderModel
                 List<NoteElement> notesForPart = eventDescription.NoteLists[i];
                 if ((null != notesForPart) && (0 != notesForPart.Count))
                 {
-                    // String variables for desribing the detail as text
-                    string partId = "";
-                    string partName = "";
-
                     if ((userSettings.MusicAsSpeech) && (userSettings.GetParts(UserSettings.Category.Speech, i)))
                     {
-                        // The eventdescription contains notes for this part so we dig out the part parameters:
-                        ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
-                        partId = scorePartElement.partId;
-                        partName = scorePartElement.partName;
-                        string partString = string.IsNullOrEmpty(partName) ? partId : partName; // Prefere PartName for PartId, i.i "Violin" for "P1"
-                        bool showLeftRightHand = ((partName == "Piano") || (partName == "Organ"));
-#warning ToDO Add Organ  etc !!
-                        // By using  eventDescription.NotesForOnePart for formatting the notes we assure the usage of identical formatting.
+                        bool firstTime = true; // Only show the partName once
                         foreach (NoteElement noteElement in eventDescription.NoteLists[i])
                         {
                             //notes = string.Format("",noteElement.)
-                            string leftRightHand = showLeftRightHand ? noteElement.LocalizedHand() : "";
+                            string partString = firstTime? noteElement.GetPartString() : "";                            
+                            string leftRightHand = noteElement.GetLeftRightString();
                             string noteString = noteElement.ToDetailsString(); // Only information from the NoteElement and elements contained within it
                             string musicBraille = "";
                             string lyrics = noteElement.Text;
                             string detailString = string.Format("{0} {1} {2} {3} {4}", musicBraille, partString, leftRightHand, noteString, lyrics); // All information, including information from the NoteElement 
                             detailsDescriptions.Add(NoteListDetailsDescription.Create(detailString, noteElement));
-                            // partId   = ""; // Only list first time
-                            partName = ""; // Only list first time
+                            // firstTime = false;
                         }
                     }
                 }
