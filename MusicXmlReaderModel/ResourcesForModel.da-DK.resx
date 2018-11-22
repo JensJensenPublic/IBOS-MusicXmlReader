@@ -605,7 +605,7 @@
     <value>Filnavn</value>
   </data>
   <data name="UserSettings_ReaderNames_Lyrics" xml:space="preserve">
-    <value>Tekst</value>
+    <value>Lyrik</value>
   </data>
   <data name="UserSettings_ReaderNames_Metainformation" xml:space="preserve">
     <value>Meta information</value>
