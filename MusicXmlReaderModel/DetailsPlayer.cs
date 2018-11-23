@@ -237,11 +237,19 @@ namespace MusicXmlReaderModel
                         musicBraille = musicBrailleDetails.ToBrailleString();
                     }
 
+                    // List of notes for describing the details af sound
+                    List<NoteElement> notesToPlay = new List<NoteElement>();
+                    if ((userSettings.MusicAsSound) && (userSettings.GetParts(UserSettings.Category.Sound,i)))
+                    {
+                        notesToPlay = eventDescription.NoteLists[i];
+                    }
+                    
                     // Compose all details, always showing MusicBraille first
                     string detailString = string.Format("{0} {1} {2} {3} {4}", musicBraille, partId, partName, notes, lyrics);
-                    if (!string.IsNullOrWhiteSpace(detailString))
+
+                    if ((!string.IsNullOrWhiteSpace(detailString)) || (notesToPlay.Count > 0))
                     {
-                        detailsDescriptions.Add(DetailsDescription.Create(detailString, eventDescription.NoteLists[i]));
+                        detailsDescriptions.Add(DetailsDescription.Create(detailString, notesToPlay));
                     }
                 }
 
