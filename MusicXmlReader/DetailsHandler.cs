@@ -10,7 +10,7 @@ namespace MusicXmlReader
     /// </summary>
     public class DetailsHandler
     {
-        string className = "MusicXmlReader";
+        string className = "DetailsHandler";
         public enum DetailsEnum { Unknown, Harmonies, Parts, Notes, NotesForPart, Instruments, Status, BrailleFile };
         private ListBox listBoxTimes;
         private ListBox listBoxDetails;
