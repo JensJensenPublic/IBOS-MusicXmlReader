@@ -81,6 +81,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.7.0.0", "2.7.0.0", "{7E403006-D108-4DC6-9508-5900C36157E6}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Test reports\2.7.0.0\Friske kommentarer fra Susanne og Ole.eml = Documentation\Test reports\2.7.0.0\Friske kommentarer fra Susanne og Ole.eml
+		Documentation\Test reports\2.7.0.0\Indhold af mail fra Susanne 2018.11.22 og JSJs kommentarer  .doc = Documentation\Test reports\2.7.0.0\Indhold af mail fra Susanne 2018.11.22 og JSJs kommentarer  .doc
 		Documentation\Test reports\2.7.0.0\Susanne og ole 21.docx = Documentation\Test reports\2.7.0.0\Susanne og ole 21.docx
 	EndProjectSection
 EndProject
