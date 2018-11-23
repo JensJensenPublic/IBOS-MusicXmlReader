@@ -10,6 +10,7 @@ namespace MusicXmlReader
     /// </summary>
     public class DetailsHandler
     {
+        bool verbose = false; // Control logging of state-changes
         string className = "DetailsHandler";
         public enum DetailsEnum { Unknown, Harmonies, Parts, Notes, NotesForPart, Instruments, Status, BrailleFile };
         private ListBox listBoxTimes;
@@ -51,7 +52,7 @@ namespace MusicXmlReader
         /// <param name="newDetails"></param>
         private void SetCurrentDetails(string functionName, DetailsEnum newDetails)
         {
-            Logger.Log(string.Format("{0}.{1} Changing current details state from {2} to {3}", className, functionName, currentDetails, newDetails));
+            if (verbose) Logger.Log(string.Format("{0}.{1} Changing current details state from {2} to {3}", className, functionName, currentDetails, newDetails));
             currentDetails = newDetails;
             client.WriteStatusInformation(Localize(currentDetails)); // Report detail state through the status line
         }
@@ -63,7 +64,7 @@ namespace MusicXmlReader
         /// <param name="newDetails"></param>
         private void SetSavedDetails(string functionName, DetailsEnum newDetails)
         {
-            Logger.Log(string.Format("{0}.{1} Changing saved   details state from {2} to {3}", className, functionName, savedDetails, newDetails));
+            if (verbose) Logger.Log(string.Format("{0}.{1} Changing saved   details state from {2} to {3}", className, functionName, savedDetails, newDetails));
             savedDetails = newDetails;
         }
 
