@@ -1,0 +1,1173 @@
+From: "Jens Sundgaard" <holmeparken44@vip.cybercity.dk>
+To: =?utf-8?Q?Susanne_Nols=C3=B8e?= <susanne@obj.dk>
+Cc: "'Bo Alstrup'" <bo@c2tal.dk>,
+	"'Bo Alstrup'" <CX64@kk.dk>
+Bcc: "Os Selv" <holmeparken44@vip.cybercity.dk>
+References: <3BD73D5226BB4F1BA979AE371D2C4A07@JensesHP17> <001801d4829e$4be50190$e3af04b0$@obj.dk> <707E3DC4E57F49F0AEAC36C55DF80E73@JensesHP17> <000b01d484d3$d7ef3110$87cd9330$@obj.dk>
+In-Reply-To: <000b01d484d3$d7ef3110$87cd9330$@obj.dk>
+Subject: Re: JAWS bliver tavs i 2.7.0.0
+Date: Sun, 25 Nov 2018 17:59:36 +0100
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_001B_01D484E8.A0A56520"
+X-Priority: 3
+X-MSMail-Priority: Normal
+Importance: Normal
+X-Mailer: Microsoft Windows Live Mail 16.4.3528.331
+X-MimeOLE: Produced By Microsoft MimeOLE V16.4.3528.331
+
+Dette er en flerdelt meddelelse i MIME-format.
+
+------=_NextPart_000_001B_01D484E8.A0A56520
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Ah, nu forst=C3=A5r jeg endelig !
+
+Forklaring: Bo, Bue, jeg selv og adskillige andre har l=C3=A6nge =
+k=C3=A6mpet en h=C3=A5rd kamp for at f=C3=A5 JAWS til at lade v=C3=A6re
+med at sige =E2=80=9C51 af 275=E2=80=9D. Det er nemlig noget generel =
+information som kan v=C3=A6re nyttig at have i forbindelse
+med andre programmer, som ikke er designet specielt til brug for blinde. =
+For det relaterer til kun til=20
+d=C3=A9n Windows-kontrol, som viser informationen, overhovedet ikke til =
+taktnumre eller noget andet musikalsk !
+
+Vi har nu endelig fundet ud af hvordan vi undg=C3=A5r at JAWS siger =
+=E2=80=9C51 af 275=E2=80=9D og d=C3=A9n slags!=20
+Det kan man g=C3=B8re ved at rette i d=C3=A9n JAWS konfigurationsfil, =
+som kun vedr=C3=B8rer IBOS Nodel=C3=A6ser.
+Og det vil jeg g=C3=A5 i gang med at beskrive i =
+installationsvejledningen i morgen.
+
+P=C3=A5 en m=C3=A5de er det rart for os at vi nu har endnu en =
+undskyldning p=C3=A5 al den tid vi  har brugt p=C3=A5 at l=C3=B8se =
+d=C3=A9t problem!
+
+S=C3=A5 vidt jeg kan se d=C3=A6kker din iagttagelse dog ogs=C3=A5 over =
+=E2=80=9Cnoget andet=E2=80=9D: Enten en programfejl eller=20
+(endnu) en underlighed i MusicXml filen. Men  d=C3=A9t vil jeg kigge =
+p=C3=A5 imorgen. Det er ogs=C3=A5
+meget sjovere at jagte d=C3=A9n slags mulige fejl end at opdatere =
+installationsvejledning.
+
+Det lyder som om den tavse JAWS ganske rigtig var en fejl 40 hos dig.=20
+Men jeg har alts=C3=A5 oplevet noget lignende, s=C3=A5 jeg er ikke helt =
+tryg ved det.
+
+mvh Jens
+
+From: Susanne Nols=C3=B8e=20
+Sent: Sunday, November 25, 2018 4:30 PM
+To: 'Jens Sundgaard'=20
+Cc: 'Bo Alstrup' ; 'Bo Alstrup'=20
+Subject: SV: JAWS bliver tavs i 2.7.0.0
+
+Hej Jens og Bo=20
+
+=20
+
+Hm, der hvor der st=C3=A5r skrevet taktslag 51 vises p=C3=A5 =
+punktdisplayet 51 af 275, hvor 51 =C3=A6ndre til 50, hvis jeg trykker =
+venstre pil en gang, trykker jeg h=C3=B8jre pil en gang vises 51 igen, =
+og trykker jeg endnu en gang h=C3=B8jre pil vises 52 af 275. N=C3=A5r =
+jeg st=C3=A5r der, hvor der vises 51 af 275 spilles as og f begge =
+ottendedele. Sp=C3=B8rger jeg p=C3=A5 takt med Alt+pil ned siges takt 9 =
+3 ottendedele. Hvad repr=C3=A6senterer tallet 51 af 275, hvis ikke det =
+er taktslag? Og hvordan skal 3 takt 9 3 ottendedele forst=C3=A5s, =
+n=C3=A5r der kun vises 2 ottendedele? Der hvor der vises 50 af 275 siges =
+takt 8 7 ottendedele, n=C3=A5r der sp=C3=B8rges med Alt+pil ned, men her =
+vises ogs=C3=A5 kun 2 g=E2=80=99er som ottendedele, hvilket ikke rigtig =
+giver mening i mit hoved. Hvordan skal det forst=C3=A5s?=20
+
+=20
+
+Mht. fejl 40, s=C3=A5 sidder den 40 til 50 cm. Bag sk=C3=A6rmen, =
+alts=C3=A5 jeg havde ikke sl=C3=A5et fluebenene til i tekstvisningen ved =
+noder og nodevarigheder, der for var Jaws temmelig tavs, selv om alle =
+stemmer var markeret til visning i musikafspilning, tekstvisning og =
+punktnodevisning.=20
+
+=20
+
+Mvh.=20
+
+=20
+
+Susanne=20
+
+=20
+
+Fra: Jens Sundgaard <holmeparken44@vip.cybercity.dk>=20
+Sendt: 23. november 2018 19:21
+Til: Susanne Nols=C3=B8e <susanne@obj.dk>
+Cc: Bo Alstrup <bo@c2tal.dk>; Bo Alstrup <CX64@kk.dk>
+Emne: Re: JAWS bliver tavs i 2.7.0.0
+
+=20
+
+Hej Susanne og Ole
+
+=20
+
+Tak for den grundige test, det er godtnok sv=C3=A6rt for fejlene at =
+skjule sig !
+
+=20
+
+Jeg har lige et sp=C3=B8rgsm=C3=A5l mere: I den seneste mail st=C3=A5r =
+at nedenst=C3=A5ende opf=C3=B8rsel er set i=20
+
+=E2=80=9CMen det blir atter stille=E2=80=9D
+
+Men der er kun 47 takter i  "Men det bliv:er atter stille." S=C3=A5 det =
+kan ikke passe.
+
+Kan I huske hvilket partitur I refererer til ?
+
+=20
+
+Takslag 51:
+
+Helnode pause bas og tenor, men er det rigtigt?
+
+2 toner i sopran men ingen i alt eller bas
+
+Og stemmerne ER markeret=E2=80=A6
+
+Fra slag 51 og frem
+
+Tidligere i dag spillede den 2 stemmigt i takt 28
+
+Taktslag 78:
+
+Det kan jo ikke passe at der ikke er dybere stemmer end sopran og alt
+
+Taktslag 104
+
+2 stemmer i=20
+
+SN: Det er Men det bliver atter stille.=20
+
+=20
+
+=20
+
+Desuden forst=C3=A5r hverken Bo eller jeg helt argumentet om en fejl 40. =
+
+
+(Men vi vil s=C3=A5 gerne overbevises)
+
+=20
+
+=20
+
+mvh Jens
+
+=20
+
+From: Susanne Nols=C3=B8e=20
+
+Sent: Thursday, November 22, 2018 9:02 PM
+
+To: 'Jens Sundgaard' ; 'Bo Alstrup' ; 'Bo Alstrup'=20
+
+Cc: Ole Brun Jensen=20
+
+Subject: SV: JAWS bliver tavs i 2.7.0.0
+
+=20
+
+Hej med jer=20
+
+=20
+
+Pyh ha, det ser heldigvis ud til at v=C3=A6re en fejl 40 mht. =
+nedenst=C3=A5ende tavs Jaws!!!=20
+
+=20
+
+                                                          N=C3=A5r JAWS =
+holder op med at l=C3=A6se op fra nodelisten, s=C3=A5=20
+
+1)  G=C3=A5 over i filtertr=C3=A6et og verificer at JAWS stadig =
+l=C3=A6ser op d=C3=A9r, s=C3=A5 det ikke bare er JAWS der er g=C3=A5et =
+d=C3=B8d. Jaws l=C3=A6ser stadig nodefiltret fint.
+
+2)  Hvis ja, s=C3=A5 check om alle krydserne er sat i =
+=E2=80=9CTekstVisning=E2=80=9D, =E2=80=9CDetaljer for =
+Tekstvisning=E2=80=9D og alle de 9 underpunkter hertil. Det hj=C3=A6lper =
+meget is=C3=A6r at afkrydse Noder og nodevarigheder under tekstvisning! =
+De =C3=B8vrige krydser under tekstvisning kan bedre udelades efter smag =
+og behov for snak. (Smiley)=20
+
+3)  F=C3=A5 om muligt en seende til at checke om der st=C3=A5r tekst i =
+nodelisten eller kun MusicBraille.
+
+=20
+
+Herved kan vi muligvis finde ud af om fejlen skyldes nogle forsvundne =
+krydser i filtertr=C3=A6et =E2=80=93 eller noget helt andet.
+
+=20
+
+Hvis I desuden kan finde en sikker m=C3=A5de at reproducere problemet, =
+s=C3=A5 jeg selv kan g=C3=A6re det, er det naturligvis endnu bedre.
+
+=20
+
+SN: Kommentar til Men det bliver atter stille:=20
+
+Takt 30 noteret 2 b akkord spilles akkord men der er mere
+
+P=C3=A5 trods af solofunktion
+
+JSJ: Formodentlig det samme: Der er her 2* sopran + 2* alt + tenot + =
+bas.
+
+Det ville v=C3=A6re rart hvis solofunktionen slog igennem p=C3=A5 musik, =
+punkt og tekst i stedet for kun i det omr=C3=A5de man aktiverer den.
+
+JSJ: God id=C3=A9, som b=C3=B8r implementeres senere.
+
+SN: Takt 30 taktslag 166 af 275 Er det korrekt noteret at tenoren =
+p=C3=A5 F 2 oktav, ligger under bassens a i 2. oktav, burde tenoren ikke =
+ligge i f 3 oktav? Det samme forekommer ogs=C3=A5 i takt 27 taktslag 156 =
+af 275, her st=C3=A5r tenoren i punktnode til e en halv i 3 oktav, men =
+den spiller lydm=C3=A6ssigt e i 2 oktav, alts=C3=A5 en oktav fordybt i =
+forhold til notationen i punkt.=20
+
+=20
+
+Dette eksempel lavet med takt 27 og 30 i Men det bliver atter stille. =
+N=C3=A5r tenor og basstemmen er umarkeret og sopran og alt er markeret i =
+tekstvisning og musikafspilning, mens alle stemmer er markeret i =
+punktnoder, hvorfor spiller den musiklyd stadig v=C3=A6k, n=C3=A5r der i =
+akkordvisning med Kontrol+Pil ned trykkes for tenor og bas i akkorden? =
+Skal den det. Jaws er tavs, som den b=C3=B8r v=C3=A6re i forhold til =
+tenor og bas. Men musikafspilning er jo sl=C3=A5et fra for bas og tenor, =
+s=C3=A5 d=C3=ABr burde den ikke spille!=20
+
+=20
+
+Fortsat Men det bliver atter stille Tenoren vises ikke I takt 13,5 =
+taktslag 78 af 276 vises sopran med Ges og h, alt med a og des alle =
+ottendedele og bassen med en halvnodepause. Men tenoren vises slet ikke =
+i akkordvisningen med Kontrol+Pil ned, selv om alle stemmer er markeret =
+b=C3=A5de i musikafspilning, tekstvisning og punktnodevisning, er der en =
+fejl i xml-filen?=20
+
+=20
+
+I Oh litthe bet
+
+Vises Node til venstre
+
+JSJ: Ikke forst=C3=A5et endnu
+
+SN: Det g=C3=A5r p=C3=A5 visning af akkorden med Kontrol+Pil ned, hvor =
+der i Oh little Bethlehem yderst til venstre vises punktnoden og =
+herefter vises teksten udtalt af Jaws. Der har v=C3=A6ret eksempler =
+p=C3=A5 i Men det bliver atter stille, at noden i akkordvisning ikke =
+blev vist yderst til venstre men kun teksten sagt af Jaws. Men jeg har =
+ikke entydig fundet =C3=A5rsagen til, at noden ved akkordvisning vises i =
+Oh little Bethlehem, mens ikke n=C3=B8dvendigvis i Men det bir atter =
+stille i akkordvisning. Men det kan m=C3=A5ske ske, hvis fluebenet ved =
+visning af punktnode ikke er markeret eller s=C3=A5dan noget.=20
+
+=20
+
+JSJ: Hvilket partitur refererer f=C3=B8lgende til ?
+
+Takslag 51:
+
+Helnode pause bas og tenor, men er det rigtigt?
+
+2 toner i sopran men ingen i alt eller bas
+
+Og stemmerne ER markeret=E2=80=A6
+
+Fra slag 51 og frem
+
+Tidligere i dag spillede den 2 stemmigt i takt 28
+
+Taktslag 78:
+
+Det kan jo ikke passe at der ikke er dybere stemmer end sopran og alt
+
+Taktslag 104
+
+2 stemmer i=20
+
+SN: Det er Men det bliver atter stille.=20
+
+=20
+
+Om lidt bliver der atter stille:
+
+JSJ: Antager at der menes =E2=80=9DOg der bliver atter stille!
+
+Alle stemmer er sl=C3=A5et til, men det sl=C3=A5r tilsyneladende ikke =
+igennem.
+
+JSJ: Dette er helt suver=C3=A6nt det mest seri=C3=B8se problem. Jeg =
+s=C3=A5 det faktisk selv i g=C3=A5r at der var uoverensstemmelse mellem =
+teksten i nodelisten og (i hvert fald de forventede) indstillinger i =
+filtertr=C3=A6et. Men i dag kan jeg ikke reproducere det !!
+
+Kan nogen hj=C3=A6lpe med at reproducere det ??  =
+=E2=86=90-----------------------------
+
+SN: Pr=C3=B8v takt 13,5 Taktslag 78 af 276, som omtalt oven for.=20
+
+=20
+
+Mvh.=20
+
+=20
+
+Susanne=20
+
+=20
+
+=20
+
+=20
+
+=20
+
+Fra: Jens Sundgaard <holmeparken44@vip.cybercity.dk>=20
+Sendt: 22. november 2018 13:10
+Til: Susanne Nols=C3=B8e <susanne@obj.dk>; Bo Alstrup <bo@c2tal.dk>; Bo =
+Alstrup <CX64@kk.dk>
+Emne: JAWS bliver tavs i 2.7.0.0
+
+=20
+
+Hej alle
+
+=20
+
+Jeg har nu v=C3=A6ret igennem ovenst=C3=A5ende dokument og skrevet mine =
+kommentarer ind med r=C3=B8dt og prefix =3D =E2=80=9CJSJ:=E2=80=9D
+
+=20
+
+Der er nogle f=C3=A5 punkter til ToDo listen, men jeg er desv=C3=A6rre =
+ikke kommet n=C3=A6rmere p=C3=A5 det absolut mest
+
+seri=C3=B8se problem: At JAWS holder op med at l=C3=A6se op fra =
+NodeListen.
+
+=20
+
+Min teori er at en fejl i den nye mekanisme i =E2=80=9Cgemte =
+brugerindstillinger=E2=80=9D bevirker at
+
+de s=C3=A6dvanlige krydser kommer til at mangle i filtertr=C3=A6et. Og =
+de tilsvarende informationer dermed i nodelisten.
+
+Jeg har faktisk selv set dette ske tidligere, men nu kan jeg ikke =
+reproducere det, heller ikke med 2.7.0.0.   !!!!
+
+=20
+
+S=C3=A5 jeg vil gerne bede Jer g=C3=B8re f=C3=B8lgende:
+
+=20
+
+N=C3=A5r JAWS holder op med at l=C3=A6se op fra nodelisten, s=C3=A5=20
+
+1)  G=C3=A5 over i filtertr=C3=A6et og verificer at JAWS stadig =
+l=C3=A6ser op d=C3=A9r, s=C3=A5 det ikke bare er JAWS der er g=C3=A5et =
+d=C3=B8d.
+
+2)  Hvis ja, s=C3=A5 check om alle krydserne er sat i =
+=E2=80=9CTekstVisning=E2=80=9D, =E2=80=9CDetaljer for =
+Tekstvisning=E2=80=9D og alle de 9 underpunkter hertil.
+
+3)  F=C3=A5 om muligt en seende til at checke om der st=C3=A5r tekst i =
+nodelisten eller kun MusicBraille.
+
+=20
+
+Herved kan vi muligvis finde ud af om fejlen skyldes nogle forsvundne =
+krydser i filtertr=C3=A6et =E2=80=93 eller noget helt andet.
+
+=20
+
+Hvis I desuden kan finde en sikker m=C3=A5de at reproducere problemet, =
+s=C3=A5 jeg selv kan g=C3=A6re det, er det naturligvis endnu bedre.
+
+=20
+
+Jeg tror at dette er vigtigere end fortsat test, men jeg skal nok sige =
+til, hvis jeg selv finder en l=C3=B8sning.
+
+=20
+
+mvh Jens
+
+------=_NextPart_000_001B_01D484E8.A0A56520
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<HTML xmlns=3D"http://www.w3.org/TR/REC-html40" xmlns:v =3D=20
+"urn:schemas-microsoft-com:vml" xmlns:o =3D=20
+"urn:schemas-microsoft-com:office:office" xmlns:w =3D=20
+"urn:schemas-microsoft-com:office:word" xmlns:m =3D=20
+"http://schemas.microsoft.com/office/2004/12/omml"><HEAD>
+<META content=3D"text/html; charset=3Dutf-8" http-equiv=3DContent-Type>
+<META name=3DGenerator content=3D"Microsoft Word 15 (filtered medium)">
+<STYLE><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></STYLE>
+</HEAD>
+<BODY lang=3DDA dir=3Dltr vLink=3D#954f72 link=3D#0563c1>
+<DIV dir=3Dltr>
+<DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: #000000">
+<DIV>Ah, nu forst=C3=A5r jeg endelig !</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Forklaring: Bo, Bue, jeg selv og adskillige andre har l=C3=A6nge =
+k=C3=A6mpet en h=C3=A5rd=20
+kamp for at f=C3=A5 JAWS til at lade v=C3=A6re</DIV>
+<DIV>med at sige =E2=80=9C51 af 275=E2=80=9D. Det er nemlig noget =
+generel information som kan=20
+v=C3=A6re nyttig at have i forbindelse</DIV>
+<DIV>med andre programmer, som ikke er designet specielt til brug for =
+blinde.=20
+For det relaterer til kun til </DIV>
+<DIV>d=C3=A9n Windows-kontrol, som viser informationen, overhovedet ikke =
+til=20
+taktnumre eller noget andet musikalsk !</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Vi har nu endelig fundet ud af hvordan vi undg=C3=A5r at JAWS siger =
+=E2=80=9C51 af 275=E2=80=9D=20
+og d=C3=A9n slags! </DIV>
+<DIV>Det kan man g=C3=B8re ved at rette i d=C3=A9n JAWS =
+konfigurationsfil, som kun=20
+vedr=C3=B8rer IBOS Nodel=C3=A6ser.</DIV>
+<DIV>Og det vil jeg g=C3=A5 i gang med at beskrive i =
+installationsvejledningen i=20
+morgen.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>P=C3=A5 en m=C3=A5de er det rart for os at vi nu har endnu en =
+undskyldning p=C3=A5 al den=20
+tid vi&nbsp; har brugt p=C3=A5 at l=C3=B8se d=C3=A9t problem!</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>S=C3=A5 vidt jeg kan se d=C3=A6kker din iagttagelse dog ogs=C3=A5 =
+over =E2=80=9Cnoget andet=E2=80=9D:=20
+Enten en programfejl eller </DIV>
+<DIV>(endnu) en underlighed i MusicXml filen. Men&nbsp; d=C3=A9t vil jeg =
+kigge p=C3=A5=20
+imorgen. Det er ogs=C3=A5</DIV>
+<DIV>meget sjovere at jagte d=C3=A9n slags mulige fejl end at opdatere=20
+installationsvejledning.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Det lyder som om den tavse JAWS ganske rigtig var en fejl 40 hos =
+dig.=20
+</DIV>
+<DIV>Men jeg har alts=C3=A5 oplevet noget lignende, s=C3=A5 jeg er ikke =
+helt tryg ved=20
+det.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>mvh Jens</DIV>
+<DIV=20
+style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: =
+"Calibri"; FONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; =
+DISPLAY: inline'>
+<DIV style=3D"FONT: 10pt tahoma">
+<DIV>&nbsp;</DIV>
+<DIV style=3D"BACKGROUND: #f5f5f5">
+<DIV style=3D"font-color: black"><B>From:</B> <A =
+title=3Dsusanne@obj.dk>Susanne=20
+Nols=C3=B8e</A> </DIV>
+<DIV><B>Sent:</B> Sunday, November 25, 2018 4:30 PM</DIV>
+<DIV><B>To:</B> <A title=3Dholmeparken44@vip.cybercity.dk>'Jens =
+Sundgaard'</A>=20
+</DIV>
+<DIV><B>Cc:</B> <A title=3Dbo@c2tal.dk>'Bo Alstrup'</A> ; <A =
+title=3DCX64@kk.dk>'Bo=20
+Alstrup'</A> </DIV>
+<DIV><B>Subject:</B> SV: JAWS bliver tavs i 2.7.0.0</DIV></DIV></DIV>
+<DIV>&nbsp;</DIV></DIV>
+<DIV=20
+style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: =
+"Calibri"; FONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; =
+DISPLAY: inline'>
+<DIV class=3DWordSection1>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'>Hej=20
+Jens og Bo <o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'>Hm,=20
+der hvor der st=C3=A5r skrevet taktslag 51 vises p=C3=A5 punktdisplayet =
+51 af 275, hvor 51=20
+=C3=A6ndre til 50, hvis jeg trykker venstre pil en gang, trykker jeg =
+h=C3=B8jre pil en=20
+gang vises 51 igen, og trykker jeg endnu en gang h=C3=B8jre pil vises 52 =
+af 275. N=C3=A5r=20
+jeg st=C3=A5r der, hvor der vises 51 af 275 spilles as og f begge =
+ottendedele.=20
+Sp=C3=B8rger jeg p=C3=A5 takt med Alt+pil ned siges takt 9 3 =
+ottendedele. Hvad=20
+repr=C3=A6senterer tallet 51 af 275, hvis ikke det er taktslag? Og =
+hvordan skal 3=20
+takt 9 3 ottendedele forst=C3=A5s, n=C3=A5r der kun vises 2 ottendedele? =
+Der hvor der=20
+vises 50 af 275 siges takt 8 7 ottendedele, n=C3=A5r der sp=C3=B8rges =
+med Alt+pil ned, men=20
+her vises ogs=C3=A5 kun 2 g=E2=80=99er som ottendedele, hvilket ikke =
+rigtig giver mening i=20
+mit hoved. Hvordan skal det forst=C3=A5s? <o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'>Mht.=20
+fejl 40, s=C3=A5 sidder den 40 til 50 cm. Bag sk=C3=A6rmen, alts=C3=A5 =
+jeg havde ikke sl=C3=A5et=20
+fluebenene til i tekstvisningen ved noder og nodevarigheder, der for var =
+Jaws=20
+temmelig tavs, selv om alle stemmer var markeret til visning i =
+musikafspilning,=20
+tekstvisning og punktnodevisning. <o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'>Mvh.=20
+<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'>Susanne=20
+<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'><o:p></o:p></SPAN>&nbsp;</P>
+<DIV>
+<DIV=20
+style=3D"BORDER-TOP: #e1e1e1 1pt solid; BORDER-RIGHT: medium none; =
+BORDER-BOTTOM: medium none; PADDING-BOTTOM: 0cm; PADDING-TOP: 3pt; =
+PADDING-LEFT: 0cm; BORDER-LEFT: medium none; PADDING-RIGHT: 0cm">
+<P class=3DMsoNormal><B><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: =
+"Calibri",sans-serif'>Fra:</SPAN></B><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif'> Jens =
+Sundgaard=20
+&lt;holmeparken44@vip.cybercity.dk&gt; <BR><B>Sendt:</B> 23. november =
+2018=20
+19:21<BR><B>Til:</B> Susanne Nols=C3=B8e =
+&lt;susanne@obj.dk&gt;<BR><B>Cc:</B> Bo=20
+Alstrup &lt;bo@c2tal.dk&gt;; Bo Alstrup =
+&lt;CX64@kk.dk&gt;<BR><B>Emne:</B> Re:=20
+JAWS bliver tavs i 2.7.0.0<o:p></o:p></SPAN></P></DIV></DIV>
+<P class=3DMsoNormal><o:p></o:p>&nbsp;</P>
+<DIV>
+<DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>Hej Susanne og =
+
+Ole<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>Tak for den =
+grundige=20
+test, det er godtnok sv=C3=A6rt for fejlene at skjule sig=20
+!<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>Jeg har lige =
+et=20
+sp=C3=B8rgsm=C3=A5l mere: I den seneste mail st=C3=A5r at =
+nedenst=C3=A5ende opf=C3=B8rsel er set i=20
+<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>=E2=80=9CMen =
+det blir atter=20
+stille=E2=80=9D<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: red">Men der er kun 47 takter =
+i&nbsp;=20
+"Men det bliv:er atter stille." S=C3=A5 det kan ikke passe.</SPAN><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'><o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Kan I huske hvilket =
+partitur I=20
+refererer til ?</SPAN><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'><o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P></DIV>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Takslag =
+51:<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Helnode pause bas og =
+tenor, men er=20
+det rigtigt?<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">2 toner i sopran men =
+ingen i alt=20
+eller bas<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Og stemmerne ER=20
+markeret=E2=80=A6<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Fra slag 51 og=20
+frem<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Tidligere i dag =
+spillede den 2=20
+stemmigt i takt 28<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Taktslag =
+78:<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Det kan jo ikke passe =
+at der ikke=20
+er dybere stemmer end sopran og alt<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Taktslag =
+104<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">2 stemmer i =
+<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">SN: Det er Men det =
+bliver atter=20
+stille. <o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: =
+black">&nbsp;<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: =
+black">&nbsp;<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>Desuden =
+forst=C3=A5r hverken=20
+Bo eller jeg helt argumentet om en fejl 40. </SPAN><SPAN=20
+style=3D"COLOR: black"><o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>(Men vi vil =
+s=C3=A5 gerne=20
+overbevises)</SPAN><SPAN style=3D"COLOR: black"><o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: =
+black">&nbsp;<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: =
+black">&nbsp;<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>mvh =
+Jens</SPAN><SPAN=20
+style=3D"COLOR: black"><o:p></o:p></SPAN></P>
+<DIV>
+<DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<DIV>
+<P class=3DMsoNormal style=3D"BACKGROUND: whitesmoke"><B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: =
+black'>From:</SPAN></B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: =
+black'> Susanne=20
+Nols=C3=B8e <o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal style=3D"BACKGROUND: whitesmoke"><B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: =
+black'>Sent:</SPAN></B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: =
+black'>=20
+Thursday, November 22, 2018 9:02 PM<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal style=3D"BACKGROUND: whitesmoke"><B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: =
+black'>To:</SPAN></B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: =
+black'> 'Jens=20
+Sundgaard' ; 'Bo Alstrup' ; 'Bo Alstrup' <o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal style=3D"BACKGROUND: whitesmoke"><B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: =
+black'>Cc:</SPAN></B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: =
+black'> Ole=20
+Brun Jensen <o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal style=3D"BACKGROUND: whitesmoke"><B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: =
+black'>Subject:</SPAN></B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: =
+black'> SV:=20
+JAWS bliver tavs i 2.7.0.0<o:p></o:p></SPAN></P></DIV></DIV></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P></DIV></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'>Hej=20
+med jer <o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">&nbsp;</SPAN><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'><o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'>Pyh=20
+ha, det ser heldigvis ud til at v=C3=A6re en fejl 40 mht. =
+nedenst=C3=A5ende tavs Jaws!!!=20
+<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">&nbsp;</SPAN><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'><o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: =
+en-us'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=20
+</SPAN><SPAN style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>N=C3=A5r JAWS=20
+holder op med at l=C3=A6se op fra nodelisten, s=C3=A5 =
+<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>1)&nbsp; =
+G=C3=A5 over i=20
+filtertr=C3=A6et og verificer at JAWS stadig l=C3=A6ser op d=C3=A9r, =
+s=C3=A5 det ikke bare er JAWS=20
+der er g=C3=A5et d=C3=B8d. Jaws l=C3=A6ser stadig nodefiltret =
+fint.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>2)&nbsp; Hvis =
+ja, s=C3=A5=20
+check om alle krydserne er sat i =E2=80=9CTekstVisning=E2=80=9D, =
+=E2=80=9CDetaljer for Tekstvisning=E2=80=9D og=20
+alle de 9 underpunkter hertil. Det hj=C3=A6lper meget is=C3=A6r at =
+afkrydse Noder og=20
+nodevarigheder under tekstvisning! De =C3=B8vrige krydser under =
+tekstvisning kan=20
+bedre udelades efter smag og behov for snak. (Smiley) =
+<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>3)&nbsp; =
+F=C3=A5 om muligt en=20
+seende til at checke om der st=C3=A5r tekst i nodelisten eller kun=20
+MusicBraille.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>Herved kan vi =
+muligvis=20
+finde ud af om fejlen skyldes nogle forsvundne krydser i =
+filtertr=C3=A6et =E2=80=93 eller=20
+noget helt andet.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>Hvis I desuden =
+kan finde=20
+en sikker m=C3=A5de at reproducere problemet, s=C3=A5 jeg selv kan =
+g=C3=A6re det, er det=20
+naturligvis endnu bedre.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'>SN:=20
+Kommentar til Men det bliver atter stille: <o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Takt 30 noteret 2 b =
+akkord spilles=20
+akkord men der er mere<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">P=C3=A5 trods af=20
+solofunktion<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #ff6600">JSJ: Formodentlig =
+det samme: Der=20
+er her 2* sopran + 2* alt + tenot + bas.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Det ville v=C3=A6re =
+rart hvis=20
+solofunktionen slog igennem p=C3=A5 musik, punkt og tekst i stedet for =
+kun i det=20
+omr=C3=A5de man aktiverer den.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #ff6600">JSJ: God id=C3=A9, =
+som b=C3=B8r=20
+implementeres senere.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'>SN:=20
+</SPAN><SPAN style=3D"COLOR: black">Takt 30 taktslag 166 af 275 =
+</SPAN><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'>Er=20
+det korrekt noteret at tenoren p=C3=A5 F 2 oktav, ligger under bassens a =
+i 2. oktav,=20
+burde tenoren ikke ligge i f 3 oktav? Det samme forekommer ogs=C3=A5 i =
+takt 27=20
+taktslag 156 af 275, her st=C3=A5r tenoren i punktnode til e en halv i 3 =
+oktav, men=20
+den spiller lydm=C3=A6ssigt e i 2 oktav, alts=C3=A5 en oktav fordybt i =
+forhold til=20
+notationen i punkt. <o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">&nbsp;</SPAN><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'><o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'>Dette=20
+eksempel lavet med takt 27 og 30 i Men det bliver atter stille. N=C3=A5r =
+tenor og=20
+basstemmen er umarkeret og sopran og alt er markeret i tekstvisning og=20
+musikafspilning, mens alle stemmer er markeret i punktnoder, hvorfor =
+spiller den=20
+musiklyd stadig v=C3=A6k, n=C3=A5r der i akkordvisning med Kontrol+Pil =
+ned trykkes for=20
+tenor og bas i akkorden? Skal den det. Jaws er tavs, som den b=C3=B8r =
+v=C3=A6re i forhold=20
+til tenor og bas. Men musikafspilning er jo sl=C3=A5et fra for bas og =
+tenor, s=C3=A5 d=C3=ABr=20
+burde den ikke spille! <o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">&nbsp;</SPAN><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'><o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'>Fortsat=20
+Men det bliver atter stille Tenoren vises ikke I takt 13,5 taktslag 78 =
+af 276=20
+vises sopran med Ges og h, alt med a og des alle ottendedele og bassen =
+med en=20
+halvnodepause. Men tenoren vises slet ikke i akkordvisningen med =
+Kontrol+Pil=20
+ned, selv om alle stemmer er markeret b=C3=A5de i musikafspilning, =
+tekstvisning og=20
+punktnodevisning, er der en fejl i xml-filen? <o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">&nbsp;</SPAN><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'><o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">I Oh litthe=20
+bet<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Vises Node til=20
+venstre<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #ff6600">JSJ: Ikke =
+forst=C3=A5et=20
+endnu<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">SN: Det g=C3=A5r =
+p=C3=A5 visning af akkorden=20
+med Kontrol+Pil ned, hvor der i Oh little Bethlehem yderst til venstre =
+vises=20
+punktnoden og herefter vises teksten udtalt af Jaws. Der har v=C3=A6ret =
+eksempler p=C3=A5=20
+i Men det bliver atter stille, at noden i akkordvisning ikke blev vist =
+yderst=20
+til venstre men kun teksten sagt af Jaws. Men jeg har ikke entydig =
+fundet=20
+=C3=A5rsagen til, at noden ved akkordvisning vises i Oh little =
+Bethlehem, mens ikke=20
+n=C3=B8dvendigvis i Men det bir atter stille i akkordvisning. Men det =
+kan m=C3=A5ske ske,=20
+hvis fluebenet ved visning af punktnode ikke er markeret eller =
+s=C3=A5dan noget.=20
+<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: =
+black">&nbsp;<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #ff6600">JSJ: Hvilket =
+partitur refererer=20
+f=C3=B8lgende til ?<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Takslag =
+51:<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Helnode pause bas og =
+tenor, men er=20
+det rigtigt?<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">2 toner i sopran men =
+ingen i alt=20
+eller bas<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Og stemmerne ER=20
+markeret=E2=80=A6<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Fra slag 51 og=20
+frem<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Tidligere i dag =
+spillede den 2=20
+stemmigt i takt 28<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Taktslag =
+78:<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Det kan jo ikke passe =
+at der ikke=20
+er dybere stemmer end sopran og alt<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Taktslag =
+104<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">2 stemmer i =
+<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">SN: Det er Men det =
+bliver atter=20
+stille. <o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: =
+black">&nbsp;<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Om lidt bliver der =
+atter=20
+stille:<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #ff6600">JSJ: Antager at der =
+menes =E2=80=9DOg=20
+der bliver atter stille!<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Alle stemmer er =
+sl=C3=A5et til, men det=20
+sl=C3=A5r tilsyneladende ikke igennem.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #ff6600">JSJ: Dette er helt =
+suver=C3=A6nt det=20
+mest seri=C3=B8se problem. Jeg s=C3=A5 det faktisk selv i g=C3=A5r at =
+der var uoverensstemmelse=20
+mellem teksten i nodelisten og (i hvert fald de forventede) =
+indstillinger i=20
+filtertr=C3=A6et. Men i dag kan jeg ikke reproducere det =
+!!<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #ff6600">Kan nogen =
+hj=C3=A6lpe med at=20
+reproducere det ??&nbsp; =
+=E2=86=90-----------------------------<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #ff6600">SN: Pr=C3=B8v takt =
+13,5 Taktslag 78=20
+af 276, som omtalt oven for. <o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">&nbsp;</SPAN><SPAN=20
+style=3D"COLOR: #ff6600"><o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #ff6600">Mvh. =
+<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">&nbsp;</SPAN><SPAN=20
+style=3D"COLOR: #ff6600"><o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #ff6600">Susanne =
+<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: =
+black">&nbsp;<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">&nbsp;</SPAN><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'><o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">&nbsp;</SPAN><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'><o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">&nbsp;</SPAN><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+#1f497d; mso-fareast-language: en-us'><o:p></o:p></SPAN></P>
+<DIV>
+<DIV=20
+style=3D"BORDER-TOP: #e1e1e1 1pt solid; BORDER-RIGHT: medium none; =
+BORDER-BOTTOM: medium none; PADDING-BOTTOM: 0cm; PADDING-TOP: 3pt; =
+PADDING-LEFT: 0cm; BORDER-LEFT: medium none; PADDING-RIGHT: 0cm">
+<P class=3DMsoNormal><B><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>Fra:</SPAN></B><SPAN=20
+style=3D'FONT-SIZE: 11pt; FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'> Jens=20
+Sundgaard &lt;<A>holmeparken44@vip.cybercity.dk</A>&gt; =
+<BR><B>Sendt:</B> 22.=20
+november 2018 13:10<BR><B>Til:</B> Susanne Nols=C3=B8e =
+&lt;<A>susanne@obj.dk</A>&gt;;=20
+Bo Alstrup &lt;<A>bo@c2tal.dk</A>&gt;; Bo Alstrup=20
+&lt;<A>CX64@kk.dk</A>&gt;<BR><B>Emne:</B> JAWS bliver tavs i=20
+2.7.0.0<o:p></o:p></SPAN></P></DIV></DIV>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: =
+black">&nbsp;<o:p></o:p></SPAN></P>
+<DIV>
+<DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>Hej=20
+alle<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>Jeg har nu =
+v=C3=A6ret igennem=20
+ovenst=C3=A5ende dokument og skrevet mine kommentarer ind med r=C3=B8dt =
+og prefix =3D=20
+=E2=80=9CJSJ:=E2=80=9D<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>Der er nogle =
+f=C3=A5 punkter=20
+til ToDo listen, men jeg er desv=C3=A6rre ikke kommet n=C3=A6rmere =
+p=C3=A5 det absolut=20
+mest<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>seri=C3=B8se =
+problem: At JAWS=20
+holder op med at l=C3=A6se op fra =
+NodeListen.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>Min teori er =
+at en fejl=20
+i den nye mekanisme i =E2=80=9Cgemte brugerindstillinger=E2=80=9D =
+bevirker=20
+at<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>de =
+s=C3=A6dvanlige krydser=20
+kommer til at mangle i filtertr=C3=A6et. Og de tilsvarende informationer =
+dermed i=20
+nodelisten.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>Jeg har =
+faktisk selv set=20
+dette ske tidligere, men nu kan jeg ikke reproducere det, heller ikke =
+med=20
+2.7.0.0.&nbsp;&nbsp; !!!!<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>S=C3=A5 jeg =
+vil gerne bede=20
+Jer g=C3=B8re f=C3=B8lgende:<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>N=C3=A5r JAWS =
+holder op med=20
+at l=C3=A6se op fra nodelisten, s=C3=A5 <o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>1)&nbsp; =
+G=C3=A5 over i=20
+filtertr=C3=A6et og verificer at JAWS stadig l=C3=A6ser op d=C3=A9r, =
+s=C3=A5 det ikke bare er JAWS=20
+der er g=C3=A5et d=C3=B8d.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>2)&nbsp; Hvis =
+ja, s=C3=A5=20
+check om alle krydserne er sat i =E2=80=9CTekstVisning=E2=80=9D, =
+=E2=80=9CDetaljer for Tekstvisning=E2=80=9D og=20
+alle de 9 underpunkter hertil.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>3)&nbsp; =
+F=C3=A5 om muligt en=20
+seende til at checke om der st=C3=A5r tekst i nodelisten eller kun=20
+MusicBraille.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>Herved kan vi =
+muligvis=20
+finde ud af om fejlen skyldes nogle forsvundne krydser i =
+filtertr=C3=A6et =E2=80=93 eller=20
+noget helt andet.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>Hvis I desuden =
+kan finde=20
+en sikker m=C3=A5de at reproducere problemet, s=C3=A5 jeg selv kan =
+g=C3=A6re det, er det=20
+naturligvis endnu bedre.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>Jeg tror at =
+dette er=20
+vigtigere end fortsat test, men jeg skal nok sige til, hvis jeg selv =
+finder en=20
+l=C3=B8sning.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: =
+black'>&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D'FONT-FAMILY: "Calibri",sans-serif; COLOR: black'>mvh=20
+Jens<o:p></o:p></SPAN></P></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV=
+></DIV></DIV></BODY></HTML>
+
+------=_NextPart_000_001B_01D484E8.A0A56520--
