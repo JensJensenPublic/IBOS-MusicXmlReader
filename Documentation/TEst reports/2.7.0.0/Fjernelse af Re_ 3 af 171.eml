@@ -1,0 +1,692 @@
+From: "Jens Sundgaard" <holmeparken44@vip.cybercity.dk>
+To: "Bo Alstrup \(hjem\)" <bo@c2tal.dk>,
+	"Bo Alstrup" <CX64@kk.dk>
+Bcc: "Os Selv" <holmeparken44@vip.cybercity.dk>
+References: <01f601d4754f$0541ede0$0fc5c9a0$@c2tal.dk> <D44045FD35BF4ADEA2009964CB3F00C7@JensesHP17> <025501d476bd$25b9ff30$712dfd90$@c2tal.dk>
+In-Reply-To: <025501d476bd$25b9ff30$712dfd90$@c2tal.dk>
+Subject: Re: 3 af 171
+Date: Thu, 8 Nov 2018 12:27:29 +0100
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_00BA_01D4775E.6AA86900"
+X-Priority: 3
+X-MSMail-Priority: Normal
+Importance: Normal
+X-Mailer: Microsoft Windows Live Mail 16.4.3528.331
+X-MimeOLE: Produced By Microsoft MimeOLE V16.4.3528.331
+
+Dette er en flerdelt meddelelse i MIME-format.
+
+------=_NextPart_000_00BA_01D4775E.6AA86900
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hej Bo
+
+Bare til information:
+
+For hver applikation (hvorfra man =C3=A6ndrer i JAWS indstillinger) =
+gemmer JAWS tilsyneladende en fil: <filnavn>.JCF i et brugerspecifikt =
+directory, h=C3=A9r:
+
+=E2=80=9CC:\Users\Jens\AppData\Roaming\Freedom =
+Scientific\JAWS\2018\Settings\dan=E2=80=9D
+
+Og i vores tilf=C3=A6lde hedder filen =E2=80=9CIBOS =
+MusicXmlReader.JCF=E2=80=9D
+
+Desuden er jeg ikke mere s=C3=A5 bekymret over d=C3=A9t med at =
+dokumentere d=C3=A9 =C3=A6ndringer, der fjerner =E2=80=9C3 af =
+329=E2=80=9D
+for installationsvejledningen indeholder i forvejen et nydeligt afsnit =
+on hvordan man=20
+kan fintune JAWS brug af punktdisplays. Det havde jeg bare glemt.
+S=C3=A5 det er let at tilf=C3=B8je et par ekstra linier om de nye =
+indstillinger, skelettet er der allerede.
+
+Det resterende problem er s=C3=A5 at f=C3=A5 brugeren til at f=C3=B8lge =
+vejledningen,=20
+men n=C3=A5r han bliver tilstr=C3=A6kkelig tr=C3=A6t af at f=C3=B8re =
+p=C3=A5 =E2=80=9C3 af 345=E2=80=9D g=C3=A5r det m=C3=A5ske helt af sig =
+selv?
+
+mvh Jens=20
+From: Bo Alstrup (hjem)=20
+Sent: Wednesday, November 7, 2018 6:13 PM
+To: 'Jens Sundgaard'=20
+Subject: SV: 3 af 171
+
+Hej Jens
+
+Jamen s=C3=A5 kan jeg jo l=C3=A6re det at kigge ordentligt efter i mine =
+indbakker=E2=80=A6
+
+Fedt at du fandt =E2=80=9Dtrick-fluebenet=E2=80=9D positionsinfo!
+
+Og du har selvf=C3=B8lgelig helt ret i det med taleinformationen.
+
+Jeg t=C3=A6nker at det er muligt at beskrive =C3=A6ndringen af =
+indstillingen, - m=C3=A5ske  fordi meldingen har irriteret mig =
+tilstr=C3=A6kkelig l=C3=A6nge :o)
+
+=20
+
+Jeg troede faktisk at jaws brugte default/standard-konfigurationen  og =
+ikke en egen for nodel=C3=A6seren. Det m=C3=A5 du lige hj=C3=A6lpe mig =
+med at f=C3=A5 p=C3=A5 plads :O)
+
+Mvh
+
+Bo
+
+Fra: Jens Sundgaard [mailto:holmeparken44@vip.cybercity.dk]=20
+Sendt: 6. november 2018 20:46
+Til: Bo Alstrup (hjem); Bo Alstrup
+Emne: Re: 3 af 171
+
+=20
+
+Hej igen
+
+=20
+
+Jeg har nu kigget p=C3=A5 din id=C3=A9 og den ser helt fin ud.
+
+Jeg har dog lige et par supplerende kommentarer:
+
+Indstillingen findes ikke (i hvert fald p=C3=A5 min PC) under
+
+Indstillingscenter->Taleindstillinger men under
+
+Indstillingscenter->TaleInformation
+
+D=C3=A9r kan man v=C3=A6lge mellem 3 =
+=E2=80=9CInformationsNiveauer=E2=80=9D: =E2=80=9CBegynder=E2=80=9D, =
+=E2=80=9CTr=C3=A6net=E2=80=9D og =E2=80=9CAvanceret=E2=80=9D. Default er =
+=E2=80=9CBegynder=E2=80=9D.
+
+For hvert af disse InformationsNiveauer er der hele 24 bin=C3=A6re =
+indstillinger.
+
+=C3=89n af disse indstillinger hedder =
+=E2=80=9CPositionsInformation=E2=80=9D og mine eksperimenter viser, at =
+det er netop denne indstilling, der styrer brugen af =E2=80=9C7 af =
+171=E2=80=9D plage=C3=A5nden.=20
+
+PositionsInformation er pr. default sand for =E2=80=9CBegynder=E2=80=9D =
+og =E2=80=9CTr=C3=A6net=E2=80=9D og falsk for =
+=E2=80=9CAvanceret=E2=80=9D.
+
+=20
+
+Der er alts=C3=A5 2 forskellige l=C3=B8sninger for brugeren:
+
+=20
+
+1: Ret =E2=80=9CPositionsInformation=E2=80=9D til =
+=E2=80=9Cfalsk=E2=80=9D for =E2=80=9CInformationsNiveau=E2=80=9D =3D =
+=E2=80=9CBegynder=E2=80=9D
+
+eller
+
+2: Brug =E2=80=9CInformationsNiveau=E2=80=9D =3D =
+=E2=80=9CAvanceret=E2=80=9D
+
+=20
+
+Begge dele er lidt irriterende at skulle beskrive i Nodel=C3=A6serens =
+brugervejledning (eller installationsvejledning), men det kan vel lade =
+sig g=C3=B8re.
+
+Det er muligvis ogs=C3=A5 muligt at f=C3=A5 nodel=C3=A6seren selv til at =
+overskrive konfigurationsfilen (som jo kun g=C3=A6lder nodel=C3=A6seren =
+selv), men
+
+dermed bliver vi jo forbandet afh=C3=A6ngige af JAWS=E2=80=99 =
+konfigurerings-filformat, s=C3=A5 det er bestemt ikke nogen rar =
+l=C3=B8sning !!!
+
+=20
+
+Kunne du ikke lige vende denne problematik med andre p=C3=A5 IBOS og i =
+n=C3=A6ste uge i Fredericia ?
+
+Hvor skrappe er almindelige brugere til at hexe med disse indstillinger =
+?
+
+=20
+
+Under alle omst=C3=A6ndigheder er det lidt besv=C3=A6rligt, men til =
+geng=C3=A6ld er hele denne JAWS konfigurationsmekanisme en guldgrube at =
+kende,
+
+n=C3=A5r man skal fintune JAWS opf=C3=B8rsel. Og det er en meget =
+professionel m=C3=A5de F.S. har implementeret det p=C3=A5. (Men =
+m=C3=A5ske ikke super brugervenlig?)
+
+=20
+
+Jeg har desv=C3=A6rre fundet en irriterende fejl i 2.7.0.0:
+
+Detaljevisningen af Becifringsinformation virker ikke n=C3=A5r JAWS =
+k=C3=B8rer (og er uanvendelig for brugeren n=C3=A5r JAWS ikke =
+k=C3=B8rer).
+
+Det skyldes at jeg naivt havde =C3=A6ndret shortcut=E2=80=99et til =
+CTRL+ALT+PIL men denne kombination bliver tilsyneladende spist af JAWS, =
+som bruger den til navigation i tabeller.
+
+=20
+
+Jeg kan formodentlig nemt rette det i 2.8.0.0 men i mellemtiden g=C3=A5r =
+vi glip af test af denne funktionalitet. =C3=86rgerligt.
+
+=20
+
+Jeg tror ikke jeg kommer ind i denn uge, jeg vil hellere spare lidt tid =
+sammen. Der bliver sikkert nok at bruge tid p=C3=A5 til den endelige =
+release af 3.0.0.0
+
+=20
+
+S=C3=A5 i mellemtiden god tur til Fuglsangscentret.
+
+=20
+
+mvh Jens=20
+
+From: Bo Alstrup (hjem)=20
+
+Sent: Monday, November 5, 2018 10:32 PM
+
+To: Jens Sundgaard Jensen=20
+
+Subject: 3 af 171
+
+=20
+
+Hej Jens
+
+Hvis man =C3=A6ndrer taleindstillingerne i jaws til =
+=E2=80=9Davanceret=E2=80=9D f=C3=A5r man tilsyneladende bugt med vores =
+plage=C3=A5nd. Jeg kan ikke lige gennemskue hvilket flueben der g=C3=B8r =
+tricket=E2=80=A6
+
+Pr=C3=B8v at kaste et blik p=C3=A5 det i konfigurationen af =
+=E2=80=9Davanceret=E2=80=9D ift de andre 2 som jo ikke l=C3=B8ser =
+problemet=E2=80=A6
+
+Du kommer til indstillingscentret ved
+
+Ins +F2
+
+Indstillingscenter
+
+Taleindstillinger
+
+=20
+
+Du =C3=A6ndrer indstillingerne med mellemrum. Bem=C3=A6rk at der kan =
+v=C3=A6lges fra en sl=C3=B8jfe der indeholder mere end 2 =
+tilstande=E2=80=A6
+
+Mvh
+
+Bo
+
+=20
+
+------=_NextPart_000_00BA_01D4775E.6AA86900
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<HTML xmlns=3D"http://www.w3.org/TR/REC-html40" xmlns:v =3D=20
+"urn:schemas-microsoft-com:vml" xmlns:o =3D=20
+"urn:schemas-microsoft-com:office:office" xmlns:w =3D=20
+"urn:schemas-microsoft-com:office:word" xmlns:m =3D=20
+"http://schemas.microsoft.com/office/2004/12/omml"><HEAD>
+<META content=3D"text/html; charset=3Dutf-8" http-equiv=3DContent-Type>
+<META name=3DGenerator content=3D"Microsoft Word 14 (filtered medium)">
+<STYLE><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></STYLE>
+</HEAD>
+<BODY lang=3DDA dir=3Dltr vLink=3Dpurple link=3Dblue>
+<DIV dir=3Dltr>
+<DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: #000000">
+<DIV>Hej Bo</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Bare til information:</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>For hver applikation (hvorfra man =C3=A6ndrer i JAWS indstillinger) =
+gemmer JAWS=20
+tilsyneladende en fil: &lt;filnavn&gt;.JCF i et brugerspecifikt =
+directory,=20
+h=C3=A9r:</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>=E2=80=9CC:\Users\Jens\AppData\Roaming\Freedom=20
+Scientific\JAWS\2018\Settings\dan=E2=80=9D</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Og i vores tilf=C3=A6lde hedder filen =E2=80=9CIBOS =
+MusicXmlReader.JCF=E2=80=9D</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Desuden er jeg ikke mere s=C3=A5 bekymret over d=C3=A9t med at =
+dokumentere d=C3=A9=20
+=C3=A6ndringer, der fjerner =E2=80=9C3 af 329=E2=80=9D</DIV>
+<DIV>for installationsvejledningen indeholder i forvejen et nydeligt =
+afsnit on=20
+hvordan man </DIV>
+<DIV>kan fintune JAWS brug af punktdisplays. Det havde jeg bare =
+glemt.</DIV>
+<DIV>S=C3=A5 det er let at tilf=C3=B8je et par ekstra linier om de nye =
+indstillinger,=20
+skelettet er der allerede.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Det resterende problem er s=C3=A5 at f=C3=A5 brugeren til at =
+f=C3=B8lge vejledningen,=20
+</DIV>
+<DIV>men n=C3=A5r han bliver tilstr=C3=A6kkelig tr=C3=A6t af at =
+f=C3=B8re p=C3=A5 =E2=80=9C3 af 345=E2=80=9D g=C3=A5r det=20
+m=C3=A5ske helt af sig selv?</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>mvh Jens=20
+<DIV=20
+style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: =
+"Calibri"; FONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; =
+DISPLAY: inline'></DIV>
+<DIV style=3D"FONT: 10pt tahoma">
+<DIV style=3D"BACKGROUND: #f5f5f5">
+<DIV style=3D"font-color: black"><B>From:</B> <A title=3Dbo@c2tal.dk>Bo =
+Alstrup=20
+(hjem)</A> </DIV>
+<DIV><B>Sent:</B> Wednesday, November 7, 2018 6:13 PM</DIV>
+<DIV><B>To:</B> <A title=3Dholmeparken44@vip.cybercity.dk>'Jens =
+Sundgaard'</A>=20
+</DIV>
+<DIV><B>Subject:</B> SV: 3 af 171</DIV></DIV></DIV>
+<DIV>&nbsp;</DIV></DIV>
+<DIV=20
+style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: =
+"Calibri"; FONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; =
+DISPLAY: inline'>
+<DIV class=3DWordSection1>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #1f497d">Hej =
+Jens<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #1f497d">Jamen s=C3=A5 kan =
+jeg jo l=C3=A6re det at=20
+kigge ordentligt efter i mine indbakker=E2=80=A6<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #1f497d">Fedt at du fandt=20
+=E2=80=9Dtrick-fluebenet=E2=80=9D positionsinfo!<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #1f497d">Og du har =
+selvf=C3=B8lgelig helt ret=20
+i det med taleinformationen.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #1f497d">Jeg t=C3=A6nker at =
+det er muligt at=20
+beskrive =C3=A6ndringen af indstillingen, - m=C3=A5ske&nbsp; fordi =
+meldingen har irriteret=20
+mig tilstr=C3=A6kkelig l=C3=A6nge :o)<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: =
+#1f497d"><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: #1f497d">Jeg troede faktisk =
+at jaws=20
+brugte default/standard-konfigurationen&nbsp; og ikke en egen for =
+nodel=C3=A6seren.=20
+Det m=C3=A5 du lige hj=C3=A6lpe mig med at f=C3=A5 p=C3=A5 plads =
+:O)<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: =
+#1f497d">Mvh<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: =
+#1f497d">Bo<o:p></o:p></SPAN></P>
+<DIV>
+<DIV=20
+style=3D"BORDER-TOP: #b5c4df 1pt solid; BORDER-RIGHT: medium none; =
+BORDER-BOTTOM: medium none; PADDING-BOTTOM: 0cm; PADDING-TOP: 3pt; =
+PADDING-LEFT: 0cm; BORDER-LEFT: medium none; PADDING-RIGHT: 0cm">
+<P class=3DMsoNormal><B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma","sans-serif"; =
+mso-fareast-language: da'>Fra:</SPAN></B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma","sans-serif"; =
+mso-fareast-language: da'>=20
+Jens Sundgaard [mailto:holmeparken44@vip.cybercity.dk] <BR><B>Sendt:</B> =
+6.=20
+november 2018 20:46<BR><B>Til:</B> Bo Alstrup (hjem); Bo =
+Alstrup<BR><B>Emne:</B>=20
+Re: 3 af 171<o:p></o:p></SPAN></P></DIV></DIV>
+<P class=3DMsoNormal><o:p></o:p>&nbsp;</P>
+<DIV>
+<DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">Hej=20
+igen<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">Jeg =
+har nu=20
+kigget p=C3=A5 din id=C3=A9 og den ser helt fin =
+ud.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">Jeg =
+har dog lige=20
+et par supplerende kommentarer:<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">Indstillingen=20
+findes ikke (i hvert fald p=C3=A5 min PC) =
+under<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">Indstillingscenter-&gt;Taleindstillinger=20
+men under<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">Indstillingscenter-&gt;TaleInformation<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">D=C3=A9r kan man=20
+v=C3=A6lge mellem 3 =E2=80=9CInformationsNiveauer=E2=80=9D: =
+=E2=80=9CBegynder=E2=80=9D, =E2=80=9CTr=C3=A6net=E2=80=9D og =
+=E2=80=9CAvanceret=E2=80=9D.=20
+Default er =E2=80=9CBegynder=E2=80=9D.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">For =
+hvert af=20
+disse InformationsNiveauer er der hele 24 bin=C3=A6re=20
+indstillinger.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">=C3=89n af disse=20
+indstillinger hedder =E2=80=9CPositionsInformation=E2=80=9D og mine =
+eksperimenter viser, at det=20
+er netop denne indstilling, der styrer brugen af =E2=80=9C7 af =
+171=E2=80=9D plage=C3=A5nden.=20
+<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">PositionsInformation=20
+er pr. default sand for =E2=80=9CBegynder=E2=80=9D og =
+=E2=80=9CTr=C3=A6net=E2=80=9D og falsk for=20
+=E2=80=9CAvanceret=E2=80=9D.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">Der er =
+alts=C3=A5 2=20
+forskellige l=C3=B8sninger for brugeren:<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">1: Ret =
+
+=E2=80=9CPositionsInformation=E2=80=9D til =E2=80=9Cfalsk=E2=80=9D for =
+=E2=80=9CInformationsNiveau=E2=80=9D =3D=20
+=E2=80=9CBegynder=E2=80=9D<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">eller<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">2: =
+Brug=20
+=E2=80=9CInformationsNiveau=E2=80=9D =3D =
+=E2=80=9CAvanceret=E2=80=9D<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">Begge =
+dele er=20
+lidt irriterende at skulle beskrive i Nodel=C3=A6serens brugervejledning =
+(eller=20
+installationsvejledning), men det kan vel lade sig=20
+g=C3=B8re.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">Det er =
+muligvis=20
+ogs=C3=A5 muligt at f=C3=A5 nodel=C3=A6seren selv til at overskrive =
+konfigurationsfilen (som jo=20
+kun g=C3=A6lder nodel=C3=A6seren selv), men<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">dermed =
+bliver vi=20
+jo forbandet afh=C3=A6ngige af JAWS=E2=80=99 konfigurerings-filformat, =
+s=C3=A5 det er bestemt ikke=20
+nogen rar l=C3=B8sning !!!<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">Kunne =
+du ikke=20
+lige vende denne problematik med andre p=C3=A5 IBOS og i n=C3=A6ste uge =
+i Fredericia=20
+?<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">Hvor =
+skrappe er=20
+almindelige brugere til at hexe med disse indstillinger=20
+?<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">Under =
+alle=20
+omst=C3=A6ndigheder er det lidt besv=C3=A6rligt, men til geng=C3=A6ld er =
+hele denne JAWS=20
+konfigurationsmekanisme en guldgrube at =
+kende,<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">n=C3=A5r man skal=20
+fintune JAWS opf=C3=B8rsel. Og det er en meget professionel m=C3=A5de =
+F.S. har=20
+implementeret det p=C3=A5. (Men m=C3=A5ske ikke super=20
+brugervenlig?)<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">Jeg =
+har desv=C3=A6rre=20
+fundet en irriterende fejl i 2.7.0.0:<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">Detaljevisningen=20
+af Becifringsinformation virker ikke n=C3=A5r JAWS k=C3=B8rer (og er =
+uanvendelig for=20
+brugeren n=C3=A5r JAWS ikke k=C3=B8rer).<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">Det =
+skyldes at=20
+jeg naivt havde =C3=A6ndret shortcut=E2=80=99et til CTRL+ALT+PIL men =
+denne kombination bliver=20
+tilsyneladende spist af JAWS, som bruger den til navigation i=20
+tabeller.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">Jeg =
+kan=20
+formodentlig nemt rette det i 2.8.0.0 men i mellemtiden g=C3=A5r vi glip =
+af test af=20
+denne funktionalitet. =C3=86rgerligt.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">Jeg =
+tror ikke=20
+jeg kommer ind i denn uge, jeg vil hellere spare lidt tid sammen. Der =
+bliver=20
+sikkert nok at bruge tid p=C3=A5 til den endelige release af=20
+3.0.0.0<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">S=C3=A5 i mellemtiden=20
+god tur til Fuglsangscentret.<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">&nbsp;<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: da">mvh =
+Jens=20
+<o:p></o:p></SPAN></P>
+<DIV>
+<DIV>
+<DIV>
+<P class=3DMsoNormal style=3D"BACKGROUND: whitesmoke"><B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma","sans-serif"; COLOR: =
+black; mso-fareast-language: da'>From:</SPAN></B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma","sans-serif"; COLOR: =
+black; mso-fareast-language: da'>=20
+Bo Alstrup (hjem) <o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal style=3D"BACKGROUND: whitesmoke"><B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma","sans-serif"; COLOR: =
+black; mso-fareast-language: da'>Sent:</SPAN></B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma","sans-serif"; COLOR: =
+black; mso-fareast-language: da'>=20
+Monday, November 5, 2018 10:32 PM<o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal style=3D"BACKGROUND: whitesmoke"><B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma","sans-serif"; COLOR: =
+black; mso-fareast-language: da'>To:</SPAN></B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma","sans-serif"; COLOR: =
+black; mso-fareast-language: da'>=20
+Jens Sundgaard Jensen <o:p></o:p></SPAN></P></DIV>
+<DIV>
+<P class=3DMsoNormal style=3D"BACKGROUND: whitesmoke"><B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma","sans-serif"; COLOR: =
+black; mso-fareast-language: da'>Subject:</SPAN></B><SPAN=20
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma","sans-serif"; COLOR: =
+black; mso-fareast-language: da'>=20
+3 af 171<o:p></o:p></SPAN></P></DIV></DIV></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN=20
+style=3D"FONT-SIZE: 12pt; COLOR: black; mso-fareast-language: =
+da">&nbsp;<o:p></o:p></SPAN></P></DIV></DIV>
+<DIV>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Hej =
+Jens<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Hvis man =C3=A6ndrer=20
+taleindstillingerne i jaws til =E2=80=9Davanceret=E2=80=9D f=C3=A5r man =
+tilsyneladende bugt med vores=20
+plage=C3=A5nd. Jeg kan ikke lige gennemskue hvilket flueben der g=C3=B8r =
+
+tricket=E2=80=A6<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Pr=C3=B8v at kaste et =
+blik p=C3=A5 det i=20
+konfigurationen af =E2=80=9Davanceret=E2=80=9D ift de andre 2 som jo =
+ikke l=C3=B8ser=20
+problemet=E2=80=A6<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Du kommer til =
+indstillingscentret=20
+ved<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Ins =
++F2<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D"COLOR: black">Indstillingscenter<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D"COLOR: black">Taleindstillinger<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: =
+black">&nbsp;<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: black">Du =C3=A6ndrer =
+indstillingerne med=20
+mellemrum. Bem=C3=A6rk at der kan v=C3=A6lges fra en sl=C3=B8jfe der =
+indeholder mere end 2=20
+tilstande=E2=80=A6<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: =
+black">Mvh<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"COLOR: =
+black">Bo<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN=20
+style=3D"COLOR: =
+black">&nbsp;<o:p></o:p></SPAN></P></DIV></DIV></DIV></DIV></DIV></DIV></=
+DIV></BODY></HTML>
+
+------=_NextPart_000_00BA_01D4775E.6AA86900--
