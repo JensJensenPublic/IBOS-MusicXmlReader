@@ -87,6 +87,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.7.0.0", "2.7.0.0", "{7E40
 		Documentation\Test reports\2.7.0.0\Re_ Friske kommentarer fra Susanne og Ole.eml = Documentation\Test reports\2.7.0.0\Re_ Friske kommentarer fra Susanne og Ole.eml
 		Documentation\Test reports\2.7.0.0\Re_ JAWS bliver tavs i 2_7_0_0.eml = Documentation\Test reports\2.7.0.0\Re_ JAWS bliver tavs i 2_7_0_0.eml
 		Documentation\Test reports\2.7.0.0\Susanne og ole 21.docx = Documentation\Test reports\2.7.0.0\Susanne og ole 21.docx
+		Documentation\Test reports\2.7.0.0\svTest af IBOS MusicXmlREader 2_8_0_0 kommentarer til kun release notes og brugervejledning.eml = Documentation\Test reports\2.7.0.0\svTest af IBOS MusicXmlREader 2_8_0_0 kommentarer til kun release notes og brugervejledning.eml
 	EndProjectSection
 EndProject
 Global
