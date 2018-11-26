@@ -90,6 +90,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.7.0.0", "2.7.0.0", "{7E40
 		Documentation\Test reports\2.7.0.0\svTest af IBOS MusicXmlREader 2_8_0_0 kommentarer til kun release notes og brugervejledning.eml = Documentation\Test reports\2.7.0.0\svTest af IBOS MusicXmlREader 2_8_0_0 kommentarer til kun release notes og brugervejledning.eml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.8.0.0", "2.8.0.0", "{C6B6B125-56D2-47E9-8D42-4281D44E5BAB}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Test reports\2.8.0.0\Mail fra Susanne som dokument.doc = Documentation\Test reports\2.8.0.0\Mail fra Susanne som dokument.doc
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -241,5 +246,6 @@ Global
 		{DC119A17-C15E-403A-9163-4CD93B8F880B} = {A07A01AC-A16A-48D8-9415-555CDA1E37F6}
 		{79DD0BA3-6AD9-4599-B8D4-1D09CC2CE379} = {1B62366B-E595-454C-846D-E36240015490}
 		{7E403006-D108-4DC6-9508-5900C36157E6} = {79DD0BA3-6AD9-4599-B8D4-1D09CC2CE379}
+		{C6B6B125-56D2-47E9-8D42-4281D44E5BAB} = {79DD0BA3-6AD9-4599-B8D4-1D09CC2CE379}
 	EndGlobalSection
 EndGlobal
