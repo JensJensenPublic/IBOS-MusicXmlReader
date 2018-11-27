@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\Braille Sense U2 brugermanual(Ver 8 5_dk).docx = Documentation\Braille Sense U2 brugermanual(Ver 8 5_dk).docx
 		Documentation\da-ansi8.dis = Documentation\da-ansi8.dis
 		Documentation\Forslag til tekst til hjemmeside.odt = Documentation\Forslag til tekst til hjemmeside.odt
+		Documentation\Generering af release 3.0.0.0.doc = Documentation\Generering af release 3.0.0.0.doc
 		Documentation\Generering af release.odt = Documentation\Generering af release.odt
 		Documentation\icon.ico = Documentation\icon.ico
 		Documentation\Obsolete TODo liste. Genereret fra odt 2017.03.23.ods = Documentation\Obsolete TODo liste. Genereret fra odt 2017.03.23.ods
