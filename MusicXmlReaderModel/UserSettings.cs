@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Collections.Generic;
 
 
 // Note for .Net mechanisms for persisting  User Settings see: https://msdn.microsoft.com/en-us/library/ms171565(v=vs.100).aspx
@@ -506,6 +507,57 @@ namespace MusicXmlReaderModel
                 default: Logger.LogCF(string.Format(" : Undefined Category={0}", category.ToString())); return "";
             }
         }
+
+
+        private List<StaffSelector> selectedStaffs;
+        public List<StaffSelector> SelectedStaffs { get { return selectedStaffs; } set { selectedStaffs = value; } }
+        //private int staffNumber = 1; // Not a real user setting. Only used for separating notes into separate staffs. Simple staffs always have StaffNumber = 1
+        //public int StaffNumber { get { return staffNumber; } set { staffNumber = value; } }
+
+
+        // Convenience methods
+
+        /// <summary>
+        /// Simple mechanism for selecting a specific staff within a spscific part.
+        /// Used for generating BrailleMusic information one staff (or two staffs) at a time
+        /// When generating BrailleMusic for the UI UserSettings.SelectedStaff is null, signalling that no spscific staff is selected.
+        /// </summary>
+        /// <param name="partId"></param>
+        /// <param name="staffNumberWithinPart"></param>
+        /// <returns></returns>
+        public bool IsSelected(string partId, int staffNumberWithinPart)
+        {
+            if (null == SelectedStaffs) return true; // No specific staff is selected. Merge information for all parts enabled in UserSettings.
+            foreach (StaffSelector staffSelector in SelectedStaffs)
+            {
+                if (staffSelector.Equals(partId, staffNumberWithinPart))
+                {
+                    return true;  // A specific staff is selected.   Only return information for this staff 
+                }
+            }
+            return false;
+
+            // return SelectedStaff.Equals(partId, staffNumberWithinPart);  // A specific staff is selected.   Only return information for this staff 
+        }
+
+        public bool IsSelected(string partId)
+        {
+            if (null == SelectedStaffs) return true; // No part staff is selected. Merge information for all parts enabled in UserSettings.
+            foreach (StaffSelector staffSelector in SelectedStaffs)
+            {
+                if (0 == string.Compare(staffSelector.PartId, partId))
+                {
+                    return true; // A specific part is selected.   Only return information for this part 
+                }
+            }
+            return false;
+
+            //return (0 == string.Compare(SelectedStaff.PartId, partId));  // A specific part is selected.   Only return information for this part 
+        }
+
+
+
+
 
         public static UserSettings Create(PartlistElement partList, string fileName)
         {

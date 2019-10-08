@@ -4,6 +4,12 @@ using System.Globalization;
 
 namespace MusicXmlReaderModel
 {
+
+
+    /// <summary>
+    /// Contains score-wide meta-information for each part of the score, sutch as PartName and Instrument.
+    /// Does NOT contain musical information such as NoteElements
+    /// </summary>
     public class PartlistElement : Element
     {
 

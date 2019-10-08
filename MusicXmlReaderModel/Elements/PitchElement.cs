@@ -70,6 +70,7 @@ namespace MusicXmlReaderModel
 
             // First compute the value of semiTonesAboveC0 from the ORIGINAL parameters
             semiTonesAboveC0 = (12 * octave) + SemiToneWithinOctave(step) + alter;
+            fullStepsAboveC0 = (07 * octave) + StepToInt(step);
 
             if (0 == alter)
             {

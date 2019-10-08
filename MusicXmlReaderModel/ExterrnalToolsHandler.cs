@@ -5,6 +5,11 @@ using System.Text;
 
 namespace MusicXmlReaderModel
 {
+
+    /// <summary>
+    /// This class (for the time being) belongs to the Model and will be useful for other PC applications using the Model.
+    /// However it is PC specific and will need an OS specific version when porting to another OS!
+    /// </summary>
     public class ExternalToolsHandler
     {
         private string className = "ExternalToolsHandler"; 
@@ -122,24 +127,30 @@ namespace MusicXmlReaderModel
             Logger.Log(string.Format("{0}.{1} failed to find a shortcut {2}", className, functionName, shortcutName));
             return null;
         }
-        
 
-        public void StartMuseScore(string theMusicXmlFileName)
+        private string selectExe(string link, string appConfig, string hardCoded)
+        {
+            if (!string.IsNullOrEmpty(link)) return link;               // First priority:  The user has placed a link as a shortcut on the desktop
+            if (!string.IsNullOrEmpty(appConfig)) return appConfig;     // Second priority: The value from the app.config file
+            return hardCoded;                                           // Fallback:        A hardcoded value which the user can not change.
+        }
+
+        public void StartMuseScore(string theMusicXmlFileName, string appConfigExeFile)
         {
             string linkName = GetLinkFromShortcutAtDesktop(ResourcesForModel.Shortcut_MuseScore);
             string exeFileName = @"C:\Program Files (x86)\MuseScore 2\bin\MuseScore.exe";
-            // Use the link if found, otherwise the hardwired location
-            string executable = string.IsNullOrEmpty(linkName) ? exeFileName : linkName;
-            Utilities.RunExeWithFileArgument(exeFileName, theMusicXmlFileName);
+            string executable = selectExe(linkName, appConfigExeFile, exeFileName);
+            Utilities.RunExeWithFileArgument(executable, theMusicXmlFileName);
         }
 
-        public void StartSibelius(string theMusicXmlFileName)
+
+        public void StartSibelius(string theMusicXmlFileName, string appConfigExeFile)
         {
             string linkName = GetLinkFromShortcutAtDesktop(ResourcesForModel.Shortcut_Sibelius);
             string exeFileName = @"C:\Program Files\Avid\Sibelius\Sibelius.exe";
             // Use the link if found, otherwise the hardwired location
-            string executable = string.IsNullOrEmpty(linkName) ? exeFileName : linkName; 
-            Utilities.RunExeWithFileArgument(executable, theMusicXmlFileName);            
+            string executable = selectExe(linkName, appConfigExeFile, exeFileName);
+            Utilities.RunExeWithFileArgument(executable, theMusicXmlFileName);
         }
 
         public void OpenUrl(string url)
@@ -218,6 +229,73 @@ namespace MusicXmlReaderModel
                     Utilities.RunExeWithFileArgument("notepad.exe", JawsSettingsFullFileName);
                 }
             }
+        }
+
+
+        /// <summary>
+        /// Generate a file containing graphics information about the currently loaded MusicXml file
+        /// This information is entirely to be used for debugging and development purposes.
+        /// </summary>
+        /// <param name="fileName"></param>
+        public void GenerateGraphicInformation(string theMusicXmlFileName, DefaultsElement defaults, EventDescriptionList eventDescriptionList)
+        {
+            if (!System.IO.File.Exists(theMusicXmlFileName))
+            {
+                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.UnspecifiedMusicXmlFile, "", "");
+                return;
+            }
+            string shortFileName = Path.GetFileNameWithoutExtension(theMusicXmlFileName) + ".Graphics.txt";
+            string destinationFile = System.IO.Path.Combine(Logger.LogFileDirectory, shortFileName);
+
+            StringBuilder sb = new StringBuilder();
+            {
+                if (null != defaults)
+                {
+                    sb.Append(string.Format("DefaultsElement({0})",defaults.ToDebugString()));
+                }
+                foreach (EventDescription eventDescription in eventDescriptionList.Events)
+                {
+                    if (null != eventDescription.StavesElements)
+                    {
+                        foreach (StavesElement staves in eventDescription.StavesElements)
+                        {
+                            string s = staves.ToDebugString();
+                            sb.Append(string.Format("\r\nMeasure={0,3} StavesElement({1})", eventDescription.MeasureNumber, s));
+                        }
+                    }
+
+                    if (null != eventDescription.PrintElements)
+                    {
+                        foreach (PrintElement p in eventDescription.PrintElements)
+                        {
+                            string s = p.ToDebugString();
+                            sb.Append(string.Format("\r\nMeasure={0,3} PrintElement({1})",eventDescription.MeasureNumber, s));
+                        }
+                    }
+                }
+            }
+            string info = sb.ToString();
+            bool result = false; ;
+            using (StreamWriter sw = new StreamWriter(File.Open(destinationFile, FileMode.Create)))
+            {
+                try
+                {
+                    sw.Write(info);
+                    result = true;
+                }
+                catch (Exception e)
+                {
+                    Logger.LogCFE(e);
+                }
+            }
+            if (result)
+            { 
+                Logger.LogCF(string.Format(": Wrote graphics information to {0}", destinationFile));
+                string editorProgram = "notepad.exe";
+                bool b = Utilities.RunExeWithFileArgument(editorProgram, destinationFile);
+                Logger.LogCF(String.Format("Execution of {0}({1}) {2}", editorProgram, destinationFile, b ? "succeeded" : "failed")); 
+            }
+
         }
 
     }

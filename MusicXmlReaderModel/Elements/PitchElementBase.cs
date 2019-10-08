@@ -65,6 +65,7 @@ namespace MusicXmlReaderModel
         protected FullStepEnum step;
         protected string name;
         protected int semiTonesAboveC0;
+        protected int fullStepsAboveC0;
 
         public string Name
         {
@@ -85,6 +86,18 @@ namespace MusicXmlReaderModel
                 return semiTonesAboveC0;
             }
         }
+
+        /// <summary>
+        /// (Possibly) used for generating Music Braille Intervalrepresentation
+        /// </summary>
+        public int FullStepsAboveC0
+        {
+            get
+            {
+                return fullStepsAboveC0;
+            }
+        }
+
 
         public int Alter
         {

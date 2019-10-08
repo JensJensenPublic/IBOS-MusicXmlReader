@@ -22,13 +22,18 @@ namespace MusicXmlReaderModel
 
         private bool isLastEvent;
         private bool isFirstEvent;
+        private EventDescription next = null;
+        public EventDescription Next { get { return next; } set{ next = value; } } 
+        private EventDescription prev = null;
+        public EventDescription Prev { get { return prev; } set { prev = value; } }
+
 
         /// <summary>
         /// Notes to be played at this time
         /// </summary>
 //        private NoteElement[] notes; // TO DO: Remove notes. Use noteLists instead!!
 
-        private List<NoteElement>[] noteLists; // An array of lists of notes
+        private NoteElementList[] noteLists; // An array of lists of notes
 
         private HarmonyElement harmonyElement; // The harmony related to this event, if any.
 
@@ -46,11 +51,47 @@ namespace MusicXmlReaderModel
         private List<ClefElement> clefElements;            // The ClefElements related to this event, if any
         private List<TimeElement> timeElements;             // The TimeElements related to this event, if any
         private List<BarlineElement> barlineElements;       // The BarlineElements related to this event, if any. In some rare cases more than one!!
-        private List<DirectionElement> directionElements;   // The DirectionElements related to this event, if any 
+        private List<DirectionElement> directionElements;  
         private List<MeasureStyleElement> measureStyleElements; // The MeasureStyleElements related to this event, if any              
         private List<MeasureElement> measureElements; // The MeasureElements related to this event, if any
         public  List<MeasureElement> MeasureElements { get { return measureElements; } }
+        private List<PrintElement> printElements; // The PrintElements related to this event, if any 
+        public  List<PrintElement> PrintElements { get { return printElements; } }
+        private List<StavesElement> stavesElements;
+        public List<StavesElement>  StavesElements { get { return stavesElements; } }
+
         private StatusInformation statusInformation; // Contains Status information valid for this eventdescription
+
+        private NoteElementList GetAllNotes()
+        {
+            NoteElementList result = NoteElementList.Create();
+            foreach (NoteElementList nel in NoteLists)
+            {
+                foreach (NoteElement ne in nel.NoteElements)
+                {
+                    result.NoteElements.Add(ne);
+                }
+            }
+            return result;
+        }
+
+        private NoteElementList GetAllSelectedNotes()
+        {
+            NoteElementList result = NoteElementList.Create();
+            foreach (NoteElementList nel in NoteLists)
+            {
+                foreach (NoteElement ne in nel.NoteElements)
+                {
+                    if (userSettings.IsSelected(ne.PartId,ne.Staff))
+                    {
+                        result.NoteElements.Add(ne);
+                    }
+                }
+            }
+            return result;
+        }
+
+        
 
 
         //        public MeasureFractionHistory MeasureFractions;
@@ -74,7 +115,36 @@ namespace MusicXmlReaderModel
             get { return isLastEvent; }
             set { isLastEvent = value; }
         }
-        
+
+
+        /// <summary>
+        /// New implementation, used while generating Braille Music files
+        /// </summary>
+        public int CurrentMeasureNumber // Always holds the Measure number, also for noteElements between bars
+        {
+#warning: TODO: get rid of the old implementattion "MeasureNumber" which means something slightly different and is only valid when this contains a MeasureElement !
+            get
+            {
+                if (null == statusInformation)
+                {
+                    Logger.LogCF(": StatusInformation is null.");
+                    Utilities.Beep();
+                    return -1;
+                }
+                if (null == statusInformation.CurrentMeasureElement)
+                {
+                    Logger.LogCF(": StatusInformation.CurrentMeasureElement is null.");
+                    Utilities.Beep();
+                    return -1;
+                }
+                return statusInformation.CurrentMeasureElement.Number;
+            }
+        }
+
+
+        /// <summary>
+        /// The original implementation, not to be replaced without further consideration
+        /// </summary>
         public int MeasureNumber
         {
             get
@@ -84,6 +154,8 @@ namespace MusicXmlReaderModel
 
         }
 
+        public bool IsFirstEventInMeasure { get { return (null != measureElement); } }
+
         public Int64 StartTime
         {
             get
@@ -92,7 +164,7 @@ namespace MusicXmlReaderModel
             }
         }
 
-        public List<NoteElement>[] NoteLists
+        public NoteElementList[] NoteLists
         {
             get
             {
@@ -106,9 +178,9 @@ namespace MusicXmlReaderModel
             {
 
                 if (null == noteLists) return false;
-                foreach (List<NoteElement> noteList in noteLists)
+                foreach (NoteElementList noteList in noteLists)
                 {
-                    foreach (NoteElement noteElement in noteList)
+                    foreach (NoteElement noteElement in noteList.NoteElements)
                     {
                         if (noteElement.PrintObjectAttributeValue) return true; ;
                     }
@@ -210,9 +282,9 @@ namespace MusicXmlReaderModel
             {
                 if (null == noteLists) return 0;
                 int result = 0;
-                foreach (List<NoteElement> noteList in noteLists)
+                foreach (NoteElementList noteList in noteLists)
                 {
-                    result += noteList.Count;
+                    result += noteList.NoteElements.Count;
                 }
                 return result;
             }
@@ -233,10 +305,10 @@ namespace MusicXmlReaderModel
             this.numberOfParts = numberOfParts;
             //            this.notes = new NoteElement[numberOfParts];
             // For each part a list is needed to handle to handle multiple notes within the same part!
-            this.noteLists = new List<NoteElement>[numberOfParts];
+            this.noteLists = new NoteElementList[numberOfParts];
             for (int i = 0; (i < numberOfParts); i++)
             {
-                noteLists[i] = new List<NoteElement>();
+                noteLists[i] = NoteElementList.Create();
             }
             this.userSettings = userSettings;
         }
@@ -257,7 +329,7 @@ namespace MusicXmlReaderModel
             if (eventElement is NoteElement)
             {
                 NoteElement noteElement = eventElement as NoteElement;
-                noteLists[noteElement.PartNumber].Add(noteElement);
+                noteLists[noteElement.PartNumber].NoteElements.Add(noteElement);
             }
             else if (eventElement is HarmonyElement)
             {
@@ -396,6 +468,24 @@ namespace MusicXmlReaderModel
             {
                 // Explicitly do nothing
             }
+            else if (eventElement is PrintElement)
+            {
+                if (null == printElements)
+                {
+                    printElements = new List<PrintElement>();
+                }
+                printElements.Add(eventElement as PrintElement);
+            }
+            else if (eventElement is StavesElement)
+            {
+                if (null == stavesElements)
+                {
+                    stavesElements = new List<StavesElement>();
+                }
+                stavesElements.Add(eventElement as StavesElement);
+            }
+
+
             else
             {
                 Logger.Log(string.Format("{0}.{1} Unsupported eventElement Type={2}", className, functionName, eventElement.GetType()));
@@ -404,163 +494,249 @@ namespace MusicXmlReaderModel
 
         }
 
+        //// Start experimental code ********************************************************************************
+
+        ///// <summary>
+        ///// Simple mechanism for selecting a specific staff within a spscific part.
+        ///// Used for generating BrailleMusic information one staff at a time
+        ///// When generating BrailleMusic for the UI UserSettings.SelectedStaff is null, signalling that no spscific staff is salected.
+        ///// </summary>
+        ///// <param name="partId"></param>
+        ///// <param name="staffNumberWithinPart"></param>
+        ///// <returns></returns>
+        //public bool IsSelected(string partId, int staffNumberWithinPart)
+        //{
+        //    if (null == userSettings.SelectedStaff) return true; // No specific staff is selected. Merge information for all parts enabled in UserSettings.
+        //    return userSettings.SelectedStaff.Equals(partId, staffNumberWithinPart);  // A specific staff is selected.   Only return information for this staff 
+        //}
+
+        //private bool IsSelected(string partId)
+        //{
+        //    if (null == userSettings.SelectedStaff) return true; // No part staff is selected. Merge information for all parts enabled in UserSettings.
+        //    return (0 == string.Compare(userSettings.SelectedStaff.PartId, partId));  // A specific part is selected.   Only return information for this part 
+        //}
+
+
+        //        private List<NoteElement> ChordNotation(List<NoteElement> noteElementList)
+        //        {
+        //            // Start experimental code for generating Chord notation!!
+        //            if (noteElementList.Count <= 1) return null; // Performance optimization: Most times we can stop here !
+        //            List<NoteElement> selectedNotes = new List<NoteElement>(); // Pick up and sort the relevant notes 
+        //            foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
+        //            {
+        //                if ((userSettings.GetParts(UserSettings.Category.MusicBraille, noteElement.PartNumber))
+        //                && noteElement.PrintObjectAttributeValue
+        //                && IsSelected(noteElement.PartId, noteElement.Staff) // For generating BrailleMusic for separate staffs
+        //                && (!noteElement.IsPause) // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! THINK !!
+        //#warning TODO Think 
+        //                    )
+        //                {
+        //                    selectedNotes.Add(noteElement);
+        //                }
+        //            }
+        //            if (selectedNotes.Count >= 2)
+        //            {
+        //                return selectedNotes; // 2 or more notes for the same part and staff at the same time. We must use IntervalNotation or "Bistemmer"
+        //            }
+        //            return null;
+        //        }
+
+        // End experimental code  ********************************************************************************
+
+
+        //        /// <summary>
+        //        /// Generate a representing of the (possibly multiple) notes of a single part
+        //        /// This function is where we can really differentiate ourselves from mainstream products such as MuseScore
+        //        /// </summary>
+        //        /// <param name="noteElementList"></param>
+        //        /// <returns></returns>
+        //        public BrailleBuilder NotesForOnePartAsBraille(List<NoteElement> noteElementList)
+        //        {
+        //            BrailleBuilderEx bb = BrailleBuilderEx.Create(this.startTime);
+        //            if (!userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettingsEnum.Notes)) return bb; // User completely turned off reading of notes
+        //            bool addNotations = userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettingsEnum.Notations);
+        //#if true
+        //#warning ToDo fix experimental code !!
+        //            List<NoteElement> selectedNotes = ChordNotation(noteElementList);
+        //            if ((null != selectedNotes) && (selectedNotes.Count >= 2))
+        //            {
+        //                bool fromTop = (userSettings.SelectedStaff != null) && (1 == userSettings.SelectedStaff.Staff);
+        //                if (bb.AdIntervalNotation(selectedNotes, statusInformation, addNotations, fromTop))
+        //                {
+        //                    return bb;
+        //                }
+        //                else
+        //                {
+        //#warning Early test-implementation !!
+        //                    BrailleMeasureDivision bmd = BrailleMeasureDivision.Create(this);
+        //                    bmd.ToBraille(); 
+        //                }
+        //            }
+        //#endif
+        ////            const string prolog = "<";
+        ////            const string epilog = ">";
+        //            const string prolog = "";
+        //            const string epilog = " ";
+        //            // We don't need Interval notation. Just continue as in version <= 3.0
+        //            foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
+        //            {
+
+        //                try
+        //                {
+        //                    // Add pitch information
+        //                    // If the note is not marked for printing with the PrintObjectAttributeValue we ignore it
+        //                    if ((userSettings.GetParts(UserSettings.Category.MusicBraille,noteElement.PartNumber))
+        //                    && noteElement.PrintObjectAttributeValue
+        //                    && IsSelected(noteElement.PartId,noteElement.Staff) // For generating BrailleMusic for separate staffs
+        //                    ) 
+        //                    {
+        //                        // bool addNotations = userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettingsEnum.Notations);
+        //                        BrailleBuilder bb1 = BrailleBuilder.Create(this.startTime); // TO DO: Why not use bb directly ???
+        //                                                                      // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)
+        //#warning TODO Refactor: Only the calls to bb.AddRest/bb.AddNote seem to be different !
+        //                        if (noteElement.IsPause)
+        //                        {
+        //                            // This is a rest 
+        //                            bb1.AppendText(prolog);
+        //                            if (addNotations) bb1.AddBrailleNotationsBeforeNoteOrRest(noteElement.Notations); // Some notations are added Before the note/rest itself 
+        //                            bb1.AddRest(noteElement.NoteDuration, false); // TO DO: Handle punctured rests
+        //                            if (addNotations) bb1.AddBrailleNotationsAfterNoteOrRest(noteElement.Notations);  // Some notations are added After the note/rest itself
+        //                            bb1.AppendText(epilog);
+        //                        }
+        //                        else
+        //                        {
+        //                            // This is a note
+        //                            bb1.AppendText(prolog);
+        //                            if (addNotations) bb1.AddBrailleNotationsBeforeNoteOrRest(noteElement.Notations); // Some notations are added Before the note/rest itself                       
+        //                            bb1.AddNote(noteElement,statusInformation.CurrentKeyElement);
+        //                            if (addNotations) bb1.AddBrailleNotationsAfterNoteOrRest(noteElement.Notations);  // Some notations are added After the note/rest itself
+        //                            bb1.AppendText(epilog);
+
+        //                        }
+        //                        //bb.Append(bb1.Braille, bb1.Text.ToString());
+        //                        bb.Append(bb1);
+        //                    }
+        //                }
+        //                catch (Exception e)
+        //                {
+        //                    Logger.Log(string.Format("EventDescription.NotesForOnePartAsBraille threw an exception. Message='{0}'", e.Message));
+        //                    Logger.Log(string.Format("NoteElement: Step={0} Alter={1} Octave={2} Duration={3} Measure={4} Part={5}",
+        //                        noteElement.Step, noteElement.Alter, noteElement.Octave, noteElement.Duration.ToString(), noteElement.MeasureNumber, noteElement.PartId));
+        //                }
+        //            }
+
+        //            return bb;
+        //        }
+
+
+
+
+        ///// <summary>
+        ///// Generate a string representing the (possibly multiple) notes of a single part
+        ///// This function is where we can really differentiate ourselves from mainstream products such as MuseScore
+        ///// </summary>
+        ///// <param name="noteElementList"></param>
+        ///// <returns></returns>
+        //public string NotesForOnePart(List<NoteElement> noteElementList)
+        //{
+        //    if (!userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Notes)) return ""; // User completely turned off reading of notes
+        //    if (0 == noteElementList.Count()) return " "; // Nothing happened in this part 
+        //    StringBuilder sb = new StringBuilder();
+        //    foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
+        //    {
+        //        //string delimiter = string.IsNullOrEmpty(sb) ? "" : "+"; // Use this string to separate notes within one part
+        //        // Add pitch information
+        //        if (userSettings.GetParts(UserSettings.Category.Speech,noteElement.PartNumber)) // Might later look at subparts S1/S2 ? 
+        //        {
+
+        //            string note = "";
+        //            // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)
+        //            if (noteElement.IsPause)
+        //            {
+        //                // This is a pause
+        //                // Here the type and the word "pause" are cocatenated such as "punkteret halvnodepause"
+        //                string type = userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.NoteTypes) ? noteElement.LocalizedPauseType : "pause";
+        //                string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
+        //                note = string.Format(" {0} {1}",type, notations);
+        //            }
+        //            else
+        //            {
+        //                // This is a note
+        //                // Here the sequence is pitch,octave,type such af "Cis4 punkteret halvnode"
+        //                string accidental = (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.NoteAccidentals) && (null != noteElement.AccidentalElement)) ?  noteElement.AccidentalElement.ToString() : "";
+        //                string pitch    = noteElement.PitchValue.Name; // Always use the name of the note
+        //                string octave   = userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.NoteOctaves) ? noteElement.Octave.ToString() : "";
+        //                string type     = userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.NoteTypes) ? noteElement.LocalizedType : "";
+        //                string pitchAndOctave = noteElement.UnPitched ? noteElement.UnpitchedText : string.Format("{0}{1}", pitch, octave);
+        //                string cueString = noteElement.CueNoteString;                        
+        //                string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
+        //                //                      note = string.Format("{0,-4} {1}", pitchAndOctave, type); // Always use 4 chars for pitch and Octave. Examples: "C   ","Cis4"
+        //                string printability = noteElement.PrintObjectAttributeValue ? "" : string.Format("({0})", ResourcesForModel.EventDescription_NotPrinted); // TODO USe Resources !
+        //                note = string.Format("{0} {1} {2} {3} {4} {5}", accidental, pitchAndOctave, type, cueString, notations, printability);    // Do not use extra chars for Pitch and Octave. Examples: "C","Cis4"
+        //            }
+
+        //            // string note = string.IsNullOrEmpty(noteElement.Step) ? "Pause" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave + " " +noteElement.LocalizedType;
+        //            //s = s + delimiter + note;
+        //            if (sb.Length > 0)  sb.Append(" "); // Separate the notes with ""
+        //            sb.Append(note);
+        //        }
+        //    }
+        //    return sb.ToString();
+        //}
+
+        ///// <summary>
+        ///// Generate a string representing the (possibly multiple) texts of a single part
+        ///// </summary>
+        ///// <param name="noteElementList"></param>
+        ///// <returns></returns>
+        //public string LyricsForOnePart(List<NoteElement> noteElementList)
+        //{
+        //    if (!userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Lyrics)) return ""; 
+        //    if (0 == noteElementList.Count()) return ""; // Nothing happened in this part 
+        //    StringBuilder sb = new StringBuilder();
+        //    foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
+        //    {
+        //        if (userSettings.GetParts(UserSettings.Category.Speech,noteElement.PartNumber))
+        //        {
+        //            if (!string.IsNullOrEmpty(noteElement.Text))
+        //            {
+        //                sb.Append((0 == sb.Length) ? "" : " ");
+        //                sb.Append(noteElement.Text);
+        //            }
+        //        }
+        //    }
+        //    return sb.ToString();
+        //}
+
         /// <summary>
-        /// Generate a representing of the (possibly multiple) notes of a single part
-        /// This function is where we can really differentiate ourselves from mainstream products such as MuseScore
+        /// This is the original implementation, without parameters, used for populating a listbox.
+        /// Converts each part separately, thus not allowing for Interval notation across parts
         /// </summary>
-        /// <param name="noteElementList"></param>
         /// <returns></returns>
-        public BrailleBuilder NotesForOnePartAsBraille(List<NoteElement> noteElementList)
+        public BrailleBuilder ToBraille()
         {
-            BrailleBuilder bb = BrailleBuilder.Create();
-            if (!userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettingsEnum.Notes)) return bb; // User completely turned off reading of notes
-
-
-            foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
-            {
-                try
-                {
-                    // Add pitch information
-                    // If the note is not marked for printing with the PrintObjectAttributeValue we ignore it
-                    if ((userSettings.GetParts(UserSettings.Category.MusicBraille,noteElement.PartNumber)) && noteElement.PrintObjectAttributeValue)// Might later look at subparts S1/S2 ? 
-                    {
-                        bool addNotations = userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettingsEnum.Notations);
-                        BrailleBuilder bb1 = BrailleBuilder.Create(); // TO DO: Why not use bb directly ???
-                                                                      // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)
-                        if (noteElement.IsPause)
-                        {
-                            // This is a rest 
-                            bb1.Append("<");
-                            if (addNotations) bb1.AddBrailleNotationsBeforeNoteOrRest(noteElement.Notations); // Some notations are added Before the note/rest itself 
-                            bb1.AddRest(noteElement.NoteDuration, false); // TO DO: Handle punctured rests
-                            if (addNotations) bb1.AddBrailleNotationsAfterNoteOrRest(noteElement.Notations);  // Some notations are added After the note/rest itself
-                            bb1.Append(">");
-                        }
-                        else
-                        {
-                            // This is a note
-                            bb1.Append("<");
-                            if (addNotations) bb1.AddBrailleNotationsBeforeNoteOrRest(noteElement.Notations); // Some notations are added Before the note/rest itself                       
-                            bb1.AddNote(noteElement,statusInformation.CurrentKeyElement);
-                            if (addNotations) bb1.AddBrailleNotationsAfterNoteOrRest(noteElement.Notations);  // Some notations are added After the note/rest itself
-                            bb1.Append(">");
-
-                        }
-                        //bb.Append(bb1.Braille, bb1.Text.ToString());
-                        bb.Append(bb1);
-                    }
-                }
-                catch (Exception e)
-                {
-                    Logger.Log(string.Format("EventDescription.NotesForOnePartAsBraille threw an exception. Message='{0}'", e.Message));
-                    Logger.Log(string.Format("NoteElement: Step={0} Alter={1} Octave={2} Duration={3} Measure={4} Part={5}",
-                        noteElement.Step, noteElement.Alter, noteElement.Octave, noteElement.Duration.ToString(), noteElement.MeasureNumber, noteElement.PartId));
-                }
-            }
-
-            return bb;
-        }
-            
-
-          
-
-        /// <summary>
-        /// Generate a string representing the (possibly multiple) notes of a single part
-        /// This function is where we can really differentiate ourselves from mainstream products such as MuseScore
-        /// </summary>
-        /// <param name="noteElementList"></param>
-        /// <returns></returns>
-        public string NotesForOnePart(List<NoteElement> noteElementList)
-        {
-            if (!userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Notes)) return ""; // User completely turned off reading of notes
-            if (0 == noteElementList.Count()) return " "; // Nothing happened in this part 
-            StringBuilder sb = new StringBuilder();
-            foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
-            {
-                //string delimiter = string.IsNullOrEmpty(sb) ? "" : "+"; // Use this string to separate notes within one part
-                // Add pitch information
-                if (userSettings.GetParts(UserSettings.Category.Speech,noteElement.PartNumber)) // Might later look at subparts S1/S2 ? 
-                {
-
-                    string note = "";
-                    // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)
-                    if (noteElement.IsPause)
-                    {
-                        // This is a pause
-                        // Here the type and the word "pause" are cocatenated such as "punkteret halvnodepause"
-                        string type = userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.NoteTypes) ? noteElement.LocalizedPauseType : "pause";
-                        string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
-                        note = string.Format(" {0} {1}",type, notations);
-                    }
-                    else
-                    {
-                        // This is a note
-                        // Here the sequence is pitch,octave,type such af "Cis4 punkteret halvnode"
-                        string accidental = (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.NoteAccidentals) && (null != noteElement.AccidentalElement)) ?  noteElement.AccidentalElement.ToString() : "";
-                        string pitch    = noteElement.PitchValue.Name; // Always use the name of the note
-                        string octave   = userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.NoteOctaves) ? noteElement.Octave.ToString() : "";
-                        string type     = userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.NoteTypes) ? noteElement.LocalizedType : "";
-                        string pitchAndOctave = noteElement.UnPitched ? noteElement.UnpitchedText : string.Format("{0}{1}", pitch, octave);
-                        string cueString = noteElement.CueNoteString;                        
-                        string notations = (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Notations) && (null != noteElement.Notations)) ? noteElement.Notations.ToString() : "";
-                        //                      note = string.Format("{0,-4} {1}", pitchAndOctave, type); // Always use 4 chars for pitch and Octave. Examples: "C   ","Cis4"
-                        string printability = noteElement.PrintObjectAttributeValue ? "" : string.Format("({0})", ResourcesForModel.EventDescription_NotPrinted); // TODO USe Resources !
-                        note = string.Format("{0} {1} {2} {3} {4} {5}", accidental, pitchAndOctave, type, cueString, notations, printability);    // Do not use extra chars for Pitch and Octave. Examples: "C","Cis4"
-                    }
-
-                    // string note = string.IsNullOrEmpty(noteElement.Step) ? "Pause" : noteElement.PitchValue.Name + noteElement.PitchValue.Octave + " " +noteElement.LocalizedType;
-                    //s = s + delimiter + note;
-                    if (sb.Length > 0)  sb.Append(" "); // Separate the notes with ""
-                    sb.Append(note);
-                }
-            }
-            return sb.ToString();
-        }
-
-        /// <summary>
-        /// Generate a string representing the (possibly multiple) texts of a single part
-        /// </summary>
-        /// <param name="noteElementList"></param>
-        /// <returns></returns>
-        public string LyricsForOnePart(List<NoteElement> noteElementList)
-        {
-            if (!userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Lyrics)) return ""; 
-            if (0 == noteElementList.Count()) return ""; // Nothing happened in this part 
-            StringBuilder sb = new StringBuilder();
-            foreach (NoteElement noteElement in noteElementList) // Iterate over the notes within one part! For instance (S1,S2).
-            {
-                if (userSettings.GetParts(UserSettings.Category.Speech,noteElement.PartNumber))
-                {
-                    if (!string.IsNullOrEmpty(noteElement.Text))
-                    {
-                        sb.Append((0 == sb.Length) ? "" : " ");
-                        sb.Append(noteElement.Text);
-                    }
-                }
-            }
-            return sb.ToString();
-        }
-
-        public BrailleBuilder ToMusicBrailleString()
-        {
-            if (!userSettings.MusicAsMusicBraille) return BrailleBuilder.Create();
-            return ToBraille();
+            EventDescription dummyArgument = null;
+            return ToBraille(false,false, out dummyArgument); // Convert each part separately, thus NOT allowing for Interval notation across parts. Do not use Chord Notation at all.
         }
 
         /// <summary>
         /// Generates the Braille representation, where ToNormalTextString() generates the text representation 
         /// Same structure as ToNormalTextString()
         /// Depending on settings ToString  will generate a mix of the results of ToBraille and ToNormalTextString()
+        /// If mergeAllParts is true,  all parts are merged before converting, thus allowing for Interval Notation across parts
         /// </summary>
         /// <returns></returns>
-        public BrailleBuilder ToBraille()
+        public BrailleBuilder ToBraille(bool mergeAllParts, bool useChordNotation, out EventDescription nextEventDescription)
         {
+            nextEventDescription = this.Next; // The default
+            if (!userSettings.MusicAsMusicBraille) return BrailleBuilder.Create(this.startTime);
+
             string functionName = "ToBraille";
             bool repeatForward  = false; // Max one Repeat forward per eventdescription
             bool repeatBackward = false; // Max one Repeat backward per eventdescription
 
             // const string functionName = "EventDescription.ToBraille";
-            BrailleBuilder bbBeforeNotes = BrailleBuilder.Create(); // For information not contained in notes
+            BrailleBuilder bbBeforeNotes = BrailleBuilder.Create(this.startTime); // For information not contained in notes
 
 
             //string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
@@ -580,11 +756,41 @@ namespace MusicXmlReaderModel
             }
 
 
-            //string measure = "";
-            //if (userSettings.GetReaderSettings(UserSettings.ReaderSettings.MeasureNumbers))
-            //{
-            //    measure = (null != measureElement) ? string.Format("Takt {0,3} ", measureElement.Number) : "         "; // Up to 1000 measures
-            //}
+      
+            if (userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettingsEnum.MeasureNumbers))
+            {
+                // Create a list of all selected barstyles for this EventDescription
+                List<BarStyleEnum> selectedBarStyles = new List<BarStyleEnum>();
+                if (null != barlineElements)
+                {
+                    foreach (BarlineElement barlineElement in barlineElements)
+                    {
+                        if (this.userSettings.IsSelected(barlineElement.PartId) && (null != barlineElement.BarStyleElement))
+                        {
+                            BarStyleEnum barStyle = barlineElement.BarStyleElement.BarStyle;
+                            if (!selectedBarStyles.Contains(barStyle))
+                            {
+                                selectedBarStyles.Add(barStyle);
+                            }
+                        }
+                    }
+                }
+
+                // Check if a selected part contains a measureElement
+                bool implicitBar = false;
+                if (null != measureElements)
+                {
+                    foreach (MeasureElement measureElement in measureElements)
+                    {
+                        if (this.userSettings.IsSelected(measureElement.PartId))
+                        {
+                            implicitBar = true;
+                        }
+                    }
+                }
+
+                bbBeforeNotes.AddBarline(selectedBarStyles,implicitBar,this.MeasureNumber);
+            }
 
             //string harmonyCode = "";
             //if ((userSettings.GetReaderSettings(UserSettings.ReaderSettings.HarmonyCodes)) && (null != harmonyElement))
@@ -631,12 +837,21 @@ namespace MusicXmlReaderModel
 
             if (null != clefElements) // First the ClefElement
             {
-                if (1 == clefElements.Count)
+                List<ClefElement> selectedClefElements = new List<ClefElement>();
+                foreach (ClefElement clefElement in clefElements)
                 {
-                    ClefElement c = clefElements[0];
-                    bbBeforeNotes.Append("(");
+                    if (this.userSettings.IsSelected(clefElement.PartId,clefElement.StaffNumber)) // For generating BrailleMusic for separate staffs
+                    {
+                        selectedClefElements.Add(clefElement);
+                    }
+                }    
+                                          
+                if (1 == selectedClefElements.Count)
+                {
+                    ClefElement c = selectedClefElements[0];
+                    bbBeforeNotes.AppendText("(");
                     bbBeforeNotes.AddClef(c, c.ToShortString());  // Get the unlocalized version
-                    bbBeforeNotes.Append(")");
+                    bbBeforeNotes.AppendText(")");
                 }
                 else
                 {
@@ -661,9 +876,9 @@ namespace MusicXmlReaderModel
                 {
                     Logger.LogOnce(string.Format("{0}.{1} Different keyElements for same event", className, functionName));
                 }
-                bbBeforeNotes.Append("(");
+                bbBeforeNotes.AppendText("(");
                 bbBeforeNotes.AddKey(k0, k0.ToShortString());
-                bbBeforeNotes.Append(")");                
+                bbBeforeNotes.AppendText(")");                
             }
             
   
@@ -684,23 +899,36 @@ namespace MusicXmlReaderModel
                 {
                     Logger.LogOnce(string.Format("{0}.{1} Different timeElements for same event", className, functionName));
                 }
-                bbBeforeNotes.Append("(");
+                bbBeforeNotes.AppendText("(");
                 bbBeforeNotes.AddTime(t0, t0.ToShortString());
-                bbBeforeNotes.Append(")");
+                bbBeforeNotes.AppendText(")");
             }
 
-            
-
-            BrailleBuilder bbNotes = BrailleBuilder.Create();
-            // Iterate over the parts and build a complete representation of all notes and of all texts
-            foreach (List<NoteElement> noteElementList in noteLists) // Iterate over the fixed number of parts.
+      
+            BrailleBuilder bbNotes = BrailleBuilder.Create(this.startTime);
+            if (mergeAllParts)
             {
-                BrailleBuilder notes  = NotesForOnePartAsBraille(noteElementList); // Represents all notes for all parts
-                bbNotes.Append(notes);  
+                NoteElementList allNotes = NoteElementList.Create();
+                // Iterate over the parts and build a complete list of all notes 
+                foreach (NoteElementList noteElementList in noteLists) // Iterate over the fixed number of parts.
+                {
+                    allNotes.NoteElements.AddRange(noteElementList.NoteElements);                  
+                }
+                BrailleBuilder notes = allNotes.ToBraille(userSettings,this,useChordNotation,out nextEventDescription); // One single BrailleBuilder represents all notes for all parts
+                bbNotes.Append(notes);
+            }
+            else
+            {
+                // Iterate over the parts and build a complete representation of all notes and of all texts
+                foreach (NoteElementList noteElementList in noteLists) // Iterate over the fixed number of parts.
+                {
+                    BrailleBuilder notes = noteElementList.ToBraille(userSettings,this,useChordNotation,out nextEventDescription); // One BrailleBuilder per part
+                    bbNotes.Append(notes);
+                }
             }
 
             // Extract information to be shown after the notes
-            BrailleBuilder bbAfterNotes = BrailleBuilder.Create();
+            BrailleBuilder bbAfterNotes = BrailleBuilder.Create(this.startTime);
             // Look for repeat forward/backward and insert, but only one of each per event description !!
             // Look for a termination (Danish "Helslutning") and insert the appropriate sequence
             bool lastBar = false;
@@ -756,7 +984,7 @@ namespace MusicXmlReaderModel
             //return measure + repeatForward + divisions + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString + keyString + clefString + timeString + repeatBackward;
 
             // Ad the various components:
-            BrailleBuilder total = BrailleBuilder.Create();
+            BrailleBuilder total = BrailleBuilder.Create(this.startTime);
             total.Append(bbBeforeNotes);
             total.Append(bbNotes);
             total.Append(bbAfterNotes);
@@ -774,7 +1002,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public override string ToString()
         {
-            BrailleBuilder bb = ToMusicBrailleString();
+            BrailleBuilder bb = ToBraille(); // The original, parameterless version, designed to be used by the Listbox !!
             musicBrailleRepresentation = bb.ToBrailleString();
             musicBrailleAsTextRepresentation = bb.ToEquvivalentTextRepresentation(); // Primarily for dedugging
             textRepresentation = ToNormalTextString();
@@ -787,9 +1015,36 @@ namespace MusicXmlReaderModel
         }
 
 
+        /// <summary>
+        /// ONLY for debugging purposes. Can be changed as required.
+        /// </summary>
+        /// <returns></returns>
+        public string ToDebugString()
+        {
+            return ToDebugString(null);
+        }
+
+        /// <summary>
+        /// ONLY for debugging purposes. Can be changed as required.
+        /// </summary>
+        /// <returns></returns>
+        public string ToDebugString(UserSettings userSettings)
+        {
+            NoteElementList notes = (null == userSettings) ? this.GetAllNotes() : this.GetAllSelectedNotes();
+            if (0 == notes.NoteElements.Count)
+            {
+                return ""; // Skip events with no selected notes !
+            }
+            string result = string.Format("Start={0} Notes={1}:  {2}", this.StartTime,notes.NoteElements.Count, notes.ToDebugString());
+            return result;
+        }
+
+
+
+
         public string ToMusicBrailleAndTextBrailleString()
         {
-            string mb = ToMusicBrailleString().ToBrailleString(); 
+            string mb = ToBraille().ToBrailleString(); 
             string nt = ToNormalTextString();            
             return string.Format("{0} {1}", mb, nt);
         }
@@ -981,10 +1236,10 @@ namespace MusicXmlReaderModel
             StringBuilder sbNotes = new StringBuilder();
             StringBuilder sbTexts = new StringBuilder();
             // Iterate over the parts and build a complete representation of all notes and of all texts
-            foreach (List<NoteElement> noteElementList in noteLists) // Iterate over the fixed number of parts.
+            foreach (NoteElementList noteElementList in noteLists) // Iterate over the fixed number of parts.
             {
-                string notes  = NotesForOnePart(noteElementList); // Represents all notes for all parts
-                string lyrics = LyricsForOnePart(noteElementList); // Represents all texts for all parts
+                string notes  = noteElementList.ToString(userSettings); // Represents all notes for all parts
+                string lyrics = noteElementList.ToLyrics(userSettings); // Represents all lyrics for all parts
                 // Assume that: The step is described with 3 characters. The octave with 1 character and max 2 notes per part !
                 //sbNotes.Append(string.Format("{0,9} ", partNotes.Replace(" ", "")));  // Remove any blanks and fix width to 9 
                 if (!string.IsNullOrWhiteSpace(notes)) // Avoid adding an extra blank if no text is available 
@@ -996,6 +1251,36 @@ namespace MusicXmlReaderModel
                     sbTexts.Append(string.Format("{0} ", lyrics));
                 }
             }
+
+            int newPages = 0;
+            int newSystems = 0;
+            string printFormatString = "";
+            //if (UserSettings.??)
+#warning TODO
+            {
+                if ((null != printElements))
+                {
+                    foreach (PrintElement printElement in printElements)
+                    {
+                        if (null != printElement.NewPage) newPages++;
+                        if (null != printElement.NewSystem) newSystems++;
+
+#if false  // Only for initial debugging !!
+                        string s = string.Format("Measure={0}: PrintElement({1})", this.MeasureNumber,  printElement.ToDebugString());
+                        LogFormatter.Log(LogFormatter.LogOptions.Always, s); 
+#endif
+
+                    }
+                    // We assume that each part contains identical information. Is that right?
+                    // Check against NumberOfParts !! 
+                    Warn(this.numberOfParts, newPages, "NewPage");
+                    Warn(this.numberOfParts, newSystems, "NewSystems");
+                    //Logger.LogCF(string.Format(": NewPages={0} NewSystems={1}", newPages, newSystems));
+                }
+                if (0 != newPages) printFormatString += "New Page";
+                if (0 != newSystems) printFormatString += "New System";
+            }
+
 
             // Finnally compose the result by concatenating all the substrings in the sequence wanted
             // The first event description (to a certain extent) reflects the sequence in which information is aquired by the eye when scanning a music sheet for prima vista use.
@@ -1011,8 +1296,53 @@ namespace MusicXmlReaderModel
                 clefString = "";
             }
 
-            return measure + soundString + timeString + keyString + clefString + repeatBackward + repeatForward + divisions + dynamicsString + measureStyleString + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endOfScore + endEventString  ;
+            return printFormatString + measure + soundString + timeString + keyString + clefString + repeatBackward + repeatForward + divisions + dynamicsString + measureStyleString + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endOfScore + endEventString  ;
         }
+
+
+        /// <summary>
+        /// Returns the duration in commonDivisions of the longest note starting at this EventDescription
+        /// </summary>
+        /// <param name="userSettings"></param>
+        /// <returns></returns>
+        public long GetLongestDuration(UserSettings userSettings)
+        {
+            long result = 0;
+            foreach (NoteElementList noteElementList in this.noteLists)
+            {
+                result = Math.Max(result, noteElementList.GetLongestDuration(userSettings));
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// Returns the Endtime of the longset lasting note starting at this eventdescription, using the give UserSettings
+        /// </summary>
+        /// <param name="userSetings"></param>
+        /// <returns></returns>
+        public long GetLatestEndTime(UserSettings userSetings)
+        {
+            long longestDuration = GetLongestDuration(userSettings);
+            return this.startTime + longestDuration;
+        }
+
+
+        /// <summary>
+        /// Simple convenience method
+        /// </summary>
+        /// <param name="numberOfParts"></param>
+        /// <param name="paramValue"></param>
+        /// <param name="paramName"></param>
+        private void Warn(int numberOfParts, int paramValue, string paramName)
+        {
+            if (paramValue == numberOfParts) return;
+            if (paramValue == 0) return;
+            {
+                Logger.LogCF(string.Format(": Unexpected number of PrintElements with '{0}=Yes' = {1} ", paramName, paramValue));
+            }
+        }
+
     }
 }
 

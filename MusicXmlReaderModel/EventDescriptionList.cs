@@ -11,6 +11,8 @@ namespace MusicXmlReaderModel
         private string className = "EventDescriptionList";
 
         UserSettings userSettings;
+        int numberOfParts;
+        public int NumberOfParts { get { return numberOfParts; } }
 
         /// <summary>
         /// To force the use of the Create() method
@@ -29,6 +31,8 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public EventDescription firstEventDescription;
+        public EventDescription lastEventDescription;
 
         /// <summary>
         /// Validity-check: The number of MeasureElements must be 0 or equal to the number of parts !
@@ -38,6 +42,7 @@ namespace MusicXmlReaderModel
         /// <param name="numberOfParts"></param>
         private void CheckValidity(EventDescription eventDescription, int numberOfParts)
         {
+            this.numberOfParts = numberOfParts;
             if (null != eventDescription.MeasureElements)
             {
                 int count = eventDescription.MeasureElements.Count;
@@ -103,6 +108,22 @@ namespace MusicXmlReaderModel
                 this.events[0].IsFirstEvent = true;
                 this.events[this.events.Count-1].IsLastEvent = true;
             }
+             
+            // Init various references for better navigation within the list        
+            for (int i = 0; (i < this.events.Count - 1); i++)
+            {
+                this.events[i].Next = this.events[i + 1];
+            }
+            for (int i = 1; (i < this.events.Count); i++)
+            {
+                this.events[i].Prev = this.events[i - 1];
+            }
+            if (this.Events.Count > 0)
+            {
+                firstEventDescription = events[0];
+                lastEventDescription  = events[events.Count -1 ];
+            }
+
 
         }
 
@@ -186,6 +207,56 @@ namespace MusicXmlReaderModel
             }
 
         }
+
+        /// <summary>
+        /// Generates the Music Mraille representation for the score described in events.
+        /// </summary>
+        /// <param name="events"></param>
+        /// <param name="userSettings"></param>
+        /// <param name="fullFileName"></param>
+        /// <returns></returns>
+        public List<string> Format(UserSettings userSettings)
+        {
+#warning TODO Save and restore UserPreferences                   
+            // Set up for Music Braille. No normal text 
+            // Do not tamper with the Braille settings: Keep user's choise !
+            bool existingSpeechSettings = userSettings.MusicAsSpeech;  // Save the existing setting of the top node
+            userSettings.MusicAsSpeech = false; // Turn off all reader settings by turning off the top node.
+            List<string> eventList = new List<string>();
+            try
+            {
+                //throw new Exception("For test of exception handling only");
+                // Convert the parsed file to MusicBraille
+                // Keeps the structure: One event per list element
+                StringBuilder scoreAsMusicBraille = new StringBuilder();    // Ignores the structure
+                for (int i = 0; (i < Events.Count); i++)
+                {
+                    object o = Events[i];
+                    if (o is EventDescription)
+                    {
+                        EventDescription eventDescription = o as EventDescription;
+                        BrailleBuilder bb = eventDescription.ToBraille(); // The original, parameterless version
+                        string eventAsMusicBraille = bb.ToBrailleString();
+                        eventList.Add(eventAsMusicBraille);                // Keep the structure !
+                        scoreAsMusicBraille.Append(eventAsMusicBraille);    // Just append eerything
+                    }
+                }
+                string score = scoreAsMusicBraille.ToString();
+                //Logger.LogCF(string.Format(": Writing {0} Braille characters from {1} eventdescriptions to {2}", score.Length, eventList.Count,fullFileName));
+                // return this.WriteToFile(score, fullFileName);  // Ignoring width and height 
+            }
+            catch (Exception e)
+            {
+                Utilities.Beep();
+                Logger.LogCFE(e);
+                Logger.LogCF(string.Format(": Restoring user settings after catching an exception!."));
+            }
+            userSettings.MusicAsSpeech = existingSpeechSettings; // Restore speech settings
+            // return BrailleUtilities.Format(eventList, this.charsPerLine, this.linesPerForm);
+            return eventList;
+            //return this.WriteToFile(eventList, fullFileName); // Taking in account width and height
+        }
+
 
 
 

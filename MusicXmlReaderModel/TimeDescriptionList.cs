@@ -80,11 +80,11 @@ namespace MusicXmlReaderModel
             int numberOfParts = partDescriptionList.NumberOfParts;
             times = new List<Element>();
 
-            foreach (List<Element> elementList in partDescriptionList.parts)
+            foreach (PartDescription part in partDescriptionList.parts)
             {
                 Int64 nextStartTime = 0; // Each part starts at time = 0 MilliSeconds
                 Int64 previousStartTime = 0;
-                foreach (Element e in elementList)
+                foreach (Element e in part.Elements)
                 {
                     if (e is NoteElement)
                     {
@@ -148,6 +148,8 @@ namespace MusicXmlReaderModel
                      || (e is AttributesElement)
                      || (e is DirectionElement)
                      || (e is MeasureStyleElement)
+                     || (e is PrintElement)
+                     || (e is StavesElement)
                      )
                     {
                         // All these elements are EventElements!
@@ -156,7 +158,7 @@ namespace MusicXmlReaderModel
                     else
                     {
                         // Ignore this element.
-                        Logger.LogOnce(string.Format("TimeDescriptionList: Unexpected element of type {0} String='{1}'", e.GetType(), e.ToString()));
+                        Logger.LogCFOnce(string.Format(": Unexpected element of type {0} String='{1}'", e.GetType(), e.ToString()));
                     }
                 }
 

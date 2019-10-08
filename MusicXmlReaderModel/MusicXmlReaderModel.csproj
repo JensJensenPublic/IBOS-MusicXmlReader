@@ -46,29 +46,61 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrailleBuilder.cs" />
+    <Compile Include="BrailleBuilderBase.cs" />
+    <Compile Include="BrailleBuilderEx.cs" />
+    <Compile Include="BrailleBuilderForText.cs" />
     <Compile Include="BrailleDisplayer.cs" />
     <Compile Include="BrailleFileHandler.cs" />
     <Compile Include="BrailleFileHandler_BRF_ASCII.cs" />
     <Compile Include="BrailleFileHandler_BRF_Unicode.cs" />
     <Compile Include="BrailleFileHandler_BRL_OctoBraille_1252.cs" />
+    <Compile Include="BrailleFileHandler_Generic.cs" />
+    <Compile Include="BrailleFileUnicodeTester.cs" />
+    <Compile Include="BrailleInAccordInfo.cs" />
+    <Compile Include="BrailleInAccordSegment.cs" />
+    <Compile Include="BrailleInAccordVoice.cs" />
+    <Compile Include="BrailleUtilities.cs" />
     <Compile Include="DetailsDescription.cs" />
     <Compile Include="DetailsPlayer.cs" />
+    <Compile Include="Elements\AccidentalTextElement.cs" />
+    <Compile Include="Elements\AppearanceElement.cs" />
     <Compile Include="Elements\BassElement.cs" />
     <Compile Include="Elements\BeatRepeatElement.cs" />
+    <Compile Include="Elements\DefaultsElement.cs" />
     <Compile Include="Elements\DegreeElement.cs" />
     <Compile Include="Elements\DirectionTypeElement.cs" />
+    <Compile Include="Elements\EmptyFontElement.cs" />
+    <Compile Include="Elements\FormattedTextElement.cs" />
+    <Compile Include="Elements\LyricFontElement.cs" />
+    <Compile Include="Elements\LyricLanguageElement.cs" />
+    <Compile Include="Elements\MeasureNumberingElement.cs" />
     <Compile Include="Elements\MeasureRepeatElement.cs" />
     <Compile Include="Elements\MeasureStyleElement.cs" />
     <Compile Include="Elements\MetronomeElement.cs" />
     <Compile Include="Elements\MidiDeviceElement.cs" />
     <Compile Include="Elements\MultipleRestElement.cs" />
+    <Compile Include="Elements\NameDisplayElement.cs" />
+    <Compile Include="Elements\PageLayoutElement.cs" />
+    <Compile Include="Elements\PageMarginsElement.cs" />
     <Compile Include="Elements\PitchElementBase.cs" />
+    <Compile Include="Elements\PrintElement.cs" />
+    <Compile Include="Elements\PrintEmptyObjectStyleAlignElement.cs" />
     <Compile Include="Elements\RootElement.cs" />
+    <Compile Include="Elements\ScalingElement.cs" />
     <Compile Include="Elements\SlashElement.cs" />
+    <Compile Include="Elements\StaffLayoutElement.cs" />
+    <Compile Include="Elements\StavesElement.cs" />
+    <Compile Include="Elements\SystemDevidersElement.cs" />
+    <Compile Include="Elements\SystemLayoutElement.cs" />
+    <Compile Include="Elements\SystemMarginsElement.cs" />
+    <Compile Include="Elements\TextElementBase.cs" />
     <Compile Include="Elements\UnpitchedElement.cs" />
     <Compile Include="Elements\VirtualInstrumentElement.cs" />
+    <Compile Include="Exceptions.cs" />
     <Compile Include="IntegerFraction.cs" />
     <Compile Include="KnownFolders.cs" />
+    <Compile Include="LogFormatter.cs" />
+    <Compile Include="LoggerDelayCounter.cs" />
     <Compile Include="MeasureFraction.cs" />
     <Compile Include="MeasureFraction.Logger.cs" />
     <Compile Include="MeasureFractionHistory.cs" />
@@ -136,6 +168,8 @@
     <Compile Include="MusicBrailleState.cs" />
     <Compile Include="MusicPlayer.cs" />
     <Compile Include="MusicXmlObject.cs" />
+    <Compile Include="NoteElementList.cs" />
+    <Compile Include="Parameter.cs" />
     <Compile Include="PartDescriptionList.cs" />
     <Compile Include="PitchMap.cs" />
     <Compile Include="ProgressWriter.cs" />
@@ -145,6 +179,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourcesForModel.resx</DependentUpon>
     </Compile>
+    <Compile Include="Staff.cs" />
+    <Compile Include="StaffList.cs" />
+    <Compile Include="StaffSelector.cs" />
     <Compile Include="StatusInformation.cs" />
     <Compile Include="TextDisplayer.cs" />
     <Compile Include="TimeDescriptionList.cs" />

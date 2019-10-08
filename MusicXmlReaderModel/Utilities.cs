@@ -103,7 +103,10 @@ namespace MusicXmlReaderModel
 
             if (!int.TryParse(input, out tempResult))
             {
-                Logger.Log(string.Format("{0}: Got '{1}' Expected an integer", errorString, input));
+                string s = string.Format("{0}: Got '{1}' Expected an integer", errorString, input);
+#warning TODO Implement logging reporting 2 levels back !
+                //Logger.Log(s);
+                LogFormatter.Log(LogFormatter.LogOptions.Once | LogFormatter.LogOptions.ClassFunc3, s); // Show 3 levels of callers
                 return false;
             }
             if (tempResult < lowValue || (tempResult > highValue))
@@ -114,6 +117,7 @@ namespace MusicXmlReaderModel
             result = tempResult;
             return true;
         }
+
 
         /// <summary>
         /// Check valitity of an input parameter of type char
@@ -202,12 +206,12 @@ namespace MusicXmlReaderModel
         /// <param name="attributeName">Only used for logging</param>
         /// <param name="attributeValue">The string to parse</param>
         /// <param name="result">Set depending of the attributeValue: "yes"-> true, "no"->false, default: unchanged</param>
-        public static void ParseYesNoAttributeValue(string functionName, string attributeName, string attributeValue, ref bool result)
+        public static bool ParseYesNoAttributeValue(string functionName, string attributeName, string attributeValue, ref bool result)
         {
             switch (attributeValue)
             {
-                case "yes": result = true; break;
-                case "no": result = false; break;
+                case "yes": result = true; return true;
+                case "no": result = false; return true;
                 default:
                     Logger.LogOnce(string.Format("{0}: Unexpected value for attribute {1}: '{2}'",
                                                   functionName,  // 0
@@ -215,6 +219,7 @@ namespace MusicXmlReaderModel
                                                   attributeValue // 2
                                                   )); break;
             }
+            return false;
         }
 
         /// <summary>
@@ -464,7 +469,7 @@ namespace MusicXmlReaderModel
         //    return true;
         //}
 
-        private static string Quote(string argument)
+        public static string Quote(string argument)
         {
             if (string.IsNullOrEmpty(argument)) return argument;            
             if (('"' == argument[0]) && ('"' == argument[argument.Length])) return argument;
@@ -526,7 +531,7 @@ namespace MusicXmlReaderModel
         /// <param name="exeFileName">Name of .exe file to run</param>
         /// <param name="argument">Argument(s) for .exe file. Enclosed in "" if needed, for instance for file names containing spaces.</param>
         /// <returns>true  <==> success</returns>
-        internal static bool RunExeWithArgument(string exeFileName, string argument)
+        public static bool RunExeWithArgument(string exeFileName, string argument)
         {
             int exitCode = 0; // Needed as dummy argument
             return RunExeWithArgument(exeFileName, argument,false, out exitCode, System.Diagnostics.ProcessWindowStyle.Normal);
@@ -556,7 +561,8 @@ namespace MusicXmlReaderModel
             {
                 if (pProcess.Start())
                 {
-                    Logger.Log(string.Format("{0}.{1}: Started {2}", className, methodName, pProcess.StartInfo.FileName));
+                    Logger.Log(string.Format("{0}.{1}: Started {2} with arguments='{3}'", className, methodName, pProcess.StartInfo.FileName,
+                                                                                          (null != pProcess.StartInfo.Arguments) ? pProcess.StartInfo.Arguments : "null"));
                     if (waitForExit)
                     {
                         pProcess.WaitForExit();
@@ -756,12 +762,25 @@ namespace MusicXmlReaderModel
 
 
         /// <summary>
-        /// Remove any occurance of the "&" character from the string.
-        /// Used in the UI for using the same localized text resource both for assigning an ALT shortcut (marked by the "&") and as a normal string (aftert removing the "&")
+        /// Create the directory specified, if it does not already exist
         /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static string RemoveAmpersant(string s)
+        /// <param name="path"></param>
+        static public void CreateDirectory(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+                Logger.LogCF(string.Format(": Created directory '{0}'", path));
+            }
+        }
+
+    /// <summary>
+    /// Remove any occurance of the "&" character from the string.
+    /// Used in the UI for using the same localized text resource both for assigning an ALT shortcut (marked by the "&") and as a normal string (aftert removing the "&")
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public static string RemoveAmpersant(string s)
         {
             if (null == s) return s;
             return s.Replace("&", "");
@@ -776,36 +795,48 @@ namespace MusicXmlReaderModel
             return s[index + 1].ToString();
         }
 
+        public static string BrailleToDotNumbers(char c)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (0 != (c & 0x01)) sb.Append(" 1");
+            if (0 != (c & 0x02)) sb.Append(" 2");
+            if (0 != (c & 0x04)) sb.Append(" 3");
+            if (0 != (c & 0x08)) sb.Append(" 4");
+            if (0 != (c & 0x10)) sb.Append(" 5");
+            if (0 != (c & 0x20)) sb.Append(" 6");
+            if (0 != (c & 0x40)) sb.Append(" 7");
+            if (0 != (c & 0x80)) sb.Append(" 8");
+            if (0 == (sb.Length))
+            {
+                sb.Append(" 0"); // Use '0' as a place holder for the empty Braille character
+            }
+            string s = sb.ToString();
+            return string.Format("{0}{1}{2}","{",s.Substring(1),"}"); // Drop the first character, which is always a space.
+        } 
+
 
         /// <summary>
         /// Converts a string of Braille code to it's text representation, ignoring characters outside 0x2800..0x28ff
         /// </summary>
         /// <param name="braille"></param>
-        public static string BrailleToText(string braille)
+        public static string BrailleToDotNumbers(string braille)
         {
             StringBuilder sbLine = new StringBuilder();
-            string delimiter = ""; // Used between chars, not
+            string delimiter = ""; // Used between Braille chars, not inside a Braille char
             foreach (char c in braille)
             {
                 if ((c >= 0x2800) && (c <= 0x283F))
                 {
-                    // This is a valid UNICODE BRaille char in 0x280.. 0x283f
-                    StringBuilder sbChar = new StringBuilder(); // Represents a single char
+                    // This is a valid UNICODE BRaille char in 0x280.. 0x283f. Show the dots
+                    StringBuilder sbChar = new StringBuilder(); // Represents a single Braille char
                     sbLine.Append(delimiter); // " " 
-                    if (0 != (c & 0x01)) sbChar.Append(" 1");
-                    if (0 != (c & 0x02)) sbChar.Append(" 2");
-                    if (0 != (c & 0x04)) sbChar.Append(" 3");
-                    if (0 != (c & 0x08)) sbChar.Append(" 4");
-                    if (0 != (c & 0x10)) sbChar.Append(" 5");
-                    if (0 != (c & 0x20)) sbChar.Append(" 6");
-                    if (0 != (c & 0x40)) sbChar.Append(" 7");
-                    if (0 != (c & 0x80)) sbChar.Append(" 8");
-                    if (0 == (sbChar.Length))
-                    {
-                        sbChar.Append(" 0"); // Use '0' as a place holder for the empty Braille character
-                    }
-                    delimiter = " , "; // From now on use a visible delimiter 
-                    sbLine.Append(sbChar.ToString()); 
+                    sbLine.Append(BrailleToDotNumbers(c));
+                    //delimiter = ","; // From now on use a visible delimiter between Braille chars
+                    sbLine.Append(sbChar.ToString());
+                }
+                else
+                {
+                    sbLine.Append(string.Format("(?={0})", (int)c)); //  The "?" indicates that this char was not a valid Braille-6 value. Show the decimal value of the char.
                 }
             }
             string result = sbLine.ToString();
@@ -813,6 +844,48 @@ namespace MusicXmlReaderModel
             return result;
 
         }
+
+        private static readonly char[] trimChars = new char[] { ' ' };
+        public static string ToOneLine(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return s;
+            string s1 = s.Replace('\r', ' ');
+            string s2 = s1.Replace('\n', ' ');
+            string s3 = s2.TrimStart(trimChars); // Remove heading spaces
+            string s4 = s3.TrimEnd(trimChars);   // Remove trailing spaces
+            if (0 != s.CompareTo(s4))
+            {
+                //Logger.LogCFOnce(string.Format(": Removed CR and LF. Returned '{0}'", s4));
+            }
+            return s4;
+        }
+
+
+
+        /// <summary>
+        /// Some partnames contain carriage return, linefeed and slash which makes any listing look strange and results in invalid filenames
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string ToValidFileName(string s)
+        {
+            if (null == s) return "";
+            // s1-s4 are used for generating a valid filename
+            // t1-t2 are used for generating readable text for loglines in one line
+            string s1 = s.Replace("\n", "n");  // LineFeed replaced by "n" in filenames
+            string t1 = s.Replace("\n", "\\n"); // Linefeed replaced by "\n" in loglines 
+            string s2 = s1.Replace("\r", "r");  // Carriage return replaced by "r" in filenames
+            string t2 = t1.Replace("\r", "\\r"); // Carriage return replaced by "\r" in loglines
+            string s3 = s2.Replace("/", ""); // Forward slash
+            string s4 = s3.Replace("\\", ""); // A single backslash
+            string s5 = s4.Replace("\"", ""); // An "
+            if (0 != string.Compare(s, s5))
+            {
+                // Logger.LogCFOnce(string.Format(": Changed '{0}' to '{1}'", t2, s5));
+            }
+            return s5;
+        }
+
 
         /// <summary>
         /// Assure common implementation of Beep();
@@ -848,8 +921,136 @@ namespace MusicXmlReaderModel
         }
 
 
+        public static void CloneFile(string fileName, string newExtension)
+        {
+            string newFileName = Path.ChangeExtension(fileName, newExtension);
+            if (!File.Exists(fileName))
+            {
+                Logger.LogCF(string.Format(": File '{0}' does not exist",fileName));
+                return;
+            }
+            if (File.Exists(newFileName))
+            {
+                File.Delete(newFileName);
+            }
+            File.Copy(fileName, newFileName);
+            Logger.LogCF(string.Format(": Cloned '{0}' to '{1}'", fileName, Path.GetFileName(newFileName)));
+        }
+
+        private static string CheckDirectoryPath(string path)
+        {
+            if ((null == path) || !Directory.Exists(path))
+            {
+                return string.Format("Directory {0} not found", null == path ? "null" : path);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// (Primarily to be used for regression tests).
+        /// Check the contents of two directories for identity.
+        /// If the directories have identical contents null is returned.
+        /// Otherwise a string describing the first difference encountered is returned
+        /// </summary>
+        /// <param name="path0"></param>
+        /// <param name="path1"></param>
+        /// <returns></returns>
+        public static string CompareDirectories(string path0, string path1)
+        {
+            try
+            {
+                string result0 = CheckDirectoryPath(path0);
+                string result1 = CheckDirectoryPath(path1);
+
+                if (null != result0) return result0;
+                if (null != result1) return result1;
 
 
+                string[] files0 = System.IO.Directory.GetFiles(path0);
+                string[] files1 = System.IO.Directory.GetFiles(path1);
+                if (files0.Length != files1.Length)
+                {
+                    return string.Format(": Failed: Different number of files found");
+                }
+
+                // Same number of files. Assume same ordering:
+                int numberOfFiles = files0.Length;
+                bool identical = true;
+                for (int i = 0; (i < numberOfFiles); i++)
+                {
+                    string file0 = files0[i];
+                    string file1 = files1[i];
+
+                    // Compare names
+                    string name0 = Path.GetFileName(file0);
+                    string name1 = Path.GetFileName(file1);
+                    if (0 != string.Compare(name0, name1))
+                    {
+                        return string.Format("File names[{0}] differ: Name0='{1}'  Name1='{2}'", i, name0, name1);
+                    }
+
+                    // Compare lengths
+                    long length0 = new FileInfo(file0).Length;
+                    long length1 = new FileInfo(file1).Length;
+                    if (length0 != length1)
+                    {
+                        return string.Format("Lengths of files differ for Name='{0}': length0={1}, lengh1={2} ", name0, length0, length1);
+                    }
+
+                    // Compare contents
+                    string contents0 = new StreamReader(Path.Combine(path0,name0)).ReadToEnd();
+                    string contents1 = new StreamReader(Path.Combine(path1,name1)).ReadToEnd();
+                    if (0 != string.Compare(contents0, contents1))
+                    {
+                        return string.Format("Contents of files differ for FileName='{0}' ", name0);
+                    }
+
+                }
+                if (identical)
+                {
+                    Logger.LogCF(string.Format(": All {0} pairs of files have same contents", numberOfFiles));
+                }
+
+            }
+            catch (Exception e)
+            {
+                Beep();
+                Logger.LogCFE(e);
+                return e.Message;
+            }
+            return null; // No difference found 
+        }
+
+
+        /// <summary>
+        /// Split a given path into it levels (separated by the system-dependent DirectorySeparatorChar)
+        /// and return the last n levens
+        /// </summary>
+        /// <param name="path">The path to operate on</param>
+        /// <param name="nLevels"
+        /// >The number of levels (measured from the end of the path) to return</param>
+        /// <returns>
+        /// A string as described above.
+        /// If n is negative or zero an empty string is returned
+        /// If n is larger than the number of levels in the path, the full path is returned
+        /// </returns>
+        public static string GetEndOfPath(string path, int nLevels)
+        {
+            // Extract the n last levels of a given directoryName or filename
+            string[] parts = path.Split(Path.DirectorySeparatorChar);
+            int length = parts.Length;
+            StringBuilder sb = new StringBuilder();
+            for (int i = length - nLevels; i < length; i++)
+            {
+                if (i > 0)
+                {
+                    sb.Append(Path.DirectorySeparatorChar);
+                    sb.Append(parts[i]);
+                }
+            }
+            return sb.ToString();
+        }
 
     }
+
 }

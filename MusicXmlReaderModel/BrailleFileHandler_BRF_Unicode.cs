@@ -9,6 +9,26 @@ namespace MusicXmlReaderModel
 {
     class BrailleFileHandler_BRF_Unicode : BrailleFileHandler
     {
+        public override int GetCodePage()
+        {
+            return 65001;
+        }
+
+
+        /// <summary>
+        /// Simple mechanism for checking BrailleMusic encoded using UTF-8
+        /// Use real Windows classes such as StreamReader with Encoding parameter for the actual decoding!
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public override bool IsValidBrailleMusic(string fileName)
+        {
+            byte[] bytesReadFromFile = ReadAsBinary(fileName);
+            return BrailleFileUnicodeTester.Create().Test(bytesReadFromFile, base.controlCharacters);
+        }
+
+ 
+
         public override string GetExtension()
         {
             return ".brf";
@@ -32,8 +52,8 @@ namespace MusicXmlReaderModel
         public override bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls)
         {
             bool result = false;
-            using (StreamWriter sw = new StreamWriter(File.Open(fullFileName, FileMode.Create)))
-            {
+            using (StreamWriter sw = new StreamWriter(File.Open(fullFileName, FileMode.Create))) // As UTF8 parameter, but starts without  EF BB BF Works with IbPrint(65001)
+          {
                 try
                 {
                     sw.Write(unicodeBraille);

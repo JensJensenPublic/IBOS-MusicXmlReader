@@ -192,8 +192,6 @@ namespace MusicXmlReaderModel
             AddStatusText(Format(statusInformation.CurrentTimeElement));
         }
 
-
-
         /// <summary>
         /// Reports dettails at the Part level
         /// </summary>
@@ -208,14 +206,29 @@ namespace MusicXmlReaderModel
             detailsDescriptions = new List<DetailsDescription>();
             for (int i = 0; (i < numberOfParts); i++)
             {
-                List<NoteElement> notesForPart = eventDescription.NoteLists[i];
-                if ((null != notesForPart) && (0 != notesForPart.Count))
+                NoteElementList notesForPart = eventDescription.NoteLists[i];
+                if ((null == notesForPart) || (0 == notesForPart.NoteElements.Count))
                 {
+                    break;
+                }
+
+               // Create a list of staffs and iterate through them.
+               // For a piano part these staffs could represent left and right hand.
+               // In most other cases the staffList will contain one staff only, holding exactly the notes from the List of NoteElements
+
+                StaffList staffList = StaffList.Create(notesForPart.NoteElements);
+                staffList.Sort(); // Lower staff in top 
+
+                foreach (Staff staff in staffList.Staffs)           
+                {
+                    NoteElementList notesForStaff = staff.Notes;
+
                     // String variables for desribing the detail as text
                     string partId = "";
                     string partName = "";
                     string notes = "";
                     string lyrics = "";
+                    string leftRight = (notesForStaff.NoteElements.Count > 0) ? notesForStaff.NoteElements[0].GetLeftRightString() : "";        
 
                     if ((userSettings.MusicAsSpeech) && (userSettings.GetParts(UserSettings.Category.Speech,i)))
                     {
@@ -223,17 +236,17 @@ namespace MusicXmlReaderModel
                         ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
                         partId = scorePartElement.partId;
                         partName = scorePartElement.partName;
-                        // By using  eventDescription.NotesForOnePart for formatting the notes we assure the usage of identical formatting.
-                        notes = eventDescription.NotesForOnePart(notesForPart);
-                        // By using  eventDescription.LyricsForOnePart for formatting the lyrics we assure the usage of identical formatting.
-                        lyrics = eventDescription.LyricsForOnePart(notesForPart);
+                        // By using  ToString() for formatting the notes we assure the usage of identical formatting.
+                        notes = notesForStaff.ToString(userSettings);
+                        // By using ToLyrics() for formatting the lyrics we assure the usage of identical formatting.
+                        lyrics = notesForStaff.ToLyrics(userSettings);  
                     }
 
                     // String variables for desribing the detail as MusicBraille
                     string musicBraille = "";
                     if ((userSettings.MusicAsMusicBraille) && (userSettings.GetParts(UserSettings.Category.MusicBraille,i)))
-                    {
-                        BrailleBuilder musicBrailleDetails = eventDescription.NotesForOnePartAsBraille(notesForPart);
+                    { 
+                        BrailleBuilder musicBrailleDetails = notesForStaff.ToBraille(userSettings,eventDescription);  // Use the simple ToBraille without chord notation
                         musicBraille = musicBrailleDetails.ToBrailleString();
                     }
 
@@ -241,11 +254,11 @@ namespace MusicXmlReaderModel
                     List<NoteElement> notesToPlay = new List<NoteElement>();
                     if ((userSettings.MusicAsSound) && (userSettings.GetParts(UserSettings.Category.Sound,i)))
                     {
-                        notesToPlay = eventDescription.NoteLists[i];
+                       notesToPlay = notesForStaff.NoteElements;
                     }
                     
                     // Compose all details, always showing MusicBraille first
-                    string detailString = string.Format("{0} {1} {2} {3} {4}", musicBraille, partId, partName, notes, lyrics);
+                    string detailString = string.Format("{0} {1} {2} {3} {4} {5}", musicBraille, partId, partName, leftRight, notes, lyrics);
 
                     if ((!string.IsNullOrWhiteSpace(detailString)) || (notesToPlay.Count > 0))
                     {
@@ -273,13 +286,13 @@ namespace MusicXmlReaderModel
             detailsDescriptions = new List<DetailsDescription>();
             for (int i = 0; (i < numberOfParts); i++)
             {
-                List<NoteElement> notesForPart = eventDescription.NoteLists[i];
-                if ((null != notesForPart) && (0 != notesForPart.Count))
+                NoteElementList notesForPart = eventDescription.NoteLists[i];
+                if ((null != notesForPart) && (0 != notesForPart.NoteElements.Count))
                 {
                     if ((userSettings.MusicAsSpeech) && (userSettings.GetParts(UserSettings.Category.Speech, i)))
                     {
                         bool firstTime = true; // Only show the partName once
-                        foreach (NoteElement noteElement in eventDescription.NoteLists[i])
+                        foreach (NoteElement noteElement in eventDescription.NoteLists[i].NoteElements)
                         {
                             //notes = string.Format("",noteElement.)
                             string partString = firstTime? noteElement.GetPartString() : "";                            
@@ -301,9 +314,12 @@ namespace MusicXmlReaderModel
 
 
         /// <summary>
-        /// If x and y are both of type SingleNoteDetailsDescription and are both pitched
-        /// the function returns the difference (in semitones) between the frequencies of the 2 notes.
-        /// Otherwise it returns 0
+        /// If x and y are both of type SingleNoteDetailsDescription 
+        /// they are sorted by the follwing parameters:
+        /// 1) Part number  (Lower part number at top) 
+        /// 2) Staff number (Lower staff at top)
+        /// 3) Pitch (Higher pitch at top, lower pitch below, unpitched  at bottum.
+        /// Otherwise they are considered equal.
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -317,19 +333,40 @@ namespace MusicXmlReaderModel
                     //Logger.LogCF(string.Format("x.Type={0} y.Type={1}", x.GetType(), y.GetType()));
                     return 0;
                 }
-
+                
                 SingleNoteDetailsDescription nx = x as SingleNoteDetailsDescription;
                 SingleNoteDetailsDescription ny = y as SingleNoteDetailsDescription;
 
                 NoteElement nex = nx.NoteElement;
                 NoteElement ney = ny.NoteElement;
 
-                if (!(nex.Pitched && (ney.Pitched)))
+                if (nex.PartNumber != ney.PartNumber)
                 {
-                    //Logger.LogCF(string.Format("x.Pitched={0} y.Pitched={1}", nex.Pitched, ney.Pitched));
-                    return 0;
+                    return nex.PartNumber - ney.PartNumber;
                 }
                 
+                if (nex.Staff != ney.Staff)
+                {
+                    /// First sort according to staff numbers. Lower staff numder in top (Just like in the graphics)
+                    return nex.Staff - ney.Staff;
+                }
+
+                if (!nex.Pitched && !ney.Pitched)
+                {
+                    return 0; // Both are unpitched
+                }
+
+                if (nex.Pitched && !ney.Pitched)
+                {
+                    return +1; // x is pitched, y is unpitched
+                }
+
+                if (!nex.Pitched && ney.Pitched)
+                {
+                    return -1; // x is unpitched, y is pitched
+                }
+                
+                // Both are pitched. Higher pitch in top
                 int result = ney.PitchValue.SemiTonesAboveC0 - nex.PitchValue.SemiTonesAboveC0;
                 // Logger.LogCF(string.Format("Result = {0}", result));
                 return result;

@@ -49,9 +49,16 @@ namespace MusicXmlReaderModel
         IDebugDisplayerClient iDebugDisplayerClient;
         ProgressWriter loaderProgressWriter = null;
         ProgressWriter conversionProgressWriter = null;
+        DefaultsElement defaults; // Score-wide defaults for scaling, layout and appearance. Exactly one DefaultElement is expected per score.
+        public DefaultsElement Defaults { get { return defaults; } }
 
         string executingAssembly;
         string executingDirectory;
+        bool experimentalCode = false;
+        public bool ExperimentalCode { get { return experimentalCode; } set { experimentalCode = value; } } // Generally available develomment feature to control Model behaviour from UI
+
+
+        private bool handleGraphics = true; // Optimize for speed on slow devices by setting to "false"
 
         public string ScreenReaderName
         {
@@ -214,12 +221,25 @@ namespace MusicXmlReaderModel
                 reader.WhitespaceHandling = WhitespaceHandling.None;
                 string progressLoading = string.Format("{0} {1}", ResourcesForModel.Progress_LoadingFile, xmlFileName);
                 loaderProgressWriter = ProgressWriter.Create(1000, iDebugDisplayerClient, progressLoading);
-                doc.Load(reader); // This single operation may last decades of seconds on a slow platform!!
+                try
+                {
+                    Logger.DocLoadDelay.Start(); // Only for statistict !
+                    doc.Load(reader); // This single operation may last decades of seconds on a slow platform!!
+                    Logger.DocLoadDelay.Stop();
+                }
+                catch (Exception e)
+                {
+                    string s = string.Format(": XmlDocument.Load() failed. File={0} Message={1}",fullXmlFileName, e.Message);
+                    Logger.LogCFOnce(s);
+                    // We might add an extra stacktrace here for debuggin purposes.
+                    ok = false;  
+                }
                 loaderProgressWriter.Stop();
                 ok = ok && CheckMusicXmlSyntax(doc);
                 // ok = false; //For test only
                 if (ok)
                 {
+                    defaults = null; // 
                     string status = "";
                     metaInformation = MetaInformation.Create();
                     metaInformation.FileName = MetaInfoItem.Create(ResourcesForModel.MetaInfoText_FileName, Path.GetFileName(fullXmlFileName));
@@ -229,11 +249,15 @@ namespace MusicXmlReaderModel
                     status = string.Format("{0} {1}", ResourcesForModel.Status_Interpreting, xmlFileName);
                     WriteStatusInformation(status);
                     MidiPitchedChannelMap.Reset();
+                    Logger.DocParseDelay.Start(); // Only for statistics !
                     Recurse(doc.ChildNodes);                          // Build  the list holding all MusicXml elements read from file
+                    Logger.DocParseDelay.Stop(); // Only for statistict !
                     Logger.Log(string.Format("{0}.{1}: Parsed '{2}'", className, functionName, xmlFileName));
                     status = string.Format("{0} {1}", ResourcesForModel.Status_BuildingDataStructuresFor, xmlFileName);
                     WriteStatusInformation(status);
+                    Logger.StructureInitDelay.Start(); // Only for statistics !
                     Init();  // Initialize the basic Model data structures.
+                    Logger.StructureInitDelay.Stop(); // Only for statistics !
                     musicPlayer.ResetInstrumentMapping(); // Initialize the MusicPlayer data structures
                     status = string.Format("{0} {1}", xmlFileName, ResourcesForModel.Status_WasSuccessfullyLoaded);
                     WriteStatusInformation(status);
@@ -249,9 +273,20 @@ namespace MusicXmlReaderModel
             }
             catch (System.Exception e)
             {
+                // If we get here we could not load the file
+                // An exception Exception with type UserHandledException has already been reported at the source. Other exceptions must be reported using a stack trace.
+                Logger.LogCFOnce(string.Format(": Failed to parse '{0}' Exception.Message='{1}'", xmlFileName, e.Message)); // Log Application-specific information.
 
-                Logger.LogCF(string.Format(": Failed to load '{0}' Exception.Message='{1}'", xmlFileName, e.Message)); // Log Application-specific information.
-                Logger.LogCFE(e); // Log Exception-specific information
+                if (e is MusicXmlParserException)
+                {
+                    // The original error condition has been handled and logged locally. No need to pollute the LogFile with stacktrace information
+                    Logger.LogCFOnce(string.Format(": Caught rethrown MusicXmlParserException. Message={0}", e.Message));
+                }
+                else
+                {
+                    // This Exception has not been handled locally
+                    Logger.LogCFE(e); // Log Exception-specific information, including a full stack trace
+                }
 
                 if (null != loaderProgressWriter)
                 {
@@ -535,6 +570,7 @@ namespace MusicXmlReaderModel
                         this.latestMeasureNumber = this.currentMeasureNumber;
                     }
                     NoteElement note = NoteElement.Create(node, this.divisions, this.currentMeasureNumber, this.currentScorePartElement, this.currentTimeElement); // New version
+                    note.BrailleMeasureDivisionInfo = BrailleInAccordInfo.Create(note, currentMeasureNumber); // Only needed for creating BrailleMeasureDivision representation
                     allMusicXmlObjecsts.Add(note);
                     continueRecursion = false;
                     break;
@@ -669,13 +705,21 @@ namespace MusicXmlReaderModel
                     continueRecursion = false;
                     break;
                 case "clef":
-                    allMusicXmlObjecsts.Add(ClefElement.Create(node));
+                    allMusicXmlObjecsts.Add(ClefElement.Create(node,this.currentScorePartElement));
                     continueRecursion = false;
                     break;
                 case "print":
+                    // This is all graphics stuff, but is decoded anyway to make the information about
+                    // New System and New PAge available to the user
+                    allMusicXmlObjecsts.Add(PrintElement.Create(node, handleGraphics));
                     continueRecursion = false; // This is all graphics stuff!
                     break;
                 case "defaults":
+                    if (null != defaults)
+                    {
+                        Logger.LogCFOnce("More than one DefaultsElement found for one score");
+                    }
+                    defaults = DefaultsElement.Create(node, handleGraphics);  // Score-wide graphic information
                     continueRecursion = false; // This is all graphics stuff!
                     break;
                 case "score-partwise":
@@ -710,7 +754,7 @@ namespace MusicXmlReaderModel
                     allMusicXmlObjecsts.Add(RepeatElement.Create(node));
                     break;
                 case "barline":
-                    allMusicXmlObjecsts.Add(BarlineElement.Create(node));
+                    allMusicXmlObjecsts.Add(BarlineElement.Create(node,currentScorePartElement));
                     continueRecursion = false;
                     break;
                 case "instruments":
@@ -730,10 +774,13 @@ namespace MusicXmlReaderModel
                     // Logger.LogCF(string.Format(": Created SimpleTextElement(Name='{0}' Text='{1}')",miscellaneous.Name,miscellaneous.Text));
                     Logger.LogCFOnce(": Created SimpleTextElement from MiscellaneousElement");
                     break;
+                case "staves":
+                    StavesElement staves = StavesElement.Create(node);
+                    allMusicXmlObjecsts.Add(staves);
+                    break;
                 // The following elements are ignored for the time being, as they describe graphical properties only!
                 case "offset":
                 case "supports":
-                case "staves":
                 case "staff-details":
                 case "scaling":
                 case "millimeters":
@@ -1278,7 +1325,8 @@ namespace MusicXmlReaderModel
             string testFileDirectory = Logger.LogFileDirectory;
             string testFileName = theMusicXmlFileName + brailleFileHandler.GetExtension();
             string testFileFullName = Path.Combine(testFileDirectory, Path.GetFileName(testFileName));
-            string formattedString = brailleFileHandler.Format(this.eventDescriptionList, this.userSettings);
+            List<string> formattedStrings = this.eventDescriptionList.Format(this.userSettings);
+            string formattedString = BrailleUtilities.Format(formattedStrings, brailleFileHandler.CharsPerLine, brailleFileHandler.LinesPerForm);
             brailleFileHandler.WriteToFile(formattedString, testFileFullName, true);                        // Write the file to the Logger Directory
             string brailleFileAsUnicode = brailleFileHandler.ReadFromFile(testFileFullName);                //  Read the file back
 
@@ -1298,7 +1346,7 @@ namespace MusicXmlReaderModel
                 string[] lines = form.Split((char)010); // Split each form into a number of lines
                 foreach (string line in lines)
                 {
-                    string lineAsText = Utilities.BrailleToText(line);
+                    string lineAsText = Utilities.BrailleToDotNumbers(line);
                     detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(line + " " + lineAsText));
                 }
             }
@@ -1379,7 +1427,7 @@ namespace MusicXmlReaderModel
             System.IO.File.WriteAllText(theUserSettingsFileName, xml);
         }
 
-
+#if false // Obsolete code. Not referenced !
         /// <summary>
         /// Exports as .brf to the directory where the .xml file is found
         /// </summary>
@@ -1391,7 +1439,7 @@ namespace MusicXmlReaderModel
             {
                 Logger.LogCF(": Nothing to export!");
                 return false;
-            }
+            }            
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(format, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
             {
                 string fileName = Path.ChangeExtension(theMusicXmlFileName, brailleFileHandler.GetFileFormat() + brailleFileHandler.GetExtension());
@@ -1400,46 +1448,129 @@ namespace MusicXmlReaderModel
                 return true;
             }
         }
+#endif
+        public enum BrailleStyleEnum
+        {
+            IBOS,       // The simple file style used by IBOS MusicXmlReader Version 3.0 which only exports the same Braille Music representation as shown in the UI
+            BANA2015    // The official style specified by BANA in 2015, including Intervalnotation and InAccord representation
+                        // Add more styles as needed, probably sub-formats to BANA2015 "Bar over Bar" etc
+        };
 
+        public enum BrailleDeviceEnum
+        {
+            Embosser,   // Danish: "Punktprinter"
+            NoteTaker,  // Danish: "Notatapparat"
+        }
 
         /// <summary>
         /// Converts the current eventdescriptionList to Unicode string representation using the current User Settings
         /// </summary>
         /// <param name="brailleFileHandler"></param>
         /// <returns></returns>
-        public string GetBrailleRepresentation(BrailleFileHandler brailleFileHandler)
+        public StaffList GetBrailleRepresentation(int charsPerLine, int linesPerForm, BrailleStyleEnum brailleStyle)
         {
-            return brailleFileHandler.Format(this.eventDescriptionList, this.userSettings);
+            //Logger.LogCF(string.Format(": {0} Can be changed in App.Config", ExperimentalCode ? "Experimental code!" : "Version 3.0 code"));
+            Logger.LogCF(string.Format("BrailleRepresentation = '{0}", brailleStyle.ToString()));
+            switch (brailleStyle)
+            {
+                case BrailleStyleEnum.BANA2015:
+                    {
+                        // Generate a list of timestamped BrailleBuilders, each representing BrailleMusic for an event
+                        // The timestamps can (in later implementatations be used to generate synchronized BrailleMusic representations for 2 or more parst/staffs.
+                        StaffList globalStaffList = StaffList.Create(partDescriptionList, metaInformation); // This timeconsuming operation is only executed when needed
+                        globalStaffList.AddMetaInformationDetails(partList); // Fill in Meta information such as Part names 
+
+                        // Hide staffs not enabled in UserSettings !
+
+                        foreach (Staff staff in globalStaffList.Staffs)
+                        {
+                            staff.Enabled = userSettings.GetParts(UserSettings.Category.MusicBraille, staff.PartNumber);
+                        }
+
+                        // Fill in with all music information
+                        if (!globalStaffList.Init(this.eventDescriptionList, this.userSettings))
+                        {
+                            return null; // To signal failure
+                        }
+
+                        // StaffList brailleMusicRepresentation = brailleFileHandler.FormatEx(this.eventDescriptionList,globalStaffList, this.userSettings);
+
+                        // Convert to a BrailleMusic string by ignoting the timestamps.
+                        globalStaffList.Unpack(charsPerLine, linesPerForm);
+                        globalStaffList.Merge(charsPerLine, linesPerForm); // For debugging and development
+                        return globalStaffList;
+                    }
+                case BrailleStyleEnum.IBOS:
+                    {
+                        List<string> formattedStrings = this.eventDescriptionList.Format(this.userSettings);
+                        string formattedString = BrailleUtilities.Format(formattedStrings, charsPerLine, linesPerForm);
+                        StaffList result = StaffList.Create(formattedString); // For backward compatibility with  version 3.0)
+                        result.AllStaffs.AddRange(result.Staffs); 
+                        return result;
+                    }
+                default:
+                    Logger.LogCF(string.Format("Unsupported BrailleRepresentation '{0}", brailleStyle.ToString())) ;
+                    return null; // What else to do ?
+            }
         }
 
 
-
         /// <summary>
-        /// Generate a simple test patterns consisting of the 64 possible Braille glyphs and write it to 
-        /// the directory used for Log files
-        /// Finally open an explorer in that directory:
+        /// Simple local convenience method
         /// </summary>
-        public void GenerateMusicBrailleTestpattern()
+        /// <param name="directoryName"></param>
+        /// <param name="brailleFileHandler"></param>
+        private bool GenerateTestPattern(string directoryName, BrailleFileHandler brailleFileHandler)
         {
-            string directoryName = Logger.LogFileDirectory;
+            bool result = false;
+            try
+            {
+                string fileName = brailleFileHandler.GenerateTestpattern(directoryName);
+                Utilities.CloneFile(fileName, "bin"); // Generate a copy of the file, but with the ".bin" extension (For inspection of binary contents)
+                result = brailleFileHandler.IsValidBrailleMusic(fileName); 
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
 
-            BrailleFileHandler brailleFileHandler;
+            if (!result)
+            {              
+                Logger.LogCF(string.Format(": Failed to generate a valid testpattern for {0}",brailleFileHandler.GetFileFormat()));
+            }
+            return result;
+        }
 
-            // First for BRF_ASCII
-            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_ASCII, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
-            brailleFileHandler.GenerateTestpattern(directoryName);
+    /// <summary>
+    /// Generate a simple test patterns consisting of the 64 possible Braille glyphs and write it to 
+    /// the directory used for Log files
+    /// Finally open an explorer in that directory:
+    /// </summary>
+    public bool GenerateMusicBrailleTestpattern()
+        {
+            bool result = false;
+            string directoryName = Path.Combine(Logger.LogFileDirectory , "TestPatterns");
+            if (!Directory.Exists(directoryName))
+            {
+                Logger.LogCF(string.Format(": Created {0}", directoryName));
+                Directory.CreateDirectory(directoryName);
+            }
 
-            //// Then for BRF_Unicode
-            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_Unicode, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
-            brailleFileHandler.GenerateTestpattern(directoryName);
+            int chars = userPreferences.CharsPerLine;
+            int lines = userPreferences.LinesPerForm;    
 
-            //// Finally for BRL OctoBraille
-            brailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
-            brailleFileHandler.GenerateTestpattern(directoryName);
+            bool b1 = GenerateTestPattern(directoryName, BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_ASCII, chars, lines));
+            bool b2 = GenerateTestPattern(directoryName, BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_Unicode, chars, lines));
+            bool b3 = GenerateTestPattern(directoryName, BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, chars, lines));
+            bool b4 = GenerateTestPattern(directoryName, BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_Unicode_utf8, chars, lines));
+            bool b5 = GenerateTestPattern(directoryName, BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_Unicode_utf16, chars, lines));
+            bool b6 = GenerateTestPattern(directoryName, BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_Unicode_utf32, chars, lines));     
 
             // Open an explorer to inspect the log filed
             ExternalToolsHandler.OpenLogFileLocation();
 
+            result = (b1 && b2 && b3 && b4 && b5 && b6);
+            return result;
         }
 
 
@@ -1516,9 +1647,28 @@ namespace MusicXmlReaderModel
                 if (numberOfParts == enabledParts.Count) return ResourcesForModel.MusicBrailleFilenameAttribute_Tutti;      // All parts
                 if (enabledParts.Count > 0) return ResourcesForModel.MusicBrailleFilenameAttribute_Multi;                   // Some but not all
                 return ""; 
-            }
+            }  
+      }
 
+
+        /// <summary>
+        /// Used from the Tools menu for interpreting the contents of any file as Braille Music.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="fileEncoding"></param>
+        /// <returns></returns>
+        public List<string> InterpretBrailleMusicFile(string fileName, BrailleFileHandler.FileEncoding fileEncoding)
+        {
+            List<string> result = new List<string>();
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, 0, 0); // Just leave the formatting parameters as 0 for interpreting a file
+            string logLine = (null != brailleFileHandler) ? string.Format("Created BraillefileHandler {0}", brailleFileHandler) : "Failed to create BrailleFileHandler";
+            Logger.LogCF(logLine);
+            if (null == brailleFileHandler) return result;
+            string brailleFileAsUnicode = brailleFileHandler.ReadFromFile(fileName);
+            result = brailleFileHandler.Format(brailleFileAsUnicode);
+            return result;
         }
+
 
 
     }

@@ -12,6 +12,55 @@ namespace MusicXmlReaderModel
         static string className = "Logger";
         // TODO: Adress possible multithreading problems !!
 
+        #region DelayMeasurement
+        // Overall delays. Only ExecutionDelay is relevant for the UI version    
+        static public LoggerDelayCounter ExecutionDelay = LoggerDelayCounter.Create();          // The "real" execution delay, representing delays also relevant for the UI version  
+        static public LoggerDelayCounter CleanDirectoriesDelay = LoggerDelayCounter.Create();   // Only relevant for the Cmd version
+        static public LoggerDelayCounter CheckDirectoriesDelay = LoggerDelayCounter.Create();   // Only relevant for the Cmd version
+        // Ehe excecution delay, relevant for the UI version consists of the sum of the following delays:
+        static public LoggerDelayCounter DocLoadDelay = LoggerDelayCounter.Create();
+        static public LoggerDelayCounter DocParseDelay = LoggerDelayCounter.Create();
+        static public LoggerDelayCounter StructureInitDelay = LoggerDelayCounter.Create();
+        static public LoggerDelayCounter BrailleMusicGenerationDelay = LoggerDelayCounter.Create(); 
+        static public void LogDelays()
+        {            
+            string overallDelayMessage = string.Format(" Overall Delays  (in seconds): CleanDirectories={0} Execution={1} CheckDirectories={2}",
+                CleanDirectoriesDelay.ToSeconds(), ExecutionDelay.ToSeconds(), CheckDirectoriesDelay.ToSeconds());
+            LogCF(overallDelayMessage);
+
+            string executionDelayMessage = string.Format(" ExecutionDelays (in seconds): DocLoad={0}, DocParse={1} StructureInit={2} BraillMusicGeneration={3}",
+            DocLoadDelay.ToSeconds(), DocParseDelay.ToSeconds(), StructureInitDelay.ToSeconds(),BrailleMusicGenerationDelay.ToSeconds() );
+            LogCF(executionDelayMessage);
+
+        }
+        #endregion
+
+
+
+
+        static public string GetCallingMethod()
+        {
+            return GetCallingMethod(2); //  because we use this extra level for calling GetCallingMethod(int levels) !
+        }
+
+
+        static public string GetCallingMethod(int levels)
+        {
+            try
+            {
+                StackTrace stackTrace = new StackTrace();
+                MethodBase methodBase = stackTrace.GetFrame(levels+1).GetMethod(); // "levels+1" in order to compensate for calling "GetCallingMethod()"
+                Type type = methodBase.ReflectedType;
+                return string.Format("{0}.{1}", type.Name, methodBase.Name);
+            }
+            catch (Exception e)
+            {
+                return string.Format("Logger.GetCallingMethod threw an exception: {0}", e.ToString());
+            }
+        }
+        
+
+
         // Used for instance for appending the name of the .xml file under test when running a test application
         static private string postString = null;
         static public string PostString
@@ -193,7 +242,9 @@ namespace MusicXmlReaderModel
             StackTrace stackTrace = new StackTrace();
             MethodBase methodBase = stackTrace.GetFrame(1).GetMethod();
             Type type = methodBase.ReflectedType;
-            Log(string.Format("{0}.{1}: Exception: Message='{2}' StackTrace=\r\n{3}", type.Name, methodBase.Name, e.Message, e.StackTrace.ToString()));
+            string message = string.Format("{0}.{1}: Exception: Message='{2}' StackTrace=\r\n{3}", type.Name, methodBase.Name, e.Message, e.StackTrace.ToString());
+            Log(message);
+            LogOnce(message);
         }
 
         /// <summary>
@@ -202,11 +253,15 @@ namespace MusicXmlReaderModel
         /// <param name="s"></param>
         public static void LogCF(string s)
         {
+#if false
             StackTrace stackTrace = new StackTrace();
             MethodBase methodBase = stackTrace.GetFrame(1).GetMethod();
             Type type = methodBase.ReflectedType;
             //string Namespace = type.Namespace;
             Log(string.Format("{0}.{1}{2}", type.Name, methodBase.Name, s));
+#else
+            Log(string.Format("{0}{1}", GetCallingMethod(),s));
+#endif
             //Console.WriteLine(Namespace + "." + Class.Name + "." + methodBase.Name);
         }
 
@@ -216,11 +271,15 @@ namespace MusicXmlReaderModel
         /// <param name="s"></param>
         public static void LogCFOnce(string s)
         {
+#if false
             StackTrace stackTrace = new StackTrace();
             MethodBase methodBase = stackTrace.GetFrame(1).GetMethod();
             Type type = methodBase.ReflectedType;
             //string Namespace = type.Namespace;
             LogOnce(string.Format("{0}.{1}{2}", type.Name, methodBase.Name, s));
+#else
+            LogOnce(string.Format("{0}{1}", GetCallingMethod(), s));
+#endif
             //Console.WriteLine(Namespace + "." + Class.Name + "." + methodBase.Name);
         }
 

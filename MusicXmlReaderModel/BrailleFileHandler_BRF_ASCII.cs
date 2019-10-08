@@ -15,6 +15,7 @@ namespace MusicXmlReaderModel
         // + 0x10 *                 0                1               2               3
         // + 0x01 *                 0123456789ABCDEF 0123456789ABCDEF0123456789ABCDEF012 3456789ABCDEF  
         private const string map = " A1B'K2L@CIF/MSP\"E3H9O6R^DJG>NTQ,*5<-U8V.%[$+X!&;:4\\0Z7(_?W]#Y)="; // Note the 2 '\' used as escape characters !
+//        private const string map1= " a b k l cif msp  e h o r djg ntq     u v     x        z    w  y)="; // For mapping TO AscII ??
 
 
 #if false
@@ -24,6 +25,16 @@ namespace MusicXmlReaderModel
         // + 0x01 *                                       0123456789ABCDEF 0123456789ABCDEF0123456789ABCDEF012 3456789ABCDEF 
         private const string Computer_Braille_Code_map = " a1b'k2l@cif/msp\"e3h9o6r^djg>ntq,*5<-u8v.%[$+x!&;:4\\0z7( ?w]#y)="; // No code for 0x38 !!
 #endif
+        public override int GetCodePage()
+        {
+            return 20127;
+        }
+
+        public override bool IsValidBrailleMusic(string fileName)
+        {
+            byte[] bytesReadFromFile = ReadAsBinary(fileName);
+            return IsValidBrailleMusic(bytesReadFromFile);
+        }
 
         public override string GetExtension()
         {
@@ -57,7 +68,18 @@ namespace MusicXmlReaderModel
                 int index = map[i];
                 charMap[index] = (char)(0x2800 + i);
             }
-
+#if false
+            // Experimental code, only for investigating Index Embosser behaviour. What happens when it interprets OctoBraille as ASCII ?
+            // Map a..z also
+            for (int i = 0; (i < map1.Length); i++)
+            {
+                int index = map1[i];
+                if (index != 32)
+                {
+                    charMap[index] = (char)(0x2800 + i);
+                }
+            }
+#endif
             AddControls();
             CheckTables(map.Length);
         }

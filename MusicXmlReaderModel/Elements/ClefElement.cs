@@ -16,6 +16,8 @@ namespace MusicXmlReaderModel
         int line;
         int clefOctaveChange;
         string className = "ClefElement";
+        int staffNumber = 1;
+        ScorePartElement scorePartElement;
 
         public ClefEnum Clef
         {
@@ -24,6 +26,8 @@ namespace MusicXmlReaderModel
                 return clef;
             }
         }
+
+        public int StaffNumber { get { return staffNumber; } }
 
         /// <summary>
         /// To force the use of the Create() method
@@ -76,11 +80,29 @@ namespace MusicXmlReaderModel
         /// Private constructor, used by the Crate() method
         /// </summary>
         /// <param name="node"></param>
-        private ClefElement(XmlNode node)
+        private ClefElement(XmlNode node, ScorePartElement scorePartElement)
         {
             const string functionName = "ClefElement()";
+            this.scorePartElement = scorePartElement;
             bool signFound = false;
 
+
+            // Dig out attributes
+            foreach (XmlAttribute a in node.Attributes)
+            {
+                switch (a.Name)
+                { 
+                    case "number":
+                        Utilities.Parse(a.InnerText, ref staffNumber, 1, int.MaxValue, "Invalid staff-number", false); break;
+                    case "color":
+                        Logger.LogOnce(string.Format("{0}.{1} Unsupported attribute. Name={2} Value={3}", className, functionName, a.Name, a.Value));
+                        break;
+                    default:
+                    Logger.LogOnce(string.Format("{0}.{1} Unexpected attribute. Name={2} Value={3}", className, functionName, a.Name, a.Value));
+                    break;
+                }
+            }
+                        
             // Dig out elements
             foreach (XmlNode n in node.ChildNodes)
             {
@@ -108,12 +130,29 @@ namespace MusicXmlReaderModel
             {
                 Logger.LogOnce(string.Format("{0}.{1}: No 'sign' child element found", className, functionName)); 
             }
-
+#if false
+            string message = string.Format("Clef={0} Line={1} Staff={2}", clef.ToString(), line, staffNumber);
+            Logger.LogCF(message);
+#endif
         }
 
-        public static ClefElement Create(XmlNode node)
+        /// <summary>
+        /// The Id of the part to which this note belongs
+        /// Example: "P1"
+        /// </summary>
+        public string PartId
         {
-            return new ClefElement(node);
+            get
+            {
+                return scorePartElement.partId;
+            }
+        }
+
+
+
+        public static ClefElement Create(XmlNode node,ScorePartElement scorePartElement)
+        {
+            return new ClefElement(node, scorePartElement);
         }
 
         public override string ToString() 

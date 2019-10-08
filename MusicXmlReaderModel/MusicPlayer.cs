@@ -185,9 +185,9 @@ namespace MusicXmlReaderModel
                 if (userSettings.MusicAsSound) // Start playing notes in selected ports
                 {
                     notesCurrentlyPlaying = new List<MidiNote>();
-                    foreach (List<NoteElement> noteElementList in eventDescription.NoteLists)
+                    foreach (NoteElementList noteElementList in eventDescription.NoteLists)
                     {
-                        foreach (NoteElement noteElement in noteElementList)
+                        foreach (NoteElement noteElement in noteElementList.NoteElements)
                         {
                             if (!noteElement.IsPause)
                             { // This is a real note, not a pause
@@ -485,8 +485,8 @@ namespace MusicXmlReaderModel
                 {
                     if (userSettings.GetParts(UserSettings.Category.Sound,i))
                     { 
-                        List<NoteElement> noteElementList = eventDescription.NoteLists[i];
-                        foreach (NoteElement noteElement in noteElementList)
+                        NoteElementList noteElementList = eventDescription.NoteLists[i];
+                        foreach (NoteElement noteElement in noteElementList.NoteElements)
                         {
                             if (!noteElement.IsPause)
                             {

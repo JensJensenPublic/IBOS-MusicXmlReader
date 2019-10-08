@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -6,47 +7,33 @@ namespace MusicXmlReaderModel
 {
 
 
-    public class BrailleBuilder
+    public partial class BrailleBuilder : BrailleBuilderBase
     {
         // References:
         // Ref.1: http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-articulations.htm
         // Ref.2: https://en.wikipedia.org/wiki/Braille_music
         // Ref.3: https://www.rnib.org.uk/sites/default/files/New%20International%20Manual.pdf
-        // Ref.4: Elementær nodelære i Braille-skrift Enstemmig notation, Revideret udgave 1995, SynsCenter Refsnæs
-        // Ref.5: Elementær nodelære i Braille-skrift 2. del Akkordnotation SynsCenter Refsnæs
-        // Ref.6: MUSIC BRAILLE CODE 1997 Developed Under the Sponsorship of the BRAILLE AUTHORITY OF NORTH AMERICA
-        //        Downloaded to C:\Users\Jens\Dropbox\Root\Dokumenter\music braille code.pdf
-
-     
-
-        //public enum Constant
-        //{
-        //    FourMeasureRest,
-        //    DoubleBar,
-        //    Dot,
-        //    MusicHyphen,
-        //    Triplet,
-        //    RepeatSign,
-        //    Slur,
-        //    Tie,
-        //};
-
-        // Valuse for explicitly defining dot patterns in terms of hex byte-values
-        private const byte noDots = 0;
-        private const byte dot1 = 0x01;
-        private const byte dot2 = 0x02;
-        private const byte dot3 = 0x04;
-        private const byte dot4 = 0x08;
-        private const byte dot5 = 0x10;
-        private const byte dot6 = 0x20;
-        private const byte dot7 = 0x40;
-        private const byte dot8 = 0x80;
+        // Ref.4: "Elementær nodelære i Braille-skrift Enstemmig notation, Revideret udgave 1995", (SynsCenter Refsnæs)
+        // Ref.5: "Elementær nodelære i Braille-skrift 2. del Akkordnotation" (SynsCenter Refsnæs)
+        // Ref.6: "MUSIC BRAILLE CODE 1997" (BANA)  http://www.brl.org/music/  (Downloaded to C:\Users\Jens\Dropbox\Root\Dokumenter\music braille code.pdf)
+        // Ref.7: "MUSIC BRAILLE CODE 2015" (BANA)  http://www.brailleauthority.org/music/Music_Braille_Code_2015.pdf
 
 
+
+        // Ref.6 (BANA 1997) Page 1: Table of signs -> General table
+        public static byte[] barline = { (noDots) };
+        public static byte[] barlineUnusual = { (dot1 + dot2 + dot3) };
+        public static byte[] barlineDotted = { (dot1 + dot3) };
+        public static byte[] barlineDoubleAtEndOfComposition = { (dot1 + dot2 + dot6), (dot1 + dot3) };
+        public static byte[] barlineDoubleAtEndOfMeasureOrSection = { (dot1 + dot2 + dot6), (dot1 + dot3), (dot3) };
+
+        // Ref.6 (BANA 1997) Page 8: Table 4 -> RESTS 
         public static readonly byte[] FullMeasureRest = new byte[] { noDots, (dot1+dot3+dot4), noDots }; // According to Lars Petersen: space,m,space
         public static readonly byte[] FourMeasureRest = new byte[] { 60, 25, 13 };
-        public static readonly byte[] DoubleBar = new byte[] { 35 };
-        public static readonly byte Dot = 4;
+
+        // Ref.6 (BANA 1997) various loations:
+        public static readonly byte TransscriberAdded = dot5; // Used as a prefix to all items not found in the grapjic note, but added by the Braille Music tranascriber
+        public static readonly byte Dot = 4;            // Dotted note. Double dotted notes are specifire by adding 2 dots etc.
         public static readonly byte MusicHyphen = 16; // This measure will be continued on the following line
         public static readonly byte Triplet = 6;
         public static readonly byte RepeatSign = 54; // A beat, a half measure or a full measure must be repeated
@@ -101,24 +88,19 @@ namespace MusicXmlReaderModel
         public static readonly byte[] KeyDoubleFlat = { KeyFlat, KeyFlat };
         public static readonly byte KeyNatural  = dot1 + dot6;   // "opløsningstegn" 
 
-        public static readonly byte Number = dot3 + dot4 + dot5 + dot6; // Marks the start of numeric coding
-        public static readonly byte cipher0 = dot2 + dot4 + dot5; // 
-        public static readonly byte cipher1 = dot1; // 
-        public static readonly byte cipher2 = dot1 + dot2; // 
-        public static readonly byte cipher3 = dot1 + dot4; // 
-        public static readonly byte cipher4 = dot1 + dot4 + dot5; // 
-        public static readonly byte cipher5 = dot1 + dot5; // 
-        public static readonly byte cipher6 = dot1 + dot2 + dot4; // 
-        public static readonly byte cipher7 = dot1 + dot2 + dot4 + dot5; // 
-        public static readonly byte cipher8 = dot1 + dot2 + dot5; // 
-        public static readonly byte cipher9 = dot2 + dot5; // 
+
 
         public static readonly byte[] musicBraille = new byte[] { dot6, dot3 }; // Marks the start of Music Braille coding
+
+        // Timing
+        public static readonly byte[] timingCommon = new byte[] { (dot4 + dot6), (dot1 + dot4) };
+        public static readonly byte[] timingCut    = new byte[] { (dot4 + dot5 +  dot6), (dot1 + dot4) };
 
 
         // Clefs
         public static readonly byte[] clefG = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4       ), (dot1 + dot2 + dot3) };
-        public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot6), (dot1 + dot2 + dot3) };
+        public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot5 + dot6), (dot1 + dot2 + dot3) };
+        public static readonly byte[] clefC = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot6), (dot1 + dot2 + dot3) };
 
         // Repeat
         public static readonly byte[] repeatEnd   = new byte[] { dot6, dot3, (dot1 + dot2 + dot6), (dot2 + dot3) };
@@ -127,6 +109,13 @@ namespace MusicXmlReaderModel
         // Endings
         public static readonly byte[] halfEnd = new byte[] { (dot1 + dot2 + dot6), (dot1 + dot3), dot3 }; // Danish "HalvSlutning"
         public static readonly byte[] fullEnd = new byte[] { (dot1 + dot2 + dot6), (dot1 + dot3) }; // Danish "HelSlutning" 
+
+        // Interval notation
+        // MUSIC BRAILLE CODE 1997 Table 10 
+        public static readonly byte[] inAccordFullMeasure   = new byte[] { (dot1 + dot2 + dot6), (dot3 + dot4 + dot5) };    // Danish "Stor Bistemme"
+        public static readonly byte[] inAccordPartMeasure   = new byte[] { dot5, dot2 };                                    // Danish: "Lille Bistemme"
+        public static readonly byte[] measureDivision       = new byte[] { (dot4 + dot6), (dot1 + dot3) };                  // Danish: "Skilletegn" 
+
 
         // Note: Articulation marks must be inserted BEFORE the note
 
@@ -243,121 +232,21 @@ namespace MusicXmlReaderModel
         public enum Hand { Undefined, Left, Right };
 
 
-        private List<byte> braille;
-        private StringBuilder text;
-
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
-        private BrailleBuilder()
-        {
-            braille = new List<byte>();
-            text = new StringBuilder();
+        protected BrailleBuilder(Int64 timeStamp) : base(timeStamp)
+        {           
         }
 
-        public static BrailleBuilder Create()
+
+
+        public static BrailleBuilder Create(Int64 timeStamp)
         {
-            return new BrailleBuilder();
+            return new BrailleBuilder(timeStamp);
         }
 
         private const string className = "BrailleBuilder"; // Only used for logging ! 
-
-        public List<byte> Braille
-        {
-            get
-            {
-                return braille;
-            }
-        }
-
-        /// <summary>
-        /// Returns the contents as a string of Unicode characters in the interval 0x2800 ..0x28ff
-        /// </summary>
-        /// <returns></returns>
-        public string ToBrailleString()
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (byte b in braille) { sb.Append((char) (BrailleDisplayer.UnicodeBrailleBase + (char)b)); };
-            return sb.ToString();  
-        }
-
-
-        /// <summary>
-        /// Returns the logically equvivalent text representation of the MusicBraille string returned by ToBrailleString()
-        /// </summary>
-        /// <returns></returns>
-        public string ToEquvivalentTextRepresentation()
-        {
-            return text.ToString();
-        }
-
-
-        public StringBuilder Text
-        {
-            get
-            {
-                return text;
-            }
-        }
-
-        public void Append(BrailleBuilder bb)
-        {
-            this.Append(bb.Braille, bb.Text.ToString());
-            //this.text.Append(bb.Text);
-        }
-
-        public void Append(string s)
-        {
-            this.text.Append(s);
-        }
-
-        /// <summary>
-        /// Kept private in order to prevent  new List<byte>(n) with n as a size instead of a single list element!
-        /// </summary>
-        /// <param name="bytes"></param>
-        private void Append(List<byte> bytes)
-        {
-            this.braille.AddRange(bytes);
-        }
-
-        /// <summary>
-        /// Kept private in order to prevent  new List<byte>(n) with n as a size instead of a single list element!
-        /// </summary>
-        /// <param name="bytes"></param>
-        /// <param name="text"></param>
-        private void Append(List<byte> bytes,string text)
-        {
-            this.braille.AddRange(bytes);
-            this.text.Append(text);
-        }
-
-        public void Append(byte[] bytes)
-        {
-            this.braille.AddRange(new List<byte>(bytes));
-        }
-
-        public void Append(byte[] bytes, string text)
-        {
-            this.braille.AddRange(new List<byte>(bytes));
-            this.text.Append(text);
-        }
-
-        public void Append(byte b)
-        {
-            this.braille.Add(b);
-        }
-
-        public void Append(byte b, string text)
-        {
-            this.braille.Add(b);
-            this.text.Append(text);
-        }
-
-        public void Append(byte b, char character)
-        {
-            this.braille.Add(b);
-            this.text.Append(character);
-        }
 
         private byte GetStepValue(PitchElement.FullStepEnum step) //  Returns the values for dot 1,2,4,5
         {
@@ -422,11 +311,12 @@ namespace MusicXmlReaderModel
             }
         }
 
-        private byte[] GetOctaveMark(int octave)
+
+        protected byte[] GetOctaveMark(int octave)
         {
             switch (octave)
             {
-                case 1: return new byte[] {  8 };
+                case 1: return new byte[] { 8 };
                 case 2: return new byte[] { 24 };
                 case 3: return new byte[] { 56 };
                 case 4: return new byte[] { 16 };
@@ -437,11 +327,11 @@ namespace MusicXmlReaderModel
             if (octave < 1) return new byte[] { 8, 8 };
             if (octave > 7) return new byte[] { 32, 32 };
             // This is an error. Log it an return something hopefully harmles
-            Logger.Log(string.Format("{0}.Getoctavemark({1}) was called with illegal parametervalue octave={1}",className, octave));
+            Logger.LogCF(string.Format(": Called with illegal parametervalue octave={0}", octave));
             return new byte[] { 8, 8 };
         }
 
-        
+
         public void AddBrailleNotationsBeforeNoteOrRest(NotationsElement notations) // Some notations are added Before the note itself
         {
             const string functionName = "AddBrailleNotationsBeforeNoteOrRest";
@@ -644,18 +534,19 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         private string GetDurationString(NoteTypeEnum noteTypeEnum)
         {
+            const string prolog = ""; // The alternative is "/", but we need a representation as short as possible!
             switch (noteTypeEnum)
             {
-                case NoteTypeEnum.whole:    return "/1";
-                case NoteTypeEnum.half:     return "/2";
-                case NoteTypeEnum.quarter:  return "/4";
-                case NoteTypeEnum.eight:    return "/8";
-                case NoteTypeEnum.nt16th:   return "/16";
-                case NoteTypeEnum.nt32nd:   return "/32";
-                case NoteTypeEnum.nt64th:   return "/64";
-                case NoteTypeEnum.measure:  return "FM";
-                case NoteTypeEnum.unknown:  return "?";
-                default:                    return "/?";
+                case NoteTypeEnum.whole:    return prolog + "1";
+                case NoteTypeEnum.half:     return prolog + "2";
+                case NoteTypeEnum.quarter:  return prolog + "4";
+                case NoteTypeEnum.eight:    return prolog + "8";
+                case NoteTypeEnum.nt16th:   return prolog + "16";
+                case NoteTypeEnum.nt32nd:   return prolog + "32";
+                case NoteTypeEnum.nt64th:   return prolog + "64";
+                case NoteTypeEnum.measure:  return prolog + "FM";
+                case NoteTypeEnum.unknown:  return prolog + "?";
+                default:                    return prolog + "?";
             }
         }
 
@@ -710,38 +601,65 @@ namespace MusicXmlReaderModel
                 Append(Dot, ".");
             }
 
+#if false
             // Start for debugging only:
-            StringBuilder sb = new StringBuilder();
-            foreach (byte b in braille)
-            {
-                sb.Append(string.Format("0x{0:x} ", b)); 
-            }
-            //string s =  string.Format("step={0} alter={1} octave={2} semitone={3} ==>{4}", step, alter, octave, semitonesAboveC0, sb.ToString());
-            //Logger.Log(s);
+            string brailleAsHex = BrailleToHexString();
+            string s =  string.Format("step={0} alter={1} octave={2} semitone={3} ==>{4}",
+                noteElement.Step, noteElement.Alter, noteElement.Octave, noteElement.PitchValue.SemiTonesAboveC0, brailleAsHex);
+            Logger.Log(s);
             // End for debugging only:
+#endif
+        }
+
+        public void AddFullEnd()
+        {
+            Append(BrailleBuilder.fullEnd);
+            AppendText("FullEnd");
+            //(BrailleBuilder.fullEnd, "FullEnd");
         }
 
         public void AddRepeatForward(RepeatElement repeatElement)
         {
             //const string functionName = "AddRepeatForward";
-            Braille.AddRange(repeatStart);
+            Append(repeatStart);
             //Logger.LogOnce(string.Format("{0}.{1}", className, functionName));
         }
-
+ 
         public void AddRepeatBackward(RepeatElement repeatElement)
         {
             // const string functionName = "AddRepeatBackward";
-            Braille.AddRange(repeatEnd);
+            Append(repeatEnd);
             //Logger.LogOnce(string.Format("{0}.{1}", className, functionName));
         }        
 
         public void AddTime(TimeElement timeElement,string s)
         {
+#warning TODO: After verifying the syntax: Make a more general algorithm, handling nominator and denominatoe separately !
             const string functionName = "BrailleBuilder.AddTime";
+
+            byte[] timeSymbol = new byte[0] {};
+            switch (timeElement.TimeSymbol)
+            {
+                case TimeElement.TimeSymbolEnum.common: timeSymbol= timingCommon; break;
+                case TimeElement.TimeSymbolEnum.cut: timeSymbol = timingCut; break;
+                default: break;
+            }
+
             byte[] bytes = new byte[] { };
             byte beatType;
             switch (timeElement.BeatType)
             {
+                case 1:
+                    beatType = (dot2);
+                    switch (timeElement.Beats)
+                    {
+                        case 2: bytes = new byte[] { Number, cipher2, beatType }; break;       // 2/1  Not specified by REFSNÆS, suggested by JSJ
+                        case 3: bytes = new byte[] { Number, cipher3, beatType }; break;       // 3/1  Not specified by REFSNÆS, suggested by JSJ
+                        case 4: bytes = new byte[] { Number, cipher4, beatType }; break;       // 4/1  Not specified by REFSNÆS, suggested by JSJ
+                        default: break;
+                    }
+                    break;
+
                 case 2:
                     beatType = (dot2 + dot3);
                     switch (timeElement.Beats)
@@ -762,6 +680,11 @@ namespace MusicXmlReaderModel
                         case 4: bytes = new byte[] { Number, cipher4, beatType }; break; // 4/4
                         case 5: bytes = new byte[] { Number, cipher5, beatType }; break; // 5/4 Not specified by REFSNÆS, suggested by JSJ
                         case 6: bytes = new byte[] { Number, cipher6, beatType }; break; // 6/4 Not specified by REFSNÆS, suggested by JSJ
+                        case 12: bytes = new byte[] { Number, cipher1, cipher2, beatType }; break; // 12/4 Not specified by REFSNÆS, suggested by JSJ
+                        case 14: bytes = new byte[] { Number, cipher1, cipher4, beatType }; break; // 14/4 Not specified by REFSNÆS, suggested by JSJ
+                        case 16: bytes = new byte[] { Number, cipher1, cipher6, beatType }; break; // 16/4 Not specified by REFSNÆS, suggested by JSJ
+                        case 24: bytes = new byte[] { Number, cipher2, cipher4, beatType }; break; // 24/4 Not specified by REFSNÆS, suggested by JSJ
+                        case 28: bytes = new byte[] { Number, cipher2, cipher8, beatType }; break; // 28/4 Not specified by REFSNÆS, suggested by JSJ
                         default:  break;
                     }
                     break;
@@ -769,14 +692,34 @@ namespace MusicXmlReaderModel
                 case 8:
                     beatType = (dot2 + dot3 + dot6);
                     switch (timeElement.Beats)
-                    {       
+                    {
+                        case 1: bytes = new byte[] { Number, cipher1, beatType }; break; // 1/8 Not specified by REFSNÆS, suggested by JSJ
+                        case 2: bytes = new byte[] { Number, cipher2, beatType }; break; // 2/8 Not specified by REFSNÆS, suggested by JSJ
                         case 3: bytes = new byte[] { Number, cipher3, beatType }; break; // 3/8
                         case 4: bytes = new byte[] { Number, cipher4, beatType }; break; // 4/8
+                        case 5: bytes = new byte[] { Number, cipher5, beatType }; break; // 5/8 Not specified by REFSNÆS, suggested by JSJ
                         case 6: bytes = new byte[] { Number, cipher6, beatType }; break; // 6/8 
-                        case 7: bytes = new byte[] { Number, cipher7, beatType }; break; // 7/8  Not specified by REFSNÆS, suggested by JSJ
+                        case 7: bytes = new byte[] { Number, cipher7, beatType }; break; // 7/8 Not specified by REFSNÆS, suggested by JSJ
+                        case 8: bytes = new byte[] { Number, cipher8, beatType }; break; // 8/8 Not specified by REFSNÆS, suggested by JSJ
+                        case 9: bytes = new byte[] { Number, cipher9, beatType }; break; // 9/8 Not specified by REFSNÆS, suggested by JSJ
+                        case 12: bytes = new byte[] { Number, cipher1, cipher2, beatType }; break; // 12/8 Not specified by REFSNÆS, suggested by JSJ
+                        case 31: bytes = new byte[] { Number, cipher3, cipher1, beatType }; break; // 31/8 Not specified by REFSNÆS, suggested by JSJ
                         default:  break;
                     }
                     break;
+
+                case 16:
+                    byte beatType1 = (dot2); // Cipher1 lowered
+                    byte beatType2 = (dot2 + dot3 + dot5); // Cipher6 lowered
+                    switch (timeElement.Beats)
+                    {
+                        case 5: bytes = new byte[] { Number, cipher5, beatType1,beatType2 }; break; // 5/16 Not specified by REFSNÆS, suggested by JSJ
+                        case 7: bytes = new byte[] { Number, cipher7, beatType1, beatType2 }; break; // 7/16 Not specified by REFSNÆS, suggested by JSJ
+                        case 9: bytes = new byte[] { Number, cipher9, beatType1, beatType2 }; break; // 9/16 Not specified by REFSNÆS, suggested by JSJ
+                        default: break;
+                    }
+                    break;
+
                 default:break;
             }
             if (0 == bytes.Count())
@@ -785,9 +728,10 @@ namespace MusicXmlReaderModel
             }
             else
             {
-                Braille.AddRange(new List<byte>(bytes));
-                braille.Add(noDots); // Requested by Lars Petersen
-                text.Append(s);
+                Append(timeSymbol); // Contains the Braille Symbol for "C"  "cut C" used for A la breve.
+                Append(bytes);
+                Append(noDots); // Requested by Lars Petersen
+                AppendText(s);
                 //Logger.LogOnce(string.Format("{0}: Added time specification: {1}/{2}", functionName, timeElement.Beats, timeElement.BeatType));
             }
         }
@@ -801,7 +745,7 @@ namespace MusicXmlReaderModel
             {
                 case ClefEnum.G: bytes = clefG; break;
                 case ClefEnum.F: bytes = clefF; break;
-                case ClefEnum.C:
+                case ClefEnum.C: bytes = clefC; break;
                 case ClefEnum.percussion:
                 case ClefEnum.TAB :
                 case ClefEnum.jianpu:
@@ -809,9 +753,9 @@ namespace MusicXmlReaderModel
                     Logger.LogOnce(string.Format("{0}.{1} Clef={2} is not supported in Music Braille", className, functionName, clefElement.Clef.ToString())); break;
                 default: Logger.LogOnce(string.Format("{0}.{1} Unknown clef={2}", className,functionName, clefElement.Clef.ToString())); break;
             }
-            braille.AddRange(bytes);
-            braille.Add(noDots); // Requested by Lars Petersen
-            text.Append(s);          
+            Append(bytes);
+            Append(noDots); // Requested by Lars Petersen
+            AppendText(s);          
         }
 
 
@@ -838,9 +782,9 @@ namespace MusicXmlReaderModel
                 case -7: bytes = new byte[] { Number, cipher7, KeyFlat }; break;
                 default: Logger.LogOnce(string.Format("{0}.{1}: Illegal number of fifths={2}", className,functionName, keyElement.Fifths)); break;
             }
-            braille.AddRange(bytes);
-            braille.Add(noDots); // Requested by Lars Petersen
-            text.Append(s);       
+            Append(bytes);
+            Append(noDots); // Requested by Lars Petersen
+            AppendText(s);       
         }
 
 
@@ -853,7 +797,7 @@ namespace MusicXmlReaderModel
         {
             // const string functionName = "AddRest";
             //text.Append("R"); // For "Rest"
-            Append("R");
+            AppendText("R");
             if (NoteTypeEnum.measure == noteDuration)
             {
                 Append(FullMeasureRest, "/FM");
@@ -885,19 +829,19 @@ namespace MusicXmlReaderModel
 
             switch (hand)
             {
-                case Hand.Left: braille.Add(left); braille.Add(handConst); break;
-                case Hand.Right: braille.Add(right); braille.Add(handConst); break;
+                case Hand.Left: Append(left); Append(handConst); AppendText("Left");  break;
+                case Hand.Right: Append(right); Append(handConst); AppendText("Right"); break;
                 case Hand.Undefined:
                     Logger.Log(string.Format("{0}.AddFinger() was called with illegal parameter hand={1}",className, hand.ToString())); break;
             }
 
             switch (finger)
             {
-                case 1: braille.Add(finger1); break;
-                case 2: braille.Add(finger2); break;
-                case 3: braille.Add(finger3); break;
-                case 4: braille.Add(finger4); break;
-                case 5: braille.Add(finger5); break;
+                case 1: Append(finger1); AppendText("f1"); break;
+                case 2: Append(finger2); AppendText("f2"); break;
+                case 3: Append(finger3); AppendText("f3"); break;
+                case 4: Append(finger4); AppendText("f4"); break;
+                case 5: Append(finger5); AppendText("f5"); break;
                 default:
                     Logger.Log(string.Format("{0}.AddFinger() was called with illegal parameter finger={1}",className, finger.ToString())); break;
             }
@@ -917,19 +861,79 @@ namespace MusicXmlReaderModel
 
             switch (size)
             {
-                case 2: braille.Add(second); break;
-                case 3: braille.Add(third); break;
-                case 4: braille.Add(fourth); break;
-                case 5: braille.Add(fifth); break;
-                case 6: braille.Add(sixth); break;
-                case 7: braille.Add(seventh); break;
-                case 8: braille.Add(eight); break;
+                case 2: Append(second); break;
+                case 3: Append(third); break;
+                case 4: Append(fourth); break;
+                case 5: Append(fifth); break;
+                case 6: Append(sixth); break;
+                case 7: Append(seventh); break;
+                case 8: Append(eight); break;
                 default:
                     Logger.Log(string.Format("{0}.AddInterval() was called with illegal parameter size={1}", className,size.ToString())); break;
             }
 
 
         }
+
+        // New code for handling Barlines
+
+        /// <summary>
+        /// Add a barline.
+        /// In most cases the barline is an implicit barline, caused by the start of a new measure.
+        /// If an explicit barline is found, it eill override the implicit barline.
+        /// </summary>
+        /// <param name="selectedBarStyles"></param>
+        /// <param name="implicitBar"></param>
+        public void AddBarline(List<BarStyleEnum> selectedBarStyles, bool implicitBar,int measureNumber)
+        {
+            // The MeasureNumber is only for debugging !
+            string epilog = string.Format("{0} ",measureNumber); // Add an axtra space after each bar to make it more visible (and symmetrical)
+            if ((null != selectedBarStyles) && (1 == selectedBarStyles.Count))
+            {
+                BarStyleEnum barStyle = selectedBarStyles[0];
+                // Exactly one barstyle exists. Use it
+                switch (barStyle)
+                {
+                    // Attempt to map the MusicXml BarStyle to the BrailleMusic barstyle.
+                    case BarStyleEnum.regular:
+                        Append(barline, "|" + epilog);
+                        Logger.LogCFOnce(": Added a standard Barline");
+                        break;
+                    case BarStyleEnum.dotted:
+                        Append(barlineDotted, "|.Dotted" + epilog);
+                        Logger.LogCFOnce(": Added a dotted Barline");
+                        break;
+                    case BarStyleEnum.dashed:
+                    case BarStyleEnum.heavy:
+                    case BarStyleEnum.heavyHeavy:
+                    case BarStyleEnum.heavyLight:
+                    case BarStyleEnum.lightHeavy:
+                    case BarStyleEnum.lightLight:
+                    case BarStyleEnum.shortBarStyle:
+                    case BarStyleEnum.tick:
+                        Append(barlineUnusual, "|.Unusual" + epilog);
+                        Logger.LogCFOnce(string.Format(": Added an unusual Barstyle={0}", barStyle.ToString()));
+                        break;
+                    case BarStyleEnum.unknown:
+                        Append(barlineUnusual, "|.Unusual" + epilog);
+                        Logger.LogCFOnce(string.Format(": Added an unknown Barstyle={0}", barStyle.ToString()));
+                        break;
+                    default:
+                        Logger.LogCFOnce(string.Format(": Undefined Barstyle {0}", barStyle.ToString()));
+                        break;
+                }
+            }
+            else
+            {
+                if (implicitBar)
+                {
+                    Append(barline, "|" + epilog); // As default use a simple barline
+                    //Logger.LogCFOnce(": Added an implicit Barline");
+                }
+            }
+        } // AddBarline
+
+
 
         // TO DO: ********************************************************
 

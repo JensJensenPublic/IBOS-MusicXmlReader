@@ -3,6 +3,24 @@ using System.Collections.Generic;
 
 namespace MusicXmlReaderModel
 {
+    public class PartDescription
+    {
+        private string id = "";
+        public string Id { get { return id; }  }
+        private List<Element> elements;
+        public List<Element> Elements { get { return elements; } }
+        private PartDescription() { }
+        private PartDescription(string id)
+        {
+            this.id = id;
+            this.elements = new List<Element>();
+        }
+        public static PartDescription Create(string id)
+        {
+            return new PartDescription(id);
+        }
+    }
+
 
     public class PartDescriptionList
     {
@@ -14,8 +32,8 @@ namespace MusicXmlReaderModel
         {
         }
 
-        // The list of partitions,each containing a list of elements        
-        public List<List<Element>> parts;
+        // The list of parts, each containing a list of elements 
+        public List<PartDescription> parts;
 
         /// <summary>
         /// Private constructor, used by the Crate() method
@@ -23,17 +41,17 @@ namespace MusicXmlReaderModel
         /// <param name="node"></param>
         private PartDescriptionList(List<MusicXmlObject> xmlObjects, int numberOfParts)
         {
-            parts = new List<List<Element>>(numberOfParts);
-            List<Element> currentPart = null; 
+            parts = new List<PartDescription>(numberOfParts);
+            PartDescription currentPart = null; 
             string currentPartId  = "";
             foreach (Object o in xmlObjects)
             {
                 Element e = o as Element;
                 if (e is PartElement)
                 {
-                    // Create the next partition
-                    currentPart = new List<Element>();
+                    // Create the next part               
                     currentPartId = (e as PartElement).PartId;
+                    currentPart = PartDescription.Create(currentPartId);
                     parts.Add(currentPart);
                 }
 
@@ -54,12 +72,14 @@ namespace MusicXmlReaderModel
                 || (e is AttributesElement)
                 || (e is DirectionElement)
                 || (e is MeasureStyleElement)
+                 || (e is PrintElement)
+                 || (e is StavesElement)
                 )
                 {
                     // All of these elements are related to events and timing and must be reflected in in the EventDescriptionList.
                     // So they are transferred through the following lists:
                     // List<MusicXmlObject> -> PartDescriptionList -> TimeDescriptionList -> EventDescriptionList
-                    currentPart.Add(e);
+                    currentPart.Elements.Add(e);
                 }
 
                 else if
@@ -85,15 +105,15 @@ namespace MusicXmlReaderModel
                 {
                     Type type = o.GetType();
                     string typeAsString = type.ToString();
-                    Logger.LogOnce(string.Format("PartDescriptionList: Unexpected object of type {0}: String='{1}'", typeAsString, o.ToString()));
+                    Logger.LogCFOnce(string.Format(": Unexpected object of type {0}: String='{1}'", typeAsString, o.ToString()));
                 }
 
             }
 
             // Only for inspection during debugging:
-            foreach (List<Element> elements in parts)
+            foreach (PartDescription part in parts)
             {
-                int numberOfElements = elements.Count;
+                int numberOfElements = part.Elements.Count;
             }
             
         }

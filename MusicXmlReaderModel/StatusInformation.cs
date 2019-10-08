@@ -71,7 +71,7 @@ namespace MusicXmlReaderModel
                     }
                     else
                     {
-                        Logger.LogCFOnce(": Tempo changed");
+                        // Logger.LogCFOnce(": Tempo changed");
                     }
                     currentSoundElement = value;
                 }

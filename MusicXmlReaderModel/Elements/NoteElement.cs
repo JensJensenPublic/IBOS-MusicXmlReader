@@ -40,6 +40,8 @@ namespace MusicXmlReaderModel
     public class NoteElement : EventElement
     {
 
+        // https://usermanuals.musicxml.com/MusicXML/Content/CT-MusicXML-note.htm
+
         // Allows for representing the following subdivisions of a quarter node:
         // 2,3,4,5,6,7,8,9,10. 
         // 1260 can be divided by 2,3,4,5,6,7,8,9 and 10 !
@@ -58,7 +60,7 @@ namespace MusicXmlReaderModel
         bool chord = false; // Means that this note starts at the same time as the previous note, not after the previous note.
         //string type = "unspecified";
         NoteTypeEnum noteDuration = NoteTypeEnum.unknown;
-        string voice = "";
+        int voice = 0;
         bool dot = false;
         int divisions = 0; 
         TieElement tieElement;             // A NoteElement may contain a nested TieElement  (Danish: "Bindebue")
@@ -76,7 +78,7 @@ namespace MusicXmlReaderModel
         string syllabic; // Child of lyric
         string text;     // Child of lyric
         string staffString = "";
-        int staff = 0;
+        int staff = 1;
         //string articulations = "";
         InstrumentElement instrumentElement; // The instrument type distinguishes between score-instrument elements in a score-part. The id attribute is an IDREF back to the score-instrument ID.
                                              //If multiple score-instruments are specified on a score-part, there should be an instrument element for each note in the part.
@@ -106,7 +108,16 @@ namespace MusicXmlReaderModel
         int dynamicsValue = 90;
         bool isFirstNoteInScorePart;
         int midiUnpitchedInstrumentNumber;
-        string scoreUnpitchedInstrumentName; 
+        string scoreUnpitchedInstrumentName;
+
+        private BrailleInAccordInfo brailleMeasureDivisionInfo;
+        public  BrailleInAccordInfo BrailleMeasureDivisionInfo { get { return brailleMeasureDivisionInfo; } set { brailleMeasureDivisionInfo = value; } }
+
+
+        public override int GetStaffNumber()
+        {
+            return this.staff;
+        }
 
         public int MidiUnpitchedInstrumentNumber
         {
@@ -187,7 +198,10 @@ namespace MusicXmlReaderModel
   
         }
 
-        public string Voice
+        /// <summary>
+        /// https://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-voice.htm
+        /// </summary>
+        public int Voice
         {
             get
             {
@@ -287,9 +301,18 @@ namespace MusicXmlReaderModel
         }
 
 
+        /// <summary>
+        /// The official way of specifying that this NoteElement is a rest
+        /// </summary>
+        public bool IsRest
+        {
+#warning TODO Attempt to use IsRest instead of (the self-invnted) IsPause
+            get { return null != restElement; }
+        }
+
 
         /// <summary>
-        /// Per definition a note without a pitch is a pause !
+        /// Per definition a note without a pitch is a pause ! Compare to IsRest
         /// </summary>
         public bool IsPause
         {
@@ -298,6 +321,20 @@ namespace MusicXmlReaderModel
                 return (null == pitchElement);
             }
         }
+
+        /// <summary>
+        /// Returns 0 for rests and for unpitched notes!
+        /// </summary>
+        public int PitchInSemitonesAboveC0
+        {
+            get
+            {
+                if (null != restElement) return 0; // A
+                if (null == pitchElement) return 0;
+                return pitchElement.SemiTonesAboveC0;
+            } 
+        }
+
 
         public PitchElement PitchValue
         {
@@ -770,6 +807,57 @@ namespace MusicXmlReaderModel
         }
 
 
+        /// <summary>
+        /// Simple convenience method
+        /// </summary>
+        private void CheckScorePartElement()
+        {
+            if (null == scorePartElement)
+            {
+                // In this way we explicitly log the error cause, but also prevents further useless attempts to load the file.
+                string s = ": scorePartElement is null";
+                Logger.LogCFOnce(s);
+                throw new MusicXmlParserException(string.Format("NoteElement.ctor {0}", s));
+            }
+        }
+
+        /// <summary>
+        /// Simple convenience method
+        /// </summary>
+        private void  CheckInStrumentElementId()
+        {
+            string s = "";
+            if (null == this.InstrumentElement)
+            {
+                s = ": InstrumentElement is null";
+            }
+            else
+            {
+                if (null == this.InstrumentElement.Id)
+                {
+                    s = ": InstrumentElement.Id is null";
+                }
+            }
+
+            if (string.IsNullOrEmpty(s)) return;
+
+            Logger.LogCFOnce(s);
+            throw new MusicXmlParserException(string.Format("NoteElement.ctor {0}", s));
+        }
+
+        /// <summary>
+        /// Simple convenience method
+        /// </summary>
+        /// <param name="midiInstrumentElement"></param>
+        private void CheckMidiInstrumentElement(MidiInstrumentElement midiInstrumentElement)
+        {
+            if (null == midiInstrumentElement)
+            {
+                string s = ": MidiInstrumentElement is null";
+                Logger.LogCFOnce(s);
+                throw new MusicXmlParserException(string.Format("NoteElement.ctor {0}", s));
+            }
+        }
 
 
 
@@ -787,6 +875,7 @@ namespace MusicXmlReaderModel
             //this.partNumber = scorePartElement.partNumber;
             //this.midiChannel = (null == scorePartElement.midiInstrumentElement) ? 1 : scorePartElement.midiInstrumentElement.MidiChannel; // Use channel 1 as a default
 
+            CheckScorePartElement();
 
             // Dig out attributes
             foreach (XmlAttribute a in xmlNode.Attributes)
@@ -857,7 +946,10 @@ namespace MusicXmlReaderModel
                         }
                         break;
                     // type = child.InnerText;
-                    case "voice": voice = child.InnerText; break;
+                    case "voice":
+                        voice = int.Parse(child.InnerText);
+                        //Logger.LogCFOnce(string.Format(": {0}: Voice={1}",System.IO.Path.GetFileName(Model.TheStaticXmlFileName),voice)); // Temporarily for debugging !
+                        break;
                     case "dot": dot = true; break;
                     case "tie":
                         tieElement = TieElement.Create(child);
@@ -966,11 +1058,11 @@ namespace MusicXmlReaderModel
 
             localizedPauseType = (IsPause) ? LocalizePause(noteDuration, dot) : "";
             localizedTie = LocalizeTie(tieType);
-      
+
 
             // Model.GetNoteTiming(out this.startTime, out this.endTime, int.Parse(this.duration));
 
-            // Mark this note if it is the first NoteElement in this scorePart (Used by MusicBraille)
+
             if (!scorePartElement.HasNotes)
             {
                 // Mark this note as the first note in the score
@@ -987,11 +1079,8 @@ namespace MusicXmlReaderModel
             // We need to be sure that all elements have been interpreted before we can handle unpitched notes.
             if (unpitched)
             {
-                if (null == scorePartElement)
-                {
-                    return;
-                }
 
+                CheckInStrumentElementId();
 
                 ScoreInstrumentElement scoreInstrumentElement = scorePartElement.GetScoreInstrument(this.InstrumentElement.Id);
                 // int nnn = midiInstrumentElement.MidiUnpitchedInstrumentNumber;
@@ -1004,6 +1093,7 @@ namespace MusicXmlReaderModel
                 {
                     // This is a Midi instrument, not a virtual instrument.
                     MidiInstrumentElement midiInstrumentElement = scorePartElement.GetMidiInstrument(this.InstrumentElement.Id);
+                    CheckMidiInstrumentElement(midiInstrumentElement);
                     this.midiUnpitchedInstrumentNumber = midiInstrumentElement.MidiUnpitchedInstrumentNumber - 1; // https://musescore.org/en/node/89756
                     if (MidiNote.MidiChannelForUnpitchedInstruments != this.MidiChannel) // Non-virtual unpiched notes must be assigned to channel 10
                     {
@@ -1209,6 +1299,37 @@ namespace MusicXmlReaderModel
         public static NoteElement Create(XmlNode node, int divisions,int tempMeasureNumber, ScorePartElement scorePartElement,TimeElement currentTimeElement) // New version
         {
             return new NoteElement(node, divisions, tempMeasureNumber, scorePartElement,currentTimeElement);
+        }
+
+        public string ToShortDebugString()
+        {
+            return ToShortDebugString(false, true);
+        }
+
+
+        /// <summary>
+        /// ONLY for debugging. May bechanged at any time. Currently just returns ToString()
+        /// </summary>
+        /// <returns></returns>
+        public string ToShortDebugString(bool showStartTime, bool showEndTime)
+        {
+
+            // Primarily for debugging. We only need to be able to identify the note in the graphics.
+            string startTimeString = showStartTime ? string.Format(" Start={0} ", this.startTime) : "";
+            string endTimeString   = showEndTime ? string.Format(" End={0} ", this.startTime + this.DurationInCommonDivisions) : "";
+            string partString = string.Format("{0} ", PartId); 
+            if (!IsPause)
+            {                
+                // This is a note.
+                return String.Format("{0}{1}S{2} V{3} {4,3}{5} {6} {7}{8}",
+                    startTimeString,partString, staff,voice,pitchElement.Name, pitchElement.Octave, localizedType, localizedTie, endTimeString);
+            }
+            else
+            {
+                // This is a pause,not a note.     
+                return (String.Format("{0}{1}S{2} V{3} {4} {5}",
+                    startTimeString,partString,staff,voice,  LocalizePause(noteDuration, dot), endTimeString));
+            }
         }
 
 

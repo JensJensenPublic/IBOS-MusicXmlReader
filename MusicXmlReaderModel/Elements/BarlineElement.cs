@@ -19,6 +19,14 @@ namespace MusicXmlReaderModel
         EndingElement endingElement;
         BarStyleElement barStyleElement;
         FermataElement fermataElement;
+        ScorePartElement scorePartElement;
+        public string PartId
+        {
+            get
+            {
+                return scorePartElement.partId;
+            }
+        }
 
         public BarlineLocationEnum Location
         {
@@ -79,9 +87,10 @@ namespace MusicXmlReaderModel
         /// Private constructor, used by the Crate() method
         /// </summary>
         /// <param name="node"></param>
-        private BarlineElement(XmlNode node)
+        private BarlineElement(XmlNode node, ScorePartElement scorePartElement)
         {
             const string functionName = "BarlineElement";
+            this.scorePartElement = scorePartElement;
             //Logger.LogOnce(string.Format("{0} constructor",functionName));
 
             // Dig out elements
@@ -139,9 +148,9 @@ namespace MusicXmlReaderModel
             }
         }
 
-        public static BarlineElement Create(XmlNode node)
+        public static BarlineElement Create(XmlNode node,ScorePartElement scorePartElement)
         {
-            return new BarlineElement(node);
+            return new BarlineElement(node, scorePartElement);
         }
 
 

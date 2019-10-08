@@ -23,13 +23,24 @@ namespace MusicXmlReaderModel
          096,101,058,104,042,111,033,114,129,100,106,103,230,110,116,113,  // Maps the Unicode Interval starting at 0x2810
          133,229,063,234,150,117,181,118,152,238,248,235,158,120,232,231,  // Maps the Unicode Interval starting at 0x2820
          168,251,161,252,176,122,034,224,139,244,119,239,190,121,249,233}; // Maps the Unicode Interval starting at 0x2830
-        // Please find more information in the 2 files (both found in "...\Dropbox\Root\Visual Studio 2015\Projects\MusicXmlReaderUI\Documentation"):
-        // "da-ansi8.dis" and "Braille Sense U2 brugermanual(Ver 8 5_dk).docx"
+                                                                           // Please find more information in the 2 files (both found in "...\Dropbox\Root\Visual Studio 2015\Projects\MusicXmlReaderUI\Documentation"):
+                                                                           // "da-ansi8.dis" and "Braille Sense U2 brugermanual(Ver 8 5_dk).docx"
+
+        public override int GetCodePage()
+        {
+            return 1252;
+        }
 
 
+        public override bool IsValidBrailleMusic(string fileName)
+        {
+            byte[] bytesReadFromFile = ReadAsBinary(fileName);
+            return IsValidBrailleMusic(bytesReadFromFile);
+        }
+        
         public override string GetExtension()
         {
-            return ".txt"; // Although the formally correct extension is .brl it looks like .txt is used in the real world!
+            return ".brl"; 
         }
 
         public override string GetFileFormat()
