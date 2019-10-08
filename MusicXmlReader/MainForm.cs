@@ -16,6 +16,9 @@ namespace MusicXmlReader
     public partial class MainForm : Form, IDebugDisplayerClient, IObjectCollection, IUtilityClient
     {
         string className = "MainForm";
+        bool developerMode; // Can be set in app.Config
+        string localizationMessage = ""; // Will contain a formatted message if the default UI Culture is overwritten by App.Config
+        //bool experimentalCode;  // Can be set in app.Config
         public static readonly Color FocusedColor = Color.White;         // Mainly for debugging. For released versions use Color.White !
         public static readonly Color NonFocusedColor = Color.WhiteSmoke; // Mainly for debugging. For released versions use Color.White !
         // bool consoleTrace = false;
@@ -24,6 +27,7 @@ namespace MusicXmlReader
         string executingAssemblyFullPath  = ""; // The (unlocalized) name and location of the program, 
         string executingAssemblyShortName = ""; // The (unlocalized) short name of the program, used by for instance JAWS to name configuration file! 
         string myMusicXmlDirectory; // Default location for MusicXml files belonging to thos user. Will be populated with sample files!
+        private OrganisationDependencies organisationDependencies;
 
         Model model;        // The Model containing all of the business logic.
 
@@ -34,6 +38,7 @@ namespace MusicXmlReader
         ParameterInputHandler   parameterInputHandler;
         ListBoxTimesHandler     listBoxTimesHandler;
         MessageHandler          messageHandler;
+        BrailleMusicExportHandler brailleMusicExportHandler; // Isolates most code for handling export to files of Music Braille
 
 
         public MainForm()
@@ -49,15 +54,25 @@ namespace MusicXmlReader
                 Logger.Log(""); // An empty line to catch the eye
                 Logger.Log(string.Format("{0}.{1} Starting: Date={2}", className, functionName, System.DateTime.Now.ToLongDateString()));
                 Application.ApplicationExit += Application_ApplicationExit;
+
+                string developerModeString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.DeveloperMode);
+                developerMode = ("yes" == developerModeString);
+
+                Logger.LogCF(string.Format(": DeveloperModeString={0} DeveloperMode={1}", developerModeString, developerMode));
+                string developerCultureString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.DeveloperCulture);
+                Logger.LogCF(string.Format(": DeveloperLanguageString='{0}'", developerCultureString));
+
                 UiUtilities.LogSystemInformation();
 
-                // If the execution directory contains a file named "Language.txt" containing the string "en-US"
-                // the application language will be changed to english evin if running on a danish PC!
-                UiUtilities.LogGLobalisationInformation();
-  
+                // If App.Config contains an entry named "DeveloperCulture" describing a valid culture string, for instance "en-US" or "ko-KR"
+                // the application culture will be changed to that even if running on a danish PC!
+                localizationMessage = UiUtilities.LogGLobalisationInformation(developerCultureString);
+                organisationDependencies = OrganisationDependencies.Create(executingAssemblyShortName);
+
                 // Do any UI localization before we create the model. In this way we avoid showing unlocalized texts if an error is reported by a messagebox.
-                applicationName = ResourcesForUI.MainForm_ApplicationName;
+                applicationName = organisationDependencies.ApplicationName; // Defaults to ResourcesForUI.MainForm_ApplicationName;
                 messageHandler = MessageHandler.Create(applicationName);
+           
                 textBoxScreenReader.Hide(); // This textbox gets Focus used during long-lasting operation and thus draws the Screenreaders attensio to itself, avoiding too much Speech !
                 LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
                 textBoxStatusInformation.AccessibleName = ResourcesForUI.StatusLine_Accessible_Name; // Overwrite with localized text
@@ -65,9 +80,14 @@ namespace MusicXmlReader
 
                 Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 
                 model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), applicationName);
+                string experimentalCodeString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.ExperimentalCode);
+                model.ExperimentalCode = ("yes" == experimentalCodeString);
+                Logger.LogCF(string.Format(": ExperimentalCodeString={0} ExperimentalCode={1}", experimentalCodeString, model.ExperimentalCode));
+
                 importHandler = ImportHandler.Create(model,this,applicationName);
                 parameterInputHandler = ParameterInputHandler.Create(model,this);
-           
+                brailleMusicExportHandler = BrailleMusicExportHandler.Create(model, parameterInputHandler, messageHandler, saveBrailleFileDialog, developerMode);
+
                 this.Text = applicationName;
                 WriteStatusInformation(model.ScreenReaderName);
 
@@ -78,7 +98,7 @@ namespace MusicXmlReader
                 listBoxTimes.BackColor = NonFocusedColor;
                 listBoxDetails.BackColor = NonFocusedColor;
                 userSettingsTreeView.BackColor = NonFocusedColor;
-                textBoxText.Hide(); // Not for the end user !!Could be reenabled during debugging of Braille Music handling               
+                if (!developerMode) textBoxText.Hide(); // Not for the end user. Can be reenabled in App.Config during debugging of Braille Music handling               
 
                 // Create remaining handlers. Some of the need references to others
                 detailsHandler = DetailsHandler.Create(listBoxTimes, listBoxDetails, model, this as IDebugDisplayerClient);
@@ -95,6 +115,8 @@ namespace MusicXmlReader
 
                 LoadIcon();
 
+                this.Shown += MainForm_Shown;
+
                 // throw (new Exception("For test only")); // Insert this line to test the Last Resort handler below
             }
             catch (Exception e)
@@ -106,7 +128,19 @@ namespace MusicXmlReader
             }
         }
 
-  
+
+        /// <summary>
+        /// Postpones the reporting of messages generated during the initialisation of Mainform 
+        /// to the time when Mainform is first shown.
+        /// This will fir instance allow of localisation of these messages if wanted.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(localizationMessage)) return;
+            messageHandler.ShowMessage(localizationMessage);
+        }
 
         private void LoadIcon()
         {
@@ -318,6 +352,7 @@ namespace MusicXmlReader
             this.textBoxStatusInformation.Text = latestStatusInformation; // Restore prevopus contents after resize !!
             this.Refresh();
         }
+
 
     }
 }

@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ButtonStart_StartPlaying" xml:space="preserve">
+    <value>Start musikafspilning</value>
+  </data>
+  <data name="ButtonStart_StopPlaying" xml:space="preserve">
+    <value>Stop musikafspilning</value>
+  </data>
+  <data name="DetailsState_Bottom" xml:space="preserve">
+    <value>bund</value>
+  </data>
+  <data name="DetailsState_Top" xml:space="preserve">
+    <value>top</value>
+  </data>
+  <data name="DetailState_AllParts" xml:space="preserve">
+    <value>Alle stemmer</value>
+  </data>
+  <data name="DetailState_Harmonies" xml:space="preserve">
+    <value>Becifringer</value>
+  </data>
+  <data name="DetailState_Instruments" xml:space="preserve">
+    <value>Instrumenter</value>
+  </data>
+  <data name="DetailState_SingleNotes" xml:space="preserve">
+    <value>Enkelt-noder</value>
+  </data>
+  <data name="DetailState_SingleParts" xml:space="preserve">
+    <value>Enkelt-stemmer</value>
+  </data>
+  <data name="DetailState_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="DirectoryNames_CultureString" xml:space="preserve">
+    <value>sv-SE</value>
+    <comment>Used to look up this file !</comment>
+  </data>
+  <data name="DirectoryNames_Downloads" xml:space="preserve">
+    <value>MusicXml overførsler</value>
+  </data>
+  <data name="DirectoryNames_Samples" xml:space="preserve">
+    <value>Eksempler</value>
+  </data>
+  <data name="FileNames_UsersManual" xml:space="preserve">
+    <value>Brugervejledning.doc</value>
+    <comment>Must use valid filename syntax</comment>
+  </data>
+  <data name="ListBoxDetails_NoDetailsFound" xml:space="preserve">
+    <value>Ingen detaljer</value>
+  </data>
+  <data name="ListView_Accessible_Name" xml:space="preserve">
+    <value>NodeListe</value>
+  </data>
+  <data name="MainForm_ApplicationName" xml:space="preserve">
+    <value>IBOS Nodelæser</value>
+  </data>
+  <data name="Message_ConnectedToNonDefaultScreenReader" xml:space="preserve">
+    <value>Forbundet til usupporteret screenreader</value>
+  </data>
+  <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
+    <value>Overvej at eksportere én stemme ad gangen!</value>
+  </data>
+  <data name="Message_DirectoryNotFound" xml:space="preserve">
+    <value>Mappen eksisterer ikke</value>
+  </data>
+  <data name="Message_DoYouWantToExitTheProgram" xml:space="preserve">
+    <value>Ønsker du at afslutte programmet?</value>
+  </data>
+  <data name="Message_ExportOfMultiplePartsNotSupported" xml:space="preserve">
+    <value>Når flere stemmer eksporteres samtidig, vil noder fra de forskellige stemmer blive sammenblandet og kan ikke senere adskilles.</value>
+  </data>
+  <data name="Message_FailedToReadMusicXmlFile" xml:space="preserve">
+    <value>Kunne ikke indlæse MusicXml fil</value>
+  </data>
+  <data name="Message_FailedToShow" xml:space="preserve">
+    <value>Kunne ikke vise</value>
+  </data>
+  <data name="Message_FailedToStartProgram" xml:space="preserve">
+    <value>Kunne ikke starte programmet</value>
+  </data>
+  <data name="Message_FileNotFound" xml:space="preserve">
+    <value>Filen eksisterer ikke</value>
+  </data>
+  <data name="Message_JAWSScreenReaderIsNotRunning" xml:space="preserve">
+    <value>JAWS skærmlæser er ikke startet.</value>
+  </data>
+  <data name="Message_LocationNotDetermined" xml:space="preserve">
+    <value>Filens placering kunne ikke bestemmes</value>
+  </data>
+  <data name="Message_MayNotWorkAsExpected" xml:space="preserve">
+    <value>Programmet vil måske ikke fungere korrekt</value>
+  </data>
+  <data name="Message_MissingProgramFile" xml:space="preserve">
+    <value>Manglende programfil</value>
+  </data>
+  <data name="Message_NotAllowedWhilePlaying" xml:space="preserve">
+    <value>Ikke tilladt under afspilning</value>
+  </data>
+  <data name="Message_PleaseSeeLogFile" xml:space="preserve">
+    <value>Se venligst log fil (Værktøjer-&gt;Logfil)</value>
+  </data>
+  <data name="Message_RightAlignedMenus" xml:space="preserve">
+    <value>Gå venligst til Indstillinger - Enheder - Pen &amp; Windows Ink og skift 'Vælg hvilken hånd du skriver med' fra 'Højre hånd' til 'Venstre hånd'</value>
+  </data>
+  <data name="Message_StopPlayingFirst" xml:space="preserve">
+    <value>Stop afspilning først</value>
+  </data>
+  <data name="Message_UndefinedMessage" xml:space="preserve">
+    <value>(Udefineret meddelelse)</value>
+  </data>
+  <data name="Message_UnspecifiedInitializationError" xml:space="preserve">
+    <value>Fejl under programmets opstart</value>
+  </data>
+  <data name="Message_UnspecifiedMusicXmlFile" xml:space="preserve">
+    <value>Ingen MusicXml fil angivet</value>
+  </data>
+  <data name="OpenFileDialog_Filter" xml:space="preserve">
+    <value>MusicXml filer</value>
+  </data>
+  <data name="OpenFileDialog_Filter_mxl" xml:space="preserve">
+    <value>Komprimerede MusicXml filer</value>
+  </data>
+  <data name="ParameterInputForm_BrailleFormatting" xml:space="preserve">
+    <value>Indtast sidestørrelse som tegn per linie , linier per side</value>
+  </data>
+  <data name="ParameterInputForm_GoTo" xml:space="preserve">
+    <value>&amp;Gå til takt</value>
+  </data>
+  <data name="ParameterInputForm_PctOfNominalTempo" xml:space="preserve">
+    <value>% af &amp;Normalt tempo</value>
+  </data>
+  <data name="ParameterInputForm_Repeat" xml:space="preserve">
+    <value>&amp;Repetér takter</value>
+  </data>
+  <data name="ResourceFileName" xml:space="preserve">
+    <value>ResourcesForUI.sv-SE.resx</value>
+    <comment>The name of the currently used resource file</comment>
+  </data>
+  <data name="SelectFileDialog_Title" xml:space="preserve">
+    <value>Udvælg overførte filer til import</value>
+  </data>
+  <data name="StatusLine_Accessible_Name" xml:space="preserve">
+    <value>Statuslinie</value>
+  </data>
+  <data name="Status_file" xml:space="preserve">
+    <value>fil</value>
+  </data>
+  <data name="Status_files" xml:space="preserve">
+    <value>filer</value>
+  </data>
+  <data name="Status_Imported" xml:space="preserve">
+    <value>Importerede</value>
+  </data>
+  <data name="Status_ImportingSampleFiles" xml:space="preserve">
+    <value>Importerer eksempler</value>
+  </data>
+  <data name="Status_ImportingSelectedFiles" xml:space="preserve">
+    <value>Importerer udvalgte filer</value>
+  </data>
+  <data name="TextBox_Messages_FailedToConvert_File" xml:space="preserve">
+    <value>Kunne ikke konvertere</value>
+  </data>
+  <data name="TextBox_Messages_FailedToRead_File" xml:space="preserve">
+    <value>Kunne ikke indlæse</value>
+  </data>
+  <data name="TextBox_Messages_Reading_File" xml:space="preserve">
+    <value>Indlæser</value>
+  </data>
+  <data name="TextBox_Messages_TheProgramIsExiting" xml:space="preserve">
+    <value>Programmet afslutter</value>
+  </data>
+  <data name="TextBox_Messages_ToMusicXml" xml:space="preserve">
+    <value>til MusicXml (.xml)</value>
+  </data>
+  <data name="TextBox_Messages_UnsupportedFileFormat" xml:space="preserve">
+    <value>Usupporteret filformat</value>
+  </data>
+  <data name="ToolsStripMenuItem_Archives" xml:space="preserve">
+    <value>&amp;Nodearkiver</value>
+  </data>
+  <data name="ToolsStripMenuItem_View_Instruments" xml:space="preserve">
+    <value>&amp;Instrument - detaljer</value>
+  </data>
+  <data name="ToolStripMenuItem_Edit" xml:space="preserve">
+    <value>&amp;Rediger</value>
+  </data>
+  <data name="ToolStripMenuItem_Files" xml:space="preserve">
+    <value>&amp;Filer</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_BrfASCII" xml:space="preserve">
+    <value>.brf (ASCII)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_BrfUnicode" xml:space="preserve">
+    <value>.brf (Unicode)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_brf_ASCII" xml:space="preserve">
+    <value>.brf (&amp;ASCII)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_brf_Unicode" xml:space="preserve">
+    <value>.brf (&amp;Unicode)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_Exit" xml:space="preserve">
+    <value>&amp;Afslut</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ExportMusicBraille" xml:space="preserve">
+    <value>E&amp;xportér punktnoder</value>
+    <comment>Use x instead of ks in order to use same shortcut</comment>
+  </data>
+  <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
+    <value>E&amp;xportér Musik Braille til fil</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
+    <value>Importér &amp;overførsler</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
+    <value>Importér &amp;dagens overførsler</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
+    <value>Importér nyeste &amp;eksempler</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_InOptionalFormat" xml:space="preserve">
+    <value>i valgfrit format</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFile" xml:space="preserve">
+    <value>&amp;Åbn MusicXml fil (oversat til svensk)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
+    <value>Åbn MusicXml fil med &amp;standard instillinger</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToEmbosser" xml:space="preserve">
+    <value>til punktprinter</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToNoteTaker" xml:space="preserve">
+    <value>til notatapparat</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_TxtOctoBraille1252" xml:space="preserve">
+    <value>.txt (OctoBraille 1252)</value>
+  </data>
+  <data name="ToolStripMenuItem_Help" xml:space="preserve">
+    <value>&amp;Hjælp</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_About" xml:space="preserve">
+    <value>&amp;Om</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_About_Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
+    <value>&amp;Tastatur-genveje</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_ShowUsersManual" xml:space="preserve">
+    <value>Vis &amp;Brugervejledning</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_SoftwareUpdate" xml:space="preserve">
+    <value>Link til nyeste &amp;software</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
+    <value>http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools" xml:space="preserve">
+    <value>Værk&amp;tøjer</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern" xml:space="preserve">
+    <value>Generér punktnode testmønster</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_InspectAsXml" xml:space="preserve">
+    <value>MusicXml fil som rå &amp;XML</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_JAWS_Settings" xml:space="preserve">
+    <value>&amp;JAWS indstillinger</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_Logfile" xml:space="preserve">
+    <value>&amp;Logfil</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_Logfile_Location" xml:space="preserve">
+    <value>Logfil &amp;placering</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_MuseScore" xml:space="preserve">
+    <value>&amp;MuseScore</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_OpenXmlFileLocation" xml:space="preserve">
+    <value>&amp;MusicXml fil placering</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_SaveAsText" xml:space="preserve">
+    <value>Gem som &amp;tekst</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_Sibelius" xml:space="preserve">
+    <value>&amp;Sibelius</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
+    <value>&amp;BrugerIndstillinger</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_ViewAsInterpretedXml" xml:space="preserve">
+    <value>MusicXml fil som &amp;fortolket XML</value>
+  </data>
+  <data name="ToolStripMenuItem_View" xml:space="preserve">
+    <value>&amp;Vis</value>
+  </data>
+  <data name="ToolStripMenuItem_View_MusicBrailleForNoteTaker" xml:space="preserve">
+    <value>Punktnoder for notatapparat</value>
+  </data>
+  <data name="TreeView_Accessible_Name" xml:space="preserve">
+    <value>Nodefilter</value>
+  </data>
+  <data name="TreeView_All_Items" xml:space="preserve">
+    <value>&amp;Alle filtre</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_CheckAll" xml:space="preserve">
+    <value>&amp;1: Markér alle</value>
+  </data>
+  <data name="TreeView_CheckOthers" xml:space="preserve">
+    <value>Markér andre stemmer eller detaljer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="Treeview_for" xml:space="preserve">
+    <value>for</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsBraille" xml:space="preserve">
+    <value>&amp;Braille (punktnode) visning</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsBraille_Details" xml:space="preserve">
+    <value>&amp;Detaljer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsBraille_Parts" xml:space="preserve">
+    <value>&amp;Stemmer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsSound" xml:space="preserve">
+    <value>&amp;Musik afspilning</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsSound_Details" xml:space="preserve">
+    <value>&amp;Detaljer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsSound_Parts" xml:space="preserve">
+    <value>&amp;Stemmer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsSpeech" xml:space="preserve">
+    <value>&amp;Tekst visning</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsSpeech_Details" xml:space="preserve">
+    <value>&amp;Detaljer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsSpeech_Parts" xml:space="preserve">
+    <value>&amp;Stemmer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_UncheckAll" xml:space="preserve">
+    <value>&amp;0: Fjern markering fra alle</value>
+  </data>
+  <data name="TreeView_UncheckOthers" xml:space="preserve">
+    <value>Fjern markering fra andre stemmer eller detaljer</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeWiew_Items" xml:space="preserve">
+    <value>&amp;Filtre</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+</root>

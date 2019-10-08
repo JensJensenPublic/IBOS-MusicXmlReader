@@ -16,15 +16,15 @@ namespace MusicXmlReader
     /// </summary>
     public partial class HelpForm : Form
     {
-        public HelpForm()
+        public HelpForm(string applicationName)
         {
             InitializeComponent();
-            UserInit();
+            UserInit(applicationName);
         }
 
-        private void UserInit()
+        private void UserInit(string applicationName)
         { 
-            this.Text = ResourcesForUI.MainForm_ApplicationName + ":   " + ResourcesForHelp.Shortcut_MenuCaption;
+            this.Text = applicationName + ":   " + ResourcesForHelp.Shortcut_MenuCaption;
             ShortcutHelp shortcutHelp = ShortcutHelp.Create();
             List<string> strings = shortcutHelp.ToStrings();
             foreach (string s in strings)

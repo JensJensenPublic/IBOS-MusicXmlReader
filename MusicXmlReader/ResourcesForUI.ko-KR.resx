@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ButtonStart_StartPlaying" xml:space="preserve">
+    <value>Start playing</value>
+  </data>
+  <data name="ButtonStart_StopPlaying" xml:space="preserve">
+    <value>Stop playing</value>
+  </data>
+  <data name="DetailsState_Bottom" xml:space="preserve">
+    <value>bottom</value>
+  </data>
+  <data name="DetailsState_Top" xml:space="preserve">
+    <value>top</value>
+  </data>
+  <data name="DetailState_AllParts" xml:space="preserve">
+    <value>All parts</value>
+  </data>
+  <data name="DetailState_Harmonies" xml:space="preserve">
+    <value>Chord symbols</value>
+  </data>
+  <data name="DetailState_Instruments" xml:space="preserve">
+    <value>Instruments</value>
+  </data>
+  <data name="DetailState_SingleNotes" xml:space="preserve">
+    <value>Single notes</value>
+  </data>
+  <data name="DetailState_SingleParts" xml:space="preserve">
+    <value>Single parts</value>
+  </data>
+  <data name="DetailState_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="DirectoryNames_CultureString" xml:space="preserve">
+    <value>ko-KR</value>
+    <comment>Used tolookup this resource file !</comment>
+  </data>
+  <data name="DirectoryNames_Downloads" xml:space="preserve">
+    <value>MusicXml downloads</value>
+  </data>
+  <data name="DirectoryNames_Samples" xml:space="preserve">
+    <value>Samples</value>
+  </data>
+  <data name="FileNames_UsersManual" xml:space="preserve">
+    <value>User's manual.doc</value>
+    <comment>Must use valid filename synrax !</comment>
+  </data>
+  <data name="ListBoxDetails_NoDetailsFound" xml:space="preserve">
+    <value>No details found</value>
+  </data>
+  <data name="ListView_Accessible_Name" xml:space="preserve">
+    <value>Note list</value>
+  </data>
+  <data name="MainForm_ApplicationName" xml:space="preserve">
+    <value>IBOS MusicReader</value>
+  </data>
+  <data name="Message_ConnectedToNonDefaultScreenReader" xml:space="preserve">
+    <value>Connected to unsupported screenreader</value>
+  </data>
+  <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
+    <value>Consider exporting one part at a time! </value>
+  </data>
+  <data name="Message_DirectoryNotFound" xml:space="preserve">
+    <value>Directory not found</value>
+  </data>
+  <data name="Message_DoYouWantToExitTheProgram" xml:space="preserve">
+    <value>Do you want to exit the program?</value>
+  </data>
+  <data name="Message_ExportOfMultiplePartsNotSupported" xml:space="preserve">
+    <value>When multiple parts are exported at the same time, notes from different parts will be mixed and can not be separated afterwards.</value>
+  </data>
+  <data name="Message_FailedToReadMusicXmlFile" xml:space="preserve">
+    <value>Failed to read MusicXml file</value>
+  </data>
+  <data name="Message_FailedToShow" xml:space="preserve">
+    <value>Failed to show</value>
+    <comment>Failed to show</comment>
+  </data>
+  <data name="Message_FailedToStartProgram" xml:space="preserve">
+    <value>Failed to start program</value>
+  </data>
+  <data name="Message_FileNotFound" xml:space="preserve">
+    <value>File not found</value>
+  </data>
+  <data name="Message_JAWSScreenReaderIsNotRunning" xml:space="preserve">
+    <value>JAWS screenreader is not running</value>
+  </data>
+  <data name="Message_LocationNotDetermined" xml:space="preserve">
+    <value>Location of file could not be determined</value>
+  </data>
+  <data name="Message_MayNotWorkAsExpected" xml:space="preserve">
+    <value>The program may not work as expected</value>
+  </data>
+  <data name="Message_MissingProgramFile" xml:space="preserve">
+    <value>Missing program file</value>
+  </data>
+  <data name="Message_NotAllowedWhilePlaying" xml:space="preserve">
+    <value>Not allowed while playing music</value>
+  </data>
+  <data name="Message_PleaseSeeLogFile" xml:space="preserve">
+    <value>Please see Log File (Tools-&gt;Log File)</value>
+  </data>
+  <data name="Message_RightAlignedMenus" xml:space="preserve">
+    <value>Please go to Control Panel - Devices - Pen &amp; Windows Ink and change 'Choose which hand you write with' from 'Right Hand' to 'Left Hand' </value>
+  </data>
+  <data name="Message_StopPlayingFirst" xml:space="preserve">
+    <value>Stop plaing first</value>
+  </data>
+  <data name="Message_UndefinedMessage" xml:space="preserve">
+    <value>(Undefined Message)</value>
+  </data>
+  <data name="Message_UnspecifiedInitializationError" xml:space="preserve">
+    <value>Error during program initialization</value>
+  </data>
+  <data name="Message_UnspecifiedMusicXmlFile" xml:space="preserve">
+    <value>No MusicXml file was specified </value>
+  </data>
+  <data name="OpenFileDialog_Filter" xml:space="preserve">
+    <value>MusicXml files</value>
+  </data>
+  <data name="OpenFileDialog_Filter_mxl" xml:space="preserve">
+    <value>Compressed MusicXml files</value>
+  </data>
+  <data name="ParameterInputForm_BrailleFormatting" xml:space="preserve">
+    <value>Insert form size as characters per line , lines per form</value>
+  </data>
+  <data name="ParameterInputForm_GoTo" xml:space="preserve">
+    <value>&amp;Go to measure</value>
+  </data>
+  <data name="ParameterInputForm_PctOfNominalTempo" xml:space="preserve">
+    <value>% of &amp;Normal tempo</value>
+  </data>
+  <data name="ParameterInputForm_Repeat" xml:space="preserve">
+    <value>&amp;Repeat measures</value>
+  </data>
+  <data name="ResourceFileName" xml:space="preserve">
+    <value>ResourcesForUI.ko-KR.resx</value>
+    <comment>The name of the currently used resource file</comment>
+  </data>
+  <data name="SelectFileDialog_Title" xml:space="preserve">
+    <value>Select downloaded files for import</value>
+  </data>
+  <data name="StatusLine_Accessible_Name" xml:space="preserve">
+    <value>Status line</value>
+  </data>
+  <data name="Status_file" xml:space="preserve">
+    <value>file</value>
+    <comment>singularis</comment>
+  </data>
+  <data name="Status_files" xml:space="preserve">
+    <value>files</value>
+    <comment>pluralis</comment>
+  </data>
+  <data name="Status_Imported" xml:space="preserve">
+    <value>Imported</value>
+  </data>
+  <data name="Status_ImportingSampleFiles" xml:space="preserve">
+    <value>Importing sample files</value>
+  </data>
+  <data name="Status_ImportingSelectedFiles" xml:space="preserve">
+    <value>Importing selected files</value>
+  </data>
+  <data name="TextBox_Messages_FailedToConvert_File" xml:space="preserve">
+    <value>Failed to convert</value>
+  </data>
+  <data name="TextBox_Messages_FailedToRead_File" xml:space="preserve">
+    <value>Failed to read</value>
+  </data>
+  <data name="TextBox_Messages_Reading_File" xml:space="preserve">
+    <value>Reading</value>
+  </data>
+  <data name="TextBox_Messages_TheProgramIsExiting" xml:space="preserve">
+    <value>The program is exiting</value>
+  </data>
+  <data name="TextBox_Messages_ToMusicXml" xml:space="preserve">
+    <value>to MusicXml (.xml)</value>
+  </data>
+  <data name="TextBox_Messages_UnsupportedFileFormat" xml:space="preserve">
+    <value>Unsupported file format</value>
+  </data>
+  <data name="ToolsStripMenuItem_Archives" xml:space="preserve">
+    <value>&amp;Note-archives</value>
+  </data>
+  <data name="ToolsStripMenuItem_View_Instruments" xml:space="preserve">
+    <value>&amp;Instrument details</value>
+  </data>
+  <data name="ToolStripMenuItem_Edit" xml:space="preserve">
+    <value>&amp;Edit</value>
+  </data>
+  <data name="ToolStripMenuItem_Files" xml:space="preserve">
+    <value>&amp;Files</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_BrfASCII" xml:space="preserve">
+    <value>.brf (ASCII)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_BrfUnicode" xml:space="preserve">
+    <value>.brf (Unicode)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_brf_ASCII" xml:space="preserve">
+    <value>.brf (&amp;ASCII)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_brf_Unicode" xml:space="preserve">
+    <value>.brf (&amp;Unicode)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_Exit" xml:space="preserve">
+    <value>E&amp;xit</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ExportMusicBraille" xml:space="preserve">
+    <value>E&amp;xport Music Braille</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
+    <value>E&amp;xport Music Braille to file</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
+    <value>Import &amp;downloads</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
+    <value>Import &amp;todays downloads</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
+    <value>Import newest &amp;samples</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_InOptionalFormat" xml:space="preserve">
+    <value>in optional format</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFile" xml:space="preserve">
+    <value>&amp;Open MusicXml File</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
+    <value>Open MusicXml file using &amp;default settings</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToEmbosser" xml:space="preserve">
+    <value>to Embosser</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToNoteTaker" xml:space="preserve">
+    <value>to NoteTaker</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_TxtOctoBraille1252" xml:space="preserve">
+    <value>.txt (OctoBraille 1252)</value>
+  </data>
+  <data name="ToolStripMenuItem_Help" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_About" xml:space="preserve">
+    <value>&amp;About</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_About_Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
+    <value>&amp;Keyboard shortcuts</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_ShowUsersManual" xml:space="preserve">
+    <value>Show &amp;user's manual</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_SoftwareUpdate" xml:space="preserve">
+    <value>Link to newest &amp;software</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
+    <value>http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools" xml:space="preserve">
+    <value>&amp;Tools</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern" xml:space="preserve">
+    <value>Generate Music Braille &amp;testpattern</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_InspectAsXml" xml:space="preserve">
+    <value>MusicXml file  as raw &amp;Xml</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_JAWS_Settings" xml:space="preserve">
+    <value>&amp;JAWS settings</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_Logfile" xml:space="preserve">
+    <value>&amp;Log file</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_Logfile_Location" xml:space="preserve">
+    <value>Log file location</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_MuseScore" xml:space="preserve">
+    <value>&amp;MuseScore</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_OpenXmlFileLocation" xml:space="preserve">
+    <value>MusicXml file location</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_SaveAsText" xml:space="preserve">
+    <value>Save as &amp;text</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_Sibelius" xml:space="preserve">
+    <value>&amp;Sibelius</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
+    <value>&amp;User Settings</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_ViewAsInterpretedXml" xml:space="preserve">
+    <value>MusicXml file as &amp;interpreted Xml</value>
+  </data>
+  <data name="ToolStripMenuItem_View" xml:space="preserve">
+    <value>&amp;View</value>
+  </data>
+  <data name="ToolStripMenuItem_View_MusicBrailleForNoteTaker" xml:space="preserve">
+    <value>Music Braille for notetaker</value>
+  </data>
+  <data name="TreeView_Accessible_Name" xml:space="preserve">
+    <value>Note filter</value>
+  </data>
+  <data name="TreeView_All_Items" xml:space="preserve">
+    <value>&amp;All filter items</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_CheckAll" xml:space="preserve">
+    <value>&amp;1: Check all</value>
+  </data>
+  <data name="TreeView_CheckOthers" xml:space="preserve">
+    <value>&amp;Check other parts or details</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="Treeview_for" xml:space="preserve">
+    <value>for</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsBraille" xml:space="preserve">
+    <value>&amp;Braille Music representation</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsBraille_Details" xml:space="preserve">
+    <value>&amp;Details</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsBraille_Parts" xml:space="preserve">
+    <value>&amp;Parts</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsSound" xml:space="preserve">
+    <value>&amp;Music playback</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsSound_Details" xml:space="preserve">
+    <value>&amp;Details</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsSound_Parts" xml:space="preserve">
+    <value>&amp;Parts</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsSpeech" xml:space="preserve">
+    <value>&amp;Text representation</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsSpeech_Details" xml:space="preserve">
+    <value>&amp;Details</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_MusicAsSpeech_Parts" xml:space="preserve">
+    <value>&amp;Parts</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeView_UncheckAll" xml:space="preserve">
+    <value>&amp;0: Uncheck all</value>
+  </data>
+  <data name="TreeView_UncheckOthers" xml:space="preserve">
+    <value>&amp;Uncheck other parts or details</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+  <data name="TreeWiew_Items" xml:space="preserve">
+    <value>&amp;Filter items</value>
+    <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
+  </data>
+</root>

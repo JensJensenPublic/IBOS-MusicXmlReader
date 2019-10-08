@@ -189,22 +189,26 @@ namespace MusicXmlReader
 
         /// <summary>
         /// Log information and implement a temporary mechanism for overwriting the locale on the machine
-        /// by placing a simple textfile in the executing directory
+        /// by placing a simple textfile "Language.txt" containing for instance "sv-SE" for swedish in the executing directory
         /// </summary>
-        public static void LogGLobalisationInformation()
+        public static string LogGLobalisationInformation(string newCultureName)
         {
+            string result = "";
             try
             {
                 string currentCultureName = System.Globalization.CultureInfo.CurrentUICulture.Name;
-                Logger.Log(string.Format("CultureInfo.CurrentUICulture.Name={0} ResourceFile={1}", currentCultureName, ResourcesForUI.ResourceFileName));
-                string LanguageFileName = (System.IO.Path.Combine(System.Environment.CurrentDirectory, "Language.txt"));
-                if (System.IO.File.Exists(LanguageFileName))
+                Logger.LogCF(string.Format(": CultureInfo.CurrentUICulture.Name='{0}' ResourceFile='{1}'", currentCultureName, ResourcesForUI.ResourceFileName));
+                if (!string.IsNullOrEmpty(newCultureName))
                 {
-                    string newCultureName = System.IO.File.ReadAllText(LanguageFileName);
-                    Logger.Log(string.Format("Changing UICulture for UI thread to {0}", newCultureName));
+                    string format = "{0}App.Config contains '{1}={2}' {3}Changing UICulture for UI thread to '{2}'";
+                    string name = "DeveloperCulture";
+                    string log     = string.Format(format, ": ", name, newCultureName,"");        // Start with ": "   No CRLF
+                    Logger.LogCF(log);
+                    Utilities.Beep(); // Warn about something in the log !
+                    result = string.Format(format, ""  , name, newCultureName, "\r\n");     // Start without ":" Add CRLF        
                     System.Threading.Thread thisThread = System.Threading.Thread.CurrentThread;
                     thisThread.CurrentUICulture = new System.Globalization.CultureInfo(newCultureName);
-                    Logger.Log(string.Format("thisThread.CurrentUICulture={0}", thisThread.CurrentUICulture.Name));
+                    Logger.LogCF(string.Format(": thisThread.CurrentUICulture='{0}' ResourceFile='{1}'", thisThread.CurrentUICulture.Name, ResourcesForUI.ResourceFileName));
                 }
 
             }
@@ -212,6 +216,7 @@ namespace MusicXmlReader
             {
                 Logger.Log(string.Format("LogGLobalisationInformation threw an exception. Message={0}", e.Message));
             }
+            return result; // To be shown either in a MessageBox or somewhere else in the UI.
 
         }
 

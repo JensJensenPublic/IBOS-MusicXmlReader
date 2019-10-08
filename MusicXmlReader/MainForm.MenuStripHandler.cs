@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using MusicXmlReaderModel;
+using System.Collections.Generic;
 
 namespace MusicXmlReader
 {
@@ -56,15 +58,15 @@ namespace MusicXmlReader
             exitToolStripMenuItem.ShortcutKeys = ShortcutHandler.exitApplication;
             GenerateAccessibleName(ref exitToolStripMenuItem);
             // Export Music Braille:
-            exportMusicBrailleToolStripMenuItem.Text=  ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBraille; // First level
+            exportMusicBrailleToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBraille; // First level
             // exportMusicBrailleToolStripMenuItem.ShortcutKeys = ShortcutHandler.exportMusicBraille;
             // GenerateAccessibleName(ref exportMusicBrailleToolStripMenuItem);
-            toNotetakerToolStripMenuItem.Text =        ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker; // Second level
-            toEmbosserToolStripMenuItem.Text =         ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser; // Second level
-            inOptionalFormatToolStripMenuItem.Text =   ResourcesForUI.ToolStripMenuItem_Files_InOptionalFormat; // Second level
-            txtOctoBraille1252ToolStripMenuItem.Text=  ResourcesForUI.ToolStripMenuItem_Files_TxtOctoBraille1252; // Third level
-            brfASCIIToolStripMenuItem1.Text =          ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII; // Third level
-            brfUnicodeToolStripMenuItem1.Text =        ResourcesForUI.ToolStripMenuItem_Files_BrfUnicode; // Third level
+            toNotetakerToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker; // Second level
+            toEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser; // Second level
+            inOptionalFormatToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_InOptionalFormat; // Second level
+            txtOctoBraille1252ToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_TxtOctoBraille1252; // Third level
+            brfASCIIToolStripMenuItem1.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII; // Third level
+            brfUnicodeToolStripMenuItem1.Text = ResourcesForUI.ToolStripMenuItem_Files_BrfUnicode; // Third level
 
 
 
@@ -74,7 +76,7 @@ namespace MusicXmlReader
             //this.brfUnicodeToolStripMenuItem.ShowShortcutKeys = ShortcutHandler....;
             //this.brfASCIIToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII;
             //this.brfASCIIToolStripMenuItem.ShortcutKeys = ShortcutHandler....;
-         
+
 
             // Children of editToolStripMenuItem, referring to the Treeview
             // Texts:  NOTE! Use the same texts as used in the treeview to which these items refer!!
@@ -123,9 +125,9 @@ namespace MusicXmlReader
 
             //Children of viewToolStripMenuItem:
             instrumentsToolStripMenuItem.Text = ResourcesForUI.ToolsStripMenuItem_View_Instruments;
-            instrumentsToolStripMenuItem.ShortcutKeys = ShortcutHandler.DetailsInstruments;      
+            instrumentsToolStripMenuItem.ShortcutKeys = ShortcutHandler.DetailsInstruments;
             GenerateAccessibleName(ref instrumentsToolStripMenuItem);
-            this.brailleFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_View_MusicBrailleForNoteTaker; 
+            this.brailleFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_View_MusicBrailleForNoteTaker;
 
             // Children of  toolsToolStripMenuItem
             museScoreToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_MuseScore;
@@ -160,7 +162,7 @@ namespace MusicXmlReader
             Logger.Log(string.Format("{0}.{1} returns {2}", className, functionName, result));
             return result;
         }
-        
+
 
         /// <summary>
         /// Open a standard File Dialog allowing the user select a MusicXml file.
@@ -172,11 +174,11 @@ namespace MusicXmlReader
         /// </summary>
         /// <param name="sender"> Not used</param>
         /// <param name="e">Not used</param>
-        private bool SelectAndOpenMusicXmlFile(object sender, EventArgs e,bool useDefaultSettings)
+        private bool SelectAndOpenMusicXmlFile(object sender, EventArgs e, bool useDefaultSettings)
         {
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.xml;*.musicxml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files
-                                                                                                            //            openFileDialog.Filter = string.Format("{0}|*.xml|{0}|*.mxl", ResourcesForUI.OpenFileDialog_Filter,ResourcesForUI.OpenFileDialog_Filter_mxl); // Only present .xml files and .mxl files
+                                                                                                                       //            openFileDialog.Filter = string.Format("{0}|*.xml|{0}|*.mxl", ResourcesForUI.OpenFileDialog_Filter,ResourcesForUI.OpenFileDialog_Filter_mxl); // Only present .xml files and .mxl files
             openFileDialog.InitialDirectory = GetFileOpenInitialDirectory();
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
@@ -242,11 +244,11 @@ namespace MusicXmlReader
 
             Logger.ClearStatistics();  // Clear statistics to be collected while loading, parsing and rendering the MusicXml file:
 
-  
+
 
 
             // Now follows the time-consuming operation, where the Model loads and interpretes a new MusicXml file.
-            if (!model.LoadMusicXmlFile(xmlFileName,useDefaultSettings)) // Load the selected .xml file into the Model and build all internal data structures.
+            if (!model.LoadMusicXmlFile(xmlFileName, useDefaultSettings)) // Load the selected .xml file into the Model and build all internal data structures.
             {
                 // Simple error handling
                 message = string.Format("{0} '{1}'", ResourcesForUI.TextBox_Messages_FailedToRead_File, shortFileName); // Short filename for UI
@@ -304,7 +306,7 @@ namespace MusicXmlReader
 
             Logger.DumpStatistics(); // Dump all statistics collected by LogOnce() during parsing, interpreting and rendering the file
 
-            this.Text = UiUtilities.GetTitleInfo(applicationName,model);
+            this.Text = UiUtilities.GetTitleInfo(applicationName, model);
 
             model.SetUserTempo(100); // Play at 100% of tempo specified in MusicXml file
 
@@ -327,10 +329,10 @@ namespace MusicXmlReader
         {
             OpenMusicXmlFile(sender, e, false);
         }
-         
-        private void OpenMusicXmlFile(object sender, EventArgs e,bool useDefaultSettings)
-        { 
-        // model.Silence();
+
+        private void OpenMusicXmlFile(object sender, EventArgs e, bool useDefaultSettings)
+        {
+            // model.Silence();
 
             try
             {
@@ -379,7 +381,7 @@ namespace MusicXmlReader
             Application.Exit();
         }
 
-#region Edit
+        #region Edit
         // Items above the delimiter line are represented by level 0 nodes in the tree
 
         private void musicRepresentationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -430,12 +432,12 @@ namespace MusicXmlReader
         //}
 
 
-#endregion // Edit
+        #endregion // Edit
         //
         //*************************************************************************************************
         //
 
-#region Help
+        #region Help
         private void aboutIBOSMusicXmlReaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Version version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
@@ -459,25 +461,32 @@ namespace MusicXmlReader
         private void keyboardShortcutsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string caption = applicationName + " " + ResourcesForUI.ToolStripMenuItem_Help_Shortcuts;
-            Form helpForm = new HelpForm();
+            Form helpForm = new HelpForm(organisationDependencies.ApplicationName);
             helpForm.Show();
             // MessageBox.Show(ShortcutHelp.Create().ToString(), caption);
         }
 
-#endregion
+        #endregion
 
 
-#region tools
+        #region tools
+
+        private string selectExe(string link, string appConfig, string hardCoded)
+        {
+            if (!string.IsNullOrEmpty(link)) return link;               // First priority:  The user has placed a link as a shortcut on the desktop
+            if (!string.IsNullOrEmpty(appConfig)) return appConfig;     // Second priority: The value from the app.config file
+            return hardCoded;                                           // Fallback:        A hardcoded value which the user can not change.
+        }
 
 
         private void museScoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.StartMuseScore(model.TheMusicXmlFileName);
+            model.ExternalToolsHandler.StartMuseScore(model.TheMusicXmlFileName, AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.MuseScoreExe));
         }
 
         private void sibeliusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.StartSibelius(model.TheMusicXmlFileName);
+            model.ExternalToolsHandler.StartSibelius(model.TheMusicXmlFileName, AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.SibeliusExe));
         }
 
         private void logfileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -501,7 +510,7 @@ namespace MusicXmlReader
         }
 
         private void userSettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        { 
+        {
             model.ExternalToolsHandler.ReadUserSettingsXmlFile(model.TheUserSettingsFileName);
         }
 
@@ -516,11 +525,135 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName);
         }
 
+        private void generateGraphicInformationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.GenerateGraphicInformation(model.TheMusicXmlFileName, model.Defaults, model.EventDescriptionList);
+        }
+        private void octoBraille1252ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectBrailleMusicFile(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252);
+        }
 
-#endregion // tools ***********************************************************************
+        private void aSCIIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectBrailleMusicFile(BrailleFileHandler.FileEncoding.BRF_ASCII);
+        }
+
+        private void unicodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectBrailleMusicFile(BrailleFileHandler.FileEncoding.BRF_Unicode);
+        }
+
+        private bool isValidBrailleMusic(string fileName, BrailleFileHandler.FileEncoding encoding)
+        {
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(encoding, 0, 0);
+            return brailleFileHandler.IsValidBrailleMusic(fileName);
+        }
+
+        private bool AppendLine(System.Text.StringBuilder sb, string fileName, BrailleFileHandler.FileEncoding encoding)
+        {
+            bool b = isValidBrailleMusic(fileName, encoding);
+            string s = string.Format("{0} : {1} \r\n", encoding, b);
+            sb.Append(s);
+            return b;
+        }
+
+        private void autodetectedEncodingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog.FileName = ""; // No default
+            openFileDialog.Filter = string.Format("{0}|*.*", ""); // All file types                                                                                                             
+            openFileDialog.InitialDirectory = Logger.LogFileDirectory; //
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.CheckPathExists = true;
+            openFileDialog.ShowDialog();
+
+            // The dialog has focus on the textbox for entering the file name.
+            // Press <shift> <tab> twice to focus on the first line in the selection listbox.
+
+            if (string.IsNullOrEmpty(openFileDialog.FileName))
+            {
+                return; // Let the user press ESC without warning him
+            }
+
+            string fileName = openFileDialog.FileName;
+            Logger.LogCF(string.Format("Filename='{0}'", fileName));
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder(string.Format("File='{0}'\r\n\r\n", Path.GetFileName(fileName)));
+
+            bool isOctoBraille_1252 = AppendLine(sb, fileName, BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252);
+            bool isASCII = AppendLine(sb, fileName, BrailleFileHandler.FileEncoding.BRF_ASCII);
+            bool isUnicode = AppendLine(sb, fileName, BrailleFileHandler.FileEncoding.BRF_Unicode); // Use Windows default (UTF-8)
+            bool isUnicodeUtf8 = AppendLine(sb, fileName, BrailleFileHandler.FileEncoding.BRF_Unicode_utf8); // Explicitly use UTF-8
+            bool isUnicodeUtf16 = AppendLine(sb, fileName, BrailleFileHandler.FileEncoding.BRF_Unicode_utf16);
+            bool isUnicodeUtf32 = AppendLine(sb, fileName, BrailleFileHandler.FileEncoding.BRF_Unicode_utf32);
+
+            string message = sb.ToString();
+            MessageBox.Show(message, applicationName, MessageBoxButtons.OK);
+        }
 
 
-#region Archives
+
+        private bool SelectBrailleMusicFile(BrailleFileHandler.FileEncoding fileEncoding)
+        {
+            openFileDialog.FileName = ""; // No default
+            openFileDialog.Filter = string.Format("{0}|*.*", ""); // All file types                                                                                                             
+            openFileDialog.InitialDirectory = Logger.LogFileDirectory; //
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.CheckPathExists = true;
+            openFileDialog.ShowDialog();
+
+            // The dialog has focus on the textbox for entering the file name.
+            // Press <shift> <tab> twice to focus on the first line in the selection listbox.
+
+            if (string.IsNullOrEmpty(openFileDialog.FileName))
+            {
+                return false; // Let the user press ESC without warning him
+            }
+
+            string fileName = openFileDialog.FileName;
+            Logger.LogCF(string.Format("Filename='{0}'  Format={1}", fileName, fileEncoding));
+
+
+            List<string> interpretation = model.InterpretBrailleMusicFile(fileName, fileEncoding);
+            if (null == interpretation)
+            {
+                Logger.LogCF(string.Format("Failed to interpret '{0}' as {1}", fileName, fileEncoding));
+                return false;
+            }
+
+            Logger.LogCF(string.Format("Interpreted '{0}' as {1} returning {2} lines of information", fileName, fileEncoding, interpretation.Count));
+#warning todo!
+
+            // Generate a temporary file with the original contents shown in dots as well as in numbers
+            string fullFileName = Path.Combine(Logger.LogFileDirectory, "BrailleMusicInterpretation.txt");
+            using (StreamWriter sw = new StreamWriter(File.Open(fullFileName, FileMode.Create)))
+            {
+                foreach (string line in interpretation)
+                    try
+                    {
+                        sw.WriteLine(line);
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.LogCFE(e);
+                    }
+            }
+
+            // OPen the temporary file in NotePad
+            Utilities.RunExeWithFileArgument("NotePad", fullFileName);
+
+            // Show in the UI or save as Unicode textfile including the interpretation of dot numbers. Show in NotePad!!
+
+            return true;
+
+
+        }
+
+
+        #endregion // tools ***********************************************************************
+
+
+        #region Archives
 
         private void httpsmusescorecomsheetmusicToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -627,11 +760,11 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.OpenUrl(sender.ToString());
         }
 
-#endregion // archives
+        #endregion // archives
 
 
 
-#region Import
+        #region Import
         private void importNewSampleFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             importHandler.ImportNewSample();
@@ -646,14 +779,23 @@ namespace MusicXmlReader
         {
             importHandler.ImportDownloads(openFileDialog);
         }
-#endregion // Import
+        #endregion // Import
 
 
         private void linkToNewestSoftwareToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // string url = "http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html";
-            string url = ResourcesForUI.ToolStripMenuItem_Help_SoftwareUpdateLink;
-            model.ExternalToolsHandler.OpenUrl(url);
+            string url = organisationDependencies.LinkToNewestSoftware;
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                string text = "No link to new software found";
+                Logger.LogCF(string.Format(": url={0}", url));
+                MessageBox.Show(text);
+#warning ToDo Show a LOCALIZED messagebox             
+            }
+            else
+            {
+                model.ExternalToolsHandler.OpenUrl(url);
+            }
         }
 
         private void uncheckAllToolStripMenuItem_Click(object sender, EventArgs e)
@@ -679,23 +821,8 @@ namespace MusicXmlReader
             model.SaveUserSettings();
         }
 
-        // Start New UI
-
-        private BrailleFileHandler.FileEncoding GetCultureDependentEncoding()
-        {
-            BrailleFileHandler.FileEncoding fileEncoding;
-            string cultureString = ResourcesForUI.DirectoryNames_CultureString;
-            switch (cultureString)
-            {
-                case "da-DK": fileEncoding = BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252; break;
-                case "en-US": fileEncoding = BrailleFileHandler.FileEncoding.BRF_ASCII; break;
-                default: fileEncoding = BrailleFileHandler.FileEncoding.BRF_Unicode; break;
-            }
-            return fileEncoding;
-        }
-
-
-        /// <summary>
+    /// <summary>
+        /// After selecting "Notetaker"
         /// Simple implementation for exporting to notetaker. This implementation needs no further input from the user !
         /// The Braille mapping is based on the current language (See mapping below)
         /// The formatting parameters are set to 0,0 (No formatting)        /// 
@@ -704,15 +831,22 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void toNotetakerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!ScoreIsLoaded() ) return; // Beeps and logs.
-            if (!ScoreIsSupported()) return; // Shows warning dialog
-            // In this simple implementation the file format is determined by the localization ! 
-            BrailleFileHandler.FileEncoding fileEncoding = GetCultureDependentEncoding();
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, 0, 0);
-            ExportMusicBrailleToFile(brailleFileHandler);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.NoteTaker, 0, 0, IbosStyle);
         }
 
+        private void toBana2015NotetakerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.NoteTaker, 0, 0, BanaStyle);
+        }
+
+        // Private definitions used for export to Braille Music
+        private const Model.BrailleStyleEnum IbosStyle = Model.BrailleStyleEnum.IBOS;
+        private const Model.BrailleStyleEnum BanaStyle = Model.BrailleStyleEnum.BANA2015;
+        private const int defaultEmbosserCharactersPerLine = 40;
+        private const int defaultEmbosserLinesPerPage = 20;
+
         /// <summary>
+        /// After selecting "Embosser"
         /// Simple implementation for exporting to embosser. This implementation needs no further input from the user !
         /// The Braille mapping is based on the current language (See mapping below)
         /// The formatting parameters are set to (40,20) (Seems to be the format used by NOTA)    
@@ -721,200 +855,62 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void toEmbosserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!ScoreIsLoaded()) return; // Beeps and logs.
-            if (!ScoreIsSupported()) return; // Shows warning dialog
-            // In this simple implementation the file format is determined by the localization !
-            int defaultEmbosserCharactersPerLine = 40;
-            int defaultEmbosserLinesPerPage = 20;
-            BrailleFileHandler.FileEncoding fileEncoding = GetCultureDependentEncoding();
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, defaultEmbosserCharactersPerLine, defaultEmbosserLinesPerPage);
-            ExportMusicBrailleToFile(brailleFileHandler);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, defaultEmbosserCharactersPerLine, defaultEmbosserLinesPerPage, IbosStyle);
+        }
+
+        private void toBana2015EmbosserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, defaultEmbosserCharactersPerLine, defaultEmbosserLinesPerPage, BanaStyle);
         }
 
 
+        // After selecting "IBOS", "Any Format" , "Braille1252"
         private void txtOctoBraille1252ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!ScoreIsLoaded()) return; // Beeps and logs.
-            if (!ScoreIsSupported()) return; // Shows warning dialog
-            exportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, IbosStyle);
         }
 
+        // After selecting "BANA2015", "Any Format" , "Braille1252"
+        private void Bana2015txtOctoBraille1252ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, BanaStyle);
+        }
+
+        // After selecting "IBOS", "Any Format" , "ASCII"
         private void brfASCIIToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (!ScoreIsLoaded()) return; // Beeps and logs.
-            if (!ScoreIsSupported()) return; // Shows warning dialog
-            exportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_ASCII);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_ASCII, IbosStyle);
         }
 
+        // After selecting "BANA2015", "Any Format" , "ASCII"
+        private void Bana2015brfASCIIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_ASCII, BanaStyle);
+        }
+
+        // After selecting "IBOS" "Any Format" , "Unicode"
         private void brfUnicodeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (!ScoreIsLoaded()) return; // Beeps and logs.
-            if (!ScoreIsSupported()) return; // Shows warning dialog
-            exportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_Unicode);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_Unicode, IbosStyle);
         }
 
+        // After selecting "BANA2015" "Any Format" , "Unicode"
+        private void Bana2015brfUnicodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_Unicode, BanaStyle);
+        }
 
         private void inOptionalFormatToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Logger.LogCF("Unused");
         }
 
+        private void inBana2015OptionalFormatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Logger.LogCF("Unused");
+        }
 
         // End new UI
-
-
-
-        /// <summary>
-        /// Second-level item. Use .brf (Unicode)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void brfUnicodeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Logger.LogCF("Obsolete");
-            //exportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_Unicode);
-        }
-
-        /// <summary>
-        /// Second-level item. Use .brf (ASCII)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void brfASCIIToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Logger.LogCF("Obsolete");
-            //exportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_ASCII);
-        }
-
-        private void brlOctoBraille1252ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Logger.LogCF("Obsolete");
-            exportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252);
-        }
-
-        /// <summary>
-        /// First-level item. Return, forcing the focus to the upper second-level item.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void exportMusicBrailleToFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            return;            
-            // exportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_Unicode); // Alternative implementation
-        }
-
-
-        /// <summary>
-        /// Simple implementation for exporting to notetaker. This implementation needs no further input from the user !
-        /// The Braille mapping is based on the current language (See mapping below)
-        /// The formatting parameters are set to 0,0 (No formatting)
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void exportMusicBrailleToFileForToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Logger.LogCF("Obsolete!!!");
-            //// In this simple implementation the file format is determined by the localization ! 
-            //BrailleFileHandler.FileEncoding fileFormat;
-            //string cultureString = ResourcesForUI.DirectoryNames_CultureString;
-            //switch (cultureString)
-            //{
-            //    case "da-DK": fileFormat = BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252; break;
-            //    case "en-US": fileFormat = BrailleFileHandler.FileEncoding.BRF_ASCII; break; 
-            //    default: fileFormat = BrailleFileHandler.FileEncoding.BRF_Unicode; break;
-            //}
-            //BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileFormat, 0,0);
-            //ExportMusicBrailleToFile(brailleFileHandler);
-        }
-        
-
-
-        /// <summary>
-        /// Common handling of all fileformats
-        /// The user is prompted for the formatting parameters
-        /// </summary>
-        /// <param name="fileEncoding"></param>
-        private void exportMusicBrailleToFile(BrailleFileHandler.FileEncoding fileEncoding)
-        {
-            if (!ScoreIsLoaded()) return; // Beeps and logs.
-            if (!ScoreIsSupported()) return; // Shows warning dialog
-            bool acceptCancel = false; //  Do not accept cancel as "use default parameters"
-            bool validParams = parameterInputHandler.GetMusicBrailleFormatParameters(acceptCancel); // Prompt the user for formatting parameters.
-            if (!validParams)
-            {
-                UiUtilities.Beep();
-                return; // The user entered invalid values
-            }
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, model.UserPreferences.CharsPerLine, model.UserPreferences.LinesPerForm);
-            ExportMusicBrailleToFile(brailleFileHandler);
-        }
-
-
-        /// <summary>
-        /// Commeon handling of all file formats
-        /// </summary>
-        /// <param name="brailleFileHandler"></param>
-        private void  ExportMusicBrailleToFile(BrailleFileHandler brailleFileHandler)
-        {
-            string brailleRepresentation = model.GetBrailleRepresentation(brailleFileHandler);
-            if (null == brailleRepresentation)
-            {
-                Logger.LogCF(string.Format(": Failed to convert to Braille"));
-                return;
-            }
-            
-            // Conversion succeeded. Prompt use for filename  
-
-            string extension = brailleFileHandler.GetExtension(); // Currently always ".brf" Maybe later ".pef" ?
-            string fileFormatName = brailleFileHandler.GetFileFormat(); // Currently "BRF_Unicode" or "BRF_ASCII"
-            string fileNameAttribute = model.MusicBrailleFilenameAttribute;
-            saveBrailleFileDialog.InitialDirectory = Path.GetDirectoryName(model.TheMusicXmlFileName);
-            saveBrailleFileDialog.FileName =
-                Path.GetFileNameWithoutExtension(model.TheMusicXmlFileName)                // The name (without extension) of the MusicXml file 
-                + (string.IsNullOrEmpty(fileNameAttribute) ? "" : "." + fileNameAttribute) // The name of the part,  "tutti", "multi" or an empty string
-                + "." +fileFormatName;                                                     // The name of the file format used 
-            saveBrailleFileDialog.DefaultExt = extension;
-
-            // saveBrailleFileDialog.Filter = string.Format("{0}|*.brf", "Braille filer");
-            saveBrailleFileDialog.Filter = string.Format("{0}|{1}", fileFormatName, extension);
-            DialogResult dialogResult = saveBrailleFileDialog.ShowDialog();
-
-            if (DialogResult.OK == dialogResult)
-            {
-                bool ok = brailleFileHandler.WriteToFile(brailleRepresentation, saveBrailleFileDialog.FileName, true); // Taking in account width and height
-                Logger.LogCF(string.Format(": Export to '{0}' {1}", saveBrailleFileDialog.FileName, ok ? "succeded" : "failed"));
-            }
-            else
-            {
-                Logger.LogCF(string.Format(": SaveDialog returned {0}", dialogResult.ToString()));
-            }
-
-        }
-
-        private bool ScoreIsLoaded()
-        {
-            if (null == model.EventDescriptionList)
-            {
-                Logger.LogCF(": No MusicXml file is currently loaded!");
-                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.UnspecifiedMusicXmlFile, "", "");  
-                return false;
-            }
-            return true;
-        }
-
-        private bool ScoreIsSupported()
-        {
-            int numberOfParts = model.partList.NumberOfParts();
-            int NumberOfEnabledMusicBrailleParts = model.NumberOfEnabledMusicBrailleParts;
-            Logger.LogCF(string.Format(": Number of parts = {0} Number of Enabled Music Braille Parts = {1}", numberOfParts, NumberOfEnabledMusicBrailleParts));
-            if (NumberOfEnabledMusicBrailleParts > 1)
-            {
-                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.ToManyPartForExportToMusicBraille, "", "");
-            }       
-            return true; // We issue a warning when more than one part is enabled, but we do not prevent the export.
-        }
-
-
 
         /// <summary>
         /// Handles Details for BrailleFiles
@@ -923,8 +919,8 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void brailleFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!ScoreIsLoaded()) return; // Beeps and logs.
-            if (!ScoreIsSupported()) return; // Shows warning dialog
+            if (!brailleMusicExportHandler.ScoreIsLoaded()) return; // Beeps and logs.
+            if (!brailleMusicExportHandler.ScoreIsSupported(IbosStyle)) return; // Shows warning dialog
             //bool acceptCancel = true;
             //bool validParams = parameterInputHandler.GetMusicBrailleFormatParameters(acceptCancel); // Prompt the user for formatting parameters
             //if (!validParams)
@@ -953,7 +949,12 @@ namespace MusicXmlReader
                 UiUtilities.Beep();
                 return;
             }
-            model.GenerateMusicBrailleTestpattern();
+            bool ok = model.GenerateMusicBrailleTestpattern();
+            if (!ok)
+            {
+                UiUtilities.Beep();
+                Logger.LogCF(": Failed to generate Braille Music testpatterns");
+            }
         }
 
         private void ShowUsersManual()

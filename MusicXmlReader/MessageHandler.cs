@@ -23,6 +23,12 @@ namespace MusicXmlReader
             MessageBox.Show(text); // To implement localization: Do as in ShowWarning !!
         }
 
+        // Decide how to show a simple message directly from the UI       
+        public void ShowMessage(string text)
+        {
+            if (null == text) return;
+            MessageBox.Show( text,applicationName);
+        }
 
         private string LocalizeMessage(ModelMessageEnum messageEnum)
         {
