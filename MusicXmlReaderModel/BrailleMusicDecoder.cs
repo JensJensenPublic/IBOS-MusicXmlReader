@@ -8,12 +8,15 @@ using MusicXmlReaderModel;
 namespace MusicXmlReaderModel
 {
 
+  
+
     /// <summary>
     /// Used during test for decoding Braille Music files into readable symbols
     /// Intensionally does NOT use exicting definitions of symbols in order to avoid duplication of existing errors.
     /// </summary>
     public class BrailleMusicDecoder
     {
+        private enum StateEnum { Unknown, Text, Digit, Music };
 
         const byte noDots = 0;
         const byte dot1 = 0x01;
@@ -28,21 +31,9 @@ namespace MusicXmlReaderModel
         const int dot1245 = dot1 | dot2 | dot4 | dot5; // For isolating values representing note steps
         const int dot36 = dot3 | dot6; // For isolating type
 
-        // Internal variables
-        int count = 0; // Number of interpretations found. Interesting (if <> 1) !! 
-        string stepName = "";
-        string typeName = "";
+        int count;
+        StateEnum state = StateEnum.Unknown;
 
-        // Strings for collecting all decoded values
-        string stepAndType = "";
-        string octave = "";
-        string rest = "";
-        string accidental = "";
-        string finger = "";
-        string interval = "";
-        string otherValues = "";
-
-        string warning = "";
 
         private void Count(string s)
         {
@@ -50,9 +41,43 @@ namespace MusicXmlReaderModel
             count++;
         }
 
-        public BrailleMusicDecoder(int i)
+        public void ResetState()
+        {
+            state = StateEnum.Unknown;
+        }
+
+        private BrailleMusicDecoder()
+        {
+            state = StateEnum.Unknown;            
+        }
+
+
+        public static BrailleMusicDecoder Create()
+        {
+            return new BrailleMusicDecoder();
+        }
+
+        public string  ToString(int i)
         {
             if ((i < 0) || (i > 63)) throw new Exception("Invalid argument");
+
+            // Internal variables
+            count = 0; // Number of interpretations found. Interesting (if <> 1) !! 
+            string stepName = "";
+            string typeName = "";
+
+            // Strings for collecting all decoded values
+            string stepAndType = "";
+            string octave = "";
+            string rest = "";
+            string accidental = "";
+            string finger = "";
+            string interval = "";
+            string otherValues = "";
+
+            string warning = "";
+
+
             // First find all step values
             int stepvalue = i & dot1245;
 
@@ -63,7 +88,7 @@ namespace MusicXmlReaderModel
                 case dot1 | dot2 | dot4: stepName = "E"; break;
                 case dot1 | dot2 | dot4 | dot5: stepName = "F"; break;
                 case dot1 | dot2 | dot5: stepName = "G"; break;
-                case dot2 | dot4  :  stepName = "A"; break;
+                case dot2 | dot4: stepName = "A"; break;
                 case dot2 | dot4 | dot5: stepName = "H"; break;
                 default: break;
             }
@@ -74,14 +99,14 @@ namespace MusicXmlReaderModel
                 switch (typevalue)
                 {
                     case dot3 | dot6: typeName = "1/1"; break;
-                    case dot3:  typeName = "1/2"; break;
+                    case dot3: typeName = "1/2"; break;
                     case dot6: typeName = "1/4"; break;
                     case none: typeName = "1/8"; break;
                 }
                 stepAndType = stepName + typeName;
                 Count(stepAndType);
             }
-             
+
             switch (i) // Look for octave marks
             {
                 case dot4: octave = "1"; break;
@@ -146,14 +171,14 @@ namespace MusicXmlReaderModel
                 case dot3: otherValues = "Dotted"; break;
                 case dot5: otherValues = "Reference"; break;
                 case dot2 | dot3: otherValues = "Triplet"; break;
-                case dot3 | dot4 | dot5 : otherValues = "Word"; break;
+                case dot3 | dot4 | dot5: otherValues = "Word"; break;
                 case dot3 | dot4 | dot5 | dot6: otherValues = "Number"; break;
-                case dot1 | dot4 : otherValues = "Legato"; break;
-                case dot2 | dot3 | dot5 | dot6:  otherValues = "Equality"; break;
+                case dot1 | dot4: otherValues = "Legato"; break;
+                case dot2 | dot3 | dot5 | dot6: otherValues = "Equality"; break;
                 case dot2 | dot5: otherValues = "Newline"; break;
                 case dot2 | dot3 | dot5: otherValues = "Trill"; break;
-                case dot2 | dot6: otherValues = "Ornament"; break; 
-                case dot2 | dot3 | dot6: otherValues = "Staccato"; break; 
+                case dot2 | dot6: otherValues = "Ornament"; break;
+                case dot2 | dot3 | dot6: otherValues = "Staccato"; break;
                 case dot2 | dot5 | dot6: otherValues = "DoublebeatOnNote"; break;
             }
             Count(otherValues);
@@ -163,15 +188,7 @@ namespace MusicXmlReaderModel
                 warning = string.Format("Warning: {0} interpretations found", count);
             }
 
-        }
 
-        public static BrailleMusicDecoder Create(int x)
-        {
-            return new BrailleMusicDecoder(x);
-        }
-
-        public override string  ToString()
-        {
             StringBuilder sb = new StringBuilder();
 
             sb.Append(Format(stepAndType));

@@ -1669,12 +1669,12 @@ namespace MusicXmlReaderModel
             result = brailleFileHandler.Format(brailleFileAsUnicode);
             // Find the decoded contents
             List<string> decodedLines = new List<string>();
+            BrailleMusicDecoder brailleMusicDecoder = BrailleMusicDecoder.Create();
             foreach (char c in brailleFileAsUnicode)
             {
                 if ((0x2800 <= c) && (c <= 0x283f))
                 {
-                    BrailleMusicDecoder brailleMusicDecoder = BrailleMusicDecoder.Create(c - 0x2800);
-                    string decodedLine = brailleMusicDecoder.ToString();
+                    string decodedLine = brailleMusicDecoder.ToString(c - 0x2800);
                     decodedLines.Add(string.Format("{0} {1}",c,decodedLine));
                 }
                 else
