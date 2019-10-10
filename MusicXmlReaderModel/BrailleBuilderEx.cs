@@ -31,14 +31,15 @@ namespace MusicXmlReaderModel
         public static byte[] intervalUnknown = { };
 
         // New implementation
-        public static byte[] intervalUnison = { (dot2 + dot3 + dot5 + dot6), dot5, (dot3 + dot6), (dot2 + dot3 + dot5 + dot6) };
+//        public static byte[] intervalUnison = { (dot2 + dot3 + dot5 + dot6), dot5, (dot3 + dot6), (dot2 + dot3 + dot5 + dot6) }; // Error reported by Lars Petersen
+        public static byte[] intervalUnison = { (dot3 + dot6)};
         public static byte[] intervalSecond = { (dot3 + dot4) };
         public static byte[] intervalThird = { (dot3 + dot4 + dot6) };
         public static byte[] intervalFourth = { (dot3 + dot4 + dot5 + dot6) };
         public static byte[] intervalFifth = { (dot3 + dot5) };
         public static byte[] intervalSixth = { (dot3 + dot5 + dot6) };
         public static byte[] intervalSeventh = { (dot2 + dot4) };
-        public static byte[] intervalOctave = { (dot3 + dot6) };
+//        public static byte[] intervalOctave = { (dot3 + dot6) }; // Should never occur, is coded as a Unison + the octave number
 
 
 
@@ -291,7 +292,7 @@ namespace MusicXmlReaderModel
                 case 4: bytes = intervalFifth;  s = "5"; break; // C to G
                 case 5: bytes = intervalSixth;  s = "6"; break; // C to A
                 case 6: bytes = intervalSeventh; s = "7"; break; // C to H
-                case 7: bytes = intervalOctave; s = "8"; break; // C to C
+//              case 7: bytes = intervalOctave; s = "8"; break; // C to C // Will never occur. Is coded as a Unison with an octave number specified
           
                 default:
                     bytes = intervalUnknown;
