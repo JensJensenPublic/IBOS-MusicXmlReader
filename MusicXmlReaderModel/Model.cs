@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.IO;
 using System.Collections.Generic;
 using NAudio.Midi;
@@ -1666,7 +1667,23 @@ namespace MusicXmlReaderModel
             if (null == brailleFileHandler) return result;
             string brailleFileAsUnicode = brailleFileHandler.ReadFromFile(fileName);
             result = brailleFileHandler.Format(brailleFileAsUnicode);
-            return result;
+            // Find the decoded contents
+            List<string> decodedLines = new List<string>();
+            foreach (char c in brailleFileAsUnicode)
+            {
+                if ((0x2800 <= c) && (c <= 0x283f))
+                {
+                    BrailleMusicDecoder brailleMusicDecoder = BrailleMusicDecoder.Create(c - 0x2800);
+                    string decodedLine = brailleMusicDecoder.ToString();
+                    decodedLines.Add(string.Format("{0} {1}",c,decodedLine));
+                }
+                else
+                {
+                    decodedLines.Add(c.ToString());
+                }
+            }
+            result.AddRange(decodedLines);
+            return result; 
         }
 
 

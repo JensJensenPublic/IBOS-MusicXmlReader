@@ -59,6 +59,7 @@
     <Compile Include="BrailleInAccordInfo.cs" />
     <Compile Include="BrailleInAccordSegment.cs" />
     <Compile Include="BrailleInAccordVoice.cs" />
+    <Compile Include="BrailleMusicDecoder.cs" />
     <Compile Include="BrailleUtilities.cs" />
     <Compile Include="DetailsDescription.cs" />
     <Compile Include="DetailsPlayer.cs" />
