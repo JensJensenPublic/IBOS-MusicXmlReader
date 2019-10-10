@@ -90,7 +90,7 @@ namespace MusicXmlReaderModel
 
 
 
-        public static readonly byte[] musicBraille = new byte[] { dot6, dot3 }; // Marks the start of Music Braille coding
+        public static readonly byte[] MusicBrailleStart = new byte[] { dot6, dot3 }; // Marks the start of Music Braille coding
 
         // Timing
         public static readonly byte[] timingCommon = new byte[] { (dot4 + dot6), (dot1 + dot4) };
