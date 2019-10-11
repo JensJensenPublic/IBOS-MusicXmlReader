@@ -79,7 +79,52 @@ namespace MusicXmlReaderModel
             }
             gotDot6 = (i == dot6);
 
-            return "TEXT";
+
+            switch (i)
+            {
+                // Primitive mapping. Add more as needed !
+                case 00: return " ";
+                case 01: return "A";
+                case 03: return "B";
+                case 09: return "C";
+                case 25: return "D";
+                case 17: return "E";
+                case 11: return "F";
+                case 27: return "G";
+                case 19: return "H";
+                case 10: return "I";
+                case 26: return "J";
+                case 05: return "K";
+                case 07: return "L";
+                case 13: return "M";
+                case 29: return "N";
+                case 21: return "O";
+                case 15: return "P";
+                case 31: return "Q";
+                case 23: return "R";
+                case 14: return "S";
+                case 30: return "T";
+                case 37: return "U";
+                case 39: return "V";
+                case 58: return "W";
+                case 45: return "X";
+                case 61: return "Y";
+                case 53: return "Z";
+                case 28: return "Æ";
+                case 42: return "Ø";
+                case 33: return "Å";
+                case 32: return "VERSAL";
+                case 60: return "CIFFER";
+                case 50: return ".";
+                case 02: return ",";
+                case 38: return "?";
+                case 06: return ";";
+                case 22: return "!";
+                case 54: return "/";
+                case 36: return "-";
+                default: return "UKENDT";
+            }
+ 
         }
 
         private string DigitToString(int i)
