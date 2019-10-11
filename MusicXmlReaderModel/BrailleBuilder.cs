@@ -18,6 +18,13 @@ namespace MusicXmlReaderModel
         // Ref.6: "MUSIC BRAILLE CODE 1997" (BANA)  http://www.brl.org/music/  (Downloaded to C:\Users\Jens\Dropbox\Root\Dokumenter\music braille code.pdf)
         // Ref.7: "MUSIC BRAILLE CODE 2015" (BANA)  http://www.brailleauthority.org/music/Music_Braille_Code_2015.pdf
 
+        // Symbols for indicating a change of state between various Braille formats: such as Music, Letters and digits
+        // These symbols are not a part of the Braille Music definition, but are defined at a higher level. 
+        public static readonly byte[] MusicBrailleIndicator = new byte[] { dot6, dot3 }; // Marks the start of a sequence of Music Braille.
+        public static readonly byte[] GradeOneLetterIndicator = new byte[] { dot5 + dot6 }; // Marks the start of a sequence of letters.
+        public static readonly byte[] NumberIndicator = new byte[] { dot3 + dot4 + dot5 + dot6 }; // Marks the start of a sequence of digits.
+#warning TODO Check if UppercaseIndicator is dot6 (as used here) or dot4 + dot6
+        public static readonly byte[] UppercaseIndicator = new byte[] { dot6 }; // Marks the start of a sequence of uppercase letters.
 
 
         // Ref.6 (BANA 1997) Page 1: Table of signs -> General table
@@ -88,9 +95,6 @@ namespace MusicXmlReaderModel
         public static readonly byte[] KeyDoubleFlat = { KeyFlat, KeyFlat };
         public static readonly byte KeyNatural  = dot1 + dot6;   // "opløsningstegn" 
 
-
-
-        public static readonly byte[] MusicBrailleStart = new byte[] { dot6, dot3 }; // Marks the start of Music Braille coding
 
         // Timing
         public static readonly byte[] timingCommon = new byte[] { (dot4 + dot6), (dot1 + dot4) };
