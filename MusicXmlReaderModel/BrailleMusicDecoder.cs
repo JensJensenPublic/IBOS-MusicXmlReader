@@ -8,9 +8,13 @@ using MusicXmlReaderModel;
 namespace MusicXmlReaderModel
 {
 
-  
+
 
     /// <summary>
+    /// 
+    /// NOTE!!! This is a primitive initial implementation, only lookin k for a transition from StateEnum.Text to StateEnum.Music  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /// 
+    /// 
     /// Used during test for decoding Braille Music files into readable symbols
     /// Intensionally does NOT use exicting definitions of symbols in order to avoid duplication of existing errors.
     /// </summary>
@@ -46,13 +50,45 @@ namespace MusicXmlReaderModel
             state = StateEnum.Unknown;
         }
 
+        bool gotDot6 = false;
+
         public string ToString(int i)
         {
-            if ((i < 0) || (i > 63)) throw new Exception("Invalid argument");
-            return MusicBrailleToString(i);
+            if ((i < 0) || (i > 63)) throw new Exception("Invalid argument");         
+              
+
+            switch (state)
+            {
+                case StateEnum.Music: return MusicBrailleToString(i);
+                case StateEnum.Text: return TextToString(i);
+                case StateEnum.Digit: return DigitToString(i);
+                case StateEnum.Unknown: return "UNKNOWN";
+                default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
+            }
         }
 
-        public string  MusicBrailleToString(int i)
+  
+
+        private string TextToString(int i)
+        {
+            // Look for Dot6 followed by Dot3 which signals a transition to StateEnum.Music
+            if (gotDot6 && (i == dot3))
+            {
+                state = StateEnum.Music;
+                return string.Format("State changed to {0}",state.ToString());
+            }
+            gotDot6 = (i == dot6);
+
+            return "TEXT";
+        }
+
+        private string DigitToString(int i)
+        {
+            return "DIGIT";
+        }
+
+
+        private string  MusicBrailleToString(int i)
         {  
 
             // Internal variables
