@@ -16,7 +16,7 @@ namespace MusicXmlReaderModel
     /// </summary>
     public class BrailleMusicDecoder
     {
-        private enum StateEnum { Unknown, Text, Digit, Music };
+        public enum StateEnum { Unknown, Text, Digit, Music };
 
         const byte noDots = 0;
         const byte dot1 = 0x01;
@@ -46,20 +46,14 @@ namespace MusicXmlReaderModel
             state = StateEnum.Unknown;
         }
 
-        private BrailleMusicDecoder()
-        {
-            state = StateEnum.Unknown;            
-        }
-
-
-        public static BrailleMusicDecoder Create()
-        {
-            return new BrailleMusicDecoder();
-        }
-
-        public string  ToString(int i)
+        public string ToString(int i)
         {
             if ((i < 0) || (i > 63)) throw new Exception("Invalid argument");
+            return MusicBrailleToString(i);
+        }
+
+        public string  MusicBrailleToString(int i)
+        {  
 
             // Internal variables
             count = 0; // Number of interpretations found. Interesting (if <> 1) !! 
@@ -214,6 +208,29 @@ namespace MusicXmlReaderModel
         {
             return (string.IsNullOrEmpty(s) ? "" : " " + prefix + s);
         }
+
+
+        private BrailleMusicDecoder()
+        {
+            state = StateEnum.Unknown;
+        }
+
+        private BrailleMusicDecoder(StateEnum initialState)
+        {
+            state = initialState;
+        }
+
+
+        public static BrailleMusicDecoder Create()
+        {
+            return new BrailleMusicDecoder();
+        }
+
+        public static BrailleMusicDecoder Create(StateEnum initialState)
+        {
+            return new BrailleMusicDecoder(initialState);
+        }
+
 
     }
 }
