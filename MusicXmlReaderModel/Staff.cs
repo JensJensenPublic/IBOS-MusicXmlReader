@@ -30,13 +30,14 @@ namespace MusicXmlReaderModel
         public int StaffNumber { get { return staffNumber; } }
         private string name = "";
         public string Name { get { return name; } set { name = value; } }
+        private readonly string MusicBrailleIndicatorString = BrailleBuilder.Create(0).ToUnicodeString(BrailleBuilder.MusicBrailleIndicator); // 
 
         private ScorePartElement scorePartElement = null;
         public ScorePartElement ScorePartElement { get { return scorePartElement; } set { scorePartElement = value; } } // Holds a lot of extra information about the part
         // Lots of important information can be derived form the scorePartElement:
         public string PartName { get { return (null == scorePartElement) ? "UndefinedPartName" : Utilities.ToValidFileName(scorePartElement.partName); } }
         public string PartId { get
-        {
+            {
                 return (null == scorePartElement) ? "UndefinedPartId" : Utilities.ToValidFileName(scorePartElement.partId); }
         }
 
@@ -59,28 +60,28 @@ namespace MusicXmlReaderModel
                         string temp = owningStaffList.MetaInformation.FileName.Value;
                         result = string.IsNullOrEmpty(temp) ? "" : Path.GetFileNameWithoutExtension(temp);
                         // Logger.LogCFOnce(string.Format(": Using MetaInformation.Filename.Value={0}'", result));
-                    }  
+                    }
 
                     if (string.IsNullOrEmpty(result))
                     {
                         Logger.LogCFOnce(string.Format(": No title found"));
                     }
                     else
-                    {    
+                    {
                         // Logger.LogCFOnce(string.Format(": Title='{0}'", result));
                     }
                 }
                 catch (Exception e)
                 {
                     Logger.LogCFE(e);
-                }               
+                }
                 return result;
             }
         }
 
 
-        public string Caption1 { get { return Utilities.ToOneLine(ScoreTitle);} } // ScoreTitle in first line, 
-        public string Caption2 { get { return  MusicBrailleFilenameAttribute; } } //PartName and StaffNumber in second line
+        public string Caption1 { get { return Utilities.ToOneLine(ScoreTitle); } } // ScoreTitle in first line, 
+        public string Caption2 { get { return MusicBrailleFilenameAttribute; } } //PartName and StaffNumber in second line
 
         public BrailleBuilderForText BrailleCaption1
         {
@@ -107,9 +108,11 @@ namespace MusicXmlReaderModel
         /// </summary>
         public string FullBrailleRepresentation
         {
-            get { return BrailleCaption1.ToBrailleString() + "\r\n" + //  Title in Braille
-                         BrailleCaption2.ToBrailleString() + "\r\n" + // PartName and staff number in Braille
-                         BrailleMusicFormattedPage;}}                 // BrailleMusic  in Braille
+            get {
+                return BrailleCaption1.ToBrailleString() + "\r\n" + //  Title in Braille
+                       BrailleCaption2.ToBrailleString() + "\r\n" + // PartName and staff number in Braille
+                       MusicBrailleIndicatorString + "\r\n" +       // Indicate the start of Music Braille interpretation
+                       BrailleMusicFormattedPage;}}                 // BrailleMusic  in Braille
 
         /// <summary>
         /// The full (Developer) Braille representation of this Staff, including a Caption with Title, partName and StaffNumber
@@ -120,6 +123,8 @@ namespace MusicXmlReaderModel
                          BrailleCaption1.ToEquvivalentTextRepresentation() + "\r\n" +       // Title in plain text
                          BrailleCaption2.ToBrailleString() + "\r\n" +                       // PartName and staff number in Braille
                          BrailleCaption2.ToEquvivalentTextRepresentation() + "\r\n" +       // PartName and staff number in plain text
+                         MusicBrailleIndicatorString + "\r\n" +                             // Indicate the start of Music Braille interpretation in Braille
+                         "MUSICBRAILLE:" +"\r\n" +                                          // Indicate the start of Music Braille interpretation in plain text
                          BrailleMusicDeveloperPage;                                         // BrailleMusic and text
             }                                           
         }

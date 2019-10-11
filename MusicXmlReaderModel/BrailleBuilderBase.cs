@@ -161,6 +161,17 @@ namespace MusicXmlReaderModel
         }
 
         /// <summary>
+        /// Simple convenience method for converting from simple "dot" representation to Unicode
+        /// </summary>
+        /// <param name="braille"></param>
+        /// <returns></returns>
+        public string ToUnicodeString(byte[] braille)
+        {
+            return ToUnicodeString(new List<byte>(braille));
+        }
+
+
+        /// <summary>
         /// Returns the Unicode representation of this BrailleBuilder
         /// </summary>
         /// <returns></returns>
