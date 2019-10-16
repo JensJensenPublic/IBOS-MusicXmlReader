@@ -7,7 +7,7 @@ namespace MusicXmlReader
     /// </summary>
     static public class AppConfigHandler
     {
-        public enum KeyEnum {Unknown, MuseScoreExe, SibeliusExe, DeveloperCulture, DeveloperMode, ExperimentalCode }
+        public enum KeyEnum {Unknown, MuseScoreExe, SibeliusExe, DeveloperCulture, DeveloperMode, ExperimentalCode, EmbosserCharactersPerLine , EmbosserLinesPerPage }
 
         /// <summary>
         /// The switch in this method must contain all keys from the App.Config file
@@ -24,6 +24,8 @@ namespace MusicXmlReader
                 case KeyEnum.DeveloperCulture: return "DeveloperCulture";
                 case KeyEnum.DeveloperMode: return "DeveloperMode";
                 case KeyEnum.ExperimentalCode: return "ExperimentalCode";
+                case KeyEnum.EmbosserCharactersPerLine: return "EmbosserCharactersPerLine";
+                case KeyEnum.EmbosserLinesPerPage: return "EmbosserLinesPerPage";
                 default: return null;
             }
         }
@@ -35,5 +37,18 @@ namespace MusicXmlReader
             Logger.LogCF(string.Format("KeyEnum={0} KeyName={1} result={2}", key.ToString(), keyName, result));
             return result;
         }
+
+
+        public static int GetIntValue(AppConfigHandler.KeyEnum key, int defaultValue)
+        {
+            int temp;
+            string s = AppConfigHandler.GetValue(key);
+            bool b = int.TryParse(s, out temp);
+            int result = b ? temp : defaultValue;
+            Logger.LogCF(string.Format(": Key={0} returned {1} {2}", key.ToString(), result, b ? "found in App.Config" : "(Using default value. No valid value  for this key found in App.Config)"));
+            return result;
+        }
+
+
     }
 }

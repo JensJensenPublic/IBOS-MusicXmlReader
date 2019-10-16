@@ -821,7 +821,7 @@ namespace MusicXmlReader
             model.SaveUserSettings();
         }
 
-    /// <summary>
+        /// <summary>
         /// After selecting "Notetaker"
         /// Simple implementation for exporting to notetaker. This implementation needs no further input from the user !
         /// The Braille mapping is based on the current language (See mapping below)
@@ -842,8 +842,29 @@ namespace MusicXmlReader
         // Private definitions used for export to Braille Music
         private const Model.BrailleStyleEnum IbosStyle = Model.BrailleStyleEnum.IBOS;
         private const Model.BrailleStyleEnum BanaStyle = Model.BrailleStyleEnum.BANA2015;
-        private const int defaultEmbosserCharactersPerLine = 40;
-        private const int defaultEmbosserLinesPerPage = 20;
+        private const int defaultEmbosserCharactersPerLine = 40; // A fallback value if nothing is found elsewhere
+        private const int defaultEmbosserLinesPerPage = 20;  // A fallback value if nothing is found elsewhere
+
+
+
+        private int EmbosserCharactersPerLine
+        {
+            get
+            {
+                return AppConfigHandler.GetIntValue(AppConfigHandler.KeyEnum.EmbosserCharactersPerLine, defaultEmbosserCharactersPerLine);
+            }
+        }
+
+        private int EmbosserLinesPerPage
+        {
+            get
+            {
+                return AppConfigHandler.GetIntValue(AppConfigHandler.KeyEnum.EmbosserLinesPerPage, defaultEmbosserLinesPerPage );
+            }
+        }
+
+
+
 
         /// <summary>
         /// After selecting "Embosser"
@@ -855,12 +876,12 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void toEmbosserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, defaultEmbosserCharactersPerLine, defaultEmbosserLinesPerPage, IbosStyle);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, EmbosserCharactersPerLine, EmbosserLinesPerPage, IbosStyle);
         }
 
         private void toBana2015EmbosserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, defaultEmbosserCharactersPerLine, defaultEmbosserLinesPerPage, BanaStyle);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, EmbosserCharactersPerLine, EmbosserLinesPerPage, BanaStyle);
         }
 
 
