@@ -821,6 +821,8 @@ namespace MusicXmlReader
             model.SaveUserSettings();
         }
 
+        #region Export of Music Braille
+
         /// <summary>
         /// After selecting "Notetaker"
         /// Simple implementation for exporting to notetaker. This implementation needs no further input from the user !
@@ -942,7 +944,7 @@ namespace MusicXmlReader
             Utilities.RunExeWithArgument(executable, "");
         }
 
-
+        #endregion // Export of Music Braille
 
         // End new UI
 
