@@ -7,7 +7,7 @@ namespace MusicXmlReader
     /// </summary>
     static public class AppConfigHandler
     {
-        public enum KeyEnum {Unknown, MuseScoreExe, SibeliusExe, DeveloperCulture, DeveloperMode, ExperimentalCode, EmbosserCharactersPerLine , EmbosserLinesPerPage }
+        public enum KeyEnum {Unknown, MuseScoreExe, SibeliusExe, DeveloperCulture, DeveloperMode, ExperimentalCode, EmbosserCharactersPerLine , EmbosserLinesPerPage, IBPrintExe }
 
         /// <summary>
         /// The switch in this method must contain all keys from the App.Config file
@@ -26,6 +26,7 @@ namespace MusicXmlReader
                 case KeyEnum.ExperimentalCode: return "ExperimentalCode";
                 case KeyEnum.EmbosserCharactersPerLine: return "EmbosserCharactersPerLine";
                 case KeyEnum.EmbosserLinesPerPage: return "EmbosserLinesPerPage";
+                case KeyEnum.IBPrintExe: return "IBPrintExe";
                 default: return null;
             }
         }
