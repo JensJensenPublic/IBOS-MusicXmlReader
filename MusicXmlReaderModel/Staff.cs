@@ -114,6 +114,30 @@ namespace MusicXmlReaderModel
                        MusicBrailleIndicatorString + "\r\n" +       // Indicate the start of Music Braille interpretation
                        BrailleMusicFormattedPage;}}                 // BrailleMusic  in Braille
 
+
+        /// <summary>
+        /// Generate a string for putting on the office door !
+        /// </summary>
+        public string StringForOfficeDoor
+        {
+            get
+            {
+                BrailleBuilderForText bb1 = BrailleBuilderForText.Create(0);
+                bb1.AddNormalText("Jens Sundgaard Jensen");
+                BrailleBuilderForText bb2 = BrailleBuilderForText.Create(0);
+                bb2.AddNormalText("IBOS Nodelæser projektet");
+                BrailleBuilderForText bb3 = BrailleBuilderForText.Create(0);
+                bb3.AddNormalText("Modul B142");
+                string result =
+                    bb1.ToBrailleString() + "\r\n" +
+                    bb2.ToBrailleString() + "\r\n" +
+                    "\r\n" + "\r\n" + "\r\n" + "\r\n" + "\r\n" + "\r\n" + "\r\n" + "\r\n" +
+                    bb3.ToBrailleString();
+                return result;
+            }
+        }
+
+
         /// <summary>
         /// The full (Developer) Braille representation of this Staff, including a Caption with Title, partName and StaffNumber
         /// </summary>
