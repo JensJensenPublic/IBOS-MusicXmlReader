@@ -952,11 +952,12 @@ namespace MusicXmlReaderModel
         /// If the directories have identical contents null is returned.
         /// Otherwise a string describing the first difference encountered is returned
         /// </summary>
-        /// <param name="path0"></param>
-        /// <param name="path1"></param>
+        /// <param name="path0">The old directory to compare against</param>
+        /// <param name="path1">The new directory to compare against the old one</param>
         /// <returns></returns>
         public static string CompareDirectories(string path0, string path1)
         {
+            StringBuilder sb = new StringBuilder();
             try
             {
                 string result0 = CheckDirectoryPath(path0);
@@ -975,7 +976,7 @@ namespace MusicXmlReaderModel
 
                 // Same number of files. Assume same ordering:
                 int numberOfFiles = files0.Length;
-                bool identical = true;
+             
                 for (int i = 0; (i < numberOfFiles); i++)
                 {
                     string file0 = files0[i];
@@ -986,7 +987,8 @@ namespace MusicXmlReaderModel
                     string name1 = Path.GetFileName(file1);
                     if (0 != string.Compare(name0, name1))
                     {
-                        return string.Format("File names[{0}] differ: Name0='{1}'  Name1='{2}'", i, name0, name1);
+                        sb.AppendLine( string.Format("File names[{0}] differ: Name0='{1}'  Name1='{2}'", i, name0, name1));
+                        continue; // To next i
                     }
 
                     // Compare lengths
@@ -994,7 +996,8 @@ namespace MusicXmlReaderModel
                     long length1 = new FileInfo(file1).Length;
                     if (length0 != length1)
                     {
-                        return string.Format("Lengths of files differ for Name='{0}': length0={1}, lengh1={2} ", name0, length0, length1);
+                        sb.AppendLine(string.Format("Lengths of files differ for Name='{0}': length0={1}, lengh1={2} ", name0, length0, length1));
+                        continue; // To next i
                     }
 
                     // Compare contents
@@ -1002,11 +1005,12 @@ namespace MusicXmlReaderModel
                     string contents1 = new StreamReader(Path.Combine(path1,name1)).ReadToEnd();
                     if (0 != string.Compare(contents0, contents1))
                     {
-                        return string.Format("Contents of files differ for FileName='{0}' ", name0);
+                        sb.AppendLine(string.Format("Contents of files differ for FileName='{0}' ", name0));
+                        continue; // To next i
                     }
 
                 }
-                if (identical)
+                if (0 == sb.Length)
                 {
                     Logger.LogCF(string.Format(": All {0} pairs of files have same contents", numberOfFiles));
                 }
@@ -1018,7 +1022,7 @@ namespace MusicXmlReaderModel
                 Logger.LogCFE(e);
                 return e.Message;
             }
-            return null; // No difference found 
+            return (0 == sb.Length) ? null : sb.ToString(); // No difference found 
         }
 
 

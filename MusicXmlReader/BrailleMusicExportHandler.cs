@@ -350,7 +350,7 @@ namespace MusicXmlReader
 
             // Then compare the directories
             string result;
-            string difs = Utilities.CompareDirectories(currentDirectory, regressionTestDirectory);
+            string difs = Utilities.CompareDirectories(regressionTestDirectory, currentDirectory);
             if (null == difs)
             {
                 result = string.Format("Regression-test passed, all pairs of files are equal");
