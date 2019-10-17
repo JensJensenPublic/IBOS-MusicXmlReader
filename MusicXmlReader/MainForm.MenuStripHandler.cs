@@ -944,6 +944,7 @@ namespace MusicXmlReader
             string executable = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.IBPrintExe);      //  Typically @"C:\Program Files (x86)\Index Braille\IbPrint\IbPrint.exe";
             string directory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory : "";
             Logger.LogCF(string.Format(": Executable='{0}'     Directory='{1}'",executable,directory));
+#warning TODO find out how to make the UI version of IBPrint prefer model.LatestBrailleFileSaveDirectory instead of the latest directory used by the Add button
             Utilities.RunExeWithArgument(executable, "");
         }
 
