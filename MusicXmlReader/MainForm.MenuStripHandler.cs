@@ -940,10 +940,10 @@ namespace MusicXmlReader
 
         private void printMusicBrailleUsingIBPrintToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Logger.LogCF("");
+       
             string executable = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.IBPrintExe);      //  Typically @"C:\Program Files (x86)\Index Braille\IbPrint\IbPrint.exe";
-            // string argument = "";
-            // Utilities.RunExeWithFileArgument(executable, argument);
+            string directory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory : "";
+            Logger.LogCF(string.Format(": Executable='{0}'     Directory='{1}'",executable,directory));
             Utilities.RunExeWithArgument(executable, "");
         }
 
