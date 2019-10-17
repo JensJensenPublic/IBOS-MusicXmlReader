@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="BrailleBuilder.cs" />
     <Compile Include="BrailleBuilderBase.cs" />
-    <Compile Include="BrailleBuilderEx.cs" />
+    <Compile Include="BrailleBuilderForIntervalNotation.cs" />
     <Compile Include="BrailleBuilderForText.cs" />
     <Compile Include="BrailleDisplayer.cs" />
     <Compile Include="BrailleFileHandler.cs" />

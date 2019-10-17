@@ -114,7 +114,7 @@ namespace MusicXmlReaderModel
             StatusInformation statusInformation = owningEventDescription.StatusInformation;
             nextEventDescription = owningEventDescription.Next; // The default. The only exception is BrailleMeasureDivision notation
 
-            BrailleBuilderEx bb = BrailleBuilderEx.Create(startTime);
+            BrailleBuilderForIntervalNotation bb = BrailleBuilderForIntervalNotation.Create(startTime);
             if (!userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettingsEnum.Notes)) return bb; // User completely turned off reading of notes
             bool addNotations = userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettingsEnum.Notations);
 

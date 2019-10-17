@@ -10,7 +10,7 @@ namespace MusicXmlReaderModel
     // https://www.loc.gov/nls/wp-content/uploads/2016/03/music_braille_code.pdf
 
 
-    public class BrailleBuilderEx : BrailleBuilder
+    public class BrailleBuilderForIntervalNotation : BrailleBuilder
     {
         private static bool alreadyLogged = false;
         private bool logWellFormedNess = false; // Loggin option
@@ -410,13 +410,13 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
-        private BrailleBuilderEx(Int64 timeStamp) : base(timeStamp)
+        private BrailleBuilderForIntervalNotation(Int64 timeStamp) : base(timeStamp)
         {
         }
 
-        public static new BrailleBuilderEx Create(Int64 timeStamp)
+        public static new BrailleBuilderForIntervalNotation Create(Int64 timeStamp)
         {
-            return new BrailleBuilderEx(timeStamp);
+            return new BrailleBuilderForIntervalNotation(timeStamp);
         }
 
 
