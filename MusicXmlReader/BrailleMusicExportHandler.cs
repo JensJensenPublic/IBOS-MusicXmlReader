@@ -206,8 +206,8 @@ namespace MusicXmlReader
             // Report result
             LogResult(brailleRepresentations.Staffs.Count, allOk, Path.GetDirectoryName(saveBrailleFileDialog.FileName), fileNames); // To LogFile and MessageBox 
             // If DeveloperMode is enabled we execute a simple regressiontest and report the result to the user/developer
-            string result = this.ExecuteRegressionTest(initialDirectory, Path.GetDirectoryName(saveBrailleFileDialog.FileName), regressionTestDirectory);
-            messageHandler.ShowMessage(result);
+            this.ExecuteRegressionTest(initialDirectory, Path.GetDirectoryName(saveBrailleFileDialog.FileName), regressionTestDirectory);
+          
         }
 
 
@@ -363,6 +363,7 @@ namespace MusicXmlReader
             // During development we want to open Windows Explorer here to inspect the result:
             string developerPath = Path.Combine(savePath, "Developer");
             Logger.LogCF(string.Format(": Directory={0}", developerPath));
+            messageHandler.ShowMessage(text + "\r\n" + result);
             Utilities.RunExeWithArgument("explorer.exe", developerPath);
             return text + "\r\n" + result;
         }
