@@ -204,7 +204,12 @@ namespace MusicXmlReader
             }
 
             // Report result
-            LogResult(brailleRepresentations.Staffs.Count, allOk, Path.GetDirectoryName(saveBrailleFileDialog.FileName), fileNames); // To LogFile and MessageBox 
+            string directory = Path.GetDirectoryName(saveBrailleFileDialog.FileName);
+            LogResult(brailleRepresentations.Staffs.Count, allOk,directory, fileNames); // To LogFile and MessageBox 
+            if (allOk)
+            {
+                model.LatestBrailleFileSaveDirectory = directory;
+            }
             // If DeveloperMode is enabled we execute a simple regressiontest and report the result to the user/developer
             this.ExecuteRegressionTest(initialDirectory, Path.GetDirectoryName(saveBrailleFileDialog.FileName), regressionTestDirectory);
           

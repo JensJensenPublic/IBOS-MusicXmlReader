@@ -600,7 +600,7 @@ namespace MusicXmlReader
         {
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.*", ""); // All file types                                                                                                             
-            openFileDialog.InitialDirectory = Logger.LogFileDirectory; //
+            openFileDialog.InitialDirectory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory :   Logger.LogFileDirectory; //
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
             openFileDialog.ShowDialog();

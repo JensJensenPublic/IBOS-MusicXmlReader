@@ -61,6 +61,9 @@ namespace MusicXmlReaderModel
 
         private bool handleGraphics = true; // Optimize for speed on slow devices by setting to "false"
 
+        private string latestBrailleFileSaveDirectory = ""; // For starting in the right directory when using "Tool"->"Interpret file as Music Braille"
+        public string LatestBrailleFileSaveDirectory { get { return latestBrailleFileSaveDirectory; }  set { latestBrailleFileSaveDirectory = value; } } 
+ 
         public string ScreenReaderName
         {
             get { return (null == screenReaderAPI) ? "" : screenReaderAPI.ScreenReaderName; }
