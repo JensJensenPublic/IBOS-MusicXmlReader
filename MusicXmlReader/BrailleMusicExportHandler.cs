@@ -358,7 +358,7 @@ namespace MusicXmlReader
             else
             {
                 Logger.LogCF(string.Format(": Regression-test failed {0}", difs));
-                result = string.Format("Regression-test: {0}", difs);
+                result = string.Format("{0}", difs);
             }
             // During development we want to open Windows Explorer here to inspect the result:
             string developerPath = Path.Combine(savePath, "Developer");

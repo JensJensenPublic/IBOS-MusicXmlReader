@@ -996,7 +996,7 @@ namespace MusicXmlReaderModel
                     long length1 = new FileInfo(file1).Length;
                     if (length0 != length1)
                     {
-                        sb.AppendLine(string.Format("Lengths of files differ for Name='{0}': length0={1}, lengh1={2} ", name0, length0, length1));
+                        sb.AppendLine(string.Format("Lengths differ:'{0}':{1}/{2}", name0, length0, length1));
                         continue; // To next i
                     }
 
