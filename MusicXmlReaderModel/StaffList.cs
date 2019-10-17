@@ -204,18 +204,27 @@ namespace MusicXmlReaderModel
                 //   A  soprano part, (identified with "SOPRANO", "SOPRAN" or "S") 
                 //   An alto part,    (identified with "ALTO", "ALT" or "A") 
                 userSettings.SelectedStaffs = GetSelectedStaffs(saNames, fromTop); // Select Soprano and Alto
-                AddPseudoStaff(events, "SA");
+                if (( null != userSettings.SelectedStaffs) && (userSettings.SelectedStaffs.Count >= 2))
+                {
+                    AddPseudoStaff(events, "SA");
+                }
 
                 //  Init a psoudostaff containing
                 //   A tenor part, (identified with "TENOR", "TEN" or "T") 
                 //   A bas   part,    (identified with "BAS", "B") 
                 userSettings.SelectedStaffs = GetSelectedStaffs(tbNames, fromBottom); // Select Soprano and Alto
-                AddPseudoStaff(events, "TB");
+                if ((null != userSettings.SelectedStaffs) && (userSettings.SelectedStaffs.Count >= 2))
+                {
+                    AddPseudoStaff(events, "TB");
+                }
 
                 //  Only used for testing:
                 //  Init a psoudostaff containing a soprano part,  an alto part,  a tenor part and  A bas   part
-                userSettings.SelectedStaffs = GetSelectedStaffs(satbNames, fromBottom); // Select Soprano and Alto
-                AddPseudoStaff(events, "SATB");
+                userSettings.SelectedStaffs = GetSelectedStaffs(satbNames, fromBottom); // Select Soprano and Alto and Tenor and Bas
+                if ((null != userSettings.SelectedStaffs) && (userSettings.SelectedStaffs.Count >= 2))
+                {
+                    AddPseudoStaff(events, "SATB");
+                }
             }
             catch (Exception e)
             {
