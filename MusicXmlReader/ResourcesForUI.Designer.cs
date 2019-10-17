@@ -655,20 +655,20 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E&amp;xport Music Braille.
+        ///   Looks up a localized string similar to E&amp;xport Music Braille to file in BANA2015 format.
         /// </summary>
-        internal static string ToolStripMenuItem_Files_ExportMusicBraille {
+        internal static string ToolStripMenuItem_Files_ExportMusicBrailleAsBANA2015 {
             get {
-                return ResourceManager.GetString("ToolStripMenuItem_Files_ExportMusicBraille", resourceCulture);
+                return ResourceManager.GetString("ToolStripMenuItem_Files_ExportMusicBrailleAsBANA2015", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E&amp;xport Music Braille to file.
+        ///   Looks up a localized string similar to Export Music Braille to file in simple IBOS format.
         /// </summary>
-        internal static string ToolStripMenuItem_Files_ExportMusicBrailleToFile {
+        internal static string ToolStripMenuItem_Files_ExportMusicBrailleInIbosFormat {
             get {
-                return ResourceManager.GetString("ToolStripMenuItem_Files_ExportMusicBrailleToFile", resourceCulture);
+                return ResourceManager.GetString("ToolStripMenuItem_Files_ExportMusicBrailleInIbosFormat", resourceCulture);
             }
         }
         
@@ -723,6 +723,15 @@ namespace MusicXmlReader {
         internal static string ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings {
             get {
                 return ResourceManager.GetString("ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emboss Music Braille file using IB&amp;Print.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_PrintMusicBrailleUsingIBPrint {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_PrintMusicBrailleUsingIBPrint", resourceCulture);
             }
         }
         

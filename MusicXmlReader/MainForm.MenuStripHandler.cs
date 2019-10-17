@@ -58,7 +58,10 @@ namespace MusicXmlReader
             exitToolStripMenuItem.ShortcutKeys = ShortcutHandler.exitApplication;
             GenerateAccessibleName(ref exitToolStripMenuItem);
             // Export Music Braille:
-            exportMusicBrailleToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBraille; // First level
+            exportMusicBrailleToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBrailleInIbosFormat; // First level
+            exportMusicBrailleAsBANA2015ToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBrailleAsBANA2015;
+            // Print Music Braille
+            printMusicBrailleUsingIBPrintToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_PrintMusicBrailleUsingIBPrint;
             // exportMusicBrailleToolStripMenuItem.ShortcutKeys = ShortcutHandler.exportMusicBraille;
             // GenerateAccessibleName(ref exportMusicBrailleToolStripMenuItem);
             toNotetakerToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker; // Second level

@@ -440,9 +440,6 @@
   <data name="ToolStripMenuItem_Files_brf_Unicode" xml:space="preserve">
     <value>.brf (&amp;Unicode)</value>
   </data>
-  <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
-    <value>E&amp;xportér Musik Braille til fil</value>
-  </data>
   <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
     <value>Overvej at eksportere én stemme ad gangen!</value>
   </data>
@@ -455,8 +452,8 @@
   <data name="ToolStripMenuItem_Files_BrfUnicode" xml:space="preserve">
     <value>.brf (Unicode)</value>
   </data>
-  <data name="ToolStripMenuItem_Files_ExportMusicBraille" xml:space="preserve">
-    <value>E&amp;xportér punktnoder</value>
+  <data name="ToolStripMenuItem_Files_ExportMusicBrailleInIbosFormat" xml:space="preserve">
+    <value>Exportér punktnoder til fil i simpelt IBOS format</value>
     <comment>Use x instead of ks in order to use same shortcut</comment>
   </data>
   <data name="ToolStripMenuItem_Files_InOptionalFormat" xml:space="preserve">
@@ -479,5 +476,11 @@
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
     <value>Åbn MusicXml fil med &amp;standard instillinger</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ExportMusicBrailleAsBANA2015" xml:space="preserve">
+    <value>E&amp;xportér punktnoder til fil i standard punktnode format</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingIBPrint" xml:space="preserve">
+    <value>Udskriv punktnodefil på punktprinter ved hjælp af IB&amp;Print</value>
   </data>
 </root>

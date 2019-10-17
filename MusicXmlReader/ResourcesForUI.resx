@@ -443,8 +443,8 @@
   <data name="ToolStripMenuItem_Files_brf_Unicode" xml:space="preserve">
     <value>.brf (&amp;Unicode)</value>
   </data>
-  <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
-    <value>E&amp;xport Music Braille to file</value>
+  <data name="ToolStripMenuItem_Files_ExportMusicBrailleInIbosFormat" xml:space="preserve">
+    <value>Export Music Braille to file in simple IBOS format</value>
   </data>
   <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
     <value>Consider exporting one part at a time! </value>
@@ -457,9 +457,6 @@
   </data>
   <data name="ToolStripMenuItem_Files_BrfUnicode" xml:space="preserve">
     <value>.brf (Unicode)</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ExportMusicBraille" xml:space="preserve">
-    <value>E&amp;xport Music Braille</value>
   </data>
   <data name="ToolStripMenuItem_Files_InOptionalFormat" xml:space="preserve">
     <value>in optional format</value>
@@ -481,5 +478,11 @@
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
     <value>Open MusicXml file using &amp;default settings</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ExportMusicBrailleAsBANA2015" xml:space="preserve">
+    <value>E&amp;xport Music Braille to file in BANA2015 format</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingIBPrint" xml:space="preserve">
+    <value>Emboss Music Braille file using IB&amp;Print</value>
   </data>
 </root>
