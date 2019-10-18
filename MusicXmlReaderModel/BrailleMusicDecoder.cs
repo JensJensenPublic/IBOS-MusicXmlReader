@@ -250,7 +250,7 @@ namespace MusicXmlReaderModel
                 // Maybe we should use repeated ifs instead of switch here ??
                 case none: otherValues = "NewMeasure"; break;
                 case dot3: otherValues = "Dotted"; break;
-                case dot5: otherValues = "Reference"; break;
+//                case dot5: otherValues = "Reference"; break; // For the time being we omit this because it clashes with Octave4 !
                 case dot2 | dot3: otherValues = "Triplet"; break;
                 case dot3 | dot4 | dot5: otherValues = "Word"; break;
                 case dot3 | dot4 | dot5 | dot6: otherValues = "Number"; nextBrailleMusicSubState = BrailleMusicSubState.Number; break;
@@ -260,72 +260,64 @@ namespace MusicXmlReaderModel
                 case dot2 | dot3 | dot5: otherValues = "Trill"; break;
                 case dot2 | dot6: otherValues = "Ornament"; break;
                 case dot2 | dot3 | dot6: otherValues = "Staccato"; break;
-                case dot2 | dot5 | dot6: otherValues = "DoublebeatOnNote"; break;
+//                case dot2 | dot5 | dot6: otherValues = "DoublebeatOnNote"; break; // For the time being we omit this because it clashes with 4 lowered in 4/4
             }
             Count(otherValues);
 
-            if (brailleMusicSubState == BrailleMusicSubState.Number)
-            {
-                switch (i) // Look for digits
-                {
-                    case 01: digit = "1"; break;
-                    case 03: digit = "2"; break;
-                    case 09: digit = "3"; break;
-                    case 25: digit = "4"; break;
-                    case 17: digit = "5"; break;
-                    case 11: digit = "6"; break;
-                    case 27: digit = "7"; break;
-                    case 19: digit = "8"; break;
-                    case 10: digit = "9"; break;
-                }
-                if (!string.IsNullOrEmpty(digit)) nextBrailleMusicSubState = BrailleMusicSubState.Number; // Stay in this state !
-                Count(digit);
 
-                switch (i) // Look for denominators, i.e numbers lowered one position
-                {
-                    case 02: denominator = "/1"; break;
-                    case 06: denominator = "/2"; break;
-                    case 18: denominator = "/3"; break;
-                    case 50: denominator = "/4"; break;
-                    case 34: denominator = "/5"; break;
-                    case 22: denominator = "/6"; break;
-                    case 54: denominator = "/7"; break;
-                    case 38: denominator = "/8"; break;
-                    case 20: denominator = "/9"; break;
-                }
-                if (!string.IsNullOrEmpty(denominator)) nextBrailleMusicSubState = BrailleMusicSubState.Number; // Stay in this state !
-                Count(denominator);
+            switch (i) // Look for digits
+            {
+                case 01: digit = "1"; break;
+                case 03: digit = "2"; break;
+                case 09: digit = "3"; break;
+                case 25: digit = "4"; break;
+                case 17: digit = "5"; break;
+                case 11: digit = "6"; break;
+                case 27: digit = "7"; break;
+                case 19: digit = "8"; break;
+                case 10: digit = "9"; break;
             }
+            if (!string.IsNullOrEmpty(digit)) nextBrailleMusicSubState = BrailleMusicSubState.Number; // Stay in this state !
+            Count(digit);
+
+            switch (i) // Look for denominators, i.e numbers lowered one position
+            {
+                case 02: denominator = "/1"; break;
+                case 06: denominator = "/2"; break;
+                case 18: denominator = "/3"; break;
+                case 50: denominator = "/4"; break;
+                case 34: denominator = "/5"; break;
+                case 22: denominator = "/6"; break;
+                case 54: denominator = "/7"; break;
+                case 38: denominator = "/8"; break;
+                case 20: denominator = "/9"; break;
+            }
+            if (!string.IsNullOrEmpty(denominator)) nextBrailleMusicSubState = BrailleMusicSubState.Number; // Stay in this state !
+            Count(denominator);
+
 
 
             if (1 != count)
             {
-                warning = string.Format("Warning: {0} interpretations found", count);
+                warning = string.Format("          Warning: {0} interpretations found", count);
             }
 
 
             StringBuilder sb = new StringBuilder();
 
-            switch (brailleMusicSubState)
-            {
-                case BrailleMusicSubState.Music:
-                    sb.Append(Format(stepAndType));
-                    sb.Append(Format("Oct", octave)); // Prefix octave number with "Oct";
-                    sb.Append(Format(rest));
-                    sb.Append(Format(accidental));
-                    sb.Append(Format("Finger", finger));  // Prefix finger number with "Finger";
-                    sb.Append(Format(interval));
-                    sb.Append(Format(otherValues));
-                    sb.Append(Format(warning));
-                    break;
-                case BrailleMusicSubState.Number:
-                    sb.Append(Format(digit));
-                    sb.Append(Format(denominator));
-                    break;
-                // case BrailleMusicSubState.Word:
+
+            sb.Append(Format(stepAndType));
+            sb.Append(Format("Oct", octave)); // Prefix octave number with "Oct";
+            sb.Append(Format(rest));
+            sb.Append(Format(accidental));
+            sb.Append(Format("Finger", finger));  // Prefix finger number with "Finger";
+            sb.Append(Format(interval));
+            sb.Append(Format(otherValues));
+            sb.Append(Format(digit));
+            sb.Append(Format(denominator));
+            sb.Append(Format(warning));
 
 
-            }
 
             // Change the state AFTER handling the output!
             if (nextBrailleMusicSubState != BrailleMusicSubState.Unchanged)
