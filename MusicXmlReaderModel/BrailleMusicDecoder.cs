@@ -299,7 +299,7 @@ namespace MusicXmlReaderModel
 
             if (1 != count)
             {
-                warning = string.Format("          Warning: {0} interpretations found", count);
+                warning = string.Format("Warning: {0} interpretations found", count);
             }
 
 
@@ -315,7 +315,7 @@ namespace MusicXmlReaderModel
             sb.Append(Format(otherValues));
             sb.Append(Format(digit));
             sb.Append(Format(denominator));
-            sb.Append(Format(warning));
+            //sb.Append(Format(warning));
 
 
 
@@ -325,7 +325,8 @@ namespace MusicXmlReaderModel
                 brailleMusicSubState = nextBrailleMusicSubState;
             }
 
-            return sb.ToString();
+            // Allow 20 characters for the decoded stirng itself before showing the warning.
+            return string.Format("{0,-20} {1}", sb.ToString(), Format(warning));
 
             //return stepName + " " + typeName + " " + (string.IsNullOrEmpty(octave) ? "" : "Oct" + octave) + " " + rest + " " + accidental + finger + interval + otherValues;
         }
