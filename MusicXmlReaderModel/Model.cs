@@ -94,14 +94,23 @@ namespace MusicXmlReaderModel
         private bool CheckMusicXmlSyntax(XmlDocument doc)
         {
             bool ok = true;
-            ok = ok && doc.HasChildNodes;
-            ok = ok && (doc.ChildNodes.Count >= 3);
-            ok = ok && IsScorePartwise(doc);   
+            //ok = ok && LogDocumentSyntaxError("For testing error handling",false); // Forces an error
+            ok = ok && LogDocumentSyntaxError("Document has no child nodes",doc.HasChildNodes);
+            ok = ok && LogDocumentSyntaxError("Document has too few childNodes",(doc.ChildNodes.Count >= 3));
+            ok = ok && LogDocumentSyntaxError("Document is not formatted as score-partwise",IsScorePartwise(doc));   
             return ok;
         }
 
 
-        /// <summary>
+        private bool LogDocumentSyntaxError(string text, bool ok)
+        {
+            if (ok) return true;
+            Logger.LogCF(string.Format(":>>>>>{0}<<<<<", text));
+            return false;
+        }
+
+        /// <
+        /// summary>
         /// The "score-partwise" information may be found in the name of any childNode, not only node 1.
         /// </summary>
         /// <param name="doc"></param>
