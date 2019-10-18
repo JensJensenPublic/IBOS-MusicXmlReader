@@ -323,11 +323,11 @@ namespace MusicXmlReaderModel
 
 
             // Logger.LogCF(string.Format("Semitones={0} {1}", semiTones, s));
+            Append(accidentalMark); // Add any accidential, preceding the octave mark
             Append(octaveMark); // The octave mark prececes the interval
-            Append(accidentalMark); // Add any accidential
             Append(bytes);
+            AppendText(accidentalText); // Add any accidential, preceding the octave mark
             AppendText(string.Format(" {0}", octaveMarkText)); // The octave mark prececes the interval
-            AppendText(accidentalText); // Add any accidential
             AppendText(string.Format("{0}", s));
         }
 

@@ -204,27 +204,18 @@ namespace MusicXmlReaderModel
                 //   A  soprano part, (identified with "SOPRANO", "SOPRAN" or "S") 
                 //   An alto part,    (identified with "ALTO", "ALT" or "A") 
                 userSettings.SelectedStaffs = GetSelectedStaffs(saNames, fromTop); // Select Soprano and Alto
-                if (( null != userSettings.SelectedStaffs) && (userSettings.SelectedStaffs.Count >= 2))
-                {
-                    AddPseudoStaff(events, "SA");
-                }
+                ConditionallyAddPseudoStaff(events, "SA", userSettings.SelectedStaffs);   
 
                 //  Init a psoudostaff containing
                 //   A tenor part, (identified with "TENOR", "TEN" or "T") 
                 //   A bas   part,    (identified with "BAS", "B") 
-                userSettings.SelectedStaffs = GetSelectedStaffs(tbNames, fromBottom); // Select Soprano and Alto
-                if ((null != userSettings.SelectedStaffs) && (userSettings.SelectedStaffs.Count >= 2))
-                {
-                    AddPseudoStaff(events, "TB");
-                }
+                userSettings.SelectedStaffs = GetSelectedStaffs(tbNames, fromBottom); // Select tenor and bas
+                ConditionallyAddPseudoStaff(events, "TB", userSettings.SelectedStaffs);   
 
                 //  Only used for testing:
                 //  Init a psoudostaff containing a soprano part,  an alto part,  a tenor part and  A bas   part
                 userSettings.SelectedStaffs = GetSelectedStaffs(satbNames, fromBottom); // Select Soprano and Alto and Tenor and Bas
-                if ((null != userSettings.SelectedStaffs) && (userSettings.SelectedStaffs.Count >= 2))
-                {
-                    AddPseudoStaff(events, "SATB");
-                }
+                ConditionallyAddPseudoStaff(events, "SATB", userSettings.SelectedStaffs);          
             }
             catch (Exception e)
             {
@@ -240,7 +231,13 @@ namespace MusicXmlReaderModel
 
         }
 
-// Start new
+        // Start new
+
+        /// <summary>
+        /// Unconditionally add a pseudo staff to the current Stafflist
+        /// </summary>
+        /// <param name="events">The EventDescriptionList to use for generating the pseudostaf</param>
+        /// <param name="name">The name of the pseudoStaff, for instance "TUTTI", "SA", "TB" or "SATB"</param>
         private void AddPseudoStaff(EventDescriptionList events, string name)
         {
             Staff staff = Staff.Create(name, this);
@@ -249,7 +246,23 @@ namespace MusicXmlReaderModel
             InitPseudoStaff(staff, events.firstEventDescription);
             allStaffs.Add(staff);
         }
-// End new 
+
+        /// <summary>
+        /// Conditionally Add a pseudo staff to the current StaffList
+        /// </summary>
+        /// <param name="events">The EventDescriptionList to use for generating the pseudostaff</param>
+        /// <param name="staffName">The name of the pseudoStaff, for instance "SA", "TB" or "SATB" </param>
+        /// <param name="selectedStaffs">The list of (real) staffs to include in the new pseudoStaff</param>
+        private void ConditionallyAddPseudoStaff(EventDescriptionList events, string staffName, List<StaffSelector> selectedStaffs)
+        {
+            // We only create the pseudostaff if it consists of at least 2 (enabled) real staffs !
+            if ((null != selectedStaffs) && (selectedStaffs.Count >= 2))
+            {
+                AddPseudoStaff(events, staffName);
+            }
+        }
+
+        // End new 
 
         private List<StaffSelector> GetSelectedStaffs(List<List<string>> names, bool fromTop)
         {
