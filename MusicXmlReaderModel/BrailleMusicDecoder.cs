@@ -149,6 +149,8 @@ namespace MusicXmlReaderModel
             string finger = "";
             string interval = "";
             string otherValues = "";
+            string digit = "";
+            string denominator = "";
 
             string warning = "";
 
@@ -258,6 +260,35 @@ namespace MusicXmlReaderModel
             }
             Count(otherValues);
 
+            switch (i) // Look for digits
+            {
+                case 01: digit = "1"; break;
+                case 03: digit = "2"; break;
+                case 09: digit = "3"; break;
+                case 25: digit = "4"; break;
+                case 17: digit = "5"; break;
+                case 11: digit = "6"; break;
+                case 27: digit = "7"; break;
+                case 19: digit = "8"; break;
+                case 10: digit = "9"; break;
+            }
+            Count(digit);
+
+            switch (i) // Look for denominators, i.e numbers lowered one position
+            {
+                case 02: denominator = "/1"; break;
+                case 06: denominator = "/2"; break;
+                case 18: denominator = "/3"; break;
+                case 50: denominator = "/4"; break;
+                case 34: denominator = "/5"; break;
+                case 22: denominator = "/6"; break;
+                case 54: denominator = "/7"; break;
+                case 38: denominator = "/8"; break;
+                case 20: denominator = "/9"; break;
+            }
+            Count(denominator);
+
+
             if (1 != count)
             {
                 warning = string.Format("Warning: {0} interpretations found", count);
@@ -273,6 +304,8 @@ namespace MusicXmlReaderModel
             sb.Append(Format("Finger",finger));  // Prefix finger number with "Finger";
             sb.Append(Format(interval));
             sb.Append(Format(otherValues));
+            sb.Append(Format(digit));
+            sb.Append(Format(denominator));
             sb.Append(Format(warning));
 
             return sb.ToString();
