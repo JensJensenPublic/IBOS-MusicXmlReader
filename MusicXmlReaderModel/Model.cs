@@ -96,10 +96,27 @@ namespace MusicXmlReaderModel
             bool ok = true;
             ok = ok && doc.HasChildNodes;
             ok = ok && (doc.ChildNodes.Count >= 3);
-            ok = ok && (doc.ChildNodes[1].Name.Contains("score-partwise"));
+            ok = ok && IsScorePartwise(doc);   
             return ok;
         }
 
+
+        /// <summary>
+        /// The "score-partwise" information may be found in the name of any childNode, not only node 1.
+        /// </summary>
+        /// <param name="doc"></param>
+        /// <returns></returns>
+        private bool IsScorePartwise(XmlDocument doc)
+        {
+            foreach (XmlNode node in doc.ChildNodes)
+            {
+                if (node.Name.Contains("score-partwise"))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         /// <summary>
         /// Calls the "Silence" method in th ScreenReaderAPI which maps to different methods depending in the
