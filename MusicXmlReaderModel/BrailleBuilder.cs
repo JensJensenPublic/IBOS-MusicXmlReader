@@ -732,7 +732,7 @@ namespace MusicXmlReaderModel
             }
             else
             {
-                Append(timeSymbol); // Contains the Braille Symbol for "C"  "cut C" used for A la breve.
+                // Append(timeSymbol); // Contains the Braille Symbol for "C"  "cut C" used for A la breve. // Removed 2019.10.22 after request from Lars Petersen
                 Append(bytes);
                 Append(noDots); // Requested by Lars Petersen
                 AppendText(s);
