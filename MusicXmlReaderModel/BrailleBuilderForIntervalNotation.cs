@@ -39,7 +39,7 @@ namespace MusicXmlReaderModel
         public static byte[] intervalFifth = { (dot3 + dot5) };
         public static byte[] intervalSixth = { (dot3 + dot5 + dot6) };
         public static byte[] intervalSeventh = { (dot2 + dot4) };
-//        public static byte[] intervalOctave = { (dot3 + dot6) }; // Should never occur, is coded as a Unison + the octave number
+        public static byte[] intervalOctave = { (dot3 + dot6) }; 
 
 
 
@@ -276,7 +276,7 @@ namespace MusicXmlReaderModel
             {
                 //  Manual of BrailleMusic Notation Chapter 8.4)
                 octaveMark = GetOctaveMark(noteElement.Octave); // Table 2: "Octave Signs"
-                octaveMarkText = string.Format("{0}", noteElement.Octave); // We might start with som identofyer, for instance "Oct" but this uses same syntax as the normal octave mark !
+                octaveMarkText = string.Format("{0}", noteElement.Octave); // We might start with som identifier, for instance "Oct" but this uses same syntax as the normal octave mark !
                 // Logger.LogCFOnce(string.Format(": OctaveMarkText={0}", octaveMarkText)); 
             }
 
@@ -285,14 +285,32 @@ namespace MusicXmlReaderModel
             string s = "";
             switch (fullStepsWithinOctave)
             {
-                case 0: bytes = intervalUnison; s = "1"; break; // C to C
+                case 0: // This is either a prime, an octave or a "romote octave" (2 or more octaves away)
+                    switch (relativeOctave)
+                    {
+                        case 1: // The "neighbour" octave, exactly 8 steps away.
+                            octaveMark = new byte[] { }; // This is the "neighbour" octave! No octavemark!
+                            octaveMarkText = "";  // This is the "neighbour" octave! No octavemark text!
+                            bytes = intervalOctave; 
+                            s = "8"; // C to neighbour C
+                            break; 
+                        case 0:
+                        default:
+                            // The "prime" interval of 0 steps is handled exactly the same way as the intervals of  16, 24, 32 etc steps
+                            octaveMark = GetOctaveMark(noteElement.Octave); // Table 2: "Octave Signs"
+                            octaveMarkText = string.Format("{0}", noteElement.Octave);
+                            bytes = intervalOctave;
+                            s = "0"; // C to C either in the same octace or at least 16 steps away
+                            break;
+                    }
+                    break;                 
                 case 1: bytes = intervalSecond; s = "2"; break;// C to D
                 case 2: bytes = intervalThird;  s = "3"; break; // C to E
                 case 3: bytes = intervalFourth; s = "4"; break; // C to F
                 case 4: bytes = intervalFifth;  s = "5"; break; // C to G
                 case 5: bytes = intervalSixth;  s = "6"; break; // C to A
                 case 6: bytes = intervalSeventh; s = "7"; break; // C to H
-//              case 7: bytes = intervalOctave; s = "8"; break; // C to C // Will never occur. Is coded as a Unison with an octave number specified
+//              case 7: bytes = intervalOctave; s = "8"; break; // C to C // Will never occur. Is coded in case 0 with an octave number specified
           
                 default:
                     bytes = intervalUnknown;
