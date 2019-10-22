@@ -204,13 +204,13 @@ namespace MusicXmlReaderModel
                 //   A  soprano part, (identified with "SOPRANO", "SOPRAN" or "S") 
                 //   An alto part,    (identified with "ALTO", "ALT" or "A") 
                 userSettings.SelectedStaffs = GetSelectedStaffs(saNames, fromTop); // Select Soprano and Alto
-                ConditionallyAddPseudoStaff(events, "SA", userSettings.SelectedStaffs);   
+                ConditionallyAddPseudoStaff(events, "SA", userSettings.SelectedStaffs);
 
                 //  Init a psoudostaff containing
+                //   A bas   part,    (identified with "BAS", "B")
                 //   A tenor part, (identified with "TENOR", "TEN" or "T") 
-                //   A bas   part,    (identified with "BAS", "B") 
                 userSettings.SelectedStaffs = GetSelectedStaffs(tbNames, fromBottom); // Select tenor and bas
-                ConditionallyAddPseudoStaff(events, "TB", userSettings.SelectedStaffs);   
+                ConditionallyAddPseudoStaff(events, "BT", userSettings.SelectedStaffs);   // The use of "BT" instead of "TB" indicates that intervals are computed from the Bas note
 
                 //  Only used for testing:
                 //  Init a psoudostaff containing a soprano part,  an alto part,  a tenor part and  A bas   part
