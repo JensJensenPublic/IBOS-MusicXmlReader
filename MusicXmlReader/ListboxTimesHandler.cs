@@ -111,7 +111,7 @@ namespace MusicXmlReader
             }
             // Restore index without exceeding values
             listBoxTimes.SelectedIndex = Math.Min(selectedIndex, listBoxTimes.Items.Count);
-        }
+     }
 
 
 
@@ -236,6 +236,7 @@ namespace MusicXmlReader
                 try
                 {
                     // This is new for 1.1.0.0 so better safe than sorry !
+                    Logger.LogCF(string.Format(": Inserting empty line at index={0}", listBoxTimes.SelectedIndex));
                     listBoxTimes.Items.Insert(listBoxTimes.SelectedIndex, ""); // Insert an empty line in order to make JAWS read it instead of the real line
                     listBoxTimes.SelectedIndex--;
                     listBoxTimesEmptyLineIndex = listBoxTimes.SelectedIndex;
@@ -249,7 +250,7 @@ namespace MusicXmlReader
         }
 
         /// <summary>
-        /// Unfortunately listBoxTimes_Enter and listBoxTimes_Enter seem to be needed in order to prevent JAWS from reading the selected line in listBoxTimes
+        /// Unfortunately listBoxTimes_Enter and listBoxTimes_Leave seem to be needed in order to prevent JAWS from reading the selected line in listBoxTimes
         /// after reading the item from the control we are entering, A better solution is wanted !
         /// </summary>
         /// <param name="sender"></param>
@@ -265,7 +266,17 @@ namespace MusicXmlReader
                 {
                     // This is new for 1.1.0.0 so better safe than sorry !
                     // For the time being we must accept (and catch) an exception here to avoid that JAWS reads the NEXT line after returning !
-                    listBoxTimes.Items.RemoveAt(listBoxTimesEmptyLineIndex);
+                    string line0 = listBoxTimes.Items[listBoxTimesEmptyLineIndex].ToString();
+                    if (string.IsNullOrEmpty(line0))
+                    {
+                        // If we do not check for the empty line we will remove a line from  newly loaded listbox! 
+                        Logger.LogCF(string.Format(": Removing listBoxTimes.Items[{0}]: {1}", listBoxTimesEmptyLineIndex, line0));
+                        listBoxTimes.Items.RemoveAt(listBoxTimesEmptyLineIndex);
+                    }
+                    else
+                    {
+                        Logger.LogCF(": No empty line to remove");
+                    }
                 }
                 catch (Exception ex)
                 {
