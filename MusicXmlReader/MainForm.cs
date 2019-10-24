@@ -83,7 +83,7 @@ namespace MusicXmlReader
                 string experimentalCodeString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.ExperimentalCode);
                 model.ExperimentalCode = ("yes" == experimentalCodeString);
                 Logger.LogCF(string.Format(": ExperimentalCodeString={0} ExperimentalCode={1}", experimentalCodeString, model.ExperimentalCode));
-
+                Utilities.LogSpecialFolders(true); // A Developer facility only!
                 importHandler = ImportHandler.Create(model,this,applicationName);
                 parameterInputHandler = ParameterInputHandler.Create(model,this);
                 brailleMusicExportHandler = BrailleMusicExportHandler.Create(model, parameterInputHandler, messageHandler, saveBrailleFileDialog, developerMode);

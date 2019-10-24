@@ -1055,6 +1055,45 @@ namespace MusicXmlReaderModel
             return sb.ToString();
         }
 
+
+        private static void LogSpecialFolder(Environment.SpecialFolder folder)
+        {
+            string symbolicName = folder.ToString();
+            string actualName = Environment.GetFolderPath(folder);
+            LogSpecialFolder(symbolicName, actualName);
+        }
+
+        private static void LogSpecialFolder(string symbolicName, string actualName)
+        {
+            Logger.LogCF(string.Format(": {0,-30} {1}", symbolicName, actualName));
+        }
+
+
+        /// <summary>
+        /// Simple developer tool for logging the names of some special folders
+        /// </summary>
+        public static void LogSpecialFolders(bool log)
+        {
+            if (!log) return;
+
+            // http://stackoverflow.com/questions/915210/how-can-i-get-the-path-of-the-current-users-application-data-folder
+            try
+            {
+                LogSpecialFolder(Environment.SpecialFolder.LocalApplicationData);               // C:\Users\Jens\AppData\Local
+                LogSpecialFolder(Environment.SpecialFolder.ApplicationData);                    // C:\Users\Jens\AppData\Roaming
+                LogSpecialFolder(Environment.SpecialFolder.System);                             // C:\WINDOWS\system32
+                LogSpecialFolder("Environment.SystemDirectory", Environment.SystemDirectory);   // C:\WINDOWS\System32
+                LogSpecialFolder(System.Environment.SpecialFolder.MyDocuments);                 // C:\Users\Jens\Documents
+                LogSpecialFolder(System.Environment.SpecialFolder.Recent);                      // C:\Users\Jens\AppData\Roaming\Microsoft\Windows\Recent
+                LogSpecialFolder("DownloadDirectory",KnownFolders.GetPath(KnownFolder.Downloads, false));    // C:\Users\Jens\Downloads
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+        }
+
     }
+
 
 }
