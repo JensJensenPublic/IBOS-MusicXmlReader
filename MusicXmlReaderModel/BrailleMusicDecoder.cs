@@ -8,6 +8,41 @@ using MusicXmlReaderModel;
 namespace MusicXmlReaderModel
 {
 
+    enum InputCategoryEnum {ToWord, ToNumber, ToBraille, Character, Digit, Note, Rest, Octave, Interval, Accidental, Finger, OtherValues, Denominator }
+
+    class InputValue
+    {
+        private InputCategoryEnum inputCategory;
+        private string value;
+        public InputValue(InputCategoryEnum inputCategory, string value)
+        {
+            this.inputCategory = inputCategory;
+            this.value = value;
+        }
+
+        public string Value
+        {
+            get
+            {
+                return value;
+            }
+        }
+
+        public override string ToString()
+        {
+            return string.Format(" {0}={1} ", inputCategory, value);
+        }
+
+
+        internal InputCategoryEnum InputCategory
+        {
+            get
+            {
+                return inputCategory;
+            }
+        }
+    }
+        
 
 
     /// <summary>
@@ -39,7 +74,7 @@ namespace MusicXmlReaderModel
         int count;
         StateEnum state = StateEnum.Unknown;
         BrailleMusicSubState brailleMusicSubState = BrailleMusicSubState.Music;
-        BrailleMusicSubState nextBrailleMusicSubState = BrailleMusicSubState.Music;
+        BrailleMusicSubState nextBrailleMusicSubState = BrailleMusicSubState.Music;     
 
 
         private void Count(string s)
@@ -47,6 +82,13 @@ namespace MusicXmlReaderModel
             if (string.IsNullOrEmpty(s)) return;
             count++;
         }
+
+        private void Add(List<InputValue> inputValues, InputCategoryEnum inputCategory, string inputValue)
+        {
+            if (string.IsNullOrEmpty(inputValue)) return;
+            inputValues.Add(new InputValue(inputCategory, inputValue));           
+        } 
+
 
         public void ResetState()
         {
@@ -139,6 +181,7 @@ namespace MusicXmlReaderModel
         private string  MusicBrailleToString(int i)
         {
             nextBrailleMusicSubState = BrailleMusicSubState.Music;
+            List<InputValue> inputValues = new List<InputValue>();
 
             // Internal variables
             count = 0; // Number of interpretations found. Interesting (if <> 1) !! 
@@ -185,7 +228,8 @@ namespace MusicXmlReaderModel
                     case none: typeName = "1/8"; break;
                 }
                 stepAndType = stepName + typeName;
-                Count(stepAndType);
+                Count(stepAndType);                
+                Add(inputValues,InputCategoryEnum.Note, stepAndType);                
             }
 
             switch (i) // Look for octave marks
@@ -200,6 +244,7 @@ namespace MusicXmlReaderModel
                 default: break;
             }
             Count(octave);
+            Add(inputValues,InputCategoryEnum.Octave, octave);
 
             // This was not an octave sign. Continue:
 
@@ -212,6 +257,7 @@ namespace MusicXmlReaderModel
                 default: break;
             }
             Count(rest);
+            Add(inputValues, InputCategoryEnum.Rest, rest);
 
             switch (i) // Look for accidentals
             {
@@ -221,6 +267,7 @@ namespace MusicXmlReaderModel
                 default: break;
             }
             Count(accidental);
+            Add(inputValues, InputCategoryEnum.Accidental, accidental);
 
             switch (i) // Look for finger
             {
@@ -231,6 +278,8 @@ namespace MusicXmlReaderModel
                 case dot1 | dot2 | dot3: finger = "3"; break;
             }
             Count(finger);
+            Add(inputValues, InputCategoryEnum.Finger, finger);
+
 
             switch (i) // Look for interval
             {
@@ -243,6 +292,8 @@ namespace MusicXmlReaderModel
                 case dot3 | dot6: interval = "Octave"; break;
             }
             Count(interval);
+            Add(inputValues, InputCategoryEnum.Interval, interval);
+
 
 
             switch (i) // Look for remaining codes
@@ -252,8 +303,6 @@ namespace MusicXmlReaderModel
                 case dot3: otherValues = "Dotted"; break;
 //                case dot5: otherValues = "Reference"; break; // For the time being we omit this because it clashes with Octave4 !
                 case dot2 | dot3: otherValues = "Triplet"; break;
-                case dot3 | dot4 | dot5: otherValues = "Word"; break;
-                case dot3 | dot4 | dot5 | dot6: otherValues = "Number"; nextBrailleMusicSubState = BrailleMusicSubState.Number; break;
                 case dot1 | dot4: otherValues = "Legato"; break;
                 case dot2 | dot3 | dot5 | dot6: otherValues = "Equality"; break;
                 case dot2 | dot5: otherValues = "Newline"; break;
@@ -263,7 +312,17 @@ namespace MusicXmlReaderModel
 //                case dot2 | dot5 | dot6: otherValues = "DoublebeatOnNote"; break; // For the time being we omit this because it clashes with 4 lowered in 4/4
             }
             Count(otherValues);
+            Add(inputValues, InputCategoryEnum.OtherValues, otherValues);
 
+            if (i == (dot3 | dot4 | dot5 | dot6))
+            {
+                Add(inputValues, InputCategoryEnum.ToNumber, "Number");
+            }
+
+            if (i == (dot3 | dot4 | dot5 ))
+            {
+                Add(inputValues, InputCategoryEnum.ToWord, "Word");
+            }
 
             switch (i) // Look for digits
             {
@@ -279,6 +338,7 @@ namespace MusicXmlReaderModel
             }
             if (!string.IsNullOrEmpty(digit)) nextBrailleMusicSubState = BrailleMusicSubState.Number; // Stay in this state !
             Count(digit);
+            Add(inputValues, InputCategoryEnum.Digit, digit);
 
             switch (i) // Look for denominators, i.e numbers lowered one position
             {
@@ -294,12 +354,24 @@ namespace MusicXmlReaderModel
             }
             if (!string.IsNullOrEmpty(denominator)) nextBrailleMusicSubState = BrailleMusicSubState.Number; // Stay in this state !
             Count(denominator);
+            Add(inputValues, InputCategoryEnum.Denominator, denominator);
 
 
 
-            if (1 != count)
+            //if (1 != count)
+            //{
+            //    warning = string.Format("Warning: {0} interpretations found", count);
+            //}
+
+            if (inputValues.Count != 1)
             {
-                warning = string.Format("Warning: {0} interpretations found", count);
+                StringBuilder sbWarning = new StringBuilder();
+                sbWarning.Append( string.Format("->Warning: {0} interpretations found", inputValues.Count));
+                foreach (InputValue inputValue in inputValues)
+                {
+                    sbWarning.Append(inputValue.ToString());
+                }
+                warning = sbWarning.ToString();
             }
 
 
