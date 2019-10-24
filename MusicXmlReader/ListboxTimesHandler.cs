@@ -270,7 +270,7 @@ namespace MusicXmlReader
                     if (string.IsNullOrEmpty(line0))
                     {
                         // If we do not check for the empty line we will remove a line from  newly loaded listbox! 
-                        Logger.LogCF(string.Format(": Removing listBoxTimes.Items[{0}]: {1}", listBoxTimesEmptyLineIndex, line0));
+                        Logger.LogCF(string.Format(": Removing empty line at listBoxTimes.Items[{0}]", listBoxTimesEmptyLineIndex));
                         listBoxTimes.Items.RemoveAt(listBoxTimesEmptyLineIndex);
                     }
                     else
