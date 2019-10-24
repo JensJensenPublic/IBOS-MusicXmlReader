@@ -168,6 +168,7 @@
     <Compile Include="Model.cs" />
     <Compile Include="MusicBrailleState.cs" />
     <Compile Include="MusicPlayer.cs" />
+    <Compile Include="MusicXmlInterpreter.cs" />
     <Compile Include="MusicXmlObject.cs" />
     <Compile Include="NoteElementList.cs" />
     <Compile Include="Parameter.cs" />
