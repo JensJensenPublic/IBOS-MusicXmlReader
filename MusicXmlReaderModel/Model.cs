@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Text;
 using System.IO;
 using System.Collections.Generic;
 using NAudio.Midi;
 using System.Xml;
 using JSJ.ScreenReaderAPI;
-//using MusicXmlReaderUI; // Interfaces
-using JSJ.MusicSynthesis; // Avoid by making new class
 
 namespace MusicXmlReaderModel
 {
@@ -1157,28 +1154,6 @@ namespace MusicXmlReaderModel
             System.IO.File.WriteAllText(theUserSettingsFileName, xml);
         }
 
-#if false // Obsolete code. Not referenced !
-        /// <summary>
-        /// Exports as .brf to the directory where the .xml file is found
-        /// </summary>
-        /// <param name="format"></param>
-        /// <returns></returns>
-        private bool ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding format)
-        {
-            if (null == this.eventDescriptionList)
-            {
-                Logger.LogCF(": Nothing to export!");
-                return false;
-            }            
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(format, userPreferences.CharsPerLine, userPreferences.LinesPerForm);
-            {
-                string fileName = Path.ChangeExtension(theMusicXmlFileName, brailleFileHandler.GetFileFormat() + brailleFileHandler.GetExtension());
-                string formattedString = brailleFileHandler.Format(this.eventDescriptionList, this.userSettings);
-                brailleFileHandler.WriteToFile(formattedString, fileName, true);
-                return true;
-            }
-        }
-#endif
         public enum BrailleStyleEnum
         {
             IBOS,       // The simple file style used by IBOS MusicXmlReader Version 3.0 which only exports the same Braille Music representation as shown in the UI
@@ -1303,30 +1278,6 @@ namespace MusicXmlReaderModel
             return result;
         }
 
-
-        ///// <summary>
-        ///// Returns the number of parts currently used for generation of Music Braille
-        ///// This is important for the first version of "Export to Braille"
-        ///// </summary>
-        ///// <returns></returns>
-        //public int NumberOfEnabledMusicBrailleParts()
-        //{
-        //    int result = 0;
-        //    if (this.userSettings.MusicAsMusicBraille)
-        //    {
-        //        // Generation of Music Braille is enabled. Count the number of parts enabled.
-        //        for (int i = 0; (i < numberOfParts); i++)
-        //        {
-        //            if ((userSettings.GetParts(UserSettings.Category.MusicBraille, i)))
-        //            {
-        //                result++;
-        //            }
-        //        }
-        //    }
-        //    Logger.LogCF(string.Format("returns {0}", result));
-        //    return result;
-        //}
-
         /// <summary>
         /// Returns the list of parts currently used for generation of Music Braille
         /// This is important for the first version of "Export to Braille"
@@ -1414,9 +1365,6 @@ namespace MusicXmlReaderModel
             result.AddRange(decodedLines);
             return result; 
         }
-
-
-
     }
 }
 
