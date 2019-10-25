@@ -23,14 +23,18 @@ namespace MusicXmlReaderModel
         string myMusicXmlSampleDirectory = ""; //  Typically "C:\Users\<user>\\Documents\IBOS Nodelæser\Eksempler"
         string myMusicXmlDownloadDirectory = ""; //  Typically "C:\Users\<user>\\Documents\IBOS Nodelæser\Overførsler"
         bool is64Bit; // This program is compiled and for the following architechture: false:x86 true:x64 
-        List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
+        private List<MusicXmlObject> allMusicXmlObjecsts; // Holds all information from the .xml file
+        // The following  lists contain references into allMusicXmlObjecsts where the decoded information is kept! 
+        private PartDescriptionList partDescriptionList;
+        private TimeDescriptionList timeDescriptionList;
+        private EventDescriptionList eventDescriptionList;
         MidiOut midiOut;
         IObjectCollection objects;
         public MusicPlayer musicPlayer;
         public BrailleDisplayer brailleDisplayer;
         public TextDisplayer textDisplayer;
         public PartlistElement partList; // Contains the list of parts, describing all instruments used including their midi parameters
-        int divisions; // Current number of divisions of a quarternode
+        int divisions = 24; // Current number of divisions of a quarternode. Just a default value
         MusicXmlInterpreter musicXmlInterpreter;
         StatusInformation currentStatusInformation; // Contains information which is valid in a part of the score, such as Key, Beats, Tempo etc.
         int numberOfParts; // Number of parts
@@ -574,10 +578,7 @@ namespace MusicXmlReaderModel
             Logger.LogSystemParameters();
             Logger.LogDebuggerAttachment();
         }
-        // The following 2 lists contain references into allMusicXmlObjecsts where the decoded information is kept! 
-        private PartDescriptionList partDescriptionList;
-        private TimeDescriptionList timeDescriptionList;
-        private EventDescriptionList eventDescriptionList;
+
 
 
         public string InitialDirectory
@@ -666,7 +667,6 @@ namespace MusicXmlReaderModel
         public void Init()
         {
             partDescriptionList = PartDescriptionList.Create(allMusicXmlObjecsts, numberOfParts);
-            divisions = 24; // TODO compute!
             timeDescriptionList = TimeDescriptionList.Create(partDescriptionList, divisions);
             currentStatusInformation = StatusInformation.Create(MusicPlayer.defaultMusicPlayerTempo);
             eventDescriptionList = EventDescriptionList.Create(timeDescriptionList, numberOfParts, userSettings, currentStatusInformation);
