@@ -194,7 +194,7 @@ namespace MusicXmlReaderModel
                 case StateEnum.ToMusic: allowedInputCategories = InputCategoryEnum.ToMusicBrailleDot3 | InputCategoryEnum.Character; break;
                 case StateEnum.Music: allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest; break;
                 case StateEnum.MusicNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space |InputCategoryEnum.Accidental; break;
-                case StateEnum.MusicNote: allowedInputCategories = InputCategoryEnum.Interval |InputCategoryEnum.Note |InputCategoryEnum.Octave |  InputCategoryEnum.Accidental; break; // TODO
+                case StateEnum.MusicNote: allowedInputCategories = InputCategoryEnum.Interval |InputCategoryEnum.Note |InputCategoryEnum.Octave |  InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure; break; // TODO
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
             }
 
@@ -255,6 +255,10 @@ namespace MusicXmlReaderModel
                     break;
 
                 case StateEnum.MusicNote:
+                    if (filteredInputValues.Contains(InputCategoryEnum.NewMeasure))
+                    {
+                        newState = StateEnum.Music;
+                    }
                     break;
 
 
@@ -489,6 +493,11 @@ namespace MusicXmlReaderModel
             if (i == noDots)
             {
                 inputValues.Add(InputCategoryEnum.Space, "SPACE");
+            }
+
+            if (i == noDots)
+            {
+                inputValues.Add(InputCategoryEnum.NewMeasure, "NewMeasure");
             }
 
 
