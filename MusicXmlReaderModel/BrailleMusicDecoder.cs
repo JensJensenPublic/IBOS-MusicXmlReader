@@ -26,7 +26,8 @@ namespace MusicXmlReaderModel
         Denominator= 0x2000,
         ToMusicBrailleDot3 = 0x4000,
         //LoweredDigit = 0x8000,
-        Space = 0x00010000
+        Space = 0x00010000,
+        NewMeasure = 0x00020000
     }
 
     class InputValue
@@ -193,7 +194,7 @@ namespace MusicXmlReaderModel
                 case StateEnum.ToMusic: allowedInputCategories = InputCategoryEnum.ToMusicBrailleDot3 | InputCategoryEnum.Character; break;
                 case StateEnum.Music: allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest; break;
                 case StateEnum.MusicNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space |InputCategoryEnum.Accidental; break;
-                case StateEnum.MusicNote: allowedInputCategories = InputCategoryEnum.Interval |InputCategoryEnum.Note |InputCategoryEnum.Octave; break; // TODO
+                case StateEnum.MusicNote: allowedInputCategories = InputCategoryEnum.Interval |InputCategoryEnum.Note |InputCategoryEnum.Octave |  InputCategoryEnum.Accidental; break; // TODO
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
             }
 
