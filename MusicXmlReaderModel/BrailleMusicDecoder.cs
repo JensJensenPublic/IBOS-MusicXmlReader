@@ -142,7 +142,7 @@ namespace MusicXmlReaderModel
     /// </summary>
     public class BrailleMusicDecoder
     {
-        public enum StateEnum { Unknown, Text, Digit, Music, ToMusic, MusicNumber, MusicNote };
+        public enum StateEnum { Unknown, Text, TextNumber, Digit, Music, ToMusic, MusicNumber, MusicNote };
         public enum BrailleMusicSubState { Unchanged, Music, Number }; // More to be added
 
         const byte noDots = 0;
@@ -188,7 +188,8 @@ namespace MusicXmlReaderModel
 
             switch (state)
             {
-                case StateEnum.Text:  allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.ToMusicBrailleDot6 | InputCategoryEnum.ToVersal; break;
+                case StateEnum.Text: allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.ToMusicBrailleDot6 | InputCategoryEnum.ToVersal |InputCategoryEnum.ToNumber; break;
+                case StateEnum.TextNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space;  break;
                 case StateEnum.ToMusic: allowedInputCategories = InputCategoryEnum.ToMusicBrailleDot3 | InputCategoryEnum.Character; break;
                 case StateEnum.Music: allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest; break;
                 case StateEnum.MusicNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space |InputCategoryEnum.Accidental; break;
@@ -211,6 +212,16 @@ namespace MusicXmlReaderModel
                     if (filteredInputValues.Contains(InputCategoryEnum.ToMusicBrailleDot6))
                     {
                         newState = StateEnum.ToMusic; break;
+                    }
+                    if (filteredInputValues.Contains(InputCategoryEnum.ToNumber))
+                    {
+                        newState = StateEnum.TextNumber;
+                    }
+                    break;
+                case StateEnum.TextNumber:
+                    if (!filteredInputValues.Contains(InputCategoryEnum.Digit))
+                    {
+                        newState = StateEnum.Text;
                     }
                     break;
                 case StateEnum.ToMusic:
@@ -300,8 +311,8 @@ namespace MusicXmlReaderModel
                 case 28: return "Æ";
                 case 42: return "Ø";
                 case 33: return "Å";
-                case 32: return "VERSAL";
-                case 60: return "CIFFER";
+//                case 32: return "VERSAL";
+//                case 60: return "CIFFER";
                 case 50: return ".";
                 case 02: return ",";
                 case 38: return "?";
