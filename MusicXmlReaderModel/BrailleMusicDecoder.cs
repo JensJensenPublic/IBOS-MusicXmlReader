@@ -8,7 +8,26 @@ using MusicXmlReaderModel;
 namespace MusicXmlReaderModel
 {
 
-    enum InputCategoryEnum {ToWord, ToNumber, ToBraille, Character, Digit, Note, Rest, Octave, Interval, Accidental, Finger, OtherValues, Denominator }
+    [Flags]
+    enum InputCategoryEnum {
+        ToWord = 0x0001,
+        ToNumber = 0x0002,
+        ToMusicBrailleDot6 = 0x0004,
+        Character = 0x0008,
+        ToVersal = 0x0010,
+        Digit = 0x0020,
+        Note = 0x0040,
+        Rest = 0x0080,
+        Octave = 0x0100,
+        Interval = 0x0200,
+        Accidental = 0x400,
+        Finger = 0x0800,
+        OtherValues = 0x1000,
+        Denominator= 0x2000,
+        ToMusicBrailleDot3 = 0x4000,
+        //LoweredDigit = 0x8000,
+        Space = 0x00010000
+    }
 
     class InputValue
     {
@@ -19,6 +38,8 @@ namespace MusicXmlReaderModel
             this.inputCategory = inputCategory;
             this.value = value;
         }
+
+   
 
         public string Value
         {
@@ -42,6 +63,72 @@ namespace MusicXmlReaderModel
             }
         }
     }
+
+    class InputValueList
+    {
+        private List<InputValue> inputValues = new List<InputValue>();
+        public void Add(InputValue inputValue)
+        {   
+            if (string.IsNullOrEmpty(inputValue.Value)) return;
+            inputValues.Add(inputValue);
+        }
+
+        public void Add(InputCategoryEnum category, string value)
+        {
+            Add(new InputValue(category, value));
+        }
+
+        public InputValueList Filter(InputCategoryEnum allowedInputCategories)
+        {
+            InputValueList result = new InputValueList();
+            foreach (InputValue inputValue in this.inputValues)
+            {
+                if (0 != (inputValue.InputCategory & allowedInputCategories))
+                {
+                    result.Add(inputValue);
+                }
+            }
+            return result;
+        }
+
+        public bool Contains(InputCategoryEnum category)
+        {
+            foreach (InputValue inputValue in this.inputValues)
+            {
+                if (0 != (inputValue.InputCategory & category))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        public int Count { get { return inputValues.Count; } }
+        public override string ToString()
+        {
+            string warning = "";
+            if (inputValues.Count != 1)
+            {
+                StringBuilder sbWarning = new StringBuilder();
+                sbWarning.Append(string.Format("->Warning: {0} interpretations found", inputValues.Count));
+                foreach (InputValue inputValue in inputValues)
+                {
+                    sbWarning.Append(inputValue.ToString());
+                }
+                warning = sbWarning.ToString();
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (InputValue inputValue in inputValues)
+            {
+                sb.Append(string.Format("{0} {1}", inputValue.InputCategory.ToString(), inputValue.Value));
+            }     
+
+            // Allow 20 characters for the decoded stirng itself before showing the warning.
+            return string.Format("{0,-20} {1}", sb.ToString(), warning);
+    }
+}
         
 
 
@@ -55,7 +142,7 @@ namespace MusicXmlReaderModel
     /// </summary>
     public class BrailleMusicDecoder
     {
-        public enum StateEnum { Unknown, Text, Digit, Music };
+        public enum StateEnum { Unknown, Text, Digit, Music, ToMusic, MusicNumber, MusicNote };
         public enum BrailleMusicSubState { Unchanged, Music, Number }; // More to be added
 
         const byte noDots = 0;
@@ -71,60 +158,115 @@ namespace MusicXmlReaderModel
         const int dot1245 = dot1 | dot2 | dot4 | dot5; // For isolating values representing note steps
         const int dot36 = dot3 | dot6; // For isolating type
 
-        int count;
+        
         StateEnum state = StateEnum.Unknown;
         BrailleMusicSubState brailleMusicSubState = BrailleMusicSubState.Music;
         BrailleMusicSubState nextBrailleMusicSubState = BrailleMusicSubState.Music;     
 
 
-        private void Count(string s)
-        {
-            if (string.IsNullOrEmpty(s)) return;
-            count++;
-        }
 
-        private void Add(List<InputValue> inputValues, InputCategoryEnum inputCategory, string inputValue)
-        {
-            if (string.IsNullOrEmpty(inputValue)) return;
-            inputValues.Add(new InputValue(inputCategory, inputValue));           
-        } 
+        //private void Add(List<InputValue> inputValues, InputCategoryEnum inputCategory, string inputValue)
+        //{
+        //    if (string.IsNullOrEmpty(inputValue)) return;
+        //    inputValues.Add(new InputValue(inputCategory, inputValue));           
+        //} 
 
 
         public void ResetState()
         {
-            state = StateEnum.Unknown;
+            state = StateEnum.Text;
         }
 
         bool gotDot6 = false;
 
         public string ToString(int i)
         {
-            if ((i < 0) || (i > 63)) throw new Exception("Invalid argument");         
-              
+            if ((i < 0) || (i > 63)) throw new Exception("Invalid argument");
+
+            InputValueList inputValues = GetInputValues(i); // Get a list of all possible input values independent of the current state.
+            InputCategoryEnum allowedInputCategories = 0;
 
             switch (state)
             {
-                case StateEnum.Music: return MusicBrailleToString(i);
-                case StateEnum.Text: return TextToString(i);
-                case StateEnum.Digit: return DigitToString(i);
-                case StateEnum.Unknown: return "UNKNOWN";
+                case StateEnum.Text:  allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.ToMusicBrailleDot6 | InputCategoryEnum.ToVersal; break;
+                case StateEnum.ToMusic: allowedInputCategories = InputCategoryEnum.ToMusicBrailleDot3 | InputCategoryEnum.Character; break;
+                case StateEnum.Music: allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest; break;
+                case StateEnum.MusicNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space |InputCategoryEnum.Accidental; break;
+                case StateEnum.MusicNote: allowedInputCategories = InputCategoryEnum.Interval |InputCategoryEnum.Note |InputCategoryEnum.Octave; break; // TODO
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
             }
-        }
 
-  
 
-        private string TextToString(int i)
-        {
-            // Look for Dot6 followed by Dot3 which signals a transition to StateEnum.Music
-            if (gotDot6 && (i == dot3))
+
+            Logger.LogCF(string.Format(": OriginalInputValues = {0}", inputValues.ToString()));
+            InputValueList filteredInputValues = inputValues.Filter(allowedInputCategories);
+            Logger.LogCF(string.Format(": FilteredInputValues = {0}", filteredInputValues.ToString()));
+
+            // Calculate the new state
+            StateEnum newState = state;
+
+            switch (state)
             {
-                state = StateEnum.Music;
-                return string.Format("State changed to {0}",state.ToString());
+                case StateEnum.Text:
+                    if (filteredInputValues.Contains(InputCategoryEnum.ToMusicBrailleDot6))
+                    {
+                        newState = StateEnum.ToMusic; break;
+                    }
+                    break;
+                case StateEnum.ToMusic:
+                    // This is a transitional state and wil only exist during the transition !
+                    if (filteredInputValues.Contains(InputCategoryEnum.ToMusicBrailleDot3))
+                    {
+                        newState = StateEnum.Music;
+                    }
+                    else
+                    {
+                        newState = StateEnum.Text;
+                    }
+                    break;
+                case StateEnum.Music:
+                    if (filteredInputValues.Contains(InputCategoryEnum.ToNumber))
+                    {
+                        newState = StateEnum.MusicNumber; break;
+                    }
+                    if (filteredInputValues.Contains(InputCategoryEnum.Note))
+                    {
+                        newState = StateEnum.MusicNote; break;
+                    }
+                    break;
+
+                case StateEnum.MusicNumber:
+                    if (filteredInputValues.Contains(InputCategoryEnum.Space))
+                    {
+                        newState = StateEnum.Music;
+                    }
+                    break;
+
+                case StateEnum.MusicNote:
+                    break;
+
+
             }
-            gotDot6 = (i == dot6);
+
+            if (newState != state)
+            {
+                Logger.LogCF(string.Format(": >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Changing state from {0} to {1}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", state, newState));
+            }
 
 
+            // Generate the output
+
+            // Update the state to the new state
+
+            state = newState;
+
+            return filteredInputValues.ToString();
+
+        }
+        
+
+        private string GetCharacter(int i)
+        {  
             switch (i)
             {
                 // Primitive mapping. Add more as needed !
@@ -167,7 +309,7 @@ namespace MusicXmlReaderModel
                 case 22: return "!";
                 case 54: return "/";
                 case 36: return "-";
-                default: return "UKENDT";
+                default: return null;
             }
  
         }
@@ -178,13 +320,19 @@ namespace MusicXmlReaderModel
         }
 
 
-        private string  MusicBrailleToString(int i)
+
+        /// <summary>
+        /// Returns a list of all POSSIBLE inputvalues, without considering the inputState
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        private InputValueList GetInputValues(int i)
         {
             nextBrailleMusicSubState = BrailleMusicSubState.Music;
-            List<InputValue> inputValues = new List<InputValue>();
+            InputValueList inputValues = new InputValueList();
 
             // Internal variables
-            count = 0; // Number of interpretations found. Interesting (if <> 1) !! 
+
             string stepName = "";
             string typeName = "";
 
@@ -228,8 +376,7 @@ namespace MusicXmlReaderModel
                     case none: typeName = "1/8"; break;
                 }
                 stepAndType = stepName + typeName;
-                Count(stepAndType);                
-                Add(inputValues,InputCategoryEnum.Note, stepAndType);                
+                inputValues.Add(InputCategoryEnum.Note, stepAndType);                
             }
 
             switch (i) // Look for octave marks
@@ -243,8 +390,7 @@ namespace MusicXmlReaderModel
                 case dot6: octave = "7"; break;
                 default: break;
             }
-            Count(octave);
-            Add(inputValues,InputCategoryEnum.Octave, octave);
+            inputValues.Add(InputCategoryEnum.Octave, octave);
 
             // This was not an octave sign. Continue:
 
@@ -256,8 +402,7 @@ namespace MusicXmlReaderModel
                 case dot1 | dot3 | dot4 | dot6: rest = "R1/8"; break;
                 default: break;
             }
-            Count(rest);
-            Add(inputValues, InputCategoryEnum.Rest, rest);
+            inputValues.Add(InputCategoryEnum.Rest, rest);
 
             switch (i) // Look for accidentals
             {
@@ -266,8 +411,7 @@ namespace MusicXmlReaderModel
                 case dot1 | dot6: accidental = "Natural"; break;
                 default: break;
             }
-            Count(accidental);
-            Add(inputValues, InputCategoryEnum.Accidental, accidental);
+            inputValues.Add(InputCategoryEnum.Accidental, accidental);
 
             switch (i) // Look for finger
             {
@@ -277,8 +421,7 @@ namespace MusicXmlReaderModel
                 case dot1 | dot3: finger = "5"; break;
                 case dot1 | dot2 | dot3: finger = "3"; break;
             }
-            Count(finger);
-            Add(inputValues, InputCategoryEnum.Finger, finger);
+            inputValues.Add(InputCategoryEnum.Finger, finger);
 
 
             switch (i) // Look for interval
@@ -291,15 +434,13 @@ namespace MusicXmlReaderModel
                 case dot2 | dot5: interval = "Seventh"; break;
                 case dot3 | dot6: interval = "Octave"; break;
             }
-            Count(interval);
-            Add(inputValues, InputCategoryEnum.Interval, interval);
+            inputValues.Add(InputCategoryEnum.Interval, interval);
 
 
 
             switch (i) // Look for remaining codes
             {
                 // Maybe we should use repeated ifs instead of switch here ??
-                case none: otherValues = "NewMeasure"; break;
                 case dot3: otherValues = "Dotted"; break;
 //                case dot5: otherValues = "Reference"; break; // For the time being we omit this because it clashes with Octave4 !
                 case dot2 | dot3: otherValues = "Triplet"; break;
@@ -311,18 +452,33 @@ namespace MusicXmlReaderModel
                 case dot2 | dot3 | dot6: otherValues = "Staccato"; break;
 //                case dot2 | dot5 | dot6: otherValues = "DoublebeatOnNote"; break; // For the time being we omit this because it clashes with 4 lowered in 4/4
             }
-            Count(otherValues);
-            Add(inputValues, InputCategoryEnum.OtherValues, otherValues);
+            inputValues.Add(InputCategoryEnum.OtherValues, otherValues);
 
             if (i == (dot3 | dot4 | dot5 | dot6))
             {
-                Add(inputValues, InputCategoryEnum.ToNumber, "Number");
+                inputValues.Add(InputCategoryEnum.ToNumber, "Number");
             }
 
             if (i == (dot3 | dot4 | dot5 ))
             {
-                Add(inputValues, InputCategoryEnum.ToWord, "Word");
+                inputValues.Add(InputCategoryEnum.ToWord, "Word");
             }
+
+            if (i == (dot6))
+            {
+                inputValues.Add(InputCategoryEnum.ToMusicBrailleDot6, "ToMusicBrailleDot6");
+            }
+
+            if (i == (dot3))
+            {
+                inputValues.Add(InputCategoryEnum.ToMusicBrailleDot3, "ToMusicBrailleDot3");
+            }
+
+            if (i == noDots)
+            {
+                inputValues.Add(InputCategoryEnum.Space, "SPACE");
+            }
+
 
             switch (i) // Look for digits
             {
@@ -337,8 +493,7 @@ namespace MusicXmlReaderModel
                 case 10: digit = "9"; break;
             }
             if (!string.IsNullOrEmpty(digit)) nextBrailleMusicSubState = BrailleMusicSubState.Number; // Stay in this state !
-            Count(digit);
-            Add(inputValues, InputCategoryEnum.Digit, digit);
+            inputValues.Add(InputCategoryEnum.Digit, digit);
 
             switch (i) // Look for denominators, i.e numbers lowered one position
             {
@@ -353,52 +508,17 @@ namespace MusicXmlReaderModel
                 case 20: denominator = "/9"; break;
             }
             if (!string.IsNullOrEmpty(denominator)) nextBrailleMusicSubState = BrailleMusicSubState.Number; // Stay in this state !
-            Count(denominator);
-            Add(inputValues, InputCategoryEnum.Denominator, denominator);
+            inputValues.Add(InputCategoryEnum.Denominator, denominator);
 
-
-
-            //if (1 != count)
-            //{
-            //    warning = string.Format("Warning: {0} interpretations found", count);
-            //}
-
-            if (inputValues.Count != 1)
+            
+            string character = GetCharacter(i);
+            if (null != character)
             {
-                StringBuilder sbWarning = new StringBuilder();
-                sbWarning.Append( string.Format("->Warning: {0} interpretations found", inputValues.Count));
-                foreach (InputValue inputValue in inputValues)
-                {
-                    sbWarning.Append(inputValue.ToString());
-                }
-                warning = sbWarning.ToString();
+                inputValues.Add(InputCategoryEnum.Character, character);
             }
 
 
-            StringBuilder sb = new StringBuilder();
-
-
-            sb.Append(Format(stepAndType));
-            sb.Append(Format("Oct", octave)); // Prefix octave number with "Oct";
-            sb.Append(Format(rest));
-            sb.Append(Format(accidental));
-            sb.Append(Format("Finger", finger));  // Prefix finger number with "Finger";
-            sb.Append(Format(interval));
-            sb.Append(Format(otherValues));
-            sb.Append(Format(digit));
-            sb.Append(Format(denominator));
-            //sb.Append(Format(warning));
-
-
-
-            // Change the state AFTER handling the output!
-            if (nextBrailleMusicSubState != BrailleMusicSubState.Unchanged)
-            {
-                brailleMusicSubState = nextBrailleMusicSubState;
-            }
-
-            // Allow 20 characters for the decoded stirng itself before showing the warning.
-            return string.Format("{0,-20} {1}", sb.ToString(), Format(warning));
+            return inputValues;
 
             //return stepName + " " + typeName + " " + (string.IsNullOrEmpty(octave) ? "" : "Oct" + octave) + " " + rest + " " + accidental + finger + interval + otherValues;
         }
