@@ -123,7 +123,7 @@ namespace MusicXmlReaderModel
             StringBuilder sb = new StringBuilder();
             foreach (InputValue inputValue in inputValues)
             {
-                sb.Append(string.Format("{0} {1}", inputValue.InputCategory.ToString(), inputValue.Value));
+                sb.Append(string.Format("({0}='{1}') ", inputValue.InputCategory.ToString(), inputValue.Value));
             }     
 
             // Allow 20 characters for the decoded stirng itself before showing the warning.
@@ -182,6 +182,8 @@ namespace MusicXmlReaderModel
 
         public string ToString(int i)
         {
+         
+
             if ((i < 0) || (i > 63)) throw new Exception("Invalid argument");
 
             InputValueList inputValues = GetInputValues(i); // Get a list of all possible input values independent of the current state.
@@ -199,10 +201,8 @@ namespace MusicXmlReaderModel
             }
 
 
-
-            Logger.LogCF(string.Format(": OriginalInputValues = {0}", inputValues.ToString()));
             InputValueList filteredInputValues = inputValues.Filter(allowedInputCategories);
-            Logger.LogCF(string.Format(": FilteredInputValues = {0}", filteredInputValues.ToString()));
+
 
             // Calculate the new state
             StateEnum newState = state;
@@ -264,6 +264,15 @@ namespace MusicXmlReaderModel
 
             }
 
+            string result = filteredInputValues.ToString();
+
+            if (1 != filteredInputValues.Count)
+            {
+                Logger.Log(string.Format(": OriginalInputValues = {0}", inputValues.ToString()));
+                Logger.Log(string.Format(": FilteredInputValues = {0}", filteredInputValues.ToString()));
+            }
+            Logger.Log(string.Format(" State={0,-15} Input={1} Result='{2}'", state.ToString(), i, result));
+
             if (newState != state)
             {
                 Logger.LogCF(string.Format(": >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Changing state from {0} to {1}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", state, newState));
@@ -276,7 +285,7 @@ namespace MusicXmlReaderModel
 
             state = newState;
 
-            return filteredInputValues.ToString();
+            return result;
 
         }
         
