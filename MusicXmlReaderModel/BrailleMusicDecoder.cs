@@ -273,12 +273,13 @@ namespace MusicXmlReaderModel
 
             if (1 != filteredInputValues.Count)
             {
-                Logger.Log(string.Format(": State={0} OriginalInputValues = {1}",state, inputValues.ToString()));
-                Logger.Log(string.Format(": State={0} FilteredInputValues = {1}",state, filteredInputValues.ToString()));
+                Logger.Log(string.Format(" State={0} OriginalInputValues = {1}",state, inputValues.ToString()));
+                Logger.Log(string.Format(" State={0} FilteredInputValues = {1}",state, filteredInputValues.ToString()));
             }
 
-            string newStateText = (state != newState) ? string.Format("NewState={0} ", newState) : ""; 
-            Logger.Log(string.Format(" State={0,-15} Input={1} Result='{2}' {3} ", state.ToString(), i, result, newStateText));
+            string newStateText = (state != newState) ? string.Format("NewState={0} ", newState) : "";
+            char inputAsUnicode = (char) (i + 0x2800);
+            Logger.Log(string.Format(" State={0,-15} Input={1}(i={2,02}) Result='{3}' {4} ", state.ToString(), inputAsUnicode, i, result, newStateText));
 
             if (newState != state)
             {
