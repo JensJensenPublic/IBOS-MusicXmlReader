@@ -14,7 +14,6 @@ namespace MusicXmlReaderModel
         ToNumber = 0x0002,
         Dot6 = 0x0004,
         Character = 0x0008,
-        ToVersal = 0x0010,
         Digit = 0x0020,
         Note = 0x0040,
         Rest = 0x0080,
@@ -191,8 +190,8 @@ namespace MusicXmlReaderModel
 
             switch (state)
             {
-                case StateEnum.Text:            allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.Dot6 | InputCategoryEnum.ToNumber | InputCategoryEnum.ToVersal ; break;
-                case StateEnum.TextVersal:      allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.Dot6 | InputCategoryEnum.ToNumber; break;
+                case StateEnum.Text:            allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.Dot6 | InputCategoryEnum.ToNumber ; break;
+                case StateEnum.TextVersal:      allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.Dot6 | InputCategoryEnum.ToNumber ; break;
                 case StateEnum.TextNumber:      allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.Dot6; break;
                 case StateEnum.ToMusicOrVersal: allowedInputCategories = InputCategoryEnum.Dot3 | InputCategoryEnum.Character; break;
                 case StateEnum.Music:           allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure; break;
