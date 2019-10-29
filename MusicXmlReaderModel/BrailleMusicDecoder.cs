@@ -12,7 +12,7 @@ namespace MusicXmlReaderModel
     enum InputCategoryEnum {
         ToWord = 0x0001,
         ToNumber = 0x0002,
-        ToMusicBrailleDot6 = 0x0004,
+        Dot6 = 0x0004,
         Character = 0x0008,
         ToVersal = 0x0010,
         Digit = 0x0020,
@@ -24,7 +24,7 @@ namespace MusicXmlReaderModel
         Finger = 0x0800,
         OtherValues = 0x1000,
         Denominator= 0x2000,
-        ToMusicBrailleDot3 = 0x4000,
+        Dot3 = 0x4000,
         //LoweredDigit = 0x8000,
         Space = 0x00010000,
         NewMeasure = 0x00020000
@@ -143,7 +143,7 @@ namespace MusicXmlReaderModel
     /// </summary>
     public class BrailleMusicDecoder
     {
-        public enum StateEnum { Unknown, Text, TextNumber, Digit, Music, ToMusic, MusicNumber, MusicNote };
+        public enum StateEnum { Unknown, Text, TextNumber, TextVersal, Music, ToMusicOrVersal, MusicNumber, MusicNote };
         public enum BrailleMusicSubState { Unchanged, Music, Number }; // More to be added
 
         const byte noDots = 0;
@@ -191,12 +191,13 @@ namespace MusicXmlReaderModel
 
             switch (state)
             {
-                case StateEnum.Text: allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.ToMusicBrailleDot6 | InputCategoryEnum.ToVersal |InputCategoryEnum.ToNumber; break;
-                case StateEnum.TextNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space;  break;
-                case StateEnum.ToMusic: allowedInputCategories = InputCategoryEnum.ToMusicBrailleDot3 | InputCategoryEnum.Character; break;
-                case StateEnum.Music: allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest; break;
-                case StateEnum.MusicNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space |InputCategoryEnum.Accidental; break;
-                case StateEnum.MusicNote: allowedInputCategories = InputCategoryEnum.Interval |InputCategoryEnum.Note |InputCategoryEnum.Octave |  InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest; break; // TODO
+                case StateEnum.Text:            allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.Dot6 | InputCategoryEnum.ToNumber | InputCategoryEnum.ToVersal ; break;
+                case StateEnum.TextVersal:      allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.Dot6 | InputCategoryEnum.ToNumber; break;
+                case StateEnum.TextNumber:      allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.Dot6; break;
+                case StateEnum.ToMusicOrVersal: allowedInputCategories = InputCategoryEnum.Dot3 | InputCategoryEnum.Character; break;
+                case StateEnum.Music:           allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure; break;
+                case StateEnum.MusicNumber:     allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space |InputCategoryEnum.Accidental; break;
+                case StateEnum.MusicNote:       allowedInputCategories = InputCategoryEnum.Interval |InputCategoryEnum.Note |InputCategoryEnum.Octave |  InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest; break; // TODO
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
             }
 
@@ -210,9 +211,19 @@ namespace MusicXmlReaderModel
             switch (state)
             {
                 case StateEnum.Text:
-                    if (filteredInputValues.Contains(InputCategoryEnum.ToMusicBrailleDot6))
+                    if (filteredInputValues.Contains(InputCategoryEnum.Dot6))
                     {
-                        newState = StateEnum.ToMusic; break;
+                        newState = StateEnum.ToMusicOrVersal; break;
+                    }
+                    if (filteredInputValues.Contains(InputCategoryEnum.ToNumber))
+                    {
+                        newState = StateEnum.TextNumber;
+                    }
+                    break;
+                case StateEnum.TextVersal:
+                    if (filteredInputValues.Contains(InputCategoryEnum.Dot6))
+                    {
+                        newState = StateEnum.ToMusicOrVersal; break;
                     }
                     if (filteredInputValues.Contains(InputCategoryEnum.ToNumber))
                     {
@@ -220,20 +231,27 @@ namespace MusicXmlReaderModel
                     }
                     break;
                 case StateEnum.TextNumber:
+                    if (filteredInputValues.Contains(InputCategoryEnum.Dot6))
+                    {
+                        newState = StateEnum.ToMusicOrVersal;
+                        break;
+                    }
                     if (!filteredInputValues.Contains(InputCategoryEnum.Digit))
                     {
                         newState = StateEnum.Text;
+                        break;
                     }
+                    // Remain in StateEnum.TextNumber
                     break;
-                case StateEnum.ToMusic:
+                case StateEnum.ToMusicOrVersal:
                     // This is a transitional state and wil only exist during the transition !
-                    if (filteredInputValues.Contains(InputCategoryEnum.ToMusicBrailleDot3))
+                    if (filteredInputValues.Contains(InputCategoryEnum.Dot3))
                     {
                         newState = StateEnum.Music;
                     }
                     else
                     {
-                        newState = StateEnum.Text;
+                        newState = StateEnum.TextVersal;                        
                     }
                     break;
                 case StateEnum.Music:
@@ -268,14 +286,16 @@ namespace MusicXmlReaderModel
 
             if (1 != filteredInputValues.Count)
             {
-                Logger.Log(string.Format(": OriginalInputValues = {0}", inputValues.ToString()));
-                Logger.Log(string.Format(": FilteredInputValues = {0}", filteredInputValues.ToString()));
+                Logger.Log(string.Format(": State={0} OriginalInputValues = {1}",state, inputValues.ToString()));
+                Logger.Log(string.Format(": State={0} FilteredInputValues = {1}",state, filteredInputValues.ToString()));
             }
-            Logger.Log(string.Format(" State={0,-15} Input={1} Result='{2}'", state.ToString(), i, result));
+
+            string newStateText = (state != newState) ? string.Format("NewState={0} ", newState) : ""; 
+            Logger.Log(string.Format(" State={0,-15} Input={1} Result='{2}' {3} ", state.ToString(), i, result, newStateText));
 
             if (newState != state)
             {
-                Logger.LogCF(string.Format(": >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Changing state from {0} to {1}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", state, newState));
+//                Logger.Log(string.Format(": >>>>>>>>>>>>>Changing state from {0} to {1}<<<<<<<<<", state, newState));
             }
 
 
@@ -491,12 +511,12 @@ namespace MusicXmlReaderModel
 
             if (i == (dot6))
             {
-                inputValues.Add(InputCategoryEnum.ToMusicBrailleDot6, "ToMusicBrailleDot6");
+                inputValues.Add(InputCategoryEnum.Dot6, "Dot6");
             }
 
             if (i == (dot3))
             {
-                inputValues.Add(InputCategoryEnum.ToMusicBrailleDot3, "ToMusicBrailleDot3");
+                inputValues.Add(InputCategoryEnum.Dot3, "Dot3");
             }
 
             if (i == noDots)
