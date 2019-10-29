@@ -157,20 +157,8 @@ namespace MusicXmlReaderModel
         const byte none = 0x00;
         const int dot1245 = dot1 | dot2 | dot4 | dot5; // For isolating values representing note steps
         const int dot36 = dot3 | dot6; // For isolating type
-
         
         StateEnum state = StateEnum.Unknown;
-        BrailleMusicSubState brailleMusicSubState = BrailleMusicSubState.Music;
-        BrailleMusicSubState nextBrailleMusicSubState = BrailleMusicSubState.Music;     
-
-
-
-        //private void Add(List<InputValue> inputValues, InputCategoryEnum inputCategory, string inputValue)
-        //{
-        //    if (string.IsNullOrEmpty(inputValue)) return;
-        //    inputValues.Add(new InputValue(inputCategory, inputValue));           
-        //} 
-
 
         public void ResetState()
         {
@@ -372,7 +360,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         private InputValueList GetInputValues(int i)
         {
-            nextBrailleMusicSubState = BrailleMusicSubState.Music;
+
             InputValueList inputValues = new InputValueList();
 
             // Internal variables
@@ -390,9 +378,6 @@ namespace MusicXmlReaderModel
             string otherValues = "";
             string digit = "";
             string denominator = "";
-
-            string warning = "";
-
 
             // First find all step values
             int stepvalue = i & dot1245;
@@ -541,7 +526,7 @@ namespace MusicXmlReaderModel
                 case 19: digit = "8"; break;
                 case 10: digit = "9"; break;
             }
-            if (!string.IsNullOrEmpty(digit)) nextBrailleMusicSubState = BrailleMusicSubState.Number; // Stay in this state !
+
             inputValues.Add(InputCategoryEnum.Digit, digit);
 
             switch (i) // Look for denominators, i.e numbers lowered one position
@@ -556,7 +541,7 @@ namespace MusicXmlReaderModel
                 case 38: denominator = "/8"; break;
                 case 20: denominator = "/9"; break;
             }
-            if (!string.IsNullOrEmpty(denominator)) nextBrailleMusicSubState = BrailleMusicSubState.Number; // Stay in this state !
+
             inputValues.Add(InputCategoryEnum.Denominator, denominator);
 
             
