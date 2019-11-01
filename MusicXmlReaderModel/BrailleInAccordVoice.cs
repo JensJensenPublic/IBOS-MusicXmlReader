@@ -43,20 +43,33 @@ namespace MusicXmlReaderModel
             }
             else
             {
+                BrailleBuilder result = BrailleBuilder.Create(line.TimeStamp);
                 if (isMainVoice)
                 {
                     isMainVoice = false; // The following lines (if any) are NOT the mainwoice
-                    return line;
+                    if (isFullMeasure)
+                    {
+                        return line;
+                    }
+                    // In the Partmeasure case we must mark the start of the Part-measure In-Accord sequence by a  MeasureDivision sign (Danish "SkilleTegn")
+#warning todo: The  MeasureDivision sign is not needed immediately after a NewMeasure. Implement that!
+                    result.AddMeasureDivisionStart();
+                    result.Append(line);
+                    return result;
                 }
                 // This is NOT the Main voice, so we must separate it from the Main Voice (or in general from the previous voice):
-                BrailleBuilder result = BrailleBuilder.Create(line.TimeStamp);
+
                 // Use different symbols for 
                 // "Full-Measure In-Accords" (Danish: "Stor Bistemme") and
                 // "Part-Measure In-Accords" (Danish: "Lille Bistemme")
                 // as described in Ref1: Chapter 11.1.1 and 11.1.2
+#if true
                 byte[] bytes = isFullMeasure ? BrailleBuilder.inAccordFullMeasure : BrailleBuilder.inAccordPartMeasure;
                 string text  = isFullMeasure ? "||" : "!!"; // Defined by JSJ for debugging only.
                 result.Append(bytes,text); // Must be inserted before the voice, except the main voice. (Danish: "HovedStemme")
+#else
+                result.AddInAccordMark(isFullMeasure); // Switch to this new implementation !!
+#endif
                 result.Append(line);
                 return result;
             }

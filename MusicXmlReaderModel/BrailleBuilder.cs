@@ -852,6 +852,25 @@ namespace MusicXmlReaderModel
 
         }
 
+        /// <summary>
+        /// // Marks the pount where normal notation ends and MeasureDivision notation start.
+        /// </summary>
+        public void AddMeasureDivisionStart()
+        {
+            Append(measureDivision);
+            AppendText("<>"); 
+        }
+
+        /// <summary>
+        /// Marks the point where an InAccord sequence ends and the next one starts
+        /// </summary>
+        /// <param name="isFullMeasure"></param>
+        public void AddInAccordMark(bool isFullMeasure)
+        {
+            Append(isFullMeasure ? BrailleBuilder.inAccordFullMeasure : BrailleBuilder.inAccordPartMeasure);
+            AppendText(isFullMeasure ? "||" : "!!"); // Defined by JSJ for debugging only. )
+        }
+
 
         public void AddInterval(int size)
         {
