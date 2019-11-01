@@ -187,7 +187,7 @@ namespace MusicXmlReaderModel
                 case StateEnum.TextVersal:      allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.Dot6 | InputCategoryEnum.ToNumber ; break;
                 case StateEnum.TextNumber:      allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.Dot6; break;
                 case StateEnum.ToMusicOrVersal: allowedInputCategories = InputCategoryEnum.Dot3 | InputCategoryEnum.Character; break;
-                case StateEnum.Music:           allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure; break;
+                case StateEnum.Music:           allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.Dot46; break;
                 case StateEnum.MusicNumber:     allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space |InputCategoryEnum.Accidental; break;
                 case StateEnum.MusicNote:       allowedInputCategories = InputCategoryEnum.Interval |InputCategoryEnum.Note |InputCategoryEnum.Octave |  InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.Dot5 | InputCategoryEnum.Dot46 | InputCategoryEnum.Legato; break; // TODO
                 case StateEnum.ToLilleBistemme: allowedInputCategories = InputCategoryEnum.LilleBistemmeDot2; break;
