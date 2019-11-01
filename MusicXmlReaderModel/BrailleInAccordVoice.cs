@@ -63,13 +63,7 @@ namespace MusicXmlReaderModel
                 // "Full-Measure In-Accords" (Danish: "Stor Bistemme") and
                 // "Part-Measure In-Accords" (Danish: "Lille Bistemme")
                 // as described in Ref1: Chapter 11.1.1 and 11.1.2
-#if true
-                byte[] bytes = isFullMeasure ? BrailleBuilder.inAccordFullMeasure : BrailleBuilder.inAccordPartMeasure;
-                string text  = isFullMeasure ? "||" : "!!"; // Defined by JSJ for debugging only.
-                result.Append(bytes,text); // Must be inserted before the voice, except the main voice. (Danish: "HovedStemme")
-#else
                 result.AddInAccordMark(isFullMeasure); // Switch to this new implementation !!
-#endif
                 result.Append(line);
                 return result;
             }
