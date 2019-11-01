@@ -28,7 +28,10 @@ namespace MusicXmlReaderModel
         Space = 0x00010000,
         NewMeasure = 0x00020000,
         Dot5 = 0x00040000,               // Firat part of the transition to Lille Bistemme    
-        LilleBistemmeDot2 = 0x00080000  // Second part of the transition to Lillle Bistemme
+        LilleBistemmeDot2 = 0x00080000,  // Second part of the transition to Lillle Bistemme
+        Dot46 = 0x00100000,           // First part of MEasureDivisionMark 
+        MeasureDivisionMarkDot13 = 0x00200000, // Second part of MeasureDivisionMArk
+        Legato = 0x00400000              
     }
 
     class InputValue
@@ -144,7 +147,7 @@ namespace MusicXmlReaderModel
     /// </summary>
     public class BrailleMusicDecoder
     {
-        public enum StateEnum { Unknown, Text, TextNumber, TextVersal, Music, ToMusicOrVersal, MusicNumber, MusicNote, ToLilleBistemme };
+        public enum StateEnum { Unknown, Text, TextNumber, TextVersal, Music, ToMusicOrVersal, MusicNumber, MusicNote, ToLilleBistemme, ToMeasureDivisionMark };
         public enum BrailleMusicSubState { Unchanged, Music, Number }; // More to be added
 
         const byte noDots = 0;
@@ -186,8 +189,9 @@ namespace MusicXmlReaderModel
                 case StateEnum.ToMusicOrVersal: allowedInputCategories = InputCategoryEnum.Dot3 | InputCategoryEnum.Character; break;
                 case StateEnum.Music:           allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure; break;
                 case StateEnum.MusicNumber:     allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space |InputCategoryEnum.Accidental; break;
-                case StateEnum.MusicNote:       allowedInputCategories = InputCategoryEnum.Interval |InputCategoryEnum.Note |InputCategoryEnum.Octave |  InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.Dot5; break; // TODO
+                case StateEnum.MusicNote:       allowedInputCategories = InputCategoryEnum.Interval |InputCategoryEnum.Note |InputCategoryEnum.Octave |  InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.Dot5 | InputCategoryEnum.Dot46 | InputCategoryEnum.Legato; break; // TODO
                 case StateEnum.ToLilleBistemme: allowedInputCategories = InputCategoryEnum.LilleBistemmeDot2; break;
+                case StateEnum.ToMeasureDivisionMark: allowedInputCategories = InputCategoryEnum.MeasureDivisionMarkDot13; break;
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
             }
 
@@ -271,14 +275,26 @@ namespace MusicXmlReaderModel
                     {
                         newState = StateEnum.ToLilleBistemme;
                     }
+
+                    if (filteredInputValues.Contains(InputCategoryEnum.Dot46))
+                    {
+                        newState = StateEnum.ToMeasureDivisionMark;
+                    }
                     break;
 
                 case StateEnum.ToLilleBistemme:
                     if (filteredInputValues.Contains(InputCategoryEnum.LilleBistemmeDot2))
                     {
-                        newState = StateEnum.MusicNote; // We are now ready to interpret notes within the Lille Bistemme
+                        newState = StateEnum.MusicNote; // We are now ready to interpret notes within the Lille Bistemme (Second sequence or later)
                     }
 
+                    break;
+
+                case StateEnum.ToMeasureDivisionMark:
+                    if (filteredInputValues.Contains(InputCategoryEnum.MeasureDivisionMarkDot13))
+                    {
+                        newState = StateEnum.MusicNote; // We are now ready to interpret notes within the Lille Bistemme (First sequence)
+                    }
                     break;
 
             }
@@ -382,6 +398,11 @@ namespace MusicXmlReaderModel
         }
 
 
+        private bool Dot46IsMeasureDivisionMark(int nextValue)
+        {
+            return (nextValue == (dot1 | dot3));
+        }
+
         /// <summary>
         /// Returns a list of all POSSIBLE inputvalues, without considering the inputState
         /// </summary>
@@ -448,7 +469,12 @@ namespace MusicXmlReaderModel
                         octave = "4";
                     }
                     break;
-                case dot4 | dot6: octave = "5"; break;
+                case dot4 | dot6:
+                    if (!Dot46IsMeasureDivisionMark(nextValue))
+                    {
+                        octave = "5";
+                    }
+                    break;
                 case dot5 | dot6: octave = "6"; break;
                 case dot6: octave = "7"; break;
                 default: break;
@@ -507,7 +533,7 @@ namespace MusicXmlReaderModel
                 case dot3: otherValues = "Dotted"; break;
 //                case dot5: otherValues = "Reference"; break; // For the time being we omit this because it clashes with Octave4 !
                 case dot2 | dot3: otherValues = "Triplet"; break;
-                case dot1 | dot4: otherValues = "Legato"; break;
+//                case dot1 | dot4: otherValues = "Legato"; break;
                 case dot2 | dot3 | dot5 | dot6: otherValues = "Equality"; break;
                 case dot2 | dot5: otherValues = "Newline"; break;
                 case dot2 | dot3 | dot5: otherValues = "Trill"; break;
@@ -545,9 +571,30 @@ namespace MusicXmlReaderModel
                 }
             }
 
+
             if (thisValue == (dot2))
             {
                 inputValues.Add(InputCategoryEnum.LilleBistemmeDot2, "LilleBistemmeDot2"); // Second part of mark for "Lille Bistemme"
+            }
+
+
+            if (thisValue == (dot4 | dot6))
+            {
+
+                if (Dot46IsMeasureDivisionMark(nextValue))
+                {
+                    inputValues.Add(InputCategoryEnum.Dot46, "MeasureDivisionMark"); // First part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
+                }
+            }
+
+            if (thisValue == (dot1 | dot3))
+            {
+                inputValues.Add(InputCategoryEnum.MeasureDivisionMarkDot13, "MeasureDivisionMarkDot13"); // Second part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
+            }
+
+            if (thisValue == (dot1 | dot4))
+            {
+                inputValues.Add(InputCategoryEnum.Legato, "Legato");
             }
 
 
