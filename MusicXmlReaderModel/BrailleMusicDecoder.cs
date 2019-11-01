@@ -26,7 +26,9 @@ namespace MusicXmlReaderModel
         Dot3 = 0x4000,
         //LoweredDigit = 0x8000,
         Space = 0x00010000,
-        NewMeasure = 0x00020000
+        NewMeasure = 0x00020000,
+        Dot5 = 0x00040000,               // Firat part of the transition to Lille Bistemme    
+        LilleBistemmeDot2 = 0x00080000  // Second part of the transition to Lillle Bistemme
     }
 
     class InputValue
@@ -142,7 +144,7 @@ namespace MusicXmlReaderModel
     /// </summary>
     public class BrailleMusicDecoder
     {
-        public enum StateEnum { Unknown, Text, TextNumber, TextVersal, Music, ToMusicOrVersal, MusicNumber, MusicNote };
+        public enum StateEnum { Unknown, Text, TextNumber, TextVersal, Music, ToMusicOrVersal, MusicNumber, MusicNote, ToLilleBistemme };
         public enum BrailleMusicSubState { Unchanged, Music, Number }; // More to be added
 
         const byte noDots = 0;
@@ -167,13 +169,13 @@ namespace MusicXmlReaderModel
 
         bool gotDot6 = false;
 
-        public string ToString(int i)
+        public string ToString(int thisValue, int nextValue)
         {
          
 
-            if ((i < 0) || (i > 63)) throw new Exception("Invalid argument");
+            if ((thisValue < 0) || (thisValue > 63)) throw new Exception("Invalid argument");
 
-            InputValueList inputValues = GetInputValues(i); // Get a list of all possible input values independent of the current state.
+            InputValueList inputValues = GetInputValues(thisValue, nextValue); // Get a list of all possible input values independent of the current state.
             InputCategoryEnum allowedInputCategories = 0;
 
             switch (state)
@@ -184,7 +186,8 @@ namespace MusicXmlReaderModel
                 case StateEnum.ToMusicOrVersal: allowedInputCategories = InputCategoryEnum.Dot3 | InputCategoryEnum.Character; break;
                 case StateEnum.Music:           allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure; break;
                 case StateEnum.MusicNumber:     allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space |InputCategoryEnum.Accidental; break;
-                case StateEnum.MusicNote:       allowedInputCategories = InputCategoryEnum.Interval |InputCategoryEnum.Note |InputCategoryEnum.Octave |  InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest; break; // TODO
+                case StateEnum.MusicNote:       allowedInputCategories = InputCategoryEnum.Interval |InputCategoryEnum.Note |InputCategoryEnum.Octave |  InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.Dot5; break; // TODO
+                case StateEnum.ToLilleBistemme: allowedInputCategories = InputCategoryEnum.LilleBistemmeDot2; break;
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
             }
 
@@ -264,23 +267,34 @@ namespace MusicXmlReaderModel
                     {
                         newState = StateEnum.Music;
                     }
+                    if (filteredInputValues.Contains(InputCategoryEnum.Dot5))
+                    {
+                        newState = StateEnum.ToLilleBistemme;
+                    }
                     break;
 
+                case StateEnum.ToLilleBistemme:
+                    if (filteredInputValues.Contains(InputCategoryEnum.LilleBistemmeDot2))
+                    {
+                        newState = StateEnum.MusicNote; // We are now ready to interpret notes within the Lille Bistemme
+                    }
+
+                    break;
 
             }
 
             string result = filteredInputValues.ToString();
 
-            char inputAsUnicode = (char)(i + 0x2800);
+            char inputAsUnicode = (char)(thisValue + 0x2800);
             if (1 != filteredInputValues.Count)
             {
-                Logger.Log(string.Format(" State={0,-15} Input={1}(i={2,02}) OriginalInputValues = {3}", state.ToString(), inputAsUnicode, i ,inputValues.ToString()));
-                Logger.Log(string.Format(" State={0,-15} Input={1}(i={2,02}) FilteredInputValues = {3}", state.ToString(), inputAsUnicode, i ,filteredInputValues.ToString()));
+                Logger.Log(string.Format(" State={0,-15} Input={1}(i={2,02}) OriginalInputValues = {3}", state.ToString(), inputAsUnicode, thisValue ,inputValues.ToString()));
+                Logger.Log(string.Format(" State={0,-15} Input={1}(i={2,02}) FilteredInputValues = {3}", state.ToString(), inputAsUnicode, thisValue ,filteredInputValues.ToString()));
             }
 
             string newStateText = (state != newState) ? string.Format("NewState={0} ", newState) : "";
         
-            Logger.Log(string.Format(" State={0,-15} Input={1}(i={2,02}) Result='{3}' {4} ", state.ToString(), inputAsUnicode, i, result, newStateText));
+            Logger.Log(string.Format(" State={0,-15} Input={1}(i={2,02}) Result='{3}' {4} ", state.ToString(), inputAsUnicode, thisValue, result, newStateText));
 
             if (newState != state)
             {
@@ -356,11 +370,24 @@ namespace MusicXmlReaderModel
 
 
         /// <summary>
+        /// After receiving dot5 it is not possible to determine the next state and ths output without knowig the next value:
+        /// If it is Dot2 wh have the sequenec dot5, dot2, which is the signature of Lille Bistemme.
+        /// Otherwise we Dot5 just meant "Octave4" and 
+        /// </summary>
+        /// <param name="nextValue"></param>
+        /// <returns></returns>
+        private bool Dot5IsLilleBistemme(int nextValue)
+        {
+            return (nextValue == dot2);
+        }
+
+
+        /// <summary>
         /// Returns a list of all POSSIBLE inputvalues, without considering the inputState
         /// </summary>
-        /// <param name="i"></param>
+        /// <param name="thisValue"></param>
         /// <returns></returns>
-        private InputValueList GetInputValues(int i)
+        private InputValueList GetInputValues(int thisValue, int nextValue)
         {
 
             InputValueList inputValues = new InputValueList();
@@ -382,7 +409,7 @@ namespace MusicXmlReaderModel
             string denominator = "";
 
             // First find all step values
-            int stepvalue = i & dot1245;
+            int stepvalue = thisValue & dot1245;
 
             switch (stepvalue)
             {
@@ -398,7 +425,7 @@ namespace MusicXmlReaderModel
             if (!string.IsNullOrEmpty(stepName))
             {
                 // This is a pitched note, find the type
-                int typevalue = i & dot36;
+                int typevalue = thisValue & dot36;
                 switch (typevalue)
                 {
                     case dot3 | dot6: typeName = "1/1"; break;
@@ -410,12 +437,17 @@ namespace MusicXmlReaderModel
                 inputValues.Add(InputCategoryEnum.Note, stepAndType);                
             }
 
-            switch (i) // Look for octave marks
+            switch (thisValue) // Look for octave marks
             {
                 case dot4: octave = "1"; break;
                 case dot4 | dot5: octave = "2"; break;
                 case dot4 | dot5 | dot6: octave = "3"; break;
-                case dot5: octave = "4"; break;
+                case dot5:
+                    if (!Dot5IsLilleBistemme(nextValue))
+                    {
+                        octave = "4";
+                    }
+                    break;
                 case dot4 | dot6: octave = "5"; break;
                 case dot5 | dot6: octave = "6"; break;
                 case dot6: octave = "7"; break;
@@ -425,7 +457,7 @@ namespace MusicXmlReaderModel
 
             // This was not an octave sign. Continue:
 
-            switch (i) // Look for rests
+            switch (thisValue) // Look for rests
             {
                 case dot1 | dot3 | dot4: rest = "R1/1"; break;
                 case dot1 | dot3 | dot6: rest = "R1/2"; break;
@@ -435,7 +467,7 @@ namespace MusicXmlReaderModel
             }
             inputValues.Add(InputCategoryEnum.Rest, rest);
 
-            switch (i) // Look for accidentals
+            switch (thisValue) // Look for accidentals
             {
                 case dot1 | dot4 | dot6: accidental = "Sharp"; break;
                 case dot1 | dot2 | dot6: accidental = "Flat"; break;
@@ -444,7 +476,7 @@ namespace MusicXmlReaderModel
             }
             inputValues.Add(InputCategoryEnum.Accidental, accidental);
 
-            switch (i) // Look for finger
+            switch (thisValue) // Look for finger
             {
                 case dot1: finger = "1"; break;
                 case dot2: finger = "4"; break;
@@ -455,7 +487,7 @@ namespace MusicXmlReaderModel
             inputValues.Add(InputCategoryEnum.Finger, finger);
 
 
-            switch (i) // Look for interval
+            switch (thisValue) // Look for interval
             {
                 case dot3 | dot4: interval = "Second"; break;
                 case dot3 | dot4 | dot6: interval = "Third"; break;
@@ -469,7 +501,7 @@ namespace MusicXmlReaderModel
 
 
 
-            switch (i) // Look for remaining codes
+            switch (thisValue) // Look for remaining codes
             {
                 // Maybe we should use repeated ifs instead of switch here ??
                 case dot3: otherValues = "Dotted"; break;
@@ -485,38 +517,52 @@ namespace MusicXmlReaderModel
             }
             inputValues.Add(InputCategoryEnum.OtherValues, otherValues);
 
-            if (i == (dot3 | dot4 | dot5 | dot6))
+            if (thisValue == (dot3 | dot4 | dot5 | dot6))
             {
                 inputValues.Add(InputCategoryEnum.ToNumber, "Number");
             }
 
-            if (i == (dot3 | dot4 | dot5 ))
+            if (thisValue == (dot3 | dot4 | dot5 ))
             {
                 inputValues.Add(InputCategoryEnum.ToWord, "Word");
             }
 
-            if (i == (dot6))
+            if (thisValue == (dot6))
             {
                 inputValues.Add(InputCategoryEnum.Dot6, "Dot6");
             }
 
-            if (i == (dot3))
+            if (thisValue == (dot3))
             {
                 inputValues.Add(InputCategoryEnum.Dot3, "Dot3");
             }
 
-            if (i == noDots)
+            if (thisValue == (dot5))
+            {
+                if (Dot5IsLilleBistemme(nextValue))
+                {
+                    inputValues.Add(InputCategoryEnum.Dot5, "ToLilleBistemme"); // First part of mark for "Lille Bistemme"
+                }
+            }
+
+            if (thisValue == (dot2))
+            {
+                inputValues.Add(InputCategoryEnum.LilleBistemmeDot2, "LilleBistemmeDot2"); // Second part of mark for "Lille Bistemme"
+            }
+
+
+            if (thisValue == noDots)
             {
                 inputValues.Add(InputCategoryEnum.Space, "SPACE");
             }
 
-            if (i == noDots)
+            if (thisValue == noDots)
             {
                 inputValues.Add(InputCategoryEnum.NewMeasure, "NewMeasure");
             }
 
 
-            switch (i) // Look for digits
+            switch (thisValue) // Look for digits
             {
                 case 01: digit = "1"; break;
                 case 03: digit = "2"; break;
@@ -531,7 +577,7 @@ namespace MusicXmlReaderModel
 
             inputValues.Add(InputCategoryEnum.Digit, digit);
 
-            switch (i) // Look for denominators, i.e numbers lowered one position
+            switch (thisValue) // Look for denominators, i.e numbers lowered one position
             {
                 case 02: denominator = "/1"; break;
                 case 06: denominator = "/2"; break;
@@ -547,7 +593,7 @@ namespace MusicXmlReaderModel
             inputValues.Add(InputCategoryEnum.Denominator, denominator);
 
             
-            string character = GetCharacter(i);
+            string character = GetCharacter(thisValue);
             if (null != character)
             {
                 inputValues.Add(InputCategoryEnum.Character, character);
