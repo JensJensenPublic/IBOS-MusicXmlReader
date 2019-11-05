@@ -1349,24 +1349,36 @@ namespace MusicXmlReaderModel
             result = brailleFileHandler.Format(brailleFileAsUnicode);
             // Find the decoded contents
             List<string> decodedLines = new List<string>();
-            BrailleMusicDecoder brailleMusicDecoder = BrailleMusicDecoder.Create(BrailleMusicDecoder.StateEnum.Text); // Assume initial state is "Text
-            int length = brailleFileAsUnicode.Length;
-            for (int i = 0; (i < length); i++)
+            BrailleMusicDecoder brailleMusicDecoder = BrailleMusicDecoder.Create(BrailleMusicDecoder.StateEnum.Text, brailleFileAsUnicode); // Assume initial state is "Text
+            int i = 0;
+            string decodedLine = null;
+            do
             {
-                int thisValue = brailleFileAsUnicode[i];
-                // In some rare cases the decoding mechanism needs to know the following value to decide the output and the next state
-                int nextValue = ((i + 1) < length) ? (brailleFileAsUnicode[i+1]) : 0x27ff; // 0x27ff is an illegal Unicode Braille6 value!
+                // int thisValue = brailleFileAsUnicode[i];
+                decodedLine = brailleMusicDecoder.GetNextToken(ref i);
+                if (null != decodedLine)
+                {             
+                    decodedLines.Add(string.Format("{0}",  decodedLine));
+                }
+            } while (null != decodedLine);
+
+            //int length = brailleFileAsUnicode.Length;
+            //for (int i = 0; (i < length); i++)
+            //{
+            //    int thisValue = brailleFileAsUnicode[i];
+            //    // In some rare cases the decoding mechanism needs to know the following value to decide the output and the next state
+            //    int nextValue = ((i + 1) < length) ? (brailleFileAsUnicode[i+1]) : 0x27ff; // 0x27ff is an illegal Unicode Braille6 value!
   
-                if ((0x2800 <= thisValue) && (thisValue <= 0x283f)) // 6 dot Braille
-                {
-                    string decodedLine = brailleMusicDecoder.ToString(thisValue - 0x2800, nextValue - 0x2800);
-                    decodedLines.Add(string.Format("{0} {1}", thisValue, decodedLine));
-                }
-                else
-                {
-                    decodedLines.Add(thisValue.ToString());
-                }
-            }
+            //    if ((0x2800 <= thisValue) && (thisValue <= 0x283f)) // 6 dot Braille
+            //    {
+            //        string decodedLine = brailleMusicDecoder.ToString(thisValue - 0x2800, nextValue - 0x2800);
+            //        decodedLines.Add(string.Format("{0} {1}", thisValue, decodedLine));
+            //    }
+            //    else
+            //    {
+            //        decodedLines.Add(thisValue.ToString());
+            //    }
+            //}
             result.AddRange(decodedLines);
             return result; 
         }

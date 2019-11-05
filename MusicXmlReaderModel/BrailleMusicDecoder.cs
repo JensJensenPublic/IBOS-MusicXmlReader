@@ -165,17 +165,31 @@ namespace MusicXmlReaderModel
         const int dot36 = dot3 | dot6; // For isolating type
         
         StateEnum state = StateEnum.Unknown;
+        string brailleAsUnicode;
 
         public void ResetState()
         {
             state = StateEnum.Text;
         }
-
-        bool gotDot6 = false;
-
-        public string ToString(int thisValue, int nextValue)
+        
+        public string GetNextToken(ref int i)
         {
-         
+            if (i >= brailleAsUnicode.Length) return null;
+            int thisValue = brailleAsUnicode[i];
+            int nextValue = (i+1 >= brailleAsUnicode.Length) ? (0x2800 + noDots) :  brailleAsUnicode[i]; // Insert an empty Braille6 character 
+
+            i += 1;
+            if ((10 == thisValue) || (12 == thisValue) || (13 == thisValue))
+            {
+                return string.Format("{0}", thisValue);
+            }
+
+            return ToString(thisValue-0x2800, nextValue-0x2800);
+        }
+
+
+        private string ToString(int thisValue, int nextValue)        {
+
 
             if ((thisValue < 0) || (thisValue > 63)) throw new Exception("Invalid argument");
 
@@ -674,9 +688,10 @@ namespace MusicXmlReaderModel
             state = StateEnum.Unknown;
         }
 
-        private BrailleMusicDecoder(StateEnum initialState)
+        private BrailleMusicDecoder(StateEnum initialState, string brailleAsUnicode)
         {
             state = initialState;
+            this.brailleAsUnicode = brailleAsUnicode;
         }
 
 
@@ -685,9 +700,9 @@ namespace MusicXmlReaderModel
             return new BrailleMusicDecoder();
         }
 
-        public static BrailleMusicDecoder Create(StateEnum initialState)
+        public static BrailleMusicDecoder Create(StateEnum initialState, string brailleAsUnicode)
         {
-            return new BrailleMusicDecoder(initialState);
+            return new BrailleMusicDecoder(initialState, brailleAsUnicode);
         }
 
 
