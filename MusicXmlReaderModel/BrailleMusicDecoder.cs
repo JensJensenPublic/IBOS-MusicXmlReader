@@ -178,33 +178,43 @@ namespace MusicXmlReaderModel
             int thisValue = brailleAsUnicode[i];
             int nextValue = (i+1 >= brailleAsUnicode.Length) ? (0x2800 + noDots) :  brailleAsUnicode[i]; // Insert an empty Braille6 character 
 
-            i += 1;
+          
             if ((10 == thisValue) || (12 == thisValue) || (13 == thisValue))
             {
+                i += 1;
                 return string.Format("{0}", thisValue);
             }
 
-            return ToString(thisValue-0x2800, nextValue-0x2800);
+            string result = ToString(i);
+            i++;     
+            return result;
         }
 
 
-        private string ToString(int thisValue, int nextValue)        {
+        private string ToString(int startIndex)
+        {
+            int endIndex = Math.Min(brailleAsUnicode.Length, startIndex + 10); // Take the next 10 characters 
+            List<int> brailleCharacters = new List<int>();
+            {
+                for (int i = startIndex; (i < endIndex); i++)
+                {
+                    brailleCharacters.Add(brailleAsUnicode[i] - 0x2800);
+                }
 
+            }
 
-            if ((thisValue < 0) || (thisValue > 63)) throw new Exception("Invalid argument");
-
-            InputValueList inputValues = GetInputValues(thisValue, nextValue); // Get a list of all possible input values independent of the current state.
+            InputValueList inputValues = GetInputValues(brailleCharacters); // Get a list of all possible input values independent of the current state.
             InputCategoryEnum allowedInputCategories = 0;
 
             switch (state)
             {
-                case StateEnum.Text:            allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.Dot6 | InputCategoryEnum.ToNumber ; break;
-                case StateEnum.TextVersal:      allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.Dot6 | InputCategoryEnum.ToNumber ; break;
-                case StateEnum.TextNumber:      allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.Dot6; break;
+                case StateEnum.Text: allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.Dot6 | InputCategoryEnum.ToNumber; break;
+                case StateEnum.TextVersal: allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.Dot6 | InputCategoryEnum.ToNumber; break;
+                case StateEnum.TextNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.Dot6; break;
                 case StateEnum.ToMusicOrVersal: allowedInputCategories = InputCategoryEnum.Dot3 | InputCategoryEnum.Character; break;
-                case StateEnum.Music:           allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.Dot46; break;
-                case StateEnum.MusicNumber:     allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space |InputCategoryEnum.Accidental; break;
-                case StateEnum.MusicNote:       allowedInputCategories = InputCategoryEnum.Interval |InputCategoryEnum.Note |InputCategoryEnum.Octave |  InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.Dot5 | InputCategoryEnum.Dot46 | InputCategoryEnum.Legato |InputCategoryEnum.BarLine; break; // TODO
+                case StateEnum.Music: allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.Dot46; break;
+                case StateEnum.MusicNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.Accidental; break;
+                case StateEnum.MusicNote: allowedInputCategories = InputCategoryEnum.Interval | InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.Dot5 | InputCategoryEnum.Dot46 | InputCategoryEnum.Legato | InputCategoryEnum.BarLine; break; // TODO
                 case StateEnum.ToLilleBistemme: allowedInputCategories = InputCategoryEnum.LilleBistemmeDot2; break;
                 case StateEnum.ToMeasureDivisionMark: allowedInputCategories = InputCategoryEnum.MeasureDivisionMarkDot13; break;
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
@@ -260,7 +270,7 @@ namespace MusicXmlReaderModel
                     }
                     else
                     {
-                        newState = StateEnum.TextVersal;                        
+                        newState = StateEnum.TextVersal;
                     }
                     break;
                 case StateEnum.Music:
@@ -315,6 +325,8 @@ namespace MusicXmlReaderModel
             }
 
             string result = filteredInputValues.ToString();
+
+            int thisValue = brailleCharacters[0];
 
             char inputAsUnicode = (char)(thisValue + 0x2800);
             if (1 != filteredInputValues.Count)
@@ -423,8 +435,10 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="thisValue"></param>
         /// <returns></returns>
-        private InputValueList GetInputValues(int thisValue, int nextValue)
+        private InputValueList GetInputValues(List<int> values)
         {
+            int thisValue = values[0];
+            int nextValue = (values.Count > 1) ? values[1] : 0x27ff; // An illecgal value
 
             InputValueList inputValues = new InputValueList();
 
