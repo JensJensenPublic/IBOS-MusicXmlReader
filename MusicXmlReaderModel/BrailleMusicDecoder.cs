@@ -36,6 +36,45 @@ namespace MusicXmlReaderModel
         FullEnd = 0x01000000              
     }
 
+    class IntegerList
+    {
+        private List<int> list = new List<int>();
+        public List<int> List { get { return list;} }
+        public int Count { get { return list.Count; } }
+        public IntegerList()
+        { }
+        public void Add(int i)
+        {
+            list.Add(i);
+        }
+
+        public bool StartsWith(int i)
+        {
+            if (list.Count < 1) return false;
+            if (list[0] != i) return false;
+            return true;
+        }
+
+        public bool StartsWith(int i0, int i1)
+        {
+            if (list.Count < 2) return false;
+            if (list[0] != i0) return false;
+            if (list[1] != i1) return false;
+            return true;
+        }
+
+        public bool StartsWith(int i0, int i1, int i2)
+        {
+            if (list.Count < 3) return false;
+            if (list[0] != i0) return false;
+            if (list[1] != i1) return false;
+            if (list[2] != i2) return false;
+            return true;
+        }
+
+    }
+
+
     class InputValue
     {
         private InputCategoryEnum inputCategory;
@@ -195,7 +234,7 @@ namespace MusicXmlReaderModel
         private string ToString(int startIndex)
         {
             int endIndex = Math.Min(brailleAsUnicode.Length, startIndex + 10); // Take the next 10 characters 
-            List<int> brailleCharacters = new List<int>();
+            IntegerList brailleCharacters = new IntegerList();
             {
                 for (int i = startIndex; (i < endIndex); i++)
                 {
@@ -327,7 +366,7 @@ namespace MusicXmlReaderModel
 
             string result = filteredInputValues.ToString();
 
-            int thisValue = brailleCharacters[0];
+            int thisValue = brailleCharacters.List[0];
 
             char inputAsUnicode = (char)(thisValue + 0x2800);
             if (1 != filteredInputValues.Count)
@@ -436,10 +475,10 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="thisValue"></param>
         /// <returns></returns>
-        private InputValueList GetInputValues(List<int> rawValues)
+        private InputValueList GetInputValues(IntegerList rawValues)
         {
-            int thisValue = rawValues[0];
-            int nextValue = (rawValues.Count > 1) ? rawValues[1] : 0x27ff; // An illecgal value
+            int thisValue = rawValues.List[0];
+            int nextValue = (rawValues.Count > 1) ? rawValues.List[1] : 0x27ff; // An illecgal value
 
             InputValueList inputValues = new InputValueList();
 
@@ -687,7 +726,8 @@ namespace MusicXmlReaderModel
             }
 
             //if ((rawValues.Count >= 4) && (rawValues[0] == dot6) && (rawValues[1] == dot3) && (rawValues[2] == (dot1 | dot2 | dot6) && (rawValues[3] == (dot2 | dot3))))
-            if ((rawValues.Count >= 2)  && (rawValues[0] == (dot1 | dot2 | dot6) && (rawValues[1] == (dot1 | dot3))))
+//            if ((rawValues.Count >= 2)  && (rawValues[0] == (dot1 | dot2 | dot6) && (rawValues[1] == (dot1 | dot3))))
+            if (rawValues.StartsWith((dot1 | dot2 | dot6), (dot1 | dot3)))
             {
                     inputValues.Add(InputCategoryEnum.FullEnd, "FullEnd");
             }
