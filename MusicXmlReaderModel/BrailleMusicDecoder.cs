@@ -75,17 +75,19 @@ namespace MusicXmlReaderModel
     }
 
 
-    class InputValue
+    class InputInterpretation
     {
+        private int tokenLength = 1; // Default
+        public int TokenLength { get { return tokenLength; } }
         private InputCategoryEnum inputCategory;
         private string value;
-        public InputValue(InputCategoryEnum inputCategory, string value)
+        public InputInterpretation(int tokenLength, InputCategoryEnum inputCategory, string value)
         {
+            this.tokenLength = tokenLength;
             this.inputCategory = inputCategory;
             this.value = value;
         }
-
-   
+           
 
         public string Value
         {
@@ -112,8 +114,8 @@ namespace MusicXmlReaderModel
 
     class InputValueList
     {
-        private List<InputValue> inputValues = new List<InputValue>();
-        public void Add(InputValue inputValue)
+        private List<InputInterpretation> inputValues = new List<InputInterpretation>();
+        public void Add(InputInterpretation inputValue)
         {   
             if (string.IsNullOrEmpty(inputValue.Value)) return;
             inputValues.Add(inputValue);
@@ -121,13 +123,18 @@ namespace MusicXmlReaderModel
 
         public void Add(InputCategoryEnum category, string value)
         {
-            Add(new InputValue(category, value));
+            Add(new InputInterpretation(1,category, value));
+        }
+
+        public void Add(int tokenLength,InputCategoryEnum category, string value)
+        {
+            Add(new InputInterpretation(tokenLength, category, value));
         }
 
         public InputValueList Filter(InputCategoryEnum allowedInputCategories)
         {
             InputValueList result = new InputValueList();
-            foreach (InputValue inputValue in this.inputValues)
+            foreach (InputInterpretation inputValue in this.inputValues)
             {
                 if (0 != (inputValue.InputCategory & allowedInputCategories))
                 {
@@ -139,7 +146,7 @@ namespace MusicXmlReaderModel
 
         public bool Contains(InputCategoryEnum category)
         {
-            foreach (InputValue inputValue in this.inputValues)
+            foreach (InputInterpretation inputValue in this.inputValues)
             {
                 if (0 != (inputValue.InputCategory & category))
                 {
@@ -158,7 +165,7 @@ namespace MusicXmlReaderModel
             {
                 StringBuilder sbWarning = new StringBuilder();
                 sbWarning.Append(string.Format("->Warning: {0} interpretations found", inputValues.Count));
-                foreach (InputValue inputValue in inputValues)
+                foreach (InputInterpretation inputValue in inputValues)
                 {
                     sbWarning.Append(inputValue.ToString());
                 }
@@ -166,7 +173,7 @@ namespace MusicXmlReaderModel
             }
 
             StringBuilder sb = new StringBuilder();
-            foreach (InputValue inputValue in inputValues)
+            foreach (InputInterpretation inputValue in inputValues)
             {
                 sb.Append(string.Format("({0}='{1}') ", inputValue.InputCategory.ToString(), inputValue.Value));
             }     
