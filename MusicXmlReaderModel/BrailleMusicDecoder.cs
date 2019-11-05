@@ -32,7 +32,8 @@ namespace MusicXmlReaderModel
         Dot46 = 0x00100000,           // First part of MEasureDivisionMark 
         MeasureDivisionMarkDot13 = 0x00200000, // Second part of MeasureDivisionMArk
         Legato = 0x00400000,
-        BarLine = 0x00800000              
+        BarLine = 0x00800000,
+        FullEnd = 0x01000000              
     }
 
     class InputValue
@@ -214,7 +215,7 @@ namespace MusicXmlReaderModel
                 case StateEnum.ToMusicOrVersal: allowedInputCategories = InputCategoryEnum.Dot3 | InputCategoryEnum.Character; break;
                 case StateEnum.Music: allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.Dot46; break;
                 case StateEnum.MusicNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.Accidental; break;
-                case StateEnum.MusicNote: allowedInputCategories = InputCategoryEnum.Interval | InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.Dot5 | InputCategoryEnum.Dot46 | InputCategoryEnum.Legato | InputCategoryEnum.BarLine; break; // TODO
+                case StateEnum.MusicNote: allowedInputCategories = InputCategoryEnum.Interval | InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.Dot5 | InputCategoryEnum.Dot46 | InputCategoryEnum.Legato | InputCategoryEnum.BarLine | InputCategoryEnum.FullEnd; break; // TODO
                 case StateEnum.ToLilleBistemme: allowedInputCategories = InputCategoryEnum.LilleBistemmeDot2; break;
                 case StateEnum.ToMeasureDivisionMark: allowedInputCategories = InputCategoryEnum.MeasureDivisionMarkDot13; break;
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
@@ -435,10 +436,10 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="thisValue"></param>
         /// <returns></returns>
-        private InputValueList GetInputValues(List<int> values)
+        private InputValueList GetInputValues(List<int> rawValues)
         {
-            int thisValue = values[0];
-            int nextValue = (values.Count > 1) ? values[1] : 0x27ff; // An illecgal value
+            int thisValue = rawValues[0];
+            int nextValue = (rawValues.Count > 1) ? rawValues[1] : 0x27ff; // An illecgal value
 
             InputValueList inputValues = new InputValueList();
 
@@ -505,7 +506,7 @@ namespace MusicXmlReaderModel
                     }
                     break;
                 case dot5 | dot6: octave = "6"; break;
-                case dot6: octave = "7"; break;
+                case dot6:  octave = "7";  break;
                 default: break;
             }
             inputValues.Add(InputCategoryEnum.Octave, octave);
@@ -525,7 +526,12 @@ namespace MusicXmlReaderModel
             switch (thisValue) // Look for accidentals
             {
                 case dot1 | dot4 | dot6: accidental = "Sharp"; break;
-                case dot1 | dot2 | dot6: accidental = "Flat"; break;
+                case dot1 | dot2 | dot6:
+                    if (nextValue != (dot1 | dot3))
+                    {
+                        accidental = "Flat"; // Avoid crash with Fullend
+                    }
+                    break;
                 case dot1 | dot6: accidental = "Natural"; break;
                 default: break;
             }
@@ -680,6 +686,12 @@ namespace MusicXmlReaderModel
                 inputValues.Add(InputCategoryEnum.Character, character);
             }
 
+            //if ((rawValues.Count >= 4) && (rawValues[0] == dot6) && (rawValues[1] == dot3) && (rawValues[2] == (dot1 | dot2 | dot6) && (rawValues[3] == (dot2 | dot3))))
+            if ((rawValues.Count >= 2)  && (rawValues[0] == (dot1 | dot2 | dot6) && (rawValues[1] == (dot1 | dot3))))
+            {
+                    inputValues.Add(InputCategoryEnum.FullEnd, "FullEnd");
+            }
+       
 
             return inputValues;
 
