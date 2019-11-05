@@ -115,6 +115,7 @@ namespace MusicXmlReaderModel
     class InputValueList
     {
         private List<InputInterpretation> inputValues = new List<InputInterpretation>();
+        public List<InputInterpretation> InputValues { get { return inputValues; } }
         public void Add(InputInterpretation inputValue)
         {   
             if (string.IsNullOrEmpty(inputValue.Value)) return;
@@ -232,13 +233,24 @@ namespace MusicXmlReaderModel
                 return string.Format("{0}", thisValue);
             }
 
-            string result = ToString(i);
-            i++;     
-            return result;
+            InputValueList result = ToTokenList(i);
+
+            int tokenLength = 1; // Default, if we can not determine an interpretation.
+            if (1 == result.Count)
+            {
+                tokenLength = result.InputValues[0].TokenLength;
+                if (1 != tokenLength)
+                {
+                    Logger.Log(string.Format("TokenLength={0}. Changing index from {1} to  {2}", tokenLength, i, i + tokenLength));
+                }
+            }
+            i += tokenLength;
+    
+            return result.ToString();
         }
 
 
-        private string ToString(int startIndex)
+        private InputValueList ToTokenList(int startIndex)
         {
             int endIndex = Math.Min(brailleAsUnicode.Length, startIndex + 10); // Take the next 10 characters 
             IntegerList brailleCharacters = new IntegerList();
@@ -398,7 +410,7 @@ namespace MusicXmlReaderModel
 
             state = newState;
 
-            return result;
+            return filteredInputValues;
 
         }
         
@@ -736,7 +748,7 @@ namespace MusicXmlReaderModel
 //            if ((rawValues.Count >= 2)  && (rawValues[0] == (dot1 | dot2 | dot6) && (rawValues[1] == (dot1 | dot3))))
             if (rawValues.StartsWith((dot1 | dot2 | dot6), (dot1 | dot3)))
             {
-                    inputValues.Add(InputCategoryEnum.FullEnd, "FullEnd");
+                    inputValues.Add(2,InputCategoryEnum.FullEnd, "FullEnd");
             }
        
 
