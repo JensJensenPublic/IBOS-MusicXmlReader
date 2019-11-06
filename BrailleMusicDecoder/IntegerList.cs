@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BrailleMusicDecoder
 {
+    /// <summary>
+    /// A simple class for representing a sequence of Braille6 values coded as integers in [0..63]
+    /// </summary>
     class IntegerList
     {
         private List<int> list = new List<int>();
@@ -36,9 +39,7 @@ namespace BrailleMusicDecoder
             }
             return true;
         }
-
- 
-
+        
         public string ToUnicodeString()
         {
             StringBuilder sb = new StringBuilder();

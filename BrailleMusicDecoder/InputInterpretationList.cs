@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BrailleMusicDecoder
 {
-
+    /// <summary>
+    /// A simple class for holding all the possible interpretations of a sequence of BrailleMusic characters
+    /// </summary>
     class InputInterpretationList
     {
         private IntegerList rawValues;
@@ -36,6 +35,11 @@ namespace BrailleMusicDecoder
             Add(new InputInterpretation(token, category, value));
         }
 
+        /// <summary>
+        /// Returns the values of this instance, filtered by the allowedInputCategories bitmask, thus allowing 0, 1 or several values to pass through
+        /// </summary>
+        /// <param name="allowedInputCategories"></param>
+        /// <returns></returns>
         public InputInterpretationList Filter(InputCategoryEnum allowedInputCategories)
         {
             InputInterpretationList result = new InputInterpretationList(this.rawValues);
