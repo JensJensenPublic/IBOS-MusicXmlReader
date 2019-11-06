@@ -99,7 +99,7 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            return string.Format(" {0}={1} ", inputCategory, value);
+            return string.Format(" {0}={1} ", inputCategory.ToString(), value);
         }
 
 
@@ -110,6 +110,8 @@ namespace MusicXmlReaderModel
                 return inputCategory;
             }
         }
+
+
     }
 
     class InputValueList
@@ -176,10 +178,10 @@ namespace MusicXmlReaderModel
             StringBuilder sb = new StringBuilder();
             foreach (InputInterpretation inputValue in inputValues)
             {
-                sb.Append(string.Format("({0}='{1}') ", inputValue.InputCategory.ToString(), inputValue.Value));
+                sb.Append(inputValue.ToString());
             }     
 
-            // Allow 20 characters for the decoded stirng itself before showing the warning.
+            // Allow 20 characters for the decoded stting itself before showing the warning.
             return string.Format("{0,-20} {1}", sb.ToString(), warning);
     }
 }
