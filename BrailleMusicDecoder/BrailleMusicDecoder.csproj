@@ -40,8 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrailleMusicDecoder.cs" />
+    <Compile Include="Decoder.cs" />
     <Compile Include="IBrailleMusicDecoderLogger.cs" />
+    <Compile Include="IntegerList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

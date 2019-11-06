@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using NAudio.Midi;
 using System.Xml;
 using JSJ.ScreenReaderAPI;
+using BrailleMusicDecoder;
 
 namespace MusicXmlReaderModel
 {
@@ -1352,7 +1353,7 @@ namespace MusicXmlReaderModel
             result = brailleFileHandler.Format(brailleFileAsUnicode);
             // Find the decoded contents
             List<string> decodedLines = new List<string>();
-            BrailleMusicDecoder brailleMusicDecoder = BrailleMusicDecoder.Create(BrailleMusicDecoder.StateEnum.Text, brailleFileAsUnicode, loggerProxy as IBrailleMusicDecoderLogger); // Assume initial state is "Text
+            Decoder brailleMusicDecoder = Decoder.Create(Decoder.StateEnum.Text, brailleFileAsUnicode, loggerProxy as IBrailleMusicDecoderLogger); // Assume initial state is "Text
             int i = 0;
             string decodedLine = null;
             do

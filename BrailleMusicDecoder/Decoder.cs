@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MusicXmlReaderModel;
 
-namespace MusicXmlReaderModel
+namespace BrailleMusicDecoder
 {
 
 
@@ -36,72 +36,6 @@ namespace MusicXmlReaderModel
         BarLine = 0x00800000,
         FullEnd = 0x01000000,
         EndRepeat = 0x02000000              
-    }
-
-    class IntegerList
-    {
-        private List<int> list = new List<int>();
-        public List<int> List { get { return list;} }
-        public int Count { get { return list.Count; } }
-        public IntegerList() { }
-        public IntegerList(int i)
-        {
-            this.list.Add(i);
-        }
-        public IntegerList(int i0, int i1)
-        {
-            this.list.Add(i0);
-            this.list.Add(i1);
-        }
-
-        public void Add(int i)
-        {
-            list.Add(i);
-        }
-
-        public bool StartsWith(IntegerList sequence)
-        {
-            if (this.list.Count < sequence.Count) return false;
-            for(int i = 0 ; ( i < sequence.Count) ; i++)
-            {
-                if (this.list[i] != sequence.list[i]) return false;
-            }
-            return true;
-        }
-
-        //public bool StartsWith(int i)
-        //{
-        //    if (list.Count < 1) return false;
-        //    if (list[0] != i) return false;
-        //    return true;
-        //}
-
-        //public bool StartsWith(int i0, int i1)
-        //{
-        //    if (list.Count < 2) return false;
-        //    if (list[0] != i0) return false;
-        //    if (list[1] != i1) return false;
-        //    return true;
-        //}
-
-        //public bool StartsWith(int i0, int i1, int i2)
-        //{
-        //    if (list.Count < 3) return false;
-        //    if (list[0] != i0) return false;
-        //    if (list[1] != i1) return false;
-        //    if (list[2] != i2) return false;
-        //    return true;
-        //}
-
-        public string ToUnicodeString()
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (int i in this.list)
-            {
-                sb.Append((char)(i + BrailleMusicDecoder.BrailleBase));
-            }
-            return sb.ToString();
-        }
     }
 
 
@@ -236,7 +170,7 @@ namespace MusicXmlReaderModel
     /// Used during test for decoding Braille Music files into readable symbols
     /// Intensionally does NOT use exicting definitions of symbols in order to avoid duplication of existing errors.
     /// </summary>
-    public class BrailleMusicDecoder
+    public class Decoder
     {
         public const int BrailleBase = 0x2800; 
         public enum StateEnum { Unknown, Text, TextNumber, TextVersal, Music, ToMusicOrVersal, MusicNumber, MusicNote, ToLilleBistemme, ToMeasureDivisionMark };
@@ -832,12 +766,12 @@ namespace MusicXmlReaderModel
         }
 
 
-        private BrailleMusicDecoder()
+        private Decoder()
         {
             state = StateEnum.Unknown;
         }
 
-        private BrailleMusicDecoder(StateEnum initialState, string brailleAsUnicode,IBrailleMusicDecoderLogger logger)
+        private Decoder(StateEnum initialState, string brailleAsUnicode,IBrailleMusicDecoderLogger logger)
         {
             state = initialState;
             this.brailleAsUnicode = brailleAsUnicode;
@@ -845,14 +779,14 @@ namespace MusicXmlReaderModel
         }
 
 
-        public static BrailleMusicDecoder Create()
+        public static Decoder Create()
         {
-            return new BrailleMusicDecoder();
+            return new Decoder();
         }
 
-        public static BrailleMusicDecoder Create(StateEnum initialState, string brailleAsUnicode, IBrailleMusicDecoderLogger logger)
+        public static Decoder Create(StateEnum initialState, string brailleAsUnicode, IBrailleMusicDecoderLogger logger)
         {
-            return new BrailleMusicDecoder(initialState, brailleAsUnicode,logger);
+            return new Decoder(initialState, brailleAsUnicode,logger);
         }
 
 
