@@ -13,7 +13,7 @@ namespace MusicXmlReaderModel
     /// It plays the "Model" role in the MVVM (Model, Viev, ViewModel) architecture used in the MusicXmlReader solution
     /// As written in C# it is easily ported to other OS arvhitechtures, such as iOS and Android, using the Xamarin development tool
     /// </summary>
-    public class Model : IBrailleMusicDecoderLogger
+    public class Model 
     {
         static public string TheStaticXmlFileName = "";
         string className = "Model";
@@ -48,6 +48,7 @@ namespace MusicXmlReaderModel
         ProgressWriter conversionProgressWriter = null;
         DefaultsElement defaults; // Score-wide defaults for scaling, layout and appearance. Exactly one DefaultElement is expected per score.
         public DefaultsElement Defaults { get { return  defaults; } }
+        private LoggerProxy loggerProxy;
 
         string executingAssembly;
         string executingDirectory;
@@ -575,6 +576,8 @@ namespace MusicXmlReaderModel
             Logger.Log(string.Format("Model: Assuming size of physical Braille display = {0}", displaySize));
             this.objects = objects;
             this.iDebugDisplayerClient = iDebugDisplayerClient;
+            this.loggerProxy = new LoggerProxy(); // Used to establish a callback path from BrailleMusicDecoder and other sub-dlls
+
             Logger.LogSystemParameters();
             Logger.LogDebuggerAttachment();
         }
@@ -1331,14 +1334,6 @@ namespace MusicXmlReaderModel
             }  
       }
 
-        /// <summary>
-        /// For interfacing to BrailleMusicDecoder
-        /// </summary>
-        /// <param name="s"></param>
-        public void Log(string s)
-        {
-            Logger.Log(s);
-        }
 
         /// <summary>
         /// Used from the Tools menu for interpreting the contents of any file as Braille Music.
@@ -1357,7 +1352,7 @@ namespace MusicXmlReaderModel
             result = brailleFileHandler.Format(brailleFileAsUnicode);
             // Find the decoded contents
             List<string> decodedLines = new List<string>();
-            BrailleMusicDecoder brailleMusicDecoder = BrailleMusicDecoder.Create(BrailleMusicDecoder.StateEnum.Text, brailleFileAsUnicode, this as IBrailleMusicDecoderLogger); // Assume initial state is "Text
+            BrailleMusicDecoder brailleMusicDecoder = BrailleMusicDecoder.Create(BrailleMusicDecoder.StateEnum.Text, brailleFileAsUnicode, loggerProxy as IBrailleMusicDecoderLogger); // Assume initial state is "Text
             int i = 0;
             string decodedLine = null;
             do
