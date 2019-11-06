@@ -92,6 +92,15 @@ namespace MusicXmlReaderModel
         //    return true;
         //}
 
+        public string ToUnicodeString()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (int i in this.list)
+            {
+                sb.Append((char)(i + BrailleMusicDecoder.BrailleBase));
+            }
+            return sb.ToString();
+        }
     }
 
 
@@ -142,8 +151,17 @@ namespace MusicXmlReaderModel
 
     class InputValueList
     {
+        private IntegerList rawValues;
+        public IntegerList RawValues { get { return rawValues; } } // The raw input values used for generating this InputValueList
         private List<InputInterpretation> inputValues = new List<InputInterpretation>();
         public List<InputInterpretation> InputValues { get { return inputValues; } }
+
+        public InputValueList(IntegerList rawValues)
+        {
+            this.rawValues = rawValues;
+        }
+
+
         public void Add(InputInterpretation inputValue)
         {   
             if (string.IsNullOrEmpty(inputValue.Value)) return;
@@ -162,7 +180,7 @@ namespace MusicXmlReaderModel
 
         public InputValueList Filter(InputCategoryEnum allowedInputCategories)
         {
-            InputValueList result = new InputValueList();
+            InputValueList result = new InputValueList(this.rawValues);
             foreach (InputInterpretation inputValue in this.inputValues)
             {
                 if (0 != (inputValue.InputCategory & allowedInputCategories))
@@ -193,7 +211,7 @@ namespace MusicXmlReaderModel
             if (inputValues.Count != 1)
             {
                 StringBuilder sbWarning = new StringBuilder();
-                sbWarning.Append(string.Format("->Warning: {0} interpretations found", inputValues.Count));
+                sbWarning.Append(string.Format("{0} ->Warning: {1} interpretations found", rawValues.ToUnicodeString(), inputValues.Count));
                 foreach (InputInterpretation inputValue in inputValues)
                 {
                     sbWarning.Append(inputValue.ToString());
@@ -525,10 +543,11 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         private InputValueList GetInputValues(IntegerList rawValues)
         {
+            
             int thisValue = rawValues.List[0];
             int nextValue = (rawValues.Count > 1) ? rawValues.List[1] : 0x27ff; // An illecgal value
 
-            InputValueList inputValues = new InputValueList();
+            InputValueList inputValues = new InputValueList(rawValues);
 
             // Internal variables
 
