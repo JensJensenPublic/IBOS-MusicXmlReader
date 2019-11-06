@@ -34,7 +34,8 @@ namespace MusicXmlReaderModel
         MeasureDivisionMarkDot13 = 0x00200000, // Second part of MeasureDivisionMArk
         Legato = 0x00400000,
         BarLine = 0x00800000,
-        FullEnd = 0x01000000              
+        FullEnd = 0x01000000,
+        EndRepeat = 0x02000000              
     }
 
     class IntegerList
@@ -320,7 +321,7 @@ namespace MusicXmlReaderModel
                 case StateEnum.ToMusicOrVersal: allowedInputCategories = InputCategoryEnum.Dot3 | InputCategoryEnum.Character; break;
                 case StateEnum.Music: allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.Dot46; break;
                 case StateEnum.MusicNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.Accidental; break;
-                case StateEnum.MusicNote: allowedInputCategories = InputCategoryEnum.Interval | InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.Dot5 | InputCategoryEnum.Dot46 | InputCategoryEnum.Legato | InputCategoryEnum.BarLine | InputCategoryEnum.FullEnd; break; // TODO
+                case StateEnum.MusicNote: allowedInputCategories = InputCategoryEnum.Interval | InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.Dot5 | InputCategoryEnum.Dot46 | InputCategoryEnum.Legato | InputCategoryEnum.BarLine | InputCategoryEnum.FullEnd | InputCategoryEnum.EndRepeat; break; // TODO
                 case StateEnum.ToLilleBistemme: allowedInputCategories = InputCategoryEnum.LilleBistemmeDot2; break;
                 case StateEnum.ToMeasureDivisionMark: allowedInputCategories = InputCategoryEnum.MeasureDivisionMarkDot13; break;
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
@@ -633,9 +634,10 @@ namespace MusicXmlReaderModel
             {
                 case dot1 | dot4 | dot6: accidental = "Sharp"; break;
                 case dot1 | dot2 | dot6:
-                    if (nextValue != (dot1 | dot3))
+                    if ((nextValue != (dot1 | dot3))  // Avoid clash with Fullend
+                    &&  (nextValue != (dot2 | dot3))) // Avoid clash with EndRepeat
                     {
-                        accidental = "Flat"; // Avoid crash with Fullend
+                        accidental = "Flat";
                     }
                     break;
                 case dot1 | dot6: accidental = "Natural"; break;
@@ -799,9 +801,16 @@ namespace MusicXmlReaderModel
             IntegerList fullEndSequence = new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3));
             if (rawValues.StartsWith(fullEndSequence))
             {
-                    inputValues.Add(fullEndSequence,InputCategoryEnum.FullEnd, "FullEnd");
+                inputValues.Add(fullEndSequence, InputCategoryEnum.FullEnd, "FullEnd");
             }
-       
+
+            IntegerList endRepeatSequence = new IntegerList((dot1 | dot2 | dot6), (dot2 | dot3));
+            if (rawValues.StartsWith(endRepeatSequence))
+            {
+                inputValues.Add(endRepeatSequence, InputCategoryEnum.EndRepeat, "RepeatEnd");
+            }
+
+
 
             return inputValues;
 
