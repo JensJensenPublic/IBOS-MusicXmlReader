@@ -149,8 +149,8 @@ namespace MusicXmlReaderModel
     {
         private IntegerList rawValues;
         public IntegerList RawValues { get { return rawValues; } } // The raw input values used for generating this InputValueList
-        private List<InputInterpretation> inputValues = new List<InputInterpretation>();
-        public List<InputInterpretation> InputValues { get { return inputValues; } }
+        private List<InputInterpretation> inputInterpretations = new List<InputInterpretation>();
+        public List<InputInterpretation> InputInterpretations { get { return inputInterpretations; } }
 
         public InputInterpretationList(IntegerList rawValues)
         {
@@ -161,7 +161,7 @@ namespace MusicXmlReaderModel
         public void Add(InputInterpretation inputValue)
         {   
             if (string.IsNullOrEmpty(inputValue.Value)) return;
-            inputValues.Add(inputValue);
+            inputInterpretations.Add(inputValue);
         }
 
         public void Add(int token,InputCategoryEnum category, string value)
@@ -177,7 +177,7 @@ namespace MusicXmlReaderModel
         public InputInterpretationList Filter(InputCategoryEnum allowedInputCategories)
         {
             InputInterpretationList result = new InputInterpretationList(this.rawValues);
-            foreach (InputInterpretation inputValue in this.inputValues)
+            foreach (InputInterpretation inputValue in this.inputInterpretations)
             {
                 if (0 != (inputValue.InputCategory & allowedInputCategories))
                 {
@@ -189,7 +189,7 @@ namespace MusicXmlReaderModel
 
         public bool Contains(InputCategoryEnum category)
         {
-            foreach (InputInterpretation inputValue in this.inputValues)
+            foreach (InputInterpretation inputValue in this.inputInterpretations)
             {
                 if (0 != (inputValue.InputCategory & category))
                 {
@@ -200,15 +200,15 @@ namespace MusicXmlReaderModel
         }
 
 
-        public int Count { get { return inputValues.Count; } }
+        public int Count { get { return inputInterpretations.Count; } }
         public override string ToString()
         {
             string warning = "";
-            if (inputValues.Count != 1)
+            if (inputInterpretations.Count != 1)
             {
                 StringBuilder sbWarning = new StringBuilder();
-                sbWarning.Append(string.Format("{0} ->Warning: {1} interpretations found", rawValues.ToUnicodeString(), inputValues.Count));
-                foreach (InputInterpretation inputValue in inputValues)
+                sbWarning.Append(string.Format("{0} ->Warning: {1} interpretations found", rawValues.ToUnicodeString(), inputInterpretations.Count));
+                foreach (InputInterpretation inputValue in inputInterpretations)
                 {
                     sbWarning.Append(inputValue.ToString());
                 }
@@ -216,7 +216,7 @@ namespace MusicXmlReaderModel
             }
 
             StringBuilder sb = new StringBuilder();
-            foreach (InputInterpretation inputValue in inputValues)
+            foreach (InputInterpretation inputValue in inputInterpretations)
             {
                 sb.Append(inputValue.ToString());
             }     
@@ -281,7 +281,7 @@ namespace MusicXmlReaderModel
             int tokenLength = 1; // Default, if we can not determine an interpretation.
             if (1 == result.Count)
             {
-                tokenLength = result.InputValues[0].TokenLength;
+                tokenLength = result.InputInterpretations[0].TokenLength;
                 if (1 != tokenLength)
                 {
                     Logger.Log(string.Format("TokenLength={0}. Changing index from {1} to  {2}", tokenLength, i, i + tokenLength));
