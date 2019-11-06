@@ -145,14 +145,14 @@ namespace MusicXmlReaderModel
 
     }
 
-    class InputValueList
+    class InputInterpretationList
     {
         private IntegerList rawValues;
         public IntegerList RawValues { get { return rawValues; } } // The raw input values used for generating this InputValueList
         private List<InputInterpretation> inputValues = new List<InputInterpretation>();
         public List<InputInterpretation> InputValues { get { return inputValues; } }
 
-        public InputValueList(IntegerList rawValues)
+        public InputInterpretationList(IntegerList rawValues)
         {
             this.rawValues = rawValues;
         }
@@ -174,9 +174,9 @@ namespace MusicXmlReaderModel
             Add(new InputInterpretation(token, category, value));
         }
 
-        public InputValueList Filter(InputCategoryEnum allowedInputCategories)
+        public InputInterpretationList Filter(InputCategoryEnum allowedInputCategories)
         {
-            InputValueList result = new InputValueList(this.rawValues);
+            InputInterpretationList result = new InputInterpretationList(this.rawValues);
             foreach (InputInterpretation inputValue in this.inputValues)
             {
                 if (0 != (inputValue.InputCategory & allowedInputCategories))
@@ -276,7 +276,7 @@ namespace MusicXmlReaderModel
                 return string.Format("{0}", thisValue);
             }
 
-            InputValueList result = ToTokenList(i);
+            InputInterpretationList result = ToTokenList(i);
 
             int tokenLength = 1; // Default, if we can not determine an interpretation.
             if (1 == result.Count)
@@ -293,7 +293,7 @@ namespace MusicXmlReaderModel
         }
 
 
-        private InputValueList ToTokenList(int startIndex)
+        private InputInterpretationList ToTokenList(int startIndex)
         {
             int endIndex = Math.Min(brailleAsUnicode.Length, startIndex + 10); // Take the next 10 characters 
             IntegerList brailleCharacters = new IntegerList();
@@ -305,7 +305,7 @@ namespace MusicXmlReaderModel
 
             }
 
-            InputValueList inputValues = GetInputValues(brailleCharacters); // Get a list of all possible input values independent of the current state.
+            InputInterpretationList inputValues = GetInputInterpretations(brailleCharacters); // Get a list of all possible input values independent of the current state.
             InputCategoryEnum allowedInputCategories = 0;
 
             switch (state)
@@ -323,7 +323,7 @@ namespace MusicXmlReaderModel
             }
 
 
-            InputValueList filteredInputValues = inputValues.Filter(allowedInputCategories);
+            InputInterpretationList filteredInputValues = inputValues.Filter(allowedInputCategories);
 
 
             // Calculate the new state
@@ -537,13 +537,13 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="thisValue"></param>
         /// <returns></returns>
-        private InputValueList GetInputValues(IntegerList rawValues)
+        private InputInterpretationList GetInputInterpretations(IntegerList rawValues)
         {
             
             int thisValue = rawValues.List[0];
             int nextValue = (rawValues.Count > 1) ? rawValues.List[1] : 0x27ff; // An illecgal value
 
-            InputValueList inputValues = new InputValueList(rawValues);
+            InputInterpretationList inputValues = new InputInterpretationList(rawValues);
 
             // Internal variables
 
