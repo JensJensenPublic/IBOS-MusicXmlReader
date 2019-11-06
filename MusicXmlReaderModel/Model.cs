@@ -13,7 +13,7 @@ namespace MusicXmlReaderModel
     /// It plays the "Model" role in the MVVM (Model, Viev, ViewModel) architecture used in the MusicXmlReader solution
     /// As written in C# it is easily ported to other OS arvhitechtures, such as iOS and Android, using the Xamarin development tool
     /// </summary>
-    public class Model
+    public class Model : IBrailleMusicDecoderLogger
     {
         static public string TheStaticXmlFileName = "";
         string className = "Model";
@@ -1331,6 +1331,14 @@ namespace MusicXmlReaderModel
             }  
       }
 
+        /// <summary>
+        /// For interfacing to BrailleMusicDecoder
+        /// </summary>
+        /// <param name="s"></param>
+        public void Log(string s)
+        {
+            Logger.Log(s);
+        }
 
         /// <summary>
         /// Used from the Tools menu for interpreting the contents of any file as Braille Music.
@@ -1349,7 +1357,7 @@ namespace MusicXmlReaderModel
             result = brailleFileHandler.Format(brailleFileAsUnicode);
             // Find the decoded contents
             List<string> decodedLines = new List<string>();
-            BrailleMusicDecoder brailleMusicDecoder = BrailleMusicDecoder.Create(BrailleMusicDecoder.StateEnum.Text, brailleFileAsUnicode); // Assume initial state is "Text
+            BrailleMusicDecoder brailleMusicDecoder = BrailleMusicDecoder.Create(BrailleMusicDecoder.StateEnum.Text, brailleFileAsUnicode, this as IBrailleMusicDecoderLogger); // Assume initial state is "Text
             int i = 0;
             string decodedLine = null;
             do

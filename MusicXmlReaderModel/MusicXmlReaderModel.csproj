@@ -59,7 +59,6 @@
     <Compile Include="BrailleInAccordInfo.cs" />
     <Compile Include="BrailleInAccordSegment.cs" />
     <Compile Include="BrailleInAccordVoice.cs" />
-    <Compile Include="BrailleMusicDecoder.cs" />
     <Compile Include="BrailleUtilities.cs" />
     <Compile Include="DetailsDescription.cs" />
     <Compile Include="DetailsPlayer.cs" />
@@ -197,6 +196,10 @@
     <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BrailleMusicDecoder\BrailleMusicDecoder.csproj">
+      <Project>{27a3d41b-569a-480a-9e30-413102b8e386}</Project>
+      <Name>BrailleMusicDecoder</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MusicSynthesis\MusicSynthesis.csproj">
       <Project>{529d2c78-0fbc-4bf1-b5ae-f348695546c2}</Project>
       <Name>MusicSynthesis</Name>

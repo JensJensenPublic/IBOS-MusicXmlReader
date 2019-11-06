@@ -254,7 +254,8 @@ namespace MusicXmlReaderModel
         const byte none = 0x00;
         const int dot1245 = dot1 | dot2 | dot4 | dot5; // For isolating values representing note steps
         const int dot36 = dot3 | dot6; // For isolating type
-        
+
+        IBrailleMusicDecoderLogger logger;
         StateEnum state = StateEnum.Unknown;
         string brailleAsUnicode;
 
@@ -284,7 +285,7 @@ namespace MusicXmlReaderModel
                 tokenLength = result.InputInterpretations[0].TokenLength;
                 if (1 != tokenLength)
                 {
-                    Logger.Log(string.Format("TokenLength={0}. Changing index from {1} to  {2}", tokenLength, i, i + tokenLength));
+                    Log(string.Format("TokenLength={0}. Changing index from {1} to  {2}", tokenLength, i, i + tokenLength));
                 }
             }
             i += tokenLength;
@@ -292,6 +293,14 @@ namespace MusicXmlReaderModel
             return result.ToString();
         }
 
+        /// <summary>
+        /// Pass the call to the object specified during creation!
+        /// </summary>
+        /// <param name="s"></param>
+        private void Log(string s)
+        {
+            logger.Log(s);
+        }
 
         private InputInterpretationList ToTokenList(int startIndex)
         {
@@ -433,13 +442,13 @@ namespace MusicXmlReaderModel
             char inputAsUnicode = (char)(thisValue + BrailleBase);
             if (1 != filteredInputValues.Count)
             {
-                Logger.Log(string.Format(" State={0,-15} Input={1}(i={2,02}) OriginalInputValues = {3}", state.ToString(), inputAsUnicode, thisValue ,inputValues.ToString()));
-                Logger.Log(string.Format(" State={0,-15} Input={1}(i={2,02}) FilteredInputValues = {3}", state.ToString(), inputAsUnicode, thisValue ,filteredInputValues.ToString()));
+                Log(string.Format(" State={0,-15} Input={1}(i={2,02}) OriginalInputValues = {3}", state.ToString(), inputAsUnicode, thisValue ,inputValues.ToString()));
+                Log(string.Format(" State={0,-15} Input={1}(i={2,02}) FilteredInputValues = {3}", state.ToString(), inputAsUnicode, thisValue ,filteredInputValues.ToString()));
             }
 
             string newStateText = (state != newState) ? string.Format("NewState={0} ", newState) : "";
         
-            Logger.Log(string.Format(" State={0,-15} Input={1}(i={2,02}) Result='{3}' {4} ", state.ToString(), inputAsUnicode, thisValue, result, newStateText));
+            Log(string.Format(" State={0,-15} Input={1}(i={2,02}) Result='{3}' {4} ", state.ToString(), inputAsUnicode, thisValue, result, newStateText));
 
             if (newState != state)
             {
@@ -828,10 +837,11 @@ namespace MusicXmlReaderModel
             state = StateEnum.Unknown;
         }
 
-        private BrailleMusicDecoder(StateEnum initialState, string brailleAsUnicode)
+        private BrailleMusicDecoder(StateEnum initialState, string brailleAsUnicode,IBrailleMusicDecoderLogger logger)
         {
             state = initialState;
             this.brailleAsUnicode = brailleAsUnicode;
+            this.logger = logger;
         }
 
 
@@ -840,9 +850,9 @@ namespace MusicXmlReaderModel
             return new BrailleMusicDecoder();
         }
 
-        public static BrailleMusicDecoder Create(StateEnum initialState, string brailleAsUnicode)
+        public static BrailleMusicDecoder Create(StateEnum initialState, string brailleAsUnicode, IBrailleMusicDecoderLogger logger)
         {
-            return new BrailleMusicDecoder(initialState, brailleAsUnicode);
+            return new BrailleMusicDecoder(initialState, brailleAsUnicode,logger);
         }
 
 

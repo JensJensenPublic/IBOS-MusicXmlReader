@@ -104,6 +104,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.8.0.0", "2.8.0.0", "{C6B6
 		Documentation\Test reports\2.8.0.0\Mail fra Susanne som dokument.doc = Documentation\Test reports\2.8.0.0\Mail fra Susanne som dokument.doc
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrailleMusicDecoder", "BrailleMusicDecoder\BrailleMusicDecoder.csproj", "{27A3D41B-569A-480A-9E30-413102B8E386}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -246,6 +248,18 @@ Global
 		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Release|x64.Build.0 = Release|Any CPU
 		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Release|x86.ActiveCfg = Release|Any CPU
 		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Release|x86.Build.0 = Release|Any CPU
+		{27A3D41B-569A-480A-9E30-413102B8E386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27A3D41B-569A-480A-9E30-413102B8E386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27A3D41B-569A-480A-9E30-413102B8E386}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{27A3D41B-569A-480A-9E30-413102B8E386}.Debug|x64.Build.0 = Debug|Any CPU
+		{27A3D41B-569A-480A-9E30-413102B8E386}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{27A3D41B-569A-480A-9E30-413102B8E386}.Debug|x86.Build.0 = Debug|Any CPU
+		{27A3D41B-569A-480A-9E30-413102B8E386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27A3D41B-569A-480A-9E30-413102B8E386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27A3D41B-569A-480A-9E30-413102B8E386}.Release|x64.ActiveCfg = Release|Any CPU
+		{27A3D41B-569A-480A-9E30-413102B8E386}.Release|x64.Build.0 = Release|Any CPU
+		{27A3D41B-569A-480A-9E30-413102B8E386}.Release|x86.ActiveCfg = Release|Any CPU
+		{27A3D41B-569A-480A-9E30-413102B8E386}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
