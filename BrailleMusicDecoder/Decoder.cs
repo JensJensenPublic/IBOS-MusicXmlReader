@@ -35,7 +35,8 @@ namespace BrailleMusicDecoder
         Legato = 0x00400000,
         BarLine = 0x00800000,
         FullEnd = 0x01000000,
-        EndRepeat = 0x02000000              
+        EndRepeat = 0x02000000,  
+        Punctuation= 0x04000000            
     }
 
 
@@ -140,7 +141,7 @@ namespace BrailleMusicDecoder
                 case StateEnum.ToMusicOrVersal: allowedInputCategories = InputCategoryEnum.Dot3 | InputCategoryEnum.Character; break;
                 case StateEnum.Music: allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.Dot46; break;
                 case StateEnum.MusicNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.Accidental; break;
-                case StateEnum.MusicNote: allowedInputCategories = InputCategoryEnum.Interval | InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.Dot5 | InputCategoryEnum.Dot46 | InputCategoryEnum.Legato | InputCategoryEnum.BarLine | InputCategoryEnum.FullEnd | InputCategoryEnum.EndRepeat; break; // TODO
+                case StateEnum.MusicNote: allowedInputCategories = InputCategoryEnum.Interval | InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.Dot5 | InputCategoryEnum.Dot46 | InputCategoryEnum.Legato | InputCategoryEnum.BarLine | InputCategoryEnum.FullEnd | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation; break; // TODO
                 case StateEnum.ToLilleBistemme: allowedInputCategories = InputCategoryEnum.LilleBistemmeDot2; break;
                 case StateEnum.ToMeasureDivisionMark: allowedInputCategories = InputCategoryEnum.MeasureDivisionMarkDot13; break;
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
@@ -574,6 +575,13 @@ namespace BrailleMusicDecoder
             {
                 inputValues.Add(thisValue, InputCategoryEnum.BarLine, "Unusual Barline");
             }
+
+
+            if (thisValue == dot3)
+            {
+                inputValues.Add(thisValue, InputCategoryEnum.Punctuation, "Punctuation");
+            }
+
 
 
             switch (thisValue) // Look for digits
