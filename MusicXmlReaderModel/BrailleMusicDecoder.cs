@@ -8,6 +8,7 @@ using MusicXmlReaderModel;
 namespace MusicXmlReaderModel
 {
 
+
     [Flags]
     enum InputCategoryEnum {
         ToWord = 0x0001,
@@ -122,7 +123,7 @@ namespace MusicXmlReaderModel
             StringBuilder sb = new StringBuilder();
             foreach (int i in this.Token.List)
             {
-                sb.Append((char)(i + 0x2800));
+                sb.Append((char)(i + BrailleMusicDecoder.BrailleBase));
             }
             return string.Format("{0,-5} {1}={2} ", sb.ToString(),inputCategory.ToString(), value);
         }
@@ -223,6 +224,7 @@ namespace MusicXmlReaderModel
     /// </summary>
     public class BrailleMusicDecoder
     {
+        public const int BrailleBase = 0x2800; 
         public enum StateEnum { Unknown, Text, TextNumber, TextVersal, Music, ToMusicOrVersal, MusicNumber, MusicNote, ToLilleBistemme, ToMeasureDivisionMark };
         public enum BrailleMusicSubState { Unchanged, Music, Number }; // More to be added
 
@@ -251,7 +253,7 @@ namespace MusicXmlReaderModel
         {
             if (i >= brailleAsUnicode.Length) return null;
             int thisValue = brailleAsUnicode[i];
-            int nextValue = (i+1 >= brailleAsUnicode.Length) ? (0x2800 + noDots) :  brailleAsUnicode[i]; // Insert an empty Braille6 character 
+            int nextValue = (i+1 >= brailleAsUnicode.Length) ? (BrailleBase + noDots) :  brailleAsUnicode[i]; // Insert an empty Braille6 character 
 
           
             if ((10 == thisValue) || (12 == thisValue) || (13 == thisValue))
@@ -284,7 +286,7 @@ namespace MusicXmlReaderModel
             {
                 for (int i = startIndex; (i < endIndex); i++)
                 {
-                    brailleCharacters.Add(brailleAsUnicode[i] - 0x2800);
+                    brailleCharacters.Add(brailleAsUnicode[i] - BrailleBase);
                 }
 
             }
@@ -414,7 +416,7 @@ namespace MusicXmlReaderModel
 
             int thisValue = brailleCharacters.List[0];
 
-            char inputAsUnicode = (char)(thisValue + 0x2800);
+            char inputAsUnicode = (char)(thisValue + BrailleBase);
             if (1 != filteredInputValues.Count)
             {
                 Logger.Log(string.Format(" State={0,-15} Input={1}(i={2,02}) OriginalInputValues = {3}", state.ToString(), inputAsUnicode, thisValue ,inputValues.ToString()));
