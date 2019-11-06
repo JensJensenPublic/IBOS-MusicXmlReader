@@ -130,12 +130,7 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (int i in this.Token.List)
-            {
-                sb.Append((char)(i + BrailleMusicDecoder.BrailleBase));
-            }
-            return string.Format("{0,-5} {1}={2} ", sb.ToString(),inputCategory.ToString(), value);
+            return string.Format("{0,-5} {1}={2} ", token.ToUnicodeString(),inputCategory.ToString(), value);
         }
 
 
