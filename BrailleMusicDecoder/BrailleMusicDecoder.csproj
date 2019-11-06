@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Decoder.cs" />
     <Compile Include="IBrailleMusicDecoderLogger.cs" />
+    <Compile Include="InputInterpretation.cs" />
+    <Compile Include="InputInterpretationList.cs" />
     <Compile Include="IntegerList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
