@@ -41,49 +41,69 @@ namespace MusicXmlReaderModel
         private List<int> list = new List<int>();
         public List<int> List { get { return list;} }
         public int Count { get { return list.Count; } }
-        public IntegerList()
-        { }
+        public IntegerList() { }
+        public IntegerList(int i)
+        {
+            this.list.Add(i);
+        }
+        public IntegerList(int i0, int i1)
+        {
+            this.list.Add(i0);
+            this.list.Add(i1);
+        }
+
         public void Add(int i)
         {
             list.Add(i);
         }
 
-        public bool StartsWith(int i)
+        public bool StartsWith(IntegerList sequence)
         {
-            if (list.Count < 1) return false;
-            if (list[0] != i) return false;
+            if (this.list.Count < sequence.Count) return false;
+            for(int i = 0 ; ( i < sequence.Count) ; i++)
+            {
+                if (this.list[i] != sequence.list[i]) return false;
+            }
             return true;
         }
 
-        public bool StartsWith(int i0, int i1)
-        {
-            if (list.Count < 2) return false;
-            if (list[0] != i0) return false;
-            if (list[1] != i1) return false;
-            return true;
-        }
+        //public bool StartsWith(int i)
+        //{
+        //    if (list.Count < 1) return false;
+        //    if (list[0] != i) return false;
+        //    return true;
+        //}
 
-        public bool StartsWith(int i0, int i1, int i2)
-        {
-            if (list.Count < 3) return false;
-            if (list[0] != i0) return false;
-            if (list[1] != i1) return false;
-            if (list[2] != i2) return false;
-            return true;
-        }
+        //public bool StartsWith(int i0, int i1)
+        //{
+        //    if (list.Count < 2) return false;
+        //    if (list[0] != i0) return false;
+        //    if (list[1] != i1) return false;
+        //    return true;
+        //}
+
+        //public bool StartsWith(int i0, int i1, int i2)
+        //{
+        //    if (list.Count < 3) return false;
+        //    if (list[0] != i0) return false;
+        //    if (list[1] != i1) return false;
+        //    if (list[2] != i2) return false;
+        //    return true;
+        //}
 
     }
 
 
     class InputInterpretation
     {
-        private int tokenLength = 1; // Default
-        public int TokenLength { get { return tokenLength; } }
+        private IntegerList token;
+        public IntegerList Token { get { return token; } }
+        public int TokenLength { get { return token.List.Count; } }
         private InputCategoryEnum inputCategory;
         private string value;
-        public InputInterpretation(int tokenLength, InputCategoryEnum inputCategory, string value)
+        public InputInterpretation(IntegerList token, InputCategoryEnum inputCategory, string value)
         {
-            this.tokenLength = tokenLength;
+            this.token = token;
             this.inputCategory = inputCategory;
             this.value = value;
         }
@@ -99,7 +119,12 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-            return string.Format(" {0}={1} ", inputCategory.ToString(), value);
+            StringBuilder sb = new StringBuilder();
+            foreach (int i in this.Token.List)
+            {
+                sb.Append((char)(i + 0x2800));
+            }
+            return string.Format("{0,-5} {1}={2} ", sb.ToString(),inputCategory.ToString(), value);
         }
 
 
@@ -124,14 +149,14 @@ namespace MusicXmlReaderModel
             inputValues.Add(inputValue);
         }
 
-        public void Add(InputCategoryEnum category, string value)
+        public void Add(int token,InputCategoryEnum category, string value)
         {
-            Add(new InputInterpretation(1,category, value));
+            Add(new InputInterpretation(new IntegerList(token),category, value));
         }
 
-        public void Add(int tokenLength,InputCategoryEnum category, string value)
+        public void Add(IntegerList token,InputCategoryEnum category, string value)
         {
-            Add(new InputInterpretation(tokenLength, category, value));
+            Add(new InputInterpretation(token, category, value));
         }
 
         public InputValueList Filter(InputCategoryEnum allowedInputCategories)
@@ -545,7 +570,7 @@ namespace MusicXmlReaderModel
                     case none: typeName = "1/8"; break;
                 }
                 stepAndType = stepName + typeName;
-                inputValues.Add(InputCategoryEnum.Note, stepAndType);                
+                inputValues.Add(thisValue,InputCategoryEnum.Note, stepAndType);                
             }
 
             switch (thisValue) // Look for octave marks
@@ -569,7 +594,7 @@ namespace MusicXmlReaderModel
                 case dot6:  octave = "7";  break;
                 default: break;
             }
-            inputValues.Add(InputCategoryEnum.Octave, octave);
+            inputValues.Add(thisValue, InputCategoryEnum.Octave, octave);
 
             // This was not an octave sign. Continue:
 
@@ -581,7 +606,7 @@ namespace MusicXmlReaderModel
                 case dot1 | dot3 | dot4 | dot6: rest = "R1/8"; break;
                 default: break;
             }
-            inputValues.Add(InputCategoryEnum.Rest, rest);
+            inputValues.Add(thisValue, InputCategoryEnum.Rest, rest);
 
             switch (thisValue) // Look for accidentals
             {
@@ -595,7 +620,7 @@ namespace MusicXmlReaderModel
                 case dot1 | dot6: accidental = "Natural"; break;
                 default: break;
             }
-            inputValues.Add(InputCategoryEnum.Accidental, accidental);
+            inputValues.Add(thisValue, InputCategoryEnum.Accidental, accidental);
 
             switch (thisValue) // Look for finger
             {
@@ -605,7 +630,7 @@ namespace MusicXmlReaderModel
                 case dot1 | dot3: finger = "5"; break;
                 case dot1 | dot2 | dot3: finger = "3"; break;
             }
-            inputValues.Add(InputCategoryEnum.Finger, finger);
+            inputValues.Add(thisValue, InputCategoryEnum.Finger, finger);
 
 
             switch (thisValue) // Look for interval
@@ -618,7 +643,7 @@ namespace MusicXmlReaderModel
                 case dot2 | dot5: interval = "Seventh"; break;
                 case dot3 | dot6: interval = "Octave"; break;
             }
-            inputValues.Add(InputCategoryEnum.Interval, interval);
+            inputValues.Add(thisValue, InputCategoryEnum.Interval, interval);
 
 
 
@@ -636,40 +661,40 @@ namespace MusicXmlReaderModel
                 case dot2 | dot3 | dot6: otherValues = "Staccato"; break;
 //                case dot2 | dot5 | dot6: otherValues = "DoublebeatOnNote"; break; // For the time being we omit this because it clashes with 4 lowered in 4/4
             }
-            inputValues.Add(InputCategoryEnum.OtherValues, otherValues);
+            inputValues.Add(thisValue, InputCategoryEnum.OtherValues, otherValues);
 
             if (thisValue == (dot3 | dot4 | dot5 | dot6))
             {
-                inputValues.Add(InputCategoryEnum.ToNumber, "Number");
+                inputValues.Add(thisValue, InputCategoryEnum.ToNumber, "Number");
             }
 
             if (thisValue == (dot3 | dot4 | dot5 ))
             {
-                inputValues.Add(InputCategoryEnum.ToWord, "Word");
+                inputValues.Add(thisValue, InputCategoryEnum.ToWord, "Word");
             }
 
             if (thisValue == (dot6))
             {
-                inputValues.Add(InputCategoryEnum.Dot6, "Dot6");
+                inputValues.Add(thisValue, InputCategoryEnum.Dot6, "Dot6");
             }
 
             if (thisValue == (dot3))
             {
-                inputValues.Add(InputCategoryEnum.Dot3, "Dot3");
+                inputValues.Add(thisValue, InputCategoryEnum.Dot3, "Dot3");
             }
 
             if (thisValue == (dot5))
             {
                 if (Dot5IsLilleBistemme(nextValue))
                 {
-                    inputValues.Add(InputCategoryEnum.Dot5, "ToLilleBistemme"); // First part of mark for "Lille Bistemme"
+                    inputValues.Add(thisValue, InputCategoryEnum.Dot5, "ToLilleBistemme"); // First part of mark for "Lille Bistemme"
                 }
             }
 
 
             if (thisValue == (dot2))
             {
-                inputValues.Add(InputCategoryEnum.LilleBistemmeDot2, "LilleBistemmeDot2"); // Second part of mark for "Lille Bistemme"
+                inputValues.Add(thisValue, InputCategoryEnum.LilleBistemmeDot2, "LilleBistemmeDot2"); // Second part of mark for "Lille Bistemme"
             }
 
 
@@ -678,34 +703,34 @@ namespace MusicXmlReaderModel
 
                 if (Dot46IsMeasureDivisionMark(nextValue))
                 {
-                    inputValues.Add(InputCategoryEnum.Dot46, "MeasureDivisionMark"); // First part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
+                    inputValues.Add(thisValue, InputCategoryEnum.Dot46, "MeasureDivisionMark"); // First part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
                 }
             }
 
             if (thisValue == (dot1 | dot3))
             {
-                inputValues.Add(InputCategoryEnum.MeasureDivisionMarkDot13, "MeasureDivisionMarkDot13"); // Second part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
+                inputValues.Add(thisValue, InputCategoryEnum.MeasureDivisionMarkDot13, "MeasureDivisionMarkDot13"); // Second part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
             }
 
             if (thisValue == (dot1 | dot4))
             {
-                inputValues.Add(InputCategoryEnum.Legato, "Legato");
+                inputValues.Add(thisValue, InputCategoryEnum.Legato, "Legato");
             }
 
 
             if (thisValue == noDots)
             {
-                inputValues.Add(InputCategoryEnum.Space, "SPACE");
+                inputValues.Add(thisValue, InputCategoryEnum.Space, "SPACE");
             }
 
             if (thisValue == noDots)
             {
-                inputValues.Add(InputCategoryEnum.NewMeasure, "NewMeasure");
+                inputValues.Add(thisValue, InputCategoryEnum.NewMeasure, "NewMeasure");
             }
 
             if (thisValue == (dot1 | dot2 | dot3))
             {
-                inputValues.Add(InputCategoryEnum.BarLine, "Unusual Barline");
+                inputValues.Add(thisValue, InputCategoryEnum.BarLine, "Unusual Barline");
             }
 
 
@@ -722,7 +747,7 @@ namespace MusicXmlReaderModel
                 case 10: digit = "9"; break;
             }
 
-            inputValues.Add(InputCategoryEnum.Digit, digit);
+            inputValues.Add(thisValue, InputCategoryEnum.Digit, digit);
 
             switch (thisValue) // Look for denominators, i.e numbers lowered one position
             {
@@ -737,20 +762,23 @@ namespace MusicXmlReaderModel
                 case 20: denominator = "/9"; break;
             }
 
-            inputValues.Add(InputCategoryEnum.Denominator, denominator);
+            inputValues.Add(thisValue, InputCategoryEnum.Denominator, denominator);
 
             
             string character = GetCharacter(thisValue);
             if (null != character)
             {
-                inputValues.Add(InputCategoryEnum.Character, character);
+                inputValues.Add(thisValue, InputCategoryEnum.Character, character);
             }
 
+            // Now follows interpretations based on more than a single Braille character
+
             //if ((rawValues.Count >= 4) && (rawValues[0] == dot6) && (rawValues[1] == dot3) && (rawValues[2] == (dot1 | dot2 | dot6) && (rawValues[3] == (dot2 | dot3))))
-//            if ((rawValues.Count >= 2)  && (rawValues[0] == (dot1 | dot2 | dot6) && (rawValues[1] == (dot1 | dot3))))
-            if (rawValues.StartsWith((dot1 | dot2 | dot6), (dot1 | dot3)))
+            //            if ((rawValues.Count >= 2)  && (rawValues[0] == (dot1 | dot2 | dot6) && (rawValues[1] == (dot1 | dot3))))
+            IntegerList fullEndSequence = new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3));
+            if (rawValues.StartsWith(fullEndSequence))
             {
-                    inputValues.Add(2,InputCategoryEnum.FullEnd, "FullEnd");
+                    inputValues.Add(fullEndSequence,InputCategoryEnum.FullEnd, "FullEnd");
             }
        
 
