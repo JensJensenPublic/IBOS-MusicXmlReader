@@ -151,11 +151,14 @@ namespace BrailleMusicDecoder
             InputInterpretationList inputValues = GetInputInterpretations(brailleCharacters); // Get a list of all possible input values independent of the current state.
             InputCategoryEnum allowedInputCategories = 0;
 
+            // Define some shorthand values to be used in the case below
+            InputCategoryEnum allowedInTextStates = InputCategoryEnum.Character | InputCategoryEnum.ToTextVersal | InputCategoryEnum.ToNumber | InputCategoryEnum.ToMusic;
+
             switch (state)
             {
-                case StateEnum.Text: allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.ToTextVersal | InputCategoryEnum.ToNumber | InputCategoryEnum.ToMusic; break;
-                case StateEnum.TextVersal: allowedInputCategories = InputCategoryEnum.Character | InputCategoryEnum.ToTextVersal | InputCategoryEnum.ToNumber | InputCategoryEnum.ToMusic; break;
-                case StateEnum.TextNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.ToTextVersal | InputCategoryEnum.ToMusic; break;
+                case StateEnum.Text:        allowedInputCategories = allowedInTextStates; break;
+                case StateEnum.TextVersal:  allowedInputCategories = allowedInTextStates; break;
+                case StateEnum.TextNumber:  allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.ToTextVersal | InputCategoryEnum.ToMusic; break;
 //                case StateEnum.ToMusicOrVersal: allowedInputCategories = InputCategoryEnum.Dot3 | InputCategoryEnum.Character; break;
                 case StateEnum.Music: allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.Dot46; break;
                 case StateEnum.MusicNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.Accidental; break;
