@@ -18,7 +18,7 @@ namespace BrailleMusicDecoder
         Finger = 0x0800,
         OtherValues = 0x1000,
         Denominator = 0x2000,
-        Dot3 = 0x4000,
+//        Dot3 = 0x4000,
         Space = 0x00010000,
         NewMeasure = 0x00020000,
         Legato = 0x00400000,
@@ -263,55 +263,20 @@ namespace BrailleMusicDecoder
             }
             allInputInterpretations.Add(thisValue, InputCategoryEnum.OtherValues, otherValues);
 
-            if (thisValue == (dot3 | dot4 | dot5 | dot6))
-            {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.ToNumber);
-            }
-
-            if (thisValue == (dot3 | dot4 | dot5))
-            {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.ToWord, "");
-            }
-
+            // Add some simple obe-character tokens if present
+            allInputInterpretations.Add(thisValue, (dot3 | dot4 | dot5 | dot6),  InputCategoryEnum.ToNumber);
+            allInputInterpretations.Add(thisValue, (dot3 | dot4 | dot5), InputCategoryEnum.ToWord);
+            allInputInterpretations.Add(thisValue, (dot1 | dot4), InputCategoryEnum.Legato); 
+            allInputInterpretations.Add(thisValue, noDots, InputCategoryEnum.Space);
+            allInputInterpretations.Add(thisValue, noDots, InputCategoryEnum.NewMeasure);            
+            allInputInterpretations.Add(thisValue, (dot1 | dot2 | dot3), InputCategoryEnum.BarLine); 
+            allInputInterpretations.Add(thisValue, dot3, InputCategoryEnum.Punctuation);
+ 
             if ((thisValue == (dot6)) && (nextValue != dot3)) // Avoid clash with ToMusic
             {
                 allInputInterpretations.Add(thisValue, InputCategoryEnum.ToTextVersal);
             }
-
-            if (thisValue == (dot3))
-            {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.Dot3);
-            }
-
-
-            if (thisValue == (dot1 | dot4))
-            {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.Legato);
-            }
-
-            if (thisValue == noDots)
-            {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.Space);
-            }
-
-            if (thisValue == noDots)
-            {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.NewMeasure);
-            }
-
-            if (thisValue == (dot1 | dot2 | dot3))
-            {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.BarLine);
-            }
-
-
-            if (thisValue == dot3)
-            {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.Punctuation);
-            }
-
-
-
+            
             switch (thisValue) // Look for digits
             {
                 case 01: digit = "1"; break;
