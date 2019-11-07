@@ -631,25 +631,25 @@ namespace BrailleMusicDecoder
             IntegerList fullEndSequence = new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3));
             if (rawValues.StartsWith(fullEndSequence))
             {
-                allInputInterpretations.Add(fullEndSequence, InputCategoryEnum.FullEnd, "FullEnd");
+                allInputInterpretations.Add(fullEndSequence, InputCategoryEnum.FullEnd, "");
             }
 
             IntegerList endRepeatSequence = new IntegerList((dot1 | dot2 | dot6), (dot2 | dot3));
             if (rawValues.StartsWith(endRepeatSequence))
             {
-                allInputInterpretations.Add(endRepeatSequence, InputCategoryEnum.EndRepeat, "RepeatEnd");
+                allInputInterpretations.Add(endRepeatSequence, InputCategoryEnum.EndRepeat, "");
             }
 
             IntegerList musicBrailleSequence = new IntegerList((dot6), (dot3));
             if (rawValues.StartsWith(musicBrailleSequence))
             {
-                allInputInterpretations.Add(musicBrailleSequence, InputCategoryEnum.ToMusic, "ToMusicBraille");
+                allInputInterpretations.Add(musicBrailleSequence, InputCategoryEnum.ToMusic, "");
             }
 
             IntegerList measureDivisionMarkSequence = new IntegerList((dot4 | dot6), (dot1 | dot3));
             if (rawValues.StartsWith(measureDivisionMarkSequence))
             {
-                allInputInterpretations.Add(measureDivisionMarkSequence, InputCategoryEnum.MeasureDivision, "MeasureDivision");
+                allInputInterpretations.Add(measureDivisionMarkSequence, InputCategoryEnum.MeasureDivision, "");
             }
 
 
