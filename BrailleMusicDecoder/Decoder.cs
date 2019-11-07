@@ -129,9 +129,9 @@ namespace BrailleMusicDecoder
                 case StateEnum.Text:        allowedInputCategories = allowedInTextStates; break;
                 case StateEnum.TextVersal:  allowedInputCategories = allowedInTextStates; break;
                 case StateEnum.TextNumber:  allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.TextVersal | InputCategoryEnum.ToMusic; break;
-                case StateEnum.Music:       allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Number | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure; break;
+                case StateEnum.Music:       allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Number | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.InAccordFullMeasure; break;
                 case StateEnum.MusicNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.Accidental; break;
-                case StateEnum.MusicNote:   allowedInputCategories = InputCategoryEnum.Interval | InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.Legato | InputCategoryEnum.BarLine | InputCategoryEnum.FullEnd | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation; break; // TODO
+                case StateEnum.MusicNote:   allowedInputCategories = InputCategoryEnum.Interval | InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.InAccordFullMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.Legato | InputCategoryEnum.BarLine | InputCategoryEnum.FullEnd | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation; break; // TODO
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
             }
 
@@ -198,19 +198,19 @@ namespace BrailleMusicDecoder
                 case StateEnum.MusicNote:
                     if (filteredInputValues.Contains(InputCategoryEnum.NewMeasure))
                     {
-                        newState = StateEnum.Music;
+                        newState = StateEnum.Music; // No change, probably not needed
                     }
 
                     if (filteredInputValues.Contains(InputCategoryEnum.InAccordPartMeasure))
                     {
-                        newState = StateEnum.MusicNote;
+                        newState = StateEnum.MusicNote; // No change, probably not needed
                     }
 
-                    //if (filteredInputValues.Contains(InputCategoryEnum.MeasureDivision))
-                    //{
-                    //    newState = StateEnum.MusicNote;
-                    //}         
-
+                    if (filteredInputValues.Contains(InputCategoryEnum.InAccordFullMeasure))
+                    {
+                        newState = StateEnum.MusicNote; // No change, probably not needed
+                    }
+       
 
                     break;
 

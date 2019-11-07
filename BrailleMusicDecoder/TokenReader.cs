@@ -26,8 +26,9 @@ namespace BrailleMusicDecoder
         EndRepeat = 0x02000000,
         Punctuation = 0x04000000,
         ToMusic = 0x08000000,
-        MeasureDivision = 0x10000000,    // Danish "Skilletegn"   
-        InAccordPartMeasure = 0x20000000 // Dansih: "Lille bistemme"
+        MeasureDivision = 0x10000000,     // Danish "Skilletegn"   
+        InAccordPartMeasure = 0x20000000, // Dansih: "Lille bistemme"
+        InAccordFullMeasure = 0x40000000  // Dansih: "Stor bistemme"
     }
 
     class TokenReader
@@ -317,7 +318,8 @@ namespace BrailleMusicDecoder
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot2 | dot3)), InputCategoryEnum.EndRepeat);
             allInputInterpretations.Add(rawValues, new IntegerList((dot6), (dot3)), InputCategoryEnum.ToMusic);
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot1 | dot3)), InputCategoryEnum.MeasureDivision);
-            allInputInterpretations.Add(rawValues, new IntegerList((dot5), (dot2)), InputCategoryEnum.InAccordPartMeasure);   
+            allInputInterpretations.Add(rawValues, new IntegerList((dot5), (dot2)), InputCategoryEnum.InAccordPartMeasure);
+            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.InAccordFullMeasure);
 
             return allInputInterpretations;
         }
