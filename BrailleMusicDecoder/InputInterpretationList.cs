@@ -21,7 +21,7 @@ namespace BrailleMusicDecoder
 
         public void Add(InputInterpretation inputValue)
         {
-            if (string.IsNullOrEmpty(inputValue.Value)) return;
+            if (null == inputValue.Value) return;
             inputInterpretations.Add(inputValue);
         }
 
