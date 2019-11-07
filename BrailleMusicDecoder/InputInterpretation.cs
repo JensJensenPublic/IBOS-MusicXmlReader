@@ -42,7 +42,7 @@
         /// <returns></returns>
         public override string ToString()
         {
-            string valueString = string.IsNullOrEmpty(value) ? "" : string.Format("={0}", value); // Only show the '=' if a value follows !
+            string valueString = string.IsNullOrEmpty(value) ? "" : string.Format("='{0}'", value); // Only show the '=' if a value follows !
             return string.Format("{0,-5} {1}{2} ", token.ToUnicodeString(), inputCategory.ToString(), valueString);
         }
 
