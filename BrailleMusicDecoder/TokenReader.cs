@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BrailleMusicDecoder
 {
-
-
     [Flags]
     enum InputCategoryEnum
     {
@@ -37,10 +31,8 @@ namespace BrailleMusicDecoder
         InAccordPartMeasure = 0x20000000 // Dansih: Lille bistemme
     }
 
-
     class TokenReader
     {
-
         // Some basic, general definitions
         public const int BrailleBase = 0x2800;
         public const byte noDots = 0;
@@ -56,8 +48,6 @@ namespace BrailleMusicDecoder
         const int dot1245 = dot1 | dot2 | dot4 | dot5; // For isolating values representing note steps
         const int dot36 = dot3 | dot6; // For isolating type
 
-
-
         /// <summary>
         /// After receiving dot5 it is not possible to determine the next state and ths output without knowig the next value:
         /// If it is Dot2 wh have the sequenec dot5, dot2, which is the signature of Lille Bistemme.
@@ -69,14 +59,12 @@ namespace BrailleMusicDecoder
         {
             return (nextValue == dot2);
         }
-
-
+        
         private bool Dot46IsMeasureDivisionMark(int nextValue)
         {
             return (nextValue == (dot1 | dot3));
         }
-
-
+        
         private string GetCharacter(int i)
         {
             switch (i)
@@ -123,7 +111,6 @@ namespace BrailleMusicDecoder
                 case 36: return "-";
                 default: return null;
             }
-
         }
 
 
@@ -337,7 +324,6 @@ namespace BrailleMusicDecoder
                 case 19: digit = "8"; break;
                 case 10: digit = "9"; break;
             }
-
             allInputInterpretations.Add(thisValue, InputCategoryEnum.Digit, digit);
 
             switch (thisValue) // Look for denominators, i.e numbers lowered one position
@@ -352,7 +338,6 @@ namespace BrailleMusicDecoder
                 case 38: denominator = "/8"; break;
                 case 20: denominator = "/9"; break;
             }
-
             allInputInterpretations.Add(thisValue, InputCategoryEnum.Denominator, denominator);
 
 
@@ -394,13 +379,9 @@ namespace BrailleMusicDecoder
                 allInputInterpretations.Add(inAccordPartMeasureSequence, InputCategoryEnum.InAccordPartMeasure, "");
             }
 
-
             return allInputInterpretations;
-
         }
-
-
-
+        
         private TokenReader()
         {}
 

@@ -1,18 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BrailleMusicDecoder
 {
-
-
-
- 
-
-
-
     /// <summary>
     /// 
     /// NOTE!!! This is a primitive initial implementation, only lookin k for a transition from StateEnum.Text to StateEnum.Music  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -23,8 +12,6 @@ namespace BrailleMusicDecoder
     /// </summary>
     public class Decoder
     {
-
-
         /// <summary>
         /// The current decoding-state.
         /// The state determines which tokens are accepted as input and how to interpret them
@@ -259,17 +246,11 @@ namespace BrailleMusicDecoder
             return filteredInputValues;
 
         }
-        
-
-
+  
         private string DigitToString(int i)
         {
             return "DIGIT";
-        }
-
-
-
-   
+        } 
 
         private string Format(string s)
         {
@@ -280,7 +261,6 @@ namespace BrailleMusicDecoder
         {
             return (string.IsNullOrEmpty(s) ? "" : " " + prefix + s);
         }
-
 
         //
         // Constructors
@@ -299,7 +279,6 @@ namespace BrailleMusicDecoder
             this.tokenReader = TokenReader.Create();
         }
 
-
         public static Decoder Create()
         {
             return new Decoder();
@@ -309,7 +288,5 @@ namespace BrailleMusicDecoder
         {
             return new Decoder(initialState, brailleAsUnicode,logger);
         }
-
-
     }
 }
