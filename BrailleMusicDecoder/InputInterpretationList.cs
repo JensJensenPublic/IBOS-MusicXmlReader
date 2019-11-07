@@ -30,6 +30,11 @@ namespace BrailleMusicDecoder
             Add(new InputInterpretation(new IntegerList(token), category, value));
         }
 
+        public void Add(int token, InputCategoryEnum category)
+        {
+            Add(new InputInterpretation(new IntegerList(token), category, ""));
+        }
+
         public void Add(IntegerList token, InputCategoryEnum category, string value)
         {
             Add(new InputInterpretation(token, category, value));

@@ -518,7 +518,7 @@ namespace BrailleMusicDecoder
 
             if (thisValue == (dot3 | dot4 | dot5 | dot6))
             {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.ToNumber, "");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.ToNumber);
             }
 
             if (thisValue == (dot3 | dot4 | dot5 ))
@@ -528,26 +528,26 @@ namespace BrailleMusicDecoder
 
             if ((thisValue == (dot6)) && (nextValue != dot3)) // Avoid clash with ToMusic
             {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.ToTextVersal, "");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.ToTextVersal);
             }
 
             if (thisValue == (dot3))
             {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.Dot3, "");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.Dot3);
             }
 
             if (thisValue == (dot5))
             {
                 if (Dot5IsLilleBistemme(nextValue))
                 {
-                    allInputInterpretations.Add(thisValue, InputCategoryEnum.Dot5, ""); // First part of mark for "Lille Bistemme"
+                    allInputInterpretations.Add(thisValue, InputCategoryEnum.Dot5); // First part of mark for "Lille Bistemme"
                 }
             }
 
 
             if (thisValue == (dot2))
             {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.LilleBistemmeDot2, ""); // Second part of mark for "Lille Bistemme"
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.LilleBistemmeDot2); // Second part of mark for "Lille Bistemme"
             }
 
 
@@ -556,40 +556,40 @@ namespace BrailleMusicDecoder
 
                 if (Dot46IsMeasureDivisionMark(nextValue))
                 {
-                    allInputInterpretations.Add(thisValue, InputCategoryEnum.Dot46, ""); // First part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
+                    allInputInterpretations.Add(thisValue, InputCategoryEnum.Dot46); // First part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
                 }
             }
 
             if (thisValue == (dot1 | dot3))
             {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.MeasureDivisionMarkDot13, ""); // Second part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.MeasureDivisionMarkDot13); // Second part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
             }
 
             if (thisValue == (dot1 | dot4))
             {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.Legato, "");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.Legato);
             }
 
 
             if (thisValue == noDots)
             {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.Space, "");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.Space);
             }
 
             if (thisValue == noDots)
             {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.NewMeasure, "");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.NewMeasure);
             }
 
             if (thisValue == (dot1 | dot2 | dot3))
             {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.BarLine, "");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.BarLine);
             }
 
 
             if (thisValue == dot3)
             {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.Punctuation, "");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.Punctuation);
             }
 
 
