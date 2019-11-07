@@ -51,9 +51,8 @@ namespace BrailleMusicDecoder
     /// </summary>
     public class Decoder
     {
-        public const int BrailleBase = 0x2800; 
-        public enum StateEnum { Unknown, Text, TextNumber, TextVersal, Music, MusicNumber, MusicNote };
- 
+        // Some basic, general definitions
+        public const int BrailleBase = 0x2800;  
         const byte noDots = 0;
         const byte dot1 = 0x01;
         const byte dot2 = 0x02;
@@ -67,9 +66,31 @@ namespace BrailleMusicDecoder
         const int dot1245 = dot1 | dot2 | dot4 | dot5; // For isolating values representing note steps
         const int dot36 = dot3 | dot6; // For isolating type
 
-        IBrailleMusicDecoderLogger logger;
+
+        /// <summary>
+        /// The current decoding-state.
+        /// The state determines which tokens are accepted as input and how to interpret them
+        /// </summary>
+        public enum StateEnum
+        {
+            Unknown,    // The current way of decoding has not yet been established
+            Text,       // Decoding as lower-case text
+            TextNumber, // Decoding as digits while decoding text
+            TextVersal, // Decoding as upper-case text
+            Music,      // Decoding as Music, but not while decoding a note
+            MusicNumber,// Decoding as digits while decoding music
+            MusicNote   // Decoding as a note while decoding music 
+        };
+
         StateEnum state = StateEnum.Unknown;
-        string brailleAsUnicode;
+
+        IBrailleMusicDecoderLogger logger;  // Used for simple logging   
+        string brailleAsUnicode; // The Unicode string to decode
+
+
+        //
+        // Simple convenience methods
+        //
 
         public void ResetState()
         {
@@ -91,6 +112,20 @@ namespace BrailleMusicDecoder
                 default: return string.Format("Unexpected character = 0x{0:X04}", c);
             }
         }
+
+        /// <summary>
+        /// Pass the call to the object specified during creation!
+        /// </summary>
+        /// <param name="s"></param>
+        private void Log(string s)
+        {
+            logger.Log(s);
+        }
+
+
+        //
+        // The main logic:
+        //
 
 
         public string GetNextToken(ref int i)
@@ -123,14 +158,7 @@ namespace BrailleMusicDecoder
             return result.ToString();
         }
 
-        /// <summary>
-        /// Pass the call to the object specified during creation!
-        /// </summary>
-        /// <param name="s"></param>
-        private void Log(string s)
-        {
-            logger.Log(s);
-        }
+
 
         private InputInterpretationList ToTokenList(int startIndex)
         {
@@ -630,6 +658,10 @@ namespace BrailleMusicDecoder
             return (string.IsNullOrEmpty(s) ? "" : " " + prefix + s);
         }
 
+
+        //
+        // Constructors
+        //
 
         private Decoder()
         {
