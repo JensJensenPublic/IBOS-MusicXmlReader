@@ -35,9 +35,17 @@ namespace BrailleMusicDecoder
             Add(new InputInterpretation(new IntegerList(token), category, ""));
         }
 
-        public void Add(IntegerList token, InputCategoryEnum category, string value)
+        private void Add(IntegerList token, InputCategoryEnum category, string value)
         {
             Add(new InputInterpretation(token, category, value));
+        }
+
+        public void Add(IntegerList rawValues, IntegerList token, InputCategoryEnum category)
+        {
+            if (rawValues.StartsWith(token))
+            {
+                this.Add(token, category, "");
+            } 
         }
 
         /// <summary>

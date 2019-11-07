@@ -349,35 +349,11 @@ namespace BrailleMusicDecoder
 
             // Now follows interpretations based on more than a single Braille character
 
-            IntegerList fullEndSequence = new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3));
-            if (rawValues.StartsWith(fullEndSequence))
-            {
-                allInputInterpretations.Add(fullEndSequence, InputCategoryEnum.FullEnd, "");
-            }
-
-            IntegerList endRepeatSequence = new IntegerList((dot1 | dot2 | dot6), (dot2 | dot3));
-            if (rawValues.StartsWith(endRepeatSequence))
-            {
-                allInputInterpretations.Add(endRepeatSequence, InputCategoryEnum.EndRepeat, "");
-            }
-
-            IntegerList musicBrailleSequence = new IntegerList((dot6), (dot3));
-            if (rawValues.StartsWith(musicBrailleSequence))
-            {
-                allInputInterpretations.Add(musicBrailleSequence, InputCategoryEnum.ToMusic, "");
-            }
-
-            IntegerList measureDivisionMarkSequence = new IntegerList((dot4 | dot6), (dot1 | dot3));
-            if (rawValues.StartsWith(measureDivisionMarkSequence))
-            {
-                allInputInterpretations.Add(measureDivisionMarkSequence, InputCategoryEnum.MeasureDivision, "");
-            }
-
-            IntegerList inAccordPartMeasureSequence = new IntegerList((dot5), (dot2));
-            if (rawValues.StartsWith(inAccordPartMeasureSequence))
-            {
-                allInputInterpretations.Add(inAccordPartMeasureSequence, InputCategoryEnum.InAccordPartMeasure, "");
-            }
+            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3)), InputCategoryEnum.FullEnd);
+            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot2 | dot3)), InputCategoryEnum.EndRepeat);
+            allInputInterpretations.Add(rawValues, new IntegerList((dot6), (dot3)), InputCategoryEnum.ToMusic);
+            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot1 | dot3)), InputCategoryEnum.MeasureDivision);
+            allInputInterpretations.Add(rawValues, new IntegerList((dot5), (dot2)), InputCategoryEnum.InAccordPartMeasure);   
 
             return allInputInterpretations;
         }
