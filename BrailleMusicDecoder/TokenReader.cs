@@ -40,7 +40,6 @@ namespace BrailleMusicDecoder
 
     class TokenReader
     {
-        private string brailleAsUnicode;
 
         // Some basic, general definitions
         public const int BrailleBase = 0x2800;
@@ -402,14 +401,12 @@ namespace BrailleMusicDecoder
 
 
 
-        private TokenReader(string brailleAsUnicode)
-        {
-            this.brailleAsUnicode = brailleAsUnicode;
-        }
+        private TokenReader()
+        {}
 
-        public static TokenReader Create(string brailleAsUnicode)
+        public static TokenReader Create()
         {
-            return new TokenReader(brailleAsUnicode);
+            return new TokenReader();
         }
     }
 }

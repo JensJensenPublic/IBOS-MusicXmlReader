@@ -296,7 +296,7 @@ namespace BrailleMusicDecoder
             state = initialState;
             this.brailleAsUnicode = brailleAsUnicode;
             this.logger = logger;
-            this.tokenReader = TokenReader.Create(brailleAsUnicode);
+            this.tokenReader = TokenReader.Create();
         }
 
 
