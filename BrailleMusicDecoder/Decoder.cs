@@ -78,23 +78,41 @@ namespace BrailleMusicDecoder
         {
             state = StateEnum.Text;
         }
-        
+
+        private bool IsBraille6(int c)
+        {
+            return (((c >= BrailleBase) && (c <= BrailleBase + 63))); 
+        }
+
+        private string NonBrailleInterpretation(int c)
+        {
+            switch (c)
+            {
+                case 10: return "10 (LF)";
+                case 12: return "12 (FF)";
+                case 13: return "13 (CR)";
+                default: return string.Format("Unexpected character = 0x{0:X04}", c);
+            }
+        }
+
+
         public string GetNextToken(ref int i)
         {
-            if (i >= brailleAsUnicode.Length) return null;
+            if ((i<0) || (i >= brailleAsUnicode.Length)) return null; // Outside the array of input characters
             int thisValue = brailleAsUnicode[i];
             int nextValue = (i+1 >= brailleAsUnicode.Length) ? (BrailleBase + noDots) :  brailleAsUnicode[i]; // Insert an empty Braille6 character 
 
-          
-            if ((10 == thisValue) || (12 == thisValue) || (13 == thisValue))
+            // Immediately get rid of characters outside the Unicode Braille6 interval [0x2800..0x283f]
+            if (!IsBraille6(thisValue))
             {
                 i += 1;
-                return string.Format("{0}", thisValue);
+                return NonBrailleInterpretation(thisValue);
             }
 
+            // Get a list of ALL POSSIBLE interpretations of the next token
             InputInterpretationList result = ToTokenList(i);
 
-            int tokenLength = 1; // Default, if we can not determine an interpretation.
+            int tokenLength = 1; // Default, if we can not determine an interpretation we just continue to the next input character
             if (1 == result.Count)
             {
                 tokenLength = result.InputInterpretations[0].TokenLength;
@@ -367,7 +385,7 @@ namespace BrailleMusicDecoder
             int thisValue = rawValues.List[0];
             int nextValue = (rawValues.Count > 1) ? rawValues.List[1] : 0x27ff; // An illecgal value
 
-            InputInterpretationList inputValues = new InputInterpretationList(rawValues);
+            InputInterpretationList allInputInterpretations = new InputInterpretationList(rawValues);
 
             // Internal variables
 
@@ -411,7 +429,7 @@ namespace BrailleMusicDecoder
                     case none: typeName = "1/8"; break;
                 }
                 stepAndType = stepName + typeName;
-                inputValues.Add(thisValue,InputCategoryEnum.Note, stepAndType);                
+                allInputInterpretations.Add(thisValue,InputCategoryEnum.Note, stepAndType);                
             }
 
             switch (thisValue) // Look for octave marks
@@ -435,7 +453,7 @@ namespace BrailleMusicDecoder
                 case dot6:  octave = "7";  break;
                 default: break;
             }
-            inputValues.Add(thisValue, InputCategoryEnum.Octave, octave);
+            allInputInterpretations.Add(thisValue, InputCategoryEnum.Octave, octave);
 
             // This was not an octave sign. Continue:
 
@@ -447,7 +465,7 @@ namespace BrailleMusicDecoder
                 case dot1 | dot3 | dot4 | dot6: rest = "R1/8"; break;
                 default: break;
             }
-            inputValues.Add(thisValue, InputCategoryEnum.Rest, rest);
+            allInputInterpretations.Add(thisValue, InputCategoryEnum.Rest, rest);
 
             switch (thisValue) // Look for accidentals
             {
@@ -462,7 +480,7 @@ namespace BrailleMusicDecoder
                 case dot1 | dot6: accidental = "Natural"; break;
                 default: break;
             }
-            inputValues.Add(thisValue, InputCategoryEnum.Accidental, accidental);
+            allInputInterpretations.Add(thisValue, InputCategoryEnum.Accidental, accidental);
 
             switch (thisValue) // Look for finger
             {
@@ -472,7 +490,7 @@ namespace BrailleMusicDecoder
                 case dot1 | dot3: finger = "5"; break;
                 case dot1 | dot2 | dot3: finger = "3"; break;
             }
-            inputValues.Add(thisValue, InputCategoryEnum.Finger, finger);
+            allInputInterpretations.Add(thisValue, InputCategoryEnum.Finger, finger);
 
 
             switch (thisValue) // Look for interval
@@ -485,7 +503,7 @@ namespace BrailleMusicDecoder
                 case dot2 | dot5: interval = "Seventh"; break;
                 case dot3 | dot6: interval = "Octave"; break;
             }
-            inputValues.Add(thisValue, InputCategoryEnum.Interval, interval);
+            allInputInterpretations.Add(thisValue, InputCategoryEnum.Interval, interval);
 
 
 
@@ -503,40 +521,40 @@ namespace BrailleMusicDecoder
                 case dot2 | dot3 | dot6: otherValues = "Staccato"; break;
 //                case dot2 | dot5 | dot6: otherValues = "DoublebeatOnNote"; break; // For the time being we omit this because it clashes with 4 lowered in 4/4
             }
-            inputValues.Add(thisValue, InputCategoryEnum.OtherValues, otherValues);
+            allInputInterpretations.Add(thisValue, InputCategoryEnum.OtherValues, otherValues);
 
             if (thisValue == (dot3 | dot4 | dot5 | dot6))
             {
-                inputValues.Add(thisValue, InputCategoryEnum.ToNumber, "Number");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.ToNumber, "Number");
             }
 
             if (thisValue == (dot3 | dot4 | dot5 ))
             {
-                inputValues.Add(thisValue, InputCategoryEnum.ToWord, "Word");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.ToWord, "Word");
             }
 
             if (thisValue == (dot6))
             {
-                inputValues.Add(thisValue, InputCategoryEnum.Dot6, "Dot6");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.Dot6, "Dot6");
             }
 
             if (thisValue == (dot3))
             {
-                inputValues.Add(thisValue, InputCategoryEnum.Dot3, "Dot3");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.Dot3, "Dot3");
             }
 
             if (thisValue == (dot5))
             {
                 if (Dot5IsLilleBistemme(nextValue))
                 {
-                    inputValues.Add(thisValue, InputCategoryEnum.Dot5, "ToLilleBistemme"); // First part of mark for "Lille Bistemme"
+                    allInputInterpretations.Add(thisValue, InputCategoryEnum.Dot5, "ToLilleBistemme"); // First part of mark for "Lille Bistemme"
                 }
             }
 
 
             if (thisValue == (dot2))
             {
-                inputValues.Add(thisValue, InputCategoryEnum.LilleBistemmeDot2, "LilleBistemmeDot2"); // Second part of mark for "Lille Bistemme"
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.LilleBistemmeDot2, "LilleBistemmeDot2"); // Second part of mark for "Lille Bistemme"
             }
 
 
@@ -545,40 +563,40 @@ namespace BrailleMusicDecoder
 
                 if (Dot46IsMeasureDivisionMark(nextValue))
                 {
-                    inputValues.Add(thisValue, InputCategoryEnum.Dot46, "MeasureDivisionMark"); // First part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
+                    allInputInterpretations.Add(thisValue, InputCategoryEnum.Dot46, "MeasureDivisionMark"); // First part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
                 }
             }
 
             if (thisValue == (dot1 | dot3))
             {
-                inputValues.Add(thisValue, InputCategoryEnum.MeasureDivisionMarkDot13, "MeasureDivisionMarkDot13"); // Second part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.MeasureDivisionMarkDot13, "MeasureDivisionMarkDot13"); // Second part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
             }
 
             if (thisValue == (dot1 | dot4))
             {
-                inputValues.Add(thisValue, InputCategoryEnum.Legato, "Legato");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.Legato, "Legato");
             }
 
 
             if (thisValue == noDots)
             {
-                inputValues.Add(thisValue, InputCategoryEnum.Space, "SPACE");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.Space, "SPACE");
             }
 
             if (thisValue == noDots)
             {
-                inputValues.Add(thisValue, InputCategoryEnum.NewMeasure, "NewMeasure");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.NewMeasure, "NewMeasure");
             }
 
             if (thisValue == (dot1 | dot2 | dot3))
             {
-                inputValues.Add(thisValue, InputCategoryEnum.BarLine, "Unusual Barline");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.BarLine, "Unusual Barline");
             }
 
 
             if (thisValue == dot3)
             {
-                inputValues.Add(thisValue, InputCategoryEnum.Punctuation, "Punctuation");
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.Punctuation, "Punctuation");
             }
 
 
@@ -596,7 +614,7 @@ namespace BrailleMusicDecoder
                 case 10: digit = "9"; break;
             }
 
-            inputValues.Add(thisValue, InputCategoryEnum.Digit, digit);
+            allInputInterpretations.Add(thisValue, InputCategoryEnum.Digit, digit);
 
             switch (thisValue) // Look for denominators, i.e numbers lowered one position
             {
@@ -611,36 +629,31 @@ namespace BrailleMusicDecoder
                 case 20: denominator = "/9"; break;
             }
 
-            inputValues.Add(thisValue, InputCategoryEnum.Denominator, denominator);
+            allInputInterpretations.Add(thisValue, InputCategoryEnum.Denominator, denominator);
 
             
             string character = GetCharacter(thisValue);
             if (null != character)
             {
-                inputValues.Add(thisValue, InputCategoryEnum.Character, character);
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.Character, character);
             }
 
             // Now follows interpretations based on more than a single Braille character
 
-            //if ((rawValues.Count >= 4) && (rawValues[0] == dot6) && (rawValues[1] == dot3) && (rawValues[2] == (dot1 | dot2 | dot6) && (rawValues[3] == (dot2 | dot3))))
-            //            if ((rawValues.Count >= 2)  && (rawValues[0] == (dot1 | dot2 | dot6) && (rawValues[1] == (dot1 | dot3))))
             IntegerList fullEndSequence = new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3));
             if (rawValues.StartsWith(fullEndSequence))
             {
-                inputValues.Add(fullEndSequence, InputCategoryEnum.FullEnd, "FullEnd");
+                allInputInterpretations.Add(fullEndSequence, InputCategoryEnum.FullEnd, "FullEnd");
             }
 
             IntegerList endRepeatSequence = new IntegerList((dot1 | dot2 | dot6), (dot2 | dot3));
             if (rawValues.StartsWith(endRepeatSequence))
             {
-                inputValues.Add(endRepeatSequence, InputCategoryEnum.EndRepeat, "RepeatEnd");
+                allInputInterpretations.Add(endRepeatSequence, InputCategoryEnum.EndRepeat, "RepeatEnd");
             }
 
+            return allInputInterpretations;
 
-
-            return inputValues;
-
-            //return stepName + " " + typeName + " " + (string.IsNullOrEmpty(octave) ? "" : "Oct" + octave) + " " + rest + " " + accidental + finger + interval + otherValues;
         }
 
         private string Format(string s)
