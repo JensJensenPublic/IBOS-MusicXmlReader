@@ -24,20 +24,16 @@ namespace BrailleMusicDecoder
         OtherValues = 0x1000,
         Denominator= 0x2000,
         Dot3 = 0x4000,
-        //LoweredDigit = 0x8000,
         Space = 0x00010000,
         NewMeasure = 0x00020000,
-        Dot5 = 0x00040000,               // Firat part of the transition to Lille Bistemme    
-        LilleBistemmeDot2 = 0x00080000,  // Second part of the transition to Lillle Bistemme
-//        Dot46 = 0x00100000,           // First part of MEasureDivisionMark 
-//        MeasureDivisionMarkDot13 = 0x00200000, // Second part of MeasureDivisionMArk
         Legato = 0x00400000,
         BarLine = 0x00800000,
         FullEnd = 0x01000000,
         EndRepeat = 0x02000000,  
         Punctuation= 0x04000000,
         ToMusic = 0x08000000,
-        MeasureDivision = 0x10000000
+        MeasureDivision = 0x10000000,
+        InAccordPartMeasure = 0x20000000 // Dansih: Lille bistemme
     }
 
 
@@ -56,9 +52,8 @@ namespace BrailleMusicDecoder
     public class Decoder
     {
         public const int BrailleBase = 0x2800; 
-        public enum StateEnum { Unknown, Text, TextNumber, TextVersal, Music, /* ToMusicOrVersal,*/  MusicNumber, MusicNote, ToLilleBistemme, ToMeasureDivisionMark };
-        public enum BrailleMusicSubState { Unchanged, Music, Number }; // More to be added
-
+        public enum StateEnum { Unknown, Text, TextNumber, TextVersal, Music, MusicNumber, MusicNote };
+ 
         const byte noDots = 0;
         const byte dot1 = 0x01;
         const byte dot2 = 0x02;
@@ -160,12 +155,9 @@ namespace BrailleMusicDecoder
                 case StateEnum.Text:        allowedInputCategories = allowedInTextStates; break;
                 case StateEnum.TextVersal:  allowedInputCategories = allowedInTextStates; break;
                 case StateEnum.TextNumber:  allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.ToTextVersal | InputCategoryEnum.ToMusic; break;
-//                case StateEnum.ToMusicOrVersal: allowedInputCategories = InputCategoryEnum.Dot3 | InputCategoryEnum.Character; break;
-                case StateEnum.Music: allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision; break;
+                case StateEnum.Music:       allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure; break;
                 case StateEnum.MusicNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.Accidental; break;
-                case StateEnum.MusicNote: allowedInputCategories = InputCategoryEnum.Interval | InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.Dot5 | InputCategoryEnum.MeasureDivision | InputCategoryEnum.Legato | InputCategoryEnum.BarLine | InputCategoryEnum.FullEnd | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation; break; // TODO
-                case StateEnum.ToLilleBistemme: allowedInputCategories = InputCategoryEnum.LilleBistemmeDot2; break;
-//                case StateEnum.ToMeasureDivisionMark: allowedInputCategories = InputCategoryEnum.MeasureDivisionMarkDot13; break;
+                case StateEnum.MusicNote:   allowedInputCategories = InputCategoryEnum.Interval | InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.Legato | InputCategoryEnum.BarLine | InputCategoryEnum.FullEnd | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation; break; // TODO
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
             }
 
@@ -234,22 +226,16 @@ namespace BrailleMusicDecoder
                     {
                         newState = StateEnum.Music;
                     }
-                    if (filteredInputValues.Contains(InputCategoryEnum.Dot5))
+
+                    if (filteredInputValues.Contains(InputCategoryEnum.InAccordPartMeasure))
                     {
-                        newState = StateEnum.ToLilleBistemme;
+                        newState = StateEnum.MusicNote;
                     }
 
                     //if (filteredInputValues.Contains(InputCategoryEnum.MeasureDivision))
                     //{
                     //    newState = StateEnum.MusicNote;
-                    //}
-                    break;
-
-                case StateEnum.ToLilleBistemme:
-                    if (filteredInputValues.Contains(InputCategoryEnum.LilleBistemmeDot2))
-                    {
-                        newState = StateEnum.MusicNote; // We are now ready to interpret notes within the Lille Bistemme (Second sequence or later)
-                    }
+                    //}         
 
 
                     break;
@@ -531,40 +517,11 @@ namespace BrailleMusicDecoder
                 allInputInterpretations.Add(thisValue, InputCategoryEnum.Dot3);
             }
 
-            if (thisValue == (dot5))
-            {
-                if (Dot5IsLilleBistemme(nextValue))
-                {
-                    allInputInterpretations.Add(thisValue, InputCategoryEnum.Dot5); // First part of mark for "Lille Bistemme"
-                }
-            }
-
-
-            if (thisValue == (dot2))
-            {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.LilleBistemmeDot2); // Second part of mark for "Lille Bistemme"
-            }
-
-
-            //if (thisValue == (dot4 | dot6))
-            //{
-
-            //    if (Dot46IsMeasureDivisionMark(nextValue))
-            //    {
-            //        allInputInterpretations.Add(thisValue, InputCategoryEnum.Dot46); // First part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
-            //    }
-            //}
-
-            //if (thisValue == (dot1 | dot3))
-            //{
-            //    allInputInterpretations.Add(thisValue, InputCategoryEnum.MeasureDivisionMarkDot13); // Second part of mark for "MeasureDivisionMark" (Danish "SkilleTEgn")
-            //}
 
             if (thisValue == (dot1 | dot4))
             {
                 allInputInterpretations.Add(thisValue, InputCategoryEnum.Legato);
             }
-
 
             if (thisValue == noDots)
             {
@@ -650,6 +607,12 @@ namespace BrailleMusicDecoder
             if (rawValues.StartsWith(measureDivisionMarkSequence))
             {
                 allInputInterpretations.Add(measureDivisionMarkSequence, InputCategoryEnum.MeasureDivision, "");
+            }
+
+            IntegerList inAccordPartMeasureSequence = new IntegerList((dot5), (dot2));
+            if (rawValues.StartsWith(inAccordPartMeasureSequence))
+            {
+                allInputInterpretations.Add(inAccordPartMeasureSequence, InputCategoryEnum.InAccordPartMeasure, "");
             }
 
 
