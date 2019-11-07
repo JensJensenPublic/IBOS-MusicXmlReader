@@ -122,14 +122,14 @@ namespace BrailleMusicDecoder
             InputCategoryEnum allowedInputCategories = 0;
 
             // Define some shorthand values to be used in the case below
-            InputCategoryEnum allowedInTextStates = InputCategoryEnum.Character | InputCategoryEnum.ToTextVersal | InputCategoryEnum.ToNumber | InputCategoryEnum.ToMusic;
+            InputCategoryEnum allowedInTextStates = InputCategoryEnum.Character | InputCategoryEnum.TextVersal | InputCategoryEnum.Number | InputCategoryEnum.ToMusic;
 
             switch (state)
             {
                 case StateEnum.Text:        allowedInputCategories = allowedInTextStates; break;
                 case StateEnum.TextVersal:  allowedInputCategories = allowedInTextStates; break;
-                case StateEnum.TextNumber:  allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.ToTextVersal | InputCategoryEnum.ToMusic; break;
-                case StateEnum.Music:       allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure; break;
+                case StateEnum.TextNumber:  allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.TextVersal | InputCategoryEnum.ToMusic; break;
+                case StateEnum.Music:       allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Number | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure; break;
                 case StateEnum.MusicNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.Accidental; break;
                 case StateEnum.MusicNote:   allowedInputCategories = InputCategoryEnum.Interval | InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.Legato | InputCategoryEnum.BarLine | InputCategoryEnum.FullEnd | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation; break; // TODO
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
@@ -149,7 +149,7 @@ namespace BrailleMusicDecoder
                     {
                         newState = StateEnum.Music; break;
                     }
-                    if (filteredInputValues.Contains(InputCategoryEnum.ToNumber))
+                    if (filteredInputValues.Contains(InputCategoryEnum.Number))
                     {
                         newState = StateEnum.TextNumber;
                     }
@@ -159,7 +159,7 @@ namespace BrailleMusicDecoder
                     {
                         newState = StateEnum.Music; break;
                     }
-                    if (filteredInputValues.Contains(InputCategoryEnum.ToNumber))
+                    if (filteredInputValues.Contains(InputCategoryEnum.Number))
                     {
                         newState = StateEnum.TextNumber;
                     }
@@ -178,7 +178,7 @@ namespace BrailleMusicDecoder
                     // Remain in StateEnum.TextNumber
                     break;   
                 case StateEnum.Music:
-                    if (filteredInputValues.Contains(InputCategoryEnum.ToNumber))
+                    if (filteredInputValues.Contains(InputCategoryEnum.Number))
                     {
                         newState = StateEnum.MusicNumber; break;
                     }

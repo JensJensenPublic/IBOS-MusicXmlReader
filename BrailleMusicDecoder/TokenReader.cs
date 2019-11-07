@@ -5,9 +5,9 @@ namespace BrailleMusicDecoder
     [Flags]
     enum InputCategoryEnum
     {
-        ToWord = 0x0001,
-        ToNumber = 0x0002,
-        ToTextVersal = 0x0004,
+        Word = 0x0001,
+        Number = 0x0002,
+        TextVersal = 0x0004,
         Character = 0x0008,
         Digit = 0x0020,
         Note = 0x0040,
@@ -18,7 +18,6 @@ namespace BrailleMusicDecoder
         Finger = 0x0800,
         OtherValues = 0x1000,
         Denominator = 0x2000,
-//        Dot3 = 0x4000,
         Space = 0x00010000,
         NewMeasure = 0x00020000,
         Legato = 0x00400000,
@@ -27,8 +26,8 @@ namespace BrailleMusicDecoder
         EndRepeat = 0x02000000,
         Punctuation = 0x04000000,
         ToMusic = 0x08000000,
-        MeasureDivision = 0x10000000,
-        InAccordPartMeasure = 0x20000000 // Dansih: Lille bistemme
+        MeasureDivision = 0x10000000,    // Danish "Skilletegn"   
+        InAccordPartMeasure = 0x20000000 // Dansih: "Lille bistemme"
     }
 
     class TokenReader
@@ -264,8 +263,8 @@ namespace BrailleMusicDecoder
             allInputInterpretations.Add(thisValue, InputCategoryEnum.OtherValues, otherValues);
 
             // Add some simple obe-character tokens if present
-            allInputInterpretations.Add(thisValue, (dot3 | dot4 | dot5 | dot6),  InputCategoryEnum.ToNumber);
-            allInputInterpretations.Add(thisValue, (dot3 | dot4 | dot5), InputCategoryEnum.ToWord);
+            allInputInterpretations.Add(thisValue, (dot3 | dot4 | dot5 | dot6),  InputCategoryEnum.Number);
+            allInputInterpretations.Add(thisValue, (dot3 | dot4 | dot5), InputCategoryEnum.Word);
             allInputInterpretations.Add(thisValue, (dot1 | dot4), InputCategoryEnum.Legato); 
             allInputInterpretations.Add(thisValue, noDots, InputCategoryEnum.Space);
             allInputInterpretations.Add(thisValue, noDots, InputCategoryEnum.NewMeasure);            
@@ -274,7 +273,7 @@ namespace BrailleMusicDecoder
  
             if ((thisValue == (dot6)) && (nextValue != dot3)) // Avoid clash with ToMusic
             {
-                allInputInterpretations.Add(thisValue, InputCategoryEnum.ToTextVersal);
+                allInputInterpretations.Add(thisValue, InputCategoryEnum.TextVersal);
             }
             
             switch (thisValue) // Look for digits
