@@ -112,23 +112,24 @@ namespace BrailleMusicDecoder
                 {
                     brailleCharacters.Add(tokenReader.ToBraille(brailleAsUnicode[i]));
                 }
-
             }
 
             InputInterpretationList inputValues = tokenReader.GetInputInterpretations(brailleCharacters); // Get a list of all possible input values independent of the current state.
             InputCategoryEnum allowedInputCategories = 0;
 
             // Define some shorthand values to be used in the case below
-            InputCategoryEnum allowedInTextStates = InputCategoryEnum.Character | InputCategoryEnum.TextVersal | InputCategoryEnum.Number | InputCategoryEnum.ToMusic;
+            InputCategoryEnum allowedInTextStates   = InputCategoryEnum.Character | InputCategoryEnum.TextVersal | InputCategoryEnum.Number | InputCategoryEnum.ToMusic;
+            InputCategoryEnum allowedInMusicStates  = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.InAccordFullMeasure;
+            InputCategoryEnum allowedInNumberStates = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space;
 
             switch (state)
             {
                 case StateEnum.Text:        allowedInputCategories = allowedInTextStates; break;
                 case StateEnum.TextVersal:  allowedInputCategories = allowedInTextStates; break;
-                case StateEnum.TextNumber:  allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.TextVersal | InputCategoryEnum.ToMusic; break;
-                case StateEnum.Music:       allowedInputCategories = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Number | InputCategoryEnum.Finger | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.InAccordFullMeasure; break;
-                case StateEnum.MusicNumber: allowedInputCategories = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.Accidental; break;
-                case StateEnum.MusicNote:   allowedInputCategories = InputCategoryEnum.Interval | InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Accidental | InputCategoryEnum.NewMeasure | InputCategoryEnum.Rest | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.InAccordFullMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.Legato | InputCategoryEnum.BarLine | InputCategoryEnum.FullEnd | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation; break; // TODO
+                case StateEnum.TextNumber:  allowedInputCategories = allowedInNumberStates | InputCategoryEnum.TextVersal | InputCategoryEnum.ToMusic; break;
+                case StateEnum.MusicNumber: allowedInputCategories = allowedInNumberStates | InputCategoryEnum.Accidental; break;
+                case StateEnum.Music:       allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Number | InputCategoryEnum.Finger; break;
+                case StateEnum.MusicNote:   allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Legato | InputCategoryEnum.BarLine | InputCategoryEnum.FullEnd | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation | InputCategoryEnum.Interval | InputCategoryEnum.Accidental ; break;
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
             }
 
@@ -195,7 +196,7 @@ namespace BrailleMusicDecoder
                 case StateEnum.MusicNote:
                     if (filteredInputValues.Contains(InputCategoryEnum.NewMeasure))
                     {
-                        newState = StateEnum.Music; // No change, probably not needed
+                        newState = StateEnum.Music; 
                     }
 
                     if (filteredInputValues.Contains(InputCategoryEnum.InAccordPartMeasure))
