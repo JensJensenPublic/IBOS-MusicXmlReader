@@ -34,7 +34,7 @@ namespace BrailleMusicDecoder
     class TokenReader
     {
         // Some basic, general definitions
-        public const int BrailleBase = 0x2800;
+        private const int BrailleBase = 0x2800;
         private const byte noDots = 0;
         const byte dot1 = 0x01;
         const byte dot2 = 0x02;
@@ -57,11 +57,11 @@ namespace BrailleMusicDecoder
         {
             return c - BrailleBase;
         }
-
-        public char ToUnicodeChar(int i)
+          
+        public static char ToUnicodeChar(int i)
         {
             return (char)(i + BrailleBase);
-        }
+        } 
 
         public int Blank { get { return BrailleBase + noDots; } }
 

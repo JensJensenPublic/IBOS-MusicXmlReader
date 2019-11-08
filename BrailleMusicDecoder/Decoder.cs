@@ -217,7 +217,7 @@ namespace BrailleMusicDecoder
 
             int thisValue = brailleCharacters.List[0];
 
-            char inputAsUnicode = tokenReader.ToUnicodeChar(thisValue);
+            char inputAsUnicode = TokenReader.ToUnicodeChar(thisValue);
             if (1 != filteredInputValues.Count)
             {
                 Log(string.Format(" State={0,-15} Input={1}(i={2,02}) OriginalInputValues = {3}", state.ToString(), inputAsUnicode, thisValue ,inputValues.ToString()));

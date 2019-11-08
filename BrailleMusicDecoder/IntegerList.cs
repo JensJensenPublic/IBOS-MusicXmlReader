@@ -45,7 +45,7 @@ namespace BrailleMusicDecoder
             StringBuilder sb = new StringBuilder();
             foreach (int i in this.list)
             {
-                sb.Append((char)(i + TokenReader.BrailleBase));
+                sb.Append(TokenReader.ToUnicodeChar(i));
             }
             return sb.ToString();
         }
