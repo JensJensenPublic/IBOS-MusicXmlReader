@@ -1,0 +1,28 @@
+At IBOS (The Institute for the Blind and Partially Sighted ) in Denmark we have recently developet the "IBOS MusicXmlReader".
+This PC program can (amongst many other things) generate files in MusicBraille, using the standard MusicXml file format as input.
+The MusicBraille files can be generated in ASCII, OctoBraille1252 or UniCode at the user's choise.
+ 
+ Until now we have saved the MusicBraille files in the filesystem, for embossing them later using IBPrint.
+ But we want to make a more integrated solution, and have the following 3 suggestions, all based on IBPrint.
+
+ A: From IBOS MusicXmlReader we start the UI version of IBPrint and let the user select the file to emboss.
+ B: From IBOS MusicXmlReader we start the CommandLine version of IBPrint, passing the full part of the newly generated MusicBraille file as a parameter
+ C: From IBOS MusicXmlReader we call directly "in process" into the Business logic of IBPrint.
+
+ Options A and B are straight ahead to implement, but will give us a rather sloppy interface, especially in error situations.
+ Option C involves calling into one of the .dll files (probably "DeviceManagement.dll") and of course not possible without knowledge of the API.
+ On the other hand we would get full informations back of all error situations, which wouild of great value for our users.
+
+ Can you help us out here by answering the following 3 questions:
+
+ 1: Will IBPrint be supported in the future as a common point for interfacing to current and future IndexBraille embossers ?
+ 2: If not: What will be the preferred replacement for IBPrint ?
+ 3: Are there any other options, you could suggest.
+
+Best regards
+
+Jens Sundgaard Jensen,
+IBOS,Denmark
+
+ 
+    
