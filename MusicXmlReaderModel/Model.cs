@@ -1359,10 +1359,11 @@ namespace MusicXmlReaderModel
             do
             {
                 // int thisValue = brailleFileAsUnicode[i];
+                int originalIndex = i; // Will be changed during the call to GetNextToken()
                 decodedLine = brailleMusicDecoder.GetNextToken(ref i);
                 if (null != decodedLine)
                 {             
-                    decodedLines.Add(string.Format("{0}",  decodedLine));
+                    decodedLines.Add(string.Format("[{0,3}:{1}] {2}",originalIndex , (i-originalIndex), decodedLine)); 
                 }
             } while (null != decodedLine);
 
