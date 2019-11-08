@@ -35,7 +35,7 @@ namespace BrailleMusicDecoder
     {
         // Some basic, general definitions
         public const int BrailleBase = 0x2800;
-        public const byte noDots = 0;
+        private const byte noDots = 0;
         const byte dot1 = 0x01;
         const byte dot2 = 0x02;
         const byte dot3 = 0x04;
@@ -47,6 +47,24 @@ namespace BrailleMusicDecoder
         const byte none = 0x00;
         const int dot1245 = dot1 | dot2 | dot4 | dot5; // For isolating values representing note steps
         const int dot36 = dot3 | dot6; // For isolating type
+
+        public bool IsBraille6(int c)
+        {
+            return (((c >= BrailleBase) && (c <= BrailleBase + 63)));
+        }
+
+        public int ToBraille(char c)
+        {
+            return c - BrailleBase;
+        }
+
+        public char ToUnicodeChar(int i)
+        {
+            return (char)(i + BrailleBase);
+        }
+
+        public int Blank { get { return BrailleBase + noDots; } }
+
 
         /// <summary>
         /// After receiving dot5 it is not possible to determine the next state and ths output without knowig the next value:

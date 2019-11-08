@@ -43,10 +43,7 @@ namespace BrailleMusicDecoder
             state = StateEnum.Text;
         }
 
-        private bool IsBraille6(int c)
-        {
-            return (((c >= TokenReader.BrailleBase) && (c <= TokenReader.BrailleBase + 63))); 
-        }
+
 
         private string NonBrailleInterpretation(int c)
         {
@@ -78,10 +75,10 @@ namespace BrailleMusicDecoder
         {
             if ((i<0) || (i >= brailleAsUnicode.Length)) return null; // Outside the array of input characters
             int thisValue = brailleAsUnicode[i];
-            int nextValue = (i+1 >= brailleAsUnicode.Length) ? (TokenReader.BrailleBase + TokenReader.noDots) :  brailleAsUnicode[i]; // Insert an empty Braille6 character 
+            int nextValue = (i+1 >= brailleAsUnicode.Length) ? (tokenReader.Blank) :  brailleAsUnicode[i]; // Insert an empty Braille6 character 
 
             // Immediately get rid of characters outside the Unicode Braille6 interval [0x2800..0x283f]
-            if (!IsBraille6(thisValue))
+            if (!tokenReader.IsBraille6(thisValue))
             {
                 i += 1;
                 return NonBrailleInterpretation(thisValue);
@@ -113,7 +110,7 @@ namespace BrailleMusicDecoder
             {
                 for (int i = startIndex; (i < endIndex); i++)
                 {
-                    brailleCharacters.Add(brailleAsUnicode[i] - TokenReader.BrailleBase);
+                    brailleCharacters.Add(tokenReader.ToBraille(brailleAsUnicode[i]));
                 }
 
             }
@@ -220,7 +217,7 @@ namespace BrailleMusicDecoder
 
             int thisValue = brailleCharacters.List[0];
 
-            char inputAsUnicode = (char)(thisValue + TokenReader.BrailleBase);
+            char inputAsUnicode = tokenReader.ToUnicodeChar(thisValue);
             if (1 != filteredInputValues.Count)
             {
                 Log(string.Format(" State={0,-15} Input={1}(i={2,02}) OriginalInputValues = {3}", state.ToString(), inputAsUnicode, thisValue ,inputValues.ToString()));
