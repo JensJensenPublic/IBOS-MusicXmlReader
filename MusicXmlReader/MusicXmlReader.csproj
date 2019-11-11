@@ -135,6 +135,7 @@
       <LastGenOutput>ResourcesForHelp.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ResourcesForUI.da-DK.resx" />
+    <EmbeddedResource Include="ResourcesForUI.nl-NL.resx" />
     <EmbeddedResource Include="ResourcesForUI.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesForUI.Designer.cs</LastGenOutput>
@@ -152,7 +153,9 @@
     <None Include="ResourcesForUI.nl-NL.xls" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MusicXmlReaderModel\MusicXmlReaderModel.csproj">
