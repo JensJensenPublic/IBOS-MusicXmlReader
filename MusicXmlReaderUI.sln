@@ -107,6 +107,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.8.0.0", "2.8.0.0", "{C6B6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrailleMusicDecoder", "BrailleMusicDecoder\BrailleMusicDecoder.csproj", "{27A3D41B-569A-480A-9E30-413102B8E386}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawPrinterHelper", "RawPrinterHelper\RawPrinterHelper.csproj", "{2A7ADC67-2A98-43D7-A822-25EAB19F401D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -261,6 +263,18 @@ Global
 		{27A3D41B-569A-480A-9E30-413102B8E386}.Release|x64.Build.0 = Release|Any CPU
 		{27A3D41B-569A-480A-9E30-413102B8E386}.Release|x86.ActiveCfg = Release|Any CPU
 		{27A3D41B-569A-480A-9E30-413102B8E386}.Release|x86.Build.0 = Release|Any CPU
+		{2A7ADC67-2A98-43D7-A822-25EAB19F401D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A7ADC67-2A98-43D7-A822-25EAB19F401D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A7ADC67-2A98-43D7-A822-25EAB19F401D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2A7ADC67-2A98-43D7-A822-25EAB19F401D}.Debug|x64.Build.0 = Debug|Any CPU
+		{2A7ADC67-2A98-43D7-A822-25EAB19F401D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2A7ADC67-2A98-43D7-A822-25EAB19F401D}.Debug|x86.Build.0 = Debug|Any CPU
+		{2A7ADC67-2A98-43D7-A822-25EAB19F401D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A7ADC67-2A98-43D7-A822-25EAB19F401D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A7ADC67-2A98-43D7-A822-25EAB19F401D}.Release|x64.ActiveCfg = Release|Any CPU
+		{2A7ADC67-2A98-43D7-A822-25EAB19F401D}.Release|x64.Build.0 = Release|Any CPU
+		{2A7ADC67-2A98-43D7-A822-25EAB19F401D}.Release|x86.ActiveCfg = Release|Any CPU
+		{2A7ADC67-2A98-43D7-A822-25EAB19F401D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
