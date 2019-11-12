@@ -93,6 +93,7 @@ namespace MusicXmlReaderModel
             }
             bool isMainVoice = true; // The first entry added is refered to as the main voice (Danish: "Hovedstemme") 
             bool isFullMeasure = this.IsFullMeasure; // Only evaluate once, the value is the same for all voices.
+#warning TODO  voices.Sort(fromTop); // We need to be able to sort voices from bottom in order to show Bas before tenor!!
             foreach (BrailleInAccordVoice voice in voices)
             {
                 // Convert each voice to Braille               
