@@ -162,6 +162,10 @@
       <Project>{695bf2ce-9955-4d26-b552-2427ee160810}</Project>
       <Name>MusicXmlReaderModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RawPrinterHelper\RawPrinterHelper.csproj">
+      <Project>{2a7adc67-2a98-43d7-a822-25eab19f401d}</Project>
+      <Name>RawPrinterHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

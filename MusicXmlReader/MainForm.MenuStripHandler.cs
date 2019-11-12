@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using MusicXmlReaderModel;
 using System.Collections.Generic;
+using RawPrinterHelper;
 
 namespace MusicXmlReader
 {
@@ -946,6 +947,28 @@ namespace MusicXmlReader
             Logger.LogCF(string.Format(": Executable='{0}'     Directory='{1}'",executable,directory));
 #warning TODO find out how to make the UI version of IBPrint prefer model.LatestBrailleFileSaveDirectory instead of the latest directory used by the Add button
             Utilities.RunExeWithArgument(executable, "");
+        }
+
+        private void printMusicBrailleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string fileName = "Danmark nu blunder den lyse nat.P1.Soprano.brf";
+            string fullName = Path.Combine(model.LatestBrailleFileSaveDirectory, fileName);
+            if (!File.Exists(fullName))
+            {
+                Logger.LogCF(string.Format(": {0} Eksisterer ikke!", fullName));
+                return;
+            }
+
+            string printerName = "Index Basic-D V2";
+            try
+            {
+                RawPrinterHelper.RawPrinterHelper.SendFileToPrinter(printerName, fullName);
+            }
+            catch (Exception exeption)
+            {
+                Logger.LogCFE(exeption);
+
+            }
         }
 
         #endregion // Export of Music Braille
