@@ -946,6 +946,37 @@ namespace MusicXmlReaderModel
             return null;
         }
 
+        static string ReadToEnd(string path, string name)
+        {
+            StreamReader sr = null;
+            string result = null; 
+            // Read the contents, catching exceptions.            
+            try
+            {
+                sr = new StreamReader(Path.Combine(path, name));
+                result = sr.ReadToEnd();
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+
+            // Close the StreamREeader, catching exceptions.
+            try
+            {
+                if (null != sr)
+                {
+                    sr.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// (Primarily to be used for regression tests).
         /// Check the contents of two directories for identity.
@@ -1001,8 +1032,8 @@ namespace MusicXmlReaderModel
                     }
 
                     // Compare contents
-                    string contents0 = new StreamReader(Path.Combine(path0,name0)).ReadToEnd();
-                    string contents1 = new StreamReader(Path.Combine(path1,name1)).ReadToEnd();
+                    string contents0 = ReadToEnd(path0, name0);
+                    string contents1 = ReadToEnd(path1, name1);
                     if (0 != string.Compare(contents0, contents1))
                     {
                         sb.AppendLine(string.Format("Contents of files differ for FileName='{0}' ", name0));
