@@ -483,4 +483,7 @@
   <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingIBPrint" xml:space="preserve">
     <value>Udskriv punktnodefil på punktprinter ved hjælp af IB&amp;Print</value>
   </data>
+  <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
+    <value>Udskriv punktnodefil på punktprinter</value>
+  </data>
 </root>

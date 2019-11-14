@@ -485,4 +485,8 @@
   <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingIBPrint" xml:space="preserve">
     <value>Emboss Music Braille file using IB&amp;Print</value>
   </data>
+  <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
+    <value>Emboss Music Braille file</value>
+    <comment>Not translated to Dutch</comment>
+  </data>
 </root>
