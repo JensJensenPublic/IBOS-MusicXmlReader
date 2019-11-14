@@ -137,7 +137,7 @@ namespace MusicXmlReaderModel
                         // the block of EventDescriptions handled by MeasureDivision !
                         BrailleInAccordSegment brailleMeasureDivisionSegment = BrailleInAccordSegment.Create(owningEventDescription, userSettings);
                         nextEventDescription = brailleMeasureDivisionSegment.NextEventDescription;
-                        return brailleMeasureDivisionSegment.ToBraille(userSettings);
+                        return brailleMeasureDivisionSegment.ToBraille(userSettings,fromTop);
                     }
                 }
             }

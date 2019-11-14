@@ -55,7 +55,7 @@ namespace MusicXmlReaderModel
         public EventDescription NextEventDescription { get { return nextEventDescription; } }
         int measureNumber; // Primarily for debugging !!
 
-        public BrailleBuilder ToBraille(UserSettings userSettings)
+        public BrailleBuilder ToBraille(UserSettings userSettings, bool fromTop)
         {
 
             //if (!newVersion) return ToBraille(userSettings);
@@ -93,10 +93,15 @@ namespace MusicXmlReaderModel
             }
             bool isMainVoice = true; // The first entry added is refered to as the main voice (Danish: "Hovedstemme") 
             bool isFullMeasure = this.IsFullMeasure; // Only evaluate once, the value is the same for all voices.
-#warning TODO  voices.Sort(fromTop); // We need to be able to sort voices from bottom in order to show Bas before tenor!!
+            if (!fromTop)
+            {
+                Logger.LogCF(string.Format(": Reversing {0} voices because the rendering order is not fromtop",voices.Count));
+                voices.Reverse();
+            }
             foreach (BrailleInAccordVoice voice in voices)
             {
-                // Convert each voice to Braille               
+                // Convert each voice to Braille 
+                // Logger.LogCF(string.Format(": Rendering Part={0} Staff={1} Voice={2}", voice.Part, voice.Staff, voice.Voice));              
                 result.Append(voice.ToBraille(userSettings,ref isMainVoice,isFullMeasure));
                 // Force an octave mark on the first note in each voice (except the first voice ) within the InAccordSegment and on the first note after the InAccordSegment:
                 MusicBrailleState.ResetMusicBrailleState(); 
