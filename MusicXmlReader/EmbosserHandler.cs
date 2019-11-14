@@ -3,9 +3,6 @@ using System.Windows.Forms;
 using MusicXmlReaderModel;
 using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MusicXmlReader
 {
@@ -13,6 +10,10 @@ namespace MusicXmlReader
     {
         private OpenFileDialog openFileDialog;
         private PrintDialog printDialog;
+        string applicationName = "";
+
+        // As we can't have a list of all supported embossers, we can at least create a list of devices, that we do not expect to support:
+        private List<string> notEmbossers;
 
 
         public bool Emboss(string latestDirectory)
@@ -66,39 +67,59 @@ namespace MusicXmlReader
             {
                 Logger.LogCF(string.Format(": PrinterName={0}", printerSettings.PrinterName));
             }
+            else
+            {
+                return false;
+            }
+             
 
-            // return false;
 
             //string printerName = "Index Basic-D V2";
             string printerName = printerSettings.PrinterName; // Use the printer selected by the user.
+            if (this.notEmbossers.Contains(printerName))
+            {
+                // This is for sure not an embosser ! Better warn the user!
+                string warning = string.Format("'{0}' is not a supported embosser!",printerName);
+                DialogResult dialogResult =  MessageBox.Show(warning, applicationName, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (!(DialogResult.OK == dialogResult))
+                {
+                    return false;
+                }
+            }
+
+            bool result = false;
             try
             {
-                RawPrinterHelper.RawPrinterHelper.SendFileToPrinter(printerName, fullName);
+                result = RawPrinterHelper.RawPrinterHelper.SendFileToPrinter(printerName, fullName);
             }
             catch (Exception exeption)
             {
                 Logger.LogCFE(exeption);
-
             }
 
+            if (!result)
+            {
+                string message = string.Format("Failed to emboss file {0} on {1}", fullName, printerName);
+                MessageBox.Show(message, applicationName);
+            }
 
             return true;
         }
 
 
-
-
         private EmbosserHandler() { }
 
-        private EmbosserHandler(OpenFileDialog openFileDialog, PrintDialog printDialog)
+        private EmbosserHandler(OpenFileDialog openFileDialog, PrintDialog printDialog, string applicationName)
         {
             this.openFileDialog = openFileDialog;
             this.printDialog = printDialog;
+            this.applicationName = applicationName;
+            notEmbossers = new List<string> { "Fax", "Microsoft Print to PDF", "Microsoft XPS Document Writer", "OneNote", "Send To OneNote 2016"};
         }
 
-        static public EmbosserHandler Create(OpenFileDialog openFileDialog, PrintDialog printDialog)
+        static public EmbosserHandler Create(OpenFileDialog openFileDialog, PrintDialog printDialog, string applicationName)
         {
-            return new EmbosserHandler(openFileDialog, printDialog);
+            return new EmbosserHandler(openFileDialog, printDialog, applicationName);
         }
     }
 }

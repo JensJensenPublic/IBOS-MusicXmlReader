@@ -88,7 +88,7 @@ namespace MusicXmlReader
                 importHandler = ImportHandler.Create(model,this,applicationName);
                 parameterInputHandler = ParameterInputHandler.Create(model,this);
                 brailleMusicExportHandler = BrailleMusicExportHandler.Create(model, parameterInputHandler, messageHandler, saveBrailleFileDialog, developerMode);
-                embosserHandler = EmbosserHandler.Create(this.openFileDialog, this.printDialog);
+                embosserHandler = EmbosserHandler.Create(this.openFileDialog, this.printDialog, this.applicationName);
 
                 this.Text = applicationName;
                 WriteStatusInformation(model.ScreenReaderName);
