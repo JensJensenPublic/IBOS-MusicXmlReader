@@ -65,9 +65,15 @@ namespace MusicXmlReader
             printMusicBrailleUsingIBPrintToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_PrintMusicBrailleUsingIBPrint;
             // exportMusicBrailleToolStripMenuItem.ShortcutKeys = ShortcutHandler.exportMusicBraille;
             // GenerateAccessibleName(ref exportMusicBrailleToolStripMenuItem);
-            toNotetakerToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker; // Second level
-            toEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser; // Second level
-            inOptionalFormatToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_InOptionalFormat; // Second level
+
+            toNotetakerToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker; // Simple IBOS format, Second level
+            toEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser; //  Simple IBOS format, Second level
+            inOptionalFormatToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_InOptionalFormat; //  Simple IBOS format, Second level
+
+            toNotetakerToolStripMenuItem1.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker; // Standard format, Second level
+            toEmbosserToolStripMenuItem1.Text = ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser; // Standard format, Second level
+            inOptionalFormatToolStripMenuItem1.Text = ResourcesForUI.ToolStripMenuItem_Files_InOptionalFormat; // Standard format, Second level
+
             txtOctoBraille1252ToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_TxtOctoBraille1252; // Third level
             brfASCIIToolStripMenuItem1.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII; // Third level
             brfUnicodeToolStripMenuItem1.Text = ResourcesForUI.ToolStripMenuItem_Files_BrfUnicode; // Third level
