@@ -157,8 +157,8 @@
             this.importNewSampleFilesToolStripMenuItem,
             this.exportMusicBrailleToolStripMenuItem,
             this.exportMusicBrailleAsBANA2015ToolStripMenuItem,
-            this.printMusicBrailleUsingIBPrintToolStripMenuItem,
             this.printMusicBrailleToolStripMenuItem,
+            this.printMusicBrailleUsingIBPrintToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
