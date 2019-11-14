@@ -955,82 +955,10 @@ namespace MusicXmlReader
             Utilities.RunExeWithArgument(executable, "");
         }
 
-        private bool ShowSelectFilesForPrintDialog()
-        {
-            openFileDialog.FileName = ""; // No default
-            openFileDialog.Filter = string.Format("{0}|*.brf;*.brl", ResourcesForUI.OpenFileDialog_Filter); // Only present .brf files and .mxl files
-            openFileDialog.InitialDirectory = model.LatestBrailleFileSaveDirectory;
-            openFileDialog.CheckFileExists = true;
-            openFileDialog.CheckPathExists = true;
-            openFileDialog.Multiselect = false; // Do not allow selecting multiple files
-
-            openFileDialog.Title = "Open file for embossing";
-            DialogResult openDialogResult =  openFileDialog.ShowDialog();
-            Logger.LogCF(string.Format(": OpenDialogResult={0}", openDialogResult.ToString()));
-
-            // The dialog has focus on the textbox for entering the file name.
-            // Press <shift> <tab> twice to focus on the first line in the selection listbox.
-
-            if (string.IsNullOrEmpty(openFileDialog.FileName))
-            {
-                return false; // Let the user press ESC without warning him
-            }
-            
-            //string fileName = "Danmark nu blunder den lyse nat.P1.Soprano.brf";
-            //string fullName = Path.Combine(model.LatestBrailleFileSaveDirectory, fileName);
-
-            string fullName = openFileDialog.FileName;
-            if (!File.Exists(fullName))
-            {
-                Logger.LogCF(string.Format(": {0} Eksisterer ikke!", fullName));
-                return false;
-            }
-
-            // Set up the PrintDialog for minimal functionality
-            printDialog.AllowCurrentPage = false;
-            printDialog.AllowPrintToFile = false;
-            printDialog.AllowSelection = false;
-            printDialog.AllowSomePages = false;
-            System.Drawing.Printing.PrinterSettings printerSettings = printDialog.PrinterSettings;
-            Logger.LogCF(string.Format(": PrinterSettings={0}", printerSettings));
-            printDialog.ShowHelp = false;
-            printDialog.ShowNetwork = false;
-            bool useEXDialog = printDialog.UseEXDialog;
-
-            // Show the PrintDialog
-            DialogResult printDialogResult = printDialog.ShowDialog();
-            Logger.LogCF(string.Format(": PrintDialogResult={0}", printDialogResult.ToString()));
-
-            // Act on the result
-            if (printDialogResult == DialogResult.OK)
-            {
-                Logger.LogCF(string.Format(": PrinterName={0}", printerSettings.PrinterName));
-            }
-
-            // return false;
-
-            //string printerName = "Index Basic-D V2";
-            string printerName = printerSettings.PrinterName; // Use the printer selected by the user.
-            try
-            {
-                RawPrinterHelper.RawPrinterHelper.SendFileToPrinter(printerName, fullName);
-            }
-            catch (Exception exeption)
-            {
-                Logger.LogCFE(exeption);
-
-            }
-
-
-            return true;
-        }
-
 
         private void printMusicBrailleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowSelectFilesForPrintDialog();
-
-
+            embosserHandler.Emboss(model.LatestBrailleFileSaveDirectory);
         }
 
         #endregion // Export of Music Braille

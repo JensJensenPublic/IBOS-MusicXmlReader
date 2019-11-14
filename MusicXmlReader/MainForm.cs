@@ -39,6 +39,7 @@ namespace MusicXmlReader
         ListBoxTimesHandler     listBoxTimesHandler;
         MessageHandler          messageHandler;
         BrailleMusicExportHandler brailleMusicExportHandler; // Isolates most code for handling export to files of Music Braille
+        EmbosserHandler         embosserHandler;
 
 
         public MainForm()
@@ -87,6 +88,7 @@ namespace MusicXmlReader
                 importHandler = ImportHandler.Create(model,this,applicationName);
                 parameterInputHandler = ParameterInputHandler.Create(model,this);
                 brailleMusicExportHandler = BrailleMusicExportHandler.Create(model, parameterInputHandler, messageHandler, saveBrailleFileDialog, developerMode);
+                embosserHandler = EmbosserHandler.Create(this.openFileDialog, this.printDialog);
 
                 this.Text = applicationName;
                 WriteStatusInformation(model.ScreenReaderName);

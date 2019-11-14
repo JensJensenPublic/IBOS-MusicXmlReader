@@ -68,6 +68,7 @@
     <Compile Include="AppConfigHandler.cs" />
     <Compile Include="BrailleMusicExportHandler.cs" />
     <Compile Include="DetailsHandler.cs" />
+    <Compile Include="EmbosserHandler.cs" />
     <Compile Include="HelpForm.cs">
       <SubType>Form</SubType>
     </Compile>
