@@ -19,7 +19,7 @@ namespace MusicXmlReader
         public bool Emboss(string latestDirectory)
         {
             openFileDialog.FileName = ""; // No default
-            openFileDialog.Filter = string.Format("{0}|*.brf;*.brl", ResourcesForUI.OpenFileDialog_Filter); // Only present .brf files and .mxl files
+            openFileDialog.Filter = string.Format("{0}|*.brf;*.brl", ResourcesForUI.OpenFileDialog_Filter); // Only present .brf files and .brl files
             openFileDialog.InitialDirectory = latestDirectory;
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
