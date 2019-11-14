@@ -955,14 +955,32 @@ namespace MusicXmlReader
             Utilities.RunExeWithArgument(executable, "");
         }
 
-        private void printMusicBrailleToolStripMenuItem_Click(object sender, EventArgs e)
+        private bool ShowSelectFilesForPrintDialog()
         {
-            string fileName = "Danmark nu blunder den lyse nat.P1.Soprano.brf";
-            string fullName = Path.Combine(model.LatestBrailleFileSaveDirectory, fileName);
+            openFileDialog.FileName = ""; // No default
+            openFileDialog.Filter = string.Format("{0}|*.brf;*.brl", ResourcesForUI.OpenFileDialog_Filter); // Only present .brf files and .mxl files
+            openFileDialog.InitialDirectory = model.LatestBrailleFileSaveDirectory;
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.CheckPathExists = true;
+            openFileDialog.Multiselect = false; // Do not allow selecting multiple files
+            openFileDialog.ShowDialog();
+
+            // The dialog has focus on the textbox for entering the file name.
+            // Press <shift> <tab> twice to focus on the first line in the selection listbox.
+
+            if (string.IsNullOrEmpty(openFileDialog.FileName))
+            {
+                return false; // Let the user press ESC without warning him
+            }
+            
+            //string fileName = "Danmark nu blunder den lyse nat.P1.Soprano.brf";
+            //string fullName = Path.Combine(model.LatestBrailleFileSaveDirectory, fileName);
+
+            string fullName = openFileDialog.FileName;
             if (!File.Exists(fullName))
             {
                 Logger.LogCF(string.Format(": {0} Eksisterer ikke!", fullName));
-                return;
+                return false;
             }
 
             string printerName = "Index Basic-D V2";
@@ -975,6 +993,17 @@ namespace MusicXmlReader
                 Logger.LogCFE(exeption);
 
             }
+
+
+            return true;
+        }
+
+
+        private void printMusicBrailleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowSelectFilesForPrintDialog();
+
+
         }
 
         #endregion // Export of Music Braille
