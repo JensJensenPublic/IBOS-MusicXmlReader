@@ -1,0 +1,1047 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccidentalMarkElement_flat" xml:space="preserve">
+    <value>mol</value>
+  </data>
+  <data name="AccidentalMarkElement_natural" xml:space="preserve">
+    <value>geen</value>
+  </data>
+  <data name="AccidentalMarkElement_sharp" xml:space="preserve">
+    <value>kruis</value>
+  </data>
+  <data name="AccidentalMarkElement_text" xml:space="preserve">
+    <value>tijdelijk teken</value>
+  </data>
+  <data name="Accidental_doubleSharp" xml:space="preserve">
+    <value>tijdelijk dubbel kruis</value>
+  </data>
+  <data name="Accidental_flat" xml:space="preserve">
+    <value>tijdelijke mol</value>
+  </data>
+  <data name="Accidental_flatFlat" xml:space="preserve">
+    <value>tijdelijk dubbele mol</value>
+  </data>
+  <data name="Accidental_natural" xml:space="preserve">
+    <value>tijdelijk normale voortekens</value>
+  </data>
+  <data name="Accidental_none" xml:space="preserve">
+    <value>tijdelijk geen voorteken</value>
+  </data>
+  <data name="Accidental_quarterFlat" xml:space="preserve">
+    <value>tijdelijk kwart-mol</value>
+    <comment>Is there also an eight flat and so on?</comment>
+  </data>
+  <data name="Accidental_quarterSharp" xml:space="preserve">
+    <value>tijdelijk kwart-kruis</value>
+    <comment>We think the accidental sharp or flat can be combined with all the possible duration of notes</comment>
+  </data>
+  <data name="Accidental_sharp" xml:space="preserve">
+    <value>tijdelijk kruis</value>
+  </data>
+  <data name="Accidental_unknown" xml:space="preserve">
+    <value>tijdelijk onbekend</value>
+    <comment>unknown = onbekend</comment>
+  </data>
+  <data name="Accidental_unsupported" xml:space="preserve">
+    <value>Niet ondersteund</value>
+  </data>
+  <data name="ArpeggiateElement_downwards" xml:space="preserve">
+    <value>arpeggio omlaag</value>
+  </data>
+  <data name="ArpeggiateElement_upwards" xml:space="preserve">
+    <value>arpeggio omhoog</value>
+  </data>
+  <data name="ArticulationsElement_Accent" xml:space="preserve">
+    <value>accent</value>
+    <comment>is the same word</comment>
+  </data>
+  <data name="ArticulationsElement_BreathMark" xml:space="preserve">
+    <value>ademhalingsteken</value>
+  </data>
+  <data name="ArticulationsElement_Caesura" xml:space="preserve">
+    <value>rustpunt</value>
+  </data>
+  <data name="ArticulationsElement_DetatchedLegato" xml:space="preserve">
+    <value>detached legato</value>
+    <comment>is the same</comment>
+  </data>
+  <data name="ArticulationsElement_Doit" xml:space="preserve">
+    <value>Versiering: kleine toonbuiging omhoog</value>
+  </data>
+  <data name="ArticulationsElement_Falloff" xml:space="preserve">
+    <value>naar beneden vallen</value>
+  </data>
+  <data name="ArticulationsElement_OtherArticulation" xml:space="preserve">
+    <value>andere articulatie</value>
+  </data>
+  <data name="ArticulationsElement_Plop" xml:space="preserve">
+    <value>Versiering: in de noot vallen</value>
+  </data>
+  <data name="ArticulationsElement_Scoop" xml:space="preserve">
+    <value>Versiering: kleine buiging, vanaf de hoofdnoot naar beneden en weer terug.</value>
+  </data>
+  <data name="ArticulationsElement_Spiccato" xml:space="preserve">
+    <value>Spiccato</value>
+  </data>
+  <data name="ArticulationsElement_Staccatissimo" xml:space="preserve">
+    <value>staccatissimo</value>
+    <comment>We also use Italian terms</comment>
+  </data>
+  <data name="ArticulationsElement_Staccato" xml:space="preserve">
+    <value>staccato</value>
+  </data>
+  <data name="ArticulationsElement_Stress" xml:space="preserve">
+    <value>nadruk</value>
+  </data>
+  <data name="ArticulationsElement_StrongAccent" xml:space="preserve">
+    <value>sterk accent</value>
+  </data>
+  <data name="ArticulationsElement_Tenuto" xml:space="preserve">
+    <value>Tenuto</value>
+  </data>
+  <data name="ArticulationsElement_Unstress" xml:space="preserve">
+    <value>zonder nadruk</value>
+  </data>
+  <data name="BarlineElement" xml:space="preserve">
+    <value>maatstreep</value>
+  </data>
+  <data name="BarlineElement_EndOfScore" xml:space="preserve">
+    <value>einde muziekstuk</value>
+  </data>
+  <data name="BarlineElement_Position_left" xml:space="preserve">
+    <value>links</value>
+  </data>
+  <data name="BarlineElement_Position_middle" xml:space="preserve">
+    <value>middelste</value>
+  </data>
+  <data name="BarlineElement_Position_right" xml:space="preserve">
+    <value>rechts</value>
+  </data>
+  <data name="BarlineElement_Position_unknown" xml:space="preserve">
+    <value>onbekend</value>
+  </data>
+  <data name="BeatRepeatElement_Name" xml:space="preserve">
+    <value>herhaling</value>
+    <comment>beat is the same</comment>
+  </data>
+  <data name="ClefElement_C_Key" xml:space="preserve">
+    <value>C-sleutel</value>
+  </data>
+  <data name="ClefElement_F_Key" xml:space="preserve">
+    <value>F-sleutel</value>
+  </data>
+  <data name="ClefElement_G_Key" xml:space="preserve">
+    <value>G-sleutel</value>
+  </data>
+  <data name="ClefElement_jianpu" xml:space="preserve">
+    <value>Jianpu</value>
+    <comment>Numbered musical notation, we can not find a dutch word for it.</comment>
+  </data>
+  <data name="ClefElement_None" xml:space="preserve">
+    <value>Geen sleutel</value>
+  </data>
+  <data name="ClefElement_Percussion" xml:space="preserve">
+    <value>Percussie</value>
+  </data>
+  <data name="ClefElement_TAB" xml:space="preserve">
+    <value>TAB</value>
+    <comment>is the same word</comment>
+  </data>
+  <data name="CreatorElementType_Arranger" xml:space="preserve">
+    <value>arrangeur</value>
+  </data>
+  <data name="CreatorElementType_Composer" xml:space="preserve">
+    <value>Componist</value>
+  </data>
+  <data name="CreatorElementType_Lyricist" xml:space="preserve">
+    <value>Tekstschrijver</value>
+    <comment>also auteur</comment>
+  </data>
+  <data name="CreatorElementType_Poet" xml:space="preserve">
+    <value>dichter</value>
+  </data>
+  <data name="CreatorElementType_Translator" xml:space="preserve">
+    <value>vertaler</value>
+  </data>
+  <data name="CreatorElementType_Unknown" xml:space="preserve">
+    <value>onbekend</value>
+  </data>
+  <data name="CultureString" xml:space="preserve">
+    <value>nl-NL</value>
+  </data>
+  <data name="DetailsDescription_MusicBraille_FormFeed" xml:space="preserve">
+    <value>volgende pagina</value>
+  </data>
+  <data name="DetailsDescription_NoChordFound" xml:space="preserve">
+    <value>geen accoord</value>
+  </data>
+  <data name="DetailsPlayer_Part" xml:space="preserve">
+    <value>deel</value>
+  </data>
+  <data name="DetailsPlayer_Parts" xml:space="preserve">
+    <value>delen</value>
+  </data>
+  <data name="EndingElement_Discontinue" xml:space="preserve">
+    <value>niet verder gaan</value>
+  </data>
+  <data name="EndingElement_Start" xml:space="preserve">
+    <value>start</value>
+  </data>
+  <data name="EndingElement_Stop" xml:space="preserve">
+    <value>stop</value>
+  </data>
+  <data name="EndingElement_Undefined" xml:space="preserve">
+    <value>Niet gedefinieerd</value>
+  </data>
+  <data name="EventDescription_NotPrinted" xml:space="preserve">
+    <value>Onzichtbaar</value>
+  </data>
+  <data name="EventDescription_tempo" xml:space="preserve">
+    <value>tempo</value>
+    <comment>is the same word</comment>
+  </data>
+  <data name="FermataElement_Inverted" xml:space="preserve">
+    <value>omgekeerde fermate</value>
+  </data>
+  <data name="FermataElement_Upright" xml:space="preserve">
+    <value>fermate</value>
+  </data>
+  <data name="GlissandoElement_Name" xml:space="preserve">
+    <value>glissando</value>
+  </data>
+  <data name="HarmonyElement_BassTone" xml:space="preserve">
+    <value>bas</value>
+  </data>
+  <data name="HarmonyElement_Chord" xml:space="preserve">
+    <value>accoord</value>
+  </data>
+  <data name="IntegerFraction_Denominator_001_P" xml:space="preserve">
+    <value>volledig</value>
+  </data>
+  <data name="IntegerFraction_Denominator_001_S" xml:space="preserve">
+    <value>volledig </value>
+  </data>
+  <data name="IntegerFraction_Denominator_002_P" xml:space="preserve">
+    <value>halven</value>
+  </data>
+  <data name="IntegerFraction_Denominator_002_S" xml:space="preserve">
+    <value>halve</value>
+  </data>
+  <data name="IntegerFraction_Denominator_003_P" xml:space="preserve">
+    <value>derdes</value>
+  </data>
+  <data name="IntegerFraction_Denominator_003_S" xml:space="preserve">
+    <value>derde</value>
+  </data>
+  <data name="IntegerFraction_Denominator_004_P" xml:space="preserve">
+    <value>kwarten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_004_S" xml:space="preserve">
+    <value>kwart</value>
+  </data>
+  <data name="IntegerFraction_Denominator_005_P" xml:space="preserve">
+    <value>vijfdes</value>
+  </data>
+  <data name="IntegerFraction_Denominator_005_S" xml:space="preserve">
+    <value>vijfde </value>
+  </data>
+  <data name="IntegerFraction_Denominator_006_P" xml:space="preserve">
+    <value>zesden</value>
+  </data>
+  <data name="IntegerFraction_Denominator_006_S" xml:space="preserve">
+    <value>zesde</value>
+  </data>
+  <data name="IntegerFraction_Denominator_008_P" xml:space="preserve">
+    <value>achtsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_008_S" xml:space="preserve">
+    <value>achtste </value>
+  </data>
+  <data name="IntegerFraction_Denominator_010_P" xml:space="preserve">
+    <value>tiendes</value>
+  </data>
+  <data name="IntegerFraction_Denominator_010_S" xml:space="preserve">
+    <value>tiende </value>
+  </data>
+  <data name="IntegerFraction_Denominator_012_P" xml:space="preserve">
+    <value>twaalfdes</value>
+  </data>
+  <data name="IntegerFraction_Denominator_012_S" xml:space="preserve">
+    <value>twaalfde </value>
+  </data>
+  <data name="IntegerFraction_Denominator_016_P" xml:space="preserve">
+    <value>zestiendes</value>
+  </data>
+  <data name="IntegerFraction_Denominator_016_S" xml:space="preserve">
+    <value>zestiende </value>
+  </data>
+  <data name="IntegerFraction_Denominator_018_P" xml:space="preserve">
+    <value>achttiendes</value>
+  </data>
+  <data name="IntegerFraction_Denominator_018_S" xml:space="preserve">
+    <value>achttiende </value>
+  </data>
+  <data name="IntegerFraction_Denominator_020_P" xml:space="preserve">
+    <value>twintigsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_020_S" xml:space="preserve">
+    <value>twintigste </value>
+  </data>
+  <data name="IntegerFraction_Denominator_024_P" xml:space="preserve">
+    <value>vierentwintigsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_024_S" xml:space="preserve">
+    <value>vierentwintigste </value>
+  </data>
+  <data name="IntegerFraction_Denominator_028_P" xml:space="preserve">
+    <value>achtentwintigsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_028_S" xml:space="preserve">
+    <value>achtentwintigste</value>
+  </data>
+  <data name="IntegerFraction_Denominator_030_P" xml:space="preserve">
+    <value>dertigsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_030_S" xml:space="preserve">
+    <value>dertigste </value>
+  </data>
+  <data name="IntegerFraction_Denominator_032_P" xml:space="preserve">
+    <value>twee-en-dertigsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_032_S" xml:space="preserve">
+    <value>twee-en-dertigste </value>
+  </data>
+  <data name="IntegerFraction_Denominator_036_P" xml:space="preserve">
+    <value>zes-en-dertigsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_036_S" xml:space="preserve">
+    <value>zes-en-dertigste </value>
+  </data>
+  <data name="IntegerFraction_Denominator_040_P" xml:space="preserve">
+    <value>veertigsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_040_S" xml:space="preserve">
+    <value>veertigste </value>
+  </data>
+  <data name="IntegerFraction_Denominator_048_P" xml:space="preserve">
+    <value>achtenveertigsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_048_S" xml:space="preserve">
+    <value>achtenveertigste </value>
+  </data>
+  <data name="IntegerFraction_Denominator_064_P" xml:space="preserve">
+    <value>vier-en-zestigsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_064_S" xml:space="preserve">
+    <value>vier-en-zestigste</value>
+  </data>
+  <data name="IntegerFraction_Denominator_068_P" xml:space="preserve">
+    <value>acht-en-zestigsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_068_S" xml:space="preserve">
+    <value>acht-en-zestigste</value>
+  </data>
+  <data name="IntegerFraction_Denominator_128_P" xml:space="preserve">
+    <value>honderdachtentwintigsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_128_S" xml:space="preserve">
+    <value>honderdachtentwintig </value>
+  </data>
+  <data name="IntegerFraction_Denominator_136_P" xml:space="preserve">
+    <value>honderdzesendertigsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_136_S" xml:space="preserve">
+    <value>honderdzesendertigsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_256_P" xml:space="preserve">
+    <value>tweehonderdzesenvijftigsten</value>
+  </data>
+  <data name="IntegerFraction_Denominator_256_S" xml:space="preserve">
+    <value>tweehonderzesenvijftigste </value>
+  </data>
+  <data name="IntegerFraction_Denominator_512_P" xml:space="preserve">
+    <value>?</value>
+    <comment>? means "Use default formatting for this language" ("1 of 512")</comment>
+  </data>
+  <data name="IntegerFraction_Denominator_512_S" xml:space="preserve">
+    <value>?</value>
+    <comment>? means "Use default formatting for this language" ("1 of 512")</comment>
+  </data>
+  <data name="IntegerFraction_Denominator_Default_Conjunction" xml:space="preserve">
+    <value>van</value>
+    <comment>geluidsfragment 1 van 7</comment>
+  </data>
+  <data name="JawsSettingsLanguageName" xml:space="preserve">
+    <value>nl</value>
+    <comment>JSJ:????</comment>
+  </data>
+  <data name="KeyElement_key" xml:space="preserve">
+    <value>sleutel</value>
+  </data>
+  <data name="KeyElement_major" xml:space="preserve">
+    <value>Majeur </value>
+    <comment>with capital M</comment>
+  </data>
+  <data name="KeyElement_minor" xml:space="preserve">
+    <value>mineur</value>
+    <comment>no capital m</comment>
+  </data>
+  <data name="KeyElement_Or" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="MeasureRepeatElement_Name" xml:space="preserve">
+    <value>maat herhalen</value>
+  </data>
+  <data name="MetaInfoText_FileName" xml:space="preserve">
+    <value>bestandsnaam</value>
+  </data>
+  <data name="MetronomeElement_Tempo" xml:space="preserve">
+    <value>Tempo</value>
+    <comment>is the same word</comment>
+  </data>
+  <data name="MidiInstrumentElement_MidiBank" xml:space="preserve">
+    <value>MidiBank</value>
+    <comment>is the same word</comment>
+  </data>
+  <data name="MidiInstrumentElement_MidiChannel" xml:space="preserve">
+    <value>Midikanaal </value>
+  </data>
+  <data name="MidiInstrumentElement_MidiElevation" xml:space="preserve">
+    <value>MidiElevation</value>
+    <comment>Can't finf the word </comment>
+  </data>
+  <data name="MidiInstrumentElement_MidiPan" xml:space="preserve">
+    <value>Midi balance</value>
+  </data>
+  <data name="MidiInstrumentElement_MidiProgram" xml:space="preserve">
+    <value>Midi programma</value>
+  </data>
+  <data name="MidiInstrumentElement_MidiUnpitchedInstrument" xml:space="preserve">
+    <value>Midi ongestemd instrument</value>
+    <comment>I think percussion (like drums are meant). Drums have no pitch (a fixed frquency), drums are like white noise </comment>
+  </data>
+  <data name="MidiInstrumentElement_MidiVolume" xml:space="preserve">
+    <value>Midi volume</value>
+    <comment>is the same word</comment>
+  </data>
+  <data name="MultipleRestElement_Name" xml:space="preserve">
+    <value>Meerdere rusten</value>
+  </data>
+  <data name="MusicBrailleFilenameAttribute_Multi" xml:space="preserve">
+    <value>veel</value>
+  </data>
+  <data name="MusicBrailleFilenameAttribute_Tutti" xml:space="preserve">
+    <value>iedereen</value>
+    <comment>we also use tutti</comment>
+  </data>
+  <data name="NoteElement_128th" xml:space="preserve">
+    <value>128ste</value>
+  </data>
+  <data name="NoteElement_16th" xml:space="preserve">
+    <value>16e</value>
+  </data>
+  <data name="NoteElement_16th_rest" xml:space="preserve">
+    <value>16e rust</value>
+  </data>
+  <data name="NoteElement_256th" xml:space="preserve">
+    <value>256ste</value>
+  </data>
+  <data name="NoteElement_32nd" xml:space="preserve">
+    <value>32ste</value>
+  </data>
+  <data name="NoteElement_32nd_rest" xml:space="preserve">
+    <value>32ste rust</value>
+  </data>
+  <data name="NoteElement_64th" xml:space="preserve">
+    <value>64ste</value>
+  </data>
+  <data name="NoteElement_64th_rest" xml:space="preserve">
+    <value>64ste rust</value>
+  </data>
+  <data name="NoteElement_breve" xml:space="preserve">
+    <value>halve</value>
+  </data>
+  <data name="NoteElement_CueNote" xml:space="preserve">
+    <value>notenrij</value>
+  </data>
+  <data name="NoteElement_dotted" xml:space="preserve">
+    <value>gepuncteerd</value>
+  </data>
+  <data name="NoteElement_Duration" xml:space="preserve">
+    <value>nootduur</value>
+  </data>
+  <data name="NoteElement_eight" xml:space="preserve">
+    <value>acht</value>
+  </data>
+  <data name="NoteElement_eight_rest" xml:space="preserve">
+    <value>achtste rust</value>
+  </data>
+  <data name="NoteElement_half" xml:space="preserve">
+    <value>halve</value>
+  </data>
+  <data name="NoteElement_half_rest" xml:space="preserve">
+    <value>halve rust</value>
+  </data>
+  <data name="NoteElement_LeftHand" xml:space="preserve">
+    <value>Linkerhand</value>
+  </data>
+  <data name="NoteElement_longus" xml:space="preserve">
+    <value>lang</value>
+  </data>
+  <data name="NoteElement_maxima" xml:space="preserve">
+    <value>maximum</value>
+  </data>
+  <data name="NoteElement_measure" xml:space="preserve">
+    <value>hele maat    </value>
+  </data>
+  <data name="NoteElement_MeasureString" xml:space="preserve">
+    <value>maat</value>
+  </data>
+  <data name="NoteElement_measure_rest" xml:space="preserve">
+    <value>hele maat rust</value>
+  </data>
+  <data name="NoteElement_measure_text" xml:space="preserve">
+    <value>maat   </value>
+  </data>
+  <data name="NoteElement_NoteType" xml:space="preserve">
+    <value>soort noot</value>
+  </data>
+  <data name="NoteElement_quarter" xml:space="preserve">
+    <value>kwart  </value>
+  </data>
+  <data name="NoteElement_quarter_rest" xml:space="preserve">
+    <value>kwart rust </value>
+  </data>
+  <data name="NoteElement_RightHand" xml:space="preserve">
+    <value>rechterhand </value>
+  </data>
+  <data name="NoteElement_Staff" xml:space="preserve">
+    <value>notenbalk</value>
+  </data>
+  <data name="NoteElement_tie_start" xml:space="preserve">
+    <value>start boog</value>
+  </data>
+  <data name="NoteElement_tie_stop" xml:space="preserve">
+    <value>einde boog</value>
+  </data>
+  <data name="NoteElement_unknown" xml:space="preserve">
+    <value>onbekend</value>
+  </data>
+  <data name="NoteElement_unknown_rest" xml:space="preserve">
+    <value>rust onbekend</value>
+  </data>
+  <data name="NoteElement_unpitched_text" xml:space="preserve">
+    <value>ongestemd</value>
+  </data>
+  <data name="NoteElement_unspecified_rest" xml:space="preserve">
+    <value>niet nader bepaalde rust</value>
+  </data>
+  <data name="NoteElement_whole" xml:space="preserve">
+    <value>heel</value>
+  </data>
+  <data name="NoteElement_whole_rest" xml:space="preserve">
+    <value>hele rust</value>
+  </data>
+  <data name="NoteHeadElement_Filled" xml:space="preserve">
+    <value>gevuld</value>
+  </data>
+  <data name="NoteHeadElement_Parentheses" xml:space="preserve">
+    <value>haakjes</value>
+  </data>
+  <data name="Ornament_AccidentalMark" xml:space="preserve">
+    <value>toevallig teken</value>
+  </data>
+  <data name="Ornament_AccidentalMarkFlat" xml:space="preserve">
+    <value>mol </value>
+  </data>
+  <data name="Ornament_AccidentalMarkNatural" xml:space="preserve">
+    <value>geen</value>
+  </data>
+  <data name="Ornament_AccidentalMarkSharp" xml:space="preserve">
+    <value>kruis </value>
+  </data>
+  <data name="Ornament_AccidentalMarkUnknown" xml:space="preserve">
+    <value>onbekend voorteken </value>
+  </data>
+  <data name="Ornament_DelayedInvertedTurn" xml:space="preserve">
+    <value>uitgestelde omgekeerde dubbelslag</value>
+  </data>
+  <data name="Ornament_DelayedTurn" xml:space="preserve">
+    <value>uitgestelde dubbelslag</value>
+    <comment>turn= dubbelslag</comment>
+  </data>
+  <data name="Ornament_InvertedMordent" xml:space="preserve">
+    <value>omgekeerde mordent</value>
+    <comment>mordent is the same word</comment>
+  </data>
+  <data name="Ornament_InvertedTurn" xml:space="preserve">
+    <value>omgekeerde dubbelslag</value>
+  </data>
+  <data name="Ornament_Mordent" xml:space="preserve">
+    <value>mordent</value>
+  </data>
+  <data name="Ornament_OtherOrnament" xml:space="preserve">
+    <value>andere versiering</value>
+  </data>
+  <data name="Ornament_Schleifer" xml:space="preserve">
+    <value>legatoboog or fraseringsboog</value>
+  </data>
+  <data name="Ornament_Shake" xml:space="preserve">
+    <value>schudden</value>
+  </data>
+  <data name="Ornament_Tremolo" xml:space="preserve">
+    <value>tremelo</value>
+  </data>
+  <data name="Ornament_TrillMark" xml:space="preserve">
+    <value>triller </value>
+  </data>
+  <data name="Ornament_Turn" xml:space="preserve">
+    <value>dubbelslag</value>
+  </data>
+  <data name="Ornament_Undefined" xml:space="preserve">
+    <value>Ongedefinieerde versiering</value>
+  </data>
+  <data name="Ornament_VerticalTurn" xml:space="preserve">
+    <value>verticale dubbelslag</value>
+  </data>
+  <data name="Ornament_WavyLine" xml:space="preserve">
+    <value>golflijn</value>
+  </data>
+  <data name="PartElement_Name" xml:space="preserve">
+    <value>deel</value>
+  </data>
+  <data name="PartListElement_Message" xml:space="preserve">
+    <value>Deze lijst bevat</value>
+  </data>
+  <data name="PartListElement_Part" xml:space="preserve">
+    <value>deel</value>
+  </data>
+  <data name="PartListElement_Parts" xml:space="preserve">
+    <value>delen</value>
+  </data>
+  <data name="PitchElement_a" xml:space="preserve">
+    <value>A    </value>
+  </data>
+  <data name="PitchElement_aFlat" xml:space="preserve">
+    <value>A-mol</value>
+  </data>
+  <data name="PitchElement_aSharp" xml:space="preserve">
+    <value>A-kruis</value>
+  </data>
+  <data name="PitchElement_b" xml:space="preserve">
+    <value>B </value>
+  </data>
+  <data name="PitchElement_Bb" xml:space="preserve">
+    <value>B-mol</value>
+  </data>
+  <data name="PitchElement_c" xml:space="preserve">
+    <value>C</value>
+  </data>
+  <data name="PitchElement_cFlat" xml:space="preserve">
+    <value>C-mol</value>
+  </data>
+  <data name="PitchElement_cSharp" xml:space="preserve">
+    <value>C-kruis</value>
+  </data>
+  <data name="PitchElement_d" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="PitchElement_dFlat" xml:space="preserve">
+    <value>D-mol</value>
+  </data>
+  <data name="PitchElement_dSharp" xml:space="preserve">
+    <value>D-kruis</value>
+  </data>
+  <data name="PitchElement_e" xml:space="preserve">
+    <value>E    </value>
+  </data>
+  <data name="PitchElement_eFlat" xml:space="preserve">
+    <value>E-mol</value>
+  </data>
+  <data name="PitchElement_eSharp" xml:space="preserve">
+    <value>E-kruis</value>
+  </data>
+  <data name="PitchElement_f" xml:space="preserve">
+    <value>F    </value>
+  </data>
+  <data name="PitchElement_fSharp" xml:space="preserve">
+    <value>f-kruis</value>
+  </data>
+  <data name="PitchElement_g" xml:space="preserve">
+    <value>G </value>
+  </data>
+  <data name="PitchElement_gFlat" xml:space="preserve">
+    <value>G-mol</value>
+  </data>
+  <data name="PitchElement_gSharp" xml:space="preserve">
+    <value>G-kruis</value>
+  </data>
+  <data name="PitctElement_g" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="Progress_Converting" xml:space="preserve">
+    <value>bezig met converteren</value>
+  </data>
+  <data name="Progress_FromMxlToXml" xml:space="preserve">
+    <value>naar .xml</value>
+  </data>
+  <data name="Progress_LoadingFile" xml:space="preserve">
+    <value>bezig met laden bestand</value>
+  </data>
+  <data name="RepeatElement_Backward" xml:space="preserve">
+    <value>terug</value>
+  </data>
+  <data name="RepeatElement_Forward" xml:space="preserve">
+    <value>vooruit</value>
+  </data>
+  <data name="RepeatElement_Name" xml:space="preserve">
+    <value>herhaling</value>
+  </data>
+  <data name="RestElement_Name" xml:space="preserve">
+    <value>rust</value>
+  </data>
+  <data name="ScoreInstrumentElement_Solo" xml:space="preserve">
+    <value>solo</value>
+    <comment>is the same word</comment>
+  </data>
+  <data name="ScoreInstrumentElement_Sound" xml:space="preserve">
+    <value>geluid</value>
+  </data>
+  <data name="ScoreInstrumentElement_VirtualInstrument" xml:space="preserve">
+    <value>Virtueel instrument</value>
+  </data>
+  <data name="Shortcut_MuseScore" xml:space="preserve">
+    <value>MuseScore for IBOS MusicXmlReader</value>
+    <comment>is the same  </comment>
+  </data>
+  <data name="Shortcut_Sibelius" xml:space="preserve">
+    <value>Sibelius for IBOS MusicXmlReader</value>
+    <comment>is the same</comment>
+  </data>
+  <data name="SlideElement_Name" xml:space="preserve">
+    <value>glijdend</value>
+  </data>
+  <data name="SlurElement_Name" xml:space="preserve">
+    <value>legato</value>
+  </data>
+  <data name="SoundElement_Tempo" xml:space="preserve">
+    <value>tempo</value>
+  </data>
+  <data name="StartStopContinueElement_Continue" xml:space="preserve">
+    <value>verdergaan</value>
+  </data>
+  <data name="StartStopContinueElement_Start" xml:space="preserve">
+    <value>start</value>
+  </data>
+  <data name="StartStopContinueElement_Stop" xml:space="preserve">
+    <value>stop</value>
+  </data>
+  <data name="StartStopContinueElement_Undefined" xml:space="preserve">
+    <value>niet gedefinieerd</value>
+  </data>
+  <data name="Status_BuildingDataStructuresFor" xml:space="preserve">
+    <value>Bezig mer maken Data structuur</value>
+  </data>
+  <data name="Status_FailedToLoad" xml:space="preserve">
+    <value>laden mislukt</value>
+  </data>
+  <data name="Status_Interpreting" xml:space="preserve">
+    <value>Bezig met interpreteren</value>
+  </data>
+  <data name="Status_ItIsNotAValidMusicXmlFile" xml:space="preserve">
+    <value>geen geldig Music.xml bestand</value>
+  </data>
+  <data name="Status_WasSuccessfullyLoaded" xml:space="preserve">
+    <value>succesvol geladen</value>
+  </data>
+  <data name="TechnicalElement_arrow" xml:space="preserve">
+    <value>pijl</value>
+  </data>
+  <data name="TechnicalElement_bend" xml:space="preserve">
+    <value>boog</value>
+  </data>
+  <data name="TechnicalElement_doubleTongue" xml:space="preserve">
+    <value>dubbeltong</value>
+    <comment>do not write: dubbele tong, for that means you are drunk!</comment>
+  </data>
+  <data name="TechnicalElement_downBow" xml:space="preserve">
+    <value>naar beneden strijken</value>
+  </data>
+  <data name="TechnicalElement_fingering" xml:space="preserve">
+    <value>vingerzetting</value>
+  </data>
+  <data name="TechnicalElement_fingernails" xml:space="preserve">
+    <value>vingernagels</value>
+  </data>
+  <data name="TechnicalElement_fret" xml:space="preserve">
+    <value>fret</value>
+    <comment>same word </comment>
+  </data>
+  <data name="TechnicalElement_hammer_on" xml:space="preserve">
+    <value>van een lagere naar een hogere noot gaan</value>
+    <comment>opposite of pull off: used by guitar</comment>
+  </data>
+  <data name="TechnicalElement_handbell" xml:space="preserve">
+    <value>handbel </value>
+  </data>
+  <data name="TechnicalElement_harmonic" xml:space="preserve">
+    <value>harmonisch</value>
+  </data>
+  <data name="TechnicalElement_heel" xml:space="preserve">
+    <value>??</value>
+  </data>
+  <data name="TechnicalElement_hole" xml:space="preserve">
+    <value>gat</value>
+  </data>
+  <data name="TechnicalElement_open_string" xml:space="preserve">
+    <value>open snaar</value>
+  </data>
+  <data name="TechnicalElement_other_technical" xml:space="preserve">
+    <value>andere technische informatie</value>
+  </data>
+  <data name="TechnicalElement_pluck" xml:space="preserve">
+    <value>pluck</value>
+    <comment>is the same</comment>
+  </data>
+  <data name="TechnicalElement_pullOff" xml:space="preserve">
+    <value>van een hogere  naar een  lagere noot gaan</value>
+  </data>
+  <data name="TechnicalElement_snap_pizzicato" xml:space="preserve">
+    <value>snap pizzicato</value>
+  </data>
+  <data name="TechnicalElement_stopped" xml:space="preserve">
+    <value>gestopt</value>
+  </data>
+  <data name="TechnicalElement_string" xml:space="preserve">
+    <value>snaar</value>
+  </data>
+  <data name="TechnicalElement_tap" xml:space="preserve">
+    <value>tik</value>
+  </data>
+  <data name="TechnicalElement_thumb_position" xml:space="preserve">
+    <value>duimpositie</value>
+  </data>
+  <data name="TechnicalElement_toe" xml:space="preserve">
+    <value>teen</value>
+  </data>
+  <data name="TechnicalElement_tripleTongue" xml:space="preserve">
+    <value>triple tong</value>
+    <comment>We do not use a translation for triple.</comment>
+  </data>
+  <data name="TechnicalElement_unknown" xml:space="preserve">
+    <value>onbekend</value>
+  </data>
+  <data name="TechnicalElement_upbow" xml:space="preserve">
+    <value>omhoog strijken</value>
+  </data>
+  <data name="TiedElement_Name" xml:space="preserve">
+    <value>verbindingsboog</value>
+  </data>
+  <data name="TieElement_Name" xml:space="preserve">
+    <value>verbindingsboog</value>
+  </data>
+  <data name="TimeElement_eights" xml:space="preserve">
+    <value>achtste</value>
+  </data>
+  <data name="TimeElement_halves" xml:space="preserve">
+    <value>halfjes</value>
+  </data>
+  <data name="TimeElement_pulse" xml:space="preserve">
+    <value>puls </value>
+  </data>
+  <data name="TimeElement_quarters" xml:space="preserve">
+    <value>kwarten </value>
+  </data>
+  <data name="TimeElement_sixteenths" xml:space="preserve">
+    <value>zestiendes </value>
+  </data>
+  <data name="TimeElement_thirtyseconds" xml:space="preserve">
+    <value>twee-en-dertigsten</value>
+  </data>
+  <data name="TimeElement_wholes" xml:space="preserve">
+    <value>hele</value>
+  </data>
+  <data name="TupletElement_Name" xml:space="preserve">
+    <value>antimetrische figuur</value>
+  </data>
+  <data name="TupletElement_Triplet" xml:space="preserve">
+    <value>triool</value>
+    <comment>There are many tuplets, the triplet is only of of them</comment>
+  </data>
+  <data name="UserSettings_BrailleNames_Harmonies" xml:space="preserve">
+    <value>accoordsymbolen</value>
+  </data>
+  <data name="UserSettings_BrailleNames_MeasureNumbers" xml:space="preserve">
+    <value>maatnummers</value>
+  </data>
+  <data name="UserSettings_BrailleNames_Notations" xml:space="preserve">
+    <value>notaties</value>
+  </data>
+  <data name="UserSettings_BrailleNames_Notes" xml:space="preserve">
+    <value>noten   </value>
+  </data>
+  <data name="UserSettings_PlayerNames_Beats" xml:space="preserve">
+    <value>beats</value>
+    <comment>same word </comment>
+  </data>
+  <data name="UserSettings_PlayerNames_Harmonies" xml:space="preserve">
+    <value>accoordsymbolen </value>
+  </data>
+  <data name="UserSettings_ReaderNames_Accidentals" xml:space="preserve">
+    <value>toevallige</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Divisions" xml:space="preserve">
+    <value>onderverdelingen</value>
+  </data>
+  <data name="UserSettings_ReaderNames_EndEvents" xml:space="preserve">
+    <value>eind gebeurtenissen</value>
+  </data>
+  <data name="UserSettings_ReaderNames_FullMeasureInformation" xml:space="preserve">
+    <value>informatie over de hele maat</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Harmonies" xml:space="preserve">
+    <value>accoordsymbolen</value>
+  </data>
+  <data name="UserSettings_ReaderNames_HarmonyCodes" xml:space="preserve">
+    <value>Developer feature</value>
+    <comment>codes voor accoordsymbolen</comment>
+  </data>
+  <data name="UserSettings_ReaderNames_Lyrics" xml:space="preserve">
+    <value>teksten</value>
+  </data>
+  <data name="UserSettings_ReaderNames_MeasureNumbers" xml:space="preserve">
+    <value>maatnummers</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Metainformation" xml:space="preserve">
+    <value>meta informatie</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Notations" xml:space="preserve">
+    <value>notaties</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Notes" xml:space="preserve">
+    <value>noten   </value>
+  </data>
+  <data name="UserSettings_ReaderNames_NoteValues" xml:space="preserve">
+    <value>notenwaardes</value>
+  </data>
+  <data name="UserSettings_ReaderNames_Octaves" xml:space="preserve">
+    <value>octaven </value>
+  </data>
+</root>
