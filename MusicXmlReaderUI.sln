@@ -109,6 +109,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrailleMusicDecoder", "Brai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawPrinterHelper", "RawPrinterHelper\RawPrinterHelper.csproj", "{2A7ADC67-2A98-43D7-A822-25EAB19F401D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Third Party Documentation", "Third Party Documentation", "{DCD9E9C9-E80A-4979-ABD9-0E19AB23E73B}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Third party documentation\Index Braille\Index-Printer-Interface-Protocol-V5_V4-2016-05-13.pdf = Documentation\Third party documentation\Index Braille\Index-Printer-Interface-Protocol-V5_V4-2016-05-13.pdf
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -285,5 +290,6 @@ Global
 		{79DD0BA3-6AD9-4599-B8D4-1D09CC2CE379} = {1B62366B-E595-454C-846D-E36240015490}
 		{7E403006-D108-4DC6-9508-5900C36157E6} = {79DD0BA3-6AD9-4599-B8D4-1D09CC2CE379}
 		{C6B6B125-56D2-47E9-8D42-4281D44E5BAB} = {79DD0BA3-6AD9-4599-B8D4-1D09CC2CE379}
+		{DCD9E9C9-E80A-4979-ABD9-0E19AB23E73B} = {1B62366B-E595-454C-846D-E36240015490}
 	EndGlobalSection
 EndGlobal
