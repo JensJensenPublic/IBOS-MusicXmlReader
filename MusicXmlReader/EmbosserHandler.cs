@@ -15,6 +15,10 @@ namespace MusicXmlReader
         // As we can't have a list of all supported embossers, we can at least create a list of devices, that we do not expect to support:
         private List<string> notEmbossers;
 
+        private void LogPrinterSettings(string text, System.Drawing.Printing.PrinterSettings printerSettings)
+        {
+            Logger.LogCF(string.Format(": {0} PrinterSettings='{1}'", text, printerSettings.ToString()));
+        }
 
         public bool Emboss(string latestDirectory)
         {
@@ -52,30 +56,28 @@ namespace MusicXmlReader
             printDialog.AllowPrintToFile = false;
             printDialog.AllowSelection = false;
             printDialog.AllowSomePages = false;
-            System.Drawing.Printing.PrinterSettings printerSettings = printDialog.PrinterSettings;
-            Logger.LogCF(string.Format(": PrinterSettings={0}", printerSettings));
+            LogPrinterSettings("Initial ", printDialog.PrinterSettings);
+
             printDialog.ShowHelp = false;
             printDialog.ShowNetwork = false;
             bool useEXDialog = printDialog.UseEXDialog;
 
             // Show the PrintDialog
             DialogResult printDialogResult = printDialog.ShowDialog();
-            Logger.LogCF(string.Format(": PrintDialogResult={0}", printDialogResult.ToString()));
+            Logger.LogCF(string.Format(": PrintDialogResult='{0}'", printDialogResult.ToString()));
 
             // Act on the result
-            if (printDialogResult == DialogResult.OK)
+            if (printDialogResult != DialogResult.OK)
             {
-                Logger.LogCF(string.Format(": PrinterName={0}", printerSettings.PrinterName));
-            }
-            else
-            {
+                Logger.LogCF(string.Format(": Operation cancelled by user: PrintDialogResult='{0}'", printDialogResult));
                 return false;
             }
-             
-
+            
+            System.Drawing.Printing.PrinterSettings selectedPrinterSettings = printDialog.PrinterSettings;
+            LogPrinterSettings("Selected", selectedPrinterSettings); 
 
             //string printerName = "Index Basic-D V2";
-            string printerName = printerSettings.PrinterName; // Use the printer selected by the user.
+            string printerName = selectedPrinterSettings.PrinterName; // Use the printer selected by the user.
             if (this.notEmbossers.Contains(printerName))
             {
                 // This is for sure not an embosser ! Better warn the user!
@@ -88,6 +90,7 @@ namespace MusicXmlReader
             }
 
             bool result = false;
+            string errorMessage = null;
             try
             {
                 result = RawPrinterHelper.RawPrinterHelper.SendFileToPrinter(printerName, fullName);
@@ -95,15 +98,31 @@ namespace MusicXmlReader
             catch (Exception exeption)
             {
                 Logger.LogCFE(exeption);
+                errorMessage = exeption.Message;
             }
 
             if (!result)
             {
-                string message = string.Format("Failed to emboss file {0} on {1}", fullName, printerName);
-                MessageBox.Show(message, applicationName);
+                // The operation failed. If an exeptionMessage is found we use it, otherwise we must build one by ourselves:
+                if (string.IsNullOrEmpty(errorMessage))
+                {
+#warning TODO Localize
+                    errorMessage = string.Format("Failed to emboss file '{0}' on embosser='{1}'", fullName, printerName);
+                }
+                Logger.LogCF(string.Format(": {0}", errorMessage));
+                MessageBox.Show(errorMessage, applicationName,MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            else
+            {
+                string fileName = Path.GetFileName(fullName);
+#warning TODo Localize
+                string logMessage = string.Format("Successfully sent file '{0}' to embosser '{1}'",fileName , printerName);
+                string uiMessage  = string.Format("Successfully sent file '{0}'\r\nto embosser '{1}'", fileName, printerName);
+                Logger.LogCF(string.Format(": {0}", logMessage));
+                MessageBox.Show(uiMessage, applicationName, MessageBoxButtons.OK,MessageBoxIcon.None);
             }
 
-            return true;
+            return result;
         }
 
 
