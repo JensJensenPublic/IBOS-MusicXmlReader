@@ -114,8 +114,10 @@ namespace MusicXmlReader
                 // Create a handler for handling all Keyboard shortcuts
                 // shortCutHandler = ShortcutHandler.Create(this, model);
                 userPreferencesHandler = UserPreferencesHandler.Create();
+                userPreferencesHandler.embosser.Log();
+                userPreferencesHandler.noteTaker.Log();
                 userPreferencesHandler.embosser.Name = "EmbosserName2";
-                userPreferencesHandler.noteTaker.Name = "NoteTakerName2";
+                userPreferencesHandler.noteTaker.Name = "NoteTakerName2";        
                 userPreferencesHandler.Save();
 
                 // Experiments.LogRightAlignedMenus(this);

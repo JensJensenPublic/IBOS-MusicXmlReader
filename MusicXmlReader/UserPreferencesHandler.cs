@@ -18,10 +18,14 @@ namespace MusicXmlReader
         public abstract int PageWidth { get; set; }
         public abstract int PageHeight { get; set; }
 
-        internal void Log()
+        public void Log()
         {
             string className = this.GetType().Name;
-            Logger.Log(string.Format(": Class={0} Name={1}", className , Name));
+            string deviceName = Name;
+            string esc = EscapeSequence;
+            int width = PageWidth;
+            int height = PageHeight;
+            Logger.LogCF(string.Format(": Class='{0}' Name='{1}' EscapeSequence='{2}' PageWidth={3} PageHeight={4}", className , deviceName, esc,width,height ));
         }
     }
 
@@ -37,7 +41,6 @@ namespace MusicXmlReader
         internal BrailleEmbosser(MusicXmlReader.Properties.Settings settings)
         {
             this.settings = settings;
-            Log();
         }
     }
 
@@ -54,7 +57,6 @@ namespace MusicXmlReader
         internal BrailleNoteTaker(MusicXmlReader.Properties.Settings settings)
         {
             this.settings = settings;
-            Log();
         }
     }
     
@@ -66,10 +68,7 @@ namespace MusicXmlReader
     {
         private Settings s;
         public BrailleDevice embosser;
-        public BrailleDevice noteTaker;
-
-        public string EmbosserName = Settings.Default.EmbosserName;
-        public string EmbosserEscapeSequence = Settings.Default.EmbosserEscapeSequence;
+        public BrailleDevice noteTaker; 
 
         private void Log(string name, string value)
         {
