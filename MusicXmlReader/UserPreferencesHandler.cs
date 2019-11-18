@@ -1,0 +1,112 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MusicXmlReaderModel;
+using MusicXmlReader.Properties;
+
+namespace MusicXmlReader
+{
+
+
+    public abstract class BrailleDevice
+    {
+        public abstract string Name{ get; set; }
+        public abstract string EscapeSequence { get; set; }
+        public abstract string FileFormat { get; set; }
+        public abstract int PageWidth { get; set; }
+        public abstract int PageHeight { get; set; }
+
+        internal void Log()
+        {
+            string className = this.GetType().Name;
+            Logger.Log(string.Format(": Class={0} Name={1}", className , Name));
+        }
+    }
+
+    public class BrailleEmbosser : BrailleDevice
+    {
+        private Settings settings;
+        public override string Name { get { return settings.EmbosserName; }  set { settings.EmbosserName = value; } }
+        public override string EscapeSequence { get { return settings.EmbosserEscapeSequence; } set { settings.EmbosserEscapeSequence = value; } }
+        public override string FileFormat {get { return settings.EmbosserFileFormat; } set { settings.EmbosserFileFormat = value; } }
+        public override int PageWidth { get { return settings.EmbosserPageWidth; } set { settings.EmbosserPageWidth = value; } }
+        public override int PageHeight { get { return settings.EmbosserPageHeight; } set { settings.EmbosserPageHeight = value; } }
+
+        internal BrailleEmbosser(MusicXmlReader.Properties.Settings settings)
+        {
+            this.settings = settings;
+            Log();
+        }
+    }
+
+    public class BrailleNoteTaker : BrailleDevice
+    {
+        private Settings settings;
+        public override string Name { get { return settings.NoteTakerName; } set { settings.NoteTakerName = value; }  }
+        public override string EscapeSequence { get { return settings.NoteTakerEscapeSequence; } set { settings.NoteTakerEscapeSequence = value; }      }
+        public override string FileFormat { get { return settings.NoteTakerFileFormat; } set { settings.NoteTakerFileFormat = value; } }
+        public override int PageWidth { get { return settings.NoteTakerPageWidth; } set { settings.NoteTakerPageWidth = value; } }
+        public override int PageHeight { get { return settings.NoteTakerPageHeight; } set { settings.NoteTakerPageHeight = value; } }
+
+
+        internal BrailleNoteTaker(MusicXmlReader.Properties.Settings settings)
+        {
+            this.settings = settings;
+            Log();
+        }
+    }
+    
+
+    /// <summary>
+    /// // Contains all application-wide settings that can be configured by the user
+    /// </summary>
+    class UserPreferencesHandler
+    {
+        private Settings s;
+        public BrailleDevice embosser;
+        public BrailleDevice noteTaker;
+
+        public string EmbosserName = Settings.Default.EmbosserName;
+        public string EmbosserEscapeSequence = Settings.Default.EmbosserEscapeSequence;
+
+        private void Log(string name, string value)
+        {
+            Logger.LogCF(string.Format(": Name='{0}' Value='{1}'", name, value));
+        }
+
+        UserPreferencesHandler()
+        {
+            Logger.LogCF(": Entry");
+            try
+            {
+                s = MusicXmlReader.Properties.Settings.Default; // Establish a shorthand notation
+                embosser = new BrailleEmbosser(s);
+                noteTaker = new BrailleNoteTaker(s);
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+            Logger.LogCF(": Exit");
+        }
+
+        public void Save()
+        {
+            try
+            {
+                s.Save();
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+        }
+
+        public static UserPreferencesHandler Create()
+        {
+            return new UserPreferencesHandler();
+        }
+    }
+}

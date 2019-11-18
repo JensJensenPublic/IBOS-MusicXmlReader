@@ -8,22 +8,198 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MusicXmlReader.Properties
-{
-
-
+namespace MusicXmlReader.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("InitialEmbosserName")]
+        public string EmbosserName {
+            get {
+                return ((string)(this["EmbosserName"]));
+            }
+            set {
+                this["EmbosserName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string EmbosserEscapeSequence {
+            get {
+                return ((string)(this["EmbosserEscapeSequence"]));
+            }
+            set {
+                this["EmbosserEscapeSequence"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MusicXmlDirectory {
+            get {
+                return ((string)(this["MusicXmlDirectory"]));
+            }
+            set {
+                this["MusicXmlDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BrailleMusicDirectory {
+            get {
+                return ((string)(this["BrailleMusicDirectory"]));
+            }
+            set {
+                this["BrailleMusicDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string EmbosserFileFormat {
+            get {
+                return ((string)(this["EmbosserFileFormat"]));
+            }
+            set {
+                this["EmbosserFileFormat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int EmbosserPageWidth {
+            get {
+                return ((int)(this["EmbosserPageWidth"]));
+            }
+            set {
+                this["EmbosserPageWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int EmbosserPageHeight {
+            get {
+                return ((int)(this["EmbosserPageHeight"]));
+            }
+            set {
+                this["EmbosserPageHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BrailleMusicDeviceType {
+            get {
+                return ((string)(this["BrailleMusicDeviceType"]));
+            }
+            set {
+                this["BrailleMusicDeviceType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int NoteTakerPageWidth {
+            get {
+                return ((int)(this["NoteTakerPageWidth"]));
+            }
+            set {
+                this["NoteTakerPageWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int NoteTakerPageHeight {
+            get {
+                return ((int)(this["NoteTakerPageHeight"]));
+            }
+            set {
+                this["NoteTakerPageHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string NoteTakerFileFormat {
+            get {
+                return ((string)(this["NoteTakerFileFormat"]));
+            }
+            set {
+                this["NoteTakerFileFormat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OptionalFormatPageWidth {
+            get {
+                return ((string)(this["OptionalFormatPageWidth"]));
+            }
+            set {
+                this["OptionalFormatPageWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OptionalFormatPageHeight {
+            get {
+                return ((string)(this["OptionalFormatPageHeight"]));
+            }
+            set {
+                this["OptionalFormatPageHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string NoteTakerName {
+            get {
+                return ((string)(this["NoteTakerName"]));
+            }
+            set {
+                this["NoteTakerName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string NoteTakerEscapeSequence {
+            get {
+                return ((string)(this["NoteTakerEscapeSequence"]));
+            }
+            set {
+                this["NoteTakerEscapeSequence"] = value;
             }
         }
     }

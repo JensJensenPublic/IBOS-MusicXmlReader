@@ -32,7 +32,8 @@ namespace MusicXmlReader
         Model model;        // The Model containing all of the business logic.
 
         // Most of the UI code in the MainForm class is distributed into the following "Handler" classes, each handling a specific UI control
-        UserSettingsHandler     userSettingsHandler; // Contains all settings that can be configured by the user
+        UserSettingsHandler     userSettingsHandler; // Contains all settings for each single score score that can be configured by the user
+        UserPreferencesHandler  userPreferencesHandler;  // Contains all application-wide settings that can be configured by the user
         ImportHandler           importHandler;
         DetailsHandler          detailsHandler;
         ParameterInputHandler   parameterInputHandler;
@@ -112,6 +113,10 @@ namespace MusicXmlReader
                 userSettingsHandler.Reset();
                 // Create a handler for handling all Keyboard shortcuts
                 // shortCutHandler = ShortcutHandler.Create(this, model);
+                userPreferencesHandler = UserPreferencesHandler.Create();
+                userPreferencesHandler.embosser.Name = "EmbosserName2";
+                userPreferencesHandler.noteTaker.Name = "NoteTakerName2";
+                userPreferencesHandler.Save();
 
                 // Experiments.LogRightAlignedMenus(this);
 

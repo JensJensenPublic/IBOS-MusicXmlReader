@@ -111,6 +111,7 @@
       <DependentUpon>ResourcesForUI.resx</DependentUpon>
     </Compile>
     <Compile Include="ShortcutHandler.cs" />
+    <Compile Include="UserPreferencesHandler.cs" />
     <Compile Include="UserSettingsHandler.cs" />
     <EmbeddedResource Include="HelpForm.resx">
       <DependentUpon>HelpForm.cs</DependentUpon>
