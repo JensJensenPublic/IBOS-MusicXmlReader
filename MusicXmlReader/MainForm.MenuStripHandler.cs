@@ -165,14 +165,29 @@ namespace MusicXmlReader
         private string GetFileOpenInitialDirectory()
         {
             string functionName = "GetOpenFileInitialDirectory";
-            string result = myMusicXmlDirectory;  // When running a user session we want to use the files in the <user>\Documents\IBOS NNodelæser directory 
-            //if (model.InitialDirectory.Contains("Visual Studio"))
-            //{
-            //    result = model.InitialDirectory;   // When running a debug session we want to use the files in the debug\bin directory
-            //}
+            // When running the initial user session we want to use the files in the <user>\<Documents>\<IBOS MusicXmlReader> directory
+            // Where <Documents> and <MusicXmlReader> both represent localized strings 
+            // Otherwise we want to use the directory most recently used by the current user
+            string recentDirectory = userPreferencesHandler.MusicXmlDirectory;
+            string result = string.IsNullOrEmpty(recentDirectory) ?  myMusicXmlDirectory : recentDirectory;  
+
             Logger.Log(string.Format("{0}.{1} returns {2}", className, functionName, result));
             return result;
         }
+
+        private void SaveUserMusicXmlFileInfo()
+        {
+            try
+            {
+                userPreferencesHandler.MusicXmlDirectory = Path.GetDirectoryName(openFileDialog.FileName);
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+        }
+
+
 
 
         /// <summary>
@@ -208,6 +223,7 @@ namespace MusicXmlReader
             // Save User settings for currently loaded file (if any) immediately before clearing the UI:
 
             model.SaveUserSettings();
+            this.SaveUserMusicXmlFileInfo();
 
             // Clear all UI BEFORE starting the time consuming Load operation:
             ClearUI();
