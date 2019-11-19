@@ -25,7 +25,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("InitialEmbosserName")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string EmbosserName {
             get {
                 return ((string)(this["EmbosserName"]));
@@ -44,18 +44,6 @@ namespace MusicXmlReader.Properties {
             }
             set {
                 this["EmbosserEscapeSequence"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string MusicXmlDirectory {
-            get {
-                return ((string)(this["MusicXmlDirectory"]));
-            }
-            set {
-                this["MusicXmlDirectory"] = value;
             }
         }
         
@@ -200,6 +188,18 @@ namespace MusicXmlReader.Properties {
             }
             set {
                 this["NoteTakerEscapeSequence"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string MusicXmlFile {
+            get {
+                return ((string)(this["MusicXmlFile"]));
+            }
+            set {
+                this["MusicXmlFile"] = value;
             }
         }
     }

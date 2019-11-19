@@ -164,22 +164,27 @@ namespace MusicXmlReader
 
         private string GetFileOpenInitialDirectory()
         {
-            string functionName = "GetOpenFileInitialDirectory";
             // When running the initial user session we want to use the files in the <user>\<Documents>\<IBOS MusicXmlReader> directory
             // Where <Documents> and <MusicXmlReader> both represent localized strings 
             // Otherwise we want to use the directory most recently used by the current user
-            string recentDirectory = userPreferencesHandler.MusicXmlDirectory;
-            string result = string.IsNullOrEmpty(recentDirectory) ?  myMusicXmlDirectory : recentDirectory;  
+            string result = myMusicXmlDirectory; ; // Fallback
 
-            Logger.Log(string.Format("{0}.{1} returns {2}", className, functionName, result));
-            return result;
+            // Only return the value from the User preferences if it represents a valid directory
+            string recentFile = userPreferencesHandler.MusicXmlFile;
+            if (string.IsNullOrEmpty(recentFile)) return result;
+            string recentDirectory = Path.GetDirectoryName(recentFile);
+            if (string.IsNullOrEmpty(recentDirectory)) return result;
+            if (!Directory.Exists(recentDirectory)) return result;
+            Logger.LogCF(string.Format(": Returned '{0}'", result));           
+            return recentDirectory;
         }
 
         private void SaveUserMusicXmlFileInfo()
         {
             try
             {
-                userPreferencesHandler.MusicXmlDirectory = Path.GetDirectoryName(openFileDialog.FileName);
+                //userPreferencesHandler.MusicXmlDirectory = Path.GetDirectoryName(openFileDialog.FileName);
+                userPreferencesHandler.MusicXmlFile = openFileDialog.FileName;
             }
             catch (Exception e)
             {

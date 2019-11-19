@@ -3,12 +3,9 @@
   <Profiles />
   <Settings>
     <Setting Name="EmbosserName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">InitialEmbosserName</Value>
-    </Setting>
-    <Setting Name="EmbosserEscapeSequence" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="MusicXmlDirectory" Type="System.String" Scope="User">
+    <Setting Name="EmbosserEscapeSequence" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="BrailleMusicDirectory" Type="System.String" Scope="User">
@@ -45,6 +42,9 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="NoteTakerEscapeSequence" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MusicXmlFile" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

@@ -69,7 +69,12 @@ namespace MusicXmlReader
         /// <summary>
         /// The directory latest used by current user for opening a MusicXml file
         /// </summary>
-        public string MusicXmlDirectory { get { return s.MusicXmlDirectory; } set{ s.MusicXmlDirectory = value; }  }
+//        public string MusicXmlDirectory { get { return s.MusicXmlDirectory; } set { s.MusicXmlDirectory = value; } }
+
+        /// <summary>
+        /// The MusicXml file  latest used by current user
+        /// </summary>
+        public string MusicXmlFile { get { return s.MusicXmlFile; } set { s.MusicXmlFile = value; } }
 
         /// <summary>
         /// The directory latest used by current user for openintg a BrailleMusic file
@@ -89,7 +94,8 @@ namespace MusicXmlReader
 
         public void Log()
         {
-            Log("MusicXmlDirectory", this.MusicXmlDirectory);
+            //Log("MusicXmlDirectory", this.MusicXmlDirectory);
+            Log("MusicXmlFile", this.MusicXmlFile);
             Log("BrailleMusicDirectory", this.BrailleMusicDirectory);
             embosser.Log();
             noteTaker.Log();
