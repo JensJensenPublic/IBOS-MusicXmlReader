@@ -265,7 +265,15 @@ namespace MusicXmlReader
             return result;
         }
 
-
+        public static string GetDirectoryName(string fileName, string fallBack)
+        {
+            // Only return the directory of fileName if it represents a valid directory
+            if (string.IsNullOrEmpty(fileName)) return fallBack;
+            string directoryName = System.IO.Path.GetDirectoryName(fileName);
+            if (string.IsNullOrEmpty(directoryName)) return fallBack;
+            if (!System.IO.Directory.Exists(directoryName)) return fallBack;
+            return directoryName;
+        }
 
     }
 }
