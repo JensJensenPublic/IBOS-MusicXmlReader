@@ -121,7 +121,7 @@
     <value>overm.</value>
   </data>
   <data name="ChordKind_Aug7" xml:space="preserve">
-    <value>aug-07</value>
+    <value>aug7</value>
     <comment>MISSING: JSJ guessed</comment>
   </data>
   <data name="ChordKind_Dim" xml:space="preserve">
@@ -169,7 +169,7 @@
     <comment>M9</comment>
   </data>
   <data name="ChordKind_MajorMinor" xml:space="preserve">
-    <value>mineur(Majeur7)</value>
+    <value>mineur-Majeur</value>
     <comment>You can not use minor and major at the same time. Majeur is M; minor is m.</comment>
   </data>
   <data name="ChordKind_Minor" xml:space="preserve">
