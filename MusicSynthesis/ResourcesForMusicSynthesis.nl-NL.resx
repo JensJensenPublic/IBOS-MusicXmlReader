@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ChordKind_Aug" xml:space="preserve">
+    <value>overm.</value>
+  </data>
+  <data name="ChordKind_Aug7" xml:space="preserve">
+    <value>aug-07</value>
+    <comment>MISSING: JSJ guessed</comment>
+  </data>
+  <data name="ChordKind_Dim" xml:space="preserve">
+    <value>dim</value>
+    <comment>is the same</comment>
+  </data>
+  <data name="ChordKind_Dom11" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="ChordKind_Dom13" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="ChordKind_Dom7" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="ChordKind_Dom9" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="ChordKind_FullDim7" xml:space="preserve">
+    <value>dim7</value>
+  </data>
+  <data name="ChordKind_HalfDim7" xml:space="preserve">
+    <value>mineur7B5</value>
+  </data>
+  <data name="ChordKind_Major" xml:space="preserve">
+    <value>Majeur accoord</value>
+  </data>
+  <data name="ChordKind_Major11" xml:space="preserve">
+    <value>Majeur-11</value>
+    <comment>We write Majeur with capital, mineur has no capital so M11 can be used</comment>
+  </data>
+  <data name="ChordKind_Major13" xml:space="preserve">
+    <value>Majeur-13</value>
+    <comment>Maj-13</comment>
+  </data>
+  <data name="ChordKind_Major6" xml:space="preserve">
+    <value>Majeur-6 </value>
+  </data>
+  <data name="ChordKind_Major7" xml:space="preserve">
+    <value>Majeur-7</value>
+    <comment>M7</comment>
+  </data>
+  <data name="ChordKind_Major9" xml:space="preserve">
+    <value>Majeur-9</value>
+    <comment>M9</comment>
+  </data>
+  <data name="ChordKind_MajorMinor" xml:space="preserve">
+    <value>mineur(Majeur7)</value>
+    <comment>You can not use minor and major at the same time. Majeur is M; minor is m.</comment>
+  </data>
+  <data name="ChordKind_Minor" xml:space="preserve">
+    <value>mineur</value>
+  </data>
+  <data name="ChordKind_Minor11" xml:space="preserve">
+    <value>mineur11</value>
+  </data>
+  <data name="ChordKind_Minor13" xml:space="preserve">
+    <value>mineur13</value>
+  </data>
+  <data name="ChordKind_Minor6" xml:space="preserve">
+    <value>mineur6</value>
+  </data>
+  <data name="ChordKind_Minor7" xml:space="preserve">
+    <value>mineur7</value>
+  </data>
+  <data name="ChordKind_Minor9" xml:space="preserve">
+    <value>mineur9</value>
+  </data>
+  <data name="ChordKind_None" xml:space="preserve">
+    <value>No Chord</value>
+    <comment>MISSING: JSJ guessed</comment>
+  </data>
+  <data name="ChordKind_Sus2" xml:space="preserve">
+    <value>sus2</value>
+    <comment>sus2</comment>
+  </data>
+  <data name="ChordKind_Sus4" xml:space="preserve">
+    <value>sus4</value>
+    <comment>sus4</comment>
+  </data>
+  <data name="Chord_Function_AugmentedEleventh" xml:space="preserve">
+    <value>overmatige elfde</value>
+  </data>
+  <data name="Chord_Function_AugmentedNinth" xml:space="preserve">
+    <value>overmatige negende</value>
+  </data>
+  <data name="Chord_Function_Augmented_Fifteenth" xml:space="preserve">
+    <value>overmatige vijftiende</value>
+  </data>
+  <data name="Chord_Function_Augmented_Fifth" xml:space="preserve">
+    <value>overmatige vijfde</value>
+  </data>
+  <data name="Chord_Function_Augmented_Fourth" xml:space="preserve">
+    <value>overmatige vierde</value>
+  </data>
+  <data name="Chord_Function_Eleventh" xml:space="preserve">
+    <value>overmatige elfde</value>
+  </data>
+  <data name="Chord_Function_Fifteenth" xml:space="preserve">
+    <value>vijftiende</value>
+  </data>
+  <data name="Chord_Function_Fourth" xml:space="preserve">
+    <value>vierde </value>
+  </data>
+  <data name="Chord_Function_MajorFourteenth" xml:space="preserve">
+    <value>Majeur veertiende</value>
+  </data>
+  <data name="Chord_Function_MajorThirteenth" xml:space="preserve">
+    <value>Majeur dertiende</value>
+  </data>
+  <data name="Chord_Function_Major_Second" xml:space="preserve">
+    <value>tweeklank Majeur</value>
+  </data>
+  <data name="Chord_Function_Major_Seventh" xml:space="preserve">
+    <value>Majeur zevende</value>
+  </data>
+  <data name="Chord_Function_Major_Sixth" xml:space="preserve">
+    <value>Majeur zesde</value>
+    <comment>Mostly we do not use the word Majeur, you can also write Maj, or M</comment>
+  </data>
+  <data name="Chord_Function_Major_Third" xml:space="preserve">
+    <value>Majeur drieklank</value>
+  </data>
+  <data name="Chord_Function_MinorFourteenth" xml:space="preserve">
+    <value>mineur veertiende</value>
+  </data>
+  <data name="Chord_Function_MinorThirteenth" xml:space="preserve">
+    <value>mineur dertiende</value>
+  </data>
+  <data name="Chord_Function_Minor_Ninth" xml:space="preserve">
+    <value>mineur negende</value>
+  </data>
+  <data name="Chord_Function_Minor_Second" xml:space="preserve">
+    <value>tweeklank mineur</value>
+  </data>
+  <data name="Chord_Function_Minor_Seventh" xml:space="preserve">
+    <value>mineur zevende</value>
+    <comment>for minor you can use mineur or min, of m</comment>
+  </data>
+  <data name="Chord_Function_Minor_Sixth" xml:space="preserve">
+    <value>mineur zesde</value>
+  </data>
+  <data name="Chord_Function_Minor_Third" xml:space="preserve">
+    <value>mineur derde</value>
+  </data>
+  <data name="Chord_Function_Ninth" xml:space="preserve">
+    <value>negende  </value>
+  </data>
+  <data name="Chord_Function_Octave" xml:space="preserve">
+    <value>octaaf</value>
+  </data>
+  <data name="Chord_Function_Perfect_Fifth" xml:space="preserve">
+    <value>vijfde    </value>
+  </data>
+  <data name="Chord_Function_Thirteenth" xml:space="preserve">
+    <value>dertiende</value>
+  </data>
+  <data name="Chord_Function_Tonic" xml:space="preserve">
+    <value>tonica</value>
+  </data>
+  <data name="Chord_Function_Tritone" xml:space="preserve">
+    <value>dim5</value>
+  </data>
+  <data name="Chord_Function_Twelfth" xml:space="preserve">
+    <value>twaalfde</value>
+  </data>
+  <data name="DegreeTypeEnum_add" xml:space="preserve">
+    <value>add</value>
+    <comment>MISSING: JSJ guessed</comment>
+  </data>
+  <data name="DegreeTypeEnum_alter" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DegreeTypeEnum_subtract" xml:space="preserve">
+    <value>sub</value>
+    <comment>MISSING: JSJ guessed</comment>
+  </data>
+  <data name="MidiChordDegreeDescription_flat" xml:space="preserve">
+    <value>flat</value>
+    <comment>MISSING: JSJ guessed</comment>
+  </data>
+  <data name="MidiChordDegreeDescription_natural" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MidiChordDegreeDescription_sharp" xml:space="preserve">
+    <value>sharp</value>
+    <comment>MISSING: JSJ guessed</comment>
+  </data>
+</root>

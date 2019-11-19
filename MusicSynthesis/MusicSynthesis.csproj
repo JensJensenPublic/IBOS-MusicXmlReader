@@ -61,6 +61,7 @@
     <EmbeddedResource Include="ResourcesForMusicSynthesis.da-DK.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ResourcesForMusicSynthesis.nl-NL.resx" />
     <EmbeddedResource Include="ResourcesForMusicSynthesis.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesForMusicSynthesis.Designer.cs</LastGenOutput>
