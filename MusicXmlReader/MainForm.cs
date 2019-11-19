@@ -114,11 +114,12 @@ namespace MusicXmlReader
                 // Create a handler for handling all Keyboard shortcuts
                 // shortCutHandler = ShortcutHandler.Create(this, model);
                 userPreferencesHandler = UserPreferencesHandler.Create();
-                userPreferencesHandler.embosser.Log();
-                userPreferencesHandler.noteTaker.Log();
-                userPreferencesHandler.embosser.Name = "EmbosserName2";
-                userPreferencesHandler.noteTaker.Name = "NoteTakerName2";        
-                userPreferencesHandler.Save();
+                //userPreferencesHandler.Log(); // Just to verify that the mechanism works. We mus wait until AFTER creation to do this !
+                //userPreferencesHandler.embosser.Log();
+                //userPreferencesHandler.noteTaker.Log();
+                //userPreferencesHandler.embosser.Name = "EmbosserName4";
+                //userPreferencesHandler.noteTaker.Name = "NoteTakerName4";        
+                // userPreferencesHandler.Save();
 
                 // Experiments.LogRightAlignedMenus(this);
 
@@ -171,6 +172,7 @@ namespace MusicXmlReader
         
         private void Application_ApplicationExit(object sender, EventArgs e)
         {
+            userPreferencesHandler.Save(); // Save the current user preferences
             model.OnApplicationExit(); // Let the Model clean up its resources etc 
         }
 

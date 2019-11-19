@@ -66,9 +66,36 @@ namespace MusicXmlReader
     /// </summary>
     class UserPreferencesHandler
     {
-        private Settings s;
+        /// <summary>
+        /// The directory latest used by current user for opening a MusicXml file
+        /// </summary>
+        public string MusicXmlDirectory { get { return s.MusicXmlDirectory; } set{ s.MusicXmlDirectory = value; }  }
+
+        /// <summary>
+        /// The directory latest used by current user for openintg a BrailleMusic file
+        /// </summary>
+        public string BrailleMusicDirectory { get { return s.BrailleMusicDirectory; } set { s.BrailleMusicDirectory = value; } }
+
+ 
+        /// <summary>
+        /// The embosser used by the current user
+        /// </summary>
         public BrailleDevice embosser;
-        public BrailleDevice noteTaker; 
+
+        /// <summary>
+        /// The Notetaker used by the current user
+        /// </summary>
+        public BrailleDevice noteTaker;
+
+        public void Log()
+        {
+            Log("MusicXmlDirectory", this.MusicXmlDirectory);
+            Log("BrailleMusicDirectory", this.BrailleMusicDirectory);
+            embosser.Log();
+            noteTaker.Log();
+        }
+
+        private Settings s;
 
         private void Log(string name, string value)
         {
@@ -93,6 +120,8 @@ namespace MusicXmlReader
 
         public void Save()
         {
+            Logger.LogCF(": Entry");
+            Log();
             try
             {
                 s.Save();
@@ -101,11 +130,15 @@ namespace MusicXmlReader
             {
                 Logger.LogCFE(e);
             }
+            Logger.LogCF(": Exit");
         }
+
 
         public static UserPreferencesHandler Create()
         {
-            return new UserPreferencesHandler();
+            UserPreferencesHandler result = new UserPreferencesHandler();
+            result.Log(); // In this way we can verify that the mechanism works by calling Log() AFTER the construction !
+            return result;
         }
     }
 }
