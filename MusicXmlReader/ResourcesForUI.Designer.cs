@@ -727,6 +727,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open MusicXml file from most recent location.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_OpenMusicXmlFileRecent {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_OpenMusicXmlFileRecent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Emboss Music Braille file.
         /// </summary>
         internal static string ToolStripMenuItem_Files_PrintMusicBraille {

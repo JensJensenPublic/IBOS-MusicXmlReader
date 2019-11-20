@@ -48,6 +48,8 @@ namespace MusicXmlReader
             // Children (and grandchildren) of  fileToolStripMenuItem
             openMusicXmlFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile;
             openMusicXmlFileToolStripMenuItem.ShortcutKeys = ShortcutHandler.openMusicXmlFile;
+            openRecentMusicXmlFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFileRecent;
+            openRecentMusicXmlFileToolStripMenuItem.ShortcutKeys = ShortcutHandler.openRecentMusicXmlFileToolStripMenuItem;
             GenerateAccessibleName(ref openMusicXmlFileToolStripMenuItem);
             openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings;
             openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.ShortcutKeys = ShortcutHandler.openMusicXmlFileUsingDefaultSettings;

@@ -489,4 +489,7 @@
     <value>Emboss Music Braille file</value>
     <comment>Not translated to Dutch</comment>
   </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
+    <value>Open MusicXml file from most recent location</value>
+  </data>
 </root>

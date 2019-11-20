@@ -490,4 +490,8 @@
   <data name="TreeWiew_Items" xml:space="preserve">
     <value>filter onderdeln</value>
   </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
+    <value>Open MusicXml file from recent location</value>
+    <comment>JSJ: MISSING TRANSLATION</comment>
+  </data>
 </root>

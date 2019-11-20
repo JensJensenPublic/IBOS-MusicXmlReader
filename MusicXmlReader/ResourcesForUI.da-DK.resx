@@ -486,4 +486,7 @@
   <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
     <value>Udskriv punktnodefil på punktprinter</value>
   </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
+    <value>Åbn MusicXml fil fra seneste placering</value>
+  </data>
 </root>
