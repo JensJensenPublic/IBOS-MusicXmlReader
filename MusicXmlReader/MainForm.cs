@@ -364,6 +364,6 @@ namespace MusicXmlReader
             this.Refresh();
         }
 
-  
+
     }
 }

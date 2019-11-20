@@ -608,6 +608,11 @@ namespace MusicXmlReader
             return brailleFileHandler.IsValidBrailleMusic(fileName);
         }
 
+        private void resetUserSettingsToDefaultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.userPreferencesHandler.Reset();
+        }
+
         private bool AppendLine(System.Text.StringBuilder sb, string fileName, BrailleFileHandler.FileEncoding encoding)
         {
             bool b = isValidBrailleMusic(fileName, encoding);

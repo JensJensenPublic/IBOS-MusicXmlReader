@@ -178,13 +178,29 @@ namespace MusicXmlReader
             Logger.LogCF(": Entry");
             Log();
             try
-            {
+            {       
                 s.Save();
             }
             catch (Exception e)
             {
                 Logger.LogCFE(e);
             }
+            Logger.LogCF(": Exit");
+        }
+
+        public void Reset()
+        {
+            Logger.LogCF(": Entry");
+            Log();
+            try
+            {
+                s.Reset();
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+            Log();
             Logger.LogCF(": Exit");
         }
 
