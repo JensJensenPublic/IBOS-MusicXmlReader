@@ -91,6 +91,7 @@
             this.aSCIIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unicodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autodetectedEncodingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetUserSettingsToDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,7 +130,6 @@
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
-            this.resetUserSettingsToDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -642,6 +642,13 @@
             this.autodetectedEncodingToolStripMenuItem.Text = "Auto-detected encoding";
             this.autodetectedEncodingToolStripMenuItem.Click += new System.EventHandler(this.autodetectedEncodingToolStripMenuItem_Click);
             // 
+            // resetUserSettingsToDefaultToolStripMenuItem
+            // 
+            this.resetUserSettingsToDefaultToolStripMenuItem.Name = "resetUserSettingsToDefaultToolStripMenuItem";
+            this.resetUserSettingsToDefaultToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.resetUserSettingsToDefaultToolStripMenuItem.Text = "Reset User preferences to default";
+            this.resetUserSettingsToDefaultToolStripMenuItem.Click += new System.EventHandler(this.resetUserSettingsToDefaultToolStripMenuItem_Click);
+            // 
             // archivesToolStripMenuItem
             // 
             this.archivesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -957,13 +964,6 @@
             // printDialog
             // 
             this.printDialog.UseEXDialog = true;
-            // 
-            // resetUserSettingsToDefaultToolStripMenuItem
-            // 
-            this.resetUserSettingsToDefaultToolStripMenuItem.Name = "resetUserSettingsToDefaultToolStripMenuItem";
-            this.resetUserSettingsToDefaultToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.resetUserSettingsToDefaultToolStripMenuItem.Text = "Reset User settings to default";
-            this.resetUserSettingsToDefaultToolStripMenuItem.Click += new System.EventHandler(this.resetUserSettingsToDefaultToolStripMenuItem_Click);
             // 
             // MainForm
             // 
