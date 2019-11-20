@@ -105,7 +105,7 @@ namespace MusicXmlReader
         private Settings s;
 
         // Simple convenience method for making public methods more readable
-        private string LogError(string passThrough, string errorMessage)
+        private string LogWarning(string passThrough, string errorMessage)
         {
             Logger.LogCF(string.Format(": {0}", errorMessage));
             return passThrough;
@@ -115,19 +115,42 @@ namespace MusicXmlReader
         /// Simple convenience method for extracting a valid directoryname from a fileName
         /// If an exixting directory is not found the defaultPath is returned.
         /// </summary>
-        /// <param name="fileName"></param>
+        /// <param name="fullFileName"></param>
         /// <param name="defaultPath"></param>
         /// <returns></returns>
-        public string GetExistingDirectory(string fileName, string defaultPath)
+        public string GetExistingDirectory(string fullFileName, string defaultPath)
         {
             // Only return the value from the User preferences if it represents a valid directory
-            if (string.IsNullOrEmpty(fileName)) return LogError(defaultPath,"Filename is null or empty");
-            string directoryName = System.IO.Path.GetDirectoryName(fileName);
-            if (string.IsNullOrEmpty(directoryName)) return LogError(defaultPath,"DirectoryName is null or empty");
-            if (!System.IO.Directory.Exists(directoryName)) return LogError(defaultPath,string.Format(": Directory '{0}' does not exist",directoryName));
+            if (string.IsNullOrEmpty(fullFileName)) return LogWarning(defaultPath,"Filename is null or empty");
+            // We don'care if the file exists! We only care about the directory !
+            string directoryName = System.IO.Path.GetDirectoryName(fullFileName);
+            if (string.IsNullOrEmpty(directoryName)) return LogWarning(defaultPath,"DirectoryName is null or empty");
+            if (!System.IO.Directory.Exists(directoryName)) return LogWarning(defaultPath,string.Format(": Directory '{0}' does not exist",directoryName));
             Logger.LogCF(string.Format(": Returned '{0}'", directoryName));
             return directoryName;
         }
+
+
+        /// <summary>
+        /// Simple convenience method for extracting a valid (short) filename from a (full) fileName
+        /// If an exixting file is not found the defaultPath is returned.
+        /// </summary>
+        /// <param name="fullFileName"></param>
+        /// <param name="defaultPath"></param>
+        /// <returns></returns>
+        public string GetExistingFile(string fullFileName, string defaultPath)
+        {
+            // Only return the value from the User preferences if it represents a valid file
+            if (string.IsNullOrEmpty(fullFileName)) return LogWarning(defaultPath, "Filename is null or empty");
+            if (!System.IO.File.Exists(fullFileName)) return LogWarning(defaultPath, string.Format(": File '{0}' does not exist", fullFileName));
+            string directoryName = System.IO.Path.GetDirectoryName(fullFileName);
+            if (string.IsNullOrEmpty(directoryName)) return LogWarning(defaultPath, "DirectoryName is null or empty");
+            if (!System.IO.Directory.Exists(directoryName)) return LogWarning(defaultPath, string.Format(": Directory '{0}' does not exist", directoryName));
+            string fileName = System.IO.Path.GetFileName(fullFileName); 
+            Logger.LogCF(string.Format(": Returned '{0}'", fileName));
+            return fileName;
+        }
+
 
 
 

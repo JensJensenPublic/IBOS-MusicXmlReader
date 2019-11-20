@@ -173,6 +173,19 @@ namespace MusicXmlReader
             return myMusicXmlDirectory;  
         }
 
+
+        private string GetFileOpenInitialFileName(bool useRecentFile)
+        {
+            // When running the initial user session we want to use the files in the <user>\<Documents>\<IBOS MusicXmlReader> directory
+            // Where <Documents> and <MusicXmlReader> both represent localized strings 
+            // Otherwise we want to use the file most recently used by the current user
+            if (useRecentFile) return userPreferencesHandler.GetExistingFile(userPreferencesHandler.MusicXmlFile, "");
+            return "";
+        }
+
+
+
+
         private void SaveUserMusicXmlFileInfo()
         {
             try
@@ -205,6 +218,7 @@ namespace MusicXmlReader
             openFileDialog.Filter = string.Format("{0}|*.xml;*.musicxml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files
                                                                                                                        //            openFileDialog.Filter = string.Format("{0}|*.xml|{0}|*.mxl", ResourcesForUI.OpenFileDialog_Filter,ResourcesForUI.OpenFileDialog_Filter_mxl); // Only present .xml files and .mxl files
             openFileDialog.InitialDirectory = GetFileOpenInitialDirectory(useRecentFile);
+            openFileDialog.FileName = GetFileOpenInitialFileName(useRecentFile);
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
             openFileDialog.ShowDialog();
