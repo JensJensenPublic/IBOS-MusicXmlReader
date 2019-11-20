@@ -162,21 +162,13 @@ namespace MusicXmlReader
         }
 
 
-        private string GetFileOpenInitialDirectory()
+        private string GetFileOpenInitialDirectory(bool useRecentFile)
         {
             // When running the initial user session we want to use the files in the <user>\<Documents>\<IBOS MusicXmlReader> directory
             // Where <Documents> and <MusicXmlReader> both represent localized strings 
             // Otherwise we want to use the directory most recently used by the current user
-            string result = myMusicXmlDirectory; ; // Fallback
-
-            // Only return the value from the User preferences if it represents a valid directory
-            string recentFile = userPreferencesHandler.MusicXmlFile;
-            if (string.IsNullOrEmpty(recentFile)) return result;
-            string recentDirectory = Path.GetDirectoryName(recentFile);
-            if (string.IsNullOrEmpty(recentDirectory)) return result;
-            if (!Directory.Exists(recentDirectory)) return result;
-            Logger.LogCF(string.Format(": Returned '{0}'", result));           
-            return recentDirectory;
+            if (useRecentFile)  return userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.MusicXmlFile, myMusicXmlDirectory);
+            return myMusicXmlDirectory;  
         }
 
         private void SaveUserMusicXmlFileInfo()
@@ -205,12 +197,12 @@ namespace MusicXmlReader
         /// </summary>
         /// <param name="sender"> Not used</param>
         /// <param name="e">Not used</param>
-        private bool SelectAndOpenMusicXmlFile(object sender, EventArgs e, bool useDefaultSettings)
+        private bool SelectAndOpenMusicXmlFile(bool useDefaultSettings, bool useRecentFile)
         {
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.xml;*.musicxml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files
                                                                                                                        //            openFileDialog.Filter = string.Format("{0}|*.xml|{0}|*.mxl", ResourcesForUI.OpenFileDialog_Filter,ResourcesForUI.OpenFileDialog_Filter_mxl); // Only present .xml files and .mxl files
-            openFileDialog.InitialDirectory = GetFileOpenInitialDirectory();
+            openFileDialog.InitialDirectory = GetFileOpenInitialDirectory(useRecentFile);
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
             openFileDialog.ShowDialog();
@@ -353,16 +345,34 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void openMusicXmlFileUsingDefaultSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenMusicXmlFile(sender, e, true);
+            const bool deleteUserSettings = true;
+            OpenMusicXmlFile(deleteUserSettings, false);
         }
-
-
+        
+        /// <summary>
+        /// Same as openMusicXmlFileToolStripMenuItem_Click(), but opens in the directory for the most recently opened MusicXml file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void openRecentMusicXmlFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            const bool useRecentFile = true;
+            OpenMusicXmlFile(false, useRecentFile);
+        }
+        
+        /// <summary>
+        /// The default method for letting the user select and open a MusicXml file
+        /// The initial directory is always the base directory for the IBOS MusicXmlReader user files:
+        /// "C:\Users\(user)\Documents\(IBOS MusicXmlReader)"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void openMusicXmlFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenMusicXmlFile(sender, e, false);
+            OpenMusicXmlFile(false, false);
         }
 
-        private void OpenMusicXmlFile(object sender, EventArgs e, bool useDefaultSettings)
+        private void OpenMusicXmlFile(bool useDefaultSettings, bool useRecentFile)
         {
             // model.Silence();
 
@@ -375,7 +385,7 @@ namespace MusicXmlReader
                 textBoxScreenReader.Focus(); // Move focus to the (empty) textBoxScreenreader to prevent JAWS form talking too much !! 
 
                 // Show a standard Select File dialog to allow the user to select and open a MusicXml file
-                SelectAndOpenMusicXmlFile(sender, e, useDefaultSettings);
+                SelectAndOpenMusicXmlFile(useDefaultSettings, useRecentFile);
 
                 if (listBoxTimes.Items.Count > 0)
                 {

@@ -59,10 +59,11 @@ namespace MusicXmlReader
             this.settings = settings;
         }
     }
-    
+
 
     /// <summary>
-    /// // Contains all application-wide settings that can be configured by the user
+    /// Contains all application-wide settings that can be configured by the user
+    /// These settings are found in C:\Users\(user)\AppData\Local\MusicXmlReader
     /// </summary>
     class UserPreferencesHandler
     {
@@ -102,6 +103,34 @@ namespace MusicXmlReader
         }
 
         private Settings s;
+
+        // Simple convenience method for making public methods more readable
+        private string LogError(string passThrough, string errorMessage)
+        {
+            Logger.LogCF(string.Format(": {0}", errorMessage));
+            return passThrough;
+        }
+
+        /// <summary>
+        /// Simple convenience method for extracting a valid directoryname from a fileName
+        /// If an exixting directory is not found the defaultPath is returned.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="defaultPath"></param>
+        /// <returns></returns>
+        public string GetExistingDirectory(string fileName, string defaultPath)
+        {
+            // Only return the value from the User preferences if it represents a valid directory
+            if (string.IsNullOrEmpty(fileName)) return LogError(defaultPath,"Filename is null or empty");
+            string directoryName = System.IO.Path.GetDirectoryName(fileName);
+            if (string.IsNullOrEmpty(directoryName)) return LogError(defaultPath,"DirectoryName is null or empty");
+            if (!System.IO.Directory.Exists(directoryName)) return LogError(defaultPath,string.Format(": Directory '{0}' does not exist",directoryName));
+            Logger.LogCF(string.Format(": Returned '{0}'", directoryName));
+            return directoryName;
+        }
+
+
+
 
         private void Log(string name, string value)
         {
