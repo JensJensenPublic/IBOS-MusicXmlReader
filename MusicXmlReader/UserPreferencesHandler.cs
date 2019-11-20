@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using MusicXmlReaderModel;
 using MusicXmlReader.Properties;
 
@@ -123,9 +120,9 @@ namespace MusicXmlReader
             // Only return the value from the User preferences if it represents a valid directory
             if (string.IsNullOrEmpty(fullFileName)) return LogWarning(defaultPath,"Filename is null or empty");
             // We don'care if the file exists! We only care about the directory !
-            string directoryName = System.IO.Path.GetDirectoryName(fullFileName);
+            string directoryName = Path.GetDirectoryName(fullFileName);
             if (string.IsNullOrEmpty(directoryName)) return LogWarning(defaultPath,"DirectoryName is null or empty");
-            if (!System.IO.Directory.Exists(directoryName)) return LogWarning(defaultPath,string.Format(": Directory '{0}' does not exist",directoryName));
+            if (!Directory.Exists(directoryName)) return LogWarning(defaultPath,string.Format(": Directory '{0}' does not exist",directoryName));
             Logger.LogCF(string.Format(": Returned '{0}'", directoryName));
             return directoryName;
         }
@@ -142,11 +139,11 @@ namespace MusicXmlReader
         {
             // Only return the value from the User preferences if it represents a valid file
             if (string.IsNullOrEmpty(fullFileName)) return LogWarning(defaultPath, "Filename is null or empty");
-            if (!System.IO.File.Exists(fullFileName)) return LogWarning(defaultPath, string.Format(": File '{0}' does not exist", fullFileName));
-            string directoryName = System.IO.Path.GetDirectoryName(fullFileName);
+            if (!File.Exists(fullFileName)) return LogWarning(defaultPath, string.Format(": File '{0}' does not exist", fullFileName));
+            string directoryName = Path.GetDirectoryName(fullFileName);
             if (string.IsNullOrEmpty(directoryName)) return LogWarning(defaultPath, "DirectoryName is null or empty");
-            if (!System.IO.Directory.Exists(directoryName)) return LogWarning(defaultPath, string.Format(": Directory '{0}' does not exist", directoryName));
-            string fileName = System.IO.Path.GetFileName(fullFileName); 
+            if (!Directory.Exists(directoryName)) return LogWarning(defaultPath, string.Format(": Directory '{0}' does not exist", directoryName));
+            string fileName = Path.GetFileName(fullFileName); 
             Logger.LogCF(string.Format(": Returned '{0}'", fileName));
             return fileName;
         }
