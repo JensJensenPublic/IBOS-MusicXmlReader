@@ -21,6 +21,39 @@ namespace MusicXmlReader
         }
 
 
+        private DialogResult ShowOpenFileDialog(string latestDirectory)
+        {
+            // The dialog has focus on the textbox for entering the file name.
+            // Press <shift> <tab> twice to focus on the first line in the selection listbox.
+            openFileDialog.FileName = ""; // No default
+            openFileDialog.Filter = string.Format("{0}|*.brf;*.brl", ResourcesForUI.OpenFileDialog_Filter); // Only present .brf files and .brl files
+            openFileDialog.InitialDirectory = latestDirectory;
+            openFileDialog.FileName = ""; // As we typically produce several Braille Music files at a time it makes no sense to select one of them.
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.CheckPathExists = true;
+            openFileDialog.Multiselect = false; // Do not allow selecting multiple files
+            openFileDialog.Title = "Open file for embossing";
+            DialogResult result = openFileDialog.ShowDialog();
+            Logger.LogCF(string.Format(": Result={0}", result.ToString()));
+            return result;
+        }
+
+        private DialogResult ShowPrintDialog()
+        {
+            // Set up the PrintDialog for minimal functionality
+            printDialog.AllowCurrentPage = false;
+            printDialog.AllowPrintToFile = false;
+            printDialog.AllowSelection = false;
+            printDialog.AllowSomePages = false;
+            LogPrinterSettings("Initial ", printDialog.PrinterSettings);
+            printDialog.ShowHelp = false;
+            printDialog.ShowNetwork = false;
+            bool useEXDialog = printDialog.UseEXDialog;
+            DialogResult result = printDialog.ShowDialog();
+            Logger.LogCF(string.Format(": Result={0}", result.ToString()));
+            return result;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -29,29 +62,13 @@ namespace MusicXmlReader
         /// <returns></returns>
         public bool Emboss(string latestDirectory)
         {
-            openFileDialog.FileName = ""; // No default
-            openFileDialog.Filter = string.Format("{0}|*.brf;*.brl", ResourcesForUI.OpenFileDialog_Filter); // Only present .brf files and .brl files
-            openFileDialog.InitialDirectory = latestDirectory;
-            openFileDialog.FileName = ""; // As we typically produce several Braille Music files at a time it makes no sense to select one of them.
-            openFileDialog.CheckFileExists = true;
-            openFileDialog.CheckPathExists = true;
-            openFileDialog.Multiselect = false; // Do not allow selecting multiple files
-
-            openFileDialog.Title = "Open file for embossing";
-            DialogResult openDialogResult = openFileDialog.ShowDialog();
-            Logger.LogCF(string.Format(": OpenDialogResult={0}", openDialogResult.ToString()));
-
-            // The dialog has focus on the textbox for entering the file name.
-            // Press <shift> <tab> twice to focus on the first line in the selection listbox.
-
-            if (string.IsNullOrEmpty(openFileDialog.FileName))
+            // Show the OPenFileDialog
+            DialogResult openDialogResult = ShowOpenFileDialog(latestDirectory);
+            if ((DialogResult.OK != openDialogResult) || string.IsNullOrEmpty(openFileDialog.FileName))
             {
                 return false; // Let the user press ESC without warning him
             }
-
-            //string fileName = "Danmark nu blunder den lyse nat.P1.Soprano.brf";
-            //string fullName = Path.Combine(model.LatestBrailleFileSaveDirectory, fileName);
-
+            
             string fullName = openFileDialog.FileName;
             if (!File.Exists(fullName))
             {
@@ -59,20 +76,8 @@ namespace MusicXmlReader
                 return false;
             }
 
-            // Set up the PrintDialog for minimal functionality
-            printDialog.AllowCurrentPage = false;
-            printDialog.AllowPrintToFile = false;
-            printDialog.AllowSelection = false;
-            printDialog.AllowSomePages = false;
-            LogPrinterSettings("Initial ", printDialog.PrinterSettings);
-
-            printDialog.ShowHelp = false;
-            printDialog.ShowNetwork = false;
-            bool useEXDialog = printDialog.UseEXDialog;
-
             // Show the PrintDialog
-            DialogResult printDialogResult = printDialog.ShowDialog();
-            Logger.LogCF(string.Format(": PrintDialogResult='{0}'", printDialogResult.ToString()));
+            DialogResult printDialogResult = ShowPrintDialog();
 
             // Act on the result
             if (printDialogResult != DialogResult.OK)
@@ -82,7 +87,7 @@ namespace MusicXmlReader
             }
             
             System.Drawing.Printing.PrinterSettings selectedPrinterSettings = printDialog.PrinterSettings;
-            LogPrinterSettings("Selected", selectedPrinterSettings); 
+            LogPrinterSettings("Selected", printDialog.PrinterSettings); 
 
             //string printerName = "Index Basic-D V2";
             string printerName = selectedPrinterSettings.PrinterName; // Use the printer selected by the user.
@@ -97,6 +102,7 @@ namespace MusicXmlReader
                 }
             }
 
+            // Send to Embosser:
             bool result = false;
             string errorMessage = null;
             try
