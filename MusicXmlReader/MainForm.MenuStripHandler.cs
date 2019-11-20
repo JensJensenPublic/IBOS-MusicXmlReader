@@ -660,7 +660,8 @@ namespace MusicXmlReader
         {
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.*", ""); // All file types                                                                                                             
-            openFileDialog.InitialDirectory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory :   Logger.LogFileDirectory; //
+//            openFileDialog.InitialDirectory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory : Logger.LogFileDirectory; //
+            openFileDialog.InitialDirectory = userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.BrailleMusicDirectory, Logger.LogFileDirectory);
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
             openFileDialog.ShowDialog();
@@ -1002,7 +1003,8 @@ namespace MusicXmlReader
         {
        
             string executable = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.IBPrintExe);      //  Typically @"C:\Program Files (x86)\Index Braille\IbPrint\IbPrint.exe";
-            string directory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory : "";
+//            string directory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory : "";
+            string directory = userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.BrailleMusicDirectory, "");
             Logger.LogCF(string.Format(": Executable='{0}'     Directory='{1}'",executable,directory));
 #warning TODO find out how to make the UI version of IBPrint prefer model.LatestBrailleFileSaveDirectory instead of the latest directory used by the Add button
             Utilities.RunExeWithArgument(executable, "");
@@ -1011,7 +1013,7 @@ namespace MusicXmlReader
 
         private void printMusicBrailleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            embosserHandler.Emboss(model.LatestBrailleFileSaveDirectory);
+            embosserHandler.Emboss(userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.BrailleMusicDirectory,myMusicXmlDirectory));
         }
 
         #endregion // Export of Music Braille

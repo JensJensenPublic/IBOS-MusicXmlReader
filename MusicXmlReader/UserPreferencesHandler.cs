@@ -62,7 +62,7 @@ namespace MusicXmlReader
     /// Contains all application-wide settings that can be configured by the user
     /// These settings are found in C:\Users\(user)\AppData\Local\MusicXmlReader
     /// </summary>
-    class UserPreferencesHandler
+    public class UserPreferencesHandler
     {
         /// <summary>
         /// The directory latest used by current user for opening a MusicXml file

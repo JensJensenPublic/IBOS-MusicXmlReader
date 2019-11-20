@@ -15,12 +15,13 @@ namespace MusicXmlReader
     public class BrailleMusicExportHandler
     {
 
-        // The following 5 member variables are just references to the similar objects defined in MainForm. This is the price for isolating this code i a separate class! 
+        // The following 6 member variables are just references to the similar objects defined in MainForm. This is the price for isolating this code i a separate class! 
         Model model;
         bool developerMode;
         ParameterInputHandler parameterInputHandler;
         MessageHandler messageHandler;
         SaveFileDialog saveBrailleFileDialog;
+        UserPreferencesHandler userPreferencesHandler;
 
 
         private BrailleFileHandler.FileEncoding GetCultureDependentEncoding(Model.BrailleDeviceEnum device)
@@ -208,7 +209,7 @@ namespace MusicXmlReader
             LogResult(brailleRepresentations.Staffs.Count, allOk,directory, fileNames); // To LogFile and MessageBox 
             if (allOk)
             {
-                model.LatestBrailleFileSaveDirectory = directory;
+                userPreferencesHandler.BrailleMusicDirectory = directory;
             }
             // If DeveloperMode is enabled we execute a simple regressiontest and report the result to the user/developer
             this.ExecuteRegressionTest(initialDirectory, Path.GetDirectoryName(saveBrailleFileDialog.FileName), regressionTestDirectory);
@@ -400,20 +401,21 @@ namespace MusicXmlReader
         { }
 
 
-        private BrailleMusicExportHandler(Model model, ParameterInputHandler parameterInputHandler,MessageHandler messageHandler, SaveFileDialog saveBrailleFileDialog, bool developerMode )
+        private BrailleMusicExportHandler(Model model, ParameterInputHandler parameterInputHandler,MessageHandler messageHandler, SaveFileDialog saveBrailleFileDialog, bool developerMode, UserPreferencesHandler userPreferencesHandler)
         {
             this.model = model;
             this.parameterInputHandler = parameterInputHandler;
             this.messageHandler = messageHandler;
             this.saveBrailleFileDialog = saveBrailleFileDialog;
             this.developerMode = developerMode;
+            this.userPreferencesHandler = userPreferencesHandler;
             //developerModeSupport = DeveloperModeSupport.Create(developerMode);
         }
 
 
-        public static BrailleMusicExportHandler Create( Model model, ParameterInputHandler parameterInputHandler,MessageHandler messageHandler,SaveFileDialog saveBrailleFileDialog, bool developerMode)
+        public static BrailleMusicExportHandler Create( Model model, ParameterInputHandler parameterInputHandler,MessageHandler messageHandler,SaveFileDialog saveBrailleFileDialog, bool developerMode,UserPreferencesHandler userPreferencesHandler)
         {
-            return new BrailleMusicExportHandler(model, parameterInputHandler, messageHandler,saveBrailleFileDialog, developerMode);
+            return new BrailleMusicExportHandler(model, parameterInputHandler, messageHandler,saveBrailleFileDialog, developerMode,  userPreferencesHandler);
         }
     }
 }

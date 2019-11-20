@@ -88,7 +88,8 @@ namespace MusicXmlReader
                 Utilities.LogSpecialFolders(true); // A Developer facility only!
                 importHandler = ImportHandler.Create(model,this,applicationName);
                 parameterInputHandler = ParameterInputHandler.Create(model,this);
-                brailleMusicExportHandler = BrailleMusicExportHandler.Create(model, parameterInputHandler, messageHandler, saveBrailleFileDialog, developerMode);
+                userPreferencesHandler = UserPreferencesHandler.Create();
+                brailleMusicExportHandler = BrailleMusicExportHandler.Create(model, parameterInputHandler, messageHandler, saveBrailleFileDialog, developerMode, userPreferencesHandler);
                 embosserHandler = EmbosserHandler.Create(this.openFileDialog, this.printDialog, this.applicationName);
 
                 this.Text = applicationName;
@@ -113,7 +114,7 @@ namespace MusicXmlReader
                 userSettingsHandler.Reset();
                 // Create a handler for handling all Keyboard shortcuts
                 // shortCutHandler = ShortcutHandler.Create(this, model);
-                userPreferencesHandler = UserPreferencesHandler.Create();
+            
                 //userPreferencesHandler.Log(); // Just to verify that the mechanism works. We mus wait until AFTER creation to do this !
                 //userPreferencesHandler.embosser.Log();
                 //userPreferencesHandler.noteTaker.Log();
