@@ -54,6 +54,34 @@ namespace MusicXmlReader
             return result;
         }
 
+
+
+        private string AddEscapeSequence(string fullFileName, string escapeSequence)
+        {
+            byte[] bytesFromFile = File.ReadAllBytes(fullFileName); // Opens and closes the file
+            int escapeSequencelength = escapeSequence.Length;
+            int fileLength = bytesFromFile.Length;
+            byte[] buffer = new byte[bytesFromFile.Length+1+ escapeSequencelength];       
+            buffer[0] = 027;  // The ASCII escape character))
+            for (int i = 0; i < escapeSequencelength; i++)
+            {
+                buffer[i + 1] = (byte) escapeSequence[i];
+            }
+
+            for (int i = 0; i < fileLength; i++)
+            {
+                buffer[escapeSequencelength + 1 + i ] = bytesFromFile[i];
+            }
+
+            string dir = Path.GetDirectoryName(fullFileName);
+            string ext = Path.GetExtension(fullFileName);
+            string temp = Path.Combine(dir, "temp");
+            string result = Path.ChangeExtension(temp, ext); 
+            File.WriteAllBytes(result, buffer);
+            return result;
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -102,11 +130,14 @@ namespace MusicXmlReader
                 }
             }
 
+            // string printFileName = AddEscapeSequence(fullName, "DBT0"); // As suggested by Nils Huhta from Index Braille. Does not work yet !
+
             // Send to Embosser:
             bool result = false;
             string errorMessage = null;
             try
             {
+                //result = RawPrinterHelper.RawPrinterHelper.SendFileToPrinter(printerName, fullName);
                 result = RawPrinterHelper.RawPrinterHelper.SendFileToPrinter(printerName, fullName);
             }
             catch (Exception exeption)
