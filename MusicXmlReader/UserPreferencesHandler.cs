@@ -109,13 +109,13 @@ namespace MusicXmlReader
         }
 
         /// <summary>
-        /// Simple convenience method for extracting a valid directoryname from a fileName
-        /// If an exixting directory is not found the defaultPath is returned.
+        /// Simple convenience method for extracting a valid base directory name from a fileName
+        /// If an existing directory is not found the defaultPath is returned.
         /// </summary>
         /// <param name="fullFileName"></param>
         /// <param name="defaultPath"></param>
         /// <returns></returns>
-        public string GetExistingDirectory(string fullFileName, string defaultPath)
+        public string GetExistingBaseDirectory(string fullFileName, string defaultPath)
         {
             // Only return the value from the User preferences if it represents a valid directory
             if (string.IsNullOrEmpty(fullFileName)) return LogWarning(defaultPath,"Filename is null or empty");
@@ -127,6 +127,21 @@ namespace MusicXmlReader
             return directoryName;
         }
 
+
+        /// <summary>
+        /// Simple convenience method for returning a default value if a directory is not found
+        /// </summary>
+        /// <param name="directoryName"></param>
+        /// <param name="defaultPath"></param>
+        /// <returns></returns>
+        public string GetExistingDirectory(string directoryName, string defaultPath)
+        {
+            // Only return the value from the User preferences if it represents a valid directory
+            if (string.IsNullOrEmpty(directoryName)) return LogWarning(defaultPath, "DirectoryName is null or empty");
+            if (!Directory.Exists(directoryName)) return LogWarning(defaultPath, string.Format(": Directory '{0}' does not exist", directoryName));
+            Logger.LogCF(string.Format(": Returned '{0}'", directoryName));
+            return directoryName;
+        }
 
         /// <summary>
         /// Simple convenience method for extracting a valid (short) filename from a (full) fileName

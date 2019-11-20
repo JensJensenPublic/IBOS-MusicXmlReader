@@ -169,7 +169,7 @@ namespace MusicXmlReader
             // When running the initial user session we want to use the files in the <user>\<Documents>\<IBOS MusicXmlReader> directory
             // Where <Documents> and <MusicXmlReader> both represent localized strings 
             // Otherwise we want to use the directory most recently used by the current user
-            if (useRecentFile)  return userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.MusicXmlFile, myMusicXmlDirectory);
+            if (useRecentFile)  return userPreferencesHandler.GetExistingBaseDirectory(userPreferencesHandler.MusicXmlFile, myMusicXmlDirectory);
             return myMusicXmlDirectory;  
         }
 
@@ -662,6 +662,7 @@ namespace MusicXmlReader
             openFileDialog.Filter = string.Format("{0}|*.*", ""); // All file types                                                                                                             
 //            openFileDialog.InitialDirectory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory : Logger.LogFileDirectory; //
             openFileDialog.InitialDirectory = userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.BrailleMusicDirectory, Logger.LogFileDirectory);
+            openFileDialog.FileName = ""; // As we typically produce several Braille Music files at a time it has no meaning to select one of them
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
             openFileDialog.ShowDialog();
@@ -1013,7 +1014,7 @@ namespace MusicXmlReader
 
         private void printMusicBrailleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            embosserHandler.Emboss(userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.BrailleMusicDirectory,myMusicXmlDirectory));
+            embosserHandler.Emboss(userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.BrailleMusicDirectory, myMusicXmlDirectory));
         }
 
         #endregion // Export of Music Braille

@@ -20,11 +20,19 @@ namespace MusicXmlReader
             Logger.LogCF(string.Format(": {0} PrinterSettings='{1}'", text, printerSettings.ToString()));
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="latestDirectory">The directory to use for the initial FileOpen Dialog</param>
+        /// <param name="latestFile">The filename to use for the initial FileOpen Dialog</param>
+        /// <returns></returns>
         public bool Emboss(string latestDirectory)
         {
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.brf;*.brl", ResourcesForUI.OpenFileDialog_Filter); // Only present .brf files and .brl files
             openFileDialog.InitialDirectory = latestDirectory;
+            openFileDialog.FileName = ""; // As we typically produce several Braille Music files at a time it makes no sense to select one of them.
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
             openFileDialog.Multiselect = false; // Do not allow selecting multiple files
