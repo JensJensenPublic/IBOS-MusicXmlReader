@@ -432,7 +432,7 @@
     <comment>Used as node name in tree (without&amp;) and as menu shortcut (with &amp;)</comment>
   </data>
   <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
-    <value>&amp;User Settings</value>
+    <value>&amp;User Settings for this MusicXml file</value>
   </data>
   <data name="ParameterInputForm_BrailleFormatting" xml:space="preserve">
     <value>Insert form size as characters per line , lines per form</value>

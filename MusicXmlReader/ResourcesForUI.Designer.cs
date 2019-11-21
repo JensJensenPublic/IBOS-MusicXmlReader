@@ -934,7 +934,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &amp;User Settings.
+        ///   Looks up a localized string similar to &amp;User Settings for this MusicXml file.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_User_Settings {
             get {
