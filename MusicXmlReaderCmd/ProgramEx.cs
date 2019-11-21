@@ -145,7 +145,7 @@ namespace MusicXmlReaderUI
             ////developerFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_Unicode_utf8, charactersPerLine, linesPerPage);
             //if (ExportMusicBrailleToFile(brailleFileHandler)) filesExported++;
 
-            model.ExperimentalCode = true;
+            // model.ExperimentalCode = true;
             //BrailleFileHandler developerBrailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_Unicode, 0, 0); // Only osed in Experimental Mode
             StaffList brailleRepresentations = model.GetBrailleRepresentation(32,32,Model.BrailleStyleEnum.BANA2015);
             if (null == brailleRepresentations)

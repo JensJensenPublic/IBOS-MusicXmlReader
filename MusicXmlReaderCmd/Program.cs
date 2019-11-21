@@ -137,7 +137,7 @@ namespace MusicXmlReaderUI
             model.UserSettings.SetAllMusicBrailleSettings(true); // Select all Music Braille Settings (For each part selected above)
             model.UserSettings.SetAllNormalTextSettings(true);   // Select all Normal Text settings   (For each part selected above)
 
-            model.ExperimentalCode = true;
+            //model.ExperimentalCode = true;
             Logger. BrailleMusicGenerationDelay.Start();
             GenerateBrailleMusicFiles(); // New
             Logger.BrailleMusicGenerationDelay.Stop();
