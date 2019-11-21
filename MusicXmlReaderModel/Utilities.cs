@@ -1000,9 +1000,17 @@ namespace MusicXmlReaderModel
 
                 string[] files0 = System.IO.Directory.GetFiles(path0);
                 string[] files1 = System.IO.Directory.GetFiles(path1);
+                string path0Time = new System.IO.DirectoryInfo(path0).CreationTime.ToString();
+                string path1Time = new System.IO.DirectoryInfo(path1).CreationTime.ToString();
                 if (files0.Length != files1.Length)
                 {
-                    return string.Format(": Failed: Different number of files found");
+                    string logMessage =
+                      string.Format(": Failed: Different number of files found.\r\n")
+                    + string.Format("Path0='{0}' Time='{1}' Count={2}\r\n", path0, path0Time, files0.Length)
+                    + string.Format("Path1='{0}' Time='{1}' Count={2}", path1, path1Time, files1.Length);
+                    Logger.LogCF(logMessage);
+
+                    return string.Format(": Failed: Different number of files found.\r\n"); 
                 }
 
                 // Same number of files. Assume same ordering:
