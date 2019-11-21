@@ -46,6 +46,20 @@ namespace MusicXmlReaderModel
 #warning TODO Find out why
             // For some reason the files are found at "C:\Users\<user>\AppData\Local\MusicXmlReader" even if the .exe is called "IBOS MusicXmlReader.exe"
             // So for the time being we just open the explorer at the root "C:\Users\<user>\AppData\Local
+
+            // HACK to fine the directory:
+            string[] directories = Directory.GetDirectories(basePath);
+            foreach (string dir in directories)
+            {
+                //string root = Path.GetPathRoot(dir);
+                //string owner = Path.GetDirectoryName(dir);
+                string shortName = Path.GetFileName(dir); // Actually in this case the shortname of the rightmost directory
+                if (appName.Contains(shortName))
+                {
+                    basePath = dir;
+                    break;
+                }
+            }
             Utilities.RunExeWithDirArgument("explorer.exe", basePath);
         }
 
