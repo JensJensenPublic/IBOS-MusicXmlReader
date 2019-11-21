@@ -613,6 +613,14 @@ namespace MusicXmlReader
             this.userPreferencesHandler.Reset();
         }
 
+        private void userPreferencesLocationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // We must call GetExecutingAssembly() from the assembly containing the .exe file, otherwise we just get tha name of a the .dll executing the call!
+            string appFullName = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            model.ExternalToolsHandler.OpenConfigurationFileLocation(appFullName);
+        }
+
+
         private bool AppendLine(System.Text.StringBuilder sb, string fileName, BrailleFileHandler.FileEncoding encoding)
         {
             bool b = isValidBrailleMusic(fileName, encoding);

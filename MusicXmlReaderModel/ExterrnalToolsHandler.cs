@@ -38,6 +38,17 @@ namespace MusicXmlReaderModel
             Utilities.RunExeWithDirArgument("explorer.exe", Logger.LogFileDirectory);
         }
 
+        public void OpenConfigurationFileLocation(string appFullName)
+        {
+            string basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);  
+            string appName = Path.GetFileNameWithoutExtension(appFullName);
+            string path = Path.Combine(basePath, appName);
+#warning TODO Find out why
+            // For some reason the files are found at "C:\Users\<user>\AppData\Local\MusicXmlReader" even if the .exe is called "IBOS MusicXmlReader.exe"
+            // So for the time being we just open the explorer at the root "C:\Users\<user>\AppData\Local
+            Utilities.RunExeWithDirArgument("explorer.exe", basePath);
+        }
+
         public void OpenMusicXmlFileLocation(string theMusicXmlFileName)
         {
             if (String.IsNullOrEmpty(theMusicXmlFileName))

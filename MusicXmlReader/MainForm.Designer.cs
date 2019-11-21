@@ -130,6 +130,7 @@
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
+            this.userPreferencesLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -521,7 +522,8 @@
             this.generateMusicBrailleTestpatternToolStripMenuItem,
             this.generateGraphicInformationToolStripMenuItem,
             this.interpretFileAsBrailleMusicToolStripMenuItem,
-            this.resetUserSettingsToDefaultToolStripMenuItem});
+            this.resetUserSettingsToDefaultToolStripMenuItem,
+            this.userPreferencesLocationToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -965,6 +967,13 @@
             // 
             this.printDialog.UseEXDialog = true;
             // 
+            // userPreferencesLocationToolStripMenuItem
+            // 
+            this.userPreferencesLocationToolStripMenuItem.Name = "userPreferencesLocationToolStripMenuItem";
+            this.userPreferencesLocationToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.userPreferencesLocationToolStripMenuItem.Text = "User Preferences location";
+            this.userPreferencesLocationToolStripMenuItem.Click += new System.EventHandler(this.userPreferencesLocationToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1098,6 +1107,7 @@
         private System.Windows.Forms.PrintDialog printDialog;
         private System.Windows.Forms.ToolStripMenuItem openRecentMusicXmlFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetUserSettingsToDefaultToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userPreferencesLocationToolStripMenuItem;
     }
 }
 
