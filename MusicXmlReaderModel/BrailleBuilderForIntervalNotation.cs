@@ -12,7 +12,6 @@ namespace MusicXmlReaderModel
 
     public class BrailleBuilderForIntervalNotation : BrailleBuilder
     {
-        private static bool alreadyLogged = false;
         private bool logWellFormedNess = false; // Loggin option
 
         public static byte[] intervalPerfectUnison = { (dot2 + dot3 + dot5 + dot6), dot5, (dot3 + dot6), (dot2 + dot3 + dot5 + dot6) };
@@ -104,7 +103,7 @@ namespace MusicXmlReaderModel
             Logger.LogCF(string.Format(": PartId={0} Staff={1} {2} ", noteElements[0].PartId, noteElements[0].Staff, message.ToString()));
         }
 
-
+#if false
         /// <summary>
         /// Original implementation
         /// https://en.wikipedia.org/wiki/Interval_(music)
@@ -251,7 +250,7 @@ namespace MusicXmlReaderModel
             AppendText(accidentalText); // Add any accidential
             AppendText(string.Format("{0}", s));
         }
-
+#endif
 
         /// <summary>
         /// New implementation NOT based on the Pitch value, but solely on octave and 
@@ -393,17 +392,9 @@ namespace MusicXmlReaderModel
             // Now generate the Braille representation for the List<NoteElement>
             AppendText("[");
             this.AddNote(noteElements[0], statusInformation.CurrentKeyElement); // Add the "Origin" noteelement as usual
-            int implementationVersion = 2;
-            if (!alreadyLogged) Logger.LogCF(string.Format("implementationVersion = {0}", implementationVersion));
-            alreadyLogged = true;
             for (int i = 1; (i < noteElements.Count); i++)
             {
-                switch (implementationVersion)
-                {
-                    case 0: this.AddIntervalV0(noteElements[i], noteElements[0].PitchValue.SemiTonesAboveC0); break; // Initial implementation. Lars claims problems with accidentials
-                    case 1: this.AddIntervalV1(noteElements[i], noteElements[0]); break; // Based on BANA 2015 chapter 9 and comments from Lars, but still using semitones
-                    case 2: this.AddIntervalV2(noteElements[i], noteElements[0]); break; // Based on BANA 2015 chapter 9 and comments from Lars, but using fullsteps.
-                }
+                this.AddIntervalV2(noteElements[i], noteElements[0]); // Based on BANA 2015 chapter 9 and comments from Lars, but using fullsteps.
             }
             AppendText("]" + epilog);
 
