@@ -149,7 +149,7 @@ namespace MusicXmlReaderModel
             {
                 Logger.Log(string.Format("{0}.{1} threw an exception. Message='{2}'", className, functionName, e.Message));
             }
-            Logger.Log(string.Format("{0}.{1} failed to find a shortcut {2}", className, functionName, shortcutName));
+            //Logger.Log(string.Format("{0}.{1} failed to find a shortcut {2}", className, functionName, shortcutName));
             return null;
         }
 
