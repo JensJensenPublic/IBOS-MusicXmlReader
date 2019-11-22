@@ -214,6 +214,7 @@ namespace MusicXmlReader
         /// <param name="e">Not used</param>
         private bool SelectAndOpenMusicXmlFile(bool useDefaultSettings, bool useRecentFile)
         {
+            openFileDialog.Title = ResourcesForUI.OpenFileDialog_Title;  // Just a neutral name "Open"
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.xml;*.musicxml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files
                                                                                                                        //            openFileDialog.Filter = string.Format("{0}|*.xml|{0}|*.mxl", ResourcesForUI.OpenFileDialog_Filter,ResourcesForUI.OpenFileDialog_Filter_mxl); // Only present .xml files and .mxl files
@@ -631,6 +632,8 @@ namespace MusicXmlReader
 
         private void autodetectedEncodingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            openFileDialog.Title = ResourcesForUI.OpenFileDialog_Title;  // Just a neutral name "Open"
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.*", ""); // All file types                                                                                                             
             openFileDialog.InitialDirectory = Logger.LogFileDirectory; //
@@ -666,6 +669,7 @@ namespace MusicXmlReader
 
         private bool SelectBrailleMusicFile(BrailleFileHandler.FileEncoding fileEncoding)
         {
+            openFileDialog.Title = ResourcesForUI.OpenFileDialog_Title;  // Just a neutral name "Open"
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.*", ""); // All file types                                                                                                             
 //            openFileDialog.InitialDirectory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory : Logger.LogFileDirectory; //

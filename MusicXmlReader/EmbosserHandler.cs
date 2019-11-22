@@ -25,6 +25,7 @@ namespace MusicXmlReader
         {
             // The dialog has focus on the textbox for entering the file name.
             // Press <shift> <tab> twice to focus on the first line in the selection listbox.
+            openFileDialog.Title = ResourcesForUI.OpenFileDialog_Title;  // Just a neutral name "Open"
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.brf;*.brl", ResourcesForUI.OpenFileDialog_Filter); // Only present .brf files and .brl files
             openFileDialog.InitialDirectory = latestDirectory;
@@ -32,7 +33,6 @@ namespace MusicXmlReader
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
             openFileDialog.Multiselect = false; // Do not allow selecting multiple files
-            openFileDialog.Title = "Open file for embossing";
             DialogResult result = openFileDialog.ShowDialog();
             Logger.LogCF(string.Format(": Result={0}", result.ToString()));
             return result;

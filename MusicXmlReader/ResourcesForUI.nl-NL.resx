@@ -262,7 +262,7 @@
     <value>ResourcesForUI.nl-NL.resx</value>
     <comment>Resource in dutch:  bron</comment>
   </data>
-  <data name="SelectFileDialog_Title" xml:space="preserve">
+  <data name="SelectDownloadFileImportDialog_Title" xml:space="preserve">
     <value>Selecteer de gedownloade bestanden om te importeren</value>
   </data>
   <data name="StatusLine_Accessible_Name" xml:space="preserve">
@@ -493,5 +493,8 @@
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
     <value>Open MusicXml file from recent location</value>
     <comment>JSJ: MISSING TRANSLATION</comment>
+  </data>
+  <data name="OpenFileDialog_Title" xml:space="preserve">
+    <value>Open</value>
   </data>
 </root>

@@ -358,7 +358,7 @@
     <value>ResourcesForUI.da-DK.resx</value>
     <comment>The name of the currently used resource file</comment>
   </data>
-  <data name="SelectFileDialog_Title" xml:space="preserve">
+  <data name="SelectDownloadFileImportDialog_Title" xml:space="preserve">
     <value>Udvælg overførte filer til import</value>
   </data>
   <data name="ToolsStripMenuItem_View_Instruments" xml:space="preserve">
@@ -488,5 +488,9 @@
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
     <value>Åbn MusicXml fil fra seneste placering</value>
+  </data>
+  <data name="OpenFileDialog_Title" xml:space="preserve">
+    <value>Åbn</value>
+    <comment>Neutral title</comment>
   </data>
 </root>

@@ -360,7 +360,7 @@
     <value>ResourcesForUI.resx</value>
     <comment>The name of the currently used resource file</comment>
   </data>
-  <data name="SelectFileDialog_Title" xml:space="preserve">
+  <data name="SelectDownloadFileImportDialog_Title" xml:space="preserve">
     <value>Select downloaded files for import</value>
   </data>
   <data name="ToolsStripMenuItem_View_Instruments" xml:space="preserve">
@@ -491,5 +491,8 @@
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
     <value>Open MusicXml file from most recent location</value>
+  </data>
+  <data name="OpenFileDialog_Title" xml:space="preserve">
+    <value>Open</value>
   </data>
 </root>

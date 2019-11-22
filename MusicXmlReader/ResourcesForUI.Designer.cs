@@ -412,6 +412,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        internal static string OpenFileDialog_Title {
+            get {
+                return ResourceManager.GetString("OpenFileDialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert form size as characters per line , lines per form.
         /// </summary>
         internal static string ParameterInputForm_BrailleFormatting {
@@ -459,9 +468,9 @@ namespace MusicXmlReader {
         /// <summary>
         ///   Looks up a localized string similar to Select downloaded files for import.
         /// </summary>
-        internal static string SelectFileDialog_Title {
+        internal static string SelectDownloadFileImportDialog_Title {
             get {
-                return ResourceManager.GetString("SelectFileDialog_Title", resourceCulture);
+                return ResourceManager.GetString("SelectDownloadFileImportDialog_Title", resourceCulture);
             }
         }
         
