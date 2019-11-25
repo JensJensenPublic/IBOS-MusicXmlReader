@@ -23,11 +23,20 @@ namespace MusicXmlReader
             this.deviceTypeEnum = deviceTypeEnum;
             InitializeComponent();
 
-            // Assume Embossser
-            UserPreferencesHandler userPreferencesHandler = UserPreferencesHandler.Create();
-            BrailleDevice brailleDevice = userPreferencesHandler.embosser;
-            if ((string.IsNullOrEmpty(brailleDevice.Name))) brailleDevice.Name = "Default Punktprinternavn"; 
-            Logger.LogCF(string.Format(": Name= {0}", brailleDevice.Name));
+            // Fill in title and tabels
+            BrailleMusicSettingsFormHandler brailleMusicSettingsFormHandler = BrailleMusicSettingsFormHandler.Create(deviceTypeEnum);
+            this.Text = brailleMusicSettingsFormHandler.GetTitle();
+            this.labelDeviceName.Text = brailleMusicSettingsFormHandler.GetLabelDeviceName();
+
+            this.Refresh();
+            
+
+            // Fill in values
+
+            //UserPreferencesHandler userPreferencesHandler = UserPreferencesHandler.Create();
+            //BrailleDevice brailleDevice = userPreferencesHandler.embosser;
+            //if ((string.IsNullOrEmpty(brailleDevice.Name))) brailleDevice.Name = "Default Punktprinternavn"; 
+            //Logger.LogCF(string.Format(": Name= {0}", brailleDevice.Name));
 
 
         }

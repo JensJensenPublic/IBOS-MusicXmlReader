@@ -73,6 +73,7 @@
     <Compile Include="BrailleMusicSettingsForm.Designer.cs">
       <DependentUpon>BrailleMusicSettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BrailleMusicSettingsFormHandler.cs" />
     <Compile Include="DetailsHandler.cs" />
     <Compile Include="EmbosserHandler.cs" />
     <Compile Include="HelpForm.cs">
