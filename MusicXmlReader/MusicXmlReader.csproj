@@ -67,6 +67,12 @@
   <ItemGroup>
     <Compile Include="AppConfigHandler.cs" />
     <Compile Include="BrailleMusicExportHandler.cs" />
+    <Compile Include="BrailleMusicSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BrailleMusicSettingsForm.Designer.cs">
+      <DependentUpon>BrailleMusicSettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DetailsHandler.cs" />
     <Compile Include="EmbosserHandler.cs" />
     <Compile Include="HelpForm.cs">

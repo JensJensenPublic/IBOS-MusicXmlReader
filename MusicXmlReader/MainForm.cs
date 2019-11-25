@@ -365,6 +365,35 @@ namespace MusicXmlReader
             this.Refresh();
         }
 
+        private void generelSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
+            string message = "Not implemented yet";
+            Logger.LogCF(":" + message);
+            MessageBox.Show(message);
+        }
+
+
+        private void ShowBrailleMusicSettingsDialog(BrailleMusicSettingsForm.DeviceTypeEnum deviceTypeEnum)
+        {
+            Form brailleMusicSettingsForm = new BrailleMusicSettingsForm(deviceTypeEnum);
+            brailleMusicSettingsForm.ShowDialog();
+            brailleMusicSettingsForm.Dispose();
+        }
+
+        private void embosserSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowBrailleMusicSettingsDialog(BrailleMusicSettingsForm.DeviceTypeEnum.Embosser);
+        }
+
+        private void notetakerSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowBrailleMusicSettingsDialog(BrailleMusicSettingsForm.DeviceTypeEnum.NoteTaker); 
+        }
+
+        private void musicBrailleSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowBrailleMusicSettingsDialog(BrailleMusicSettingsForm.DeviceTypeEnum.GeneralDevice);
+        }
     }
 }
