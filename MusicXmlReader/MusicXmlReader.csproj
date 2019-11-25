@@ -119,6 +119,9 @@
     <Compile Include="ShortcutHandler.cs" />
     <Compile Include="UserPreferencesHandler.cs" />
     <Compile Include="UserSettingsHandler.cs" />
+    <EmbeddedResource Include="BrailleMusicSettingsForm.resx">
+      <DependentUpon>BrailleMusicSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HelpForm.resx">
       <DependentUpon>HelpForm.cs</DependentUpon>
     </EmbeddedResource>

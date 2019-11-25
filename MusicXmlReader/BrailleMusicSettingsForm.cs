@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReader
 {
@@ -21,6 +22,19 @@ namespace MusicXmlReader
         {
             this.deviceTypeEnum = deviceTypeEnum;
             InitializeComponent();
+
+            // Assume Embossser
+            UserPreferencesHandler userPreferencesHandler = UserPreferencesHandler.Create();
+            BrailleDevice brailleDevice = userPreferencesHandler.embosser;
+            if ((string.IsNullOrEmpty(brailleDevice.Name))) brailleDevice.Name = "Default Punktprinternavn"; 
+            Logger.LogCF(string.Format(": Name= {0}", brailleDevice.Name));
+
+
+        }
+
+        private void textBoxApplicationName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
