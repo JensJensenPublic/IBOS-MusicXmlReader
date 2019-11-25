@@ -25,7 +25,7 @@ namespace MusicXmlReader
 
             // Fill in title and tabels
             BrailleMusicSettingsFormHandler brailleMusicSettingsFormHandler = BrailleMusicSettingsFormHandler.Create(deviceTypeEnum);
-            this.Text = brailleMusicSettingsFormHandler.GetTitle();
+            this.Text = brailleMusicSettingsFormHandler.Title;
             this.labelDeviceName.Text = brailleMusicSettingsFormHandler.GetLabelDeviceName();
 
             this.Refresh();
