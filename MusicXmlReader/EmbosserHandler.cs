@@ -25,6 +25,7 @@ namespace MusicXmlReader
         {
             // The dialog has focus on the textbox for entering the file name.
             // Press <shift> <tab> twice to focus on the first line in the selection listbox.
+            openFileDialog.Reset(); // Prevent survival of strange settings from latest usage of this reused OpenFileDialog
             openFileDialog.Title = ResourcesForUI.OpenFileDialog_Title;  // Just a neutral name "Open"
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.brf;*.brl", ResourcesForUI.OpenFileDialog_Filter); // Only present .brf files and .brl files

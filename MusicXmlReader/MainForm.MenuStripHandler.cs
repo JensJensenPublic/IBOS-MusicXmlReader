@@ -214,6 +214,7 @@ namespace MusicXmlReader
         /// <param name="e">Not used</param>
         private bool SelectAndOpenMusicXmlFile(bool useDefaultSettings, bool useRecentFile)
         {
+            openFileDialog.Reset(); // Prevent survival of strange settings from latest usage of this reused OpenFileDialog
             openFileDialog.Title = ResourcesForUI.OpenFileDialog_Title;  // Just a neutral name "Open"
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.xml;*.musicxml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files
@@ -632,7 +633,7 @@ namespace MusicXmlReader
 
         private void autodetectedEncodingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            openFileDialog.Reset(); // Prevent survival of strange settings from latest usage of this reused OpenFileDialog
             openFileDialog.Title = ResourcesForUI.OpenFileDialog_Title;  // Just a neutral name "Open"
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.*", ""); // All file types                                                                                                             
@@ -669,6 +670,7 @@ namespace MusicXmlReader
 
         private bool SelectBrailleMusicFile(BrailleFileHandler.FileEncoding fileEncoding)
         {
+            openFileDialog.Reset(); // Prevent survival of strange settings from latest usage of this reused OpenFileDialog
             openFileDialog.Title = ResourcesForUI.OpenFileDialog_Title;  // Just a neutral name "Open"
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.*", ""); // All file types                                                                                                             

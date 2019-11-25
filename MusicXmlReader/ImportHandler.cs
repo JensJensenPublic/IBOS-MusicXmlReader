@@ -83,6 +83,7 @@ namespace MusicXmlReader
         {
             string functionName = "SelectFilesForImport";
             List<string> fileNameList = new List<string>();
+            openFileDialog.Reset(); // Prevent survival of strange settings from latest usage of this reused OpenFileDialog
             openFileDialog.Title = ResourcesForUI.SelectDownloadFileImportDialog_Title;
             openFileDialog.InitialDirectory = KnownFolders.GetPath(KnownFolder.Downloads, false); // defaultuser = false: Get the path to the current user.
             openFileDialog.FileName = ""; // No default
