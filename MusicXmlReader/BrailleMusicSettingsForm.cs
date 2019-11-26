@@ -19,6 +19,16 @@ namespace MusicXmlReader
         private DeviceTypeEnum deviceTypeEnum;
         private string applicationName;
 
+        // If the text of a label is null or empty we mnake the label and its control invisible.
+        private void Init(Label label, Control control, string labelName)
+        {
+            bool visible = !string.IsNullOrEmpty(labelName);
+            label.Visible = visible;
+            label.Text = labelName;
+            control.Visible = visible;
+        }
+
+
         public BrailleMusicSettingsForm(DeviceTypeEnum deviceTypeEnum, string applicationName)
         {
             this.deviceTypeEnum = deviceTypeEnum;
@@ -27,15 +37,24 @@ namespace MusicXmlReader
 
 
             // Fill in title and tabels
-            BrailleMusicSettingsFormHandler brailleMusicSettingsFormHandler = BrailleMusicSettingsFormHandler.Create(deviceTypeEnum);
-            this.Text = this.applicationName + " " + brailleMusicSettingsFormHandler.Title;
-            this.labelDeviceName.Text = brailleMusicSettingsFormHandler.LabelDeviceName;
-            this.labelBrailleFileFormat.Text = brailleMusicSettingsFormHandler.LabelBrailleFileFormat;
-            this.labelWidth.Text = brailleMusicSettingsFormHandler.LabelWidth;
-            this.labelHeight.Text = brailleMusicSettingsFormHandler.LabelHeight;
-            this.labelEscapeSequence.Text = brailleMusicSettingsFormHandler.LabelEscapeSequence;
-            this.labelApplicationName.Text = brailleMusicSettingsFormHandler.LabelApplicationName;
-            this.labelApplicationLocation.Text = brailleMusicSettingsFormHandler.LabelApplicationLocation;        
+            BrailleMusicSettingsFormHandler settings = BrailleMusicSettingsFormHandler.Create(deviceTypeEnum);
+            this.Text = this.applicationName + " " + settings.Title;
+
+            Init(labelDeviceName, comboBoxDeviceName, settings.LabelDeviceName);
+            Init(labelBrailleFileFormat, listBoxFileFormat, settings.LabelBrailleFileFormat);
+            Init(labelWidth, numericUpDownWidth, settings.LabelWidth);
+            Init(labelHeight, numericUpDownHeight, settings.LabelHeight);
+            Init(labelEscapeSequence, textBoxEscapeSequence, settings.LabelEscapeSequence);
+            Init(labelApplicationName, textBoxApplicationName, settings.LabelApplicationName);
+            Init(labelApplicationLocation, textBoxApplicationExe, settings.LabelApplicationLocation);
+
+            //this.labelDeviceName.Text = settings.LabelDeviceName;
+            //this.labelBrailleFileFormat.Text = settings.LabelBrailleFileFormat;
+            //this.labelWidth.Text = settings.LabelWidth;
+            //this.labelHeight.Text = settings.LabelHeight;
+            //this.labelEscapeSequence.Text = settings.LabelEscapeSequence;
+            //this.labelApplicationName.Text = settings.LabelApplicationName;
+            //this.labelApplicationLocation.Text = settings.LabelApplicationLocation;
 
             this.Refresh();
             
