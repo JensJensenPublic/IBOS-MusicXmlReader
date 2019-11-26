@@ -17,15 +17,18 @@ namespace MusicXmlReader
     {
         public enum DeviceTypeEnum { Unknown, Embosser, NoteTaker, GeneralDevice}
         private DeviceTypeEnum deviceTypeEnum;
+        private string applicationName;
 
-        public BrailleMusicSettingsForm(DeviceTypeEnum deviceTypeEnum)
+        public BrailleMusicSettingsForm(DeviceTypeEnum deviceTypeEnum, string applicationName)
         {
             this.deviceTypeEnum = deviceTypeEnum;
+            this.applicationName = applicationName;
             InitializeComponent();
+
 
             // Fill in title and tabels
             BrailleMusicSettingsFormHandler brailleMusicSettingsFormHandler = BrailleMusicSettingsFormHandler.Create(deviceTypeEnum);
-            this.Text = brailleMusicSettingsFormHandler.Title;
+            this.Text = this.applicationName + " " + brailleMusicSettingsFormHandler.Title;
             this.labelDeviceName.Text = brailleMusicSettingsFormHandler.LabelDeviceName;
             this.labelBrailleFileFormat.Text = brailleMusicSettingsFormHandler.LabelBrailleFileFormat;
             this.labelWidth.Text = brailleMusicSettingsFormHandler.LabelWidth;
