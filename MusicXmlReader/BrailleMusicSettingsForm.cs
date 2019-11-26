@@ -69,6 +69,7 @@ namespace MusicXmlReader
             // Get the values from UserPreferences.
             this.numericUpDownWidth.Value = brailleDevicePreferences.PageWidth;
             this.numericUpDownHeight.Value = brailleDevicePreferences.PageHeight;
+            this.textBoxEscapeSequence.Text = brailleDevicePreferences.EscapeSequence;           
 
             //this.labelDeviceName.Text = settings.LabelDeviceName;
             //this.labelBrailleFileFormat.Text = settings.LabelBrailleFileFormat;
@@ -98,6 +99,7 @@ namespace MusicXmlReader
         {
             brailleDevicePreferences.PageWidth = (int)this.numericUpDownWidth.Value;
             brailleDevicePreferences.PageHeight = (int)this.numericUpDownHeight.Value;
+            brailleDevicePreferences.EscapeSequence = this.textBoxEscapeSequence.Text;
              // More to follow
         }
 
