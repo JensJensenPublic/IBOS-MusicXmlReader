@@ -215,8 +215,10 @@
             this.Controls.Add(this.comboBoxDeviceName);
             this.Controls.Add(this.numericUpDownHeight);
             this.Controls.Add(this.numericUpDownWidth);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "BrailleMusicSettingsForm";
-            this.Text = "BrailleMusicSettings";
+            this.Text = "IBOS MusicXmlReader Device settings";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).EndInit();
             this.ResumeLayout(false);
