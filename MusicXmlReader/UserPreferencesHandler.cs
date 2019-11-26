@@ -14,6 +14,8 @@ namespace MusicXmlReader
         public abstract string FileFormat { get; set; }
         public abstract int PageWidth { get; set; }
         public abstract int PageHeight { get; set; }
+        public abstract string ApplicationName { get; set; }
+        public abstract string ApplicationLocation { get; set; }
 
         public void Log()
         {
@@ -34,6 +36,8 @@ namespace MusicXmlReader
         public override string FileFormat {get { return settings.EmbosserFileFormat; } set { settings.EmbosserFileFormat = value; } }
         public override int PageWidth { get { return settings.EmbosserPageWidth; } set { settings.EmbosserPageWidth = value; } }
         public override int PageHeight { get { return settings.EmbosserPageHeight; } set { settings.EmbosserPageHeight = value; } }
+        public override string ApplicationName { get { return settings.EmbosserApplicationName; } set { settings.EmbosserApplicationName = value; } }
+        public override string ApplicationLocation { get { return settings.EmbosserApplicationLocation; } set { settings.EmbosserApplicationLocation = value; } }
 
         internal BrailleEmbosser(MusicXmlReader.Properties.Settings settings)
         {
@@ -49,6 +53,8 @@ namespace MusicXmlReader
         public override string FileFormat { get { return settings.NoteTakerFileFormat; } set { settings.NoteTakerFileFormat = value; } }
         public override int PageWidth { get { return settings.NoteTakerPageWidth; } set { settings.NoteTakerPageWidth = value; } }
         public override int PageHeight { get { return settings.NoteTakerPageHeight; } set { settings.NoteTakerPageHeight = value; } }
+        public override string ApplicationName { get { return ""; } set { /* No action */ } }
+        public override string ApplicationLocation { get { return ""; } set { /* No action */ } }
 
 
         internal BrailleNoteTaker(MusicXmlReader.Properties.Settings settings)

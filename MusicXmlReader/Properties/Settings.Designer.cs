@@ -202,5 +202,29 @@ namespace MusicXmlReader.Properties {
                 this["MusicXmlFile"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string EmbosserApplicationName {
+            get {
+                return ((string)(this["EmbosserApplicationName"]));
+            }
+            set {
+                this["EmbosserApplicationName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string EmbosserApplicationLocation {
+            get {
+                return ((string)(this["EmbosserApplicationLocation"]));
+            }
+            set {
+                this["EmbosserApplicationLocation"] = value;
+            }
+        }
     }
 }
