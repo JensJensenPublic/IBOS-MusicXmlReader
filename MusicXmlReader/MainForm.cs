@@ -376,8 +376,13 @@ namespace MusicXmlReader
 
         private void ShowBrailleMusicSettingsDialog(BrailleMusicSettingsForm.DeviceTypeEnum deviceTypeEnum)
         {
-            Form brailleMusicSettingsForm = new BrailleMusicSettingsForm(deviceTypeEnum, applicationName);
-            brailleMusicSettingsForm.ShowDialog();
+            BrailleMusicSettingsForm brailleMusicSettingsForm = new BrailleMusicSettingsForm(deviceTypeEnum, applicationName, userPreferencesHandler);
+            DialogResult result = brailleMusicSettingsForm.ShowDialog();
+      //      if (DialogResult.OK == result)
+            {
+                brailleMusicSettingsForm.SaveSettings();
+            }
+
             brailleMusicSettingsForm.Dispose();
         }
 
