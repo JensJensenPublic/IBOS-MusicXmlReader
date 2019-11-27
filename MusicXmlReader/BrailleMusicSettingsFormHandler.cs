@@ -7,7 +7,7 @@ namespace MusicXmlReader
 
     class BrailleMusicSettingsFormEmbosserHandler : BrailleMusicSettingsFormHandler
     {
-        public override string Title { get { return "Embosser settings:"; } }
+        public override string Title { get { return "Embosser settings"; } }
         public override string LabelDeviceName { get { return "Embosser name:"; } }
         // LabelBrailleFileFormat: Inherit value
         public override string LabelWidth { get { return "Page width"; } }
@@ -21,7 +21,7 @@ namespace MusicXmlReader
 
     class BrailleMusicSettingsFormNoteTakerHandler : BrailleMusicSettingsFormHandler
     {
-        public override string Title { get { return "Notetaker settings:"; } }
+        public override string Title { get { return "Notetaker settings"; } }
         public override string LabelDeviceName { get { return "Notetaker name"; } }
         // LabelBrailleFileFormat: Inherit value
         public override string LabelWidth { get { return "Line width"; } }
@@ -34,8 +34,8 @@ namespace MusicXmlReader
 
     class BrailleMusicSettingsFormGenericHandler : BrailleMusicSettingsFormHandler
     {
-        public override string Title { get { return "Generic Braille Music device settings:"; } }
-        public override string LabelDeviceName { get { return "Device name:"; } }
+        public override string Title { get { return "Generic Braille device settings"; } }
+        public override string LabelDeviceName { get { return "Device name"; } }
         // LabelBrailleFileFormat: Inherit value
         public override string LabelWidth { get { return "Device width"; } }
         public override string LabelHeight { get { return "Device height"; } }

@@ -222,7 +222,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "BrailleMusicSettingsForm";
-            this.Text = "IBOS MusicXmlReader Device settings";
+            this.Text = "IBOS MusicXmlReader Generic Braille device  settings";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).EndInit();
             this.ResumeLayout(false);

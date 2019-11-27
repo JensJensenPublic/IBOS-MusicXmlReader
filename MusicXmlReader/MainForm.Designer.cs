@@ -74,6 +74,11 @@
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.instrumentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.brailleFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generelSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.embosserSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notetakerSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.musicBrailleSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.museScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sibeliusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,11 +125,6 @@
             this.keyboardShortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.linkToNewestSoftwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generelSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.embosserSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.notetakerSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.musicBrailleSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.listBoxTimes = new System.Windows.Forms.ListBox();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
@@ -513,6 +513,45 @@
             this.brailleFileToolStripMenuItem.Text = "BrailleFile";
             this.brailleFileToolStripMenuItem.Click += new System.EventHandler(this.brailleFileToolStripMenuItem_Click);
             // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.generelSettingsToolStripMenuItem,
+            this.embosserSettingsToolStripMenuItem,
+            this.notetakerSettingsToolStripMenuItem,
+            this.musicBrailleSettingsToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // generelSettingsToolStripMenuItem
+            // 
+            this.generelSettingsToolStripMenuItem.Name = "generelSettingsToolStripMenuItem";
+            this.generelSettingsToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.generelSettingsToolStripMenuItem.Text = "Generel settings";
+            this.generelSettingsToolStripMenuItem.Click += new System.EventHandler(this.generelSettingsToolStripMenuItem_Click);
+            // 
+            // embosserSettingsToolStripMenuItem
+            // 
+            this.embosserSettingsToolStripMenuItem.Name = "embosserSettingsToolStripMenuItem";
+            this.embosserSettingsToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.embosserSettingsToolStripMenuItem.Text = "Embosser settings";
+            this.embosserSettingsToolStripMenuItem.Click += new System.EventHandler(this.embosserSettingsToolStripMenuItem_Click);
+            // 
+            // notetakerSettingsToolStripMenuItem
+            // 
+            this.notetakerSettingsToolStripMenuItem.Name = "notetakerSettingsToolStripMenuItem";
+            this.notetakerSettingsToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.notetakerSettingsToolStripMenuItem.Text = "Notetaker settings";
+            this.notetakerSettingsToolStripMenuItem.Click += new System.EventHandler(this.notetakerSettingsToolStripMenuItem_Click);
+            // 
+            // musicBrailleSettingsToolStripMenuItem
+            // 
+            this.musicBrailleSettingsToolStripMenuItem.Name = "musicBrailleSettingsToolStripMenuItem";
+            this.musicBrailleSettingsToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.musicBrailleSettingsToolStripMenuItem.Text = "Generic Braille device settings";
+            this.musicBrailleSettingsToolStripMenuItem.Click += new System.EventHandler(this.musicBrailleSettingsToolStripMenuItem_Click);
+            // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -877,45 +916,6 @@
             this.usersManualToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.usersManualToolStripMenuItem.Text = "User´s manual";
             this.usersManualToolStripMenuItem.Click += new System.EventHandler(this.usersManualToolStripMenuItem_Click);
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.generelSettingsToolStripMenuItem,
-            this.embosserSettingsToolStripMenuItem,
-            this.notetakerSettingsToolStripMenuItem,
-            this.musicBrailleSettingsToolStripMenuItem});
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            // 
-            // generelSettingsToolStripMenuItem
-            // 
-            this.generelSettingsToolStripMenuItem.Name = "generelSettingsToolStripMenuItem";
-            this.generelSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.generelSettingsToolStripMenuItem.Text = "Generel settings";
-            this.generelSettingsToolStripMenuItem.Click += new System.EventHandler(this.generelSettingsToolStripMenuItem_Click);
-            // 
-            // embosserSettingsToolStripMenuItem
-            // 
-            this.embosserSettingsToolStripMenuItem.Name = "embosserSettingsToolStripMenuItem";
-            this.embosserSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.embosserSettingsToolStripMenuItem.Text = "Embosser settings";
-            this.embosserSettingsToolStripMenuItem.Click += new System.EventHandler(this.embosserSettingsToolStripMenuItem_Click);
-            // 
-            // notetakerSettingsToolStripMenuItem
-            // 
-            this.notetakerSettingsToolStripMenuItem.Name = "notetakerSettingsToolStripMenuItem";
-            this.notetakerSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.notetakerSettingsToolStripMenuItem.Text = "Notetaker settings";
-            this.notetakerSettingsToolStripMenuItem.Click += new System.EventHandler(this.notetakerSettingsToolStripMenuItem_Click);
-            // 
-            // musicBrailleSettingsToolStripMenuItem
-            // 
-            this.musicBrailleSettingsToolStripMenuItem.Name = "musicBrailleSettingsToolStripMenuItem";
-            this.musicBrailleSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.musicBrailleSettingsToolStripMenuItem.Text = "MusicBrailleSettings";
-            this.musicBrailleSettingsToolStripMenuItem.Click += new System.EventHandler(this.musicBrailleSettingsToolStripMenuItem_Click);
             // 
             // userSettingsTreeView
             // 
