@@ -52,7 +52,7 @@
             // 
             this.numericUpDownWidth.Location = new System.Drawing.Point(138, 74);
             this.numericUpDownWidth.Name = "numericUpDownWidth";
-            this.numericUpDownWidth.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownWidth.Size = new System.Drawing.Size(208, 20);
             this.numericUpDownWidth.TabIndex = 20;
             this.numericUpDownWidth.Value = new decimal(new int[] {
             32,
@@ -64,7 +64,7 @@
             // 
             this.numericUpDownHeight.Location = new System.Drawing.Point(138, 100);
             this.numericUpDownHeight.Name = "numericUpDownHeight";
-            this.numericUpDownHeight.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownHeight.Size = new System.Drawing.Size(208, 20);
             this.numericUpDownHeight.TabIndex = 30;
             this.numericUpDownHeight.Value = new decimal(new int[] {
             32,
@@ -76,7 +76,7 @@
             // 
             this.textBoxEscapeSequence.Location = new System.Drawing.Point(139, 126);
             this.textBoxEscapeSequence.Name = "textBoxEscapeSequence";
-            this.textBoxEscapeSequence.Size = new System.Drawing.Size(100, 20);
+            this.textBoxEscapeSequence.Size = new System.Drawing.Size(207, 20);
             this.textBoxEscapeSequence.TabIndex = 40;
             this.textBoxEscapeSequence.Text = "DTB0";
             // 
@@ -85,14 +85,14 @@
             this.listBoxFileFormat.FormattingEnabled = true;
             this.listBoxFileFormat.Location = new System.Drawing.Point(139, 12);
             this.listBoxFileFormat.Name = "listBoxFileFormat";
-            this.listBoxFileFormat.Size = new System.Drawing.Size(120, 30);
+            this.listBoxFileFormat.Size = new System.Drawing.Size(207, 30);
             this.listBoxFileFormat.TabIndex = 10;
             // 
             // textBoxApplicationName
             // 
             this.textBoxApplicationName.Location = new System.Drawing.Point(139, 188);
             this.textBoxApplicationName.Name = "textBoxApplicationName";
-            this.textBoxApplicationName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxApplicationName.Size = new System.Drawing.Size(207, 20);
             this.textBoxApplicationName.TabIndex = 60;
             this.textBoxApplicationName.Text = "IBPrint";
             // 
@@ -100,7 +100,7 @@
             // 
             this.textBoxApplicationExe.Location = new System.Drawing.Point(138, 214);
             this.textBoxApplicationExe.Name = "textBoxApplicationExe";
-            this.textBoxApplicationExe.Size = new System.Drawing.Size(100, 20);
+            this.textBoxApplicationExe.Size = new System.Drawing.Size(208, 20);
             this.textBoxApplicationExe.TabIndex = 70;
             this.textBoxApplicationExe.Text = "IBPrint.exe";
             // 
@@ -192,7 +192,7 @@
             // 
             this.textBoxDeviceName.Location = new System.Drawing.Point(139, 162);
             this.textBoxDeviceName.Name = "textBoxDeviceName";
-            this.textBoxDeviceName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxDeviceName.Size = new System.Drawing.Size(207, 20);
             this.textBoxDeviceName.TabIndex = 50;
             this.textBoxDeviceName.Text = "Index Braille D2";
             // 
@@ -202,7 +202,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(284, 290);
+            this.ClientSize = new System.Drawing.Size(358, 290);
             this.Controls.Add(this.textBoxDeviceName);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
