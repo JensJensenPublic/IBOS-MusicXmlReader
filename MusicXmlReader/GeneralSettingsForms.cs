@@ -30,13 +30,13 @@ namespace MusicXmlReader
             // Label and textbox for MusicXml
             this.labelMusicXmlFile.Text     = "MusicXml file";
             this.textBoxMusicXmlFile.ReadOnly = true;
-            this.labelBrailleMusicPath.AccessibleName = this.labelMusicXmlFile.Text;
+            this.textBoxMusicXmlFile.AccessibleName = this.labelMusicXmlFile.Text;
             this.textBoxMusicXmlFile.Text = userPreferences.MusicXmlFile;
 
             // Label and textbox for Braille Music
             this.labelBrailleMusicPath.Text = "Braille Music directory";
             this.textBoxBrailleMusicPath.ReadOnly = true;
-            this.labelBrailleMusicPath.AccessibleName = this.labelBrailleMusicPath.Text;
+            this.textBoxBrailleMusicPath.AccessibleName = this.labelBrailleMusicPath.Text;
             this.textBoxBrailleMusicPath.Text = userPreferences.BrailleMusicDirectory;
           
         }
