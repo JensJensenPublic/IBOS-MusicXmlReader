@@ -57,7 +57,7 @@ namespace MusicXmlReader
             {
                 case DeviceTypeEnum.Embosser: brailleDevicePreferences = userPreferencesHandler.embosser; break;
                 case DeviceTypeEnum.NoteTaker: brailleDevicePreferences = userPreferencesHandler.noteTaker; break;
-                //               case DeviceTypeEnum.GeneralDevice: brailleDevicePreferences = userPreferencesHandler.; break; // Generel device not implemented yet
+                case DeviceTypeEnum.GeneralDevice: brailleDevicePreferences = userPreferencesHandler.genericBrailleDevice; break; 
                 default:
                     Logger.LogCF(string.Format(": Device type not implemented: {0}", deviceTypeEnum.ToString()));
                     break;

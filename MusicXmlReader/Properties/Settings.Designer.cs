@@ -226,5 +226,113 @@ namespace MusicXmlReader.Properties {
                 this["EmbosserApplicationLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GenericDeviceName {
+            get {
+                return ((string)(this["GenericDeviceName"]));
+            }
+            set {
+                this["GenericDeviceName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GenericDeviceEscapeSequence {
+            get {
+                return ((string)(this["GenericDeviceEscapeSequence"]));
+            }
+            set {
+                this["GenericDeviceEscapeSequence"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GenericDeviceFileFormat {
+            get {
+                return ((string)(this["GenericDeviceFileFormat"]));
+            }
+            set {
+                this["GenericDeviceFileFormat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int GenericDevicePageWidth {
+            get {
+                return ((int)(this["GenericDevicePageWidth"]));
+            }
+            set {
+                this["GenericDevicePageWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int GenericDevicePageHeight {
+            get {
+                return ((int)(this["GenericDevicePageHeight"]));
+            }
+            set {
+                this["GenericDevicePageHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GenericDeviceApplicationName {
+            get {
+                return ((string)(this["GenericDeviceApplicationName"]));
+            }
+            set {
+                this["GenericDeviceApplicationName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GenericDeviceApplicationLocation {
+            get {
+                return ((string)(this["GenericDeviceApplicationLocation"]));
+            }
+            set {
+                this["GenericDeviceApplicationLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Unused1 {
+            get {
+                return ((string)(this["Unused1"]));
+            }
+            set {
+                this["Unused1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Unused2 {
+            get {
+                return ((string)(this["Unused2"]));
+            }
+            set {
+                this["Unused2"] = value;
+            }
+        }
     }
 }
