@@ -95,7 +95,6 @@
             this.textBoxApplicationName.Size = new System.Drawing.Size(100, 20);
             this.textBoxApplicationName.TabIndex = 5;
             this.textBoxApplicationName.Text = "IBPrint";
-            this.textBoxApplicationName.TextChanged += new System.EventHandler(this.textBoxApplicationName_TextChanged);
             // 
             // textBoxApplicationExe
             // 
@@ -167,7 +166,6 @@
             this.labelApplicationLocation.Size = new System.Drawing.Size(99, 13);
             this.labelApplicationLocation.TabIndex = 13;
             this.labelApplicationLocation.Text = "Application location";
-            this.labelApplicationLocation.Click += new System.EventHandler(this.labelApplicationLocation_Click);
             // 
             // buttonOK
             // 
@@ -225,7 +223,6 @@
             this.MinimizeBox = false;
             this.Name = "BrailleMusicSettingsForm";
             this.Text = "IBOS MusicXmlReader Device settings";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BrailleMusicSettingsForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).EndInit();
             this.ResumeLayout(false);

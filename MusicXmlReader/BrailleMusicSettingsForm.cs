@@ -111,18 +111,6 @@ namespace MusicXmlReader
             // More to follow
         }
 
-
-
-        private void textBoxApplicationName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelApplicationLocation_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonOK_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
@@ -133,11 +121,6 @@ namespace MusicXmlReader
         {
             DialogResult = DialogResult.Cancel;
             this.Close();
-        }
-
-        private void BrailleMusicSettingsForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
         }
     }
 
