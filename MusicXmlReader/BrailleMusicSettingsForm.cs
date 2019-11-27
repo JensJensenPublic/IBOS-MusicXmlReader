@@ -17,7 +17,8 @@ namespace MusicXmlReader
     /// </summary>
     internal class EncodingItem
     {
-        BrailleFileHandler.FileEncoding encoding;
+        private BrailleFileHandler.FileEncoding encoding;
+        public BrailleFileHandler.FileEncoding Encoding { get { return encoding; } }
         public override string ToString()
         {
             switch (encoding)
@@ -79,9 +80,7 @@ namespace MusicXmlReader
             Init(labelApplicationName, textBoxApplicationName, settings.LabelApplicationName);
             Init(labelApplicationLocation, textBoxApplicationExe, settings.LabelApplicationLocation);
 
-            // Initialize values of contols
-
-      
+            // Initialize values of contols      
 
             switch (deviceTypeEnum)
             {
@@ -99,30 +98,19 @@ namespace MusicXmlReader
             this.textBoxEscapeSequence.Text = brailleDevicePreferences.EscapeSequence;
             this.textBoxApplicationName.Text = brailleDevicePreferences.ApplicationName;
             this.textBoxApplicationExe.Text = brailleDevicePreferences.ApplicationLocation;
-            this.labelBrailleFileFormat.Text = brailleDevicePreferences.FileFormat;
             List<BrailleFileHandler.FileEncoding> encodingsShown = new List<BrailleFileHandler.FileEncoding>() { BrailleFileHandler.FileEncoding.BRF_ASCII, BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, BrailleFileHandler.FileEncoding.BRF_Unicode_utf8 };
-            foreach (BrailleFileHandler.FileEncoding encoding in encodingsShown) this.listBoxFileFormat.Items.Add(new EncodingItem(encoding));
-
-
-            //this.labelDeviceName.Text = settings.LabelDeviceName;
-            //this.labelBrailleFileFormat.Text = settings.LabelBrailleFileFormat;
-            //this.labelWidth.Text = settings.LabelWidth;
-            //this.labelHeight.Text = settings.LabelHeight;
-            //this.labelEscapeSequence.Text = settings.LabelEscapeSequence;
-            //this.labelApplicationName.Text = settings.LabelApplicationName;
-            //this.labelApplicationLocation.Text = settings.LabelApplicationLocation;
-
+            //EncodingItem selectedEncodingItem = null;
+            foreach (BrailleFileHandler.FileEncoding encoding in encodingsShown)
+            {
+                // Load the listbox and select the item pointed out by brailleDevicePreferences.BrailleFileFormat                
+                EncodingItem encodingItem = new EncodingItem(encoding);                
+                this.listBoxFileFormat.Items.Add(encodingItem);
+                if (encodingItem.Encoding == brailleDevicePreferences.BrailleFileFormat)
+                {
+                    this.listBoxFileFormat.SelectedItem = encodingItem;
+                }
+            }  
             this.Refresh();
-            
-
-            // Fill in values
-
-            //UserPreferencesHandler userPreferencesHandler = UserPreferencesHandler.Create();
-            //BrailleDevice brailleDevice = userPreferencesHandler.embosser;
-            //if ((string.IsNullOrEmpty(brailleDevice.Name))) brailleDevice.Name = "Default Punktprinternavn"; 
-            //Logger.LogCF(string.Format(": Name= {0}", brailleDevice.Name));
-
-
         }
 
         /// <summary>
@@ -135,6 +123,15 @@ namespace MusicXmlReader
             brailleDevicePreferences.EscapeSequence = this.textBoxEscapeSequence.Text;
             brailleDevicePreferences.ApplicationName = this.textBoxApplicationName.Text;
             brailleDevicePreferences.ApplicationLocation = this.textBoxApplicationExe.Text;
+            if ((null != this.listBoxFileFormat.SelectedItem) && (this.listBoxFileFormat.SelectedItem is EncodingItem))
+            {
+                brailleDevicePreferences.BrailleFileFormat = (this.listBoxFileFormat.SelectedItem as EncodingItem).Encoding;
+            }
+            else
+            {
+                // Maybe this is not the right place to declare a default value ??
+                brailleDevicePreferences.BrailleFileFormat = BrailleFileHandler.FileEncoding.BRF_ASCII;
+            }
             // brailleDevicePreferences.BrailleFileFormat = this. 
            
             // More to follow
