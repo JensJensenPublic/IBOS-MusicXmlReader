@@ -11,7 +11,34 @@ using MusicXmlReaderModel;
 
 namespace MusicXmlReader
 {
- 
+
+    /// <summary>
+    /// Simple class for defining UI representations for the various Braille file formats. The values may be localized if required.
+    /// </summary>
+    internal class EncodingItem
+    {
+        BrailleFileHandler.FileEncoding encoding;
+        public override string ToString()
+        {
+            switch (encoding)
+            {
+                case BrailleFileHandler.FileEncoding.BRF_ASCII: return "ASCII";
+                case BrailleFileHandler.FileEncoding.BRF_Unicode: return "Unicode";
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf16: return "Unicode(utf16)";
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf32: return "Unicode(utf32)";
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf8: return "Unicode(rtf8)";
+                case BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252: return "OctoBraille 1252";
+                case BrailleFileHandler.FileEncoding.PEF: return "PEF";
+                case BrailleFileHandler.FileEncoding.Unknown: return "";
+                default: Logger.LogCF(string.Format(": Unsupported fileencoding '{0}'", encoding.ToString())); return "";
+            }
+        }
+
+        public EncodingItem(BrailleFileHandler.FileEncoding encoding)
+        {
+            this.encoding = encoding;
+        }
+    }
 
     public partial class BrailleMusicSettingsForm : Form
     {
@@ -72,6 +99,10 @@ namespace MusicXmlReader
             this.textBoxEscapeSequence.Text = brailleDevicePreferences.EscapeSequence;
             this.textBoxApplicationName.Text = brailleDevicePreferences.ApplicationName;
             this.textBoxApplicationExe.Text = brailleDevicePreferences.ApplicationLocation;
+            this.labelBrailleFileFormat.Text = brailleDevicePreferences.FileFormat;
+            List<BrailleFileHandler.FileEncoding> encodingsShown = new List<BrailleFileHandler.FileEncoding>() { BrailleFileHandler.FileEncoding.BRF_ASCII, BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, BrailleFileHandler.FileEncoding.BRF_Unicode_utf8 };
+            foreach (BrailleFileHandler.FileEncoding encoding in encodingsShown) this.listBoxFileFormat.Items.Add(new EncodingItem(encoding));
+
 
             //this.labelDeviceName.Text = settings.LabelDeviceName;
             //this.labelBrailleFileFormat.Text = settings.LabelBrailleFileFormat;
@@ -103,7 +134,9 @@ namespace MusicXmlReader
             brailleDevicePreferences.PageHeight = (int)this.numericUpDownHeight.Value;
             brailleDevicePreferences.EscapeSequence = this.textBoxEscapeSequence.Text;
             brailleDevicePreferences.ApplicationName = this.textBoxApplicationName.Text;
-            brailleDevicePreferences.ApplicationLocation = this.textBoxApplicationExe.Text; 
+            brailleDevicePreferences.ApplicationLocation = this.textBoxApplicationExe.Text;
+            // brailleDevicePreferences.BrailleFileFormat = this. 
+           
             // More to follow
         }
 

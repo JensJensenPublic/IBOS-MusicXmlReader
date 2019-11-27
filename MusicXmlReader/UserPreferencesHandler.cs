@@ -16,6 +16,55 @@ namespace MusicXmlReader
         public abstract int PageHeight { get; set; }
         public abstract string ApplicationName { get; set; }
         public abstract string ApplicationLocation { get; set; }
+        public abstract BrailleFileHandler.FileEncoding BrailleFileFormat { get; set; }
+
+        // DO NOT CHANGER these strings. They asssure that the file representation is unchanged!
+        private const string Unknown = "UNKNOWN";
+        private const string BRF_ASCII = "BRF_ASCII";
+        private const string PEF = "PEF";
+        private const string BRL_OctoBraille_1252 = "BRL_OctoBraille_1252";
+        private const string BRF_Unicode = "BRF_Unicode";
+        private const string BRF_Unicode_utf8 = "BRF_Unicode_utf8";
+        private const string BRF_Unicode_utf16 = "BRF_Unicode_utf16";
+        private const string BRF_Unicode_utf32 = "BRF_Unicode_utf32";
+
+        protected BrailleFileHandler.FileEncoding ToEncoding(string s)
+        {
+            switch (s)
+            {
+                case Unknown: return BrailleFileHandler.FileEncoding.Unknown;
+                case BRF_ASCII: return BrailleFileHandler.FileEncoding.BRF_ASCII;
+                case PEF: return BrailleFileHandler.FileEncoding.PEF;
+                case BRL_OctoBraille_1252: return BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252;
+                case BRF_Unicode: return BrailleFileHandler.FileEncoding.BRF_Unicode;
+                case BRF_Unicode_utf8: return BrailleFileHandler.FileEncoding.BRF_Unicode_utf8;
+                case BRF_Unicode_utf16: return BrailleFileHandler.FileEncoding.BRF_Unicode_utf16;
+                case BRF_Unicode_utf32: return BrailleFileHandler.FileEncoding.BRF_Unicode_utf32;
+                default: return BrailleFileHandler.FileEncoding.Unknown;
+            }
+
+        }
+
+        protected string FromEncoding(BrailleFileHandler.FileEncoding encoding)
+        {
+            switch (encoding)
+            {
+                case BrailleFileHandler.FileEncoding.Unknown: return Unknown;
+                case BrailleFileHandler.FileEncoding.BRF_ASCII: return BRF_ASCII;
+                case BrailleFileHandler.FileEncoding.PEF: return PEF;
+                case BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252: return BRL_OctoBraille_1252;
+                case BrailleFileHandler.FileEncoding.BRF_Unicode: return BRF_Unicode;
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf8: return BRF_Unicode_utf8;
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf16: return BRF_Unicode_utf16;
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf32: return BRF_Unicode_utf32;
+                default: return Unknown;
+            }
+
+        }
+
+
+
+
 
         public void Log()
         {
@@ -30,6 +79,53 @@ namespace MusicXmlReader
 
     public class BrailleEmbosser : BrailleDevice
     {
+
+        //// DO NOT CHANGER these strings. They asssure that the file representation is unchanged!
+        //private const string Unknown = "UNKNOWN";
+        //private const string BRF_ASCII = "BRF_ASCII";
+        //private const string PEF = "PEF";
+        //private const string BRL_OctoBraille_1252 = "BRL_OctoBraille_1252"
+        //private const string BRF_Unicode = "BRF_Unicode";
+        //private const string BRF_Unicode_utf8 = "BRF_Unicode_utf8";
+        //private const string BRF_Unicode_utf16 = "BRF_Unicode_utf16";
+        //private const string BRF_Unicode_utf32 = "BRF_Unicode_utf32";
+
+        //private BrailleFileHandler.FileEncoding ToEncoding(string s)
+        //{
+        //    switch (s)
+        //    {
+        //        case Unknown: return BrailleFileHandler.FileEncoding.Unknown;
+        //        case BRF_ASCII: return BrailleFileHandler.FileEncoding.BRF_ASCII;
+        //        case PEF: return BrailleFileHandler.FileEncoding.PEF;
+        //        case BRL_OctoBraille_1252: return BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252;
+        //        case BRF_Unicode: return BrailleFileHandler.FileEncoding.BRF_Unicode;
+        //        case BRF_Unicode_utf8: return BrailleFileHandler.FileEncoding.BRF_Unicode_utf8;
+        //        case BRF_Unicode_utf16: return BrailleFileHandler.FileEncoding.BRF_Unicode_utf16;
+        //        case BRF_Unicode_utf32: return BrailleFileHandler.FileEncoding.BRF_Unicode_utf32;
+        //        default: return BrailleFileHandler.FileEncoding.Unknown;
+        //    }
+
+        //}
+
+        //private string FromEncoding(BrailleFileHandler.FileEncoding encoding)
+        //{
+        //    switch (encoding)
+        //    {
+        //        case BrailleFileHandler.FileEncoding.Unknown: return Unknown;
+        //        case BrailleFileHandler.FileEncoding.BRF_ASCII: return BRF_ASCII;
+        //        case BrailleFileHandler.FileEncoding.PEF: return PEF;
+        //        case BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252: return BRL_OctoBraille_1252;
+        //        case BrailleFileHandler.FileEncoding.BRF_Unicode: return BRF_Unicode;
+        //        case BrailleFileHandler.FileEncoding.BRF_Unicode_utf8: return BRF_Unicode_utf8;
+        //        case BrailleFileHandler.FileEncoding.BRF_Unicode_utf16: return BRF_Unicode_utf16;
+        //        case BrailleFileHandler.FileEncoding.BRF_Unicode_utf32: return BRF_Unicode_utf32;
+        //        default: return Unknown;
+        //    }
+
+        //}
+
+
+
         private Settings settings;
         public override string Name { get { return settings.EmbosserName; }  set { settings.EmbosserName = value; } }
         public override string EscapeSequence { get { return settings.EmbosserEscapeSequence; } set { settings.EmbosserEscapeSequence = value; } }
@@ -38,8 +134,9 @@ namespace MusicXmlReader
         public override int PageHeight { get { return settings.EmbosserPageHeight; } set { settings.EmbosserPageHeight = value; } }
         public override string ApplicationName { get { return settings.EmbosserApplicationName; } set { settings.EmbosserApplicationName = value; } }
         public override string ApplicationLocation { get { return settings.EmbosserApplicationLocation; } set { settings.EmbosserApplicationLocation = value; } }
+        public override BrailleFileHandler.FileEncoding BrailleFileFormat { get { return ToEncoding(settings.EmbosserFileFormat); } set { settings.EmbosserFileFormat = FromEncoding(value); } }
 
-        internal BrailleEmbosser(MusicXmlReader.Properties.Settings settings)
+    internal BrailleEmbosser(MusicXmlReader.Properties.Settings settings)
         {
             this.settings = settings;
         }
@@ -55,6 +152,8 @@ namespace MusicXmlReader
         public override int PageHeight { get { return settings.NoteTakerPageHeight; } set { settings.NoteTakerPageHeight = value; } }
         public override string ApplicationName { get { return ""; } set { /* No action */ } }
         public override string ApplicationLocation { get { return ""; } set { /* No action */ } }
+        public override BrailleFileHandler.FileEncoding BrailleFileFormat { get { return ToEncoding(settings.NoteTakerFileFormat); } set { settings.NoteTakerFileFormat = FromEncoding(value); } }
+
 
 
         internal BrailleNoteTaker(MusicXmlReader.Properties.Settings settings)
