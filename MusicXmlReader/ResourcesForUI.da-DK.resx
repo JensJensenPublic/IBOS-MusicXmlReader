@@ -493,4 +493,7 @@
     <value>Åbn</value>
     <comment>Neutral title</comment>
   </data>
+  <data name="ToolStripMenuItem_Settings" xml:space="preserve">
+    <value>&amp;Indstillinger</value>
+  </data>
 </root>

@@ -41,6 +41,7 @@ namespace MusicXmlReader
             filesToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files;
             editToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Edit;
             viewToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_View;
+            settingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Settings;
             toolsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools;
             archivesToolStripMenuItem.Text = ResourcesForUI.ToolsStripMenuItem_Archives;
             helpToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help;

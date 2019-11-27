@@ -853,6 +853,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Settings.
+        /// </summary>
+        internal static string ToolStripMenuItem_Settings {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Tools.
         /// </summary>
         internal static string ToolStripMenuItem_Tools {
