@@ -53,7 +53,7 @@
             this.numericUpDownWidth.Location = new System.Drawing.Point(138, 74);
             this.numericUpDownWidth.Name = "numericUpDownWidth";
             this.numericUpDownWidth.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownWidth.TabIndex = 0;
+            this.numericUpDownWidth.TabIndex = 20;
             this.numericUpDownWidth.Value = new decimal(new int[] {
             32,
             0,
@@ -65,7 +65,7 @@
             this.numericUpDownHeight.Location = new System.Drawing.Point(138, 100);
             this.numericUpDownHeight.Name = "numericUpDownHeight";
             this.numericUpDownHeight.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownHeight.TabIndex = 1;
+            this.numericUpDownHeight.TabIndex = 30;
             this.numericUpDownHeight.Value = new decimal(new int[] {
             32,
             0,
@@ -77,7 +77,7 @@
             this.textBoxEscapeSequence.Location = new System.Drawing.Point(139, 126);
             this.textBoxEscapeSequence.Name = "textBoxEscapeSequence";
             this.textBoxEscapeSequence.Size = new System.Drawing.Size(100, 20);
-            this.textBoxEscapeSequence.TabIndex = 3;
+            this.textBoxEscapeSequence.TabIndex = 40;
             this.textBoxEscapeSequence.Text = "DTB0";
             // 
             // listBoxFileFormat
@@ -86,14 +86,14 @@
             this.listBoxFileFormat.Location = new System.Drawing.Point(139, 12);
             this.listBoxFileFormat.Name = "listBoxFileFormat";
             this.listBoxFileFormat.Size = new System.Drawing.Size(120, 30);
-            this.listBoxFileFormat.TabIndex = 4;
+            this.listBoxFileFormat.TabIndex = 10;
             // 
             // textBoxApplicationName
             // 
             this.textBoxApplicationName.Location = new System.Drawing.Point(139, 188);
             this.textBoxApplicationName.Name = "textBoxApplicationName";
             this.textBoxApplicationName.Size = new System.Drawing.Size(100, 20);
-            this.textBoxApplicationName.TabIndex = 5;
+            this.textBoxApplicationName.TabIndex = 60;
             this.textBoxApplicationName.Text = "IBPrint";
             // 
             // textBoxApplicationExe
@@ -101,7 +101,7 @@
             this.textBoxApplicationExe.Location = new System.Drawing.Point(138, 214);
             this.textBoxApplicationExe.Name = "textBoxApplicationExe";
             this.textBoxApplicationExe.Size = new System.Drawing.Size(100, 20);
-            this.textBoxApplicationExe.TabIndex = 6;
+            this.textBoxApplicationExe.TabIndex = 70;
             this.textBoxApplicationExe.Text = "IBPrint.exe";
             // 
             // labelDeviceName
@@ -172,7 +172,7 @@
             this.buttonOK.Location = new System.Drawing.Point(197, 250);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
-            this.buttonOK.TabIndex = 14;
+            this.buttonOK.TabIndex = 90;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
@@ -183,7 +183,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(116, 250);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 15;
+            this.buttonCancel.TabIndex = 80;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
@@ -193,7 +193,7 @@
             this.textBoxDeviceName.Location = new System.Drawing.Point(139, 162);
             this.textBoxDeviceName.Name = "textBoxDeviceName";
             this.textBoxDeviceName.Size = new System.Drawing.Size(100, 20);
-            this.textBoxDeviceName.TabIndex = 16;
+            this.textBoxDeviceName.TabIndex = 50;
             this.textBoxDeviceName.Text = "Index Braille D2";
             // 
             // BrailleMusicSettingsForm

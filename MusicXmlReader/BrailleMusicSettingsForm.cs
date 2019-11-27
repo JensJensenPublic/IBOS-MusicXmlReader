@@ -96,6 +96,7 @@ namespace MusicXmlReader
             brailleDevicePreferences.PageWidth = (int)this.numericUpDownWidth.Value;
             brailleDevicePreferences.PageHeight = (int)this.numericUpDownHeight.Value;
             brailleDevicePreferences.EscapeSequence = this.textBoxEscapeSequence.Text;
+            brailleDevicePreferences.DeviceName = this.textBoxDeviceName.Text;
             brailleDevicePreferences.ApplicationName = this.textBoxApplicationName.Text;
             brailleDevicePreferences.ApplicationLocation = this.textBoxApplicationExe.Text;
             if ((null != this.listBoxFileFormat.SelectedItem) && (this.listBoxFileFormat.SelectedItem is EncodingItem))
