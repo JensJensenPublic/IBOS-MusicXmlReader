@@ -40,17 +40,17 @@ namespace MusicXmlReader
 
 
             // Fill in title and tabels
-            BrailleMusicSettingsFormHandler settings = BrailleMusicSettingsFormHandler.Create(deviceTypeEnum);
-            this.Text = this.applicationName + " " + settings.Title;
+            BrailleMusicSettingsFormHandler settingsHandler = BrailleMusicSettingsFormHandler.Create(deviceTypeEnum);
+            this.Text = this.applicationName + " " + settingsHandler.Title;
 
             // Initialize texts for labels and visibility for labels and other controls.
-            Init(labelDeviceName, textBoxDeviceName, settings.LabelDeviceName);
-            Init(labelBrailleFileFormat, listBoxFileFormat, settings.LabelBrailleFileFormat);
-            Init(labelWidth, numericUpDownWidth, settings.LabelWidth);
-            Init(labelHeight, numericUpDownHeight, settings.LabelHeight);
-            Init(labelEscapeSequence, textBoxEscapeSequence, settings.LabelEscapeSequence);
-            Init(labelApplicationName, textBoxApplicationName, settings.LabelApplicationName);
-            Init(labelApplicationLocation, textBoxApplicationExe, settings.LabelApplicationLocation);
+            Init(labelDeviceName, textBoxDeviceName, settingsHandler.LabelDeviceName);
+            Init(labelBrailleFileFormat, listBoxFileFormat, settingsHandler.LabelBrailleFileFormat);
+            Init(labelWidth, numericUpDownWidth, settingsHandler.LabelWidth);
+            Init(labelHeight, numericUpDownHeight, settingsHandler.LabelHeight);
+            Init(labelEscapeSequence, textBoxEscapeSequence, settingsHandler.LabelEscapeSequence);
+            Init(labelApplicationName, textBoxApplicationName, settingsHandler.LabelApplicationName);
+            Init(labelApplicationLocation, textBoxApplicationExe, settingsHandler.LabelApplicationLocation);
 
             // Initialize values of contols      
 
@@ -73,9 +73,7 @@ namespace MusicXmlReader
             this.textBoxApplicationExe.Text = brailleDevicePreferences.ApplicationLocation;
             this.textBoxDeviceName.Text = brailleDevicePreferences.DeviceName;
 
-            List<BrailleFileHandler.FileEncoding> encodingsShown = new List<BrailleFileHandler.FileEncoding>() { BrailleFileHandler.FileEncoding.BRF_ASCII, BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, BrailleFileHandler.FileEncoding.BRF_Unicode_utf8 };
-            //EncodingItem selectedEncodingItem = null;
-            foreach (BrailleFileHandler.FileEncoding encoding in encodingsShown)
+            foreach (BrailleFileHandler.FileEncoding encoding in settingsHandler.EnabledEncodings)
             {
                 // Load the listbox and select the item pointed out by brailleDevicePreferences.BrailleFileFormat                
                 EncodingItem encodingItem = new EncodingItem(encoding);                

@@ -140,8 +140,11 @@ namespace MusicXmlReader
 
 
     /// <summary>
+    /// Establishes the interface towards the Windows Configuration system.
+    /// 3 classes are derived for Embosser, Notetaker and Generic Braille Device 
     /// Contains all application-wide settings that can be configured by the user
-    /// These settings are found in C:\Users\(user)\AppData\Local\MusicXmlReader
+    /// These settings are found in C:\Users\(user)\AppData\Local\MusicXmlReader\...
+    /// (The BrailleMusicSettingsFormHandler establishes the opposite interface towards the UI)
     /// </summary>
     public class UserPreferencesHandler
     {

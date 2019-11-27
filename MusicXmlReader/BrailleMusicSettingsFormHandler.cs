@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MusicXmlReaderModel;
 
 namespace MusicXmlReader
@@ -37,17 +38,44 @@ namespace MusicXmlReader
         public override string LabelDeviceName { get { return "Device name:"; } }
         // LabelBrailleFileFormat: Inherit value
         public override string LabelWidth { get { return "Device width"; } }
-        public override string LabelHeight { get { return "Device height"; } } 
+        public override string LabelHeight { get { return "Device height"; } }
         // LabelEscapeSequence: Inherrit value 
         // LabelApplicationName: Inherrit value
         // LabelApplicationLocation: Inherrit value
-
+        public override List<BrailleFileHandler.FileEncoding> EnabledEncodings { get { return allEncodings; } }
     }
 
 
-
+    /// <summary>
+    /// Abstract helper class for supporting the BrailleMusicSettingsForm.
+    /// 3 classes are derived for Embosser, Notetaker and Generic Braille Device
+    /// Establishes the interface towards the UI,
+    /// (The UserPreferencesHandler establishes the interface towarts the Windows Configuration system)
+    /// </summary>
     abstract class BrailleMusicSettingsFormHandler
     {
+        // Shorthand for the 3 most common encodings
+        protected List<BrailleFileHandler.FileEncoding> defaultEncodings = new List<BrailleFileHandler.FileEncoding>()
+        {
+            BrailleFileHandler.FileEncoding.BRF_ASCII,
+            BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252,
+            BrailleFileHandler.FileEncoding.BRF_Unicode_utf8
+        };
+
+        // Shorthand for all encodings implemented
+        protected List<BrailleFileHandler.FileEncoding> allEncodings = new List<BrailleFileHandler.FileEncoding>()
+        {
+            BrailleFileHandler.FileEncoding.BRF_ASCII,
+            BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252,
+            BrailleFileHandler.FileEncoding.BRF_Unicode_utf8,
+            BrailleFileHandler.FileEncoding.BRF_Unicode,
+            BrailleFileHandler.FileEncoding.BRF_Unicode_utf16,
+            BrailleFileHandler.FileEncoding.BRF_Unicode_utf32,
+            BrailleFileHandler.FileEncoding.PEF
+        };
+
+
+
         // Fixed localized texts: Dialog Title and lable names:
         public abstract string Title { get; }
         public abstract string LabelDeviceName { get; }
@@ -57,6 +85,7 @@ namespace MusicXmlReader
         public virtual string LabelEscapeSequence { get { return "Escape sequence"; } }
         public virtual string LabelApplicationName { get{ return"Application name"; } }
         public virtual string LabelApplicationLocation { get { return "Application location"; } }
+        public virtual List<BrailleFileHandler.FileEncoding> EnabledEncodings { get { return defaultEncodings; } }
 
         public static  BrailleMusicSettingsFormHandler Create(BrailleMusicSettingsForm.DeviceTypeEnum deviceTypeEnum)
         {
