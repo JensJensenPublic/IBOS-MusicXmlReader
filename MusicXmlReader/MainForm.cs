@@ -367,10 +367,10 @@ namespace MusicXmlReader
 
         private void generelSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            string message = "Not implemented yet";
-            Logger.LogCF(":" + message);
-            MessageBox.Show(message);
+            GeneralSettingsForms generalSettingsForms = new GeneralSettingsForms(applicationName, userPreferencesHandler);
+            DialogResult result = generalSettingsForms.ShowDialog();
+            Logger.LogCF(string.Format(": GeneralSettingsForms returned {0}", result.ToString()));
+            generalSettingsForms.Dispose();
         }
 
 
