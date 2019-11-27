@@ -31,13 +31,13 @@ namespace MusicXmlReader
     }
 
 
-    class BrailleMusicSettingsFormGeneralHandler : BrailleMusicSettingsFormHandler
+    class BrailleMusicSettingsFormGenericHandler : BrailleMusicSettingsFormHandler
     {
-        public override string Title { get { return "Generel Braille Music device settings:"; } }
+        public override string Title { get { return "Generic Braille Music device settings:"; } }
         public override string LabelDeviceName { get { return "Device name:"; } }
         // LabelBrailleFileFormat: Inherit value
         public override string LabelWidth { get { return "Device width"; } }
-        public override string LabelHeight { get { return ""; } } // Setting the label to "" makes label and entry field invisible!
+        public override string LabelHeight { get { return "Device height"; } } 
         // LabelEscapeSequence: Inherrit value 
         // LabelApplicationName: Inherrit value
         // LabelApplicationLocation: Inherrit value
@@ -65,7 +65,7 @@ namespace MusicXmlReader
             {
                 case BrailleMusicSettingsForm.DeviceTypeEnum.Embosser: return new BrailleMusicSettingsFormEmbosserHandler();
                 case BrailleMusicSettingsForm.DeviceTypeEnum.NoteTaker: return new BrailleMusicSettingsFormNoteTakerHandler();
-                case BrailleMusicSettingsForm.DeviceTypeEnum.GeneralDevice: return new BrailleMusicSettingsFormGeneralHandler();
+                case BrailleMusicSettingsForm.DeviceTypeEnum.GeneralDevice: return new BrailleMusicSettingsFormGenericHandler();
                     default:
                     Logger.LogCF(string.Format(": Unsupported device type '{0}'", deviceTypeEnum.ToString()));
                     return null;

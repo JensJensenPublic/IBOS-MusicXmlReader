@@ -27,6 +27,7 @@ namespace MusicXmlReader
             label.Visible = visible;
             label.Text = labelName;
             control.Visible = visible;
+            control.AccessibleName = labelName; // Allows JAWS to speak the same text as the names of the labels!
         }
 
 
