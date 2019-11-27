@@ -30,7 +30,6 @@
         {
             this.numericUpDownWidth = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownHeight = new System.Windows.Forms.NumericUpDown();
-            this.comboBoxDeviceName = new System.Windows.Forms.ComboBox();
             this.textBoxEscapeSequence = new System.Windows.Forms.TextBox();
             this.listBoxFileFormat = new System.Windows.Forms.ListBox();
             this.textBoxApplicationName = new System.Windows.Forms.TextBox();
@@ -44,13 +43,14 @@
             this.labelApplicationLocation = new System.Windows.Forms.Label();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.textBoxDeviceName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).BeginInit();
             this.SuspendLayout();
             // 
             // numericUpDownWidth
             // 
-            this.numericUpDownWidth.Location = new System.Drawing.Point(139, 85);
+            this.numericUpDownWidth.Location = new System.Drawing.Point(138, 74);
             this.numericUpDownWidth.Name = "numericUpDownWidth";
             this.numericUpDownWidth.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownWidth.TabIndex = 0;
@@ -62,7 +62,7 @@
             // 
             // numericUpDownHeight
             // 
-            this.numericUpDownHeight.Location = new System.Drawing.Point(139, 111);
+            this.numericUpDownHeight.Location = new System.Drawing.Point(138, 100);
             this.numericUpDownHeight.Name = "numericUpDownHeight";
             this.numericUpDownHeight.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownHeight.TabIndex = 1;
@@ -72,17 +72,9 @@
             0,
             0});
             // 
-            // comboBoxDeviceName
-            // 
-            this.comboBoxDeviceName.FormattingEnabled = true;
-            this.comboBoxDeviceName.Location = new System.Drawing.Point(138, 12);
-            this.comboBoxDeviceName.Name = "comboBoxDeviceName";
-            this.comboBoxDeviceName.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxDeviceName.TabIndex = 2;
-            // 
             // textBoxEscapeSequence
             // 
-            this.textBoxEscapeSequence.Location = new System.Drawing.Point(139, 137);
+            this.textBoxEscapeSequence.Location = new System.Drawing.Point(139, 126);
             this.textBoxEscapeSequence.Name = "textBoxEscapeSequence";
             this.textBoxEscapeSequence.Size = new System.Drawing.Size(100, 20);
             this.textBoxEscapeSequence.TabIndex = 3;
@@ -91,14 +83,14 @@
             // listBoxFileFormat
             // 
             this.listBoxFileFormat.FormattingEnabled = true;
-            this.listBoxFileFormat.Location = new System.Drawing.Point(139, 39);
+            this.listBoxFileFormat.Location = new System.Drawing.Point(139, 12);
             this.listBoxFileFormat.Name = "listBoxFileFormat";
             this.listBoxFileFormat.Size = new System.Drawing.Size(120, 30);
             this.listBoxFileFormat.TabIndex = 4;
             // 
             // textBoxApplicationName
             // 
-            this.textBoxApplicationName.Location = new System.Drawing.Point(139, 163);
+            this.textBoxApplicationName.Location = new System.Drawing.Point(139, 188);
             this.textBoxApplicationName.Name = "textBoxApplicationName";
             this.textBoxApplicationName.Size = new System.Drawing.Size(100, 20);
             this.textBoxApplicationName.TabIndex = 5;
@@ -107,7 +99,7 @@
             // 
             // textBoxApplicationExe
             // 
-            this.textBoxApplicationExe.Location = new System.Drawing.Point(138, 189);
+            this.textBoxApplicationExe.Location = new System.Drawing.Point(138, 214);
             this.textBoxApplicationExe.Name = "textBoxApplicationExe";
             this.textBoxApplicationExe.Size = new System.Drawing.Size(100, 20);
             this.textBoxApplicationExe.TabIndex = 6;
@@ -116,7 +108,7 @@
             // labelDeviceName
             // 
             this.labelDeviceName.AutoSize = true;
-            this.labelDeviceName.Location = new System.Drawing.Point(12, 20);
+            this.labelDeviceName.Location = new System.Drawing.Point(12, 169);
             this.labelDeviceName.Name = "labelDeviceName";
             this.labelDeviceName.Size = new System.Drawing.Size(70, 13);
             this.labelDeviceName.TabIndex = 7;
@@ -125,7 +117,7 @@
             // labelBrailleFileFormat
             // 
             this.labelBrailleFileFormat.AutoSize = true;
-            this.labelBrailleFileFormat.Location = new System.Drawing.Point(12, 56);
+            this.labelBrailleFileFormat.Location = new System.Drawing.Point(12, 14);
             this.labelBrailleFileFormat.Name = "labelBrailleFileFormat";
             this.labelBrailleFileFormat.Size = new System.Drawing.Size(83, 13);
             this.labelBrailleFileFormat.TabIndex = 8;
@@ -134,7 +126,7 @@
             // labelWidth
             // 
             this.labelWidth.AutoSize = true;
-            this.labelWidth.Location = new System.Drawing.Point(15, 92);
+            this.labelWidth.Location = new System.Drawing.Point(12, 74);
             this.labelWidth.Name = "labelWidth";
             this.labelWidth.Size = new System.Drawing.Size(35, 13);
             this.labelWidth.TabIndex = 9;
@@ -143,7 +135,7 @@
             // labelHeight
             // 
             this.labelHeight.AutoSize = true;
-            this.labelHeight.Location = new System.Drawing.Point(15, 118);
+            this.labelHeight.Location = new System.Drawing.Point(12, 100);
             this.labelHeight.Name = "labelHeight";
             this.labelHeight.Size = new System.Drawing.Size(38, 13);
             this.labelHeight.TabIndex = 10;
@@ -152,7 +144,7 @@
             // labelEscapeSequence
             // 
             this.labelEscapeSequence.AutoSize = true;
-            this.labelEscapeSequence.Location = new System.Drawing.Point(15, 144);
+            this.labelEscapeSequence.Location = new System.Drawing.Point(12, 129);
             this.labelEscapeSequence.Name = "labelEscapeSequence";
             this.labelEscapeSequence.Size = new System.Drawing.Size(93, 13);
             this.labelEscapeSequence.TabIndex = 11;
@@ -161,7 +153,7 @@
             // labelApplicationName
             // 
             this.labelApplicationName.AutoSize = true;
-            this.labelApplicationName.Location = new System.Drawing.Point(12, 170);
+            this.labelApplicationName.Location = new System.Drawing.Point(12, 188);
             this.labelApplicationName.Name = "labelApplicationName";
             this.labelApplicationName.Size = new System.Drawing.Size(88, 13);
             this.labelApplicationName.TabIndex = 12;
@@ -170,30 +162,41 @@
             // labelApplicationLocation
             // 
             this.labelApplicationLocation.AutoSize = true;
-            this.labelApplicationLocation.Location = new System.Drawing.Point(15, 196);
+            this.labelApplicationLocation.Location = new System.Drawing.Point(12, 217);
             this.labelApplicationLocation.Name = "labelApplicationLocation";
             this.labelApplicationLocation.Size = new System.Drawing.Size(99, 13);
             this.labelApplicationLocation.TabIndex = 13;
             this.labelApplicationLocation.Text = "Application location";
+            this.labelApplicationLocation.Click += new System.EventHandler(this.labelApplicationLocation_Click);
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(197, 226);
+            this.buttonOK.Location = new System.Drawing.Point(197, 250);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 14;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(116, 226);
+            this.buttonCancel.Location = new System.Drawing.Point(116, 250);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 15;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // textBoxDeviceName
+            // 
+            this.textBoxDeviceName.Location = new System.Drawing.Point(139, 162);
+            this.textBoxDeviceName.Name = "textBoxDeviceName";
+            this.textBoxDeviceName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxDeviceName.TabIndex = 16;
+            this.textBoxDeviceName.Text = "Index Braille D2";
             // 
             // BrailleMusicSettingsForm
             // 
@@ -201,7 +204,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 290);
+            this.Controls.Add(this.textBoxDeviceName);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.labelApplicationLocation);
@@ -215,13 +219,13 @@
             this.Controls.Add(this.textBoxApplicationName);
             this.Controls.Add(this.listBoxFileFormat);
             this.Controls.Add(this.textBoxEscapeSequence);
-            this.Controls.Add(this.comboBoxDeviceName);
             this.Controls.Add(this.numericUpDownHeight);
             this.Controls.Add(this.numericUpDownWidth);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "BrailleMusicSettingsForm";
             this.Text = "IBOS MusicXmlReader Device settings";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BrailleMusicSettingsForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).EndInit();
             this.ResumeLayout(false);
@@ -233,7 +237,6 @@
 
         private System.Windows.Forms.NumericUpDown numericUpDownWidth;
         private System.Windows.Forms.NumericUpDown numericUpDownHeight;
-        private System.Windows.Forms.ComboBox comboBoxDeviceName;
         private System.Windows.Forms.TextBox textBoxEscapeSequence;
         private System.Windows.Forms.ListBox listBoxFileFormat;
         private System.Windows.Forms.TextBox textBoxApplicationName;
@@ -247,5 +250,6 @@
         private System.Windows.Forms.Label labelApplicationLocation;
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.TextBox textBoxDeviceName;
     }
 }

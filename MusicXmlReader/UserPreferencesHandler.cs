@@ -9,7 +9,7 @@ namespace MusicXmlReader
 
     public abstract class BrailleDevice
     {
-        public abstract string Name{ get; set; }
+        public abstract string DeviceName{ get; set; }
         public abstract string EscapeSequence { get; set; }
         public abstract string FileFormat { get; set; }
         public abstract int PageWidth { get; set; }
@@ -69,7 +69,7 @@ namespace MusicXmlReader
         public void Log()
         {
             string className = this.GetType().Name;
-            string deviceName = Name;
+            string deviceName = DeviceName;
             string esc = EscapeSequence;
             int width = PageWidth;
             int height = PageHeight;
@@ -127,7 +127,7 @@ namespace MusicXmlReader
 
 
         private Settings settings;
-        public override string Name { get { return settings.EmbosserName; }  set { settings.EmbosserName = value; } }
+        public override string DeviceName { get { return settings.EmbosserName; }  set { settings.EmbosserName = value; } }
         public override string EscapeSequence { get { return settings.EmbosserEscapeSequence; } set { settings.EmbosserEscapeSequence = value; } }
         public override string FileFormat {get { return settings.EmbosserFileFormat; } set { settings.EmbosserFileFormat = value; } }
         public override int PageWidth { get { return settings.EmbosserPageWidth; } set { settings.EmbosserPageWidth = value; } }
@@ -145,7 +145,7 @@ namespace MusicXmlReader
     public class BrailleNoteTaker : BrailleDevice
     {
         private Settings settings;
-        public override string Name { get { return settings.NoteTakerName; } set { settings.NoteTakerName = value; }  }
+        public override string DeviceName { get { return settings.NoteTakerName; } set { settings.NoteTakerName = value; }  }
         public override string EscapeSequence { get { return settings.NoteTakerEscapeSequence; } set { settings.NoteTakerEscapeSequence = value; }      }
         public override string FileFormat { get { return settings.NoteTakerFileFormat; } set { settings.NoteTakerFileFormat = value; } }
         public override int PageWidth { get { return settings.NoteTakerPageWidth; } set { settings.NoteTakerPageWidth = value; } }

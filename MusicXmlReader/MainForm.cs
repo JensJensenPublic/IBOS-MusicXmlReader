@@ -378,11 +378,11 @@ namespace MusicXmlReader
         {
             BrailleMusicSettingsForm brailleMusicSettingsForm = new BrailleMusicSettingsForm(deviceTypeEnum, applicationName, userPreferencesHandler);
             DialogResult result = brailleMusicSettingsForm.ShowDialog();
-      //      if (DialogResult.OK == result)
+            Logger.LogCF(string.Format(": BrailleMusicSettingsForm returned {0}", result.ToString()));
+            if (DialogResult.OK == result)
             {
                 brailleMusicSettingsForm.SaveSettings();
             }
-
             brailleMusicSettingsForm.Dispose();
         }
 
