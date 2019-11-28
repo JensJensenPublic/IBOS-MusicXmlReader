@@ -482,8 +482,9 @@
   <data name="ToolStripMenuItem_Files_ExportMusicBrailleAsBANA2015" xml:space="preserve">
     <value>E&amp;xport Music Braille to file in BANA2015 format</value>
   </data>
-  <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingIBPrint" xml:space="preserve">
-    <value>Emboss Music Braille file using IB&amp;Print</value>
+  <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram" xml:space="preserve">
+    <value>Emboss Music Braille file using External program</value>
+    <comment>Not translated to Dutch</comment>
   </data>
   <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
     <value>Emboss Music Braille file</value>

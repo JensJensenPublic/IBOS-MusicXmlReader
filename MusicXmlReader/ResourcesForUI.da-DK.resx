@@ -480,8 +480,8 @@
   <data name="ToolStripMenuItem_Files_ExportMusicBrailleAsBANA2015" xml:space="preserve">
     <value>E&amp;xportér punktnoder til fil i standard punktnode format</value>
   </data>
-  <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingIBPrint" xml:space="preserve">
-    <value>Udskriv punktnodefil på punktprinter ved hjælp af IB&amp;Print</value>
+  <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram" xml:space="preserve">
+    <value>Udskriv punktnodefil på punktprinter ved hjælp af externt program</value>
   </data>
   <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
     <value>Udskriv punktnodefil på punktprinter</value>

@@ -754,11 +754,11 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Emboss Music Braille file using IB&amp;Print.
+        ///   Looks up a localized string similar to Emboss Music Braille file using External program.
         /// </summary>
-        internal static string ToolStripMenuItem_Files_PrintMusicBrailleUsingIBPrint {
+        internal static string ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram {
             get {
-                return ResourceManager.GetString("ToolStripMenuItem_Files_PrintMusicBrailleUsingIBPrint", resourceCulture);
+                return ResourceManager.GetString("ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram", resourceCulture);
             }
         }
         
