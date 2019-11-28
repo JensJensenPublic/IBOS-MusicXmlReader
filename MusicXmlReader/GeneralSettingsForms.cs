@@ -14,7 +14,24 @@ namespace MusicXmlReader
     {
         private string applicationName;
         private UserPreferencesHandler userPreferences;
-  
+
+
+
+        /// <summary>
+        /// Initializes a pair, consisting of a textbox and a label with a name and sets the readOnly attribute of the TextBox
+        /// </summary>
+        /// <param name="textBox"></param>
+        /// <param name="label"></param>
+        /// <param name="name"></param>
+        /// <param name="readOnly"></param>
+        private void InitTextBoxAndLabel(TextBox textBox, Label label, string name, string value, bool readOnly)
+        {
+            label.Text = name;
+            textBox.AccessibleName = name;
+            textBox.Visible = !string.IsNullOrEmpty(name);       
+            textBox.ReadOnly = readOnly;
+            textBox.Text = value;
+        }
 
 
         public GeneralSettingsForms(string applicationName,  UserPreferencesHandler userPreferences)
@@ -28,16 +45,9 @@ namespace MusicXmlReader
             this.Text = this.applicationName + " " + "General settings";
 
             // Label and textbox for MusicXml
-            this.labelMusicXmlFile.Text     = "MusicXml file";
-            this.textBoxMusicXmlFile.ReadOnly = true;
-            this.textBoxMusicXmlFile.AccessibleName = this.labelMusicXmlFile.Text;
-            this.textBoxMusicXmlFile.Text = userPreferences.MusicXmlFile;
-
+            InitTextBoxAndLabel(textBoxMusicXmlFile, labelMusicXmlFile, "MusicXml file", userPreferences.MusicXmlFile, true);
             // Label and textbox for Braille Music
-            this.labelBrailleMusicPath.Text = "Braille Music directory";
-            this.textBoxBrailleMusicPath.ReadOnly = true;
-            this.textBoxBrailleMusicPath.AccessibleName = this.labelBrailleMusicPath.Text;
-            this.textBoxBrailleMusicPath.Text = userPreferences.BrailleMusicDirectory;
+            InitTextBoxAndLabel(textBoxBrailleMusicPath, labelBrailleMusicPath, "Braille Music directory", userPreferences.BrailleMusicDirectory, true);
           
         }
 
