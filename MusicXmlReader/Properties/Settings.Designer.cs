@@ -61,7 +61,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("BRF_ASCII")]
         public string EmbosserFileFormat {
             get {
                 return ((string)(this["EmbosserFileFormat"]));
@@ -73,7 +73,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("32")]
         public int EmbosserPageWidth {
             get {
                 return ((int)(this["EmbosserPageWidth"]));
@@ -85,7 +85,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
         public int EmbosserPageHeight {
             get {
                 return ((int)(this["EmbosserPageHeight"]));
@@ -109,7 +109,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("32")]
         public int NoteTakerPageWidth {
             get {
                 return ((int)(this["NoteTakerPageWidth"]));
@@ -121,7 +121,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int NoteTakerPageHeight {
             get {
                 return ((int)(this["NoteTakerPageHeight"]));
@@ -133,7 +133,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("BRF_ASCII")]
         public string NoteTakerFileFormat {
             get {
                 return ((string)(this["NoteTakerFileFormat"]));
@@ -229,7 +229,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("My Index Braille embosser")]
         public string GenericDeviceName {
             get {
                 return ((string)(this["GenericDeviceName"]));
@@ -241,7 +241,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DBT0")]
         public string GenericDeviceEscapeSequence {
             get {
                 return ((string)(this["GenericDeviceEscapeSequence"]));
@@ -253,7 +253,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("BRF_ASCII")]
         public string GenericDeviceFileFormat {
             get {
                 return ((string)(this["GenericDeviceFileFormat"]));
@@ -265,7 +265,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
         public int GenericDevicePageWidth {
             get {
                 return ((int)(this["GenericDevicePageWidth"]));
@@ -277,7 +277,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("32")]
         public int GenericDevicePageHeight {
             get {
                 return ((int)(this["GenericDevicePageHeight"]));
@@ -289,7 +289,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("IBPrint")]
         public string GenericDeviceApplicationName {
             get {
                 return ((string)(this["GenericDeviceApplicationName"]));
@@ -301,7 +301,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\Index Braille\\IbPrint\\IbPrint.exe")]
         public string GenericDeviceApplicationLocation {
             get {
                 return ((string)(this["GenericDeviceApplicationLocation"]));

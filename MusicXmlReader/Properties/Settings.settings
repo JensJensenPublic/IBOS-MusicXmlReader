@@ -12,25 +12,25 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="EmbosserFileFormat" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">BRF_ASCII</Value>
     </Setting>
     <Setting Name="EmbosserPageWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">32</Value>
     </Setting>
     <Setting Name="EmbosserPageHeight" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="BrailleMusicDeviceType" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="NoteTakerPageWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">32</Value>
     </Setting>
     <Setting Name="NoteTakerPageHeight" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="NoteTakerFileFormat" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">BRF_ASCII</Value>
     </Setting>
     <Setting Name="OptionalFormatPageWidth" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -54,25 +54,25 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="GenericDeviceName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">My Index Braille embosser</Value>
     </Setting>
     <Setting Name="GenericDeviceEscapeSequence" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">DBT0</Value>
     </Setting>
     <Setting Name="GenericDeviceFileFormat" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">BRF_ASCII</Value>
     </Setting>
     <Setting Name="GenericDevicePageWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="GenericDevicePageHeight" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">32</Value>
     </Setting>
     <Setting Name="GenericDeviceApplicationName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">IBPrint</Value>
     </Setting>
     <Setting Name="GenericDeviceApplicationLocation" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">C:\Program Files (x86)\Index Braille\IbPrint\IbPrint.exe</Value>
     </Setting>
     <Setting Name="Unused1" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
