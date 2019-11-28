@@ -1017,9 +1017,17 @@ namespace MusicXmlReader
 
         private void printMusicBrailleUsingIBPrintToolStripMenuItem_Click(object sender, EventArgs e)
         {
-       
-            string executable = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.IBPrintExe);      //  Typically @"C:\Program Files (x86)\Index Braille\IbPrint\IbPrint.exe";
-//            string directory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory : "";
+            
+            //string executable = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.IBPrintExe);      //  Typically @"C:\Program Files (x86)\Index Braille\IbPrint\IbPrint.exe";
+            string executable = userPreferencesHandler.genericBrailleDevice.ApplicationLocation;
+            string executableName = userPreferencesHandler.genericBrailleDevice.ApplicationLocation;
+            if (!File.Exists(executable))
+            {
+#warning TODO Use localized names here !
+                messageHandler.ShowMessage(string.Format("Program not found:\r\n{0}\r\nPlease enter a valid path in:\r\n'Settings'->'Generic Braille Device settings'->'Application Location'", executable));
+                return;
+            }
+            //            string directory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory : "";
             string directory = userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.BrailleMusicDirectory, "");
             Logger.LogCF(string.Format(": Executable='{0}'     Directory='{1}'",executable,directory));
 #warning TODO find out how to make the UI version of IBPrint prefer model.LatestBrailleFileSaveDirectory instead of the latest directory used by the Add button
