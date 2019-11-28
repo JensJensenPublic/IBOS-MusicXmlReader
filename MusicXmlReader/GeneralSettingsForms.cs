@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace MusicXmlReader
 {
@@ -44,11 +45,14 @@ namespace MusicXmlReader
             // Title
             this.Text = this.applicationName + " " + "General settings";
 
-            // Label and textbox for MusicXml
-            InitTextBoxAndLabel(textBoxMusicXmlFile, labelMusicXmlFile, "MusicXml file", userPreferences.MusicXmlFile, true);
+            // Labels and textboxes for MusicXml
+            InitTextBoxAndLabel(textBoxMusicXmlFile, labelMusicXmlFile, "Latest MusicXml file", Path.GetFileName(userPreferences.MusicXmlFile), true);
+            InitTextBoxAndLabel(textBoxMusicXmlDirectory, labelMusicXmlDirectory, "Latest MusicXml directory", Path.GetDirectoryName(userPreferences.MusicXmlFile), true);
             // Label and textbox for Braille Music
-            InitTextBoxAndLabel(textBoxBrailleMusicPath, labelBrailleMusicPath, "Braille Music directory", userPreferences.BrailleMusicDirectory, true);
-          
+            InitTextBoxAndLabel(textBoxBrailleMusicPath, labelBrailleMusicPath, "Latest Braille Music directory", userPreferences.BrailleMusicDirectory, true);
+
+
+
         }
 
 
