@@ -2500,6 +2500,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New time-signature.
+        /// </summary>
+        internal static string TimeElement_NewTimeSignature {
+            get {
+                return ResourceManager.GetString("TimeElement_NewTimeSignature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pulse.
         /// </summary>
         internal static string TimeElement_pulse {

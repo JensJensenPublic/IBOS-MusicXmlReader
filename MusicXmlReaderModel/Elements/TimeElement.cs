@@ -185,17 +185,25 @@ namespace MusicXmlReaderModel
             return new TimeElement(node);
         }
 
+        // Represent a text to be used for describing that the BeatType has changed.
+        public string NewTimeSignature  { get { return ResourcesForModel.TimeElement_NewTimeSignature; } }
+
         public override string ToString()
         {
             string symbol = "";
-            switch (this.timeSymbol)
-            {
-#warning ToDo Discuss this withe experts: "a la breve"  ? etc. Localization ...
-                case TimeSymbolEnum.common: symbol = "C "; break;
-                case TimeSymbolEnum.cut: symbol = "C| "; break;
-                default: break;
-            }
-            return string.Format("{0}{1}-{2}", symbol, localizedBeats, localizedBeatType);
+
+#warning ToDo Discuss this withe experts: "a la breve"  ? etc. Localization ... At
+// At least we must avid confusion of this "C" followed by a beattype
+// With the note C followed by an octave number aan a duration !
+
+            //            switch (this.timeSymbol)
+            //            {
+            //
+            //                case TimeSymbolEnum.common: symbol = "C "; break;
+            //                case TimeSymbolEnum.cut: symbol = "C| "; break;
+            //                default: break;
+            //            }
+            return string.Format("{0}{1} {2}", symbol, localizedBeats, localizedBeatType);
         }
 
         /// <summary>

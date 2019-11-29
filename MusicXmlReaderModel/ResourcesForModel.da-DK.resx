@@ -1022,4 +1022,7 @@
   <data name="MusicBrailleFilenameAttribute_Tutti" xml:space="preserve">
     <value>tutti</value>
   </data>
+  <data name="TimeElement_NewTimeSignature" xml:space="preserve">
+    <value>Ny taktart</value>
+  </data>
 </root>

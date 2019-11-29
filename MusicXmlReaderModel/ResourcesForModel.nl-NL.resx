@@ -1044,4 +1044,8 @@
   <data name="UserSettings_ReaderNames_Octaves" xml:space="preserve">
     <value>octaven </value>
   </data>
+  <data name="TimeElement_NewTimeSignature" xml:space="preserve">
+    <value>New time-signature</value>
+    <comment>JSJ: NEW! MISSING</comment>
+  </data>
 </root>

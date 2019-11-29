@@ -1202,7 +1202,8 @@ namespace MusicXmlReaderModel
                 {
                     if (!string.IsNullOrEmpty(timeElement.ToString()))
                     {
-                        timeString = string.Format("{0} ", timeElement.ToString());
+#warning Todo Localize
+                        timeString = string.Format("{0}: {1} ", timeElement.NewTimeSignature, timeElement.ToString());
                     }
                 }
             }
