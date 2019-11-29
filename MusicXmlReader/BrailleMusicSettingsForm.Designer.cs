@@ -52,7 +52,7 @@
             // 
             this.numericUpDownWidth.Location = new System.Drawing.Point(138, 74);
             this.numericUpDownWidth.Name = "numericUpDownWidth";
-            this.numericUpDownWidth.Size = new System.Drawing.Size(208, 20);
+            this.numericUpDownWidth.Size = new System.Drawing.Size(53, 20);
             this.numericUpDownWidth.TabIndex = 20;
             this.numericUpDownWidth.Value = new decimal(new int[] {
             32,
@@ -64,7 +64,7 @@
             // 
             this.numericUpDownHeight.Location = new System.Drawing.Point(138, 100);
             this.numericUpDownHeight.Name = "numericUpDownHeight";
-            this.numericUpDownHeight.Size = new System.Drawing.Size(208, 20);
+            this.numericUpDownHeight.Size = new System.Drawing.Size(53, 20);
             this.numericUpDownHeight.TabIndex = 30;
             this.numericUpDownHeight.Value = new decimal(new int[] {
             32,
@@ -76,7 +76,7 @@
             // 
             this.textBoxEscapeSequence.Location = new System.Drawing.Point(139, 126);
             this.textBoxEscapeSequence.Name = "textBoxEscapeSequence";
-            this.textBoxEscapeSequence.Size = new System.Drawing.Size(207, 20);
+            this.textBoxEscapeSequence.Size = new System.Drawing.Size(673, 20);
             this.textBoxEscapeSequence.TabIndex = 40;
             this.textBoxEscapeSequence.Text = "DTB0";
             // 
@@ -92,7 +92,7 @@
             // 
             this.textBoxApplicationName.Location = new System.Drawing.Point(139, 188);
             this.textBoxApplicationName.Name = "textBoxApplicationName";
-            this.textBoxApplicationName.Size = new System.Drawing.Size(207, 20);
+            this.textBoxApplicationName.Size = new System.Drawing.Size(673, 20);
             this.textBoxApplicationName.TabIndex = 60;
             this.textBoxApplicationName.Text = "IBPrint";
             // 
@@ -100,7 +100,7 @@
             // 
             this.textBoxApplicationExe.Location = new System.Drawing.Point(138, 214);
             this.textBoxApplicationExe.Name = "textBoxApplicationExe";
-            this.textBoxApplicationExe.Size = new System.Drawing.Size(208, 20);
+            this.textBoxApplicationExe.Size = new System.Drawing.Size(674, 20);
             this.textBoxApplicationExe.TabIndex = 70;
             this.textBoxApplicationExe.Text = "IBPrint.exe";
             // 
@@ -169,7 +169,7 @@
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(197, 250);
+            this.buttonOK.Location = new System.Drawing.Point(737, 256);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 90;
@@ -180,7 +180,7 @@
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(116, 250);
+            this.buttonCancel.Location = new System.Drawing.Point(656, 256);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 80;
@@ -192,7 +192,7 @@
             // 
             this.textBoxDeviceName.Location = new System.Drawing.Point(139, 162);
             this.textBoxDeviceName.Name = "textBoxDeviceName";
-            this.textBoxDeviceName.Size = new System.Drawing.Size(207, 20);
+            this.textBoxDeviceName.Size = new System.Drawing.Size(673, 20);
             this.textBoxDeviceName.TabIndex = 50;
             this.textBoxDeviceName.Text = "Index Braille D2";
             // 
@@ -202,7 +202,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(358, 290);
+            this.ClientSize = new System.Drawing.Size(824, 291);
             this.Controls.Add(this.textBoxDeviceName);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
@@ -222,6 +222,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "BrailleMusicSettingsForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "IBOS MusicXmlReader Generic Braille device  settings";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).EndInit();

@@ -164,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 261);
+            this.ClientSize = new System.Drawing.Size(824, 261);
             this.Controls.Add(this.textBoxCapella);
             this.Controls.Add(this.textBoxSibelius);
             this.Controls.Add(this.textBoxMuseScore);
@@ -180,6 +180,7 @@
             this.Controls.Add(this.labelBrailleMusicPath);
             this.Controls.Add(this.labelMusicXmlFile);
             this.Name = "GeneralSettingsForms";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "GeneralSettingsForms";
             this.ResumeLayout(false);
             this.PerformLayout();
