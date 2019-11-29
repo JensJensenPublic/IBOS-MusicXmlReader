@@ -365,44 +365,5 @@ namespace MusicXmlReader
             this.Refresh();
         }
 
-        private void generelSettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GeneralSettingsForms generalSettingsForms = new GeneralSettingsForms(applicationName, userPreferencesHandler);
-            DialogResult dialogResult = generalSettingsForms.ShowDialog();
-            Logger.LogCF(string.Format(": GeneralSettingsForms returned {0}", dialogResult.ToString()));
-            if (DialogResult.OK == dialogResult)
-            {
-                generalSettingsForms.SaveSettings();
-            }
-            generalSettingsForms.Dispose();
-        }
-
-
-        private void ShowBrailleMusicSettingsDialog(BrailleMusicSettingsForm.DeviceTypeEnum deviceTypeEnum)
-        {
-            BrailleMusicSettingsForm brailleMusicSettingsForm = new BrailleMusicSettingsForm(deviceTypeEnum, applicationName, userPreferencesHandler);
-            DialogResult result = brailleMusicSettingsForm.ShowDialog();
-            Logger.LogCF(string.Format(": BrailleMusicSettingsForm returned {0}", result.ToString()));
-            if (DialogResult.OK == result)
-            {
-                brailleMusicSettingsForm.SaveSettings();
-            }
-            brailleMusicSettingsForm.Dispose();
-        }
-
-        private void embosserSettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ShowBrailleMusicSettingsDialog(BrailleMusicSettingsForm.DeviceTypeEnum.Embosser);
-        }
-
-        private void notetakerSettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ShowBrailleMusicSettingsDialog(BrailleMusicSettingsForm.DeviceTypeEnum.NoteTaker); 
-        }
-
-        private void musicBrailleSettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ShowBrailleMusicSettingsDialog(BrailleMusicSettingsForm.DeviceTypeEnum.GeneralDevice);
-        }
     }
 }

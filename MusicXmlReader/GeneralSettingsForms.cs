@@ -42,7 +42,7 @@ namespace MusicXmlReader
             if (string.IsNullOrEmpty(fullFileName)) return result;               
             try
             {
-                result = Path.GetFileName(fullFileName);
+                result = Path.GetFileNameWithoutExtension(fullFileName);
             }
             catch (Exception e)
             {
