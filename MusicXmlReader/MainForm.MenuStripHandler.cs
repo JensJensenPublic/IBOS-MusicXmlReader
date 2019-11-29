@@ -574,7 +574,13 @@ namespace MusicXmlReader
 
         private void resetAllUserSettingsToDefaultValuesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            userPreferencesHandler.Reset();
+#warning Localize
+            DialogResult dialogResult = MessageBox.Show("Do you really want to reset all user settings to default?", applicationName, MessageBoxButtons.OKCancel);
+            if (DialogResult.OK == dialogResult)
+            {
+                Logger.LogCF(": Resetting all user settings to default values");
+                userPreferencesHandler.Reset();
+            }
         }
 
 
