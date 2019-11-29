@@ -283,6 +283,7 @@ namespace MusicXmlReader
             catch (Exception e)
             {
                 Logger.LogCFE(e);
+                Utilities.Beep();
             }
             Logger.LogCF(": Exit");
         }
@@ -298,6 +299,7 @@ namespace MusicXmlReader
             catch (Exception e)
             {
                 Logger.LogCFE(e);
+                Utilities.Beep();
             }
             Logger.LogCF(": Exit");
         }

@@ -368,8 +368,12 @@ namespace MusicXmlReader
         private void generelSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GeneralSettingsForms generalSettingsForms = new GeneralSettingsForms(applicationName, userPreferencesHandler);
-            DialogResult result = generalSettingsForms.ShowDialog();
-            Logger.LogCF(string.Format(": GeneralSettingsForms returned {0}", result.ToString()));
+            DialogResult dialogResult = generalSettingsForms.ShowDialog();
+            Logger.LogCF(string.Format(": GeneralSettingsForms returned {0}", dialogResult.ToString()));
+            if (DialogResult.OK == dialogResult)
+            {
+                generalSettingsForms.SaveSettings();
+            }
             generalSettingsForms.Dispose();
         }
 

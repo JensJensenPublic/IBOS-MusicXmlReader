@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using MusicXmlReaderModel;
 
 namespace MusicXmlReader
 {
@@ -34,8 +35,25 @@ namespace MusicXmlReader
             textBox.Text = value;
         }
 
+        private string  SafeGetFileName(string fullFileName)
+        {
+            // Do not use Path.GetFileName() on a file without verifying it first. An empty path will cast an exception.
+            string result = "";
+            if (string.IsNullOrEmpty(fullFileName)) return result;               
+            try
+            {
+                result = Path.GetFileName(fullFileName);
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+            return result;
+}
 
-        public GeneralSettingsForms(string applicationName,  UserPreferencesHandler userPreferences)
+
+
+public GeneralSettingsForms(string applicationName,  UserPreferencesHandler userPreferences)
         {
             InitializeComponent();
             this.applicationName = applicationName;
@@ -44,10 +62,12 @@ namespace MusicXmlReader
 #warning TODO Localize
             // Title
             this.Text = this.applicationName + " " + "General settings";
-
+            string fullFileName = userPreferences.MusicXmlFile;
+            string fileName = SafeGetFileName(fullFileName);
+ 
             // Labels and textboxes for MusicXml
-            InitTextBoxAndLabel(textBoxMusicXmlFile, labelMusicXmlFile, "Latest MusicXml file", Path.GetFileName(userPreferences.MusicXmlFile), true);
-            InitTextBoxAndLabel(textBoxMusicXmlDirectory, labelMusicXmlDirectory, "Latest MusicXml directory", Path.GetDirectoryName(userPreferences.MusicXmlFile), true);
+            InitTextBoxAndLabel(textBoxMusicXmlFile, labelMusicXmlFile, "Latest MusicXml file",fileName , true);
+            InitTextBoxAndLabel(textBoxMusicXmlDirectory, labelMusicXmlDirectory, "Latest MusicXml path", fullFileName, true);
             // Label and textbox for Braille Music
             InitTextBoxAndLabel(textBoxBrailleMusicPath, labelBrailleMusicPath, "Latest Braille Music directory", userPreferences.BrailleMusicDirectory, true);
 
@@ -63,6 +83,10 @@ namespace MusicXmlReader
         public void SaveSettings()
         {
             // Implement if needed.
+            userPreferences.MuseScoreExe = textBoxMuseScore.Text;
+            userPreferences.SibeliusExe = textBoxSibelius.Text;
+            userPreferences.CapellaExe = textBoxCapella.Text;
+
         }
 
         private void buttonOK_Click(object sender, EventArgs e)

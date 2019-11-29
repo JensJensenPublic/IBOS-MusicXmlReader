@@ -542,12 +542,15 @@ namespace MusicXmlReader
 
         private void museScoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.StartMuseScore(model.TheMusicXmlFileName, AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.MuseScoreExe));
+
+            // model.ExternalToolsHandler.StartMuseScore(model.TheMusicXmlFileName, AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.MuseScoreExe)); // Now through userSettingsHandler
+            model.ExternalToolsHandler.StartMuseScore(model.TheMusicXmlFileName, this.userPreferencesHandler.MuseScoreExe);
         }
 
         private void sibeliusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.StartSibelius(model.TheMusicXmlFileName, AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.SibeliusExe));
+            // model.ExternalToolsHandler.StartSibelius(model.TheMusicXmlFileName, AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.SibeliusExe)); // Now through userSettingsHandler
+            model.ExternalToolsHandler.StartSibelius(model.TheMusicXmlFileName, this.userPreferencesHandler.SibeliusExe);
         }
 
         private void logfileToolStripMenuItem_Click(object sender, EventArgs e)
