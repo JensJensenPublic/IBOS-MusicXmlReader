@@ -163,7 +163,14 @@ namespace MusicXmlReader
         /// </summary>
         public string BrailleMusicDirectory { get { return s.BrailleMusicDirectory; } set { s.BrailleMusicDirectory = value; } }
 
- 
+
+        // The full paths to some 3. party Music editing programs
+        public string MuseScoreExe { get { return s.MuseScoreExe; } set { s.MuseScoreExe = value; } }
+        public string SibeliusExe { get { return s.SibeliusExe; } set { s.SibeliusExe = value; } }
+        public string CapellaExe { get { return s.CapellaExe; } set { s.CapellaExe = value; } }
+
+
+
         /// <summary>
         /// The embosser used by the current user
         /// </summary>

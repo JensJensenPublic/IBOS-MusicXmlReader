@@ -74,11 +74,14 @@
     <Setting Name="GenericDeviceApplicationLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Program Files (x86)\Index Braille\IbPrint\IbPrint.exe</Value>
     </Setting>
-    <Setting Name="Unused1" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="MuseScoreExe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files\MuseScore 3\bin\MuseScore3.exe</Value>
     </Setting>
-    <Setting Name="Unused2" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="SibeliusExe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files\Avid\Sibelius\Sibelius.exe</Value>
+    </Setting>
+    <Setting Name="CapellaExe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files (x86)\capella-software\capella 8\bin\capella.exe</Value>
     </Setting>
   </Settings>
 </SettingsFile>

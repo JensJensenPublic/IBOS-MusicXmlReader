@@ -36,6 +36,12 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.textBoxMusicXmlDirectory = new System.Windows.Forms.TextBox();
             this.labelMusicXmlDirectory = new System.Windows.Forms.Label();
+            this.labelMuseScore = new System.Windows.Forms.Label();
+            this.labelSibelius = new System.Windows.Forms.Label();
+            this.labelCapella = new System.Windows.Forms.Label();
+            this.textBoxMuseScore = new System.Windows.Forms.TextBox();
+            this.textBoxSibelius = new System.Windows.Forms.TextBox();
+            this.textBoxCapella = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // labelMusicXmlFile
@@ -106,11 +112,65 @@
             this.labelMusicXmlDirectory.TabIndex = 9;
             this.labelMusicXmlDirectory.Text = "MusicXml directory";
             // 
+            // labelMuseScore
+            // 
+            this.labelMuseScore.AutoSize = true;
+            this.labelMuseScore.Location = new System.Drawing.Point(30, 117);
+            this.labelMuseScore.Name = "labelMuseScore";
+            this.labelMuseScore.Size = new System.Drawing.Size(61, 13);
+            this.labelMuseScore.TabIndex = 91;
+            this.labelMuseScore.Text = "MuseScore";
+            // 
+            // labelSibelius
+            // 
+            this.labelSibelius.AutoSize = true;
+            this.labelSibelius.Location = new System.Drawing.Point(30, 142);
+            this.labelSibelius.Name = "labelSibelius";
+            this.labelSibelius.Size = new System.Drawing.Size(43, 13);
+            this.labelSibelius.TabIndex = 92;
+            this.labelSibelius.Text = "Sibelius";
+            // 
+            // labelCapella
+            // 
+            this.labelCapella.AutoSize = true;
+            this.labelCapella.Location = new System.Drawing.Point(30, 168);
+            this.labelCapella.Name = "labelCapella";
+            this.labelCapella.Size = new System.Drawing.Size(42, 13);
+            this.labelCapella.TabIndex = 93;
+            this.labelCapella.Text = "Capella";
+            // 
+            // textBoxMuseScore
+            // 
+            this.textBoxMuseScore.Location = new System.Drawing.Point(172, 114);
+            this.textBoxMuseScore.Name = "textBoxMuseScore";
+            this.textBoxMuseScore.Size = new System.Drawing.Size(643, 20);
+            this.textBoxMuseScore.TabIndex = 40;
+            // 
+            // textBoxSibelius
+            // 
+            this.textBoxSibelius.Location = new System.Drawing.Point(172, 142);
+            this.textBoxSibelius.Name = "textBoxSibelius";
+            this.textBoxSibelius.Size = new System.Drawing.Size(643, 20);
+            this.textBoxSibelius.TabIndex = 50;
+            // 
+            // textBoxCapella
+            // 
+            this.textBoxCapella.Location = new System.Drawing.Point(172, 168);
+            this.textBoxCapella.Name = "textBoxCapella";
+            this.textBoxCapella.Size = new System.Drawing.Size(643, 20);
+            this.textBoxCapella.TabIndex = 60;
+            // 
             // GeneralSettingsForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 261);
+            this.Controls.Add(this.textBoxCapella);
+            this.Controls.Add(this.textBoxSibelius);
+            this.Controls.Add(this.textBoxMuseScore);
+            this.Controls.Add(this.labelCapella);
+            this.Controls.Add(this.labelSibelius);
+            this.Controls.Add(this.labelMuseScore);
             this.Controls.Add(this.labelMusicXmlDirectory);
             this.Controls.Add(this.textBoxMusicXmlDirectory);
             this.Controls.Add(this.buttonCancel);
@@ -136,5 +196,11 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.TextBox textBoxMusicXmlDirectory;
         private System.Windows.Forms.Label labelMusicXmlDirectory;
+        private System.Windows.Forms.Label labelMuseScore;
+        private System.Windows.Forms.Label labelSibelius;
+        private System.Windows.Forms.Label labelCapella;
+        private System.Windows.Forms.TextBox textBoxMuseScore;
+        private System.Windows.Forms.TextBox textBoxSibelius;
+        private System.Windows.Forms.TextBox textBoxCapella;
     }
 }

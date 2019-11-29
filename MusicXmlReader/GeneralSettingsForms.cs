@@ -51,8 +51,9 @@ namespace MusicXmlReader
             // Label and textbox for Braille Music
             InitTextBoxAndLabel(textBoxBrailleMusicPath, labelBrailleMusicPath, "Latest Braille Music directory", userPreferences.BrailleMusicDirectory, true);
 
-
-
+            InitTextBoxAndLabel(textBoxMuseScore, labelMuseScore, "MuseScore", userPreferences.MuseScoreExe, false);
+            InitTextBoxAndLabel(textBoxSibelius, labelSibelius, "Sibelius", userPreferences.SibeliusExe, false);
+            InitTextBoxAndLabel(textBoxCapella, labelCapella, "Capella", userPreferences.CapellaExe, false);
         }
 
 
@@ -75,5 +76,6 @@ namespace MusicXmlReader
             DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
     }
 }

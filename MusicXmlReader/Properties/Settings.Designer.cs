@@ -313,25 +313,37 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Unused1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files\\MuseScore 3\\bin\\MuseScore3.exe")]
+        public string MuseScoreExe {
             get {
-                return ((string)(this["Unused1"]));
+                return ((string)(this["MuseScoreExe"]));
             }
             set {
-                this["Unused1"] = value;
+                this["MuseScoreExe"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Unused2 {
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files\\Avid\\Sibelius\\Sibelius.exe")]
+        public string SibeliusExe {
             get {
-                return ((string)(this["Unused2"]));
+                return ((string)(this["SibeliusExe"]));
             }
             set {
-                this["Unused2"] = value;
+                this["SibeliusExe"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\capella-software\\capella 8\\bin\\capella.exe")]
+        public string CapellaExe {
+            get {
+                return ((string)(this["CapellaExe"]));
+            }
+            set {
+                this["CapellaExe"] = value;
             }
         }
     }
