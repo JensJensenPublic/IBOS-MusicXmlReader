@@ -978,7 +978,8 @@ namespace MusicXmlReader
 
         private void toBana2015NotetakerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.NoteTaker, 0, 0, BanaStyle);
+            // The formatting parameters are et to the values from the user settings
+            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.NoteTaker, NoteTakerCharactersPerLine, NoteTakerLinesPerPage, BanaStyle);
         }
 
         // Private definitions used for export to Braille Music
@@ -993,7 +994,8 @@ namespace MusicXmlReader
         {
             get
             {
-                return AppConfigHandler.GetIntValue(AppConfigHandler.KeyEnum.EmbosserCharactersPerLine, defaultEmbosserCharactersPerLine);
+                //return AppConfigHandler.GetIntValue(AppConfigHandler.KeyEnum.EmbosserCharactersPerLine, defaultEmbosserCharactersPerLine);
+                return userPreferencesHandler.embosser.PageWidth;
             }
         }
 
@@ -1001,12 +1003,28 @@ namespace MusicXmlReader
         {
             get
             {
-                return AppConfigHandler.GetIntValue(AppConfigHandler.KeyEnum.EmbosserLinesPerPage, defaultEmbosserLinesPerPage );
+                //return AppConfigHandler.GetIntValue(AppConfigHandler.KeyEnum.EmbosserLinesPerPage, defaultEmbosserLinesPerPage );
+                return userPreferencesHandler.embosser.PageHeight;
             }
         }
 
 
+        private int NoteTakerCharactersPerLine
+        {
+            get
+            {
+                return userPreferencesHandler.noteTaker.PageWidth;
+            }
+        }
 
+        private int NoteTakerLinesPerPage
+        {
+            get
+            {
+                return userPreferencesHandler.noteTaker.PageHeight;
+            }
+
+        }
 
         /// <summary>
         /// After selecting "Embosser"

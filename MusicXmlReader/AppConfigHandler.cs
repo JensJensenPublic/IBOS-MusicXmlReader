@@ -15,8 +15,8 @@ namespace MusicXmlReader
             DeveloperMode,
             ExperimentalCode,
             HandleGraphics,
-            EmbosserCharactersPerLine ,
-            EmbosserLinesPerPage,
+            //EmbosserCharactersPerLine ,
+            //EmbosserLinesPerPage,
             IBPrintExe
         }
 
@@ -36,8 +36,8 @@ namespace MusicXmlReader
                 case KeyEnum.DeveloperMode: return "DeveloperMode";
                 case KeyEnum.ExperimentalCode: return "ExperimentalCode";
                 case KeyEnum.HandleGraphics: return "HandleGraphics";
-                case KeyEnum.EmbosserCharactersPerLine: return "EmbosserCharactersPerLine";
-                case KeyEnum.EmbosserLinesPerPage: return "EmbosserLinesPerPage";
+                //case KeyEnum.EmbosserCharactersPerLine: return "EmbosserCharactersPerLine";
+                //case KeyEnum.EmbosserLinesPerPage: return "EmbosserLinesPerPage";
                 case KeyEnum.IBPrintExe: return "IBPrintExe";
                 default: return null;
             }

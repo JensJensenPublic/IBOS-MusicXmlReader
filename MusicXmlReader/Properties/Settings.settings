@@ -18,7 +18,7 @@
       <Value Profile="(Default)">32</Value>
     </Setting>
     <Setting Name="EmbosserPageHeight" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">20</Value>
+      <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="BrailleMusicDeviceType" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
