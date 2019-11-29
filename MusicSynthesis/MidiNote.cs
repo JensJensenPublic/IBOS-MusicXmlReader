@@ -239,7 +239,9 @@ namespace JSJ.MusicSynthesis
             this.channelCode = (midiChannel - 1) % 16;       
             startCommand = new byte[3];
             startCommand[0] = (byte) (0x90 + channelCode); // Command "Start"
-            startCommand[1] = (byte)(12 * (octave + 1) + ((int)step + alter) % 12 + (int)interval + transpose) ;
+            //            startCommand[1] = (byte)(12 * (octave + 1) + ((int)step + alter) % 12 + (int)interval + transpose);
+            // Allow for altering up from H to C in higher octave and down from C to H in lower octave
+            startCommand[1] = (byte)(12 * (octave + 1) + ((int)step  % 12) + alter + (int)interval + transpose);
             startCommand[2] = (byte)velocity;
             StartPlaying(midiOut);
         }
