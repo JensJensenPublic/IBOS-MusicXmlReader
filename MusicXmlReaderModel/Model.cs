@@ -56,8 +56,8 @@ namespace MusicXmlReaderModel
         bool experimentalCode = false;
         public bool ExperimentalCode { get { return experimentalCode; } set { experimentalCode = value; } } // Generally available develomment feature to control Model behaviour from UI
 
-
-        private bool handleGraphics = true; // Optimize for speed on slow devices by setting to "false"
+        private bool handleGraphics = false; // Optimize for speed on slow devices by setting to "false"
+        public bool HandleGraphics { get { return handleGraphics; }  set { handleGraphics = value; } }
 
         //private string latestBrailleFileSaveDirectory = ""; // For starting in the right directory when using "Tool"->"Interpret file as Music Braille"
         //public string LatestBrailleFileSaveDirectory { get { return latestBrailleFileSaveDirectory; }  set { latestBrailleFileSaveDirectory = value; } } 

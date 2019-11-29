@@ -200,17 +200,19 @@ namespace MusicXmlReaderModel
                     continueRecursion = false;
                     break;
                 case "print":
+                    if (!handleGraphics) break;
                     // This is all graphics stuff, but is decoded anyway to make the information about
                     // New System and New PAge available to the user
                     allMusicXmlObjecsts.Add(PrintElement.Create(node, handleGraphics));
                     continueRecursion = false; // This is all graphics stuff!
                     break;
                 case "defaults":
+                    if (!handleGraphics) break; ;
                     if (null != defaults)
                     {
                         Logger.LogCFOnce("More than one DefaultsElement found for one score");
                     }
-                    defaults = DefaultsElement.Create(node, handleGraphics);  // Score-wide graphic information
+                    defaults = DefaultsElement.Create(node, handleGraphics);  // Score-wide graphic information        
                     continueRecursion = false; // This is all graphics stuff!
                     break;
                 case "score-partwise":
