@@ -962,7 +962,15 @@ namespace MusicXmlReader
         }
 
         #region Export of Music Braille
+        
+        // Private definitions used for export to Braille Music
+        private const Model.BrailleStyleEnum IbosStyle = Model.BrailleStyleEnum.IBOS;
+        private const Model.BrailleStyleEnum BanaStyle = Model.BrailleStyleEnum.BANA2015;
+        //private const int defaultEmbosserCharactersPerLine = 40; // A fallback value if nothing is found elsewhere
+        //private const int defaultEmbosserLinesPerPage = 20;  // A fallback value if nothing is found elsewhere
 
+        // After selecting GenericDevice all parameters: Encoding, pagewidth and pageheight are automatically taken from Settings->NoteTaker
+        #region NoteTaker
         /// <summary>
         /// After selecting "Notetaker"
         /// Simple implementation for exporting to notetaker. This implementation needs no further input from the user !
@@ -982,33 +990,6 @@ namespace MusicXmlReader
             brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.NoteTaker, NoteTakerCharactersPerLine, NoteTakerLinesPerPage, BanaStyle);
         }
 
-        // Private definitions used for export to Braille Music
-        private const Model.BrailleStyleEnum IbosStyle = Model.BrailleStyleEnum.IBOS;
-        private const Model.BrailleStyleEnum BanaStyle = Model.BrailleStyleEnum.BANA2015;
-        private const int defaultEmbosserCharactersPerLine = 40; // A fallback value if nothing is found elsewhere
-        private const int defaultEmbosserLinesPerPage = 20;  // A fallback value if nothing is found elsewhere
-
-
-
-        private int EmbosserCharactersPerLine
-        {
-            get
-            {
-                //return AppConfigHandler.GetIntValue(AppConfigHandler.KeyEnum.EmbosserCharactersPerLine, defaultEmbosserCharactersPerLine);
-                return userPreferencesHandler.embosser.PageWidth;
-            }
-        }
-
-        private int EmbosserLinesPerPage
-        {
-            get
-            {
-                //return AppConfigHandler.GetIntValue(AppConfigHandler.KeyEnum.EmbosserLinesPerPage, defaultEmbosserLinesPerPage );
-                return userPreferencesHandler.embosser.PageHeight;
-            }
-        }
-
-
         private int NoteTakerCharactersPerLine
         {
             get
@@ -1023,9 +1004,11 @@ namespace MusicXmlReader
             {
                 return userPreferencesHandler.noteTaker.PageHeight;
             }
-
         }
+        #endregion NoteTaker
 
+        // After selecting Embosser all parameters: Encoding, pagewidth and pageheight are automatically taken from Settings->Embosser
+        #region Embosser
         /// <summary>
         /// After selecting "Embosser"
         /// Simple implementation for exporting to embosser. This implementation needs no further input from the user !
@@ -1045,6 +1028,43 @@ namespace MusicXmlReader
         }
 
 
+        private int EmbosserCharactersPerLine
+        {
+            get
+            {
+                //return AppConfigHandler.GetIntValue(AppConfigHandler.KeyEnum.EmbosserCharactersPerLine, defaultEmbosserCharactersPerLine);
+                return userPreferencesHandler.embosser.PageWidth;
+            }
+        }
+
+        private int EmbosserLinesPerPage
+        {
+            get
+            {
+                //return AppConfigHandler.GetIntValue(AppConfigHandler.KeyEnum.EmbosserLinesPerPage, defaultEmbosserLinesPerPage );
+                return userPreferencesHandler.embosser.PageHeight;
+            }
+        }
+        #endregion Embosser
+
+        // After selecting GenericDevice all parameters: Encoding, pagewidth and pageheight are automatically taken from Settings->Generic Braille Device
+        #region GenericDevice
+        // After selecting IBOS, GEneric device
+        private void toIbosGenericDeviceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, userPreferencesHandler.genericBrailleDevice.PageWidth, userPreferencesHandler.genericBrailleDevice.PageHeight, IbosStyle);
+        }
+
+        // After selecting Bana, Generic device
+        private void toBanaGenericDeviceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, userPreferencesHandler.genericBrailleDevice.PageWidth, userPreferencesHandler.genericBrailleDevice.PageHeight, BanaStyle);
+
+        }
+        #endregion generic device
+
+        // After selecting "Optional format" the user must manually specify all parameters: Encoding(ASCII, OctoBraille, Unicode} , pagewidth and pageheight
+        #region OptionalFormat
         // After selecting "IBOS", "Any Format" , "Braille1252"
         private void txtOctoBraille1252ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1081,6 +1101,8 @@ namespace MusicXmlReader
             brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_Unicode, BanaStyle);
         }
 
+        #endregion OptionalFormat
+
         private void inOptionalFormatToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Logger.LogCF("Unused");
@@ -1092,7 +1114,7 @@ namespace MusicXmlReader
         }
 
 
-
+        #region Print
         private void printMusicBrailleUsingIBPrintToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
@@ -1117,6 +1139,7 @@ namespace MusicXmlReader
         {
             embosserHandler.Emboss(userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.BrailleMusicDirectory, myMusicXmlDirectory));
         }
+        #endregion Print
 
         #endregion // Export of Music Braille
 
