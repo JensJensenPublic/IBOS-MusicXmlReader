@@ -220,8 +220,11 @@ namespace MusicXmlReader
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.xml;*.musicxml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files
                                                                                                                        //            openFileDialog.Filter = string.Format("{0}|*.xml|{0}|*.mxl", ResourcesForUI.OpenFileDialog_Filter,ResourcesForUI.OpenFileDialog_Filter_mxl); // Only present .xml files and .mxl files
-            openFileDialog.InitialDirectory = GetFileOpenInitialDirectory(useRecentFile);
+            openFileDialog.InitialDirectory = GetFileOpenInitialDirectory(useRecentFile);    
             openFileDialog.FileName = GetFileOpenInitialFileName(useRecentFile);
+
+            SendKeys.Send("{HOME}"); // HACK Will show the full filename from the beginning:  https://stackoverflow.com/questions/24525606/openfiledialog-cuts-off-pre-populated-file-name
+
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
             openFileDialog.ShowDialog();
