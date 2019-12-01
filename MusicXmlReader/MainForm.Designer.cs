@@ -39,17 +39,11 @@
             this.exportMusicBrailleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toNotetakerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toEmbosserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toGenericDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inOptionalFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtOctoBraille1252ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.brfASCIIToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.brfUnicodeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportMusicBrailleAsBANA2015ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toNotetakerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toEmbosserToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.inOptionalFormatToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.txtOctoBraille1252ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.brfASCIIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.brfUnicodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printMusicBrailleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printMusicBrailleUsingIBPrintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -138,8 +132,6 @@
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
-            this.toGenericDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toGenericDeviceToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -170,7 +162,6 @@
             this.importNewestDownloadsToolStripMenuItem,
             this.importNewSampleFilesToolStripMenuItem,
             this.exportMusicBrailleToolStripMenuItem,
-            this.exportMusicBrailleAsBANA2015ToolStripMenuItem,
             this.printMusicBrailleToolStripMenuItem,
             this.printMusicBrailleUsingIBPrintToolStripMenuItem,
             this.toolStripSeparator1,
@@ -249,6 +240,13 @@
             this.toEmbosserToolStripMenuItem.Text = "to embosser";
             this.toEmbosserToolStripMenuItem.Click += new System.EventHandler(this.toEmbosserToolStripMenuItem_Click);
             // 
+            // toGenericDeviceToolStripMenuItem
+            // 
+            this.toGenericDeviceToolStripMenuItem.Name = "toGenericDeviceToolStripMenuItem";
+            this.toGenericDeviceToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.toGenericDeviceToolStripMenuItem.Text = "to generic device";
+            this.toGenericDeviceToolStripMenuItem.Click += new System.EventHandler(this.toIbosGenericDeviceToolStripMenuItem_Click);
+            // 
             // inOptionalFormatToolStripMenuItem
             // 
             this.inOptionalFormatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -280,63 +278,6 @@
             this.brfUnicodeToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
             this.brfUnicodeToolStripMenuItem1.Text = ".brf (Unicode)";
             this.brfUnicodeToolStripMenuItem1.Click += new System.EventHandler(this.brfUnicodeToolStripMenuItem1_Click);
-            // 
-            // exportMusicBrailleAsBANA2015ToolStripMenuItem
-            // 
-            this.exportMusicBrailleAsBANA2015ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toNotetakerToolStripMenuItem1,
-            this.toEmbosserToolStripMenuItem1,
-            this.toGenericDeviceToolStripMenuItem1,
-            this.inOptionalFormatToolStripMenuItem1});
-            this.exportMusicBrailleAsBANA2015ToolStripMenuItem.Name = "exportMusicBrailleAsBANA2015ToolStripMenuItem";
-            this.exportMusicBrailleAsBANA2015ToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
-            this.exportMusicBrailleAsBANA2015ToolStripMenuItem.Text = "Export Music Braille as BANA2015";
-            // 
-            // toNotetakerToolStripMenuItem1
-            // 
-            this.toNotetakerToolStripMenuItem1.Name = "toNotetakerToolStripMenuItem1";
-            this.toNotetakerToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
-            this.toNotetakerToolStripMenuItem1.Text = "to notetaker";
-            this.toNotetakerToolStripMenuItem1.Click += new System.EventHandler(this.toBana2015NotetakerToolStripMenuItem_Click);
-            // 
-            // toEmbosserToolStripMenuItem1
-            // 
-            this.toEmbosserToolStripMenuItem1.Name = "toEmbosserToolStripMenuItem1";
-            this.toEmbosserToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
-            this.toEmbosserToolStripMenuItem1.Text = "to embosser";
-            this.toEmbosserToolStripMenuItem1.Click += new System.EventHandler(this.toBana2015EmbosserToolStripMenuItem_Click);
-            // 
-            // inOptionalFormatToolStripMenuItem1
-            // 
-            this.inOptionalFormatToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.txtOctoBraille1252ToolStripMenuItem1,
-            this.brfASCIIToolStripMenuItem,
-            this.brfUnicodeToolStripMenuItem});
-            this.inOptionalFormatToolStripMenuItem1.Name = "inOptionalFormatToolStripMenuItem1";
-            this.inOptionalFormatToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
-            this.inOptionalFormatToolStripMenuItem1.Text = "in optional format";
-            this.inOptionalFormatToolStripMenuItem1.Click += new System.EventHandler(this.inBana2015OptionalFormatToolStripMenuItem_Click);
-            // 
-            // txtOctoBraille1252ToolStripMenuItem1
-            // 
-            this.txtOctoBraille1252ToolStripMenuItem1.Name = "txtOctoBraille1252ToolStripMenuItem1";
-            this.txtOctoBraille1252ToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
-            this.txtOctoBraille1252ToolStripMenuItem1.Text = ".txt (OctoBraille 1252)";
-            this.txtOctoBraille1252ToolStripMenuItem1.Click += new System.EventHandler(this.Bana2015txtOctoBraille1252ToolStripMenuItem_Click);
-            // 
-            // brfASCIIToolStripMenuItem
-            // 
-            this.brfASCIIToolStripMenuItem.Name = "brfASCIIToolStripMenuItem";
-            this.brfASCIIToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.brfASCIIToolStripMenuItem.Text = ".brf (ASCII)";
-            this.brfASCIIToolStripMenuItem.Click += new System.EventHandler(this.Bana2015brfASCIIToolStripMenuItem_Click);
-            // 
-            // brfUnicodeToolStripMenuItem
-            // 
-            this.brfUnicodeToolStripMenuItem.Name = "brfUnicodeToolStripMenuItem";
-            this.brfUnicodeToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.brfUnicodeToolStripMenuItem.Text = ".brf (Unicode)";
-            this.brfUnicodeToolStripMenuItem.Click += new System.EventHandler(this.Bana2015brfUnicodeToolStripMenuItem_Click);
             // 
             // printMusicBrailleToolStripMenuItem
             // 
@@ -1037,20 +978,6 @@
             // 
             this.printDialog.UseEXDialog = true;
             // 
-            // toGenericDeviceToolStripMenuItem
-            // 
-            this.toGenericDeviceToolStripMenuItem.Name = "toGenericDeviceToolStripMenuItem";
-            this.toGenericDeviceToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.toGenericDeviceToolStripMenuItem.Text = "to generic device";
-            this.toGenericDeviceToolStripMenuItem.Click += new System.EventHandler(this.toIbosGenericDeviceToolStripMenuItem_Click);
-            // 
-            // toGenericDeviceToolStripMenuItem1
-            // 
-            this.toGenericDeviceToolStripMenuItem1.Name = "toGenericDeviceToolStripMenuItem1";
-            this.toGenericDeviceToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
-            this.toGenericDeviceToolStripMenuItem1.Text = "to generic device";
-            this.toGenericDeviceToolStripMenuItem1.Click += new System.EventHandler(this.toBanaGenericDeviceToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1172,13 +1099,6 @@
         private System.Windows.Forms.ToolStripMenuItem aSCIIToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unicodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autodetectedEncodingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportMusicBrailleAsBANA2015ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toNotetakerToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem toEmbosserToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem inOptionalFormatToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem txtOctoBraille1252ToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem brfASCIIToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem brfUnicodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printMusicBrailleUsingIBPrintToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printMusicBrailleToolStripMenuItem;
         private System.Windows.Forms.PrintDialog printDialog;
@@ -1193,7 +1113,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem resetAllUserSettingsToDefaultValuesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toGenericDeviceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toGenericDeviceToolStripMenuItem1;
     }
 }
 

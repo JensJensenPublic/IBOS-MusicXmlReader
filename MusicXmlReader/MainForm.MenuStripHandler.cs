@@ -63,7 +63,6 @@ namespace MusicXmlReader
             GenerateAccessibleName(ref exitToolStripMenuItem);
             // Export Music Braille:
             exportMusicBrailleToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBrailleToFile; // First level
-            exportMusicBrailleAsBANA2015ToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBrailleToFile;
             // Print Music Braille
             printMusicBrailleUsingIBPrintToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram;
             printMusicBrailleToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_PrintMusicBraille;
@@ -73,10 +72,6 @@ namespace MusicXmlReader
             toNotetakerToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker; // Simple IBOS format, Second level
             toEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser; //  Simple IBOS format, Second level
             inOptionalFormatToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_InOptionalFormat; //  Simple IBOS format, Second level
-
-            toNotetakerToolStripMenuItem1.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker; // Standard format, Second level
-            toEmbosserToolStripMenuItem1.Text = ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser; // Standard format, Second level
-            inOptionalFormatToolStripMenuItem1.Text = ResourcesForUI.ToolStripMenuItem_Files_InOptionalFormat; // Standard format, Second level
 
             txtOctoBraille1252ToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_TxtOctoBraille1252; // Third level
             brfASCIIToolStripMenuItem1.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII; // Third level
@@ -984,14 +979,14 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void toNotetakerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.NoteTaker, 0, 0, IbosStyle);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.NoteTaker, 0, 0, userPreferencesHandler.noteTaker.BraillePageLayout);
         }
 
-        private void toBana2015NotetakerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // The formatting parameters are et to the values from the user settings
-            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.NoteTaker, NoteTakerCharactersPerLine, NoteTakerLinesPerPage, BanaStyle);
-        }
+        //private void toBana2015NotetakerToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    // The formatting parameters are et to the values from the user settings
+        //    brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.NoteTaker, NoteTakerCharactersPerLine, NoteTakerLinesPerPage, BanaStyle);
+        //}
 
         private int NoteTakerCharactersPerLine
         {
@@ -1022,13 +1017,13 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void toEmbosserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, EmbosserCharactersPerLine, EmbosserLinesPerPage, IbosStyle);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, EmbosserCharactersPerLine, EmbosserLinesPerPage, userPreferencesHandler.embosser.BraillePageLayout);
         }
 
-        private void toBana2015EmbosserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, EmbosserCharactersPerLine, EmbosserLinesPerPage, BanaStyle);
-        }
+        //private void toBana2015EmbosserToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, EmbosserCharactersPerLine, EmbosserLinesPerPage, BanaStyle);
+        //}
 
 
         private int EmbosserCharactersPerLine
@@ -1055,15 +1050,15 @@ namespace MusicXmlReader
         // After selecting IBOS, GEneric device
         private void toIbosGenericDeviceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, userPreferencesHandler.genericBrailleDevice.PageWidth, userPreferencesHandler.genericBrailleDevice.PageHeight, IbosStyle);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, userPreferencesHandler.genericBrailleDevice.PageWidth, userPreferencesHandler.genericBrailleDevice.PageHeight, userPreferencesHandler.genericBrailleDevice.BraillePageLayout);
         }
 
-        // After selecting Bana, Generic device
-        private void toBanaGenericDeviceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, userPreferencesHandler.genericBrailleDevice.PageWidth, userPreferencesHandler.genericBrailleDevice.PageHeight, BanaStyle);
+        //// After selecting Bana, Generic device
+        //private void toBanaGenericDeviceToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, userPreferencesHandler.genericBrailleDevice.PageWidth, userPreferencesHandler.genericBrailleDevice.PageHeight, BanaStyle);
 
-        }
+        //}
         #endregion generic device
 
         // After selecting "Optional format" the user must manually specify all parameters: Encoding(ASCII, OctoBraille, Unicode} , pagewidth and pageheight
