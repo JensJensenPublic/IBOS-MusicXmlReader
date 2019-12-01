@@ -986,8 +986,8 @@ namespace MusicXmlReader
         private void toNotetakerToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #warning TODO Think about the old convension og using length and width = 0 to signal that no foematting is needed (The IBOS Layout case)
-            //brailleMusicExportHandler.ExportMusicBrailleToFile(userPreferencesHandler.noteTaker.BrailleFileFormat, 0, 0, userPreferencesHandler.noteTaker.BraillePageLayout);
-            Export(userPreferencesHandler.noteTaker);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(userPreferencesHandler.noteTaker.BrailleFileFormat, 0, 0, userPreferencesHandler.noteTaker.BraillePageLayout);
+            // Export(userPreferencesHandler.noteTaker);
         }
 
         //private void toBana2015NotetakerToolStripMenuItem_Click(object sender, EventArgs e)
