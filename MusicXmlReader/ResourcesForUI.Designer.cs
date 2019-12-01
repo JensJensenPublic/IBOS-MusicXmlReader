@@ -664,20 +664,11 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E&amp;xport Music Braille to file in BANA2015 format.
+        ///   Looks up a localized string similar to E&amp;xport Music Braille to file.
         /// </summary>
-        internal static string ToolStripMenuItem_Files_ExportMusicBrailleAsBANA2015 {
+        internal static string ToolStripMenuItem_Files_ExportMusicBrailleToFile {
             get {
-                return ResourceManager.GetString("ToolStripMenuItem_Files_ExportMusicBrailleAsBANA2015", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Export Music Braille to file in simple IBOS format.
-        /// </summary>
-        internal static string ToolStripMenuItem_Files_ExportMusicBrailleInIbosFormat {
-            get {
-                return ResourceManager.GetString("ToolStripMenuItem_Files_ExportMusicBrailleInIbosFormat", resourceCulture);
+                return ResourceManager.GetString("ToolStripMenuItem_Files_ExportMusicBrailleToFile", resourceCulture);
             }
         }
         

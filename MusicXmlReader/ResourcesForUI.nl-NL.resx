@@ -332,11 +332,8 @@
     <value>sluiten</value>
     <comment>Exit in dutch: sluiten</comment>
   </data>
-  <data name="ToolStripMenuItem_Files_ExportMusicBraille" xml:space="preserve">
-    <value>Exporteer Music braille</value>
-  </data>
   <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
-    <value>Exporteer Music braille naar bestand</value>
+    <value>E&amp;xporteer Music braille naar bestand</value>
   </data>
   <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
     <value>Importeer downloads</value>
@@ -500,5 +497,8 @@
   <data name="ToolStripMenuItem_Settings" xml:space="preserve">
     <value>&amp;Settings</value>
     <comment>JSJ: NEW: MISSING</comment>
+  </data>
+  <data name="x" xml:space="preserve">
+    <value />
   </data>
 </root>
