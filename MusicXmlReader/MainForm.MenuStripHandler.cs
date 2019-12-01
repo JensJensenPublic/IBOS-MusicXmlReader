@@ -979,7 +979,7 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void toNotetakerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.NoteTaker, 0, 0, userPreferencesHandler.noteTaker.BraillePageLayout);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(userPreferencesHandler.noteTaker.BrailleFileFormat, 0, 0, userPreferencesHandler.noteTaker.BraillePageLayout);
         }
 
         //private void toBana2015NotetakerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1017,7 +1017,7 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void toEmbosserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, EmbosserCharactersPerLine, EmbosserLinesPerPage, userPreferencesHandler.embosser.BraillePageLayout);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(userPreferencesHandler.embosser.BrailleFileFormat, EmbosserCharactersPerLine, EmbosserLinesPerPage, userPreferencesHandler.embosser.BraillePageLayout);
         }
 
         //private void toBana2015EmbosserToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1050,7 +1050,7 @@ namespace MusicXmlReader
         // After selecting IBOS, GEneric device
         private void toIbosGenericDeviceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, userPreferencesHandler.genericBrailleDevice.PageWidth, userPreferencesHandler.genericBrailleDevice.PageHeight, userPreferencesHandler.genericBrailleDevice.BraillePageLayout);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(userPreferencesHandler.genericBrailleDevice.BrailleFileFormat, userPreferencesHandler.genericBrailleDevice.PageWidth, userPreferencesHandler.genericBrailleDevice.PageHeight, userPreferencesHandler.genericBrailleDevice.BraillePageLayout);
         }
 
         //// After selecting Bana, Generic device
