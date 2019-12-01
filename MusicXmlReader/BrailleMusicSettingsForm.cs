@@ -46,6 +46,7 @@ namespace MusicXmlReader
             // Initialize texts for labels and visibility for labels and other controls.
             Init(labelDeviceName, textBoxDeviceName, settingsHandler.LabelDeviceName);
             Init(labelBrailleFileFormat, listBoxFileFormat, settingsHandler.LabelBrailleFileFormat);
+            Init(labelBraillePageLayout, listBoxBraillePageLayout, settingsHandler.LabelBraillePageLayout);
             Init(labelWidth, numericUpDownWidth, settingsHandler.LabelWidth);
             Init(labelHeight, numericUpDownHeight, settingsHandler.LabelHeight);
             Init(labelEscapeSequence, textBoxEscapeSequence, settingsHandler.LabelEscapeSequence);
@@ -73,6 +74,7 @@ namespace MusicXmlReader
             this.textBoxApplicationExe.Text = brailleDevicePreferences.ApplicationLocation;
             this.textBoxDeviceName.Text = brailleDevicePreferences.DeviceName;
 
+            // Fill in listBoxFileFormats
             foreach (BrailleFileHandler.FileEncoding encoding in settingsHandler.EnabledEncodings)
             {
                 // Load the listbox and select the item pointed out by brailleDevicePreferences.BrailleFileFormat                
@@ -82,7 +84,21 @@ namespace MusicXmlReader
                 {
                     this.listBoxFileFormat.SelectedItem = encodingItem;
                 }
-            }  
+            }
+
+            // Fill in listBoxBraillePageLayouts
+            foreach (Model.BrailleStyleEnum brailleStyleEnum in settingsHandler.BraillePageLayouts)
+            {
+                // Load the listbox and select the item pointed out by brailleDevicePreferences.BrailleFileFormat                
+                PageLayoutItem pageLayoutItem =  new PageLayoutItem(brailleStyleEnum);
+                this.listBoxBraillePageLayout.Items.Add(pageLayoutItem);
+                if (pageLayoutItem.PageLayout == brailleDevicePreferences.BraillePageLayout)
+                {
+                    this.listBoxBraillePageLayout.SelectedItem = pageLayoutItem;
+                }
+            }
+            
+
             this.Refresh();
         }
 
@@ -97,17 +113,32 @@ namespace MusicXmlReader
             brailleDevicePreferences.DeviceName = this.textBoxDeviceName.Text;
             brailleDevicePreferences.ApplicationName = this.textBoxApplicationName.Text;
             brailleDevicePreferences.ApplicationLocation = this.textBoxApplicationExe.Text;
+
+#warning TODO Check if the following default-setting can be replaced by a value in the settings spreadsheet
             if ((null != this.listBoxFileFormat.SelectedItem) && (this.listBoxFileFormat.SelectedItem is EncodingItem))
             {
                 brailleDevicePreferences.BrailleFileFormat = (this.listBoxFileFormat.SelectedItem as EncodingItem).Encoding;
             }
             else
             {
-                // Maybe this is not the right place to declare a default value ??
+                // Maybe this is not the right place to declare a default value ?? NO It is better done in the Settings spreadsheet
                 brailleDevicePreferences.BrailleFileFormat = BrailleFileHandler.FileEncoding.BRF_ASCII;
             }
+#warning TODO Check if the following default-setting can be replaced by a value in the settings spreadsheet
+            if ((null != this.listBoxBraillePageLayout.SelectedItem) && (this.listBoxBraillePageLayout.SelectedItem is PageLayoutItem))
+            {
+                brailleDevicePreferences.BraillePageLayout = (this.listBoxBraillePageLayout.SelectedItem as PageLayoutItem).PageLayout;
+            }
+            else
+            {
+                // Maybe this is not the right place to declare a default value ?? NO It is better done in the Settings spreadsheet
+                brailleDevicePreferences.BraillePageLayout = Model.BrailleStyleEnum.BANA2015;
+            }
+
+
+
             // brailleDevicePreferences.BrailleFileFormat = this. 
-           
+
             // More to follow
         }
 
@@ -144,7 +175,7 @@ namespace MusicXmlReader
                 case BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252: return "OctoBraille 1252";
                 case BrailleFileHandler.FileEncoding.PEF: return "PEF";
                 case BrailleFileHandler.FileEncoding.Unknown: return "";
-                default: Logger.LogCF(string.Format(": Unsupported fileencoding '{0}'", encoding.ToString())); return "";
+                default: Logger.LogCF(string.Format(": Unsupported fileencoding '{0}'", encoding.ToString())); return ""; // ToString on encoding, not on EncodingItem !
             }
         }
 
@@ -154,6 +185,28 @@ namespace MusicXmlReader
         }
     }
 
+    /// <summary>
+    /// Simple class for defining UI representations for the various Braille file formats. The values may be localized if required.
+    /// </summary>
+    internal class PageLayoutItem
+    {
+        private Model.BrailleStyleEnum pageLayout;
+        public Model.BrailleStyleEnum PageLayout{ get { return pageLayout; } }
+        public override string ToString()
+        {
+            switch (pageLayout)
+            {
+#warning ToDo Localize
+                case Model.BrailleStyleEnum.IBOS: return "IBOS";
+                case Model.BrailleStyleEnum.BANA2015: return "BANA";
+                default: Logger.LogCF(string.Format(": Unsupported pageLayout '{0}'", pageLayout.ToString())); return ""; // ToString on pageLayout, not on PAgeLAyoutItem !
+            }
+        }
 
+        public PageLayoutItem( Model.BrailleStyleEnum pageLayout )
+        {
+            this.pageLayout = pageLayout;
+        }
+    }
 
 }

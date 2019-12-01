@@ -44,13 +44,15 @@
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.textBoxDeviceName = new System.Windows.Forms.TextBox();
+            this.labelBraillePageLayout = new System.Windows.Forms.Label();
+            this.listBoxBraillePageLayout = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHeight)).BeginInit();
             this.SuspendLayout();
             // 
             // numericUpDownWidth
             // 
-            this.numericUpDownWidth.Location = new System.Drawing.Point(138, 74);
+            this.numericUpDownWidth.Location = new System.Drawing.Point(138, 83);
             this.numericUpDownWidth.Name = "numericUpDownWidth";
             this.numericUpDownWidth.Size = new System.Drawing.Size(53, 20);
             this.numericUpDownWidth.TabIndex = 20;
@@ -62,7 +64,7 @@
             // 
             // numericUpDownHeight
             // 
-            this.numericUpDownHeight.Location = new System.Drawing.Point(138, 100);
+            this.numericUpDownHeight.Location = new System.Drawing.Point(138, 109);
             this.numericUpDownHeight.Name = "numericUpDownHeight";
             this.numericUpDownHeight.Size = new System.Drawing.Size(53, 20);
             this.numericUpDownHeight.TabIndex = 30;
@@ -74,7 +76,7 @@
             // 
             // textBoxEscapeSequence
             // 
-            this.textBoxEscapeSequence.Location = new System.Drawing.Point(139, 126);
+            this.textBoxEscapeSequence.Location = new System.Drawing.Point(138, 135);
             this.textBoxEscapeSequence.Name = "textBoxEscapeSequence";
             this.textBoxEscapeSequence.Size = new System.Drawing.Size(673, 20);
             this.textBoxEscapeSequence.TabIndex = 40;
@@ -125,7 +127,7 @@
             // labelWidth
             // 
             this.labelWidth.AutoSize = true;
-            this.labelWidth.Location = new System.Drawing.Point(12, 74);
+            this.labelWidth.Location = new System.Drawing.Point(15, 90);
             this.labelWidth.Name = "labelWidth";
             this.labelWidth.Size = new System.Drawing.Size(35, 13);
             this.labelWidth.TabIndex = 9;
@@ -134,7 +136,7 @@
             // labelHeight
             // 
             this.labelHeight.AutoSize = true;
-            this.labelHeight.Location = new System.Drawing.Point(12, 100);
+            this.labelHeight.Location = new System.Drawing.Point(12, 109);
             this.labelHeight.Name = "labelHeight";
             this.labelHeight.Size = new System.Drawing.Size(38, 13);
             this.labelHeight.TabIndex = 10;
@@ -143,7 +145,7 @@
             // labelEscapeSequence
             // 
             this.labelEscapeSequence.AutoSize = true;
-            this.labelEscapeSequence.Location = new System.Drawing.Point(12, 129);
+            this.labelEscapeSequence.Location = new System.Drawing.Point(12, 135);
             this.labelEscapeSequence.Name = "labelEscapeSequence";
             this.labelEscapeSequence.Size = new System.Drawing.Size(93, 13);
             this.labelEscapeSequence.TabIndex = 11;
@@ -196,6 +198,23 @@
             this.textBoxDeviceName.TabIndex = 50;
             this.textBoxDeviceName.Text = "Index Braille D2";
             // 
+            // labelBraillePageLayout
+            // 
+            this.labelBraillePageLayout.AutoSize = true;
+            this.labelBraillePageLayout.Location = new System.Drawing.Point(12, 49);
+            this.labelBraillePageLayout.Name = "labelBraillePageLayout";
+            this.labelBraillePageLayout.Size = new System.Drawing.Size(90, 13);
+            this.labelBraillePageLayout.TabIndex = 91;
+            this.labelBraillePageLayout.Text = "Braille pagelayout";
+            // 
+            // listBoxBraillePageLayout
+            // 
+            this.listBoxBraillePageLayout.FormattingEnabled = true;
+            this.listBoxBraillePageLayout.Location = new System.Drawing.Point(139, 45);
+            this.listBoxBraillePageLayout.Name = "listBoxBraillePageLayout";
+            this.listBoxBraillePageLayout.Size = new System.Drawing.Size(207, 30);
+            this.listBoxBraillePageLayout.TabIndex = 92;
+            // 
             // BrailleMusicSettingsForm
             // 
             this.AcceptButton = this.buttonOK;
@@ -203,6 +222,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(824, 291);
+            this.Controls.Add(this.listBoxBraillePageLayout);
+            this.Controls.Add(this.labelBraillePageLayout);
             this.Controls.Add(this.textBoxDeviceName);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
@@ -249,5 +270,7 @@
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.TextBox textBoxDeviceName;
+        private System.Windows.Forms.Label labelBraillePageLayout;
+        private System.Windows.Forms.ListBox listBoxBraillePageLayout;
     }
 }

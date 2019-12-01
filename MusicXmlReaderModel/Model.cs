@@ -1160,6 +1160,7 @@ namespace MusicXmlReaderModel
 
         public enum BrailleStyleEnum
         {
+            Unknown,
             IBOS,       // The simple file style used by IBOS MusicXmlReader Version 3.0 which only exports the same Braille Music representation as shown in the UI
             BANA2015    // The official style specified by BANA in 2015, including Intervalnotation and InAccord representation
                         // Add more styles as needed, probably sub-formats to BANA2015 "Bar over Bar" etc

@@ -17,9 +17,11 @@ namespace MusicXmlReader
         public abstract string ApplicationName { get; set; }
         public abstract string ApplicationLocation { get; set; }
         public abstract BrailleFileHandler.FileEncoding BrailleFileFormat { get; set; }
+        public abstract Model.BrailleStyleEnum BraillePageLayout { get; set; }
 
         // DO NOT CHANGER these strings. They asssure that the file representation is unchanged!
         private const string Unknown = "UNKNOWN";
+
         private const string BRF_ASCII = "BRF_ASCII";
         private const string PEF = "PEF";
         private const string BRL_OctoBraille_1252 = "BRL_OctoBraille_1252";
@@ -27,6 +29,10 @@ namespace MusicXmlReader
         private const string BRF_Unicode_utf8 = "BRF_Unicode_utf8";
         private const string BRF_Unicode_utf16 = "BRF_Unicode_utf16";
         private const string BRF_Unicode_utf32 = "BRF_Unicode_utf32";
+
+        private const string BANA = "BANA";
+        private const string IBOS = "IBOS";
+
 
         protected BrailleFileHandler.FileEncoding ToEncoding(string s)
         {
@@ -61,9 +67,27 @@ namespace MusicXmlReader
             }
 
         }
+        
+        protected Model.BrailleStyleEnum ToPageLayout(string s)
+        {
+            switch (s)
+            {
+                case BANA: return Model.BrailleStyleEnum.BANA2015;
+                case IBOS: return Model.BrailleStyleEnum.IBOS;
+                default: return Model.BrailleStyleEnum.Unknown;
+            }
+        }
 
+        protected string FromPageLayout(Model.BrailleStyleEnum layout)
+        {
+            switch (layout)
+            {
+                case Model.BrailleStyleEnum.IBOS: return IBOS;
+                case Model.BrailleStyleEnum.BANA2015: return BANA;
+                default: return Unknown;
+            }
 
-
+        }
 
 
         public void Log()
@@ -89,8 +113,9 @@ namespace MusicXmlReader
         public override string ApplicationName { get { return settings.EmbosserApplicationName; } set { settings.EmbosserApplicationName = value; } }
         public override string ApplicationLocation { get { return settings.EmbosserApplicationLocation; } set { settings.EmbosserApplicationLocation = value; } }
         public override BrailleFileHandler.FileEncoding BrailleFileFormat { get { return ToEncoding(settings.EmbosserFileFormat); } set { settings.EmbosserFileFormat = FromEncoding(value); } }
+        public override Model.BrailleStyleEnum BraillePageLayout { get { return ToPageLayout(settings.EmbosserPageLayout); } set { settings.EmbosserPageLayout = FromPageLayout(value); } }
 
-    internal BrailleEmbosser(MusicXmlReader.Properties.Settings settings)
+        internal BrailleEmbosser(MusicXmlReader.Properties.Settings settings)
         {
             this.settings = settings;
         }
@@ -107,6 +132,7 @@ namespace MusicXmlReader
         public override string ApplicationName { get { return ""; } set { /* No action */ } }
         public override string ApplicationLocation { get { return ""; } set { /* No action */ } }
         public override BrailleFileHandler.FileEncoding BrailleFileFormat { get { return ToEncoding(settings.NoteTakerFileFormat); } set { settings.NoteTakerFileFormat = FromEncoding(value); } }
+        public override Model.BrailleStyleEnum BraillePageLayout { get { return ToPageLayout(settings.NoteTakerPageLayout); } set { settings.NoteTakerPageLayout = FromPageLayout(value); } }
 
 
 
@@ -129,6 +155,9 @@ namespace MusicXmlReader
         public override string ApplicationName { get { return settings.GenericDeviceApplicationName; } set { settings.GenericDeviceApplicationName = value; } }
         public override string ApplicationLocation { get { return settings.GenericDeviceApplicationLocation; } set { settings.GenericDeviceApplicationLocation = value; } }
         public override BrailleFileHandler.FileEncoding BrailleFileFormat { get { return ToEncoding(settings.GenericDeviceFileFormat); } set { settings.GenericDeviceFileFormat = FromEncoding(value); } }
+        public override Model.BrailleStyleEnum BraillePageLayout { get { return ToPageLayout(settings.GenericDevicePageLayout); } set { settings.GenericDevicePageLayout = FromPageLayout(value); } }
+
+
 
         internal BrailleGenericDevice(MusicXmlReader.Properties.Settings settings)
         {

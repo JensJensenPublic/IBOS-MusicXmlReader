@@ -346,5 +346,41 @@ namespace MusicXmlReader.Properties {
                 this["CapellaExe"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("BANA")]
+        public string EmbosserPageLayout {
+            get {
+                return ((string)(this["EmbosserPageLayout"]));
+            }
+            set {
+                this["EmbosserPageLayout"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("BANA")]
+        public string NoteTakerPageLayout {
+            get {
+                return ((string)(this["NoteTakerPageLayout"]));
+            }
+            set {
+                this["NoteTakerPageLayout"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("BANA")]
+        public string GenericDevicePageLayout {
+            get {
+                return ((string)(this["GenericDevicePageLayout"]));
+            }
+            set {
+                this["GenericDevicePageLayout"] = value;
+            }
+        }
     }
 }

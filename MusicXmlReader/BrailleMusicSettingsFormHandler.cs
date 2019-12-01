@@ -55,6 +55,10 @@ namespace MusicXmlReader
     /// </summary>
     abstract class BrailleMusicSettingsFormHandler
     {
+        // Private definitions used for export to Braille Music
+        private const Model.BrailleStyleEnum IbosStyle = Model.BrailleStyleEnum.IBOS;
+        private const Model.BrailleStyleEnum BanaStyle = Model.BrailleStyleEnum.BANA2015;
+
         // Shorthand for the 3 most common encodings
         protected List<BrailleFileHandler.FileEncoding> defaultEncodings = new List<BrailleFileHandler.FileEncoding>()
         {
@@ -75,18 +79,27 @@ namespace MusicXmlReader
             BrailleFileHandler.FileEncoding.PEF
         };
 
+        // Shorthand for all Braille Page Layouts implemented
+        protected List<Model.BrailleStyleEnum> braillePageLayouts = new List<Model.BrailleStyleEnum>
+        {
+            Model.BrailleStyleEnum.BANA2015,
+            Model.BrailleStyleEnum.IBOS
+        };
 
+#warning ToDo Localize
 
         // Fixed localized texts: Dialog Title and lable names:
         public abstract string Title { get; }
         public abstract string LabelDeviceName { get; }
         public virtual string LabelBrailleFileFormat { get { return "Braille file format"; } } // Override and return "" to hide label and text
+        public virtual string LabelBraillePageLayout { get { return "Praille page layout"; } }
         public abstract string LabelWidth { get; }
         public abstract string LabelHeight { get; }
         public virtual string LabelEscapeSequence { get { return "Escape sequence"; } }
         public virtual string LabelApplicationName { get{ return"Application name"; } }
         public virtual string LabelApplicationLocation { get { return "Application location"; } }
         public virtual List<BrailleFileHandler.FileEncoding> EnabledEncodings { get { return defaultEncodings; } }
+        public virtual List<Model.BrailleStyleEnum> BraillePageLayouts { get { return braillePageLayouts; } }
 
         public static  BrailleMusicSettingsFormHandler Create(BrailleMusicSettingsForm.DeviceTypeEnum deviceTypeEnum)
         {
