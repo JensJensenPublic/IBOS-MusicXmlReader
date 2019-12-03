@@ -127,14 +127,15 @@ namespace MusicXmlReader
         public override string DeviceName { get { return settings.NoteTakerName; } set { settings.NoteTakerName = value; }  }
         public override string EscapeSequence { get { return settings.NoteTakerEscapeSequence; } set { settings.NoteTakerEscapeSequence = value; }      }
         public override string FileFormat { get { return settings.NoteTakerFileFormat; } set { settings.NoteTakerFileFormat = value; } }
-        public override int PageWidth { get { return settings.NoteTakerPageWidth; } set { settings.NoteTakerPageWidth = value; } }
-        public override int PageHeight { get { return settings.NoteTakerPageHeight; } set { settings.NoteTakerPageHeight = value; } }
+        // For backwards compatibility we do not use the PageWidth and PageHeight parameters when using  IBOS layout 
+        public override int PageWidth  { get { return (IsIbosLayout ? 0 : settings.NoteTakerPageWidth); } set { if (!IsIbosLayout) { settings.NoteTakerPageWidth = value; }; } }
+        public override int PageHeight { get { return (IsIbosLayout ? 0 : settings.NoteTakerPageHeight); } set { if (!IsIbosLayout) { settings.NoteTakerPageHeight = value; }; } }
         public override string ApplicationName { get { return ""; } set { /* No action */ } }
         public override string ApplicationLocation { get { return ""; } set { /* No action */ } }
         public override BrailleFileHandler.FileEncoding BrailleFileFormat { get { return ToEncoding(settings.NoteTakerFileFormat); } set { settings.NoteTakerFileFormat = FromEncoding(value); } }
         public override Model.BrailleStyleEnum BraillePageLayout { get { return ToPageLayout(settings.NoteTakerPageLayout); } set { settings.NoteTakerPageLayout = FromPageLayout(value); } }
 
-
+        private bool IsIbosLayout { get { return (Model.BrailleStyleEnum.IBOS == this.BraillePageLayout); } } // For compatibility with version 3.0
 
         internal BrailleNoteTaker(MusicXmlReader.Properties.Settings settings)
         {
