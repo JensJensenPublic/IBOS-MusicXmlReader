@@ -84,13 +84,13 @@
       <Value Profile="(Default)">C:\Program Files (x86)\capella-software\capella 8\bin\capella.exe</Value>
     </Setting>
     <Setting Name="EmbosserPageLayout" Type="System.String" Scope="User">
-      <Value Profile="(Default)">BANA</Value>
+      <Value Profile="(Default)">IBOS</Value>
     </Setting>
     <Setting Name="NoteTakerPageLayout" Type="System.String" Scope="User">
-      <Value Profile="(Default)">BANA</Value>
+      <Value Profile="(Default)">IBOS</Value>
     </Setting>
     <Setting Name="GenericDevicePageLayout" Type="System.String" Scope="User">
-      <Value Profile="(Default)">BANA</Value>
+      <Value Profile="(Default)">IBOS</Value>
     </Setting>
   </Settings>
 </SettingsFile>
