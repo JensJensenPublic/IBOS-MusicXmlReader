@@ -973,7 +973,16 @@ namespace MusicXmlReader
                               delimiter,  bD.GetType().ToString(), bD.BrailleFileFormat, bD.PageWidth, bD.PageHeight, bD.BraillePageLayout);
             return result;
         }
-        
+
+        private string FormatExportMessage(string deviceType, string fileFormat, int pageWidth, int pageHeight,string pageLayout,string delimiter)
+        {
+            string result = string.Format("{0}BrailleDeviceType={1}{0}FileEncoding={2}{0}PageWidth={3}{0}PageHeight={4}{0}PageLayout={5}",
+                              delimiter, deviceType, fileFormat, pageWidth, pageHeight, pageLayout);
+            return result;
+        }
+
+
+
         private void Export(BrailleDevice brailleDevice)
         {
             Logger.LogCF(string.Format(": {0}", FormatExportMessage(brailleDevice," "))); // In Log use SPACE as delimiter.
@@ -998,8 +1007,23 @@ namespace MusicXmlReader
         private void toNotetakerToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #warning TODO Think about the old convension og using length and width = 0 to signal that no foematting is needed (The IBOS Layout case)
-            // brailleMusicExportHandler.ExportMusicBrailleToFile(userPreferencesHandler.noteTaker.BrailleFileFormat, 0, 0, userPreferencesHandler.noteTaker.BraillePageLayout);
-            Export(userPreferencesHandler.noteTaker);
+            BrailleDevice noteTaker = userPreferencesHandler.noteTaker;  // Just a shorthand
+            if (noteTaker.BraillePageLayout == Model.BrailleStyleEnum.IBOS)
+            {
+                // This is the case where we handle backwards compatibility by setting PAgeWidth and PAgeHeight to 0
+                string message = "Backwards compatible NoteTaker";
+                Logger.LogCF(string.Format(": {0}", FormatExportMessage(message, noteTaker.BrailleFileFormat.ToString(), 0, 0, noteTaker.BraillePageLayout.ToString(), " ")));
+                if (developerMode)
+                {
+                    MessageBox.Show("ExportMusicBrailleToFile()\r\n" + FormatExportMessage(message, noteTaker.BrailleFileFormat.ToString(), 0, 0, noteTaker.BraillePageLayout.ToString(), "\r\n"));
+                }
+                brailleMusicExportHandler.ExportMusicBrailleToFile(noteTaker.BrailleFileFormat, 0, 0, noteTaker.BraillePageLayout);
+            }
+            else
+            {
+                // This is the default case
+                Export(noteTaker);
+            }
         }
 
         //private void toBana2015NotetakerToolStripMenuItem_Click(object sender, EventArgs e)
