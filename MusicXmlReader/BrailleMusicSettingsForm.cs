@@ -19,6 +19,7 @@ namespace MusicXmlReader
         private string applicationName;
         private UserPreferencesHandler userPreferencesHandler;
         BrailleDevice brailleDevicePreferences = null;
+        BrailleMusicSettingsFormHandler settingsHandler;
 
         // If the text of a label is null or empty we mnake the label and its control invisible.
         private void Init(Label label, Control control, string labelName)
@@ -31,27 +32,40 @@ namespace MusicXmlReader
         }
 
 
+        /// <summary>
+        /// Some parts of the UI must be initialized in the constructor, but also later, if changes to other values occur.
+        /// These parts are initialized in a separate method:
+        /// </summary>
+        private void InitDynamic()
+        {
+            Init(labelWidth, numericUpDownWidth, SizeIsVisible ?  settingsHandler.LabelWidth : "");
+            Init(labelHeight, numericUpDownHeight, SizeIsVisible ? settingsHandler.LabelHeight: "");
+        }
+
+        // The size ( pageWidth and pageHeight ) is visible unless for a notetaker device with IBOS layout selected. (For the reason of backwards compatibility)
+        private bool SizeIsVisible { get { return !((DeviceTypeEnum.NoteTaker == this.deviceTypeEnum) && (Model.BrailleStyleEnum.IBOS == this.userPreferencesHandler.noteTaker.BraillePageLayout)); } }
+
         public BrailleMusicSettingsForm(DeviceTypeEnum deviceTypeEnum, string applicationName, UserPreferencesHandler userPreferences)
         {
             this.deviceTypeEnum = deviceTypeEnum;
             this.applicationName = applicationName;
             this.userPreferencesHandler = userPreferences;
             InitializeComponent();
-
+ 
 
             // Fill in title and tabels
-            BrailleMusicSettingsFormHandler settingsHandler = BrailleMusicSettingsFormHandler.Create(deviceTypeEnum);
+            this.settingsHandler = BrailleMusicSettingsFormHandler.Create(deviceTypeEnum);
             this.Text = this.applicationName + " " + settingsHandler.Title;
 
             // Initialize texts for labels and visibility for labels and other controls.
             Init(labelDeviceName, textBoxDeviceName, settingsHandler.LabelDeviceName);
             Init(labelBrailleFileFormat, listBoxFileFormat, settingsHandler.LabelBrailleFileFormat);
             Init(labelBraillePageLayout, listBoxBraillePageLayout, settingsHandler.LabelBraillePageLayout);
-            Init(labelWidth, numericUpDownWidth, settingsHandler.LabelWidth);
-            Init(labelHeight, numericUpDownHeight, settingsHandler.LabelHeight);
             Init(labelEscapeSequence, textBoxEscapeSequence, settingsHandler.LabelEscapeSequence);
             Init(labelApplicationName, textBoxApplicationName, settingsHandler.LabelApplicationName);
             Init(labelApplicationLocation, textBoxApplicationExe, settingsHandler.LabelApplicationLocation);
+
+            InitDynamic(); // Initialize parts of the UI that may need reinitialization          
 
             // Initialize values of contols      
 
@@ -97,9 +111,45 @@ namespace MusicXmlReader
                     this.listBoxBraillePageLayout.SelectedItem = pageLayoutItem;
                 }
             }
-            
+
+            listBoxBraillePageLayout.SelectedIndexChanged += ListBoxBraillePageLayout_SelectedIndexChanged;
 
             this.Refresh();
+        }
+
+
+        /// <summary>
+        /// When the PageLayout for a NoteTaker changes we may need to update the visibility of the PageWidth and PAgeHEight controls.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ListBoxBraillePageLayout_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.deviceTypeEnum != DeviceTypeEnum.NoteTaker)
+            {
+                Logger.LogCF(string.Format(": DeviceType = {0} No action taken.", this.deviceTypeEnum.ToString()));
+                return;
+            }
+            // This is a Notetaker profile so we need to reinitialize the the dynamic controls (pageWitth and pageHeight)
+            bool done = false;
+            try
+            {
+                int newIndex = listBoxBraillePageLayout.SelectedIndex;
+                object o = listBoxBraillePageLayout.Items[newIndex];
+                if (o is PageLayoutItem)
+                {
+                    this.userPreferencesHandler.noteTaker.BraillePageLayout = (o as PageLayoutItem).PageLayout;
+                    Logger.LogCF(string.Format(": Notetaker.BraillePageLayout was changed to {0}", this.userPreferencesHandler.noteTaker.BraillePageLayout));
+                    this.InitDynamic();
+                    this.Refresh();
+                    done = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogCFE(ex);
+            }
+            if (!done) Logger.LogCF(string.Format(": Failed!"));
         }
 
         /// <summary>
