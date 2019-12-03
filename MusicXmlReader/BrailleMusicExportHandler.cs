@@ -97,16 +97,6 @@ namespace MusicXmlReader
         public void ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding fileEncoding, int charsPerLine, int linesPerPage, Model.BrailleStyleEnum brailleStyle)
         {
 
-            string message = string.Format(
-            "FileEncoding={0}\r\nCharsPerLine={1}\r\nLinesPerPage={2}\r\nBrailleLAyout={3}",
-             fileEncoding, charsPerLine, linesPerPage, brailleStyle);
-            Logger.LogCF(string.Format(": {0}", message));
-            if (developerMode)
-            {
-                MessageBox.Show("ExportMusicBrailleToFile()\r\n" + message);
-            }
-
-
             if (!ScoreIsLoaded()) return; // Beeps and logs.
             if (!ScoreIsSupported(brailleStyle)) return; // Shows warning dialog
             // In this simple implementation the file format is determined by the localization !

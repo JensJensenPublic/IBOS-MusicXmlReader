@@ -967,8 +967,20 @@ namespace MusicXmlReader
         //private const int defaultEmbosserCharactersPerLine = 40; // A fallback value if nothing is found elsewhere
         //private const int defaultEmbosserLinesPerPage = 20;  // A fallback value if nothing is found elsewhere
 
+        private string FormatExportMessage(BrailleDevice bD, string delimiter)
+        {
+            string result = string.Format("{0}BrailleDeviceType={1}{0}FileEncoding={2}{0}PageWidth={3}{0}PageHeight={4}{0}PageLayout={5}",
+                              delimiter,  bD.GetType().ToString(), bD.BrailleFileFormat, bD.PageWidth, bD.PageHeight, bD.BraillePageLayout);
+            return result;
+        }
+        
         private void Export(BrailleDevice brailleDevice)
         {
+            Logger.LogCF(string.Format(": {0}", FormatExportMessage(brailleDevice," "))); // In Log use SPACE as delimiter.
+            if (developerMode)
+            {
+                MessageBox.Show("ExportMusicBrailleToFile()\r\n" + FormatExportMessage(brailleDevice, "\r\n")); // In Messagebox use CR LF as delimiter
+            }
             brailleMusicExportHandler.ExportMusicBrailleToFile(brailleDevice.BrailleFileFormat, brailleDevice.PageWidth, brailleDevice.PageHeight, brailleDevice.BraillePageLayout);
         }
 
