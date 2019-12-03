@@ -1022,4 +1022,31 @@
   <data name="TimeElement_NewTimeSignature" xml:space="preserve">
     <value>New time-signature</value>
   </data>
+  <data name="OctaveName_Contra" xml:space="preserve">
+    <value>contra</value>
+  </data>
+  <data name="OctaveName_First" xml:space="preserve">
+    <value>first</value>
+  </data>
+  <data name="OctaveName_Fourth" xml:space="preserve">
+    <value>fourth</value>
+  </data>
+  <data name="OctaveName_Large" xml:space="preserve">
+    <value>large</value>
+  </data>
+  <data name="OctaveName_Octave" xml:space="preserve">
+    <value>octave</value>
+  </data>
+  <data name="OctaveName_Second" xml:space="preserve">
+    <value>second</value>
+  </data>
+  <data name="OctaveName_Small" xml:space="preserve">
+    <value>small</value>
+  </data>
+  <data name="OctaveName_Subcontra" xml:space="preserve">
+    <value>subcontra</value>
+  </data>
+  <data name="OctaveName_Third" xml:space="preserve">
+    <value>third</value>
+  </data>
 </root>

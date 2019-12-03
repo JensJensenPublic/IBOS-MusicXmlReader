@@ -1636,6 +1636,87 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to contra.
+        /// </summary>
+        internal static string OctaveName_Contra {
+            get {
+                return ResourceManager.GetString("OctaveName_Contra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to first.
+        /// </summary>
+        internal static string OctaveName_First {
+            get {
+                return ResourceManager.GetString("OctaveName_First", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to fourth.
+        /// </summary>
+        internal static string OctaveName_Fourth {
+            get {
+                return ResourceManager.GetString("OctaveName_Fourth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to large.
+        /// </summary>
+        internal static string OctaveName_Large {
+            get {
+                return ResourceManager.GetString("OctaveName_Large", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to octave.
+        /// </summary>
+        internal static string OctaveName_Octave {
+            get {
+                return ResourceManager.GetString("OctaveName_Octave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to second.
+        /// </summary>
+        internal static string OctaveName_Second {
+            get {
+                return ResourceManager.GetString("OctaveName_Second", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to small.
+        /// </summary>
+        internal static string OctaveName_Small {
+            get {
+                return ResourceManager.GetString("OctaveName_Small", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to subcontra.
+        /// </summary>
+        internal static string OctaveName_Subcontra {
+            get {
+                return ResourceManager.GetString("OctaveName_Subcontra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to third.
+        /// </summary>
+        internal static string OctaveName_Third {
+            get {
+                return ResourceManager.GetString("OctaveName_Third", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accidental-mark.
         /// </summary>
         internal static string Ornament_AccidentalMark {

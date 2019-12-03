@@ -1025,4 +1025,31 @@
   <data name="TimeElement_NewTimeSignature" xml:space="preserve">
     <value>Ny taktart</value>
   </data>
+  <data name="OctaveName_Contra" xml:space="preserve">
+    <value>contra</value>
+  </data>
+  <data name="OctaveName_First" xml:space="preserve">
+    <value>første</value>
+  </data>
+  <data name="OctaveName_Fourth" xml:space="preserve">
+    <value>fjerde</value>
+  </data>
+  <data name="OctaveName_Large" xml:space="preserve">
+    <value>store</value>
+  </data>
+  <data name="OctaveName_Octave" xml:space="preserve">
+    <value>oktav</value>
+  </data>
+  <data name="OctaveName_Second" xml:space="preserve">
+    <value>anden</value>
+  </data>
+  <data name="OctaveName_Small" xml:space="preserve">
+    <value>lille</value>
+  </data>
+  <data name="OctaveName_Subcontra" xml:space="preserve">
+    <value>subcontra</value>
+  </data>
+  <data name="OctaveName_Third" xml:space="preserve">
+    <value>tredje</value>
+  </data>
 </root>
