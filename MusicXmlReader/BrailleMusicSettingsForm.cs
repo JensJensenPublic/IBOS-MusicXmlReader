@@ -153,7 +153,7 @@ namespace MusicXmlReader
         }
 
         /// <summary>
-        /// Save the settings left by the user back to the User preferences 
+        /// This method is called when the user clicks the OK button in the BrailleMusicSettings Form.
         /// </summary>
         public void SaveSettings()
         {
