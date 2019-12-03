@@ -188,23 +188,25 @@ namespace MusicXmlReaderModel
             }
         }
 
-#warning ToDO Implement
+#warning ToDO Use !
+
+        // Suggested by Corine and Bert 
         public string OctaveName
         {
             get
             {
-
-                return "";
-// Suggested by Corine and Bert 
-//1 = subcontra English and dutch the same
-//2 = contra    english and dutch the same
-//3 = large   groot
-//4 = small   klein
-//5 = first octave eerste octaaf
-//6 = second octave tweede octaaf
-//7 = third octave derde octaaf
-//8 = fourth octave vierde octaaf
-
+                switch (pitchElement.Octave)
+                {
+                    case 1: return ResourcesForModel.OctaveName_Subcontra;
+                    case 2: return ResourcesForModel.OctaveName_Contra;
+                    case 3: return ResourcesForModel.OctaveName_Large;
+                    case 4: return ResourcesForModel.OctaveName_Small;
+                    case 5: return ResourcesForModel.OctaveName_First;
+                    case 6: return ResourcesForModel.OctaveName_Second;
+                    case 7: return ResourcesForModel.OctaveName_Third;
+                    case 8: return ResourcesForModel.OctaveName_Fourth;
+                    default: return ResourcesForModel.OctaveName_Octave + " " + pitchElement.Octave;
+                }
             }
         }
 
