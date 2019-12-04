@@ -59,21 +59,21 @@ public GeneralSettingsForms(string applicationName,  UserPreferencesHandler user
             this.applicationName = applicationName;
             this.userPreferences = userPreferences;
             DialogResult = DialogResult.Cancel;
-#warning TODO Localize
+
             // Title
-            this.Text = this.applicationName + " " + "General settings";
+            this.Text = this.applicationName + " " + ResourcesForSettings.General_Caption;
             string fullFileName = userPreferences.MusicXmlFile;
             string fileName = SafeGetFileName(fullFileName);
  
             // Labels and textboxes for MusicXml
-            InitTextBoxAndLabel(textBoxMusicXmlFile, labelMusicXmlFile, "Latest MusicXml file",fileName , true);
-            InitTextBoxAndLabel(textBoxMusicXmlDirectory, labelMusicXmlDirectory, "Latest MusicXml path", fullFileName, true);
+            InitTextBoxAndLabel(textBoxMusicXmlFile, labelMusicXmlFile, ResourcesForSettings.General_LatestMusicXmlFile,fileName , true);
+            InitTextBoxAndLabel(textBoxMusicXmlDirectory, labelMusicXmlDirectory, ResourcesForSettings.General_LatestMusicXmlPath, fullFileName, true);
             // Label and textbox for Braille Music
-            InitTextBoxAndLabel(textBoxBrailleMusicPath, labelBrailleMusicPath, "Latest Braille Music directory", userPreferences.BrailleMusicDirectory, true);
+            InitTextBoxAndLabel(textBoxBrailleMusicPath, labelBrailleMusicPath, ResourcesForSettings.General_LatestMusicXmlPath, userPreferences.BrailleMusicDirectory, true);
 
-            InitTextBoxAndLabel(textBoxMuseScore, labelMuseScore, "MuseScore", userPreferences.MuseScoreExe, false);
-            InitTextBoxAndLabel(textBoxSibelius, labelSibelius, "Sibelius", userPreferences.SibeliusExe, false);
-            InitTextBoxAndLabel(textBoxCapella, labelCapella, "Capella", userPreferences.CapellaExe, false);
+            InitTextBoxAndLabel(textBoxMuseScore, labelMuseScore, ResourcesForSettings.General_MuseScoreLocation, userPreferences.MuseScoreExe, false);
+            InitTextBoxAndLabel(textBoxSibelius, labelSibelius, ResourcesForSettings.General_SibeliusLocation, userPreferences.SibeliusExe, false);
+            InitTextBoxAndLabel(textBoxCapella, labelCapella, ResourcesForSettings.General_CapellaLocation, userPreferences.CapellaExe, false);
         }
 
 
