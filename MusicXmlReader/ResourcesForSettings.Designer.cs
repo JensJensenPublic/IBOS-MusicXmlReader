@@ -115,11 +115,47 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ASCII.
+        /// </summary>
+        internal static string Braille_FileFormatASCII {
+            get {
+                return ResourceManager.GetString("Braille_FileFormatASCII", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OctoBraille 1252.
+        /// </summary>
+        internal static string Braille_FileFormatOctoBraille1252 {
+            get {
+                return ResourceManager.GetString("Braille_FileFormatOctoBraille1252", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generic Braille device settings.
         /// </summary>
         internal static string Braille_GenericSettingsCAption {
             get {
                 return ResourceManager.GetString("Braille_GenericSettingsCAption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BANA.
+        /// </summary>
+        internal static string Braille_LayoutBANA {
+            get {
+                return ResourceManager.GetString("Braille_LayoutBANA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IBOS.
+        /// </summary>
+        internal static string Braille_LayoutIBOS {
+            get {
+                return ResourceManager.GetString("Braille_LayoutIBOS", resourceCulture);
             }
         }
         
@@ -165,6 +201,51 @@ namespace MusicXmlReader {
         internal static string Braille_PageWidth {
             get {
                 return ResourceManager.GetString("Braille_PageWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PEF.
+        /// </summary>
+        internal static string Braille_PEF {
+            get {
+                return ResourceManager.GetString("Braille_PEF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unicode.
+        /// </summary>
+        internal static string Braille_Unicode {
+            get {
+                return ResourceManager.GetString("Braille_Unicode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unicode(UTF-16).
+        /// </summary>
+        internal static string Braille_UnicodeUtf16 {
+            get {
+                return ResourceManager.GetString("Braille_UnicodeUtf16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unicode(UTF-32).
+        /// </summary>
+        internal static string Braille_UnicodeUtf32 {
+            get {
+                return ResourceManager.GetString("Braille_UnicodeUtf32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unicode(UTF-8).
+        /// </summary>
+        internal static string Braille_UnicodeUtf8 {
+            get {
+                return ResourceManager.GetString("Braille_UnicodeUtf8", resourceCulture);
             }
         }
         

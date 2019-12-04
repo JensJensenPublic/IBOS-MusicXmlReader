@@ -135,8 +135,20 @@
   <data name="Braille_EscapeSequence" xml:space="preserve">
     <value>Escape sequence</value>
   </data>
+  <data name="Braille_FileFormatASCII" xml:space="preserve">
+    <value>ASCII</value>
+  </data>
+  <data name="Braille_FileFormatOctoBraille1252" xml:space="preserve">
+    <value>OctoBraille 1252</value>
+  </data>
   <data name="Braille_GenericSettingsCAption" xml:space="preserve">
     <value>Generic Braille device settings</value>
+  </data>
+  <data name="Braille_LayoutBANA" xml:space="preserve">
+    <value>BANA</value>
+  </data>
+  <data name="Braille_LayoutIBOS" xml:space="preserve">
+    <value>IBOS</value>
   </data>
   <data name="Braille_NotetakerName" xml:space="preserve">
     <value>Notetaker name</value>
@@ -152,6 +164,21 @@
   </data>
   <data name="Braille_PageWidth" xml:space="preserve">
     <value>Page width</value>
+  </data>
+  <data name="Braille_PEF" xml:space="preserve">
+    <value>PEF</value>
+  </data>
+  <data name="Braille_Unicode" xml:space="preserve">
+    <value>Unicode</value>
+  </data>
+  <data name="Braille_UnicodeUtf16" xml:space="preserve">
+    <value>Unicode(UTF-16)</value>
+  </data>
+  <data name="Braille_UnicodeUtf32" xml:space="preserve">
+    <value>Unicode(UTF-32)</value>
+  </data>
+  <data name="Braille_UnicodeUtf8" xml:space="preserve">
+    <value>Unicode(UTF-8)</value>
   </data>
   <data name="General_CapellaLocation" xml:space="preserve">
     <value>Capella location</value>
