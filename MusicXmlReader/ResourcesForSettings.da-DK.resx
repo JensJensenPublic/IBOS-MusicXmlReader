@@ -119,25 +119,25 @@
   </resheader>
   <data name="Braille_" xml:space="preserve">
     <value />
-    <comment>Unused item</comment>
+    <comment>Unused until now</comment>
   </data>
   <data name="Braille_ApplicationLocation" xml:space="preserve">
-    <value>Embosser program location</value>
+    <value>Punktprinter program placering</value>
   </data>
   <data name="Braille_ApplicationName" xml:space="preserve">
-    <value>Embosser program name</value>
+    <value>Punktprinter programnavn</value>
   </data>
   <data name="Braille_BrailleFileFormat" xml:space="preserve">
-    <value>Braille file format</value>
+    <value>Braille fil format</value>
   </data>
   <data name="Braille_EmbosserName" xml:space="preserve">
-    <value>Embosser name</value>
+    <value>Punktprinter navn</value>
   </data>
   <data name="Braille_EmbosserSettingsCaption" xml:space="preserve">
-    <value>Embosser serttings</value>
+    <value>Punktprinter indstillinger</value>
   </data>
   <data name="Braille_EscapeSequence" xml:space="preserve">
-    <value>Escape sequence</value>
+    <value>Escapesekvens</value>
   </data>
   <data name="Braille_FileFormatASCII" xml:space="preserve">
     <value>ASCII</value>
@@ -146,28 +146,28 @@
     <value>OctoBraille 1252</value>
   </data>
   <data name="Braille_GenericSettingsCAption" xml:space="preserve">
-    <value>Generic Braille device settings</value>
+    <value>Generelle Braille apparat indstillinger</value>
   </data>
   <data name="Braille_LayoutBANA" xml:space="preserve">
-    <value>BANA layout</value>
+    <value>BANA/Refsnæs opstilling</value>
   </data>
   <data name="Braille_LayoutIBOS" xml:space="preserve">
-    <value>IBOS layout</value>
+    <value>IBOS opstilling</value>
   </data>
   <data name="Braille_NotetakerName" xml:space="preserve">
-    <value>Notetaker name</value>
+    <value>Notatapparat navn</value>
   </data>
   <data name="Braille_NoteTakerSettingsCaption" xml:space="preserve">
-    <value>Notetaker settings</value>
+    <value>Notatapparat indstillinger</value>
   </data>
   <data name="Braille_PageHeight" xml:space="preserve">
-    <value>Page height</value>
+    <value>Sidehøjde</value>
   </data>
   <data name="Braille_PageLayout" xml:space="preserve">
-    <value>Braille page layout</value>
+    <value>Braille sideopstilling</value>
   </data>
   <data name="Braille_PageWidth" xml:space="preserve">
-    <value>Page width</value>
+    <value>Sidebredde</value>
   </data>
   <data name="Braille_PEF" xml:space="preserve">
     <value>PEF</value>
@@ -185,24 +185,27 @@
     <value>Unicode(UTF-8)</value>
   </data>
   <data name="General_CapellaLocation" xml:space="preserve">
-    <value>Capella location</value>
+    <value>Capella placering</value>
   </data>
   <data name="General_Caption" xml:space="preserve">
-    <value>General settings</value>
+    <value>Generelle indstillinger</value>
   </data>
   <data name="General_LatestBrailleMusicDirectory" xml:space="preserve">
-    <value>Latest Braille Music directory</value>
+    <value>Seneste Braille Music mappe</value>
   </data>
   <data name="General_LatestMusicXmlFile" xml:space="preserve">
-    <value>Latest MusicXml file</value>
+    <value>Seneste MusicXml fil</value>
   </data>
   <data name="General_LatestMusicXmlPath" xml:space="preserve">
-    <value>Latest MusicXml directory</value>
+    <value>Seneste MusicXml mappe</value>
   </data>
   <data name="General_MuseScoreLocation" xml:space="preserve">
-    <value>MuseScore location</value>
+    <value>MuseScore placering</value>
   </data>
   <data name="General_SibeliusLocation" xml:space="preserve">
-    <value>Sibelius location</value>
+    <value>Sibelius placering</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
 </root>
