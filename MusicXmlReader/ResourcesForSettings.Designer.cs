@@ -151,7 +151,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ASCII.
+        ///   Looks up a localized string similar to .brf (ASCII).
         /// </summary>
         internal static string Braille_FileFormatASCII {
             get {
@@ -160,7 +160,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OctoBraille 1252.
+        ///   Looks up a localized string similar to .txt (OctoBraille 1252).
         /// </summary>
         internal static string Braille_FileFormatOctoBraille1252 {
             get {
@@ -250,7 +250,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PEF.
+        ///   Looks up a localized string similar to .pef (PEF).
         /// </summary>
         internal static string Braille_PEF {
             get {
@@ -259,7 +259,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unicode.
+        ///   Looks up a localized string similar to .brf (Unicode).
         /// </summary>
         internal static string Braille_Unicode {
             get {
@@ -268,7 +268,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unicode(UTF-16).
+        ///   Looks up a localized string similar to .brf (Unicode UTF-16).
         /// </summary>
         internal static string Braille_UnicodeUtf16 {
             get {
@@ -277,7 +277,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unicode(UTF-32).
+        ///   Looks up a localized string similar to .brf (Unicode UTF-32).
         /// </summary>
         internal static string Braille_UnicodeUtf32 {
             get {
@@ -286,7 +286,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unicode(UTF-8).
+        ///   Looks up a localized string similar to .brf (Unicode UTF-8).
         /// </summary>
         internal static string Braille_UnicodeUtf8 {
             get {

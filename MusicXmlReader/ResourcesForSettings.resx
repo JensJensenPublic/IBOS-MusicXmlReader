@@ -140,10 +140,10 @@
     <value>Escape sequence</value>
   </data>
   <data name="Braille_FileFormatASCII" xml:space="preserve">
-    <value>ASCII</value>
+    <value>.brf (ASCII)</value>
   </data>
   <data name="Braille_FileFormatOctoBraille1252" xml:space="preserve">
-    <value>OctoBraille 1252</value>
+    <value>.txt (OctoBraille 1252)</value>
   </data>
   <data name="Braille_GenericSettingsCaption" xml:space="preserve">
     <value>Generic Braille device settings</value>
@@ -170,19 +170,19 @@
     <value>Braille page width</value>
   </data>
   <data name="Braille_PEF" xml:space="preserve">
-    <value>PEF</value>
+    <value>.pef (PEF)</value>
   </data>
   <data name="Braille_Unicode" xml:space="preserve">
-    <value>Unicode</value>
+    <value>.brf (Unicode)</value>
   </data>
   <data name="Braille_UnicodeUtf16" xml:space="preserve">
-    <value>Unicode(UTF-16)</value>
+    <value>.brf (Unicode UTF-16)</value>
   </data>
   <data name="Braille_UnicodeUtf32" xml:space="preserve">
-    <value>Unicode(UTF-32)</value>
+    <value>.brf (Unicode UTF-32)</value>
   </data>
   <data name="Braille_UnicodeUtf8" xml:space="preserve">
-    <value>Unicode(UTF-8)</value>
+    <value>.brf (Unicode UTF-8)</value>
   </data>
   <data name="General_CapellaLocation" xml:space="preserve">
     <value>Capella location</value>
