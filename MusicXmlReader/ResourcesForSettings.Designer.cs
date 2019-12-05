@@ -97,11 +97,38 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Embosser escapesequence.
+        /// </summary>
+        internal static string Braille_EmbosserEscapeSequence {
+            get {
+                return ResourceManager.GetString("Braille_EmbosserEscapeSequence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Embosser name.
         /// </summary>
         internal static string Braille_EmbosserName {
             get {
                 return ResourceManager.GetString("Braille_EmbosserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Embosser  program location.
+        /// </summary>
+        internal static string Braille_EmbosserProgramLocation {
+            get {
+                return ResourceManager.GetString("Braille_EmbosserProgramLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Embosser program name.
+        /// </summary>
+        internal static string Braille_EmbosserProgramName {
+            get {
+                return ResourceManager.GetString("Braille_EmbosserProgramName", resourceCulture);
             }
         }
         

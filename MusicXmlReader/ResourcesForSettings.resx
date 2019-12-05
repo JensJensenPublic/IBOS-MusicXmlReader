@@ -205,6 +205,15 @@
   <data name="General_SibeliusLocation" xml:space="preserve">
     <value>Sibelius location</value>
   </data>
+  <data name="Braille_EmbosserEscapeSequence" xml:space="preserve">
+    <value>Embosser escapesequence</value>
+  </data>
+  <data name="Braille_EmbosserProgramLocation" xml:space="preserve">
+    <value>Embosser  program location</value>
+  </data>
+  <data name="Braille_EmbosserProgramName" xml:space="preserve">
+    <value>Embosser program name</value>
+  </data>
   <data name="Braille_GenericDeviceName" xml:space="preserve">
     <value>Device name</value>
   </data>

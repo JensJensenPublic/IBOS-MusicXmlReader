@@ -146,7 +146,7 @@
     <value>OctoBraille 1252</value>
   </data>
   <data name="Braille_GenericSettingsCaption" xml:space="preserve">
-    <value>Generel Braille apparat profil</value>
+    <value>Universel Braille apparat profil</value>
   </data>
   <data name="Braille_LayoutBANA" xml:space="preserve">
     <value>BANA 2015 opstilling</value>
@@ -207,5 +207,14 @@
   </data>
   <data name="Braille_GenericDeviceName" xml:space="preserve">
     <value>Apparatets navn</value>
+  </data>
+  <data name="Braille_EmbosserEscapeSequence" xml:space="preserve">
+    <value>Punktprinter escapesekvens</value>
+  </data>
+  <data name="Braille_EmbosserProgramLocation" xml:space="preserve">
+    <value>Punktprinter programplacering</value>
+  </data>
+  <data name="Braille_EmbosserProgramName" xml:space="preserve">
+    <value>Punktprinter programnavn</value>
   </data>
 </root>
