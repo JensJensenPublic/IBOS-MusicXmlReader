@@ -66,6 +66,8 @@ namespace MusicXmlReader
             // Print Music Braille
             // printMusicBrailleUsingIBPrintToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram;
             printMusicBrailleToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_PrintMusicBraille;
+            viaWindowsPrintDialogToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_Print_via_Windows; 
+            usingExternalProgramToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_Print_using_External;
             // exportMusicBrailleToolStripMenuItem.ShortcutKeys = ShortcutHandler.exportMusicBraille;
             // GenerateAccessibleName(ref exportMusicBrailleToolStripMenuItem);
 

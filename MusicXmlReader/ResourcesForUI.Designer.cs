@@ -736,6 +736,24 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to via external program.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_Print_using_External {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_Print_using_External", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to via Windows Print-dialog.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_Print_via_Windows {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_Print_via_Windows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Emboss Music Braille file.
         /// </summary>
         internal static string ToolStripMenuItem_Files_PrintMusicBraille {
