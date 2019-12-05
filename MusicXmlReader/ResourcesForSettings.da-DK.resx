@@ -122,10 +122,10 @@
     <comment>Unused until now</comment>
   </data>
   <data name="Braille_ApplicationLocation" xml:space="preserve">
-    <value>Programplacering</value>
+    <value>Programmets placering</value>
   </data>
   <data name="Braille_ApplicationName" xml:space="preserve">
-    <value>Programnavn</value>
+    <value>Programmets navn</value>
   </data>
   <data name="Braille_BrailleFileFormat" xml:space="preserve">
     <value>Braille fil format</value>
@@ -212,9 +212,9 @@
     <value>Punktprinter escapesekvens</value>
   </data>
   <data name="Braille_EmbosserProgramLocation" xml:space="preserve">
-    <value>Punktprinter programplacering</value>
+    <value>Punktprinter programmets placering</value>
   </data>
   <data name="Braille_EmbosserProgramName" xml:space="preserve">
-    <value>Punktprinter programnavn</value>
+    <value>Punktprinter programmets navn</value>
   </data>
 </root>

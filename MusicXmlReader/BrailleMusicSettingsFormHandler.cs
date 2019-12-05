@@ -13,10 +13,9 @@ namespace MusicXmlReader
         // LabelBrailleFileFormat: Inherit value
         public override string LabelWidth { get { return ResourcesForSettings.Braille_PageWidth; } }
         public override string LabelHeight { get { return ResourcesForSettings.Braille_PageHeight; } }
-        // LabelEscapeSequence: Inherrit value 
-        // LabelApplicationName: Inherrit value
-        // LabelApplicationLocation: Inherrit value
-
+        public override string LabelEscapeSequence { get { return ResourcesForSettings.Braille_EmbosserEscapeSequence; } }
+        public override string LabelApplicationName { get { return ResourcesForSettings.Braille_EmbosserProgramName; } }
+        public override string LabelApplicationLocation { get { return ResourcesForSettings.Braille_EmbosserProgramLocation; } }
     }
 
 
