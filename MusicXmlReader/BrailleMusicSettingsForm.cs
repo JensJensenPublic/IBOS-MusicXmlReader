@@ -217,13 +217,13 @@ namespace MusicXmlReader
         {
             switch (encoding)
             {
-                case BrailleFileHandler.FileEncoding.BRF_ASCII: return "ASCII";
-                case BrailleFileHandler.FileEncoding.BRF_Unicode: return "Unicode";
-                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf16: return "Unicode(utf16)";
-                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf32: return "Unicode(utf32)";
-                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf8: return "Unicode(rtf8)";
-                case BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252: return "OctoBraille 1252";
-                case BrailleFileHandler.FileEncoding.PEF: return "PEF";
+                case BrailleFileHandler.FileEncoding.BRF_ASCII: return ResourcesForSettings.Braille_FileFormatASCII;
+                case BrailleFileHandler.FileEncoding.BRF_Unicode: return ResourcesForSettings.Braille_Unicode;
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf16: return ResourcesForSettings.Braille_UnicodeUtf16;
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf32: return ResourcesForSettings.Braille_UnicodeUtf32;
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf8: return ResourcesForSettings.Braille_UnicodeUtf8;
+                case BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252: return ResourcesForSettings.Braille_FileFormatOctoBraille1252;
+                case BrailleFileHandler.FileEncoding.PEF: return ResourcesForSettings.Braille_PEF;
                 case BrailleFileHandler.FileEncoding.Unknown: return "";
                 default: Logger.LogCF(string.Format(": Unsupported fileencoding '{0}'", encoding.ToString())); return ""; // ToString on encoding, not on EncodingItem !
             }
@@ -247,8 +247,8 @@ namespace MusicXmlReader
             switch (pageLayout)
             {
 #warning ToDo Localize
-                case Model.BrailleStyleEnum.IBOS: return "IBOS";
-                case Model.BrailleStyleEnum.BANA2015: return "BANA";
+                case Model.BrailleStyleEnum.IBOS: return ResourcesForSettings.Braille_LayoutIBOS;
+                case Model.BrailleStyleEnum.BANA2015: return ResourcesForSettings.Braille_LayoutBANA;
                 default: Logger.LogCF(string.Format(": Unsupported pageLayout '{0}'", pageLayout.ToString())); return ""; // ToString on pageLayout, not on PAgeLAyoutItem !
             }
         }
