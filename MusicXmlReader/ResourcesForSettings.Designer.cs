@@ -106,7 +106,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Embosser serttings.
+        ///   Looks up a localized string similar to Embosser profile.
         /// </summary>
         internal static string Braille_EmbosserSettingsCaption {
             get {
@@ -142,6 +142,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Device name.
+        /// </summary>
+        internal static string Braille_GenericDeviceName {
+            get {
+                return ResourceManager.GetString("Braille_GenericDeviceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generic Braille device settings.
         /// </summary>
         internal static string Braille_GenericSettingsCAption {
@@ -151,7 +160,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BANA layout.
+        ///   Looks up a localized string similar to BANA 2015 layout.
         /// </summary>
         internal static string Braille_LayoutBANA {
             get {
@@ -160,7 +169,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IBOS layout.
+        ///   Looks up a localized string similar to IBOS/Refsnæs layout.
         /// </summary>
         internal static string Braille_LayoutIBOS {
             get {
@@ -178,7 +187,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Notetaker settings.
+        ///   Looks up a localized string similar to Notetaker profile.
         /// </summary>
         internal static string Braille_NoteTakerSettingsCaption {
             get {
@@ -187,7 +196,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Page height.
+        ///   Looks up a localized string similar to Braille page height.
         /// </summary>
         internal static string Braille_PageHeight {
             get {
@@ -205,7 +214,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Page width.
+        ///   Looks up a localized string similar to Braille page width.
         /// </summary>
         internal static string Braille_PageWidth {
             get {
@@ -268,7 +277,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to General settings.
+        ///   Looks up a localized string similar to Universal profile.
         /// </summary>
         internal static string General_Caption {
             get {

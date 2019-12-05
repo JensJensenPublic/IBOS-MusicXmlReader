@@ -134,7 +134,7 @@
     <value>Punktprinter navn</value>
   </data>
   <data name="Braille_EmbosserSettingsCaption" xml:space="preserve">
-    <value>Punktprinter indstillinger</value>
+    <value>Punktprinter profil</value>
   </data>
   <data name="Braille_EscapeSequence" xml:space="preserve">
     <value>Escapesekvens</value>
@@ -149,25 +149,25 @@
     <value>Generelle Braille apparat indstillinger</value>
   </data>
   <data name="Braille_LayoutBANA" xml:space="preserve">
-    <value>BANA/Refsnæs opstilling</value>
+    <value>BANA 2015 opstilling</value>
   </data>
   <data name="Braille_LayoutIBOS" xml:space="preserve">
-    <value>IBOS opstilling</value>
+    <value>IBOS/Refsnæs opstilling</value>
   </data>
   <data name="Braille_NotetakerName" xml:space="preserve">
     <value>Notatapparat navn</value>
   </data>
   <data name="Braille_NoteTakerSettingsCaption" xml:space="preserve">
-    <value>Notatapparat indstillinger</value>
+    <value>Notatapparat profil</value>
   </data>
   <data name="Braille_PageHeight" xml:space="preserve">
-    <value>Sidehøjde</value>
+    <value>Braille sidehøjde</value>
   </data>
   <data name="Braille_PageLayout" xml:space="preserve">
     <value>Braille sideopstilling</value>
   </data>
   <data name="Braille_PageWidth" xml:space="preserve">
-    <value>Sidebredde</value>
+    <value>Braille sidebredde</value>
   </data>
   <data name="Braille_PEF" xml:space="preserve">
     <value>PEF</value>
@@ -188,7 +188,7 @@
     <value>Capella placering</value>
   </data>
   <data name="General_Caption" xml:space="preserve">
-    <value>Generelle indstillinger</value>
+    <value>Universel profil</value>
   </data>
   <data name="General_LatestBrailleMusicDirectory" xml:space="preserve">
     <value>Seneste Braille Music mappe</value>
@@ -205,7 +205,7 @@
   <data name="General_SibeliusLocation" xml:space="preserve">
     <value>Sibelius placering</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
+  <data name="Braille_GenericDeviceName" xml:space="preserve">
+    <value>Apparatets navn</value>
   </data>
 </root>

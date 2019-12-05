@@ -134,7 +134,7 @@
     <value>Embosser name</value>
   </data>
   <data name="Braille_EmbosserSettingsCaption" xml:space="preserve">
-    <value>Embosser serttings</value>
+    <value>Embosser profile</value>
   </data>
   <data name="Braille_EscapeSequence" xml:space="preserve">
     <value>Escape sequence</value>
@@ -149,25 +149,25 @@
     <value>Generic Braille device settings</value>
   </data>
   <data name="Braille_LayoutBANA" xml:space="preserve">
-    <value>BANA layout</value>
+    <value>BANA 2015 layout</value>
   </data>
   <data name="Braille_LayoutIBOS" xml:space="preserve">
-    <value>IBOS layout</value>
+    <value>IBOS/Refsnæs layout</value>
   </data>
   <data name="Braille_NotetakerName" xml:space="preserve">
     <value>Notetaker name</value>
   </data>
   <data name="Braille_NoteTakerSettingsCaption" xml:space="preserve">
-    <value>Notetaker settings</value>
+    <value>Notetaker profile</value>
   </data>
   <data name="Braille_PageHeight" xml:space="preserve">
-    <value>Page height</value>
+    <value>Braille page height</value>
   </data>
   <data name="Braille_PageLayout" xml:space="preserve">
     <value>Braille page layout</value>
   </data>
   <data name="Braille_PageWidth" xml:space="preserve">
-    <value>Page width</value>
+    <value>Braille page width</value>
   </data>
   <data name="Braille_PEF" xml:space="preserve">
     <value>PEF</value>
@@ -188,7 +188,7 @@
     <value>Capella location</value>
   </data>
   <data name="General_Caption" xml:space="preserve">
-    <value>General settings</value>
+    <value>Universal profile</value>
   </data>
   <data name="General_LatestBrailleMusicDirectory" xml:space="preserve">
     <value>Latest Braille Music directory</value>
@@ -204,5 +204,8 @@
   </data>
   <data name="General_SibeliusLocation" xml:space="preserve">
     <value>Sibelius location</value>
+  </data>
+  <data name="Braille_GenericDeviceName" xml:space="preserve">
+    <value>Device name</value>
   </data>
 </root>

@@ -8,11 +8,11 @@ namespace MusicXmlReader
 #warning TODO Localize
     class BrailleMusicSettingsFormEmbosserHandler : BrailleMusicSettingsFormHandler
     {
-        public override string Title { get { return "Embosser settings"; } }
-        public override string LabelDeviceName { get { return "Embosser name:"; } }
+        public override string Title { get { return ResourcesForSettings.Braille_EmbosserSettingsCaption; } }
+        public override string LabelDeviceName { get { return  ResourcesForSettings.Braille_EmbosserName; } }
         // LabelBrailleFileFormat: Inherit value
-        public override string LabelWidth { get { return "Page width"; } }
-        public override string LabelHeight { get { return "Page height"; } }
+        public override string LabelWidth { get { return ResourcesForSettings.Braille_PageWidth; } }
+        public override string LabelHeight { get { return ResourcesForSettings.Braille_PageHeight; } }
         // LabelEscapeSequence: Inherrit value 
         // LabelApplicationName: Inherrit value
         // LabelApplicationLocation: Inherrit value
@@ -22,10 +22,10 @@ namespace MusicXmlReader
 
     class BrailleMusicSettingsFormNoteTakerHandler : BrailleMusicSettingsFormHandler
     {
-        public override string Title { get { return "Notetaker settings"; } }
-        public override string LabelDeviceName { get { return "Notetaker name"; } }
+        public override string Title { get { return ResourcesForSettings.Braille_NoteTakerSettingsCaption; } }
+        public override string LabelDeviceName { get { return ResourcesForSettings.Braille_NotetakerName; } }
         // LabelBrailleFileFormat: Inherit value
-        public override string LabelWidth { get { return "Line width"; } }
+        public override string LabelWidth { get { return ResourcesForSettings.Braille_PageWidth; } }
         public override string LabelHeight { get { return ""; } } // Setting the label to "" makes label and entry field invisible!
         public override string LabelEscapeSequence { get { return ""; } }  // Setting the label to "" makes label and entry field invisible!
         public override string LabelApplicationName { get { return ""; } } // Setting the label to "" makes label and entry field invisible!
@@ -35,11 +35,11 @@ namespace MusicXmlReader
 
     class BrailleMusicSettingsFormGenericHandler : BrailleMusicSettingsFormHandler
     {
-        public override string Title { get { return "Generic Braille device settings"; } }
-        public override string LabelDeviceName { get { return "Device name"; } }
+        public override string Title { get { return ResourcesForSettings.Braille_GenericSettingsCAption; } }
+        public override string LabelDeviceName { get { return ResourcesForSettings.Braille_GenericDeviceName; } }
         // LabelBrailleFileFormat: Inherit value
-        public override string LabelWidth { get { return "Device width"; } }
-        public override string LabelHeight { get { return "Device height"; } }
+        public override string LabelWidth { get { return ResourcesForSettings.Braille_PageWidth; } }
+        public override string LabelHeight { get { return ResourcesForSettings.Braille_PageHeight; } }
         // LabelEscapeSequence: Inherrit value 
         // LabelApplicationName: Inherrit value
         // LabelApplicationLocation: Inherrit value
@@ -91,13 +91,13 @@ namespace MusicXmlReader
         // Fixed localized texts: Dialog Title and lable names:
         public abstract string Title { get; }
         public abstract string LabelDeviceName { get; }
-        public virtual string LabelBrailleFileFormat { get { return "Braille file format"; } } // Override and return "" to hide label and text
-        public virtual string LabelBraillePageLayout { get { return "Praille page layout"; } }
+        public virtual string LabelBrailleFileFormat { get { return ResourcesForSettings.Braille_BrailleFileFormat; } } // Override and return "" to hide label and text
+        public virtual string LabelBraillePageLayout { get { return ResourcesForSettings.Braille_PageLayout; } }
         public abstract string LabelWidth { get; }
         public abstract string LabelHeight { get; }
-        public virtual string LabelEscapeSequence { get { return "Escape sequence"; } }
-        public virtual string LabelApplicationName { get{ return"Application name"; } }
-        public virtual string LabelApplicationLocation { get { return "Application location"; } }
+        public virtual string LabelEscapeSequence { get { return ResourcesForSettings.Braille_EscapeSequence; } }
+        public virtual string LabelApplicationName { get{ return ResourcesForSettings.Braille_ApplicationName; } }
+        public virtual string LabelApplicationLocation { get { return ResourcesForSettings.Braille_ApplicationLocation; } }
         public virtual List<BrailleFileHandler.FileEncoding> EnabledEncodings { get { return defaultEncodings; } }
         public virtual List<Model.BrailleStyleEnum> BraillePageLayouts { get { return braillePageLayouts; } }
 
