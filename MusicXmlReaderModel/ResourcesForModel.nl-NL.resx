@@ -588,7 +588,8 @@
     <value>nootduur</value>
   </data>
   <data name="NoteElement_eight" xml:space="preserve">
-    <value>acht</value>
+    <value>achtste</value>
+    <comment>JSJ: Fixed eror reported by Corine</comment>
   </data>
   <data name="NoteElement_eight_rest" xml:space="preserve">
     <value>achtste rust</value>
