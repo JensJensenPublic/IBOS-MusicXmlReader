@@ -64,7 +64,7 @@ namespace MusicXmlReader
             // Export Music Braille:
             exportMusicBrailleToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBrailleToFile; // First level
             // Print Music Braille
-            printMusicBrailleUsingIBPrintToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram;
+            // printMusicBrailleUsingIBPrintToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram;
             printMusicBrailleToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_PrintMusicBraille;
             // exportMusicBrailleToolStripMenuItem.ShortcutKeys = ShortcutHandler.exportMusicBraille;
             // GenerateAccessibleName(ref exportMusicBrailleToolStripMenuItem);
@@ -1166,12 +1166,15 @@ namespace MusicXmlReader
         }
 
 
+
+
         #region Print
-        private void printMusicBrailleUsingIBPrintToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void printMusicBrailleUsingIBPrintToolStripMenuItem_Click(object sender, EventArgs e) { } // Obsolete. Replaced by:
+        private void usingExternalProgramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            //string executable = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.IBPrintExe);      //  Typically @"C:\Program Files (x86)\Index Braille\IbPrint\IbPrint.exe";
-            string executable = userPreferencesHandler.genericBrailleDevice.ApplicationLocation;
+        //string executable = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.IBPrintExe);      //  Typically @"C:\Program Files (x86)\Index Braille\IbPrint\IbPrint.exe";
+        string executable = userPreferencesHandler.genericBrailleDevice.ApplicationLocation;
             string executableName = userPreferencesHandler.genericBrailleDevice.ApplicationLocation;
             if (!File.Exists(executable))
             {
@@ -1187,7 +1190,8 @@ namespace MusicXmlReader
         }
 
 
-        private void printMusicBrailleToolStripMenuItem_Click(object sender, EventArgs e)
+        private void printMusicBrailleToolStripMenuItem_Click(object sender, EventArgs e) { } // Obsolete. Replaced by:
+        private void viaWindowsPrintDialogToolStripMenuItem_Click(object sender, EventArgs e)
         {
             embosserHandler.Emboss(userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.BrailleMusicDirectory, myMusicXmlDirectory));
         }

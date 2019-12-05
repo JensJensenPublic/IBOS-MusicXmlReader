@@ -45,7 +45,8 @@
             this.brfASCIIToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.brfUnicodeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.printMusicBrailleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printMusicBrailleUsingIBPrintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viaWindowsPrintDialogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usingExternalProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -163,7 +164,6 @@
             this.importNewSampleFilesToolStripMenuItem,
             this.exportMusicBrailleToolStripMenuItem,
             this.printMusicBrailleToolStripMenuItem,
-            this.printMusicBrailleUsingIBPrintToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
@@ -261,37 +261,47 @@
             // txtOctoBraille1252ToolStripMenuItem
             // 
             this.txtOctoBraille1252ToolStripMenuItem.Name = "txtOctoBraille1252ToolStripMenuItem";
-            this.txtOctoBraille1252ToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.txtOctoBraille1252ToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.txtOctoBraille1252ToolStripMenuItem.Text = ".txt (OctoBraille 1252)";
             this.txtOctoBraille1252ToolStripMenuItem.Click += new System.EventHandler(this.txtOctoBraille1252ToolStripMenuItem_Click);
             // 
             // brfASCIIToolStripMenuItem1
             // 
             this.brfASCIIToolStripMenuItem1.Name = "brfASCIIToolStripMenuItem1";
-            this.brfASCIIToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
+            this.brfASCIIToolStripMenuItem1.Size = new System.Drawing.Size(186, 22);
             this.brfASCIIToolStripMenuItem1.Text = ".brf (ASCII)";
             this.brfASCIIToolStripMenuItem1.Click += new System.EventHandler(this.brfASCIIToolStripMenuItem1_Click);
             // 
             // brfUnicodeToolStripMenuItem1
             // 
             this.brfUnicodeToolStripMenuItem1.Name = "brfUnicodeToolStripMenuItem1";
-            this.brfUnicodeToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
+            this.brfUnicodeToolStripMenuItem1.Size = new System.Drawing.Size(186, 22);
             this.brfUnicodeToolStripMenuItem1.Text = ".brf (Unicode)";
             this.brfUnicodeToolStripMenuItem1.Click += new System.EventHandler(this.brfUnicodeToolStripMenuItem1_Click);
             // 
             // printMusicBrailleToolStripMenuItem
             // 
+            this.printMusicBrailleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viaWindowsPrintDialogToolStripMenuItem,
+            this.usingExternalProgramToolStripMenuItem});
             this.printMusicBrailleToolStripMenuItem.Name = "printMusicBrailleToolStripMenuItem";
             this.printMusicBrailleToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
             this.printMusicBrailleToolStripMenuItem.Text = "Print Music Braille";
             this.printMusicBrailleToolStripMenuItem.Click += new System.EventHandler(this.printMusicBrailleToolStripMenuItem_Click);
             // 
-            // printMusicBrailleUsingIBPrintToolStripMenuItem
+            // viaWindowsPrintDialogToolStripMenuItem
             // 
-            this.printMusicBrailleUsingIBPrintToolStripMenuItem.Name = "printMusicBrailleUsingIBPrintToolStripMenuItem";
-            this.printMusicBrailleUsingIBPrintToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
-            this.printMusicBrailleUsingIBPrintToolStripMenuItem.Text = "Print Music Braille using IBPrint";
-            this.printMusicBrailleUsingIBPrintToolStripMenuItem.Click += new System.EventHandler(this.printMusicBrailleUsingIBPrintToolStripMenuItem_Click);
+            this.viaWindowsPrintDialogToolStripMenuItem.Name = "viaWindowsPrintDialogToolStripMenuItem";
+            this.viaWindowsPrintDialogToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.viaWindowsPrintDialogToolStripMenuItem.Text = "using Windows Print dialog";
+            this.viaWindowsPrintDialogToolStripMenuItem.Click += new System.EventHandler(this.viaWindowsPrintDialogToolStripMenuItem_Click);
+            // 
+            // usingExternalProgramToolStripMenuItem
+            // 
+            this.usingExternalProgramToolStripMenuItem.Name = "usingExternalProgramToolStripMenuItem";
+            this.usingExternalProgramToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.usingExternalProgramToolStripMenuItem.Text = "using external program";
+            this.usingExternalProgramToolStripMenuItem.Click += new System.EventHandler(this.usingExternalProgramToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -536,7 +546,7 @@
             this.interpretFileAsBrailleMusicToolStripMenuItem,
             this.userPreferencesLocationToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // museScoreToolStripMenuItem
@@ -1099,7 +1109,6 @@
         private System.Windows.Forms.ToolStripMenuItem aSCIIToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unicodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autodetectedEncodingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem printMusicBrailleUsingIBPrintToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printMusicBrailleToolStripMenuItem;
         private System.Windows.Forms.PrintDialog printDialog;
         private System.Windows.Forms.ToolStripMenuItem openRecentMusicXmlFileToolStripMenuItem;
@@ -1113,6 +1122,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem resetAllUserSettingsToDefaultValuesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toGenericDeviceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viaWindowsPrintDialogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usingExternalProgramToolStripMenuItem;
     }
 }
 
