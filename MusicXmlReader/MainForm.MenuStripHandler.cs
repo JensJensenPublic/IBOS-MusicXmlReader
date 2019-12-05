@@ -1200,10 +1200,16 @@ namespace MusicXmlReader
         }
         #endregion Print
 
+        #region Copy
+        // Opens Explorer.exe in the directory where the latest MusicBraille file was generated. Defaults to myMusicXmlDirectory.
         private void copyMusicBrailleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Logger.LogCF(":");
+            string program = Utilities.ExplorerExe;
+            string directory = userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.BrailleMusicDirectory, myMusicXmlDirectory);
+            Logger.LogCF(string.Format(": Starting {0} in {1}",program,directory));
+            Utilities.RunExeWithArgument(program, directory);
         }
+        #endregion Copy
 
 
         #endregion // Export of Music Braille

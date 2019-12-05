@@ -372,7 +372,7 @@ namespace MusicXmlReader
             string developerPath = Path.Combine(savePath, "Developer");
             Logger.LogCF(string.Format(": Directory={0}", developerPath));
             messageHandler.ShowMessage(text + "\r\n" + result);
-            Utilities.RunExeWithArgument("explorer.exe", developerPath);
+            Utilities.RunExeWithArgument(Utilities.ExplorerExe, developerPath);
             return text + "\r\n" + result;
         }
 

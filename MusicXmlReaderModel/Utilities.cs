@@ -54,6 +54,8 @@ namespace MusicXmlReaderModel
         private static string className = "Utilities";
         public static IUtilityClient UtilityClient;
 
+        public const string ExplorerExe = "Explorer.exe";
+
         public static void ShowWarning(ModelMessageEnum textEnum, string parameter, string text)
         {
             if (null != UtilityClient)
