@@ -52,7 +52,7 @@
             // 
             // numericUpDownWidth
             // 
-            this.numericUpDownWidth.Location = new System.Drawing.Point(140, 128);
+            this.numericUpDownWidth.Location = new System.Drawing.Point(175, 130);
             this.numericUpDownWidth.Name = "numericUpDownWidth";
             this.numericUpDownWidth.Size = new System.Drawing.Size(53, 20);
             this.numericUpDownWidth.TabIndex = 20;
@@ -64,7 +64,7 @@
             // 
             // numericUpDownHeight
             // 
-            this.numericUpDownHeight.Location = new System.Drawing.Point(140, 154);
+            this.numericUpDownHeight.Location = new System.Drawing.Point(175, 154);
             this.numericUpDownHeight.Name = "numericUpDownHeight";
             this.numericUpDownHeight.Size = new System.Drawing.Size(53, 20);
             this.numericUpDownHeight.TabIndex = 30;
@@ -76,7 +76,7 @@
             // 
             // textBoxEscapeSequence
             // 
-            this.textBoxEscapeSequence.Location = new System.Drawing.Point(140, 180);
+            this.textBoxEscapeSequence.Location = new System.Drawing.Point(175, 180);
             this.textBoxEscapeSequence.Name = "textBoxEscapeSequence";
             this.textBoxEscapeSequence.Size = new System.Drawing.Size(673, 20);
             this.textBoxEscapeSequence.TabIndex = 40;
@@ -85,14 +85,14 @@
             // listBoxFileFormat
             // 
             this.listBoxFileFormat.FormattingEnabled = true;
-            this.listBoxFileFormat.Location = new System.Drawing.Point(139, 25);
+            this.listBoxFileFormat.Location = new System.Drawing.Point(175, 25);
             this.listBoxFileFormat.Name = "listBoxFileFormat";
             this.listBoxFileFormat.Size = new System.Drawing.Size(207, 43);
             this.listBoxFileFormat.TabIndex = 10;
             // 
             // textBoxApplicationName
             // 
-            this.textBoxApplicationName.Location = new System.Drawing.Point(140, 232);
+            this.textBoxApplicationName.Location = new System.Drawing.Point(175, 232);
             this.textBoxApplicationName.Name = "textBoxApplicationName";
             this.textBoxApplicationName.Size = new System.Drawing.Size(673, 20);
             this.textBoxApplicationName.TabIndex = 60;
@@ -100,9 +100,9 @@
             // 
             // textBoxApplicationExe
             // 
-            this.textBoxApplicationExe.Location = new System.Drawing.Point(139, 258);
+            this.textBoxApplicationExe.Location = new System.Drawing.Point(175, 258);
             this.textBoxApplicationExe.Name = "textBoxApplicationExe";
-            this.textBoxApplicationExe.Size = new System.Drawing.Size(674, 20);
+            this.textBoxApplicationExe.Size = new System.Drawing.Size(673, 20);
             this.textBoxApplicationExe.TabIndex = 70;
             this.textBoxApplicationExe.Text = "IBPrint.exe";
             // 
@@ -165,13 +165,13 @@
             this.labelApplicationLocation.AutoSize = true;
             this.labelApplicationLocation.Location = new System.Drawing.Point(15, 261);
             this.labelApplicationLocation.Name = "labelApplicationLocation";
-            this.labelApplicationLocation.Size = new System.Drawing.Size(99, 13);
+            this.labelApplicationLocation.Size = new System.Drawing.Size(143, 13);
             this.labelApplicationLocation.TabIndex = 13;
-            this.labelApplicationLocation.Text = "Application location";
+            this.labelApplicationLocation.Text = "Application program location ";
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(737, 284);
+            this.buttonOK.Location = new System.Drawing.Point(773, 284);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 90;
@@ -192,7 +192,7 @@
             // 
             // textBoxDeviceName
             // 
-            this.textBoxDeviceName.Location = new System.Drawing.Point(140, 206);
+            this.textBoxDeviceName.Location = new System.Drawing.Point(175, 206);
             this.textBoxDeviceName.Name = "textBoxDeviceName";
             this.textBoxDeviceName.Size = new System.Drawing.Size(673, 20);
             this.textBoxDeviceName.TabIndex = 50;
@@ -201,7 +201,7 @@
             // labelBraillePageLayout
             // 
             this.labelBraillePageLayout.AutoSize = true;
-            this.labelBraillePageLayout.Location = new System.Drawing.Point(18, 109);
+            this.labelBraillePageLayout.Location = new System.Drawing.Point(15, 109);
             this.labelBraillePageLayout.Name = "labelBraillePageLayout";
             this.labelBraillePageLayout.Size = new System.Drawing.Size(90, 13);
             this.labelBraillePageLayout.TabIndex = 91;
@@ -210,7 +210,7 @@
             // listBoxBraillePageLayout
             // 
             this.listBoxBraillePageLayout.FormattingEnabled = true;
-            this.listBoxBraillePageLayout.Location = new System.Drawing.Point(139, 92);
+            this.listBoxBraillePageLayout.Location = new System.Drawing.Point(175, 94);
             this.listBoxBraillePageLayout.Name = "listBoxBraillePageLayout";
             this.listBoxBraillePageLayout.Size = new System.Drawing.Size(207, 30);
             this.listBoxBraillePageLayout.TabIndex = 15;
@@ -221,7 +221,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(824, 319);
+            this.ClientSize = new System.Drawing.Size(861, 319);
             this.Controls.Add(this.listBoxBraillePageLayout);
             this.Controls.Add(this.labelBraillePageLayout);
             this.Controls.Add(this.textBoxDeviceName);

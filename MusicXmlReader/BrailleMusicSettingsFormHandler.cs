@@ -35,7 +35,7 @@ namespace MusicXmlReader
 
     class BrailleMusicSettingsFormGenericHandler : BrailleMusicSettingsFormHandler
     {
-        public override string Title { get { return ResourcesForSettings.Braille_GenericSettingsCAption; } }
+        public override string Title { get { return ResourcesForSettings.Braille_GenericSettingsCaption; } }
         public override string LabelDeviceName { get { return ResourcesForSettings.Braille_GenericDeviceName; } }
         // LabelBrailleFileFormat: Inherit value
         public override string LabelWidth { get { return ResourcesForSettings.Braille_PageWidth; } }

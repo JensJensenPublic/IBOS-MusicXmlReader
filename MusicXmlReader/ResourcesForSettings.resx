@@ -145,7 +145,7 @@
   <data name="Braille_FileFormatOctoBraille1252" xml:space="preserve">
     <value>OctoBraille 1252</value>
   </data>
-  <data name="Braille_GenericSettingsCAption" xml:space="preserve">
+  <data name="Braille_GenericSettingsCaption" xml:space="preserve">
     <value>Generic Braille device settings</value>
   </data>
   <data name="Braille_LayoutBANA" xml:space="preserve">

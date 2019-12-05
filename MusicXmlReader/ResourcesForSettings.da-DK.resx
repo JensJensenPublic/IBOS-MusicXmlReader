@@ -122,10 +122,10 @@
     <comment>Unused until now</comment>
   </data>
   <data name="Braille_ApplicationLocation" xml:space="preserve">
-    <value>Punktprinter program placering</value>
+    <value>Programplacering</value>
   </data>
   <data name="Braille_ApplicationName" xml:space="preserve">
-    <value>Punktprinter programnavn</value>
+    <value>Programnavn</value>
   </data>
   <data name="Braille_BrailleFileFormat" xml:space="preserve">
     <value>Braille fil format</value>
@@ -145,8 +145,8 @@
   <data name="Braille_FileFormatOctoBraille1252" xml:space="preserve">
     <value>OctoBraille 1252</value>
   </data>
-  <data name="Braille_GenericSettingsCAption" xml:space="preserve">
-    <value>Generelle Braille apparat indstillinger</value>
+  <data name="Braille_GenericSettingsCaption" xml:space="preserve">
+    <value>Generel Braille apparat profil</value>
   </data>
   <data name="Braille_LayoutBANA" xml:space="preserve">
     <value>BANA 2015 opstilling</value>

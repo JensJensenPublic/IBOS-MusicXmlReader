@@ -153,9 +153,9 @@ namespace MusicXmlReader {
         /// <summary>
         ///   Looks up a localized string similar to Generic Braille device settings.
         /// </summary>
-        internal static string Braille_GenericSettingsCAption {
+        internal static string Braille_GenericSettingsCaption {
             get {
-                return ResourceManager.GetString("Braille_GenericSettingsCAption", resourceCulture);
+                return ResourceManager.GetString("Braille_GenericSettingsCaption", resourceCulture);
             }
         }
         
