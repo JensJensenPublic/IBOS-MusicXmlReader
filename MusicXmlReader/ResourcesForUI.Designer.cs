@@ -763,6 +763,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To universal Braille-device.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_ToGenericDevice {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_ToGenericDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to to NoteTaker.
         /// </summary>
         internal static string ToolStripMenuItem_Files_ToNoteTaker {

@@ -496,6 +496,10 @@
   <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
     <value>E&amp;xport Music Braille to file</value>
   </data>
+  <data name="ToolStripMenuItem_Files_ToGenericDevice" xml:space="preserve">
+    <value>To universal Braille-device</value>
+    <comment>MISSING NL</comment>
+  </data>
   <data name="ToolStripMenuItem_Settings_Embosser" xml:space="preserve">
     <value>Settings for &amp;embosser profile</value>
     <comment>MISSING NL</comment>

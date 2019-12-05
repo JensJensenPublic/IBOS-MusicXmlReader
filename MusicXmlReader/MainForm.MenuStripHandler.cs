@@ -69,9 +69,10 @@ namespace MusicXmlReader
             // exportMusicBrailleToolStripMenuItem.ShortcutKeys = ShortcutHandler.exportMusicBraille;
             // GenerateAccessibleName(ref exportMusicBrailleToolStripMenuItem);
 
-            toNotetakerToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker; // Simple IBOS format, Second level
-            toEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser; //  Simple IBOS format, Second level
-            inOptionalFormatToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_InOptionalFormat; //  Simple IBOS format, Second level
+            toNotetakerToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker; //  Second level
+            toEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser; //   Second level
+            toGenericDeviceToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToGenericDevice; // Second level
+            inOptionalFormatToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_InOptionalFormat; //  Second level
 
             txtOctoBraille1252ToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_TxtOctoBraille1252; // Third level
             brfASCIIToolStripMenuItem1.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII; // Third level

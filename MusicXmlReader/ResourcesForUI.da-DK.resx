@@ -492,6 +492,10 @@
   <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
     <value>E&amp;xportér punktnoder til fil</value>
   </data>
+  <data name="ToolStripMenuItem_Files_ToGenericDevice" xml:space="preserve">
+    <value>til universelt Brailleapparat</value>
+    <comment>MISSING NL</comment>
+  </data>
   <data name="ToolStripMenuItem_Settings_Embosser" xml:space="preserve">
     <value>Indstillinger for &amp;punktprinter profil</value>
     <comment>MISSING NL</comment>
