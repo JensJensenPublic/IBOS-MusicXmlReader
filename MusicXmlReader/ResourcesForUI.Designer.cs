@@ -853,6 +853,51 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings for &amp;embosser profile.
+        /// </summary>
+        internal static string ToolStripMenuItem_Settings_Embosser {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Settings_Embosser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;General settings.
+        /// </summary>
+        internal static string ToolStripMenuItem_Settings_General {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Settings_General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings for &amp;universal Braille-device profile.
+        /// </summary>
+        internal static string ToolStripMenuItem_Settings_MusicBraille {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Settings_MusicBraille", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings for &amp;notetaker profile.
+        /// </summary>
+        internal static string ToolStripMenuItem_Settings_NoteTaker {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Settings_NoteTaker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset all settings to default.
+        /// </summary>
+        internal static string ToolStripMenuItem_Settings_ResetAll {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Settings_ResetAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Tools.
         /// </summary>
         internal static string ToolStripMenuItem_Tools {

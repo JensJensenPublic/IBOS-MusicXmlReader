@@ -138,6 +138,15 @@ namespace MusicXmlReader
             GenerateAccessibleName(ref instrumentsToolStripMenuItem);
             this.brailleFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_View_MusicBrailleForNoteTaker;
 
+            // Children of SettingsToolStripMenuItem
+
+            generelSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Settings_General;
+            embosserSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Settings_Embosser;
+            notetakerSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Settings_NoteTaker;
+            musicBrailleSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Settings_MusicBraille;
+            resetAllUserSettingsToDefaultValuesToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Settings_ResetAll;
+
+
             // Children of  toolsToolStripMenuItem
             museScoreToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_MuseScore;
             sibeliusToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Sibelius;

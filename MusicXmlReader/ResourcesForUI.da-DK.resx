@@ -492,4 +492,24 @@
   <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
     <value>E&amp;xportér punktnoder til fil</value>
   </data>
+  <data name="ToolStripMenuItem_Settings_Embosser" xml:space="preserve">
+    <value>Indstillinger for &amp;punktprinter profil</value>
+    <comment>MISSING NL</comment>
+  </data>
+  <data name="ToolStripMenuItem_Settings_General" xml:space="preserve">
+    <value>&amp;Generelle indstillinger </value>
+    <comment>MISSING NL</comment>
+  </data>
+  <data name="ToolStripMenuItem_Settings_MusicBraille" xml:space="preserve">
+    <value>Indstillinger for &amp;universel Brailleapparat profil</value>
+    <comment>MISSING NL</comment>
+  </data>
+  <data name="ToolStripMenuItem_Settings_NoteTaker" xml:space="preserve">
+    <value>Indstillinger for &amp;notatapparat profil</value>
+    <comment>MISSING NL</comment>
+  </data>
+  <data name="ToolStripMenuItem_Settings_ResetAll" xml:space="preserve">
+    <value>Nulstil alle indstillinger til standard værdier</value>
+    <comment>MISSING NL</comment>
+  </data>
 </root>
