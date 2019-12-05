@@ -133,6 +133,7 @@
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
+            this.copyMusicBrailleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -164,6 +165,7 @@
             this.importNewSampleFilesToolStripMenuItem,
             this.exportMusicBrailleToolStripMenuItem,
             this.printMusicBrailleToolStripMenuItem,
+            this.copyMusicBrailleToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
@@ -988,6 +990,13 @@
             // 
             this.printDialog.UseEXDialog = true;
             // 
+            // copyMusicBrailleToolStripMenuItem
+            // 
+            this.copyMusicBrailleToolStripMenuItem.Name = "copyMusicBrailleToolStripMenuItem";
+            this.copyMusicBrailleToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.copyMusicBrailleToolStripMenuItem.Text = "Copy Music Braille";
+            this.copyMusicBrailleToolStripMenuItem.Click += new System.EventHandler(this.copyMusicBrailleToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1124,6 +1133,7 @@
         private System.Windows.Forms.ToolStripMenuItem toGenericDeviceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viaWindowsPrintDialogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usingExternalProgramToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyMusicBrailleToolStripMenuItem;
     }
 }
 

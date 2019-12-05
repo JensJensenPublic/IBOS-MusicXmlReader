@@ -80,14 +80,15 @@ namespace MusicXmlReader
             brfASCIIToolStripMenuItem1.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII; // Third level
             brfUnicodeToolStripMenuItem1.Text = ResourcesForUI.ToolStripMenuItem_Files_BrfUnicode; // Third level
 
+            copyMusicBrailleToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_CopyMusicBraille;
 
 
-            //this.exportMusicBrailleToFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBrailleToFile;
-            // this.exportMusicBrailleToFileToolStripMenuItem.ShortcutKeys = ShortcutHandler....;
-            //this.brfUnicodeToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_Unicode;
-            //this.brfUnicodeToolStripMenuItem.ShowShortcutKeys = ShortcutHandler....;
-            //this.brfASCIIToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII;
-            //this.brfASCIIToolStripMenuItem.ShortcutKeys = ShortcutHandler....;
+  //this.exportMusicBrailleToFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBrailleToFile;
+  // this.exportMusicBrailleToFileToolStripMenuItem.ShortcutKeys = ShortcutHandler....;
+  //this.brfUnicodeToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_Unicode;
+  //this.brfUnicodeToolStripMenuItem.ShowShortcutKeys = ShortcutHandler....;
+  //this.brfASCIIToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII;
+  //this.brfASCIIToolStripMenuItem.ShortcutKeys = ShortcutHandler....;
 
 
             // Children of editToolStripMenuItem, referring to the Treeview
@@ -1198,6 +1199,12 @@ namespace MusicXmlReader
             embosserHandler.Emboss(userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.BrailleMusicDirectory, myMusicXmlDirectory));
         }
         #endregion Print
+
+        private void copyMusicBrailleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Logger.LogCF(":");
+        }
+
 
         #endregion // Export of Music Braille
 

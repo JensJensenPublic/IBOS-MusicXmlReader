@@ -655,6 +655,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Copy Music Braille file to Braille-device .
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_CopyMusicBraille {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_CopyMusicBraille", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E&amp;xit.
         /// </summary>
         internal static string ToolStripMenuItem_Files_Exit {
