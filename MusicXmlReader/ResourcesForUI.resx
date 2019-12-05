@@ -497,7 +497,7 @@
     <value>E&amp;xport Music Braille to file</value>
   </data>
   <data name="ToolStripMenuItem_Files_CopyMusicBraille" xml:space="preserve">
-    <value>&amp;Copy Music Braille file to Braille-device </value>
+    <value>&amp;Copy Music Braille file to Braille-device using Windows Explorer</value>
     <comment>MISSING NL</comment>
   </data>
   <data name="ToolStripMenuItem_Files_Print_using_External" xml:space="preserve">

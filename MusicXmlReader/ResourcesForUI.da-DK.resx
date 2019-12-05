@@ -493,7 +493,7 @@
     <value>E&amp;xportér punktnoder til fil</value>
   </data>
   <data name="ToolStripMenuItem_Files_CopyMusicBraille" xml:space="preserve">
-    <value>&amp;Kopiér punktnodefil til Brailleapparat </value>
+    <value>&amp;Kopiér punktnodefil til Brailleapparat ved hjælp af Stifinder</value>
     <comment>MISSING NL</comment>
   </data>
   <data name="ToolStripMenuItem_Files_Print_using_External" xml:space="preserve">
