@@ -13,7 +13,7 @@ namespace MusicXmlReader
         // LabelBrailleFileFormat: Inherit value
         public override string LabelWidth { get { return ResourcesForSettings.Braille_PageWidth; } }
         public override string LabelHeight { get { return ResourcesForSettings.Braille_PageHeight; } }
-        public override string LabelEscapeSequence { get { return ResourcesForSettings.Braille_EmbosserEscapeSequence; } }
+        public override string LabelEscapeSequence { get { return ""; /* ResourcesForSettings.Braille_EmbosserEscapeSequence;*/ } } // Only UI. Not implemented yet !
         public override string LabelApplicationName { get { return ResourcesForSettings.Braille_EmbosserProgramName; } }
         public override string LabelApplicationLocation { get { return ResourcesForSettings.Braille_EmbosserProgramLocation; } }
     }
@@ -94,7 +94,7 @@ namespace MusicXmlReader
         public virtual string LabelBraillePageLayout { get { return ResourcesForSettings.Braille_PageLayout; } }
         public abstract string LabelWidth { get; }
         public abstract string LabelHeight { get; }
-        public virtual string LabelEscapeSequence { get { return ResourcesForSettings.Braille_EscapeSequence; } }
+        public virtual string LabelEscapeSequence { get { return  ""; /* ResourcesForSettings.Braille_EscapeSequence; */ } } // Only UI. Not implemented yet !
         public virtual string LabelApplicationName { get{ return ResourcesForSettings.Braille_ApplicationName; } }
         public virtual string LabelApplicationLocation { get { return ResourcesForSettings.Braille_ApplicationLocation; } }
         public virtual List<BrailleFileHandler.FileEncoding> EnabledEncodings { get { return defaultEncodings; } }
