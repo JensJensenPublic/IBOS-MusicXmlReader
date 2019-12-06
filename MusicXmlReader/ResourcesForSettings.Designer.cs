@@ -304,7 +304,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Universal profile.
+        ///   Looks up a localized string similar to General settings.
         /// </summary>
         internal static string General_Caption {
             get {
