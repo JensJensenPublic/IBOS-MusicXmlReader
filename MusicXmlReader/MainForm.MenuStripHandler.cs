@@ -621,6 +621,12 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.StartSibelius(model.TheMusicXmlFileName, this.userPreferencesHandler.SibeliusExe);
         }
 
+        private void startCapellaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.StartSibelius(model.TheMusicXmlFileName, this.userPreferencesHandler.CapellaExe);
+        }
+
+
         private void logfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             model.ExternalToolsHandler.ReadLogFile();
