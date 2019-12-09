@@ -1356,7 +1356,9 @@ namespace MusicXmlReaderModel
             List<string> decodedLines = new List<string>();
             Decoder brailleMusicDecoder = Decoder.Create(Decoder.StateEnum.Text, brailleFileAsUnicode, loggerProxy as IBrailleMusicDecoderLogger); // Assume initial state is "Text
             int i = 0;
-            string decodedLine = null;
+            string decodedLine = null;  
+            Logger.StartCaching(); //  During the do-loop we cache all loglines. After the do-loop we write them to the logfile in one operation
+            //Logger.UseConsole = false;
             do
             {
                 // int thisValue = brailleFileAsUnicode[i];
@@ -1368,6 +1370,8 @@ namespace MusicXmlReaderModel
                 }
             } while (null != decodedLine);
             result.AddRange(decodedLines);
+            Logger.EndCaching(); // Flush the cached lines to disk. Start flushing each line to the logfile again
+            //Logger.UseConsole = true; // We do not want to write the (potentially enourmous) cache to the console 
             return result; 
         }
     }

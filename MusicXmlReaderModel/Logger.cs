@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Diagnostics; // For finding calling method
 using System.Reflection;  // For finding calling method
+using System.Text;
 
 
 namespace MusicXmlReaderModel
@@ -201,6 +202,29 @@ namespace MusicXmlReaderModel
             }
         }
 
+
+        private static StringBuilder cachedLines = null;
+        public static void StartCaching()
+        {
+            Log("StartCaching"); // Log BEFORE changing state
+            // Start caching  Lines instead of flushing them to disk
+            cachedLines = new StringBuilder(1024 * 1024); // We might as well set aside 1MB from the start ! 
+            useConsole = false;
+        }
+
+        public static void EndCaching()
+        {
+            int numberOfChars = 0;
+            if (null != cachedLines)
+            {
+                numberOfChars = cachedLines.Length;
+                System.IO.File.AppendAllText(logFileFullName, cachedLines.ToString());
+            }
+            cachedLines = null;
+            useConsole = true;
+            Log(string.Format("EndCaching ({0} characters)",numberOfChars)); // Log AFTER changing state
+        }
+
         public static string LogFileFullName
         {
             get
@@ -295,7 +319,15 @@ namespace MusicXmlReaderModel
                     System.DateTime now = System.DateTime.Now;
                     time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
                 }
-                System.IO.File.AppendAllText(logFileFullName, time + " " + s + "\r\n");
+                string line = time + " " + s + "\r\n";
+                if (null == cachedLines)
+                {
+                    System.IO.File.AppendAllText(logFileFullName,line);
+                }
+                else
+                {
+                    cachedLines.Append(line); // Much better performance
+                }
                 numberOfLogLines++;
             }
             catch (Exception)
