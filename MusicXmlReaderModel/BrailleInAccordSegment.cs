@@ -95,7 +95,7 @@ namespace MusicXmlReaderModel
             bool isFullMeasure = this.IsFullMeasure; // Only evaluate once, the value is the same for all voices.
             if (!fromTop)
             {
-                Logger.LogCF(string.Format(": Reversing {0} voices because the rendering order is not fromtop",voices.Count));
+                // Logger.LogCF(string.Format(": Reversing {0} voices because the rendering order is not fromtop",voices.Count)); // Will slow down some scores considerably !
                 voices.Reverse();
             }
             foreach (BrailleInAccordVoice voice in voices)
