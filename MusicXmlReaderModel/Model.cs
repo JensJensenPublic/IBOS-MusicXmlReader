@@ -1345,22 +1345,24 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public List<string> InterpretBrailleMusicFile(string fileName, BrailleFileHandler.FileEncoding fileEncoding)
         {
+            Logger.LogCF(": Entry");
             List<string> result = new List<string>();
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, 0, 0); // Just leave the formatting parameters as 0 for interpreting a file
-            string logLine = (null != brailleFileHandler) ? string.Format("Created BraillefileHandler {0}", brailleFileHandler) : "Failed to create BrailleFileHandler";
-            Logger.LogCF(logLine);
-            if (null == brailleFileHandler) return result;
-            string brailleFileAsUnicode = brailleFileHandler.ReadFromFile(fileName);
-            result = brailleFileHandler.Format(brailleFileAsUnicode);
-            // Find the decoded contents
-            List<string> decodedLines = new List<string>();
-            Decoder brailleMusicDecoder = Decoder.Create(Decoder.StateEnum.Text, brailleFileAsUnicode, loggerProxy as IBrailleMusicDecoderLogger); // Assume initial state is "Text
-            int i = 0;
-            string decodedLine = null;
             string exceptionMessage = null;
-            Logger.StartCaching(); //  During the do-loop we cache all loglines. After the do-loop we write them to the logfile in one operation
+            Logger.StartCaching(); //  During  brailleFileHandler.Format and the do-loop we cache all loglines. After the do-loop we write them to the logfile in one operation
             try
-            {        
+            {          
+                BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, 0, 0); // Just leave the formatting parameters as 0 for interpreting a file
+                string logLine = (null != brailleFileHandler) ? string.Format("Created BraillefileHandler {0}", brailleFileHandler) : "Failed to create BrailleFileHandler";
+                Logger.LogCF(logLine);
+                if (null == brailleFileHandler) return result;
+                string brailleFileAsUnicode = brailleFileHandler.ReadFromFile(fileName);
+                result = brailleFileHandler.Format(brailleFileAsUnicode);
+                // Find the decoded contents
+                List<string> decodedLines = new List<string>();
+                Decoder brailleMusicDecoder = Decoder.Create(Decoder.StateEnum.Text, brailleFileAsUnicode, loggerProxy as IBrailleMusicDecoderLogger); // Assume initial state is "Text
+                int i = 0;
+                string decodedLine = null;
+
                 do
                 {
                     int originalIndex = i; // Will be changed during the call to GetNextToken()
@@ -1375,15 +1377,15 @@ namespace MusicXmlReaderModel
             }
             catch (Exception e)
             {
-                exceptionMessage = e.Message;              
+                exceptionMessage = e.Message;
             }
             Logger.EndCaching(); // Flush the cached lines to disk. Start flushing each line to the logfile again
             if (null != exceptionMessage)
             {
                 Logger.LogCF(string.Format(": Exception thrown while Logger was caching all loglines. Message={0} ", exceptionMessage));
             }
-
-            return result; 
+            Logger.LogCF(": Exit");
+            return result;
         }
     }
 }
