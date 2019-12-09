@@ -1356,22 +1356,33 @@ namespace MusicXmlReaderModel
             List<string> decodedLines = new List<string>();
             Decoder brailleMusicDecoder = Decoder.Create(Decoder.StateEnum.Text, brailleFileAsUnicode, loggerProxy as IBrailleMusicDecoderLogger); // Assume initial state is "Text
             int i = 0;
-            string decodedLine = null;  
+            string decodedLine = null;
+            string exceptionMessage = null;
             Logger.StartCaching(); //  During the do-loop we cache all loglines. After the do-loop we write them to the logfile in one operation
-            //Logger.UseConsole = false;
-            do
+            try
+            {        
+                do
+                {
+                    int originalIndex = i; // Will be changed during the call to GetNextToken()
+                    decodedLine = brailleMusicDecoder.GetNextToken(ref i);
+                    if (null != decodedLine)
+                    {
+                        decodedLines.Add(string.Format("[{0,3}:{1}] {2}", originalIndex, (i - originalIndex), decodedLine));
+                    }
+                } while (null != decodedLine);
+                result.AddRange(decodedLines);
+                // throw new Exception("Only for test");
+            }
+            catch (Exception e)
             {
-                // int thisValue = brailleFileAsUnicode[i];
-                int originalIndex = i; // Will be changed during the call to GetNextToken()
-                decodedLine = brailleMusicDecoder.GetNextToken(ref i);
-                if (null != decodedLine)
-                {             
-                    decodedLines.Add(string.Format("[{0,3}:{1}] {2}",originalIndex , (i-originalIndex), decodedLine)); 
-                }
-            } while (null != decodedLine);
-            result.AddRange(decodedLines);
+                exceptionMessage = e.Message;              
+            }
             Logger.EndCaching(); // Flush the cached lines to disk. Start flushing each line to the logfile again
-            //Logger.UseConsole = true; // We do not want to write the (potentially enourmous) cache to the console 
+            if (null != exceptionMessage)
+            {
+                Logger.LogCF(string.Format(": Exception thrown while Logger was caching all loglines. Message={0} ", exceptionMessage));
+            }
+
             return result; 
         }
     }
