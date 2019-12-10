@@ -35,10 +35,18 @@ namespace MusicXmlReaderModel
         private ScorePartElement scorePartElement = null;
         public ScorePartElement ScorePartElement { get { return scorePartElement; } set { scorePartElement = value; } } // Holds a lot of extra information about the part
         // Lots of important information can be derived form the scorePartElement:
-        public string PartName { get { return (null == scorePartElement) ? "UndefinedPartName" : Utilities.ToValidFileName(scorePartElement.partName); } }
-        public string PartId { get
+        public string PartName
+        {
+ //           get { return (null == scorePartElement) ? "UndefinedPartName" : Utilities.ToValidFileName(scorePartElement.partName); }
+            get { return (null == scorePartElement) ? "" : Utilities.ToValidFileName(scorePartElement.partName); }
+        }
+
+        public string PartId
+        { get
             {
-                return (null == scorePartElement) ? "UndefinedPartId" : Utilities.ToValidFileName(scorePartElement.partId); }
+//                return (null == scorePartElement) ? "UndefinedPartId" : Utilities.ToValidFileName(scorePartElement.partId);
+                return (null == scorePartElement) ? "" : Utilities.ToValidFileName(scorePartElement.partId);
+            }
         }
 
         public string ScoreTitle
