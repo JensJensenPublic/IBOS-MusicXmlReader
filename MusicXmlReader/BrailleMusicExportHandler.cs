@@ -169,10 +169,12 @@ namespace MusicXmlReader
             }
 
             // Conversion succeeded. Determine and create a directory for saving the files
-            string fileFormatName = brailleFileHandler.GetFileFormat(); // Currently "BRF_Unicode" , "BRL_OctoBraille_1252" or "BRF_ASCII"
-            string initialDirectory = Path.Combine(Path.GetDirectoryName(xmlFileName), fileFormatName);
+            string fileFormatName = brailleFileHandler.GetFileFormat(); // Currently "BRF_Unicode" , "BRL_OctoBraille_1252" or "BRF_ASCII"     
+            string initialDirectory = Path.Combine(Path.GetDirectoryName(xmlFileName), fileFormatName); // Such as: "Examples\BRF_ASCII"
+            string scoreName = Path.GetFileNameWithoutExtension(xmlFileName); // Such as "Billie_Jean"
+            initialDirectory = Path.Combine(initialDirectory, scoreName); // Such as // Such as: "Examples\BRF_ASCII\Billie_Jean"
             // If DeveloperMode is enabled we change the initialDirectory and determine a directory to be used by the regression test.
-            initialDirectory = this.PepareRegressionTest(initialDirectory, xmlFileName, ref regressionTestDirectory);
+            initialDirectory = this.PepareRegressionTest(initialDirectory, xmlFileName, ref regressionTestDirectory); // Such as: "Examples\BRF_ASCII\Billie_Jean\2019.12.24"
             if (!Directory.Exists(initialDirectory))
             {
                 Directory.CreateDirectory(initialDirectory);
@@ -300,16 +302,16 @@ namespace MusicXmlReader
             if (!this.developerMode) return initialDirectory; // Unchanged
             string newInitialDirectory = null;
             // For debugging purposes we save in different directories in order to be able to check with previous versions !
-            string scoreName = Path.GetFileNameWithoutExtension(theMusicXmlFileName);
+            //string scoreName = Path.GetFileNameWithoutExtension(theMusicXmlFileName);
             string nowString = System.DateTime.Now.ToString();
             nowString = nowString.Replace('-', '.'); // Get rid of chars illegal in file names
             nowString = nowString.Replace(':', '.');
-            string initialDirectoryWithScoreName = Path.Combine(initialDirectory, scoreName);
-            newInitialDirectory = Path.Combine(initialDirectoryWithScoreName, nowString);
+            //string initialDirectoryWithScoreName = Path.Combine(initialDirectory, scoreName);
+            newInitialDirectory = Path.Combine(initialDirectory, nowString);
             // Now find the outcome of the latest conversion to Braille of this score:
-            if (Directory.Exists(initialDirectoryWithScoreName))
+            if (Directory.Exists(initialDirectory))
             {
-                string[] olderDirectories = System.IO.Directory.GetDirectories(initialDirectoryWithScoreName);
+                string[] olderDirectories = System.IO.Directory.GetDirectories(initialDirectory);
                 DateTime latestCreationTime = DateTime.MinValue;
 
                 foreach (string olderDirectory in olderDirectories)
