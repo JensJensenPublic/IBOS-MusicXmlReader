@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\Principper for dokumentation.odt = Documentation\Principper for dokumentation.odt
 		Documentation\Sample MusicXmlReader.JCF = Documentation\Sample MusicXmlReader.JCF
 		Documentation\Simple becifringer.odt = Documentation\Simple becifringer.odt
+		Documentation\Test af version 3.3.doc = Documentation\Test af version 3.3.doc
 		Documentation\TODo liste. Gældende version.xls = Documentation\TODo liste. Gældende version.xls
 		Visual Studio Licens.txt = Visual Studio Licens.txt
 	EndProjectSection
