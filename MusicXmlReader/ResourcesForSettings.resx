@@ -152,7 +152,7 @@
     <value>BANA 2015 layout</value>
   </data>
   <data name="Braille_LayoutIBOS" xml:space="preserve">
-    <value>IBOS/Refsnæs layout</value>
+    <value>IBOS MusicXmlReader layout</value>
   </data>
   <data name="Braille_NotetakerName" xml:space="preserve">
     <value>Notetaker name</value>

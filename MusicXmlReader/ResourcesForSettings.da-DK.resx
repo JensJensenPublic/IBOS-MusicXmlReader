@@ -149,10 +149,10 @@
     <value>Universel Braille apparat profil</value>
   </data>
   <data name="Braille_LayoutBANA" xml:space="preserve">
-    <value>BANA 2015 opstilling</value>
+    <value>BANA 2015  opstilling</value>
   </data>
   <data name="Braille_LayoutIBOS" xml:space="preserve">
-    <value>IBOS/Refsnæs opstilling</value>
+    <value>IBOS Nodelæser opstilling</value>
   </data>
   <data name="Braille_NotetakerName" xml:space="preserve">
     <value>Notatapparat navn</value>

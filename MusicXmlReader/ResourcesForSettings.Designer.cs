@@ -196,7 +196,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IBOS/Refsnæs layout.
+        ///   Looks up a localized string similar to IBOS MusicXmlReader layout.
         /// </summary>
         internal static string Braille_LayoutIBOS {
             get {
