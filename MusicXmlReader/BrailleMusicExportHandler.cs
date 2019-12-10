@@ -225,12 +225,11 @@ namespace MusicXmlReader
             string fileFormatName = brailleFileHandler.GetFileFormat(); // Currently "BRF_Unicode" , "BRL_OctoBraille_1252" or "BRF_ASCII"
             string extension = brailleFileHandler.GetExtension(); // Currently ".brf" or ".brl" Maybe later ".pef" ?  
             saveBrailleFileDialog.InitialDirectory = initialDirectory;
-            saveBrailleFileDialog.FileName =
-                Path.GetFileNameWithoutExtension(xmlFileName)                // The name (without extension) of the MusicXml file 
-                + (string.IsNullOrEmpty(fileNameAttribute) ? "" : "." + fileNameAttribute); // The name of the part,  "tutti", "multi" or an empty string
+            string fileName = Path.GetFileName(xmlFileName); // Without path.
+            string fileNameWithNewExtension = Path.ChangeExtension(fileName, extension);
+            saveBrailleFileDialog.FileName = fileNameWithNewExtension;
             saveBrailleFileDialog.DefaultExt = extension;
-            // saveBrailleFileDialog.Filter = string.Format("{0}|*.brf", "Braille filer");
-            saveBrailleFileDialog.Filter = string.Format("{0}|{1}", fileFormatName, extension);
+            saveBrailleFileDialog.Filter = string.Format("{0}|*{1}", fileFormatName, extension); // Shown as for instance "BRF_ASCII (*.brf)" accepting all .brf files.
             DialogResult dialogResult = saveBrailleFileDialog.ShowDialog();
             return dialogResult;
         }
