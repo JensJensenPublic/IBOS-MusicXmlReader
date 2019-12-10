@@ -182,7 +182,7 @@ namespace MusicXmlReader
             }
 
             //Prompt user for filename
-            DialogResult dialogResult = PromptForSavePath(xmlFileName, brailleFileHandler, initialDirectory, brailleRepresentations.MusicBrailleFilenameAttribute);
+            DialogResult dialogResult = PromptForSavePath(xmlFileName, brailleFileHandler, initialDirectory);
             if (DialogResult.OK != dialogResult)
             {
                 Logger.LogCF(string.Format(": SaveDialog returned {0}", dialogResult.ToString()));
@@ -220,7 +220,16 @@ namespace MusicXmlReader
         }
 
 
-        DialogResult PromptForSavePath(string xmlFileName, BrailleFileHandler brailleFileHandler, string initialDirectory,string fileNameAttribute)
+
+        /// <summary>
+        /// This is actually an abuse of the Windows Forms SaveFileDialog as a "FolderBrowserDialog"
+        /// But everybody claims that the "FolderBrowserDialog" has a verty bad reputation, so we tweek the SaveFileDialog a little instead:
+        /// </summary>
+        /// <param name="xmlFileName">The name including full path of the original MusicXml file</param>
+        /// <param name="brailleFileHandler">The BrailleFileHAndler used for generation of the file(s) to be saved</param>
+        /// <param name="initialDirectory">The suggested directory for saving the file(s)</param>
+        /// <returns></returns>
+        DialogResult PromptForSavePath(string xmlFileName, BrailleFileHandler brailleFileHandler, string initialDirectory)
         {
             string fileFormatName = brailleFileHandler.GetFileFormat(); // Currently "BRF_Unicode" , "BRL_OctoBraille_1252" or "BRF_ASCII"
             string extension = brailleFileHandler.GetExtension(); // Currently ".brf" or ".brl" Maybe later ".pef" ?  
