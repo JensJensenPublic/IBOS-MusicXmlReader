@@ -1174,7 +1174,24 @@ namespace MusicXmlReader
             Logger.LogCF("Unused");
         }
 
+        private string GetExternalProgramNotFoundMessage(string executableName, string level1String, string level2String)
+        {
+            string externalProgramNotFound = ResourcesForUI.Message_File_ExternalProgramNotFound; //   "External program not found";
+            string pleaseEnterValidPathIn = ResourcesForUI.Message_File_PleaseEnterValidPathIn; // "Please enter a valid path in";
+            string settings = ResourcesForUI.ToolStripMenuItem_Settings; //  "Settings";
+            StringBuilder result = new StringBuilder();
+            result.AppendLine(string.Format("{0}:",externalProgramNotFound));
+            result.AppendLine();
+            result.AppendLine(string.Format("'{0}'", executableName));
+            result.AppendLine();
+            result.AppendLine(string.Format("{0}:",pleaseEnterValidPathIn));
+            result.AppendLine();
+            result.AppendLine(string.Format("'{0}'-->",settings));
+            result.AppendLine(string.Format("  '{0}' -->",level1String));
+            result.AppendLine(string.Format("    '{0}'", level2String));
+            return result.ToString();
 
+        }
 
 
         #region Print
@@ -1187,8 +1204,7 @@ namespace MusicXmlReader
             string executableName = userPreferencesHandler.genericBrailleDevice.ApplicationLocation;
             if (!File.Exists(executable))
             {
-#warning TODO Use localized names here !
-                messageHandler.ShowMessage(string.Format("Program not found:\r\n{0}\r\nPlease enter a valid path in:\r\n'Settings'->'Generic Braille Device settings'->'Application Location'", executable));
+                messageHandler.ShowMessage(GetExternalProgramNotFoundMessage(executable, ResourcesForUI.ToolStripMenuItem_Settings_MusicBraille, ResourcesForSettings.Braille_ApplicationLocation));
                 return;
             }
             //            string directory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory : "";

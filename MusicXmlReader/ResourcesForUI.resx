@@ -579,4 +579,12 @@
     <value>Do you really want to reset all settings to default values?</value>
     <comment>NL Missing</comment>
   </data>
+  <data name="Message_File_ExternalProgramNotFound" xml:space="preserve">
+    <value>External program not found</value>
+    <comment>NL MISSING</comment>
+  </data>
+  <data name="Message_File_PleaseEnterValidPathIn" xml:space="preserve">
+    <value>Please enter the valid path in</value>
+    <comment>NL MISSING</comment>
+  </data>
 </root>

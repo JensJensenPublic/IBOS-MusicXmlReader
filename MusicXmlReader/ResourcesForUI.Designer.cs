@@ -331,6 +331,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to External program not found.
+        /// </summary>
+        internal static string Message_File_ExternalProgramNotFound {
+            get {
+                return ResourceManager.GetString("Message_File_ExternalProgramNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to emboss file on.
         /// </summary>
         internal static string Message_File_FailedToEmbossFileOn {
@@ -354,6 +363,15 @@ namespace MusicXmlReader {
         internal static string Message_File_OnEmbosser {
             get {
                 return ResourceManager.GetString("Message_File_OnEmbosser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter the valid path in.
+        /// </summary>
+        internal static string Message_File_PleaseEnterValidPathIn {
+            get {
+                return ResourceManager.GetString("Message_File_PleaseEnterValidPathIn", resourceCulture);
             }
         }
         

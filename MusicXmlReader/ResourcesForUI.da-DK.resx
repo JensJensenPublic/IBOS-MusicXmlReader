@@ -571,4 +571,12 @@
   <data name="Message_Settings_DoYouReallyWantToReset" xml:space="preserve">
     <value>Ønsker du virkelig at nulstille alle indstillinger til standard værdier?</value>
   </data>
+  <data name="Message_File_ExternalProgramNotFound" xml:space="preserve">
+    <value>Externtprogram findes ikke</value>
+    <comment>NL MISSING</comment>
+  </data>
+  <data name="Message_File_PleaseEnterValidPathIn" xml:space="preserve">
+    <value>Indtast venligst den korrekte sti i</value>
+    <comment>NL MISSING</comment>
+  </data>
 </root>
