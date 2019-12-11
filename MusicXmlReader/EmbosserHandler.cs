@@ -155,7 +155,6 @@ namespace MusicXmlReader
             {
                 // The operation failed. If an exeptionMessage is found we report it
 
-#warning TODO Localize
                 string text1 = ResourcesForUI.Message_File_FailedToEmbossFileOn; //    "Failed to emboss file on ";
                 string text2 = ResourcesForUI.Message_File_FileName; // "FileName";
                 string text3 = ResourcesForUI.Message_File_ErrorMessage; // "Error message";
@@ -179,11 +178,19 @@ namespace MusicXmlReader
             else
             {
                 string fileName = Path.GetFileName(fullName);
-#warning TODo Localize
+
                 string logMessage = string.Format("Successfully sent file '{0}' to embosser '{1}'",fileName , printerName);
-                string uiMessage  = string.Format("Successfully sent file '{0}'\r\nto embosser '{1}'", fileName, printerName);
                 Logger.LogCF(string.Format(": {0}", logMessage));
-                MessageBox.Show(uiMessage, applicationName, MessageBoxButtons.OK,MessageBoxIcon.None);
+                string text1 = "Embossed file";
+                string text2 = "on embosser";
+
+                StringBuilder uiMessage = new StringBuilder();
+                uiMessage.AppendLine(string.Format("{0}:",text1));
+                uiMessage.AppendLine();
+                uiMessage.AppendLine(string.Format("'{0}'",fileName));
+                uiMessage.AppendLine();
+                uiMessage.AppendLine(string.Format("{0} '{1}'", text2, printerName));             
+                MessageBox.Show(uiMessage.ToString(), applicationName, MessageBoxButtons.OK,MessageBoxIcon.None);
             }
 
             return result;
