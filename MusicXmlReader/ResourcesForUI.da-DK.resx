@@ -528,4 +528,24 @@
     <value>Nulstil alle indstillinger til standard værdier</value>
     <comment>MISSING NL</comment>
   </data>
+  <data name="Message_Directory" xml:space="preserve">
+    <value>Mappe</value>
+    <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
+  </data>
+  <data name="Message_ExportToMusicBraille" xml:space="preserve">
+    <value>Export til punktnoder</value>
+    <comment>NL MISSING</comment>
+  </data>
+  <data name="Message_Failed" xml:space="preserve">
+    <value>mislykkedes</value>
+    <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
+  </data>
+  <data name="Message_Files" xml:space="preserve">
+    <value>Filer</value>
+    <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
+  </data>
+  <data name="Message_Succeeded" xml:space="preserve">
+    <value>lykkedes</value>
+    <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
+  </data>
 </root>

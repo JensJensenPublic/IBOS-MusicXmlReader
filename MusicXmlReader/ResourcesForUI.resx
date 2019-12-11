@@ -532,4 +532,27 @@
     <value>Reset all settings to default</value>
     <comment>MISSING NL</comment>
   </data>
+  <data name="Message_Directory" xml:space="preserve">
+    <value>Directory</value>
+    <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
+  </data>
+  <data name="Message_ExportToMusicBraille" xml:space="preserve">
+    <value>Export to Music Braille</value>
+    <comment>NL MISSING</comment>
+  </data>
+  <data name="Message_Failed" xml:space="preserve">
+    <value>failed</value>
+    <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
+  </data>
+  <data name="Message_Files" xml:space="preserve">
+    <value>Files</value>
+    <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
+  </data>
+  <data name="Message_Succeeded" xml:space="preserve">
+    <value>succeeded</value>
+    <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value />
+  </data>
 </root>

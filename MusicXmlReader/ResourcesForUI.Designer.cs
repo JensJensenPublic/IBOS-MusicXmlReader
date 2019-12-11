@@ -232,6 +232,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Directory.
+        /// </summary>
+        internal static string Message_Directory {
+            get {
+                return ResourceManager.GetString("Message_Directory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Directory not found.
         /// </summary>
         internal static string Message_DirectoryNotFound {
@@ -255,6 +264,24 @@ namespace MusicXmlReader {
         internal static string Message_ExportOfMultiplePartsNotSupported {
             get {
                 return ResourceManager.GetString("Message_ExportOfMultiplePartsNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export to Music Braille.
+        /// </summary>
+        internal static string Message_ExportToMusicBraille {
+            get {
+                return ResourceManager.GetString("Message_ExportToMusicBraille", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to failed.
+        /// </summary>
+        internal static string Message_Failed {
+            get {
+                return ResourceManager.GetString("Message_Failed", resourceCulture);
             }
         }
         
@@ -291,6 +318,15 @@ namespace MusicXmlReader {
         internal static string Message_FileNotFound {
             get {
                 return ResourceManager.GetString("Message_FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files.
+        /// </summary>
+        internal static string Message_Files {
+            get {
+                return ResourceManager.GetString("Message_Files", resourceCulture);
             }
         }
         
@@ -363,6 +399,15 @@ namespace MusicXmlReader {
         internal static string Message_StopPlayingFirst {
             get {
                 return ResourceManager.GetString("Message_StopPlayingFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to succeeded.
+        /// </summary>
+        internal static string Message_Succeeded {
+            get {
+                return ResourceManager.GetString("Message_Succeeded", resourceCulture);
             }
         }
         
@@ -525,6 +570,15 @@ namespace MusicXmlReader {
         internal static string StatusLine_Accessible_Name {
             get {
                 return ResourceManager.GetString("StatusLine_Accessible_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string String {
+            get {
+                return ResourceManager.GetString("String", resourceCulture);
             }
         }
         

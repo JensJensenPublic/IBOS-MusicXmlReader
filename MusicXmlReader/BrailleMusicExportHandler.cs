@@ -279,11 +279,12 @@ namespace MusicXmlReader
 
             string logLine = string.Format("Export of {0} staffs to {1} files {2}. The files were exported to: \r\n\r\n{3}\r\n", numberOfStaffs, fileNames.Count, allOk ? "succeded" : "failed", exportPath);
             Logger.LogCF(": " + logLine);
+
             // We need to localize the messagebox, so we use a less complicated text:
-            string exportOfMusicBraille = "Export of Music Braille";
-            string result = allOk ? "Succeeded" : "Failed";
-            string directory = "Directory";
-            string files = "Files";
+            string exportOfMusicBraille = ResourcesForUI.Message_ExportToMusicBraille; //   "Export of Music Braille";
+            string result = allOk ? ResourcesForUI.Message_Succeeded : ResourcesForUI.Message_Failed; //  "Succeeded" : "Failed";
+            string directory = ResourcesForUI.Message_Directory; //  "Directory";
+            string files = ResourcesForUI.Message_Files; //  "Files";
 
             StringBuilder message = new StringBuilder();
             message.AppendLine(string.Format("{0} {1}.",exportOfMusicBraille,result));
@@ -293,7 +294,7 @@ namespace MusicXmlReader
                 message.AppendLine();
                 message.AppendLine(string.Format("{0}:", directory));
                 message.AppendLine();
-                message.AppendLine(exportPath);
+                message.AppendLine(exportPath); // We appearantly can NOT force a MessageBox to avoid wrapping lines.
                 message.AppendLine();
                 message.AppendLine(string.Format("{0} :", files));
                 message.AppendLine();
