@@ -572,7 +572,7 @@
     <value>Ønsker du virkelig at nulstille alle indstillinger til standard værdier?</value>
   </data>
   <data name="Message_File_ExternalProgramNotFound" xml:space="preserve">
-    <value>Externtprogram findes ikke</value>
+    <value>Externt program findes ikke</value>
     <comment>NL MISSING</comment>
   </data>
   <data name="Message_File_PleaseEnterValidPathIn" xml:space="preserve">
