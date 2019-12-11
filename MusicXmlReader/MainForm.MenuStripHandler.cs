@@ -610,20 +610,35 @@ namespace MusicXmlReader
 
         private void museScoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            // model.ExternalToolsHandler.StartMuseScore(model.TheMusicXmlFileName, AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.MuseScoreExe)); // Now through userSettingsHandler
-            model.ExternalToolsHandler.StartMuseScore(model.TheMusicXmlFileName, this.userPreferencesHandler.MuseScoreExe);
+            string executable = this.userPreferencesHandler.MuseScoreExe;
+            if (!File.Exists(executable))
+            {
+                messageHandler.ShowMessage(GetExternalProgramNotFoundMessage(executable, ResourcesForUI.ToolStripMenuItem_Settings_General, ResourcesForSettings.General_MuseScoreLocation));
+                return;
+            }
+            Utilities.RunExeWithFileArgument(executable, model.TheMusicXmlFileName);
         }
 
         private void sibeliusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // model.ExternalToolsHandler.StartSibelius(model.TheMusicXmlFileName, AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.SibeliusExe)); // Now through userSettingsHandler
-            model.ExternalToolsHandler.StartSibelius(model.TheMusicXmlFileName, this.userPreferencesHandler.SibeliusExe);
+            string executable = this.userPreferencesHandler.SibeliusExe;
+            if (!File.Exists(executable))
+            {
+                messageHandler.ShowMessage(GetExternalProgramNotFoundMessage(executable, ResourcesForUI.ToolStripMenuItem_Settings_General, ResourcesForSettings.General_SibeliusLocation));
+                return;
+            }
+            Utilities.RunExeWithFileArgument(executable, model.TheMusicXmlFileName);
         }
 
         private void startCapellaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.StartSibelius(model.TheMusicXmlFileName, this.userPreferencesHandler.CapellaExe);
+            string executable = this.userPreferencesHandler.CapellaExe;
+            if (!File.Exists(executable))
+            {
+                messageHandler.ShowMessage(GetExternalProgramNotFoundMessage(executable, ResourcesForUI.ToolStripMenuItem_Settings_General, ResourcesForSettings.General_CapellaLocation));
+                return;
+            }
+            Utilities.RunExeWithFileArgument(executable, model.TheMusicXmlFileName);
         }
 
 
