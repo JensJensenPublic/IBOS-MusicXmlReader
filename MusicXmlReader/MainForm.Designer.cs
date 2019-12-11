@@ -81,6 +81,7 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.museScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sibeliusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startCapellaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openLogFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openXMLFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,7 +97,6 @@
             this.unicodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autodetectedEncodingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userPreferencesLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.startCapellaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -266,21 +266,21 @@
             // txtOctoBraille1252ToolStripMenuItem
             // 
             this.txtOctoBraille1252ToolStripMenuItem.Name = "txtOctoBraille1252ToolStripMenuItem";
-            this.txtOctoBraille1252ToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.txtOctoBraille1252ToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.txtOctoBraille1252ToolStripMenuItem.Text = ".txt (OctoBraille 1252)";
             this.txtOctoBraille1252ToolStripMenuItem.Click += new System.EventHandler(this.txtOctoBraille1252ToolStripMenuItem_Click);
             // 
             // brfASCIIToolStripMenuItem1
             // 
             this.brfASCIIToolStripMenuItem1.Name = "brfASCIIToolStripMenuItem1";
-            this.brfASCIIToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
+            this.brfASCIIToolStripMenuItem1.Size = new System.Drawing.Size(186, 22);
             this.brfASCIIToolStripMenuItem1.Text = ".brf (ASCII)";
             this.brfASCIIToolStripMenuItem1.Click += new System.EventHandler(this.brfASCIIToolStripMenuItem1_Click);
             // 
             // brfUnicodeToolStripMenuItem1
             // 
             this.brfUnicodeToolStripMenuItem1.Name = "brfUnicodeToolStripMenuItem1";
-            this.brfUnicodeToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
+            this.brfUnicodeToolStripMenuItem1.Size = new System.Drawing.Size(186, 22);
             this.brfUnicodeToolStripMenuItem1.Text = ".brf (Unicode)";
             this.brfUnicodeToolStripMenuItem1.Click += new System.EventHandler(this.brfUnicodeToolStripMenuItem1_Click);
             // 
@@ -487,8 +487,8 @@
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.generelSettingsToolStripMenuItem,
             this.toolStripSeparator6,
-            this.embosserSettingsToolStripMenuItem,
             this.notetakerSettingsToolStripMenuItem,
+            this.embosserSettingsToolStripMenuItem,
             this.musicBrailleSettingsToolStripMenuItem,
             this.toolStripSeparator7,
             this.resetAllUserSettingsToDefaultValuesToolStripMenuItem});
@@ -559,7 +559,7 @@
             this.interpretFileAsBrailleMusicToolStripMenuItem,
             this.userPreferencesLocationToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 22);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // museScoreToolStripMenuItem
@@ -575,6 +575,13 @@
             this.sibeliusToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
             this.sibeliusToolStripMenuItem.Text = "Start Sibelius";
             this.sibeliusToolStripMenuItem.Click += new System.EventHandler(this.sibeliusToolStripMenuItem_Click);
+            // 
+            // startCapellaToolStripMenuItem
+            // 
+            this.startCapellaToolStripMenuItem.Name = "startCapellaToolStripMenuItem";
+            this.startCapellaToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.startCapellaToolStripMenuItem.Text = "Start Capella";
+            this.startCapellaToolStripMenuItem.Click += new System.EventHandler(this.startCapellaToolStripMenuItem_Click);
             // 
             // logfileToolStripMenuItem
             // 
@@ -684,13 +691,6 @@
             this.userPreferencesLocationToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
             this.userPreferencesLocationToolStripMenuItem.Text = "User Preferences location";
             this.userPreferencesLocationToolStripMenuItem.Click += new System.EventHandler(this.userPreferencesLocationToolStripMenuItem_Click);
-            // 
-            // startCapellaToolStripMenuItem
-            // 
-            this.startCapellaToolStripMenuItem.Name = "startCapellaToolStripMenuItem";
-            this.startCapellaToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.startCapellaToolStripMenuItem.Text = "Start Capella";
-            this.startCapellaToolStripMenuItem.Click += new System.EventHandler(this.startCapellaToolStripMenuItem_Click);
             // 
             // archivesToolStripMenuItem
             // 
