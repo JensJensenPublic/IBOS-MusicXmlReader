@@ -275,12 +275,32 @@ namespace MusicXmlReader
         /// <param name="fileNames"></param>
         private void LogResult(int numberOfStaffs, bool allOk, string exportPath, List<string> fileNames)
         {
+            // allOk = false; // For test only !
+
             string logLine = string.Format("Export of {0} staffs to {1} files {2}. The files were exported to: \r\n\r\n{3}\r\n", numberOfStaffs, fileNames.Count, allOk ? "succeded" : "failed", exportPath);
             Logger.LogCF(": " + logLine);
-            StringBuilder message = new StringBuilder(logLine + "\r\n");
-            foreach (string fileName in fileNames)
+            // We need to localize the messagebox, so we use a less complicated text:
+            string exportOfMusicBraille = "Export of Music Braille";
+            string result = allOk ? "Succeeded" : "Failed";
+            string directory = "Directory";
+            string files = "Files";
+
+            StringBuilder message = new StringBuilder();
+            message.AppendLine(string.Format("{0} {1}.",exportOfMusicBraille,result));
+            if (allOk)
             {
-                message.Append(fileName);
+                // This information only makes sense in case of success.
+                message.AppendLine();
+                message.AppendLine(string.Format("{0}:", directory));
+                message.AppendLine();
+                message.AppendLine(exportPath);
+                message.AppendLine();
+                message.AppendLine(string.Format("{0} :", files));
+                message.AppendLine();
+                foreach (string fileName in fileNames)
+                {
+                    message.Append(fileName); // The filename already contains \r\n
+                }
             }
             messageHandler.ShowMessage(message.ToString());
         }
