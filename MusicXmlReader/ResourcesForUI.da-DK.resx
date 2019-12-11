@@ -548,4 +548,7 @@
     <value>lykkedes</value>
     <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
   </data>
+  <data name="Message_Settings_DoYouReallyWantToReset" xml:space="preserve">
+    <value>Ønsker du virkelig at nulstille alle indstillinger til standard værdier?</value>
+  </data>
 </root>

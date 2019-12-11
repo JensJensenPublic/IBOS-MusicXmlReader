@@ -394,6 +394,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you really want to reset all settings to default values?.
+        /// </summary>
+        internal static string Message_Settings_DoYouReallyWantToReset {
+            get {
+                return ResourceManager.GetString("Message_Settings_DoYouReallyWantToReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stop plaing first.
         /// </summary>
         internal static string Message_StopPlayingFirst {
