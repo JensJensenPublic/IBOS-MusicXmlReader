@@ -313,6 +313,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Embossed Music Braille file.
+        /// </summary>
+        internal static string Message_File_EmbossedMusicBrailleFile {
+            get {
+                return ResourceManager.GetString("Message_File_EmbossedMusicBrailleFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error message.
         /// </summary>
         internal static string Message_File_ErrorMessage {
@@ -336,6 +345,15 @@ namespace MusicXmlReader {
         internal static string Message_File_FileName {
             get {
                 return ResourceManager.GetString("Message_File_FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to on embosser.
+        /// </summary>
+        internal static string Message_File_OnEmbosser {
+            get {
+                return ResourceManager.GetString("Message_File_OnEmbosser", resourceCulture);
             }
         }
         

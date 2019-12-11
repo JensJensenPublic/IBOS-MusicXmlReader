@@ -548,6 +548,10 @@
     <value>lykkedes</value>
     <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
   </data>
+  <data name="Message_File_EmbossedMusicBrailleFile" xml:space="preserve">
+    <value>Udskrev punktnodefil</value>
+    <comment>NL MISSING</comment>
+  </data>
   <data name="Message_File_ErrorMessage" xml:space="preserve">
     <value>Fejlmeddelelse</value>
     <comment>NL MISSING</comment>
@@ -558,6 +562,10 @@
   </data>
   <data name="Message_File_FileName" xml:space="preserve">
     <value>Filnavn</value>
+    <comment>NL MISSING</comment>
+  </data>
+  <data name="Message_File_OnEmbosser" xml:space="preserve">
+    <value>på punktprinter</value>
     <comment>NL MISSING</comment>
   </data>
   <data name="Message_Settings_DoYouReallyWantToReset" xml:space="preserve">

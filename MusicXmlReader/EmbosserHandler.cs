@@ -181,9 +181,8 @@ namespace MusicXmlReader
 
                 string logMessage = string.Format("Successfully sent file '{0}' to embosser '{1}'",fileName , printerName);
                 Logger.LogCF(string.Format(": {0}", logMessage));
-                string text1 = "Embossed file";
-                string text2 = "on embosser";
-
+                string text1 = ResourcesForUI.Message_File_EmbossedMusicBrailleFile; //  "Embossed Music Braille file";
+                string text2 = ResourcesForUI.Message_File_OnEmbosser; //   "on embosser";
                 StringBuilder uiMessage = new StringBuilder();
                 uiMessage.AppendLine(string.Format("{0}:",text1));
                 uiMessage.AppendLine();
