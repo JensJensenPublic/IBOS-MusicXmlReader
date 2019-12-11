@@ -1174,6 +1174,15 @@ namespace MusicXmlReader
             Logger.LogCF("Unused");
         }
 
+
+
+        /// <summary>
+        /// Generally usable method for building a message for a messagebox when an external program is not found
+        /// </summary>
+        /// <param name="executableName">The path of the executable which is not found</param>
+        /// <param name="level1String">The 1. level location under S2ttings for this path</param>
+        /// <param name="level2String">The 2. level location under S2ttings for this path</param>
+        /// <returns></returns>
         private string GetExternalProgramNotFoundMessage(string executableName, string level1String, string level2String)
         {
             string externalProgramNotFound = ResourcesForUI.Message_File_ExternalProgramNotFound; //   "External program not found";
@@ -1186,9 +1195,9 @@ namespace MusicXmlReader
             result.AppendLine();
             result.AppendLine(string.Format("{0}:",pleaseEnterValidPathIn));
             result.AppendLine();
-            result.AppendLine(string.Format("'{0}'-->",settings));
-            result.AppendLine(string.Format("  '{0}' -->",level1String));
-            result.AppendLine(string.Format("    '{0}'", level2String));
+            result.AppendLine(string.Format("'{0}'-->",Utilities.RemoveAmpersant(settings)));
+            result.AppendLine(string.Format("  '{0}' -->", Utilities.RemoveAmpersant(level1String)));
+            result.AppendLine(string.Format("    '{0}'", Utilities.RemoveAmpersant(level2String)));
             return result.ToString();
 
         }

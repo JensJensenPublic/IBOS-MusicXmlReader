@@ -246,7 +246,6 @@ namespace MusicXmlReader
         {
             switch (pageLayout)
             {
-#warning ToDo Localize
                 case Model.BrailleStyleEnum.IBOS: return ResourcesForSettings.Braille_LayoutIBOS;
                 case Model.BrailleStyleEnum.BANA2015: return ResourcesForSettings.Braille_LayoutBANA;
                 default: Logger.LogCF(string.Format(": Unsupported pageLayout '{0}'", pageLayout.ToString())); return ""; // ToString on pageLayout, not on PAgeLAyoutItem !

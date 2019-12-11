@@ -84,8 +84,6 @@ namespace MusicXmlReader
             Model.BrailleStyleEnum.IBOS
         };
 
-#warning ToDo Localize
-
         // Fixed localized texts: Dialog Title and lable names:
         public abstract string Title { get; }
         public abstract string LabelDeviceName { get; }
