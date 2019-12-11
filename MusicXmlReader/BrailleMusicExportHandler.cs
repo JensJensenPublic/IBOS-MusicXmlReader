@@ -157,14 +157,21 @@ namespace MusicXmlReader
             string regressionTestDirectory = null; // Will be set to point to the latest directory containing the Music Braille files for the same score. Null if not found.
             BrailleFileHandler developerBrailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_Unicode, 0, 0); // Only osed in Experimental Mode
 
+            // brailleRepresentations = null; // Only for  testing error reporting and errorhandling !
+
             if (null == brailleRepresentations)
             {
-#warning TODO Localize
-                string message = "Failed to convert to Braille.";
-                Logger.LogCF(string.Format(": {0})", message));
+                string line1 = ResourcesForUI.Message_ExportToMusicBraille;
+                string result = ResourcesForUI.Message_Failed;
+                string logMessage = string.Format(": {0} {1}", line1, result);        
+                Logger.LogCF(logMessage);
                 UiUtilities.Beep();
-#warning TODO Localize
-                messageHandler.ShowMessage(message + "\nLogfile contains detailled information.");
+
+                StringBuilder message = new StringBuilder();
+                message.AppendLine(string.Format("{0} {1}.", line1, result));
+                message.AppendLine();
+                message.AppendLine(ResourcesForUI.Message_PleaseSeeLogFile);
+                messageHandler.ShowMessage(message.ToString());
                 return;
             }
 
