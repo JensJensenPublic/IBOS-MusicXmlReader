@@ -548,6 +548,18 @@
     <value>lykkedes</value>
     <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
   </data>
+  <data name="Message_File_ErrorMessage" xml:space="preserve">
+    <value>Fejlmeddelelse</value>
+    <comment>NL MISSING</comment>
+  </data>
+  <data name="Message_File_FailedToEmbossFileOn" xml:space="preserve">
+    <value>Kunne ikke udskrive punktnoder på</value>
+    <comment>NL MISSING</comment>
+  </data>
+  <data name="Message_File_FileName" xml:space="preserve">
+    <value>Filnavn</value>
+    <comment>NL MISSING</comment>
+  </data>
   <data name="Message_Settings_DoYouReallyWantToReset" xml:space="preserve">
     <value>Ønsker du virkelig at nulstille alle indstillinger til standard værdier?</value>
   </data>

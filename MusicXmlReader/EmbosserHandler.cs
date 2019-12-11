@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MusicXmlReaderModel;
 using System.IO;
 using System.Collections.Generic;
+using System.Text;
 
 namespace MusicXmlReader
 {
@@ -147,16 +148,33 @@ namespace MusicXmlReader
                 errorMessage = exeption.Message;
             }
 
+            // result = false; // Only for testing error handling
+            // errorMessage = "Exception caught"; // Only for testing error handling
+
             if (!result)
             {
-                // The operation failed. If an exeptionMessage is found we use it, otherwise we must build one by ourselves:
-                if (string.IsNullOrEmpty(errorMessage))
-                {
+                // The operation failed. If an exeptionMessage is found we report it
+
 #warning TODO Localize
-                    errorMessage = string.Format("Failed to emboss file '{0}' on embosser='{1}'", fullName, printerName);
+                string text1 = ResourcesForUI.Message_File_FailedToEmbossFileOn; //    "Failed to emboss file on ";
+                string text2 = ResourcesForUI.Message_File_FileName; // "FileName";
+                string text3 = ResourcesForUI.Message_File_ErrorMessage; // "Error message";
+                // The logmessage is intensionally NOT localized !
+                string logMessage = string.Format("Failed to emboss '{0}' on '{1}' {2}", fullName, printerName, (null == errorMessage) ? "" : errorMessage);
+                StringBuilder uiMessage = new StringBuilder();
+                uiMessage.AppendLine(string.Format("{0} '{1}'", text1, printerName));
+                uiMessage.AppendLine();
+                if (null != errorMessage)
+                {
+                    uiMessage.AppendLine(string.Format("{0}: '{1}'",text3, errorMessage));
+                    uiMessage.AppendLine();
                 }
-                Logger.LogCF(string.Format(": {0}", errorMessage));
-                MessageBox.Show(errorMessage, applicationName,MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+                uiMessage.AppendLine(string.Format("{0}:", text2));
+                uiMessage.AppendLine(fullName);
+
+                Logger.LogCF(string.Format(": {0}", logMessage));
+                MessageBox.Show(uiMessage.ToString(), applicationName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {

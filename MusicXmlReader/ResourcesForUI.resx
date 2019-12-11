@@ -555,6 +555,18 @@
   <data name="String" xml:space="preserve">
     <value />
   </data>
+  <data name="Message_File_ErrorMessage" xml:space="preserve">
+    <value>Error message</value>
+    <comment>NL MISSING</comment>
+  </data>
+  <data name="Message_File_FailedToEmbossFileOn" xml:space="preserve">
+    <value>Failed to emboss file on</value>
+    <comment>NL MISSING</comment>
+  </data>
+  <data name="Message_File_FileName" xml:space="preserve">
+    <value>Filename</value>
+    <comment>NL MISSING</comment>
+  </data>
   <data name="Message_Settings_DoYouReallyWantToReset" xml:space="preserve">
     <value>Do you really want to reset all settings to default values?</value>
     <comment>NL Missing</comment>

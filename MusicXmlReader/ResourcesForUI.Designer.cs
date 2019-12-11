@@ -313,6 +313,33 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error message.
+        /// </summary>
+        internal static string Message_File_ErrorMessage {
+            get {
+                return ResourceManager.GetString("Message_File_ErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to emboss file on.
+        /// </summary>
+        internal static string Message_File_FailedToEmbossFileOn {
+            get {
+                return ResourceManager.GetString("Message_File_FailedToEmbossFileOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filename.
+        /// </summary>
+        internal static string Message_File_FileName {
+            get {
+                return ResourceManager.GetString("Message_File_FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File not found.
         /// </summary>
         internal static string Message_FileNotFound {
