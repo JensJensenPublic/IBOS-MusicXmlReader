@@ -579,4 +579,7 @@
     <value>Indtast venligst den korrekte sti i</value>
     <comment>NL MISSING</comment>
   </data>
+  <data name="ToolStripMenuItem_Tools_Capella" xml:space="preserve">
+    <value>Capella</value>
+  </data>
 </root>

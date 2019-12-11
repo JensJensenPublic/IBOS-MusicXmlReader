@@ -498,7 +498,7 @@
     <value>&amp;Settings</value>
     <comment>JSJ: NEW: MISSING</comment>
   </data>
-  <data name="x" xml:space="preserve">
-    <value />
+  <data name="ToolStripMenuItem_Tools_Capella" xml:space="preserve">
+    <value>Capella</value>
   </data>
 </root>

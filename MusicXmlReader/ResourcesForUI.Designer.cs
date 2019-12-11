@@ -1069,6 +1069,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Capella.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_Capella {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_Capella", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate Music Braille &amp;testpattern.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern {
