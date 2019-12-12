@@ -191,7 +191,7 @@
     <value>Generelle indstillinger</value>
   </data>
   <data name="General_LatestBrailleMusicDirectory" xml:space="preserve">
-    <value>Seneste Braille Music mappe</value>
+    <value>Seneste punktnode mappe</value>
   </data>
   <data name="General_LatestMusicXmlFile" xml:space="preserve">
     <value>Seneste MusicXml fil</value>

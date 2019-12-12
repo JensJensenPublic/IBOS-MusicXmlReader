@@ -69,7 +69,7 @@ public GeneralSettingsForms(string applicationName,  UserPreferencesHandler user
             InitTextBoxAndLabel(textBoxMusicXmlFile, labelMusicXmlFile, ResourcesForSettings.General_LatestMusicXmlFile,fileName , true);
             InitTextBoxAndLabel(textBoxMusicXmlDirectory, labelMusicXmlDirectory, ResourcesForSettings.General_LatestMusicXmlPath, fullFileName, true);
             // Label and textbox for Braille Music
-            InitTextBoxAndLabel(textBoxBrailleMusicPath, labelBrailleMusicPath, ResourcesForSettings.General_LatestMusicXmlPath, userPreferences.BrailleMusicDirectory, true);
+            InitTextBoxAndLabel(textBoxBrailleMusicPath, labelBrailleMusicPath, ResourcesForSettings.General_LatestBrailleMusicDirectory, userPreferences.BrailleMusicDirectory, true);
 
             InitTextBoxAndLabel(textBoxMuseScore, labelMuseScore, ResourcesForSettings.General_MuseScoreLocation, userPreferences.MuseScoreExe, false);
             InitTextBoxAndLabel(textBoxSibelius, labelSibelius, ResourcesForSettings.General_SibeliusLocation, userPreferences.SibeliusExe, false);
