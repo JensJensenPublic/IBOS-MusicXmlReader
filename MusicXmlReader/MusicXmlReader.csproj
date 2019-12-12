@@ -181,6 +181,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="publish.cmd" />
+    <None Include="ResourcesForSettings.nl-NL.xls" />
     <None Include="ResourcesForUI.nl-NL.xls" />
   </ItemGroup>
   <ItemGroup>
