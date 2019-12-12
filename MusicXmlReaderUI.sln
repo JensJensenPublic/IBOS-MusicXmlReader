@@ -23,7 +23,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\Principper for dokumentation.odt = Documentation\Principper for dokumentation.odt
 		Documentation\Sample MusicXmlReader.JCF = Documentation\Sample MusicXmlReader.JCF
 		Documentation\Simple becifringer.odt = Documentation\Simple becifringer.odt
-		Documentation\Test af version 3.3.doc = Documentation\Test af version 3.3.doc
 		Documentation\TODo liste. Gældende version.xls = Documentation\TODo liste. Gældende version.xls
 		Visual Studio Licens.txt = Visual Studio Licens.txt
 	EndProjectSection
@@ -113,6 +112,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Third Party Documentation", "Third Party Documentation", "{DCD9E9C9-E80A-4979-ABD9-0E19AB23E73B}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Third party documentation\Index Braille\Index-Printer-Interface-Protocol-V5_V4-2016-05-13.pdf = Documentation\Third party documentation\Index Braille\Index-Printer-Interface-Protocol-V5_V4-2016-05-13.pdf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test descriptions", "Test descriptions", "{A4CA3C5D-13DF-45A2-8AA6-992E83AE9C1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version 3.3", "Version 3.3", "{3B46914E-71C8-49D7-B733-DB73A6C95801}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Test descriptions\Version 3.3\Test af version 3.3.doc = Documentation\Test descriptions\Version 3.3\Test af version 3.3.doc
 	EndProjectSection
 EndProject
 Global
@@ -292,5 +298,7 @@ Global
 		{7E403006-D108-4DC6-9508-5900C36157E6} = {79DD0BA3-6AD9-4599-B8D4-1D09CC2CE379}
 		{C6B6B125-56D2-47E9-8D42-4281D44E5BAB} = {79DD0BA3-6AD9-4599-B8D4-1D09CC2CE379}
 		{DCD9E9C9-E80A-4979-ABD9-0E19AB23E73B} = {1B62366B-E595-454C-846D-E36240015490}
+		{A4CA3C5D-13DF-45A2-8AA6-992E83AE9C1C} = {1B62366B-E595-454C-846D-E36240015490}
+		{3B46914E-71C8-49D7-B733-DB73A6C95801} = {A4CA3C5D-13DF-45A2-8AA6-992E83AE9C1C}
 	EndGlobalSection
 EndGlobal
