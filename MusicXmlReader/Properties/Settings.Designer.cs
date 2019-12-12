@@ -349,7 +349,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("IBOS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("BANA")]
         public string EmbosserPageLayout {
             get {
                 return ((string)(this["EmbosserPageLayout"]));
@@ -361,7 +361,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("IBOS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("BANA")]
         public string NoteTakerPageLayout {
             get {
                 return ((string)(this["NoteTakerPageLayout"]));
@@ -373,7 +373,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("IBOS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("BANA")]
         public string GenericDevicePageLayout {
             get {
                 return ((string)(this["GenericDevicePageLayout"]));
