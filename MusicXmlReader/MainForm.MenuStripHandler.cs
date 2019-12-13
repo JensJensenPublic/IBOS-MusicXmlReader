@@ -82,15 +82,6 @@ namespace MusicXmlReader
 
             copyMusicBrailleToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_CopyMusicBraille;
 
-
-  //this.exportMusicBrailleToFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ExportMusicBrailleToFile;
-  // this.exportMusicBrailleToFileToolStripMenuItem.ShortcutKeys = ShortcutHandler....;
-  //this.brfUnicodeToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_Unicode;
-  //this.brfUnicodeToolStripMenuItem.ShowShortcutKeys = ShortcutHandler....;
-  //this.brfASCIIToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_brf_ASCII;
-  //this.brfASCIIToolStripMenuItem.ShortcutKeys = ShortcutHandler....;
-
-
             // Children of editToolStripMenuItem, referring to the Treeview
             // Texts:  NOTE! Use the same texts as used in the treeview to which these items refer!!
             allItemsToolStripMenuItem.Text = ResourcesForUI.TreeView_All_Items;
@@ -491,25 +482,9 @@ namespace MusicXmlReader
         {
             userSettingsHandler.ShowFilterItems(false);
         }
-
-        //private void uncheckOthersToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    userSettingsHandler.UpdateCheckBoxes(UserSettingsHandler.CheckboxOperation.Uncheck, UserSettingsHandler.CheckboxRelation.SameParent);
-        //    // userSettingsHandler.UpdateOtherCheckboxes(UserSettingsHandler.CheckboxOperation.Uncheck);
-        //}
-
-        //private void checkOthersToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    userSettingsHandler.UpdateCheckBoxes(UserSettingsHandler.CheckboxOperation.Check, UserSettingsHandler.CheckboxRelation.SameParent);
-        //    //userSettingsHandler.UpdateOtherCheckboxes(UserSettingsHandler.CheckboxOperation.Check);     
-        //}
-
-
+        
         #endregion // Edit
-        //
-        //*************************************************************************************************
-        //
-
+ 
         #region Help
         private void aboutIBOSMusicXmlReaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -597,7 +572,6 @@ namespace MusicXmlReader
 
 
         #endregion settings
-
 
         #region tools
 
@@ -823,9 +797,8 @@ namespace MusicXmlReader
         }
 
 
-        #endregion // tools ***********************************************************************
-
-
+        #endregion // tools 
+        
         #region Archives
 
         private void httpsmusescorecomsheetmusicToolStripMenuItem_Click(object sender, EventArgs e)
@@ -934,9 +907,7 @@ namespace MusicXmlReader
         }
 
         #endregion // archives
-
-
-
+        
         #region Import
         private void importNewSampleFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -999,8 +970,6 @@ namespace MusicXmlReader
         // Private definitions used for export to Braille Music
         private const Model.BrailleStyleEnum IbosStyle = Model.BrailleStyleEnum.IBOS;
         private const Model.BrailleStyleEnum BanaStyle = Model.BrailleStyleEnum.BANA2015;
-        //private const int defaultEmbosserCharactersPerLine = 40; // A fallback value if nothing is found elsewhere
-        //private const int defaultEmbosserLinesPerPage = 20;  // A fallback value if nothing is found elsewhere
 
         private string FormatExportMessage(BrailleDevice bD, string delimiter)
         {
@@ -1015,9 +984,7 @@ namespace MusicXmlReader
                               delimiter, deviceType, fileFormat, pageWidth, pageHeight, pageLayout);
             return result;
         }
-
-
-
+        
         private void Export(BrailleDevice brailleDevice)
         {
             Logger.LogCF(string.Format(": {0}", FormatExportMessage(brailleDevice," "))); // In Log use SPACE as delimiter.
@@ -1060,28 +1027,7 @@ namespace MusicXmlReader
                 Export(noteTaker);
             }
         }
-
-        //private void toBana2015NotetakerToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    // The formatting parameters are et to the values from the user settings
-        //    brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.NoteTaker, NoteTakerCharactersPerLine, NoteTakerLinesPerPage, BanaStyle);
-        //}
-
-        //private int NoteTakerCharactersPerLine
-        //{
-        //    get
-        //    {
-        //        return userPreferencesHandler.noteTaker.PageWidth;
-        //    }
-        //}
-
-        //private int NoteTakerLinesPerPage
-        //{
-        //    get
-        //    {
-        //        return userPreferencesHandler.noteTaker.PageHeight;
-        //    }
-        //}
+         
         #endregion NoteTaker
 
         // After selecting Embosser all parameters: Encoding, pagewidth and pageheight are automatically taken from Settings->Embosser
@@ -1098,30 +1044,7 @@ namespace MusicXmlReader
         {
             Export(userPreferencesHandler.embosser);
         }
-
-        //private void toBana2015EmbosserToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, EmbosserCharactersPerLine, EmbosserLinesPerPage, BanaStyle);
-        //}
-
-
-        //private int EmbosserCharactersPerLine
-        //{
-        //    get
-        //    {
-        //        //return AppConfigHandler.GetIntValue(AppConfigHandler.KeyEnum.EmbosserCharactersPerLine, defaultEmbosserCharactersPerLine);
-        //        return userPreferencesHandler.embosser.PageWidth;
-        //    }
-        //}
-
-        //private int EmbosserLinesPerPage
-        //{
-        //    get
-        //    {
-        //        //return AppConfigHandler.GetIntValue(AppConfigHandler.KeyEnum.EmbosserLinesPerPage, defaultEmbosserLinesPerPage );
-        //        return userPreferencesHandler.embosser.PageHeight;
-        //    }
-        //}
+            
         #endregion Embosser
 
         // After selecting GenericDevice all parameters: Encoding, pagewidth and pageheight are automatically taken from Settings->Generic Braille Device
@@ -1132,12 +1055,6 @@ namespace MusicXmlReader
             Export(userPreferencesHandler.genericBrailleDevice);           
         }
 
-        //// After selecting Bana, Generic device
-        //private void toBanaGenericDeviceToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    brailleMusicExportHandler.ExportMusicBrailleToFile(Model.BrailleDeviceEnum.Embosser, userPreferencesHandler.genericBrailleDevice.PageWidth, userPreferencesHandler.genericBrailleDevice.PageHeight, BanaStyle);
-
-        //}
         #endregion generic device
 
         // After selecting "Optional format" the user must manually specify all parameters: Encoding(ASCII, OctoBraille, Unicode} , pagewidth and pageheight
@@ -1190,7 +1107,7 @@ namespace MusicXmlReader
             Logger.LogCF("Unused");
         }
 
-
+        #endregion // Export of Music Braille
 
         /// <summary>
         /// Generally usable method for building a message for a messagebox when an external program is not found
@@ -1257,10 +1174,7 @@ namespace MusicXmlReader
             Utilities.RunExeWithArgument(program, directory);
         }
         #endregion Copy
-
-
-        #endregion // Export of Music Braille
-
+        
         // End new UI
 
         /// <summary>
@@ -1272,24 +1186,13 @@ namespace MusicXmlReader
         {
             if (!brailleMusicExportHandler.ScoreIsLoaded()) return; // Beeps and logs.
             if (!brailleMusicExportHandler.ScoreIsSupported(IbosStyle)) return; // Shows warning dialog
-            //bool acceptCancel = true;
-            //bool validParams = parameterInputHandler.GetMusicBrailleFormatParameters(acceptCancel); // Prompt the user for formatting parameters
-            //if (!validParams)
-            //{
-            //    UiUtilities.Beep();
-            //    return;
-            //}
             detailsHandler.ShowGlobalDetails(DetailsHandler.DetailsEnum.BrailleFile, DetailsHandler.DetailsDirection.FromTop);
         }
-
-
-
 
         private void usersManualToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowUsersManual();
         }
-
 
         private void generateMusicBrailleTestpatternToolStripMenuItem_Click(object sender, EventArgs e)
         {
