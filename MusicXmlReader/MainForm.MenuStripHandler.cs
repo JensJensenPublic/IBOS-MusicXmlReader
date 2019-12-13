@@ -609,40 +609,40 @@ namespace MusicXmlReader
         }
 
 
-        private void museScoreToolStripMenuItem_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// Executes the executable with the currently open MusicXml File as argument.
+        /// If the executable is not found an error message is issued, specifying where the user can change the location of the executable
+        /// </summary>
+        /// <param name="executable"></param>
+        /// <param name="settingName"></param>
+        private void ExecuteOnCurrentMusicXmlFile(string executable, string settingName)
         {
-            string executable = this.userPreferencesHandler.MuseScoreExe;
-            if (!File.Exists(executable))
+            if (File.Exists(executable))
             {
-                messageHandler.ShowMessage(GetExternalProgramNotFoundMessage(executable, ResourcesForUI.ToolStripMenuItem_Settings_General, ResourcesForSettings.General_MuseScoreLocation));
-                return;
+                Utilities.RunExeWithFileArgument(executable, model.TheMusicXmlFileName);
             }
-            Utilities.RunExeWithFileArgument(executable, model.TheMusicXmlFileName);
+            else
+            {
+                messageHandler.ShowMessage(GetExternalProgramNotFoundMessage(executable, ResourcesForUI.ToolStripMenuItem_Settings_General, settingName));
+            }
         }
 
+        private void museScoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ExecuteOnCurrentMusicXmlFile(this.userPreferencesHandler.MuseScoreExe, ResourcesForSettings.General_MuseScoreLocation);
+        }
+        
         private void sibeliusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string executable = this.userPreferencesHandler.SibeliusExe;
-            if (!File.Exists(executable))
-            {
-                messageHandler.ShowMessage(GetExternalProgramNotFoundMessage(executable, ResourcesForUI.ToolStripMenuItem_Settings_General, ResourcesForSettings.General_SibeliusLocation));
-                return;
-            }
-            Utilities.RunExeWithFileArgument(executable, model.TheMusicXmlFileName);
+            this.ExecuteOnCurrentMusicXmlFile(this.userPreferencesHandler.SibeliusExe,  ResourcesForSettings.General_SibeliusLocation);
         }
 
         private void startCapellaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string executable = this.userPreferencesHandler.CapellaExe;
-            if (!File.Exists(executable))
-            {
-                messageHandler.ShowMessage(GetExternalProgramNotFoundMessage(executable, ResourcesForUI.ToolStripMenuItem_Settings_General, ResourcesForSettings.General_CapellaLocation));
-                return;
-            }
-            Utilities.RunExeWithFileArgument(executable, model.TheMusicXmlFileName);
+            this.ExecuteOnCurrentMusicXmlFile(this.userPreferencesHandler.CapellaExe,  ResourcesForSettings.General_CapellaLocation);
         }
-
-
+        
         private void logfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             model.ExternalToolsHandler.ReadLogFile();
