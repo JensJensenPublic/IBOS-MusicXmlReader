@@ -93,6 +93,9 @@
     <Compile Include="MainForm.MenuStripHandler.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MainForm.MenuStripLocalization.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MessageHandler.cs" />
     <Compile Include="OrganisationDependencies.cs" />
     <Compile Include="ParameterDescription.cs" />
