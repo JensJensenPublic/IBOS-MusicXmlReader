@@ -36,7 +36,8 @@ namespace MusicXmlReaderModel
         }
         #endregion
 
-
+        static private string currentMusicXmlFile;
+        static public string CurrentMusicXmlFile { get { return (null == currentMusicXmlFile) ? "" : currentMusicXmlFile; } set { currentMusicXmlFile = value; } }
 
 
         static public string GetCallingMethod()

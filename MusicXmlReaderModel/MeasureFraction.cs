@@ -268,6 +268,11 @@ public void Evaluate()
                         Format(baseString,tupleFractions);
 
                         AddOwner(allOwners, previousEventDescription, previousNoteElement); //  For debugging only !
+
+                        string logMessage = "The position could NOT be expressed as a MeasureNumber plus a BeatNumber plus a simple fraction";
+                        // Logger.LogCF(string.Format(": {0} in '{1}' this.stringRepresentation='{2}' ", logMessage, Logger.CurrentMusicXmlFile, this.stringRepresentation));
+                        // Logger.LogCFOnce(string.Format(": {0} in '{1}' ", logMessage , Logger.CurrentMusicXmlFile));
+
                     }
                 }
                 Log(allOwners, eventDescription); // For debugging only !!
@@ -289,7 +294,9 @@ public void Evaluate()
             {
                 stringRepresentation = string.Format("+ {0:0.000}", decimalValue);
             }
-            Logger.LogCFOnce(string.Format(": Using last resort Decimal representation: Stringrepresentation='{0}'", this.stringRepresentation));
+            string message = "Using last resort Decimal representation";
+            Logger.LogCF(string.Format(": {0} {1} Stringrepresentation",message, this.stringRepresentation));
+            Logger.LogCFOnce(string.Format(": {0} in '{1}' ",message, Logger.CurrentMusicXmlFile));
             // Use the following line for debugging only ! (Performance issus)
             bool visible = this.eventDescription.ContainsVisibleNotes;
             if (visible)
