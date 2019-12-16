@@ -148,12 +148,35 @@ public void Evaluate()
         {
             Int64 offset = newStartTime - currentMeasurestartTime;
 
-            if (0 == offset)
+
+            bool showBeatNumber = true; // TEmporarily all switchin back to old implementation !
+
+            string beatStringAndNumber = null;
+            if (showBeatNumber)
             {
-                binaryFractionPart = new IntegerFraction(0, 1);
-                baseBinaryFraction = binaryFractionPart;
-                stringRepresentation = "+ " + binaryFractionPart.ToString();
-                return;
+                System.Int64 beatDuration = this.eventDescription.StatusInformation.CurrentTimeElement.BeatDuration;
+                System.Int64 beatNumber = (offset / beatDuration) + 1; // In music the index base is 1 !
+                string beatString = ResourcesForModel.NoteElement_Beat_Text;
+                beatStringAndNumber = string.Format("{0} {1} ", beatString, beatNumber); // Assure same formatting in all cases
+                offset = offset % beatDuration;
+                if (offset == 0)
+                {
+                    // The position is on the beat
+                    binaryFractionPart = new IntegerFraction(0, 1);
+                    baseBinaryFraction = binaryFractionPart;
+                    stringRepresentation = beatStringAndNumber;
+                    return;
+                }
+            }
+            else
+            {
+                if (0 == offset)
+                {
+                    binaryFractionPart = new IntegerFraction(0, 1);
+                    baseBinaryFraction = binaryFractionPart;
+                    stringRepresentation = "+ " + binaryFractionPart.ToString();
+                    return;
+                }
             }
 
             // Attempt to find integers N and D (for nominator and denominator) 
@@ -172,7 +195,15 @@ public void Evaluate()
             baseBinaryFraction = binaryFractionPart;
             if (null != binaryFractionPart)
             {
-                stringRepresentation = "+ " + binaryFractionPart.ToString();
+                if (showBeatNumber)
+                {
+                    // The position can be expressed as a MeasureNumber plus a BeatNumber plus a simple fraction
+                    stringRepresentation = string.Format("{0} + {1}", beatStringAndNumber, binaryFractionPart.ToString());
+                }
+                else
+                {
+                    stringRepresentation = "+ " + binaryFractionPart.ToString();
+                }
                 return; 
             }
 
@@ -181,6 +212,7 @@ public void Evaluate()
       
             if (null != eventDescription.EndEventElements)
             {
+                //Logger.LogCF(string.Format(": Offset={0} can not be expressed as a simple binary fraction", offset));
                 int count = eventDescription.EndEventElements.Count;
                 // if (count != 1)  Logger.LogCFOnce(string.Format(": {0} owners", count));   
 
@@ -217,9 +249,20 @@ public void Evaluate()
                         this.tupleFractions.AddRange(previousEventDescription.MeasureFraction.tupleFractions); // Copy the tuple fractions of previous EventDescription
                         this.tupleFractions.Add(previousNoteElement.TupleDuration()); // Add tupleduration of previous NoteElement
                         string baseString = "";
-                        if (null != baseBinaryFraction)
+                        if (showBeatNumber)
                         {
-                            baseString = "+ " + baseBinaryFraction.ToString(); // Use the latest known binary fraction as a base
+                            baseString = beatStringAndNumber;
+                            if (null != baseBinaryFraction)
+                            {
+                                baseString = baseString + "+ " + baseBinaryFraction.ToString(); // Use the latest known binary fraction as a base
+                            }
+                        }
+                        else
+                        {
+                            if (null != baseBinaryFraction)
+                            {
+                                baseString = "+ " + baseBinaryFraction.ToString(); // Use the latest known binary fraction as a base
+                            }
                         }
 
                         Format(baseString,tupleFractions);
@@ -230,11 +273,23 @@ public void Evaluate()
                 Log(allOwners, eventDescription); // For debugging only !!
             }
 
-            if (! string.IsNullOrEmpty(this.stringRepresentation)) return;
+            if (!string.IsNullOrEmpty(this.stringRepresentation))
+            {
+                //Logger.LogCF(string.Format(": Stringrepresentation='{0}'", this.stringRepresentation));
+                return;
+            }
 
             // As a last resort represent the value as a decimnal fraction
             float decimalValue = ((float)offset / (float)fullNoteDuration);
-            stringRepresentation = string.Format("+ {0:0.000}", decimalValue);
+            if (showBeatNumber)
+            {
+                stringRepresentation = string.Format("{0} + {1:0.000}", beatStringAndNumber, decimalValue);
+            }
+            else
+            {
+                stringRepresentation = string.Format("+ {0:0.000}", decimalValue);
+            }
+            Logger.LogCFOnce(string.Format(": Using last resort Decimal representation: Stringrepresentation='{0}'", this.stringRepresentation));
             // Use the following line for debugging only ! (Performance issus)
             bool visible = this.eventDescription.ContainsVisibleNotes;
             if (visible)

@@ -1049,4 +1049,8 @@
   <data name="OctaveName_Third" xml:space="preserve">
     <value>third</value>
   </data>
+  <data name="NoteElement_Beat_Text" xml:space="preserve">
+    <value>Beat</value>
+    <comment>NL missing</comment>
+  </data>
 </root>

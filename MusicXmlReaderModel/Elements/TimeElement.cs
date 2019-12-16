@@ -44,6 +44,13 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public System.Int64 BeatDuration
+        {
+            get
+            {
+                return GetMeasureDuration() / beats;
+            }
+        }
 
         public System.Int64 GetMeasureDuration()
         {

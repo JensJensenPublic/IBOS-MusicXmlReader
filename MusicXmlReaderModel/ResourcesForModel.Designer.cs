@@ -1366,6 +1366,15 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Beat.
+        /// </summary>
+        internal static string NoteElement_Beat_Text {
+            get {
+                return ResourceManager.GetString("NoteElement_Beat_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to breve.
         /// </summary>
         internal static string NoteElement_breve {
