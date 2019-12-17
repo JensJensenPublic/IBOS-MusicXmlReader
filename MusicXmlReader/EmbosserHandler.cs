@@ -159,7 +159,8 @@ namespace MusicXmlReader
                 string text2 = ResourcesForUI.Message_File_FileName; // "FileName";
                 string text3 = ResourcesForUI.Message_File_ErrorMessage; // "Error message";
                 // The logmessage is intensionally NOT localized !
-                string logMessage = string.Format("Failed to emboss '{0}' on '{1}' {2}", fullName, printerName, (null == errorMessage) ? "" : errorMessage);
+                Int32 errorCode = RawPrinterHelper.NativeMethods.dwPublicWin32Error;
+                string logMessage = string.Format("Failed to emboss '{0}' on '{1}' {2} Win32Error={3}", fullName, printerName, (null == errorMessage) ? "" : errorMessage, errorCode);
                 StringBuilder uiMessage = new StringBuilder();
                 uiMessage.AppendLine(string.Format("{0} '{1}'", text1, printerName));
                 uiMessage.AppendLine();

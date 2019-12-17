@@ -59,6 +59,7 @@ namespace RawPrinterHelper
             Application.DoEvents();
         }
 
+        public static Int32 dwPublicWin32Error;
 
         // SendBytesToPrinter()
         // When the function is given a printer name and an unmanaged array
@@ -66,9 +67,10 @@ namespace RawPrinterHelper
         // Returns true on success, false on failure.
         public static bool SendBytesToPrinter(string szPrinterName, IntPtr pBytes, Int32 dwCount, string documentName)
         {
-            Int32 dwError = 0, dwWritten = 0;
+            Int32  dwWritten = 0;
             IntPtr hPrinter = new IntPtr(0);
             DOCINFOA di = new DOCINFOA();
+            dwPublicWin32Error = 0;
             bool bSuccess = false; // Assume failure unless you specifically succeed.
             di.pDocName = documentName;
             di.pDataType = "RAW";
@@ -90,14 +92,14 @@ namespace RawPrinterHelper
                     EndDocPrinter(hPrinter);
                 }
                 ClosePrinter(hPrinter);
-            }
-            ApplicationDoEvents();
+            } 
             // If you did not succeed, GetLastError may give more information
             // about why not.
             if (bSuccess == false)
-            {
-                dwError = Marshal.GetLastWin32Error();
+            {  
+                dwPublicWin32Error = Marshal.GetLastWin32Error();
             }
+            ApplicationDoEvents();
             return bSuccess;
         }
 
