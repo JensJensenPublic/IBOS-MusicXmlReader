@@ -167,9 +167,18 @@ namespace MusicXmlReader
                 uiMessage.AppendLine();
                 if (null != errorMessage)
                 {
+                    // Report any error message received through an exception
                     uiMessage.AppendLine(string.Format("{0}: '{1}'",text3, errorMessage));
                     uiMessage.AppendLine();
                 }
+
+                if ((0 != win32ErrorCode) && (!string.IsNullOrEmpty(win32ErrorMessage)))
+                {
+                    // Report any Win32 error message (Localized by Windows!)
+                    uiMessage.AppendLine(string.Format("'{0}'",win32ErrorMessage));
+                    uiMessage.AppendLine();
+                }
+
 
                 uiMessage.AppendLine(string.Format("{0}:", text2));
                 uiMessage.AppendLine(fullName);
