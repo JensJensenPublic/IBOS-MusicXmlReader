@@ -140,7 +140,7 @@ namespace MusicXmlReader
             try
             {
                 //result = RawPrinterHelper.RawPrinterHelper.SendFileToPrinter(printerName, fullName);
-                result = RawPrinterHelper.RawPrinterHelper.SendFileToPrinter(printerName, fullName);
+                result = RawPrinterHelper.NativeMethods.SendFileToPrinter(printerName, fullName);
             }
             catch (Exception exeption)
             {
