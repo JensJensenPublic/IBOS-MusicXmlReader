@@ -159,8 +159,9 @@ namespace MusicXmlReader
                 string text2 = ResourcesForUI.Message_File_FileName; // "FileName";
                 string text3 = ResourcesForUI.Message_File_ErrorMessage; // "Error message";
                 // The logmessage is intensionally NOT localized !
-                Int32 errorCode = RawPrinterHelper.NativeMethods.dwPublicWin32Error;
-                string logMessage = string.Format("Failed to emboss '{0}' on '{1}' {2} Win32Error={3}", fullName, printerName, (null == errorMessage) ? "" : errorMessage, errorCode);
+                Int32 win32ErrorCode = RawPrinterHelper.NativeMethods.dwPublicWin32Error;
+                string win32ErrorMessage = Utilities.GetSystemMessage(win32ErrorCode);
+                string logMessage = string.Format("Failed to emboss '{0}' on '{1}' {2} Win32Error={3}: '{4}'", fullName, printerName, (null == errorMessage) ? "" : errorMessage, win32ErrorCode, win32ErrorMessage);
                 StringBuilder uiMessage = new StringBuilder();
                 uiMessage.AppendLine(string.Format("{0} '{1}'", text1, printerName));
                 uiMessage.AppendLine();
@@ -209,6 +210,7 @@ namespace MusicXmlReader
 
         static public EmbosserHandler Create(OpenFileDialog openFileDialog, PrintDialog printDialog, string applicationName)
         {
+            Logger.LogCF(string.Format(": Utilities.GetSystemMessage(0) returns message:  '{0}'",Utilities.GetSystemMessage(0))); // For test only !
             return new EmbosserHandler(openFileDialog, printDialog, applicationName);
         }
     }

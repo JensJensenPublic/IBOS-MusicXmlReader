@@ -53,6 +53,21 @@ namespace PlatformDependencies
 #endif
         }
 
+
+        public static string GetSystemMessage(int errorCode)
+        {
+#if Windows
+            return NativeMethods.GetSystemMessage(errorCode);
+#elif Android
+            // Not implemented (yet)
+            ppszPath = null;
+            return -1;
+#else
+#error Compiling for unknown platform
+#endif
+        }
+
+
     }
 
 }

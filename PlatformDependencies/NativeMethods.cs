@@ -44,8 +44,29 @@ namespace PlatformDependencies
 #region SHGetKnownFolderPath
         [DllImport("Shell32.dll")]
         internal static extern int SHGetKnownFolderPath(    [MarshalAs(UnmanagedType.LPStruct)]Guid rfid, uint dwFlags, IntPtr hToken,    out IntPtr ppszPath);
-#endregion SHGetKnownFolderPath
+        #endregion SHGetKnownFolderPath
 
+        #region FormatMessage
+
+        // https://stackoverflow.com/questions/3823888/how-do-i-look-up-the-proper-windows-system-error-code-to-use-in-my-application
+        internal static string GetSystemMessage(int errorCode)
+        {
+            int capacity = 512;
+            int FORMAT_MESSAGE_FROM_SYSTEM = 0x00001000;
+            StringBuilder sb = new StringBuilder(capacity);
+            FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, IntPtr.Zero, errorCode, 0,
+                sb, sb.Capacity, IntPtr.Zero);
+            int i = sb.Length;
+            if (i > 0 && sb[i - 1] == 10) i--;
+            if (i > 0 && sb[i - 1] == 13) i--;
+            sb.Length = i;
+            return sb.ToString();
+        }
+
+        [DllImport("kernel32.dll")]
+        private static extern int FormatMessage(int dwFlags, IntPtr lpSource, int dwMessageId,
+        int dwLanguageId, StringBuilder lpBuffer, int nSize, IntPtr Arguments);
+#endregion
 
     }
 }

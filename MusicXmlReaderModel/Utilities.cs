@@ -1134,6 +1134,16 @@ namespace MusicXmlReaderModel
             }
         }
 
+
+        /// <summary>
+        /// Converts a  Win32 errorcode to an error message
+        /// </summary>
+        /// <param name="errorCode"></param>
+        /// <returns></returns>
+        public static string GetSystemMessage(int errorCode)
+        {
+            return PlatformDependencies.StaticFunctions.GetSystemMessage(errorCode);
+        }
     }
 
 
