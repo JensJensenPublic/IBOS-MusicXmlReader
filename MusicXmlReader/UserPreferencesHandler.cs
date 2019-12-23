@@ -198,6 +198,7 @@ namespace MusicXmlReader
         public string MuseScoreExe { get { return s.MuseScoreExe; } set { s.MuseScoreExe = value; } }
         public string SibeliusExe { get { return s.SibeliusExe; } set { s.SibeliusExe = value; } }
         public string CapellaExe { get { return s.CapellaExe; } set { s.CapellaExe = value; } }
+        public string FinaleExe { get { return s.FinaleExe; } set { s.FinaleExe = value; } }
 
 
 

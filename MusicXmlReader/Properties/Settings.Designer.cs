@@ -382,5 +382,17 @@ namespace MusicXmlReader.Properties {
                 this["GenericDevicePageLayout"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\Finale NotePad 2012\\Finale NotePad.exe")]
+        public string FinaleExe {
+            get {
+                return ((string)(this["FinaleExe"]));
+            }
+            set {
+                this["FinaleExe"] = value;
+            }
+        }
     }
 }

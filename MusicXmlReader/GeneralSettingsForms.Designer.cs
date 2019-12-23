@@ -42,6 +42,8 @@
             this.textBoxMuseScore = new System.Windows.Forms.TextBox();
             this.textBoxSibelius = new System.Windows.Forms.TextBox();
             this.textBoxCapella = new System.Windows.Forms.TextBox();
+            this.textBoxFinale = new System.Windows.Forms.TextBox();
+            this.labelFinale = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelMusicXmlFile
@@ -160,11 +162,29 @@
             this.textBoxCapella.Size = new System.Drawing.Size(643, 20);
             this.textBoxCapella.TabIndex = 60;
             // 
+            // textBoxFinale
+            // 
+            this.textBoxFinale.Location = new System.Drawing.Point(172, 195);
+            this.textBoxFinale.Name = "textBoxFinale";
+            this.textBoxFinale.Size = new System.Drawing.Size(643, 20);
+            this.textBoxFinale.TabIndex = 94;
+            // 
+            // labelFinale
+            // 
+            this.labelFinale.AutoSize = true;
+            this.labelFinale.Location = new System.Drawing.Point(30, 195);
+            this.labelFinale.Name = "labelFinale";
+            this.labelFinale.Size = new System.Drawing.Size(35, 13);
+            this.labelFinale.TabIndex = 95;
+            this.labelFinale.Text = "Finale";
+            // 
             // GeneralSettingsForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 261);
+            this.Controls.Add(this.labelFinale);
+            this.Controls.Add(this.textBoxFinale);
             this.Controls.Add(this.textBoxCapella);
             this.Controls.Add(this.textBoxSibelius);
             this.Controls.Add(this.textBoxMuseScore);
@@ -203,5 +223,7 @@
         private System.Windows.Forms.TextBox textBoxMuseScore;
         private System.Windows.Forms.TextBox textBoxSibelius;
         private System.Windows.Forms.TextBox textBoxCapella;
+        private System.Windows.Forms.TextBox textBoxFinale;
+        private System.Windows.Forms.Label labelFinale;
     }
 }

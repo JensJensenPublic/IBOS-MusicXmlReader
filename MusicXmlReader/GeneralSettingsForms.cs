@@ -74,6 +74,7 @@ public GeneralSettingsForms(string applicationName,  UserPreferencesHandler user
             InitTextBoxAndLabel(textBoxMuseScore, labelMuseScore, ResourcesForSettings.General_MuseScoreLocation, userPreferences.MuseScoreExe, false);
             InitTextBoxAndLabel(textBoxSibelius, labelSibelius, ResourcesForSettings.General_SibeliusLocation, userPreferences.SibeliusExe, false);
             InitTextBoxAndLabel(textBoxCapella, labelCapella, ResourcesForSettings.General_CapellaLocation, userPreferences.CapellaExe, false);
+            InitTextBoxAndLabel(textBoxFinale, labelFinale, ResourcesForSettings.General_FinaleLocation, userPreferences.FinaleExe, false);
         }
 
 
@@ -86,6 +87,7 @@ public GeneralSettingsForms(string applicationName,  UserPreferencesHandler user
             userPreferences.MuseScoreExe = textBoxMuseScore.Text;
             userPreferences.SibeliusExe = textBoxSibelius.Text;
             userPreferences.CapellaExe = textBoxCapella.Text;
+            userPreferences.FinaleExe = textBoxFinale.Text;
 
         }
 

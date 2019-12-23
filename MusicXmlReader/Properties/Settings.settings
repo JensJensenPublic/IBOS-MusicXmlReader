@@ -92,5 +92,8 @@
     <Setting Name="GenericDevicePageLayout" Type="System.String" Scope="User">
       <Value Profile="(Default)">BANA</Value>
     </Setting>
+    <Setting Name="FinaleExe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files (x86)\Finale NotePad 2012\Finale NotePad.exe</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

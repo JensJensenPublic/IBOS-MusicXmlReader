@@ -217,4 +217,8 @@
   <data name="Braille_GenericDeviceName" xml:space="preserve">
     <value>Device name</value>
   </data>
+  <data name="General_FinaleLocation" xml:space="preserve">
+    <value>Finale location</value>
+    <comment>MISSING DUTCH</comment>
+  </data>
 </root>

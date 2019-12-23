@@ -217,4 +217,7 @@
   <data name="Braille_EmbosserProgramName" xml:space="preserve">
     <value>Punktprinter programmets navn</value>
   </data>
+  <data name="General_FinaleLocation" xml:space="preserve">
+    <value>Finale placering</value>
+  </data>
 </root>

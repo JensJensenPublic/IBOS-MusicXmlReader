@@ -313,6 +313,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finale location.
+        /// </summary>
+        internal static string General_FinaleLocation {
+            get {
+                return ResourceManager.GetString("General_FinaleLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Latest Braille Music directory.
         /// </summary>
         internal static string General_LatestBrailleMusicDirectory {
