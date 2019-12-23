@@ -1078,6 +1078,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Finale.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_Finale {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_Finale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate Music Braille &amp;testpattern.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern {

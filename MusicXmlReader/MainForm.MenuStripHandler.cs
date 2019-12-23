@@ -484,7 +484,12 @@ namespace MusicXmlReader
         {
             this.ExecuteOnCurrentMusicXmlFile(this.userPreferencesHandler.CapellaExe,  ResourcesForSettings.General_CapellaLocation);
         }
-        
+
+        private void startFinaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ExecuteOnCurrentMusicXmlFile(this.userPreferencesHandler.FinaleExe, ResourcesForSettings.General_FinaleLocation);
+        }
+
         private void logfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             model.ExternalToolsHandler.ReadLogFile();

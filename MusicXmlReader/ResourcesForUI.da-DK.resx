@@ -582,4 +582,7 @@
   <data name="ToolStripMenuItem_Tools_Capella" xml:space="preserve">
     <value>Capella</value>
   </data>
+  <data name="ToolStripMenuItem_Tools_Finale" xml:space="preserve">
+    <value>Finale</value>
+  </data>
 </root>
