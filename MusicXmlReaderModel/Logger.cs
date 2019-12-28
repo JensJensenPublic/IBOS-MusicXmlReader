@@ -40,6 +40,10 @@ namespace MusicXmlReaderModel
         static public string CurrentMusicXmlFile { get { return (null == currentMusicXmlFile) ? "" : currentMusicXmlFile; } set { currentMusicXmlFile = value; } }
 
 
+        static private string currentMusicXmlPath;
+        static public string CurrentMusicXmlPath { get { return (null == currentMusicXmlPath) ? "" : currentMusicXmlPath; } set { currentMusicXmlPath = value; } }
+
+
         static public string GetCallingMethod()
         {
             return GetCallingMethod(2); //  because we use this extra level for calling GetCallingMethod(int levels) !

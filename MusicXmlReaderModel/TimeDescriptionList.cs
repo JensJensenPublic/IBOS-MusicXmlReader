@@ -6,50 +6,48 @@ namespace MusicXmlReaderModel
 
     public class TimeDescriptionList:  IComparer<Element>
     {
-        
-
-        private Int64 EvalNextStartTime(MeasureElement measureElement,Int64 nextStartTime)
+        /// <summary>
+        /// NextStartTime was computed as a sum of durations of NoteElements, BackupElements, ForwardElements etc and is not always accurate !
+        /// NextMeasureBasedStartTime is based only on the starttime and duration of measureElements and is believed to be accurate !
+        /// When these 2 values differ and NextMeasureBasedStartTime exists (i.e. not at the first 2 MeasureElements) we use NextMeasureBasedStartTime
+        /// For investigation problem 391 :
+        /// </summary>
+        /// <param name="measureElement"></param>
+        /// <param name="nextStartTime"></param>
+        /// <returns></returns>
+        private Int64 EvalNextStartTime(MeasureElement measureElement, Int64 nextStartTime)
         {
             int number = measureElement.Number;
             string partId = (null == measureElement.PartId) ? "" : measureElement.PartId;
             MeasureElement previous = measureElement.PreviousMeasureElement;
-            Int64 startTime = 0;
-            Int64 nextMeasureBasedStartTime = 0;
-            if (previous != null)
+            if (previous == null)
             {
-                // Based on the starttime of the previous MeasureElement and the duration of it.
-                // Note: The duration of the previous MeasureEmlement is NOT known when it was read from the file, but is known now !
-                startTime = previous.StartTime;
-                nextMeasureBasedStartTime = startTime + measureElement.MeasureDuration; // Based on previous MeasureElement in this part ONLY
-            }
-            else
-            {
-                startTime = 0; // The first measure always starts at time = 0
-                nextMeasureBasedStartTime = 0;  // The first NoteElement  or pause in the first measure always starts at time = 0
+                // No previous measure to rely on we can only return the original nextStartTime
+                // Logger.LogCF(string.Format(": Previous  == null:  Part={0} Mesaure={1}", partId, number));
+                return nextStartTime;
             }
 
-            if (
-                (nextStartTime != nextMeasureBasedStartTime)
-            &&  (0 != nextMeasureBasedStartTime) // 0 means "Unknown"
-            &&  (number != 1)    // The first measure is not always complete so we can not rely on this mechanism here
-               )
+            if (null == previous.PreviousMeasureElement)
             {
-                // nextStartTime was computed as a sumof durations of NoteElements, BackupElements, ForwardElements etc and is not always accurate !
-                // nextMeasureBasedStartTime is based only on the starttime and duration of measureElements and is believed to be accurate !
-                Utilities.Beep();        
-#if false
-                Logger.LogCFOnce(": StartTimes differ. Aligning!");               
-#else
+                // The previous measure is the first measure so it may be incomplete (Danish "optakt")
+                // Logger.LogCF(string.Format(": Prev.Prev == null: Part={0} Mesaure={1}", partId, number));
+                return nextStartTime;
+            }
+
+            // Based on the starttime of the previous MeasureElement and the duration of it.
+            // Note: The duration of the previous MeasureEmlement is NOT known when it was read from the file, but is known now !
+            Int64 startTime = previous.StartTime;
+            Int64 nextMeasureBasedStartTime = startTime + measureElement.MeasureDuration; // Based on previous MeasureElement in this part ONLY
+            if (nextMeasureBasedStartTime != nextStartTime)
+            {
+                Utilities.Beep();
+                Logger.LogCFOnce(string.Format(": StartTimes differ: Part={0} Measure={1}", partId, number));
+                Logger.LogCFOnce(string.Format(": File={0}", Logger.CurrentMusicXmlPath));
+
                 Logger.LogCF(String.Format(": StartTimes differ: Part={0} Measure={1} NextStartTime={2} NextMeasureStartTime={3} PreviousStartTime={4} MeasureDuration={5} Adjusting NextStartTime to {6}",
-                                    partId, number, nextStartTime, nextMeasureBasedStartTime, startTime, measureElement.MeasureDuration, nextMeasureBasedStartTime));
-#endif
-                return nextMeasureBasedStartTime;
+                    partId, number, nextStartTime, nextMeasureBasedStartTime, startTime, measureElement.MeasureDuration, nextMeasureBasedStartTime));
             }
-
-            // For investigation problem 391 :
-            // If a part contains more than 1 voice, some MusicXml files may contai voices that do not fill up all measures completely by rests.  
-            return nextStartTime; // The unchanged call parameter               
-
+            return nextMeasureBasedStartTime;
         }
 
 

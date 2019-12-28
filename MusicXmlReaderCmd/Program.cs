@@ -49,6 +49,7 @@ namespace MusicXmlReaderUI
             {
                 string shortFileName = Path.GetFileName(file);
                 Logger.CurrentMusicXmlFile = shortFileName;
+                Logger.CurrentMusicXmlPath = file;
  
                 string extension = System.IO.Path.GetExtension(file);
                 // Logger.PostString = " in " + System.IO.Path.GetFileName(file); // Will report the file name with the error logged !
