@@ -41,7 +41,7 @@ namespace MusicXmlReaderModel
             if (nextMeasureBasedStartTime != nextStartTime)
             {
                 Utilities.Beep();
-                Logger.LogCFOnce(string.Format(": StartTimes differ: Part={0} Measure={1}", partId, number));
+                Logger.LogCFOnce(string.Format(": StartTimes differ: Part={0} Measure={1}", partId, number ));
                 Logger.LogCFOnce(string.Format(": File={0}", Logger.CurrentMusicXmlPath));
 
                 Logger.LogCF(String.Format(": StartTimes differ: Part={0} Measure={1} NextStartTime={2} NextMeasureStartTime={3} PreviousStartTime={4} MeasureDuration={5} Adjusting NextStartTime to {6}",

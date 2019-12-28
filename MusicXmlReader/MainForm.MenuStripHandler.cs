@@ -157,7 +157,7 @@ namespace MusicXmlReader
 
 
             Logger.ClearStatistics();  // Clear statistics to be collected while loading, parsing and rendering the MusicXml file:
-
+            Logger.CurrentMusicXmlPath = xmlFileName; // Allow for easy logging of the full file name from anywhere in the code
 
 
 
