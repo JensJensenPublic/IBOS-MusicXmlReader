@@ -183,9 +183,12 @@ namespace MusicXmlReaderUI
             model = Model.Create();
             Console.WriteLine(string.Format("Model.Create {0}", (model != null) ? "succeeded" : "failed"));
             if (null == model) return;
+            string userName = System.Environment.UserName;
+            string dropboxBase = Path.Combine(@"C:\Users", userName);
+            string dropBoxRoot = Path.Combine(dropboxBase, @"DropBox\Root");
 
-            string testFileDirName = @"C:\Users\Jens\Dropbox\Root\Visual Studio 2015\Projects\MusicXmlReaderUI\MusicXmlReader\bin\Debug\MusicXml samples"; // Released sample files
-            string archiveDirName  = @"C:\Users\Jens\Dropbox\Root\MusicXml sample file archive"; // All sample files
+            string testFileDirName = Path.Combine(dropBoxRoot,@"Visual Studio 2015\Projects\MusicXmlReaderUI\MusicXmlReader\bin\Debug\MusicXml samples"); // Released sample files
+            string archiveDirName  = Path.Combine(dropBoxRoot,@"MusicXml sample file archive"); // All sample files
 
             // Recurse through all directories and load all musicXml files found
             int successes = 0;
