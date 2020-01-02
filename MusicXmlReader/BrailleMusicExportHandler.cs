@@ -81,10 +81,10 @@ namespace MusicXmlReader
             return true; // We issue a warning when more than one part is enabled, but we do not prevent the export.
         }
 
-        public void ExportMusicBrailleToFile(Model.BrailleDeviceEnum device, int charsPerLine, int linesPerPage, Model.BrailleStyleEnum brailleStyle)
-        {
-            ExportMusicBrailleToFile(GetCultureDependentEncoding(device), charsPerLine, linesPerPage, brailleStyle);
-        }
+        //public void ExportMusicBrailleToFile(Model.BrailleDeviceEnum device, int charsPerLine, int linesPerPage, Model.BrailleStyleEnum brailleStyle)
+        //{
+        //    ExportMusicBrailleToFile(GetCultureDependentEncoding(device), charsPerLine, linesPerPage, brailleStyle);
+        //}
 
 
         /// <summary>
@@ -114,14 +114,16 @@ namespace MusicXmlReader
         /// Common handling of all file formats and styles
         /// </summary>
         /// <param name="brailleFileHandler"></param>
-        public void ExportMusicBrailleToFile(BrailleFileHandler brailleFileHandler, StaffList brailleRepresentations)
+        private void ExportMusicBrailleToFile(BrailleFileHandler brailleFileHandler, StaffList brailleRepresentations)
         {
             this.WriteToFiles(model.TheMusicXmlFileName, brailleFileHandler, brailleRepresentations);
         }
 
 
         /// <summary>
-        /// Common handling of all fileformats
+        /// Common handling of all fileformats, assuring backwards compatibility with version 3.0, which only implements IBOS layout, not BANA  layout
+        /// This overload is called by MainForm.MenustripHandler from the 6 menu items under "Export to Music Braille -> Any Format menu items" (Danish "Exporter punktnoder til fil -> I valgfrit format")
+        /// with fileEncoding = (  OctoBraille, ASCII og Unicode  ) and brailleStyle = IBOS
         /// The user is prompted for the formatting parameters
         /// </summary>
         /// <param name="fileEncoding"></param>
@@ -134,6 +136,8 @@ namespace MusicXmlReader
             if (!validParams)
             {
                 UiUtilities.Beep();
+#warning todo More info, retry
+                MessageBox.Show("Invalid format");
                 return; // The user entered invalid values
             }
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, model.UserPreferences.CharsPerLine, model.UserPreferences.LinesPerForm);

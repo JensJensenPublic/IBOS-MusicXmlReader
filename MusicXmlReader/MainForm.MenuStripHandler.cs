@@ -938,22 +938,10 @@ namespace MusicXmlReader
             brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, IbosStyle);
         }
 
-        // After selecting "BANA2015", "Any Format" , "Braille1252"
-        private void Bana2015txtOctoBraille1252ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, BanaStyle);
-        }
-
         // After selecting "IBOS", "Any Format" , "ASCII"
         private void brfASCIIToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_ASCII, IbosStyle);
-        }
-
-        // After selecting "BANA2015", "Any Format" , "ASCII"
-        private void Bana2015brfASCIIToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_ASCII, BanaStyle);
         }
 
         // After selecting "IBOS" "Any Format" , "Unicode"
@@ -961,13 +949,7 @@ namespace MusicXmlReader
         {
             brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_Unicode, IbosStyle);
         }
-
-        // After selecting "BANA2015" "Any Format" , "Unicode"
-        private void Bana2015brfUnicodeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_Unicode, BanaStyle);
-        }
-
+        
         #endregion OptionalFormat
 
         private void inOptionalFormatToolStripMenuItem_Click(object sender, EventArgs e)
