@@ -212,7 +212,7 @@
             this.listBoxBraillePageLayout.FormattingEnabled = true;
             this.listBoxBraillePageLayout.Location = new System.Drawing.Point(205, 92);
             this.listBoxBraillePageLayout.Name = "listBoxBraillePageLayout";
-            this.listBoxBraillePageLayout.Size = new System.Drawing.Size(207, 30);
+            this.listBoxBraillePageLayout.Size = new System.Drawing.Size(673, 30);
             this.listBoxBraillePageLayout.TabIndex = 15;
             // 
             // BrailleMusicSettingsForm
