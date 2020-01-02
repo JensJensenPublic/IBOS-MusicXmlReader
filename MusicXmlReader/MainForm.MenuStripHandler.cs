@@ -875,7 +875,7 @@ namespace MusicXmlReader
             {
                 MessageBox.Show("ExportMusicBrailleToFile()\r\n" + FormatExportMessage(brailleDevice, "\r\n")); // In Messagebox use CR LF as delimiter
             }
-            brailleMusicExportHandler.ExportMusicBrailleToFile(brailleDevice.BrailleFileFormat, brailleDevice.PageWidth, brailleDevice.PageHeight, brailleDevice.BraillePageLayout);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(brailleDevice.BrailleFileFormat, brailleDevice.PageWidth, brailleDevice.PageHeight, brailleDevice.BraillePageLayout,brailleDevice.DeviceName);
         }
 
 
@@ -902,7 +902,7 @@ namespace MusicXmlReader
                 {
                     MessageBox.Show("ExportMusicBrailleToFile()\r\n" + FormatExportMessage(message, noteTaker.BrailleFileFormat.ToString(), 0, 0, noteTaker.BraillePageLayout.ToString(), "\r\n"));
                 }
-                brailleMusicExportHandler.ExportMusicBrailleToFile(noteTaker.BrailleFileFormat, 0, 0, noteTaker.BraillePageLayout);
+                brailleMusicExportHandler.ExportMusicBrailleToFile(noteTaker.BrailleFileFormat, 0, 0, noteTaker.BraillePageLayout,null);
             }
             else
             {
