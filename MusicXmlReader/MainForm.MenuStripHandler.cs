@@ -857,7 +857,17 @@ namespace MusicXmlReader
                               delimiter, deviceType, fileFormat, pageWidth, pageHeight, pageLayout);
             return result;
         }
-        
+
+
+        /// <summary>
+        /// Common handler for generating Braille Music files from parameters taken from one of the 3 existing profiles.
+        /// Called directly from 
+        /// 1) MenuStripHandler.toNotetakerToolStripMenuItem_Click
+        /// 2) MenuStripHandler.toEmbosserToolStripMenuItem_Click(object sender, EventArgs e)
+        /// 3) MenuStripHandler.toIbosGenericDeviceToolStripMenuItem_Click
+        /// All values needed are extracted from the "brailleDevice" parameter !
+        /// </summary>
+        /// <param name="brailleDevice"></param>
         private void Export(BrailleDevice brailleDevice)
         {
             Logger.LogCF(string.Format(": {0}", FormatExportMessage(brailleDevice," "))); // In Log use SPACE as delimiter.
