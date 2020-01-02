@@ -61,6 +61,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid input.
+        /// </summary>
+        internal static string BrailleMusicExportHandler_Invalid_Input {
+            get {
+                return ResourceManager.GetString("BrailleMusicExportHandler_Invalid_Input", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start playing.
         /// </summary>
         internal static string ButtonStart_StartPlaying {

@@ -121,7 +121,7 @@ namespace MusicXmlReader
 
 
         /// <summary>
-        /// Common handling of all fileformats, assuring backwards compatibility with version 3.0, which only implements IBOS layout, not BANA  layout
+        /// Common handling of all fileformats, assuring backwards compatibility with version 3.0, which only implements IBOS layout, not BANA  layout.
         /// This overload is called by MainForm.MenustripHandler from the 6 menu items under "Export to Music Braille -> Any Format menu items" (Danish "Exporter punktnoder til fil -> I valgfrit format")
         /// with fileEncoding = (  OctoBraille, ASCII og Unicode  ) and brailleStyle = IBOS
         /// The user is prompted for the formatting parameters
@@ -132,14 +132,23 @@ namespace MusicXmlReader
             if (!ScoreIsLoaded()) return; // Beeps and logs.
             if (!ScoreIsSupported(brailleStyle)) return; // Shows warning dialog
             bool acceptCancel = false; //  Do not accept cancel as "use default parameters"
-            bool validParams = parameterInputHandler.GetMusicBrailleFormatParameters(acceptCancel); // Prompt the user for formatting parameters.
-            if (!validParams)
+            bool validParams = false;
+            while (!validParams)
             {
-                UiUtilities.Beep();
-#warning todo More info, retry
-                MessageBox.Show("Invalid format");
-                return; // The user entered invalid values
+                validParams = parameterInputHandler.GetMusicBrailleFormatParameters(acceptCancel); // Prompt the user for formatting parameters.
+                if (!validParams)
+                {
+                    UiUtilities.Beep();
+                    string caption = ResourcesForUI.BrailleMusicExportHandler_Invalid_Input ;
+                    string text = ResourcesForUI.ParameterInputForm_BrailleFormatting; // Use the same text as in the dialog prompting for input
+                    DialogResult dialogResult = MessageBox.Show(text, caption, MessageBoxButtons.RetryCancel);
+                    if (DialogResult.Cancel == dialogResult)
+                    {
+                        return; // Operation cancelled by user.
+                    }
+                }
             }
+            // Received valid params from the user. Continue using these parameters
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, model.UserPreferences.CharsPerLine, model.UserPreferences.LinesPerForm);
             StaffList brailleRepresentations = model.GetBrailleRepresentation(brailleFileHandler.CharsPerLine, brailleFileHandler.LinesPerForm, brailleStyle);
             this.ExportMusicBrailleToFile(brailleFileHandler, brailleRepresentations);

@@ -504,4 +504,8 @@
   <data name="ToolStripMenuItem_Tools_Finale" xml:space="preserve">
     <value>Finale</value>
   </data>
+  <data name="BrailleMusicExportHandler_Invalid_Input" xml:space="preserve">
+    <value>Invalid input</value>
+    <comment>NL Missing</comment>
+  </data>
 </root>
