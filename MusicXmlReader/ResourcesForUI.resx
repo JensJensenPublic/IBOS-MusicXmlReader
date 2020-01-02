@@ -444,10 +444,12 @@
     <value>.brf (&amp;Unicode)</value>
   </data>
   <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
-    <value>Consider exporting one part at a time! </value>
+    <value>Consider exporting one part at a time or through a profile with "Layout"="BANA 2015"</value>
+    <comment>NL obsolete</comment>
   </data>
   <data name="Message_ExportOfMultiplePartsNotSupported" xml:space="preserve">
-    <value>When multiple parts are exported at the same time, notes from different parts will be mixed and can not be separated afterwards.</value>
+    <value>When multiple parts are exported at the same time through "in optional format", notes from different parts will be mixed and can not be separated afterwards.</value>
+    <comment>NL obsolete</comment>
   </data>
   <data name="ToolStripMenuItem_Files_BrfASCII" xml:space="preserve">
     <value>.brf (ASCII)</value>

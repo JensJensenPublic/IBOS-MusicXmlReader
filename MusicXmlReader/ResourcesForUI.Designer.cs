@@ -232,7 +232,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consider exporting one part at a time! .
+        ///   Looks up a localized string similar to Consider exporting one part at a time or through a profile with &quot;Layout&quot;=&quot;BANA 2015&quot;.
         /// </summary>
         internal static string Message_ConsiderExportingOnePartAtATime {
             get {
@@ -268,7 +268,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When multiple parts are exported at the same time, notes from different parts will be mixed and can not be separated afterwards..
+        ///   Looks up a localized string similar to When multiple parts are exported at the same time through &quot;in optional format&quot;, notes from different parts will be mixed and can not be separated afterwards..
         /// </summary>
         internal static string Message_ExportOfMultiplePartsNotSupported {
             get {

@@ -180,6 +180,7 @@
   </data>
   <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
     <value>Overweeg een voor een te exporteren</value>
+    <comment>NL Obsolete</comment>
   </data>
   <data name="Message_DirectoryNotFound" xml:space="preserve">
     <value>Bestandsmap niet gevonden</value>

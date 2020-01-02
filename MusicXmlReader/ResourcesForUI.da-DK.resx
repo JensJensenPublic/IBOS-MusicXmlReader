@@ -441,10 +441,12 @@
     <value>.brf (&amp;Unicode)</value>
   </data>
   <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
-    <value>Overvej at eksportere én stemme ad gangen!</value>
+    <value>Overvej at eksportere én stemme ad gangen eller gennem en profil med "Opstilling"="BANA 2015"</value>
+    <comment>NL obsolete</comment>
   </data>
   <data name="Message_ExportOfMultiplePartsNotSupported" xml:space="preserve">
-    <value>Når flere stemmer eksporteres samtidig, vil noder fra de forskellige stemmer blive sammenblandet og kan ikke senere adskilles.</value>
+    <value>Når flere stemmer eksporteres samtidig gennem "i valgfrit format", vil noder fra de forskellige stemmer blive sammenblandet og kan ikke senere adskilles.</value>
+    <comment>NL MISSING</comment>
   </data>
   <data name="ToolStripMenuItem_Files_BrfASCII" xml:space="preserve">
     <value>.brf (ASCII)</value>
