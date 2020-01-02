@@ -149,10 +149,12 @@
     <value>Generic Braille device settings</value>
   </data>
   <data name="Braille_LayoutBANA" xml:space="preserve">
-    <value>BANA 2015 layout</value>
+    <value>BANA 2015 layout: Using interval notation and in-accord notation</value>
+    <comment>NL obsolete</comment>
   </data>
   <data name="Braille_LayoutIBOS" xml:space="preserve">
-    <value>IBOS MusicXmlReader layout</value>
+    <value>IBOS MusicXmlReader layout: One line of Music Braille per beat in the music</value>
+    <comment>NL obsolete</comment>
   </data>
   <data name="Braille_NotetakerName" xml:space="preserve">
     <value>Notetaker name</value>

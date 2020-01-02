@@ -187,7 +187,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BANA 2015 layout.
+        ///   Looks up a localized string similar to BANA 2015 layout: Using interval notation and in-accord notation.
         /// </summary>
         internal static string Braille_LayoutBANA {
             get {
@@ -196,7 +196,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IBOS MusicXmlReader layout.
+        ///   Looks up a localized string similar to IBOS MusicXmlReader layout: One line of Music Braille per beat in the music.
         /// </summary>
         internal static string Braille_LayoutIBOS {
             get {
