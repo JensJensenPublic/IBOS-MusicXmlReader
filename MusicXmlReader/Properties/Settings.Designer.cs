@@ -25,7 +25,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Embosser")]
         public string EmbosserName {
             get {
                 return ((string)(this["EmbosserName"]));
@@ -169,7 +169,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Notetaker")]
         public string NoteTakerName {
             get {
                 return ((string)(this["NoteTakerName"]));
@@ -229,7 +229,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("My Index Braille embosser")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Universal")]
         public string GenericDeviceName {
             get {
                 return ((string)(this["GenericDeviceName"]));

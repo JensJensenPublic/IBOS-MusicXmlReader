@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="EmbosserName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Embosser</Value>
     </Setting>
     <Setting Name="EmbosserEscapeSequence" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -39,7 +39,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="NoteTakerName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Notetaker</Value>
     </Setting>
     <Setting Name="NoteTakerEscapeSequence" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -54,7 +54,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="GenericDeviceName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">My Index Braille embosser</Value>
+      <Value Profile="(Default)">Universal</Value>
     </Setting>
     <Setting Name="GenericDeviceEscapeSequence" Type="System.String" Scope="User">
       <Value Profile="(Default)">DBT0</Value>
