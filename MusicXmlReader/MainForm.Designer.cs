@@ -82,6 +82,7 @@
             this.museScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sibeliusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startCapellaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startFinaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openLogFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openXMLFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -135,7 +136,6 @@
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
-            this.startFinaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -267,21 +267,21 @@
             // txtOctoBraille1252ToolStripMenuItem
             // 
             this.txtOctoBraille1252ToolStripMenuItem.Name = "txtOctoBraille1252ToolStripMenuItem";
-            this.txtOctoBraille1252ToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.txtOctoBraille1252ToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.txtOctoBraille1252ToolStripMenuItem.Text = ".txt (OctoBraille 1252)";
             this.txtOctoBraille1252ToolStripMenuItem.Click += new System.EventHandler(this.txtOctoBraille1252ToolStripMenuItem_Click);
             // 
             // brfASCIIToolStripMenuItem1
             // 
             this.brfASCIIToolStripMenuItem1.Name = "brfASCIIToolStripMenuItem1";
-            this.brfASCIIToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
+            this.brfASCIIToolStripMenuItem1.Size = new System.Drawing.Size(186, 22);
             this.brfASCIIToolStripMenuItem1.Text = ".brf (ASCII)";
             this.brfASCIIToolStripMenuItem1.Click += new System.EventHandler(this.brfASCIIToolStripMenuItem1_Click);
             // 
             // brfUnicodeToolStripMenuItem1
             // 
             this.brfUnicodeToolStripMenuItem1.Name = "brfUnicodeToolStripMenuItem1";
-            this.brfUnicodeToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
+            this.brfUnicodeToolStripMenuItem1.Size = new System.Drawing.Size(186, 22);
             this.brfUnicodeToolStripMenuItem1.Text = ".brf (Unicode)";
             this.brfUnicodeToolStripMenuItem1.Click += new System.EventHandler(this.brfUnicodeToolStripMenuItem1_Click);
             // 
@@ -298,14 +298,17 @@
             // viaWindowsPrintDialogToolStripMenuItem
             // 
             this.viaWindowsPrintDialogToolStripMenuItem.Name = "viaWindowsPrintDialogToolStripMenuItem";
-            this.viaWindowsPrintDialogToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.viaWindowsPrintDialogToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.viaWindowsPrintDialogToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
             this.viaWindowsPrintDialogToolStripMenuItem.Text = "using Windows Print dialog";
             this.viaWindowsPrintDialogToolStripMenuItem.Click += new System.EventHandler(this.viaWindowsPrintDialogToolStripMenuItem_Click);
             // 
             // usingExternalProgramToolStripMenuItem
             // 
             this.usingExternalProgramToolStripMenuItem.Name = "usingExternalProgramToolStripMenuItem";
-            this.usingExternalProgramToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.usingExternalProgramToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.P)));
+            this.usingExternalProgramToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
             this.usingExternalProgramToolStripMenuItem.Text = "using external program";
             this.usingExternalProgramToolStripMenuItem.Click += new System.EventHandler(this.usingExternalProgramToolStripMenuItem_Click);
             // 
@@ -561,7 +564,7 @@
             this.interpretFileAsBrailleMusicToolStripMenuItem,
             this.userPreferencesLocationToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 22);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // museScoreToolStripMenuItem
@@ -584,6 +587,13 @@
             this.startCapellaToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
             this.startCapellaToolStripMenuItem.Text = "Start Capella";
             this.startCapellaToolStripMenuItem.Click += new System.EventHandler(this.startCapellaToolStripMenuItem_Click);
+            // 
+            // startFinaleToolStripMenuItem
+            // 
+            this.startFinaleToolStripMenuItem.Name = "startFinaleToolStripMenuItem";
+            this.startFinaleToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.startFinaleToolStripMenuItem.Text = "Start Finale";
+            this.startFinaleToolStripMenuItem.Click += new System.EventHandler(this.startFinaleToolStripMenuItem_Click);
             // 
             // logfileToolStripMenuItem
             // 
@@ -1009,13 +1019,6 @@
             // printDialog
             // 
             this.printDialog.UseEXDialog = true;
-            // 
-            // startFinaleToolStripMenuItem
-            // 
-            this.startFinaleToolStripMenuItem.Name = "startFinaleToolStripMenuItem";
-            this.startFinaleToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.startFinaleToolStripMenuItem.Text = "Start Finale";
-            this.startFinaleToolStripMenuItem.Click += new System.EventHandler(this.startFinaleToolStripMenuItem_Click);
             // 
             // MainForm
             // 
