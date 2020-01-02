@@ -1000,8 +1000,18 @@ namespace MusicXmlReaderModel
             detailsPlayer = DetailsPlayer.Create(musicPlayer);
             foreach (NoteElement note in (currentDetails as NoteListDetailsDescription).Notes)
             {
+                string musicBraille = "";
+#warning ToDo Test this piece of code. It is supposed to show the Music Braille representation of each single note in each line of the details window.
+                if (ExperimentalCode)
+                {
+                    BrailleBuilder bb = BrailleBuilder.Create(0);
+                    bb.AddNote(note, null);
+                    Logger.LogCF(string.Format(": {0} {1}", bb.ToBrailleString(), bb.Text));
+                    // Note: These lines will later be sorted before they are displayed (using DetailsPlayer.Compare), so we can not expect the same sequence in the Log!! 
+                    musicBraille = bb.ToBrailleString() + " ";
+                }
                 string leftRightHand = note.GetLeftRightString();       
-                string noteString = leftRightHand + note.ToDetailsString();
+                string noteString = musicBraille + leftRightHand + note.ToDetailsString();
                 detailsPlayer.DetailsDescriptionList.Add(DetailsDescription.Create(noteString, note)); // Hold the note itself and its string representation
             }
             return detailsPlayer.DetailsDescriptionArray; ;
