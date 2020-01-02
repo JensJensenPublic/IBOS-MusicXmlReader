@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="EmbosserName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Embosser</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="EmbosserEscapeSequence" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -39,7 +39,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="NoteTakerName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Notetaker</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="NoteTakerEscapeSequence" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -54,7 +54,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="GenericDeviceName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Universal</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="GenericDeviceEscapeSequence" Type="System.String" Scope="User">
       <Value Profile="(Default)">DBT0</Value>
@@ -69,7 +69,7 @@
       <Value Profile="(Default)">32</Value>
     </Setting>
     <Setting Name="GenericDeviceApplicationName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">IBPrint</Value>
+      <Value Profile="(Default)">IbPrint</Value>
     </Setting>
     <Setting Name="GenericDeviceApplicationLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Program Files (x86)\Index Braille\IbPrint\IbPrint.exe</Value>

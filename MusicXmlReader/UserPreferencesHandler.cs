@@ -33,6 +33,11 @@ namespace MusicXmlReader
         private const string BANA = "BANA";
         private const string IBOS = "IBOS";
 
+        protected string Localize(string settingsValue, string localizedValue)
+        {
+            if (string.IsNullOrEmpty(settingsValue)) return localizedValue;
+            return settingsValue;
+        }
 
         protected BrailleFileHandler.FileEncoding ToEncoding(string s)
         {
@@ -105,7 +110,7 @@ namespace MusicXmlReader
     {
    
         private Settings settings;
-        public override string DeviceName { get { return settings.EmbosserName; }  set { settings.EmbosserName = value; } }
+        public override string DeviceName { get { return Localize(settings.EmbosserName, ResourcesForUI.BrailleDevice_EmbosserName); }  set { settings.EmbosserName = value; } }
         public override string EscapeSequence { get { return settings.EmbosserEscapeSequence; } set { settings.EmbosserEscapeSequence = value; } }
         public override string FileFormat {get { return settings.EmbosserFileFormat; } set { settings.EmbosserFileFormat = value; } }
         public override int PageWidth { get { return settings.EmbosserPageWidth; } set { settings.EmbosserPageWidth = value; } }
@@ -124,7 +129,7 @@ namespace MusicXmlReader
     public class BrailleNoteTaker : BrailleDevice
     {
         private Settings settings;
-        public override string DeviceName { get { return settings.NoteTakerName; } set { settings.NoteTakerName = value; }  }
+        public override string DeviceName { get { return Localize(settings.NoteTakerName, ResourcesForUI.BrailleDevice_NoteTakerName); } set { settings.NoteTakerName = value; }  }
         public override string EscapeSequence { get { return settings.NoteTakerEscapeSequence; } set { settings.NoteTakerEscapeSequence = value; }      }
         public override string FileFormat { get { return settings.NoteTakerFileFormat; } set { settings.NoteTakerFileFormat = value; } }
         // For backwards compatibility we do not use the PageWidth and PageHeight parameters when using  IBOS layout 
@@ -148,7 +153,7 @@ namespace MusicXmlReader
     {
 
         private Settings settings;
-        public override string DeviceName { get { return settings.GenericDeviceName; } set { settings.GenericDeviceName = value; } }
+        public override string DeviceName { get { return Localize(settings.GenericDeviceName, ResourcesForUI.BrailleDevice_GenericName); } set { settings.GenericDeviceName = value; } }
         public override string EscapeSequence { get { return settings.GenericDeviceEscapeSequence; } set { settings.GenericDeviceEscapeSequence = value; } }
         public override string FileFormat { get { return settings.GenericDeviceFileFormat; } set { settings.GenericDeviceFileFormat = value; } }
         public override int PageWidth { get { return settings.GenericDevicePageWidth; } set { settings.GenericDevicePageWidth = value; } }

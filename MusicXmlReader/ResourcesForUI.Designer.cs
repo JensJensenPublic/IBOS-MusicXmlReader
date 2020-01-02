@@ -61,6 +61,33 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Embosser.
+        /// </summary>
+        internal static string BrailleDevice_EmbosserName {
+            get {
+                return ResourceManager.GetString("BrailleDevice_EmbosserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Universal.
+        /// </summary>
+        internal static string BrailleDevice_GenericName {
+            get {
+                return ResourceManager.GetString("BrailleDevice_GenericName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NoteTaker.
+        /// </summary>
+        internal static string BrailleDevice_NoteTakerName {
+            get {
+                return ResourceManager.GetString("BrailleDevice_NoteTakerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid input.
         /// </summary>
         internal static string BrailleMusicExportHandler_Invalid_Input {

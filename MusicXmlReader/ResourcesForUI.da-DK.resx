@@ -591,4 +591,16 @@
     <value>Ulovligt input</value>
     <comment>NL Missing</comment>
   </data>
+  <data name="BrailleDevice_EmbosserName" xml:space="preserve">
+    <value>Punktprinter</value>
+    <comment>NL MISSING</comment>
+  </data>
+  <data name="BrailleDevice_GenericName" xml:space="preserve">
+    <value>Universel</value>
+    <comment>NL MISSING</comment>
+  </data>
+  <data name="BrailleDevice_NoteTakerName" xml:space="preserve">
+    <value>Notatapparat</value>
+    <comment>NL MISSING</comment>
+  </data>
 </root>

@@ -509,4 +509,16 @@
     <value>Invalid input</value>
     <comment>NL Missing</comment>
   </data>
+  <data name="BrailleDevice_EmbosserName" xml:space="preserve">
+    <value>Embosser</value>
+    <comment>NL MISSING</comment>
+  </data>
+  <data name="BrailleDevice_GenericName" xml:space="preserve">
+    <value>Universal</value>
+    <comment>NL MISSING</comment>
+  </data>
+  <data name="BrailleDevice_NoteTakerName" xml:space="preserve">
+    <value>NoteTaker</value>
+    <comment>NL MISSING</comment>
+  </data>
 </root>
