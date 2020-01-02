@@ -1518,6 +1518,47 @@ namespace MusicXmlReaderModel
         }
 
 
+        /// <summary>
+        /// Generally usable static method for comparing NoteElements, usable by the Sort() function
+        /// </summary>
+        /// <param name="noteX"></param>
+        /// <param name="noteY"></param>
+        /// <returns></returns>
+        public static int Compare(NoteElement noteX, NoteElement noteY)
+        {
+            try
+            {
+                // throw new Exception("test");
+                // Put notes with low part numbers before notes with high part numbers
+#warning TODO check this !!!   
+                if (noteX.PartNumber > noteY.PartNumber) return +1; 
+                if (noteX.PartNumber < noteY.PartNumber) return -1;
+                // The notes represent the same part.
+                // Put notes with low staff numbers before notes with high staff numbers
+#warning TODO check this !!!   
+                if (noteX.Staff > noteY.Staff) return +1;
+                if (noteX.Staff < noteY.Staff) return -1;
+                // The notes represent the same part and the same staff
+                // Put pauses and rests at the bottom of the list (last in list)
+                if ((noteX.UnPitched) || (null == noteX.PitchValue) || (noteX.IsPause)) return +1;
+                if ((noteY.UnPitched) || (null == noteY.PitchValue) || (noteY.IsPause)) return -1;
+                // Both NoteElements describe real, pitched notes!
+                // Put high pitch at the top of the list (first in list)
+                if (noteX.Octave > noteY.Octave) return -1;
+                if (noteX.Octave < noteY.Octave) return +1;
+                // Same octeve
+                if (noteX.Step > noteY.Step) return -1;
+                if (noteX.Step < noteY.Step) return +1;
+
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+
+            }
+            return 0;
+        }
+
 
 
         //        /// <summary>
