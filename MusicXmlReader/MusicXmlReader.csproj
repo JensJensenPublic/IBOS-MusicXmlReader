@@ -164,6 +164,7 @@
       <LastGenOutput>ResourcesForHelp.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ResourcesForSettings.da-DK.resx" />
+    <EmbeddedResource Include="ResourcesForSettings.nl-NL.resx" />
     <EmbeddedResource Include="ResourcesForSettings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesForSettings.Designer.cs</LastGenOutput>
