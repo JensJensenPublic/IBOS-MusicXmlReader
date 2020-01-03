@@ -141,7 +141,7 @@ namespace MusicXmlReader
                     UiUtilities.Beep();
                     string caption = ResourcesForUI.BrailleMusicExportHandler_Invalid_Input ;
                     string text = ResourcesForUI.ParameterInputForm_BrailleFormatting; // Use the same text as in the dialog prompting for input
-                    DialogResult dialogResult = MessageBox.Show(text, caption, MessageBoxButtons.RetryCancel);
+                    DialogResult dialogResult = MessageBox.Show(text, caption, MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
                     if (DialogResult.Cancel == dialogResult)
                     {
                         return; // Operation cancelled by user.
