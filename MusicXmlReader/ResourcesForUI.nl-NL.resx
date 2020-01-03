@@ -248,7 +248,8 @@
     <value>Gecomprimeerde XML bestanden</value>
   </data>
   <data name="ParameterInputForm_BrailleFormatting" xml:space="preserve">
-    <value>Voeg papierformaat is zoals aantal tekens per regel, aantal regels per pagina</value>
+    <value>Voeg papierformaat is zoals aantal tekens per regel comma aantal regels per pagina</value>
+    <comment>NL MISSING translation of "comma"</comment>
   </data>
   <data name="ParameterInputForm_GoTo" xml:space="preserve">
     <value>&amp;Ga naar maat</value>

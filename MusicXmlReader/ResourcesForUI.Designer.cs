@@ -574,7 +574,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert form size as characters per line , lines per form.
+        ///   Looks up a localized string similar to Insert form size as characters per line comma lines per form.
         /// </summary>
         internal static string ParameterInputForm_BrailleFormatting {
             get {

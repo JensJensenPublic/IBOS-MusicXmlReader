@@ -432,7 +432,8 @@
     <value>&amp;BrugerIndstillinger for denne MusicXml fil</value>
   </data>
   <data name="ParameterInputForm_BrailleFormatting" xml:space="preserve">
-    <value>Indtast sidestørrelse som tegn per linie , linier per side</value>
+    <value>Indtast sidestørrelse som tegn per linie komma  linier per side</value>
+    <comment>JAWS needs explicit spelling of "komma"</comment>
   </data>
   <data name="ToolStripMenuItem_Files_brf_ASCII" xml:space="preserve">
     <value>.brf (&amp;ASCII)</value>

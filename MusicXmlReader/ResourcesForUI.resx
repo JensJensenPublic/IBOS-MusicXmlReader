@@ -435,7 +435,8 @@
     <value>&amp;User Settings for this MusicXml file</value>
   </data>
   <data name="ParameterInputForm_BrailleFormatting" xml:space="preserve">
-    <value>Insert form size as characters per line , lines per form</value>
+    <value>Insert form size as characters per line comma lines per form</value>
+    <comment>JAWS needs explicit spelling of "comma"</comment>
   </data>
   <data name="ToolStripMenuItem_Files_brf_ASCII" xml:space="preserve">
     <value>.brf (&amp;ASCII)</value>
