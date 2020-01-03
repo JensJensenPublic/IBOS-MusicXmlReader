@@ -121,6 +121,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version 3.3", "Version 3.3"
 		Documentation\Test descriptions\Version 3.3\Test af version 3.3.doc = Documentation\Test descriptions\Version 3.3\Test af version 3.3.doc
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.3.0.0", "3.3.0.0", "{26457B1A-7F39-4EC9-BA9A-1D97D88C981B}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\TEst reports\3.3\Test af version 3.3 sus kommentar.doc = Documentation\TEst reports\3.3\Test af version 3.3 sus kommentar.doc
+		Documentation\TEst reports\3.3\Test Ibos nodelæser 3 3 kommentarer Susanne.docx = Documentation\TEst reports\3.3\Test Ibos nodelæser 3 3 kommentarer Susanne.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -300,5 +306,6 @@ Global
 		{DCD9E9C9-E80A-4979-ABD9-0E19AB23E73B} = {1B62366B-E595-454C-846D-E36240015490}
 		{A4CA3C5D-13DF-45A2-8AA6-992E83AE9C1C} = {1B62366B-E595-454C-846D-E36240015490}
 		{3B46914E-71C8-49D7-B733-DB73A6C95801} = {A4CA3C5D-13DF-45A2-8AA6-992E83AE9C1C}
+		{26457B1A-7F39-4EC9-BA9A-1D97D88C981B} = {79DD0BA3-6AD9-4599-B8D4-1D09CC2CE379}
 	EndGlobalSection
 EndGlobal
