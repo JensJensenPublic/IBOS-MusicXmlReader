@@ -110,9 +110,9 @@ namespace MusicXmlReaderModel
         public static readonly byte[] repeatEnd   = new byte[] { (dot1 + dot2 + dot6), (dot2 + dot3) };
         public static readonly byte[] repeatStart = new byte[] { (dot1 + dot2 + dot6), (dot2 + dot3 + dot5 + dot6) } ;
 
-        // Endings
-        public static readonly byte[] halfEnd = new byte[] { dot6, dot3, (dot1 + dot2 + dot6), (dot1 + dot3), dot3 }; // Danish "HalvSlutning"
-        public static readonly byte[] fullEnd = new byte[] { dot6, dot3, (dot1 + dot2 + dot6), (dot1 + dot3) }; // Danish "HelSlutning" 
+        // Endings (According to Refsnæs, 1995 Part 1 Chapter 6e and 6f
+        public static readonly byte[] halfEnd = new byte[] { dot6, dot3, (dot1 + dot2 + dot6), (dot1 + dot3), dot3 }; // Danish "HalvSlutning" 6e
+        public static readonly byte[] fullEnd = new byte[] { dot6, dot3, (dot1 + dot2 + dot6), (dot1 + dot3) }; // Danish "HelSlutning" 6f
 
         // Interval notation
         // MUSIC BRAILLE CODE 1997 Table 10 
