@@ -18,6 +18,7 @@ namespace BrailleMusicDecoder
         Finger = 0x0800,
         OtherValues = 0x1000,
         Denominator = 0x2000,
+        HalfEnd = 0x4000, // // Danish "Halvslutning"
         Space = 0x00010000,
         NewMeasure = 0x00020000,
         Legato = 0x00400000,
@@ -208,7 +209,8 @@ namespace BrailleMusicDecoder
                     }
                     break;
                 case dot5 | dot6: octave = "6"; break;
-                case dot6: octave = "7"; break;
+#warning Removed dot6 to make recognition of for instance FullEnd work. Find a way to prefer long sequences from short ones !!
+                //case dot6: octave = "7"; break;
                 default: break;
             }
             allInputInterpretations.Add(thisValue, InputCategoryEnum.Octave, octave);
@@ -332,13 +334,15 @@ namespace BrailleMusicDecoder
 
             // Now follows interpretations based on more than a single Braille character
 
-            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3)), InputCategoryEnum.FullEnd);
+            allInputInterpretations.Add(rawValues, new IntegerList(dot6, dot3, (dot1 | dot2 | dot6), (dot1 | dot3)), InputCategoryEnum.FullEnd); // Refsnæs 1, Chapter 6
+            allInputInterpretations.Add(rawValues, new IntegerList(dot6, dot3, (dot1 | dot2 | dot6), (dot1 | dot3), dot3), InputCategoryEnum.HalfEnd);  // Refsnæs 1, Chapter 6
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot2 | dot3)), InputCategoryEnum.EndRepeat);
             allInputInterpretations.Add(rawValues, new IntegerList((dot6), (dot3)), InputCategoryEnum.ToMusic);
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot1 | dot3)), InputCategoryEnum.MeasureDivision);
             allInputInterpretations.Add(rawValues, new IntegerList((dot5), (dot2)), InputCategoryEnum.InAccordPartMeasure);
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.InAccordFullMeasure);
 
+            
             return allInputInterpretations;
         }
         

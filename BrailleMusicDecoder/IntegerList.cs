@@ -24,6 +24,27 @@ namespace BrailleMusicDecoder
             this.list.Add(i0);
             this.list.Add(i1);
         }
+        public IntegerList(int i0, int i1, int i2)
+        {
+            this.list.Add(i0);
+            this.list.Add(i1);
+            this.list.Add(i2);
+        }
+        public IntegerList(int i0, int i1, int i2, int i3)
+        {
+            this.list.Add(i0);
+            this.list.Add(i1);
+            this.list.Add(i2);
+            this.list.Add(i3);
+        }
+        public IntegerList(int i0, int i1, int i2, int i3, int i4)
+        {
+            this.list.Add(i0);
+            this.list.Add(i1);
+            this.list.Add(i2);
+            this.list.Add(i3);
+            this.list.Add(i4);
+        }
 
         public void Add(int i)
         {

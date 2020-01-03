@@ -1356,7 +1356,7 @@ namespace MusicXmlReaderModel
             Logger.LogCF(": Entry");
             List<string> result = new List<string>();
             string exceptionMessage = null;
-            Logger.StartCaching(); //  During  brailleFileHandler.Format and the do-loop we cache all loglines. After the do-loop we write them to the logfile in one operation
+//            Logger.StartCaching(); //  During  brailleFileHandler.Format and the do-loop we cache all loglines. After the do-loop we write them to the logfile in one operation
             try
             {          
                 BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, 0, 0); // Just leave the formatting parameters as 0 for interpreting a file
@@ -1387,7 +1387,7 @@ namespace MusicXmlReaderModel
             {
                 exceptionMessage = e.Message;
             }
-            Logger.EndCaching(); // Flush the cached lines to disk. Start flushing each line to the logfile again
+//            Logger.EndCaching(); // Flush the cached lines to disk. Start flushing each line to the logfile again
             if (null != exceptionMessage)
             {
                 Logger.LogCF(string.Format(": Exception thrown while Logger was caching all loglines. Message={0} ", exceptionMessage));
