@@ -70,7 +70,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Embosser program location.
+        ///   Looks up a localized string similar to Embosser program path.
         /// </summary>
         internal static string Braille_ApplicationLocation {
             get {
@@ -115,7 +115,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Embosser  program location.
+        ///   Looks up a localized string similar to Embosser  program path.
         /// </summary>
         internal static string Braille_EmbosserProgramLocation {
             get {
@@ -295,7 +295,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Capella location.
+        ///   Looks up a localized string similar to Capella path.
         /// </summary>
         internal static string General_CapellaLocation {
             get {
@@ -313,7 +313,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finale location.
+        ///   Looks up a localized string similar to Finale path.
         /// </summary>
         internal static string General_FinaleLocation {
             get {
@@ -340,7 +340,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Latest MusicXml directory.
+        ///   Looks up a localized string similar to Latest MusicXml path.
         /// </summary>
         internal static string General_LatestMusicXmlPath {
             get {
@@ -349,7 +349,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MuseScore location.
+        ///   Looks up a localized string similar to MuseScore path.
         /// </summary>
         internal static string General_MuseScoreLocation {
             get {
@@ -358,7 +358,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sibelius location.
+        ///   Looks up a localized string similar to Sibelius path.
         /// </summary>
         internal static string General_SibeliusLocation {
             get {

@@ -122,7 +122,7 @@
     <comment>Unused until now</comment>
   </data>
   <data name="Braille_ApplicationLocation" xml:space="preserve">
-    <value>Programmets placering</value>
+    <value>Programmets sti</value>
   </data>
   <data name="Braille_ApplicationName" xml:space="preserve">
     <value>Programmets navn</value>
@@ -187,25 +187,25 @@
     <value>.brf (Unicode(UTF-8)</value>
   </data>
   <data name="General_CapellaLocation" xml:space="preserve">
-    <value>Capella placering</value>
+    <value>Capella sti</value>
   </data>
   <data name="General_Caption" xml:space="preserve">
     <value>Generelle indstillinger</value>
   </data>
   <data name="General_LatestBrailleMusicDirectory" xml:space="preserve">
-    <value>Seneste punktnode mappe</value>
+    <value>Seneste punktnode sti</value>
   </data>
   <data name="General_LatestMusicXmlFile" xml:space="preserve">
     <value>Seneste MusicXml fil</value>
   </data>
   <data name="General_LatestMusicXmlPath" xml:space="preserve">
-    <value>Seneste MusicXml mappe</value>
+    <value>Seneste MusicXml sti</value>
   </data>
   <data name="General_MuseScoreLocation" xml:space="preserve">
-    <value>MuseScore placering</value>
+    <value>MuseScore sti</value>
   </data>
   <data name="General_SibeliusLocation" xml:space="preserve">
-    <value>Sibelius placering</value>
+    <value>Sibelius sti</value>
   </data>
   <data name="Braille_GenericDeviceName" xml:space="preserve">
     <value>Apparatets navn</value>
@@ -214,12 +214,12 @@
     <value>Punktprinter escapesekvens</value>
   </data>
   <data name="Braille_EmbosserProgramLocation" xml:space="preserve">
-    <value>Punktprinter programmets placering</value>
+    <value>Punktprinter programmets sti</value>
   </data>
   <data name="Braille_EmbosserProgramName" xml:space="preserve">
     <value>Punktprinter programmets navn</value>
   </data>
   <data name="General_FinaleLocation" xml:space="preserve">
-    <value>Finale placering</value>
+    <value>Finale sti</value>
   </data>
 </root>

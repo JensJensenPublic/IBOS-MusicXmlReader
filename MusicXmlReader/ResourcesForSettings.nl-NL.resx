@@ -119,6 +119,7 @@
   </resheader>
   <data name="Braille_ApplicationLocation" xml:space="preserve">
     <value>Plaats van het printprogramma</value>
+    <comment>MISSING DUTCH "path"</comment>
   </data>
   <data name="Braille_ApplicationName" xml:space="preserve">
     <value>Naam van het printprogramma</value>
@@ -135,6 +136,7 @@
   </data>
   <data name="Braille_EmbosserProgramLocation" xml:space="preserve">
     <value>Plaats van het printprogramma</value>
+    <comment>MISSING DUTCH "path"</comment>
   </data>
   <data name="Braille_EmbosserProgramName" xml:space="preserve">
     <value>Naam van het printprogramma</value>
@@ -199,24 +201,28 @@
   </data>
   <data name="General_CapellaLocation" xml:space="preserve">
     <value>Locatie van Capella</value>
+    <comment>MISSING DUTCH "path"</comment>
   </data>
   <data name="General_Caption" xml:space="preserve">
     <value>algemene instellingen</value>
   </data>
   <data name="General_LatestBrailleMusicDirectory" xml:space="preserve">
     <value>recentste braille muziek map</value>
-    <comment>directory: in dutch map</comment>
+    <comment>directory: in dutch map MISSING DUTCH "path"</comment>
   </data>
   <data name="General_LatestMusicXmlFile" xml:space="preserve">
     <value>recentste MusicXMl bestand</value>
   </data>
   <data name="General_LatestMusicXmlPath" xml:space="preserve">
     <value>recentste musicXml map</value>
+    <comment>MISSING DUTCH "path"</comment>
   </data>
   <data name="General_MuseScoreLocation" xml:space="preserve">
     <value>Locatie van Musescore</value>
+    <comment>MISSING DUTCH "path"</comment>
   </data>
   <data name="General_SibeliusLocation" xml:space="preserve">
     <value>Locatie van Sibelius</value>
+    <comment>MISSING DUTCH "path"</comment>
   </data>
 </root>

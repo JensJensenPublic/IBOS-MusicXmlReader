@@ -122,7 +122,8 @@
     <comment>Unused item</comment>
   </data>
   <data name="Braille_ApplicationLocation" xml:space="preserve">
-    <value>Embosser program location</value>
+    <value>Embosser program path</value>
+    <comment>MISSING DUTCH "path"</comment>
   </data>
   <data name="Braille_ApplicationName" xml:space="preserve">
     <value>Embosser program name</value>
@@ -187,31 +188,37 @@
     <value>.brf (Unicode UTF-8)</value>
   </data>
   <data name="General_CapellaLocation" xml:space="preserve">
-    <value>Capella location</value>
+    <value>Capella path</value>
+    <comment>MISSING DUTCH "path"</comment>
   </data>
   <data name="General_Caption" xml:space="preserve">
     <value>General settings</value>
   </data>
   <data name="General_LatestBrailleMusicDirectory" xml:space="preserve">
     <value>Latest Braille Music directory</value>
+    <comment>MISSING DUTCH "path"</comment>
   </data>
   <data name="General_LatestMusicXmlFile" xml:space="preserve">
     <value>Latest MusicXml file</value>
   </data>
   <data name="General_LatestMusicXmlPath" xml:space="preserve">
-    <value>Latest MusicXml directory</value>
+    <value>Latest MusicXml path</value>
+    <comment>MISSING DUTCH "path"</comment>
   </data>
   <data name="General_MuseScoreLocation" xml:space="preserve">
-    <value>MuseScore location</value>
+    <value>MuseScore path</value>
+    <comment>MISSING DUTCH "path"</comment>
   </data>
   <data name="General_SibeliusLocation" xml:space="preserve">
-    <value>Sibelius location</value>
+    <value>Sibelius path</value>
+    <comment>MISSING DUTCH "path"</comment>
   </data>
   <data name="Braille_EmbosserEscapeSequence" xml:space="preserve">
     <value>Embosser escapesequence</value>
   </data>
   <data name="Braille_EmbosserProgramLocation" xml:space="preserve">
-    <value>Embosser  program location</value>
+    <value>Embosser  program path</value>
+    <comment>MISSING DUTCH "path"</comment>
   </data>
   <data name="Braille_EmbosserProgramName" xml:space="preserve">
     <value>Embosser program name</value>
@@ -220,7 +227,7 @@
     <value>Device name</value>
   </data>
   <data name="General_FinaleLocation" xml:space="preserve">
-    <value>Finale location</value>
+    <value>Finale path</value>
     <comment>MISSING DUTCH</comment>
   </data>
 </root>
