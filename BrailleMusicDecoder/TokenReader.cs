@@ -209,8 +209,7 @@ namespace BrailleMusicDecoder
                     }
                     break;
                 case dot5 | dot6: octave = "6"; break;
-#warning Removed dot6 to make recognition of for instance FullEnd work. Find a way to prefer long sequences from short ones !!
-                //case dot6: octave = "7"; break;
+                case dot6: octave = "7"; break;
                 default: break;
             }
             allInputInterpretations.Add(thisValue, InputCategoryEnum.Octave, octave);
