@@ -1,0 +1,360 @@
+Return-Path: <susanne@obj.dk>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe004.lytzenitmail.local ([100.127.30.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id +H5JMGw5D15I7wEAlE+V+A
+	(envelope-from <susanne@obj.dk>)
+	for <dsl248925@mail.jubii.dk>; Fri, 03 Jan 2020 13:54:04 +0100
+Received: from sv900pomx004.lytzenitmail.dk ([100.127.30.63])
+	by sv900ddwe004.lytzenitmail.local with LMTP
+	id oLmUL2w5D15aUwAAuH+tKw
+	(envelope-from <susanne@obj.dk>)
+	for <dsl248925@mail.jubii.dk>; Fri, 03 Jan 2020 13:54:04 +0100
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.162])
+	by sv900pomx004.lytzenitmail.dk (Postfix) with ESMTPS id BDA00106B
+	for <holmeparken44@vip.cybercity.dk>; Fri,  3 Jan 2020 13:54:04 +0100 (CET)
+Authentication-Results: mx01.lytzenitmail.dk; spf=None smtp.mailfrom=susanne@obj.dk
+Received-SPF: None (mx01.lytzenitmail.dk: no sender authenticity
+  information available from domain of susanne@obj.dk)
+  identity=mailfrom; client-ip=94.231.106.220;
+  receiver=mx01.lytzenitmail.dk;
+  envelope-from="susanne@obj.dk"; x-sender="susanne@obj.dk";
+  x-conformance=spf_only
+IronPort-PHdr: =?us-ascii?q?9a23=3AVqQKDxDMXTfMqHurgsqJUyQJPHJ1kqjoPgMT9p?=
+ =?us-ascii?q?ssgq5PdaLmxZn5IUjD/qg83lrZBdyd7+NYmefQsrzlUG0Ep5qC4zgZaJIZcR?=
+ =?us-ascii?q?gDhI0NmhA4RsuMCEn1NvnvOjcnB81EUlJN+Hu5d0RWQZysXVDZr3ys4DJXIS?=
+ =?us-ascii?q?3Rb1UrdMLyHIOaz8Gnj7n0/4zPcQhOhSa4aLJ2ahm1/03XsYENjI1uJ7x5ww?=
+ =?us-ascii?q?bVonZOZ+VdxH95QDDb1xf66MCq+Zd/8iNW8/s//s9EWK/+cuw2V7tdRDghNm?=
+ =?us-ascii?q?k04oXsu1HYUBCG4H0RemIckFxEAEmgjlmyX5v8tDf7qvso3SCbOcPsSrVnET?=
+ =?us-ascii?q?+m7qptVFrpkHJWa3hjqziR05QuyvgB+EHExVQ32YPfbYCLOeAre7OFJJUeVH?=
+ =?us-ascii?q?ZTU8BQSylIA4f6Y4hcaohJdetesYT5oEMD6BWkAgz5Tvjy0TZOgHLe2qc4le?=
+ =?us-ascii?q?giW1KOzEk7EtQCvW6B5s7oL64UV+2dy6PKiznAJaAzu3+1+M3DdRYvpuuJVL?=
+ =?us-ascii?q?R7fJ/K0UcYEAXBnwzB+7ygBCuc06E2i0be6uNhUey1jGt3+QZ7oH6jxZV0hw?=
+ =?us-ascii?q?=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0DUAwAKOQ9eh9xq515mHgELHIMhf3F?=
+ =?us-ascii?q?VIwQLKoQIiQOGFYVPi1KMJgkBAQEBAQEBAQEILAECAQGEQAKBaSI6EwIQAQE?=
+ =?us-ascii?q?BAwEBAQIBAgMEFAEBAQgNCQgphT4MhV8DAwgCGQUFEwEBOAwDAgcQNAICGT4?=
+ =?us-ascii?q?CBBMLBYMSAYF5gQIBjyKbdIEBMYJ+AQEFhjR7CYE2jBkagUE/hGKEKQEBgy6?=
+ =?us-ascii?q?CXpA+nl6CP5Y1mlqEUIYonlyBaYF6MyIwgyc/ERgNjRIahCaKB0AzgQUBASE?=
+ =?us-ascii?q?Wi1KCMgEB?=
+X-IPAS-Result: =?us-ascii?q?A0DUAwAKOQ9eh9xq515mHgELHIMhf3FVIwQLKoQIiQOGF?=
+ =?us-ascii?q?YVPi1KMJgkBAQEBAQEBAQEILAECAQGEQAKBaSI6EwIQAQEBAwEBAQIBAgMEF?=
+ =?us-ascii?q?AEBAQgNCQgphT4MhV8DAwgCGQUFEwEBOAwDAgcQNAICGT4CBBMLBYMSAYF5g?=
+ =?us-ascii?q?QIBjyKbdIEBMYJ+AQEFhjR7CYE2jBkagUE/hGKEKQEBgy6CXpA+nl6CP5Y1m?=
+ =?us-ascii?q?lqEUIYonlyBaYF6MyIwgyc/ERgNjRIahCaKB0AzgQUBASEWi1KCMgEB?=
+X-IronPort-AV: E=Sophos;i="5.69,390,1571695200"; 
+   d="scan'208,217";a="81005141"
+Received: from asmtp.unoeuro.com ([94.231.106.220])
+  by mx01.lytzenitmail.dk with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 03 Jan 2020 13:54:04 +0100
+Received: from DESKTOPDMOOD5I (87-57-144-108-cable.dk.customer.tdc.net [87.57.144.108])
+	by asmtp.unoeuro.com (UnoEuro) with ESMTPA id 47q2C7230Wz63Lh;
+	Fri,  3 Jan 2020 12:06:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=obj.dk; s=unoeuro;
+	t=1578049571; bh=VCRSuDaTCVZ3XquQv6ggwOBdoeRKpSFpuiu7sF2mKlI=;
+	h=From:To:References:In-Reply-To:Subject:Date:From;
+	b=lhzMKzqdQZ/lv57KbFzxMkoagTeNjMvbJEviM0A32dVKwxNr3l3WFnIwQ3zoPELf6
+	 j8j/hiB2OBEb3ZZjJ2JDj2CsbXv+0dLQEQSua5xuWvoCLjng6HA4zVygfn9ArKqmcb
+	 3tAIV94AhnS02O7wDyfPIif4oBxRvWNnC8Fhm0oQ=
+From: =?utf-8?Q?Susanne_Nols=C3=B8e?= <susanne@obj.dk>
+To: "'Jens Sundgaard'" <holmeparken44@vip.cybercity.dk>
+References: <F89C0A713B9D4A8897270314E3525DE1@JensesHP17>
+In-Reply-To: <F89C0A713B9D4A8897270314E3525DE1@JensesHP17>
+Subject: =?utf-8?Q?SV:_Sender:_Maria_gennem_torne_g?=
+	=?utf-8?Q?=C3=A5r_Sopran_Alt_Tenor_Bas.musicxml?=
+Date: Fri, 3 Jan 2020 12:06:09 +0100
+Message-ID: <00ab01d5c225$cdcb5110$6961f330$@obj.dk>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_00AC_01D5C22E.2F913FB0"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIRiq4RrkKpyHIMip92SZ4Gx0gK0qdhMbCg
+Content-Language: da
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_00AC_01D5C22E.2F913FB0
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hej Jens=20
+
+=20
+
+Som du vil se, n=C3=A5r du f=C3=A5r =C3=A5bnet den forrige mail fra mig, =
+s=C3=A5 er der meget, som er g=C3=A5et godt i tb, sopranfilen i Maria =
+gennem torne g=C3=A5r. Det er straks lidt vanskeligere med tuttifilen og =
+satb fiLen
+
+n=C3=A5r den skal vises som fil p=C3=A5 notatapparat og formentlig =
+ogs=C3=A5 p=C3=A5 punktprinter.=20
+
+=20
+
+Men noget af det bunder ogs=C3=A5 i, at jeg ikke kan tjekke punktnoderne =
+i bana 2015 bogen p=C3=A5 nettet, fordi talen enten ikke l=C3=A6ser dem =
+op, hvilket er mest sandsynligt, eller nodeeksemplerne ikke vises =
+p=C3=A5 nettet. Jeg kan blot l=C3=A6se om reglerne, men alts=C3=A5 ikke =
+se, hvilke punkttegn, man specifikt anvender. Men hvis du kan se disse =
+nodeeksempler, s=C3=A5 kan vi nok f=C3=A5 afklaret mine =
+tvivlssp=C3=B8rgsm=C3=A5l om dansk og amerikansk punktnodestandard.=20
+
+=20
+
+Og det er super godt med visningen p=C3=A5 nodel=C3=A6seren, fordi det =
+er en mere logisk m=C3=A5de med sopran helt til venstre p=C3=A5 =
+displayet, dern=C3=A6st alt osv. M=C3=A5ske kan du lave det som en =
+valgmulighed man kan v=C3=A6lge. Det vil kunne f=C3=A5 en hvis =
+indvirkning p=C3=A5 visningen af tutti og satb-filerne, som jeg er inde =
+p=C3=A5 i testningen, men det kan vi jo vende tilbage til.=20
+
+=20
+
+=20
+
+Jeg er stort set ikke hjemme i n=C3=A6ste uge f=C3=B8r den 10. januar. =
+Men jeg kigger mails, s=C3=A5 har du nogle sp=C3=B8rgsm=C3=A5l, s=C3=A5 =
+m=C3=A5 vi skrives ved.=20
+
+=20
+
+Mange hilsner=20
+
+=20
+
+Susanne
+
+=20
+
+=20
+
+Fra: Jens Sundgaard <holmeparken44@vip.cybercity.dk>=20
+Sendt: 23. december 2019 12:24
+Til: Susanne Nols=C3=B8e <susanne@obj.dk>
+Emne: Sender: Maria gennem torne g=C3=A5r Sopran Alt Tenor Bas.musicxml
+
+=20
+
+Hej Susanne
+
+=20
+
+Tak for en ualmindeligt konstruktiv snak h=C3=A9r til formiddag!
+
+=20
+
+Problemet med at Maria ikke genererede SA og BT skyldtes at
+
+stemmerne blot hed =E2=80=9CS.=E2=80=9D =E2=80=9CA.=E2=80=9D =
+=E2=80=9CT.=E2=80=9D og =E2=80=9CB.=E2=80=9D og at Nodel=C3=A6seren =
+kr=C3=A6ver lidt l=C3=A6ngere
+
+navne for at identificere dem som disse stemmer (og  derp=C3=A5 generere =
+SA og BT i punktnodenotation).
+
+=20
+
+Det er let at =C3=A6ndre med MuseScore, s=C3=A5 jeg har lavet en ny =
+version til dig,
+
+let genkendelig p=C3=A5 navnet. Den genererer SA og BT =E2=80=93 og =
+analyseret af
+
+en lille punktnodefortolker, jeg har skrevet, genereres der noget, som i =
+
+
+f=C3=B8rste omgang sagtens kunne v=C3=A6re nogenlunde fornuftig =
+punktnodenotation.
+
+=20
+
+mvh Jens=20
+
+=20
+
+
+------=_NextPart_000_00AC_01D5C22E.2F913FB0
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DDA =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Hej Jens <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Som du vil se, n=C3=A5r du f=C3=A5r =
+=C3=A5bnet den forrige mail fra mig, s=C3=A5 er der meget, som er =
+g=C3=A5et godt i tb, sopranfilen i Maria gennem torne g=C3=A5r. Det er =
+straks lidt vanskeligere med tuttifilen og satb =
+fiLen<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'> n=C3=A5r den skal vises som fil p=C3=A5 =
+notatapparat og formentlig ogs=C3=A5 p=C3=A5 punktprinter. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Men noget af det bunder ogs=C3=A5 i, at jeg =
+ikke kan tjekke punktnoderne i bana 2015 bogen p=C3=A5 nettet, fordi =
+talen enten ikke l=C3=A6ser dem op, hvilket er mest sandsynligt, eller =
+nodeeksemplerne ikke vises p=C3=A5 nettet. Jeg kan blot l=C3=A6se om =
+reglerne, men alts=C3=A5 ikke se, hvilke punkttegn, man specifikt =
+anvender. Men hvis du kan se disse nodeeksempler, s=C3=A5 kan vi nok =
+f=C3=A5 afklaret mine tvivlssp=C3=B8rgsm=C3=A5l om dansk og amerikansk =
+punktnodestandard. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Og det er super godt med visningen p=C3=A5 =
+nodel=C3=A6seren, fordi det er en mere logisk m=C3=A5de med sopran helt =
+til venstre p=C3=A5 displayet, dern=C3=A6st alt osv. M=C3=A5ske kan du =
+lave det som en valgmulighed man kan v=C3=A6lge. Det vil kunne f=C3=A5 =
+en hvis indvirkning p=C3=A5 visningen af tutti og satb-filerne, som jeg =
+er inde p=C3=A5 i testningen, men det kan vi jo vende tilbage til. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Jeg er stort set ikke hjemme i n=C3=A6ste =
+uge f=C3=B8r den 10. januar. Men jeg kigger mails, s=C3=A5 har du nogle =
+sp=C3=B8rgsm=C3=A5l, s=C3=A5 m=C3=A5 vi skrives ved. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Mange hilsner <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Susanne<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>Fra:</span></=
+b><span style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'> =
+Jens Sundgaard &lt;holmeparken44@vip.cybercity.dk&gt; <br><b>Sendt:</b> =
+23. december 2019 12:24<br><b>Til:</b> Susanne Nols=C3=B8e =
+&lt;susanne@obj.dk&gt;<br><b>Emne:</b> Sender: Maria gennem torne =
+g=C3=A5r Sopran Alt Tenor =
+Bas.musicxml<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Hej =
+Susanne<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Tak for en =
+ualmindeligt konstruktiv snak h=C3=A9r til =
+formiddag!<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Problemet med at =
+Maria ikke genererede SA og BT skyldtes =
+at<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>stemmerne blot =
+hed =E2=80=9CS.=E2=80=9D =E2=80=9CA.=E2=80=9D =E2=80=9CT.=E2=80=9D og =
+=E2=80=9CB.=E2=80=9D og at Nodel=C3=A6seren kr=C3=A6ver lidt =
+l=C3=A6ngere<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>navne for at =
+identificere dem som disse stemmer (og&nbsp; derp=C3=A5 generere SA og =
+BT i punktnodenotation).<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Det er let at =
+=C3=A6ndre med MuseScore, s=C3=A5 jeg har lavet en ny version til =
+dig,<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>let genkendelig =
+p=C3=A5 navnet. Den genererer SA og BT =E2=80=93 og analyseret =
+af<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>en lille =
+punktnodefortolker, jeg har skrevet, genereres der noget, som i =
+<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>f=C3=B8rste =
+omgang sagtens kunne v=C3=A6re nogenlunde fornuftig =
+punktnodenotation.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>mvh Jens =
+<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div></div></div></div></body></html>
+------=_NextPart_000_00AC_01D5C22E.2F913FB0--
+

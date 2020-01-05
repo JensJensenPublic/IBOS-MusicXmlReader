@@ -1,0 +1,1129 @@
+Return-Path: <susanne@obj.dk>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe001.lytzenitmail.local ([100.127.30.100])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id UB0TOSLPEF6uSwEAlE+V+A
+	(envelope-from <susanne@obj.dk>)
+	for <dsl248925@mail.jubii.dk>; Sat, 04 Jan 2020 18:45:06 +0100
+Received: from sv900pomx001.lytzenitmail.dk ([100.127.30.60])
+	by sv900ddwe001.lytzenitmail.local with LMTP
+	id WJR7OCLPEF4xRAAAPDtoZg
+	(envelope-from <susanne@obj.dk>)
+	for <dsl248925@mail.jubii.dk>; Sat, 04 Jan 2020 18:45:06 +0100
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.166])
+	by sv900pomx001.lytzenitmail.dk (Postfix) with ESMTPS id E30FAC03AA5
+	for <holmeparken44@vip.cybercity.dk>; Sat,  4 Jan 2020 18:45:06 +0100 (CET)
+Authentication-Results: mx01.lytzenitmail.dk; spf=None smtp.mailfrom=susanne@obj.dk
+Received-SPF: None (mx01.lytzenitmail.dk: no sender authenticity
+  information available from domain of susanne@obj.dk)
+  identity=mailfrom; client-ip=94.231.106.220;
+  receiver=mx01.lytzenitmail.dk;
+  envelope-from="susanne@obj.dk"; x-sender="susanne@obj.dk";
+  x-conformance=spf_only
+IronPort-PHdr: =?us-ascii?q?9a23=3A//yptBHxA3dLcErQWjbhUJ1GYnJ96ZzpIg4Y7I?=
+ =?us-ascii?q?YmgLtSc6Oluq7vJ1Hb+e4w3Q3MTd2CrfZVl/jbtaH8XGUB5dCNsyNKa4RCAj?=
+ =?us-ascii?q?kCj8hehAk8GIiAAEz/IuTtankhAd9LUllo13axMw5ZG5+kNWffqXCz8zMeXy?=
+ =?us-ascii?q?7HG1AqeLbTHYjfx4Syx7jrvZnCfxdFgjuhZLpzKFO6rleZsM5emoZkJqsrgh?=
+ =?us-ascii?q?LUvntFffhXzmJ0NDfx11794Mm35ptq7yVXvboo6cdBVazwe6lwQ6ZfCXwqNG?=
+ =?us-ascii?q?U85cujsheLVhaU730aX00RmBgODwuEiXOyFpb9vy3mt/ZsjSyTPMn4V7cxCn?=
+ =?us-ascii?q?yp66ZmTgOtiT9SZmJ/qjqOzJUo0uQB+krywn43i5TZa4yUKvdkK6bNJYpcQX?=
+ =?us-ascii?q?tdTMtXVjBEC4K4KYcMXI9jda5VqZfwo1wWoF6wHw6pUan01yRBgHn79aow0a?=
+ =?us-ascii?q?ItEkuVlBxlBN8IvHnO+Z/uKbwbV+a45K7Cz3PPbLkFvFW1oJiNeRcnr/aWWL?=
+ =?us-ascii?q?t2eseE0lEhIATDikTJ+N7VegiN3+FIiFC1qu9pVOahkWki+1N2qDrpysR+0o?=
+ =?us-ascii?q?Q=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0BWCgDgzhBee9xq515iBINnf3FVIwQ?=
+ =?us-ascii?q?LKoNJQIkDhhSRIYo/gWcJAQEBAQEBAQEBCCUHAQIBAYRAAoFpIjoTAhABAQE?=
+ =?us-ascii?q?DAQEBAgECAwQUAQEJDQoHKYU+DIVfAwMIAgIXBQUTAQE4DAMCBzABCQEGAwI?=
+ =?us-ascii?q?CGS0RAgQTCwWDE4F5TQMyAQqQRpt0gQExgn4BAQWFDBGBGHQHCYE2jBkagUE?=
+ =?us-ascii?q?/gRGDUYJkBBcDgQwIARECARQYHwkSAoJGgl6QPoZpl3aCQINhg1OJTYU0gzy?=
+ =?us-ascii?q?XH4RQhiiMLpIugWmBCXEzIjCDJwk2ERgNkVKKB0AzgQUBASEWilUPF4IbAQE?=
+X-IPAS-Result: =?us-ascii?q?A0BWCgDgzhBee9xq515iBINnf3FVIwQLKoNJQIkDhhSRI?=
+ =?us-ascii?q?Yo/gWcJAQEBAQEBAQEBCCUHAQIBAYRAAoFpIjoTAhABAQEDAQEBAgECAwQUA?=
+ =?us-ascii?q?QEJDQoHKYU+DIVfAwMIAgIXBQUTAQE4DAMCBzABCQEGAwICGS0RAgQTCwWDE?=
+ =?us-ascii?q?4F5TQMyAQqQRpt0gQExgn4BAQWFDBGBGHQHCYE2jBkagUE/gRGDUYJkBBcDg?=
+ =?us-ascii?q?QwIARECARQYHwkSAoJGgl6QPoZpl3aCQINhg1OJTYU0gzyXH4RQhiiMLpIug?=
+ =?us-ascii?q?WmBCXEzIjCDJwk2ERgNkVKKB0AzgQUBASEWilUPF4IbAQE?=
+X-IronPort-AV: E=Sophos;i="5.69,395,1571695200"; 
+   d="txt'?scan'208,217";a="69942998"
+Received: from asmtp.unoeuro.com ([94.231.106.220])
+  by mx01.lytzenitmail.dk with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 04 Jan 2020 18:45:06 +0100
+Received: from DESKTOPDMOOD5I (87-57-144-108-cable.dk.customer.tdc.net [87.57.144.108])
+	by asmtp.unoeuro.com (UnoEuro) with ESMTPA id 47qq0x474xz626N;
+	Sat,  4 Jan 2020 18:45:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=obj.dk; s=unoeuro;
+	t=1578159905; bh=b8lTtKEBU8ojdgN8OTSl88DRjk4Kt/ZdKtk1mYyvquc=;
+	h=From:To:References:In-Reply-To:Subject:Date:From;
+	b=iCgv8Zdyezkn6+bl2fiaiIuZ/5o0nVsIqODP7xtaXd52OUpieLeFH8dJ+HJPYCMUR
+	 0/xP8sAjJL3ugUZJ7UAvSoqFb4cNys9WQiBNT/m1sKoBSfOAyGERc9b7rCLl3HbVF3
+	 Q3iBQ9jLuZyH7VLMr/g6iDjVjvUboaMChssmo98M=
+From: =?utf-8?Q?Susanne_Nols=C3=B8e?= <susanne@obj.dk>
+To: <holmeparken44@vip.cybercity.dk>
+References: <F89C0A713B9D4A8897270314E3525DE1@JensesHP17> <00ab01d5c225$cdcb5110$6961f330$@obj.dk> <677ed16a02d2901f0da37501854de226@vip.cybercity.dk>
+In-Reply-To: <677ed16a02d2901f0da37501854de226@vip.cybercity.dk>
+Subject: =?utf-8?Q?SV:_SV:_Sender:_Maria_gennem_tor?=
+	=?utf-8?Q?ne_g=C3=A5r_Sopran_Alt_Tenor_Bas.musi?=
+	=?utf-8?Q?cxml?=
+Date: Sat, 4 Jan 2020 18:45:04 +0100
+Message-ID: <00fc01d5c326$b298ce70$17ca6b50$@obj.dk>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----=_NextPart_000_00FD_01D5C32F.146043B0"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIRiq4RrkKpyHIMip92SZ4Gx0gK0gJD7SY/AnUygNWnPUu2IA==
+Content-Language: da
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_00FD_01D5C32F.146043B0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_00FE_01D5C32F.146043B0"
+
+
+------=_NextPart_001_00FE_01D5C32F.146043B0
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hej Jens=20
+
+=20
+
+Jeg h=C3=A5ber ikke at have spoleret din weekend fuldst=C3=A6ndig! =
+=F0=9F=98=8A=20
+
+=20
+
+Men Vedh=C3=A6ftet er Maria som du efterlyste. Jeg har lige kigget filen =
+i gennem. Jeg har nogle f=C3=A5 kommentarer til den.=20
+
+=20
+
+1.     Nodeopstillingen i h=C3=B8jre og venstre h=C3=A5nd med bistemmer =
+og intervaller er, som jeg ogs=C3=A5 selv ville g=C3=B8re, hvis jeg =
+skulle lave den. Og det er hovedsagelig store bistemmer, der er anvendt. =
+I sidste takt i venstre er anvendt en lille bistemme og der er ingen =
+skilletegn. <Jeg t=C3=A6nker, man har anvendt den konstruktion, fordi =
+det er en del af takten, der vises og ikke en fuldst=C3=A6ndig takt. Men =
+det kan man jo heller ikke, fordi takten vil v=C3=A6re uafsluttet pga. =
+optakten.=20
+
+=20
+
+2 I korstemmerne ville jeg ogs=C3=A5 anvende den opstillingsmetode, de =
+har brugt.=20
+
+Tekstm=C3=A6ssigt kunne man argumentere for at lave en blank linje =
+mellem hvert vers, hvilket g=C3=B8r det hurtigt at finde rundt mellem =
+versne, hvis det er printet ud p=C3=A5 papir, men man spare papir og kan =
+orientere sig efter indrykkene, som de har lavet dem. Og p=C3=A5 =
+punktnotatapparatet kan man jo s=C3=B8ge p=C3=A5 3. eller noget andet =
+for at finde det, man leder efter. Opstillingen p=C3=A5 punkt p=C3=A5 =
+notatapparatet er meget fint, s=C3=A5 hvis du kan f=C3=A5 nodeviseren =
+til at g=C3=B8re noget tilsvarende, s=C3=A5 vil det virkeligt v=C3=A6re =
+et scoop!=20
+
+=20
+
+3 I filen er der nogle lange streger, som normalt bruges til at markere, =
+at der p=C3=A5 det p=C3=A5g=C3=A6ldende sted er sideskift p=C3=A5 sort. =
+Der er ogs=C3=A5 g=C3=A5et noget galt for dem i slutningen af 3. vers i =
+basstemmen, der ser det ud som om, der mangler noget tekst, der =
+m=C3=A5ske er g=C3=A5et tabt i forbindelse med sideskiftet p=C3=A5 sort. =
+Men ellers ser filen rigtig nok ud.=20
+
+=20
+
+Og joh, jeg har bestemt taget brugerprofilerne til mig i =
+nodel=C3=A6seren, det er super smart. Lige som jeg ogs=C3=A5 er rigtig =
+glad for den udgave af Maria med sopran, alt osv. Du sendte til mig, =
+hvor det ogs=C3=A5 ser ud som om, at sopranen, alt, tenor og bas vises =
+p=C3=A5 den m=C3=A5de i nodel=C3=A6seren, som jeg har efterlyst.=20
+
+=20
+
+Det er dejligt at h=C3=B8re, at der tilsyneladende ikke er forskelle =
+mellem dansk nodeskrift og s=C3=A5 Bana2015 i forhold til bistemmerne. =
+Og det er ogs=C3=A5 p=C3=A5 sin vis godt at h=C3=B8re, at der generelt =
+er problemer med at vise optakter, for s=C3=A5 kan vi jo ikke g=C3=B8re =
+det bedre end forl=C3=A6gget. Mht. tenoren som er noteret for h=C3=B8jt, =
+s=C3=A5 t=C3=A6nker jeg egentlig om det, at det faktisk er bedre, =
+nodeprogrammet viser det, som der faktisk er noteret. Og jeg ved godt at =
+punktreglen siger, det skal noteres der, hvor det klinger. Hvad =
+=C3=A5rsagen er til, at man finder p=C3=A5 at notere tenoren for =
+h=C3=B8jt, kan jeg ikke se fornuften i. Men det er ogs=C3=A5 i forhold =
+til at kunnegennemskue fejl, s=C3=A5 er det bedre, programmet faktisk =
+viser det, som der st=C3=A5r.=20
+
+=20
+
+Mht. l=C3=A6seretning p=C3=A5 intervaller, s=C3=A5 synes jeg nok at =
+hovedreglen skal v=C3=A6re den, at sopran og alt l=C3=A6ses ned ad, og =
+bas og tenor l=C3=A6ses opad og det samme g=C3=A6lder klaver og orgel, =
+henholdsvis diskant- og basn=C3=B8gle. Grunden til det er, at det nok =
+ofte vil v=C3=A6re de instrumenter, som bruges. Men hvis det ikke er alt =
+for b=C3=B8vlet, s=C3=A5 kunne man m=C3=A5ske lave en mulighed for =
+brugervalg, hvor man selv kan v=C3=A6lge, hvilken vej der skal =
+l=C3=A6ses. I den nodebog jeg har om dansk nodeskrift p=C3=A5 punkt =
+st=C3=A5r eksempler p=C3=A5, at viola og violoncel l=C3=A6ses =
+anderledes, og hvis man s=C3=A5 spiller dette instrument, s=C3=A5 kunne =
+det jo v=C3=A6re fint, om man selv kan v=C3=A6lge en anden =
+l=C3=A6seretning.=20
+
+=20
+
+Jeg g=C3=A5r i gang med at teste nu, at den m=C3=A5de 3.0 kan printe =
+nodefilerne p=C3=A5 fortsat virker i 3.3. Og s=C3=A5 skriver til dig =
+igen, n=C3=A5r jeg har et resultat.=20
+
+=20
+
+Mange hilsner=20
+
+=20
+
+Susanne=20
+
+=20
+
+Fra: holmeparken44@vip.cybercity.dk <holmeparken44@vip.cybercity.dk>=20
+Sendt: 3. januar 2020 15:26
+Til: Susanne Nols=C3=B8e <susanne@obj.dk>
+Cc: Bo Alstrup <CX64@kk.dk>
+Emne: Re: SV: Sender: Maria gennem torne g=C3=A5r Sopran Alt Tenor =
+Bas.musicxml
+
+=20
+
+Hej Susanne
+
+F=C3=B8rst tak for din store og from for alt systematiske indsats.
+
+Jeg er lidt rystet over alle de mange fejl, du har fundet, men til =
+geng=C3=A6ld har du tilsyneladende
+
+straks "k=C3=B8bt" de nye koncepter med brugerindstillinger og profiler.
+
+=20
+
+Jeg vil pr=C3=B8ve at f=C3=A5 et overblik over alt d=C3=A9t, som du =
+skriver, men jeg har allerede nogle hovedpunkter:
+
+1) "Maria gennem torne g=C3=A5r" har faktisk titlen "KB 461-34". Det =
+vises som titel i sortnoden. Det er forvirrende, men korrekt. Hvis man =
+Googler "KB 461-34" er et af de f=C3=B8rste tr=C3=A6f NOTA's OctoBraille =
+version af "Maria gennem torne g=C3=A5r". Jeg har ikke noget login, men =
+hvis du har m=C3=A5 du meget gerne downloade den og sende til mig, bare =
+for at sammenligne.
+
+2) De beskrivelser som du har sendt af Braille koderne for intervaltegn, =
+bistemmer og skilletegn er de samme som i Refsn=C3=A6s bogen og er =
+ogs=C3=A5 de samme, som bruges i programmet. Hvis du oplever noget andet =
+m=C3=A5 det skyldes en logisk fejl i programmet. Jeg har endnu ikke =
+fundet forskelle mellem Refsn=C3=A6s b=C3=B8gerne og BANA 2015. BANA =
+2015 er langt mere omfattende, men modsiger ikke (s=C3=A5 vidt jeg endnu =
+har set) Refsn=C3=A6s. =20
+
+3) Det er klart en fejl at der ikke genereres oktavtegn for f=C3=B8rste =
+node efter skilletegn. Formodentlig ret let at fixe.
+
+4) Nodel=C3=A6ser-programmet har generelt problemer med optakter, =
+ogs=C3=A5 n=C3=A5r vi ikke kigger p=C3=A5 punktnoder. For eksempel vises =
+det f=C3=B8rste slag i "Maria gennem torne g=C3=A5r" som takt 1 slag 1 =
+mens enhver musiker vil kalde det takt 1 slag 3. Dette kan muligvis =
+ogs=C3=A5 forklare nogle af problemerne omkring optakter i =
+punktnodenotationen.
+
+5) Tenorstemmen i "Maria gennem torne g=C3=A5r" b=C3=A5de vises og =
+spilles en oktav over sopran og alt i MuseScore. Hvis man kigger i selve =
+.xml filen er de 4 stemmer SATB Cis4 Cis4 Cis5 Cis3. Jeg kan se at .xml =
+filen er lavet af PhotoScore og tilsyneladende har ingen opdaget at =
+Tenoren er noteret for h=C3=B8jt.=20
+
+Jeg pr=C3=B8ver at f=C3=A5 overblik over resten, men det giver ingen =
+mening at lave en ny testversion f=C3=B8r jeg er nogenlunde til bunds i =
+d=C3=A9 fejl, du allerede har fundet.
+
+=20
+
+God weekend
+
+=20
+
+Jens
+
+=20
+
+=20
+
+=20
+
+=20
+
+---
+
+Sendt fra min Jubii Mail
+Jubii Mail har eksisteret i 20 =C3=A5r og er en af Danmarks st=C3=B8rste =
+mail-udbydere med over 150.000 brugere. Jubii Mail er et 100% dansk =
+produkt med b=C3=A5de support og hosting i Danmark. Vi s=C3=A6tter en =
+=C3=A6re i at levere en personlig kvalitets-mail til b=C3=A5de private =
+og foreninger - og med knap 150 dom=C3=A6nenavne t=C3=B8r vi godt love, =
+at vi ogs=C3=A5 har en personlig email-adresse til dig.  =
+<https://konto.jubii.dk/SignUp?utm_source=3DWebmail%20Signatur&utm_medium=
+=3DWebmail%20Signatur> Klik her - opret Jubii Mail.
+
+=20
+
+Susanne Nols=C3=B8e skrev den 2020-01-03 12:06:
+
+Hej Jens=20
+
+=20
+
+Som du vil se, n=C3=A5r du f=C3=A5r =C3=A5bnet den forrige mail fra mig, =
+s=C3=A5 er der meget, som er g=C3=A5et godt i tb, sopranfilen i Maria =
+gennem torne g=C3=A5r. Det er straks lidt vanskeligere med tuttifilen og =
+satb fiLen
+
+n=C3=A5r den skal vises som fil p=C3=A5 notatapparat og formentlig =
+ogs=C3=A5 p=C3=A5 punktprinter.=20
+
+=20
+
+Men noget af det bunder ogs=C3=A5 i, at jeg ikke kan tjekke punktnoderne =
+i bana 2015 bogen p=C3=A5 nettet, fordi talen enten ikke l=C3=A6ser dem =
+op, hvilket er mest sandsynligt, eller nodeeksemplerne ikke vises =
+p=C3=A5 nettet. Jeg kan blot l=C3=A6se om reglerne, men alts=C3=A5 ikke =
+se, hvilke punkttegn, man specifikt anvender. Men hvis du kan se disse =
+nodeeksempler, s=C3=A5 kan vi nok f=C3=A5 afklaret mine =
+tvivlssp=C3=B8rgsm=C3=A5l om dansk og amerikansk punktnodestandard.=20
+
+=20
+
+Og det er super godt med visningen p=C3=A5 nodel=C3=A6seren, fordi det =
+er en mere logisk m=C3=A5de med sopran helt til venstre p=C3=A5 =
+displayet, dern=C3=A6st alt osv. M=C3=A5ske kan du lave det som en =
+valgmulighed man kan v=C3=A6lge. Det vil kunne f=C3=A5 en hvis =
+indvirkning p=C3=A5 visningen af tutti og satb-filerne, som jeg er inde =
+p=C3=A5 i testningen, men det kan vi jo vende tilbage til.=20
+
+=20
+
+=20
+
+Jeg er stort set ikke hjemme i n=C3=A6ste uge f=C3=B8r den 10. januar. =
+Men jeg kigger mails, s=C3=A5 har du nogle sp=C3=B8rgsm=C3=A5l, s=C3=A5 =
+m=C3=A5 vi skrives ved.=20
+
+=20
+
+Mange hilsner=20
+
+=20
+
+Susanne
+
+=20
+
+=20
+
+Fra: Jens Sundgaard <holmeparken44@vip.cybercity.dk =
+<mailto:holmeparken44@vip.cybercity.dk> >=20
+Sendt: 23. december 2019 12:24
+Til: Susanne Nols=C3=B8e <susanne@obj.dk <mailto:susanne@obj.dk> >
+Emne: Sender: Maria gennem torne g=C3=A5r Sopran Alt Tenor Bas.musicxml
+
+=20
+
+Hej Susanne
+
+=20
+
+Tak for en ualmindeligt konstruktiv snak h=C3=A9r til formiddag!
+
+=20
+
+Problemet med at Maria ikke genererede SA og BT skyldtes at
+
+stemmerne blot hed "S." "A." "T." og "B." og at Nodel=C3=A6seren =
+kr=C3=A6ver lidt l=C3=A6ngere
+
+navne for at identificere dem som disse stemmer (og  derp=C3=A5 generere =
+SA og BT i punktnodenotation).
+
+=20
+
+Det er let at =C3=A6ndre med MuseScore, s=C3=A5 jeg har lavet en ny =
+version til dig,
+
+let genkendelig p=C3=A5 navnet. Den genererer SA og BT =E2=80=93 og =
+analyseret af
+
+en lille punktnodefortolker, jeg har skrevet, genereres der noget, som i =
+
+
+f=C3=B8rste omgang sagtens kunne v=C3=A6re nogenlunde fornuftig =
+punktnodenotation.
+
+=20
+
+mvh Jens=20
+
+=20
+
+
+------=_NextPart_001_00FE_01D5C32F.146043B0
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI Symbol";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1932928067;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-147038594 67502095 67502105 67502107 67502095 =
+67502105 67502107 67502095 67502105 67502107;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DDA link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Hej Jens <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Jeg h=C3=A5ber ikke at have spoleret din =
+weekend fuldst=C3=A6ndig! </span><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'>&#128522; =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'><o:p>&nbsp;<=
+/o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'>Men =
+Vedh=C3=A6ftet er Maria som du efterlyste. Jeg har lige kigget filen i =
+gennem. Jeg har nogle f=C3=A5 kommentarer til den. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'><o:p>&nbsp;<=
+/o:p></span></p><p class=3DMsoListParagraph =
+style=3D'text-indent:-18.0pt;mso-list:l0 level1 lfo1'><![if =
+!supportLists]><span style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'><span =
+style=3D'mso-list:Ignore'>1.<span style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'>Nodeopstilli=
+ngen i h=C3=B8jre og venstre h=C3=A5nd med bistemmer og intervaller er, =
+som jeg ogs=C3=A5 selv ville g=C3=B8re, hvis jeg skulle lave den. Og det =
+er hovedsagelig store bistemmer, der er anvendt. I sidste takt i venstre =
+er anvendt en lille bistemme og der er ingen skilletegn. &lt;Jeg =
+t=C3=A6nker, man har anvendt den konstruktion, fordi det er en del af =
+takten, der vises og ikke en fuldst=C3=A6ndig takt. Men det kan man jo =
+heller ikke, fordi takten vil v=C3=A6re uafsluttet pga. optakten. =
+<o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'margin-left:18.0pt'><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'><o:p>&nbsp;<=
+/o:p></span></p><p class=3DMsoNormal style=3D'margin-left:18.0pt'><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'>2 I =
+korstemmerne ville jeg ogs=C3=A5 anvende den opstillingsmetode, de har =
+brugt. <o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'margin-left:18.0pt'><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'>Tekstm=C3=A6=
+ssigt kunne man argumentere for at lave en blank linje mellem hvert =
+vers, hvilket g=C3=B8r det hurtigt at finde rundt mellem versne, hvis =
+det er printet ud p=C3=A5 papir, men man spare papir og kan orientere =
+sig efter indrykkene, som de har lavet dem. Og p=C3=A5 =
+punktnotatapparatet kan man jo s=C3=B8ge p=C3=A5 3. eller noget andet =
+for at finde det, man leder efter. Opstillingen p=C3=A5 punkt p=C3=A5 =
+notatapparatet er meget fint, s=C3=A5 hvis du kan f=C3=A5 nodeviseren =
+til at g=C3=B8re noget tilsvarende, s=C3=A5 vil det virkeligt v=C3=A6re =
+et scoop! <o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'margin-left:18.0pt'><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'><o:p>&nbsp;<=
+/o:p></span></p><p class=3DMsoListParagraph><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'>3 I filen =
+er der nogle lange streger, som normalt bruges til at markere, at der =
+p=C3=A5 det p=C3=A5g=C3=A6ldende sted er sideskift p=C3=A5 sort. Der er =
+ogs=C3=A5 g=C3=A5et noget galt for dem i slutningen af 3. vers i =
+basstemmen, der ser det ud som om, der mangler noget tekst, der =
+m=C3=A5ske er g=C3=A5et tabt i forbindelse med sideskiftet p=C3=A5 sort. =
+Men ellers ser filen rigtig nok ud. <o:p></o:p></span></p><p =
+class=3DMsoListParagraph><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'><o:p>&nbsp;<=
+/o:p></span></p><p class=3DMsoListParagraph><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'>Og joh, jeg =
+har bestemt taget brugerprofilerne til mig i nodel=C3=A6seren, det er =
+super smart. Lige som jeg ogs=C3=A5 er rigtig glad for den udgave af =
+Maria med sopran, alt osv. Du sendte til mig, hvor det ogs=C3=A5 ser ud =
+som om, at sopranen, alt, tenor og bas vises p=C3=A5 den m=C3=A5de i =
+nodel=C3=A6seren, som jeg har efterlyst. <o:p></o:p></span></p><p =
+class=3DMsoListParagraph><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'><o:p>&nbsp;<=
+/o:p></span></p><p class=3DMsoListParagraph><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'>Det er =
+dejligt at h=C3=B8re, at der tilsyneladende ikke er forskelle mellem =
+dansk nodeskrift og s=C3=A5 Bana2015 i forhold til bistemmerne. Og det =
+er ogs=C3=A5 p=C3=A5 sin vis godt at h=C3=B8re, at der generelt er =
+problemer med at vise optakter, for s=C3=A5 kan vi jo ikke g=C3=B8re det =
+bedre end forl=C3=A6gget. Mht. tenoren som er noteret for h=C3=B8jt, =
+s=C3=A5 t=C3=A6nker jeg egentlig om det, at det faktisk er bedre, =
+nodeprogrammet viser det, som der faktisk er noteret. Og jeg ved godt at =
+punktreglen siger, det skal noteres der, hvor det klinger. Hvad =
+=C3=A5rsagen er til, at man finder p=C3=A5 at notere tenoren for =
+h=C3=B8jt, kan jeg ikke se fornuften i. Men det er ogs=C3=A5 i forhold =
+til at kunnegennemskue fejl, s=C3=A5 er det bedre, programmet faktisk =
+viser det, som der st=C3=A5r. <o:p></o:p></span></p><p =
+class=3DMsoListParagraph><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'><o:p>&nbsp;<=
+/o:p></span></p><p class=3DMsoListParagraph><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'>Mht. =
+l=C3=A6seretning p=C3=A5 intervaller, s=C3=A5 synes jeg nok at =
+hovedreglen skal v=C3=A6re den, at sopran og alt l=C3=A6ses ned ad, og =
+bas og tenor l=C3=A6ses opad og det samme g=C3=A6lder klaver og orgel, =
+henholdsvis diskant- og basn=C3=B8gle. Grunden til det er, at det nok =
+ofte vil v=C3=A6re de instrumenter, som bruges. Men hvis det ikke er alt =
+for b=C3=B8vlet, s=C3=A5 kunne man m=C3=A5ske lave en mulighed for =
+brugervalg, hvor man selv kan v=C3=A6lge, hvilken vej der skal =
+l=C3=A6ses. I den nodebog jeg har om dansk nodeskrift p=C3=A5 punkt =
+st=C3=A5r eksempler p=C3=A5, at viola og violoncel l=C3=A6ses =
+anderledes, og hvis man s=C3=A5 spiller dette instrument, s=C3=A5 kunne =
+det jo v=C3=A6re fint, om man selv kan v=C3=A6lge en anden =
+l=C3=A6seretning. <o:p></o:p></span></p><p =
+class=3DMsoListParagraph><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'><o:p>&nbsp;<=
+/o:p></span></p><p class=3DMsoListParagraph><span =
+style=3D'font-size:11.0pt;font-family:"Segoe UI =
+Symbol",sans-serif;color:#1F497D;mso-fareast-language:EN-US'>Jeg =
+g=C3=A5r i gang med at teste nu, at den m=C3=A5de 3.0 kan printe =
+nodefilerne p=C3=A5 fortsat virker i 3.3. Og s=C3=A5 skriver til dig =
+igen, n=C3=A5r jeg har et resultat. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Mange hilsner <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Susanne <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>Fra:</span></=
+b><span style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'> =
+holmeparken44@vip.cybercity.dk &lt;holmeparken44@vip.cybercity.dk&gt; =
+<br><b>Sendt:</b> 3. januar 2020 15:26<br><b>Til:</b> Susanne =
+Nols=C3=B8e &lt;susanne@obj.dk&gt;<br><b>Cc:</b> Bo Alstrup =
+&lt;CX64@kk.dk&gt;<br><b>Emne:</b> Re: SV: Sender: Maria gennem torne =
+g=C3=A5r Sopran Alt Tenor =
+Bas.musicxml<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>Hej =
+Susanne<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>F=C3=B8rst =
+tak for din store og from for alt systematiske =
+indsats.<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>Jeg er lidt =
+rystet over alle de mange fejl, du har fundet, men til geng=C3=A6ld har =
+du tilsyneladende<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>straks =
+&quot;k=C3=B8bt&quot; de nye koncepter med brugerindstillinger og =
+profiler.<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p>&nbsp;</=
+o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>Jeg vil =
+pr=C3=B8ve at f=C3=A5 et overblik over alt d=C3=A9t, som du skriver, men =
+jeg har allerede nogle hovedpunkter:<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>1) =
+&quot;Maria gennem torne g=C3=A5r&quot; har faktisk titlen &quot;KB =
+461-34&quot;. Det vises som titel i sortnoden. Det er forvirrende, men =
+korrekt. Hvis man Googler&nbsp;<span style=3D'color:black'>&quot;KB =
+461-34&quot;</span> er et af de f=C3=B8rste tr=C3=A6f NOTA's OctoBraille =
+version af &quot;Maria gennem torne g=C3=A5r&quot;. Jeg har ikke noget =
+login, men hvis du har m=C3=A5 du meget gerne downloade den og sende til =
+mig, bare for at sammenligne.<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>2) De =
+beskrivelser som du har sendt af Braille koderne for intervaltegn, =
+bistemmer og skilletegn er de samme som i Refsn=C3=A6s bogen og er =
+ogs=C3=A5 de samme, som bruges i programmet. Hvis du oplever noget andet =
+m=C3=A5 det skyldes en logisk fejl i programmet. Jeg har endnu ikke =
+fundet forskelle mellem Refsn=C3=A6s b=C3=B8gerne og BANA 2015. BANA =
+2015 er langt mere omfattende, men modsiger ikke (s=C3=A5 vidt jeg endnu =
+har set) Refsn=C3=A6s. &nbsp;<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>3) Det er =
+klart en fejl at der ikke genereres oktavtegn for f=C3=B8rste node efter =
+skilletegn. Formodentlig ret let at fixe.<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>4) =
+Nodel=C3=A6ser-programmet har generelt problemer med optakter, ogs=C3=A5 =
+n=C3=A5r vi ikke kigger p=C3=A5 punktnoder. For eksempel vises det =
+f=C3=B8rste slag i &quot;Maria gennem torne g=C3=A5r&quot; som takt 1 =
+slag 1 mens enhver musiker vil kalde det takt 1 slag 3. Dette kan =
+muligvis ogs=C3=A5 forklare nogle af problemerne omkring optakter i =
+punktnodenotationen.<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>5) =
+Tenorstemmen i &quot;Maria gennem torne g=C3=A5r&quot; b=C3=A5de vises =
+og spilles en oktav over sopran og alt i MuseScore. Hvis man kigger i =
+selve .xml filen er de 4 stemmer SATB Cis4 Cis4 Cis5 Cis3. Jeg kan se at =
+.xml filen er lavet af PhotoScore og tilsyneladende har ingen opdaget at =
+Tenoren er noteret for h=C3=B8jt.&nbsp;<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>Jeg =
+pr=C3=B8ver at f=C3=A5 overblik over resten, men det giver ingen mening =
+at lave en ny testversion f=C3=B8r jeg er nogenlunde til bunds i d=C3=A9 =
+fejl, du allerede har fundet.<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p>&nbsp;</=
+o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>God =
+weekend<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p>&nbsp;</=
+o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>Jens<o:p></o:=
+p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p>&nbsp;</=
+o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p>&nbsp;</=
+o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p>&nbsp;</=
+o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p>&nbsp;</=
+o:p></span></p><div><p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>---<o:p></o:p=
+></span></p><p><strong><span =
+style=3D'font-size:10.0pt;font-family:"Arial",sans-serif;color:#297C5F'>S=
+endt fra min Jubii Mail</span></strong><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><br></span><s=
+pan =
+style=3D'font-size:8.0pt;font-family:"Arial",sans-serif;color:#A0A0A0'>Ju=
+bii Mail har eksisteret i 20 =C3=A5r og er en af Danmarks st=C3=B8rste =
+mail-udbydere med over 150.000 brugere. Jubii Mail er et 100% dansk =
+produkt med b=C3=A5de support og hosting i Danmark. Vi s=C3=A6tter en =
+=C3=A6re i at levere en personlig kvalitets-mail til b=C3=A5de private =
+og foreninger - og med knap 150 dom=C3=A6nenavne t=C3=B8r vi godt love, =
+at vi ogs=C3=A5 har en personlig email-adresse til dig.</span><span =
+style=3D'font-size:8.0pt;font-family:"Arial",sans-serif'> <strong><span =
+style=3D'font-family:"Arial",sans-serif;color:#297C5F'><a =
+href=3D"https://konto.jubii.dk/SignUp?utm_source=3DWebmail%20Signatur&amp=
+;utm_medium=3DWebmail%20Signatur"><span style=3D'color:#297C5F'>Klik her =
+- opret Jubii Mail</span></a></span></strong><span =
+style=3D'color:#A0A0A0'>.</span></span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p>&nbsp;</=
+o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>Susanne =
+Nols=C3=B8e skrev den 2020-01-03 12:06:<o:p></o:p></span></p><blockquote =
+style=3D'border:none;border-left:solid #1010FF 1.5pt;padding:0cm 0cm 0cm =
+5.0pt;margin-left:0cm;margin-right:0cm'><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Hej Jens </span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Som du vil se, n=C3=A5r du f=C3=A5r =
+=C3=A5bnet den forrige mail fra mig, s=C3=A5 er der meget, som er =
+g=C3=A5et godt i tb, sopranfilen i Maria gennem torne g=C3=A5r. Det er =
+straks lidt vanskeligere med tuttifilen og satb fiLen</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>n=C3=A5r den skal vises som fil p=C3=A5 =
+notatapparat og formentlig ogs=C3=A5 p=C3=A5 punktprinter. </span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Men noget af det bunder ogs=C3=A5 i, at jeg =
+ikke kan tjekke punktnoderne i bana 2015 bogen p=C3=A5 nettet, fordi =
+talen enten ikke l=C3=A6ser dem op, hvilket er mest sandsynligt, eller =
+nodeeksemplerne ikke vises p=C3=A5 nettet. Jeg kan blot l=C3=A6se om =
+reglerne, men alts=C3=A5 ikke se, hvilke punkttegn, man specifikt =
+anvender. Men hvis du kan se disse nodeeksempler, s=C3=A5 kan vi nok =
+f=C3=A5 afklaret mine tvivlssp=C3=B8rgsm=C3=A5l om dansk og amerikansk =
+punktnodestandard. </span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Og det er super godt med visningen p=C3=A5 =
+nodel=C3=A6seren, fordi det er en mere logisk m=C3=A5de med sopran helt =
+til venstre p=C3=A5 displayet, dern=C3=A6st alt osv. M=C3=A5ske kan du =
+lave det som en valgmulighed man kan v=C3=A6lge. Det vil kunne f=C3=A5 =
+en hvis indvirkning p=C3=A5 visningen af tutti og satb-filerne, som jeg =
+er inde p=C3=A5 i testningen, men det kan vi jo vende tilbage til. =
+</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Jeg er stort set ikke hjemme i n=C3=A6ste =
+uge f=C3=B8r den 10. januar. Men jeg kigger mails, s=C3=A5 har du nogle =
+sp=C3=B8rgsm=C3=A5l, s=C3=A5 m=C3=A5 vi skrives ved. </span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Mange hilsner </span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Susanne</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p><div><div style=3D'border:none;border-top:solid #E1E1E1 =
+1.0pt;padding:3.0pt 0cm 0cm 0cm'><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><strong><spa=
+n =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>Fra:</span></=
+strong><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'> Jens =
+Sundgaard &lt;<a =
+href=3D"mailto:holmeparken44@vip.cybercity.dk">holmeparken44@vip.cybercit=
+y.dk</a>&gt; <br><strong><span =
+style=3D'font-family:"Calibri",sans-serif'>Sendt:</span></strong> 23. =
+december 2019 12:24<br><strong><span =
+style=3D'font-family:"Calibri",sans-serif'>Til:</span></strong> Susanne =
+Nols=C3=B8e &lt;<a =
+href=3D"mailto:susanne@obj.dk">susanne@obj.dk</a>&gt;<br><strong><span =
+style=3D'font-family:"Calibri",sans-serif'>Emne:</span></strong> Sender: =
+Maria gennem torne g=C3=A5r Sopran Alt Tenor Bas.musicxml</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div></div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'>&nbsp;<o:p></=
+o:p></span></p><div><div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>H=
+ej Susanne</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>&=
+nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>T=
+ak for en ualmindeligt konstruktiv snak h=C3=A9r til =
+formiddag!</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>&=
+nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>P=
+roblemet med at Maria ikke genererede SA og BT skyldtes at</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>s=
+temmerne blot hed &quot;S.&quot; &quot;A.&quot; &quot;T.&quot; og =
+&quot;B.&quot; og at Nodel=C3=A6seren kr=C3=A6ver lidt =
+l=C3=A6ngere</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>n=
+avne for at identificere dem som disse stemmer (og&nbsp; derp=C3=A5 =
+generere SA og BT i punktnodenotation).</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>&=
+nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>D=
+et er let at =C3=A6ndre med MuseScore, s=C3=A5 jeg har lavet en ny =
+version til dig,</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>l=
+et genkendelig p=C3=A5 navnet. Den genererer SA og BT =E2=80=93 og =
+analyseret af</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>e=
+n lille punktnodefortolker, jeg har skrevet, genereres der noget, som i =
+</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>f=
+=C3=B8rste omgang sagtens kunne v=C3=A6re nogenlunde fornuftig =
+punktnodenotation.</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>&=
+nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>m=
+vh Jens </span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div><div><p class=3DMsoNormal =
+style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
+style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>&=
+nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif'><o:p></o:p></=
+span></p></div></div></div></div></blockquote></div></body></html>
+------=_NextPart_001_00FE_01D5C32F.146043B0--
+
+------=_NextPart_000_00FD_01D5C32F.146043B0
+Content-Type: text/plain;
+	name="=?utf-8?Q?Maria=5Fgennem=5Ftorne=5Fg=C3=A5r.txt?="
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+	filename="=?utf-8?Q?Maria=5Fgennem=5Ftorne=5Fg=C3=A5r.txt?="
+
+
+
+         maria gennem torne g=E5r
+              melodi: tysk
+        dansk tekst: thomas alvad
+            arr.: henrik metz
+
+                  =8Bsatb
+
+                 egtved
+
+                  =8Bdbb
+        danmarks blindebibliotek
+             k=F8benhavn =BEbjjb
+
+copyright by edition egtved
+korbiblioteket
+=8Bkb =BEdfa=96=BEcd
+
+afsnit for afsnit
+format: section=96by=96section
+
+=8Bdbb =96=96 danmarks blindebibliotek
+teglv=E6rksgade =BEcg
+=8Bdk =BEbajj k=F8benhavn =98=F8
+tlf.: =BEci.bg.dd.dd
+fax: =BEci.bg.dd.ed
+e=96mail: dbb=81adbb.dk
+
+=BEcjbjce
+
+maria gennem torne g=E5r
+melodi: tysk=BF dansk tekst: thomas alvad
+arr.: henrik metz
+
+    =BE=B0=96,=B0.
+=98=E6.=EE=EE=EE =98c `=F4`=96 =EF.h=F8=F4=EA=E6`=F4=F4=EF=EF =
+`=F8hcg=FC'c=FC=EA=E6
+  `=EFg'cg=EF=EE=EB `=F8iit=EA=E6`=FCgg=F8c=FCc'c =98n.icj=EA=E6
+  `=FCq=EEf'cf =98=F4.j=F4ecd=EA=E6`=FC=EF=FC=E5=FC `w'cjiwdcj=EA=E6
+  `=EFg'cg=FCich `=F8.h=F8jci=EA=E6`=EF=EF"
+  `=FC=BFh=EE=9Eg=EE=9E=FC=9E=98c=FC=9E =EF.=BEh=BE=F8=BE=F4* =
+ic=BEch=BEq=BE=EAk`
+=8B=E6.=EE=EE=EE =98c =8B=F4=96 =EF=9E=EE=EB=BE=E5=EB=B0=EE=FB:
+  =E5=FB:=81h=EE=8B=9E=98ch=8B=9E=8B=F4=E5:=98c=F4: =EF*g*g*p:
+  =81s`=9E=F4:=98c=F4: =EF=9E=FC=9E=F8=9E=EE=F8=9E =
+w=9Ed=9E=98cd=9E=FB=9Ed=EE=9E=98cd=9E
+  =8B=EF*=EB=B0=EE=FB:=81=FC=EE=8B=9E =8B=F4=E5:d:d=B0=F4:=98c=F4: =
+=E9'c=EA=E6
+  =8B=F8.j=F4=FB =8Bq.`,`dcjs=EAk`
+                                     p=BEa
+zemm=FB:
+
+sopran:
+
+    =BE=B0=96,=B0.
+=85.=EE=EE=EE =98c `=F4 =EF.h=F8=F4 =F8hcg=FC'c=FC =F8iit n.icj
+  =F4.j=F4ecd w'cjiwdcj =F8.h=F8jci =FChg=FC'c=FC
+  =EF.h=F8=F4 ichq=EAk`
+=A8;=BEa. maria =EF tx=EB g=E5r.
+  kyrieleison.
+  maria =EF tx=EB g=E5r,
+  =F4 bar ej l=F8v p syv=EA=F4 =E5r.
+  jesus c maria
+    =BEb. w bar maria q st hj=FB=FC?
+  kyrieleison.
+  =9E li=E8 barn fxu=E7 sm=FB=FC,
+  =E8 bar maria q st hj=FB=FC.
+  jesus c maria.
+
+    =BEc. da blomz=E0d ros=FB f=E0m =EEm tx=EB.
+  kyrieleison.
+  da maria bar st barn =EF =E9ov=EA,
+  da blonz=E0d ros=FB f=E0m =EEm tx=EB.
+  jesus c maria.
+::::::::::::::::::::
+                                     p=BEc
+alt:
+
+    =BE=B0=96,=B0.
+=85.=EE=EE=EE =98c `=F4 =F4=F4=EF=EF =EFg'cg=EF=EE=EB =FCgg=F8c=FCc'c
+  =FCq=EEf'cf =FC=EF=FC=E5=FC =EFg'cg=FCich =EF=EF" =EF=EEf=EEe=EB'c=EB
+  =F4.e=EB=EF fcen=EAk`
+=A8;=BEa. maria =EF tx=EB g=E5r.
+  kyrieleison.
+  maria =EF tx=EB g=E5r,
+  =F4 bar ej l=F8v p syv=EA=F4 =E5r.
+  jesus c maria
+    =BEb. w bar maria q st hj=FB=FC?
+  kyrieleison.
+  =9E li=E8 barn fxu=E7 sm=FB=FC,
+  =E8 bar maria q st hj=FB=FC.
+  jesus c maria.
+
+    =BEc. da blomz=E0d ros=FB f=E0m =EEm tx=EB.
+  kyrieleison.
+  da maria bar st barn =EF =E9ov=EA,
+  da blonz=E0d ros=FB f=E0m =EEm tx=EB.
+  jesus c maria.
+::::::::::::::::::::
+                                     p=BEe
+=FCnx
+
+    =BE=B0=96,=B0.
+=E6=BFl=BEh.=EE=EE=EE =98c =98=F4 =F8=F8=F4=F4 =F4=EEj'cj=E5w'cw =F4ddo
+  nw'cw =F8w=F4=F4 =FBf'cf=EF=EEf'cf =F4=F4=F4=EEw =E5wjiw'cw
+  =F8.j=F4=FB dcjs=EAk`
+=A8;=BEa. maria =EF tx=EB g=E5r.
+  kyrieleison.
+  maria =EF tx=EB g=E5r,
+  =F4 bar ej l=F8v p syv=EA=F4 =E5r.
+  jesus c maria
+    =BEb. w bar maria q st hj=FB=FC?
+  kyrieleison.
+  =9E li=E8 barn fxu=E7 sm=FB=FC,
+  =E8 bar maria q st hj=FB=FC.
+  jesus c maria.
+
+    =BEc. da blomz=E0d ros=FB f=E0m =EEm tx=EB.
+  kyrieleison.
+  da maria bar st barn =EF =E9ov=EA,
+  da blonz=E0d ros=FB f=E0m =EEm tx=EB.
+  jesus c maria.
+::::::::::::::::::::
+                                     p=BEg
+bas:
+
+    =BE=B0=96,=B0.
+=85.=EE=EE=EE =98c =8B=F4 =EF=EE=EB=E5=EB=E5=FB =E5=FB=81h'ch=8B=F4'c=F4 =
+=EFggp
+  =81s=F4'c=F4 =EF=FC=F8=EE=F8 wd'cd=FBd'cd =8B=EF=EB=EE=FB=81=FC
+  =8B=F4dd=F4'c=F4 =E9'c q.=EAk`
+=A8;=BEa. maria =EF tx=EB g=E5r.
+  kyrieleison.
+  maria =EF tx=EB g=E5r,
+  =F4 bar ej l=F8v p syv=EA=F4 =E5r.
+  jesus c maria
+    =BEb. w bar maria q st hj=FB=FC?
+  kyrieleison.
+  =9E li=E8 barn fxu=E7 sm=FB=FC,
+  =E8 bar maria q st hj=FB=FC.
+  jesus c maria.
+
+    =BEc. da blomz=E0d ros=FB f=E0m =EEm tx=EB.
+  kyrieleison.
+  da maria bar st barn =EF =E9ov=EA,
+  da blonz=E0d ros=FB f=E0m =EEm tx=EB.
+  a.
+::::::::::::::::::::
+                                     =8Beh
+                                     p=BEi
+
+------=_NextPart_000_00FD_01D5C32F.146043B0--
+
