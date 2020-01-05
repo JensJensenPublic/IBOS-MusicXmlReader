@@ -182,10 +182,10 @@ namespace BrailleMusicDecoder
                 int typevalue = thisValue & dot36;
                 switch (typevalue)
                 {
-                    case dot3 | dot6: typeName = "1/1"; break;
-                    case dot3: typeName = "1/2"; break;
-                    case dot6: typeName = "1/4"; break;
-                    case none: typeName = "1/8"; break;
+                    case dot3 | dot6: typeName = "/1"; break;
+                    case dot3: typeName = "/2"; break;
+                    case dot6: typeName = "/4"; break;
+                    case none: typeName = "/8"; break;
                 }
                 stepAndType = stepName + typeName;
                 allInputInterpretations.Add(thisValue, InputCategoryEnum.Note, stepAndType);
@@ -218,10 +218,10 @@ namespace BrailleMusicDecoder
 
             switch (thisValue) // Look for rests
             {
-                case dot1 | dot3 | dot4: rest = "R1/1"; break;
-                case dot1 | dot3 | dot6: rest = "R1/2"; break;
-                case dot1 | dot2 | dot3 | dot6: rest = "R1/4"; break;
-                case dot1 | dot3 | dot4 | dot6: rest = "R1/8"; break;
+                case dot1 | dot3 | dot4: rest = "R/1"; break;
+                case dot1 | dot3 | dot6: rest = "R/2"; break;
+                case dot1 | dot2 | dot3 | dot6: rest = "R/4"; break;
+                case dot1 | dot3 | dot4 | dot6: rest = "R/8"; break;
                 default: break;
             }
             allInputInterpretations.Add(thisValue, InputCategoryEnum.Rest, rest);
