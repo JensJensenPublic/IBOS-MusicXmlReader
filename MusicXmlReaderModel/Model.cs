@@ -1222,7 +1222,7 @@ namespace MusicXmlReaderModel
                     {
                         List<string> formattedStrings = this.eventDescriptionList.Format(this.userSettings);
                         string formattedString = BrailleUtilities.Format(formattedStrings, charsPerLine, linesPerForm);
-                        StaffList result = StaffList.Create(formattedString); // For backward compatibility with  version 3.0)
+                        StaffList result = StaffList.Create(formattedString,metaInformation,"IBOS"); // For backward compatibility with  version 3.0)
                         result.AllStaffs.AddRange(result.Staffs); 
                         return result;
                     }

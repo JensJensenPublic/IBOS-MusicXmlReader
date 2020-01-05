@@ -386,10 +386,18 @@ namespace MusicXmlReaderModel
         }
 
 
-        private Staff(string formattedString)
+        /// <summary>
+        /// For backward compatibility with 3.0 while still showing Title and showing "IBOS instead of pertnr.staffnr
+        /// </summary>
+        /// <param name="formattedString"></param>
+        /// <param name="owningStaffList"></param>
+        /// <param name="name"></param>
+        private Staff(string formattedString,StaffList owningStaffList,string name)
         {
             this.brailleMusicFormattedPage = formattedString;
-            this.staffNumber = 0; // For grand staffs this number will identify the staff within the staffs for the part.            
+            this.owningStaffList = owningStaffList;
+            this.name = name;
+            //this.name = "IBOS"; // This will replace the <PartName>.<PartNumber> used by BANA layouts
         }
 
         public static Staff Create(int partNumber, int staffNumber, bool isPartOfGrandStaff, StaffList owningStaffList)
@@ -402,9 +410,15 @@ namespace MusicXmlReaderModel
             return new Staff(name, owningStaffList);
         }
 
-        public static Staff Create(string formattedString)
+
+        /// <summary>
+        /// Used for creating a staff to be used fpr IBOS LAYOUT, assuring compatibility with version 3.0 
+        /// </summary>
+        /// <param name="formattedString"></param>
+        /// <returns></returns>
+        public static Staff Create(string formattedString, StaffList owningStaffList, string name)
         {
-            return new Staff(formattedString);
+            return new Staff(formattedString,owningStaffList,name);
         }
     }
 }

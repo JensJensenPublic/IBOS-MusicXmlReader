@@ -101,9 +101,10 @@ namespace MusicXmlReaderModel
             }
         }
 
-        public StaffList(string formattedString)
+        private StaffList(string formattedString,MetaInformation metaInformtion,string name)
         {
-            Staff theOnlyStaff = Staff.Create(formattedString);
+            this.metaInformation = metaInformtion;
+            Staff theOnlyStaff = Staff.Create(formattedString,this,name);
             theOnlyStaff.Enabled = true;
             staffs.Add(theOnlyStaff);
         }
@@ -361,9 +362,9 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="formattedString"></param>
         /// <returns></returns>
-        public static StaffList Create(string formattedString)
+        public static StaffList Create(string formattedString,MetaInformation metaInformation, string name)
         {
-            return new StaffList(formattedString);
+            return new StaffList(formattedString,metaInformation,name);
         }
     }
 }
