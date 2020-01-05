@@ -119,7 +119,7 @@ namespace BrailleMusicDecoder
 
             // Define some shorthand values to be used in the case below
             InputCategoryEnum allowedInTextStates   = InputCategoryEnum.Character | InputCategoryEnum.TextVersal | InputCategoryEnum.Number | InputCategoryEnum.ToMusic;
-            InputCategoryEnum allowedInMusicStates  = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.InAccordFullMeasure;
+            InputCategoryEnum allowedInMusicStates  = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.InAccordFullMeasure | InputCategoryEnum.ClefF | InputCategoryEnum.ClefG;
             InputCategoryEnum allowedInNumberStates = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space;
 
             switch (state)
@@ -128,8 +128,8 @@ namespace BrailleMusicDecoder
                 case StateEnum.TextVersal:  allowedInputCategories = allowedInTextStates; break;
                 case StateEnum.TextNumber:  allowedInputCategories = allowedInNumberStates | InputCategoryEnum.TextVersal | InputCategoryEnum.ToMusic; break;
                 case StateEnum.MusicNumber: allowedInputCategories = allowedInNumberStates | InputCategoryEnum.Accidental; break;
-                case StateEnum.Music:       allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Accidental | InputCategoryEnum.BarLine | InputCategoryEnum.Number | InputCategoryEnum.Finger | InputCategoryEnum.FullEnd; break;
-                case StateEnum.MusicNote:   allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Legato | InputCategoryEnum.BarLine | InputCategoryEnum.FullEnd | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation | InputCategoryEnum.Interval | InputCategoryEnum.Accidental ; break;
+                case StateEnum.Music:       allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Accidental | InputCategoryEnum.UnusualBarLine | InputCategoryEnum.Number | InputCategoryEnum.Finger | InputCategoryEnum.FullEnd; break;
+                case StateEnum.MusicNote:   allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Legato | InputCategoryEnum.UnusualBarLine | InputCategoryEnum.FullEnd | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation | InputCategoryEnum.Interval | InputCategoryEnum.Accidental ; break;
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
             }
 

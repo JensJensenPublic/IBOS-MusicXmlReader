@@ -9,6 +9,7 @@ namespace BrailleMusicDecoder
         Number = 0x0002,
         TextVersal = 0x0004,
         Character = 0x0008,
+        ClefF = 0x0010,
         Digit = 0x0020,
         Note = 0x0040,
         Rest = 0x0080,
@@ -19,17 +20,19 @@ namespace BrailleMusicDecoder
         OtherValues = 0x1000,
         Denominator = 0x2000,
         HalfEnd = 0x4000, // // Danish "Halvslutning"
+        ClefG = 0x8000,
         Space = 0x00010000,
         NewMeasure = 0x00020000,
         Legato = 0x00400000,
-        BarLine = 0x00800000,
+        UnusualBarLine = 0x00800000,
         FullEnd = 0x01000000,
         EndRepeat = 0x02000000,
         Punctuation = 0x04000000,
         ToMusic = 0x08000000,
         MeasureDivision = 0x10000000,     // Danish "Skilletegn"   
         InAccordPartMeasure = 0x20000000, // Dansih: "Lille bistemme"
-        InAccordFullMeasure = 0x40000000  // Dansih: "Stor bistemme"
+        InAccordFullMeasure = 0x40000000,  // Dansih: "Stor bistemme" 
+        // 0x80000000 can not be used because this enum type is based on positive 32 bit values.
     }
 
     class TokenReader
@@ -288,7 +291,7 @@ namespace BrailleMusicDecoder
             allInputInterpretations.Add(thisValue, (dot1 | dot4), InputCategoryEnum.Legato); 
             allInputInterpretations.Add(thisValue, noDots, InputCategoryEnum.Space);
             allInputInterpretations.Add(thisValue, noDots, InputCategoryEnum.NewMeasure);            
-            allInputInterpretations.Add(thisValue, (dot1 | dot2 | dot3), InputCategoryEnum.BarLine); 
+            allInputInterpretations.Add(thisValue, (dot1 | dot2 | dot3), InputCategoryEnum.UnusualBarLine); 
             allInputInterpretations.Add(thisValue, dot3, InputCategoryEnum.Punctuation);
  
             if ((thisValue == (dot6)) && (nextValue != dot3)) // Avoid clash with ToMusic
@@ -340,8 +343,10 @@ namespace BrailleMusicDecoder
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot1 | dot3)), InputCategoryEnum.MeasureDivision);
             allInputInterpretations.Add(rawValues, new IntegerList((dot5), (dot2)), InputCategoryEnum.InAccordPartMeasure);
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.InAccordFullMeasure);
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4), (dot1 | dot2 | dot3)), InputCategoryEnum.ClefG);
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4 | dot6), (dot1 | dot2 | dot3)), InputCategoryEnum.ClefF);
 
-            
+
             return allInputInterpretations;
         }
         
