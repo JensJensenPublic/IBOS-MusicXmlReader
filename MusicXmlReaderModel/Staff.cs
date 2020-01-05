@@ -61,7 +61,8 @@ namespace MusicXmlReaderModel
                     if ((null == owningStaffList) || null == (owningStaffList.MetaInformation))
                     {
                         // We need the Metainformation in all cases, so start by checking if it is available:
-                        Logger.LogCF(string.Format("No metaInformation found. Returning ScoreTitle={0}", defaultResult));
+                        Utilities.Beep();
+                        Logger.LogCF(string.Format(": No metaInformation found. Returning ScoreTitle={0}", defaultResult));
                         return defaultResult;
                     }
                     MetaInformation metaInformation = owningStaffList.MetaInformation;
