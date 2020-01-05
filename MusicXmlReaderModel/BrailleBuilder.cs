@@ -110,9 +110,12 @@ namespace MusicXmlReaderModel
         public static readonly byte[] repeatEnd   = new byte[] { (dot1 + dot2 + dot6), (dot2 + dot3) };
         public static readonly byte[] repeatStart = new byte[] { (dot1 + dot2 + dot6), (dot2 + dot3 + dot5 + dot6) } ;
 
-        // Endings (According to Refsnæs, 1995 Part 1 Chapter 6e and 6f
-        public static readonly byte[] halfEnd = new byte[] { dot6, dot3, (dot1 + dot2 + dot6), (dot1 + dot3), dot3 }; // Danish "HalvSlutning" 6e
-        public static readonly byte[] fullEnd = new byte[] { dot6, dot3, (dot1 + dot2 + dot6), (dot1 + dot3) }; // Danish "HelSlutning" 6f
+        // Endings (According to Refsnæs, 1995 Part 1 Chapter 6e and 6f)
+        // Note that Refsnæs sometimes adds the { dot6 , dot3} sequence in front of the "real" sequence. This is also the case here.
+        // But as the { dot6 , dot3} sequence just means "Start of Music Braille" it is not a part of the halfEnd/FullEnd symbol described.
+        // http://www.brl.org/codes/intmanual/tables/table09.html Table 9 also shows halfEnd/fullEnd without { dot6 , dot3 }
+        public static readonly byte[] halfEnd = new byte[] { (dot1 + dot2 + dot6), (dot1 + dot3), dot3 }; // Danish "HalvSlutning" 6e
+        public static readonly byte[] fullEnd = new byte[] { (dot1 + dot2 + dot6), (dot1 + dot3) }; // Danish "HelSlutning" 6f
 
         // Interval notation
         // MUSIC BRAILLE CODE 1997 Table 10 
