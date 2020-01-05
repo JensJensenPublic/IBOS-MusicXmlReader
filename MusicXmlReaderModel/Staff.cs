@@ -53,35 +53,62 @@ namespace MusicXmlReaderModel
         {
             get
             {
-                string result = "NoTitle";
+                string result = "";
+                string defaultResult = "NoTitle";
                 try
                 {
-                    result = owningStaffList.MetaInformation.MovementTitle.Value;
+                    // Attempt to avoid null references even if we can catch them.
+                    if ((null == owningStaffList) || null == (owningStaffList.MetaInformation))
+                    {
+                        // We need the Metainformation in all cases, so start by checking if it is available:
+                        Logger.LogCF(string.Format("No metaInformation found. Returning ScoreTitle={0}", defaultResult));
+                        return defaultResult;
+                    }
+                    MetaInformation metaInformation = owningStaffList.MetaInformation;
+                    result = "";
+
+                    Logger.LogCF(": Check if MovementTitle.Value is usable");
+                    if (null != metaInformation.MovementTitle)
+                    {
+                        result = metaInformation.MovementTitle.Value;
+                    }
+
                     if (string.IsNullOrEmpty(result))
                     {
-                        result = owningStaffList.MetaInformation.Work.Value;
+                        Logger.LogCF(": Check if Work.Value is usable");
+                        if (null != metaInformation.Work)
+                        {
+                            result = metaInformation.Work.Value;
+                        }
                         // Logger.LogCFOnce(string.Format(": Using MetaInformation.Work.Value={0}'", result));
                     }
 
                     if (string.IsNullOrEmpty(result))
                     {
-                        string temp = owningStaffList.MetaInformation.FileName.Value;
-                        result = string.IsNullOrEmpty(temp) ? "" : Path.GetFileNameWithoutExtension(temp);
-                        // Logger.LogCFOnce(string.Format(": Using MetaInformation.Filename.Value={0}'", result));
+                        Logger.LogCF(": Check if FileName.Value is usable");
+                        if ((null != metaInformation.FileName) && (null != metaInformation.FileName.Value))
+                        {
+                            string temp = owningStaffList.MetaInformation.FileName.Value;
+                            result = string.IsNullOrEmpty(temp) ? "" : Path.GetFileNameWithoutExtension(temp);
+                            // Logger.LogCFOnce(string.Format(": Using MetaInformation.Filename.Value={0}'", result));
+                        }
                     }
 
                     if (string.IsNullOrEmpty(result))
                     {
-                        Logger.LogCFOnce(string.Format(": No title found"));
+                        result = defaultResult;
+                        Logger.LogCF(string.Format(": No title found. Using Title={0}", result));                     
                     }
                     else
                     {
-                        // Logger.LogCFOnce(string.Format(": Title='{0}'", result));
+                        Logger.LogCF(string.Format(": Title='{0}'", result));
                     }
+  
                 }
                 catch (Exception e)
                 {
                     Logger.LogCFE(e);
+                    result = defaultResult;
                 }
                 return result;
             }
