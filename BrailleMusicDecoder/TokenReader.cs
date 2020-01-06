@@ -310,6 +310,8 @@ namespace BrailleMusicDecoder
                 case 27: digit = "7"; break;
                 case 19: digit = "8"; break;
                 case 10: digit = "9"; break;
+                case 26: digit = "0"; break;
+                case 04: digit = "."; break; // dot3 = "." is a valid value inside a sequence of digits
             }
             allInputInterpretations.Add(thisValue, InputCategoryEnum.Digit, digit);
 
@@ -324,6 +326,7 @@ namespace BrailleMusicDecoder
                 case 54: denominator = "/7"; break;
                 case 38: denominator = "/8"; break;
                 case 20: denominator = "/9"; break;
+                // case 52: denominator = "/0"; break; // Probably not needed ?
             }
             allInputInterpretations.Add(thisValue, InputCategoryEnum.Denominator, denominator);
 
