@@ -1,0 +1,3546 @@
+Return-Path: <susanne@obj.dk>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe002.lytzenitmail.local ([100.127.30.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id eCbvHNqcEl5ogQEAlE+V+A
+	(envelope-from <susanne@obj.dk>)
+	for <dsl248925@mail.jubii.dk>; Mon, 06 Jan 2020 03:35:06 +0100
+Received: from sv900pomx002.lytzenitmail.dk ([100.127.30.61])
+	by sv900ddwe002.lytzenitmail.local with LMTP
+	id wLZYHNqcEl5tKgAANmPVvw
+	(envelope-from <susanne@obj.dk>)
+	for <dsl248925@mail.jubii.dk>; Mon, 06 Jan 2020 03:35:06 +0100
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.161])
+	by sv900pomx002.lytzenitmail.dk (Postfix) with ESMTPS id 7108622B
+	for <holmeparken44@vip.cybercity.dk>; Mon,  6 Jan 2020 03:35:06 +0100 (CET)
+Authentication-Results: mx01.lytzenitmail.dk; spf=None smtp.mailfrom=susanne@obj.dk
+Received-SPF: None (mx01.lytzenitmail.dk: no sender authenticity
+  information available from domain of susanne@obj.dk)
+  identity=mailfrom; client-ip=94.231.106.220;
+  receiver=mx01.lytzenitmail.dk;
+  envelope-from="susanne@obj.dk"; x-sender="susanne@obj.dk";
+  x-conformance=spf_only
+IronPort-PHdr: =?us-ascii?q?9a23=3A0lnL7hZ2Pq9+kp0J9Ip+HjD/LSx94efdIxIV55?=
+ =?us-ascii?q?w7irlHbqWk+dHYMVfC4el20Q6bWJWDsrRAmvbEvqbhRWkJ4JLHvHNROIdUWU?=
+ =?us-ascii?q?ojjsMb1xclHNbDDET6KPDwaClvB9lZXVlj8lm8O0oTFMWnPQ/or3a/7CAfFl?=
+ =?us-ascii?q?DEDSQvebqnPInUgoz30vDqotvXchlaiTy8fbZ7LRHwoQaD/s8RyZBvLKo80F?=
+ =?us-ascii?q?PAv2dIduJKxGhpOUP2/V6058G++4Rm+jhRvPRp/tBJUKHzdaA1BbJCCzFuP2?=
+ =?us-ascii?q?cw7czt/R7NBRCS/XIaVGg+lRBKRQTGrXSYFt/wvib8quthyXyfNMzyQ6ozXG?=
+ =?us-ascii?q?fq5KNqRRn0zSYfYm9ltjuM04op1Pwd+kj59Hkdi8bObYqYNeRzZPbYbYtDA2?=
+ =?us-ascii?q?5QQtRcUS1dB4q9a80DDLlkX64Qoo/jql8JtRb7CxOrAbal0SJTj3nw0IU92e?=
+ =?us-ascii?q?ZnHQKMj0QwWskDtnjZtoC/L7oJWOazwYHPxzeFY/AcilKfoMDYNxsmp/+LR7?=
+ =?us-ascii?q?d5d8HcnFI3GTTCiFGB8N23D3auzu0I9lOjwa9lXOOrhXQgrlEjpTKtgMsv2N?=
+ =?us-ascii?q?HE?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0CxAACdmxJeZNxq515mGwEBAQEBAQE?=
+ =?us-ascii?q?FAQEBEQEBAwMBAQGBfAKBI38FJkYgCyojBAsqjQyXNIoPghcJAQEBAQEBAQE?=
+ =?us-ascii?q?BAwEEExgBAQIBAYRAgWsiOwUNAhABAQEDAQEBAgECAwQFHAsKBSuFPgyFbQI?=
+ =?us-ascii?q?eBRMBATcBDAUNMRMXPwEEHgWDE4F4AW8TAQGuAzGCfgEBBYJKhFIHCYE2gVO?=
+ =?us-ascii?q?JBSSBHRqBQT+FcIQIhSGXGQUJl3aCQINhgjiQHJpbqVSBamwCAQESdzMiMIM?=
+ =?us-ascii?q?nKwERAhEYDY0ShECKB0AzgQUBASEWjT4BAQ?=
+X-IPAS-Result: =?us-ascii?q?A0CxAACdmxJeZNxq515mGwEBAQEBAQEFAQEBEQEBAwMBA?=
+ =?us-ascii?q?QGBfAKBI38FJkYgCyojBAsqjQyXNIoPghcJAQEBAQEBAQEBAwEEExgBAQIBA?=
+ =?us-ascii?q?YRAgWsiOwUNAhABAQEDAQEBAgECAwQFHAsKBSuFPgyFbQIeBRMBATcBDAUNM?=
+ =?us-ascii?q?RMXPwEEHgWDE4F4AW8TAQGuAzGCfgEBBYJKhFIHCYE2gVOJBSSBHRqBQT+Fc?=
+ =?us-ascii?q?IQIhSGXGQUJl3aCQINhgjiQHJpbqVSBamwCAQESdzMiMIMnKwERAhEYDY0Sh?=
+ =?us-ascii?q?ECKB0AzgQUBASEWjT4BAQ?=
+X-IronPort-AV: E=Sophos;i="5.69,400,1571695200"; 
+   d="xml'?rels'?brl'?scan'72,217,208,48";a="81473977"
+Received: from asmtp.unoeuro.com ([94.231.106.220])
+  by mx01.lytzenitmail.dk with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 06 Jan 2020 03:35:05 +0100
+Received: from DESKTOPDMOOD5I (87-57-144-108-cable.dk.customer.tdc.net [87.57.144.108])
+	by asmtp.unoeuro.com (UnoEuro) with ESMTPA id 47rfk10729z62Mb;
+	Mon,  6 Jan 2020 03:35:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=obj.dk; s=unoeuro;
+	t=1578278105; bh=Ahjbiuz2XJgmbc5uT96h8FUH1EJAKN9J6AaNo6GjJU4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=pp2wE3Exp2bJeCJH/EwTjKlx3CrpPOu+uFHYOD3nSAhDzo2wgqx98/Nyle8WnN2Pd
+	 WpBvtnWke5yPTB6IuBnEsA3D1Tfj9/blDxB1BM1VlxhY7UpWnBHGUmQaAn1OhT7Ss9
+	 Wj4/0oft4/JLQG2DLotuqEloi3fH2TCHYUlWiisI=
+From: =?iso-8859-1?Q?Susanne_Nols=F8e?= <susanne@obj.dk>
+To: <holmeparken44@vip.cybercity.dk>
+Cc: "'Bo Alstrup \(hjem\)'" <bo@c2tal.dk>
+Subject: =?iso-8859-1?Q?Test_8_til_10_nodel=E6seren_3.3_?=
+Date: Mon, 6 Jan 2020 03:35:04 +0100
+Message-ID: <001401d5c439$e730e960$b592bc20$@obj.dk>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----=_NextPart_000_0015_01D5C442.48F55160"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdXEOUtYJTOdRJXqT1yNKS6pUpeI7A==
+Content-Language: da
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_0016_01D5C442.48F55160"
+
+
+------=_NextPart_001_0016_01D5C442.48F55160
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hej Jens og Bo=20
+
+=20
+
+Jeg har vedh=E6ftet mine resultater af test 8 til 10.=20
+
+=20
+
+Mange hilsner=20
+
+=20
+
+Susanne           =20
+
+
+------=_NextPart_001_0016_01D5C442.48F55160
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Diso-8859-1"><meta name=3DGenerator content=3D"Microsoft Word =
+15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DDA =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>Hej Jens og Bo <o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Jeg har =
+vedh=E6ftet mine resultater af test 8 til 10. <o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Mange =
+hilsner <o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Susanne =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =
+<o:p></o:p></p></div></body></html>
+------=_NextPart_001_0016_01D5C442.48F55160--
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 10 tenor bas.TUTTI.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 10 tenor bas.TUTTI.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXSFdYV0hXSFaQ0KhS4NCiAgvmShIIH4liDvYCr8i574lvQq
+IIFylov0KoH8lg0KDA0KIIv0Kphr+IvrYCyLc4vr7p4ggXOWdnb4liDvYCr8i54NCgwNCviW9Cog
+gXKWi/QqgfyWIIv0Kphr+IvrYCyLc4vr7p4NCgwNCiCBc5Z2dov4niD8Kuuw7yr7liBuKvQq9JYg
+757rKvSWDQoMDQr7KiCBc5Z2dviWIIvrnoF3sPQq/IuWIJhrb2Asi/zu7w0KDA0KgfyWi/QqIPue
+657vnu+eIJhrcCdjYCyL+O5o7meL654NCgwNCnZ2bOpr
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 8 ibos nodeopstilling alt..brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 8 ibos nodeopstilling alt..brl"
+
+hW5vhXRpdGxlDQqYDQqFLg0KICC+ZKEgYPQNCiDvDQr7DQr0DQr0J2MNCiD0DQp3DQr0DQr7DQog
+6w0K6w0K6w0K6w0KIG4NCnYNCvQNCiDvDQr7DQr0DQr0J2MNCiD0DQp3DQr0DQr7DQog6w0K6w0K
+6w0K6w0KIG4NCnYNCusNCiD8DQr8DQrvDQrvJ2MNCiDvDQpmDQplDQrrDQrrDQog9A0K6w0K6w0K
++w0KIO5uDQp2DQqY9A0KIGD8DQr7DQrrDQr7DQogbw0KDQr7DQr0DQog+A0Kbg0KDQpqDQppDQog
+dCdjDQoNCg0Kdw0Kdg0KbOprDQo=
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 8 ibos nodeopstilling bas..brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 8 ibos nodeopstilling bas..brl"
+
+hW5vhXRpdGxlDQqYDQqFLg0KICC+ZKEggfgNCiDvDQr8DQr4DQr0DQoggXINCg0Ki/QNCoH8DQog
+i/QNCvgNCovrDQrrDQoggXMNCnYNCvgNCiDvDQr8DQr4DQr0DQoggXINCg0Ki/QNCoH8DQogi/QN
+CvgNCovrDQrrDQoggXMNCnYNCov4DQog/A0K6w0K7w0K+w0KIG4NCg0KDQr0DQr0DQog7w0K6w0K
+9A0K+w0KIIFzDQp2DQr4DQogi+sNCoF3DQr0DQr8DQogbw0KDQqB/A0Ki/QNCiD7DQrrDQrvDQrv
+DQoNCiBwJ2MNCg0KDQrrDQp2DQps6msNCg==
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 8 ibos nodeopstilling sopran..brl"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 8 ibos nodeopstilling sopran..brl"
+
+=85no=85title
+=98
+=85.
+  =BEd=A1 `=EB
+ =F8
+=FC
+=EF
+=EB
+ o
+
+=EB
+w
+ =F4
+=F4
+w
+w
+ s
+v
+=EB
+ =F8
+=FC
+=EF
+=EB
+ o
+
+=EB
+w
+ =F4
+=F4
+w
+w
+ s
+v
+=F4
+ w
+=FC
+=F8
+w
+ n
+
+
+=F4
+`=FC
+ =F8
+=FC
+=F8
+=EF
+ p
+v
+=98=F4
+ w
+=FB
+=F4
+w
+ s
+
+w
+=EB
+ =EF
+=EB
+=FB
+=FB
+
+ p'c
+
+
+=EB
+v
+l=EAk
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 8 ibos nodeopstilling tenor..brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 8 ibos nodeopstilling tenor..brl"
+
+hW5vhXRpdGxlDQqYDQqFLg0KICC+ZKEgi/gNCiD0DQp3DQr4DQr8DQogcg0KDQr8DQr8DQog/A0K
+cw0KDQru/A0KIHMNCnYNCvgNCiD0DQp3DQr4DQr8DQogcg0KDQr8DQr8DQog/A0Kcw0KDQru/A0K
+IHMNCnYNCvQNCiD7DQr0DQr0DQr7DQogi3INCg0KDQr8DQpg9A0KIPgNCncNCvQNCvgNCiBzDQp2
+DQr4DQog/A0K/A0K/A0K/CdjDQog/A0K7u8NCvwNCvwNCiDvDQr8DQr4DQr4J2MNCg0KIPgNCu5o
+DQruZw0K7vwNCnYNCmzqaw0K
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 8 ibos nodeopstilling tutti..brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 8 ibos nodeopstilling tutti..brl"
+
+hW5vhXRpdGxlDQqYDQqFLg0KICC+ZKEgYOtg9Iv4gfgNCiBg+O/0ge8NCmD8+3eB/A0KYO/0+IH4
+DQpg6/QnY4v89A0KIGBv9ItygXINCot3DQpg6/SL/PQNCmB3YPuL/IH8DQogmPRg64v89A0KmPRg
+64tzgfgNCmB364vrDQpgd+vui/zrDQogYHNgbnOBcw0KdnZ2dg0KYOv0+IH4DQogYPjv9IHvDQpg
+/Pt3gfwNCmDv9PiB+A0KYOv0J2OL/PQNCiBgb/SLcoFyDQqLdw0KYOv0i/z0DQpgd2D7i/yB/A0K
+IJj0YOuL/PQNCpj0YOuLc4H4DQpgd+uL6w0KYHfr7ov86w0KIGBzYG5zgXMNCnZ2dnYNCpj0YOv0
++A0KIGB3/PuL/A0KYPz89IvrDQpg+O/0i+8NCmB37ydj+4v7DQogmG5g74tybg0KYGYNCmUNCpj0
+YOuL/PQNCmD86/SL9A0KIGD4YPT47w0KYPzri3frDQpg+Ov0i/QNCmDv+4v4+w0KIGBw7m5zgXMN
+CnZ2dnYNCpj09Iv4gfgNCiBgd/yL/OsNCpj7YPuL/IF3DQqY9GDri/z0DQpgd2D7i/wnY/wNCiBg
+c2+L/G8NCu7vDQpgd2D7i/yB/A0KYOv0i/z0DQogYO+L+O/7DQpg626L/OsNCmD7i/jvDQpg+2r4
+J2PvDQppDQogYHAnY4t0J2P4cCdjDQruaA0K7mcNCmDri3fu/OsNCnZ2dnYNCmzqaw0K
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 9 bana2015 opstilling.P1.Soprano.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 9 bana2015 opstilling.P1.Soprano.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXC+YZiFc29wcmFubw0KhS4NCiDmv2wgIL5koSBg6yD4/O/r
+IG/rdyD09Hd3IHN26yD4DQoMDQr87+sgb+t3IPT0d3cgc3b0IHf8+HcgbvRg/CD4/PjvDQoMDQog
+cHaY9CB3+/R3IHN36yDv6/v7IHAnY+t2bOpr
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 9 bana2015 opstilling.SA.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 9 bana2015 opstilling.SA.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXOFYQ0KhS4NCiAgvmShIGDrIPj87+sgb+t3IPT0d3cgc3br
+IPj87+sNCgwNCiBv63cg9PR3dyBzdvQgd/z4dyBu9GD8IPj8+O8gcHYNCgwNCpj0IHf79Hcgc3fr
+IO/r+/sgcCdj63Zs6ms=
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 9 bana2015 opstilling.SATB.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 9 bana2015 opstilling.SATB.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXOFYYV0hWINCoUuDQogIL5koSBg6yD4/O/rIG/rdyD09Hd3
+IHN26yD4/O/rDQoMDQogb+t3IPT0d3cgc3b0IHf8+HcgbvRg/CD4/PjvIHB2DQoMDQqY9CB3+/R3
+IHN36yDv6/v7IHAnY+t2bOpr
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 9 bana2015 opstilling.TUTTI.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 9 bana2015 opstilling.TUTTI.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXSFdYV0hXSFaQ0KhS4NCiAgvmShIGDrIPj87+sgb+t3IPT0
+d3cgc3brIPj87+sNCgwNCiBv63cg9PR3dyBzdvQgd/z4dyBu9GD8IPj8+O8gcHYNCgwNCpj0IHf7
+9Hcgc3frIO/r+/sgcCdj63Zs6ms=
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 9a bana2015.P1.Soprano.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 9a bana2015.P1.Soprano.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXC+YZiFc29wcmFubw0KhS4NCiDmv2wgIL5koSBg6yD4/O/r
+IG/rdyD09Hd3IHN26yD4DQoMDQr87+sgb+t3IPT0d3cgc3b0IHf8+HcgbvRg/CD4/PjvDQoMDQog
+cHaY9CB3+/R3IHN36yDv6/v7IHAnY+t2bOpr
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 9a bana2015.P2.Alto.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 9a bana2015.P2.Alto.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXC+YpiFYWx0bw0KhS4NCiDmv2wgIL5koSBg9CDv+/T0J2Mg
+9Hf0+yDr6+vrIG52DQoMDQr0IO/79PQnYyD0d/T7IOvr6+sgbnbrIPz87+8nYyDvZg0KDA0KZevr
+IPTr6/sg7m52mPQgYPz76/sgb/v0IPhuamkNCgwNCiB0J2N3dmzqaw==
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 9a bana2015.P3.Tenor.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 9a bana2015.P3.Tenor.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXC+Y5iFdGVub3INCoUuDQog5r9sICC+ZKEgi/gg9Hf4/CBy
+/Pwg/HPu/CBzdvgg9A0KDA0Kd/j8IHL8/CD8c+78IHN29CD79PT7IIty/GD0IPh39PgNCgwNCiBz
+dvgg/Pz8/CdjIPzu7/z8IO/8+PgnYyD47mjuZ+78DQoMDQp2bOpr
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 9a bana2015.P4.Bass.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 9a bana2015.P4.Bass.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXC+ZJiFYmFzcw0KhS4NCiDmvmwgIL5koSCB+CDv/Pj0IIFy
+i/SB/CCL9PiL6+sNCgwNCiCBc3b4IO/8+PQggXKL9IH8IIv0+Ivr6yCBc3aL+CD8DQoMDQrr7/sg
+bvT0IO/r9PsggXN2+CCL64F39Pwgb4H8i/Qg+w0KDA0K6+/vIHAnY+t2bOpr
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 9a bana2015.SA.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 9a bana2015.SA.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXOFYQ0KhS4NCiAgvmShIGDrniD4nvy+777rniCYa29gLGD0
+d2DrnnewDQoMDQog9LD0sHcqdyogc7B2duueIPie/L7vvuueDQoMDQogmGtvYCxg9Hdg6553sCD0
+sPSwdyp3KiBzsHZ29LANCgwNCiB3nvxglvied74gmGtuYCxg72ZlmPSwYPyeIPiw/J4NCgwNCvi+
+754gcO6ednaY9JiWIHee+5b0sHewIHMqd7Drng0KDA0KIO+wmGvr+2AsYG6Ya2D7YCyLamkgYHC+
+6752dmzqaw==
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 9a bana2015.SATB.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 9a bana2015.SATB.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXOFYYV0hWINCoUuDQogIL5koSCL+J4qIPS+sHeesPiesPy+
+sA0KDA0KIJhri3JgLGD0d2AsYG+L/L6w/CpgniD8sJi+DQoMDQqYa4tzYCxg6+tgLJj0d+6L/LBg
+niBznpZ2dnb4nioNCgwNCiD0vrB3nrD4nrD8vrAgmGuLcmAsYPR3YCxgb4v8vrANCgwNCvwqYJ4g
+/LCYvphri3NgLGDr62AsmPR37ov8sGCeDQoMDQogc56WdnZ29J6WIPu+sPQqKvS+sPuesA0KDA0K
+IJhri3JgLGDvZmVgLJhui/ywmL5g9J4qIPielne+sA0KDA0K9J6w+L6wIHPunip2dnb4mJ6YniD8
+lmCe/CqYKvywmL4NCgwNCvwqYJ4gmGuL/O7vYCxgb2AsYHOL/Cpgnvy+sCDvnpYNCgwNCphri/z4
+YCxgbmAsYOv7mGuL+CdjYCyLamlgLGD7DQoMDQogmGuL+O5o7mdgLIt0J2NgLGBwJ2Pui/yesHZ2
+dmzqaw==
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 9a bana2015.TUTTI.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 9a bana2015.TUTTI.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXSFdYV0hXSFaQ0KhS4NCiAgvmShIIH4lmCeYCog72AqYJZg
+nvyLnmAqYJYNCgwNCviWYJ5gsPQqlmCeIJhrgXJgLItyYCxg9HdgLGBvDQoMDQqL9CqWYJ6B/JZg
+KmCeIIv0KmCemJYNCgwNCphr+IvrYCyLc2AsYOvrYCyY9HeL6+6elmAqDQoMDQoggXOWYJ5glnZ2
+dnb4lmCeYCog72AqYJZgng0KDA0K/IueYCpglviWYJ5gsPQqlmCeDQoMDQogmGuBcmAsi3JgLGD0
+d2AsYG+L9CqWYJ6B/JZgKmCeDQoMDQogi/QqYJ6Ylphr+IvrYCyLc2AsYOvrYCyY9HcNCgwNCovr
+7p6WYCoggXOWYJ5glnZ2dnaL+J4qmJ4g/CqWYJ4NCgwNCuuwYJ5gnu8qlmCe+5ZgnmCwDQoMDQog
+mGtuYCyLcmAsYO9mZWAsmG6L9CpgnpiW9JZgnmAqDQoMDQog754qYJ7rKpZgnvSWYJ5gsPsqlmCe
+IIFzlu5gnmAqDQoMDQp2dnZ2+JaYnpieIIvrnmCeYCqBd7Bgnpie9CpgnpiWDQoMDQr8i5YqYJ4g
+mGtvYCyL/O7vYCxgb2AsYHOB/JZgKmCeDQoMDQqL9CqWYJ4g+54qYJ6Ya+vvYCyL/PhgLGBuYCxg
+6/sNCgwNCphri+9gLIv4J2NgLItqaWAsYPsNCgwNCiCYa4twJ2NgLIv47mjuZ2Asi3QnY2AsYHAn
+Y4vrniqWDQoMDQp2dnZ2bOpr
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 10 tenor bas.P3.Tenor.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 10 tenor bas.P3.Tenor.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXC+Y5iFdGVub3INCoUuDQog5r9sICC+ZKEgi/gg9Hf4/CBy
+/Pwg/HPu/CBzdvgg9A0KDA0Kd/j8IHL8/CD8c+78IHN29CD79PT7IIty/GD0IPh39PgNCgwNCiBz
+dvgg/Pz8/CdjIPzu7/z8IO/8+PgnYyD47mjuZ+78DQoMDQp2bOpr
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 10 tenor bas.P4.Bass.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 10 tenor bas.P4.Bass.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXC+ZJiFYmFzcw0KhS4NCiDmvmwgIL5koSCB+CDv/Pj0IIFy
+i/SB/CCL9PiL6+sNCgwNCiCBc3b4IO/8+PQggXKL9IH8IIv0+Ivr6yCBc3aL+CD8DQoMDQrr7/sg
+bvT0IO/r9PsggXN2+CCL64F39Pwgb4H8i/Qg+w0KDA0K6+/vIHAnY+t2bOpr
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 10 tenor bas.SA.brl"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 10 tenor bas.SA.brl"
+
+=85befal du dine veje
+=85s=85a
+=85.
+  =BEd=A1                 l=EAk
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje test 10 tenor bas.SATB.brl"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Befal du dine veje test 10 tenor bas.SATB.brl"
+
+hWJlZmFsIGR1IGRpbmUgdmVqZQ0KhXOFYYV0hWINCoUuDQogIL5koSCL+CD0d/j8IHL8/CD8c+78
+IHN2+CD0d/j8DQoMDQogcvz8IPxz7vwgc3b0IPv09Psgi3L8YPQg+Hf0+CBzdg0KDA0K+CD8/Pz8
+J2Mg/O7v/Pwg7/z4+CdjIPjuaO5n7vx2DQoMDQps6ms=
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/octet-stream;
+	name="Befal du dine veje.musicxml"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+	filename="Befal du dine veje.musicxml"
+
+<?xml version=3D"1.0" encoding=3D"UTF-8"?>=0A=
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.1 =
+Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">=0A=
+<score-partwise version=3D"3.1">=0A=
+  <work>=0A=
+    <work-title>Befal du dine veje</work-title>=0A=
+    </work>=0A=
+  <identification>=0A=
+    <creator type=3D"composer">H. L. Hasler 1601</creator>=0A=
+    <encoding>=0A=
+      <software>MuseScore 3.3.4</software>=0A=
+      <encoding-date>2020-01-05</encoding-date>=0A=
+      <supports element=3D"accidental" type=3D"yes"/>=0A=
+      <supports element=3D"beam" type=3D"yes"/>=0A=
+      <supports element=3D"print" attribute=3D"new-page" type=3D"yes" =
+value=3D"yes"/>=0A=
+      <supports element=3D"print" attribute=3D"new-system" type=3D"yes" =
+value=3D"yes"/>=0A=
+      <supports element=3D"stem" type=3D"yes"/>=0A=
+      </encoding>=0A=
+    </identification>=0A=
+  <defaults>=0A=
+    <scaling>=0A=
+      <millimeters>7.05556</millimeters>=0A=
+      <tenths>40</tenths>=0A=
+      </scaling>=0A=
+    <page-layout>=0A=
+      <page-height>1683.36</page-height>=0A=
+      <page-width>1190.88</page-width>=0A=
+      <page-margins type=3D"even">=0A=
+        <left-margin>56.6929</left-margin>=0A=
+        <right-margin>56.6929</right-margin>=0A=
+        <top-margin>56.6929</top-margin>=0A=
+        <bottom-margin>113.386</bottom-margin>=0A=
+        </page-margins>=0A=
+      <page-margins type=3D"odd">=0A=
+        <left-margin>56.6929</left-margin>=0A=
+        <right-margin>56.6929</right-margin>=0A=
+        <top-margin>56.6929</top-margin>=0A=
+        <bottom-margin>113.386</bottom-margin>=0A=
+        </page-margins>=0A=
+      </page-layout>=0A=
+    <word-font font-family=3D"FreeSerif" font-size=3D"10"/>=0A=
+    <lyric-font font-family=3D"FreeSerif" font-size=3D"11"/>=0A=
+    </defaults>=0A=
+  <credit page=3D"1">=0A=
+    <credit-words default-x=3D"595.44" default-y=3D"1626.67" =
+justify=3D"center" valign=3D"top" font-size=3D"24">Befal du dine =
+veje</credit-words>=0A=
+    </credit>=0A=
+  <credit page=3D"1">=0A=
+    <credit-words default-x=3D"1134.19" default-y=3D"1526.67" =
+justify=3D"right" valign=3D"bottom" font-size=3D"12">H. L. Hasler =
+1601</credit-words>=0A=
+    </credit>=0A=
+  <part-list>=0A=
+    <part-group type=3D"start" number=3D"1">=0A=
+      <group-symbol>bracket</group-symbol>=0A=
+      </part-group>=0A=
+    <score-part id=3D"P1">=0A=
+      <part-name>Soprano</part-name>=0A=
+      <part-abbreviation>S.</part-abbreviation>=0A=
+      <score-instrument id=3D"P1-I1">=0A=
+        <instrument-name>Soprano</instrument-name>=0A=
+        </score-instrument>=0A=
+      <midi-device id=3D"P1-I1" port=3D"1"></midi-device>=0A=
+      <midi-instrument id=3D"P1-I1">=0A=
+        <midi-channel>1</midi-channel>=0A=
+        <midi-program>53</midi-program>=0A=
+        <volume>78.7402</volume>=0A=
+        <pan>0</pan>=0A=
+        </midi-instrument>=0A=
+      </score-part>=0A=
+    <score-part id=3D"P2">=0A=
+      <part-name>Alto</part-name>=0A=
+      <part-abbreviation>A.</part-abbreviation>=0A=
+      <score-instrument id=3D"P2-I1">=0A=
+        <instrument-name>Alto</instrument-name>=0A=
+        </score-instrument>=0A=
+      <midi-device id=3D"P2-I1" port=3D"1"></midi-device>=0A=
+      <midi-instrument id=3D"P2-I1">=0A=
+        <midi-channel>2</midi-channel>=0A=
+        <midi-program>53</midi-program>=0A=
+        <volume>78.7402</volume>=0A=
+        <pan>0</pan>=0A=
+        </midi-instrument>=0A=
+      </score-part>=0A=
+    <score-part id=3D"P3">=0A=
+      <part-name>Tenor</part-name>=0A=
+      <part-abbreviation>T.</part-abbreviation>=0A=
+      <score-instrument id=3D"P3-I1">=0A=
+        <instrument-name>Tenor</instrument-name>=0A=
+        </score-instrument>=0A=
+      <midi-device id=3D"P3-I1" port=3D"1"></midi-device>=0A=
+      <midi-instrument id=3D"P3-I1">=0A=
+        <midi-channel>3</midi-channel>=0A=
+        <midi-program>53</midi-program>=0A=
+        <volume>78.7402</volume>=0A=
+        <pan>0</pan>=0A=
+        </midi-instrument>=0A=
+      </score-part>=0A=
+    <score-part id=3D"P4">=0A=
+      <part-name>Bass</part-name>=0A=
+      <part-abbreviation>B.</part-abbreviation>=0A=
+      <score-instrument id=3D"P4-I1">=0A=
+        <instrument-name>Bass</instrument-name>=0A=
+        </score-instrument>=0A=
+      <midi-device id=3D"P4-I1" port=3D"1"></midi-device>=0A=
+      <midi-instrument id=3D"P4-I1">=0A=
+        <midi-channel>4</midi-channel>=0A=
+        <midi-program>53</midi-program>=0A=
+        <volume>78.7402</volume>=0A=
+        <pan>0</pan>=0A=
+        </midi-instrument>=0A=
+      </score-part>=0A=
+    <part-group type=3D"stop" number=3D"1"/>=0A=
+    </part-list>=0A=
+  <part id=3D"P1">=0A=
+    <measure number=3D"0" implicit=3D"yes" width=3D"113.70">=0A=
+      <print>=0A=
+        <system-layout>=0A=
+          <system-margins>=0A=
+            <left-margin>93.80</left-margin>=0A=
+            <right-margin>0.00</right-margin>=0A=
+            </system-margins>=0A=
+          <top-system-distance>170.00</top-system-distance>=0A=
+          </system-layout>=0A=
+        </print>=0A=
+      <attributes>=0A=
+        <divisions>2</divisions>=0A=
+        <key>=0A=
+          <fifths>0</fifths>=0A=
+          </key>=0A=
+        <time>=0A=
+          <beats>4</beats>=0A=
+          <beat-type>4</beat-type>=0A=
+          </time>=0A=
+        <clef>=0A=
+          <sign>G</sign>=0A=
+          <line>2</line>=0A=
+          </clef>=0A=
+        </attributes>=0A=
+      <direction placement=3D"above">=0A=
+        <direction-type>=0A=
+          <metronome parentheses=3D"no" default-x=3D"-39.76" =
+relative-y=3D"20.00">=0A=
+            <beat-unit>quarter</beat-unit>=0A=
+            <per-minute>76</per-minute>=0A=
+            </metronome>=0A=
+          </direction-type>=0A=
+        <sound tempo=3D"76"/>=0A=
+        </direction>=0A=
+      <note default-x=3D"86.27" default-y=3D"-40.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"1" width=3D"115.52">=0A=
+      <note default-x=3D"10.00" default-y=3D"-25.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"35.98" default-y=3D"-30.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"61.96" default-y=3D"-35.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"87.94" default-y=3D"-40.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"2" width=3D"128.44">=0A=
+      <note default-x=3D"13.44" default-y=3D"-45.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"70.32" default-y=3D"-40.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"98.58" default-y=3D"-20.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"3" width=3D"102.27">=0A=
+      <note default-x=3D"10.00" default-y=3D"-15.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"32.50" default-y=3D"-15.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"55.01" default-y=3D"-20.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"77.51" default-y=3D"-20.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"4" width=3D"88.76">=0A=
+      <note default-x=3D"13.80" default-y=3D"-25.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <note default-x=3D"64.00" default-y=3D"-40.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"5" width=3D"115.52">=0A=
+      <note default-x=3D"10.00" default-y=3D"-25.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"35.98" default-y=3D"-30.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"61.96" default-y=3D"-35.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"87.94" default-y=3D"-40.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"6" width=3D"128.44">=0A=
+      <note default-x=3D"13.44" default-y=3D"-45.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"70.32" default-y=3D"-40.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"98.58" default-y=3D"-20.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"7" width=3D"102.27">=0A=
+      <note default-x=3D"10.00" default-y=3D"-15.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"32.50" default-y=3D"-15.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"55.01" default-y=3D"-20.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"77.51" default-y=3D"-20.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"8" width=3D"88.76">=0A=
+      <note default-x=3D"13.80" default-y=3D"-25.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <note default-x=3D"64.00" default-y=3D"-15.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"9" width=3D"155.96">=0A=
+      <print new-system=3D"yes">=0A=
+        <system-layout>=0A=
+          <system-margins>=0A=
+            <left-margin>37.80</left-margin>=0A=
+            <right-margin>0.00</right-margin>=0A=
+            </system-margins>=0A=
+          <system-distance>150.00</system-distance>=0A=
+          </system-layout>=0A=
+        </print>=0A=
+      <note default-x=3D"61.37" default-y=3D"-20.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"84.62" default-y=3D"-30.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"107.87" default-y=3D"-25.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"131.11" default-y=3D"-20.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"10" width=3D"124.11">=0A=
+      <note default-x=3D"10.36" default-y=3D"-15.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"69.90" default-y=3D"-15.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"96.20" default-y=3D"-30.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"11" width=3D"108.39">=0A=
+      <note default-x=3D"13.80" default-y=3D"-25.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"37.05" default-y=3D"-30.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"60.29" default-y=3D"-25.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"83.54" default-y=3D"-35.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"12" width=3D"97.76">=0A=
+      <note default-x=3D"20.05" default-y=3D"-40.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <note default-x=3D"73.00" default-y=3D"-15.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"13" width=3D"104.59">=0A=
+      <note default-x=3D"10.00" default-y=3D"-20.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"33.25" default-y=3D"-10.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"56.49" default-y=3D"-15.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"79.74" default-y=3D"-20.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"14" width=3D"128.37">=0A=
+      <note default-x=3D"10.36" default-y=3D"-25.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"70.12" default-y=3D"-20.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"98.45" default-y=3D"-40.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"15" width=3D"145.86">=0A=
+      <note default-x=3D"13.80" default-y=3D"-35.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"41.81" default-y=3D"-40.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"69.82" default-y=3D"-45.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"97.83" default-y=3D"-45.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"16" width=3D"174.67">=0A=
+      <note default-x=3D"13.80" default-y=3D"-40.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <tie type=3D"start"/>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"start"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      <note default-x=3D"98.51" default-y=3D"-40.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <tie type=3D"stop"/>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"stop"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <barline location=3D"right">=0A=
+        <bar-style>light-heavy</bar-style>=0A=
+        </barline>=0A=
+      </measure>=0A=
+    </part>=0A=
+  <part id=3D"P2">=0A=
+    <measure number=3D"0" implicit=3D"yes" width=3D"113.70">=0A=
+      <print>=0A=
+        <staff-layout number=3D"1">=0A=
+          <staff-distance>65.00</staff-distance>=0A=
+          </staff-layout>=0A=
+        </print>=0A=
+      <attributes>=0A=
+        <divisions>2</divisions>=0A=
+        <key>=0A=
+          <fifths>0</fifths>=0A=
+          </key>=0A=
+        <time>=0A=
+          <beats>4</beats>=0A=
+          <beat-type>4</beat-type>=0A=
+          </time>=0A=
+        <clef>=0A=
+          <sign>G</sign>=0A=
+          <line>2</line>=0A=
+          </clef>=0A=
+        </attributes>=0A=
+      <note default-x=3D"86.27" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"1" width=3D"115.52">=0A=
+      <note default-x=3D"10.00" default-y=3D"-140.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"35.98" default-y=3D"-150.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"61.96" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"87.94" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <tie type=3D"start"/>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"start"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"2" width=3D"128.44">=0A=
+      <note default-x=3D"13.80" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <tie type=3D"stop"/>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"stop"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      <note default-x=3D"42.06" default-y=3D"-160.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"70.32" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"98.58" default-y=3D"-150.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"3" width=3D"102.27">=0A=
+      <note default-x=3D"10.00" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"32.50" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"55.01" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"77.51" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"4" width=3D"88.76">=0A=
+      <note default-x=3D"13.80" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <note default-x=3D"64.00" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"5" width=3D"115.52">=0A=
+      <note default-x=3D"10.00" default-y=3D"-140.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"35.98" default-y=3D"-150.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"61.96" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"87.94" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <tie type=3D"start"/>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"start"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"6" width=3D"128.44">=0A=
+      <note default-x=3D"13.80" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <tie type=3D"stop"/>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"stop"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      <note default-x=3D"42.06" default-y=3D"-160.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"70.32" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"98.58" default-y=3D"-150.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"7" width=3D"102.27">=0A=
+      <note default-x=3D"10.00" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"32.50" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"55.01" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"77.51" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"8" width=3D"88.76">=0A=
+      <note default-x=3D"13.80" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <note default-x=3D"64.00" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"9" width=3D"155.96">=0A=
+      <print new-system=3D"yes">=0A=
+        <staff-layout number=3D"1">=0A=
+          <staff-distance>65.00</staff-distance>=0A=
+          </staff-layout>=0A=
+        </print>=0A=
+      <note default-x=3D"61.37" default-y=3D"-135.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"84.62" default-y=3D"-135.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"107.87" default-y=3D"-140.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"131.11" default-y=3D"-140.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <tie type=3D"start"/>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"start"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"10" width=3D"124.11">=0A=
+      <note default-x=3D"10.72" default-y=3D"-140.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <tie type=3D"stop"/>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"stop"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      <note default-x=3D"37.02" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>1</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>eighth</type>=0A=
+        <stem>up</stem>=0A=
+        <beam number=3D"1">begin</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"53.46" default-y=3D"-150.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>1</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>eighth</type>=0A=
+        <stem>up</stem>=0A=
+        <beam number=3D"1">end</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"69.90" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"96.20" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"11" width=3D"108.39">=0A=
+      <note default-x=3D"13.80" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"37.05" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"60.29" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"83.54" default-y=3D"-150.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"12" width=3D"97.76">=0A=
+      <note default-x=3D"20.05" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <alter>1</alter>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <accidental>sharp</accidental>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <note default-x=3D"73.00" default-y=3D"-120.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"13" width=3D"104.59">=0A=
+      <note default-x=3D"10.00" default-y=3D"-135.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"33.25" default-y=3D"-150.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"56.49" default-y=3D"-145.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"79.74" default-y=3D"-150.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"14" width=3D"128.37">=0A=
+      <note default-x=3D"10.36" default-y=3D"-150.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"70.12" default-y=3D"-150.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"98.45" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"15" width=3D"145.86">=0A=
+      <note default-x=3D"13.80" default-y=3D"-165.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"41.45" default-y=3D"-155.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"97.83" default-y=3D"-160.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>1</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>eighth</type>=0A=
+        <stem>up</stem>=0A=
+        <beam number=3D"1">begin</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"121.09" default-y=3D"-165.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>1</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>eighth</type>=0A=
+        <stem>up</stem>=0A=
+        <beam number=3D"1">end</beam>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"16" width=3D"174.67">=0A=
+      <note default-x=3D"13.80" default-y=3D"-160.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <tie type=3D"start"/>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"start"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      <note default-x=3D"98.51" default-y=3D"-160.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <tie type=3D"stop"/>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"stop"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <barline location=3D"right">=0A=
+        <bar-style>light-heavy</bar-style>=0A=
+        </barline>=0A=
+      </measure>=0A=
+    </part>=0A=
+  <part id=3D"P3">=0A=
+    <measure number=3D"0" implicit=3D"yes" width=3D"113.70">=0A=
+      <print>=0A=
+        <staff-layout number=3D"1">=0A=
+          <staff-distance>65.00</staff-distance>=0A=
+          </staff-layout>=0A=
+        </print>=0A=
+      <attributes>=0A=
+        <divisions>2</divisions>=0A=
+        <key>=0A=
+          <fifths>0</fifths>=0A=
+          </key>=0A=
+        <time>=0A=
+          <beats>4</beats>=0A=
+          <beat-type>4</beat-type>=0A=
+          </time>=0A=
+        <clef>=0A=
+          <sign>G</sign>=0A=
+          <line>2</line>=0A=
+          <clef-octave-change>-1</clef-octave-change>=0A=
+          </clef>=0A=
+        </attributes>=0A=
+      <note default-x=3D"86.27" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"1" width=3D"115.52">=0A=
+      <note default-x=3D"10.00" default-y=3D"-225.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"35.98" default-y=3D"-230.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"61.96" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"87.94" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"2" width=3D"128.44">=0A=
+      <note default-x=3D"13.44" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"70.32" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"98.58" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"3" width=3D"102.27">=0A=
+      <note default-x=3D"10.00" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"32.14" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"77.51" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <alter>1</alter>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <accidental>sharp</accidental>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"4" width=3D"88.76">=0A=
+      <note default-x=3D"13.80" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <note default-x=3D"64.00" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"5" width=3D"115.52">=0A=
+      <note default-x=3D"10.00" default-y=3D"-225.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"35.98" default-y=3D"-230.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"61.96" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"87.94" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"6" width=3D"128.44">=0A=
+      <note default-x=3D"13.44" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"70.32" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"98.58" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"7" width=3D"102.27">=0A=
+      <note default-x=3D"10.00" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"32.14" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"77.51" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <alter>1</alter>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <accidental>sharp</accidental>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"8" width=3D"88.76">=0A=
+      <note default-x=3D"13.80" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <note default-x=3D"64.00" default-y=3D"-225.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"9" width=3D"155.96">=0A=
+      <print new-system=3D"yes">=0A=
+        <staff-layout number=3D"1">=0A=
+          <staff-distance>65.00</staff-distance>=0A=
+          </staff-layout>=0A=
+        </print>=0A=
+      <note default-x=3D"61.37" default-y=3D"-220.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"84.62" default-y=3D"-225.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"107.87" default-y=3D"-225.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"131.11" default-y=3D"-220.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"10" width=3D"124.11">=0A=
+      <note default-x=3D"10.36" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"69.90" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"96.20" default-y=3D"-225.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"11" width=3D"108.39">=0A=
+      <note default-x=3D"13.80" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"37.05" default-y=3D"-230.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"60.29" default-y=3D"-225.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"83.54" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"12" width=3D"97.76">=0A=
+      <note default-x=3D"20.05" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <note default-x=3D"73.00" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"13" width=3D"104.59">=0A=
+      <note default-x=3D"10.00" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"33.25" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"56.49" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"79.74" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <tie type=3D"start"/>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"start"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"14" width=3D"128.37">=0A=
+      <note default-x=3D"10.72" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <tie type=3D"stop"/>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"stop"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      <note default-x=3D"41.80" default-y=3D"-245.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <alter>1</alter>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <accidental>sharp</accidental>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"70.12" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"98.45" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"15" width=3D"145.86">=0A=
+      <note default-x=3D"13.80" default-y=3D"-245.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"41.81" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"69.82" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"97.83" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <tie type=3D"start"/>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"start"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"16" width=3D"174.67">=0A=
+      <note default-x=3D"14.16" default-y=3D"-235.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <tie type=3D"stop"/>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"stop"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      <note default-x=3D"46.94" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <alter>1</alter>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>1</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>eighth</type>=0A=
+        <accidental>sharp</accidental>=0A=
+        <stem>up</stem>=0A=
+        <beam number=3D"1">begin</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"78.02" default-y=3D"-245.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <alter>1</alter>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>1</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>eighth</type>=0A=
+        <accidental>sharp</accidental>=0A=
+        <stem>up</stem>=0A=
+        <beam number=3D"1">end</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"98.51" default-y=3D"-240.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <alter>1</alter>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <barline location=3D"right">=0A=
+        <bar-style>light-heavy</bar-style>=0A=
+        </barline>=0A=
+      </measure>=0A=
+    </part>=0A=
+  <part id=3D"P4">=0A=
+    <measure number=3D"0" implicit=3D"yes" width=3D"113.70">=0A=
+      <print>=0A=
+        <staff-layout number=3D"1">=0A=
+          <staff-distance>65.00</staff-distance>=0A=
+          </staff-layout>=0A=
+        </print>=0A=
+      <attributes>=0A=
+        <divisions>2</divisions>=0A=
+        <key>=0A=
+          <fifths>0</fifths>=0A=
+          </key>=0A=
+        <time>=0A=
+          <beats>4</beats>=0A=
+          <beat-type>4</beat-type>=0A=
+          </time>=0A=
+        <clef>=0A=
+          <sign>F</sign>=0A=
+          <line>4</line>=0A=
+          </clef>=0A=
+        </attributes>=0A=
+      <note default-x=3D"86.27" default-y=3D"-350.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"1" width=3D"115.52">=0A=
+      <note default-x=3D"10.00" default-y=3D"-360.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"35.98" default-y=3D"-355.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"61.96" default-y=3D"-350.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"87.94" default-y=3D"-340.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"2" width=3D"128.44">=0A=
+      <note default-x=3D"13.44" default-y=3D"-355.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"70.32" default-y=3D"-340.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"98.58" default-y=3D"-355.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"3" width=3D"102.27">=0A=
+      <note default-x=3D"10.00" default-y=3D"-340.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"32.50" default-y=3D"-350.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"55.01" default-y=3D"-330.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"77.51" default-y=3D"-330.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"4" width=3D"88.76">=0A=
+      <note default-x=3D"13.80" default-y=3D"-350.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <note default-x=3D"64.00" default-y=3D"-350.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"5" width=3D"115.52">=0A=
+      <note default-x=3D"10.00" default-y=3D"-360.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"35.98" default-y=3D"-355.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"61.96" default-y=3D"-350.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"87.94" default-y=3D"-340.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"6" width=3D"128.44">=0A=
+      <note default-x=3D"13.44" default-y=3D"-355.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"70.32" default-y=3D"-340.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"98.58" default-y=3D"-355.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"7" width=3D"102.27">=0A=
+      <note default-x=3D"10.00" default-y=3D"-340.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"32.50" default-y=3D"-350.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"55.01" default-y=3D"-330.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"77.51" default-y=3D"-330.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"8" width=3D"88.76">=0A=
+      <note default-x=3D"13.80" default-y=3D"-350.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <note default-x=3D"64.00" default-y=3D"-315.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"9" width=3D"155.96">=0A=
+      <print new-system=3D"yes">=0A=
+        <staff-layout number=3D"1">=0A=
+          <staff-distance>65.00</staff-distance>=0A=
+          </staff-layout>=0A=
+        </print>=0A=
+      <note default-x=3D"61.37" default-y=3D"-320.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"84.62" default-y=3D"-330.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"107.87" default-y=3D"-325.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"131.11" default-y=3D"-335.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"10" width=3D"124.11">=0A=
+      <note default-x=3D"10.36" default-y=3D"-340.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"69.90" default-y=3D"-340.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"96.20" default-y=3D"-340.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"11" width=3D"108.39">=0A=
+      <note default-x=3D"13.80" default-y=3D"-325.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"37.05" default-y=3D"-330.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"60.29" default-y=3D"-340.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"83.54" default-y=3D"-335.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"12" width=3D"97.76">=0A=
+      <note default-x=3D"20.05" default-y=3D"-350.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest/>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <note default-x=3D"73.00" default-y=3D"-350.00">=0A=
+        <pitch>=0A=
+          <step>A</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"13" width=3D"104.59">=0A=
+      <note default-x=3D"10.00" default-y=3D"-330.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"33.25" default-y=3D"-345.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"56.49" default-y=3D"-340.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"79.74" default-y=3D"-320.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"14" width=3D"128.37">=0A=
+      <note default-x=3D"10.36" default-y=3D"-335.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"70.12" default-y=3D"-355.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>2</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"98.45" default-y=3D"-340.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"15" width=3D"145.86">=0A=
+      <note default-x=3D"13.80" default-y=3D"-335.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"41.81" default-y=3D"-330.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"69.82" default-y=3D"-325.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"97.83" default-y=3D"-325.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"16" width=3D"174.67">=0A=
+      <note default-x=3D"13.80" default-y=3D"-330.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <tie type=3D"start"/>=0A=
+        <voice>1</voice>=0A=
+        <type>half</type>=0A=
+        <stem>down</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"start"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      <note default-x=3D"98.51" default-y=3D"-330.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <tie type=3D"stop"/>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        <notations>=0A=
+          <tied type=3D"stop"/>=0A=
+          </notations>=0A=
+        </note>=0A=
+      <note>=0A=
+        <rest>=0A=
+          <display-step>G</display-step>=0A=
+          <display-octave>2</display-octave>=0A=
+          </rest>=0A=
+        <duration>2</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        </note>=0A=
+      <barline location=3D"right">=0A=
+        <bar-style>light-heavy</bar-style>=0A=
+        </barline>=0A=
+      </measure>=0A=
+    </part>=0A=
+  </score-partwise>=0A=
+
+------=_NextPart_000_0015_01D5C442.48F55160
+Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document;
+	name="=?iso-8859-1?Q?Test_Ibos_nodel=E6ser_3_3_kommentarer_Susanne_5_januar2020?=
+	=?iso-8859-1?Q?.docx?="
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="=?iso-8859-1?Q?Test_Ibos_nodel=E6ser_3_3_kommentarer_Susanne_5_januar2020?=
+	=?iso-8859-1?Q?.docx?="
+
+UEsDBBQABgAIAAAAIQDfpNJsWgEAACAFAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAAC
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC0
+lMtuwjAQRfeV+g+Rt1Vi6KKqKgKLPpYtUukHGHsCVv2Sx7z+vhMCUVUBkQpsIiUz994zVsaD0dqa
+bAkRtXcl6xc9loGTXmk3K9nX5C1/ZBkm4ZQw3kHJNoBsNLy9GUw2ATAjtcOSzVMKT5yjnIMVWPgA
+jiqVj1Ykeo0zHoT8FjPg973eA5feJXApT7UHGw5eoBILk7LXNX1uSCIYZNlz01hnlUyEYLQUiep8
+6dSflHyXUJBy24NzHfCOGhg/mFBXjgfsdB90NFEryMYipndhqYuvfFRcebmwpCxO2xzg9FWlJbT6
+2i1ELwGRztyaoq1Yod2e/ygHpo0BvDxF49sdDymR4BoAO+dOhBVMP69G8cu8E6Si3ImYGrg8Rmvd
+CZFoA6F59s/m2NqciqTOcfQBaaPjP8ber2ytzmngADHp039dm0jWZ88H9W2gQB3I5tv7bfgDAAD/
+/wMAUEsDBBQABgAIAAAAIQAekRq37wAAAE4CAAALAAgCX3JlbHMvLnJlbHMgogQCKKAAAgAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArJLBasMw
+DEDvg/2D0b1R2sEYo04vY9DbGNkHCFtJTBPb2GrX/v082NgCXelhR8vS05PQenOcRnXglF3wGpZV
+DYq9Cdb5XsNb+7x4AJWFvKUxeNZw4gyb5vZm/cojSSnKg4tZFYrPGgaR+IiYzcAT5SpE9uWnC2ki
+Kc/UYySzo55xVdf3mH4zoJkx1dZqSFt7B6o9Rb6GHbrOGX4KZj+xlzMtkI/C3rJdxFTqk7gyjWop
+9SwabDAvJZyRYqwKGvC80ep6o7+nxYmFLAmhCYkv+3xmXBJa/ueK5hk/Nu8hWbRf4W8bnF1B8wEA
+AP//AwBQSwMEFAAGAAgAAAAhANZks1H0AAAAMQMAABwACAF3b3JkL19yZWxzL2RvY3VtZW50Lnht
+bC5yZWxzIKIEASigAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+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
+AAAA
+
+------=_NextPart_000_0015_01D5C442.48F55160--
+
