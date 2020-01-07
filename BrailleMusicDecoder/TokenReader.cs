@@ -274,7 +274,7 @@ namespace BrailleMusicDecoder
             switch (thisValue) // Look for remaining codes
             {
                 // Maybe we should use repeated ifs instead of switch here ??
-                case dot3: otherValues = "Dotted"; break;
+                // case dot3: otherValues = "Dotted"; break;
                 //                case dot5: otherValues = "Reference"; break; // For the time being we omit this because it clashes with Octave4 !
                 case dot2 | dot3: otherValues = "Triplet"; break;
                 //                case dot1 | dot4: otherValues = "Legato"; break;
