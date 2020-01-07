@@ -1,7 +1,8 @@
 ﻿namespace BrailleMusicDecoder
 {
     public interface IBrailleMusicDecoderLogger
-    {
-        void Log(string s);        
+    { 
+        void Log(string s);
+        int GetOptions();                
     }
 }

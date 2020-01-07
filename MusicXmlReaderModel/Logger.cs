@@ -91,6 +91,9 @@ namespace MusicXmlReaderModel
             }
         }
 
+        static private int decoderOptions;
+        static public int DecoderOptions { get { return decoderOptions; } set { decoderOptions = value; } }
+
 
         //        private static string GetPlatformTempDirectory()
         //        {

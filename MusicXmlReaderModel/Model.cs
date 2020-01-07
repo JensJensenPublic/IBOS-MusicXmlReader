@@ -1354,6 +1354,12 @@ namespace MusicXmlReaderModel
         public List<string> InterpretBrailleMusicFile(string fileName, BrailleFileHandler.FileEncoding fileEncoding)
         {
             Logger.LogCF(": Entry");
+            if (fileName.EndsWith(@"Maria_gennem_torne_går.NOTA.txt")) // Missing BrailleMusicStart
+            {
+                int options = 1; // HACK for handling known errors in inputfiles
+                Logger.DecoderOptions = options; // HACK for handling known errors in inputfiles
+                Logger.LogCF(string.Format(": Setting DecoderOptionstions={0} for FileName={1}", options, fileName));
+            }
             List<string> result = new List<string>();
             string exceptionMessage = null;
 //            Logger.StartCaching(); //  During  brailleFileHandler.Format and the do-loop we cache all loglines. After the do-loop we write them to the logfile in one operation

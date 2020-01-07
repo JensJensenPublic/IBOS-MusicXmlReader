@@ -107,11 +107,17 @@ namespace BrailleMusicDecoder
         {
 #warning todo Remove hack
 
-            if (startIndex == 628)
+            switch (logger.GetOptions())
             {
-
-                state = StateEnum.Music;
-                Log(string.Format("StartIndex={0} Forcing State={1} ***********************************************************************************", startIndex, state));
+                // Here we handle known errors in the files that we decode
+                case 1:
+                    if (startIndex == 628)
+                    {
+                        state = StateEnum.Music;
+                        Log(string.Format("StartIndex={0} Forcing State={1} ***********************************************************************************", startIndex, state));
+                    }
+                    break;
+                default: break;
             }
 
             int endIndex = Math.Min(brailleAsUnicode.Length, startIndex + 10); // Take the next 10 characters 

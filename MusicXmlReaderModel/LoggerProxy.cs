@@ -11,5 +11,10 @@
             Logger.Log(s);
         }
 
+        public int GetOptions()
+        {
+            return Logger.DecoderOptions;
+        }
+
     }
 }
