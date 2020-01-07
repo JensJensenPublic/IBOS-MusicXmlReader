@@ -342,8 +342,9 @@ namespace BrailleMusicDecoder
             // Now follows interpretations based on more than a single Braille character
 
             // Endings
-            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3)), InputCategoryEnum.Ending,"FullEnd"); // Refsnæs 1, Chapter 6
-            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3), dot3), InputCategoryEnum.Ending,"HalfEnd");  // Refsnæs 1, Chapter 6
+            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3)), InputCategoryEnum.Ending, "FullEnd"); // Refsnæs 1, Chapter 6
+            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3), dot5), InputCategoryEnum.Ending, "FullEnd+Reference"); // Refsnæs 1, Chapter 6f and Chapter 6b
+            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3), dot3), InputCategoryEnum.Ending,"HalfEnd");  // Refsnæs 1, Chapter 6e
 
             // Various items
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot2 | dot3)), InputCategoryEnum.EndRepeat);
