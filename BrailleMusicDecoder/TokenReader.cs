@@ -131,6 +131,8 @@ namespace BrailleMusicDecoder
                 case 22: return "!";
                 case 54: return "/";
                 case 36: return "-";
+                case 04: return ".";
+                case 18: return "-";
                 default: return null;
             }
         }
@@ -277,7 +279,7 @@ namespace BrailleMusicDecoder
                 case dot2 | dot3: otherValues = "Triplet"; break;
                 //                case dot1 | dot4: otherValues = "Legato"; break;
                 case dot2 | dot3 | dot5 | dot6: otherValues = "Equality"; break;
-                case dot2 | dot5: otherValues = "Newline"; break;
+                //case dot2 | dot5: otherValues = "Newline"; break; // Same as Character("-") 
                 case dot2 | dot3 | dot5: otherValues = "Trill"; break;
                 case dot2 | dot6: otherValues = "Ornament"; break;
                 case dot2 | dot3 | dot6: otherValues = "Staccato"; break;

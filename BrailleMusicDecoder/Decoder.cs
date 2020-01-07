@@ -105,6 +105,15 @@ namespace BrailleMusicDecoder
 
         private InputInterpretationList ToTokenList(int startIndex)
         {
+#warning todo Remove hack
+
+            if (startIndex == 628)
+            {
+
+                state = StateEnum.Music;
+                Log(string.Format("StartIndex={0} Forcing State={1} ***********************************************************************************", startIndex, state));
+            }
+
             int endIndex = Math.Min(brailleAsUnicode.Length, startIndex + 10); // Take the next 10 characters 
             IntegerList brailleCharacters = new IntegerList();
             {
