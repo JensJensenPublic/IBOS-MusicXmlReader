@@ -9,7 +9,7 @@ namespace BrailleMusicDecoder
         Number = 0x0002,
         TextVersal = 0x0004,
         Character = 0x0008,
-        ClefF = 0x0010,
+        Hand = 0x0010,
         Digit = 0x0020,
         Note = 0x0040,
         Rest = 0x0080,
@@ -20,7 +20,7 @@ namespace BrailleMusicDecoder
         OtherValues = 0x1000,
         Denominator = 0x2000,
         HalfEnd = 0x4000, // // Danish "Halvslutning"
-        ClefG = 0x8000,
+        Clef = 0x8000,
         Space = 0x00010000,
         NewMeasure = 0x00020000,
         Legato = 0x00400000,
@@ -348,8 +348,13 @@ namespace BrailleMusicDecoder
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot1 | dot3)), InputCategoryEnum.MeasureDivision);
             allInputInterpretations.Add(rawValues, new IntegerList((dot5), (dot2)), InputCategoryEnum.InAccordPartMeasure);
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.InAccordFullMeasure);
-            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4), (dot1 | dot2 | dot3)), InputCategoryEnum.ClefG);
-            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4 | dot6), (dot1 | dot2 | dot3)), InputCategoryEnum.ClefF);
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4), (dot1 | dot2 | dot3)), InputCategoryEnum.Clef,"G");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4 | dot6), (dot1 | dot2 | dot3)), InputCategoryEnum.Clef, "F");
+
+//            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.Hand, "Right");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot3 | dot4 | dot5), dot3), InputCategoryEnum.Hand, "Right");
+//            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.Hand, "Left");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5 | dot6), (dot3 | dot4 | dot5),dot3), InputCategoryEnum.Hand, "Left");
 
 
             return allInputInterpretations;

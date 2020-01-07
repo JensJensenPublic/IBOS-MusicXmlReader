@@ -49,13 +49,25 @@ namespace BrailleMusicDecoder
             Add(new InputInterpretation(token, category, value));
         }
 
+
+
         public void Add(IntegerList rawValues, IntegerList token, InputCategoryEnum category)
         {
             if (rawValues.StartsWith(token))
             {
                 this.Add(token, category, "");
-            } 
+            }
         }
+
+        public void Add(IntegerList rawValues, IntegerList token, InputCategoryEnum category, string value)
+        {
+            if (rawValues.StartsWith(token))
+            {
+                this.Add(token, category, value);
+            }
+        }
+
+
 
         /// <summary>
         /// Returns the values of this instance, filtered by the allowedInputCategories bitmask, thus allowing 0, 1 or several values to pass through
@@ -74,6 +86,33 @@ namespace BrailleMusicDecoder
             }
             return result;
         }
+
+        public InputInterpretationList Prioritize()
+        {
+            // We do not want to modify during foreach so we do a little extra work
+            if (this.Count <= 1) return this;
+            // Determine the max size
+            int maxSize = 0;
+            foreach (InputInterpretation inputInterpretation in this.inputInterpretations)
+            {
+                int size = inputInterpretation.TokenLength;
+                if (size > maxSize) maxSize = size;
+            }
+            // Get a list of all items with size less than maxSize
+            List<InputInterpretation> itemsToRemove = new List<InputInterpretation>();
+            foreach (InputInterpretation inputInterpretation in this.inputInterpretations)
+            {
+                int size = inputInterpretation.TokenLength;
+                if (size < maxSize) itemsToRemove.Add(inputInterpretation);
+            }
+            // Remove all lists to remove from the original list
+            foreach (InputInterpretation itemToRemove in itemsToRemove)
+            {
+                this.inputInterpretations.Remove(itemToRemove);
+            }
+            return this;
+        }
+
 
         public bool Contains(InputCategoryEnum category)
         {
