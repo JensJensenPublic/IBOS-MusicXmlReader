@@ -341,20 +341,37 @@ namespace BrailleMusicDecoder
 
             // Now follows interpretations based on more than a single Braille character
 
+            // Endings
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3)), InputCategoryEnum.Ending,"FullEnd"); // Refsnæs 1, Chapter 6
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3), dot3), InputCategoryEnum.Ending,"HalfEnd");  // Refsnæs 1, Chapter 6
+
+            // Various items
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot2 | dot3)), InputCategoryEnum.EndRepeat);
             allInputInterpretations.Add(rawValues, new IntegerList((dot6), (dot3)), InputCategoryEnum.ToMusic);
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot1 | dot3)), InputCategoryEnum.MeasureDivision);
             allInputInterpretations.Add(rawValues, new IntegerList((dot5), (dot2)), InputCategoryEnum.InAccordPartMeasure);
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.InAccordFullMeasure);
+
+            // Clefs
             allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4), (dot1 | dot2 | dot3)), InputCategoryEnum.Clef,"G");
             allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4 | dot6), (dot1 | dot2 | dot3)), InputCategoryEnum.Clef, "F");
 
+            //Hands
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.Hand, "Right");
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot3 | dot4 | dot5), dot3), InputCategoryEnum.Hand, "Right+.");
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.Hand, "Left");
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5 | dot6), (dot3 | dot4 | dot5),dot3), InputCategoryEnum.Hand, "Left+.");
+
+
+            // Beats
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5 | dot6), (dot1 | dot4 | dot5 ), (dot2 | dot5 | dot6)), InputCategoryEnum.Beat, "4/4");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot1 | dot4 )), InputCategoryEnum.Beat, "C");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5 | dot6), (dot1 | dot4 ), (dot2 | dot5 | dot6)), InputCategoryEnum.Beat, "3/4");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5 | dot6), (dot1 | dot2), (dot2 | dot5 | dot6)), InputCategoryEnum.Beat, "2/4");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5 | dot6), (dot1 | dot2 | dot4), (dot2 | dot3 | dot6)), InputCategoryEnum.Beat, "6/8");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5 | dot6), (dot1 | dot4 | dot5), (dot2 | dot3 | dot6)), InputCategoryEnum.Beat, "4/8");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5 | dot6), (dot1 | dot4 ), (dot2 | dot3 | dot6)), InputCategoryEnum.Beat, "3/8");
+
 
 
             return allInputInterpretations;
