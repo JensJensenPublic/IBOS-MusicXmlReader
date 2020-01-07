@@ -118,6 +118,19 @@ namespace BrailleMusicDecoder
                         state = StateEnum.Music;
                         Log(string.Format("StartIndex={0} Forcing State={1} ***********************************************************************************", startIndex, state));
                     }
+
+                    if (
+                           (startIndex == 1030)
+                        || (startIndex == 1035)
+                        || (startIndex == 1578)
+                        || (startIndex == 1583)
+                        || (startIndex == 1161)
+                        )
+                    {
+                        state = StateEnum.Text;
+                        Log(string.Format("StartIndex={0} Forcing State={1} ***********************************************************************************", startIndex, state));
+                    }
+
                     break;
                 default: break;
             }
