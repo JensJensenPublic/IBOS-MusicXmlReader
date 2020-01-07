@@ -328,7 +328,7 @@ namespace BrailleMusicDecoder
                 case 54: denominator = "/7"; break;
                 case 38: denominator = "/8"; break;
                 case 20: denominator = "/9"; break;
-                // case 52: denominator = "/0"; break; // Probably not needed ?
+                case 52: denominator = "/0"; break; // Probably not needed ? Or needed for ordinals ?
             }
             allInputInterpretations.Add(thisValue, InputCategoryEnum.Denominator, denominator);
 

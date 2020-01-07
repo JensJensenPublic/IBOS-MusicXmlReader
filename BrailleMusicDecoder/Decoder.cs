@@ -113,7 +113,7 @@ namespace BrailleMusicDecoder
             {
                 // Here we handle known errors in the files that we decode
                 case DecoderOptionEnum.MariaGennemTorneGårFromNOTA:
-                    if (startIndex == 628)
+                    if (startIndex == 635) // 635 and 636 contain the symbol for "right hand"
                     {
                         state = StateEnum.Music;
                         Log(string.Format("StartIndex={0} Forcing State={1} ***********************************************************************************", startIndex, state));
