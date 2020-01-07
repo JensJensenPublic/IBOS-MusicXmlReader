@@ -19,7 +19,7 @@ namespace BrailleMusicDecoder
         Finger = 0x0800,
         OtherValues = 0x1000,
         Denominator = 0x2000,
-//        HalfEnd = 0x4000, // // Danish "Halvslutning"
+        Beat = 0x4000,  // Danish "Taktart"
         Clef = 0x8000,
         Space = 0x00010000,
         NewMeasure = 0x00020000,
@@ -351,10 +351,10 @@ namespace BrailleMusicDecoder
             allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4), (dot1 | dot2 | dot3)), InputCategoryEnum.Clef,"G");
             allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4 | dot6), (dot1 | dot2 | dot3)), InputCategoryEnum.Clef, "F");
 
-//            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.Hand, "Right");
-            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot3 | dot4 | dot5), dot3), InputCategoryEnum.Hand, "Right");
-//            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.Hand, "Left");
-            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5 | dot6), (dot3 | dot4 | dot5),dot3), InputCategoryEnum.Hand, "Left");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.Hand, "Right");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot3 | dot4 | dot5), dot3), InputCategoryEnum.Hand, "Right+.");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.Hand, "Left");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5 | dot6), (dot3 | dot4 | dot5),dot3), InputCategoryEnum.Hand, "Left+.");
 
 
             return allInputInterpretations;
