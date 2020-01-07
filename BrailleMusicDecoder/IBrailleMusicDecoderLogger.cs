@@ -3,6 +3,6 @@
     public interface IBrailleMusicDecoderLogger
     { 
         void Log(string s);
-        int GetOptions();                
+        int GetDecoderOptions();                        
     }
 }

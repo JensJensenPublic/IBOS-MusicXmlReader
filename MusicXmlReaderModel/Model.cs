@@ -1356,8 +1356,8 @@ namespace MusicXmlReaderModel
             Logger.LogCF(": Entry");
             if (fileName.EndsWith(@"Maria_gennem_torne_går.NOTA.txt")) // Missing BrailleMusicStart
             {
-                int options = 1; // HACK for handling known errors in inputfiles
-                Logger.DecoderOptions = options; // HACK for handling known errors in inputfiles
+                BrailleMusicDecoder.Decoder.DecoderOptionEnum  options = BrailleMusicDecoder.Decoder.DecoderOptionEnum.MariaGennemTorneGårFromNOTA; // HACK for handling known errors in inputfiles
+                Logger.DecoderOptions = (int) options; // HACK for handling known errors in inputfiles
                 Logger.LogCF(string.Format(": Setting DecoderOptionstions={0} for FileName={1}", options, fileName));
             }
             List<string> result = new List<string>();

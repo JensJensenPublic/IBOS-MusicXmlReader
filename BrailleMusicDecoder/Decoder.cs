@@ -33,6 +33,7 @@ namespace BrailleMusicDecoder
         string brailleAsUnicode; // The Unicode string to decode
         TokenReader tokenReader;
 
+        public enum DecoderOptionEnum { None, MariaGennemTorneGårFromNOTA };
 
         //
         // Simple convenience methods
@@ -105,12 +106,13 @@ namespace BrailleMusicDecoder
 
         private InputInterpretationList ToTokenList(int startIndex)
         {
-#warning todo Remove hack
 
-            switch (logger.GetOptions())
+            // Ad hoc mechanism for handling wellknown errors in BrailleMusic files received from external source, for instance NOTA
+            DecoderOptionEnum options = (DecoderOptionEnum)logger.GetDecoderOptions();
+            switch (options)
             {
                 // Here we handle known errors in the files that we decode
-                case 1:
+                case DecoderOptionEnum.MariaGennemTorneGårFromNOTA:
                     if (startIndex == 628)
                     {
                         state = StateEnum.Music;

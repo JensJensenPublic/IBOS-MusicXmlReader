@@ -11,9 +11,9 @@
             Logger.Log(s);
         }
 
-        public int GetOptions()
+        public int GetDecoderOptions()
         {
-            return Logger.DecoderOptions;
+            return (int) Logger.DecoderOptions;
         }
 
     }
