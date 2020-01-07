@@ -19,13 +19,13 @@ namespace BrailleMusicDecoder
         Finger = 0x0800,
         OtherValues = 0x1000,
         Denominator = 0x2000,
-        HalfEnd = 0x4000, // // Danish "Halvslutning"
+//        HalfEnd = 0x4000, // // Danish "Halvslutning"
         Clef = 0x8000,
         Space = 0x00010000,
         NewMeasure = 0x00020000,
         Legato = 0x00400000,
         UnusualBarLine = 0x00800000,
-        FullEnd = 0x01000000,
+        Ending = 0x01000000,
         EndRepeat = 0x02000000,
         Punctuation = 0x04000000,
         ToMusic = 0x08000000,
@@ -341,8 +341,8 @@ namespace BrailleMusicDecoder
 
             // Now follows interpretations based on more than a single Braille character
 
-            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3)), InputCategoryEnum.FullEnd); // Refsnæs 1, Chapter 6
-            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3), dot3), InputCategoryEnum.HalfEnd);  // Refsnæs 1, Chapter 6
+            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3)), InputCategoryEnum.Ending,"FullEnd"); // Refsnæs 1, Chapter 6
+            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3), dot3), InputCategoryEnum.Ending,"HalfEnd");  // Refsnæs 1, Chapter 6
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot2 | dot3)), InputCategoryEnum.EndRepeat);
             allInputInterpretations.Add(rawValues, new IntegerList((dot6), (dot3)), InputCategoryEnum.ToMusic);
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot1 | dot3)), InputCategoryEnum.MeasureDivision);
