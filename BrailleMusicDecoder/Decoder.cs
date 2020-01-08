@@ -120,7 +120,12 @@ namespace BrailleMusicDecoder
                     }
 
                     if (
-                           (startIndex == 1030)
+                           (startIndex == 277)
+                        || (startIndex == 440)
+                        || (startIndex == 484)
+                        || (startIndex == 503)
+                        || (startIndex == 537)
+                        || (startIndex == 1030)
                         || (startIndex == 1035)
                         || (startIndex == 1578)
                         || (startIndex == 1583)
