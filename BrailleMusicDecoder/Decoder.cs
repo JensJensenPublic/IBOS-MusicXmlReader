@@ -137,6 +137,8 @@ namespace BrailleMusicDecoder
                         || (startIndex == 1583)
                         || (startIndex == 1161)
                         || (startIndex == 1698)
+                        || (startIndex == 2236)
+                        || (startIndex == 2774)
                         )
                     {
                         state = StateEnum.Text;
