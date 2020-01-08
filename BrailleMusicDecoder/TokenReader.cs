@@ -376,7 +376,8 @@ namespace BrailleMusicDecoder
             allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5 | dot6), (dot1 | dot4 | dot5), (dot2 | dot3 | dot6)), InputCategoryEnum.Beat, "4/8");
             allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5 | dot6), (dot1 | dot4 ), (dot2 | dot3 | dot6)), InputCategoryEnum.Beat, "3/8");
 
-
+            // Commercial at "@"
+            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5), dot1), InputCategoryEnum.Character, "@");
 
             return allInputInterpretations;
         }
