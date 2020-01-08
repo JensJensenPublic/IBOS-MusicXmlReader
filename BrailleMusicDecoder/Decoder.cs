@@ -118,6 +118,11 @@ namespace BrailleMusicDecoder
                         state = StateEnum.Music;
                         Log(string.Format("StartIndex={0} Forcing State={1} ***********************************************************************************", startIndex, state));
                     }
+                    if (startIndex == 2145) // Start of Tenor
+                    {
+                        state = StateEnum.Music;
+                        Log(string.Format("StartIndex={0} Forcing State={1} ***********************************************************************************", startIndex, state));
+                    }
 
                     if (
                            (startIndex == 277)
@@ -131,6 +136,7 @@ namespace BrailleMusicDecoder
                         || (startIndex == 1578)
                         || (startIndex == 1583)
                         || (startIndex == 1161)
+                        || (startIndex == 1698)
                         )
                     {
                         state = StateEnum.Text;
