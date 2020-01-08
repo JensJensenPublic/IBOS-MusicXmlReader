@@ -133,6 +133,7 @@ namespace BrailleMusicDecoder
                 case 36: return "-";
                 case 04: return ".";
                 case 18: return "-";
+                case 56: return "UPPERCASE";
                 default: return null;
             }
         }
