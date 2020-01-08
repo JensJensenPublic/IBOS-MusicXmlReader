@@ -13,6 +13,7 @@ namespace MusicXmlReaderModel
         static string className = "Logger";
         // TODO: Adress possible multithreading problems !!
 
+
         #region DelayMeasurement
         // Overall delays. Only ExecutionDelay is relevant for the UI version    
         static public LoggerDelayCounter ExecutionDelay = LoggerDelayCounter.Create();          // The "real" execution delay, representing delays also relevant for the UI version  
@@ -43,6 +44,8 @@ namespace MusicXmlReaderModel
         static private string currentMusicXmlPath;
         static public string CurrentMusicXmlPath { get { return (null == currentMusicXmlPath) ? "" : currentMusicXmlPath; } set { currentMusicXmlPath = value; } }
 
+        static private Int64 globalCount = 0;
+        static public  Int64 GlobalCount { get { return globalCount; } }
 
         static public string GetCallingMethod()
         {
@@ -317,6 +320,7 @@ namespace MusicXmlReaderModel
 
         private static void Log(string s, bool showTimeStamp)
         {
+            globalCount++; // Increment a global counter, usable for diagnostics
             if (string.IsNullOrEmpty(logFileFullName)) return; // Open() must be called before using the Logger !
             try
             {

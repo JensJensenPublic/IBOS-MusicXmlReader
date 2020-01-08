@@ -633,15 +633,17 @@ namespace MusicXmlReader
             string fileName = openFileDialog.FileName;
             Logger.LogCF(string.Format("Filename='{0}'  Format={1}", fileName, fileEncoding));
 
-
+            Int64 initialLogCount = Logger.GlobalCount;
             List<string> interpretation = model.InterpretBrailleMusicFile(fileName, fileEncoding);
+            Int64 finalLogCount = Logger.GlobalCount;
             if (null == interpretation)
             {
                 Logger.LogCF(string.Format("Failed to interpret '{0}' as {1}", fileName, fileEncoding));
                 return false;
             }
 
-            Logger.LogCF(string.Format("Interpreted '{0}' as {1} returning {2} lines of information", fileName, fileEncoding, interpretation.Count));
+            Logger.LogCF(string.Format(": Successfully interpreted '{0}' as {1}",fileName,fileEncoding));
+            Logger.LogCF(string.Format(": Returned {0} lines of information. Generated {1} loglines", interpretation.Count, finalLogCount - initialLogCount));
 #warning todo!
 
             // Generate a temporary file with the original contents shown in dots as well as in numbers
