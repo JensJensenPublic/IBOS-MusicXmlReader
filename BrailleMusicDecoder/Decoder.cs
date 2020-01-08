@@ -245,6 +245,11 @@ namespace BrailleMusicDecoder
                         newState = StateEnum.Music; 
                     }
 
+                    if (filteredInputValues.Contains(InputCategoryEnum.Ending))
+                    {
+                        newState = StateEnum.Music;
+                    }
+
                     if (filteredInputValues.Contains(InputCategoryEnum.InAccordPartMeasure))
                     {
                         newState = StateEnum.MusicNote; // No change, probably not needed
