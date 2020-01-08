@@ -208,7 +208,7 @@ namespace BrailleMusicDecoder
                         newState = StateEnum.Music;
                         break;
                     }
-                    if (!filteredInputValues.Contains(InputCategoryEnum.Digit))
+                    if (!(filteredInputValues.Contains(InputCategoryEnum.Digit) || filteredInputValues.Contains(InputCategoryEnum.Denominator)))
                     {
                         newState = StateEnum.Text;
                         break;

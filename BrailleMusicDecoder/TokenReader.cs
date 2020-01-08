@@ -316,6 +316,7 @@ namespace BrailleMusicDecoder
                 case 10: digit = "9"; break;
                 case 26: digit = "0"; break;
                 case 04: digit = "."; break; // dot3 = "." is a valid value inside a sequence of digits
+                case 36: digit = "_"; break; // dot3 || dot6 = "_" is a valid value inside a sequence of digits
             }
             allInputInterpretations.Add(thisValue, InputCategoryEnum.Digit, digit);
 
