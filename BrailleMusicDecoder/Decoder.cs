@@ -134,7 +134,7 @@ namespace BrailleMusicDecoder
                         switch (startIndex)
                         {
                             case 635:
-                            case 2145: forcedNewState = StateEnum.Music; break;
+                            case 2139: forcedNewState = StateEnum.Music; break;
                             case 1020: forcedNewState = StateEnum.Text; break;
                             default: break;
                         }
