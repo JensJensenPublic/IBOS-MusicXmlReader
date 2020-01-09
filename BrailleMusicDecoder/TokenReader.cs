@@ -1,9 +1,9 @@
 ﻿using System;
-
+ 
 namespace BrailleMusicDecoder
 {
     [Flags]
-    enum InputCategoryEnum
+    enum InputCategoryEnum : long
     {
         Word = 0x0001,
         ToNumber = 0x0002,
@@ -25,17 +25,26 @@ namespace BrailleMusicDecoder
         NewMeasure = 0x00020000,
         Legato = 0x00400000,
         UnusualBarLine = 0x00800000,
-        Ending = 0x01000000,
+        FullEnd = 0x01000000,
         EndRepeat = 0x02000000,
         Punctuation = 0x04000000,
         ToMusicBraille = 0x08000000,
         MeasureDivision = 0x10000000,     // Danish "Skilletegn"   
         InAccordPartMeasure = 0x20000000, // Dansih: "Lille bistemme"
         InAccordFullMeasure = 0x40000000,  // Dansih: "Stor bistemme" 
+        HalfEnd = 0x100000000,
+        NonBrailleCR = 0x200000000,
+        NonBrailleLF = 0x400000000,
+        NonBrailleFF = 08800000000, 
+        NonBrailleOther = 0x1000000000,
+        ToText = 0x2000000000, // Transition from MusicBraille to TextBraille
         // 0x80000000 can not be used because this enum type is based on positive 32 bit values.
     }
 
+ 
+
     class TokenReader
+
     {
         // Some basic, general definitions
         private const int BrailleBase = 0x2800;
@@ -51,6 +60,8 @@ namespace BrailleMusicDecoder
         const byte none = 0x00;
         const int dot1245 = dot1 | dot2 | dot4 | dot5; // For isolating values representing note steps
         const int dot36 = dot3 | dot6; // For isolating type
+
+
 
         public bool IsBraille6(int c)
         {
@@ -345,9 +356,9 @@ namespace BrailleMusicDecoder
             // Now follows interpretations based on more than a single Braille character
 
             // Endings
-            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3)), InputCategoryEnum.Ending, "FullEnd"); // Refsnæs 1, Chapter 6
-            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3), dot5), InputCategoryEnum.Ending, "FullEnd+Reference"); // Refsnæs 1, Chapter 6f and Chapter 6b
-            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3), dot3), InputCategoryEnum.Ending,"HalfEnd");  // Refsnæs 1, Chapter 6e
+            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3)), InputCategoryEnum.FullEnd, ""); // Refsnæs 1, Chapter 6
+            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3), dot5), InputCategoryEnum.FullEnd, "+Reference"); // Refsnæs 1, Chapter 6f and Chapter 6b
+            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3), dot3), InputCategoryEnum.HalfEnd,"HalfEnd");  // Refsnæs 1, Chapter 6e
 
             // Various items
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot2 | dot3)), InputCategoryEnum.EndRepeat);
@@ -378,6 +389,8 @@ namespace BrailleMusicDecoder
 
             // Commercial at "@"
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5), dot1), InputCategoryEnum.Character, "@");
+
+            allInputInterpretations.Add(rawValues, new IntegerList((dot5 | dot6), (dot2 | dot3)), InputCategoryEnum.ToText);
 
             return allInputInterpretations;
         }

@@ -125,20 +125,20 @@ namespace BrailleMusicDecoder
                     }
 
                     if (
-                           (startIndex == 277)
-                        || (startIndex == 338)
-                        || (startIndex == 440)
-                        || (startIndex == 484)
-                        || (startIndex == 503)
-                        || (startIndex == 537)
+                           (startIndex == 277) // Use CRLF from number
+                        || (startIndex == 338) // Use CRLF from number
+                        || (startIndex == 440) // Use CRLF from number
+                        || (startIndex == 484) // Use CRLF from number
+                        || (startIndex == 503) // Use CRLF from number
+                        || (startIndex == 537) // Use CRLF from number
                         || (startIndex == 1030)
-                        || (startIndex == 1035)
-                        || (startIndex == 1578)
-                        || (startIndex == 1583)
-                        || (startIndex == 1161)
-                        || (startIndex == 1698)
-                        || (startIndex == 2236)
-                        || (startIndex == 2774)
+                        || (startIndex == 1035) // Use CRLF from number
+  //       || (startIndex == 1578)
+                        || (startIndex == 1583) // Use CRLF from number
+  //                      || (startIndex == 1161)
+  //                      || (startIndex == 1698)
+  //                      || (startIndex == 2236)
+  //                      || (startIndex == 2774)
                         )
                     {
                         state = StateEnum.Text;
@@ -162,8 +162,9 @@ namespace BrailleMusicDecoder
             InputCategoryEnum allowedInputCategories = 0;
 
             // Define some shorthand values to be used in the case below
+            const InputCategoryEnum AnyEnding = InputCategoryEnum.FullEnd | InputCategoryEnum.HalfEnd;
             InputCategoryEnum allowedInTextStates   = InputCategoryEnum.Character | InputCategoryEnum.TextVersal | InputCategoryEnum.ToNumber | InputCategoryEnum.ToMusicBraille;
-            InputCategoryEnum allowedInMusicStates  = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.InAccordFullMeasure | InputCategoryEnum.Clef | InputCategoryEnum.ToMusicBraille;
+            InputCategoryEnum allowedInMusicStates  = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.InAccordFullMeasure | InputCategoryEnum.Clef | InputCategoryEnum.ToMusicBraille | InputCategoryEnum.ToText;
             InputCategoryEnum allowedInNumberStates = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.ToMusicBraille | InputCategoryEnum.ToNumber;
 
             switch (state)
@@ -172,8 +173,8 @@ namespace BrailleMusicDecoder
                 case StateEnum.TextVersal:  allowedInputCategories = allowedInTextStates; break;
                 case StateEnum.TextNumber:  allowedInputCategories = allowedInNumberStates | InputCategoryEnum.TextVersal | InputCategoryEnum.ToMusicBraille; break;
                 case StateEnum.MusicNumber: allowedInputCategories = allowedInNumberStates | InputCategoryEnum.Accidental; break;
-                case StateEnum.Music:       allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Accidental | InputCategoryEnum.UnusualBarLine | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | InputCategoryEnum.Ending | InputCategoryEnum.Hand | InputCategoryEnum.Beat; break;
-                case StateEnum.MusicNote:   allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Legato | InputCategoryEnum.UnusualBarLine | InputCategoryEnum.Ending | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation | InputCategoryEnum.Interval | InputCategoryEnum.Accidental | InputCategoryEnum.OtherValues; break;
+                case StateEnum.Music:       allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Accidental | InputCategoryEnum.UnusualBarLine | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | AnyEnding | InputCategoryEnum.Hand | InputCategoryEnum.Beat; break;
+                case StateEnum.MusicNote:   allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Legato | InputCategoryEnum.UnusualBarLine | AnyEnding | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation | InputCategoryEnum.Interval | InputCategoryEnum.Accidental | InputCategoryEnum.OtherValues; break;
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
             }
 
@@ -238,6 +239,10 @@ namespace BrailleMusicDecoder
                     {
                         newState = StateEnum.MusicNote; break;
                     }
+                    if (filteredInputValues.Contains(InputCategoryEnum.ToText))
+                    {
+                        newState = StateEnum.Text; break;
+                    }
                     break;
 
                 case StateEnum.MusicNumber:
@@ -248,15 +253,27 @@ namespace BrailleMusicDecoder
                     break;
 
                 case StateEnum.MusicNote:
+
+                    if (filteredInputValues.Contains(InputCategoryEnum.ToText))
+                    {
+                        newState = StateEnum.Text; break;
+                    }
+
                     if (filteredInputValues.Contains(InputCategoryEnum.NewMeasure))
                     {
                         newState = StateEnum.Music; 
                     }
 
-                    if (filteredInputValues.Contains(InputCategoryEnum.Ending))
+                    if (filteredInputValues.Contains(InputCategoryEnum.HalfEnd))
                     {
                         newState = StateEnum.Music;
                     }
+
+                    if (filteredInputValues.Contains(InputCategoryEnum.FullEnd))
+                    {
+                        newState = StateEnum.Music;
+                    }
+
 
                     if (filteredInputValues.Contains(InputCategoryEnum.InAccordPartMeasure))
                     {
