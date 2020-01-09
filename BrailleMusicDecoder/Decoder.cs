@@ -78,9 +78,25 @@ namespace BrailleMusicDecoder
             int thisValue = brailleAsUnicode[i];
             int nextValue = (i+1 >= brailleAsUnicode.Length) ? (tokenReader.Blank) :  brailleAsUnicode[i]; // Insert an empty Braille6 character 
 
-            // Immediately get rid of characters outside the Unicode Braille6 interval [0x2800..0x283f]
+            // Immediately get rid of characters outside the Unicode Braille6 interval [0x2800..0x283f] 
             if (!tokenReader.IsBraille6(thisValue))
             {
+                switch (thisValue)
+                {
+                    // But first apply some simple state changes
+                    case 10: break; // (LF)";
+                    case 12: break; // (FF)";
+                    case 13: if (StateEnum.TextNumber == state) //(CR)
+                        {
+                            StateEnum newState = StateEnum.Text;
+                            Log(string.Format("Non-Braille input={0} Changing state from {1} to {2} -------------------------------------", thisValue, state, newState));
+                            state = newState;
+                        }
+                        break;
+                    default: break;
+                }
+
+
                 i += 1;
                 return NonBrailleInterpretation(thisValue);
             }
@@ -125,16 +141,16 @@ namespace BrailleMusicDecoder
                     }
 
                     if (
-                           (startIndex == 277) // Use CRLF from number
-                        || (startIndex == 338) // Use CRLF from number
-                        || (startIndex == 440) // Use CRLF from number
-                        || (startIndex == 484) // Use CRLF from number
-                        || (startIndex == 503) // Use CRLF from number
-                        || (startIndex == 537) // Use CRLF from number
-                        || (startIndex == 1030)
-                        || (startIndex == 1035) // Use CRLF from number
+//                           (startIndex == 277) // Use CRLF from number
+//                         (startIndex == 338) // Use CRLF from number
+ //                        (startIndex == 440) // Use CRLF from number
+//                        (startIndex == 484) // Use CRLF from number
+//                        (startIndex == 503) // Use CRLF from number
+//                         (startIndex == 537) // Use CRLF from number
+                         (startIndex == 1030)
+//                        || (startIndex == 1035) // Use CRLF from number
   //       || (startIndex == 1578)
-                        || (startIndex == 1583) // Use CRLF from number
+  //                      || (startIndex == 1583) // Use CRLF from number
   //                      || (startIndex == 1161)
   //                      || (startIndex == 1698)
   //                      || (startIndex == 2236)
