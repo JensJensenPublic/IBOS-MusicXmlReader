@@ -123,48 +123,33 @@ namespace BrailleMusicDecoder
         private InputInterpretationList ToTokenList(int startIndex)
         {
 
-            // Ad hoc mechanism for handling wellknown errors in BrailleMusic files received from external source, for instance NOTA
+            // First apply ad hoc mechanism for handling wellknown errors in BrailleMusic files received from external source, for instance NOTA
             DecoderOptionEnum options = (DecoderOptionEnum)logger.GetDecoderOptions();
+            StateEnum forcedNewState = state;
             switch (options)
             {
-                // Here we handle known errors in the files that we decode
+                // Here we handle known errors in the files that we decode             
                 case DecoderOptionEnum.MariaGennemTorneGårFromNOTA:
-                    if (startIndex == 635) // 635 and 636 contain the symbol for "right hand"
                     {
-                        state = StateEnum.Music;
-                        Log(string.Format("StartIndex={0} Forcing State={1} ***********************************************************************************", startIndex, state));
+                        switch (startIndex)
+                        {
+                            case 635:
+                            case 2145: forcedNewState = StateEnum.Music; break;
+                            case 1020: forcedNewState = StateEnum.Text; break;
+                            default: break;
+                        }
                     }
-                    if (startIndex == 2145) // Start of Tenor
-                    {
-                        state = StateEnum.Music;
-                        Log(string.Format("StartIndex={0} Forcing State={1} ***********************************************************************************", startIndex, state));
-                    }
-
-                    if (
-//                           (startIndex == 277) // Use CRLF from number
-//                         (startIndex == 338) // Use CRLF from number
- //                        (startIndex == 440) // Use CRLF from number
-//                        (startIndex == 484) // Use CRLF from number
-//                        (startIndex == 503) // Use CRLF from number
-//                         (startIndex == 537) // Use CRLF from number
-                         (startIndex == 1030)
-//                        || (startIndex == 1035) // Use CRLF from number
-  //       || (startIndex == 1578)
-  //                      || (startIndex == 1583) // Use CRLF from number
-  //                      || (startIndex == 1161)
-  //                      || (startIndex == 1698)
-  //                      || (startIndex == 2236)
-  //                      || (startIndex == 2774)
-                        )
-                    {
-                        state = StateEnum.Text;
-                        Log(string.Format("StartIndex={0} Forcing State={1} ***********************************************************************************", startIndex, state));
-                    }
-
                     break;
                 default: break;
             }
+            if (forcedNewState != state)
+            {      
+                Log(string.Format("StartIndex={0} Forcing Statechange from {1} for {2}***********************************************************************************", startIndex, state, forcedNewState, options.ToString()));
+                state = forcedNewState;
+            }
 
+
+            // Now for the "real" algorithm:
             int endIndex = Math.Min(brailleAsUnicode.Length, startIndex + 10); // Take the next 10 characters 
             IntegerList brailleCharacters = new IntegerList();
             {
