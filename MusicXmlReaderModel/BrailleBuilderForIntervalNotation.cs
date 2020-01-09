@@ -37,7 +37,7 @@ namespace MusicXmlReaderModel
         public static byte[] intervalFourth = { (dot3 + dot4 + dot5 + dot6) };
         public static byte[] intervalFifth = { (dot3 + dot5) };
         public static byte[] intervalSixth = { (dot3 + dot5 + dot6) };
-        public static byte[] intervalSeventh = { (dot2 + dot4) };
+        public static byte[] intervalSeventh = { (dot2 + dot5) };
         public static byte[] intervalOctave = { (dot3 + dot6) }; 
 
 
