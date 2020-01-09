@@ -23,7 +23,7 @@ namespace MusicXmlReaderModel
         private MetaInformation metaInformation;
         public MetaInformation MetaInformation { get { return metaInformation; } }
 
-        private static List<string> sopranoNames = new List<string> { "SOPRANO", "SORAN", "S" };
+        private static List<string> sopranoNames = new List<string> { "SOPRANO", "SOPRAN", "S" };
         private static List<string> altoNames = new List<string> { "ALTO", "ALT", "A" };
         private static List<string> tenorNames = new List<string> { "TENOR", "TEN", "T" };
         private static List<string> basNames = new List<string> { "BASSO", "BAS", "B" };
