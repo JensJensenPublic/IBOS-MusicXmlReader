@@ -5,7 +5,7 @@ namespace BrailleMusicDecoder
     [Flags]
     enum InputCategoryEnum : long
     {
-        Word = 0x0001,
+        ToWord = 0x0001,
         ToNumber = 0x0002,
         TextVersal = 0x0004,
         Character = 0x0008,
@@ -302,7 +302,7 @@ namespace BrailleMusicDecoder
 
             // Add some simple obe-character tokens if present
             allInputInterpretations.Add(thisValue, (dot3 | dot4 | dot5 | dot6),  InputCategoryEnum.ToNumber);
-            allInputInterpretations.Add(thisValue, (dot3 | dot4 | dot5), InputCategoryEnum.Word);
+            allInputInterpretations.Add(thisValue, (dot3 | dot4 | dot5), InputCategoryEnum.ToWord);
             allInputInterpretations.Add(thisValue, (dot1 | dot4), InputCategoryEnum.Legato); 
             allInputInterpretations.Add(thisValue, noDots, InputCategoryEnum.Space);
             allInputInterpretations.Add(thisValue, noDots, InputCategoryEnum.NewMeasure);            
