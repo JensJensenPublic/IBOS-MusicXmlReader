@@ -26,3 +26,5 @@ https://blind.dk/livet-med-synshandicap/guides/punktskrift-braille
 Description of Braille in various languages
 https://www.pharmabraille.com/wp-content/uploads/2014/11/World-Braille-Usage-Third-Edition-1.pdf
 
+References to LibLouis:
+
