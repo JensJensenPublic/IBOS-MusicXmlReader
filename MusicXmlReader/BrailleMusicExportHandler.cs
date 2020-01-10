@@ -336,7 +336,9 @@ namespace MusicXmlReader
         /// <returns></returns>
         private string GetFileName(string baseFileName, string fileNameAttribute)
         {
-            string result = Path.ChangeExtension(baseFileName, fileNameAttribute + Path.GetExtension(baseFileName));
+            char[] trimChars = { '.' } ;
+            string trimmedfileNameAttribute = fileNameAttribute.TrimEnd(trimChars); // Avoid ".." if the partname ends with "."
+            string result = Path.ChangeExtension(baseFileName, trimmedfileNameAttribute + Path.GetExtension(baseFileName));
             return result;
         }
 
