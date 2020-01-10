@@ -43,7 +43,9 @@
         public override string ToString()
         {
             string valueString = string.IsNullOrEmpty(value) ? "" : string.Format("='{0}'", value); // Only show the '=' if a value follows !
-            return string.Format("{0,-5} {1}{2} ", token.ToUnicodeString(), inputCategory.ToString(), valueString);
+            // We want to make it easy to find the NewMeasure items !
+            string extraString = (InputCategoryEnum.NewMeasure != InputCategory) ? "" : "----------";
+            return string.Format("{0,-5} {1}{2}{3}", token.ToUnicodeString(), inputCategory.ToString(), valueString, extraString);
         }
 
 
