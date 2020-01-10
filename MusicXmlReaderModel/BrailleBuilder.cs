@@ -103,8 +103,9 @@ namespace MusicXmlReaderModel
 
         // Clefs
         public static readonly byte[] clefG = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4       ), (dot1 + dot2 + dot3) };
-        public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot5 + dot6), (dot1 + dot2 + dot3) };
-        public static readonly byte[] clefC = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot6), (dot1 + dot2 + dot3) };
+        public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot6), (dot1 + dot2 + dot3) }; // EGTVED
+        //public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot5 + dot6), (dot1 + dot2 + dot3) }; // BANA
+        public static readonly byte[] clefC = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot6), (dot1 + dot2 + dot3) }; // ENS
 
         // Repeat
         public static readonly byte[] repeatEnd   = new byte[] { (dot1 + dot2 + dot6), (dot2 + dot3) };
