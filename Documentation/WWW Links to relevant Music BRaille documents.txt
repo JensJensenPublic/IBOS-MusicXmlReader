@@ -2,7 +2,27 @@ The original BABA 2015 document
 http://www.brailleauthority.org/music/Music_Braille_Code_2015.pdf
 
 
+NOTE: Google "braille 12456" or "braille dots 12456"  wille lead to a specific page, describing the pattern "12456"  
+https://en.wikipedia.org/wiki/Braille_pattern_dots-12456
 
 
 Wikipedia entry with lots of usable tables and other information. Contains further links !
 https://en.wikipedia.org/wiki/Braille_music
+
+Generel Braille:
+
+NOTE: Google "braille 12456" or "braille dots 12456"  wille lead to a specific page, describing the pattern "12456"  in this specific case:
+https://en.wikipedia.org/wiki/Braille_pattern_dots-12456
+
+Text Braille including contractions. English standard!
+https://en.wikipedia.org/wiki/English_Braille
+
+PharmaBraille: The best description of danish Braille. Includes links to other languages!
+https://www.pharmabraille.com/braille-codes/denmark-braille-code/
+
+Dansk Blindesamfund. Not very detailled, but danish.
+https://blind.dk/livet-med-synshandicap/guides/punktskrift-braille
+
+Description of Braille in various languages
+https://www.pharmabraille.com/wp-content/uploads/2014/11/World-Braille-Usage-Third-Edition-1.pdf
+
