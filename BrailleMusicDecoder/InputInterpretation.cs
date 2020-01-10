@@ -36,6 +36,20 @@
             }
         }
 
+
+        private string GetExtraString(InputCategoryEnum inputCategoryEnum)
+        {
+            switch (inputCategoryEnum)
+            {
+                case InputCategoryEnum.NewMeasure: return "---------------------------------------------";
+                case InputCategoryEnum.MeasureDivision: return "    'Skilletegn'";
+                case InputCategoryEnum.InAccordFullMeasure: return "'Stor  bistemme'";
+                case InputCategoryEnum.InAccordPartMeasure: return "'Lille bistemme'";
+                default: return "";
+            }
+
+        }
+
         /// <summary>
         /// A string representation of this instance
         /// </summary>
@@ -44,7 +58,7 @@
         {
             string valueString = string.IsNullOrEmpty(value) ? "" : string.Format("='{0}'", value); // Only show the '=' if a value follows !
             // We want to make it easy to find the NewMeasure items !
-            string extraString = (InputCategoryEnum.NewMeasure != InputCategory) ? "" : "----------";
+            string extraString = GetExtraString(inputCategory);
             return string.Format("{0,-5} {1}{2}{3}", token.ToUnicodeString(), inputCategory.ToString(), valueString, extraString);
         }
 
