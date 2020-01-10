@@ -134,7 +134,7 @@ namespace MusicXmlReaderModel
             get
             {
                 BrailleBuilderForText bb = BrailleBuilderForText.Create(0);
-                // Avoid using "." if possible: Many codings exist:
+                // Avoid using "." if possible: Many codings for "." exist:
                 // PharmaBraille: dot3 https://www.pharmabraille.com/braille-codes/denmark-braille-code/ 
                 // Wikipedia: dot4 + dot6   https://en.wikipedia.org/wiki/Braille_pattern_dots-46
                 // ???: dot2 + dot5 + dot6
