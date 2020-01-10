@@ -138,6 +138,7 @@ namespace MusicXmlReaderModel
                 // PharmaBraille: dot3 https://www.pharmabraille.com/braille-codes/denmark-braille-code/ 
                 // Wikipedia: dot4 + dot6   https://en.wikipedia.org/wiki/Braille_pattern_dots-46
                 // ???: dot2 + dot5 + dot6
+                // See error 458 and 459
                 string captionWithoutDots = Caption2.Replace('.', ' ');
                 bb.AddNormalText(captionWithoutDots);
                 return bb;

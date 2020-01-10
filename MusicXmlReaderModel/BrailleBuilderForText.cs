@@ -62,7 +62,9 @@ namespace MusicXmlReaderModel
                 case '+': return new BrailleValue(c, dot3 + dot4 + dot6, Category.SpecialChar); // 0x2B
                 case ',': return new BrailleValue(c,dot6 , Category.SpecialChar); // 0x2C
                 case '-': return new BrailleValue(c,dot3 + dot6 , Category.SpecialChar); // 0x2D
-                case '.': return new BrailleValue(c, dot4 + dot6, Category.SpecialChar); // 0x2E
+#warning todo handle national differences in Braille and Music Braille
+                // case '.': return new BrailleValue(c, dot4 + dot6, Category.SpecialChar); // 0x2E  https://en.wikipedia.org/wiki/Braille_pattern_dots-46
+                case '.': return new BrailleValue(c, dot3, Category.SpecialChar); // 0x2E ); // PharmaBraille. Changed in 3.4 from dot4 + dot6 
                 case '/': return new BrailleValue(c, dot3 + dot4, Category.SpecialChar); // 0x2F
                 // ASCII 0x30..0x39
                 case '0': return new BrailleValue(c, dot2 + dot4 + dot5, Category.Digit);
