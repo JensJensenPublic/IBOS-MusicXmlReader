@@ -3,7 +3,7 @@
 namespace BrailleMusicDecoder
 {
     [Flags]
-    enum InputCategoryEnum : long
+    enum InputCategoryEnum : long // "long" enables use of up to 63 bits instead of 31
     {
         ToWord = 0x0001,
         ToNumber = 0x0002,
@@ -32,13 +32,10 @@ namespace BrailleMusicDecoder
         MeasureDivision = 0x10000000,     // Danish "Skilletegn"   
         InAccordPartMeasure = 0x20000000, // Dansih: "Lille bistemme"
         InAccordFullMeasure = 0x40000000,  // Dansih: "Stor bistemme" 
-        HalfEnd = 0x100000000,
-        NonBrailleCR = 0x200000000,
-        NonBrailleLF = 0x400000000,
-        NonBrailleFF = 08800000000, 
-        NonBrailleOther = 0x1000000000,
+        // =                  0x80000000 // Unused
+        HalfEnd = 0x100000000,  
         ToText = 0x2000000000, // Transition from MusicBraille to TextBraille
-        // 0x80000000 can not be used because this enum type is based on positive 32 bit values.
+        // 0x8000000000000000 can not be used because this enum type is based on positive 64 bit values.
     }
 
  
