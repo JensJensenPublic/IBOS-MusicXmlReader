@@ -26,7 +26,7 @@ namespace MusicXmlReaderModel
         private static List<string> sopranoNames = new List<string> { "SOPRANO", "SOPRAN", "S" };
         private static List<string> altoNames = new List<string> { "ALTO", "ALT", "A" };
         private static List<string> tenorNames = new List<string> { "TENOR", "TEN", "T" };
-        private static List<string> basNames = new List<string> { "BASSO", "BAS", "B" };
+        private static List<string> basNames = new List<string> { "BASSO", "BASS", "BAS", "B" };
         private List<List<string>> saNames = new List<List<string>> { sopranoNames, altoNames };
         private List<List<string>> tbNames = new List<List<string>> { tenorNames, basNames };
         // And finally, primarily for testing:
