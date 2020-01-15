@@ -859,10 +859,14 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// // Marks the pount where normal notation ends and MeasureDivision notation start.
         /// </summary>
-        public void AddMeasureDivisionStart()
+        public void AppendMeasureDivisionMarkAtEnd()
         {
-            Append(measureDivision);
-            AppendText("<>"); 
+            // In order to append it AFTER the last existing child we need to append it as a new child.
+            BrailleBuilder bb = BrailleBuilder.Create(this.TimeStamp);
+            bb.Append(measureDivision);
+            bb.AppendText("<>");
+            this.Append(bb); 
+            // Logger.LogCF("----------------------------------------------------------------");
         }
 
         /// <summary>
@@ -873,6 +877,7 @@ namespace MusicXmlReaderModel
         {
             Append(isFullMeasure ? BrailleBuilder.inAccordFullMeasure : BrailleBuilder.inAccordPartMeasure);
             AppendText(isFullMeasure ? "||" : "!!"); // Defined by JSJ for debugging only. )
+            // Logger.LogCF(string.Format("({0})",isFullMeasure ? "FullMeasure" : "PartMeasure"));
         }
 
 

@@ -91,7 +91,7 @@ namespace MusicXmlReaderModel
                     }
                 }
             }
-            bool isMainVoice = true; // The first entry added is refered to as the main voice (Danish: "Hovedstemme") 
+            int nNonEmptyVoices = 0;
             bool isFullMeasure = this.IsFullMeasure; // Only evaluate once, the value is the same for all voices.
             if (!fromTop)
             {
@@ -102,9 +102,17 @@ namespace MusicXmlReaderModel
             {
                 // Convert each voice to Braille 
                 // Logger.LogCF(string.Format(": Rendering Part={0} Staff={1} Voice={2}", voice.Part, voice.Staff, voice.Voice));              
-                result.Append(voice.ToBraille(userSettings,ref isMainVoice,isFullMeasure));
+                result.Append(voice.ToBraille(userSettings,ref nNonEmptyVoices, isFullMeasure));
                 // Force an octave mark on the first note in each voice (except the first voice ) within the InAccordSegment and on the first note after the InAccordSegment:
                 MusicBrailleState.ResetMusicBrailleState(); 
+            }
+
+            //Logger.LogCF(string.Format(": nNonEmptyVoices={0}", nNonEmptyVoices));
+
+            if (!isFullMeasure && (nNonEmptyVoices >= 2))
+            {
+                // Only after a sequence of at least 1 of PartMeasure voices 
+                result.AppendMeasureDivisionMarkAtEnd();
             }
             return result;
         }

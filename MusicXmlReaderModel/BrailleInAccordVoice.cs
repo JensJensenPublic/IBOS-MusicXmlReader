@@ -24,48 +24,48 @@ namespace MusicXmlReaderModel
         bool containsChords = false;
         public NoteElementList Notes { get { return notes; } }
 
-        private BrailleBuilder Format(BrailleBuilder line, ref bool isMainVoice)
-        {
-            return Format(line, ref isMainVoice, false); // Pasws on to the general signature.
-        }
+        //private BrailleBuilder Format(BrailleBuilder line, ref int nVoices)
+        //{
+        //    return Format(line, ref nVoices, false); // Pasws on to the general signature.
+        //}
 
         /// <summary>
-        /// General method for formatting each line, independently of wether the voice contains chords or not
+        /// General method for formatting a line representing a voice in InAccord representation, independently of wether the voice contains chords or not
+        /// The formatting consists of the adding of InAccord marks and MeasureSeparators at the right places.
         /// </summary>
-        /// <param name="line"></param>
-        /// <param name="isMainVoice"></param>
+        /// <param name="line">The Braille representation of the voice, but without InAccord marks and separators</param>
+        /// <param name="nNonEmptyVoices">The number of non-eppty voices handled until now in this BrailleInAccordSegment </param>
+        /// <param name="isFullMeasure">True iff the current segment is represents a full measure</param>
         /// <returns></returns>
-        private BrailleBuilder Format(BrailleBuilder line, ref bool isMainVoice, bool isFullMeasure)
+        private BrailleBuilder Format(BrailleBuilder line, ref int nNonEmptyVoices, bool isFullMeasure)
         {
             if (string.IsNullOrEmpty(line.ToBrailleString()))
             {
+                Logger.LogCF(string.Format(": Returned empty line"));
                 return line;
             }
             else
             {
                 BrailleBuilder result = BrailleBuilder.Create(line.TimeStamp);
-                if (isMainVoice)
+                if (0 == nNonEmptyVoices)
                 {
-                    isMainVoice = false; // The following lines (if any) are NOT the mainwoice
-                    if (isFullMeasure)
-                    {
-                        return line;
-                    }
-                    // In the Partmeasure case we must mark the start of the Part-measure In-Accord sequence by a  MeasureDivision sign (Danish "SkilleTegn")
-#warning todo: The  MeasureDivision sign is not needed immediately after a NewMeasure. Implement that!
-                    result.AddMeasureDivisionStart();
+                    Logger.LogCF(string.Format(": nVoices=0 Returned line"));
+                    nNonEmptyVoices++;              
+                    return line; // This is the first line. no mark added in front of id
+                }
+                else
+                {
+                    // This is not the first line. Add an InAccordMArk in front of it.
+                    // Use different symbols for 
+                    // "Full-Measure In-Accords" (Danish: "Stor Bistemme") and
+                    // "Part-Measure In-Accords" (Danish: "Lille Bistemme")
+                    // as described in Ref1: Chapter 11.1.1 and 11.1.2
+                    Logger.LogCF(string.Format(": nVoices={0} Returned InAccordMark and line",nNonEmptyVoices));
+                    result.AddInAccordMark(isFullMeasure);
                     result.Append(line);
+                    nNonEmptyVoices++;
                     return result;
                 }
-                // This is NOT the Main voice, so we must separate it from the Main Voice (or in general from the previous voice):
-
-                // Use different symbols for 
-                // "Full-Measure In-Accords" (Danish: "Stor Bistemme") and
-                // "Part-Measure In-Accords" (Danish: "Lille Bistemme")
-                // as described in Ref1: Chapter 11.1.1 and 11.1.2
-                result.AddInAccordMark(isFullMeasure); // Switch to this new implementation !!
-                result.Append(line);
-                return result;
             }
         }
 
@@ -80,14 +80,18 @@ namespace MusicXmlReaderModel
         /// <param name="userSettings"></param>
         /// <param name="isMainVoice"></param>
         /// <returns></returns>
-        public BrailleBuilder ToBraille(UserSettings userSettings,ref bool isMainVoice,bool isFullMeasure)
+        public BrailleBuilder ToBraille(UserSettings userSettings,ref int nVoices,bool isFullMeasure)
         {
             if (!this.containsChords)
             {
                 EventDescription eventDescription = notes.NoteElements[0].OwningEventDescription;
                 BrailleBuilder line = notes.ToBraille(userSettings, eventDescription);
-                return this.Format(line, ref isMainVoice);
+                return this.Format(line, ref nVoices, isFullMeasure);
             }
+
+            Utilities.Beep();
+            Logger.LogCF(": Contains chords! ******************************************************************");
+
             // If the voice contains chords we cannot use the simple version of ToBraille(). Instead:
             int measure = notes.NoteElements[0].OwningEventDescription.CurrentMeasureNumber;
             if (logInput) Logger.LogCF(string.Format(": Measure={0} P{1} S{2} V{3} {4} ", measure, part, staff, voice, notes.ToDebugString()));
@@ -159,7 +163,7 @@ namespace MusicXmlReaderModel
                 }
 #warning ToDo Find out what to do about the eventDescription parameter !!    
                 BrailleBuilder line = notes.ToBraille(userSettings, notes.NoteElements[0].OwningEventDescription); // Convert the line to Braille
-                result.Append(this.Format(line,ref isMainVoice, isFullMeasure)); // 
+                result.Append(this.Format(line,ref nVoices, isFullMeasure)); // 
                 if (logLines) Logger.LogCF(string.Format(": Measure={0} Row={1} {2}", measure, row, notes.ToDebugString(false)));
             }
 
