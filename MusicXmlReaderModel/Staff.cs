@@ -61,14 +61,14 @@ namespace MusicXmlReaderModel
                     if ((null == owningStaffList) || null == (owningStaffList.MetaInformation))
                     {
                         // We need the Metainformation in all cases, so start by checking if it is available:
-                        Utilities.Beep();
-                        Logger.LogCF(string.Format(": No metaInformation found. Returning ScoreTitle={0}", defaultResult));
+                        //Utilities.Beep();
+                        //Logger.LogCF(string.Format(": No metaInformation found. Returning ScoreTitle={0}", defaultResult));
                         return defaultResult;
                     }
                     MetaInformation metaInformation = owningStaffList.MetaInformation;
                     result = "";
 
-                    Logger.LogCF(": Check if MovementTitle.Value is usable");
+                    //Logger.LogCF(": Check if MovementTitle.Value is usable");
                     if (null != metaInformation.MovementTitle)
                     {
                         result = metaInformation.MovementTitle.Value;
@@ -76,7 +76,7 @@ namespace MusicXmlReaderModel
 
                     if (string.IsNullOrEmpty(result))
                     {
-                        Logger.LogCF(": Check if Work.Value is usable");
+                        //Logger.LogCF(": Check if Work.Value is usable");
                         if (null != metaInformation.Work)
                         {
                             result = metaInformation.Work.Value;
@@ -86,7 +86,7 @@ namespace MusicXmlReaderModel
 
                     if (string.IsNullOrEmpty(result))
                     {
-                        Logger.LogCF(": Check if FileName.Value is usable");
+                        //Logger.LogCF(": Check if FileName.Value is usable");
                         if ((null != metaInformation.FileName) && (null != metaInformation.FileName.Value))
                         {
                             string temp = owningStaffList.MetaInformation.FileName.Value;
@@ -98,11 +98,11 @@ namespace MusicXmlReaderModel
                     if (string.IsNullOrEmpty(result))
                     {
                         result = defaultResult;
-                        Logger.LogCF(string.Format(": No title found. Using Title={0}", result));                     
+                        //Logger.LogCF(string.Format(": No title found. Using Title={0}", result));                     
                     }
                     else
                     {
-                        Logger.LogCF(string.Format(": Title='{0}'", result));
+                        //Logger.LogCF(string.Format(": Title='{0}'", result));
                     }
   
                 }
