@@ -175,7 +175,7 @@ namespace BrailleMusicDecoder
                 case StateEnum.TextNumber:  allowedInputCategories = allowedInNumberStates | InputCategoryEnum.TextVersal | InputCategoryEnum.ToMusicBraille | InputCategoryEnum.ToWord; break;
                 case StateEnum.MusicNumber: allowedInputCategories = allowedInNumberStates | InputCategoryEnum.Accidental; break;
                 case StateEnum.Music:       allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Accidental | InputCategoryEnum.UnusualBarLine | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | AnyEnding | InputCategoryEnum.Hand | InputCategoryEnum.Beat; break;
-                case StateEnum.MusicNote:   allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Legato | InputCategoryEnum.UnusualBarLine | AnyEnding | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation | InputCategoryEnum.Interval | InputCategoryEnum.Accidental | InputCategoryEnum.OtherValues; break;
+                case StateEnum.MusicNote:   allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Slur | InputCategoryEnum.Tie | InputCategoryEnum.UnusualBarLine | AnyEnding | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation | InputCategoryEnum.Interval | InputCategoryEnum.Accidental | InputCategoryEnum.OtherValues; break;
                 default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
             }
 

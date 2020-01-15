@@ -45,6 +45,8 @@
                 case InputCategoryEnum.MeasureDivision: return "    'Skilletegn'";
                 case InputCategoryEnum.InAccordFullMeasure: return "'Stor  bistemme'";
                 case InputCategoryEnum.InAccordPartMeasure: return "'Lille bistemme'";
+                case InputCategoryEnum.Tie: return " 'Bindebue'";
+                case InputCategoryEnum.Slur: return " 'Legato'";
                 default: return "";
             }
 

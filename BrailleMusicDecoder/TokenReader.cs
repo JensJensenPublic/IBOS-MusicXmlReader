@@ -23,7 +23,7 @@ namespace BrailleMusicDecoder
         Clef = 0x8000,
         Space = 0x00010000,
         NewMeasure = 0x00020000,
-        Legato = 0x00400000,
+        Slur = 0x00400000, // English "slur" "Danish "Legato"  <> "Bindebue"
         UnusualBarLine = 0x00800000,
         FullEnd = 0x01000000,
         EndRepeat = 0x02000000,
@@ -35,6 +35,7 @@ namespace BrailleMusicDecoder
         // =                  0x80000000 // Unused
         HalfEnd = 0x100000000,  
         ToText = 0x2000000000, // Transition from MusicBraille to TextBraille
+        Tie = 0x400000000, // Danish "Bindebue" <> "Legato"
         // 0x8000000000000000 can not be used because this enum type is based on positive 64 bit values.
     }
 
@@ -300,7 +301,7 @@ namespace BrailleMusicDecoder
             // Add some simple obe-character tokens if present
             allInputInterpretations.Add(thisValue, (dot3 | dot4 | dot5 | dot6),  InputCategoryEnum.ToNumber);
             allInputInterpretations.Add(thisValue, (dot3 | dot4 | dot5), InputCategoryEnum.ToWord);
-            allInputInterpretations.Add(thisValue, (dot1 | dot4), InputCategoryEnum.Legato); 
+            allInputInterpretations.Add(thisValue, (dot1 | dot4), InputCategoryEnum.Slur);
             allInputInterpretations.Add(thisValue, noDots, InputCategoryEnum.Space);
             allInputInterpretations.Add(thisValue, noDots, InputCategoryEnum.NewMeasure);            
             allInputInterpretations.Add(thisValue, (dot1 | dot2 | dot3), InputCategoryEnum.UnusualBarLine); 
@@ -351,6 +352,9 @@ namespace BrailleMusicDecoder
             }
 
             // Now follows interpretations based on more than a single Braille character
+
+            // The tie, Danish "Bindebue". Differs from the slur, Danish "Legatobue" 
+            allInputInterpretations.Add(rawValues,new IntegerList(dot4 ,  (dot1 | dot4)), InputCategoryEnum.Tie); // Refsnæs chapter 4
 
             // Endings
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot1 | dot3)), InputCategoryEnum.FullEnd, ""); // Refsnæs 1, Chapter 6
