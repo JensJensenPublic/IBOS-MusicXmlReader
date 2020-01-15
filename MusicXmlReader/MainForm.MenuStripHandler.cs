@@ -95,13 +95,22 @@ namespace MusicXmlReader
 
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
-            openFileDialog.ShowDialog();
+            DialogResult dialogResult = openFileDialog.ShowDialog();
 
             // The dialog has focus on the textbox for entering the file name.
             // Press <shift> <tab> twice to focus on the first line in the selection listbox.
+            switch (dialogResult)
+            {
+                case DialogResult.OK: break;
+                default:
+                    Logger.LogCF(string.Format(": User cancelled FileOpenDialog with dialogResult={0}", dialogResult.ToString()));
+                    return false;
+            }
+
 
             if (string.IsNullOrEmpty(openFileDialog.FileName))
             {
+                Logger.LogCF(string.Format(": User entered filename, which was null or empty"));
                 return false; // Let the user press ESC without warning him
             }
 
@@ -109,8 +118,8 @@ namespace MusicXmlReader
 
             // Save User settings for currently loaded file (if any) immediately before clearing the UI:
 
-            model.SaveUserSettings();
-            this.SaveUserMusicXmlFileInfo();
+            model.SaveUserSettings(); // Save score-specific settings for the PREVIOUS file
+            this.SaveUserMusicXmlFileInfo(); // Save the full path to the file just selected by user.
 
             // Clear all UI BEFORE starting the time consuming Load operation:
             ClearUI();
