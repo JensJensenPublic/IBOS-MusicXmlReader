@@ -11,6 +11,7 @@ namespace MusicXmlReaderModel
 
         public static void ResetMusicBrailleState()
         {
+            // Logger.LogCF("");
             NeedOctaveMark(initalValue, initalValue);
         }
 

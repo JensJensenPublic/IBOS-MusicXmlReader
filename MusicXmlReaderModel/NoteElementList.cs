@@ -128,6 +128,7 @@ namespace MusicXmlReaderModel
                     bool fromTop = (userSettings.SelectedStaffs != null) && (userSettings.SelectedStaffs[0].FromTop); // The first selected staff decides
                     if (bb.AdIntervalNotation(selectedNotes, statusInformation, addNotations, fromTop))
                     {
+                        MusicBrailleState.ResetMusicBrailleState(); // Be sure to add an octave mark to the next note
                         return bb;
                     }
                     else
