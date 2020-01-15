@@ -41,7 +41,7 @@ namespace MusicXmlReaderModel
         {
             if (string.IsNullOrEmpty(line.ToBrailleString()))
             {
-                Logger.LogCF(string.Format(": Returned empty line"));
+                //Logger.LogCF(string.Format(": Returned empty line"));
                 return line;
             }
             else
@@ -49,7 +49,7 @@ namespace MusicXmlReaderModel
                 BrailleBuilder result = BrailleBuilder.Create(line.TimeStamp);
                 if (0 == nNonEmptyVoices)
                 {
-                    Logger.LogCF(string.Format(": nVoices=0 Returned line"));
+                    //Logger.LogCF(string.Format(": nVoices=0 Returned line"));
                     nNonEmptyVoices++;              
                     return line; // This is the first line. no mark added in front of id
                 }
@@ -60,7 +60,7 @@ namespace MusicXmlReaderModel
                     // "Full-Measure In-Accords" (Danish: "Stor Bistemme") and
                     // "Part-Measure In-Accords" (Danish: "Lille Bistemme")
                     // as described in Ref1: Chapter 11.1.1 and 11.1.2
-                    Logger.LogCF(string.Format(": nVoices={0} Returned InAccordMark and line",nNonEmptyVoices));
+                    //Logger.LogCF(string.Format(": nVoices={0} Returned InAccordMark and line",nNonEmptyVoices));
                     result.AddInAccordMark(isFullMeasure);
                     result.Append(line);
                     nNonEmptyVoices++;
@@ -89,8 +89,8 @@ namespace MusicXmlReaderModel
                 return this.Format(line, ref nVoices, isFullMeasure);
             }
 
-            Utilities.Beep();
-            Logger.LogCF(": Contains chords! ******************************************************************");
+            //Utilities.Beep();
+            //Logger.LogCF(": Contains chords! ******************************************************************");
 
             // If the voice contains chords we cannot use the simple version of ToBraille(). Instead:
             int measure = notes.NoteElements[0].OwningEventDescription.CurrentMeasureNumber;
