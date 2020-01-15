@@ -339,13 +339,37 @@ namespace MusicXmlReaderModel
             }
 
 
+            // Add any tie
+            byte[] tieMark = new byte[] { };
+            string tieText = "";
+            if (noteElement.TieStart)
+            {
+                tieMark = BrailleBuilder.Tie;
+                tieText = "Tie";
+            }
+
+            byte[] slurMark = new byte[] { };
+            string slurText = "";
+            // Add any slur
+            if (noteElement.SlurStart)
+            {
+                slurMark = new byte[] {BrailleBuilder.Slur };
+                slurText = "Slur";
+            }
+
+
             // Logger.LogCF(string.Format("Semitones={0} {1}", semiTones, s));
             Append(accidentalMark); // Add any accidential, preceding the octave mark
             Append(octaveMark); // The octave mark prececes the interval
             Append(bytes);
+            Append(tieMark); // The tie follows the note
+            Append(slurMark); // The slur follows the note
             AppendText(accidentalText); // Add any accidential, preceding the octave mark
             AppendText(string.Format(" {0}", octaveMarkText)); // The octave mark prececes the interval
             AppendText(string.Format("{0}", s));
+            AppendText(string.Format("{0}", tieText));
+            AppendText(string.Format("{0}", slurText));
+
         }
 
 
@@ -391,7 +415,12 @@ namespace MusicXmlReaderModel
 
             // Now generate the Braille representation for the List<NoteElement>
             AppendText("[");
-            this.AddNote(noteElements[0], statusInformation.CurrentKeyElement); // Add the "Origin" noteelement as usual
+
+            NoteElement initialNoteElement = noteElements[0];
+            if (addNotations) this.AddBrailleNotationsBeforeNoteOrRest(initialNoteElement.Notations); // Some notations are added Before the note/rest itself 
+            this.AddNote(initialNoteElement, statusInformation.CurrentKeyElement); // Add the "Origin" noteelement as usual
+            if (addNotations) this.AddBrailleNotationsAfterNoteOrRest(initialNoteElement.Notations); // Some notations are added After the note/rest itself                       
+
             for (int i = 1; (i < noteElements.Count); i++)
             {
                 this.AddIntervalV2(noteElements[i], noteElements[0]); // Based on BANA 2015 chapter 9 and comments from Lars, but using fullsteps.

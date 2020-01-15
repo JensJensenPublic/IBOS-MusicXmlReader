@@ -537,6 +537,17 @@ namespace MusicXmlReaderModel
             }
         }
 
+
+        public bool SlurStart
+        {
+            get
+            {
+                if (null == Notations) return false;
+                if (null == Notations.SlurElement) return false;
+                return (StartStopContinueElement.StartStopContinueTypeEnum.Start == Notations.SlurElement.StartStopContinueType);
+            }
+        }
+
         public AccidentalElement AccidentalElement
         {
             get
