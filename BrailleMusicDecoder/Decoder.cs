@@ -144,7 +144,7 @@ namespace BrailleMusicDecoder
             }
             if (forcedNewState != state)
             {      
-                Log(string.Format("StartIndex={0} Forcing Statechange from {1} for {2}***********************************************************************************", startIndex, state, forcedNewState, options.ToString()));
+                Log(string.Format("StartIndex={0} Forcing Statechange from {1} for {2}***********************************************************************************", startIndex, state, forcedNewState));
                 state = forcedNewState;
             }
 
@@ -304,7 +304,7 @@ namespace BrailleMusicDecoder
 
             string newStateText = (state != newState) ? string.Format("NewState={0} ", newState) : "";
         
-            Log(string.Format("{0,5} State={1,-15} Input={1}(i={3,02}) Result='{4}' {5} ", startIndex, state.ToString(), inputAsUnicode, thisValue, result, newStateText));
+            Log(string.Format("{0,5} State={1,-15} Input={2}(i={3,02}) Result='{4}' {5} ", startIndex, state.ToString(), inputAsUnicode, thisValue, result, newStateText));
 
             if (newState != state)
             {

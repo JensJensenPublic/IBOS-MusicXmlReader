@@ -268,11 +268,11 @@ public void Evaluate()
                         Format(baseString,tupleFractions);
 
                         AddOwner(allOwners, previousEventDescription, previousNoteElement); //  For debugging only !
-
+#if false
                         string logMessage = "The position could NOT be expressed as a MeasureNumber plus a BeatNumber plus a simple fraction";
-                        // Logger.LogCF(string.Format(": {0} in '{1}' this.stringRepresentation='{2}' ", logMessage, Logger.CurrentMusicXmlFile, this.stringRepresentation));
-                        // Logger.LogCFOnce(string.Format(": {0} in '{1}' ", logMessage , Logger.CurrentMusicXmlFile));
-
+                        Logger.LogCF(string.Format(": {0} in '{1}' this.stringRepresentation='{2}' ", logMessage, Logger.CurrentMusicXmlFile, this.stringRepresentation));
+                        Logger.LogCFOnce(string.Format(": {0} in '{1}' ", logMessage , Logger.CurrentMusicXmlFile));
+#endif
                     }
                 }
                 Log(allOwners, eventDescription); // For debugging only !!
