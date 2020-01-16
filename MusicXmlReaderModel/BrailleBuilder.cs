@@ -446,7 +446,7 @@ namespace MusicXmlReaderModel
                 (
                     (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Start)
                 ||  (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Continue)
-                ||  (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop)                    
+//                ||  (notations.SlurElement.StartStopContinueType == StartStopContinueElement.StartStopContinueTypeEnum.Stop)    // Removed according to similar removal for TiedElement                 
                 )               
                 Append(Slur, "Slur");
             }
