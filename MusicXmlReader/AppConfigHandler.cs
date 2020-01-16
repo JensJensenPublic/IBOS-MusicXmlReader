@@ -8,16 +8,12 @@ namespace MusicXmlReader
     static public class AppConfigHandler
     {
         public enum KeyEnum
-        { Unknown,
-            // MuseScoreExe, // Now through userSettingsHandler
-            // SibeliusExe, // Now through userSettingsHandler
+        {
+            Unknown,
             DeveloperCulture,
             DeveloperMode,
             ExperimentalCode,
             HandleGraphics,
-            //EmbosserCharactersPerLine ,
-            //EmbosserLinesPerPage,
-            IBPrintExe
         }
 
         /// <summary>
@@ -30,15 +26,10 @@ namespace MusicXmlReader
             switch (key)
             {
                 case KeyEnum.Unknown: return "";
-                //case KeyEnum.SibeliusExe: return "SibeliusExe"; // Now through userSettingsHandler
-                //case KeyEnum.MuseScoreExe: return "MuseScoreExe"; // Now through userSettingsHandler
                 case KeyEnum.DeveloperCulture: return "DeveloperCulture";
                 case KeyEnum.DeveloperMode: return "DeveloperMode";
                 case KeyEnum.ExperimentalCode: return "ExperimentalCode";
                 case KeyEnum.HandleGraphics: return "HandleGraphics";
-                //case KeyEnum.EmbosserCharactersPerLine: return "EmbosserCharactersPerLine";
-                //case KeyEnum.EmbosserLinesPerPage: return "EmbosserLinesPerPage";
-                case KeyEnum.IBPrintExe: return "IBPrintExe";
                 default: return null;
             }
         }
