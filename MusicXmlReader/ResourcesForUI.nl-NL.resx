@@ -307,13 +307,13 @@
     <value>Bestandsformaat wordt niet ondersteund</value>
   </data>
   <data name="ToolsStripMenuItem_Archives" xml:space="preserve">
-    <value>&amp;noot-archieven</value>
+    <value>XML-bibliotheken</value>
   </data>
   <data name="ToolsStripMenuItem_View_Instruments" xml:space="preserve">
-    <value>&amp;details instrumenten</value>
+    <value>&amp;details MIDI instrumenten</value>
   </data>
   <data name="ToolStripMenuItem_Edit" xml:space="preserve">
-    <value>&amp;wijzigen</value>
+    <value>&amp;wijzig</value>
   </data>
   <data name="ToolStripMenuItem_Files" xml:space="preserve">
     <value>&amp;bestanden</value>
@@ -335,7 +335,7 @@
     <comment>Exit in dutch: sluiten</comment>
   </data>
   <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
-    <value>E&amp;xporteer Music braille naar bestand</value>
+    <value>E&amp;xporteer Braille muziek </value>
   </data>
   <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
     <value>Importeer downloads</value>
@@ -346,7 +346,7 @@
     <comment>Import only today's downloads</comment>
   </data>
   <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
-    <value>Importeer de nieuwste geluidsfragmenten</value>
+    <value>Importeer de nieuwste Muziek XML bestanden</value>
   </data>
   <data name="ToolStripMenuItem_Files_InOptionalFormat" xml:space="preserve">
     <value>in formaat naar keuze</value>
@@ -390,14 +390,14 @@
     <value />
   </data>
   <data name="ToolStripMenuItem_Tools" xml:space="preserve">
-    <value>bewerken</value>
+    <value>bewerk</value>
     <comment>things as copy, paste, delete, insert</comment>
   </data>
   <data name="ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern" xml:space="preserve">
     <value>Maak braillemuziek testpatroon</value>
   </data>
   <data name="ToolStripMenuItem_Tools_InspectAsXml" xml:space="preserve">
-    <value>Muziekbraille als onbewerkt XML bestand</value>
+    <value>Braillemuziek als onbewerkt XML bestand</value>
   </data>
   <data name="ToolStripMenuItem_Tools_JAWS_Settings" xml:space="preserve">
     <value>&amp;JAWS instellingen</value>
@@ -413,7 +413,7 @@
     <comment>name of Programm (not to be translated)</comment>
   </data>
   <data name="ToolStripMenuItem_Tools_OpenXmlFileLocation" xml:space="preserve">
-    <value>MusicXML bestandslocatie</value>
+    <value>Locatie Muziek XML bestand</value>
   </data>
   <data name="ToolStripMenuItem_Tools_SaveAsText" xml:space="preserve">
     <value>Opslaan als tekst</value>
@@ -423,10 +423,10 @@
     <comment>name of Programm (not to be translated)</comment>
   </data>
   <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
-    <value>&amp;gebruikdrsinstellingen</value>
+    <value>&amp;Gebruikersinstellingen</value>
   </data>
   <data name="ToolStripMenuItem_Tools_ViewAsInterpretedXml" xml:space="preserve">
-    <value>Bekijk MusicXML-bestand als geinterpreteerd XML</value>
+    <value>Braillemuziek als geinterpreteerd XML bestand</value>
     <comment>intrerpreted is almost a dutch wordrd</comment>
   </data>
   <data name="ToolStripMenuItem_View" xml:space="preserve">
@@ -440,19 +440,19 @@
     <comment>filter is in dutch the same as in englisch</comment>
   </data>
   <data name="TreeView_All_Items" xml:space="preserve">
-    <value>Alle gefilterde items</value>
+    <value>Alle items</value>
   </data>
   <data name="TreeView_CheckAll" xml:space="preserve">
-    <value>1. Controleer alles</value>
+    <value>1. Alles selecteren</value>
   </data>
   <data name="TreeView_CheckOthers" xml:space="preserve">
-    <value>Controleer andere delen of details</value>
+    <value>Selecteren andere delen of details</value>
   </data>
   <data name="Treeview_for" xml:space="preserve">
     <value>voor</value>
   </data>
   <data name="TreeView_MusicAsBraille" xml:space="preserve">
-    <value>als muziekbraille</value>
+    <value>BrailleMuziek</value>
   </data>
   <data name="TreeView_MusicAsBraille_Details" xml:space="preserve">
     <value>details</value>
@@ -461,7 +461,7 @@
     <value>delen</value>
   </data>
   <data name="TreeView_MusicAsSound" xml:space="preserve">
-    <value>als geluid</value>
+    <value>Geluid</value>
     <comment>we think it is the representation in sound</comment>
   </data>
   <data name="TreeView_MusicAsSound_Details" xml:space="preserve">
@@ -471,14 +471,14 @@
     <value>delen</value>
   </data>
   <data name="TreeView_MusicAsSpeech" xml:space="preserve">
-    <value>als  gesproken tekst</value>
+    <value>Gesproken tekst</value>
     <comment>as tekst spoken</comment>
   </data>
   <data name="TreeView_MusicAsSpeech_Details" xml:space="preserve">
     <value>details</value>
   </data>
   <data name="TreeView_MusicAsSpeech_Parts" xml:space="preserve">
-    <value>delen</value>
+    <value>Partijen</value>
   </data>
   <data name="TreeView_UncheckAll" xml:space="preserve">
     <value>alle selecties ongedaan maken</value>
@@ -487,7 +487,7 @@
     <value>andere delen of details ongedaan worden</value>
   </data>
   <data name="TreeWiew_Items" xml:space="preserve">
-    <value>filter onderdeln</value>
+    <value>Alle geselecteerde items</value>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
     <value>Open MusicXml file from recent location</value>
@@ -497,8 +497,7 @@
     <value>Open</value>
   </data>
   <data name="ToolStripMenuItem_Settings" xml:space="preserve">
-    <value>&amp;Settings</value>
-    <comment>JSJ: NEW: MISSING</comment>
+    <value>&amp;Instillingen</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Capella" xml:space="preserve">
     <value>Capella</value>
@@ -521,5 +520,32 @@
   <data name="BrailleDevice_NoteTakerName" xml:space="preserve">
     <value>NoteTaker</value>
     <comment>NL MISSING</comment>
+  </data>
+  <data name="ToolStripMenuItem_Files_CopyMusicBraille" xml:space="preserve">
+    <value>Kopieer Braille muziek bestand naar Braille apparaat met Windows Verkenner</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
+    <value>Print Braille muziek bestand</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_Print_using_External" xml:space="preserve">
+    <value>Met extern programma</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_Print_via_Windows" xml:space="preserve">
+    <value>met Windows printprogramma</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToGenericDevice" xml:space="preserve">
+    <value>Naar algemeen Braille apparaat</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_Embosser" xml:space="preserve">
+    <value>Instellingen voor braille printer</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_MusicBraille" xml:space="preserve">
+    <value>Instellingen voor algemeen braille apparaat</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_NoteTaker" xml:space="preserve">
+    <value>Instellingen voor Notetaker</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_ResetAll" xml:space="preserve">
+    <value>Zet alle instellingen naar standaardwaarden</value>
   </data>
 </root>

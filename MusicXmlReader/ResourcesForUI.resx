@@ -501,23 +501,18 @@
   </data>
   <data name="ToolStripMenuItem_Files_CopyMusicBraille" xml:space="preserve">
     <value>&amp;Copy Music Braille file to Braille-device using Windows Explorer</value>
-    <comment>MISSING NL</comment>
   </data>
   <data name="ToolStripMenuItem_Files_Print_using_External" xml:space="preserve">
     <value>via external program</value>
-    <comment>MISSING NL</comment>
   </data>
   <data name="ToolStripMenuItem_Files_Print_via_Windows" xml:space="preserve">
     <value>via Windows Print-dialog</value>
-    <comment>MISSING NL</comment>
   </data>
   <data name="ToolStripMenuItem_Files_ToGenericDevice" xml:space="preserve">
     <value>To universal Braille-device</value>
-    <comment>MISSING NL</comment>
   </data>
   <data name="ToolStripMenuItem_Settings_Embosser" xml:space="preserve">
     <value>Settings for &amp;embosser profile</value>
-    <comment>MISSING NL</comment>
   </data>
   <data name="ToolStripMenuItem_Settings_General" xml:space="preserve">
     <value>&amp;General settings</value>
@@ -525,15 +520,12 @@
   </data>
   <data name="ToolStripMenuItem_Settings_MusicBraille" xml:space="preserve">
     <value>Settings for &amp;universal Braille-device profile</value>
-    <comment>MISSING NL</comment>
   </data>
   <data name="ToolStripMenuItem_Settings_NoteTaker" xml:space="preserve">
     <value>Settings for &amp;notetaker profile</value>
-    <comment>MISSING NL</comment>
   </data>
   <data name="ToolStripMenuItem_Settings_ResetAll" xml:space="preserve">
     <value>Reset all settings to default</value>
-    <comment>MISSING NL</comment>
   </data>
   <data name="Message_Directory" xml:space="preserve">
     <value>Directory</value>
