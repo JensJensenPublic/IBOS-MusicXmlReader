@@ -136,7 +136,7 @@
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
-            this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -557,7 +557,7 @@
             this.openLogFileLocationToolStripMenuItem,
             this.openXMLFileLocationToolStripMenuItem,
             this.inspectAsXMLToolStripMenuItem,
-            this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem,
+            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem,
             this.viewAsInterpretedXMLToolStripMenuItem,
             this.jAWSSettingsToolStripMenuItem,
             this.userSettingsToolStripMenuItem,
@@ -1024,10 +1024,10 @@
             // 
             // musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem
             // 
-            this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem.Name = "musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem";
-            this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
-            this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem.Text = "MusicXml file as raw XML using Google Chrome";
-            this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem.Click += new System.EventHandler(this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem_Click);
+            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Name = "musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem";
+            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Text = "MusicXml file as raw XML using Google Chrome";
+            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Click += new System.EventHandler(this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1168,7 +1168,7 @@
         private System.Windows.Forms.ToolStripMenuItem copyMusicBrailleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startCapellaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startFinaleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inspectAsXMLUsingGoogleChromeToolStripMenuItem;
     }
 }
 

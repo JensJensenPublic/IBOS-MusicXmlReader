@@ -128,6 +128,8 @@ namespace MusicXmlReader
             openXMLFileLocationToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_OpenXmlFileLocation;
             openLogFileLocationToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Logfile_Location;
             inspectAsXMLToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_InspectAsXml;
+            inspectAsXMLUsingGoogleChromeToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_InspectAsXml_Using_Chrome;
+            
             viewAsInterpretedXMLToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_ViewAsInterpretedXml;
             jAWSSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_JAWS_Settings;
             userSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_User_Settings;

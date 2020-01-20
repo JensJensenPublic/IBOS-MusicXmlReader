@@ -397,7 +397,7 @@
     <value>Maak braillemuziek testpatroon</value>
   </data>
   <data name="ToolStripMenuItem_Tools_InspectAsXml" xml:space="preserve">
-    <value>Braillemuziek als onbewerkt XML bestand</value>
+    <value>Braillemuziek als onbewerkt XML</value>
   </data>
   <data name="ToolStripMenuItem_Tools_JAWS_Settings" xml:space="preserve">
     <value>&amp;JAWS instellingen</value>
@@ -426,7 +426,7 @@
     <value>&amp;Gebruikersinstellingen</value>
   </data>
   <data name="ToolStripMenuItem_Tools_ViewAsInterpretedXml" xml:space="preserve">
-    <value>Braillemuziek als geinterpreteerd XML bestand</value>
+    <value>Braillemuziek als geinterpreteerd XML</value>
     <comment>intrerpreted is almost a dutch wordrd</comment>
   </data>
   <data name="ToolStripMenuItem_View" xml:space="preserve">
@@ -547,5 +547,8 @@
   </data>
   <data name="ToolStripMenuItem_Settings_ResetAll" xml:space="preserve">
     <value>Zet alle instellingen naar standaardwaarden</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_InspectAsXml_Using_Chrome" xml:space="preserve">
+    <value>Braillemuziek als onbewerkt XML (Google Chrome)</value>
   </data>
 </root>
