@@ -551,4 +551,28 @@
   <data name="ToolStripMenuItem_Tools_InspectAsXml_Using_Chrome" xml:space="preserve">
     <value>Braillemuziek als onbewerkt XML (Google Chrome)</value>
   </data>
+  <data name="Message_Files" xml:space="preserve">
+    <value>bestanden</value>
+  </data>
+  <data name="Message_File_EmbossedMusicBrailleFile" xml:space="preserve">
+    <value>Geprinted Braille muziekbestand</value>
+  </data>
+  <data name="Message_File_ErrorMessage" xml:space="preserve">
+    <value>Foutmelding</value>
+  </data>
+  <data name="Message_File_ExternalProgramNotFound" xml:space="preserve">
+    <value>Externe programma is niet gevonden</value>
+  </data>
+  <data name="Message_File_FailedToEmbossFileOn" xml:space="preserve">
+    <value>Geen printbestand gevonden bij deze bestandsnaam</value>
+  </data>
+  <data name="Message_File_OnEmbosser" xml:space="preserve">
+    <value>op de printer</value>
+  </data>
+  <data name="Message_File_PleaseEnterValidPathIn" xml:space="preserve">
+    <value>Voer alstublieft het juiste pad in bij de bestanden</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_General" xml:space="preserve">
+    <value>Al&amp;gemene instellingen</value>
+  </data>
 </root>

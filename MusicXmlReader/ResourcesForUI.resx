@@ -516,7 +516,6 @@
   </data>
   <data name="ToolStripMenuItem_Settings_General" xml:space="preserve">
     <value>&amp;General settings</value>
-    <comment>MISSING NL</comment>
   </data>
   <data name="ToolStripMenuItem_Settings_MusicBraille" xml:space="preserve">
     <value>Settings for &amp;universal Braille-device profile</value>
@@ -541,7 +540,7 @@
   </data>
   <data name="Message_Files" xml:space="preserve">
     <value>Files</value>
-    <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
+    <comment>This text should be generally usable for all messageboxes !</comment>
   </data>
   <data name="Message_Succeeded" xml:space="preserve">
     <value>succeeded</value>
@@ -552,15 +551,12 @@
   </data>
   <data name="Message_File_EmbossedMusicBrailleFile" xml:space="preserve">
     <value>Embossed Music Braille file</value>
-    <comment>NL MISSING</comment>
   </data>
   <data name="Message_File_ErrorMessage" xml:space="preserve">
     <value>Error message</value>
-    <comment>NL MISSING</comment>
   </data>
   <data name="Message_File_FailedToEmbossFileOn" xml:space="preserve">
     <value>Failed to emboss file on</value>
-    <comment>NL MISSING</comment>
   </data>
   <data name="Message_File_FileName" xml:space="preserve">
     <value>Filename</value>
@@ -568,7 +564,6 @@
   </data>
   <data name="Message_File_OnEmbosser" xml:space="preserve">
     <value>on embosser</value>
-    <comment>NL MISSING</comment>
   </data>
   <data name="Message_Settings_DoYouReallyWantToReset" xml:space="preserve">
     <value>Do you really want to reset all settings to default values?</value>
@@ -576,11 +571,9 @@
   </data>
   <data name="Message_File_ExternalProgramNotFound" xml:space="preserve">
     <value>External program not found</value>
-    <comment>NL MISSING</comment>
   </data>
   <data name="Message_File_PleaseEnterValidPathIn" xml:space="preserve">
     <value>Please enter the valid path in</value>
-    <comment>NL MISSING</comment>
   </data>
   <data name="ToolStripMenuItem_Tools_Capella" xml:space="preserve">
     <value>Capella</value>
