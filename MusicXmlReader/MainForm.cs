@@ -77,6 +77,7 @@ namespace MusicXmlReader
            
                 textBoxScreenReader.Hide(); // This textbox gets Focus used during long-lasting operation and thus draws the Screenreaders attensio to itself, avoiding too much Speech !
                 LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
+                HideDeveloperItems(developerMode);
                 textBoxStatusInformation.AccessibleName = ResourcesForUI.StatusLine_Accessible_Name; // Overwrite with localized text
  
 
@@ -141,6 +142,14 @@ namespace MusicXmlReader
             }
         }
 
+        private void HideDeveloperItems(bool developerMode)
+        {
+            if (developerMode) return; // Everything visible
+            generateGraphicInformationToolStripMenuItem.Visible = false;
+            interpretFileAsBrailleMusicToolStripMenuItem.Visible = false;
+            userPreferencesLocationToolStripMenuItem.Visible = false;
+            generateMusicBrailleTestpatternToolStripMenuItem.Visible = false;
+        }
 
         /// <summary>
         /// Postpones the reporting of messages generated during the initialisation of Mainform 
