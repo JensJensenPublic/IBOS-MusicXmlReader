@@ -115,9 +115,9 @@ namespace MusicXmlReaderModel
             //ReadTempFileByNotepad(fileName);
         }
 
-        public void ReadMusicXmlFile(string theMusicXmlFileName)
+        public void ReadMusicXmlFile(string browserName,string theMusicXmlFileName)
         {
-            Utilities.RunExeWithFileArgument("iexplore.exe", theMusicXmlFileName);
+            Utilities.RunExeWithFileArgument(browserName, theMusicXmlFileName);
         }
 
         public void ReadUserSettingsXmlFile(string fileName)

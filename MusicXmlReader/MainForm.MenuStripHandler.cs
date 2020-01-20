@@ -516,7 +516,12 @@ namespace MusicXmlReader
 
         private void inspectAsXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadMusicXmlFile(model.TheMusicXmlFileName);
+            model.ExternalToolsHandler.ReadMusicXmlFile("iexplore.exe", model.TheMusicXmlFileName);
+        }
+
+        private void musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.ReadMusicXmlFile("chrome.exe", model.TheMusicXmlFileName);
         }
 
         private void userSettingsToolStripMenuItem_Click(object sender, EventArgs e)

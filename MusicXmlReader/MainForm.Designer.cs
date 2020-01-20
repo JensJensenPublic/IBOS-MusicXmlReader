@@ -136,6 +136,7 @@
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
+            this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -267,21 +268,21 @@
             // txtOctoBraille1252ToolStripMenuItem
             // 
             this.txtOctoBraille1252ToolStripMenuItem.Name = "txtOctoBraille1252ToolStripMenuItem";
-            this.txtOctoBraille1252ToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.txtOctoBraille1252ToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.txtOctoBraille1252ToolStripMenuItem.Text = ".txt (OctoBraille 1252)";
             this.txtOctoBraille1252ToolStripMenuItem.Click += new System.EventHandler(this.txtOctoBraille1252ToolStripMenuItem_Click);
             // 
             // brfASCIIToolStripMenuItem1
             // 
             this.brfASCIIToolStripMenuItem1.Name = "brfASCIIToolStripMenuItem1";
-            this.brfASCIIToolStripMenuItem1.Size = new System.Drawing.Size(186, 22);
+            this.brfASCIIToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
             this.brfASCIIToolStripMenuItem1.Text = ".brf (ASCII)";
             this.brfASCIIToolStripMenuItem1.Click += new System.EventHandler(this.brfASCIIToolStripMenuItem1_Click);
             // 
             // brfUnicodeToolStripMenuItem1
             // 
             this.brfUnicodeToolStripMenuItem1.Name = "brfUnicodeToolStripMenuItem1";
-            this.brfUnicodeToolStripMenuItem1.Size = new System.Drawing.Size(186, 22);
+            this.brfUnicodeToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
             this.brfUnicodeToolStripMenuItem1.Text = ".brf (Unicode)";
             this.brfUnicodeToolStripMenuItem1.Click += new System.EventHandler(this.brfUnicodeToolStripMenuItem1_Click);
             // 
@@ -299,7 +300,7 @@
             // 
             this.viaWindowsPrintDialogToolStripMenuItem.Name = "viaWindowsPrintDialogToolStripMenuItem";
             this.viaWindowsPrintDialogToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.viaWindowsPrintDialogToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
+            this.viaWindowsPrintDialogToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
             this.viaWindowsPrintDialogToolStripMenuItem.Text = "using Windows Print dialog";
             this.viaWindowsPrintDialogToolStripMenuItem.Click += new System.EventHandler(this.viaWindowsPrintDialogToolStripMenuItem_Click);
             // 
@@ -308,7 +309,7 @@
             this.usingExternalProgramToolStripMenuItem.Name = "usingExternalProgramToolStripMenuItem";
             this.usingExternalProgramToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.P)));
-            this.usingExternalProgramToolStripMenuItem.Size = new System.Drawing.Size(269, 22);
+            this.usingExternalProgramToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
             this.usingExternalProgramToolStripMenuItem.Text = "using external program";
             this.usingExternalProgramToolStripMenuItem.Click += new System.EventHandler(this.usingExternalProgramToolStripMenuItem_Click);
             // 
@@ -556,6 +557,7 @@
             this.openLogFileLocationToolStripMenuItem,
             this.openXMLFileLocationToolStripMenuItem,
             this.inspectAsXMLToolStripMenuItem,
+            this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem,
             this.viewAsInterpretedXMLToolStripMenuItem,
             this.jAWSSettingsToolStripMenuItem,
             this.userSettingsToolStripMenuItem,
@@ -564,97 +566,97 @@
             this.interpretFileAsBrailleMusicToolStripMenuItem,
             this.userPreferencesLocationToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 22);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // museScoreToolStripMenuItem
             // 
             this.museScoreToolStripMenuItem.Name = "museScoreToolStripMenuItem";
-            this.museScoreToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.museScoreToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.museScoreToolStripMenuItem.Text = "Start MuseScore";
             this.museScoreToolStripMenuItem.Click += new System.EventHandler(this.museScoreToolStripMenuItem_Click);
             // 
             // sibeliusToolStripMenuItem
             // 
             this.sibeliusToolStripMenuItem.Name = "sibeliusToolStripMenuItem";
-            this.sibeliusToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.sibeliusToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.sibeliusToolStripMenuItem.Text = "Start Sibelius";
             this.sibeliusToolStripMenuItem.Click += new System.EventHandler(this.sibeliusToolStripMenuItem_Click);
             // 
             // startCapellaToolStripMenuItem
             // 
             this.startCapellaToolStripMenuItem.Name = "startCapellaToolStripMenuItem";
-            this.startCapellaToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.startCapellaToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.startCapellaToolStripMenuItem.Text = "Start Capella";
             this.startCapellaToolStripMenuItem.Click += new System.EventHandler(this.startCapellaToolStripMenuItem_Click);
             // 
             // startFinaleToolStripMenuItem
             // 
             this.startFinaleToolStripMenuItem.Name = "startFinaleToolStripMenuItem";
-            this.startFinaleToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.startFinaleToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.startFinaleToolStripMenuItem.Text = "Start Finale";
             this.startFinaleToolStripMenuItem.Click += new System.EventHandler(this.startFinaleToolStripMenuItem_Click);
             // 
             // logfileToolStripMenuItem
             // 
             this.logfileToolStripMenuItem.Name = "logfileToolStripMenuItem";
-            this.logfileToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.logfileToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.logfileToolStripMenuItem.Text = "Log file";
             this.logfileToolStripMenuItem.Click += new System.EventHandler(this.logfileToolStripMenuItem_Click);
             // 
             // openLogFileLocationToolStripMenuItem
             // 
             this.openLogFileLocationToolStripMenuItem.Name = "openLogFileLocationToolStripMenuItem";
-            this.openLogFileLocationToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.openLogFileLocationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.openLogFileLocationToolStripMenuItem.Text = "Log file location";
             this.openLogFileLocationToolStripMenuItem.Click += new System.EventHandler(this.openLogFileLocationToolStripMenuItem_Click);
             // 
             // openXMLFileLocationToolStripMenuItem
             // 
             this.openXMLFileLocationToolStripMenuItem.Name = "openXMLFileLocationToolStripMenuItem";
-            this.openXMLFileLocationToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.openXMLFileLocationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.openXMLFileLocationToolStripMenuItem.Text = "MusicXml file location";
             this.openXMLFileLocationToolStripMenuItem.Click += new System.EventHandler(this.openXMLFileLocationToolStripMenuItem_Click);
             // 
             // inspectAsXMLToolStripMenuItem
             // 
             this.inspectAsXMLToolStripMenuItem.Name = "inspectAsXMLToolStripMenuItem";
-            this.inspectAsXMLToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.inspectAsXMLToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.inspectAsXMLToolStripMenuItem.Text = "MusicXml file as raw XML";
             this.inspectAsXMLToolStripMenuItem.Click += new System.EventHandler(this.inspectAsXMLToolStripMenuItem_Click);
             // 
             // viewAsInterpretedXMLToolStripMenuItem
             // 
             this.viewAsInterpretedXMLToolStripMenuItem.Name = "viewAsInterpretedXMLToolStripMenuItem";
-            this.viewAsInterpretedXMLToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.viewAsInterpretedXMLToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.viewAsInterpretedXMLToolStripMenuItem.Text = "MusicXml file interpreted";
             this.viewAsInterpretedXMLToolStripMenuItem.Click += new System.EventHandler(this.viewAsInterpretedXMLToolStripMenuItem_Click);
             // 
             // jAWSSettingsToolStripMenuItem
             // 
             this.jAWSSettingsToolStripMenuItem.Name = "jAWSSettingsToolStripMenuItem";
-            this.jAWSSettingsToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.jAWSSettingsToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.jAWSSettingsToolStripMenuItem.Text = "JAWS settings";
             this.jAWSSettingsToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsToolStripMenuItem_Click);
             // 
             // userSettingsToolStripMenuItem
             // 
             this.userSettingsToolStripMenuItem.Name = "userSettingsToolStripMenuItem";
-            this.userSettingsToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.userSettingsToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.userSettingsToolStripMenuItem.Text = "User Settings";
             this.userSettingsToolStripMenuItem.Click += new System.EventHandler(this.userSettingsToolStripMenuItem_Click);
             // 
             // generateMusicBrailleTestpatternToolStripMenuItem
             // 
             this.generateMusicBrailleTestpatternToolStripMenuItem.Name = "generateMusicBrailleTestpatternToolStripMenuItem";
-            this.generateMusicBrailleTestpatternToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.generateMusicBrailleTestpatternToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.generateMusicBrailleTestpatternToolStripMenuItem.Text = "Generate Music Braille testpattern";
             this.generateMusicBrailleTestpatternToolStripMenuItem.Click += new System.EventHandler(this.generateMusicBrailleTestpatternToolStripMenuItem_Click);
             // 
             // generateGraphicInformationToolStripMenuItem
             // 
             this.generateGraphicInformationToolStripMenuItem.Name = "generateGraphicInformationToolStripMenuItem";
-            this.generateGraphicInformationToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.generateGraphicInformationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.generateGraphicInformationToolStripMenuItem.Text = "Generate graphic information";
             this.generateGraphicInformationToolStripMenuItem.Click += new System.EventHandler(this.generateGraphicInformationToolStripMenuItem_Click);
             // 
@@ -666,7 +668,7 @@
             this.unicodeToolStripMenuItem,
             this.autodetectedEncodingToolStripMenuItem});
             this.interpretFileAsBrailleMusicToolStripMenuItem.Name = "interpretFileAsBrailleMusicToolStripMenuItem";
-            this.interpretFileAsBrailleMusicToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.interpretFileAsBrailleMusicToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.interpretFileAsBrailleMusicToolStripMenuItem.Text = "Interpret file as Braille Music";
             // 
             // octoBraille1252ToolStripMenuItem
@@ -700,7 +702,7 @@
             // userPreferencesLocationToolStripMenuItem
             // 
             this.userPreferencesLocationToolStripMenuItem.Name = "userPreferencesLocationToolStripMenuItem";
-            this.userPreferencesLocationToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.userPreferencesLocationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.userPreferencesLocationToolStripMenuItem.Text = "User Preferences location";
             this.userPreferencesLocationToolStripMenuItem.Click += new System.EventHandler(this.userPreferencesLocationToolStripMenuItem_Click);
             // 
@@ -1020,6 +1022,13 @@
             // 
             this.printDialog.UseEXDialog = true;
             // 
+            // musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem
+            // 
+            this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem.Name = "musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem";
+            this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem.Text = "MusicXml file as raw XML using Google Chrome";
+            this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem.Click += new System.EventHandler(this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1159,6 +1168,7 @@
         private System.Windows.Forms.ToolStripMenuItem copyMusicBrailleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startCapellaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startFinaleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem;
     }
 }
 
