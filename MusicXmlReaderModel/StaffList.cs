@@ -23,10 +23,10 @@ namespace MusicXmlReaderModel
         private MetaInformation metaInformation;
         public MetaInformation MetaInformation { get { return metaInformation; } }
 
-        private static List<string> sopranoNames = new List<string> { "SOPRANO", "SOPRAN", "S" };
-        private static List<string> altoNames = new List<string> { "ALTO", "ALT", "A" };
-        private static List<string> tenorNames = new List<string> { "TENOR", "TEN", "T" };
-        private static List<string> basNames = new List<string> { "BASSO", "BASS", "BAS", "B" };
+        private static List<string> sopranoNames = new List<string> { "SOPRANO", "SOPRAN", "S", "S." };
+        private static List<string> altoNames = new List<string> { "ALTO", "ALT", "A", "A." };
+        private static List<string> tenorNames = new List<string> { "TENOR", "TEN", "T", "T." };
+        private static List<string> basNames = new List<string> { "BASSO", "BASS", "BAS", "B", "B." };
         private List<List<string>> saNames = new List<List<string>> { sopranoNames, altoNames };
         private List<List<string>> tbNames = new List<List<string>> { tenorNames, basNames };
         // And finally, primarily for testing:
