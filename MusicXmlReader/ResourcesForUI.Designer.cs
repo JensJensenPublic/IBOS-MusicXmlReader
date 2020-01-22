@@ -826,7 +826,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E&amp;xit.
+        ///   Looks up a localized string similar to &amp;Exit.
         /// </summary>
         internal static string ToolStripMenuItem_Files_Exit {
             get {
@@ -907,7 +907,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to via external program.
+        ///   Looks up a localized string similar to via e&amp;xternal program.
         /// </summary>
         internal static string ToolStripMenuItem_Files_Print_using_External {
             get {
@@ -916,7 +916,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to via Windows Print-dialog.
+        ///   Looks up a localized string similar to via &amp;Windows Print-dialog.
         /// </summary>
         internal static string ToolStripMenuItem_Files_Print_via_Windows {
             get {
@@ -925,7 +925,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Emboss Music Braille file.
+        ///   Looks up a localized string similar to &amp;Print Music Braille file on embosser.
         /// </summary>
         internal static string ToolStripMenuItem_Files_PrintMusicBraille {
             get {

@@ -480,7 +480,7 @@
     <value>Udskriv punktnodefil på punktprinter ved hjælp af externt program</value>
   </data>
   <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
-    <value>Udskriv punktnodefil på punktprinter</value>
+    <value>Udskriv punktnodefil på punkt&amp;printer</value>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
     <value>Åbn MusicXml fil fra seneste placering</value>
@@ -500,11 +500,11 @@
     <comment>MISSING NL</comment>
   </data>
   <data name="ToolStripMenuItem_Files_Print_using_External" xml:space="preserve">
-    <value>via externt program</value>
+    <value>via e&amp;xternt program</value>
     <comment>MISSING NL</comment>
   </data>
   <data name="ToolStripMenuItem_Files_Print_via_Windows" xml:space="preserve">
-    <value>via Windows Printdialog</value>
+    <value>via &amp;Windows Printdialog</value>
     <comment>MISSING NL</comment>
   </data>
   <data name="ToolStripMenuItem_Files_ToGenericDevice" xml:space="preserve">

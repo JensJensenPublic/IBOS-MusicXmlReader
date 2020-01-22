@@ -525,13 +525,13 @@
     <value>Kopieer Braille muziek bestand naar Braille apparaat met Windows Verkenner</value>
   </data>
   <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
-    <value>Print Braille muziek bestand</value>
+    <value>&amp;Print Braille muziek bestand</value>
   </data>
   <data name="ToolStripMenuItem_Files_Print_using_External" xml:space="preserve">
-    <value>Met extern programma</value>
+    <value>met e&amp;xtern programma</value>
   </data>
   <data name="ToolStripMenuItem_Files_Print_via_Windows" xml:space="preserve">
-    <value>met Windows printprogramma</value>
+    <value>met &amp;Windows printprogramma</value>
   </data>
   <data name="ToolStripMenuItem_Files_ToGenericDevice" xml:space="preserve">
     <value>Naar algemeen Braille apparaat</value>

@@ -209,6 +209,7 @@ namespace MusicXmlReader
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportDownloads, ShortcutHandler.NoKeys);
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportNewestDownloads, ShortcutHandler.NoKeys);
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportNewestSamples, ShortcutHandler.NoKeys);
+            AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_PrintMusicBraille, ShortcutHandler.NoKeys);
             AddLine(ShortcutHandler.PrintOnWindowsPrinter, ResourcesForHelp.Shortcut_PrintUsingWindowsPrintDialog); // We can't handle ALT-sequences in 3 levels here, so we only show the CTRL combinations
             AddLine(ShortcutHandler.PrintUsingExternalProgram, ResourcesForHelp.Shortcut_PrintUsingExternalProgram); // We can't handle ALT-sequences in 3 levels here, so we only show the CTRL combinations
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_Exit, ShortcutHandler.exitApplication);

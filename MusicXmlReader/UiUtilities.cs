@@ -41,13 +41,19 @@ namespace MusicXmlReader
             string plus = (string.IsNullOrEmpty(s1) || string.IsNullOrEmpty(s2)) ? "" : "+";
             return s1 + plus + s2;
         }
-        
+
         public static string Plus(string s1, string s2, string s3)
         {
             //return s1 + "+" + s2 + "+" + s3;
             return Plus(Plus(s1, s2), s3);
         }
-        
+
+        public static string Plus(string s1, string s2, string s3, string s4)
+        {
+            //return s1 + "+" + s2 + "+" + s3;
+            return Plus(Plus(s1, s2), Plus(s3,s4));
+        }
+
         public static string LocalizeControlKey(Keys keys)
         {
             Keys controlKeys = GetControlKeys(keys);
