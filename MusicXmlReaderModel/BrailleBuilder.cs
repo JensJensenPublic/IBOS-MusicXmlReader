@@ -102,8 +102,16 @@ namespace MusicXmlReaderModel
 
 
         // Clefs
-        public static readonly byte[] clefG = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4       ), (dot1 + dot2 + dot3) };
-        public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot6), (dot1 + dot2 + dot3) }; // EGTVED
+        // Several opinions seem to exists: All use the form { (dot3 + dot4 + dot5), "X", (dot1 + dot2 + dot3) } but the value of "X" differ 
+#if true
+        public static readonly byte[] clefG = new byte[] { (dot3 + dot4 + dot5), (dot2 + dot3 + dot5 + dot6), (dot1 + dot2 + dot3) }; // Used in version >= 3.5 as requested by SN
+        public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot2 + dot3 + dot5),        (dot1 + dot2 + dot3) }; // Used in version >= 3.5 as requested by SN
+#else            
+        public static readonly byte[] clefG = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4       ), (dot1 + dot2 + dot3) }; // Used in version <= 3.4
+        public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot6), (dot1 + dot2 + dot3) }; // EGTVED USed in version <= 3.4
+#endif
+
+
         //public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot5 + dot6), (dot1 + dot2 + dot3) }; // BANA
         public static readonly byte[] clefC = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot6), (dot1 + dot2 + dot3) }; // ENS
 
