@@ -149,6 +149,7 @@ namespace MusicXmlReader
             interpretFileAsBrailleMusicToolStripMenuItem.Visible = false;
             userPreferencesLocationToolStripMenuItem.Visible = false;
             generateMusicBrailleTestpatternToolStripMenuItem.Visible = false;
+            brailleFileToolStripMenuItem.Visible = false;            
         }
 
         /// <summary>
