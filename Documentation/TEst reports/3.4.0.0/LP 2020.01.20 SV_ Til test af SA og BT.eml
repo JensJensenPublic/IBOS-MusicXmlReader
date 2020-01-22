@@ -1,0 +1,257 @@
+Return-Path: <lars.organist@gmail.com>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe001.lytzenitmail.local ([100.127.30.100])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id 2FPoGGgBJl639gAAlE+V+A
+	(envelope-from <lars.organist@gmail.com>)
+	for <dsl248925@mail.jubii.dk>; Mon, 20 Jan 2020 20:37:12 +0100
+Received: from sv900pomx001.lytzenitmail.dk ([100.127.30.60])
+	by sv900ddwe001.lytzenitmail.local with LMTP
+	id cH5EGGgBJl6nUAAAPDtoZg
+	(envelope-from <lars.organist@gmail.com>)
+	for <dsl248925@mail.jubii.dk>; Mon, 20 Jan 2020 20:37:12 +0100
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.160])
+	by sv900pomx001.lytzenitmail.dk (Postfix) with ESMTPS id 5FA2EC76AD3
+	for <holmeparken44@vip.cybercity.dk>; Mon, 20 Jan 2020 20:37:12 +0100 (CET)
+Authentication-Results: mx01.lytzenitmail.dk; spf=Pass smtp.mailfrom=lars.organist@gmail.com
+Received-SPF: Pass (mx01.lytzenitmail.dk: domain of
+  lars.organist@gmail.com designates 209.85.221.46 as permitted
+  sender) identity=mailfrom; client-ip=209.85.221.46;
+  receiver=mx01.lytzenitmail.dk;
+  envelope-from="lars.organist@gmail.com";
+  x-sender="lars.organist@gmail.com"; x-conformance=spf_only;
+  x-record-type="v=spf1"; x-record-text="v=spf1
+  ip4:35.190.247.0/24 ip4:64.233.160.0/19 ip4:66.102.0.0/20
+  ip4:66.249.80.0/20 ip4:72.14.192.0/18 ip4:74.125.0.0/16
+  ip4:108.177.8.0/21 ip4:173.194.0.0/16 ip4:209.85.128.0/17
+  ip4:216.58.192.0/19 ip4:216.239.32.0/19 ~all"
+IronPort-PHdr: =?us-ascii?q?9a23=3A6rWleRWVYrUeJBlGSyku7M+FOi7V8LGuZFw894?=
+ =?us-ascii?q?YnhrRSc6+q45XlOgnl6O5wiEPSA9WJ7uIc0qzSorzyVGoB/ZOIsXREfJ8fHw?=
+ =?us-ascii?q?Qdh5Aulhc7SNWAFVW9KffrayIgG8EXUFZ/5De8K0dcHsfle3Xdp3Sz6XgZHR?=
+ =?us-ascii?q?Cmb1hPK+/4G5Dfg4GM787vpMKBWwxTn3L9ZKMqdVOyvBnDu88XnY5rK6J3xh?=
+ =?us-ascii?q?ib6ndPfu1XwytvKzfx1174792rupl5/C1Wuuk938FFWKT+Oa8/SPRUAS8nPG?=
+ =?us-ascii?q?Y8+MDw/UObHE3fuz1GCDxQzkQAChON9BzgW5btrib204g1kDKXO8H7V/F8WD?=
+ =?us-ascii?q?iv6btqVA69jS4GMzAj92SEwsd0ja9dvFegv0klm9+SMNzTbqAnOP+DLrZ4DS?=
+ =?us-ascii?q?JbU81cVjJMGNa5f9NWSe4QIfRVqYjholIPqV2yBlrJZqunxzlWi3vxxaB/3f?=
+ =?us-ascii?q?4mFFSM2AU6BJQJqnvdqtTuKI8dVOm0yO/DyjCJPJY0kX/trZPFdBwsu6TGWb?=
+ =?us-ascii?q?tqaozW00YmEQLekn2frIXkO3We0eFH4CCLquFnU+yokWsurQp89yO3yPArjI?=
+ =?us-ascii?q?3Y1ed3ghjUsD90y4EvKZikWVZ2NJS6RYBIuXjQZMNmB9kvSGZytGMmx60a7N?=
+ =?us-ascii?q?SlKTMSxs1CpVaXauTbIdPVpEuyDKDLfWg+3DU/JPq+n0rgrxTmkLanEJDqiB?=
+ =?us-ascii?q?AS6XMU2tjU6iJTiVqKspLBEr0luR35vFTHnwHLtrMafwZuyfude8Znmvlqzt?=
+ =?us-ascii?q?ISqRiRQXWwwRmw1f7MMB1jo7jg6vy7MOq64MbGaskszFm5a/pL+IT3APxkYF?=
+ =?us-ascii?q?FWDy7Cprv6hPu7uhegCLRS0q9vzfKf6cGGY5xd/ungXUdUytpxsU7uSWf7lo?=
+ =?us-ascii?q?1CzT9fawsaHXDPx4nxZwOUea6+UKf52gX21m8snqGOP6W9UM+UcD6Zy+anJu?=
+ =?us-ascii?q?w7swkFmUIlxNRbrcsFWIFEG+r6XwrKjPKdCxY4NwKuxOO+UYdy04ofXSSEBa?=
+ =?us-ascii?q?rLaa4=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0CJAQBQACZefy7dVdFlHAEBAQEBBwE?=
+ =?us-ascii?q?BEQEEBAEBgXuBJX9xVSMHMo0Vi2KGM4UghBuICwkBAQEBAQEBAQEHAS0CAQG?=
+ =?us-ascii?q?EQAKCDyMBOBMCEAEBAQMBAQECAQIDBBQBAQkLCwgnhUAMhV8CAQMIAggWBRM?=
+ =?us-ascii?q?BGx4DCQMCBBADOBkIAhEBBQEcAgQTCwUSgwWBfUwBAy4EoCuBBD2MKBQFARe?=
+ =?us-ascii?q?DAAWCRYF2ChknDWWBMgIHCQEIgSaMFIIag3ZsgQ6BDYgcBJcxl11EB5REhCk?=
+ =?us-ascii?q?bjlyMG5lgkAQCBAIEBQIGDyOBRoF6cIEBgjs/ERgNiAGDc4pUQDOBKRaMSAE?=
+ =?us-ascii?q?B?=
+X-IPAS-Result: =?us-ascii?q?A0CJAQBQACZefy7dVdFlHAEBAQEBBwEBEQEEBAEBgXuBJ?=
+ =?us-ascii?q?X9xVSMHMo0Vi2KGM4UghBuICwkBAQEBAQEBAQEHAS0CAQGEQAKCDyMBOBMCE?=
+ =?us-ascii?q?AEBAQMBAQECAQIDBBQBAQkLCwgnhUAMhV8CAQMIAggWBRMBGx4DCQMCBBADO?=
+ =?us-ascii?q?BkIAhEBBQEcAgQTCwUSgwWBfUwBAy4EoCuBBD2MKBQFAReDAAWCRYF2ChknD?=
+ =?us-ascii?q?WWBMgIHCQEIgSaMFIIag3ZsgQ6BDYgcBJcxl11EB5REhCkbjlyMG5lgkAQCB?=
+ =?us-ascii?q?AIEBQIGDyOBRoF6cIEBgjs/ERgNiAGDc4pUQDOBKRaMSAEB?=
+X-IronPort-AV: E=Sophos;i="5.70,343,1574118000"; 
+   d="scan'208,217";a="85433884"
+Received: from mail-wr1-f46.google.com ([209.85.221.46])
+  by mx01.lytzenitmail.dk with ESMTP/TLS/AES128-GCM-SHA256; 20 Jan 2020 20:37:11 +0100
+Received: by mail-wr1-f46.google.com with SMTP id z3so724929wru.3
+        for <holmeparken44@vip.cybercity.dk>; Mon, 20 Jan 2020 11:37:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:references:in-reply-to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=1Hu60Is4v+8ydmeN57bUFgHtlPjIwPFiBTHE6s7En80=;
+        b=rdkaZd3tkBuIkg5lsnr1Kk3Y6acqwi39GXP6LcUHvob99IydFl+vNVhZZPxgydh/nl
+         IUCVw1kAyxK/77npxdSd6Q/YTY+oodSP7limmOBUPdkWCf4LRyqMG8JK/ct2tJqNeATh
+         R8ESq+dAMq6PFIS+8QaPJq7Efi8et0WjPbr6355dKvL90KHedCRPyxQKifx+JmGoHnV8
+         PfuI6NDgmmEy5wiyrp+v/zNvzagUZaOuzyK+hCoPv4ikXxGwOiAGikHhdNwMf8hSU2xh
+         vh6ANQe4YuGtW3VAbFhydtGxclt1gPBdfZZ2E9T1aewS9jNfxKS+WPqBro49sT4dPyuT
+         vinA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:references:in-reply-to:subject:date
+         :message-id:mime-version:thread-index:content-language;
+        bh=1Hu60Is4v+8ydmeN57bUFgHtlPjIwPFiBTHE6s7En80=;
+        b=JprQ7oTsJ65xLZa3eHJoAhuilgIh6IKdfET9p/YdzbIvWac7EF43en10YXEGPwF9qb
+         vQdlfR1qksHm9n8BKRE/ED2ie+uC4g3sfKFJyqbygzEa4UHBihzvJ37NqwOjxyGKkEtu
+         xkKkrEu2TeV82qgmJJQHMIzAweftskikX6ghn95fbIKQrklyiFyygUrQQUsu6wBQS1sT
+         hxNLTscCjUC5aA0jskl7lMV9z3/ZAENBFqHlAtZkPNLQjZN3F/L5DDFmoCsiilCBZOHa
+         p4Yt/hx0VTuiy6Y6R6hWPe5zzciv15vMx7WLo36ofzYbaQJwVo/sLCGfej7F/klNc2Q9
+         yWJw==
+X-Gm-Message-State: APjAAAVXPSIct1820sQMh22PUNfAvn8mekBL3n0OUJ8PwmzlS8itHDc8
+	H03vrXHRvvQnqqNCY+6idCuGP1Jq
+X-Google-Smtp-Source: APXvYqwB9FhN+pNI6wTg+FAD8CajTvLyIchCfU2sxjHkZtRk8ZCcmsEN8CqHkKHXTzJLTFc/z06dAQ==
+X-Received: by 2002:adf:cf06:: with SMTP id o6mr1010234wrj.349.1579549031234;
+        Mon, 20 Jan 2020 11:37:11 -0800 (PST)
+Received: from DESKTOPFSO22TO (ip-89-239-239-44.dhcp.fibianet.dk. [89.239.239.44])
+        by smtp.gmail.com with ESMTPSA id t12sm48607169wrs.96.2020.01.20.11.37.10
+        for <holmeparken44@vip.cybercity.dk>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 20 Jan 2020 11:37:10 -0800 (PST)
+From: <lars.organist@gmail.com>
+To: "'Jens Sundgaard'" <holmeparken44@vip.cybercity.dk>
+References: <A734B9D5EE994E36A53C5D9378EC5324@JensesHP17>
+In-Reply-To: <A734B9D5EE994E36A53C5D9378EC5324@JensesHP17>
+Subject: SV: Til test af SA og BT
+Date: Mon, 20 Jan 2020 20:37:10 +0100
+Message-ID: <000201d5cfc9$02376aa0$06a63fe0$@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0003_01D5CFD1.63FE1C90"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKIbqwy6VSw3TvZTWXSDV/wqrFVYaaOsuRw
+Content-Language: da
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0003_01D5CFD1.63FE1C90
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hej Jens. Vi er ved at v=E6re i m=E5l, men der er lige et par ting vi =
+skal have
+rettet.=20
+
+N=E5r man v=E6lger f.eks sopran og alt skrevet ud s=E5 skal der st=E5 et
+h=F8jreh=E5ndstegn og n=E5r det er bas og tenor skal der st=E5 et =
+venstreh=E5nds tegn
+og n=E5r det er alle fire stemmer alts=E5 satb skal der st=E5 =
+h=F8jreh=E5ndstegn for
+sopran og alt og venstreh=E5ndstegn for tenor og bas og s=E5 skal det =
+st=E5 som
+n=E5r man skriver sopran og alt ud alts=E5 med bistemmer og intervaller. =
+Jeg ved
+ikke om det giver nogen mening men vi tales ved men vi er n=E5et langt, =
+godt
+arbejde.=20
+
+K=E6rlig hilsen Lars.=20
+
+=20
+
+Fra: Jens Sundgaard <holmeparken44@vip.cybercity.dk>=20
+Sendt: 20. januar 2020 18:15
+Til: Lars Petersen <lars.organist@gmail.com>
+Emne: Til test af SA og BT
+
+=20
+
+Hej Lars
+
+=20
+
+Her er en version, der b=F8r generere SA og BT. Jeg n=E5ede lige at lave =
+den.
+
+=20
+
+Jeg har desuden rettet selve programmet s=E5ledes at den n=E6ste version =
+af
+programmet=20
+
+osse vil generere SA og BT ud fra  d=E9n version af MusicXml filen, der =
+ligger
+i eksempel-filerne.
+
+=20
+
+mvh Jens
+
+
+------=_NextPart_000_0003_01D5CFD1.63FE1C90
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Diso-8859-1">
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta name=3DGenerator =
+content=3D"Microsoft Word 15 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DDA =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Hej Jens. =
+Vi er ved at v=E6re i m=E5l, men der er lige et par ting vi skal have =
+rettet. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'>N=E5r man v=E6lger f.eks sopran og =
+alt skrevet ud s=E5 skal der st=E5 et h=F8jreh=E5ndstegn og n=E5r det er =
+bas og tenor skal der st=E5 et venstreh=E5nds tegn og n=E5r det er alle =
+fire stemmer alts=E5 satb skal der st=E5 h=F8jreh=E5ndstegn for sopran =
+og alt og venstreh=E5ndstegn for tenor og bas og s=E5 skal det st=E5 som =
+n=E5r man skriver sopran og alt ud alts=E5 med bistemmer og intervaller. =
+Jeg ved ikke om det giver nogen mening men vi tales ved men vi er n=E5et =
+langt, godt arbejde. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'>K=E6rlig hilsen Lars. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div><di=
+v style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b>Fra:</b> Jens Sundgaard =
+&lt;holmeparken44@vip.cybercity.dk&gt; <br><b>Sendt:</b> 20. januar 2020 =
+18:15<br><b>Til:</b> Lars Petersen =
+&lt;lars.organist@gmail.com&gt;<br><b>Emne:</b> Til test af SA og =
+BT<o:p></o:p></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><div><p =
+class=3DMsoNormal><span style=3D'font-size:12.0pt;color:black'>Hej =
+Lars<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-size:12.0pt;color:black'>&nbsp;<o:p></o:p></span></p></div>=
+<div><p class=3DMsoNormal><span =
+style=3D'font-size:12.0pt;color:black'>Her er en version, der b=F8r =
+generere SA og BT. Jeg n=E5ede lige at lave =
+den.<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-size:12.0pt;color:black'>&nbsp;<o:p></o:p></span></p></div>=
+<div><p class=3DMsoNormal><span =
+style=3D'font-size:12.0pt;color:black'>Jeg har desuden rettet selve =
+programmet s=E5ledes at den n=E6ste version af programmet =
+<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-size:12.0pt;color:black'>osse vil generere SA og BT ud =
+fra&nbsp; d=E9n version af MusicXml filen, der ligger i =
+eksempel-filerne.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-size:12.0pt;color:black'>&nbsp;<o:p></o:p></span></p></div>=
+<div><p class=3DMsoNormal><span =
+style=3D'font-size:12.0pt;color:black'>mvh =
+Jens<o:p></o:p></span></p></div></div></div></div></body></html>
+------=_NextPart_000_0003_01D5CFD1.63FE1C90--
+

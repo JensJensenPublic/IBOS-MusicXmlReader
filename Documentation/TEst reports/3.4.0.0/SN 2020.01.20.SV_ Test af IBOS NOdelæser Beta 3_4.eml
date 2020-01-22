@@ -1,0 +1,1373 @@
+Return-Path: <susanne@obj.dk>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe002.lytzenitmail.local ([100.127.30.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id kEfUHNEQJl4peQAAlE+V+A
+	(envelope-from <susanne@obj.dk>)
+	for <dsl248925@mail.jubii.dk>; Mon, 20 Jan 2020 21:42:57 +0100
+Received: from sv900pomx002.lytzenitmail.dk ([100.127.30.61])
+	by sv900ddwe002.lytzenitmail.local with LMTP
+	id sJBDHNEQJl4+GAAANmPVvw
+	(envelope-from <susanne@obj.dk>)
+	for <dsl248925@mail.jubii.dk>; Mon, 20 Jan 2020 21:42:57 +0100
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.160])
+	by sv900pomx002.lytzenitmail.dk (Postfix) with ESMTPS id 700E219AA
+	for <holmeparken44@vip.cybercity.dk>; Mon, 20 Jan 2020 21:42:57 +0100 (CET)
+Authentication-Results: mx01.lytzenitmail.dk; spf=None smtp.mailfrom=susanne@obj.dk
+Received-SPF: None (mx01.lytzenitmail.dk: no sender authenticity
+  information available from domain of susanne@obj.dk)
+  identity=mailfrom; client-ip=94.231.103.240;
+  receiver=mx01.lytzenitmail.dk;
+  envelope-from="susanne@obj.dk"; x-sender="susanne@obj.dk";
+  x-conformance=spf_only
+IronPort-PHdr: =?us-ascii?q?9a23=3A452J4xXwJAl43sw1mStFMqUUrQbV8LGuZFw894?=
+ =?us-ascii?q?YnhrRSc6+q45XlOgnl6O5wiEPSANSJ7uIc0qzSorzyVGoB/ZOIsXREfJ8fHw?=
+ =?us-ascii?q?Qdh5AwmAotSNWAFVW9KffrayIgG8EXT0J+9ne9PGBSEsS4a16L+C+I4DUfGw?=
+ =?us-ascii?q?vyOU9OHsqvRdCAqcOx2qjy/o2LOkNMlSavbLVzMBC/rAGXuspEyY1lYr08zB?=
+ =?us-ascii?q?fEuDNBZvhWyGV0JFmSgweZhI/4/Zht9D5Vsu4g8MgIWLvzfqAxR7hVRDo8NG?=
+ =?us-ascii?q?V96MruvBjFBQyBrmABSWwQlBdgBALHqh35H/KT+mP7uud7xCiGLJjzRLEwVy?=
+ =?us-ascii?q?6l6vQjQxvphSEbcj8hpTCLzJYr1eQC+Enn/UAnkOu2KMmPOfFzf73QZ4YfVT?=
+ =?us-ascii?q?IYGMJASz5MBIKgaoIOC6wNPrU9zcG1ql0QoB+5HQTpCvnoz2oCnWLt1Ks83s?=
+ =?us-ascii?q?wmGwOA0A9qTJoe9W/Zqtn4LvJYSv2uxa/OwB3EZfEQ1TS3u+2qOlgx5PqLW7?=
+ =?us-ascii?q?x3a8/Yz0IiQhjdgGKXr4j0ZmLH5qE2q2GeqtFYe6eqgm8jpRt2p2j9wc0uzI?=
+ =?us-ascii?q?XK1NoY?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0DvAwC2DyZeh/Bn515fAgQcAQEBAQE?=
+ =?us-ascii?q?HAQERAQQEAQGBe4ElUyxxVSMECyqDUkCJA4YSghGDPotTij+BZwkBAQEBAQE?=
+ =?us-ascii?q?BAQEDBSUIAgEBhEACgg8iOhMCEAEBAQMBAQECAQIDBBQBAQEKCwkIKYU+DIV?=
+ =?us-ascii?q?eAQECAwgCAg4JBQUTAQE4DAMCBxADBAEBIQEGAwICGS0JCAIEEwsFgxYBgXw?=
+ =?us-ascii?q?BTQMyAQqREZsBdYEBMYJ/AQEFhQcRgRh0BwMGgTiBU4kAgUEagUE/gRGDUYE?=
+ =?us-ascii?q?OgVYEFwOBFAERAgEQBDcJglqCXpBVhmUJmBOCQ4NlgjiBII8PmneXP5JNgWm?=
+ =?us-ascii?q?BCXEzIjCDJz8RGA2IAQwOCYQdigdAM4EpFoxIAQE?=
+X-IPAS-Result: =?us-ascii?q?A0DvAwC2DyZeh/Bn515fAgQcAQEBAQEHAQERAQQEAQGBe?=
+ =?us-ascii?q?4ElUyxxVSMECyqDUkCJA4YSghGDPotTij+BZwkBAQEBAQEBAQEDBSUIAgEBh?=
+ =?us-ascii?q?EACgg8iOhMCEAEBAQMBAQECAQIDBBQBAQEKCwkIKYU+DIVeAQECAwgCAg4JB?=
+ =?us-ascii?q?QUTAQE4DAMCBxADBAEBIQEGAwICGS0JCAIEEwsFgxYBgXwBTQMyAQqREZsBd?=
+ =?us-ascii?q?YEBMYJ/AQEFhQcRgRh0BwMGgTiBU4kAgUEagUE/gRGDUYEOgVYEFwOBFAERA?=
+ =?us-ascii?q?gEQBDcJglqCXpBVhmUJmBOCQ4NlgjiBII8PmneXP5JNgWmBCXEzIjCDJz8RG?=
+ =?us-ascii?q?A2IAQwOCYQdigdAM4EpFoxIAQE?=
+X-IronPort-AV: E=Sophos;i="5.70,343,1574118000"; 
+   d="scan'208,217";a="85441954"
+Received: from asmtp-out2.unoeuro.com ([94.231.103.240])
+  by mx01.lytzenitmail.dk with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 20 Jan 2020 21:42:56 +0100
+Received: from DESKTOPDMOOD5I (87-57-144-108-cable.dk.customer.tdc.net [87.57.144.108])
+	by asmtp.unoeuro.com (UnoEuro) with ESMTPA id 481kBm264Dz62Sk;
+	Mon, 20 Jan 2020 21:42:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=obj.dk; s=unoeuro;
+	t=1579552976; bh=ERU3ur+aoWMYO6LAxcR1aOGbC32Lb37u/NWvHb72Gmw=;
+	h=From:To:References:In-Reply-To:Subject:Date:From;
+	b=nK9CTdiXH9C17BuQqlVzuy4ZS6Fqj4EvYL9ZE0Ryyn36wnPMRELWL+lFVCIIi61Ix
+	 B2csSeeMBABjXPuzxOnXQhnzWNxJKkZA4ZH6VRvx+pRgtzCir4zxkn6Ph3CRqqv9+y
+	 iTF/ChlJD1FE4EtszvmehkRx293t1VJYn9vJ65eA=
+From: =?utf-8?Q?Susanne_Nols=C3=B8e?= <susanne@obj.dk>
+To: "'Jens Sundgaard'" <holmeparken44@vip.cybercity.dk>
+References: <0218dbe962e358798398aa291f87dcb3@vip.cybercity.dk> <006701d5cf7c$39a9eeb0$acfdcc10$@obj.dk> <1FDB995ACDB94960A0AE0215A459475C@JensesHP17>
+In-Reply-To: <1FDB995ACDB94960A0AE0215A459475C@JensesHP17>
+Subject: =?utf-8?Q?SV:_Test_af_IBOS_NOdel=C3=A6ser_Beta_?=
+	=?utf-8?Q?3.4?=
+Date: Mon, 20 Jan 2020 21:42:54 +0100
+Message-ID: <00a301d5cfd2$30f67e40$92e37ac0$@obj.dk>
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----=_NextPart_000_00A4_01D5CFDA.92BDF380"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIGPd5aGkFy7My7mkQZ8qRqmqwS5wKU8OTuAZbbD0inccOZoA==
+Content-Language: da
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_00A4_01D5CFDA.92BDF380
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_00A5_01D5CFDA.92BDF380"
+
+
+------=_NextPart_001_00A5_01D5CFDA.92BDF380
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hej Jens=20
+
+=20
+
+Super du kan f=C3=A5 rettet l=C3=A6seretningen i tuttifilen og f=C3=A5 =
+lavet n=C3=B8glerne rigtigt.=20
+
+=20
+
+Ja, det er trals med skilletegnene. Ved, du, hvorfor den laver fejl i =
+skilletegnene? Alternativet kunne jo ogs=C3=A5 v=C3=A6re, at lave store =
+bistemmer i stedet, s=C3=A5 undg=C3=A5r du helt analysen med sm=C3=A5 =
+bistemmer og skilletegn, men jeg t=C3=A6nker jo nok, at du har tiden =
+imod dig til s=C3=A5dan et projekt. I den tidligere mail har jeg =
+vedh=C3=A6ftet eksempel 52 med forklaring langt nede i mailen om =
+skilletegn og bistemmer, m=C3=A5ske det kan give dig ideer til, hvori =
+problemet ligger. Eksempel 52 opf=C3=B8rer sig u=C3=A6ndret i 3.4. Men =
+jeg kan sige, at denne gang har det ogs=C3=A5 v=C3=A6ret manglende =
+skilletegn, hvor der f.eks. er 1 slag med intervaltegn, og derefter =
+deler stemmerne sig, men der er ikke sat skilletegn. Skal jeg lave en =
+n=C3=A6rmere analyse p=C3=A5, hvilke takter det er?=20
+
+=20
+
+Jeg har vedh=C3=A6ftet eksempel 52 og den forklaring jeg gav her, hvis =
+det kan hj=C3=A6lpe.=20
+
+=20
+
+SN Mht. skilletegn s=C3=A5 bruges det kun i takter, vor der i samme takt =
+forekommer lille bistemme. Skilletegnet bruges til at skille den del af =
+takten, som har bistemmer, fra den del af takten, hvor der kan bruges =
+intervaltegn. Den er ogs=C3=A5 typisk brugt, hvor der kun optr=C3=A6der =
+to stemmer ad gangen som i sopran og alt.=20
+
+Skilletegn har jeg ikke set brugt, hvor der i en takt kun optr=C3=A6der =
+intervaltegn.=20
+
+=20
+
+Jeg har pr=C3=B8vet at skrive eksempel 52 om bistemme og skilletegn ind =
+b=C3=A5de som det er vist p=C3=A5 punkt, og s=C3=A5 har jeg indskrevet =
+nodeeksemplet med Musescore for at se, hvordan nodel=C3=A6seren ville =
+behandle det. Og det er ganske sjovt at se. Men f=C3=B8rst skriver jeg =
+lige, hvad de angiver i bogen: =E2=80=9D=E2=80=A6=20
+
+=C2=A7 49. Taktafsnit lille bistemme- og skilletegn.=20
+
+Hvis brugen af bistemmetegn kun er n=C3=B8dvendig i en del af en takt, =
+kan denne inddeles i afsnit s=C3=A5ledes, at dette afsnit behandles som =
+en isoleret enhed af takten. Samtidigheden vises da ved det lille =
+bistemmetegn: ptkt 2 i n=C3=A6ste skriverum pkt 5 som uden tomt rum =
+s=C3=A6ttes imellem de p=C3=A5g=C3=A6ldende stemmer i afsnittet.=20
+
+Eksempel 51 her vises slag 1 og 2 fra takt 1, som ogs=C3=A5 gengives i =
+eksempel 52.=20
+
+=20
+
+S=C3=A5fremt taktafsnit kan skrives med intervaltegn, adskilles de uden =
+(tomt rum) fra den lille eller de sm=C3=A5 bistemmer ved skilletegn: pkt =
+46 13=20
+
+Eksempel 52: (punktnodeudgaven)
+
+G-n=C3=B8gle 4 fjerdedel Hovedstemme 5c sekstendel d sekstendel e =
+sekstendel c sekstendel d sekstendel e sekstendel f sekstendel d =
+sekstendel lille bistemmetegn 4e ottendedel c ottendedel b ottendedel g =
+ottendedel skilletegn 5e fjerdedel 4terts d fjerdedel 3terts ny takt c =
+en hel med oktav sluttegn. =E2=80=A6=E2=80=9D=20
+
+=20
+
+Eksempel 52: (Nodel=C3=A6ser Bana2015 udgaven  p1 piano og tutti filen =
+ser ens ud)=20
+
+G-n=C3=B8gle 4 fjerdedele Skilletegn e ottendedel lille bistemmetegn 5c =
+sekstendel d sekstendedel skilletegn 4c ottendedel lille bistemmetegn 5e =
+sekstendel c sekstendel skilletegn 5d sekstendedel e sekstendedel lille =
+bistemmetegn 3b ottendedel skilletegn  3g ottendedel lille bistemmetegn =
+5f sekstendedel d sekstendedel 4 c fjerdedel med 5 terts b fjerdedel med =
+5 terts ny takt c en hel med oktav sluttegn.=20
+
+=20
+
+Her sker flere ting med Nodel=C3=A6serudgaven.=20
+
+1 Nodel=C3=A6serudgaven Hvert samtidig nodev=C3=A6rdig l=C3=A6ses lodret =
+og, samtidigheden kan ses, men det melodiske forl=C3=B8b hugges op i =
+sm=C3=A5 bidder. Mens punktnodeeksemplet l=C3=A6ser den enkelte stemme =
+vandret i et sammenh=C3=A6ngende melodisk forl=C3=B8b, samtidig med at =
+samtidigheden illustreres med bistemmetegnet, og skilletegnet viser i =
+punktnodeeksemplet, hvorn=C3=A5r bistemmen holder op og hvorn=C3=A5r, =
+der kan spilles med intervaltegn. I nodel=C3=A6ser eksemplet er der ikke =
+skilletegn p=C3=A5 det sted, hvor punktnodeeksemplet anviser, man skulle =
+s=C3=A6tte skilletegnet.=20
+
+2 Nodel=C3=A6ser anvender 4 bistemmetegn og 4 skilletegn. =
+Punktnodeeksemplet anvender 1 lille bistemmetegn og et skilletegn. =
+Sidstn=C3=A6vnte giver en bedre forst=C3=A5else og er pladsbesparende.=20
+
+3 Nodel=C3=A6ser f=C3=B8r f=C3=B8rste og andet bistemmetegn er det =
+understemme, som st=C3=A5r f=C3=B8r det lille bistemmetegn. Dette =
+=C3=A6ndrer sig imidlertid efter tredje skilletegn, her er det =
+overstemmen, der kommer f=C3=B8r lille bistemmetegn og understemmen =
+efter. Hvorfor det? Det forvirrer.=20
+
+4 Nodel=C3=A6ser: Der hvor der spilles med intervaltegn l=C3=A6ser =
+nodel=C3=A6ser intervallerne opad, fordi den angiver dybeste tone. Mens =
+Punktnodeeksemplet l=C3=A6ser h=C3=B8jeste tone og angiver derfor =
+intervallet nedad. Det passer jo ogs=C3=A5 godt med, at det er en =
+diskantn=C3=B8gle. Hvorfor l=C3=A6ser nodel=C3=A6seren den del af takten =
+omvendt, n=C3=A5r det er en diskantn=C3=B8gle? Har det noget at =
+g=C3=B8re med, hvor dyb den nederste stemme er, selv om det er i =
+diskantn=C3=B8glen stadig v=C3=A6k?=20
+
+=20
+
+Jeg h=C3=A5ber, at min lidt udvidede forklaring om bistemmer kan give en =
+id=C3=A9 om, hvordan de bruges. Men jeg tror at n=C3=B8glen ligger i den =
+vandrette l=C3=A6sning af stemmen.
+
+=20
+
+Mange hilsner=20
+
+=20
+
+Susanne=20
+
+=20
+
+Fra: Jens Sundgaard <holmeparken44@vip.cybercity.dk>=20
+Sendt: 20. januar 2020 12:17
+Til: Susanne Nols=C3=B8e <susanne@obj.dk>
+Emne: Re: Test af IBOS NOdel=C3=A6ser Beta 3.4
+
+=20
+
+Hej Susanne
+
+=20
+
+Mange tak, det ser jo ud til at de fleste af de kendte problemer nu er =
+l=C3=B8st.
+
+=20
+
+Det er let at rette r=C3=A6kkef=C3=B8lgen i TUTTI til at v=C3=A6re =
+oppefra og ned, s=C3=A5 det vil jeg g=C3=B8re.
+
+Jeg vil osse bruge dine definitioner af F-og G-n=C3=B8gle.
+
+Det er rigtigt at jeg havde fjernet SATB filen i 3.3, og sat den ind =
+igen i 3.4.
+
+=20
+
+Det eneste, der bekynrer mig lidt er at skilletegnene stadig ikke er =
+korrekte.
+
+Jeg vil se om jeg kan f=C3=A5 tid til at kigge p=C3=A5 det inden release =
+af 4.0, men jeg mangler en=20
+
+masse d=C3=B8dkedeligt arbejde omkring dokumentation og generering af =
+release,
+
+s=C3=A5 det kommer nok til at knibe.
+
+=20
+
+Der er desv=C3=A6rre ikke noget du kan g=C3=B8re omkring =
+re=C3=A6kkef=C3=B8lgen af stemmerne,
+
+det er et eller andet langh=C3=A5ret programmeringsteknisk, der driller, =
+men p=C3=A5 et
+
+eller andet tidspunkt vil jeg sikkert udbryde =E2=80=9Cn=C3=A5-j=C3=A5, =
+var det bare d=C3=A9t!=E2=80=9D
+
+=20
+
+mvh Jens
+
+=20
+
+From: Susanne Nols=C3=B8e=20
+
+Sent: Monday, January 20, 2020 11:27 AM
+
+To: holmeparken44@vip.cybercity.dk =
+<mailto:holmeparken44@vip.cybercity.dk> =20
+
+Cc: 'Bo Alstrup (hjem)'=20
+
+Subject: SV: Test af IBOS NOdel=C3=A6ser Beta 3.4
+
+=20
+
+Hej Jens=20
+
+=20
+
+Her har jeg lavet Test med 3.4 udgaven af nodel=C3=A6seren med test 11 =
+T=C3=A6nk hvis jeg sad p=C3=A5 m=C3=A5nen klaverudgaven Bana2015 =
+opstilling. test 12 p=C3=A5 Maria gennem torne g=C3=A5r udgaven fra =
+julemusik i Bana2015 opstilling. Og test 13 Befal du dine veje, i den =
+udgave, jeg har sendt dig indskrevet i Musescore ogs=C3=A5 i Bana2015 =
+opstilling. Test 14 er den udgave af Maria gennem torne g=C3=A5r, du =
+sendte mig 23. december i Bana 2015 opstilling.=20
+
+=20
+
+Manglende oktavtegn i f=C3=B8rste node efter bistemme notation=20
+SN: Ser rigtigt ud nu i Maria gennem torne g=C3=A5r versionen fra =
+julemusik og Befal du dine veje.=20
+
+=20
+
+Forkert Braille-kode for Septim=20
+
+SN: ser rigtigt ud nu. Test 11 og test 12.=20
+
+Forkert Braille-kode for punktum=20
+
+SN: Den ser ogs=C3=A5 ud til at v=C3=A6re v=C3=A6k i al fald i =
+overskriften til Maria gennem torne g=C3=A5r, hvor jeg tidligere har =
+fundet den. Jeg er heller ikke st=C3=B8dt p=C3=A5 den i de andre filer.=20
+
+Skilletegn for bistemme-notation er generelt fejlplaceret=20
+
+SN: Ja, her er fortsat problemer bl.a. Maria gennem torne g=C3=A5r Tutti =
+filen. Mens n=C3=A5r jeg kigger p=C3=A5 Befal du dine veje Sa-udgaven, =
+s=C3=A5 ser det rigtigt ud i takt 2 og 6, mens det er g=C3=A5et galt i =
+n=C3=A6st sidste takt med forkert placering af skilletegn. Ser jeg =
+p=C3=A5 Befal du dine veje SATB s=C3=A5 er skilletegnet rigtigt i takt 2 =
+men ikke i takt 3. det samme g=C3=A6lder ogs=C3=A5 Befal du dine veje =
+Tuttifilen.=20
+
+Braille-koder for bindebuer og legatobuer mangler stort set
+SN: Det ser rigtigt ud nu b=C3=A5de efter noderne og efter =
+intervaltegnene b=C3=A5de i Test 12 og test 13.=20
+
+=20
+
+Forkerte Braille-koder for G-n=C3=B8gle og F-n=C3=B8gle
+SN: HM, Ja i min verden ser n=C3=B8glerne ikke rigtige ud, Har du villet =
+angive at G-n=C3=B8glen st=C3=A5r p=C3=A5 2 linje jf. Franske tyske =
+system? Hvis ja, s=C3=A5 er G-n=C3=B8glen korrekt. Hvis du har villet =
+angive, at F-n=C3=B8glen st=C3=A5r p=C3=A5 3 linje jf. fransk tyske =
+system, s=C3=A5 er den ogs=C3=A5 korrekt if=C3=B8lge det materiale jeg =
+har. Men hvis ikke det betyder noget specielt, p=C3=A5 hvilken linje =
+n=C3=B8glerne er, s=C3=A5 vil jeg stadig foretr=C3=A6kk
+
+G-n=C3=B8gle: Pkt 345 2356 123 og=20
+
+F-n=C3=B8gle: Pkt 345 235 123 Begrundelsen er det s=C3=A6nkede g og F, =
+som giver en fornuftig mening som punktl=C3=A6ser, hvis man ellers kan =
+bogstavalfabetet. Denne sammenh=C3=A6ng er slet ikke n=C3=A6r s=C3=A5 =
+tydeligt, med de syboler, du har valgt at bruge lige nu.=20
+
+=20
+
+Stemmenavn "Sopran" accepteres ikke som navn p=C3=A5 en sopranstemme.
+
+SN: Nej det ser ikke s=C3=A5dan ud, den skriver i al fald soprano i test =
+13 Befal du dine veje og det siger den ogs=C3=A5 i nodel=C3=A6seren i =
+detaljevisningen. I Test 12 siger den bare S for sopran, mens i Test 14, =
+som er den udgave af Maria gennem torne g=C3=A5r, som du sendte 23. =
+december siger den sopran.=20
+
+=20
+
+Stemmenavn "Bass" accepteres ikke som navn p=C3=A5 en basstemme.
+SN: Joh, det ser s=C3=A5dan ud i test 13 Befal du dine veje.=20
+
+Jeg mener du sagde p=C3=A5 et tidspunkt, at der ikke skulle genereres =
+SATB-filer af sig selv, det ser stadig ud som om dette sker i hvert fald =
+med Befal du dine veje test 13. Jeg har medsendt alle punktfilerne, hvis =
+der er noget, som du vil kigge efter.=20
+
+=20
+
+Ja, jeg forst=C3=A5r godt du er ked af, at du ikke har kunnet n=C3=A5 at =
+rette r=C3=A6kkef=C3=B8lgen af stemmer p=C3=A5 nodel=C3=A6seren, og det =
+synes jeg ogs=C3=A5 er =C3=A6rgerligt, men jeg er enig i, at der ikke =
+skal indf=C3=B8res ekstra fejlkilder. Kan jeg lave nogen test her fra, =
+som kan hj=C3=A6lpe dig med at opklare problemet? Hvordan er det med =
+l=C3=A6seretningen p=C3=A5 tuttifilerne med intervalstemmerne, er det =
+nemt at rette? Jeg vil foretr=C3=A6kke, at den viser melodistemmen =
+alts=C3=A5 sopranen s=C3=A5 l=C3=A6seretningen skal v=C3=A6re nedad. Min =
+begrundelse er, at har man brug for at holde fast i, hvor man er, =
+s=C3=A5 er det lettere at f=C3=B8lge melodistemmen i noden end en =
+baslinje, hvor mange toner kan v=C3=A6re de samme, hvilket ofte ikke er =
+tilf=C3=A6ldet med sopran. Hvis du kan f=C3=A5 dette med i 3 4 udgaven, =
+vil det v=C3=A6re godt.=20
+
+=20
+
+I =C3=B8vrigt er jeg glad for at h=C3=B8re, at min udgave af Det kimer =
+nu kom til at st=C3=A5 p=C3=A6n og lyde godt, selv om den ikke helt =
+havde opf=C3=B8rt sig i Musescore, som jeg havde t=C3=A6nkt.=20
+
+=20
+
+Mange hilsner=20
+
+=20
+
+Susanne=20
+
+Fra: holmeparken44@vip.cybercity.dk =
+<mailto:holmeparken44@vip.cybercity.dk>  <holmeparken44@vip.cybercity.dk =
+<mailto:holmeparken44@vip.cybercity.dk> >=20
+Sendt: 16. januar 2020 14:47
+Til: Susanne Nols=C3=B8e <susanne@obj.dk <mailto:susanne@obj.dk> >
+Emne: Test af IBOS NOdel=C3=A6ser Beta 3.4
+
+=20
+
+Hej Susanne
+
+Du f=C3=A5r lige lidt supplerende information, som kun giver mening for =
+dig:
+
+F=C3=B8lgende fejl er rettet i version 3.4, alts=C3=A5 siden version =
+3.3.
+
+Fint, hvis du specielt vil teste at disse rettelser  er korrekte:
+
+Manglende oktavtegn i f=C3=B8rste node efter bistemme notation
+Forkert Braille-kode for Septim
+Forkert Braille-kode for punktum
+Skilletegn for bistemme-notation er generelt fejlplaceret
+Braille-koder for bindebuer og legatobuer mangler stort set
+Forkerte Braille-koder for G-n=C3=B8gle og F-n=C3=B8gle
+Stemmenavn "Sopran" accepteres ikke som navn p=C3=A5 en sopranstemme.
+
+Stemmenavn "Bass" accepteres ikke som navn p=C3=A5 en basstemme.
+
+
+
+F=C3=B8lgende fejl er ikke fors=C3=B8gt rettet, s=C3=A5 brug endelig =
+ikke tid p=C3=A5 at teste at der er rettet korrekt.
+
+R=C3=A6kkef=C3=B8lge af stemmer ved export i IBOS opstilling og i selve =
+nodel=C3=A6seren.
+
+Opdeling af lange linier
+
+Flere stumper af sm=C3=A5 bistemmer i 1 takt erstattes af en enkelt stor =
+bistemme
+
+Tonen "His" alts=C3=A5 "H" med kryds opl=C3=A6ses som "C"
+
+Forkert sluttegn =E2=80=9DUnusual barline=E2=80=9D
+
+=20
+
+F=C3=B8lgende emner er ikke egentlige fejl, men forslag til senere =
+udvidelser:
+
+Export af nodetekster
+
+=20
+
+Det =C3=A6rgrer mig specielt at jeg ikke har n=C3=A5et at rette
+
+"R=C3=A6kkef=C3=B8lge af stemmer ved export i IBOS opstilling og i selve =
+nodel=C3=A6seren."=20
+
+men jeg kan simpelthen ikke finde ud af pr=C3=A6cis hvad fejlen skyldes =
+- og en ikke 100% korrekt fejlrettelse
+
+vil kunne f=C3=A5 fatale konsekvenser mange steder i programmet.
+
+=20
+
+mvh Jens
+
+--=20
+
+Sendt fra min Jubii Mail
+Jubii Mail har eksisteret i 20 =C3=A5r og er en af Danmarks st=C3=B8rste =
+mail-udbydere med over 150.000 brugere. Jubii Mail er et 100% dansk =
+produkt med b=C3=A5de support og hosting i Danmark. Vi s=C3=A6tter en =
+=C3=A6re i at levere en personlig kvalitets-mail til b=C3=A5de private =
+og foreninger - og med knap 150 dom=C3=A6nenavne t=C3=B8r vi godt love, =
+at vi ogs=C3=A5 har en personlig email-adresse til dig.  =
+<https://konto.jubii.dk/SignUp?utm_source=3DWebmail%20Signatur&utm_medium=
+=3DWebmail%20Signatur> Klik her - opret Jubii Mail.
+
+
+------=_NextPart_001_00A5_01D5CFDA.92BDF380
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DDA link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Hej Jens <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Super du kan f=C3=A5 rettet =
+l=C3=A6seretningen i tuttifilen og f=C3=A5 lavet n=C3=B8glerne rigtigt. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Ja, det er trals med skilletegnene. Ved, du, =
+hvorfor den laver fejl i skilletegnene? Alternativet kunne jo ogs=C3=A5 =
+v=C3=A6re, at lave store bistemmer i stedet, s=C3=A5 undg=C3=A5r du helt =
+analysen med sm=C3=A5 bistemmer og skilletegn, men jeg t=C3=A6nker jo =
+nok, at du har tiden imod dig til s=C3=A5dan et projekt. I den tidligere =
+mail har jeg vedh=C3=A6ftet eksempel 52 med forklaring langt nede i =
+mailen om skilletegn og bistemmer, m=C3=A5ske det kan give dig ideer =
+til, hvori problemet ligger. Eksempel 52 opf=C3=B8rer sig u=C3=A6ndret i =
+3.4. Men jeg kan sige, at denne gang har det ogs=C3=A5 v=C3=A6ret =
+manglende skilletegn, hvor der f.eks. er 1 slag med intervaltegn, og =
+derefter deler stemmerne sig, men der er ikke sat skilletegn. Skal jeg =
+lave en n=C3=A6rmere analyse p=C3=A5, hvilke takter det er? =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Jeg har vedh=C3=A6ftet eksempel 52 og den =
+forklaring jeg gav her, hvis det kan hj=C3=A6lpe. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>SN Mht. skilletegn =
+s=C3=A5 bruges det kun i takter, vor der i samme takt forekommer lille =
+bistemme. Skilletegnet bruges til at skille den del af takten, som har =
+bistemmer, fra den del af takten, hvor der kan bruges intervaltegn. Den =
+er ogs=C3=A5 typisk brugt, hvor der kun optr=C3=A6der to stemmer ad =
+gangen som i sopran og alt. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Skilletegn har jeg ikke =
+set brugt, hvor der i en takt kun optr=C3=A6der intervaltegn. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Jeg har pr=C3=B8vet at =
+skrive eksempel 52 om bistemme og skilletegn ind b=C3=A5de som det er =
+vist p=C3=A5 punkt, og s=C3=A5 har jeg indskrevet nodeeksemplet med =
+Musescore for at se, hvordan nodel=C3=A6seren ville behandle det. Og det =
+er ganske sjovt at se. Men f=C3=B8rst skriver jeg lige, hvad de angiver =
+i bogen: =E2=80=9D=E2=80=A6 <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>=C2=A7 49. <i>Taktafsnit =
+lille bistemme- og skilletegn.</i> <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Hvis brugen af =
+bistemmetegn kun er n=C3=B8dvendig i en del af en takt, kan denne =
+inddeles i afsnit s=C3=A5ledes, at dette afsnit behandles som en =
+isoleret enhed af takten. Samtidigheden vises da ved det <i>lille =
+bistemmetegn</i>: ptkt 2 i n=C3=A6ste skriverum pkt 5 som uden tomt rum =
+s=C3=A6ttes imellem de p=C3=A5g=C3=A6ldende stemmer i afsnittet. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Eksempel 51 her vises slag 1 og 2 fra takt 1, =
+som ogs=C3=A5 gengives i eksempel 52. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>S=C3=A5fremt taktafsnit =
+kan skrives med intervaltegn, adskilles de uden (tomt rum) fra den lille =
+eller de sm=C3=A5 bistemmer ved skilletegn: pkt 46 13 =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>Eksempel 52: =
+(punktnodeudgaven)<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>G-n=C3=B8gle 4 fjerdedel Hovedstemme 5c =
+sekstendel d sekstendel e sekstendel c sekstendel d sekstendel e =
+sekstendel f sekstendel d sekstendel lille bistemmetegn 4e ottendedel c =
+ottendedel b ottendedel g ottendedel skilletegn 5e fjerdedel 4terts d =
+fjerdedel 3terts ny takt c en hel med oktav sluttegn. =E2=80=A6=E2=80=9D =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Eksempel 52: =
+(Nodel=C3=A6ser Bana2015 udgaven&nbsp; p1 piano og tutti filen ser ens =
+ud) <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>G-n=C3=B8gle 4 fjerdedele Skilletegn e =
+ottendedel lille bistemmetegn 5c sekstendel d sekstendedel skilletegn 4c =
+ottendedel lille bistemmetegn 5e sekstendel c sekstendel skilletegn 5d =
+sekstendedel e sekstendedel lille bistemmetegn 3b ottendedel skilletegn =
+&nbsp;3g ottendedel lille bistemmetegn 5f sekstendedel d sekstendedel 4 =
+c fjerdedel med 5 terts b fjerdedel med 5 terts ny takt c en hel med =
+oktav sluttegn. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Her sker flere ting med =
+Nodel=C3=A6serudgaven. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>1 Nodel=C3=A6serudgaven Hvert samtidig =
+nodev=C3=A6rdig l=C3=A6ses lodret og, samtidigheden kan ses, men det =
+melodiske forl=C3=B8b hugges op i sm=C3=A5 bidder. Mens =
+punktnodeeksemplet l=C3=A6ser den enkelte stemme vandret i et =
+sammenh=C3=A6ngende melodisk forl=C3=B8b, samtidig med at samtidigheden =
+illustreres med bistemmetegnet, og skilletegnet viser i =
+punktnodeeksemplet, hvorn=C3=A5r bistemmen holder op og hvorn=C3=A5r, =
+der kan spilles med intervaltegn. I nodel=C3=A6ser eksemplet er der ikke =
+skilletegn p=C3=A5 det sted, hvor punktnodeeksemplet anviser, man skulle =
+s=C3=A6tte skilletegnet. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>2 Nodel=C3=A6ser =
+anvender 4 bistemmetegn og 4 skilletegn. Punktnodeeksemplet anvender 1 =
+lille bistemmetegn og et skilletegn. Sidstn=C3=A6vnte giver en bedre =
+forst=C3=A5else og er pladsbesparende. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>3 Nodel=C3=A6ser =
+f=C3=B8r f=C3=B8rste og andet bistemmetegn er det understemme, som =
+st=C3=A5r f=C3=B8r det lille bistemmetegn. Dette =C3=A6ndrer sig =
+imidlertid efter tredje skilletegn, her er det overstemmen, der kommer =
+f=C3=B8r lille bistemmetegn og understemmen efter. Hvorfor det? Det =
+forvirrer. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'>4 Nodel=C3=A6ser: Der hvor der spilles med =
+intervaltegn l=C3=A6ser nodel=C3=A6ser intervallerne opad, fordi den =
+angiver dybeste tone. Mens Punktnodeeksemplet l=C3=A6ser h=C3=B8jeste =
+tone og angiver derfor intervallet nedad. Det passer jo ogs=C3=A5 godt =
+med, at det er en diskantn=C3=B8gle. Hvorfor l=C3=A6ser nodel=C3=A6seren =
+den del af takten omvendt, n=C3=A5r det er en diskantn=C3=B8gle? Har det =
+noget at g=C3=B8re med, hvor dyb den nederste stemme er, selv om det er =
+i diskantn=C3=B8glen stadig v=C3=A6k? <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Jeg h=C3=A5ber, at min =
+lidt udvidede forklaring om bistemmer kan give en id=C3=A9 om, hvordan =
+de bruges. Men jeg tror at n=C3=B8glen ligger i den vandrette =
+l=C3=A6sning af stemmen.</span><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Mange hilsner <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Susanne <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>Fra:</span></=
+b><span style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'> =
+Jens Sundgaard &lt;holmeparken44@vip.cybercity.dk&gt; <br><b>Sendt:</b> =
+20. januar 2020 12:17<br><b>Til:</b> Susanne Nols=C3=B8e =
+&lt;susanne@obj.dk&gt;<br><b>Emne:</b> Re: Test af IBOS NOdel=C3=A6ser =
+Beta 3.4<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Hej =
+Susanne<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Mange tak, det =
+ser jo ud til at de fleste af de kendte problemer nu er =
+l=C3=B8st.<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Det er let at =
+rette r=C3=A6kkef=C3=B8lgen i TUTTI til at v=C3=A6re oppefra og ned, =
+s=C3=A5 det vil jeg g=C3=B8re.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Jeg vil osse =
+bruge dine definitioner af F-og =
+G-n=C3=B8gle.<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Det er rigtigt at =
+jeg havde fjernet SATB filen i 3.3, og sat den ind igen i =
+3.4.<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Det eneste, der =
+bekynrer mig lidt er at skilletegnene stadig ikke er =
+korrekte.<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Jeg vil se om jeg =
+kan f=C3=A5 tid til at kigge p=C3=A5 det inden release af 4.0, men jeg =
+mangler en <o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>masse =
+d=C3=B8dkedeligt arbejde omkring dokumentation og generering af =
+release,<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>s=C3=A5 det =
+kommer nok til at knibe.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Der er =
+desv=C3=A6rre ikke noget du kan g=C3=B8re omkring re=C3=A6kkef=C3=B8lgen =
+af stemmerne,<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>det er et eller =
+andet langh=C3=A5ret programmeringsteknisk, der driller, men p=C3=A5 =
+et<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>eller andet =
+tidspunkt vil jeg sikkert udbryde =E2=80=9Cn=C3=A5-j=C3=A5, var det bare =
+d=C3=A9t!=E2=80=9D<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>mvh =
+Jens<o:p></o:p></span></p></div><div><div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'>&n=
+bsp;<o:p></o:p></span></p></div><div><div><p class=3DMsoNormal =
+style=3D'background:whitesmoke'><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'>Fr=
+om:</span></b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'> =
+Susanne Nols=C3=B8e <o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal style=3D'background:whitesmoke'><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'>Se=
+nt:</span></b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'> =
+Monday, January 20, 2020 11:27 AM<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal style=3D'background:whitesmoke'><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'>To=
+:</span></b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'> =
+<a =
+href=3D"mailto:holmeparken44@vip.cybercity.dk">holmeparken44@vip.cybercit=
+y.dk</a> <o:p></o:p></span></p></div><div><p class=3DMsoNormal =
+style=3D'background:whitesmoke'><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'>Cc=
+:</span></b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'> =
+'Bo Alstrup (hjem)' <o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal style=3D'background:whitesmoke'><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'>Su=
+bject:</span></b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'> =
+SV: Test af IBOS NOdel=C3=A6ser Beta =
+3.4<o:p></o:p></span></p></div></div></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div></div><div><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Hej Jens <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:black'>&nbsp;</span><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>H=
+er har jeg lavet Test med 3.4 udgaven af nodel=C3=A6seren med test 11 =
+T=C3=A6nk hvis jeg sad p=C3=A5 m=C3=A5nen klaverudgaven Bana2015 =
+opstilling. test 12 p=C3=A5 Maria gennem torne g=C3=A5r udgaven fra =
+julemusik i Bana2015 opstilling. Og test 13 Befal du dine veje, i den =
+udgave, jeg har sendt dig indskrevet i Musescore ogs=C3=A5 i Bana2015 =
+opstilling. Test 14 er den udgave af Maria gennem torne g=C3=A5r, du =
+sendte mig 23. december i Bana 2015 opstilling. =
+<o:p></o:p></span></p><p><span style=3D'color:black'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>M=
+anglende oktavtegn i f=C3=B8rste node efter bistemme notation <br>SN: =
+Ser rigtigt ud nu i Maria gennem torne g=C3=A5r versionen fra julemusik =
+og Befal du dine veje. <o:p></o:p></span></p><p><span =
+style=3D'color:black'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>F=
+orkert Braille-kode for Septim <o:p></o:p></span></p><p =
+style=3D'margin-bottom:12.0pt'><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+N: ser rigtigt ud nu. Test 11 og test 12. <o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>F=
+orkert Braille-kode for punktum <o:p></o:p></span></p><p =
+style=3D'margin-bottom:12.0pt'><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+N: Den ser ogs=C3=A5 ud til at v=C3=A6re v=C3=A6k i al fald i =
+overskriften til Maria gennem torne g=C3=A5r, hvor jeg tidligere har =
+fundet den. Jeg er heller ikke st=C3=B8dt p=C3=A5 den i de andre filer. =
+<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+killetegn for bistemme-notation er generelt fejlplaceret =
+<o:p></o:p></span></p><p style=3D'margin-bottom:12.0pt'><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+N: Ja, her er fortsat problemer bl.a. Maria gennem torne g=C3=A5r Tutti =
+filen. Mens n=C3=A5r jeg kigger p=C3=A5 Befal du dine veje Sa-udgaven, =
+s=C3=A5 ser det rigtigt ud i takt 2 og 6, mens det er g=C3=A5et galt i =
+n=C3=A6st sidste takt med forkert placering af skilletegn. Ser jeg =
+p=C3=A5 Befal du dine veje SATB s=C3=A5 er skilletegnet rigtigt i takt 2 =
+men ikke i takt 3. det samme g=C3=A6lder ogs=C3=A5 Befal du dine veje =
+Tuttifilen. <o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>B=
+raille-koder for bindebuer og legatobuer mangler stort set<br>SN: Det =
+ser rigtigt ud nu b=C3=A5de efter noderne og efter intervaltegnene =
+b=C3=A5de i Test 12 og test 13. <o:p></o:p></span></p><p><span =
+style=3D'color:black'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>F=
+orkerte Braille-koder for G-n=C3=B8gle og F-n=C3=B8gle<br>SN: HM, Ja i =
+min verden ser n=C3=B8glerne ikke rigtige ud, Har du villet angive at =
+G-n=C3=B8glen st=C3=A5r p=C3=A5 2 linje jf. Franske tyske system? Hvis =
+ja, s=C3=A5 er G-n=C3=B8glen korrekt. Hvis du har villet angive, at =
+F-n=C3=B8glen st=C3=A5r p=C3=A5 3 linje jf. fransk tyske system, s=C3=A5 =
+er den ogs=C3=A5 korrekt if=C3=B8lge det materiale jeg har. Men hvis =
+ikke det betyder noget specielt, p=C3=A5 hvilken linje n=C3=B8glerne er, =
+s=C3=A5 vil jeg stadig foretr=C3=A6kk<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>G=
+-n=C3=B8gle: </span><span style=3D'color:#1F497D'>Pkt 345 2356 123 og =
+<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>F=
+-n=C3=B8gle: </span><span style=3D'color:#1F497D'>Pkt 345 235 123 =
+Begrundelsen er det s=C3=A6nkede g og F, som giver en fornuftig mening =
+som punktl=C3=A6ser, hvis man ellers kan bogstavalfabetet. Denne =
+sammenh=C3=A6ng er slet ikke n=C3=A6r s=C3=A5 tydeligt, med de syboler, =
+du har valgt at bruge lige nu. </span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p><p><span style=3D'color:black'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+temmenavn &quot;Sopran&quot; accepteres ikke som navn p=C3=A5 en =
+sopranstemme.<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+N: Nej det ser ikke s=C3=A5dan ud, den skriver i al fald soprano i test =
+13 Befal du dine veje og det siger den ogs=C3=A5 i nodel=C3=A6seren i =
+detaljevisningen. I Test 12 siger den bare S for sopran, mens i Test 14, =
+som er den udgave af Maria gennem torne g=C3=A5r, som du sendte 23. =
+december siger den sopran. <o:p></o:p></span></p><p><span =
+style=3D'color:black'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p><p class=3DMsoNormal =
+style=3D'margin-bottom:12.0pt'><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+temmenavn &quot;Bass&quot; accepteres ikke som navn p=C3=A5 en =
+basstemme.<br>SN: Joh, det ser s=C3=A5dan ud i test 13 Befal du dine =
+veje. </span><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Jeg mener du sagde p=C3=A5 et tidspunkt, at =
+der ikke skulle genereres SATB-filer af sig selv, det ser stadig ud som =
+om dette sker i hvert fald med Befal du dine veje test 13. Jeg har =
+medsendt alle punktfilerne, hvis der er noget, som du vil kigge efter. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black'>&nbsp;</span><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Ja, jeg forst=C3=A5r godt du er ked af, at =
+du ikke har kunnet n=C3=A5 at rette r=C3=A6kkef=C3=B8lgen af stemmer =
+p=C3=A5 nodel=C3=A6seren, og det synes jeg ogs=C3=A5 er =C3=A6rgerligt, =
+men jeg er enig i, at der ikke skal indf=C3=B8res ekstra fejlkilder. Kan =
+jeg lave nogen test her fra, som kan hj=C3=A6lpe dig med at opklare =
+problemet? Hvordan er det med l=C3=A6seretningen p=C3=A5 tuttifilerne =
+med intervalstemmerne, er det nemt at rette? Jeg vil foretr=C3=A6kke, at =
+den viser melodistemmen alts=C3=A5 sopranen s=C3=A5 l=C3=A6seretningen =
+skal v=C3=A6re nedad. Min begrundelse er, at har man brug for at holde =
+fast i, hvor man er, s=C3=A5 er det lettere at f=C3=B8lge melodistemmen =
+i noden end en baslinje, hvor mange toner kan v=C3=A6re de samme, =
+hvilket ofte ikke er tilf=C3=A6ldet med sopran. Hvis du kan f=C3=A5 =
+dette med i 3 4 udgaven, vil det v=C3=A6re godt. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black'>&nbsp;</span><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>I =C3=B8vrigt er jeg glad for at h=C3=B8re, =
+at min udgave af Det kimer nu kom til at st=C3=A5 p=C3=A6n og lyde godt, =
+selv om den ikke helt havde opf=C3=B8rt sig i Musescore, som jeg havde =
+t=C3=A6nkt. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black'>&nbsp;</span><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Mange hilsner <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:black'>&nbsp;</span><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Susanne <o:p></o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:black'>F=
+ra:</span></b><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:black'> =
+<a =
+href=3D"mailto:holmeparken44@vip.cybercity.dk">holmeparken44@vip.cybercit=
+y.dk</a> &lt;<a =
+href=3D"mailto:holmeparken44@vip.cybercity.dk">holmeparken44@vip.cybercit=
+y.dk</a>&gt; <br><b>Sendt:</b> 16. januar 2020 14:47<br><b>Til:</b> =
+Susanne Nols=C3=B8e &lt;<a =
+href=3D"mailto:susanne@obj.dk">susanne@obj.dk</a>&gt;<br><b>Emne:</b> =
+Test af IBOS NOdel=C3=A6ser Beta 3.4<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>&nbsp;<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>H=
+ej Susanne<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>D=
+u f=C3=A5r lige lidt supplerende information, som kun giver mening for =
+dig:<o:p></o:p></span></p><p><strong><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>F=
+=C3=B8lgende fejl er rettet i version 3.4, alts=C3=A5 siden version =
+3.3.</span></strong><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p><p><strong><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>F=
+int, hvis du specielt vil teste at disse rettelser&nbsp; er =
+korrekte:</span></strong><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>M=
+anglende oktavtegn i f=C3=B8rste node efter bistemme notation<br>Forkert =
+Braille-kode for Septim<br>Forkert Braille-kode for =
+punktum<br>Skilletegn for bistemme-notation er generelt =
+fejlplaceret<br>Braille-koder for bindebuer og legatobuer mangler stort =
+set<br>Forkerte Braille-koder for G-n=C3=B8gle og =
+F-n=C3=B8gle<br>Stemmenavn &quot;Sopran&quot; accepteres ikke som navn =
+p=C3=A5 en sopranstemme.<o:p></o:p></span></p><p =
+style=3D'margin-bottom:12.0pt'><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+temmenavn &quot;Bass&quot; accepteres ikke som navn p=C3=A5 en =
+basstemme.<br><br><o:p></o:p></span></p><p><strong><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>F=
+=C3=B8lgende fejl er ikke fors=C3=B8gt rettet, s=C3=A5 brug endelig ikke =
+tid p=C3=A5 at teste at der er rettet korrekt.</span></strong><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>R=
+=C3=A6kkef=C3=B8lge af stemmer ved export i IBOS opstilling og i selve =
+nodel=C3=A6seren.<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>O=
+pdeling af lange linier<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>F=
+lere stumper af sm=C3=A5 bistemmer i 1 takt erstattes af en enkelt stor =
+bistemme<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>T=
+onen &quot;His&quot; alts=C3=A5 &quot;H&quot; med kryds opl=C3=A6ses som =
+&quot;C&quot;<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>F=
+orkert sluttegn =E2=80=9DUnusual =
+barline=E2=80=9D<o:p></o:p></span></p><p><span =
+style=3D'color:black'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p><p><strong><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>F=
+=C3=B8lgende emner er ikke egentlige fejl, men forslag til senere =
+udvidelser:</span></strong><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>E=
+xport af nodetekster<o:p></o:p></span></p><p><span =
+style=3D'color:black'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>D=
+et =C3=A6rgrer mig specielt at jeg ikke har n=C3=A5et at =
+rette<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>&=
+quot;R=C3=A6kkef=C3=B8lge af stemmer ved export i IBOS opstilling og i =
+selve nodel=C3=A6seren.&quot; <o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>m=
+en jeg kan simpelthen ikke finde ud af pr=C3=A6cis hvad fejlen skyldes - =
+og en ikke 100% korrekt fejlrettelse<o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>v=
+il kunne f=C3=A5 fatale konsekvenser mange steder i =
+programmet.<o:p></o:p></span></p><p><span =
+style=3D'color:black'>&nbsp;</span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p><p><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>m=
+vh Jens<o:p></o:p></span></p><div><p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'>-=
+- <o:p></o:p></span></p><p><strong><span =
+style=3D'font-size:10.0pt;font-family:"Arial",sans-serif;color:#297C5F'>S=
+endt fra min Jubii Mail</span></strong><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+br></span><span =
+style=3D'font-size:8.0pt;font-family:"Arial",sans-serif;color:#A0A0A0'>Ju=
+bii Mail har eksisteret i 20 =C3=A5r og er en af Danmarks st=C3=B8rste =
+mail-udbydere med over 150.000 brugere. Jubii Mail er et 100% dansk =
+produkt med b=C3=A5de support og hosting i Danmark. Vi s=C3=A6tter en =
+=C3=A6re i at levere en personlig kvalitets-mail til b=C3=A5de private =
+og foreninger - og med knap 150 dom=C3=A6nenavne t=C3=B8r vi godt love, =
+at vi ogs=C3=A5 har en personlig email-adresse til dig.</span><span =
+style=3D'font-size:8.0pt;font-family:"Arial",sans-serif;color:black'> =
+</span><strong><span =
+style=3D'font-size:8.0pt;font-family:"Arial",sans-serif;color:#297C5F'><a=
+ =
+href=3D"https://konto.jubii.dk/SignUp?utm_source=3DWebmail%20Signatur&amp=
+;utm_medium=3DWebmail%20Signatur"><span style=3D'color:#297C5F'>Klik her =
+- opret Jubii Mail</span></a></span></strong><span =
+style=3D'font-size:8.0pt;font-family:"Arial",sans-serif;color:#A0A0A0'>.<=
+/span><span =
+style=3D'font-size:10.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p></div></div></div></div></div></body></html>
+------=_NextPart_001_00A5_01D5CFDA.92BDF380--
+
+------=_NextPart_000_00A4_01D5CFDA.92BDF380
+Content-Type: application/octet-stream;
+	name="Eksempel 52.musicxml"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+	filename="Eksempel 52.musicxml"
+
+<?xml version=3D"1.0" encoding=3D"UTF-8"?>=0A=
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.1 =
+Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">=0A=
+<score-partwise version=3D"3.1">=0A=
+  <work>=0A=
+    <work-title>Eksempel 52</work-title>=0A=
+    </work>=0A=
+  <identification>=0A=
+    <encoding>=0A=
+      <software>MuseScore 3.3.4</software>=0A=
+      <encoding-date>2020-01-13</encoding-date>=0A=
+      <supports element=3D"accidental" type=3D"yes"/>=0A=
+      <supports element=3D"beam" type=3D"yes"/>=0A=
+      <supports element=3D"print" attribute=3D"new-page" type=3D"yes" =
+value=3D"yes"/>=0A=
+      <supports element=3D"print" attribute=3D"new-system" type=3D"yes" =
+value=3D"yes"/>=0A=
+      <supports element=3D"stem" type=3D"yes"/>=0A=
+      </encoding>=0A=
+    </identification>=0A=
+  <defaults>=0A=
+    <scaling>=0A=
+      <millimeters>7.05556</millimeters>=0A=
+      <tenths>40</tenths>=0A=
+      </scaling>=0A=
+    <page-layout>=0A=
+      <page-height>1683.36</page-height>=0A=
+      <page-width>1190.88</page-width>=0A=
+      <page-margins type=3D"even">=0A=
+        <left-margin>56.6929</left-margin>=0A=
+        <right-margin>56.6929</right-margin>=0A=
+        <top-margin>56.6929</top-margin>=0A=
+        <bottom-margin>113.386</bottom-margin>=0A=
+        </page-margins>=0A=
+      <page-margins type=3D"odd">=0A=
+        <left-margin>56.6929</left-margin>=0A=
+        <right-margin>56.6929</right-margin>=0A=
+        <top-margin>56.6929</top-margin>=0A=
+        <bottom-margin>113.386</bottom-margin>=0A=
+        </page-margins>=0A=
+      </page-layout>=0A=
+    <word-font font-family=3D"FreeSerif" font-size=3D"10"/>=0A=
+    <lyric-font font-family=3D"FreeSerif" font-size=3D"11"/>=0A=
+    </defaults>=0A=
+  <credit page=3D"1">=0A=
+    <credit-words default-x=3D"595.44" default-y=3D"1626.67" =
+justify=3D"center" valign=3D"top" font-size=3D"24">Eksempel =
+52</credit-words>=0A=
+    </credit>=0A=
+  <credit page=3D"1">=0A=
+    <credit-words default-x=3D"595.44" default-y=3D"1569.97" =
+justify=3D"center" valign=3D"top" font-size=3D"14">Den Brailleske =
+nodeskrift dansk revision I: Grundregler</credit-words>=0A=
+    </credit>=0A=
+  <part-list>=0A=
+    <score-part id=3D"P1">=0A=
+      <part-name>Piano</part-name>=0A=
+      <part-abbreviation>Pno.</part-abbreviation>=0A=
+      <score-instrument id=3D"P1-I1">=0A=
+        <instrument-name>Piano</instrument-name>=0A=
+        </score-instrument>=0A=
+      <midi-device id=3D"P1-I1" port=3D"1"></midi-device>=0A=
+      <midi-instrument id=3D"P1-I1">=0A=
+        <midi-channel>1</midi-channel>=0A=
+        <midi-program>1</midi-program>=0A=
+        <volume>78.7402</volume>=0A=
+        <pan>0</pan>=0A=
+        </midi-instrument>=0A=
+      </score-part>=0A=
+    </part-list>=0A=
+  <part id=3D"P1">=0A=
+    <measure number=3D"1" width=3D"650.49">=0A=
+      <print>=0A=
+        <system-layout>=0A=
+          <system-margins>=0A=
+            <left-margin>0.00</left-margin>=0A=
+            <right-margin>0.00</right-margin>=0A=
+            </system-margins>=0A=
+          <top-system-distance>170.00</top-system-distance>=0A=
+          </system-layout>=0A=
+        </print>=0A=
+      <attributes>=0A=
+        <divisions>4</divisions>=0A=
+        <key>=0A=
+          <fifths>0</fifths>=0A=
+          </key>=0A=
+        <time>=0A=
+          <beats>4</beats>=0A=
+          <beat-type>4</beat-type>=0A=
+          </time>=0A=
+        <clef>=0A=
+          <sign>G</sign>=0A=
+          <line>2</line>=0A=
+          </clef>=0A=
+        </attributes>=0A=
+      <note default-x=3D"79.27" default-y=3D"-15.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>1</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>16th</type>=0A=
+        <stem>up</stem>=0A=
+        <beam number=3D"1">begin</beam>=0A=
+        <beam number=3D"2">begin</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"125.21" default-y=3D"-10.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>1</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>16th</type>=0A=
+        <stem>up</stem>=0A=
+        <beam number=3D"1">continue</beam>=0A=
+        <beam number=3D"2">continue</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"171.14" default-y=3D"-5.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>1</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>16th</type>=0A=
+        <stem>up</stem>=0A=
+        <beam number=3D"1">continue</beam>=0A=
+        <beam number=3D"2">continue</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"217.08" default-y=3D"-15.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>1</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>16th</type>=0A=
+        <stem>up</stem>=0A=
+        <beam number=3D"1">end</beam>=0A=
+        <beam number=3D"2">end</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"263.02" default-y=3D"-10.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>1</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>16th</type>=0A=
+        <stem>up</stem>=0A=
+        <beam number=3D"1">begin</beam>=0A=
+        <beam number=3D"2">begin</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"308.96" default-y=3D"-5.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>1</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>16th</type>=0A=
+        <stem>up</stem>=0A=
+        <beam number=3D"1">continue</beam>=0A=
+        <beam number=3D"2">continue</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"354.89" default-y=3D"0.00">=0A=
+        <pitch>=0A=
+          <step>F</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>1</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>16th</type>=0A=
+        <stem>up</stem>=0A=
+        <beam number=3D"1">continue</beam>=0A=
+        <beam number=3D"2">continue</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"400.83" default-y=3D"-10.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>1</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>16th</type>=0A=
+        <stem>up</stem>=0A=
+        <beam number=3D"1">end</beam>=0A=
+        <beam number=3D"2">end</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"446.77" default-y=3D"-5.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"547.83" default-y=3D"-10.00">=0A=
+        <pitch>=0A=
+          <step>D</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>up</stem>=0A=
+        </note>=0A=
+      <backup>=0A=
+        <duration>16</duration>=0A=
+        </backup>=0A=
+      <note default-x=3D"79.27" default-y=3D"-40.00">=0A=
+        <pitch>=0A=
+          <step>E</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>2</voice>=0A=
+        <type>eighth</type>=0A=
+        <stem>down</stem>=0A=
+        <beam number=3D"1">begin</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"171.14" default-y=3D"-50.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>2</voice>=0A=
+        <type>eighth</type>=0A=
+        <stem>down</stem>=0A=
+        <beam number=3D"1">continue</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"263.02" default-y=3D"-55.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>2</voice>=0A=
+        <type>eighth</type>=0A=
+        <stem>down</stem>=0A=
+        <beam number=3D"1">continue</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"354.89" default-y=3D"-65.00">=0A=
+        <pitch>=0A=
+          <step>G</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>2</duration>=0A=
+        <voice>2</voice>=0A=
+        <type>eighth</type>=0A=
+        <stem>down</stem>=0A=
+        <beam number=3D"1">end</beam>=0A=
+        </note>=0A=
+      <note default-x=3D"446.77" default-y=3D"-50.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>2</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      <note default-x=3D"547.83" default-y=3D"-55.00">=0A=
+        <pitch>=0A=
+          <step>B</step>=0A=
+          <octave>3</octave>=0A=
+          </pitch>=0A=
+        <duration>4</duration>=0A=
+        <voice>2</voice>=0A=
+        <type>quarter</type>=0A=
+        <stem>down</stem>=0A=
+        </note>=0A=
+      </measure>=0A=
+    <measure number=3D"2" width=3D"427.00">=0A=
+      <note default-x=3D"13.80" default-y=3D"-15.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>5</octave>=0A=
+          </pitch>=0A=
+        <duration>16</duration>=0A=
+        <voice>1</voice>=0A=
+        <type>whole</type>=0A=
+        </note>=0A=
+      <backup>=0A=
+        <duration>16</duration>=0A=
+        </backup>=0A=
+      <note default-x=3D"13.80" default-y=3D"-50.00">=0A=
+        <pitch>=0A=
+          <step>C</step>=0A=
+          <octave>4</octave>=0A=
+          </pitch>=0A=
+        <duration>16</duration>=0A=
+        <voice>2</voice>=0A=
+        <type>whole</type>=0A=
+        </note>=0A=
+      <barline location=3D"right">=0A=
+        <bar-style>light-heavy</bar-style>=0A=
+        </barline>=0A=
+      </measure>=0A=
+    </part>=0A=
+  </score-partwise>=0A=
+
+------=_NextPart_000_00A4_01D5CFDA.92BDF380--
+
