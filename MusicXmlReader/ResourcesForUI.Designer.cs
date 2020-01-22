@@ -1105,7 +1105,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Capella.
+        ///   Looks up a localized string similar to &amp;Capella.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_Capella {
             get {
@@ -1114,7 +1114,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finale.
+        ///   Looks up a localized string similar to &amp;Finale.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_Finale {
             get {

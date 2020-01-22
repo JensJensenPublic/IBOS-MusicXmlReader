@@ -576,10 +576,10 @@
     <value>Please enter the valid path in</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Capella" xml:space="preserve">
-    <value>Capella</value>
+    <value>&amp;Capella</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Finale" xml:space="preserve">
-    <value>Finale</value>
+    <value>&amp;Finale</value>
   </data>
   <data name="BrailleMusicExportHandler_Invalid_Input" xml:space="preserve">
     <value>Invalid input</value>

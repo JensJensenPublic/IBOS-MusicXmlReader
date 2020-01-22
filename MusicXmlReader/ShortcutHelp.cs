@@ -251,6 +251,8 @@ namespace MusicXmlReader
             string tools = AddCaption(ResourcesForUI.ToolStripMenuItem_Tools);
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_MuseScore);
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_Sibelius);
+            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_Capella);
+            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_Finale);
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_Logfile);
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_Logfile_Location);
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_OpenXmlFileLocation);
