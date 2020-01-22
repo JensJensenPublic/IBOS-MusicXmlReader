@@ -16,13 +16,13 @@ namespace MusicXmlReader
     /// </summary>
     public partial class HelpForm : Form
     {
-        public HelpForm(string applicationName)
+        public HelpForm(string applicationName, bool developerMode)
         {
             InitializeComponent();
-            UserInit(applicationName);
+            UserInit(applicationName,developerMode);
         }
 
-        private void UserInit(string applicationName)
+        private void UserInit(string applicationName, bool developerMode)
         { 
             this.Text = applicationName + ":   " + ResourcesForHelp.Shortcut_MenuCaption;
             ShortcutHelp shortcutHelp = ShortcutHelp.Create();
@@ -30,7 +30,7 @@ namespace MusicXmlReader
             foreach (string s in strings)
             {
                 listBoxHelp.Items.Add(s);
-                // MusicXmlReaderModel.Logger.List(s); // Enable this line to generate documentation in the logfile !!
+                if (developerMode) MusicXmlReaderModel.Logger.List(s); // Enable this line to generate documentation in the logfile !!
             }
 
         }

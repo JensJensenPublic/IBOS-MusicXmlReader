@@ -386,7 +386,7 @@ namespace MusicXmlReader
         private void keyboardShortcutsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string caption = applicationName + " " + ResourcesForUI.ToolStripMenuItem_Help_Shortcuts;
-            Form helpForm = new HelpForm(organisationDependencies.ApplicationName);
+            Form helpForm = new HelpForm(organisationDependencies.ApplicationName, developerMode);
             helpForm.Show();
             // MessageBox.Show(ShortcutHelp.Create().ToString(), caption);
         }
