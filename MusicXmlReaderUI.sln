@@ -141,6 +141,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.3.0.0", "3.3.0.0", "{2645
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.4.0.0", "3.4.0.0", "{71A815E3-AC56-44E2-88DE-DD6D5BC94CDC}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\TEst reports\3.4.0.0\LP 2020.01.20 SV_ Til test af SA og BT.eml = Documentation\TEst reports\3.4.0.0\LP 2020.01.20 SV_ Til test af SA og BT.eml
+		Documentation\TEst reports\3.4.0.0\SN 2020.01.20.SV_ Test af IBOS NOdelæser Beta 3_4.eml = Documentation\TEst reports\3.4.0.0\SN 2020.01.20.SV_ Test af IBOS NOdelæser Beta 3_4.eml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
