@@ -258,6 +258,7 @@ namespace MusicXmlReader
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_Logfile_Location);
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_OpenXmlFileLocation);
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_InspectAsXml);
+            AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_InspectAsXml_Using_Chrome);
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_ViewAsInterpretedXml);
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_JAWS_Settings);
 

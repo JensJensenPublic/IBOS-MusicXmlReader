@@ -397,7 +397,7 @@
     <value>Maak braillemuziek testpatroon</value>
   </data>
   <data name="ToolStripMenuItem_Tools_InspectAsXml" xml:space="preserve">
-    <value>Braillemuziek als onbewerkt XML</value>
+    <value>Braillemuziek als onbewerkt &amp;XML</value>
   </data>
   <data name="ToolStripMenuItem_Tools_JAWS_Settings" xml:space="preserve">
     <value>&amp;JAWS instellingen</value>
@@ -549,7 +549,7 @@
     <value>&amp;Zet alle instellingen naar standaardwaarden</value>
   </data>
   <data name="ToolStripMenuItem_Tools_InspectAsXml_Using_Chrome" xml:space="preserve">
-    <value>Braillemuziek als onbewerkt XML (Google Chrome)</value>
+    <value>Braillemuziek als onbewerkt XML (&amp;Google Chrome)</value>
   </data>
   <data name="Message_Files" xml:space="preserve">
     <value>bestanden</value>

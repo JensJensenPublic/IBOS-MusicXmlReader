@@ -1141,7 +1141,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MusicXml file  as raw Xml Using Google Chrome.
+        ///   Looks up a localized string similar to MusicXml file  as raw Xml Using &amp;Google Chrome.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_InspectAsXml_Using_Chrome {
             get {

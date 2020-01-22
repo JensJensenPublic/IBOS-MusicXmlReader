@@ -605,6 +605,6 @@
     <comment>NL MISSING</comment>
   </data>
   <data name="ToolStripMenuItem_Tools_InspectAsXml_Using_Chrome" xml:space="preserve">
-    <value>MusicXml fil som rå XML med Google Chrome</value>
+    <value>MusicXml fil som rå XML med &amp;Google Chrome</value>
   </data>
 </root>
