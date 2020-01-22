@@ -565,6 +565,24 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Print on embosser using external program.
+        /// </summary>
+        internal static string Shortcut_PrintUsingExternalProgram {
+            get {
+                return ResourceManager.GetString("Shortcut_PrintUsingExternalProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print on embosser using Windows print dialog.
+        /// </summary>
+        internal static string Shortcut_PrintUsingWindowsPrintDialog {
+            get {
+                return ResourceManager.GetString("Shortcut_PrintUsingWindowsPrintDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Read message box.
         /// </summary>
         internal static string Shortcut_ReadMessagebox {

@@ -162,9 +162,13 @@ namespace MusicXmlReader
         //
 
         // Start / Stop of Autoplay
-        public const Keys startPlaying =    Keys.Control | Keys.P;
-        public const Keys stopPlaying  =    Keys.Control | Keys.Shift | Keys.P;
+        public const Keys startPlaying =    Keys.P;               // Removed CTRL in 3.5 because we want to use  "CTRL+P" for Print
+        public const Keys stopPlaying  =    Keys.Shift | Keys.P;  // Removed CTRL in 3.5 because we want to use  "CTRL+SHIFT+P" for Print
         public const Keys togglePlaying =   Keys.Space;
+
+
+        public const Keys PrintOnWindowsPrinter = Keys.Control | Keys.P;
+        public const Keys PrintUsingExternalProgram = Keys.Control | Keys.Shift |Keys.P;
 
 
         // Tempo control of AutoPlay

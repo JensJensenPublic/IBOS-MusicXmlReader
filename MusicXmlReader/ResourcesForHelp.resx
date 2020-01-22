@@ -354,4 +354,10 @@
   <data name="Shortcut_StatusTop" xml:space="preserve">
     <value>Show top line of status information</value>
   </data>
+  <data name="Shortcut_PrintUsingExternalProgram" xml:space="preserve">
+    <value>Print on embosser using external program</value>
+  </data>
+  <data name="Shortcut_PrintUsingWindowsPrintDialog" xml:space="preserve">
+    <value>Print on embosser using Windows print dialog</value>
+  </data>
 </root>

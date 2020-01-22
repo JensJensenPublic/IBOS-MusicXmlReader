@@ -354,4 +354,10 @@
   <data name="Shortcut_StatusTop" xml:space="preserve">
     <value>Vis statusinformations øverste linie</value>
   </data>
+  <data name="Shortcut_PrintUsingExternalProgram" xml:space="preserve">
+    <value>Udskriv på punktprinter ved hjælp af externt program</value>
+  </data>
+  <data name="Shortcut_PrintUsingWindowsPrintDialog" xml:space="preserve">
+    <value>Udskriv på punktprinter ved hjælp af Windows print-dialog</value>
+  </data>
 </root>

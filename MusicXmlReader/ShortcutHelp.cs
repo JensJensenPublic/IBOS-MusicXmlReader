@@ -192,6 +192,7 @@ namespace MusicXmlReader
             AddLine(Keys.Tab, ResourcesForHelp.Shortcut_ToggleBetweenListAndFilter);
             AddLine(Keys.Escape, ResourcesForHelp.Shortcut_CancelCurrentOperation);
             AddLine(Keys.Control | Keys.O, ResourcesForHelp.Shortcut_OpenFileOpenDialog);
+            AddLine(Keys.Control | Keys.P, ResourcesForHelp.Shortcut_PrintUsingWindowsPrintDialog);
             AddLine(Keys.Alt | Keys.F4, ResourcesForHelp.Shortcut_CloseProgram);
             AddLine(Keys.Control | Keys.Home, ResourcesForHelp.Shortcut_GoToTopLine);
             AddLine(Keys.Control | Keys.End, ResourcesForHelp.Shortcut_GoToBottomLine);
@@ -208,6 +209,8 @@ namespace MusicXmlReader
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportDownloads, ShortcutHandler.NoKeys);
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportNewestDownloads, ShortcutHandler.NoKeys);
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportNewestSamples, ShortcutHandler.NoKeys);
+            AddLine(ShortcutHandler.PrintOnWindowsPrinter, ResourcesForHelp.Shortcut_PrintUsingWindowsPrintDialog); // We can't handle ALT-sequences in 3 levels here, so we only show the CTRL combinations
+            AddLine(ShortcutHandler.PrintUsingExternalProgram, ResourcesForHelp.Shortcut_PrintUsingExternalProgram); // We can't handle ALT-sequences in 3 levels here, so we only show the CTRL combinations
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_Exit, ShortcutHandler.exitApplication);
 
             // The following special keyboard shortcuts can be used in connection with the node filter
