@@ -239,7 +239,14 @@ namespace MusicXmlReader
             // End of commands taking parameters and handled by the ParameterInputForm
 
             string view = AddCaption(ResourcesForUI.ToolStripMenuItem_View);
-            AddAltControlLine(view, ResourcesForUI. ToolsStripMenuItem_View_Instruments, ShortcutHandler.NoKeys);
+            AddAltControlLine(view, ResourcesForUI.ToolsStripMenuItem_View_Instruments, ShortcutHandler.NoKeys);
+
+            string settings = AddCaption(ResourcesForUI.ToolStripMenuItem_Settings);
+            AddAltControlLine(settings, ResourcesForUI.ToolStripMenuItem_Settings_General, ShortcutHandler.NoKeys);
+            AddAltControlLine(settings, ResourcesForUI.ToolStripMenuItem_Settings_Embosser, ShortcutHandler.NoKeys);
+            AddAltControlLine(settings, ResourcesForUI.ToolStripMenuItem_Settings_NoteTaker, ShortcutHandler.NoKeys);
+            AddAltControlLine(settings, ResourcesForUI.ToolStripMenuItem_Settings_MusicBraille, ShortcutHandler.NoKeys);
+            AddAltControlLine(settings, ResourcesForUI.ToolStripMenuItem_Settings_ResetAll, ShortcutHandler.NoKeys);
 
             string tools = AddCaption(ResourcesForUI.ToolStripMenuItem_Tools);
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_MuseScore);

@@ -524,7 +524,7 @@
     <value>Settings for &amp;notetaker profile</value>
   </data>
   <data name="ToolStripMenuItem_Settings_ResetAll" xml:space="preserve">
-    <value>Reset all settings to default</value>
+    <value>&amp;Reset all settings to default</value>
   </data>
   <data name="Message_Directory" xml:space="preserve">
     <value>Directory</value>

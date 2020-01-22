@@ -1087,7 +1087,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset all settings to default.
+        ///   Looks up a localized string similar to &amp;Reset all settings to default.
         /// </summary>
         internal static string ToolStripMenuItem_Settings_ResetAll {
             get {

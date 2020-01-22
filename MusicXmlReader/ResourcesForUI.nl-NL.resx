@@ -500,10 +500,10 @@
     <value>&amp;Instillingen</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Capella" xml:space="preserve">
-    <value>Capella</value>
+    <value>&amp;Capella</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Finale" xml:space="preserve">
-    <value>Finale</value>
+    <value>&amp;Finale</value>
   </data>
   <data name="BrailleMusicExportHandler_Invalid_Input" xml:space="preserve">
     <value>Invalid input</value>
@@ -537,16 +537,16 @@
     <value>Naar algemeen Braille apparaat</value>
   </data>
   <data name="ToolStripMenuItem_Settings_Embosser" xml:space="preserve">
-    <value>Instellingen voor braille printer</value>
+    <value>Instellingen voor Braille &amp;printer</value>
   </data>
   <data name="ToolStripMenuItem_Settings_MusicBraille" xml:space="preserve">
-    <value>Instellingen voor algemeen braille apparaat</value>
+    <value>Instellingen voor &amp;algemeen Braille apparaat</value>
   </data>
   <data name="ToolStripMenuItem_Settings_NoteTaker" xml:space="preserve">
-    <value>Instellingen voor Notetaker</value>
+    <value>Instellingen voor notetaker</value>
   </data>
   <data name="ToolStripMenuItem_Settings_ResetAll" xml:space="preserve">
-    <value>Zet alle instellingen naar standaardwaarden</value>
+    <value>&amp;Zet alle instellingen naar standaardwaarden</value>
   </data>
   <data name="ToolStripMenuItem_Tools_InspectAsXml_Using_Chrome" xml:space="preserve">
     <value>Braillemuziek als onbewerkt XML (Google Chrome)</value>

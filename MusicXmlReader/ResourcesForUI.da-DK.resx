@@ -528,7 +528,7 @@
     <comment>MISSING NL</comment>
   </data>
   <data name="ToolStripMenuItem_Settings_ResetAll" xml:space="preserve">
-    <value>Nulstil alle indstillinger til standard værdier</value>
+    <value>&amp;Reset alle indstillinger til standard værdier</value>
     <comment>MISSING NL</comment>
   </data>
   <data name="Message_Directory" xml:space="preserve">
