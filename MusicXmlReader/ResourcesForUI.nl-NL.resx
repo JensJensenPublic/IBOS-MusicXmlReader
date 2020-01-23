@@ -307,16 +307,16 @@
     <value>Bestandsformaat wordt niet ondersteund</value>
   </data>
   <data name="ToolsStripMenuItem_Archives" xml:space="preserve">
-    <value>XML-bibliotheken</value>
+    <value>&amp;XML-bibliotheken</value>
   </data>
   <data name="ToolsStripMenuItem_View_Instruments" xml:space="preserve">
-    <value>&amp;details MIDI instrumenten</value>
+    <value>&amp;Details MIDI instrumenten</value>
   </data>
   <data name="ToolStripMenuItem_Edit" xml:space="preserve">
-    <value>&amp;wijzig</value>
+    <value>&amp;Wijzig</value>
   </data>
   <data name="ToolStripMenuItem_Files" xml:space="preserve">
-    <value>&amp;bestanden</value>
+    <value>&amp;Bestanden</value>
   </data>
   <data name="ToolStripMenuItem_Files_BrfASCII" xml:space="preserve">
     <value>.brf (ASCII)</value>
@@ -390,7 +390,7 @@
     <value>&amp;Link naar de nieuwste software</value>
   </data>
   <data name="ToolStripMenuItem_Tools" xml:space="preserve">
-    <value>bewer&amp;k</value>
+    <value>Bewer&amp;k</value>
     <comment>things as copy, paste, delete, insert</comment>
   </data>
   <data name="ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern" xml:space="preserve">
@@ -430,7 +430,7 @@
     <comment>intrerpreted is almost a dutch wordrd</comment>
   </data>
   <data name="ToolStripMenuItem_View" xml:space="preserve">
-    <value>Bekijk</value>
+    <value>Beki&amp;jk</value>
   </data>
   <data name="ToolStripMenuItem_View_MusicBrailleForNoteTaker" xml:space="preserve">
     <value>Braillemuziek voor Notetaker </value>
