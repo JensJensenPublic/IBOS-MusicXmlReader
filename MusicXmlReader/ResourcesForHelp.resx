@@ -360,4 +360,7 @@
   <data name="Shortcut_PrintUsingWindowsPrintDialog" xml:space="preserve">
     <value>Print on embosser using Windows print dialog</value>
   </data>
+  <data name="ToolStripMenuItem_NoteArchives_NoShortcuts" xml:space="preserve">
+    <value>No shortcuts</value>
+  </data>
 </root>

@@ -360,4 +360,7 @@
   <data name="Shortcut_PrintUsingWindowsPrintDialog" xml:space="preserve">
     <value>Udskriv på punktprinter ved hjælp af Windows print-dialog</value>
   </data>
+  <data name="ToolStripMenuItem_NoteArchives_NoShortcuts" xml:space="preserve">
+    <value>Ingen genveje</value>
+  </data>
 </root>

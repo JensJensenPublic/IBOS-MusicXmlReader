@@ -788,5 +788,14 @@ namespace MusicXmlReader {
                 return ResourceManager.GetString("ToolStripMenuItem_Edit_ParameterInputText", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No shortcuts.
+        /// </summary>
+        internal static string ToolStripMenuItem_NoteArchives_NoShortcuts {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_NoteArchives_NoShortcuts", resourceCulture);
+            }
+        }
     }
 }

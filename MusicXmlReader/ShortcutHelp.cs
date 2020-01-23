@@ -263,7 +263,7 @@ namespace MusicXmlReader
             AddAltControlLine(tools, ResourcesForUI.ToolStripMenuItem_Tools_JAWS_Settings);
 
             string noteArchives = AddCaption(ResourcesForUI.ToolsStripMenuItem_Archives);
-            AddLine("(Ingen)");
+            AddLine(string.Format("({0})",ResourcesForHelp.ToolStripMenuItem_NoteArchives_NoShortcuts));
 
             string help = AddCaption(ResourcesForUI.ToolStripMenuItem_Help);
             AddAltControlLine(help, ResourcesForUI.ToolStripMenuItem_Help_About); 
