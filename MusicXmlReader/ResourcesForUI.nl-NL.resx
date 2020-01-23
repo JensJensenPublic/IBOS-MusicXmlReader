@@ -368,29 +368,29 @@
     <value>.txt (OctoBraille 1252)</value>
   </data>
   <data name="ToolStripMenuItem_Help" xml:space="preserve">
-    <value>Help</value>
+    <value>&amp;Help</value>
     <comment>is the same in Dutch</comment>
   </data>
   <data name="ToolStripMenuItem_Help_About" xml:space="preserve">
-    <value>over</value>
+    <value>&amp;over</value>
   </data>
   <data name="ToolStripMenuItem_Help_About_Version" xml:space="preserve">
-    <value>Versie</value>
+    <value>&amp;Versie</value>
   </data>
   <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
-    <value>Sneltoetsen</value>
+    <value>&amp;Sneltoetsen</value>
   </data>
   <data name="ToolStripMenuItem_Help_ShowUsersManual" xml:space="preserve">
-    <value>Toon gebruikershandleiding</value>
+    <value>&amp;Toon gebruikershandleiding</value>
   </data>
   <data name="ToolStripMenuItem_Help_SoftwareUpdate" xml:space="preserve">
-    <value>Link naar de nieuwste software</value>
+    <value>&amp;Link naar de nieuwste software</value>
   </data>
   <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
-    <value />
+    <value>&amp;Link naar de nieuwste software</value>
   </data>
   <data name="ToolStripMenuItem_Tools" xml:space="preserve">
-    <value>bewerk</value>
+    <value>bewer&amp;k</value>
     <comment>things as copy, paste, delete, insert</comment>
   </data>
   <data name="ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern" xml:space="preserve">
