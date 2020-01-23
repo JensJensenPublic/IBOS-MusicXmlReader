@@ -124,7 +124,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test descriptions", "Test d
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version 3.3", "Version 3.3", "{3B46914E-71C8-49D7-B733-DB73A6C95801}"
 	ProjectSection(SolutionItems) = preProject
-		Documentation\Test descriptions\Version 3.3\Test af version 3.3.doc = Documentation\Test descriptions\Version 3.3\Test af version 3.3.doc
 		Documentation\Test descriptions\Version 3.3\Test af version 3.3.docx = Documentation\Test descriptions\Version 3.3\Test af version 3.3.docx
 	EndProjectSection
 EndProject
