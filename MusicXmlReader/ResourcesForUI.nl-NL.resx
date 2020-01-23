@@ -403,17 +403,17 @@
     <value>&amp;JAWS instellingen</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Logfile" xml:space="preserve">
-    <value>Log bestand</value>
+    <value>&amp;Log bestand</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Logfile_Location" xml:space="preserve">
-    <value>Locatie log bestand</value>
+    <value>&amp;Pad log bestand</value>
   </data>
   <data name="ToolStripMenuItem_Tools_MuseScore" xml:space="preserve">
     <value>&amp;MuseScore</value>
     <comment>name of Programm (not to be translated)</comment>
   </data>
   <data name="ToolStripMenuItem_Tools_OpenXmlFileLocation" xml:space="preserve">
-    <value>Locatie Muziek XML bestand</value>
+    <value>Pad Muziek XML &amp;bestand</value>
   </data>
   <data name="ToolStripMenuItem_Tools_SaveAsText" xml:space="preserve">
     <value>Opslaan als tekst</value>
