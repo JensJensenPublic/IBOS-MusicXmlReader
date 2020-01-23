@@ -106,10 +106,19 @@ namespace MusicXmlReaderModel
 #if true
         public static readonly byte[] clefG = new byte[] { (dot3 + dot4 + dot5), (dot2 + dot3 + dot5 + dot6), (dot1 + dot2 + dot3) }; // Used in version >= 3.5 as requested by SN
         public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot2 + dot3 + dot5),        (dot1 + dot2 + dot3) }; // Used in version >= 3.5 as requested by SN
-#else            
+#else
         public static readonly byte[] clefG = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4       ), (dot1 + dot2 + dot3) }; // Used in version <= 3.4
         public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot6), (dot1 + dot2 + dot3) }; // EGTVED USed in version <= 3.4
 #endif
+        // Hands
+        // Egtved Part 2 Chapter 1 claims that the folowing hand-signs should be placed first on the line and be followed by dot3 except in thecases 
+        // when the following Braille char does not contain dot1, dot 2 or dot 3.
+        // We prefer to add dot3 always in order to make things simpler !!
+        public static readonly byte[] HandRight = new byte[] { (dot4 + dot6), (dot3 + dot4 + dot5) };
+        public static readonly byte[] HandLeft = new byte[] { (dot4 + dot5 + dot6), (dot3 + dot4 + dot5) };
+        public static readonly byte[] HandRightDot3 = new byte[] { (dot4 + dot6), (dot3 + dot4 + dot5), dot3 };
+        public static readonly byte[] HandLeftDot3 = new byte[] { (dot4 + dot5 + dot6), (dot3 + dot4 + dot5), dot3 };
+
 
 
         //public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot5 + dot6), (dot1 + dot2 + dot3) }; // BANA
