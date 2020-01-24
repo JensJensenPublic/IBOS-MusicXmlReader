@@ -214,7 +214,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User&apos;s manual.doc.
+        ///   Looks up a localized string similar to User&apos;s manual.docx.
         /// </summary>
         internal static string FileNames_UsersManual {
             get {

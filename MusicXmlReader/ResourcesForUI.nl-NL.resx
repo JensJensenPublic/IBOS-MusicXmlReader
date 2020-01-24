@@ -163,7 +163,7 @@
     <value>fragmenten</value>
   </data>
   <data name="FileNames_UsersManual" xml:space="preserve">
-    <value>Gebruikershandleiding.doc</value>
+    <value>Gebruikershandleiding.docx</value>
     <comment>Gebruikers handleiding = dutch for users manual </comment>
   </data>
   <data name="ListBoxDetails_NoDetailsFound" xml:space="preserve">
