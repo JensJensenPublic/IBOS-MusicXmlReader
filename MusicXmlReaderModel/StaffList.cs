@@ -247,6 +247,8 @@ namespace MusicXmlReaderModel
             allStaffs.Add(staff);
         }
 
+#warning ToDo Refactor into bool AddCondition(List<StaffSelector> selectedStaffs) and AddPseudoStaff(events,staffName,BrailleBuilder brailleProlog)
+#warning ToDo And add member variable BrailleBuilder BrailleProlog {set} to Staff in order to add lefthand/righthand symbols.
         /// <summary>
         /// Conditionally Add a pseudo staff to the current StaffList
         /// </summary>
