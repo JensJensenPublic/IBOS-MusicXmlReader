@@ -108,7 +108,7 @@ namespace MusicXmlReaderModel
         public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot2 + dot3 + dot5),        (dot1 + dot2 + dot3) }; // Used in version >= 3.5 as requested by SN
 #else
         public static readonly byte[] clefG = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4       ), (dot1 + dot2 + dot3) }; // Used in version <= 3.4
-        public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot6), (dot1 + dot2 + dot3) }; // EGTVED USed in version <= 3.4
+        public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot6), (dot1 + dot2 + dot3) }; // Refsnæs version Used in version <= 3.4
 #endif
         // Hands
         // Egtved Part 2 Chapter 1 claims that the folowing hand-signs should be placed first on the line and be followed by dot3 except in thecases 
