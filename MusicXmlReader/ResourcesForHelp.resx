@@ -268,7 +268,7 @@
     <value>Shortcuts used for controlling the tempo</value>
   </data>
   <data name="Shortcut_ChordName" xml:space="preserve">
-    <value>Snow the name of the chord</value>
+    <value>Show the name of the chord</value>
   </data>
   <data name="Shortcut_ChordTop" xml:space="preserve">
     <value>Show top note in chord</value>
@@ -277,7 +277,7 @@
     <value>Decrease playback tempo</value>
   </data>
   <data name="Shortcut_FixedKeySignature" xml:space="preserve">
-    <value>Show fised signature keys</value>
+    <value>Show fixed signature keys</value>
   </data>
   <data name="Shortcut_IncreaseTempo" xml:space="preserve">
     <value>Increase playback tempo</value>

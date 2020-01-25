@@ -196,7 +196,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Snow the name of the chord.
+        ///   Looks up a localized string similar to Show the name of the chord.
         /// </summary>
         internal static string Shortcut_ChordName {
             get {
@@ -304,7 +304,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show fised signature keys.
+        ///   Looks up a localized string similar to Show fixed signature keys.
         /// </summary>
         internal static string Shortcut_FixedKeySignature {
             get {
