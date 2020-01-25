@@ -1,101 +1,366 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
-		Microsoft ResX Schema
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
 
-		Version 1.3
-
-		The primary goals of this format is to allow a simple XML format 
-		that is mostly human readable. The generation and parsing of the 
-		various data types are done through the TypeConverter classes 
-		associated with the data types.
-
-		Example:
-
-		... ado.net/XML headers & schema ...
-		<resheader name="resmimetype">text/microsoft-resx</resheader>
-		<resheader name="version">1.3</resheader>
-		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-		<data name="Name1">this is my long string</data>
-		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-			[base64 mime encoded serialized .NET Framework object]
-		</data>
-		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-			[base64 mime encoded string representing a byte array form of the .NET Framework object]
-		</data>
-
-		There are any number of "resheader" rows that contain simple 
-		name/value pairs.
-
-		Each data row contains a name, and value. The row also contains a 
-		type or mimetype. Type corresponds to a .NET class that support 
-		text/value conversion through the TypeConverter architecture. 
-		Classes that don't support this are serialized and stored with the 
-		mimetype set.
-
-		The mimetype is used for serialized objects, and tells the 
-		ResXResourceReader how to depersist the object. This is currently not 
-		extensible. For a given mimetype the value must be set accordingly:
-
-		Note - application/x-microsoft.net.object.binary.base64 is the format 
-		that the ResXResourceWriter will generate, however the reader can 
-		read any of the formats listed below.
-
-		mimetype: application/x-microsoft.net.object.binary.base64
-		value   : The object must be serialized with 
-			: System.Serialization.Formatters.Binary.BinaryFormatter
-			: and then encoded with base64 encoding.
-
-		mimetype: application/x-microsoft.net.object.soap.base64
-		value   : The object must be serialized with 
-			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-			: and then encoded with base64 encoding.
-
-		mimetype: application/x-microsoft.net.object.bytearray.base64
-		value   : The object must be serialized into a byte array 
-			: using a System.ComponentModel.TypeConverter
-			: and then encoded with base64 encoding.
-	-->
-	
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" />
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>1.3</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Conjunction_Or" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="Shortcut_ArrowDown" xml:space="preserve">
+    <value>pijltje omlaag</value>
+  </data>
+  <data name="Shortcut_ArrowLeft" xml:space="preserve">
+    <value>pijltje links</value>
+  </data>
+  <data name="Shortcut_ArrowRight" xml:space="preserve">
+    <value>pijltje rechts</value>
+  </data>
+  <data name="Shortcut_ArrowUp" xml:space="preserve">
+    <value>pijltje omhoog</value>
+  </data>
+  <data name="Shortcut_Asterisk" xml:space="preserve">
+    <value>sterretje</value>
+  </data>
+  <data name="Shortcut_CancelCurrentOperation" xml:space="preserve">
+    <value>annuleer huidige actie </value>
+  </data>
+  <data name="Shortcut_Caption_DetailList" xml:space="preserve">
+    <value>sneltoetsen om details te bekijken</value>
+  </data>
+  <data name="Shortcut_Caption_JAWS" xml:space="preserve">
+    <value>standaard JAWS sneltoetsen</value>
+  </data>
+  <data name="Shortcut_Caption_Menu" xml:space="preserve">
+    <value>sneltoetsen voor menu</value>
+  </data>
+  <data name="shortcut_Caption_NoteFilter" xml:space="preserve">
+    <value>sneltoetsen om geselecteerde noot te wijzigen</value>
+  </data>
+  <data name="Shortcut_Caption_NoteFilter_Special" xml:space="preserve">
+    <value>de volgende sneltoetsen en commando's kunnen worden gebruikt in combinatie met de geselecteerde noot</value>
+  </data>
+  <data name="shortcut_Caption_NoteList" xml:space="preserve">
+    <value>sneltoetsen voor de noten lijst</value>
+  </data>
+  <data name="Shortcut_Caption_Tempo" xml:space="preserve">
+    <value>sneltoetsen voor het regelen van het tempo</value>
+  </data>
+  <data name="Shortcut_Caption_Windows" xml:space="preserve">
+    <value>standaard Windows sneltoetsen</value>
+  </data>
+  <data name="Shortcut_ChordName" xml:space="preserve">
+    <value>toon de naam van het acoord</value>
+  </data>
+  <data name="Shortcut_ChordTop" xml:space="preserve">
+    <value>toon de hoogste noot van het acoord</value>
+  </data>
+  <data name="Shortcut_CloseProgram" xml:space="preserve">
+    <value>sluit programma</value>
+  </data>
+  <data name="Shortcut_DecreaseTempo" xml:space="preserve">
+    <value>vertraag het afspeeltempo</value>
+  </data>
+  <data name="Shortcut_EditDetails" xml:space="preserve">
+    <value>wijzig details</value>
+  </data>
+  <data name="Shortcut_EditMusicBraille" xml:space="preserve">
+    <value>wijzig de presentatie van braille muziek</value>
+  </data>
+  <data name="Shortcut_EditMusicPlaying" xml:space="preserve">
+    <value>wijzig de afspeel parameters</value>
+  </data>
+  <data name="Shortcut_EditNoteFilter" xml:space="preserve">
+    <value>wijzig het filter voor de noten</value>
+  </data>
+  <data name="Shortcut_EditText" xml:space="preserve">
+    <value>wijzig de presentatie van de tekst</value>
+  </data>
+  <data name="Shortcut_EditVoices" xml:space="preserve">
+    <value>wijzig muziek-instrumenten</value>
+  </data>
+  <data name="Shortcut_End" xml:space="preserve">
+    <value>einde</value>
+  </data>
+  <data name="Shortcut_ExpandAndEditNoteFilter" xml:space="preserve">
+    <value>uitvouwen en wijzigen van het filter voor de noten</value>
+  </data>
+  <data name="Shortcut_FixedKeySignature" xml:space="preserve">
+    <value>toon de vaste voortekens</value>
+  </data>
+  <data name="Shortcut_GoToBottomLine" xml:space="preserve">
+    <value>ga naar onderste regel</value>
+  </data>
+  <data name="Shortcut_GoToMeasureN" xml:space="preserve">
+    <value>ga naar maat n</value>
+  </data>
+  <data name="Shortcut_GoToTopLine" xml:space="preserve">
+    <value>ga naar bovenste regel</value>
+  </data>
+  <data name="Shortcut_Home" xml:space="preserve">
+    <value>home</value>
+  </data>
+  <data name="Shortcut_IncreaseTempo" xml:space="preserve">
+    <value>versnel het afspeeltempo</value>
+  </data>
+  <data name="Shortcut_Instruments" xml:space="preserve">
+    <value>toon instrumenten</value>
+  </data>
+  <data name="shortcut_Key_alt" xml:space="preserve">
+    <value>ALT</value>
+  </data>
+  <data name="Shortcut_Key_Control" xml:space="preserve">
+    <value>CONTROL</value>
+  </data>
+  <data name="Shortcut_Key_enter" xml:space="preserve">
+    <value>ENTER</value>
+  </data>
+  <data name="Shortcut_Key_escape" xml:space="preserve">
+    <value>ESC</value>
+  </data>
+  <data name="Shortcut_Key_insert" xml:space="preserve">
+    <value>INSERT</value>
+  </data>
+  <data name="Shortcut_Key_pageDown" xml:space="preserve">
+    <value>PAGEDOWN</value>
+  </data>
+  <data name="Shortcut_Key_pageUp" xml:space="preserve">
+    <value>PAGEUP</value>
+  </data>
+  <data name="shortcut_Key_shift" xml:space="preserve">
+    <value>SHIFT</value>
+  </data>
+  <data name="Shortcut_Key_space" xml:space="preserve">
+    <value>spatiebalk</value>
+  </data>
+  <data name="shortcut_Key_tab" xml:space="preserve">
+    <value>TAB</value>
+  </data>
+  <data name="Shortcut_MenuCaption" xml:space="preserve">
+    <value>help voor sneltoetsen</value>
+  </data>
+  <data name="Shortcut_NextDetail" xml:space="preserve">
+    <value>toon volgend detail</value>
+  </data>
+  <data name="Shortcut_NextLine" xml:space="preserve">
+    <value>selecteer volgende noot</value>
+  </data>
+  <data name="Shortcut_NextMeasure" xml:space="preserve">
+    <value>selecteer volgende maat</value>
+  </data>
+  <data name="Shortcut_NextPart" xml:space="preserve">
+    <value>selecteer volgende partij</value>
+  </data>
+  <data name="Shortcut_OpenFileOpenDialog" xml:space="preserve">
+    <value>open bestand openen</value>
+  </data>
+  <data name="Shortcut_PartBottom" xml:space="preserve">
+    <value>toon onderste deel</value>
+  </data>
+  <data name="Shortcut_PartTop" xml:space="preserve">
+    <value>toon bovenste deel</value>
+  </data>
+  <data name="Shortcut_PreviousDetail" xml:space="preserve">
+    <value>toon vorig detail</value>
+  </data>
+  <data name="Shortcut_PreviousLine" xml:space="preserve">
+    <value>selecteer vorige noot</value>
+  </data>
+  <data name="Shortcut_PreviousMeasure" xml:space="preserve">
+    <value>selecteer vorige maat</value>
+  </data>
+  <data name="Shortcut_PreviousPart" xml:space="preserve">
+    <value>selecteer vorige partij</value>
+  </data>
+  <data name="Shortcut_PrintUsingExternalProgram" xml:space="preserve">
+    <value>print op brailleprinter met extern programma</value>
+  </data>
+  <data name="Shortcut_PrintUsingWindowsPrintDialog" xml:space="preserve">
+    <value>print op brailleprinter met Windows printprogramma</value>
+  </data>
+  <data name="Shortcut_ReadMessagebox" xml:space="preserve">
+    <value>lees berichten</value>
+  </data>
+  <data name="Shortcut_ReadStatusLine" xml:space="preserve">
+    <value>lees statusregel</value>
+  </data>
+  <data name="Shortcut_ReadTitleLine" xml:space="preserve">
+    <value>lees de koptekst</value>
+  </data>
+  <data name="Shortcut_RepeatFromNtoM" xml:space="preserve">
+    <value>herhaal van maat n tot maat m</value>
+  </data>
+  <data name="Shortcut_SelectMenuLine" xml:space="preserve">
+    <value>selecteer de menuregel</value>
+  </data>
+  <data name="Shortcut_SelectNoteList" xml:space="preserve">
+    <value>selecteer de notenlijst</value>
+  </data>
+  <data name="Shortcut_SetTempo" xml:space="preserve">
+    <value>zet het tempo op n% van het tempo uit het muziek XML bestand</value>
+  </data>
+  <data name="Shortcut_StartPlaying" xml:space="preserve">
+    <value>start afspelen</value>
+  </data>
+  <data name="Shortcut_StatusBottom" xml:space="preserve">
+    <value>toon onderste regel van statusinformatie</value>
+  </data>
+  <data name="Shortcut_StatusTop" xml:space="preserve">
+    <value>toon bovenste regel van statusinformatie</value>
+  </data>
+  <data name="Shortcut_StopCurrentNote" xml:space="preserve">
+    <value>stop afspelen huidige noot</value>
+  </data>
+  <data name="Shortcut_StopPlaying" xml:space="preserve">
+    <value>stop afspelen </value>
+  </data>
+  <data name="shortcut_Text_followedBy" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Shortcut_ToggleBetweenListAndFilter" xml:space="preserve">
+    <value>schakel tussen filter voor de notenlijst en filter voor de noten</value>
+  </data>
+  <data name="Shortcut_ToggleJAWSSpeechOnOff" xml:space="preserve">
+    <value>schakel tussen JAWS spraak aan/uit</value>
+  </data>
+  <data name="Shortcut_TogglePlay" xml:space="preserve">
+    <value>schakel tussen afspelen in/uit</value>
+  </data>
+  <data name="Shortcut_ToggleValue" xml:space="preserve">
+    <value>schakel tussen waarde aan/uit</value>
+  </data>
+  <data name="Shortcut_TurnOffGlobally" xml:space="preserve">
+    <value>schakel geselecteerde partij of details uit</value>
+  </data>
+  <data name="Shurtcut_TurnOffOtherPartsOrDetails" xml:space="preserve">
+    <value>schakel alle partijen of details uit</value>
+  </data>
+  <data name="Shurtcut_TurnOnGlobally" xml:space="preserve">
+    <value>schakel geselecteerde partij of details in</value>
+  </data>
+  <data name="Shurtcut_TurnOnOtherPartsOrDetails" xml:space="preserve">
+    <value>schakel alle partijen of details in</value>
+  </data>
+  <data name="ToolStripMenuItem_Edit_ExtraText" xml:space="preserve">
+    <value>om het filter voor de noten  te wijzigen</value>
+  </data>
+  <data name="ToolStripMenuItem_Edit_ParameterInputText" xml:space="preserve">
+    <value>om getallen op te geven</value>
+  </data>
+  <data name="ToolStripMenuItem_NoteArchives_NoShortcuts" xml:space="preserve">
+    <value>geen sneltoetsen</value>
+  </data>
 </root>
