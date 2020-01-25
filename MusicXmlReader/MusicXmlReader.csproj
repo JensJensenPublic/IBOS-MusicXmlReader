@@ -159,6 +159,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ResourcesForHelp.da-DK.resx" />
+    <EmbeddedResource Include="ResourcesForHelp.nl-NL.resx" />
     <EmbeddedResource Include="ResourcesForHelp.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesForHelp.Designer.cs</LastGenOutput>
