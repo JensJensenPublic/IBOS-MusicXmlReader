@@ -139,28 +139,28 @@
     <value>annuleer huidige actie </value>
   </data>
   <data name="Shortcut_Caption_DetailList" xml:space="preserve">
-    <value>sneltoetsen om details te bekijken</value>
+    <value>Sneltoetsen om details te bekijken</value>
   </data>
   <data name="Shortcut_Caption_JAWS" xml:space="preserve">
-    <value>standaard JAWS sneltoetsen</value>
+    <value>Standaard JAWS sneltoetsen</value>
   </data>
   <data name="Shortcut_Caption_Menu" xml:space="preserve">
-    <value>sneltoetsen voor menu</value>
+    <value>Sneltoetsen voor menu</value>
   </data>
   <data name="shortcut_Caption_NoteFilter" xml:space="preserve">
-    <value>sneltoetsen om geselecteerde noot te wijzigen</value>
+    <value>Sneltoetsen om geselecteerde noot te wijzigen</value>
   </data>
   <data name="Shortcut_Caption_NoteFilter_Special" xml:space="preserve">
-    <value>de volgende sneltoetsen en commando's kunnen worden gebruikt in combinatie met de geselecteerde noot</value>
+    <value>De volgende sneltoetsen en commando's kunnen worden gebruikt in combinatie met de geselecteerde noot</value>
   </data>
   <data name="shortcut_Caption_NoteList" xml:space="preserve">
-    <value>sneltoetsen voor de noten lijst</value>
+    <value>Sneltoetsen voor de noten lijst</value>
   </data>
   <data name="Shortcut_Caption_Tempo" xml:space="preserve">
-    <value>sneltoetsen voor het regelen van het tempo</value>
+    <value>Sneltoetsen voor het regelen van het tempo</value>
   </data>
   <data name="Shortcut_Caption_Windows" xml:space="preserve">
-    <value>standaard Windows sneltoetsen</value>
+    <value>Standaard Windows sneltoetsen</value>
   </data>
   <data name="Shortcut_ChordName" xml:space="preserve">
     <value>toon de naam van het acoord</value>
