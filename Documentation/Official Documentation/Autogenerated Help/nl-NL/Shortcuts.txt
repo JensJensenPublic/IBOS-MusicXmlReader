@@ -1,0 +1,114 @@
+Standaard Windows sneltoetsen
+ ALT                       	 selecteer de menuregel
+ TAB                       	 schakel tussen filter voor de notenlijst en filter voor de noten
+ ESC                       	 annuleer huidige actie 
+ CONTROL+O                 	 open bestand openen
+ CONTROL+P                 	 print op brailleprinter met Windows printprogramma
+ ALT+F4                    	 sluit programma
+ CONTROL+home              	 ga naar bovenste regel
+ CONTROL+einde             	 ga naar onderste regel
+ 
+
+ Standaard JAWS sneltoetsen
+ INSERT+spatiebalk s       	 schakel tussen JAWS spraak aan/uit
+ INSERT+PAGEDOWN           	 lees statusregel
+ INSERT+T                  	 lees de koptekst
+ INSERT+B                  	 lees berichten
+ 
+
+ Sneltoetsen voor menu Bestanden 
+ ALT+B of CONTROL+O        	 Open MusicXML bestand
+ ALT+B                     	 Importeer downloads
+ ALT+B                     	 Importeer downloads van vandaag
+ ALT+B                     	 Importeer de nieuwste Muziek XML bestanden
+ ALT+B+x                   	 Exporteer Braille muziek 
+ ALT+B+P                   	 Print Braille muziek bestand
+ CONTROL+P                 	 print op brailleprinter met Windows printprogramma
+ CONTROL+SHIFT+P           	 print op brailleprinter met extern programma
+ ALT+B of ALT+F4           	 sluiten
+ 
+
+ Sneltoetsen voor menu Wijzig om het filter voor de noten  te wijzigen
+ ALT+W                     	 uitvouwen en wijzigen van het filter voor de noten
+ ALT+W of CONTROL+F        	 wijzig het filter voor de noten
+ ALT+W of CONTROL+M        	 wijzig de afspeel parameters
+ ALT+W of CONTROL+T        	 wijzig de presentatie van de tekst
+ ALT+W of CONTROL+B        	 wijzig de presentatie van braille muziek
+ ALT+W                     	 wijzig muziek-instrumenten
+ ALT+W                     	 wijzig details
+ ALT+W of CONTROL+0        	 schakel geselecteerde partij of details uit
+ ALT+W of CONTROL+1        	 schakel geselecteerde partij of details in
+ 
+
+ Sneltoetsen voor menu Wijzig om getallen op te geven
+ ALT+W+h of CONTROL+R      	 'n,m' : herhaal van maat n tot maat m
+ ALT+W+G of CONTROL+G      	 'n'   : ga naar maat n
+ ALT+W of CONTROL+N        	 'n'   : zet het tempo op n% van het tempo uit het muziek XML bestand (10<n<1000)
+ 
+
+ Sneltoetsen voor menu Bekijk 
+ ALT+j+D                   	 Details MIDI instrumenten
+ 
+
+ Sneltoetsen voor menu Instillingen 
+ ALT+I+g                   	 Algemene instellingen
+ ALT+I+p                   	 Instellingen voor Braille printer
+ ALT+I                     	 Instellingen voor notetaker
+ ALT+I+a                   	 Instellingen voor algemeen Braille apparaat
+ ALT+I+Z                   	 Zet alle instellingen naar standaardwaarden
+ 
+
+ Sneltoetsen voor menu Bewerk 
+ ALT+k+M                   	 MuseScore
+ ALT+k+S                   	 Sibelius
+ ALT+k+C                   	 Capella
+ ALT+k+F                   	 Finale
+ ALT+k+L                   	 Log bestand
+ ALT+k+P                   	 Pad log bestand
+ ALT+k+b                   	 Pad Muziek XML bestand
+ ALT+k+X                   	 Braillemuziek als onbewerkt XML
+ ALT+k+G                   	 Braillemuziek als onbewerkt XML (Google Chrome)
+ ALT+k+J                   	 JAWS instellingen
+ 
+
+ Sneltoetsen voor menu XML-bibliotheken 
+ (geen sneltoetsen)
+ 
+
+ Sneltoetsen voor menu Help 
+ ALT+H+o                   	 over
+ ALT+H+S                   	 Sneltoetsen
+ ALT+H+L                   	 Link naar de nieuwste software
+ ALT+H+T                   	 Toon gebruikershandleiding
+ 
+
+ Sneltoetsen voor de noten lijst
+ pijltje links             	 selecteer vorige noot
+ pijltje rechts            	 selecteer volgende noot
+ CONTROL+pijltje links     	 selecteer vorige maat
+ CONTROL+pijltje rechts    	 selecteer volgende maat
+ CONTROL+SHIFT+pijltje omlaag 	 toon de hoogste noot van het acoord
+ CONTROL+SHIFT+pijltje omhoog 	 toon de naam van het acoord
+ ALT+pijltje omlaag        	 toon bovenste regel van statusinformatie
+ ALT+pijltje omhoog        	 toon onderste regel van statusinformatie
+ CONTROL+pijltje omlaag    	 toon bovenste deel
+ CONTROL+pijltje omhoog    	 toon onderste deel
+ CONTROL+I                 	 toon instrumenten
+ P                         	 start afspelen
+ SHIFT+P                   	 stop afspelen 
+ spatiebalk                	 schakel tussen afspelen in/uit
+ ESC                       	 stop afspelen huidige noot
+ CONTROL+PAGEUP            	 versnel het afspeeltempo
+ CONTROL+PAGEDOWN          	 vertraag het afspeeltempo
+ 
+
+ Sneltoetsen om details te bekijken
+ pijltje omlaag            	 toon volgend detail
+ pijltje omhoog            	 toon vorig detail
+ 
+
+ De volgende sneltoetsen en commando's kunnen worden gebruikt in combinatie met de geselecteerde noot
+ CONTROL+pijltje omlaag    	 schakel alle partijen of details uit
+ CONTROL+pijltje omhoog    	 schakel alle partijen of details in
+ spatiebalk                	 schakel tussen waarde aan/uit
+ CONTROL+L                 	 selecteer de notenlijst
