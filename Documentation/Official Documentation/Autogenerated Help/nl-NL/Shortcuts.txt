@@ -17,7 +17,7 @@ Standaard Windows sneltoetsen
  
 
  Sneltoetsen voor menu Bestanden 
- ALT+B of CONTROL+O        	 Open MusicXML bestand
+ ALT+B of CONTROL+O        	 Open Muziek XML bestand (this is changed)
  ALT+B                     	 Importeer downloads
  ALT+B                     	 Importeer downloads van vandaag
  ALT+B                     	 Importeer de nieuwste Muziek XML bestanden
@@ -87,11 +87,11 @@ Standaard Windows sneltoetsen
  pijltje rechts            	 selecteer volgende noot
  CONTROL+pijltje links     	 selecteer vorige maat
  CONTROL+pijltje rechts    	 selecteer volgende maat
- CONTROL+SHIFT+pijltje omlaag 	 toon de hoogste noot van het acoord
- CONTROL+SHIFT+pijltje omhoog 	 toon de naam van het acoord
+ CONTROL+SHIFT+pijltje omlaag 	 toon de hoogste noot van het accoord (double cc)
+ CONTROL+SHIFT+pijltje omhoog 	 toon de naam van het accoord (double cc)
  ALT+pijltje omlaag        	 toon bovenste regel van statusinformatie
  ALT+pijltje omhoog        	 toon onderste regel van statusinformatie
- CONTROL+pijltje omlaag    	 toon bovenste deel
+ CONTROL+pijltje omlaag    	 toon bovenste deel (arrow down shows the upper part? I think this and next command must be switched)
  CONTROL+pijltje omhoog    	 toon onderste deel
  CONTROL+I                 	 toon instrumenten
  P                         	 start afspelen

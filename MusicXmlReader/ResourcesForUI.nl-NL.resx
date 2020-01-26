@@ -156,7 +156,7 @@
     <comment>Used tolookup this resource file !</comment>
   </data>
   <data name="DirectoryNames_Downloads" xml:space="preserve">
-    <value>MusicXML downloads</value>
+    <value>Muziek XML downloads</value>
     <comment>it is the same</comment>
   </data>
   <data name="DirectoryNames_Samples" xml:space="preserve">
@@ -193,7 +193,7 @@
     <value>Wanneer verschillende bestanden tegelijkertijd zijn geëxporteerd, kunnen de noten gemixt worden en kunnen later niet meer gescheiden worden.</value>
   </data>
   <data name="Message_FailedToReadMusicXmlFile" xml:space="preserve">
-    <value>Fout bij het lezen van het XML bestand</value>
+    <value>Fout bij het lezen van het  Muziek XML bestand</value>
   </data>
   <data name="Message_FailedToShow" xml:space="preserve">
     <value>Fout bij het tonen</value>
@@ -238,11 +238,11 @@
     <value>Fout gedurende het initialiseren van het programma</value>
   </data>
   <data name="Message_UnspecifiedMusicXmlFile" xml:space="preserve">
-    <value>Geen MusicXML bestand gekozen</value>
+    <value>Geen  Muziek XML bestand gekozen</value>
     <comment>we have translated specified into chosen</comment>
   </data>
   <data name="OpenFileDialog_Filter" xml:space="preserve">
-    <value>MusicXML bestanden</value>
+    <value>Muziek XML bestanden</value>
   </data>
   <data name="OpenFileDialog_Filter_mxl" xml:space="preserve">
     <value>Gecomprimeerde XML bestanden</value>
@@ -301,7 +301,7 @@
     <value>Het programma sluit af</value>
   </data>
   <data name="TextBox_Messages_ToMusicXml" xml:space="preserve">
-    <value>naar MusicXML (.XML)</value>
+    <value>naar  Muziek XML (.XML)</value>
   </data>
   <data name="TextBox_Messages_UnsupportedFileFormat" xml:space="preserve">
     <value>Bestandsformaat wordt niet ondersteund</value>
@@ -352,10 +352,10 @@
     <value>in formaat naar keuze</value>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFile" xml:space="preserve">
-    <value>Open MusicXML bestand</value>
+    <value>Open  Muziek XML bestand</value>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
-    <value>Open MusicXML bestand en gebruik standaard instellingen</value>
+    <value>Open  Muziek XML bestand en gebruik standaard instellingen</value>
   </data>
   <data name="ToolStripMenuItem_Files_ToEmbosser" xml:space="preserve">
     <value>naar printer</value>
@@ -490,7 +490,7 @@
     <value>Alle geselecteerde items</value>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
-    <value>Open MusicXml file from recent location</value>
+    <value>Open  Muziek XML bestand from recent location</value>
     <comment>JSJ: MISSING TRANSLATION</comment>
   </data>
   <data name="OpenFileDialog_Title" xml:space="preserve">

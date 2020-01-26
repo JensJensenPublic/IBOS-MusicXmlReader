@@ -163,10 +163,10 @@
     <value>Standaard Windows sneltoetsen</value>
   </data>
   <data name="Shortcut_ChordName" xml:space="preserve">
-    <value>toon de naam van het acoord</value>
+    <value>toon de naam van het accoord</value>
   </data>
   <data name="Shortcut_ChordTop" xml:space="preserve">
-    <value>toon de hoogste noot van het acoord</value>
+    <value>toon de hoogste noot van het accoord</value>
   </data>
   <data name="Shortcut_CloseProgram" xml:space="preserve">
     <value>sluit programma</value>
