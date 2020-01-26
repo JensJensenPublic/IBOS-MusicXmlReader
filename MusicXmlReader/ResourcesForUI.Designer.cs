@@ -898,7 +898,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open MusicXml file from most recent location.
+        ///   Looks up a localized string similar to Open MusicXml file from most recent path.
         /// </summary>
         internal static string ToolStripMenuItem_Files_OpenMusicXmlFileRecent {
             get {

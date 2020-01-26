@@ -488,7 +488,7 @@
     <comment>Not translated to Dutch</comment>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
-    <value>Open MusicXml file from most recent location</value>
+    <value>Open MusicXml file from most recent path</value>
   </data>
   <data name="OpenFileDialog_Title" xml:space="preserve">
     <value>Open</value>

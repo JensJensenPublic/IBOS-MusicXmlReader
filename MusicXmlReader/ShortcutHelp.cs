@@ -206,6 +206,8 @@ namespace MusicXmlReader
 
             string files = AddCaption(ResourcesForUI.ToolStripMenuItem_Files);
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile, ShortcutHandler.openMusicXmlFile);
+            AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFileRecent, ShortcutHandler.openRecentMusicXmlFileToolStripMenuItem);
+            AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings, ShortcutHandler.openMusicXmlFileUsingDefaultSettings);
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportDownloads, ShortcutHandler.NoKeys);
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportNewestDownloads, ShortcutHandler.NoKeys);
             AddAltControlLine(files, ResourcesForUI.ToolStripMenuItem_Files_ImportNewestSamples, ShortcutHandler.NoKeys);

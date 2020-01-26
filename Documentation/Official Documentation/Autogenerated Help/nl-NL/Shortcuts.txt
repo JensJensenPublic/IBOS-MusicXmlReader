@@ -1,4 +1,4 @@
-Standaard Windows sneltoetsen
+ Standaard Windows sneltoetsen
  ALT                       	 selecteer de menuregel
  TAB                       	 schakel tussen filter voor de notenlijst en filter voor de noten
  ESC                       	 annuleer huidige actie 
@@ -17,7 +17,9 @@ Standaard Windows sneltoetsen
  
 
  Sneltoetsen voor menu Bestanden 
- ALT+B of CONTROL+O        	 Open Muziek XML bestand (this is changed)
+ ALT+B of CONTROL+O        	 Open  Muziek XML bestand
+ ALT+B of CONTROL+ALT+O    	 Open  Muziek XML bestand from recent path
+ ALT+B of CONTROL+SHIFT+O  	 Open  Muziek XML bestand en gebruik standaard instellingen
  ALT+B                     	 Importeer downloads
  ALT+B                     	 Importeer downloads van vandaag
  ALT+B                     	 Importeer de nieuwste Muziek XML bestanden
@@ -87,11 +89,11 @@ Standaard Windows sneltoetsen
  pijltje rechts            	 selecteer volgende noot
  CONTROL+pijltje links     	 selecteer vorige maat
  CONTROL+pijltje rechts    	 selecteer volgende maat
- CONTROL+SHIFT+pijltje omlaag 	 toon de hoogste noot van het accoord (double cc)
- CONTROL+SHIFT+pijltje omhoog 	 toon de naam van het accoord (double cc)
+ CONTROL+SHIFT+pijltje omlaag 	 toon de hoogste noot van het accoord
+ CONTROL+SHIFT+pijltje omhoog 	 toon de naam van het accoord
  ALT+pijltje omlaag        	 toon bovenste regel van statusinformatie
  ALT+pijltje omhoog        	 toon onderste regel van statusinformatie
- CONTROL+pijltje omlaag    	 toon bovenste deel (arrow down shows the upper part? I think this and next command must be switched)
+ CONTROL+pijltje omlaag    	 toon bovenste deel
  CONTROL+pijltje omhoog    	 toon onderste deel
  CONTROL+I                 	 toon instrumenten
  P                         	 start afspelen

@@ -483,7 +483,7 @@
     <value>Udskriv punktnodefil på punkt&amp;printer</value>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
-    <value>Åbn MusicXml fil fra seneste placering</value>
+    <value>Åbn MusicXml fil fra seneste sti</value>
   </data>
   <data name="OpenFileDialog_Title" xml:space="preserve">
     <value>Åbn</value>
