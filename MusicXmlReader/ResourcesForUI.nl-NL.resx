@@ -542,7 +542,7 @@
     <value>Instellingen voor &amp;algemeen Braille apparaat</value>
   </data>
   <data name="ToolStripMenuItem_Settings_NoteTaker" xml:space="preserve">
-    <value>Instellingen voor notetaker</value>
+    <value>Instellingen voor &amp;notetaker</value>
   </data>
   <data name="ToolStripMenuItem_Settings_ResetAll" xml:space="preserve">
     <value>&amp;Zet alle instellingen naar standaardwaarden</value>
