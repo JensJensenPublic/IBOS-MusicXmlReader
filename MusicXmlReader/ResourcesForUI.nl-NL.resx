@@ -331,31 +331,31 @@
     <value>.brf (&amp;Unicode)</value>
   </data>
   <data name="ToolStripMenuItem_Files_Exit" xml:space="preserve">
-    <value>sluiten</value>
+    <value>&amp;sluiten</value>
     <comment>Exit in dutch: sluiten</comment>
   </data>
   <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
     <value>E&amp;xporteer Braille muziek </value>
   </data>
   <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
-    <value>Importeer downloads</value>
+    <value>Importeer &amp;downloads</value>
     <comment>Is this true: import all  downloads?</comment>
   </data>
   <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
-    <value>Importeer downloads van vandaag</value>
+    <value>Importeer downloads van &amp;vandaag</value>
     <comment>Import only today's downloads</comment>
   </data>
   <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
-    <value>Importeer de nieuwste Muziek XML bestanden</value>
+    <value>Importeer de &amp;nieuwste Muziek XML bestanden</value>
   </data>
   <data name="ToolStripMenuItem_Files_InOptionalFormat" xml:space="preserve">
     <value>in formaat naar keuze</value>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFile" xml:space="preserve">
-    <value>Open  Muziek XML bestand</value>
+    <value>&amp;Open  Muziek XML bestand</value>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
-    <value>Open  Muziek XML bestand en gebruik standaard instellingen</value>
+    <value>Open  Muziek XML bestand en gebruik standaard &amp;instellingen</value>
   </data>
   <data name="ToolStripMenuItem_Files_ToEmbosser" xml:space="preserve">
     <value>naar printer</value>
@@ -490,7 +490,7 @@
     <value>Alle geselecteerde items</value>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
-    <value>Open laatst geopende Muziek XML bestand</value>
+    <value>Open &amp;laatst geopende Muziek XML bestand</value>
   </data>
   <data name="OpenFileDialog_Title" xml:space="preserve">
     <value>Open</value>

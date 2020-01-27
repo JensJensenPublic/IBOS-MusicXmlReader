@@ -1,0 +1,116 @@
+Genvejstaster som bruges generelt af Windows
+ ALT                       	 Gå til menulinien
+ TAB                       	 Skift mellem nodelisten og nodefilteret
+ ESC                       	 Afbryd igangværende handling
+ CONTROL+O                 	 Åbn filåbningsdialog
+ CONTROL+P                 	 Udskriv på punktprinter ved hjælp af Windows print-dialog
+ ALT+F4                    	 Luk programmet
+ CONTROL+Home              	 Gå til øverste linie
+ CONTROL+End               	 Gå til nederste linie
+ 
+
+ Genvejstaster som bruges generelt af JAWS
+ INDSÆT+MELLEMRUM s        	 Slå JAWS tale til / fra
+ INDSÆT+PAGEDOWN           	 Oplæs statuslinien
+ INDSÆT+T                  	 Oplæs titellinien
+ INDSÆT+B                  	 Oplæs meddelelse
+ 
+
+ Genvejstaster for menuen Filer 
+ ALT+F+Å eller CONTROL+O   	 Åbn MusicXml fil
+ ALT+F eller CONTROL+ALT+O 	 Åbn MusicXml fil fra seneste sti
+ ALT+F+s eller CONTROL+SKIFT+O 	 Åbn MusicXml fil med standard instillinger
+ ALT+F+o                   	 Importér overførsler
+ ALT+F+d                   	 Importér dagens overførsler
+ ALT+F+e                   	 Importér nyeste eksempler
+ ALT+F+x                   	 Exportér punktnoder til fil
+ ALT+F+p                   	 Udskriv punktnodefil på punktprinter
+ CONTROL+P                 	 Udskriv på punktprinter ved hjælp af Windows print-dialog
+ CONTROL+SKIFT+P           	 Udskriv på punktprinter ved hjælp af externt program
+ ALT+F+A eller ALT+F4      	 Afslut
+ 
+
+ Genvejstaster for menuen Rediger (for redigering af nodefilteret)
+ ALT+R+A                   	 Redigér nodefilteret efter udfoldning
+ ALT+R+F eller CONTROL+F   	 Redigér nodefilteret
+ ALT+R+M eller CONTROL+M   	 Redigér afspilning i nodefilteret
+ ALT+R+T eller CONTROL+T   	 Redigér tekst repræsentation i nodefilteret
+ ALT+R+B eller CONTROL+B   	 Redigér Music Braille repræsentation i nodefilteret
+ ALT+R+S                   	 Redigér stemmer i nodefilteret
+ ALT+R+D                   	 Redigér detaljer i nodefilteret
+ ALT+R+0 eller CONTROL+0   	 Sluk udvalgte stemme globalt
+ ALT+R+1 eller CONTROL+1   	 Tænd udvalgte stemme globalt
+ 
+
+ Genvejstaster for menuen Rediger (for indtastning af talværdier)
+ ALT+R+R eller CONTROL+R   	 'n,m' : Gentag fra takt n til takt m
+ ALT+R+G eller CONTROL+G   	 'n'   : Gå til takt n 
+ ALT+R+N eller CONTROL+N   	 'n'   : Sæt afspilningstempo til n procent af det angivne tempo (10<n<1000)
+ 
+
+ Genvejstaster for menuen Vis 
+ ALT+V+I                   	 Instrument - detaljer
+ 
+
+ Genvejstaster for menuen Indstillinger 
+ ALT+I+G                   	 Generelle indstillinger 
+ ALT+I+p                   	 Indstillinger for punktprinter profil
+ ALT+I+n                   	 Indstillinger for notatapparat profil
+ ALT+I+u                   	 Indstillinger for universel Brailleapparat profil
+ ALT+I+R                   	 Reset alle indstillinger til standard værdier
+ 
+
+ Genvejstaster for menuen Værktøjer 
+ ALT+t+M                   	 MuseScore
+ ALT+t+S                   	 Sibelius
+ ALT+t+C                   	 Capella
+ ALT+t+F                   	 Finale
+ ALT+t+L                   	 Logfil
+ ALT+t+p                   	 Logfil placering
+ ALT+t+M                   	 MusicXml fil placering
+ ALT+t+X                   	 MusicXml fil som rå XML
+ ALT+t+G                   	 MusicXml fil som rå XML med Google Chrome
+ ALT+t+J                   	 JAWS indstillinger
+ 
+
+ Genvejstaster for menuen Nodearkiver 
+ (Ingen genveje)
+ 
+
+ Genvejstaster for menuen Hjælp 
+ ALT+H+O                   	 Om
+ ALT+H+T                   	 Tastatur-genveje
+ ALT+H+s                   	 Link til nyeste software
+ ALT+H+B                   	 Vis Brugervejledning
+ 
+
+ Genvejstaster for kontrol af nodelisten 
+ VENSTRE-PIL               	 Vælg foregående node
+ HØJRE-PIL                 	 Vælg næste node
+ CONTROL+VENSTRE-PIL       	 Vælg foregående takt
+ CONTROL+HØJRE-PIL         	 Vælg næste takt
+ CONTROL+SKIFT+PIL-NED     	 Vis becifringens øverste tone
+ CONTROL+SKIFT+PIL-OP      	 Vis becifringens navn
+ ALT+PIL-NED               	 Vis statusinformations øverste linie
+ ALT+PIL-OP                	 Vis statusinformations nederste linie
+ CONTROL+PIL-NED           	 Vis øverste stemme
+ CONTROL+PIL-OP            	 Vis nederste stemme
+ CONTROL+I                 	 Vis instrumenter
+ P                         	 Start afspilning
+ SKIFT+P                   	 Stop afspilning
+ MELLEMRUM                 	 Start / stop afspilning 
+ ESC                       	 Stop afspilning af aktuelle node
+ CONTROL+PAGEUP            	 Forøg afspilningstempo
+ CONTROL+PAGEDOWN          	 Formindsk afspilningstempo
+ 
+
+ Genvejstaster for visning af detaljer
+ PIL-NED                   	 Vis næste detalje
+ PIL-OP                    	 Vis foregående detalje
+ 
+
+ Følgende specielle tastaturgenveje og kommandoer kan anvendes i forbindelse med Nodefilteret
+ CONTROL+PIL-NED           	 Sluk alle andre stemmer eller detaljer
+ CONTROL+PIL-OP            	 Tænd alle andre stemmer eller detaljer
+ MELLEMRUM                 	 Skift indstilling til modsat værdi
+ CONTROL+L                 	 Gå til nodelisten

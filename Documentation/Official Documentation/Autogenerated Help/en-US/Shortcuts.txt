@@ -1,0 +1,116 @@
+ Standard Windows  shortcuts
+ ALT                       	 Select the Menuline
+ TAB                       	 Toggle between the note list and the note filter
+ ESC                       	 Cancel current operation
+ CONTROL+O                 	 Open FileOpen dialog
+ CONTROL+P                 	 Print on embosser using Windows print dialog
+ ALT+F4                    	 Close program
+ CONTROL+Home              	 Go to top line
+ CONTROL+End               	 Go to bottom line
+ 
+
+ Standard JAWS  shortcuts
+ INSERT+SPACE s            	 Toggle JAWS speech on / off
+ INSERT+PAGEDOWN           	 Read the status line
+ INSERT+T                  	 Read the title line
+ INSERT+B                  	 Read message box
+ 
+
+ Shortcuts for menu Files 
+ ALT+F+O or CONTROL+O      	 Open MusicXml File
+ ALT+F or CONTROL+ALT+O    	 Open MusicXml file from most recent path
+ ALT+F+d or CONTROL+SHIFT+O 	 Open MusicXml file using default settings
+ ALT+F+d                   	 Import downloads
+ ALT+F+t                   	 Import todays downloads
+ ALT+F+s                   	 Import newest samples
+ ALT+F+x                   	 Export Music Braille to file
+ ALT+F+P                   	 Print Music Braille file on embosser
+ CONTROL+P                 	 Print on embosser using Windows print dialog
+ CONTROL+SHIFT+P           	 Print on embosser using external program
+ ALT+F+E or ALT+F4         	 Exit
+ 
+
+ Shortcuts for menu Edit (for editing the note filter)
+ ALT+E+A                   	 Expand and edit the note filter
+ ALT+E+F or CONTROL+F      	 Edit the note filter
+ ALT+E+M or CONTROL+M      	 Edit music playing parameters
+ ALT+E+T or CONTROL+T      	 Edit textual representation
+ ALT+E+B or CONTROL+B      	 Edit Music Braille representation
+ ALT+E+P                   	 Edit voices
+ ALT+E+D                   	 Edit details
+ ALT+E+0 or CONTROL+0      	 Turn selected part or detail off globally
+ ALT+E+1 or CONTROL+1      	 Turn selected part or detail on globally
+ 
+
+ Shortcuts for menu Edit (for entry of numeric parameters)
+ ALT+E+R or CONTROL+R      	 'n,m' : Repeat from measure n to mesaure m
+ ALT+E+G or CONTROL+G      	 'n'   : Go to measure n
+ ALT+E+N or CONTROL+N      	 'n'   : Set the tempo for playing to n% of the tempo specified in the Musicxml file (10<n<1000)
+ 
+
+ Shortcuts for menu View 
+ ALT+V+I                   	 Instrument details
+ 
+
+ Shortcuts for menu Settings 
+ ALT+S+G                   	 General settings
+ ALT+S+e                   	 Settings for embosser profile
+ ALT+S+n                   	 Settings for notetaker profile
+ ALT+S+u                   	 Settings for universal Braille-device profile
+ ALT+S+R                   	 Reset all settings to default
+ 
+
+ Shortcuts for menu Tools 
+ ALT+T+M                   	 MuseScore
+ ALT+T+S                   	 Sibelius
+ ALT+T+C                   	 Capella
+ ALT+T+F                   	 Finale
+ ALT+T+L                   	 Log file
+ ALT+T                     	 Log file location
+ ALT+T                     	 MusicXml file location
+ ALT+T+X                   	 MusicXml file  as raw Xml
+ ALT+T+G                   	 MusicXml file  as raw Xml Using Google Chrome
+ ALT+T+J                   	 JAWS settings
+ 
+
+ Shortcuts for menu Note-archives 
+ (No shortcuts)
+ 
+
+ Shortcuts for menu Help 
+ ALT+H+A                   	 About
+ ALT+H+K                   	 Keyboard shortcuts
+ ALT+H+s                   	 Link to newest software
+ ALT+H+u                   	 Show user's manual
+ 
+
+ Shortcuts used for controlling the note list
+ ARROW-LEFT                	 Select previous note
+ ARROW-RIGHT               	 Select next note
+ CONTROL+ARROW-LEFT        	 Select previous measure
+ CONTROL+ARROW-RIGHT       	 Select next measure
+ CONTROL+SHIFT+ARROW-DOWN  	 Show top note in chord
+ CONTROL+SHIFT+ARROW-UP    	 Show the name of the chord
+ ALT+ARROW-DOWN            	 Show top line of status information
+ ALT+ARROW-UP              	 Show bottom line of status information
+ CONTROL+ARROW-DOWN        	 Show top part
+ CONTROL+ARROW-UP          	 Show bottom part
+ CONTROL+I                 	 Show instruments
+ P                         	 Start playing
+ SHIFT+P                   	 Stop playing
+ SPACE                     	 Toggle play on / off
+ ESC                       	 Stop playing the current note
+ CONTROL+PAGEUP            	 Increase playback tempo
+ CONTROL+PAGEDOWN          	 Decrease playback tempo
+ 
+
+ Shortcuts for viewing details
+ ARROW-DOWN                	 Show next detail
+ ARROW-UP                  	 Show previous detail
+ 
+
+ The following special keyboard skortcuts and commands can be used in connection with the note filter
+ CONTROL+ARROW-DOWN        	 Turn all other parts or details off
+ CONTROL+ARROW-UP          	 Turn all other parts or details on
+ SPACE                     	 Toggle value on / off
+ CONTROL+L                 	 Select the note list
