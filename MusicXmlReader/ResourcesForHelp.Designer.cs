@@ -277,7 +277,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit voices.
+        ///   Looks up a localized string similar to Edit parts.
         /// </summary>
         internal static string Shortcut_EditVoices {
             get {

@@ -145,7 +145,7 @@
     <value>Edit textual representation</value>
   </data>
   <data name="Shortcut_EditVoices" xml:space="preserve">
-    <value>Edit voices</value>
+    <value>Edit parts</value>
   </data>
   <data name="Shortcut_ExpandAndEditNoteFilter" xml:space="preserve">
     <value>Expand and edit the note filter</value>
