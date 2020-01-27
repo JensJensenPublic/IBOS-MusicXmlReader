@@ -368,9 +368,11 @@ namespace BrailleMusicDecoder
             allInputInterpretations.Add(rawValues, new IntegerList((dot5), (dot2)), InputCategoryEnum.InAccordPartMeasure);
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot2 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.InAccordFullMeasure);
 
-            // Clefs
-            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4), (dot1 | dot2 | dot3)), InputCategoryEnum.Clef,"G");
-            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4 | dot6), (dot1 | dot2 | dot3)), InputCategoryEnum.Clef, "F");
+            // Clefs (Use BANA 2015 definitions. See comments in BRailleBuilder.cs)
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4), (dot1 | dot2 | dot3)),       InputCategoryEnum.Clef, "G");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4), (dot1 | dot2 | dot3), dot3), InputCategoryEnum.Clef, "G.");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4 | dot5 | dot6), (dot1 | dot2 | dot3)),       InputCategoryEnum.Clef, "F"); 
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5), (dot3 | dot4 | dot5 | dot6), (dot1 | dot2 | dot3), dot3), InputCategoryEnum.Clef, "F.");
 
             //Hands
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.Hand, "Right");
