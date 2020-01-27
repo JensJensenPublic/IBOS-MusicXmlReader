@@ -103,13 +103,22 @@ namespace MusicXmlReaderModel
 
         // Clefs
         // Several opinions seem to exists: All use the form { (dot3 + dot4 + dot5), "X", (dot1 + dot2 + dot3) } but the value of "X" differ 
-#if true
-        public static readonly byte[] clefG = new byte[] { (dot3 + dot4 + dot5), (dot2 + dot3 + dot5 + dot6), (dot1 + dot2 + dot3) }; // Used in version >= 3.5 as requested by SN
+#if false
+        public static readonly byte[] clefG = new byte[] { (dot3 + dot4 + dot5), (dot2 + dot3 + dot5 + dot6), (dot1 + dot2 + dot3) }; //  requested by SN
         public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot2 + dot3 + dot5),        (dot1 + dot2 + dot3) }; // Used in version >= 3.5 as requested by SN
-#else
+#endif
+#if false
         public static readonly byte[] clefG = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4       ), (dot1 + dot2 + dot3) }; // Used in version <= 3.4
         public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot6), (dot1 + dot2 + dot3) }; // Refsnæs version Used in version <= 3.4
 #endif
+
+#if true
+        public static readonly byte[] clefG = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4              ), (dot1 + dot2 + dot3) }; //  BANA and former NOTE employee  Used in version >= 3.5
+        public static readonly byte[] clefF = new byte[] { (dot3 + dot4 + dot5), (dot3 + dot4 + dot5 + dot6), (dot1 + dot2 + dot3) }; //  BANA and former NOTE employee  Used in version >= 3.5
+#endif
+#warning TODO find out if we need to put a dot3 after the clef (And handsign) in some situations
+
+
         // Hands
         // Egtved Part 2 Chapter 1 claims that the folowing hand-signs should be placed first on the line and be followed by dot3 except in thecases 
         // when the following Braille char does not contain dot1, dot 2 or dot 3.
