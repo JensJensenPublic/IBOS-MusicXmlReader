@@ -36,6 +36,7 @@ namespace BrailleMusicDecoder
         HalfEnd = 0x100000000,  
         ToText = 0x2000000000, // Transition from MusicBraille to TextBraille
         Tie = 0x400000000, // Danish "Bindebue" <> "Legato"
+        Articulation = 0x800000000
         // 0x8000000000000000 can not be used because this enum type is based on positive 64 bit values.
     }
 
@@ -293,7 +294,6 @@ namespace BrailleMusicDecoder
                 //case dot2 | dot5: otherValues = "Newline"; break; // Same as Character("-") 
                 case dot2 | dot3 | dot5: otherValues = "Trill"; break;
                 case dot2 | dot6: otherValues = "Ornament"; break;
-                case dot2 | dot3 | dot6: otherValues = "Staccato"; break;
                     //                case dot2 | dot5 | dot6: otherValues = "DoublebeatOnNote"; break; // For the time being we omit this because it clashes with 4 lowered in 4/4
             }
             allInputInterpretations.Add(thisValue, InputCategoryEnum.OtherValues, otherValues);
@@ -389,6 +389,16 @@ namespace BrailleMusicDecoder
             allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5 | dot6), (dot1 | dot2 | dot4), (dot2 | dot3 | dot6)), InputCategoryEnum.Beat, "6/8");
             allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5 | dot6), (dot1 | dot4 | dot5), (dot2 | dot3 | dot6)), InputCategoryEnum.Beat, "4/8");
             allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5 | dot6), (dot1 | dot4 ), (dot2 | dot3 | dot6)), InputCategoryEnum.Beat, "3/8");
+
+            // Articulations 
+            allInputInterpretations.Add(rawValues, new IntegerList((dot2 | dot3 | dot6)), InputCategoryEnum.Articulation, "Staccato");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot2 | dot3 | dot6)), InputCategoryEnum.Articulation, "Accent");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot2 | dot3 | dot6), (dot4 | dot6), (dot2 | dot3 | dot6)), InputCategoryEnum.Articulation, "Staccato + Accent");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5 | dot6), (dot2 | dot3 | dot6)), InputCategoryEnum.Articulation, "Tenuto");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot5), (dot2 | dot3 | dot6)), InputCategoryEnum.Articulation, "Portamento");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot4), (dot2 | dot3 | dot6)), InputCategoryEnum.Articulation, "Portato");
+
+
 
             // Commercial at "@"
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5), dot1), InputCategoryEnum.Character, "@");
