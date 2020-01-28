@@ -398,11 +398,12 @@ namespace BrailleMusicDecoder
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5 | dot6), (dot2 | dot3 | dot6)), InputCategoryEnum.Articulation, "Tenuto");
             allInputInterpretations.Add(rawValues, new IntegerList((dot5), (dot2 | dot3 | dot6)), InputCategoryEnum.Articulation, "Portamento");
             allInputInterpretations.Add(rawValues, new IntegerList((dot1 | dot4), (dot2 | dot3 | dot6)), InputCategoryEnum.Articulation, "Portato");
+            // Maybe Arpeggio is not an articulation ??
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 + dot4 + dot5), (dot1 + dot3)), InputCategoryEnum.Articulation, "ArpeggioUp");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot3 + dot4 + dot5), (dot1 + dot3), (dot1 + dot3)), InputCategoryEnum.Articulation, "ArpeggioDown");
 
-
-
-            // Commercial at "@"
-            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5), dot1), InputCategoryEnum.Character, "@");
+        // Commercial at "@"
+        allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5), dot1), InputCategoryEnum.Character, "@");
 
             allInputInterpretations.Add(rawValues, new IntegerList((dot5 | dot6), (dot2 | dot3)), InputCategoryEnum.ToText);
 
