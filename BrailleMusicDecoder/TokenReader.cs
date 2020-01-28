@@ -390,8 +390,9 @@ namespace BrailleMusicDecoder
             allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5 | dot6), (dot1 | dot4 | dot5), (dot2 | dot3 | dot6)), InputCategoryEnum.Beat, "4/8");
             allInputInterpretations.Add(rawValues, new IntegerList((dot3 | dot4 | dot5 | dot6), (dot1 | dot4 ), (dot2 | dot3 | dot6)), InputCategoryEnum.Beat, "3/8");
 
-            // Articulations 
+            // Articulations: Note: All articulations end by (dot2 | dot3 | dot6)
             allInputInterpretations.Add(rawValues, new IntegerList((dot2 | dot3 | dot6)), InputCategoryEnum.Articulation, "Staccato");
+            allInputInterpretations.Add(rawValues, new IntegerList((dot6), (dot2 | dot3 | dot6)), InputCategoryEnum.Articulation, "Staccatissimo");
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot6), (dot2 | dot3 | dot6)), InputCategoryEnum.Articulation, "Accent");
             allInputInterpretations.Add(rawValues, new IntegerList((dot2 | dot3 | dot6), (dot4 | dot6), (dot2 | dot3 | dot6)), InputCategoryEnum.Articulation, "Staccato + Accent");
             allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5 | dot6), (dot2 | dot3 | dot6)), InputCategoryEnum.Articulation, "Tenuto");
