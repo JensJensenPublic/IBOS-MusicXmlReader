@@ -36,7 +36,8 @@ namespace BrailleMusicDecoder
         HalfEnd = 0x100000000,  
         ToText = 0x2000000000, // Transition from MusicBraille to TextBraille
         Tie = 0x400000000, // Danish "Bindebue" <> "Legato"
-        Articulation = 0x800000000
+        Articulation = 0x800000000,
+        TimeModification = 0x1000000000
         // 0x8000000000000000 can not be used because this enum type is based on positive 64 bit values.
     }
 
@@ -281,14 +282,14 @@ namespace BrailleMusicDecoder
             }
             allInputInterpretations.Add(thisValue, InputCategoryEnum.Interval, interval);
 
-
+ 
 
             switch (thisValue) // Look for remaining codes
             {
                 // Maybe we should use repeated ifs instead of switch here ??
                 // case dot3: otherValues = "Dotted"; break;
                 //                case dot5: otherValues = "Reference"; break; // For the time being we omit this because it clashes with Octave4 !
-                case dot2 | dot3: otherValues = "Triplet"; break;
+
                 //                case dot1 | dot4: otherValues = "Legato"; break;
                 case dot2 | dot3 | dot5 | dot6: otherValues = "Equality"; break;
                 //case dot2 | dot5: otherValues = "Newline"; break; // Same as Character("-") 
@@ -402,8 +403,11 @@ namespace BrailleMusicDecoder
             allInputInterpretations.Add(rawValues, new IntegerList((dot3 + dot4 + dot5), (dot1 + dot3)), InputCategoryEnum.Articulation, "ArpeggioUp");
             allInputInterpretations.Add(rawValues, new IntegerList((dot3 + dot4 + dot5), (dot1 + dot3), (dot1 + dot3)), InputCategoryEnum.Articulation, "ArpeggioDown");
 
-        // Commercial at "@"
-        allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5), dot1), InputCategoryEnum.Character, "@");
+            // Time modifications
+            allInputInterpretations.Add(rawValues, new IntegerList(dot2 | dot3), InputCategoryEnum.TimeModification, "Triplet");
+
+            // Commercial at "@"
+            allInputInterpretations.Add(rawValues, new IntegerList((dot4 | dot5), dot1), InputCategoryEnum.Character, "@");
 
             allInputInterpretations.Add(rawValues, new IntegerList((dot5 | dot6), (dot2 | dot3)), InputCategoryEnum.ToText);
 

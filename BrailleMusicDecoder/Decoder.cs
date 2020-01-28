@@ -165,7 +165,7 @@ namespace BrailleMusicDecoder
             // Define some shorthand values to be used in the case below
             const InputCategoryEnum AnyEnding = InputCategoryEnum.FullEnd | InputCategoryEnum.HalfEnd;
             InputCategoryEnum allowedInTextStates   = InputCategoryEnum.Character | InputCategoryEnum.TextVersal | InputCategoryEnum.ToNumber | InputCategoryEnum.ToMusicBraille;
-            InputCategoryEnum allowedInMusicStates  = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.InAccordFullMeasure | InputCategoryEnum.Clef | InputCategoryEnum.ToMusicBraille | InputCategoryEnum.ToText;
+            InputCategoryEnum allowedInMusicStates  = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.InAccordFullMeasure | InputCategoryEnum.Clef | InputCategoryEnum.ToMusicBraille | InputCategoryEnum.ToText | InputCategoryEnum.TimeModification;
             InputCategoryEnum allowedInNumberStates = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.ToMusicBraille | InputCategoryEnum.ToNumber;
 
             switch (state)
