@@ -423,7 +423,7 @@
     <comment>name of Programm (not to be translated)</comment>
   </data>
   <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
-    <value>&amp;Gebruikersinstellingen</value>
+    <value>Gebruikers&amp;instellingen</value>
   </data>
   <data name="ToolStripMenuItem_Tools_ViewAsInterpretedXml" xml:space="preserve">
     <value>Braillemuziek als geinterpreteerd XML</value>
