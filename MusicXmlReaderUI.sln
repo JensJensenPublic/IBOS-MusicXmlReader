@@ -9,7 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Braille Sense U2 brugermanual(Ver 8 5_dk).docx = Documentation\Braille Sense U2 brugermanual(Ver 8 5_dk).docx
 		Documentation\Changes in source code with respect to version 3.0.0.0.doc = Documentation\Changes in source code with respect to version 3.0.0.0.doc
-		Documentation\da-ansi8.dis = Documentation\da-ansi8.dis
 		Documentation\Forslag til tekst til hjemmeside.odt = Documentation\Forslag til tekst til hjemmeside.odt
 		Documentation\Generering af release 3.0.0.0.doc = Documentation\Generering af release 3.0.0.0.doc
 		Documentation\Generering af release 4.0.0.0.docx = Documentation\Generering af release 4.0.0.0.docx
@@ -125,6 +124,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawPrinterHelper", "RawPrin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Third Party Documentation", "Third Party Documentation", "{DCD9E9C9-E80A-4979-ABD9-0E19AB23E73B}"
 	ProjectSection(SolutionItems) = preProject
+		Documentation\Braille Sense U2 brugermanual(Ver 8 5_dk).docx = Documentation\Braille Sense U2 brugermanual(Ver 8 5_dk).docx
+		Documentation\da-ansi8.dis = Documentation\da-ansi8.dis
 		Documentation\Third party documentation\Index Braille\Index-Printer-Interface-Protocol-V5_V4-2016-05-13.pdf = Documentation\Third party documentation\Index Braille\Index-Printer-Interface-Protocol-V5_V4-2016-05-13.pdf
 	EndProjectSection
 EndProject
