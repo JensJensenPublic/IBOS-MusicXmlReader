@@ -7,7 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSynthesis", "MusicSynt
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{1B62366B-E595-454C-846D-E36240015490}"
 	ProjectSection(SolutionItems) = preProject
-		Documentation\Braille Sense U2 brugermanual(Ver 8 5_dk).docx = Documentation\Braille Sense U2 brugermanual(Ver 8 5_dk).docx
 		Documentation\Changes in source code with respect to version 3.0.0.0.doc = Documentation\Changes in source code with respect to version 3.0.0.0.doc
 		Documentation\Forslag til tekst til hjemmeside.odt = Documentation\Forslag til tekst til hjemmeside.odt
 		Documentation\Generering af release 3.0.0.0.doc = Documentation\Generering af release 3.0.0.0.doc
