@@ -17,9 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\Installed files for version 4.0.0.0.docx = Documentation\Installed files for version 4.0.0.0.docx
 		Documentation\Log for development of version 4.0.0.0.odt = Documentation\Log for development of version 4.0.0.0.odt
 		Mail to Index Braille november 2019.txt = Mail to Index Braille november 2019.txt
-		Documentation\Obsolete TODo liste. Genereret fra odt 2017.03.23.ods = Documentation\Obsolete TODo liste. Genereret fra odt 2017.03.23.ods
-		Documentation\Obsolete TODo liste.Genereret fra ods 2017.03.23.xls = Documentation\Obsolete TODo liste.Genereret fra ods 2017.03.23.xls
-		Documentation\Obsolete ToDo liste.odt = Documentation\Obsolete ToDo liste.odt
 		Documentation\Overordnet programdokumentation.odt = Documentation\Overordnet programdokumentation.odt
 		Documentation\Principper for dokumentation.odt = Documentation\Principper for dokumentation.odt
 		Documentation\Sample MusicXmlReader.JCF = Documentation\Sample MusicXmlReader.JCF
@@ -165,6 +162,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nl-NL", "nl-NL", "{321BD5D7
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseTools", "ReleaseTools\ReleaseTools.csproj", "{EC0E7D03-CD19-441A-BE9F-7B2C4CE4FD0B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Obsolete", "Obsolete", "{9411AA85-F4B9-48DE-868E-F80F36FD3E31}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Obsolete TODo liste. Genereret fra odt 2017.03.23.ods = Documentation\Obsolete TODo liste. Genereret fra odt 2017.03.23.ods
+		Documentation\Obsolete TODo liste.Genereret fra ods 2017.03.23.xls = Documentation\Obsolete TODo liste.Genereret fra ods 2017.03.23.xls
+		Documentation\Obsolete ToDo liste.odt = Documentation\Obsolete ToDo liste.odt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -361,5 +365,6 @@ Global
 		{71A815E3-AC56-44E2-88DE-DD6D5BC94CDC} = {79DD0BA3-6AD9-4599-B8D4-1D09CC2CE379}
 		{18EB72DC-34CC-4A22-81CF-9E148218AFA1} = {A07A01AC-A16A-48D8-9415-555CDA1E37F6}
 		{321BD5D7-5E95-48B3-816F-6468AB9AA91C} = {18EB72DC-34CC-4A22-81CF-9E148218AFA1}
+		{9411AA85-F4B9-48DE-868E-F80F36FD3E31} = {1B62366B-E595-454C-846D-E36240015490}
 	EndGlobalSection
 EndGlobal
