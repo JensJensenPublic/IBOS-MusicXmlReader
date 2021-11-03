@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\Generering af release 3.0.0.0.doc = Documentation\Generering af release 3.0.0.0.doc
 		Documentation\Generering af release 4.0.0.0.docx = Documentation\Generering af release 4.0.0.0.docx
 		Documentation\Generering af release.odt = Documentation\Generering af release.odt
+		Documentation\IBOS MusicXmlReader architechture.docx = Documentation\IBOS MusicXmlReader architechture.docx
 		Documentation\icon.ico = Documentation\icon.ico
 		Documentation\Installed files for version 4.0.0.0.docx = Documentation\Installed files for version 4.0.0.0.docx
 		Documentation\Log for development of version 4.0.0.0.odt = Documentation\Log for development of version 4.0.0.0.odt
