@@ -225,4 +225,7 @@
     <value>Locatie van Sibelius</value>
     <comment>MISSING DUTCH "path"</comment>
   </data>
+  <data name="General_FinaleLocation" xml:space="preserve">
+    <value>Locatie van Finale</value>
+  </data>
 </root>

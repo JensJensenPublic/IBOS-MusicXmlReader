@@ -46,7 +46,8 @@ namespace MusicXmlReaderModel
             BRF_Unicode,        // As with the UTF8 parameter, but starts without  EF BB BF. Works with IbPrint(65001). Uses StreamWriter(FileStream, FileMode.Create)
             BRF_Unicode_utf8,   // As without the UTF8 parameter, but starts with  EF BB BF.  Works with IbPrint(65001). Uses StreamWriter(FileStream, FileMode.Create,Encoding.UTF8) 
             BRF_Unicode_utf16,  // Seems to work. Best mapping for the 0x2800..0x28ff values Works with IbPrint(1200). Uses StreamWriter(FileStream, FileMode.Create,Encoding.UTF16)
-            BRF_Unicode_utf32   // Seems to generate OK bin pattern. IbPrint(65005) fails. Uses StreamWriter(FileStream, FileMode.Create,Encoding.UTF32)
+            BRF_Unicode_utf32,   // Seems to generate OK bin pattern. IbPrint(65005) fails. Uses StreamWriter(FileStream, FileMode.Create,Encoding.UTF32)
+            BRF_ASCII_Ex
         };
 
 // These encodings wil generate the following contents for the testpattern containing 256 Braille patterns in binary order:
@@ -212,15 +213,21 @@ namespace MusicXmlReaderModel
             return result;
         }
 
+        protected virtual byte LetterToCapital(byte b)
+        {
+            return b;
+        }
+
 
         private string ToUnicode(byte[] bytes)
         {
             StringBuilder sb = new StringBuilder(); // The valid bytes
-            StringBuilder ib = new StringBuilder(); // The invalid bytes for logging     
+            StringBuilder ib = new StringBuilder(); // The invalid bytes for logging
+            List<byte> lb = new List<byte>(); // Individiual invalid bytes for logging. Each byte only once !     
             for (int i = 0; (i < bytes.Length); i++)
             {
                 byte b = bytes[i];
-                char c = charMap[b];
+                char c = charMap[LetterToCapital(b)];
                 if (0 != c)
                 {
                     sb.Append(c);
@@ -231,12 +238,29 @@ namespace MusicXmlReaderModel
                     //Logger.LogCF(string.Format(": The value {0} is not valid!", b.ToString())); // Replaced by a single logline !
                     //sb.Append("?");
                     sb.Append((char) b); // Without mapping !!
+                    if (!lb.Contains(b))
+                    {
+                        lb.Add(b);
+                    }
                 }
             }
             if (0 != ib.Length)
             {
                 Logger.LogCF(string.Format(": Invalid values: {0}", ib.ToString()));
             }
+            if (0 != lb.Count)
+            {
+                StringBuilder sbc = new StringBuilder();
+                StringBuilder sbd = new StringBuilder();
+                foreach (byte b in lb)
+                {
+                    sbc.Append((char)(b) + " ");
+                    sbd.Append(((int)b).ToString() + " ");
+                }
+                Logger.LogCF(string.Format(": Invalid values (as char   ): {0}", sbc.ToString()));
+                Logger.LogCF(string.Format(": Invalid values (as decimal): {0}", sbd.ToString()));
+            }
+
             return sb.ToString();
         }
 
@@ -363,12 +387,14 @@ namespace MusicXmlReaderModel
             {
                 // Uses spscific classes: 
                 case FileEncoding.BRF_ASCII: return new BrailleFileHandler_BRF_ASCII(charsPerLine, linesPerForm);
+                case FileEncoding.BRF_ASCII_Ex: return new BrailleFileHandler_BRF_ASCII_Ex(charsPerLine, linesPerForm);
                 case FileEncoding.BRF_Unicode: return new BrailleFileHandler_BRF_Unicode(charsPerLine, linesPerForm);
                 case FileEncoding.BRL_OctoBraille_1252: return new BrailleFileHandler_BRL_OctoBraille_1252(charsPerLine, linesPerForm);
                 // Uses the generic class and an Encoding parameter
                 case FileEncoding.BRF_Unicode_utf8: return new BrailleFileHandler_Generic(charsPerLine, linesPerForm, ".brf", Encoding.UTF8);
                 case FileEncoding.BRF_Unicode_utf16: return new BrailleFileHandler_Generic(charsPerLine, linesPerForm, ".brf", Encoding.Unicode);
                 case FileEncoding.BRF_Unicode_utf32: return new BrailleFileHandler_Generic(charsPerLine, linesPerForm, ".brf", Encoding.UTF32);
+
 
                 default:
                     Logger.LogCF(string.Format(": Unsupported file format {0}", fileEncoding.ToString()));

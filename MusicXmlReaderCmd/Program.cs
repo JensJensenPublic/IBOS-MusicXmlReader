@@ -54,13 +54,14 @@ namespace MusicXmlReaderUI
                 string extension = System.IO.Path.GetExtension(file);
                 // Logger.PostString = " in " + System.IO.Path.GetFileName(file); // Will report the file name with the error logged !
                 bool ok;
+#warning: ToDo use App.Config here too !
+                bool useExternal7Zip = false;
                 switch (extension)
-                {
-        
+                {                    
                     case ".mxl":
                         if (IsAlreadyHandled(shortFileName)) break; // No need to handle the same file twice during same test
                         Logger.ClearStatistics(); // Start counting diagnostic messages for this file
-                        string xmlFileName = Utilities.MxlToXml(file, executingDirectory);
+                        string xmlFileName = Utilities.MxlToXml(file,"",useExternal7Zip ? MxlDecompressionMethod.External7ZipExe : MxlDecompressionMethod.SystemIOCompressionZipFile); 
                         ok = !string.IsNullOrEmpty(xmlFileName);
                         string message = string.Format("Utilities.MxlToXml({0}) {1}", file, ok ? "succeeded" : failed);  
                         string shortMessage = string.Format("Utilities.MxlToXml {0}", ok ? "succeeded" : failed);

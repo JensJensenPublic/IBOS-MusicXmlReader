@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace MusicXmlReaderModel
 {
+    // Note: this class has been moved to the MusicXmlReaderModelBase project (namespace = MusicXmlReaderModel) in order to avoid circular references!
+#if false
     public class LoggerDelayCounter
     {
         TimeSpan executionTime;
@@ -49,4 +51,5 @@ namespace MusicXmlReaderModel
         }
 
     }
+#endif
 }

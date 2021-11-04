@@ -87,6 +87,7 @@
             this.openLogFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openXMLFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inspectAsXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAsInterpretedXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jAWSSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -136,7 +137,7 @@
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
-            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.analyzeLocalizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -564,7 +565,8 @@
             this.generateMusicBrailleTestpatternToolStripMenuItem,
             this.generateGraphicInformationToolStripMenuItem,
             this.interpretFileAsBrailleMusicToolStripMenuItem,
-            this.userPreferencesLocationToolStripMenuItem});
+            this.userPreferencesLocationToolStripMenuItem,
+            this.analyzeLocalizationToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -624,6 +626,13 @@
             this.inspectAsXMLToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.inspectAsXMLToolStripMenuItem.Text = "MusicXml file as raw XML";
             this.inspectAsXMLToolStripMenuItem.Click += new System.EventHandler(this.inspectAsXMLToolStripMenuItem_Click);
+            // 
+            // inspectAsXMLUsingGoogleChromeToolStripMenuItem
+            // 
+            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Name = "inspectAsXMLUsingGoogleChromeToolStripMenuItem";
+            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Text = "MusicXml file as raw XML using Google Chrome";
+            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Click += new System.EventHandler(this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem_Click);
             // 
             // viewAsInterpretedXMLToolStripMenuItem
             // 
@@ -1022,12 +1031,12 @@
             // 
             this.printDialog.UseEXDialog = true;
             // 
-            // musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem
+            // analyzeLocalizationToolStripMenuItem
             // 
-            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Name = "musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem";
-            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
-            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Text = "MusicXml file as raw XML using Google Chrome";
-            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Click += new System.EventHandler(this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem_Click);
+            this.analyzeLocalizationToolStripMenuItem.Name = "analyzeLocalizationToolStripMenuItem";
+            this.analyzeLocalizationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.analyzeLocalizationToolStripMenuItem.Text = "Analyze localization";
+            this.analyzeLocalizationToolStripMenuItem.Click += new System.EventHandler(this.analyzeLocalizationToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1169,6 +1178,7 @@
         private System.Windows.Forms.ToolStripMenuItem startCapellaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startFinaleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inspectAsXMLUsingGoogleChromeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem analyzeLocalizationToolStripMenuItem;
     }
 }
 

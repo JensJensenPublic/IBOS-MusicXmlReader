@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,6 +53,7 @@
     <Compile Include="BrailleDisplayer.cs" />
     <Compile Include="BrailleFileHandler.cs" />
     <Compile Include="BrailleFileHandler_BRF_ASCII.cs" />
+    <Compile Include="BrailleFileHandler_BRF_ASCII_Ex.cs" />
     <Compile Include="BrailleFileHandler_BRF_Unicode.cs" />
     <Compile Include="BrailleFileHandler_BRL_OctoBraille_1252.cs" />
     <Compile Include="BrailleFileHandler_Generic.cs" />
@@ -60,6 +62,10 @@
     <Compile Include="BrailleInAccordSegment.cs" />
     <Compile Include="BrailleInAccordVoice.cs" />
     <Compile Include="BrailleUtilities.cs" />
+    <Compile Include="DecoderHandler.cs" />
+    <Compile Include="DecoderItem.cs" />
+    <Compile Include="DecoderOptions.cs" />
+    <Compile Include="DecoderOutputFileHandler.cs" />
     <Compile Include="DetailsDescription.cs" />
     <Compile Include="DetailsPlayer.cs" />
     <Compile Include="Elements\AccidentalTextElement.cs" />
@@ -96,9 +102,13 @@
     <Compile Include="Elements\TextElementBase.cs" />
     <Compile Include="Elements\UnpitchedElement.cs" />
     <Compile Include="Elements\VirtualInstrumentElement.cs" />
+    <Compile Include="Elements\WedgeElement.cs" />
+    <Compile Include="Elements\WordsElement.cs" />
     <Compile Include="Exceptions.cs" />
+    <Compile Include="IDecoderUiClient.cs" />
     <Compile Include="IntegerFraction.cs" />
     <Compile Include="KnownFolders.cs" />
+    <Compile Include="LocalizationAnalysis.cs" />
     <Compile Include="LogFormatter.cs" />
     <Compile Include="LoggerDelayCounter.cs" />
     <Compile Include="LoggerProxy.cs" />
@@ -170,6 +180,7 @@
     <Compile Include="MusicPlayer.cs" />
     <Compile Include="MusicXmlInterpreter.cs" />
     <Compile Include="MusicXmlObject.cs" />
+    <Compile Include="NoteElementComperator.cs" />
     <Compile Include="NoteElementList.cs" />
     <Compile Include="Parameter.cs" />
     <Compile Include="PartDescriptionList.cs" />
@@ -201,9 +212,17 @@
       <Project>{27a3d41b-569a-480a-9e30-413102b8e386}</Project>
       <Name>BrailleMusicDecoder</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LocalizationAnalyzer\LocalizationAnalyzer.csproj">
+      <Project>{b177fa70-5c5a-462c-9b55-d2f9c197efa0}</Project>
+      <Name>LocalizationAnalyzer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MusicSynthesis\MusicSynthesis.csproj">
       <Project>{529d2c78-0fbc-4bf1-b5ae-f348695546c2}</Project>
       <Name>MusicSynthesis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MusicXmlReaderModelBase\MusicXmlReaderModelBase.csproj">
+      <Project>{05d0a6cf-3d9f-4dde-90e4-db7e4d3318ab}</Project>
+      <Name>MusicXmlReaderModelBase</Name>
     </ProjectReference>
     <ProjectReference Include="..\PlatformDependencies\PlatformDependencies.csproj">
       <Project>{5c29f3b2-fe9d-4306-98d6-00d3730d8ebc}</Project>

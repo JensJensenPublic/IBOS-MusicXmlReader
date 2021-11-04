@@ -14,6 +14,8 @@ namespace MusicXmlReader
             DeveloperMode,
             ExperimentalCode,
             HandleGraphics,
+            DecoderDeveloperMode,
+            UseExternal7Zip
         }
 
         /// <summary>
@@ -30,6 +32,8 @@ namespace MusicXmlReader
                 case KeyEnum.DeveloperMode: return "DeveloperMode";
                 case KeyEnum.ExperimentalCode: return "ExperimentalCode";
                 case KeyEnum.HandleGraphics: return "HandleGraphics";
+                case KeyEnum.DecoderDeveloperMode: return "DecoderDeveloperMode";
+                case KeyEnum.UseExternal7Zip: return "UseExternal7Zip";
                 default: return null;
             }
         }
@@ -38,7 +42,7 @@ namespace MusicXmlReader
         {
             string keyName = GetKeyName(key);
             string result  = System.Configuration.ConfigurationManager.AppSettings.Get(keyName);
-            Logger.LogCF(string.Format("KeyEnum={0} KeyName={1} result={2}", key.ToString(), keyName, result));
+            Logger.LogCF(string.Format(": KeyEnum={0} KeyName={1} result={2}", key.ToString(), keyName, result));
             return result;
         }
 

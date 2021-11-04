@@ -55,6 +55,10 @@
       <Project>{529d2c78-0fbc-4bf1-b5ae-f348695546c2}</Project>
       <Name>MusicSynthesis</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MusicXmlReaderModelBase\MusicXmlReaderModelBase.csproj">
+      <Project>{05d0a6cf-3d9f-4dde-90e4-db7e4d3318ab}</Project>
+      <Name>MusicXmlReaderModelBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MusicXmlReaderModel\MusicXmlReaderModel.csproj">
       <Project>{695bf2ce-9955-4d26-b552-2427ee160810}</Project>
       <Name>MusicXmlReaderModel</Name>

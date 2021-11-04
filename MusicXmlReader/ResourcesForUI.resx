@@ -479,10 +479,6 @@
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
     <value>Open MusicXml file using &amp;default settings</value>
   </data>
-  <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram" xml:space="preserve">
-    <value>Emboss Music Braille file using External program</value>
-    <comment>Not translated to Dutch</comment>
-  </data>
   <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
     <value>&amp;Print Music Braille file on embosser</value>
     <comment>Not translated to Dutch</comment>
@@ -528,7 +524,6 @@
   </data>
   <data name="Message_Directory" xml:space="preserve">
     <value>Directory</value>
-    <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
   </data>
   <data name="Message_ExportToMusicBraille" xml:space="preserve">
     <value>Export to Music Braille</value>
@@ -536,7 +531,6 @@
   </data>
   <data name="Message_Failed" xml:space="preserve">
     <value>failed</value>
-    <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
   </data>
   <data name="Message_Files" xml:space="preserve">
     <value>Files</value>
@@ -545,9 +539,6 @@
   <data name="Message_Succeeded" xml:space="preserve">
     <value>succeeded</value>
     <comment>NL MISSING This text should be generally usable for all messageboxes !</comment>
-  </data>
-  <data name="String" xml:space="preserve">
-    <value />
   </data>
   <data name="Message_File_EmbossedMusicBrailleFile" xml:space="preserve">
     <value>Embossed Music Braille file</value>

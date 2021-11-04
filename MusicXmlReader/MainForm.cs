@@ -17,6 +17,7 @@ namespace MusicXmlReader
     {
         string className = "MainForm";
         bool developerMode; // Can be set in app.Config
+        bool decoderDeveloperMode; // Can be set in app.Config
         string localizationMessage = ""; // Will contain a formatted message if the default UI Culture is overwritten by App.Config
         //bool experimentalCode;  // Can be set in app.Config
         public static readonly Color FocusedColor = Color.White;         // Mainly for debugging. For released versions use Color.White !
@@ -28,6 +29,7 @@ namespace MusicXmlReader
         string executingAssemblyShortName = ""; // The (unlocalized) short name of the program, used by for instance JAWS to name configuration file! 
         string myMusicXmlDirectory; // Default location for MusicXml files belonging to thos user. Will be populated with sample files!
         private OrganisationDependencies organisationDependencies;
+        private bool is64Bit = (IntPtr.Size == 8);
 
         Model model;        // The Model containing all of the business logic.
 
@@ -41,7 +43,7 @@ namespace MusicXmlReader
         MessageHandler          messageHandler;
         BrailleMusicExportHandler brailleMusicExportHandler; // Isolates most code for handling export to files of Music Braille
         EmbosserHandler         embosserHandler;
-
+        string[] arguments;
 
         public MainForm()
         {
@@ -51,6 +53,7 @@ namespace MusicXmlReader
                 UiUtilities.Beep(); // To easily check if the Beep() function works as expected!
                 executingAssemblyFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
                 executingAssemblyShortName = System.IO.Path.GetFileNameWithoutExtension(executingAssemblyFullPath);
+                arguments = Environment.GetCommandLineArgs();
                 InitializeComponent();
                 Logger.Open(null); // null => Use the default logfile name
                 Logger.Log(""); // An empty line to catch the eye
@@ -59,6 +62,14 @@ namespace MusicXmlReader
 
                 string developerModeString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.DeveloperMode);
                 developerMode = ("yes" == developerModeString);
+                Logger.DeveloperMode = developerMode;
+                Logger.LogArguments(arguments);
+
+                string decoderDeveloperModeString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.DecoderDeveloperMode);
+                decoderDeveloperMode = ("yes" == decoderDeveloperModeString);
+
+
+                UiUtilities.CheckInstallation(executingAssemblyFullPath, 30, 4); // Warn about unexpected files in the installation directory
 
                 Logger.LogCF(string.Format(": DeveloperModeString={0} DeveloperMode={1}", developerModeString, developerMode));
                 string developerCultureString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.DeveloperCulture);
@@ -69,25 +80,39 @@ namespace MusicXmlReader
                 // If App.Config contains an entry named "DeveloperCulture" describing a valid culture string, for instance "en-US" or "ko-KR"
                 // the application culture will be changed to that even if running on a danish PC!
                 localizationMessage = UiUtilities.LogGLobalisationInformation(developerCultureString);
-                organisationDependencies = OrganisationDependencies.Create(executingAssemblyShortName);
+                organisationDependencies = OrganisationDependencies.Create(executingAssemblyShortName); 
 
                 // Do any UI localization before we create the model. In this way we avoid showing unlocalized texts if an error is reported by a messagebox.
                 applicationName = organisationDependencies.ApplicationName; // Defaults to ResourcesForUI.MainForm_ApplicationName;
+                Logger.Log(string.Format("This program is compiled for a {0} bit architechture. It uses the following locally installed executable", is64Bit ? "64" : "32"));
+                // Utilities is a static class so we can it call it before creationg the Model!
+                Utilities.CheckExe(System.IO.Path.GetFileName(executingAssemblyFullPath), System.IO.Path.GetDirectoryName(executingAssemblyFullPath), is64Bit);
                 messageHandler = MessageHandler.Create(applicationName);
            
                 textBoxScreenReader.Hide(); // This textbox gets Focus used during long-lasting operation and thus draws the Screenreaders attensio to itself, avoiding too much Speech !
                 LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
                 HideDeveloperItems(developerMode);
-                textBoxStatusInformation.AccessibleName = ResourcesForUI.StatusLine_Accessible_Name; // Overwrite with localized text
- 
+                textBoxStatusInformation.AccessibleName = ResourcesForUI.StatusLine_Accessible_Name; // Overwrite with localized text 
 
-                Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings 
-                model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), applicationName);
+
+                Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings
+                model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), applicationName,null);
+
+                #region Configuration
+#warning refactor all configuration stuff into separate methode somewhere
                 string experimentalCodeString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.ExperimentalCode);
                 model.ExperimentalCode = ("yes" == experimentalCodeString);
-                Logger.LogCF(string.Format(": ExperimentalCodeString={0} ExperimentalCode={1}", experimentalCodeString, model.ExperimentalCode));
+                //Logger.LogCF(string.Format(": ExperimentalCodeString={0} ExperimentalCode={1}", experimentalCodeString, model.ExperimentalCode));
+
                 string handleGraphicsString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.HandleGraphics);
                 model.HandleGraphics = ("yes" == handleGraphicsString);
+                //Logger.LogCF(string.Format(": HandleGraphicsString={0} HandleGraphicsString={1}", handleGraphicsString, model.HandleGraphics));
+
+                string useExternal7ZipString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.UseExternal7Zip);
+                model.UseExternal7Zip = ("yes" == useExternal7ZipString);
+                //Logger.LogCF(string.Format(": UseExternal7ZipString={0} UseExternal7Zip={1}", useExternal7ZipString,  model.UseExternal7Zip));
+                #endregion Configuration
+
                 Utilities.LogSpecialFolders(true); // A Developer facility only!
                 importHandler = ImportHandler.Create(model,this,applicationName);
                 parameterInputHandler = ParameterInputHandler.Create(model,this);
@@ -131,6 +156,12 @@ namespace MusicXmlReader
 
                 this.Shown += MainForm_Shown;
 
+                // Handle a commandlineParameter containing the full path to a MusicXml file to load
+                InterpretCommandline(arguments);
+
+                // For test only !!!
+                //model.AnalyzeLocalization();
+
                 // throw (new Exception("For test only")); // Insert this line to test the Last Resort handler below
             }
             catch (Exception e)
@@ -141,6 +172,36 @@ namespace MusicXmlReader
                 ShowWarning((int)ModelMessageEnum.UnspecifiedInitializationError,"","");
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arguments"></param>
+        /// <returns>True iff a commandline exists and is successfully executed</returns>
+        private bool InterpretCommandline(string[] arguments)
+        {
+            if (arguments.Length != 2) return false;
+            string fileToOpen = arguments[1];
+            if (!System.IO.File.Exists(fileToOpen))
+            {
+                Logger.LogCF(string.Format(": FileToOpen not does not exist: {0} ", fileToOpen));
+                return false;
+            }
+            string extension = System.IO.Path.GetExtension(fileToOpen);
+            string upperExtension = extension.ToUpper();
+            if (!((upperExtension.EndsWith(".MUSICXML") || upperExtension.EndsWith(".XML"))))
+            {
+                Logger.LogCF(string.Format(": Unsupported file extension: {0} ", extension));
+                return false;
+            }
+
+            string shortFileName = System.IO.Path.GetFileName(fileToOpen);
+            bool useDefaultSettings = true;
+            bool ok = this.LoadMusicXmlFile(fileToOpen, shortFileName, useDefaultSettings);
+            Logger.LogCF(string.Format(": {0} loading {1}", ok ? "Success" : "Failure", fileToOpen));
+            return ok;
+        }
+
 
         private void HideDeveloperItems(bool developerMode)
         {
@@ -379,6 +440,6 @@ namespace MusicXmlReader
             this.Refresh();
         }
 
-
+  
     }
 }

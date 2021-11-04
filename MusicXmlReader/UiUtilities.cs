@@ -271,5 +271,37 @@ namespace MusicXmlReader
             return result;
         }
 
+
+
+        /// <summary>
+        /// Simpel utility for chacking if the installation directory is polluted with extra files or directories.
+        /// </summary>
+        /// <param name="executingAssemblyFullPath"></param>
+        /// <param name="maxFiles">The expected max number of files, including files from the installation program</param>
+        /// <param name="maxDirs">The expected max number of directories</param>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public static bool CheckInstallation(string executingAssemblyFullPath, int maxFiles, int maxDirs)
+        {
+            bool result = false;
+            try
+            {
+                string dir = System.IO.Path.GetDirectoryName(executingAssemblyFullPath);
+                string[] files = System.IO.Directory.GetFiles(dir);
+                int nFiles = files.Length;
+                string[] dirs = System.IO.Directory.GetDirectories(dir);
+                int nDirs = dirs.Length;
+                Logger.LogCF(string.Format(": Found {0,2} files. Expected <= {1,2}", nFiles,maxFiles));
+                Logger.LogCF(string.Format(": Found {0,2} dirs.  Expected <= {1,2}", nDirs,maxDirs));
+                result = (nFiles <= maxFiles) && (nDirs <= maxDirs);
+
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+            return result;
+
+        }
     }
 }

@@ -1209,6 +1209,7 @@ namespace MusicXmlReaderModel
             }
 
             string dynamicsString = "";
+            string wordsString = "";
             if (userSettings.GetReaderSettings(UserSettings.ReaderSettingsEnum.Notations) && (null != directionElements))
             {
                 foreach (DirectionElement directionElement in directionElements)
@@ -1216,6 +1217,20 @@ namespace MusicXmlReaderModel
                     if (null != directionElement.DynamicsElement)   
                     {
                         dynamicsString += directionElement.DynamicsElement.ToString() + " ";
+                    }
+                    
+                    if (null != directionElement.DirectionTypeElement)
+                    {
+                        DirectionTypeElement directionType = directionElement.DirectionTypeElement;
+                        if (null != directionType.WedgeElement)
+                        {
+                            dynamicsString += directionElement.DirectionTypeElement.WedgeElement.ToString() + " ";
+                        }
+
+                        if (null != directionType.WordsElement)
+                        {
+                            wordsString += directionElement.DirectionTypeElement.WordsElement.ToString() + " ";
+                        }
                     }
                 }
             }
@@ -1297,7 +1312,7 @@ namespace MusicXmlReaderModel
                 clefString = "";
             }
 
-            return printFormatString + measure + soundString + timeString + keyString + clefString + repeatBackward + repeatForward + divisions + dynamicsString + measureStyleString + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endOfScore + endEventString  ;
+            return printFormatString + measure + soundString + timeString + keyString + clefString + repeatBackward + repeatForward + divisions + dynamicsString + wordsString + measureStyleString + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endOfScore + endEventString  ;
         }
 
 
@@ -1342,6 +1357,17 @@ namespace MusicXmlReaderModel
             {
                 Logger.LogCF(string.Format(": Unexpected number of PrintElements with '{0}=Yes' = {1} ", paramName, paramValue));
             }
+        }
+
+
+        public int Sort(NoteElementComperator noteElementComperator)
+        {
+           int result = 0;
+           foreach (NoteElementList noteElementList in this.noteLists)
+           {             
+                result += noteElementList.Sort(noteElementComperator);
+           }
+            return result;   
         }
 
     }

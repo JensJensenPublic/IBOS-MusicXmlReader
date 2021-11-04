@@ -282,9 +282,6 @@
   <data name="PitchElement_gSharp" xml:space="preserve">
     <value>G-sharp</value>
   </data>
-  <data name="PitctElement_g" xml:space="preserve">
-    <value>G</value>
-  </data>
   <data name="TimeElement_eights" xml:space="preserve">
     <value>eights</value>
   </data>

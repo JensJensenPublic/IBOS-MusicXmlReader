@@ -79,7 +79,8 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// The simple version of NoteElementList.ToBraille() without chord notation.
         /// Used from
-        ///  DetailsPlayer.PartDetailsPlayer for showing explicit details of a single event
+        ///  DetailsPlayer.PartDetailsPlayer for showing explicit details of a the notes within a single part
+        ///  DetailsPlayer.NoteDetailsPlayer for showing explicit details of a single note
         ///  BrailleMeasureDivision.ToBraille() when chord notation is enabled, but not needed
         /// </summary>
         /// <param name="userSettings"></param>
@@ -320,11 +321,52 @@ namespace MusicXmlReaderModel
             return sb.ToString();
         }
 
+        void Log(bool enabled, string text)
+        {
+            if (!enabled) return;
+            Logger.LogCF(text);
+        }
 
+
+        /// <summary>
+        ///  The userSettings parameter is only needed for debugging ourposes !
+        /// </summary>
+        /// <param name="userSettings"></param>
+        public int Sort(NoteElementComperator noteElementComperator)
+        {
+            if (0 != (noteElementComperator.SpecialOptions & NoteElementComperator.SpecialOptionsEnum.NoSort))
+            {
+                return 0;
+            }
+
+            bool logDifferences = (0 != (noteElementComperator.SpecialOptions & NoteElementComperator.SpecialOptionsEnum.LogDifferences));
+
+            int result = 0;      
+            string before = this.ToString(noteElementComperator.UserSettings);
+            this.noteElements.Sort(noteElementComperator);
+            string after = this.ToString(noteElementComperator.UserSettings);
+            if (0 == string.Compare(before, after))
+            {        
+               Log(logDifferences,string.Format(": Unchanged {0}", before));           
+            }
+            else
+            {
+                result++;
+                Log(logDifferences, string.Format(": Before={0}", before));
+                Log(logDifferences, string.Format(": After ={0}", after));
+            }
+            return result;
+        }
 
         public static NoteElementList Create()
         {
             return new NoteElementList();
+        }
+
+
+        public static NoteElementList Create(NoteElement noteElement)
+        {
+            return new NoteElementList(new List<NoteElement> { noteElement });
         }
 
         public static NoteElementList Create(List<NoteElement> noteElements)

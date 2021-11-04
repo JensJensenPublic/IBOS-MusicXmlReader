@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Braille_" xml:space="preserve">
-    <value />
-    <comment>Unused item</comment>
-  </data>
   <data name="Braille_ApplicationLocation" xml:space="preserve">
     <value>Embosser program path</value>
     <comment>MISSING DUTCH "path"</comment>

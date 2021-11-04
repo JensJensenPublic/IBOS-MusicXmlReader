@@ -969,8 +969,9 @@ namespace MusicXmlReaderModel
                     case BarStyleEnum.lightLight:
                     case BarStyleEnum.shortBarStyle:
                     case BarStyleEnum.tick:
-                        Append(barlineUnusual, "|.Unusual" + epilog);
-                        Logger.LogCFOnce(string.Format(": Added an unusual Barstyle={0}", barStyle.ToString()));
+                        // Adding barLineUnusual here seems to confuse more than it helps !
+                        //Append(barlineUnusual, "|.Unusual" + epilog);
+                        //Logger.LogCFOnce(string.Format(": Added an unusual Barstyle={0}", barStyle.ToString()));
                         break;
                     case BarStyleEnum.unknown:
                         Append(barlineUnusual, "|.Unusual" + epilog);

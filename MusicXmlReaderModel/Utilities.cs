@@ -25,6 +25,15 @@ namespace MusicXmlReaderModel
 
     }
 
+    /// <summary>
+    /// Determine the method for decompression of .mxl into .xml
+    /// </summary>
+    public enum MxlDecompressionMethod
+    {
+        SystemIOCompressionZipFile, // Use the .Net System.IO.Compression.ZipFile class
+        External7ZipExe             // Use an external implementation of 7Zip.exe (distributed with the installation)
+    };
+
     public interface IUtilityClient
     {
         /// <summary>
@@ -246,20 +255,22 @@ namespace MusicXmlReaderModel
             }
         }
 
-
-
+        public static bool CheckExe(string exeName, string directory, bool is64Bit)
+        {
+            return CheckDllOrExe(exeName, directory, is64Bit ? MachineType.IMAGE_FILE_MACHINE_AMD64 : MachineType.IMAGE_FILE_MACHINE_I386);
+        }
 
         private static bool CheckDll(string dllName, string directory,bool is64Bit)
         {
-            return CheckDll(dllName, directory, is64Bit ? MachineType.IMAGE_FILE_MACHINE_AMD64 : MachineType.IMAGE_FILE_MACHINE_I386);
+            return CheckDllOrExe(dllName, directory, is64Bit ? MachineType.IMAGE_FILE_MACHINE_AMD64 : MachineType.IMAGE_FILE_MACHINE_I386);
         }
 
-        private static bool CheckDll(string dllName, string directory, MachineType expectedMachineType)
+        private static bool CheckDllOrExe(string dllOrExeName, string directory, MachineType expectedMachineType)
         {
-            string fullFileName = Path.Combine(directory, dllName);
+            string fullFileName = Path.Combine(directory, dllOrExeName);
             if (!File.Exists(fullFileName))
             {
-                Logger.Log(string.Format("Missing support-dll: {0}", dllName));
+                Logger.Log(string.Format("Missing executable or support-dll: {0}", dllOrExeName));
                 return false;
             }
             else
@@ -364,21 +375,24 @@ namespace MusicXmlReaderModel
                 result &= CheckDll("fsapi.dll", directory, false);                      // JAWS This seems to be the right JAWS interface in the  32 bit case 
                 result &= CheckDll("nvdaControllerClient32.dll",directory, false);      // NVDA
             }
-
-
+            
             //  Most of the dlls have the same name in 32 bit and 64 bit versions:
-            // result &= CheckDll("tolk.dll", directory, is64Bit);                        // Generic access to screenreaders. Not really needed ! 
-            result &= CheckDll("NAudio.dll", directory, is64Bit);                      // Generation of MIDI sound 
-            result &= CheckDll("MusicSynthesis.dll", directory, is64Bit);              // Generation of MIDI sound 
-            result &= CheckDll("FsBrlDspApi.dll", directory, is64Bit);                 // Direct access to Freedom Scientific Braille Display. Not really needed. 
-            result &= CheckDll("7z.dll", directory, true);                           // For converting .mxl to .xml 
-            result &= CheckDll("7z.exe", directory, true);                           // For converting .mxl to .xml  
-
+            // result &= CheckDll("tolk.dll", directory, is64Bit);                      // Generic access to screenreaders. Not really needed ! 
+            result &= CheckDll("NAudio.dll", directory, is64Bit);                       // Generation of MIDI sound 
+            result &= CheckDll("FsBrlDspApi.dll", directory, is64Bit);                  // Direct access to Freedom Scientific Braille Display. Not really needed.
+            result &= CheckDll("7z.dll", directory, true);                              // For converting .mxl to .xml In Version > 4.0 Replaced by System.IO.Compression.ZipFile.ExtractToDirectory
+            result &= CheckDll("7z.exe", directory, true);                              // For converting .mxl to .xml In Version > 4.0 Replaced by  System.IO.Compression.ZipFile.ExtractToDirectory
+            result &= CheckDll("MusicSynthesis.dll", directory, is64Bit);               // Generation of MIDI sound  
+            result &= CheckDll("BrailleMusicDecoder.dll", directory, is64Bit);          // Decoding of Braille Music files back to text representation
+            result &= CheckDll("MusicXmlReaderModel.dll", directory, is64Bit);          // The main Model, binding everything together 
+            result &= CheckDll("PlatformDependencies.dll", directory, is64Bit);         // Isolates all platform dependent functionality (PC / MAC / iPhone / Android) 
+            result &= CheckDll("MusicSynthesis.dll", directory, is64Bit);               // Generation of MIDI sound  
 
             if (!result)
             {
                 if (caption != null)
                 {
+#warning: ToDo localize
                     ShowWarning(ModelMessageEnum.MissingProgramFile,"",
                         "Manglende programfil!\r\n"
                       + "Se venligst Logfilen! (Værktøjer->Log fil)");
@@ -502,7 +516,7 @@ namespace MusicXmlReaderModel
             return RunExeWithArgument(exeFileName, Quote(argFileName));
         }
 
-                internal static bool RunExeWithDirArgument(string exeFileName, string argFileName)
+        public static bool RunExeWithDirArgument(string exeFileName, string argFileName)
         {
             // Check that the directory exists
             if (!System.IO.Directory.Exists(argFileName))
@@ -609,6 +623,11 @@ namespace MusicXmlReaderModel
 
         static void DeleteTempDirectory(string directoryName)
         {
+            if (!Directory.Exists(directoryName))
+            {
+                return;
+            }
+
             string functionName = "DeleteTempDirectory";
             // Logger.Log(string.Format("{0}.{1}+", className, functionName));
             try
@@ -649,6 +668,31 @@ namespace MusicXmlReaderModel
             return System.Reflection.Assembly.GetExecutingAssembly().Location;
         }
 
+        public static string NullAsText(string s)
+        {
+            if (null == s) return "null";
+            return s;
+        }
+
+        private static void MxlToXmlFileNames(string tempDirectory, FileInfo[] files)
+        {
+            Logger.LogCFOnce(string.Format(": TempDirectory = {0}", tempDirectory)); // In this way the Tempdirectoryname is reported only once
+            if (1 == files.Length)
+            {
+                Logger.LogCF(string.Format(": TempDirectory='{0}'  contains {1} file: '{2}'", tempDirectory, files.Length, files[0].Name));
+                Logger.LogCFOnce(string.Format(": TempDirectory='{0}'  contains {1} file", tempDirectory, files.Length));
+            }
+            else
+            {
+                StringBuilder sb = new StringBuilder(); 
+                foreach (FileInfo fileInfo in files)
+                {
+                    sb.Append(string.Format(" '{0}'", fileInfo.Name));
+                }
+                Logger.LogCFOnce(string.Format(": TempDirectory contains {0} files: {1}", files.Length, sb.ToString()));
+            }
+        }
+
 
         /// <summary>
         /// Convert a .mxl file (compressed MusicXml) to .xml (MusicXml) relying on the external program 7z.exe
@@ -656,61 +700,83 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="fullMxlFileName">Full path  of .mxl file to be converted </param>
         /// <returns>Full path of the resulting .xml file</returns>
-        public static string MxlToXml(string fullMxlFileName,string destinationDirectory)
+        public static string MxlToXml(string fullMxlFileName,string destinationDirectory, MxlDecompressionMethod mxlDecompressionMethod)
         {
-            string methodName = "MxlToXml";
-            string executingDirectory = GetExecutingDirectory();
-            string result = "";
+            Logger.LogCF(string.Format(": Entry: FileName='{0}' DestinationDirectory='{1}' MxlDecompressionMethod={2})", fullMxlFileName, NullAsText(destinationDirectory), mxlDecompressionMethod));
             // Use the temp directory created and used by the Logger
             string tempDirectory = Path.Combine(Logger.MusicXmlReaderTempDirectory, "tempDirectoryUsedByMxlToXml"); // Probably a unique name
-            Logger.Log(string.Format("{0}.{1}({2},{3}) started.", className, methodName, fullMxlFileName, executingDirectory));
             CreateEmptyTempDirectory(tempDirectory);
-            //string exeFileName = @"C:\Program Files\7-Zip\7z.exe";
-            string exeFileName = Path.Combine(executingDirectory,@"7z.exe"); // Assumes that 7z.exe and 7z.dll are found in the execution directory !
-            string command = "e";
-            string switches = string.Format("-aoa -o\"{0}\"", tempDirectory); // -aoa: Overwrite existing files, -0: Specify output directory
-            string argument = string.Format("{0} \"{1}\" {2}", command, fullMxlFileName, switches); // The filename may contain spaces so we need ""
-            int exitCode = 0;
-            if (Utilities.RunExeWithArgumentAndWaitForExit(exeFileName, argument, out exitCode))
+            switch (mxlDecompressionMethod)
             {
-                if (0 != exitCode)
-                {         
-                    Logger.Log(string.Format("{0}.{1}({2}) failed: {3} returned exitcode={4}. ", className, methodName, fullMxlFileName, exeFileName, exitCode));
-                    return result;
-                }
-
-                // Move the newly generated .xml file from the temp directory to the original directory.
-                FileInfo[] files = new DirectoryInfo(tempDirectory).GetFiles();
-                Logger.Log(string.Format("{0}.{1}: TempDirectory={2} contains {3} files:", className, methodName, tempDirectory, files.Length));
-                // As default place the .xml file in the same directory as the .mxl file 
-                string destXlm = string.IsNullOrEmpty(destinationDirectory) ? fullMxlFileName : Path.Combine(destinationDirectory, Path.GetFileName(fullMxlFileName));
-                string destXml = Path.ChangeExtension(destXlm, "xml");
-                int numberOfFiles = 0;
-                foreach (FileInfo fileInfo in files)
-                {
-                    Logger.Log(string.Format(" {0}",fileInfo.Name));
-                    if ("container.xml" != fileInfo.Name)
+                case MxlDecompressionMethod.External7ZipExe:
                     {
-                        string source = fileInfo.FullName;           
-
-                        bool overwriteExisting = true;
-                        //Logger.LogCF(string.Format(": Starting File.Copy({0} to {1}", source, destXml));
-                        File.Copy(source, destXml, overwriteExisting);
-                        //Logger.LogCF(string.Format(": Finished File.Copy({0} to {1}", source, destXml));
-                        result = destXml;
-                        numberOfFiles++;
+                        // This is the implementation used in version <= 4.0, based on an external 7z.exe
+                        string executingDirectory = GetExecutingDirectory();
+                        string exeFileName = Path.Combine(executingDirectory, @"7z.exe"); // Assumes that 7z.exe and 7z.dll are found in the execution directory !
+                        string command = "e";
+                        string switches = string.Format("-aoa -o\"{0}\"", tempDirectory); // -aoa: Overwrite existing files, -0: Specify output directory
+                        string argument = string.Format("{0} \"{1}\" {2}", command, fullMxlFileName, switches); // The filename may contain spaces so we need ""
+                        int exitCode = 0;
+                        if (!Utilities.RunExeWithArgumentAndWaitForExit(exeFileName, argument, out exitCode) || (0 != exitCode))
+                        {
+                            Logger.LogCF(string.Format(": Utilities.RunExeWithArgumentAndWaitForExit('{0}','{1}') failed: Returned false, exitcode={2}", exeFileName, argument, exitCode));
+                            DeleteTempDirectory(tempDirectory);
+                            return "";
+                        }
+                        break;
                     }
-                    File.Delete(fileInfo.FullName); // Allows us to delete the directory
-                }
-                if (1 != numberOfFiles)
+                case MxlDecompressionMethod.SystemIOCompressionZipFile:
+                    {
+                        // This is the implementation used in versions > 4.0, based on  System.IO.Compression.ZipFile.ExtractToDirectory()
+                        try
+                        {
+                            // throw new Exception("TestException"); // Only used for testing error handling
+                            System.IO.Compression.ZipFile.ExtractToDirectory(fullMxlFileName, tempDirectory);
+                            Logger.LogCF(string.Format(": ZipFile.ExtractToDirectory succeeded for '{0}'", fullMxlFileName));
+                        }
+                        catch (Exception e)
+                        {
+                            Logger.LogCF(string.Format(": ZipFile.ExtractToDirectory failed for '{0}' Exception.Message='{1}'", fullMxlFileName, e.Message));
+                            DeleteTempDirectory(tempDirectory);
+                            return "";
+                        }
+                        break;
+                    }
+
+            }  
+
+            // If we get here the extraction into tempdirectory succeeded, by either of the 2 implementations above.
+            // Tempdirectory contains the unzipped of fullMxlFileName which is hopefully a single, valid MusicXml file.
+
+            string result = "";
+            // Move the newly generated .xml file from the temp directory to the original directory.
+            FileInfo[] files = new DirectoryInfo(tempDirectory).GetFiles();
+            MxlToXmlFileNames(tempDirectory, files);    
+            // As default place the .xml file in the same directory as the .mxl file 
+            string destXlm = string.IsNullOrEmpty(destinationDirectory) ? fullMxlFileName : Path.Combine(destinationDirectory, Path.GetFileName(fullMxlFileName));
+            string destXml = Path.ChangeExtension(destXlm, "xml");
+            int numberOfFiles = 0;
+            foreach (FileInfo fileInfo in files)
+            {             
+                if ("container.xml" != fileInfo.Name)
                 {
-                    Logger.LogOnce(string.Format("{0}.{1}: Unexpectedly found {2} files", className, methodName, numberOfFiles));
+                    string source = fileInfo.FullName;
+                    bool overwriteExisting = true;
+                    //Logger.LogCF(string.Format(": Starting File.Copy({0} to {1}", source, destXml));
+                    File.Copy(source, destXml, overwriteExisting);
+                    //Logger.LogCF(string.Format(": Finished File.Copy({0} to {1}", source, destXml));
+                    result = destXml;
+                    numberOfFiles++;
                 }
+                File.Delete(fileInfo.FullName); // Allows us to delete the directory afterwards
             }
-          
+            //if (1 != numberOfFiles)
+            //{
+            //    Logger.LogCFOnce(string.Format(": Unexpectedly found {0} files", numberOfFiles));
+            //}
 
             DeleteTempDirectory(tempDirectory);
-            Logger.Log(string.Format("{0}.{1}({2},{3}) returned {4}.", className, methodName, fullMxlFileName, executingDirectory, (null == result) ? "null" : result));
+            Logger.LogCF(string.Format("('{0}','{1}') returned '{2}'", fullMxlFileName, destinationDirectory, NullAsText(result)));
             return result;
         }
         

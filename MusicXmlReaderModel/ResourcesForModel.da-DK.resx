@@ -204,7 +204,7 @@
   <data name="NoteElement_quarter_rest" xml:space="preserve">
     <value>fjerdedelspause</value>
   </data>
-  <data name="NoteElement_tie_end" xml:space="preserve">
+  <data name="NoteElement_tie_stop" xml:space="preserve">
     <value>bue slut</value>
   </data>
   <data name="NoteElement_tie_start" xml:space="preserve">
@@ -279,7 +279,7 @@
   <data name="PitchElement_gSharp" xml:space="preserve">
     <value>Gis</value>
   </data>
-  <data name="PitctElement_g" xml:space="preserve">
+  <data name="PitchElement_g" xml:space="preserve">
     <value>G</value>
   </data>
   <data name="TimeElement_eights" xml:space="preserve">
@@ -354,8 +354,7 @@
     <value>tenuto</value>
   </data>
   <data name="ArticulationsElement_Unstress" xml:space="preserve">
-    <value>afstress</value>
-    <comment>?</comment>
+    <value>ubetonet</value>
   </data>
   <data name="UserSettings_BrailleNames_Harmonies" xml:space="preserve">
     <value>Becifringer</value>
@@ -1054,5 +1053,8 @@
   </data>
   <data name="NoteElement_Beat_Text" xml:space="preserve">
     <value>Slag</value>
+  </data>
+  <data name="ArticulationsElement_Stress" xml:space="preserve">
+    <value>betonet</value>
   </data>
 </root>

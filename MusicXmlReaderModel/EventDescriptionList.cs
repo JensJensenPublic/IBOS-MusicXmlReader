@@ -258,6 +258,25 @@ namespace MusicXmlReaderModel
         }
 
 
+        public int Sort(NoteElementComperator noteElementComperator)
+        {
+            int result = 0;
+            foreach (EventDescription eventDescription in this.events)
+            {
+                result += eventDescription.Sort(noteElementComperator);
+            }
+
+            if (0 != (noteElementComperator.SpecialOptions & NoteElementComperator.SpecialOptionsEnum.NoSort)) // No sorting was applied
+            {
+                Logger.LogCF(string.Format(": No sorting applied"));
+            }
+            else
+            {
+                Logger.LogCF(string.Format(": {0} differences found", result));
+            }
+
+            return result;
+        }
 
 
         public static EventDescriptionList Create(TimeDescriptionList timeDescriptionList, int numberOfParts, UserSettings userSettings, StatusInformation currentStatusInformation)

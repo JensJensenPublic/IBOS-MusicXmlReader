@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using MusicXmlReaderModel;
 using System.Collections.Generic;
 using RawPrinterHelper;
+using System.Xml;
 
 namespace MusicXmlReader
 {
@@ -24,10 +25,11 @@ namespace MusicXmlReader
         /// <returns></returns>
         string GenerateAccessibleName(string text, Keys keys)
         {
-            if (Keys.None == keys) return text;
+            if (Keys.None == keys) return Utilities.RemoveAmpersant(text);
             return Utilities.RemoveAmpersant(text) + " " + UiUtilities.KeysToString(keys); // Say the control char before the other character.
         }
 
+#warning ToDO: Use UiAccessibilityModel and call menuItemHandler.GenerateAccessibileName
         void GenerateAccessibleName(ref ToolStripMenuItem menuItem)
         {
             menuItem.AccessibleName = GenerateAccessibleName(menuItem.Text, menuItem.ShortcutKeys);
@@ -38,8 +40,8 @@ namespace MusicXmlReader
             // When running the initial user session we want to use the files in the <user>\<Documents>\<IBOS MusicXmlReader> directory
             // Where <Documents> and <MusicXmlReader> both represent localized strings 
             // Otherwise we want to use the directory most recently used by the current user
-            if (useRecentFile)  return userPreferencesHandler.GetExistingBaseDirectory(userPreferencesHandler.MusicXmlFile, myMusicXmlDirectory);
-            return myMusicXmlDirectory;  
+            if (useRecentFile) return userPreferencesHandler.GetExistingBaseDirectory(userPreferencesHandler.MusicXmlFile, myMusicXmlDirectory);
+            return myMusicXmlDirectory;
         }
 
 
@@ -88,7 +90,7 @@ namespace MusicXmlReader
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.xml;*.musicxml;*.mxl", ResourcesForUI.OpenFileDialog_Filter); // Only present .xml files and .mxl files
                                                                                                                        //            openFileDialog.Filter = string.Format("{0}|*.xml|{0}|*.mxl", ResourcesForUI.OpenFileDialog_Filter,ResourcesForUI.OpenFileDialog_Filter_mxl); // Only present .xml files and .mxl files
-            openFileDialog.InitialDirectory = GetFileOpenInitialDirectory(useRecentFile);    
+            openFileDialog.InitialDirectory = GetFileOpenInitialDirectory(useRecentFile);
             openFileDialog.FileName = GetFileOpenInitialFileName(useRecentFile);
 
             SendKeys.Send("{HOME}"); // HACK Will show the full filename from the beginning:  https://stackoverflow.com/questions/24525606/openfiledialog-cuts-off-pre-populated-file-name
@@ -137,7 +139,7 @@ namespace MusicXmlReader
             textBoxScreenReader.Text = shortFileName; // As textBoxNormalText has Focus, this will be read by the ScreenReader !
             textBoxScreenReader.Refresh();
 
-            switch (extension)
+            switch (extension.ToLower()) // Accept extensions such as MusicXml or XML, as does MuseScore
             {
                 case ".mxl": // Attempt to convert from .mxl to .xml first
                     xmlFileName = model.MxlToXml(openFileDialog.FileName);
@@ -163,18 +165,27 @@ namespace MusicXmlReader
                     MessageBox.Show(message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
             }
+            return this.LoadMusicXmlFile(xmlFileName, shortFileName, useDefaultSettings);
+        }
 
-
+        
+        /// <summary>
+        /// Load a MusicXml file from disk and handle all UI initialisation
+        /// </summary>
+        /// <param name="xmlFileName">Full filename of the file to load from disk</param>
+        /// <param name="shortFileName">Filename without path of the file to load</param>
+        /// <param name="useDefaultSettings">If set the Model will attempt to reuse user settings from previous session</param>
+        /// <returns>true iff success</returns>
+        private bool LoadMusicXmlFile(string xmlFileName, string shortFileName, bool useDefaultSettings)
+        {
             Logger.ClearStatistics();  // Clear statistics to be collected while loading, parsing and rendering the MusicXml file:
             Logger.CurrentMusicXmlPath = xmlFileName; // Allow for easy logging of the full file name from anywhere in the code
-
-
 
             // Now follows the time-consuming operation, where the Model loads and interpretes a new MusicXml file.
             if (!model.LoadMusicXmlFile(xmlFileName, useDefaultSettings)) // Load the selected .xml file into the Model and build all internal data structures.
             {
                 // Simple error handling
-                message = string.Format("{0} '{1}'", ResourcesForUI.TextBox_Messages_FailedToRead_File, shortFileName); // Short filename for UI
+                string message = string.Format("{0} '{1}'", ResourcesForUI.TextBox_Messages_FailedToRead_File, shortFileName); // Short filename for UI
                 WriteStatusInformation(message);
                 ShowWarning((int)ModelMessageEnum.FailedToReadMusicXmlFile, shortFileName, "");
                 MessageBox.Show(message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -224,17 +235,19 @@ namespace MusicXmlReader
 #else
                 listBoxTimes.Items.Add(eventDescription);
 #endif
-
             }
 
             Logger.DumpStatistics(); // Dump all statistics collected by LogOnce() during parsing, interpreting and rendering the file
-
             this.Text = UiUtilities.GetTitleInfo(applicationName, model);
-
             model.SetUserTempo(100); // Play at 100% of tempo specified in MusicXml file
-
             return true;
         }
+
+
+        //////////////
+
+
+
 
 
         /// <summary>
@@ -247,7 +260,7 @@ namespace MusicXmlReader
             const bool deleteUserSettings = true;
             OpenMusicXmlFile(deleteUserSettings, false);
         }
-        
+
         /// <summary>
         /// Same as openMusicXmlFileToolStripMenuItem_Click(), but opens in the directory for the most recently opened MusicXml file
         /// </summary>
@@ -258,7 +271,7 @@ namespace MusicXmlReader
             const bool useRecentFile = true;
             OpenMusicXmlFile(false, useRecentFile);
         }
-        
+
         /// <summary>
         /// The default method for letting the user select and open a MusicXml file
         /// The initial directory is always the base directory for the IBOS MusicXmlReader user files:
@@ -359,9 +372,9 @@ namespace MusicXmlReader
         {
             userSettingsHandler.ShowFilterItems(false);
         }
-        
+
         #endregion // Edit
- 
+
         #region Help
         private void aboutIBOSMusicXmlReaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -483,15 +496,15 @@ namespace MusicXmlReader
         {
             this.ExecuteOnCurrentMusicXmlFile(this.userPreferencesHandler.MuseScoreExe, ResourcesForSettings.General_MuseScoreLocation);
         }
-        
+
         private void sibeliusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.ExecuteOnCurrentMusicXmlFile(this.userPreferencesHandler.SibeliusExe,  ResourcesForSettings.General_SibeliusLocation);
+            this.ExecuteOnCurrentMusicXmlFile(this.userPreferencesHandler.SibeliusExe, ResourcesForSettings.General_SibeliusLocation);
         }
 
         private void startCapellaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.ExecuteOnCurrentMusicXmlFile(this.userPreferencesHandler.CapellaExe,  ResourcesForSettings.General_CapellaLocation);
+            this.ExecuteOnCurrentMusicXmlFile(this.userPreferencesHandler.CapellaExe, ResourcesForSettings.General_CapellaLocation);
         }
 
         private void startFinaleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -629,7 +642,7 @@ namespace MusicXmlReader
             openFileDialog.Title = ResourcesForUI.OpenFileDialog_Title;  // Just a neutral name "Open"
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.*", ""); // All file types                                                                                                             
-//            openFileDialog.InitialDirectory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory : Logger.LogFileDirectory; //
+                                                                  //            openFileDialog.InitialDirectory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory : Logger.LogFileDirectory; //
             openFileDialog.InitialDirectory = userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.BrailleMusicDirectory, Logger.LogFileDirectory);
             openFileDialog.FileName = ""; // As we typically produce several Braille Music files at a time it has no meaning to select one of them
             openFileDialog.CheckFileExists = true;
@@ -644,39 +657,52 @@ namespace MusicXmlReader
                 return false; // Let the user press ESC without warning him
             }
 
-            string fileName = openFileDialog.FileName;
-            Logger.LogCF(string.Format("Filename='{0}'  Format={1}", fileName, fileEncoding));
+            string inputFileName = openFileDialog.FileName;
+            Logger.LogCF(string.Format("Filename='{0}'  Format={1}", inputFileName, fileEncoding));
 
             Int64 initialLogCount = Logger.GlobalCount;
-            List<string> interpretation = model.InterpretBrailleMusicFile(fileName, fileEncoding);
+            XmlDocument musicXmlDocument;
+            bool developerMode = true;
+            DecoderOptions decoderOptions = DecoderOptions.Create(DecoderOptions.RegionalOptionsEnum.Danish, developerMode);  // For now use Danish contractions
+            List<DecoderItem> interpretation = model.DecoderHandler.InterpretBrailleMusicFile(inputFileName, fileEncoding, out musicXmlDocument, decoderOptions);
             Int64 finalLogCount = Logger.GlobalCount;
             if (null == interpretation)
             {
-                Logger.LogCF(string.Format("Failed to interpret '{0}' as {1}", fileName, fileEncoding));
+                Logger.LogCF(string.Format("Failed to interpret '{0}' as {1}", inputFileName, fileEncoding));
                 return false;
             }
 
-            Logger.LogCF(string.Format(": Successfully interpreted '{0}' as {1}",fileName,fileEncoding));
+            Logger.LogCF(string.Format(": Successfully interpreted '{0}' as {1}", inputFileName, fileEncoding));
             Logger.LogCF(string.Format(": Returned {0} lines of information. Generated {1} loglines", interpretation.Count, finalLogCount - initialLogCount));
 #warning todo!
 
-            // Generate a temporary file with the original contents shown in dots as well as in numbers
-            string fullFileName = Path.Combine(Logger.LogFileDirectory, "BrailleMusicInterpretation.txt");
-            using (StreamWriter sw = new StreamWriter(File.Open(fullFileName, FileMode.Create)))
-            {
-                foreach (string line in interpretation)
-                    try
-                    {
-                        sw.WriteLine(line);
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.LogCFE(e);
-                    }
-            }
+            // Generate an output file file with:
+            // 1) The original contents shown in dots as well as in numbers
+            // 2) The result of the decoding operation
 
-            // OPen the temporary file in NotePad
-            Utilities.RunExeWithFileArgument("NotePad", fullFileName);
+            // Get a list of files for generating the output
+
+            DecoderOutputFileHandler decoderOutputFileHandler = DecoderOutputFileHandler.Create(inputFileName);
+
+            List<string> strings = new List<string>();
+            foreach (DecoderItem decoderItem in interpretation)
+            {
+                strings.Add(decoderItem.ToString());
+            }
+            // Write the decoded output as a text interpretation to a file
+            decoderOutputFileHandler.SaveInterpretation(strings, decoderOutputFileHandler.FullOutputFileName);
+
+            // Save the MusicXml file
+            musicXmlDocument.Save(Console.Out); // To the console
+            musicXmlDocument.Save(decoderOutputFileHandler.FullMusicXmlFileName); // To a file
+
+            // Open the output file in NotePad
+            //Utilities.RunExeWithFileArgument("NotePad", fullOutputFileName);
+
+            // Open Explorer in the output directory.
+            Utilities.RunExeWithDirArgument("Explorer", decoderOutputFileHandler.OutputDirectory);
+
+
 
             // Show in the UI or save as Unicode textfile including the interpretation of dot numbers. Show in NotePad!!
 
@@ -686,8 +712,14 @@ namespace MusicXmlReader
         }
 
 
+        private void analyzeLocalizationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //string baseDirectory = model.AnalyzeLocalization();
+            //Utilities.RunExeWithArgument("Explorer", baseDirectory);
+        }
+
         #endregion // tools 
-        
+
         #region Archives
 
         private void httpsmusescorecomsheetmusicToolStripMenuItem_Click(object sender, EventArgs e)
@@ -796,7 +828,7 @@ namespace MusicXmlReader
         }
 
         #endregion // archives
-        
+
         #region Import
         private void importNewSampleFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -855,7 +887,7 @@ namespace MusicXmlReader
         }
 
         #region Export of Music Braille
-        
+
         // Private definitions used for export to Braille Music
         private const Model.BrailleStyleEnum IbosStyle = Model.BrailleStyleEnum.IBOS;
         private const Model.BrailleStyleEnum BanaStyle = Model.BrailleStyleEnum.BANA2015;
@@ -863,11 +895,11 @@ namespace MusicXmlReader
         private string FormatExportMessage(BrailleDevice bD, string delimiter)
         {
             string result = string.Format("{0}BrailleDeviceType={1}{0}FileEncoding={2}{0}PageWidth={3}{0}PageHeight={4}{0}PageLayout={5}",
-                              delimiter,  bD.GetType().ToString(), bD.BrailleFileFormat, bD.PageWidth, bD.PageHeight, bD.BraillePageLayout);
+                              delimiter, bD.GetType().ToString(), bD.BrailleFileFormat, bD.PageWidth, bD.PageHeight, bD.BraillePageLayout);
             return result;
         }
 
-        private string FormatExportMessage(string deviceType, string fileFormat, int pageWidth, int pageHeight,string pageLayout,string delimiter)
+        private string FormatExportMessage(string deviceType, string fileFormat, int pageWidth, int pageHeight, string pageLayout, string delimiter)
         {
             string result = string.Format("{0}BrailleDeviceType={1}{0}FileEncoding={2}{0}PageWidth={3}{0}PageHeight={4}{0}PageLayout={5}",
                               delimiter, deviceType, fileFormat, pageWidth, pageHeight, pageLayout);
@@ -886,12 +918,12 @@ namespace MusicXmlReader
         /// <param name="brailleDevice"></param>
         private void Export(BrailleDevice brailleDevice)
         {
-            Logger.LogCF(string.Format(": {0}", FormatExportMessage(brailleDevice," "))); // In Log use SPACE as delimiter.
+            Logger.LogCF(string.Format(": {0}", FormatExportMessage(brailleDevice, " "))); // In Log use SPACE as delimiter.
             if (developerMode)
             {
                 MessageBox.Show("ExportMusicBrailleToFile()\r\n" + FormatExportMessage(brailleDevice, "\r\n")); // In Messagebox use CR LF as delimiter
             }
-            brailleMusicExportHandler.ExportMusicBrailleToFile(brailleDevice.BrailleFileFormat, brailleDevice.PageWidth, brailleDevice.PageHeight, brailleDevice.BraillePageLayout,brailleDevice.DeviceName);
+            brailleMusicExportHandler.ExportMusicBrailleToFile(brailleDevice.BrailleFileFormat, brailleDevice.PageWidth, brailleDevice.PageHeight, brailleDevice.BraillePageLayout, brailleDevice.DeviceName);
         }
 
 
@@ -918,7 +950,7 @@ namespace MusicXmlReader
                 {
                     MessageBox.Show("ExportMusicBrailleToFile()\r\n" + FormatExportMessage(message, noteTaker.BrailleFileFormat.ToString(), 0, 0, noteTaker.BraillePageLayout.ToString(), "\r\n"));
                 }
-                brailleMusicExportHandler.ExportMusicBrailleToFile(noteTaker.BrailleFileFormat, 0, 0, noteTaker.BraillePageLayout,null);
+                brailleMusicExportHandler.ExportMusicBrailleToFile(noteTaker.BrailleFileFormat, 0, 0, noteTaker.BraillePageLayout, null);
             }
             else
             {
@@ -926,7 +958,7 @@ namespace MusicXmlReader
                 Export(noteTaker);
             }
         }
-         
+
         #endregion NoteTaker
 
         // After selecting Embosser all parameters: Encoding, pagewidth and pageheight are automatically taken from Settings->Embosser
@@ -943,7 +975,7 @@ namespace MusicXmlReader
         {
             Export(userPreferencesHandler.embosser);
         }
-            
+
         #endregion Embosser
 
         // After selecting GenericDevice all parameters: Encoding, pagewidth and pageheight are automatically taken from Settings->Generic Braille Device
@@ -951,7 +983,7 @@ namespace MusicXmlReader
         // After selecting IBOS, GEneric device
         private void toIbosGenericDeviceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Export(userPreferencesHandler.genericBrailleDevice);           
+            Export(userPreferencesHandler.genericBrailleDevice);
         }
 
         #endregion generic device
@@ -975,7 +1007,7 @@ namespace MusicXmlReader
         {
             brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_Unicode, IbosStyle);
         }
-        
+
         #endregion OptionalFormat
 
         private void inOptionalFormatToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1003,13 +1035,13 @@ namespace MusicXmlReader
             string pleaseEnterValidPathIn = ResourcesForUI.Message_File_PleaseEnterValidPathIn; // "Please enter a valid path in";
             string settings = ResourcesForUI.ToolStripMenuItem_Settings; //  "Settings";
             StringBuilder result = new StringBuilder();
-            result.AppendLine(string.Format("{0}:",externalProgramNotFound));
+            result.AppendLine(string.Format("{0}:", externalProgramNotFound));
             result.AppendLine();
             result.AppendLine(string.Format("'{0}'", executableName));
             result.AppendLine();
-            result.AppendLine(string.Format("{0}:",pleaseEnterValidPathIn));
+            result.AppendLine(string.Format("{0}:", pleaseEnterValidPathIn));
             result.AppendLine();
-            result.AppendLine(string.Format("'{0}'-->",Utilities.RemoveAmpersant(settings)));
+            result.AppendLine(string.Format("'{0}'-->", Utilities.RemoveAmpersant(settings)));
             result.AppendLine(string.Format("  '{0}' -->", Utilities.RemoveAmpersant(level1String)));
             result.AppendLine(string.Format("    '{0}'", Utilities.RemoveAmpersant(level2String)));
             return result.ToString();
@@ -1022,8 +1054,8 @@ namespace MusicXmlReader
         private void printMusicBrailleUsingIBPrintToolStripMenuItem_Click(object sender, EventArgs e) { } // Obsolete. Replaced by:
         private void usingExternalProgramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-        //string executable = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.IBPrintExe);      //  Typically @"C:\Program Files (x86)\Index Braille\IbPrint\IbPrint.exe";
-        string executable = userPreferencesHandler.genericBrailleDevice.ApplicationLocation;
+            //string executable = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.IBPrintExe);      //  Typically @"C:\Program Files (x86)\Index Braille\IbPrint\IbPrint.exe";
+            string executable = userPreferencesHandler.genericBrailleDevice.ApplicationLocation;
             string executableName = userPreferencesHandler.genericBrailleDevice.ApplicationLocation;
             if (!File.Exists(executable))
             {
@@ -1032,7 +1064,7 @@ namespace MusicXmlReader
             }
             //            string directory = Directory.Exists(model.LatestBrailleFileSaveDirectory) ? model.LatestBrailleFileSaveDirectory : "";
             string directory = userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.BrailleMusicDirectory, "");
-            Logger.LogCF(string.Format(": Executable='{0}'     Directory='{1}'",executable,directory));
+            Logger.LogCF(string.Format(": Executable='{0}'     Directory='{1}'", executable, directory));
 #warning TODO find out how to make the UI version of IBPrint prefer model.LatestBrailleFileSaveDirectory instead of the latest directory used by the Add button
             Utilities.RunExeWithArgument(executable, "");
         }
@@ -1051,11 +1083,11 @@ namespace MusicXmlReader
         {
             string program = Utilities.ExplorerExe;
             string directory = userPreferencesHandler.GetExistingDirectory(userPreferencesHandler.BrailleMusicDirectory, myMusicXmlDirectory);
-            Logger.LogCF(string.Format(": Starting {0} in {1}",program,directory));
+            Logger.LogCF(string.Format(": Starting {0} in {1}", program, directory));
             Utilities.RunExeWithArgument(program, directory);
         }
         #endregion Copy
-        
+
         // End new UI
 
         /// <summary>
@@ -1181,13 +1213,13 @@ namespace MusicXmlReader
         }
 
 
-#region Repeat,GoTo,NormalTempo
-         
+        #region Repeat,GoTo,NormalTempo
+
         private void repeatToolStripMenuItem_Click(object sender, EventArgs e)
         {
             parameterInputHandler.RepeatToolStripMenuItem_Click(); // Pass on
         }
- 
+
         private void goToToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int index;
@@ -1202,7 +1234,7 @@ namespace MusicXmlReader
             parameterInputHandler.OfNominalTempoToolStripMenuItem_Click();
         }
 
-#endregion
+        #endregion
 
     }
 }

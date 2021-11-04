@@ -1,0 +1,39 @@
+MAnglende projekt: 
+LocalizationAnalysys
+
+
+Ændrede filer
+
+MusicXmlReader
+---------------
+ app.config
+ appconfighandler.cs
+ resourcesforhelp.da-DK.resx
+ resourcesforhelp.nl-NL.resx
+ resourcesforsettings.resx
+ resourcesforUI.nl-NL.resx
+ resourcesforUI.rexs
+
+MusicXmlReaderCmd
+------------------
+ program.cs
+
+MusicXmlREaderModel
+-------------------
+ BrailleBuilder.cs
+ braillefilehandler.cs
+detailsplayer.cs
+eventdescription.cs
+eventdescriptionlist.cs
+LogFormatter
+Logger
+LoggerCounters
+LoggerDelayCounter
+LoggerProxy
+model.cs
+musicplayer.cs
+NoteElementList.cs
+resourcesformodel.da-DK.resx
+resourcesformodel.nl.NL.resx
+resourcesformodel.resx
+utilities,cs

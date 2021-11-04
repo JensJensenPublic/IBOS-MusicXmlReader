@@ -682,15 +682,6 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string String {
-            get {
-                return ResourceManager.GetString("String", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Failed to convert.
         /// </summary>
         internal static string TextBox_Messages_FailedToConvert_File {
@@ -930,15 +921,6 @@ namespace MusicXmlReader {
         internal static string ToolStripMenuItem_Files_PrintMusicBraille {
             get {
                 return ResourceManager.GetString("ToolStripMenuItem_Files_PrintMusicBraille", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Emboss Music Braille file using External program.
-        /// </summary>
-        internal static string ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram {
-            get {
-                return ResourceManager.GetString("ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram", resourceCulture);
             }
         }
         

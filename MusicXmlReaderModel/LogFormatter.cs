@@ -47,9 +47,9 @@ namespace MusicXmlReaderModel
 
         private  static void LogInternalError(LogOptions options)
         {
-            string caller1 = Logger.GetCallingMethod(1);
-            string caller2 = Logger.GetCallingMethod(2);
-            string caller3 = Logger.GetCallingMethod(3);
+            string caller1 = Logger.GetCallingMethodInternalImplementation(1);
+            string caller2 = Logger.GetCallingMethodInternalImplementation(2);
+            string caller3 = Logger.GetCallingMethodInternalImplementation(3);
             Logger.LogOnce(string.Format("{0} called from {1} called from {2}: Unexpected value of MaskedOptions='{3}' ", caller1, caller2,caller3, options));
         }
 
@@ -104,9 +104,9 @@ namespace MusicXmlReaderModel
             switch (maskedOptions)
             {
                 case LogOptions.Nothing: break;
-                case LogOptions.ClassFunc: result = Logger.GetCallingMethod(2); break;
-                case LogOptions.ClassFunc2: result = string.Format("{0}->{1}", Logger.GetCallingMethod(3), Logger.GetCallingMethod(2)); break;
-                case LogOptions.ClassFunc3: result = string.Format("{0}->{1}->{2}", Logger.GetCallingMethod(4), Logger.GetCallingMethod(3), Logger.GetCallingMethod(2)); break;
+                case LogOptions.ClassFunc: result = Logger.GetCallingMethodInternalImplementation(2); break;
+                case LogOptions.ClassFunc2: result = string.Format("{0}->{1}", Logger.GetCallingMethodInternalImplementation(3), Logger.GetCallingMethodInternalImplementation(2)); break;
+                case LogOptions.ClassFunc3: result = string.Format("{0}->{1}->{2}", Logger.GetCallingMethodInternalImplementation(4), Logger.GetCallingMethodInternalImplementation(3), Logger.GetCallingMethodInternalImplementation(2)); break;
                 default:  LogInternalError(maskedOptions); break;
             }
             return result;

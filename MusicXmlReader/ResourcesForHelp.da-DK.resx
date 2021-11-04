@@ -168,7 +168,7 @@
   <data name="Shortcut_Key_insert" xml:space="preserve">
     <value>INDSÆT</value>
   </data>
-  <data name="shortcut_Key_pageDown" xml:space="preserve">
+  <data name="Shortcut_Key_pageDown" xml:space="preserve">
     <value>PAGEDOWN</value>
   </data>
   <data name="shortcut_Key_shift" xml:space="preserve">

@@ -299,6 +299,13 @@ namespace MusicXmlReaderModel
                             string leftRightHand = noteElement.GetLeftRightString();
                             string noteString = noteElement.ToDetailsString(); // Only information from the NoteElement and elements contained within it
                             string musicBraille = "";
+#if true
+                            /* Start new code for showing MusicBraille in singleNoteDetails */
+                           NoteElementList noteElementList = NoteElementList.Create(noteElement); // Use the existing conversion of a NoteElementList !
+                           BrailleBuilder bb = noteElementList.ToBraille(userSettings, eventDescription);  // Use the simple ToBraille without chord notation
+                           musicBraille = bb.ToBrailleString();
+                            /* End new code  for showing MusicBraille in singleNoteDetails */
+#endif
                             string lyrics = noteElement.Text;
                             string detailString = string.Format("{0} {1} {2} {3} {4}", musicBraille, partString, leftRightHand, noteString, lyrics); // All information, including information from the NoteElement 
                             detailsDescriptions.Add(NoteListDetailsDescription.Create(detailString, noteElement));

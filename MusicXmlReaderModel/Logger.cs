@@ -4,17 +4,25 @@ using System.IO;
 using System.Diagnostics; // For finding calling method
 using System.Reflection;  // For finding calling method
 using System.Text;
+using System.Threading;
 
 
 namespace MusicXmlReaderModel
 {
+    // Note: this class has been moved to the MusicXmlReaderModelBase project (namespace = MusicXmlReaderModel) in order to avoid circular references!
+#if false
     static public class Logger
     {
         static string className = "Logger";
         // TODO: Adress possible multithreading problems !!
 
+        static Mutex mutex = new Mutex();
 
-        #region DelayMeasurement
+        static private bool developerMode = false;
+        static public bool DeveloperMode { get { return developerMode;  } set { developerMode = value; } }
+
+
+    #region DelayMeasurement
         // Overall delays. Only ExecutionDelay is relevant for the UI version    
         static public LoggerDelayCounter ExecutionDelay = LoggerDelayCounter.Create();          // The "real" execution delay, representing delays also relevant for the UI version  
         static public LoggerDelayCounter CleanDirectoriesDelay = LoggerDelayCounter.Create();   // Only relevant for the Cmd version
@@ -35,7 +43,7 @@ namespace MusicXmlReaderModel
             LogCF(executionDelayMessage);
 
         }
-        #endregion
+    #endregion
 
         static private string currentMusicXmlFile;
         static public string CurrentMusicXmlFile { get { return (null == currentMusicXmlFile) ? "" : currentMusicXmlFile; } set { currentMusicXmlFile = value; } }
@@ -321,30 +329,43 @@ namespace MusicXmlReaderModel
         private static void Log(string s, bool showTimeStamp)
         {
             globalCount++; // Increment a global counter, usable for diagnostics
-            if (string.IsNullOrEmpty(logFileFullName)) return; // Open() must be called before using the Logger !
+            if (string.IsNullOrEmpty(logFileFullName)) return; // Open() must be called before using the Logger !      
+                                                               // Several threads may use the Log file, but we do not want an explicit critical region
+            string exceptionMessage = null;
+            bool signaled = false;
             try
             {
-                Trace(s);
+                Trace(s); // We will se repeated lines in the Trace if the file operation failes !
                 string time = "";
                 if (showTimeStamp)
                 {
                     System.DateTime now = System.DateTime.Now;
                     time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
                 }
+                // string r = (0 == i) ? "" : string.Format("R={0} ", i); // Illustrate that  the file write operation has been retried R times
                 string line = time + " " + s + "\r\n";
+                signaled = mutex.WaitOne(1000); // Wait up to 1000 mS 
                 if (null == cachedLines)
                 {
-                    System.IO.File.AppendAllText(logFileFullName,line);
+                    System.IO.File.AppendAllText(logFileFullName, line);
                 }
                 else
                 {
                     cachedLines.Append(line); // Much better performance
                 }
                 numberOfLogLines++;
+                mutex.ReleaseMutex();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                // What to do here ??
+                exceptionMessage = e.Message;
+            }         
+
+            // If in developermode we add a message to the Trace in order to investigate any problem, otherwise we attempt to ignore the problem !           
+            if (developerMode && ((null != exceptionMessage) || (!signaled)))
+            {
+                string message = string.Format("--->>> Logger.Log: DeveloperMode={0} Signaled={1} ExceptionMessage={2} <<<---", developerMode, signaled, Utilities.NullAsText(exceptionMessage));
+                Trace(message);
             }
         }
 
@@ -441,4 +462,5 @@ namespace MusicXmlReaderModel
 
 
     }
+#endif
 }

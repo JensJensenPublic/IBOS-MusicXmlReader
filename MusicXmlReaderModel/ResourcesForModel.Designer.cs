@@ -2104,15 +2104,6 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to G.
-        /// </summary>
-        internal static string PitctElement_g {
-            get {
-                return ResourceManager.GetString("PitctElement_g", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Converting.
         /// </summary>
         internal static string Progress_Converting {

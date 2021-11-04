@@ -794,9 +794,6 @@
   <data name="PitchElement_gSharp" xml:space="preserve">
     <value>G-kruis</value>
   </data>
-  <data name="PitctElement_g" xml:space="preserve">
-    <value>G</value>
-  </data>
   <data name="Progress_Converting" xml:space="preserve">
     <value>bezig met converteren</value>
   </data>
@@ -1075,5 +1072,9 @@
   </data>
   <data name="OctaveName_Third" xml:space="preserve">
     <value>derde</value>
+  </data>
+  <data name="NoteElement_Beat_Text" xml:space="preserve">
+    <value>Beat</value>
+    <comment>Added by JSJ. Check validity !</comment>
   </data>
 </root>

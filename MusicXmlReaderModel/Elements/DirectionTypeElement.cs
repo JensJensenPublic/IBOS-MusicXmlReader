@@ -15,6 +15,8 @@ namespace MusicXmlReaderModel
         const string className = "DirectionTypeElement";
         DynamicsElement dynamicsElement;
         MetronomeElement metronomeElement;
+        WedgeElement wedgeElement;
+        WordsElement wordsElement;
 
         private DirectionTypeElement(XmlNode node)
         {
@@ -32,7 +34,16 @@ namespace MusicXmlReaderModel
                    
                     case "metronome":
                         metronomeElement = MetronomeElement.Create(n); 
-                        break;            
+                        break;
+
+                    case "wedge":
+                        wedgeElement = WedgeElement.Create(n);
+                        break;
+
+                    case "words":
+                        wordsElement = WordsElement.Create(n);
+                        break;
+
 
                     // No current plans for supporting these:
                     case "accordion-registration":
@@ -53,8 +64,6 @@ namespace MusicXmlReaderModel
                     case "secundatura":
                     case "segno":
                     case "string-mute":
-                    case "wedge":
-                    case "words":
                         // This is mentioned in Error 158  so we get rid of the log 
                         // Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element. Name={2} ", className, functionName, n.Name));
                         //Logger.LogOnce(string.Format("{0}.{1}: Known but unsupported element.", className, functionName)); // Group them all together
@@ -80,6 +89,26 @@ namespace MusicXmlReaderModel
                 return metronomeElement;
             }
         }
+
+
+
+        public WedgeElement WedgeElement
+        {
+            get
+            {
+                return wedgeElement;
+            }
+        }
+
+        public WordsElement WordsElement
+        {
+            get
+            {
+                return wordsElement;
+            }
+        }
+
+
 
         public static DirectionTypeElement Create(XmlNode node)
         {

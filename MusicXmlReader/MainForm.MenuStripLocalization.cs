@@ -22,7 +22,7 @@ namespace MusicXmlReader
             toolsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools;
             archivesToolStripMenuItem.Text = ResourcesForUI.ToolsStripMenuItem_Archives;
             helpToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help;
-
+#warning TODO Replace GenerateAccessibleName by UiAccessibilityModel.MenuItemHandler.GenerateAccessibleName and save a lot of lines !
             // Children (and grandchildren) of  fileToolStripMenuItem
             openMusicXmlFileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_OpenMusicXmlFile;
             openMusicXmlFileToolStripMenuItem.ShortcutKeys = ShortcutHandler.openMusicXmlFile;

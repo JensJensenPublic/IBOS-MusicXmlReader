@@ -2,6 +2,8 @@
 
 namespace MusicXmlReaderModel
 {
+    // Note: this class has been moved to the MusicXmlReaderModelBase project (namespace = MusicXmlReaderModel) in order to avoid circular references!
+#if false
     class LoggerCounters
 
     {    // Two parallel lists contains the logs and the counts of logs.
@@ -68,4 +70,5 @@ namespace MusicXmlReaderModel
         }
 
     }
+#endif
 }

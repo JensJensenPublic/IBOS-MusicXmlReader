@@ -61,15 +61,6 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string Braille_ {
-            get {
-                return ResourceManager.GetString("Braille_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Embosser program path.
         /// </summary>
         internal static string Braille_ApplicationLocation {

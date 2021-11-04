@@ -12,10 +12,10 @@
             Logger.Log(s);
         }
 
-        public int GetDecoderOptions()
-        {
-            return (int) Logger.DecoderOptions;
-        }
+        //public int GetDecoderOptions()
+        //{
+        //    return (int) Logger.DecoderOptions;
+        //}
 
     }
 #endif
