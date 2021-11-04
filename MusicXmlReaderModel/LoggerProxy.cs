@@ -1,5 +1,6 @@
 ﻿namespace MusicXmlReaderModel
 {
+#if false
     class LoggerProxy : BrailleMusicDecoder.IBrailleMusicDecoderLogger
     {
         /// <summary>
@@ -17,4 +18,5 @@
         }
 
     }
+#endif
 }

@@ -1,0 +1,213 @@
+﻿using System;
+using System.Text;
+using System.Xml;
+
+namespace BrailleMusicDecoder
+{
+    class MusicXmlBuilderStateTitle : MusicXmlBuilderState
+    {
+        //private StringBuilder text = new StringBuilder(); // For the text-information typically found at the start of the MusicBralle file
+        private TextBuilder text = TextBuilder.Create(); // For the text-information typically found at the start of the MusicBralle file
+        private StringBuilder measureInformation = new StringBuilder(); // For the Measure information "First Measure" "Number of Measures" typically found as the last part of the text.
+        XmlNode workNode;
+        XmlNode creditNode; 
+
+        private TextVersalHandler textVersalHandler;
+        private ParentesisHandler parentesisHandler;
+
+        public override MusicXmlBuilderState ApplyNextInput(InputInterpretation input)
+        {
+            MusicXmlBuilderState result = this;
+
+            switch (input.Category)
+            {
+                case InputCategoryEnum.NonBrailleCharacter:
+                    text.Append(input.FriendlyValue); break; // Values outside the [0x2800..0x283F] interval Such as CR, LF, FF. Used by NOTA in headings etc
+
+                case InputCategoryEnum.ControlCharCRLF:
+                    parentesisHandler.Clear(); // No match of parentesis across CRLF ! 
+                    text.Append("\r\n");
+                    break;
+
+                case InputCategoryEnum.ControlCharCRLFNumber:
+                    parentesisHandler.Clear(); // No match of parentesis across CRLF ! 
+                    text.Append("\r\n");
+                    break;
+
+                case InputCategoryEnum.ControlCharFF:
+                    text.Append("<FF>"); // Show that the Music Braille contained a FormFeed here. But do not actually copy the FormFeed
+                    break;
+
+                case InputCategoryEnum.ToNumberLowered:
+                case InputCategoryEnum.LoweredDigit:
+                    measureInformation.Append(input.FriendlyValue);
+                    break;
+
+                case InputCategoryEnum.TextVersal: textVersalHandler.OnTextVersal(input.SubCategory); break;
+                case InputCategoryEnum.ToNumber:
+                case InputCategoryEnum.Space:
+                case InputCategoryEnum.Digit: text.Append(input.FriendlyValue); break;
+
+                case InputCategoryEnum.DigitSpecialCharacter: text.Append(input.FriendlyValue); break;
+
+                case InputCategoryEnum.Character:
+                    TextItem textItem = null;
+                    switch (input.SubCategory)
+                    {
+                        case InputSubCategoryEnum.CharacterBlank:
+                        case InputSubCategoryEnum.CharacterBlankSequence:
+                        case InputSubCategoryEnum.CharacterExpandedContraction:
+                        case InputSubCategoryEnum.CharacterSpecialSequence:               
+                        case InputSubCategoryEnum.None:
+                            // This is the normal case, just a single character or a simple sequence of characters:
+                            textItem= new TextItem(input.FriendlyValue);
+                            text.Append(textItem);
+                            parentesisHandler.OnCharacter(textItem); // Handle Parentesis
+                            textVersalHandler.Format(textItem); // Handle versals
+                            break;
+                        case InputSubCategoryEnum.CharacterTempo2Digits:
+                            textItem = new TextItem(input.FriendlyValue);
+                            text.Append(textItem);
+                            break;
+                        case InputSubCategoryEnum.CharacterTempo3Digits:
+                            textItem = new TextItem(input.FriendlyValue);
+                            text.Append(textItem);
+                            break;
+                        case InputSubCategoryEnum.CharacterTimeSignature:
+                            textItem = new TextItem(input.FriendlyValue);
+                            text.Append(textItem);
+                            break;
+
+                    }            
+                    break;
+
+                case InputCategoryEnum.Hand:
+                    Flush();
+                    // Change state to MusicXmlBuilderStateEnum.Part and let the new state handle the input
+                    result = MusicXmlBuilderState.Create(MusicXmlBuilderStateEnum.Part, musicXmlBuilder,input.FriendlyValue);
+                    result.AddPart(input);  
+                    break;
+
+                case InputCategoryEnum.SectionHeader:
+                    base.AddSelectedEvent(string.Format("SectionHeader='{0}' Part={1}", input.FriendlyValue, "Title"));
+                    LogCF(string.Format(": SectionHeader {0}", input.FriendlyValue));
+                    musicXmlBuilder.SectionHeaderHandler.OnSectionHeader(input.FriendlyValue);
+                    break;
+
+                case InputCategoryEnum.Denominator:   
+                    TextItem textItem1 = new TextItem(input.FriendlyValue);
+                    parentesisHandler.OnDenominator(textItem1);
+                    text.Append(textItem1);
+                    break;
+
+                case InputCategoryEnum.PrintPagination:
+#warning TODO Localize
+                    text.Append(string.Format("PrintPage {0}", input.FriendlyValue));
+                    break;
+
+                case InputCategoryEnum.BeatAsText:
+                    // Allows interpreting a beat/beatType specification and using it as a default until a formal beat/beattype specification is given i a part.
+                    string message = string.Format(": InputCategory={0} FriendlyValue={1}", input.Category, input.FriendlyValue);
+                    LogCF(string.Format(": {0}", message));
+                    text.Append(string.Format("{0}", input.FriendlyValue));
+                    SetDefaultBeatParameters(input.FriendlyValue); // Use this value as default in all music states
+                    break;
+
+                case InputCategoryEnum.TypeFormIndicator: break; // Graphical information: "Underlined" "Bold" "Italics". Who cares?
+
+
+                default:
+                    base.OnUnsupportedInput("Title", input);
+                    break;
+
+            }
+            return result;
+        }
+
+        // Implement all strings defined in Tokenreader.cs
+        private void SetDefaultBeatParameters(string stringValue)
+        {
+            LogCF(string.Format("({0})", stringValue)); 
+            switch (stringValue)
+            {
+                case "2/4": musicXmlBuilder.SetDefaultBeatParameters(2, 4); break;
+                case "3/4": musicXmlBuilder.SetDefaultBeatParameters(3, 4); break;
+                case "4/4": musicXmlBuilder.SetDefaultBeatParameters(4, 4); break;
+
+                case "3/8": musicXmlBuilder.SetDefaultBeatParameters(3, 8); break;
+                case "4/8": musicXmlBuilder.SetDefaultBeatParameters(4, 8); break;
+                case "5/8": musicXmlBuilder.SetDefaultBeatParameters(5, 8); break;
+                case "6/8": musicXmlBuilder.SetDefaultBeatParameters(6, 8); break;
+                case "7/8": musicXmlBuilder.SetDefaultBeatParameters(7, 8); break;
+                case "8/8": musicXmlBuilder.SetDefaultBeatParameters(8, 8); break;
+                case "9/8": musicXmlBuilder.SetDefaultBeatParameters(9, 8); break;
+
+                default:
+                    LogCF(string.Format(": Unexpected input parameter '{0}'", stringValue));  break;
+            }
+        }
+
+        private void Flush()
+        {
+#warning: ToDO: Fill in a "credits-note" if possible
+            // Until we find out how to control the font-size of the title we will only have room for 2 lines:
+            string musicXmlWorkNodeText = "";
+            try            {
+            
+                string s1 = text.ToString();
+                string s2 = s1.Replace("\n", ""); // Get rid of all '\n'                             
+                string[] allTextLines = s2.Split('\r', '\n');
+                string title = allTextLines[0];
+                musicXmlWorkNodeText = title + "\r\n" + measureInformation;
+            }
+            catch (Exception e)
+            {
+                LogCF(string.Format("Exception.Message={0}", e.Message));
+            }
+            if (0 != musicXmlWorkNodeText.Length)
+            {
+                string s = string.Format("Text={0}", musicXmlWorkNodeText);
+                Console.WriteLine(s);
+                // Simple implementation. For the time being we put the first text as children of the scorepartwise node
+                if (0 == workNode.ChildNodes.Count)
+                {
+                    workNode.AppendChild(musicXmlElementFactory.WorkChildElement(musicXmlWorkNodeText));
+                }
+
+                // Replace the placeholder by the real CreditElement
+                XmlNode newCreditNode = musicXmlElementFactory.CreditElement(text.ToString()); // Reflect all CR and LF
+                XmlNode parent = creditNode.ParentNode;
+                parent.ReplaceChild(newCreditNode, creditNode);
+                                
+            }
+            text.Clear();
+        }
+
+
+
+        public override void AddPart(InputInterpretation input)
+        {
+            throw new Exception("Unexpected call");
+        }
+
+
+        public override MusicXmlBuilderStateEnum GetState()
+        {
+            return MusicXmlBuilderStateEnum.Title;
+        }
+
+        public static MusicXmlBuilderStateTitle Create(MusicXmlBuilder musicXmlBuilder)
+        {
+            return new MusicXmlBuilderStateTitle(musicXmlBuilder);
+        }
+
+        private MusicXmlBuilderStateTitle(MusicXmlBuilder musicXmlBuilder) : base(musicXmlBuilder)
+        {
+            // This state only handles the worknode
+            this.workNode = musicXmlBuilder.WorkNode;
+            this.creditNode = musicXmlBuilder.CreditNode;
+            this.textVersalHandler = TextVersalHandler.Create();
+            this.parentesisHandler = ParentesisHandler.Create();
+        }
+    }
+}

@@ -1,0 +1,15 @@
+﻿This file contains a list of HACKS used to make things work in the first implementation:
+
+1:
+Class:TokenReader Method: GetInputInterpretations() About line 992.
+Score:"Four piano blues.1 For LEo Smith"  Measure:35 Problem: Punctured G shown in right hand graphics should be played by left hand
+allInputInterpretations.Add(rawValues, new IntegerList((dot5), (dot2), (dot4 | dot5 | dot6), (dot3 | dot4 | dot5)), InputCategoryEnum.InAccordPartMeasure, "InAccordPartMeasure ignoring Lefthand");
+
+2 and 3
+Class: TokenReader around line 1270
+Score:"Four piano blues.2 For Andor Foldes"  Measure:9 Problem: The #Forslagsnode" on beat 4 is interpreted as a normal note because dot2|dot6 is eaten by previous embedded text
+Fix: Use hack1 in
+private static readonly List<int> textTerminatorsNoCR = new List<int>() { toWord, octave1, octave2, octave3, octave4, octave5, octave6, octave7, hack, hack1};
+private static readonly List<int> textTerminatorsCR = new List<int>() { toWord, octave1, octave2, octave3, octave4, octave5, octave6, octave7, carriageReturn, hack, hack1};
+2: Removed the extra "RightHand ReadUpward" in measure 39 becaused it misalighed the half-endings and the rest of the score.
+

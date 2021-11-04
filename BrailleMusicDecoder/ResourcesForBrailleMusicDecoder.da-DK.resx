@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="InputCategoryEnum_Accidental" xml:space="preserve">
+    <value>Løst fortegn</value>
+  </data>
+  <data name="InputCategoryEnum_Articulation" xml:space="preserve">
+    <value>Artikulation</value>
+  </data>
+  <data name="InputCategoryEnum_Beat" xml:space="preserve">
+    <value>Taktart</value>
+  </data>
+  <data name="InputCategoryEnum_Character" xml:space="preserve">
+    <value>Tegn</value>
+  </data>
+  <data name="InputCategoryEnum_ChordSymbol" xml:space="preserve">
+    <value>Becifring specialsymbol</value>
+  </data>
+  <data name="InputCategoryEnum_Clef" xml:space="preserve">
+    <value>Nøgle</value>
+  </data>
+  <data name="InputCategoryEnum_ControlCharCRLF" xml:space="preserve">
+    <value>Ny linie</value>
+  </data>
+  <data name="InputCategoryEnum_Denominator" xml:space="preserve">
+    <value>Tæller</value>
+  </data>
+  <data name="InputCategoryEnum_Digit" xml:space="preserve">
+    <value>Ciffer</value>
+  </data>
+  <data name="InputCategoryEnum_EmbeddedTextDynamics" xml:space="preserve">
+    <value>Dynamik</value>
+  </data>
+  <data name="InputCategoryEnum_EmbeddedTextFreeText" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="InputCategoryEnum_EndRepeat" xml:space="preserve">
+    <value>Gentagelse slut</value>
+  </data>
+  <data name="InputCategoryEnum_Finger" xml:space="preserve">
+    <value>Finger</value>
+  </data>
+  <data name="InputCategoryEnum_FinalDoubleBar" xml:space="preserve">
+    <value>Afsluttende dobbelt taktstreg</value>
+  </data>
+  <data name="InputCategoryEnum_SectionalDoubleBar" xml:space="preserve">
+    <value>Dobbelt taktstreg</value>
+  </data>
+  <data name="InputCategoryEnum_Hand" xml:space="preserve">
+    <value>Hånd</value>
+  </data>
+  <data name="InputCategoryEnum_InAccordFullMeasure" xml:space="preserve">
+    <value>Stor bistemme</value>
+  </data>
+  <data name="InputCategoryEnum_InAccordPartMeasure" xml:space="preserve">
+    <value>Lille bistemme</value>
+  </data>
+  <data name="InputCategoryEnum_InAccordTie" xml:space="preserve">
+    <value>Akkordbindebue</value>
+  </data>
+  <data name="InputCategoryEnum_InsertedRest" xml:space="preserve">
+    <value>Indsat pause</value>
+  </data>
+  <data name="InputCategoryEnum_Interval" xml:space="preserve">
+    <value>Interval</value>
+  </data>
+  <data name="InputCategoryEnum_KeySignature" xml:space="preserve">
+    <value>Faste fortegn</value>
+  </data>
+  <data name="InputCategoryEnum_KeySignatureText" xml:space="preserve">
+    <value>Faste fortegn</value>
+  </data>
+  <data name="InputCategoryEnum_LineContinuation" xml:space="preserve">
+    <value>Fortsat linie</value>
+  </data>
+  <data name="InputCategoryEnum_MeasureDivision" xml:space="preserve">
+    <value>Skilletegn</value>
+  </data>
+  <data name="InputCategoryEnum_NewMeasure" xml:space="preserve">
+    <value>Taktstreg</value>
+  </data>
+  <data name="InputCategoryEnum_Note" xml:space="preserve">
+    <value>Node</value>
+  </data>
+  <data name="InputCategoryEnum_Octave" xml:space="preserve">
+    <value>Oktav</value>
+  </data>
+  <data name="InputCategoryEnum_OtherValues" xml:space="preserve">
+    <value>Anden værdi</value>
+  </data>
+  <data name="InputCategoryEnum_OthervaluesLongAppoggiatura" xml:space="preserve">
+    <value>Lang forslagsnode</value>
+  </data>
+  <data name="InputCategoryEnum_OthervaluesPartMeasureRepeat" xml:space="preserve">
+    <value>Deltakts gentagelse</value>
+  </data>
+  <data name="InputCategoryEnum_OthervaluesShortAppoggiatura" xml:space="preserve">
+    <value>Kort forslagsnode</value>
+  </data>
+  <data name="InputCategoryEnum_OthervaluesTrill" xml:space="preserve">
+    <value>Trille</value>
+  </data>
+  <data name="InputCategoryEnum_Othervalues_Ornament" xml:space="preserve">
+    <value>Ornament</value>
+  </data>
+  <data name="InputCategoryEnum_PrintPagination" xml:space="preserve">
+    <value>Sidenummer</value>
+  </data>
+  <data name="InputCategoryEnum_Punctuation" xml:space="preserve">
+    <value>Punktering</value>
+  </data>
+  <data name="InputCategoryEnum_Rest" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="InputCategoryEnum_Slur" xml:space="preserve">
+    <value>Legatobue</value>
+  </data>
+  <data name="InputCategoryEnum_SmallInvertedArchAboveNote" xml:space="preserve">
+    <value>Lille omvendt bue over noden</value>
+  </data>
+  <data name="InputCategoryEnum_Space" xml:space="preserve">
+    <value>Mellemrum</value>
+  </data>
+  <data name="InputCategoryEnum_TextVersal" xml:space="preserve">
+    <value>Stort bogstav</value>
+  </data>
+  <data name="InputCategoryEnum_TextVersals" xml:space="preserve">
+    <value>Store bogstaver</value>
+  </data>
+  <data name="InputCategoryEnum_Tie" xml:space="preserve">
+    <value>Bindebue</value>
+  </data>
+  <data name="InputCategoryEnum_TimeModification" xml:space="preserve">
+    <value>Tidsmodifikation</value>
+  </data>
+  <data name="InputCategoryEnum_ToMusicBraille" xml:space="preserve">
+    <value>Til Music Braille</value>
+  </data>
+  <data name="InputCategoryEnum_ToNumber" xml:space="preserve">
+    <value>Til Tal</value>
+  </data>
+  <data name="InputCategoryEnum_ToText" xml:space="preserve">
+    <value>Til Tekst</value>
+  </data>
+  <data name="InputCategoryEnum_ToWord" xml:space="preserve">
+    <value>Til ord</value>
+  </data>
+  <data name="InputCategoryEnum_UnusualBarLine" xml:space="preserve">
+    <value>Usædvanlig taktstreg</value>
+  </data>
+  <data name="InputCharacter_Uppercase" xml:space="preserve">
+    <value>Stort/store bogstav(er)</value>
+  </data>
+  <data name="InputSubCategoryEnum_Blank" xml:space="preserve">
+    <value>Tomt rum</value>
+  </data>
+  <data name="InputSubCategoryEnum_BlankSequence" xml:space="preserve">
+    <value>Tomme rum</value>
+  </data>
+  <data name="InputSubCategoryEnum_Contraction" xml:space="preserve">
+    <value>Forkortelse</value>
+  </data>
+  <data name="InputSubCategoryEnum_LeftHand" xml:space="preserve">
+    <value>Venstre hånd</value>
+  </data>
+  <data name="InputSubCategoryEnum_RightHand" xml:space="preserve">
+    <value>Højre hånd</value>
+  </data>
+  <data name="InputSubCategoryEnum_SlurDefault" xml:space="preserve">
+    <value>Legatobue</value>
+  </data>
+  <data name="InputSubCategoryEnum_SlurDouble" xml:space="preserve">
+    <value>Dobbelt legatobue</value>
+  </data>
+  <data name="InputSubCategoryEnum_SlurEndBracketSlur" xml:space="preserve">
+    <value>Legatobue stop</value>
+  </data>
+  <data name="InputSubCategoryEnum_SlurNormal" xml:space="preserve">
+    <value>Legatobue</value>
+  </data>
+  <data name="InputSubCategoryEnum_SlurStartBracketSlur" xml:space="preserve">
+    <value>Legatobue start</value>
+  </data>
+  <data name="InputSubCategoryEnum_SlursThatDoNotLeadtoNotes" xml:space="preserve">
+    <value>Legatobue uden afslutning</value>
+  </data>
+  <data name="InputSubCategoryEnum_SquareBracketBelowStaffEnd" xml:space="preserve">
+    <value>Firkantet klamme under nodelinien slut</value>
+  </data>
+  <data name="InputSubCategoryEnum_SquareBracketBelowStaffStart" xml:space="preserve">
+    <value>Firkantet klamme under nodelinien start</value>
+  </data>
+  <data name="InputValueArticulation_Accent" xml:space="preserve">
+    <value>Accent</value>
+  </data>
+  <data name="InputValueArticulation_ArpeggioDown" xml:space="preserve">
+    <value>Arpeggio Nedad</value>
+  </data>
+  <data name="InputValueArticulation_ArpeggioUp" xml:space="preserve">
+    <value>Arpeggio Opad</value>
+  </data>
+  <data name="InputValueArticulation_Portamento" xml:space="preserve">
+    <value>Portamento</value>
+  </data>
+  <data name="InputValueArticulation_Portato" xml:space="preserve">
+    <value>Portato</value>
+  </data>
+  <data name="InputValueArticulation_Staccatissimo" xml:space="preserve">
+    <value>Staccatissimo</value>
+  </data>
+  <data name="InputValueArticulation_Staccato" xml:space="preserve">
+    <value>Staccato</value>
+  </data>
+  <data name="InputValueArticulation_Tenuto" xml:space="preserve">
+    <value>Tenuto</value>
+  </data>
+  <data name="InputValueFullEnd_Reference" xml:space="preserve">
+    <value>Henvisningstegn</value>
+  </data>
+  <data name="InputValueHand_Left" xml:space="preserve">
+    <value>Venstre hånd</value>
+  </data>
+  <data name="InputValueHand_Right" xml:space="preserve">
+    <value>Højre hånd</value>
+  </data>
+  <data name="InputValueTimeModification_Fermata" xml:space="preserve">
+    <value>Fermat</value>
+  </data>
+  <data name="InputValueTimeModification_Triplet" xml:space="preserve">
+    <value>Triol</value>
+  </data>
+  <data name="IntervalNameEnum_Fifth" xml:space="preserve">
+    <value>Kvint</value>
+  </data>
+  <data name="IntervalNameEnum_Fourth" xml:space="preserve">
+    <value>Kvart</value>
+  </data>
+  <data name="IntervalNameEnum_Octave" xml:space="preserve">
+    <value>Oktav</value>
+  </data>
+  <data name="IntervalNameEnum_Second" xml:space="preserve">
+    <value>Sekund</value>
+  </data>
+  <data name="IntervalNameEnum_Seventh" xml:space="preserve">
+    <value>Septim</value>
+  </data>
+  <data name="IntervalNameEnum_Sixth" xml:space="preserve">
+    <value>Sext</value>
+  </data>
+  <data name="IntervalNameEnum_Third" xml:space="preserve">
+    <value>Terts</value>
+  </data>
+  <data name="OtherValuesNameEnum_Equality" xml:space="preserve">
+    <value>Lighed</value>
+  </data>
+  <data name="OtherValuesNameEnum_NewLine" xml:space="preserve">
+    <value>LinieSkift</value>
+  </data>
+  <data name="OtherValuesNameEnum_Ornament" xml:space="preserve">
+    <value>Ornament</value>
+  </data>
+  <data name="OtherValuesNameEnum_Trill" xml:space="preserve">
+    <value>Trille</value>
+  </data>
+  <data name="InputCategoryEnum_KeySignatureTextFlat" xml:space="preserve">
+    <value>b</value>
+    <comment>Intensionally lowercase</comment>
+  </data>
+  <data name="InputCategoryEnum_KeySignatureTextNatural" xml:space="preserve">
+    <value>opløsningstegn</value>
+    <comment>Intensionally lowercase</comment>
+  </data>
+  <data name="InputCategoryEnum_KeySignatureTextNone" xml:space="preserve">
+    <value>ingen</value>
+    <comment>Intensionally lowercase</comment>
+  </data>
+  <data name="InputCategoryEnum_KeySignatureTextSharp" xml:space="preserve">
+    <value>kryds</value>
+    <comment>Intensionally lowercase</comment>
+  </data>
+  <data name="Decoder_AccumulatedText" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="InputCategoryEnum_ChordNumericExtension" xml:space="preserve">
+    <value>Becifring udvidelse</value>
+  </data>
+  <data name="InputCategoryEnum_ChordStemSign" xml:space="preserve">
+    <value>Becifring nodehals</value>
+  </data>
+  <data name="InputCategoryEnum_ChordSymbolBass" xml:space="preserve">
+    <value>Becifring bastone</value>
+  </data>
+  <data name="InputCategoryEnum_ChordSymbolRoot" xml:space="preserve">
+    <value>Becifring grundtone</value>
+    <comment>Or "Becifrings" only ?</comment>
+  </data>
+  <data name="InputCategoryEnum_ChordTiming" xml:space="preserve">
+    <value>Becifring timing</value>
+  </data>
+  <data name="InputCategoryEnum_GuideDots" xml:space="preserve">
+    <value>Hjælpeprikker</value>
+  </data>
+  <data name="InputCategoryEnum_LoweredDigit" xml:space="preserve">
+    <value>Sænket ciffer</value>
+  </data>
+  <data name="InputCategoryEnum_ToNumberLowered" xml:space="preserve">
+    <value>Til sænket ciffer</value>
+  </data>
+  <data name="InputSubCategoryEnum_ChordAugmented" xml:space="preserve">
+    <value>forstørret</value>
+  </data>
+  <data name="InputSubCategoryEnum_ChordDiminished" xml:space="preserve">
+    <value>dim</value>
+  </data>
+  <data name="InputSubCategoryEnum_ChordHalfDiminished" xml:space="preserve">
+    <value>halvformindsket</value>
+  </data>
+  <data name="InputSubCategoryEnum_ChordMaj7" xml:space="preserve">
+    <value>maj 7</value>
+  </data>
+  <data name="InputSubCategoryEnum_ChordMinor" xml:space="preserve">
+    <value>mol</value>
+  </data>
+  <data name="InputSubCategoryEnum_ChordSus2" xml:space="preserve">
+    <value>sus 2</value>
+  </data>
+  <data name="InputSubCategoryEnum_ChordSus4" xml:space="preserve">
+    <value>sus 4</value>
+  </data>
+  <data name="InputSubCategoryEnum_ChordSymbolFlat" xml:space="preserve">
+    <value>b</value>
+  </data>
+  <data name="InputSubCategoryEnum_ChordSymbolNatural" xml:space="preserve">
+    <value>opløst</value>
+  </data>
+  <data name="InputSubCategoryEnum_ChordSymbolSharp" xml:space="preserve">
+    <value>kryds</value>
+  </data>
+  <data name="InputSubCategoryEnum_AccidentalCourtesyFlat" xml:space="preserve">
+    <value>Hjælpefortegn b</value>
+  </data>
+  <data name="InputSubCategoryEnum_AccidentalCourtesyNatural" xml:space="preserve">
+    <value>Hjælpe opløsningstegn</value>
+  </data>
+  <data name="InputSubCategoryEnum_AccidentalCourtesySharp" xml:space="preserve">
+    <value>Hjælpefortegn kryds</value>
+  </data>
+  <data name="InputSubCategoryEnum_AccidentalFlat" xml:space="preserve">
+    <value>Løst b</value>
+  </data>
+  <data name="InputSubCategoryEnum_AccidentalNatural" xml:space="preserve">
+    <value>Opløsningstegn</value>
+  </data>
+  <data name="InputSubCategoryEnum_AccidentalSharp" xml:space="preserve">
+    <value>Løst kryds</value>
+  </data>
+  <data name="InputSubCategoryEnum_TypeFormIndicatorUnderlineEnd" xml:space="preserve">
+    <value>Understregning slut</value>
+  </data>
+  <data name="InputSubCategoryEnum_TypeFormIndicatorUnderlineStart" xml:space="preserve">
+    <value>Understregning start</value>
+  </data>
+  <data name="Text_Dot" xml:space="preserve">
+    <value>DOT</value>
+  </data>
+  <data name="Text_noInterpretationFor" xml:space="preserve">
+    <value>Ingen fortolkning af</value>
+  </data>
+  <data name="InputSubCategoryEnum_CrescendoEnd" xml:space="preserve">
+    <value>Crescendo slut</value>
+  </data>
+  <data name="InputSubCategoryEnum_CrescendoStart" xml:space="preserve">
+    <value>Crescendo start</value>
+  </data>
+  <data name="InputSubCategoryEnum_DiminuendoEnd" xml:space="preserve">
+    <value>Diminuendo slut</value>
+  </data>
+  <data name="InputSubCategoryEnum_DiminuendoStart" xml:space="preserve">
+    <value>Diminuendo start</value>
+  </data>
+  <data name="Text_Line" xml:space="preserve">
+    <value>Linie</value>
+  </data>
+  <data name="Text_Page" xml:space="preserve">
+    <value>Side</value>
+  </data>
+  <data name="InputCategoryEnum_DigitSpecialCharacter" xml:space="preserve">
+    <value>Specialtegn</value>
+  </data>
+  <data name="InputCategoryEnum_Hyphen" xml:space="preserve">
+    <value>Bindestreg</value>
+  </data>
+  <data name="InputCategoryEnum_PageNumber" xml:space="preserve">
+    <value>Sidetal</value>
+  </data>
+  <data name="InputCategoryEnum_OthervaluesDoubleBarFollowedByDots" xml:space="preserve">
+    <value>Repetition start</value>
+  </data>
+  <data name="InputCategoryEnum_OthervaluesDoubleBarPrecededByDots" xml:space="preserve">
+    <value>Repetition slut</value>
+  </data>
+  <data name="InputCategoryEnum_OthervaluesPrimaVoltaFirstEnding" xml:space="preserve">
+    <value>Første volte</value>
+  </data>
+  <data name="InputCategoryEnum_OthervaluesPrimaVoltaSecondEnding" xml:space="preserve">
+    <value>Anden volte</value>
+  </data>
+  <data name="InputCategoryEnum_ControlCharCRLFMeasureNumber" xml:space="preserve">
+    <value>Ny linie, Takt nummer</value>
+  </data>
+  <data name="InputSubCategoryEnum.OthervaluesFullMeasureRepeat" xml:space="preserve">
+    <value>Heltaktsgentagelse</value>
+  </data>
+  <data name="InputSubCategoryEnum_OthervaluesFullMeasureRepeatNoInitialBlank" xml:space="preserve">
+    <value>Heltaktsgentagelse uden indledende tomt rum</value>
+  </data>
+  <data name="InputSubCategoryEnum_OthervaluesFullMeasureRepeatOnce" xml:space="preserve">
+    <value>Heltaktsgentagelse en gang</value>
+  </data>
+  <data name="InputSubCategoryEnum_OthervaluesFullMeasureRepeatTwice" xml:space="preserve">
+    <value>Heltaktsgentagelse to gange</value>
+  </data>
+  <data name="InputSubCategoryEnum_OtherValuesPartMeasureRepeatTwice" xml:space="preserve">
+    <value>Deltaktsgentagelse to gange</value>
+  </data>
+  <data name="InputSubCategoryEnum_OthervaluesTremoloAlternatingNotes" xml:space="preserve">
+    <value>Skiftende noder gentaget med tremolo</value>
+  </data>
+  <data name="InputSubCategoryEnum_OthervaluesTremoloRepeatedNote" xml:space="preserve">
+    <value>Nodegentagelse med tremolo</value>
+  </data>
+  <data name="InputCategoryEnum_Chords" xml:space="preserve">
+    <value>Becifringer</value>
+  </data>
+  <data name="InputSubCategoryEnum_PianoPedalDown" xml:space="preserve">
+    <value>Pianopedal ned</value>
+  </data>
+  <data name="InputCategoryEnum_SectionHeader" xml:space="preserve">
+    <value>Afsnit</value>
+  </data>
+  <data name="InputCategoryEnum_RepeatSequence" xml:space="preserve">
+    <value>Punktnode heltaktsgentagelse</value>
+  </data>
+  <data name="InputCategoryEnum_RepeatSequence_Measure" xml:space="preserve">
+    <value>takt</value>
+  </data>
+  <data name="InputCategoryEnum_RepeatSequence_Measures" xml:space="preserve">
+    <value>takter</value>
+  </data>
+  <data name="InputSubCategoryEnum_GraphicSymbolSegno" xml:space="preserve">
+    <value>Grafisk symbol Segno</value>
+  </data>
+  <data name="InputCategoryEnum_OthervaluesIntervalEnding" xml:space="preserve">
+    <value>Volte</value>
+  </data>
+  <data name="InputCategoryEnum_OthervaluesNumericEnding" xml:space="preserve">
+    <value>Volte</value>
+  </data>
+  <data name="InputSubCategoryEnum_ChordSymbolRootNoRoot" xml:space="preserve">
+    <value>Becifring uden grundtone</value>
+  </data>
+  <data name="InputCategoryEnum_ControlCharCRLFContinuedLine" xml:space="preserve">
+    <value>Fortsat linie</value>
+  </data>
+  <data name="Text_Space" xml:space="preserve">
+    <value>Rum</value>
+  </data>
+  <data name="Text_Warning" xml:space="preserve">
+    <value>Advarsel</value>
+  </data>
+</root>

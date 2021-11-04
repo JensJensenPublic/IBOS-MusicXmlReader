@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Text;
+using System.Xml;
+using System.Collections.Generic;
+using MusicXmlReaderModel; // Use the namespace, but do not reference MusicXmlReaderModel. Reference MusicXmlReaderModelBase instead to avoid circular references
 
 namespace BrailleMusicDecoder
 {
@@ -10,44 +14,202 @@ namespace BrailleMusicDecoder
     /// Used during test for decoding Braille Music files into readable symbols
     /// Intensionally does NOT use exicting definitions of symbols in order to avoid duplication of existing errors.
     /// </summary>
-    public class Decoder
+    public class Decoder // : IDecoderUserInfo
     {
-        /// <summary>
-        /// The current decoding-state.
-        /// The state determines which tokens are accepted as input and how to interpret them
-        /// </summary>
-        public enum StateEnum
-        {
-            Unknown,    // The current way of decoding has not yet been established
-            Text,       // Decoding as lower-case text
-            TextNumber, // Decoding as digits while decoding text
-            TextVersal, // Decoding as upper-case text
-            Music,      // Decoding as Music, but not while decoding a note
-            MusicNumber,// Decoding as digits while decoding music
-            MusicNote   // Decoding as a note while decoding music 
-        };
+        DecoderStateMachine decoderStateMachine;
+        MusicXmlBuilder musicXmlBuilder;
+        Options rawOptions;
+        IDecoderClient decoderClient;
+        DecoderSpacePositionHandler decoderSpacePositionHandler;
+        TypeAmbiguityHandler typeAmbiguityHandler;
 
-        StateEnum state = StateEnum.Unknown;
+        // Cached Localization values
+        public readonly string Text_Page = ResourcesForBrailleMusicDecoder.Text_Page;
+        public readonly string Text_Line = ResourcesForBrailleMusicDecoder.Text_Line;
+        public readonly string Text_Space = ResourcesForBrailleMusicDecoder.Text_Space;
+        public readonly string Text_Dot = ResourcesForBrailleMusicDecoder.Text_Dot;
+        public readonly string Text_Warning = ResourcesForBrailleMusicDecoder.Text_Warning;
 
-        IBrailleMusicDecoderLogger logger;  // Used for simple logging   
         string brailleAsUnicode; // The Unicode string to decode
-        TokenReader tokenReader;
+        TokenReader tokenReader; // An instance of the Tokenreader class for doing the lowlevel parsing.
 
-        public enum DecoderOptionEnum { None, MariaGennemTorneGårFromNOTA };
+        public int LineNumber { get { return decoderSpacePositionHandler.LineNumber; } }
+        public int FormNumber { get { return decoderSpacePositionHandler.FormNumber; } }
+        public string FormLineString { get { return string.Format("{0} {1} {2,2} {3,3}",  Text_Page, FormNumber,Text_Line, LineNumber); } }
+        private StringBuilder accumulatedCharacters = new StringBuilder();
+        private string accumulatedStringStartIndex;
+        //private DevelopmentOptionEnum developmentOptions = DevelopmentOptionEnum.None; // For changing behaviour cureong development
+        private DecoderDebugTools decoderDebugTools;
 
-        //
-        // Simple convenience methods
-        //
+        //private List<string> decoderWarnings = new List<string>(); // For internal collection of selected messages
 
-        public void ResetState()
+        public string GetStateInformation()
         {
-            state = StateEnum.Text;
+            return this.musicXmlBuilder.GetStateInformation();
+        }
+
+        public void LogStatistics()
+        {
+            this.decoderStateMachine.LogStatistics();
+            UserWarnings.DumpLocalUserWarnings();
+        }
+
+        public void LogGlobalStatistics()
+        {
+            this.decoderStateMachine.LogGlobalStatistics();
+            UserWarnings.DumpGlobalUserWarnings();
         }
 
 
+        /// <summary>
+        /// Update information possibly later used for Error reporting to user
+        /// </summary>
+        /// <param name="dsp"></param>
+        /// <param name="initialIndex"></param>
+        /// <returns></returns>
+        private string OnPositionChanged(DecoderSpacePositionHandler dsp, int initialIndex)
+        {
+            // Save the old position in various representations, primarily for logging purposes and user warnings
+            string result = decoderSpacePositionHandler.ToString();
+            char brailleValue = brailleAsUnicode[initialIndex];// Just a shorthand
+            UserPositionInfo userPositionInfo = UserPositionInfo.Create(initialIndex, dsp.FormNumber, dsp.LineNumber, dsp.SpaceNumber, brailleValue, ToDotNumbers(brailleValue));
+            UserWarnings.OnUserPositionChanged(userPositionInfo); // Will be used for user warnings from now in
+            return result;
+        }
+        
+        /// <summary>
+        ///  The main logic:
+        ///  Extracts the next Token from the input string of Unicode BRaille characters and updates the pusition within this stream.
+        /// </summary>
+        /// <param name="i">The position within the input strin</param>
+        /// <returns>A class representing the extracted token as clear text and (if relevant) as MusicXml</returns>
+        public Token GetNextToken(ref int i)
+        {
+            string accumulatedText = null;
+            int initialIndex = i;
+            DecoderStateMachine.StateEnum initialDecoderState = decoderStateMachine.State.MyStateEnum; // Needed for editing raw Braille
+
+            if ((i < 0) || (i >= brailleAsUnicode.Length)) return Token.Create(null,accumulatedText,initialDecoderState); // Outside the array of input characters          
+
+            string oldPosition = OnPositionChanged(decoderSpacePositionHandler, initialIndex); // Update information possibly later used for Error reporting to user
+
+            // **********************************************************
+            // Get the InputInterpretation. This is where things happen !
+            // ********************************************************** 
+            InputInterpretationList filteredInputs = null;  // Receives a list of ALL POSSIBLE interpretations of the next token. Can be used for debugging etc.
+            InputInterpretation inputInterpretation = ToInputInterpretation(i, out filteredInputs); // Receives THE interpretation  to be used from now on
+
+            // Update the position
+            decoderSpacePositionHandler.OnNewInput(inputInterpretation);
+
+            // Update the position within the input Unicode string. If we can not determine an interpretation we just continue to the next input character
+            int tokenLength = (null == inputInterpretation) ? 1 : inputInterpretation.TokenLength;
+            i += tokenLength;
+
+            if (null == inputInterpretation)  // If no interpretation is found return a token containg an error description.
+            {
+                string message = OnNoResult(initialIndex, oldPosition); // Common message for decoder textfile and selected events
+                string userWarning = string.Format("Rum{0}", message);
+                UserWarnings.LogUserWarning(userWarning);
+                return Token.Create(message, accumulatedText,initialDecoderState);
+            }
+             
+
+            // Start experimental code  
+            //*******************************************************************************************************
+            if (decoderStateMachine.IsInAnyMusicState()                                 // The Decoder state machine is in of the 3 Musicxxx states AFTER this state transition.
+            || (inputInterpretation.Category == InputCategoryEnum.FinalDoubleBar))      // The new token is a final double bar, which must trigger a flush of he latest measure.
+            {
+                typeAmbiguityHandler.ApplyNextInput(inputInterpretation); // ** This is where wa call the TypeAmbiguityHandler which calls the MusicXmlBuilder to build MusicXml **
+            }
+            else
+            {
+                musicXmlBuilder.ApplyNextInput(inputInterpretation); // ** This is where wa call the  the MusicXmlBuilder directly to build embedded text **
+            }
+            // End experimental code
+            //*******************************************************************************************************
+
+            //Accumulate all sequences of simple input characters and save the startindex
+            Accumulate(inputInterpretation, oldPosition, ref accumulatedText);
+
+            decoderDebugTools.CountCategories(inputInterpretation); // NOTE: Time consuming !!!
+
+            if (0 == (rawOptions.VisibleCategoryies & inputInterpretation.Category))
+            {
+                // A token of this category (for instance InputCategoryEnum.Character) is not visible, but if an accumulated text exists it must be shown anyway! 
+                return  Token.Create("",accumulatedText,initialDecoderState);
+            }
+            else
+            {
+                // Even if a MusicXml file can not be generated result contains the decoded information
+//                string s = string.Format("{0} {1}", oldPosition, result.ToString(rawOptions));                         // CHECK !!
+                string s = string.Format("{0} {1}", oldPosition, inputInterpretation.ToString(rawOptions));                         // CHECK !!
+                return Token.Create(s,accumulatedText, inputInterpretation,initialIndex,initialDecoderState); // Show the token and accumulated text.
+            }            
+        }
+
+
+        // Simple mechansim only used for debugging
+        public string GetNextRawUnicodeLine(int startIndex)
+        {
+            int endIndex = brailleAsUnicode.IndexOf('\r',startIndex); // Find index of first CR
+            if (-1 == endIndex)
+            {
+                endIndex = brailleAsUnicode.Length; // Last line. Return the rest of the file
+            }
+            string result =  brailleAsUnicode.Substring(startIndex, endIndex - startIndex);
+            return result;
+        }
+
+        public void LogCategories()
+        {
+            bool sort = true;       
+            decoderDebugTools.DumpCategories(sort);
+            decoderDebugTools.DumpSubCategories(sort);
+            decoderDebugTools.DumpSubSubCategories(sort);
+        }
+
+        //*****************************************************************************************
+        // Simple convenience methods
+        //*****************************************************************************************
+
+        private void Accumulate(InputInterpretation inputInterpretation, string oldPosition, ref string accumulatedText)
+        {
+            string inputString = null;
+            if ((inputInterpretation.Category == InputCategoryEnum.Character) || (inputInterpretation.Category == InputCategoryEnum.Digit))
+            {
+                if (0 == accumulatedCharacters.Length)
+                {
+                    accumulatedStringStartIndex = oldPosition;
+                }
+                string s = ToVersal(decoderStateMachine.ShowAsVersal, inputInterpretation.FriendlyValue);
+                accumulatedCharacters.Append(s);
+                //return "";  // Hides the line containing the InputCategoryEnum.Character
+            }
+            else
+            {
+                if (0 != accumulatedCharacters.Length)
+                {
+                    inputString = accumulatedCharacters.ToString();
+                    string caption = ResourcesForBrailleMusicDecoder.Decoder_AccumulatedText;
+                    accumulatedText = string.Format("{0} {1} {2}", accumulatedStringStartIndex, caption, inputString);
+                    accumulatedCharacters.Clear();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Exclusively for use by analysis of Localization-resources
+        /// </summary>
+        /// <returns></returns>
+        public static object CreateResourcesForBrailleMusicDecoder()
+        {
+            return new ResourcesForBrailleMusicDecoder();
+        }
 
         private string NonBrailleInterpretation(int c)
         {
+            musicXmlBuilder.ApplyNextInput(InputCategoryEnum.NonBrailleCharacter, c, InputSubCategoryEnum.None, null);
             switch (c)
             {
                 case 10: return "10 (LF)";
@@ -57,271 +219,358 @@ namespace BrailleMusicDecoder
             }
         }
 
+
         /// <summary>
-        /// Pass the call to the object specified during creation!
+        /// Simple mechanism used only during debugging for visualizing the tokens extracted.
+        /// Returns a formattet string representing the raw values within the halfopen interval [start, end[
         /// </summary>
-        /// <param name="s"></param>
-        private void Log(string s)
+        /// <param name="startIndex">The index of the first char to include</param>
+        /// <param name="endIndex">The index of th first char NOT to include</param>
+        /// <returns></returns>
+        public string GetRawValues(int startIndex, int endIndex)
         {
-            logger.Log(s);
+            StringBuilder sb = new StringBuilder();
+            for (int i = startIndex; i < endIndex; i++)
+            {
+                char c = brailleAsUnicode[i];
+                if ((0x2800 <= c) && (c <= 0x283f))
+                {
+                    sb.Append(ToDotNumbers(c - 0x2800) + " ");
+                }
+                else
+                {
+                    switch (c)
+                    {
+                        case '\r': sb.Append("CR "); break;
+                        case '\n': sb.Append("LF "); break;
+                        case '\f': sb.Append("FF "); break;
+                        default:   sb.Append("??"); break; // Unknown Unicode char !!
+                            //string message = string.Format("Unexpected Unicode value {0} found in inputstring. Hex value={1:0x}", c, c);
+                            //throw new Exception(message);
+                            // No "break" needed after Exception                        
+                    }
+                }
+            }
+            string result = sb.ToString();
+            return result;
+        }
+
+        private string ToString(char c)
+        {
+            switch (c)
+            {
+                case '\r': return "<CR>";
+                case '\n': return "<LF>"; 
+                default: return c.ToString();
+            }
         }
 
 
-        //
-        // The main logic:
-        //
-
-
-        public string GetNextToken(ref int i)
+        /// <summary>
+        /// Generate a string for reporting that no result was found
+        /// </summary>
+        /// <param name="initialIndex"></param>
+        /// <param name="oldPosition"></param>
+        /// <returns></returns>
+        private string OnNoResult(int initialIndex, string oldPosition)
         {
-            if ((i<0) || (i >= brailleAsUnicode.Length)) return null; // Outside the array of input characters
-            int thisValue = brailleAsUnicode[i];
-            int nextValue = (i+1 >= brailleAsUnicode.Length) ? (tokenReader.Blank) :  brailleAsUnicode[i]; // Insert an empty Braille6 character 
-
-            // Immediately get rid of characters outside the Unicode Braille6 interval [0x2800..0x283f] 
-            if (!tokenReader.IsBraille6(thisValue))
+            // Use the initial index to access the arrays:
+            char charValue = brailleAsUnicode[initialIndex]; // Will be shown as a Braille pattern
+            string charValueAsString = ToString(charValue);
+            int hexValue = tokenReader.GetBrailleFileAsInteger(initialIndex);
+            string dots = "?";
+            string textDot = Text_Dot;
+            if (hexValue < 64)
             {
-                switch (thisValue)
-                {
-                    // But first apply some simple state changes
-                    case 10: break; // (LF)";
-                    case 12: break; // (FF)";
-                    case 13: if (StateEnum.TextNumber == state) //(CR)
-                        {
-                            StateEnum newState = StateEnum.Text;
-                            Log(string.Format("Non-Braille input={0} Changing state from {1} to {2} -------------------------------------", thisValue, state, newState));
-                            state = newState;
-                        }
-                        break;
-                    default: break;
-                }
-
-
-                i += 1;
-                return NonBrailleInterpretation(thisValue);
+                dots = ToDotNumbers(hexValue, ""); // "123456" instead of "1 2 3 4 5 6"
             }
-
-            // Get a list of ALL POSSIBLE interpretations of the next token
-            InputInterpretationList result = ToTokenList(i);
-
-            int tokenLength = 1; // Default, if we can not determine an interpretation we just continue to the next input character
-            if (1 == result.Count)
+            else
             {
-                tokenLength = result.InputInterpretations[0].TokenLength;
-                if (1 != tokenLength)
-                {
-                    Log(string.Format("TokenLength={0}. Changing index from {1} to  {2}", tokenLength, i, i + tokenLength));
-                }
+                // This was not a Braille6 character !
+                dots = "";
+                textDot = "";
             }
-            i += tokenLength;
-    
-            return result.ToString();
+            string textNoInterpretationFor = ResourcesForBrailleMusicDecoder.Text_noInterpretationFor; // Localize !
+         
+                                                                       // Index is the position within the file
+                                                                       // OldPosition the position within the current line 
+            string s = string.Format("{0:02} {1} {2} {3}{4}", oldPosition, textNoInterpretationFor, charValueAsString, textDot, dots); // For instance "03 No Interpretation for . DOT 3"
+            return s;
         }
 
 
-
-        private InputInterpretationList ToTokenList(int startIndex)
+        private string ToVersal(bool versal, string s)
         {
+            if (!versal) return s;
+            if (1 == s.Length) return s.ToUpper();
+            // This is contraction, so we must only convert the first letter to uppercase !
+            string s0 = s.Substring(0,1);
+            string theRest = s.Substring(1, s.Length - 1);
+            return s0.ToUpper() + theRest;
+        }
+
+
+        /// <summary>
+        /// Returns the standard Braille notation for the binary inputvalue
+        /// For instance: 
+        /// 0 ->  "0"
+        /// 1 ->  "1"
+        /// 2 ->  "2"
+        /// 3 ->  "12"
+        /// 63 -> "123456"
+        /// </summary>
+        /// <param name="binaryInputValue"></param>
+        /// <returns></returns>
+        private static string ToDotNumbers(int binaryInputValue,string delimiter)
+        {
+            StringBuilder sb = new StringBuilder();                  
+            for (int i = 0; (i <= 5); i++)
+            {
+                int mask = 1 << i;
+                int maskedInput = binaryInputValue & mask;
+                if (0 != maskedInput)
+                {
+                    sb.Append(i + 1);
+                    sb.Append(delimiter);
+                } 
+            }
+            string result = (0 == sb.Length) ? "0" : sb.ToString(); // Return "0" instead of the empty string
+            // Log(string.Format("ToBraille({0})={1}", binaryInputValue, result));
+            return result;
+        }
+
+        private static string ToDotNumbers(int binaryInputValue)
+        {
+            return ToDotNumbers(binaryInputValue,""); // Default: Use no delimiter: "123456" instead of "1 2 3 4 5 6"
+        }
+
+        /// <summary>
+        /// Converts from Braile Unicode (0x2800-0x28ff) to Dotnumbers such as 1 12 14 to represent the 1 2 3
+        /// </summary>
+        /// <param name="unicodeBraille"></param>
+        /// <returns></returns>
+        public static string ToDotNumbers(string unicodeBraille)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < unicodeBraille.Length; i++)
+            {
+                char c = (char)unicodeBraille[i];
+                string dotNumbers = ToDotNumbers(c - 0x2800);
+                sb.Append(dotNumbers + " ");
+            }
+            return sb.ToString();
+        }
+
+
+        /// <summary>
+        /// Attempts to extract and return a unique interpretation of MusicBraille sequence starting a startIndex in the current state.
+        /// </summary>
+        /// <param name="startIndex">The position to start at</param>
+        /// <param name="prioritizedInputValues">All possible inputinterpretations (For debugging purposes)</param>
+        /// <returns>
+        /// If no interpretation exists, null is returned.
+        /// If exactly one interpretation this interpretation is returned. This is the normal, desired case! 
+        /// If several interpretations exist, the interpretatation consuming the largest number of Music Braille symbols is returned.
+        /// If several interpretation share the same max length the one at index 0 is (arbitrarily) returned.
+        /// </returns>
+        private InputInterpretation ToInputInterpretation(int startIndex, out InputInterpretationList prioritizedInputValues)
+        {
+            int breakIndex = 865;
+
+            prioritizedInputValues = null;
+
 
             // First apply ad hoc mechanism for handling wellknown errors in BrailleMusic files received from external source, for instance NOTA
-            DecoderOptionEnum options = (DecoderOptionEnum)logger.GetDecoderOptions();
-            StateEnum forcedNewState = state;
-            switch (options)
+            //DecoderOptionEnum options = (DecoderOptionEnum)logger.GetDecoderOptions();
+
+            DecoderStateMachine.StateEnum forcedNewState = decoderStateMachine.State.MyStateEnum;
+
+            switch (decoderDebugTools.DevelopmentOptions)
             {
                 // Here we handle known errors in the files that we decode             
-                case DecoderOptionEnum.MariaGennemTorneGårFromNOTA:
+                case DevelopmentOptionEnum.MariaGennemTorneGårFromNOTA:
                     {
                         switch (startIndex)
                         {
                             case 635:
-                            case 2139: forcedNewState = StateEnum.Music; break;
-                            case 1020: forcedNewState = StateEnum.Text; break;
+                            case 2139: forcedNewState = DecoderStateMachine.StateEnum.Music; break;
+                            case 1020: forcedNewState = DecoderStateMachine.StateEnum.Text; break;
                             default: break;
                         }
                     }
                     break;
+                case DevelopmentOptionEnum.NuErJordOgHimmelStille:  break;  // Not needed !
+                case DevelopmentOptionEnum.Ulandsvise: break; // Not needed !
+                case DevelopmentOptionEnum.DenneMorgensMulighed: // Not needed !
                 default: break;
             }
-            if (forcedNewState != state)
+            if (forcedNewState != decoderStateMachine.State.MyStateEnum)
             {      
-                Log(string.Format("StartIndex={0} Forcing Statechange from {1} for {2}***********************************************************************************", startIndex, state, forcedNewState));
-                state = forcedNewState;
+                // We need to force the statemachine into a new state.
+                decoderStateMachine.SetState(forcedNewState,startIndex);
             }
 
 
             // Now for the "real" algorithm:
-            int endIndex = Math.Min(brailleAsUnicode.Length, startIndex + 10); // Take the next 10 characters 
-            IntegerList brailleCharacters = new IntegerList();
+            int count =  50; // Take the next ut to 50 characters . Maybe not always enough!
+            IntegerList brailleIntegers = tokenReader.GetBrailleFileAsIntegers(startIndex, count);   // The next value to interpret
+ 
+            if (startIndex == breakIndex)
             {
-                for (int i = startIndex; (i < endIndex); i++)
-                {
-                    brailleCharacters.Add(tokenReader.ToBraille(brailleAsUnicode[i]));
-                }
+                Logger.LogCF(string.Format(": DebugBreak at startIndex={0}",breakIndex)); // For setting conditional breakpoint during debugging
             }
 
-            InputInterpretationList inputValues = tokenReader.GetInputInterpretations(brailleCharacters); // Get a list of all possible input values independent of the current state.
-            InputCategoryEnum allowedInputCategories = 0;
-
-            // Define some shorthand values to be used in the case below
-            const InputCategoryEnum AnyEnding = InputCategoryEnum.FullEnd | InputCategoryEnum.HalfEnd;
-            InputCategoryEnum allowedInTextStates   = InputCategoryEnum.Character | InputCategoryEnum.TextVersal | InputCategoryEnum.ToNumber | InputCategoryEnum.ToMusicBraille;
-            InputCategoryEnum allowedInMusicStates  = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Rest | InputCategoryEnum.NewMeasure | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.InAccordFullMeasure | InputCategoryEnum.Clef | InputCategoryEnum.ToMusicBraille | InputCategoryEnum.ToText | InputCategoryEnum.TimeModification;
-            InputCategoryEnum allowedInNumberStates = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.ToMusicBraille | InputCategoryEnum.ToNumber;
-
-            switch (state)
-            {
-                case StateEnum.Text:        allowedInputCategories = allowedInTextStates; break;
-                case StateEnum.TextVersal:  allowedInputCategories = allowedInTextStates; break;
-                case StateEnum.TextNumber:  allowedInputCategories = allowedInNumberStates | InputCategoryEnum.TextVersal | InputCategoryEnum.ToMusicBraille | InputCategoryEnum.ToWord; break;
-                case StateEnum.MusicNumber: allowedInputCategories = allowedInNumberStates | InputCategoryEnum.Accidental; break;
-                case StateEnum.Music:       allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Accidental | InputCategoryEnum.UnusualBarLine | InputCategoryEnum.ToNumber | InputCategoryEnum.Finger | AnyEnding | InputCategoryEnum.Hand | InputCategoryEnum.Beat | InputCategoryEnum.Articulation; break;
-                case StateEnum.MusicNote:   allowedInputCategories = allowedInMusicStates  | InputCategoryEnum.Slur | InputCategoryEnum.Tie | InputCategoryEnum.UnusualBarLine | AnyEnding | InputCategoryEnum.EndRepeat | InputCategoryEnum.Punctuation | InputCategoryEnum.Interval | InputCategoryEnum.Accidental | InputCategoryEnum.OtherValues | InputCategoryEnum.Articulation; break;
-                default: throw new Exception(string.Format("Unsupported state {0} ", state.ToString()));
-            }
+            InputInterpretationList originalInputValues = tokenReader.GetInputInterpretations(brailleIntegers); // Get a list of all possible input values independent of the current state.
+            InputCategoryEnum allowedInputCategories = decoderStateMachine.AllowedInputCategories; ;
 
             // Get all inputvalues accepted in the current state.
-            InputInterpretationList filteredInputValues0 = inputValues.Filter(allowedInputCategories);   
+            InputInterpretationList filteredInputValues = originalInputValues.Filter(allowedInputCategories);   
             
             // Get the inputvalue with the largest length
-            InputInterpretationList filteredInputValues = filteredInputValues0.Prioritize();
+            prioritizedInputValues = filteredInputValues.Prioritize();
 
             // Log if we had to reduce the number if items
-            int nFiltered = filteredInputValues0.Count;
-            int nPrioritized = filteredInputValues.Count;
+            int nFiltered = filteredInputValues.Count;
+            int nPrioritized = prioritizedInputValues.Count;
             if (nFiltered  != nPrioritized)
             {
-                Log(string.Format(": Filtered={0}, Prioritized={1} **********************************************", nFiltered, nPrioritized));
+                Logger.LogCF(string.Format(": Filtered={0}, Prioritized={1} **********************************************", nFiltered, nPrioritized));
+            }
+
+            //************************************************************************************************************
+            // At EXACTLY THIS POINT we select the interpretation to use !!
+            //************************************************************************************************************
+            InputInterpretation inputInterpretation = null;
+            switch (nPrioritized)
+            {
+                case 0: break; //ShowWarning(decoderClient, filteredInputValues); // Warn through UI if desired
+                case 1: inputInterpretation = prioritizedInputValues.InputInterpretations[0];break; // The normal case
+                default: inputInterpretation = prioritizedInputValues.InputInterpretations[0]; break;
+#warning: TODO: Let the user select among the possible interpretations at this point.
             }
 
             // Calculate the new state
-            StateEnum newState = state;
 
-            switch (state)
+            DecoderStateMachine.StateEnum oldState = decoderStateMachine.State.MyStateEnum;
+            string oldStateName = oldState.ToString();
+            decoderStateMachine.SetNewState(inputInterpretation);
+            DecoderStateMachine.StateEnum newState = decoderStateMachine.State.MyStateEnum;
+            string newStateName = newState.ToString();
+            string inputValueString = prioritizedInputValues.ToString(rawOptions); // Only needed in error situations and for debugging !
+
+            string inputInterpretationString = "No interpretation found";
+            if (null != inputInterpretation)
             {
-                case StateEnum.Text:
-                    if (filteredInputValues.Contains(InputCategoryEnum.ToMusicBraille))
-                    {
-                        newState = StateEnum.Music; break;
-                    }
-                    if (filteredInputValues.Contains(InputCategoryEnum.ToNumber))
-                    {
-                        newState = StateEnum.TextNumber;
-                    }
-                    break;
-                case StateEnum.TextVersal:
-                    if (filteredInputValues.Contains(InputCategoryEnum.ToMusicBraille))
-                    {
-                        newState = StateEnum.Music; break;
-                    }
-                    if (filteredInputValues.Contains(InputCategoryEnum.ToNumber))
-                    {
-                        newState = StateEnum.TextNumber;
-                    }
-                    break;
-                case StateEnum.TextNumber:
-                    if (filteredInputValues.Contains(InputCategoryEnum.ToMusicBraille))
-                    {
-                        newState = StateEnum.Music;
-                        break;
-                    }
-                    if (!(filteredInputValues.Contains(InputCategoryEnum.Digit) || filteredInputValues.Contains(InputCategoryEnum.Denominator) || filteredInputValues.Contains(InputCategoryEnum.ToNumber)))
-                    {
-                        newState = StateEnum.Text;
-                        break;
-                    }
-                    // Remain in StateEnum.TextNumber
-                    break;   
-                case StateEnum.Music:
-                    if (filteredInputValues.Contains(InputCategoryEnum.ToNumber))
-                    {
-                        newState = StateEnum.MusicNumber; break;
-                    }
-                    if (filteredInputValues.Contains(InputCategoryEnum.Note))
-                    {
-                        newState = StateEnum.MusicNote; break;
-                    }
-                    if (filteredInputValues.Contains(InputCategoryEnum.ToText))
-                    {
-                        newState = StateEnum.Text; break;
-                    }
-                    break;
+                inputInterpretationString = ShowControlCharacters(inputInterpretation.ToString(rawOptions)); // Describes the selected interpretation as a text string
+            }
+            
+            bool stateChanged = (newState != oldState); // Simply compare the enums !
+            int thisValue = brailleIntegers.List[0];
 
-                case StateEnum.MusicNumber:
-                    if (filteredInputValues.Contains(InputCategoryEnum.Space))
-                    {
-                        newState = StateEnum.Music;
-                    }
-                    break;
-
-                case StateEnum.MusicNote:
-
-                    if (filteredInputValues.Contains(InputCategoryEnum.ToText))
-                    {
-                        newState = StateEnum.Text; break;
-                    }
-
-                    if (filteredInputValues.Contains(InputCategoryEnum.NewMeasure))
-                    {
-                        newState = StateEnum.Music; 
-                    }
-
-                    if (filteredInputValues.Contains(InputCategoryEnum.HalfEnd))
-                    {
-                        newState = StateEnum.Music;
-                    }
-
-                    if (filteredInputValues.Contains(InputCategoryEnum.FullEnd))
-                    {
-                        newState = StateEnum.Music;
-                    }
-
-
-                    if (filteredInputValues.Contains(InputCategoryEnum.InAccordPartMeasure))
-                    {
-                        newState = StateEnum.MusicNote; // No change, probably not needed
-                    }
-
-                    if (filteredInputValues.Contains(InputCategoryEnum.InAccordFullMeasure))
-                    {
-                        newState = StateEnum.MusicNote; // No change, probably not needed
-                    }
-       
-
-                    break;
-
+            string inputAsUnicode = TokenReaderUtilities.ToUnicodeChar(thisValue);
+            string thisValueAsBraille = ToDotNumbers(thisValue);
+            if (1 != prioritizedInputValues.Count)
+            {
+                // Exclusively for debugging purposes:
+                string epilogue = string.Format("State={0,-15} Offset={1} StartsWith: {2} DOT{3,-6}", oldStateName, startIndex, inputAsUnicode, thisValueAsBraille);
+                LogInterpretations(originalInputValues,    "OriginalInputValues", epilogue); // All possible inputvalues as received from the TokenReader. Shown with state information.
+                LogInterpretations(filteredInputValues,    "FilteredInputValues", null); // All remaining inputvalues after applying the statedependent filter 
+                LogInterpretations(prioritizedInputValues, "PrioritizedInputValues", null); // All remaining inputvalues after prioritizing (longest token has highest priority)
+                string message = string.Format(": Arbitrarily choose filteredvalues[0] = {0}", inputInterpretationString);
+                Logger.LogCF(message); // The arbitrarily chosen inputValæue. May be the wrong choise !!!
+                //decoderWarnings.Add(message + "  " + epilogue); // Collect selected log messages locally in the decoder
+                UserWarnings.LogUserWarning(message + "  " + epilogue);
             }
 
-            string result = filteredInputValues.ToString();
-
-            int thisValue = brailleCharacters.List[0];
-
-            char inputAsUnicode = TokenReader.ToUnicodeChar(thisValue);
-            if (1 != filteredInputValues.Count)
-            {
-                Log(string.Format(" State={0,-15} Input={1}(i={2,02}) OriginalInputValues = {3}", state.ToString(), inputAsUnicode, thisValue ,inputValues.ToString()));
-                Log(string.Format(" State={0,-15} Input={1}(i={2,02}) FilteredInputValues = {3}", state.ToString(), inputAsUnicode, thisValue ,filteredInputValues.ToString()));
-            }
-
-            string newStateText = (state != newState) ? string.Format("NewState={0} ", newState) : "";
-        
-            Log(string.Format("{0,5} State={1,-15} Input={2}(i={3,02}) Result='{4}' {5} ", startIndex, state.ToString(), inputAsUnicode, thisValue, result, newStateText));
-
-            if (newState != state)
-            {
-//                Logger.Log(string.Format(": >>>>>>>>>>>>>Changing state from {0} to {1}<<<<<<<<<", state, newState));
-            }
+            string newStateText = stateChanged ? string.Format("NewState={0} ", newStateName) : "";
 
 
-            // Generate the output
+            string inputString = ToString(inputInterpretation, brailleIntegers.List);
+            Logger.LogCF(string.Format(" {0,7} State={1,-15} Input={2} Result='{3}' {4} ", startIndex, oldStateName, inputString, inputInterpretationString, newStateText));
 
-            // Update the state to the new state
-
-            state = newState;
-
-            return filteredInputValues;
-
+            return inputInterpretation;
         }
-  
+
+
+        /// <summary>
+        /// Used during debug only for identifying ambiguioties in the interpretations received from TokenReader after applying statedependent filter an prioritizing with respect to tokenlength.
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="listName"></param>
+        /// <param name="epilogue"></param>
+        private void LogInterpretations(InputInterpretationList list, string listName, string epilogue)
+        {
+            Logger.LogCF(string.Format(": Found {0} Interpretations in {1}{2}:", list.Count, listName, (null == epilogue) ? "" : " for " + epilogue ));
+            for (int i = 0; (i < list.Count); i++)
+            {
+                string s = list.InputInterpretations[i].ToString(rawOptions);
+                Logger.Log(string.Format("----->{0}[{1}]={2}", listName, i, ShowControlCharacters(s)));
+            }
+        }
+
+
+        /// <summary>
+        /// Build representation in Unicode and Dotnumbers, solely for logging- for debugging-purposes
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="values"></param> 
+        private string ToString(InputInterpretation input, List<int> values)
+        {
+            string unicode = "";
+            string dots = "";         
+            if (null == input) return "null";
+            int length = input.TokenLength;
+            StringBuilder sbUnicode = new StringBuilder();
+            StringBuilder sbDotNumbers = new StringBuilder();
+            bool allSpaces = true;
+            for (int i = 0; (i < length); i++)
+            {
+                int value = values[i];
+                allSpaces &= (value == TokenReader.noDots);
+                sbUnicode.Append(TokenReaderUtilities.ToUnicodeChar(value));
+                string s = (value <= 0x3f) ? ToDotNumbers(value) : TokenReaderUtilities.ToNonBrailleInterpretation(value);
+                sbDotNumbers.Append(s + " ");
+            }
+            unicode = sbUnicode.ToString();
+            if (allSpaces)
+            {
+                unicode = string.Format("{0} SPACE{1}", length, (1 == length) ? "" : "S");
+            }
+            dots = sbDotNumbers.ToString();
+            return string.Format("{0,-8} DOTS=({1,-10})", unicode, dots);
+        }
+
+        /// <summary>
+        /// Simple mechanism for reporting to UI if the number of interpretations differs from 0.
+        /// MAy later be extended, allowing the user to selegt among the interpretations !
+        /// </summary>
+        /// <param name="decoderClient"></param>
+        /// <param name="inputInterpretations"></param>
+        private void ShowWarning(IDecoderClient decoderClient, InputInterpretationList inputInterpretations)
+        {
+            if (null == decoderClient) return;
+            int nInterpretations = inputInterpretations.Count;
+            if (nInterpretations == 1) return;    // Found exactly one interpretation as desired.   
+            {
+                List<string> lines = new List<string>();
+                foreach (InputInterpretation inputInterpretation in inputInterpretations.InputInterpretations)
+                {
+                    string s = inputInterpretation.ToString(this.rawOptions);
+                    lines.Add(s);
+                }
+                string caption = string.Format("{0} Interpretation found:", nInterpretations);
+                decoderClient.ShowMessageBox(caption, lines);
+            }
+        }
+
+
+private string ShowControlCharacters(string s)
+        {
+            string s1 = s.Replace("\r", "<CR>");
+            string s2 = s1.Replace("\n", "<LF>");
+            return s2;
+        }
+
         private string DigitToString(int i)
         {
             return "DIGIT";
@@ -337,31 +586,96 @@ namespace BrailleMusicDecoder
             return (string.IsNullOrEmpty(s) ? "" : " " + prefix + s);
         }
 
+        public XmlDocument MusicXmlDocument
+        {
+            get { return musicXmlBuilder.Doc; }
+        }
+
+
+        /// <summary>
+        /// First primitive mechanism for removing empty measures et the end.
+        /// Will probably not work in all situations.
+        /// </summary>
+        public void RemoveEmptyLinesAtEnd()
+        {
+            if (null == musicXmlBuilder.Doc) return;
+            XmlNode score = MusicXmlDocument.SelectSingleNode("score-partwise");
+            XmlNodeList parts = score.SelectNodes("part");        
+            foreach (XmlNode part in parts)
+            {
+                XmlNode partid = part.Attributes.GetNamedItem("id");
+                string partIdString = partid.Value;
+
+                if (0 == (string.Compare("P3", partIdString)))
+                {
+#warning remove hack for identifing chords
+                    break;
+                }
+
+                XmlNodeList measures = part.SelectNodes("measure");
+                int nMeasures = measures.Count;
+                for (int i = nMeasures - 1; (i >= 0); i--)
+                {
+                    XmlNode measure = measures[i];
+                    XmlNodeList notes = measure.SelectNodes("note");
+                    if (0 == notes.Count)
+                    {
+                        part.RemoveChild(measure);
+                    }
+                    else
+                    {
+                        break; // Stop on the first non-empty measure !
+                    }
+                }
+                XmlNodeList measuresAfterRemoval = part.SelectNodes("measure");
+                int nMeasuresAfterRemoval = measuresAfterRemoval.Count;
+                if (nMeasures != nMeasuresAfterRemoval)
+                {
+                    string s = string.Format(": Part={0} reduced from {1} to {2} measures by removing empty measures at end.", partIdString, nMeasures, nMeasuresAfterRemoval);
+                    Logger.LogCF(s);
+                }
+            }
+        }
+          
+
+
+
+
         //
         // Constructors
         //
 
-        private Decoder()
+        private Decoder(DecoderStateMachine.StateEnum initialState, string brailleAsUnicode,Options rawOptions, IDecoderClient decoderClient, DecoderDebugTools decoderDebugTools)
         {
-            state = StateEnum.Unknown;
-        }
-
-        private Decoder(StateEnum initialState, string brailleAsUnicode,IBrailleMusicDecoderLogger logger)
-        {
-            state = initialState;
+            // Logger.ClearLocalUserWarnings();
+            this.decoderStateMachine =  new DecoderStateMachine(initialState);
             this.brailleAsUnicode = brailleAsUnicode;
-            this.logger = logger;
-            this.tokenReader = TokenReader.Create();
+            this.decoderSpacePositionHandler = DecoderSpacePositionHandler.Create(rawOptions.StringFormatOptions);
+          
+            this.rawOptions = rawOptions;
+            this.decoderClient = decoderClient;
+            this.tokenReader = TokenReader.Create(this.brailleAsUnicode,RegionalOptions.Create(rawOptions.RegionalOptions));
+            this.musicXmlBuilder = MusicXmlBuilder.Create(MusicXmlBuilderStateEnum.Title); // We exprct the Braille Music file to start with the title information in Text Braille form.
+#warning TODO fetch 3 strings below from  localization!
+            // The following setings yield for instance: "Part  'Højre hånd'  Takt 1" 
+            this.musicXmlBuilder.StateNameCaption = ""; // Use no caption
+            this.musicXmlBuilder.PartNameCaption = ""; // Use no caption
+            this.musicXmlBuilder.MeasureNumberCaption = "Takt ";
+            this.decoderDebugTools = decoderDebugTools;
+            //this.developmentOptions = developmentOptions; 
+            this.typeAmbiguityHandler = TypeAmbiguityHandler.Create(musicXmlBuilder,decoderDebugTools.DevelopmentOptions);
+            //Logger.ClearLocalUserWarnings();
+            //UserWarnings.LocationInfo = this as IDecoderUserInfo;
         }
 
-        public static Decoder Create()
+        public static Decoder Create(DecoderStateMachine.StateEnum initialState, string brailleAsUnicode, Options rawOptions,IDecoderClient decoderClient, DecoderDebugTools decoderDebugTools)
         {
-            return new Decoder();
+            //string logString = string.Format(": InitialState='{0}' Length={1} Options='{2}'", initialState.ToString(), brailleAsUnicode.Length, options.ToString());
+            //Logger.LogCF(logString);
+            Decoder result = new Decoder(initialState, brailleAsUnicode, rawOptions, decoderClient, decoderDebugTools);
+            //UserWarnings.LocationInfo = result as IDecoderUserInfo;
+            return result;
         }
 
-        public static Decoder Create(StateEnum initialState, string brailleAsUnicode, IBrailleMusicDecoderLogger logger)
-        {
-            return new Decoder(initialState, brailleAsUnicode,logger);
-        }
     }
 }

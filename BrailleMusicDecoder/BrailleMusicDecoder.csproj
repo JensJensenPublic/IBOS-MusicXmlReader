@@ -40,13 +40,104 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DecoderDebugTools.cs" />
+    <Compile Include="MusicXmlElements\MusicXmlDocument.cs" />
+    <Compile Include="IDecoderClient.cs" />
+    <Compile Include="MusicXmlElements\MusicXmlElement.cs" />
+    <Compile Include="MusicXmlElements\MusicXmlMeasureElement.cs" />
+    <Compile Include="MusicXmlHandlers\ArticulationsHandler.cs" />
     <Compile Include="Decoder.cs" />
-    <Compile Include="IBrailleMusicDecoderLogger.cs" />
+    <Compile Include="MusicXmlHandlers\IntervalOctaveHandler.cs" />
+    <Compile Include="MusicXmlHandlers\DecoderSpacePositionHandler.cs" />
+    <Compile Include="DecoderState.cs" />
+    <Compile Include="MusicXmlHandlers\GraceNoteHandler.cs" />
+    <Compile Include="MusicXmlHandlers\GraphicRepeatHandler.cs" />
+    <Compile Include="MusicXmlHandlers\InAccordPartMeasureHandler.cs" />
     <Compile Include="InputInterpretation.cs" />
     <Compile Include="InputInterpretationList.cs" />
     <Compile Include="IntegerList.cs" />
+    <Compile Include="MusicXmlHandlers\MusicXmlSlurHandler.cs" />
+    <Compile Include="MusicXmlHandlers\SectionHeaderHandler.cs" />
+    <Compile Include="MusicXmlHandlers\StickyAttributesHandler.cs" />
+    <Compile Include="LocalizationAnalysis.cs" />
+    <Compile Include="MusicBrailleMapping.cs" />
+    <Compile Include="MusicXmlBuilder.cs" />
+    <Compile Include="MusicXmlHandlers\MusicXmlBuilderAccidentalHandler.cs" />
+    <Compile Include="MusicXmlElementFactory.cs" />
+    <Compile Include="MusicXmlBuilderStateMusic.cs" />
+    <Compile Include="MusicXmlBuilderStateBase.cs" />
+    <Compile Include="MusicXmlBuilderStateHarmonyPart.cs" />
+    <Compile Include="MusicXmlBuilderStatePart.cs" />
+    <Compile Include="MusicXmlBuilderStateTitle.cs" />
+    <Compile Include="MusicXmlBuilderStateUnknown.cs" />
+    <Compile Include="MusicXmlElements\MusicXmlHarmonyElement.cs" />
+    <Compile Include="MusicXmlElements\MusicXmlNoteElement.cs" />
+    <Compile Include="MusicXmlHandlers\MusicXmlKeySignatureHandler.cs" />
+    <Compile Include="MusicXmlHandlers\MusicXmlMeasureHandler.cs" />
+    <Compile Include="MusicXmlHandlers\MusicXmlTieHandler.cs" />
+    <Compile Include="MusicXmlHandlers\NoteOctaveHandler.cs" />
+    <Compile Include="MusicXmlHandlers\ParentesisHandler.cs" />
+    <Compile Include="MusicXmlHandlers\TimeModificationHandler.cs" />
+    <Compile Include="Options.cs" />
+    <Compile Include="PartBuildingParameters.cs" />
+    <Compile Include="PartBuildingParametersList.cs" />
+    <Compile Include="RegionalOptions.cs" />
+    <Compile Include="MusicXmlHandlers\BrailleRepeatHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourcesForBrailleMusicDecoder.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourcesForBrailleMusicDecoder.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DecoderStateMachine.cs" />
+    <Compile Include="TextBrailleToTextConverter.cs" />
+    <Compile Include="TextBuilder.cs" />
+    <Compile Include="TextItem.cs" />
+    <Compile Include="MusicXmlHandlers\TextVersalHandler.cs" />
+    <Compile Include="Token.cs" />
     <Compile Include="TokenReader.cs" />
+    <Compile Include="TokenReaderBase.cs" />
+    <Compile Include="TokenReaderUtilities.cs" />
+    <Compile Include="TypeAmbiguityHandler.cs" />
+    <Compile Include="Voice.cs" />
+    <Compile Include="VoiceList.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ResourcesForBrailleMusicDecoder.da-DK.resx" />
+    <EmbeddedResource Include="ResourcesForBrailleMusicDecoder.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesForBrailleMusicDecoder.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MusicXmlReaderModelBase\MusicXmlReaderModelBase.csproj">
+      <Project>{05d0a6cf-3d9f-4dde-90e4-db7e4d3318ab}</Project>
+      <Name>MusicXmlReaderModelBase</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HACKS.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2020\NOTA nr 189 Ulandsvise.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2020\NOTA nr 26 Denne morgens mulighed.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2020\NOTA nr 539 Nu er jord og himmel stille.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2021.01.10\Nr. 107 Sangen om Larsen.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2021.01.10\Nr. 121 Let it be when i find myself in times of trouble.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2021.01.10\Nr. 127 What a wonderful world.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2021.01.10\Nr. 138 Om lidt blir her stille.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2021.01.10\Nr. 144 Tears in heaven.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2021.01.10\nr. 23 Morning has broken.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2021.01.10\Nr. 262 Den blå anemone.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2021.01.10\nr. 30 Godmorgen lille land.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2021.01.10\Nr. 33 Lyset springer pludslig ud.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2021.01.10\Nr. 47 op al den ting som gud har gjort.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2021.01.10\Nr. 58A At sige verden ret farvel.txt" />
+    <Content Include="Testfiles for Decoder\NOTA2021.01.10\Nr. 76A Du som gir os liv og gør os glade.txt" />
+    <Content Include="Testfiles for Decoder\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Testfiles for Decoder\BrailleOrchOrg\BrailleOrch 001.Beethoven - Für Elise.brf" />
+    <None Include="Testfiles for Decoder\BrailleOrchOrg\BrailleOrch Copland - Four Piano Blues.1.For Leo Smith.brf" />
+    <None Include="Testfiles for Decoder\BrailleOrchOrg\BrailleOrch Copland - Four Piano Blues.2.For Andor Foldes.JSJ.brf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

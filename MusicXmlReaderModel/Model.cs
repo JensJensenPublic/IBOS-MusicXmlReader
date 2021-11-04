@@ -49,7 +49,7 @@ namespace MusicXmlReaderModel
         ProgressWriter conversionProgressWriter = null;
         DefaultsElement defaults; // Score-wide defaults for scaling, layout and appearance. Exactly one DefaultElement is expected per score.
         public DefaultsElement Defaults { get { return  defaults; } }
-        private LoggerProxy loggerProxy;
+        //private LoggerProxy loggerProxy;
 
         string executingAssembly;
         string executingDirectory;
@@ -577,7 +577,7 @@ namespace MusicXmlReaderModel
             Logger.Log(string.Format("Model: Assuming size of physical Braille display = {0}", displaySize));
             this.objects = objects;
             this.iDebugDisplayerClient = iDebugDisplayerClient;
-            this.loggerProxy = new LoggerProxy(); // Used to establish a callback path from BrailleMusicDecoder and other sub-dlls
+            //this.loggerProxy = new LoggerProxy(); // Used to establish a callback path from BrailleMusicDecoder and other sub-dlls
 
             Logger.LogSystemParameters();
             Logger.LogDebuggerAttachment();
@@ -1353,6 +1353,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public List<string> InterpretBrailleMusicFile(string fileName, BrailleFileHandler.FileEncoding fileEncoding)
         {
+#if false // JSJ 2021.11.04 while moving files
             Logger.LogCF(": Entry");
             if (fileName.EndsWith(@"Maria_gennem_torne_går.NOTA.txt")) // Missing BrailleMusicStart
             {
@@ -1400,6 +1401,10 @@ namespace MusicXmlReaderModel
             }
             Logger.LogCF(": Exit");
             return result;
+#else 
+            return new List<string>();
+#endif
+
         }
     }
 }
