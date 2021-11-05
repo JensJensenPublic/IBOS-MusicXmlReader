@@ -186,6 +186,29 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicBrailleToMusicXmlCmd",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiAccessibilityModel", "UiAccessibilityModel\UiAccessibilityModel.csproj", "{165F2EE0-8852-40C3-9EF0-B7EE6B6314B3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Localization", "External Localization", "{2FD59EAC-45B9-47D1-996B-451A5CD77E3B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common .xls files", "Common .xls files", "{7F826991-DD7B-45CA-8D5C-F3CF81676604}"
+	ProjectSection(SolutionItems) = preProject
+		External Localization\Common .xls files\ReadMe.txt = External Localization\Common .xls files\ReadMe.txt
+		External Localization\Common .xls files\ResourcesForBrailleMusicDecoder.xls = External Localization\Common .xls files\ResourcesForBrailleMusicDecoder.xls
+		External Localization\Common .xls files\ResourcesForHelp.xls = External Localization\Common .xls files\ResourcesForHelp.xls
+		External Localization\Common .xls files\ResourcesForModel.xls = External Localization\Common .xls files\ResourcesForModel.xls
+		External Localization\Common .xls files\ResourcesForMusicSynthesis.xls = External Localization\Common .xls files\ResourcesForMusicSynthesis.xls
+		External Localization\Common .xls files\ResourcesForSettings.xls = External Localization\Common .xls files\ResourcesForSettings.xls
+		External Localization\Common .xls files\ResourcesForUI.xls = External Localization\Common .xls files\ResourcesForUI.xls
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ko-KR", "ko-KR", "{8A61E204-30A4-4D7F-BE0F-E0416E9E5309}"
+	ProjectSection(SolutionItems) = preProject
+		External Localization\ko-KR\ResourcesForUI.ko-KR.xls = External Localization\ko-KR\ResourcesForUI.ko-KR.xls
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ru-RU", "ru-RU", "{CC42C5D1-FC48-472D-BFE8-2B90F05DBFFA}"
+	ProjectSection(SolutionItems) = preProject
+		External Localization\ru-RU\ResourcesForUI.ru-RU.xls = External Localization\ru-RU\ResourcesForUI.ru-RU.xls
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -442,5 +465,8 @@ Global
 		{18EB72DC-34CC-4A22-81CF-9E148218AFA1} = {A07A01AC-A16A-48D8-9415-555CDA1E37F6}
 		{321BD5D7-5E95-48B3-816F-6468AB9AA91C} = {18EB72DC-34CC-4A22-81CF-9E148218AFA1}
 		{9411AA85-F4B9-48DE-868E-F80F36FD3E31} = {1B62366B-E595-454C-846D-E36240015490}
+		{7F826991-DD7B-45CA-8D5C-F3CF81676604} = {2FD59EAC-45B9-47D1-996B-451A5CD77E3B}
+		{8A61E204-30A4-4D7F-BE0F-E0416E9E5309} = {2FD59EAC-45B9-47D1-996B-451A5CD77E3B}
+		{CC42C5D1-FC48-472D-BFE8-2B90F05DBFFA} = {2FD59EAC-45B9-47D1-996B-451A5CD77E3B}
 	EndGlobalSection
 EndGlobal
