@@ -1,0 +1,176 @@
+Return-Path: <CX64@kk.dk>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe004.lytzenitmail.local ([100.127.30.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id sAZJCpWQU16wXAEAlE+V+A
+	(envelope-from <CX64@kk.dk>)
+	for <dsl248925@mail.jubii.dk>; Mon, 24 Feb 2020 10:00:05 +0100
+Received: from sv900pomx004.lytzenitmail.dk ([100.127.30.63])
+	by sv900ddwe004.lytzenitmail.local with LMTP
+	id YASXCZWQU14HDQAAuH+tKw
+	(envelope-from <CX64@kk.dk>)
+	for <dsl248925@mail.jubii.dk>; Mon, 24 Feb 2020 10:00:05 +0100
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.160])
+	by sv900pomx004.lytzenitmail.dk (Postfix) with ESMTPS id 23CB11941
+	for <holmeparken44@vip.cybercity.dk>; Mon, 24 Feb 2020 10:00:05 +0100 (CET)
+Authentication-Results: mx01.lytzenitmail.dk; spf=Pass smtp.mailfrom=CX64@kk.dk
+Received-SPF: Pass (mx01.lytzenitmail.dk: domain of CX64@kk.dk
+  designates 193.169.154.135 as permitted sender)
+  identity=mailfrom; client-ip=193.169.154.135;
+  receiver=mx01.lytzenitmail.dk; envelope-from="CX64@kk.dk";
+  x-sender="CX64@kk.dk"; x-conformance=spf_only;
+  x-record-type="v=spf1"; x-record-text="v=spf1
+  ip4:193.169.154.135 ip4:193.169.154.136 ip4:62.242.41.25
+  ip4:62.242.41.26 include:spf.mailjet.com ~all"
+IronPort-PHdr: =?us-ascii?q?9a23=3Aa2vKPR/Li0UWnv9uRHGN80YQeigqvan1NQcJ65?=
+ =?us-ascii?q?0hzohDabmn44+/YR7a9a00ylvYQZfW7fNYjuPXt+bsWj9I+o6P5UgLa4cETB?=
+ =?us-ascii?q?oZkYMTlg0kDtSCDBjQHKC2Ry85WshBDQU3xXywPElLFcq7XGX8/iTjvwYbAQ?=
+ =?us-ascii?q?63dQ9lfr2zHp/Oncmx1vy38pzXJQlL1nKxZrZ7LRP+qguZnflI3aNhKeA9yX?=
+ =?us-ascii?q?6r6jNEdv9XymVhOV+I10+tvYHpos8lqnkM/at6qoZJSu3icr49TKBEAThuKG?=
+ =?us-ascii?q?0z6MDx9HyhBUOO6nYaTmQKg09NCgnB4gv9W8S5uS/7u+xhnSiCaJSnFvZtB2?=
+ =?us-ascii?q?Xktvo3Dkaz1XRiVXZx6mzch81ugbgOpQL5/lp70pLGbYeUKP93f6ebcdBJDW?=
+ =?us-ascii?q?dHQMtVUDRMR42maI5aRcExY7pwrIq7q1hE/n7cTUG8QfjizDNFnCq89p1kj8?=
+ =?us-ascii?q?wiEkfK30ZzV8JLu3PSotLvMa4UWu3g17HG+jLFa+IFvFW1oJiNaB0qpuuAGK?=
+ =?us-ascii?q?5haceEg1d6DBvL1x/D4ZygJT6e0f4B9nSW//Y1H/z6kHYp8mQT6nCu3pt+09?=
+ =?us-ascii?q?iSwNtLmxadqHk/md1obdygFBwiMIXiScUB8XjHa80vGZ1qQnk06nhgjOda49?=
+ =?us-ascii?q?jnJW5QlfFFj1bec6DVLdLOuE65ErrIZ20mzHNjc7aiixvg6lCujOj1V8223U?=
+ =?us-ascii?q?oMpS1A2s/FsnRHjk2B2o28UvJ4u3yZ93OK3gHX5PtDJB9mlqmdJ51zm7M=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0B5BAA0kFNeZIeaqcFlHgELHINPUAU?=
+ =?us-ascii?q?mRlYBIQQLKoQUg0mKb05OAQEBAQEBBosaDpB1A1QJAQEBAQEBAQEBBwETCBQ?=
+ =?us-ascii?q?EAQGEQAIXgXYjATgTAhABAQEEAQEBAgECAwQFHAoKCCmFPgyFZAYjEQwBAQc?=
+ =?us-ascii?q?xDwIBBhAMAiYCAgIfERUQAgQTCIMfgkoDCSYCAZAqkGcCixCBMoJ/AQEFhH0?=
+ =?us-ascii?q?NC4IMCYEOKoUghwSBE4EHgRFHgh5sghuCMhUjglcygiyBQwEBjyCGFJhdQwE?=
+ =?us-ascii?q?GAoI+ki+EUl2aUZoakB0CBAIEBQIOAQaBaYF6TYIRgU4JRxgNV41GCoNpTYo?=
+ =?us-ascii?q?IQgExjn4BAQ?=
+X-IPAS-Result: =?us-ascii?q?A0B5BAA0kFNeZIeaqcFlHgELHINPUAUmRlYBIQQLKoQUg?=
+ =?us-ascii?q?0mKb05OAQEBAQEBBosaDpB1A1QJAQEBAQEBAQEBBwETCBQEAQGEQAIXgXYjA?=
+ =?us-ascii?q?TgTAhABAQEEAQEBAgECAwQFHAoKCCmFPgyFZAYjEQwBAQcxDwIBBhAMAiYCA?=
+ =?us-ascii?q?gIfERUQAgQTCIMfgkoDCSYCAZAqkGcCixCBMoJ/AQEFhH0NC4IMCYEOKoUgh?=
+ =?us-ascii?q?wSBE4EHgRFHgh5sghuCMhUjglcygiyBQwEBjyCGFJhdQwEGAoI+ki+EUl2aU?=
+ =?us-ascii?q?ZoakB0CBAIEBQIOAQaBaYF6TYIRgU4JRxgNV41GCoNpTYoIQgExjn4BAQ?=
+X-IronPort-AV: E=Sophos;i="5.70,479,1574118000"; 
+   d="scan'208";a="94422705"
+Received: from smtp01.kk.dk ([193.169.154.135])
+  by mx01.lytzenitmail.dk with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 24 Feb 2020 10:00:04 +0100
+Received: from smtp01.kk.dk (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id CC9461320C4
+	for <holmeparken44@vip.cybercity.dk>; Mon, 24 Feb 2020 10:00:03 +0100 (CET)
+Received: from smtp01.kk.dk (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id B25B21320B8
+	for <holmeparken44@vip.cybercity.dk>; Mon, 24 Feb 2020 10:00:03 +0100 (CET)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cc2aod5kiLHDgjwENHswpa4XneeIeQEGY4Y6BwlzKdhleTtxHN1lyxewLEjzSFfxMfk0I9CEbrIcMesllIvI/zUaFiELXVrZegzDVm8QdynhUiYGNxQRHqWHhCYXzpuWkir9gMLkvqu55QpIi6J6mvrdi41jLPzKpP/lcQ+uF+kQNhPjYctPUjbbgyul2CTmt/aKUkNNvH5lYmXhS74wVuw+LhHPi/lUFmLLzHz7pKtrveI1rJy2mRK56ejl3sWMgj1Ae7V4YxiUpRZ3CL8cCR8heYJC8gl8x7RBXZGv+7dW7KvkVELAnNjurKtBhGsFukScjy4ONymZSQcvev/pRQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JyO29gUu06bEsmHh/i0k8lTAQP3d733XjtOw6JOlhDY=;
+ b=Ej8tU24DLTqWnAw+wJ60yvzPdc7iVm/EpolpdvxdqqkXpK+C9loKbO7lj42tsq+HGGxFkJjlJYi3R7efLZ//olnQ/Kyz98klFoB1lYw7/0P4fFaf7LTYNVH0/h1YMdI0+n1stTOYK6sKKmwxYNWyXLrzjAUrTfhc8hNEh5gMMhxb8/wRDbgiJqYLXFTPQKnjoihAUsJAw+0QbJ8X2LCTCqi8j7YCfF6mg3gBkgKaH3Xqs1zjg9f1/+uWO04wQOqk+u775ojdFMtk6smVgcNaYmZzIhGwq9C83tnfF3bNG5fyd30NZF1AM4VemPHF584TcEGsibISHu2Wck2chN0o6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kk.dk; dmarc=pass action=none header.from=kk.dk; dkim=pass
+ header.d=kk.dk; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=KKSKY.onmicrosoft.com;
+ s=selector1-KKSKY-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JyO29gUu06bEsmHh/i0k8lTAQP3d733XjtOw6JOlhDY=;
+ b=1VNRZUpFzlqOUtyb2bvKnAPAfcat146pW+baQW0Rmc3KVD+1efuUimVgW/0o0RwxMPB0e9n+hq5pfenZNa4zRqPVX8F0milRW9+ZbC2nsZ1v2jzl8uxI0iJdUaieC9Cz94N7qMvCQkgWBvXOdFpR8h1eW6bnsgDxVPvKWHyauOw=
+Received: from AM0PR0302MB3378.eurprd03.prod.outlook.com (52.133.38.154) by
+ AM0PR0302MB3265.eurprd03.prod.outlook.com (52.133.35.17) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2750.21; Mon, 24 Feb 2020 09:00:02 +0000
+Received: from AM0PR0302MB3378.eurprd03.prod.outlook.com
+ ([fe80::8c52:1e0b:d9fa:eea0]) by AM0PR0302MB3378.eurprd03.prod.outlook.com
+ ([fe80::8c52:1e0b:d9fa:eea0%7]) with mapi id 15.20.2750.021; Mon, 24 Feb 2020
+ 09:00:02 +0000
+From: Bo Alstrup <CX64@kk.dk>
+To: Jens Sundgaard <holmeparken44@vip.cybercity.dk>
+Subject: VS: Help with translation and testing IBOS MUSICXML READER
+Thread-Topic: Help with translation and testing IBOS MUSICXML READER
+Thread-Index: AQHV6kPD/oSgEJe8302IKRsi2+cQj6gos/GAgAFY+vA=
+Date: Mon, 24 Feb 2020 09:00:02 +0000
+Message-ID:
+ <AM0PR0302MB3378F5167BF3625736E5445AC2EC0@AM0PR0302MB3378.eurprd03.prod.outlook.com>
+References: <baec7804-7057-ff5c-332b-03ddcdcc667d@gmail.com>
+ <45a8b584-11b1-8f24-40c2-5dcd031d9b50@gmail.com>
+In-Reply-To: <45a8b584-11b1-8f24-40c2-5dcd031d9b50@gmail.com>
+Accept-Language: da-DK, en-US
+Content-Language: da-DK
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 78e7feb4-895c-42b7-4b8d-08d7b907ef22
+x-ms-traffictypediagnostic: AM0PR0302MB3265:
+x-microsoft-antispam-prvs:
+ <AM0PR0302MB3265BCA3B3D7FAC611C61BCBC2EC0@AM0PR0302MB3265.eurprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-forefront-prvs: 032334F434
+x-forefront-antispam-report:
+ SFV:NSPM;SFS:(10019020)(4636009)(136003)(366004)(346002)(396003)(39860400002)(376002)(199004)(189003)(15974865002)(478600001)(33656002)(81156014)(81166006)(8676002)(186003)(7696005)(6916009)(26005)(8936002)(71200400001)(6506007)(66574012)(5660300002)(66556008)(64756008)(86362001)(66946007)(55016002)(66446008)(9686003)(76116006)(2906002)(52536014)(786003)(66476007)(316002)(88722002);DIR:OUT;SFP:1102;SCL:1;SRVR:AM0PR0302MB3265;H:AM0PR0302MB3378.eurprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ GJX+SCJadylZtjs6pcCDmWBMWpYloBMTA6VCVOOiHGbbiZNjACQ39zRQetS7QgG4ziFaB1qPZTnHrv7pZ1xCt48iLPtgEuvP9NihxD+vg5QLqQnnj2m8hTHUJ/MT94N7jgdHxqb7WSFpMhmIKekChTK82UTtAIqbi0UoO56B1c++dJwhBdt/fI2uhkam+Q6ygrY3wS4a8fXExAj4nj7F3K3siLPpEAfIC+MWQUWmCoJ9wfsezNrveSe0E7kWZ3zAjglx+QvFO5EnT3EQakJmpvnTolxQc/2HCHB8UgowTXGOu/dOO5aLRBhgRwA8+EY2Fw10eQGgmojcXpyF95vj4xGVNbdvZqPhf+NoLsAGiFTq71lbMuIOKpWrw8LHTkKKpMRTExT6umowhNg9/aJemNJ3qab3u8ECELqZvsHXTZ/MBiWBomJbERDf/3VtyEsAq/UKicEMZsslmWYv9sycnMm5WS2xEWc6p0WiynehpOG9WpOHT00M8GrSyUjFMfCrQPpCFo2hK6UkMuXudwhGKdNVHUZiPiRzgc5CkJa/V9zSX1IEJ7jRTEJCCa/R1gK0
+x-ms-exchange-antispam-messagedata:
+ 7yaiFo4iw4H7AQvmBt8fBzOhQo1hVT8/ryKfM/gZ8gBomvNkDljJA7nfaYWFDzIN+k8+eimgscFVep11iLGWX9q6G6Dk6kKMozqIDOvl0fdQJg8garAKTuyLI4VObkaA3TLrqaeuFCiP8XaJWXbDHQ==
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: kk.dk
+X-MS-Exchange-CrossTenant-Network-Message-Id: 78e7feb4-895c-42b7-4b8d-08d7b907ef22
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Feb 2020 09:00:02.2537
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 769058ab-4487-418f-8b6c-f4b48243edd7
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: XG+Wehrfr8gN+ZH8R8pCtx43NzijmvJlykPL/6SYy0ZFJuQX3eU7Xyibh5CdsdQE
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR0302MB3265
+X-TM-AS-GCONF: 00
+X-TM-AS-Product-Ver: IMSVA-9.1.0.1960-8.5.0.1020-25250.005
+X-TM-AS-Result: No--5.346-5.2-31-10
+X-imss-scan-details: No--5.346-5.2-31-10
+X-TM-AS-User-Approved-Sender: No
+X-TMASE-Version: IMSVA-9.1.0.1960-8.5.1020-25250.005
+X-TMASE-Result: 10--5.346200-10.000000
+X-TMASE-MatchedRID: sC7NAVKoukq7lLRf9p6rwX+1bJb67j8wCgIdNQhy5D2NwPZYYNDOhnUO
+	1xPh+yEJAfjPYDqM0jqyLWMOBEOR98sKBnSFMDtAbMGKOuLn5FWi7zn2xJwhihm/VYg8VWVIqAr
+	F25Umlq/tvclewH3KwDvBwC6mB+N75qv+IwkF63L/Te3t5cJMG1G+BHSGRsbgabJxhiIFjJlSAA
+	NZY4RuYzaTfMMuOeHXMYvDMilOBGSfF5DMP7R/Ln/HTU/OBaTGBufmGocTlvWbjm+7k2gs1HY+o
+	FbrqO/JfTyu4K3kGFPafDxGuwPzOD0EFHROi88oKIB05qyyyrmLExf24z1mzpsoi2XrUn/J82Dj
+	reUipnKusy8hI6iaOT2Xsf5MVCB1jaPj0W1qn0Q7AFczfjr/7DbmxfnJWpUS20n2cz2exERM7oP
+	jR5xHBYKxtRxzLGUZlF5kV+B8L4Y=
+X-TMASE-SNAP-Result: 1.821001.0001-0-2-1:0,12:0,22:0,33:0,34:0-0
+X-Antivirus: AVG (VPS 200223-0, 23-02-2020), Inbound message
+X-Antivirus-Status: Clean
+
+SGVqIEplbnMNCkRldCBtw6UgamVnIG5vayBzaWdlIDopKQ0KDQpNZWQgdmVubGlnIGhpbHNlbg0K
+DQoNCkJvIEFsc3RydXANCklLVC1rb25zdWxlbnQNCg0KDQpJQk9TIC0gSW5zdGl0dXR0ZXQgZm9y
+IEJsaW5kZSBvZyBTdmFnc3luZWRlDQpSeW1hcmtzdmVqIDEsIERLLTI5MDAgSGVsbGVydXANCis0
+NSAzOSA0NSAyNSA3MQ0KQ1g2NEBray5kaywgc2lra2VyIGUtbWFpbDogaWJvc0Bray5kaw0KDQoN
+Cg0KSUJPUyBlciBldCBuYXRpb25hbHQga29tcGV0ZW5jZS0gb2cgcmVoYWJpbGl0ZXJpbmdzY2Vu
+dGVyIGZvciBtZW5uZXNrZXIgbWVkIG5lZHNhdCBzeW4uDQpWaSBsw7hzZXIgZGV0IGtvbXBsaWNl
+cmVkZSwgc2thYmVyIGRldCBueWUgb2cgYXJiZWpkZXIgZm9yIGRldCBpbmtsdWRlcmVuZGUgc2Ft
+bWVuIG1lZCANCmJvcmdlcmUsIGtvbW11bmVyIG9nIHN5bnNwcm9mZXNzaW9uZWxsZSBpIGhlbGUg
+bGFuZGV0LiB3d3cuaWJvcy5kaw0KDQoNCg0KDQotLS0tLU9wcmluZGVsaWcgbWVkZGVsZWxzZS0t
+LS0tDQpGcmE6INCS0LvQsNC00LjRgdC70LDQsiDQkdGD0Y/Qu9GM0YHQutC40LkgPHZsYWRpc2xh
+di5idXlhbHNraUBnbWFpbC5jb20+IA0KU2VuZHQ6IDIzLiBmZWJydWFyIDIwMjAgMTM6MjUNClRp
+bDogQm8gQWxzdHJ1cCA8Q1g2NEBray5kaz4NCkVtbmU6IEhlbHAgd2l0aCB0cmFuc2xhdGlvbiBh
+bmQgdGVzdGluZyBJQk9TIE1VU0lDWE1MIFJFQURFUg0KDQpIZWxsby4NCk15IG5hbWUgaXMgVmxh
+ZGlzbGF2Lg0KSSBhbSBhIDR0aCB5ZWFyIHN0dWRlbnQgb2YgdGhlIEZhY3VsdHkgb2YgTXVzaWMg
+aW4gdGhlIGJ1dHRvbiBhY2NvcmRpb24gY2xhc3Mgb2YgdGhlIFJ1c3NpYW4gU3RhdGUgQWNhZGVt
+eSBvZiBBcnRzLCBNb3Njb3cuDQpJIGZvdW5kIG91dCBhYm91dCB5b3VyIGRldmVsb3BtZW50IHJh
+bmRvbWx5IGZyb20gdGhlIE11c2VTY29yZSBmb3J1bS4NCldoZW4gSSB0cmllZCB2ZXJzaW9uIDMu
+MCBJIHdhcyB2ZXJ5IGdsYWQgdGhhdCBzdWNoIGEgcHJvZ3JhbSBhcHBlYXJlZCB0aGF0IHdhcyBh
+YmxlIHRvIGNvbnZlcnQgbm90ZXMgdG8gYnJhaWxsZS4NCkJ1dCBJIHdhcyBhbHNvIHZlcnkgdXBz
+ZXQgdGhhdCB0aGUgZmluYW5jaW5nIG9mIHRoZSBwcm9qZWN0IGhhZCBjZWFzZWQuDQpZZXN0ZXJk
+YXkgSSBzYXcgdGhhdCB2ZXJzaW9uIDQuMCB3YXMgcHVibGlzaGVkIGFuZCBJIGFtIHZlcnkgaGFw
+cHkgdGhhdCB0aGUgcHJvamVjdCBpcyBhbGl2ZSENClRoaXMgcHJvZ3JhbSB3aWxsIGhlbHAgYWxs
+IGJsaW5kIG11c2ljaWFucyBleHBhbmQgdGhlaXIgcmVwZXJ0b2lyZS4NCk15IGNvbGxlYWd1ZXMg
+YW5kIEkgd2FudCB0byBoZWxwIHdpdGggdGhlIHRyYW5zbGF0aW9uIG9mIHRoZSBwcm9ncmFtIGFu
+ZCBhbGwgaGVscCBkb2N1bWVudHMgaW50byBSdXNzaWFuLg0KQW5kIGFsc28gd2Ugd2FudCB0byBo
+ZWxwIHdpdGggdGVzdGluZyB0aGUgcHJvZ3JhbSBvbiB0aGUgRm9jdXMgNDAvODAgQnJhaWxsZSBk
+aXNwbGF5LCB0aGUgRXZlcmVzdCA1IEJyYWlsbGUgcHJpbnRlciBhbmQgdGhlIE5WREEgc2NyZWVu
+IHJlYWRlciBXZSB3aWxsIGJlIHZlcnkgaGFwcHkgdG8gaGVscCENCg0KQmVzdCByZWdhcmRzLCBW
+bGFkaXNsYXYuDQoNCg0KDQotLSANCkRlbm5lIG1haWwgZXIga29udHJvbGxlcmV0IGZvciB2aXJh
+IGFmIEFWRy4NCmh0dHA6Ly93d3cuYXZnLmNvbQ0K

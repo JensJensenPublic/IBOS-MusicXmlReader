@@ -1,0 +1,21 @@
+Uddrag af ToDo listen til brug for ansøgning til Wroblewskis Fond.
+
+
+Bemærk: Punkt 464 er baseret på en fejlrapport fra Susanne Nolsø og indeholder flere underpunkter.
+
+
+449: Brugerinterface: Understøttelse af oktavnavne,ikke kun oktavnumre
+464: Generering af MusicBraille: Der slal altid være oktavtegn i første node efter bistemmenotation
+464: Generering af MusicBraille: Visse typer af buer mangler.
+464: Generelt: Der er problemer i skelnen mellem His og C, måske mellem enharmoniske toner generelt.
+464; Generering af MusicBraille: Opdeling af lange linier skal implementeres
+464: Generering af MusicBraille: Export af lyrik skal implementeres.
+467: Generelt: Rækkefølgen af stemme i en SATB sats skal altid være SATB uanset om er måtte forekomme stemmebyt.
+473: Generering af MusicBraille: Der skal altid vises Håndtegn foran Højre hånd og venstre hånd.
+474: Generering af MusicBraille: Erstat komplicerede sekvenser af lille bistemme i samme takt med en enkelt stor bistemme.
+475: Visning af MusicBraille: Også detaljevinduet skal vise Music Braille.
+477: Generering af MusicBraille: Et sammensat MusicBraille Symbol (Altså bestående af 2 eller flere tegn) må aldrig deles over to linier af <CR><LF> 
+479: Generering af MusicBraille: Fermat vises forkert
+480: Generering af MusicBraille: Hvis en takt deles over to linier skal der indsættes et henvisningstegn sidst i første linie.
+481: Generering af MusicBraille: Ved filer for TUTTI  skal det være muligt explicit at bestemme intervalretningen: Oppefra/nedefra
+482: Generelt: I distributionsfilen findes en række unødvendige eller forældede filer. Fjern dem fra distributionen.

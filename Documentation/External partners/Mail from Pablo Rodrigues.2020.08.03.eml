@@ -1,0 +1,455 @@
+Return-Path: <pdr2113@tc.columbia.edu>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe003.lytzenitmail.local ([100.127.30.102])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id +PBgKZ0wKF+wdgEAlE+V+A
+	(envelope-from <pdr2113@tc.columbia.edu>)
+	for <dsl248925@mail.jubii.dk>; Mon, 03 Aug 2020 17:43:25 +0200
+Received: from sv900pomx003.lytzenitmail.dk ([100.127.30.62])
+	by sv900ddwe003.lytzenitmail.local with LMTP
+	id KPbMKJ0wKF8fGAAA1csBbA
+	(envelope-from <pdr2113@tc.columbia.edu>)
+	for <dsl248925@mail.jubii.dk>; Mon, 03 Aug 2020 17:43:25 +0200
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.164])
+	by sv900pomx003.lytzenitmail.dk (Postfix) with ESMTPS id A46881757
+	for <holmeparken44@vip.cybercity.dk>; Mon,  3 Aug 2020 17:43:25 +0200 (CEST)
+Authentication-Results: mx01.lytzenitmail.dk; spf=Pass smtp.mailfrom=pdr2113@tc.columbia.edu
+Received-SPF: Pass (mx01.lytzenitmail.dk: domain of
+  pdr2113@tc.columbia.edu designates 209.85.216.49 as permitted
+  sender) identity=mailfrom; client-ip=209.85.216.49;
+  receiver=mx01.lytzenitmail.dk;
+  envelope-from="pdr2113@tc.columbia.edu";
+  x-sender="pdr2113@tc.columbia.edu"; x-conformance=spf_only;
+  x-record-type="v=spf1"; x-record-text="v=spf1
+  ip4:35.190.247.0/24 ip4:64.233.160.0/19 ip4:66.102.0.0/20
+  ip4:66.249.80.0/20 ip4:72.14.192.0/18 ip4:74.125.0.0/16
+  ip4:108.177.8.0/21 ip4:173.194.0.0/16 ip4:209.85.128.0/17
+  ip4:216.58.192.0/19 ip4:216.239.32.0/19 ~all"
+IronPort-PHdr: =?us-ascii?q?9a23=3A42mBEhyeVjs6hW7XCy+N+z0kezQntrPoPwUc9p?=
+ =?us-ascii?q?sgjfd0f7+++4j5YhyN4OU11RnNTJnJ5vRFl+/fsqSmVW9TqY2ZviU6eYdXHw?=
+ =?us-ascii?q?QAld1QmgUhBMCfDkiuNPLwNXVjR+xeXxlu+HWmNEJUEYDza0CL+C+I4DUfGw?=
+ =?us-ascii?q?vyOU9OHsqoRdGAt82szKjy/o2LOkNMlSavbLVzMBC/rAGXuspEyYdlL68wzF?=
+ =?us-ascii?q?POrB4qM6xOyXkyfAvItwr3oMy3+INm+SVZ/f8t6oZMXL77cKIxUbFDRG5+Yi?=
+ =?us-ascii?q?ZluYux7EeFEVrH72BUSmgMlxtUHwXJiXOyFoz8tCf3rKs12SWXO9H3UaFhXD?=
+ =?us-ascii?q?2j66lxTxq7wCwDNjM/7CTWkpkq1PMd8E/n/UUhhdKFM+T3fLJkc6jQfM0XXz?=
+ =?us-ascii?q?9ETp4IEShQHpGxaYoTCuMAOaBUrNqYxRNGoB2gCA2rHO6qxCVPgyq8xaEgib?=
+ =?us-ascii?q?14Sina10orGNYTtX7VpZP4OLpYAoXXhOHYiC7Oaf9bw2K38ITSKEl4+tmQVv?=
+ =?us-ascii?q?R7ds7MzEMuHkXIgkja+sT1ejiS0OoKqW2S6eFtAPm3hVkgrQVg8V3Njo88z5?=
+ =?us-ascii?q?PEjYUPxhXY5D10lcwrcMagRhcxMpa0VYFdvCaAO85qT9M+Fit27T0ixORj29?=
+ =?us-ascii?q?bzfTBWms96gUeOM7rdL9fOulW5CK6QOWsq2i4jIunkwU/sqQ74jbStHsisjA?=
+ =?us-ascii?q?QU8GwcyoOK7jZVkEaLj6rPAvplohX/h3DVi1GVurkCeQduzeLaM8JzneR2z8?=
+ =?us-ascii?q?ZV6BWZWHexwRW+jbfKJBp4vLHytqK/JO2h/8H5Vcc8ixmiYP12yormXrt+Yk?=
+ =?us-ascii?q?5WGDLCseWkiO+6oha/GeQWyKVwyu6A7tjbPZhJ/PboRV8IlN95u1DnSG75tb?=
+ =?us-ascii?q?ZQ1XgfcAAfIUzB0tivYgCUZqi/VKb3gkzwwm0ymbacZeynWc+Ldj+awf/3dL?=
+ =?us-ascii?q?J5oRcNmjp29shW4tdvMp9EJfvyXkHrs9mBUU0lOEq/xOL6Dd9838UTVX/dW6?=
+ =?us-ascii?q?I=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A0BcAgB7LyhfgDHYVdFcBIN2WCgxRVQ?=
+ =?us-ascii?q?kBwgshDWBHI43CQaBMwSBApJ1hi6BaQIJAQEBAQEBAQEBAwEEJwgEAQGBVoJ?=
+ =?us-ascii?q?2AoI6AiMBOBMCEAEBAQQBAQECAQMDBBQBAQkNCQgnhWUMhXIBAQECAQUBDBE?=
+ =?us-ascii?q?CCRIBAQcwAQQLCQILAw8BAiICAgIFEAsEDgEFARwGEgEUAgyCTjYBglcFIA+?=
+ =?us-ascii?q?WSY8RgQQ9iyiBMoMBAQEFhXkJZ1YHCRKBDxeDHYIlEjmBc4UOgROBB4ERNoF?=
+ =?us-ascii?q?cEjc1PoJcAQIBFAOBEQERAgEUFQ4WDoJbF4JJgUcBAQGOHIs5j3GDDQKHcgE?=
+ =?us-ascii?q?GAgKCYYcTAk1/kSghgnyJTYwChy+cWYhihzwoBoEjgxsPI4FHgQpwcn8GZ4E?=
+ =?us-ascii?q?TCi4JRxkNVpE6TR2KCCgwAjUCBgEHAQEDCZBOAQE?=
+X-IPAS-Result: =?us-ascii?q?A0BcAgB7LyhfgDHYVdFcBIN2WCgxRVQkBwgshDWBHI43C?=
+ =?us-ascii?q?QaBMwSBApJ1hi6BaQIJAQEBAQEBAQEBAwEEJwgEAQGBVoJ2AoI6AiMBOBMCE?=
+ =?us-ascii?q?AEBAQQBAQECAQMDBBQBAQkNCQgnhWUMhXIBAQECAQUBDBECCRIBAQcwAQQLC?=
+ =?us-ascii?q?QILAw8BAiICAgIFEAsEDgEFARwGEgEUAgyCTjYBglcFIA+WSY8RgQQ9iyiBM?=
+ =?us-ascii?q?oMBAQEFhXkJZ1YHCRKBDxeDHYIlEjmBc4UOgROBB4ERNoFcEjc1PoJcAQIBF?=
+ =?us-ascii?q?AOBEQERAgEUFQ4WDoJbF4JJgUcBAQGOHIs5j3GDDQKHcgEGAgKCYYcTAk1/k?=
+ =?us-ascii?q?SghgnyJTYwChy+cWYhihzwoBoEjgxsPI4FHgQpwcn8GZ4ETCi4JRxkNVpE6T?=
+ =?us-ascii?q?R2KCCgwAjUCBgEHAQEDCZBOAQE?=
+X-IronPort-AV: E=Sophos;i="5.75,430,1589234400"; 
+   d="png'150?scan'150,208,217,150";a="119726826"
+Received: from mail-pj1-f49.google.com ([209.85.216.49])
+  by mx01.lytzenitmail.dk with ESMTP/TLS/AES128-GCM-SHA256; 03 Aug 2020 17:43:25 +0200
+Received: by mail-pj1-f49.google.com with SMTP id c10so153432pjn.1
+        for <holmeparken44@vip.cybercity.dk>; Mon, 03 Aug 2020 08:43:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tc.columbia.edu; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RZjI3/MtRq/q38/PUQ7HVLsWE+YxxeW9bjkmsjqsT+Q=;
+        b=CC/K5Q91IUVTDu/z2Y+Pjo/c9d/Cf0fdw2LqHsAgAEJ5TOmvcbOR88gjXMX3JIGv3V
+         msoJMzrw6tq9gkSRHfXM8bkkUE7DMsnxswkfxnqg2CjW+9efzZkJFZD60J+kBazBCp48
+         vFBLna6e9xyTXk62lFhV0D43jpkKUyHJ54VoagBfKCiNsh3qWmMfjAHNWU9g8OoIK+Vp
+         DmMlEHmeS5cP4EYP7vr1xcOxTLLlaVGogX6HNqq5LG/yFr/SQnnTb3shkU1M5PhTZJrN
+         4pcnGhjx/pl5bLnOdGvcN0JbclW9r35G4mMbwLkcXPYhadVDH2Th0hV3Swbs2cmqElte
+         gZwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RZjI3/MtRq/q38/PUQ7HVLsWE+YxxeW9bjkmsjqsT+Q=;
+        b=SIWFI1HPt06/YXTIBAke23RmxJ5dqDQTZQDCUwg9rCDRj8+a4pqup95oiyz+FsMLDt
+         lDorkb3k0vT7juUep6ttu/6HGr1feCcCfpGnPiHX1cHchnVA/jOuTNmUHMSDS+SCkrUv
+         6jxWBXgl0H3r+GWwoKGMyOibuV/1XwlUARHuMuLYV/yprv0wLCc4fGtiSir/5lT1N8bu
+         ThBNkBbNfoPmUmUQptvPTraoV+SxweMWmCQyLfBo9a23YmUquI9+BmkVArDDp6S/SnOF
+         PUA7JUidbS+qZt2U1ppb8XuUqtInTldKvWYrPuW1JEaus0/3YxrF1xZgWXJs5c6O6ArC
+         nFrQ==
+X-Gm-Message-State: AOAM533reCxWvRC3FQwemeHnhbtjTC8wVJ8s5c+4xlvpw5fWuECmgAKg
+	r4wVkit9lHe2h+6PqUlamBtZCgCnGtN8/gPj+cWlteBXoy8=
+X-Google-Smtp-Source: ABdhPJyNrU3j+QXBUgW49ptylIHZ7O3wPEBMOU32AVaoPqg+K2nVKA7K/0fDKsORovd2Gl50TVngTEp3m7meYrXbRTw=
+X-Received: by 2002:a17:902:8491:: with SMTP id c17mr15116102plo.262.1596469402036;
+ Mon, 03 Aug 2020 08:43:22 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAD-EQmmybMMYM8ocb2kxWhKc2GePV6OjTMKFiH25jjs0NvZTYg@mail.gmail.com>
+ <AM0PR0302MB33783A7494459BB0A42D23B7C24D0@AM0PR0302MB3378.eurprd03.prod.outlook.com>
+In-Reply-To: <AM0PR0302MB33783A7494459BB0A42D23B7C24D0@AM0PR0302MB3378.eurprd03.prod.outlook.com>
+From: "Rodriguez-Aedo, PabloDomingo" <pdr2113@tc.columbia.edu>
+Date: Mon, 3 Aug 2020 11:39:30 -0400
+Message-ID: <CAD-EQmk+bWMgsJYq-tO3Y+q=A7LctRmN_KNBYH6_qOgzo=JWHw@mail.gmail.com>
+Subject: Re: I can help with your software guys
+To: Bo Alstrup <CX64@kk.dk>
+Cc: Jens Sundgaard <holmeparken44@vip.cybercity.dk>
+Content-Type: multipart/related; boundary="0000000000009b6e1d05abfaff08"
+X-Antivirus: AVG (VPS 200808-4, 08-08-2020), Inbound message
+X-Antivirus-Status: Clean
+
+--0000000000009b6e1d05abfaff08
+Content-Type: multipart/alternative; boundary="0000000000009b6e1c05abfaff07"
+
+--0000000000009b6e1c05abfaff07
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Great,
+
+Thank you so much for considering my offer.
+I hope I can help. Let's see how that goes first.
+However, also, please keep in mind that I work in a school for the blind
+located in Manhattan, NY, USA., I actually teach Braille Music, I mean, I
+know the Music Braille Code and I might help you with the musical syntax
+issues of your program (spelling chord by intervals, not being able to
+export notation bar-overbar notation, not being able to export 'braille
+unicode patterns', etc).
+
+Your software is by far the closest to the Dancing Dots suite, but you are
+not making any obscene profit out of the blind community, this is what I
+like the most of your project and it would be an honor to work with you!
+
+Best,
+Pablo
+
+<https://www.avast.com/sig-email?utm_medium=3Demail&utm_source=3Dlink&utm_c=
+ampaign=3Dsig-email&utm_content=3Dwebmail&utm_term=3Dicon>
+Virus-free.
+www.avast.com
+<https://www.avast.com/sig-email?utm_medium=3Demail&utm_source=3Dlink&utm_c=
+ampaign=3Dsig-email&utm_content=3Dwebmail&utm_term=3Dlink>
+<#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2>
+
+On Mon, Aug 3, 2020 at 11:14 AM Bo Alstrup <CX64@kk.dk> wrote:
+
+>                       Hola Pablo
+>
+> Thank you very much for your kind mail and your interest. We are very
+> interested in your help and I have cc=E2=80=99d your mail to our programm=
+er.
+>
+> We already have a procedure to integrate new languages in our IBOS
+> musicreadeer. It does not require programming skills.
+>
+> once we have the translation of the phrases they can be included in the
+> existing programme.
+>
+> I am sure that the Spanish speaking musicians will benefit when they get
+> the chance.
+>
+> Looking forward to working with you.
+>
+> Once again
+>
+> Muchisimas gracias por tu inter=C3=A9s.
+>
+>
+>
+> Saludos
+>
+>
+>
+>
+>
+> *Bo Alstrup*
+>
+> IKT-konsulent
+>
+>
+>
+>
+>
+> IBOS - Instituttet for Blinde og Svagsynede
+>
+> Rymarksvej 1, DK-2900 Hellerup
+>
+> +45 39 45 25 71
+>
+> CX64@kk.dk <CX64@sof.kk.dk>, sikker e-mail: ibos@kk.dk
+>
+>
+>
+> [image: Billede af IBOS logo]
+>
+>
+>
+> IBOS er et nationalt kompetence- og rehabiliteringscenter for mennesker
+> med nedsat syn.
+>
+> Vi l=C3=B8ser det komplicerede, skaber det nye og arbejder for det inklud=
+erende
+> sammen med
+>
+> borgere, kommuner og synsprofessionelle i hele landet. www.ibos.dk
+>
+>
+>
+> [image: Billede af K=C3=B8benhavns Kommunes Logo]
+>
+>
+>
+>
+>
+> *Fra:* Rodriguez-Aedo, PabloDomingo <pdr2113@tc.columbia.edu>
+> *Sendt:* 30. juli 2020 08:01
+> *Til:* Bo Alstrup <CX64@kk.dk>
+> *Emne:* I can help with your software guys
+>
+>
+>
+> Hello,
+>
+> This is Pablo from Chile. I am currently in NYC finishing my doctorate in=
+
+> Music and Music Education. Guys, I found your app just fascinating, and I=
+
+> wonder if maybe I can help with that. What you have developed so far
+> promises to be by far the best "score dictator", which is something that
+> the community of blind music transcribers need desperately nowadays so th=
+ey
+> don't depend on sighted people to do their jobs.
+>
+> Please let me know if I can help, translating your software and the music=
+
+> terms you use to spanish, I am not a programmer though, but I know
+> everything about music and braille.
+>
+> Thanks
+> Pablo Rodriguez
+>
+
+<https://www.avast.com/sig-email?utm_medium=3Demail&utm_source=3Dlink&utm_c=
+ampaign=3Dsig-email&utm_content=3Dwebmail&utm_term=3Dicon>
+Virus-free.
+www.avast.com
+<https://www.avast.com/sig-email?utm_medium=3Demail&utm_source=3Dlink&utm_c=
+ampaign=3Dsig-email&utm_content=3Dwebmail&utm_term=3Dlink>
+<#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2>
+
+
+-- 
+Denne mail er kontrolleret for vira af AVG.
+http://www.avg.com
+
+--0000000000009b6e1c05abfaff07
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Great,<br><br>Thank you so much for considering my offer.<=
+br>I hope I can help. Let&#39;s see how that goes first.=C2=A0<br>However, =
+also, please keep in mind that I work in a school for the blind located in =
+Manhattan, NY, USA., I actually teach Braille Music, I mean, I know the Mus=
+ic Braille Code and I might help you with the musical syntax issues of your=
+ program (spelling chord by intervals, not being able to export notation ba=
+r-overbar notation, not being able to export &#39;braille unicode patterns&=
+#39;, etc). <br><br>Your software is by far the closest to the Dancing Dots=
+ suite, but you are not making any obscene profit out of the blind communit=
+y, this is what I like the most of your project and it would be an honor to=
+ work with you!<br><br>Best,<br>Pablo</div><div id=3D"DAB4FAD8-2DD7-40BB-A1=
+B8-4E2AA1F9FDF2"><br>
+<table style=3D"border-top:1px solid #d3d4de">
+	<tr>
+        <td style=3D"width:55px;padding-top:13px"><a href=3D"https://www.av=
+ast.com/sig-email?utm_medium=3Demail&amp;utm_source=3Dlink&amp;utm_campaign=
+=3Dsig-email&amp;utm_content=3Dwebmail&amp;utm_term=3Dicon" target=3D"_blan=
+k"><img src=3D"https://ipmcdn.avast.com/images/icons/icon-envelope-tick-rou=
+nd-orange-animated-no-repeat-v1.gif" alt=3D"" width=3D"46" height=3D"29" st=
+yle=3D"width: 46px; height: 29px;"></a></td>
+		<td style=3D"width:470px;padding-top:12px;color:#41424e;font-size:13px;fo=
+nt-family:Arial,Helvetica,sans-serif;line-height:18px">Virus-free. <a href=
+=3D"https://www.avast.com/sig-email?utm_medium=3Demail&amp;utm_source=3Dlin=
+k&amp;utm_campaign=3Dsig-email&amp;utm_content=3Dwebmail&amp;utm_term=3Dlin=
+k" target=3D"_blank" style=3D"color:#4453ea">www.avast.com</a>
+		</td>
+	</tr>
+</table><a href=3D"#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2" width=3D"1" heigh=
+t=3D"1"></a></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Mon, Aug 3, 2020 at 11:14 AM Bo Alstrup &lt;<a href=3D"mailt=
+o:CX64@kk.dk">CX64@kk.dk</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"DA">
+<div class=3D"gmail-m_8269218880952001062WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Arial,sans=
+-serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Hola Pablo<u><=
+/u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12pt;font-fa=
+mily:Arial,sans-serif">Thank you very much for your kind mail and your inte=
+rest. We are very interested in your help and I have cc=E2=80=99d your mail=
+ to our programmer.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12pt;font-fa=
+mily:Arial,sans-serif">We already have a procedure to integrate new languag=
+es in our IBOS musicreadeer. It does not require programming skills.<u></u>=
+<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12pt;font-fa=
+mily:Arial,sans-serif">once we have the translation of the phrases they can=
+ be included in the existing programme.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12pt;font-fa=
+mily:Arial,sans-serif">I am sure that the Spanish speaking musicians will b=
+enefit when they get the chance.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12pt;font-fa=
+mily:Arial,sans-serif">Looking forward to working with you.<u></u><u></u></=
+span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12pt;font-fa=
+mily:Arial,sans-serif">Once again<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12pt;font-fa=
+mily:Arial,sans-serif">Muchisimas gracias por tu inter=C3=A9s.<u></u><u></u=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:12pt;font-fa=
+mily:Arial,sans-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Arial,sa=
+ns-serif">Saludos<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif"><u></u>=
+=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif"><u></u>=
+=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:Arial,sans-serif">Bo A=
+lstrup</span></b><span style=3D"font-family:Arial,sans-serif"><u></u><u></u=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Arial,sa=
+ns-serif">IKT-konsulent<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Arial,sa=
+ns-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Arial,sa=
+ns-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Arial,sa=
+ns-serif">IBOS - Instituttet for Blinde og Svagsynede<u></u><u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Arial,sa=
+ns-serif">Rymarksvej 1, DK-2900 Hellerup<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Arial,sa=
+ns-serif">+45 39 45 25 71<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Arial,sa=
+ns-serif"><a href=3D"mailto:CX64@sof.kk.dk" target=3D"_blank"><span style=
+=3D"color:blue">CX64@kk.dk</span></a>, sikker e-mail:
+<a href=3D"mailto:ibos@kk.dk" target=3D"_blank"><span style=3D"color:blue">=
+ibos@kk.dk</span></a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Arial,sa=
+ns-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><u></u><img width=3D"240" height=3D"92" style=3D"wid=
+th: 2.5in; height: 0.9583in;" src=3D"cid:173b4f144274cff311" alt=3D"Billede=
+ af IBOS logo"><u></u><span style=3D"font-size:10.5pt;font-family:Arial,san=
+s-serif"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Arial,sa=
+ns-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Arial,sa=
+ns-serif">IBOS er et nationalt kompetence- og rehabiliteringscenter for men=
+nesker med nedsat syn.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Arial,sa=
+ns-serif">Vi l=C3=B8ser det komplicerede, skaber det nye og arbejder for de=
+t inkluderende sammen med
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Arial,sa=
+ns-serif">borgere, kommuner og synsprofessionelle i hele landet.
+<a href=3D"http://www.ibos.dk/" target=3D"_blank"><span style=3D"color:blue=
+">www.ibos.dk</span></a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Arial,sa=
+ns-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><u></u><img width=3D"180" height=3D"61" style=3D"wid=
+th: 1.875in; height: 0.6354in;" src=3D"cid:173b4f144275b16b22" alt=3D"Bille=
+de af K=C3=B8benhavns Kommunes Logo"><u></u><span style=3D"font-size:10.5pt=
+;font-family:Arial,sans-serif"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif"><u></u>=
+=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Arial,sans=
+-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><b>Fra:</b> Rodriguez-Aedo, PabloDomingo &lt;<a href=
+=3D"mailto:pdr2113@tc.columbia.edu" target=3D"_blank">pdr2113@tc.columbia.e=
+du</a>&gt;
+<br>
+<b>Sendt:</b> 30. juli 2020 08:01<br>
+<b>Til:</b> Bo Alstrup &lt;<a href=3D"mailto:CX64@kk.dk" target=3D"_blank">=
+CX64@kk.dk</a>&gt;<br>
+<b>Emne:</b> I can help with your software guys<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal" style=3D"line-height:15pt">Hello,<br>
+<br>
+This is Pablo from Chile. I am currently in NYC finishing my doctorate in M=
+usic and Music Education. Guys, I found your app just fascinating, and I wo=
+nder if maybe I can help with that. What you have developed so far promises=
+ to be by far the best &quot;score dictator&quot;,
+ which is something that the community of blind music transcribers need des=
+perately=C2=A0nowadays so=C2=A0they don&#39;t depend on sighted people to d=
+o their=C2=A0jobs.<br>
+<br>
+Please let me know if I can help, translating your software and the music t=
+erms you use to spanish, I am not a programmer though, but I know everythin=
+g about music and braille.<br>
+<br>
+Thanks<br>
+Pablo Rodriguez<u></u><u></u></p>
+</div>
+</div>
+</div>
+
+</blockquote></div><div id=3D"DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2"><br>
+<table style=3D"border-top:1px solid #d3d4de">
+	<tr>
+        <td style=3D"width:55px;padding-top:13px"><a href=3D"https://www.av=
+ast.com/sig-email?utm_medium=3Demail&amp;utm_source=3Dlink&amp;utm_campaign=
+=3Dsig-email&amp;utm_content=3Dwebmail&amp;utm_term=3Dicon" target=3D"_blan=
+k"><img src=3D"https://ipmcdn.avast.com/images/icons/icon-envelope-tick-rou=
+nd-orange-animated-no-repeat-v1.gif" alt=3D"" width=3D"46" height=3D"29" st=
+yle=3D"width: 46px; height: 29px;"></a></td>
+		<td style=3D"width:470px;padding-top:12px;color:#41424e;font-size:13px;fo=
+nt-family:Arial,Helvetica,sans-serif;line-height:18px">Virus-free. <a href=
+=3D"https://www.avast.com/sig-email?utm_medium=3Demail&amp;utm_source=3Dlin=
+k&amp;utm_campaign=3Dsig-email&amp;utm_content=3Dwebmail&amp;utm_term=3Dlin=
+k" target=3D"_blank" style=3D"color:#4453ea">www.avast.com</a>
+		</td>
+	</tr>
+</table><a href=3D"#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2" width=3D"1" heigh=
+t=3D"1"></a></div>
+
+--0000000000009b6e1c05abfaff07--
+--0000000000009b6e1d05abfaff08
+Content-Type: image/png; name="image001.png"
+Content-Disposition: inline; filename="image001.png"
+Content-Transfer-Encoding: base64
+Content-ID: <173b4f144274cff311>
+X-Attachment-Id: 173b4f144274cff311
+
+iVBORw0KGgoAAAANSUhEUgAAAPAAAABcCAMAAABnVcg1AAAAAXNSR0ICQMB9xQAAAANQTFRFAAAA
+p3o92gAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAE1p
+Y3Jvc29mdCBPZmZpY2V/7TVxAAAAK0lEQVR42u3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAA
+AAAAAAAA8GZWnAABk88VkQAAAABJRU5ErkJggg==
+--0000000000009b6e1d05abfaff08
+Content-Type: image/png; name="image002.png"
+Content-Disposition: inline; filename="image002.png"
+Content-Transfer-Encoding: base64
+Content-ID: <173b4f144275b16b22>
+X-Attachment-Id: 173b4f144275b16b22
+
+iVBORw0KGgoAAAANSUhEUgAAALQAAAA9CAMAAAAzrLMQAAAAAXNSR0ICQMB9xQAAAANQTFRFAAAA
+p3o92gAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAE1p
+Y3Jvc29mdCBPZmZpY2V/7TVxAAAAIUlEQVRo3u3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAcGSsh
+AAFCkaHrAAAAAElFTkSuQmCC
+--0000000000009b6e1d05abfaff08--

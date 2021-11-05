@@ -1,0 +1,8 @@
+Filen "Emner til Wroblewskis fond.txt" er en liste over mulige emner for en ansøgning til Wroblewskis Fond, efterår 2020 for implementering af version 5.0
+
+Emnerne er udvalgt fra:
+C:\Users\Jens\Dropbox\Visual Studio 2015\Solutions\Tactile MusicXmlReader\Documentation\TODo liste. Gældende version.xls
+
+Denne liste kan vedligeholdes hér i Tactile solution'en og sendes videre til Bo med passend mellemrum.
+
+

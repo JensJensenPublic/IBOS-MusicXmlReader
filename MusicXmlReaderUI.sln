@@ -209,6 +209,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ru-RU", "ru-RU", "{CC42C5D1
 		External Localization\ru-RU\ResourcesForUI.ru-RU.xls = External Localization\ru-RU\ResourcesForUI.ru-RU.xls
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mails from external partners", "Mails from external partners", "{E3B5D502-F5EC-4468-AF2C-78DC19D85093}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\External partners\Egen mail omhandlende Mark Sabatella og Musescore forum.eml = Documentation\External partners\Egen mail omhandlende Mark Sabatella og Musescore forum.eml
+		Documentation\External partners\External partners.docx = Documentation\External partners\External partners.docx
+		Documentation\External partners\Mail from Corinne and Bert 2020.01.29.eml = Documentation\External partners\Mail from Corinne and Bert 2020.01.29.eml
+		Documentation\External partners\Mail from Corinne and Bert 2020.02.24.eml = Documentation\External partners\Mail from Corinne and Bert 2020.02.24.eml
+		Documentation\External partners\Mail from David Loberg Code.2020.12.xx.eml = Documentation\External partners\Mail from David Loberg Code.2020.12.xx.eml
+		Documentation\External partners\Mail from Henning Pedersen Hundested 2021.03.25.eml = Documentation\External partners\Mail from Henning Pedersen Hundested 2021.03.25.eml
+		Documentation\External partners\Mail from Pablo Rodrigues.2020.08.03.eml = Documentation\External partners\Mail from Pablo Rodrigues.2020.08.03.eml
+		Documentation\External partners\Mail from Theo van der Greft.2020.09.07.eml = Documentation\External partners\Mail from Theo van der Greft.2020.09.07.eml
+		Documentation\External partners\Mail from Theo van der Greft.2020.10.01.eml = Documentation\External partners\Mail from Theo van der Greft.2020.10.01.eml
+		Documentation\External partners\Mail from Vladislaw Buyalski.2020.02.23.eml = Documentation\External partners\Mail from Vladislaw Buyalski.2020.02.23.eml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Materiale til brug ved fondsansøgninger", "Materiale til brug ved fondsansøgninger", "{80127C2C-AB28-4873-8243-11ED5C63EDBD}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Materiale til brug ved fondsansøgninger\Ansøgning Johan Otto Wroblewskis Legat KHA2.docx = Documentation\Materiale til brug ved fondsansøgninger\Ansøgning Johan Otto Wroblewskis Legat KHA2.docx
+		Documentation\Materiale til brug ved fondsansøgninger\Emner til Wroblewski Fond.ReadMe.txt = Documentation\Materiale til brug ved fondsansøgninger\Emner til Wroblewski Fond.ReadMe.txt
+		Documentation\Materiale til brug ved fondsansøgninger\Emner til Wroblewski Fond.txt = Documentation\Materiale til brug ved fondsansøgninger\Emner til Wroblewski Fond.txt
+		Documentation\Materiale til brug ved fondsansøgninger\Susanne Nolsøes Udkast Bilag til Johns referat møde om ibos nodelæser prioritering af arbejdsindsats 26 februar 2021.docx = Documentation\Materiale til brug ved fondsansøgninger\Susanne Nolsøes Udkast Bilag til Johns referat møde om ibos nodelæser prioritering af arbejdsindsats 26 februar 2021.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -468,5 +490,7 @@ Global
 		{7F826991-DD7B-45CA-8D5C-F3CF81676604} = {2FD59EAC-45B9-47D1-996B-451A5CD77E3B}
 		{8A61E204-30A4-4D7F-BE0F-E0416E9E5309} = {2FD59EAC-45B9-47D1-996B-451A5CD77E3B}
 		{CC42C5D1-FC48-472D-BFE8-2B90F05DBFFA} = {2FD59EAC-45B9-47D1-996B-451A5CD77E3B}
+		{E3B5D502-F5EC-4468-AF2C-78DC19D85093} = {1B62366B-E595-454C-846D-E36240015490}
+		{80127C2C-AB28-4873-8243-11ED5C63EDBD} = {1B62366B-E595-454C-846D-E36240015490}
 	EndGlobalSection
 EndGlobal

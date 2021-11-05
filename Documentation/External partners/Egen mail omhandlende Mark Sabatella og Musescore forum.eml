@@ -1,0 +1,400 @@
+Return-Path: <prvs=31699ba03=holmeparken44@vip.cybercity.dk>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe003.lytzenitmail.local ([100.127.30.102])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id MIYGAiS8U17KRgEAlE+V+A
+	(envelope-from <prvs=31699ba03=holmeparken44@vip.cybercity.dk>)
+	for <dsl248925@mail.jubii.dk>; Mon, 24 Feb 2020 13:05:56 +0100
+Received: from sv900pomx003.lytzenitmail.dk ([100.127.30.62])
+	by sv900ddwe003.lytzenitmail.local with LMTP
+	id WKxKASS8U16JEAAA1csBbA
+	(envelope-from <prvs=31699ba03=holmeparken44@vip.cybercity.dk>)
+	for <dsl248925@mail.jubii.dk>; Mon, 24 Feb 2020 13:05:56 +0100
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.171])
+	by sv900pomx003.lytzenitmail.dk (Postfix) with ESMTPS id 009A41FB7
+	for <holmeparken44@vip.cybercity.dk>; Mon, 24 Feb 2020 13:05:55 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2BNNAARu1Ne/ykef2RlHAEBAQEBBwE?=
+ =?us-ascii?q?BEQEEBAEBgXuBJYEEbA8cKiASZoNYiQOGBVIBAQaBRoRchQaBPoN6AYJGiU0?=
+ =?us-ascii?q?JAQEBAQEBAQEBAwEXEAoCBAEBgUyFAyQ4EwIQAQEBBQEBAQEBBQRthGtMDIV?=
+ =?us-ascii?q?yG2EKEzUCBFsBGgkFgxGBfVkWDwQBCqwwgTIaAooFCgaBOIFTilGBE4EHgRF?=
+ =?us-ascii?q?Hgh8BgiuBIwKEdjKCLASBPwEBliWYLwEGAgKCJRcEeYJzgjuBJox7gi4VAo8?=
+ =?us-ascii?q?PA4wMhlSIGASHZ4EVlFwiSwIBARJ3gghWgU8qARECERiSHYpWQIFcjhYBAQ?=
+X-IPAS-Result: =?us-ascii?q?A2BNNAARu1Ne/ykef2RlHAEBAQEBBwEBEQEEBAEBgXuBJ?=
+ =?us-ascii?q?YEEbA8cKiASZoNYiQOGBVIBAQaBRoRchQaBPoN6AYJGiU0JAQEBAQEBAQEBA?=
+ =?us-ascii?q?wEXEAoCBAEBgUyFAyQ4EwIQAQEBBQEBAQEBBQRthGtMDIVyG2EKEzUCBFsBG?=
+ =?us-ascii?q?gkFgxGBfVkWDwQBCqwwgTIaAooFCgaBOIFTilGBE4EHgRFHgh8BgiuBIwKEd?=
+ =?us-ascii?q?jKCLASBPwEBliWYLwEGAgKCJRcEeYJzgjuBJox7gi4VAo8PA4wMhlSIGASHZ?=
+ =?us-ascii?q?4EVlFwiSwIBARJ3gghWgU8qARECERiSHYpWQIFcjhYBAQ?=
+X-IronPort-AV: E=Sophos;i="5.70,480,1574118000"; 
+   d="xml'?rels'?docx'72,48?scan'72,48,72,217,208,48";a="4520021"
+Received: from unknown (HELO sv900pomx008.lytzenitmail.dk) ([100.127.30.41])
+  by mx01.lytzenitmail.dk with ESMTP; 24 Feb 2020 13:05:55 +0100
+Received: from JensesHP17 (077213203249.dynamic.telenor.dk [77.213.203.249])
+	by sv900pomx008.lytzenitmail.dk (Postfix) with ESMTPSA id EE96B298;
+	Mon, 24 Feb 2020 13:05:54 +0100 (CET)
+Message-ID: <E7A7B0D78FB04BA1B35C4B5E9187A17C@JensesHP17>
+From: "Jens Sundgaard" <holmeparken44@vip.cybercity.dk>
+To: "Bo Alstrup" <bo@c2tal.dk>,
+	"Bo Alstrup" <CX64@kk.dk>
+Subject: Musescore forum
+Date: Mon, 24 Feb 2020 13:05:54 +0100
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----=_NextPart_000_0044_01D5EB13.25726E60"
+X-Priority: 3
+X-MSMail-Priority: Normal
+Importance: Normal
+X-Mailer: Microsoft Windows Live Mail 16.4.3528.331
+X-MimeOLE: Produced By Microsoft MimeOLE V16.4.3528.331
+X-Antivirus: AVG (VPS 200223-0, 23-02-2020), Inbound message
+X-Antivirus-Status: Clean
+
+Dette er en flerdelt meddelelse i MIME-format.
+
+------=_NextPart_000_0044_01D5EB13.25726E60
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_0045_01D5EB13.25726E60"
+
+
+------=_NextPart_001_0045_01D5EB13.25726E60
+Content-Type: text/plain;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hej Bo
+
+Jeg har vedh=C3=A6ftet et par klip fra det lukkede MuseScore Forum, jeg n=
+=C3=A6vnte.
+
+I =C3=A9t af dem st=C3=A5r bl. a.
+
+(Citat)
+But to me, the interesting thing about the IBOS utility is its interactiven=
+ess, the way it will let you browse measure by measures, instrument by inst=
+rument, etc, and hear playback too.
+
+I downloaded and gave it a brief try, seems extremely promising. 
+
+(Citat slut)
+
+
+
+Og s=C3=A5 her jeg Googlet Mark Sabatella, som skriver de p=C3=A6ne ord. Ha=
+n er tilsyneladende chef for MuseScores undervisningsafdeling: 
+
+https://masteringmusescore.com/author/marcsabatella/
+
+indeholder bl.a f=C3=B8lgende:
+
+=E2=80=9CColorado-based musician Marc Sabatella is Director of Education fo=
+r MuseScore. A long-time contributor to the project, he is one of the devel=
+opers of the software and the author of the comprehensive resource Masterin=
+g MuseScore, offered as an online course, a paperback available in both Eng=
+lish and French, and a Kindle edition. He has been been a pioneer in online=
+ teaching since the dawn of the world wide web, and his Jazz Improvisation =
+Primer was one of the very first music education sites ever to appear on th=
+e Internet.=E2=80=9D
+
+S=C3=A5 han er fra Colorado og osse jazz-musiker. Jeg havde godt s=C3=A9t a=
+t der ogs=C3=A5 var en jazz-musiker med samme navn, men havde ikke fanget, =
+at det tilsyneladende er =C3=A9n og samme person!
+
+H=C3=A9r er hans LinkedIn profil:
+
+https://www.linkedin.com/in/marc-sabatella-bb799a140
+
+
+S=C3=A5 han er da vist ikke en hr. hvemsomhelst..
+
+mvh Jens
+
+-- 
+Denne mail er kontrolleret for vira af AVG.
+http://www.avg.com
+
+------=_NextPart_001_0045_01D5EB13.25726E60
+Content-Type: text/html;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<HTML><HEAD></HEAD>
+<BODY dir=3Dltr>
+<DIV dir=3Dltr>
+<DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: #000000">
+<DIV>Hej Bo</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Jeg har vedh=C3=A6ftet et par klip fra det lukkede MuseScore Forum, je=
+g 
+n=C3=A6vnte.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>I =C3=A9t af dem st=C3=A5r bl. a.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>(Citat)</DIV>
+<P class=3Dwestern 
+style=3D"MARGIN-BOTTOM: 0cm; ORPHANS: 2; WIDOWS: 2; LINE-HEIGHT: 12pt" 
+align=3Dleft><SPAN><FONT style=3D"COLOR: #454545"><SPAN 
+style=3D"LETTER-SPACING: normal"><FONT style=3D'face: "Open' Sans, Helvetic=
+a, Arial, 
+sans-serif?><FONT style=3D"size: 2"><SPAN><SPAN>But to me, the interesting =
+thing 
+about the IBOS utility is its interactiveness, the way it will let you brow=
+se 
+measure by measures, instrument by instrument, etc, and hear playback 
+too.</SPAN></SPAN></SPAN></FONT></FONT></FONT></SPAN></P>
+<P class=3Dwestern 
+style=3D"MARGIN-BOTTOM: 0cm; ORPHANS: 2; WIDOWS: 2; LINE-HEIGHT: 14pt" 
+align=3Dleft><SPAN><FONT style=3D"COLOR: #454545"><FONT style=3D'face: "Ope=
+n' Sans, 
+Helvetica, Arial, sans-serif?><FONT style=3D"size: 2"><SPAN 
+style=3D"LETTER-SPACING: normal"><SPAN><SPAN>I downloaded and gave it a bri=
+ef try, 
+seems extremely promising. </SPAN></SPAN></SPAN></FONT></FONT></FONT></SPAN=
+></P>
+<P class=3Dwestern 
+style=3D"MARGIN-BOTTOM: 0cm; ORPHANS: 2; WIDOWS: 2; LINE-HEIGHT: 14pt" 
+align=3Dleft><SPAN><FONT style=3D"COLOR: #454545"><FONT style=3D'face: "Ope=
+n' Sans, 
+Helvetica, Arial, sans-serif?><FONT style=3D"size: 2"><SPAN 
+style=3D"LETTER-SPACING: normal"><SPAN><SPAN>(Citat 
+slut)</SPAN></SPAN></SPAN></FONT></FONT></FONT></SPAN></P>
+<P class=3Dwestern 
+style=3D"MARGIN-BOTTOM: 0cm; ORPHANS: 2; WIDOWS: 2; LINE-HEIGHT: 14pt" 
+align=3Dleft><SPAN><FONT style=3D"COLOR: #454545"><FONT style=3D'face: "Ope=
+n' Sans, 
+Helvetica, Arial, sans-serif?><FONT style=3D"size: 2"><SPAN 
+style=3D"LETTER-SPACING: normal"><SPAN><SPAN></SPAN></SPAN></SPAN></FONT></=
+FONT></FONT></SPAN>&nbsp;</P>
+<DIV>Og s=C3=A5 her jeg Googlet Mark Sabatella, som skriver de p=C3=A6ne or=
+d. Han er 
+tilsyneladende chef for MuseScores undervisningsafdeling: </DIV>
+<DIV>&nbsp;</DIV>
+<DIV><A style=3D'href: "https://masteringmusescore.com/author/marcsabatella=
+/"' 
+href=3D"https://masteringmusescore.com/author/marcsabatella/"><FONT 
+face=3D"Times New Roman">https://masteringmusescore.com/author/marcsabatell=
+a/</FONT></A></DIV>
+<DIV>&nbsp;</DIV>
+<DIV>indeholder bl.a f=C3=B8lgende:</DIV>
+<DIV>&nbsp;</DIV>
+<DIV><SPAN 
+style=3D"FONT-FAMILY: ; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSF=
+ORM: none; FLOAT: none; COLOR: ; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !im=
+portant; LETTER-SPACING: normal; TEXT-INDENT: 0px; font-variant-ligatures: =
+normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-dec=
+oration-style: initial; text-decoration-color: initial"><FONT 
+color=3D#192930 face=3DHelvetica>=E2=80=9CColorado-based musician Marc Saba=
+tella is Director 
+of Education for MuseScore. A long-time contributor to the project, he is o=
+ne of 
+the developers of the software and the author of the comprehensive resource=
+ 
+Mastering MuseScore, offered as an online course, a paperback available in =
+both 
+English and French, and a Kindle edition. He has been been a pioneer in onl=
+ine 
+teaching since the dawn of the world wide web, and his Jazz Improvisation P=
+rimer 
+was one of the very first music education sites ever to appear on the 
+Internet.=E2=80=9D</FONT></SPAN></DIV>
+<DIV><SPAN 
+style=3D"FONT-FAMILY: ; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSF=
+ORM: none; FLOAT: none; COLOR: ; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !im=
+portant; LETTER-SPACING: normal; TEXT-INDENT: 0px; font-variant-ligatures: =
+normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-dec=
+oration-style: initial; text-decoration-color: initial"><FONT 
+color=3D#192930 face=3DHelvetica></FONT></SPAN>&nbsp;</DIV>
+<DIV><SPAN 
+style=3D"FONT-FAMILY: ; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSF=
+ORM: none; FLOAT: none; COLOR: ; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !im=
+portant; LETTER-SPACING: normal; TEXT-INDENT: 0px; font-variant-ligatures: =
+normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-dec=
+oration-style: initial; text-decoration-color: initial"><FONT 
+color=3D#192930 face=3DHelvetica>S=C3=A5 han er fra Colorado og osse jazz-m=
+usiker. Jeg 
+havde godt s=C3=A9t at der ogs=C3=A5 var en jazz-musiker med samme navn, me=
+n havde ikke 
+fanget, at det tilsyneladende er =C3=A9n og samme person!</FONT></SPAN></DI=
+V>
+<DIV><SPAN 
+style=3D"FONT-FAMILY: ; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSF=
+ORM: none; FLOAT: none; COLOR: ; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !im=
+portant; LETTER-SPACING: normal; TEXT-INDENT: 0px; font-variant-ligatures: =
+normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-dec=
+oration-style: initial; text-decoration-color: initial"><FONT 
+color=3D#192930 face=3DHelvetica></FONT></SPAN>&nbsp;</DIV>
+<DIV><SPAN 
+style=3D"FONT-FAMILY: ; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSF=
+ORM: none; FLOAT: none; COLOR: ; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !im=
+portant; LETTER-SPACING: normal; TEXT-INDENT: 0px; font-variant-ligatures: =
+normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-dec=
+oration-style: initial; text-decoration-color: initial"><FONT 
+color=3D#192930 face=3DHelvetica>H=C3=A9r er hans LinkedIn profil:</FONT></=
+SPAN></DIV>
+<DIV><SPAN 
+style=3D"FONT-FAMILY: ; WHITE-SPACE: normal; WORD-SPACING: 0px; TEXT-TRANSF=
+ORM: none; FLOAT: none; COLOR: ; ORPHANS: 2; WIDOWS: 2; DISPLAY: inline !im=
+portant; LETTER-SPACING: normal; TEXT-INDENT: 0px; font-variant-ligatures: =
+normal; font-variant-caps: normal; -webkit-text-stroke-width: 0px; text-dec=
+oration-style: initial; text-decoration-color: initial"><FONT 
+color=3D#192930 face=3DHelvetica></FONT></SPAN>&nbsp;</DIV>
+<DIV><A style=3D'href: "https://www.linkedin.com/in/marc-sabatella-bb799a14=
+0"' 
+href=3D"https://www.linkedin.com/in/marc-sabatella-bb799a140"><FONT 
+face=3D"Times New Roman">https://www.linkedin.com/in/marc-sabatella-bb799a1=
+40</FONT></A></DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>S=C3=A5 han er da vist ikke en hr. hvemsomhelst..</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>mvh Jens</DIV></DIV></DIV><div id=3D"DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9F=
+DF2"><br /> <table style=3D"border-top: 1px solid #D3D4DE;">
+	<tr>
+      <td style=3D"width: 55px; padding-top: 18px;"><a href=3D"http://www.a=
+vg.com/email-signature?utm_medium=3Demail&utm_source=3Dlink&utm_campaign=3D=
+sig-email&utm_content=3Demailclient" target=3D"_blank"><img src=3D"https://=
+ipmcdn.avast.com/images/icons/icon-envelope-tick-green-avg-v1.png" alt=3D""=
+  width=3D"46" height=3D"29" style=3D"width: 46px; height: 29px;" /></a></t=
+d>
+		<td style=3D"width: 470px; padding-top: 17px; color: #41424e; font-size: =
+13px; font-family: Arial, Helvetica, sans-serif; line-height: 18px;">Virusf=
+ri. <a href=3D"http://www.avg.com/email-signature?utm_medium=3Demail&utm_so=
+urce=3Dlink&utm_campaign=3Dsig-email&utm_content=3Demailclient" target=3D"_=
+blank" style=3D"color: #4453ea;">www.avg.com</a> 		</td>
+	</tr>
+</table>
+<a href=3D"#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2" width=3D"1" height=3D"1">=
+ </a></div></BODY></HTML>
+
+------=_NextPart_001_0045_01D5EB13.25726E60--
+
+------=_NextPart_000_0044_01D5EB13.25726E60
+Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document;
+	name="Fra Musescore Forum.docx"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="Fra Musescore Forum.docx"
+
+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
+AAAA
+
+------=_NextPart_000_0044_01D5EB13.25726E60--

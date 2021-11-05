@@ -1,0 +1,1574 @@
+Return-Path: <prvs=304b17ad3=holmeparken44@vip.cybercity.dk>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe004.lytzenitmail.local ([100.127.30.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id uPAQMlO7Q149GQAAlE+V+A
+	(envelope-from <prvs=304b17ad3=holmeparken44@vip.cybercity.dk>)
+	for <dsl248925@mail.jubii.dk>; Wed, 12 Feb 2020 09:46:11 +0100
+Received: from sv900pomx004.lytzenitmail.dk ([100.127.30.63])
+	by sv900ddwe004.lytzenitmail.local with LMTP
+	id uG9qMVO7Q15mAQAAuH+tKw
+	(envelope-from <prvs=304b17ad3=holmeparken44@vip.cybercity.dk>)
+	for <dsl248925@mail.jubii.dk>; Wed, 12 Feb 2020 09:46:11 +0100
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.170])
+	by sv900pomx004.lytzenitmail.dk (Postfix) with ESMTPS id C950914C9
+	for <holmeparken44@vip.cybercity.dk>; Wed, 12 Feb 2020 09:46:11 +0100 (CET)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2A5EwCBukNe/ykef2RmHAEBAQEBBwE?=
+ =?us-ascii?q?BEQEEBAEBgXuBJYEEbFUgEio8g1iJA4ZkAQEBAQEBBoE3D4RcUoQzgT6DeIJ?=
+ =?us-ascii?q?Hh2WBZwkBAQEBAQEBAQEtCAIBAYRAAoJIJDgTAhABAQEEAQEBAQEFBG2Ea0w?=
+ =?us-ascii?q?MhWYBAQEBAwgSCSYfCgcLBQUGDQQEAQEhAQkCAk8IBhMICQgBgw2BfU0DCSU?=
+ =?us-ascii?q?EAQqpZBo1dYEyGgKHeRGBeSOBOIwkgROBB2YrR4FOfj6BP4ElBBcDgQ8FAQs?=
+ =?us-ascii?q?GAgEsIIJkMoIsBIE/AQGMDxiBDpFHjzgBBgICgiMXfYZPjy0CgjiMSQOMAYx?=
+ =?us-ascii?q?ug0OHI5RNImdxgghWgU4JNhEYZAGKZ4ZRTYQjhWRAM4EpjXWCQwEB?=
+X-IPAS-Result: =?us-ascii?q?A2A5EwCBukNe/ykef2RmHAEBAQEBBwEBEQEEBAEBgXuBJ?=
+ =?us-ascii?q?YEEbFUgEio8g1iJA4ZkAQEBAQEBBoE3D4RcUoQzgT6DeIJHh2WBZwkBAQEBA?=
+ =?us-ascii?q?QEBAQEtCAIBAYRAAoJIJDgTAhABAQEEAQEBAQEFBG2Ea0wMhWYBAQEBAwgSC?=
+ =?us-ascii?q?SYfCgcLBQUGDQQEAQEhAQkCAk8IBhMICQgBgw2BfU0DCSUEAQqpZBo1dYEyG?=
+ =?us-ascii?q?gKHeRGBeSOBOIwkgROBB2YrR4FOfj6BP4ElBBcDgQ8FAQsGAgEsIIJkMoIsB?=
+ =?us-ascii?q?IE/AQGMDxiBDpFHjzgBBgICgiMXfYZPjy0CgjiMSQOMAYxug0OHI5RNImdxg?=
+ =?us-ascii?q?ghWgU4JNhEYZAGKZ4ZRTYQjhWRAM4EpjXWCQwEB?=
+X-IronPort-AV: E=Sophos;i="5.70,428,1574118000"; 
+   d="scan'208,217";a="4368027"
+Received: from unknown (HELO sv900pomx006.lytzenitmail.dk) ([100.127.30.41])
+  by mx01.lytzenitmail.dk with ESMTP; 12 Feb 2020 09:46:11 +0100
+Received: from JensesHP17 (077213203249.dynamic.telenor.dk [77.213.203.249])
+	by sv900pomx006.lytzenitmail.dk (Postfix) with ESMTPSA id 3614972;
+	Wed, 12 Feb 2020 09:46:10 +0100 (CET)
+Message-ID: <30324AC1D5D345D8B26AD0E56BFEA4B6@JensesHP17>
+From: "Jens Sundgaard" <holmeparken44@vip.cybercity.dk>
+To: "Corine en Bert de Leeuw" <bertencorine@tiscali.nl>
+Cc: "Bo Alstrup" <CX64@kk.dk>
+References: <004701d5d6c8$c55eb820$501c2860$@tiscali.nl>
+In-Reply-To: <004701d5d6c8$c55eb820$501c2860$@tiscali.nl>
+Subject: Re: Who are we?
+Date: Wed, 12 Feb 2020 09:46:09 +0100
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0030_01D5E189.41318070"
+X-Priority: 3
+X-MSMail-Priority: Normal
+Importance: Normal
+X-Mailer: Microsoft Windows Live Mail 16.4.3528.331
+X-MimeOLE: Produced By Microsoft MimeOLE V16.4.3528.331
+X-Antivirus: AVG (VPS 200211-0, 11-02-2020), Inbound message
+X-Antivirus-Status: Clean
+
+Dette er en flerdelt meddelelse i MIME-format.
+
+------=_NextPart_000_0030_01D5E189.41318070
+Content-Type: text/plain;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Corine, Bert and Vicas
+
+Thank you for all the  background information. You are certainly involved i=
+n many interesting projects !
+
+Yesterday Bo called me and told me that the new version 4.0 has now been of=
+ficially put on the IBOS homepage.
+
+So I suggest that you download it from there and install it just as if you =
+were normal Dutch users.
+
+As you know only the program itself and the User=E2=80=99s guide is in Dutc=
+h, so you will have to use
+english versions of the homepage, the Installation Manual and the Release N=
+otes.
+
+IBOS will probably apply for fonding to continue the project. If you=E2=80=
+=99ve got the time I suggest
+that you contact Bo (cc to this mail). Maybe you could supply him with your=
+ experience
+about the program, details about how you use it and suggestions for further=
+ development ?
+Or even a translation to Dutch of the english text on the IBOS homepage so =
+IBOS could 
+make a special Dutch variant of the homepage too. 
+
+If we one day can continue the project with a version 5 I hope you will ass=
+ist by updating
+the translation files (the spreadsheets) and the User=E2=80=99s manual.
+
+Best regards
+
+Jens
+
+
+From: Corine en Bert de Leeuw 
+Sent: Wednesday, January 29, 2020 6:23 PM
+To: holmeparken44@vip.cybercity.dk 
+Subject: Who are we?
+
+Hi Jens,
+
+ 
+
+Ofcourse you may use our photo=E2=80=99s! You also may use our familyname D=
+e Leeuw, so Bert and Corine de Leeuw and guidedog Vikas.
+
+ 
+
+Bert and I are not retired. Bert works at the municipality for recicling en=
+vironment. He is 60 years old.
+
+I am 53 years old and i work as a teacher for an organisation Counselling N=
+etherlands www.counsellingnet.nl.
+
+Further i work as a volentier teacher NT2, that means Netherlands as second=
+ language. In this organisation we have about 50 volentiers. I have two kin=
+d of groups. The first is a group of women who know a very little bit of du=
+tch. Their own languages are very different. So they come to learn dutch. M=
+y other group comest to be more secure in life and they are searching for w=
+ork. My collegue Anne and I try to help them to make good leeters applying =
+for a job, and we eexcersize with conversations when they are talking with =
+their employers. And ofcouse we use counselling.
+
+Further Bert and i work as volentiers for an organisation that represents t=
+he interests of therapists who work with APS. You can reed about APS in Eng=
+lish on www.apstherapy.com.
+
+ 
+
+As you already know my biggest hobby is playing flute. My teacher is the fa=
+mous Berdien Stenberg.
+
+I already have three diplomes of the musicschool with high notes. I hope to=
+ present my theses this june. It is about braille scores and spoken scores.=
+ I also write in my theses about your IBOS XML-muzieklezer.
+
+Next year I hope to do my practise exam and than i finished the musischool.=
+ I hope to play Maya from Ian Clarke, Andante K315 of Mozart, La flute de p=
+an of Mouquet, Fantasia 6 of Telemann, Affectueuse of Claude Bolling on Alt=
+ flute and maybe also Hypnoses of Ian Clarke. So i am excersizing nearly ev=
+eryday for about 90 minutes. I have once in a month a lesson at Almere give=
+n by Berdien Stenberg. 
+
+ 
+
+As soon as we have created out website and we can put a link on it to IBOS =
+we will contact you.
+
+It will take some time, but we have many days to come this year! 
+
+ 
+
+We hope you can stay at IBOS for it is fantastic work you do and here in Ho=
+lland, as i already told you, you must pay for every score in braille =E2=
+=82=AC4,95 and you also must wait until the library Dedicon has time for yo=
+u.
+
+ 
+
+Now i must have my diner, so till next time!
+
+ 
+
+Greetings for you and Bo,
+
+ 
+
+Corine, Bert and Vikas
+
+ 
+
+Van: holmeparken44@vip.cybercity.dk <holmeparken44@vip.cybercity.dk> 
+Verzonden: woensdag 29 januari 2020 16:25
+Aan: Corine en Bert de Leeuw <bertencorine@tiscali.nl>
+CC: Bo Alstrup <CX64@kk.dk>
+Onderwerp: Re: faerdig (In Danish : F=C3=A6rdig)
+
+ 
+
+Dear Corine, Bert and Vikas
+
+Thank you, I have now merged the latest translation into the Dutch User=C2=
+=B4s guide.
+
+I have used most of the day to update my internal documentation of the rele=
+ase process and it
+
+looks like I'll be able to create the official release tomorrow in due time=
+ to give it to Bo on an USB stick,
+
+so he can bring it to his conference in Vejle.
+
+ 
+
+As far as I know the conference is for teachers within the blind- and weakl=
+y sighted area, but I'll cc Bo
+
+on this so maybe he can tell you more details.
+
+ 
+
+You're right, I never told you how this project is organized:
+
+Bo works as a normal employee at IBOS. His job is to help blind and weakly =
+sighted people in relation to jobs.
+
+I myself work at IBOS on part time, typically one or 2 days per week and ty=
+pically for 3 or 4 months in the winter time.
+
+I am partly retired and have to follow some very strict Danish employment-r=
+ules: Every hour  I work, even for free, will cost me about 7 Euro. So I on=
+ly work when funding is available, typical from private organizations. That=
+ is why I cannot work after January 31.
+
+After that time Bo and I (and the IBOS administration) will have to discuss=
+ the future of the project. We have some ideas, but we need support from th=
+e IBOS organization.
+
+The story about "Corine and Bert and Vikas in Holland successfully translat=
+ing the IBOS MusicXmlReader to Dutch" is actually "gefundenes fressen" for =
+us because it proves to the IBOS organization that people out there are rea=
+lly interested in the project.
+
+And I agree: The process of translating the program into another language r=
+equires a lot of skills, but typically dedicated users of the program - as =
+you - already possess these skills, so we hope to get more translations now=
+ when we know how to do it and how long time it takes.
+
+I guess that as you have sent us your photos we can use them (and the story=
+) when we try to spread the news about the MusicXmlReader ? 
+
+And yes, let's keep in contact, I'll send you a link the  new version when =
+it is more officially released.
+
+Best regards
+
+Jens
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+---
+
+Sendt fra min Jubii Mail
+Jubii Mail har eksisteret i 20 =C3=A5r og er en af Danmarks st=C3=B8rste ma=
+il-udbydere med over 150.000 brugere. Jubii Mail er et 100% dansk produkt m=
+ed b=C3=A5de support og hosting i Danmark. Vi s=C3=A6tter en =C3=A6re i at =
+levere en personlig kvalitets-mail til b=C3=A5de private og foreninger - og=
+ med knap 150 dom=C3=A6nenavne t=C3=B8r vi godt love, at vi ogs=C3=A5 har e=
+n personlig email-adresse til dig. Klik her - opret Jubii Mail.
+
+ 
+
+Corine en Bert de Leeuw skrev den 2020-01-29 14:23:
+
+  Dear Jens,
+
+   
+
+  Thanks for all the compliments and our portraits in the Hall of Fame of t=
+he IBOS institute . We have thougt about the amount of hours we spent in to=
+tal. We think 80 hours is a good estimate. It depends on knowledge availabl=
+e. 
+
+   
+
+  The translator should have knowledge of working on computers (a lot of pe=
+ople don't know what keyboard shortcuts are, perhaps they think a Yamaha ke=
+yboard or a digital piano is meant). 
+
+  Some knowledge of the functionality of the program is very helpful, if yo=
+u want to translate properly. 
+
+  Further a basic knowledge on music is necessary. If you don't know that t=
+he key in music is not something to open the door, but a musical notation: =
+it will be very difficult to translate.
+
+   
+
+  We are very curious about the presentation of Bo. What kind of audience h=
+e is speaking for? 
+
+   
+
+  Is the IBOS XML-muzieklezer work your job or are you a volunteer like Cor=
+ine and me?
+
+   
+
+  Corine and I have the intention to build a non-commercial website, where =
+people can download for free the files we made (I reading the notes for the=
+ flute). If allowed we will place a link to the site of the IBOS organisati=
+on, so people can download the IBOS XML-muzieklezer programm.  But we wil s=
+tart with the audio-files we made ourselves with the voicerecorder.
+
+   
+
+  We keep in contact.
+
+   
+
+  Greetings from Corine, Vikas and Bert
+
+   
+
+   
+
+   
+
+  Van: Jens Sundgaard <holmeparken44@vip.cybercity.dk> 
+  Verzonden: woensdag 29 januari 2020 08:40
+  Aan: Corine en Bert de Leeuw <bertencorine@tiscali.nl>
+  Onderwerp: Re: faerdig (In Danish : F=C3=A6rdig)
+
+   
+
+  Dear Corine, Bert and Vikas
+
+   
+
+  Thanks a lot, especially for yesterday's large effort !
+
+   
+
+  I have now integrated the Dutch User=C2=B4s manual into the program and w=
+hen I cheat
+
+  the program to think that I'm Dutch, it actually shows your version when =
+Pressing
+
+  Help =E2=80=93> Toon gebruikersanleitung.
+
+   
+
+  To your remarks:
+
+   
+
+  I think that demo versions of "Finale Notetaker" and PhotoScore are avail=
+able for free everywhere.
+
+  But neither of the demo versions are very usable because they do not have=
+ full functionality.
+
+   
+
+  After release I think I'll buy PhotoScore (about 70 Euro) and make some e=
+xperiments with it.
+
+  If everything works as I expect we now have the full path:
+
+  Graphic Score =E2=80=93> MusicXml =E2=80=93> Braille Music files=E2=80=93=
+> Embossed Braille Music
+
+   
+
+  I had heard the rumour that MuseScore MusicXml files were not free anymor=
+e.
+
+  But as I once bought the MuseScore Android App for about 2 Euros I still =
+have free access so I haven't experienced it by myself !
+
+   
+
+  Now I'm off for IBOS where I'll spend the day putting all the bits and pi=
+eces for the release together.
+
+   
+
+  You have certainly found the magic words for this project: "good enough".=
+  
+
+  The release will contain many known programming errors and missing functi=
+onality that you and other users have asked for!
+
+  But I also hope that the program is also "good enough" =E2=80=93 otherwis=
+e it would never be released with our limited resources.
+
+   
+
+  Another thing: Can you give me an estimate of how many hours of work you =
+have spent on the translation process?
+
+   
+
+  We have had other requests about translation, but as I once mentioned, yo=
+u are the first who have actually done it.
+
+  So it would be nice to tell others how long time it took for you.
+
+   
+
+  Best regards
+
+   
+
+  Jens
+
+   
+
+   
+
+   
+
+   
+
+   
+
+   
+
+  From: Corine en Bert de Leeuw 
+
+  Sent: Wednesday, January 29, 2020 12:56 AM
+
+  To: 'Jens Sundgaard' 
+
+  Subject: faerdig
+
+   
+
+  Dear Jens,
+
+   
+
+  Despite the effort Corine spent this day it took some time to finish it. =
+My eyes look like the rectangle of the screen. Fortunatelythe blue light em=
+iission of our screen is switched off permanently, so I can sleep well.
+
+   
+
+  But the dutch manual is attached!!!!!
+
+   
+
+  Some rewmarks:
+
+  We don't know if Notetaker is available on the dutch market.
+
+  The same fore he Photoscoreprogram and the brailleprinters that are menti=
+oned
+
+  Musescore was a great place to find files in different formats. It was. I=
+f you want to download e.g. a XML-file you have to pay for it.
+
+  We are convinced that the texts in the program (e.g. in the menubar or th=
+e keyboard shortcuts) in the manual do not fit 100%. But I have never found=
+ an user manual that fits 100% with the programm. As soon as we have the ne=
+w version, we will test it and check our manual.
+
+   
+
+  But for Friday and especially for now: the user manual is in our opinion =
+ good enough.
+
+   
+
+  I go to the sleeping beauty in our bed.
+
+   
+
+  Greetings from Corine and Bert
+
+   
+
+   
+
+
+-- 
+Denne mail er kontrolleret for vira af AVG.
+http://www.avg.com
+
+------=_NextPart_000_0030_01D5E189.41318070
+Content-Type: text/html;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<HTML xmlns=3D"http://www.w3.org/TR/REC-html40" xmlns:v =3D 
+"urn:schemas-microsoft-com:vml" xmlns:o =3D 
+"urn:schemas-microsoft-com:office:office" xmlns:w =3D 
+"urn:schemas-microsoft-com:office:word" xmlns:m =3D 
+"http://schemas.microsoft.com/office/2004/12/omml"><HEAD>
+<META content=3D"text/html; charset=3Dutf-8" http-equiv=3DContent-Type>
+<META name=3DGenerator content=3D"Microsoft Word 15 (filtered medium)">
+<STYLE><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+span.E-mailStijl20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+=2EMsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></STYLE>
+</HEAD>
+<BODY lang=3DNL dir=3Dltr vLink=3Dpurple link=3Dblue>
+<DIV dir=3Dltr>
+<DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: #000000">
+<DIV>Hi Corine, Bert and Vicas</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Thank you for all the&nbsp; background information. You are certainly =
+
+involved in many interesting projects !</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Yesterday Bo called me and told me that the new version 4.0 has now be=
+en 
+officially put on the IBOS homepage.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>So I suggest that you download it from there and install it just as if=
+ you 
+were normal Dutch users.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>As you know only the program itself and the User=E2=80=99s guide is in=
+ Dutch, so 
+you will have to use</DIV>
+<DIV>english versions of the homepage, the Installation Manual and the Rele=
+ase 
+Notes.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>IBOS will probably apply for fonding to continue the project. If you=
+=E2=80=99ve got 
+the time I suggest</DIV>
+<DIV>that you contact Bo (cc to this mail). Maybe you could supply him with=
+ your 
+experience</DIV>
+<DIV>about the program, details about how you use it and suggestions for fu=
+rther 
+development ?</DIV>
+<DIV>Or even a translation to Dutch of the english text on the IBOS homepag=
+e so 
+IBOS could </DIV>
+<DIV>make a special Dutch variant of the homepage too. </DIV>
+<DIV>&nbsp;</DIV>
+<DIV>If we one day can continue the project with a version 5 I hope you wil=
+l 
+assist by updating</DIV>
+<DIV>the translation files (the spreadsheets) and the User=E2=80=99s manual=
+=2E</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Best regards</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Jens</DIV>
+<DIV>&nbsp;</DIV>
+<DIV 
+style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: "Calibri"; F=
+ONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; DISPLAY: inline'>
+<DIV style=3D"FONT: 10pt tahoma">
+<DIV>&nbsp;</DIV>
+<DIV style=3D"BACKGROUND: #f5f5f5">
+<DIV style=3D"font-color: black"><B>From:</B> <A 
+title=3Dbertencorine@tiscali.nl>Corine en Bert de Leeuw</A> </DIV>
+<DIV><B>Sent:</B> Wednesday, January 29, 2020 6:23 PM</DIV>
+<DIV><B>To:</B> <A 
+title=3Dholmeparken44@vip.cybercity.dk>holmeparken44@vip.cybercity.dk</A> <=
+/DIV>
+<DIV><B>Subject:</B> Who are we?</DIV></DIV></DIV>
+<DIV>&nbsp;</DIV></DIV>
+<DIV 
+style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: "Calibri"; F=
+ONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; DISPLAY: inline'>
+<DIV class=3DWordSection1>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">Hi 
+Jens,<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D"mso-fareast-language: en-us"><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">Ofcourse y=
+ou may 
+use our photo=E2=80=99s! You also may use our familyname De Leeuw, so Bert =
+and Corine de 
+Leeuw and guidedog Vikas.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D"mso-fareast-language: en-us"><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">Bert and I=
+ are not 
+retired. Bert works at the municipality for recicling environment. He is 60=
+ 
+years old.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">I am 53 ye=
+ars old 
+and i work as a teacher for an organisation Counselling Netherlands <A 
+href=3D"http://www.counsellingnet.nl">www.counsellingnet.nl</A>.<o:p></o:p>=
+</SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">Further i =
+work as a 
+volentier teacher NT2, that means Netherlands as second language. In this 
+organisation we have about 50 volentiers. I have two kind of groups. The fi=
+rst 
+is a group of women who know a very little bit of dutch. Their own language=
+s are 
+very different. So they come to learn dutch. My other group comest to be mo=
+re 
+secure in life and they are searching for work. My collegue Anne and I try =
+to 
+help them to make good leeters applying for a job, and we eexcersize with 
+conversations when they are talking with their employers. And ofcouse we us=
+e 
+counselling.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">Further Be=
+rt and i 
+work as volentiers for an organisation that represents the interests of 
+therapists who work with APS. You can reed about APS in English on <A 
+href=3D"http://www.apstherapy.com">www.apstherapy.com</A>.<o:p></o:p></SPAN=
+></P>
+<P class=3DMsoNormal><SPAN 
+style=3D"mso-fareast-language: en-us"><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">As you alr=
+eady know 
+my biggest hobby is playing flute. My teacher is the famous Berdien 
+Stenberg.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">I already =
+have 
+three diplomes of the musicschool with high notes. I hope to present my the=
+ses 
+this june. It is about braille scores and spoken scores. I also write in my=
+ 
+theses about your IBOS XML-muzieklezer.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">Next year =
+I hope to 
+do my practise exam and than i finished the musischool. I hope to play Maya=
+ from 
+Ian Clarke, Andante K315 of Mozart, La flute de pan of Mouquet, Fantasia 6 =
+of 
+Telemann, Affectueuse of Claude Bolling on Alt flute and maybe also Hypnose=
+s of 
+Ian Clarke. So i am excersizing nearly everyday for about 90 minutes. I hav=
+e 
+once in a month a lesson at Almere given by Berdien Stenberg. 
+<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D"mso-fareast-language: en-us"><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">As soon as=
+ we have 
+created out website and we can put a link on it to IBOS we will contact 
+you.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">It will ta=
+ke some 
+time, but we have many days to come this year! <o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D"mso-fareast-language: en-us"><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">We hope yo=
+u can 
+stay at IBOS for it is fantastic work you do and here in Holland, as i alre=
+ady 
+told you, you must pay for every score in braille =E2=82=AC4,95 and you als=
+o must wait 
+until the library Dedicon has time for you.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D"mso-fareast-language: en-us"><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">Now i must=
+ have my 
+diner, so till next time!<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D"mso-fareast-language: en-us"><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">Greetings =
+for you 
+and Bo,<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D"mso-fareast-language: en-us"><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN style=3D"mso-fareast-language: en-us">Corine, Be=
+rt and 
+Vikas<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D"mso-fareast-language: en-us"><o:p></o:p></SPAN>&nbsp;</P>
+<DIV>
+<DIV 
+style=3D"BORDER-TOP: #e1e1e1 1pt solid; BORDER-RIGHT: medium none; BORDER-B=
+OTTOM: medium none; PADDING-BOTTOM: 0cm; PADDING-TOP: 3pt; PADDING-LEFT: 0c=
+m; BORDER-LEFT: medium none; PADDING-RIGHT: 0cm">
+<P class=3DMsoNormal><B>Van:</B> holmeparken44@vip.cybercity.dk 
+&lt;holmeparken44@vip.cybercity.dk&gt; <BR><B>Verzonden:</B> woensdag 29 ja=
+nuari 
+2020 16:25<BR><B>Aan:</B> Corine en Bert de Leeuw 
+&lt;bertencorine@tiscali.nl&gt;<BR><B>CC:</B> Bo Alstrup 
+&lt;CX64@kk.dk&gt;<BR><B>Onderwerp:</B> Re: faerdig (In Danish : 
+F=C3=A6rdig)<o:p></o:p></P></DIV></DIV>
+<P class=3DMsoNormal><o:p></o:p>&nbsp;</P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>Dear =
+Corine, 
+Bert and Vikas<o:p></o:p></SPAN></P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>Thank=
+ you, I 
+have now merged the latest translation into the Dutch User=C2=B4s 
+guide.<o:p></o:p></SPAN></P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>I hav=
+e used 
+most of the day to update my internal documentation of the release process =
+and 
+it<o:p></o:p></SPAN></P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>looks=
+ like 
+I'll be able to create the official release tomorrow in due time to give it=
+ to 
+Bo on an USB stick,<o:p></o:p></SPAN></P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>so he=
+ can 
+bring it to his conference in Vejle.<o:p></o:p></SPAN></P>
+<P><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>As fa=
+r as I 
+know the conference is for teachers within the blind- and weakly sighted ar=
+ea, 
+but I'll cc Bo<o:p></o:p></SPAN></P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>on th=
+is so 
+maybe he can tell you more details.<o:p></o:p></SPAN></P>
+<P><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>You'r=
+e 
+right, I never told you how this project is organized:<o:p></o:p></SPAN></P=
+>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>Bo wo=
+rks as 
+a normal employee at IBOS. His job is to help blind and weakly sighted peop=
+le in 
+relation to jobs.<o:p></o:p></SPAN></P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>I mys=
+elf 
+work at IBOS on part time, typically one or 2 days per week and typically f=
+or 3 
+or 4 months in the winter time.<o:p></o:p></SPAN></P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>I am =
+partly 
+retired and have to follow some very strict Danish employment-rules: Every =
+
+hour&nbsp; I work, even for free, will cost me about 7 Euro. So I only work=
+ when 
+funding is available, typical from private organizations. That is why I can=
+not 
+work after January 31.<o:p></o:p></SPAN></P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>After=
+ that 
+time Bo and I (and the IBOS administration) will have to discuss the future=
+ of 
+the project. We have some ideas, but we need support from the IBOS 
+organization.<o:p></o:p></SPAN></P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>The s=
+tory 
+about "Corine and Bert and Vikas in Holland successfully translating the IB=
+OS 
+MusicXmlReader to Dutch" is actually "gefundenes fressen" for us because it=
+ 
+proves to the IBOS organization that people out there are really interested=
+ in 
+the project.<o:p></o:p></SPAN></P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>And I=
+ agree: 
+The process of translating the program into another language requires a lot=
+ of 
+skills, but typically dedicated users of the program - as you - already pos=
+sess 
+these skills, so we hope to get more translations now when we know how to d=
+o it 
+and how long time it takes.<o:p></o:p></SPAN></P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>I gue=
+ss that 
+as you have sent us your photos we can use them (and the story) when we try=
+ to 
+spread the news about the MusicXmlReader ? <o:p></o:p></SPAN></P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>And y=
+es, 
+let's keep in contact, I'll send you a link the&nbsp; new version when it i=
+s 
+more officially released.<o:p></o:p></SPAN></P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>Best =
+
+regards<o:p></o:p></SPAN></P>
+<P><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>Jens<o:p></o:p=
+></SPAN></P>
+<P><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<DIV>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>---<o:p></o:p>=
+</SPAN></P>
+<P><STRONG><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Arial",sans-serif; COLOR: #297c5f'>=
+Sendt 
+fra min Jubii Mail</SPAN></STRONG><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><BR></SPAN><SP=
+AN 
+style=3D'FONT-SIZE: 8pt; FONT-FAMILY: "Arial",sans-serif; COLOR: #a0a0a0'>J=
+ubii 
+Mail har eksisteret i 20 =C3=A5r og er en af Danmarks st=C3=B8rste mail-udb=
+ydere med over 
+150.000 brugere. Jubii Mail er et 100% dansk produkt med b=C3=A5de support =
+og hosting 
+i Danmark. Vi s=C3=A6tter en =C3=A6re i at levere en personlig kvalitets-ma=
+il til b=C3=A5de 
+private og foreninger - og med knap 150 dom=C3=A6nenavne t=C3=B8r vi godt l=
+ove, at vi ogs=C3=A5 
+har en personlig email-adresse til dig.</SPAN><SPAN 
+style=3D'FONT-SIZE: 8pt; FONT-FAMILY: "Arial",sans-serif'> <STRONG><SPAN 
+style=3D'FONT-FAMILY: "Arial",sans-serif; COLOR: #297c5f'><A 
+href=3D"https://konto.jubii.dk/SignUp?utm_source=3DWebmail%20Signatur&amp;u=
+tm_medium=3DWebmail%20Signatur"><SPAN 
+style=3D"COLOR: #297c5f">Klik her - opret Jubii 
+Mail</SPAN></A></SPAN></STRONG><SPAN style=3D"COLOR: #a0a0a0">.</SPAN></SPA=
+N><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p></S=
+PAN></P></DIV>
+<P><SPAN 
+style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P><SPAN style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>Corin=
+e en 
+Bert de Leeuw skrev den 2020-01-29 14:23:<o:p></o:p></SPAN></P>
+<BLOCKQUOTE 
+style=3D"BORDER-TOP: medium none; BORDER-RIGHT: medium none; BORDER-BOTTOM:=
+ medium none; PADDING-BOTTOM: 0cm; PADDING-TOP: 0cm; PADDING-LEFT: 5pt; MAR=
+GIN-LEFT: 0cm; BORDER-LEFT: #1010ff 1.5pt solid; PADDING-RIGHT: 0cm; MARGIN=
+-RIGHT: 0cm">
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>Dear 
+  Jens,<o:p></o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>&nbsp;<o:p><=
+/o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>Thanks for a=
+ll the 
+  compliments and our portraits in the Hall of Fame of the IBOS institute .=
+ We 
+  have thougt about the amount of hours we spent in total. We think 80 hour=
+s is 
+  a good estimate. It depends on knowledge available. <o:p></o:p></SPAN></P=
+>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>&nbsp;<o:p><=
+/o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>The translat=
+or 
+  should have knowledge of working on computers (a lot of people don't know=
+ what 
+  keyboard shortcuts are, perhaps they think a Yamaha keyboard or a digital=
+ 
+  piano is meant). <o:p></o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>Some knowled=
+ge of 
+  the functionality of the program is very helpful, if you want to translat=
+e 
+  properly. <o:p></o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>Further a ba=
+sic 
+  knowledge on music is necessary. If you don't know that the key in music =
+is 
+  not something to open the door, but a musical notation: it will be very 
+  difficult to translate.<o:p></o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>&nbsp;<o:p><=
+/o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>We are very =
+curious 
+  about the presentation of Bo. What kind of audience he is speaking for? 
+  <o:p></o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>&nbsp;<o:p><=
+/o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>Is the IBOS =
+
+  XML-muzieklezer work your job or are you a volunteer like Corine and 
+  me?<o:p></o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>&nbsp;<o:p><=
+/o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>Corine and I=
+ have 
+  the intention to build a non-commercial website, where people can downloa=
+d for 
+  free the files we made (I reading the notes for the flute). If allowed we=
+ will 
+  place a link to the site of the IBOS organisation, so people can download=
+ the 
+  IBOS XML-muzieklezer programm.&nbsp; But we wil start with the audio-file=
+s we 
+  made ourselves with the voicerecorder.<o:p></o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>&nbsp;<o:p><=
+/o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>We keep in 
+  contact.<o:p></o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>&nbsp;<o:p><=
+/o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>Greetings fr=
+om 
+  Corine, Vikas and Bert<o:p></o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>&nbsp;<o:p><=
+/o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>&nbsp;<o:p><=
+/o:p></SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>&nbsp;<o:p><=
+/o:p></SPAN></P>
+  <DIV>
+  <DIV 
+  style=3D"BORDER-TOP: #e1e1e1 1pt solid; BORDER-RIGHT: medium none; BORDER=
+-BOTTOM: medium none; PADDING-BOTTOM: 0cm; PADDING-TOP: 3pt; PADDING-LEFT: =
+0cm; BORDER-LEFT: medium none; PADDING-RIGHT: 0cm">
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><STRONG><=
+SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>Van:</SPAN><=
+/STRONG><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'> Jens Sundga=
+ard 
+  &lt;holmeparken44@vip.cybercity.dk&gt; <BR><STRONG><SPAN 
+  style=3D'FONT-FAMILY: "Verdana",sans-serif'>Verzonden:</SPAN></STRONG> wo=
+ensdag 
+  29 januari 2020 08:40<BR><STRONG><SPAN 
+  style=3D'FONT-FAMILY: "Verdana",sans-serif'>Aan:</SPAN></STRONG> Corine e=
+n Bert 
+  de Leeuw &lt;bertencorine@tiscali.nl&gt;<BR><STRONG><SPAN 
+  style=3D'FONT-FAMILY: "Verdana",sans-serif'>Onderwerp:</SPAN></STRONG> Re=
+: 
+  faerdig (In Danish : F=C3=A6rdig)<o:p></o:p></SPAN></P></DIV></DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'>&nbsp;<o:p><=
+/o:p></SPAN></P>
+  <DIV>
+  <DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>Dear 
+  Corine, Bert and Vikas</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>Thanks 
+  a lot, especially for yesterday's large effort !</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>I 
+  have now integrated the Dutch User=C2=B4s manual into the program and whe=
+n I 
+  cheat</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>the 
+  program to think that I'm Dutch, it actually shows your version when 
+  Pressing</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>Help 
+  =E2=80=93&gt; Toon gebruikersanleitung.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>To 
+  your remarks:</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>I 
+  think that demo versions of "Finale Notetaker" and PhotoScore are availab=
+le 
+  for free everywhere.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>But 
+  neither of the demo versions are very usable because they do not have ful=
+l 
+  functionality.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>After 
+  release I think I'll buy PhotoScore (about 70 Euro) and make some experim=
+ents 
+  with it.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>If 
+  everything works as I expect we now have the full path:</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>Graphic 
+  Score =E2=80=93&gt; MusicXml =E2=80=93&gt; Braille Music files=E2=80=93&g=
+t; Embossed Braille 
+  Music</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>I had 
+  heard the rumour that MuseScore MusicXml files were not free 
+  anymore.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>But 
+  as I once bought the MuseScore Android App for about 2 Euros I still have=
+ free 
+  access so I haven't experienced it by myself !</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>Now 
+  I'm off for IBOS where I'll spend the day putting all the bits and pieces=
+ for 
+  the release together.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>You 
+  have certainly found the magic words for this project: "good enough".&nbs=
+p; 
+  </SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>The 
+  release will contain many known programming errors and missing functional=
+ity 
+  that you and other users have asked for!</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>But I 
+  also hope that the program is also "good enough" =E2=80=93 otherwise it w=
+ould never be 
+  released with our limited resources.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>Another 
+  thing: Can you give me an estimate of how many hours of work you have spe=
+nt on 
+  the translation process?</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>We 
+  have had other requests about translation, but as I once mentioned, you a=
+re 
+  the first who have actually done it.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>So it 
+  would be nice to tell others how long time it took for you.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>Best 
+  regards</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>Jens</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: black'=
+>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"BACKGROUND: whitesmoke; mso-margin-top-alt: auto; mso-margin-bot=
+tom-alt: auto"><STRONG><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: black'=
+>From:</SPAN></STRONG><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: black'=
+> 
+  Corine en Bert de Leeuw </SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"BACKGROUND: whitesmoke; mso-margin-top-alt: auto; mso-margin-bot=
+tom-alt: auto"><STRONG><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: black'=
+>Sent:</SPAN></STRONG><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: black'=
+> 
+  Wednesday, January 29, 2020 12:56 AM</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"BACKGROUND: whitesmoke; mso-margin-top-alt: auto; mso-margin-bot=
+tom-alt: auto"><STRONG><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: black'=
+>To:</SPAN></STRONG><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: black'=
+> 'Jens 
+  Sundgaard' </SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"BACKGROUND: whitesmoke; mso-margin-top-alt: auto; mso-margin-bot=
+tom-alt: auto"><STRONG><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: black'=
+>Subject:</SPAN></STRONG><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Tahoma",sans-serif; COLOR: black'=
+> 
+  faerdig</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV></DIV></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV></DIV>
+  <DIV>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>Dear 
+  Jens,</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>Despite 
+  the effort Corine spent this day it took some time to finish it. My eyes =
+look 
+  like the rectangle of the screen. Fortunatelythe blue light emiission of =
+our 
+  screen is switched off permanently, so I can sleep well.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>But 
+  the dutch manual is attached!!!!!</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>Some 
+  rewmarks:</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>We 
+  don't know if Notetaker is available on the dutch market.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>The 
+  same fore he Photoscoreprogram and the brailleprinters that are 
+  mentioned</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>Musescore 
+  was a great place to find files in different formats. It was. If you want=
+ to 
+  download e.g. a XML-file you have to pay for it.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>We 
+  are convinced that the texts in the program (e.g. in the menubar or the 
+  keyboard shortcuts) in the manual do not fit 100%. But I have never found=
+ an 
+  user manual that fits 100% with the programm. As soon as we have the new =
+
+  version, we will test it and check our manual.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>But 
+  for Friday and especially for now: the user manual is in our opinion&nbsp=
+; 
+  good enough.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>I go 
+  to the sleeping beauty in our bed.</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>Greetings 
+  from Corine and Bert</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P>
+  <P class=3DMsoNormal 
+  style=3D"mso-margin-top-alt: auto; mso-margin-bottom-alt: auto"><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif; COLOR: black=
+'>&nbsp;</SPAN><SPAN 
+  style=3D'FONT-SIZE: 10pt; FONT-FAMILY: "Verdana",sans-serif'><o:p></o:p><=
+/SPAN></P></DIV></DIV></DIV></DIV></BLOCKQUOTE></DIV></DIV></DIV></DIV><div=
+ id=3D"DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2"><br /> <table style=3D"border-=
+top: 1px solid #D3D4DE;">
+	<tr>
+      <td style=3D"width: 55px; padding-top: 18px;"><a href=3D"http://www.a=
+vg.com/email-signature?utm_medium=3Demail&utm_source=3Dlink&utm_campaign=3D=
+sig-email&utm_content=3Demailclient" target=3D"_blank"><img src=3D"https://=
+ipmcdn.avast.com/images/icons/icon-envelope-tick-green-avg-v1.png" alt=3D""=
+  width=3D"46" height=3D"29" style=3D"width: 46px; height: 29px;" /></a></t=
+d>
+		<td style=3D"width: 470px; padding-top: 17px; color: #41424e; font-size: =
+13px; font-family: Arial, Helvetica, sans-serif; line-height: 18px;">Virusf=
+ri. <a href=3D"http://www.avg.com/email-signature?utm_medium=3Demail&utm_so=
+urce=3Dlink&utm_campaign=3Dsig-email&utm_content=3Demailclient" target=3D"_=
+blank" style=3D"color: #4453ea;">www.avg.com</a> 		</td>
+	</tr>
+</table>
+<a href=3D"#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2" width=3D"1" height=3D"1">=
+ </a></div></BODY></HTML>
+
+------=_NextPart_000_0030_01D5E189.41318070--

@@ -1,0 +1,503 @@
+Return-Path: <prvs=5132aeb63=holmeparken44@vip.cybercity.dk>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe003.lytzenitmail.local ([100.127.30.102])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id 2I1JI+NQV1+73wEAlE+V+A
+	(envelope-from <prvs=5132aeb63=holmeparken44@vip.cybercity.dk>)
+	for <dsl248925@mail.jubii.dk>; Tue, 08 Sep 2020 11:37:39 +0200
+Received: from sv900pomx003.lytzenitmail.dk ([100.127.30.62])
+	by sv900ddwe003.lytzenitmail.local with LMTP
+	id CCtzIuNQV18wAwAA1csBbA
+	(envelope-from <prvs=5132aeb63=holmeparken44@vip.cybercity.dk>)
+	for <dsl248925@mail.jubii.dk>; Tue, 08 Sep 2020 11:37:39 +0200
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.170])
+	by sv900pomx003.lytzenitmail.dk (Postfix) with ESMTPS id 898D91DC5
+	for <holmeparken44@vip.cybercity.dk>; Tue,  8 Sep 2020 11:37:39 +0200 (CEST)
+IronPort-SDR: eSwiKG8UlwiwoxSGq4nj4FUWsMD8euOVyHw29ZWif7VuSds4LRVwUgp37y9SX8nA0ofKZpki8/
+ geTsyjUe6oQrmwfzxl6hSnx2YhrHzPtp0fhu3e79rtUwq2+nikq1Bne63S6biMvxAbo2ATYJyN
+ 7hdc4y3PgDdP1n0F8EfGT48HYRUCQwjbrKDPCEa0jL3F18xzitO/FYyb5lpbXl2IO4Uyf+s2PA
+ WvL6zSN0FxOWyCG2hu3V1rkAmjGN+4uXOfA/qByJKJ1fnMbwNU25rLU+gXc0jj1izPbZFPx+Nq
+ IAE=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2AxIQCPUFdf/ygef2RFGh0BAQEBCQE?=
+ =?us-ascii?q?SAQUFAUeBSAKBIYF3QxNeVYNjiCRehnABAQEBAQEGgToPhG+FHIFChBGBfYg?=
+ =?us-ascii?q?2E4FpCwEBAQkBJwoCBAEBgVaCcAMCAoISASQ8Ag0CAwEBAQMCBQEBAQUBAQE?=
+ =?us-ascii?q?BAQEFBIYQOQyFcgEBAQEDBQECGwIJGzsFBQYNAQMEAQEGAQIfAwICAgUQDyA?=
+ =?us-ascii?q?JCAYSAQgJBYMRgX5ZJQQBCjuwGU12gTIaAol9ExCBOAGBEYINgjeCOIUcgRS?=
+ =?us-ascii?q?BB4ERQ4JNPoQDIi8fgmEzgi0EgUMBAY47gRSJE4EmkA2DEQKGdYEHAQYCAoJ?=
+ =?us-ascii?q?NGIERhgqLP4gIA1+RJgOOPJw0mB6BTQ8HgghWgUsJNhEZkmqEI4VoPzMCNQI?=
+ =?us-ascii?q?GAQkBAQMJfI59AQE?=
+X-IPAS-Result: =?us-ascii?q?A2AxIQCPUFdf/ygef2RFGh0BAQEBCQESAQUFAUeBSAKBI?=
+ =?us-ascii?q?YF3QxNeVYNjiCRehnABAQEBAQEGgToPhG+FHIFChBGBfYg2E4FpCwEBAQkBJ?=
+ =?us-ascii?q?woCBAEBgVaCcAMCAoISASQ8Ag0CAwEBAQMCBQEBAQUBAQEBAQEFBIYQOQyFc?=
+ =?us-ascii?q?gEBAQEDBQECGwIJGzsFBQYNAQMEAQEGAQIfAwICAgUQDyAJCAYSAQgJBYMRg?=
+ =?us-ascii?q?X5ZJQQBCjuwGU12gTIaAol9ExCBOAGBEYINgjeCOIUcgRSBB4ERQ4JNPoQDI?=
+ =?us-ascii?q?i8fgmEzgi0EgUMBAY47gRSJE4EmkA2DEQKGdYEHAQYCAoJNGIERhgqLP4gIA?=
+ =?us-ascii?q?1+RJgOOPJw0mB6BTQ8HgghWgUsJNhEZkmqEI4VoPzMCNQIGAQkBAQMJfI59A?=
+ =?us-ascii?q?QE?=
+X-IronPort-AV: E=Sophos;i="5.76,405,1592863200"; 
+   d="png'150?scan'150,208,217,150";a="6864529"
+Received: from unknown (HELO sv900pomx007.lytzenitmail.dk) ([100.127.30.40])
+  by mx01.lytzenitmail.dk with ESMTP; 08 Sep 2020 11:37:35 +0200
+Received: from JensesHP17 (077213204031.dynamic.telenor.dk [77.213.204.31])
+	by sv900pomx007.lytzenitmail.dk (Postfix) with ESMTPSA id 2F4D16F;
+	Tue,  8 Sep 2020 11:37:34 +0200 (CEST)
+Message-ID: <94AB4C0E6ED84CE2ABDAE8561FE838F8@JensesHP17>
+From: "Jens Sundgaard" <holmeparken44@vip.cybercity.dk>
+To: "Bo Alstrup" <CX64@kk.dk>
+References: <44812530-bc7b-500e-a47d-fe5113c72473@pranamas.nl> <AM0PR0302MB3378DEC98AB74D7EDBD8AE3AC2280@AM0PR0302MB3378.eurprd03.prod.outlook.com>
+In-Reply-To: <AM0PR0302MB3378DEC98AB74D7EDBD8AE3AC2280@AM0PR0302MB3378.eurprd03.prod.outlook.com>
+Subject: Re: MusicXmlReader
+Date: Tue, 8 Sep 2020 11:37:34 +0200
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="multipart/alternative";
+	boundary="----=_NextPart_000_004D_01D685D4.71CBA220"
+X-Priority: 3
+X-MSMail-Priority: Normal
+Importance: Normal
+X-Mailer: Microsoft Windows Live Mail 16.4.3528.331
+X-MimeOLE: Produced By Microsoft MimeOLE V16.4.3528.331
+X-Antivirus: AVG (VPS 200911-18, 11-09-2020), Inbound message
+X-Antivirus-Status: Clean
+
+Dette er en flerdelt meddelelse i MIME-format.
+
+------=_NextPart_000_004D_01D685D4.71CBA220
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_004E_01D685D4.71CBA220"
+
+
+------=_NextPart_001_004E_01D685D4.71CBA220
+Content-Type: text/plain;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hej Bo
+
+Ja, det er da sjovt som vi v=C3=A6kker opm=C3=A6rksomhed 
+Umiddelbart syntes at jeg at det l=C3=B8d som en genial id=C3=A9 med et Web=
+-interface, og selve den grundl=C3=A6ggende kode nede i maskinrummet
+er jo designet til at kunne porteres.
+
+Men ligegyldigt om man anvender et Web-interface eller man k=C3=B8rer det h=
+ele lokalt kommer man jo ikke uden om at der skal laves en eller
+anden form for brugerinterface, som passer til den enkelte devicetype. Om d=
+en underliggende kode k=C3=B8rer lokalt eller p=C3=A5 en Web-server
+er i den sammenh=C3=A6ng underordnet.
+
+Web-l=C3=B8sningen giver tilmed nogle svartids-problemer for den del af nod=
+el=C3=A6seren, som er realtids-kritisk.
+Eksempel: Hvor skal lyden syntetiseres =E2=80=93 p=C3=A5 klienten eller p=
+=C3=A5 serveren.
+
+S=C3=A5 jeg tror umiddelbart at der er MEGET langt til en l=C3=B8sning, men=
+ m=C3=A5ske findes der nogle tricks, som jeg ikke kender.
+
+Vi skal i hvert fald ikke love ham noget, som vi ikke kan holde.
+
+M=C3=A5ske er det bedste at komme videre med at f=C3=A5 lagt den grundl=C3=
+=A6ggende kode ud p=C3=A5 GitHub, s=C3=A5 kan folk selv ligge og rode med d=
+et, og vi 
+kan v=C3=A6lge selv at bruge d=C3=A9n delm=C3=A6ngde, som vi synes giver me=
+ning.
+
+Lad os snakke om det n=C3=A6ste gang vi m=C3=B8des.
+
+mvh Jens
+
+From: Bo Alstrup 
+Sent: Monday, September 7, 2020 6:01 PM
+To: Jens Sundgaard 
+Subject: VS: MusicXmlReader
+
+Hej Jens
+
+Det lyder sgu ikke s=C3=A5 dumt
+
+Eller hvad synes du?
+
+ 
+
+Med venlig hilsen
+
+ 
+
+ 
+
+Bo Alstrup
+
+IKT-konsulent
+
+ 
+
+ 
+
+IBOS - Instituttet for Blinde og Svagsynede
+
+Rymarksvej 1, DK-2900 Hellerup
+
++45 39 45 25 71
+
+mailto:CX64@sof.kk.dk, sikker e-mail: ibos@kk.dk
+
+ 
+
+
+
+ 
+
+IBOS er et nationalt kompetence- og rehabiliteringscenter for mennesker med=
+ nedsat syn.
+
+Vi l=C3=B8ser det komplicerede, skaber det nye og arbejder for det inkluder=
+ende sammen med 
+
+borgere, kommuner og synsprofessionelle i hele landet. www.ibos.dk
+
+ 
+
+
+
+ 
+
+ 
+
+Fra: Theo van der Greft <tvdgreft@pranamas.nl> 
+Sendt: 7. september 2020 14:10
+Til: Bo Alstrup <CX64@kk.dk>
+Emne: MusicXmlReader
+
+ 
+
+Dear Bo Alstrup,
+
+My name is Theo van der Greft and I work as an IT specialist at Connect2Mus=
+ic.
+Connect2music aims to stimulate people with a visual disability, to practic=
+e music or singing. For example, we organize workshops and provide professi=
+onals in education about aids for the practice of music by people with a vi=
+sual impairment.
+Another spearhead is to make it possible to convert sheet music to enlargem=
+ent or Braille.
+On the website of IBOS we found information about the MusicXMLReader. We ha=
+ve made a link to this on our website (https://www.connect2music.nl/index.p=
+hp/bladmuziek)
+We have received a response from a number of users that unfortunately they =
+cannot use this program because their PC is running on Linux or MAC OS.
+I see on your website that one of the future developments is making the sof=
+tware available on other platforms, like Android, iOS, and MAC OS. 
+
+My question is whether it is possible in the future to develop a web applic=
+ation, so that it can be used from any platform. If that is technically pos=
+sible, we are willing to find out in which way we can help you to realize t=
+his.
+
+ 
+
+Greetings,
+
+Theo van der Greft
+
+
+-- 
+Denne mail er kontrolleret for vira af AVG.
+http://www.avg.com
+
+------=_NextPart_001_004E_01D685D4.71CBA220
+Content-Type: text/html;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<HTML xmlns=3D"http://www.w3.org/TR/REC-html40" xmlns:v =3D 
+"urn:schemas-microsoft-com:vml" xmlns:o =3D 
+"urn:schemas-microsoft-com:office:office" xmlns:w =3D 
+"urn:schemas-microsoft-com:office:word" xmlns:m =3D 
+"http://schemas.microsoft.com/office/2004/12/omml"><HEAD>
+<META content=3D"text/html; charset=3Dutf-8" http-equiv=3DContent-Type>
+<META name=3DGenerator content=3D"Microsoft Word 15 (filtered medium)">
+<STYLE>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+=2Eshape {behavior:url(#default#VML);}
+</STYLE>
+
+<STYLE><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	line-height:normal;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Arial",sans-serif;
+	color:windowtext;}
+=2EMsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></STYLE>
+</HEAD>
+<BODY lang=3DDA dir=3Dltr vLink=3Dpurple link=3Dblue>
+<DIV dir=3Dltr>
+<DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: 'Calibri'; COLOR: #000000">
+<DIV>Hej Bo</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Ja, det er da sjovt som vi v=C3=A6kker opm=C3=A6rksomhed </DIV>
+<DIV>Umiddelbart syntes at jeg at det l=C3=B8d som en genial id=C3=A9 med e=
+t 
+Web-interface, og selve den grundl=C3=A6ggende kode nede i maskinrummet</DI=
+V>
+<DIV>er jo designet til at kunne porteres.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Men ligegyldigt om man anvender et Web-interface eller man k=C3=B8rer =
+det hele 
+lokalt kommer man jo ikke uden om at der skal laves en eller</DIV>
+<DIV>anden form for brugerinterface, som passer til den enkelte devicetype.=
+ Om 
+den underliggende kode k=C3=B8rer lokalt eller p=C3=A5 en Web-server</DIV>
+<DIV>er i den sammenh=C3=A6ng underordnet.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Web-l=C3=B8sningen giver tilmed nogle svartids-problemer for den del a=
+f 
+nodel=C3=A6seren, som er realtids-kritisk.</DIV>
+<DIV>Eksempel: Hvor skal lyden syntetiseres =E2=80=93 p=C3=A5 klienten elle=
+r p=C3=A5 
+serveren.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>S=C3=A5 jeg tror umiddelbart at der er MEGET langt til en l=C3=B8sning=
+, men m=C3=A5ske 
+findes der nogle tricks, som jeg ikke kender.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Vi skal i hvert fald ikke love ham noget, som vi ikke kan holde.</DIV>=
+
+<DIV>&nbsp;</DIV>
+<DIV>M=C3=A5ske er det bedste at komme videre med at f=C3=A5 lagt den grund=
+l=C3=A6ggende kode 
+ud p=C3=A5 GitHub, s=C3=A5 kan folk selv ligge og rode med det, og vi </DIV=
+>
+<DIV>kan v=C3=A6lge selv at bruge d=C3=A9n delm=C3=A6ngde, som vi synes giv=
+er mening.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Lad os snakke om det n=C3=A6ste gang vi m=C3=B8des.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>mvh Jens</DIV>
+<DIV 
+style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: "Calibri"; F=
+ONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; DISPLAY: inline'>
+<DIV style=3D"FONT: 10pt tahoma">
+<DIV>&nbsp;</DIV>
+<DIV style=3D"BACKGROUND: #f5f5f5">
+<DIV style=3D"font-color: black"><B>From:</B> <A title=3DCX64@kk.dk>Bo Alst=
+rup</A> 
+</DIV>
+<DIV><B>Sent:</B> Monday, September 7, 2020 6:01 PM</DIV>
+<DIV><B>To:</B> <A title=3Dholmeparken44@vip.cybercity.dk>Jens Sundgaard</A=
+> 
+</DIV>
+<DIV><B>Subject:</B> VS: MusicXmlReader</DIV></DIV></DIV>
+<DIV>&nbsp;</DIV></DIV>
+<DIV 
+style=3D'FONT-SIZE: small; TEXT-DECORATION: none; FONT-FAMILY: "Calibri"; F=
+ONT-WEIGHT: normal; COLOR: #000000; FONT-STYLE: normal; DISPLAY: inline'>
+<DIV class=3DWordSection1>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Arial",sans-serif; mso-fareast-lang=
+uage: en-us'>Hej 
+Jens<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Arial",sans-serif; mso-fareast-lang=
+uage: en-us'>Det 
+lyder sgu ikke s=C3=A5 dumt<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Arial",sans-serif; mso-fareast-lang=
+uage: en-us'>Eller 
+hvad synes du?<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Arial",sans-serif; mso-fareast-lang=
+uage: en-us'><o:p></o:p></SPAN>&nbsp;</P>
+<DIV>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'>Med venlig 
+hilsen<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-FAMILY: "Arial",sans-serif'><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-FAMILY: "Arial",sans-serif'><o:p></o:p></SPAN>&nbsp;</P>
+<P class=3DMsoNormal><B><SPAN style=3D'FONT-FAMILY: "Arial",sans-serif'>Bo =
+
+Alstrup</SPAN></B><SPAN 
+style=3D'FONT-FAMILY: "Arial",sans-serif'><o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'>IKT-konsulent<=
+o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'>IBOS - Institu=
+ttet 
+for Blinde og Svagsynede<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'>Rymarksvej 1, =
+DK-2900 
+Hellerup<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'>+45 39 45 25 
+71<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'><A>mailto:CX64=
+@sof.kk.dk</A>, 
+sikker e-mail: <A>ibos@kk.dk</A><o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P class=3DMsoNormal><IMG style=3D"HEIGHT: 0.958in; WIDTH: 2.5in" 
+alt=3D"Billede af IBOS logo" src=3D"cid:1DF26B41F8EF4EB29E7CA12C00BC6F4F@Je=
+nsesHP17" 
+width=3D240 height=3D92 v:shapes=3D"Billede_x0020_1"><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'><o:p></o:p></S=
+PAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'>IBOS er et nat=
+ionalt 
+kompetence- og rehabiliteringscenter for mennesker med nedsat 
+syn.<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'>Vi l=C3=B8ser =
+det 
+komplicerede, skaber det nye og arbejder for det inkluderende sammen med 
+<o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'>borgere, kommu=
+ner og 
+synsprofessionelle i hele landet. <A 
+href=3D"http://www.ibos.dk/">www.ibos.dk</A><o:p></o:p></SPAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'><o:p></o:p></S=
+PAN>&nbsp;</P>
+<P class=3DMsoNormal><IMG style=3D"HEIGHT: 0.635in; WIDTH: 1.875in" 
+alt=3D"Billede af K=C3=B8benhavns Kommunes Logo" 
+src=3D"cid:19BD116830DA420189B7BEFAB4DB6022@JensesHP17" width=3D180 height=
+=3D61 
+v:shapes=3D"Billede_x0020_2"><SPAN 
+style=3D'FONT-SIZE: 10.5pt; FONT-FAMILY: "Arial",sans-serif'><o:p></o:p></S=
+PAN></P>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-FAMILY: "Arial",sans-serif'><o:p></o:p></SPAN>&nbsp;</P></DIV=
+>
+<P class=3DMsoNormal><SPAN 
+style=3D'FONT-SIZE: 12pt; FONT-FAMILY: "Arial",sans-serif; mso-fareast-lang=
+uage: en-us'><o:p></o:p></SPAN>&nbsp;</P>
+<DIV>
+<DIV 
+style=3D"BORDER-TOP: #e1e1e1 1pt solid; BORDER-RIGHT: medium none; BORDER-B=
+OTTOM: medium none; PADDING-BOTTOM: 0cm; PADDING-TOP: 3pt; PADDING-LEFT: 0c=
+m; BORDER-LEFT: medium none; PADDING-RIGHT: 0cm">
+<P class=3DMsoNormal><B>Fra:</B> Theo van der Greft &lt;tvdgreft@pranamas.n=
+l&gt; 
+<BR><B>Sendt:</B> 7. september 2020 14:10<BR><B>Til:</B> Bo Alstrup 
+&lt;CX64@kk.dk&gt;<BR><B>Emne:</B> MusicXmlReader<o:p></o:p></P></DIV></DIV=
+>
+<P class=3DMsoNormal><o:p></o:p>&nbsp;</P>
+<P>Dear Bo Alstrup,<o:p></o:p></P>
+<P><SPAN lang=3DEN-US>My name is Theo van der Greft and I work as an IT spe=
+cialist 
+at Connect2Music.<BR>Connect2music aims to stimulate people with a visual 
+disability, to practice music or singing. For example, we organize workshop=
+s and 
+provide professionals in education about aids for the practice of music by =
+
+people with a visual impairment.<BR>Another spearhead is to make it possibl=
+e to 
+convert sheet music to enlargement or Braille.<BR>On the website of IBOS we=
+ 
+found information about the MusicXMLReader. We have made a link to this on =
+our 
+website (<A 
+href=3D"https://www.connect2music.nl/index.php/bladmuziek">https://www.conn=
+ect2music.nl/index.php/bladmuziek</A>)<BR>We 
+have received a response from a number of users that unfortunately they can=
+not 
+use this program because their PC is running on Linux or MAC OS.<BR>I see o=
+n 
+your website that one of the future developments is making the software 
+available on other platforms, like Android, iOS, and MAC OS. <BR><BR>My que=
+stion 
+is whether it is possible in the future to develop a web application, so th=
+at it 
+can be used from any platform. If that is technically possible, we are will=
+ing 
+to find out in which way we can help you to realize this.<o:p></o:p></SPAN>=
+</P>
+<P><o:p></o:p>&nbsp;</P>
+<P>Greetings,<o:p></o:p></P>
+<P>Theo van der Greft<o:p></o:p></P></DIV></DIV></DIV></DIV><div id=3D"DAB4=
+FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2"><br /> <table style=3D"border-top: 1px so=
+lid #D3D4DE;">
+	<tr>
+      <td style=3D"width: 55px; padding-top: 18px;"><a href=3D"http://www.a=
+vg.com/email-signature?utm_medium=3Demail&utm_source=3Dlink&utm_campaign=3D=
+sig-email&utm_content=3Demailclient" target=3D"_blank"><img src=3D"https://=
+ipmcdn.avast.com/images/icons/icon-envelope-tick-green-avg-v1.png" alt=3D""=
+  width=3D"46" height=3D"29" style=3D"width: 46px; height: 29px;" /></a></t=
+d>
+		<td style=3D"width: 470px; padding-top: 17px; color: #41424e; font-size: =
+13px; font-family: Arial, Helvetica, sans-serif; line-height: 18px;">Virusf=
+ri. <a href=3D"http://www.avg.com/email-signature?utm_medium=3Demail&utm_so=
+urce=3Dlink&utm_campaign=3Dsig-email&utm_content=3Demailclient" target=3D"_=
+blank" style=3D"color: #4453ea;">www.avg.com</a> 		</td>
+	</tr>
+</table>
+<a href=3D"#DAB4FAD8-2DD7-40BB-A1B8-4E2AA1F9FDF2" width=3D"1" height=3D"1">=
+ </a></div></BODY></HTML>
+
+------=_NextPart_001_004E_01D685D4.71CBA220--
+
+------=_NextPart_000_004D_01D685D4.71CBA220
+Content-Type: image/png;
+	name="image001.png"
+Content-Transfer-Encoding: base64
+Content-ID: <1DF26B41F8EF4EB29E7CA12C00BC6F4F@JensesHP17>
+
+iVBORw0KGgoAAAANSUhEUgAAAPAAAABcCAMAAABnVcg1AAAAAXNSR0ICQMB9xQAAAANQTFRFAAAA
+p3o92gAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAE1p
+Y3Jvc29mdCBPZmZpY2V/7TVxAAAAK0lEQVR42u3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAA
+AAAAAAAA8GZWnAABk88VkQAAAABJRU5ErkJggg==
+
+------=_NextPart_000_004D_01D685D4.71CBA220
+Content-Type: image/png;
+	name="image002.png"
+Content-Transfer-Encoding: base64
+Content-ID: <19BD116830DA420189B7BEFAB4DB6022@JensesHP17>
+
+iVBORw0KGgoAAAANSUhEUgAAALQAAAA9CAMAAAAzrLMQAAAAAXNSR0ICQMB9xQAAAANQTFRFAAAA
+p3o92gAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAE1p
+Y3Jvc29mdCBPZmZpY2V/7TVxAAAAIUlEQVRo3u3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAcGSsh
+AAFCkaHrAAAAAElFTkSuQmCC
+
+------=_NextPart_000_004D_01D685D4.71CBA220--
