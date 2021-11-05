@@ -714,8 +714,8 @@ namespace MusicXmlReader
 
         private void analyzeLocalizationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //string baseDirectory = model.AnalyzeLocalization();
-            //Utilities.RunExeWithArgument("Explorer", baseDirectory);
+            string baseDirectory = model.AnalyzeLocalization();
+            Utilities.RunExeWithArgument("Explorer", baseDirectory);
         }
 
         #endregion // tools 

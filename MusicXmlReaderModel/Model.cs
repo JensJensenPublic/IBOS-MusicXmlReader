@@ -1374,13 +1374,13 @@ namespace MusicXmlReaderModel
         }
 
 
-        //public string AnalyzeLocalization()
-        //{
-        //    string baseDirectory = Path.Combine(Logger.MusicXmlReaderTempDirectory, "LocalizationAnalyzer");
-        //    LocalizationAnalyzer.Analyzer analyzer = LocalizationAnalyzer.Analyzer.Create(baseDirectory, LocalizationAnalyzer.Analyzer.noOptions); // NoOptions: Do not use Console
-        //    analyzer.Execute();
-        //    return baseDirectory;
-        //}
+        public string AnalyzeLocalization()
+        {
+            string baseDirectory = Path.Combine(Logger.MusicXmlReaderTempDirectory, "LocalizationAnalyzer");
+            LocalizationAnalyzer.Analyzer analyzer = LocalizationAnalyzer.Analyzer.Create(baseDirectory, LocalizationAnalyzer.Analyzer.noOptions); // NoOptions: Do not use Console
+            analyzer.Execute();
+            return baseDirectory;
+        }
 
     }
 
