@@ -1,0 +1,25 @@
+Vi satser på at lave 2 faser, forår og efterår. Fordeling tænker vi over.
+39.000 - 17% fondmoms
+Forslag 4 måneder @ 4 uger @ 6 timer
+
+Export til printer og/eller notatapparat
+Personlige indstillinger / indstillinger pr score skal nokmed i første omgang
+Bo vil gerne have 2 frigivelser, Jens frygter for meget arbejde så bruges på dette.
+
+CANOOT 4-liniers Braille display fra Bristol Braille holder vi udenfor i første omgang
+Punktnode formater .brf og .pef
+
+PLaver skal opdeles i venstre og højre hånd.
+VErsionsnummer skal med i ikon og i menu. Husk "IBOS" overslt.
+
+Bo's ændringer o .doc filer skal føres tilbage.
+ Få JAWS til at lade være med at annoncere linie N af M. GErne noget fornuftigt i stedet.
+ Filter: Vent med at gennemføre ændringer til man forlader filteret ? Uheldige sideeffekter?
+
+ Metronom med igen.
+
+ Fjern udviklings-vinduer.
+
+ Kig på Lime. Hvad er det egentlig ?
+ Bill McCann == Dancing Dopts
+ I Word og nogle andre programmer kan man få oplæst en stetuslinie via et specifikt tastetryk
