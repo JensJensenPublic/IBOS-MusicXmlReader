@@ -173,6 +173,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Obsolete", "Obsolete", "{94
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicXmlReaderModelBase", "MusicXmlReaderModelBase\MusicXmlReaderModelBase.csproj", "{0D994560-FF94-4A4B-B150-647D76432DE1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{C1041149-C48D-48E9-A534-871DEB3D1360}"
+	ProjectSection(SolutionItems) = preProject
+		Tools\VS_FileCompare.cmd = Tools\VS_FileCompare.cmd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
