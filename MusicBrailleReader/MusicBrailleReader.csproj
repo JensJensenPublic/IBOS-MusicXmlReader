@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D6A09AA1-49E9-499F-A100-87D15C28C072}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MusicBrailleReader</RootNamespace>
+    <AssemblyName>MusicBrailleReader</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Root\Visual Studio 2015\Projects\ThirdPartyDlls\I386\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\MusicBrailleToMusicXmlCmd\MusicBrailleTestFiles.cs">
+      <Link>MusicBrailleTestFiles.cs</Link>
+    </Compile>
+    <Compile Include="AppConfigHandler.cs" />
+    <Compile Include="BatchTransscriber.cs" />
+    <Compile Include="BatchBrailleMusicExportHandler.cs" />
+    <Compile Include="IRegressionTestClient.cs" />
+    <Compile Include="MusicBrailleEditor.cs" />
+    <Compile Include="MusicBrailleReaderMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MusicBrailleReaderMainForm.Designer.cs">
+      <DependentUpon>MusicBrailleReaderMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MusicBrailleReaderMainForm.MenuStripLocalization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PerkinsEmulator.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegressionTest.cs" />
+    <Compile Include="RenameTool.cs" />
+    <EmbeddedResource Include="MusicBrailleReaderMainForm.resx">
+      <DependentUpon>MusicBrailleReaderMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MusicSynthesis\MusicSynthesis.csproj">
+      <Project>{ea073865-045b-4c6e-92a5-0f18d8fa226b}</Project>
+      <Name>MusicSynthesis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MusicXmlReaderModelBase\MusicXmlReaderModelBase.csproj">
+      <Project>{05d0a6cf-3d9f-4dde-90e4-db7e4d3318ab}</Project>
+      <Name>MusicXmlReaderModelBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MusicXmlReaderModel\MusicXmlReaderModel.csproj">
+      <Project>{45132bc4-1369-4ce3-b2ad-ffdabdce7bda}</Project>
+      <Name>MusicXmlReaderModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UiAccessibilityModel\UiAccessibilityModel.csproj">
+      <Project>{165f2ee0-8852-40c3-9ef0-b7ee6b6314b3}</Project>
+      <Name>UiAccessibilityModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
