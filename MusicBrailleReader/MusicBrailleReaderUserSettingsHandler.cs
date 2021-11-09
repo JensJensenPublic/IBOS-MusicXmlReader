@@ -81,7 +81,7 @@ namespace MusicBrailleReader
         {
             this.treeView = treeView;
             //this.listBoxTimesHandler = listBoxTimesHandler;
-            //this.treeView.AfterCheck += TreeView_AfterCheck;
+            this.treeView.AfterCheck += TreeView_AfterCheck;
             this.model = model;
             //this.treeView.AccessibleName = ResourcesForUI.TreeView_Accessible_Name;
             //this.treeView.KeyDown += new System.Windows.Forms.KeyEventHandler(TreeView_KeyDown);
@@ -308,112 +308,116 @@ namespace MusicBrailleReader
 
 
 
-        ///// <summary>
-        ///// This method is called whenever the value of a checkbox is changed.
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void TreeView_AfterCheck(object sender, TreeViewEventArgs e)
-        //{
-        //    string functionName = "TreeView_AfterCheck";
-        //    if (consoleTrace) Console.WriteLine(functionName);
-        //    TreeNode level0Node = null;
-        //    if (null == model.UserSettings)
-        //    {
-        //        return;
-        //    }
-        //    int level = e.Node.Level;
-        //    string name = e.Node.Name;
-        //    string text = e.Node.Text;
-        //    int i = e.Node.Index;
-        //    if (level == 0)
-        //    {
-        //        level0Node = e.Node;
-        //        if (e.Node.Equals(musicAsSound))
-        //        {
-        //            model.UserSettings.MusicAsSound = e.Node.Checked;
-        //        }
-        //        else if (e.Node.Equals(musicAsText))
-        //        {
-        //            model.UserSettings.MusicAsSpeech = e.Node.Checked;
-        //        }
-        //        else if (e.Node.Equals(musicAsBraille))
-        //        {
-        //            model.UserSettings.MusicAsMusicBraille = e.Node.Checked;
-        //        }
-        //        else
-        //        {
-        //            Logger.Log(string.Format("{0}.{1}: Unexpected Node at level 1: Text={2}", className, functionName, e.Node.Text));
-        //        }
+        /// <summary>
+        /// This method is called whenever the value of a checkbox is changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TreeView_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            //bool consoleTrace = true;
+            //string functionName = "TreeView_AfterCheck";
+            //if (consoleTrace) Console.WriteLine(functionName);
+            Logger.LogCF(string.Format(": Level={0} Name='{1}' Text='{2,-10}' Checked={3}",e.Node.Level,  e.Node.Name, e.Node.Text, e.Node.Checked));
+            TreeNode level0Node = null;
+            //if (null == model.UserSettings)
+            //{
+            //    return;
+            //}
+            int level = e.Node.Level;
+            string name = e.Node.Name;
+            string text = e.Node.Text;
+            int i = e.Node.Index;
+            if (level == 0)
+            {
+                level0Node = e.Node;
+                if (e.Node.Equals(musicAsSound))
+                {
+                    //model.UserSettings.MusicAsSound = e.Node.Checked;
+                }
+                else if (e.Node.Equals(musicAsText))
+                {
+                    //model.UserSettings.MusicAsSpeech = e.Node.Checked;
+                }
+                else if (e.Node.Equals(musicAsBraille))
+                {
+                    //model.UserSettings.MusicAsMusicBraille = e.Node.Checked;
+                }
+                else
+                {
+                    Logger.LogCF(string.Format(": Unexpected Node at level 1: Text={0}", e.Node.Text));
+                }
 
-        //    }
-        //    else if (level == 1)
-        //    {
-        //        if (e.Node.Equals(musicAsSoundVoices))
-        //        {
-        //            model.UserSettings.MusicAsSoundParts = e.Node.Checked;
-        //        }
-        //        else if (e.Node.Equals(musicAsSoundDetails))
-        //        {
-        //            model.UserSettings.MusicAsSoundDetails = e.Node.Checked;
-        //        }
+            }
+            //else if (level == 1)
+            //{
+            //    if (e.Node.Equals(musicAsSoundVoices))
+            //    {
+            //        model.UserSettings.MusicAsSoundParts = e.Node.Checked;
+            //    }
+            //    else if (e.Node.Equals(musicAsSoundDetails))
+            //    {
+            //        model.UserSettings.MusicAsSoundDetails = e.Node.Checked;
+            //    }
 
-        //        else if (e.Node.Equals(musicAsTextVoices))
-        //        {
-        //            model.UserSettings.MusicAsSpeechParts = e.Node.Checked;
-        //        }
-        //        else if (e.Node.Equals(musicAsTextDetails))
-        //        {
-        //            model.UserSettings.MusicAsSpeechDetails = e.Node.Checked;
-        //        }
+            //    else if (e.Node.Equals(musicAsTextVoices))
+            //    {
+            //        model.UserSettings.MusicAsSpeechParts = e.Node.Checked;
+            //    }
+            //    else if (e.Node.Equals(musicAsTextDetails))
+            //    {
+            //        model.UserSettings.MusicAsSpeechDetails = e.Node.Checked;
+            //    }
 
-        //        else if (e.Node.Equals(musicAsBrailleVoices))
-        //        {
-        //            model.UserSettings.MusicAsMusicBrailleParts = e.Node.Checked;
-        //        }
-        //        else if (e.Node.Equals(musicAsBrailleDetails))
-        //        {
-        //            model.UserSettings.MusicAsMusicBrailleDetails = e.Node.Checked;
-        //        }
-        //    }
+            //    else if (e.Node.Equals(musicAsBrailleVoices))
+            //    {
+            //        model.UserSettings.MusicAsMusicBrailleParts = e.Node.Checked;
+            //    }
+            //    else if (e.Node.Equals(musicAsBrailleDetails))
+            //    {
+            //        model.UserSettings.MusicAsMusicBrailleDetails = e.Node.Checked;
+            //    }
+            //}
 
 
-        //    else if (level == 2)
-        //    {
-        //        level0Node = e.Node.Parent.Parent;
-        //        switch (e.Node.Parent.Index)
-        //        {
-        //            case 0:  // Voices
-        //                switch (e.Node.Parent.Parent.Index)
-        //                {
-        //                    case 0: model.UserSettings.SetParts(UserSettings.Category.Sound, i, e.Node.Checked); break;
-        //                    case 1: model.UserSettings.SetParts(UserSettings.Category.Speech, i, e.Node.Checked); break;
-        //                    case 2: model.UserSettings.SetParts(UserSettings.Category.MusicBraille, i, e.Node.Checked); break;
-        //                    default: break;
-        //                }
-        //                break;
-        //            case 1: // Details
-        //                switch (e.Node.Parent.Parent.Index)
-        //                {
-        //                    case 0: model.UserSettings.SetPlayerSettings(i, e.Node.Checked); break;
-        //                    case 1: model.UserSettings.SetReaderSettings(i, e.Node.Checked); break;
-        //                    case 2: model.UserSettings.SetMusicBrailleSettings(i, e.Node.Checked); break;
-        //                    default: break;
-        //                }
-        //                break;
-        //            default: return;
-        //        }
-        //    }
-        //    // Transfer the settings to the MusicPlayer
-        //    model.musicPlayer.UserSettings = model.UserSettings;
+            //else if (level == 2)
+            //{
+            //    level0Node = e.Node.Parent.Parent;
+            //    switch (e.Node.Parent.Index)
+            //    {
+            //        case 0:  // Voices
+            //            switch (e.Node.Parent.Parent.Index)
+            //            {
+            //                case 0: model.UserSettings.SetParts(UserSettings.Category.Sound, i, e.Node.Checked); break;
+            //                case 1: model.UserSettings.SetParts(UserSettings.Category.Speech, i, e.Node.Checked); break;
+            //                case 2: model.UserSettings.SetParts(UserSettings.Category.MusicBraille, i, e.Node.Checked); break;
+            //                default: break;
+            //            }
+            //            break;
+            //        case 1: // Details
+            //            switch (e.Node.Parent.Parent.Index)
+            //            {
+            //                case 0: model.UserSettings.SetPlayerSettings(i, e.Node.Checked); break;
+            //                case 1: model.UserSettings.SetReaderSettings(i, e.Node.Checked); break;
+            //                case 2: model.UserSettings.SetMusicBrailleSettings(i, e.Node.Checked); break;
+            //                default: break;
+            //            }
+            //            break;
+            //        default: return;
+            //    }
+            //}
 
-        //    //if (!((null != level0Node) && (0 == level0Node.Index)))
-        //    //{
-        //    //    // Skip the update of the Listbox if this was a change of a sound parameter, which is not reflected there.
-        //    //    listBoxTimesHandler.ConditionalLoad();
-        //    //}
 
-        //}
+            // Transfer the settings to the MusicPlayer
+            //model.musicPlayer.UserSettings = model.UserSettings;
+
+            //if (!((null != level0Node) && (0 == level0Node.Index)))
+            //{
+            //    // Skip the update of the Listbox if this was a change of a sound parameter, which is not reflected there.
+            //    listBoxTimesHandler.ConditionalLoad();
+            //}
+
+        }
 
         public static MusicBrailleReaderUserSettingsHandler Create(TreeView treeView, Model model, ListBox listBoxTimesHandler)
         {
