@@ -7,6 +7,7 @@ using System.Xml;
 using UiAccessibilityModel; // Common tools for easy implementation af accessibility 
 using System.Threading;
 using System.Text;
+using System.Drawing;
 
 namespace MusicBrailleReader
 {
@@ -29,6 +30,8 @@ namespace MusicBrailleReader
         bool developerMode = false;
         MusicBrailleEditor musicBrailleEditor;
         MusicBrailleReaderUserSettingsHandler userSettingsHandler;
+        public static readonly Color FocusedColor = Color.White;         // Mainly for debugging. For released versions use Color.White !
+        public static readonly Color NonFocusedColor = Color.WhiteSmoke; // Mainly for debugging. For released versions use Color.White !
 
 
 
@@ -64,6 +67,19 @@ namespace MusicBrailleReader
             userSettingsHandler.LoadLevel0And1Nodes(model.UserSettings);
             userSettingsHandler.ExpandAllNodes();
 
+            listBoxDecodedAsText.Enter += ListBoxDecodedAsText_Enter;
+            listBoxDecodedAsText.Leave += ListBoxDecodedAsText_Leave;   
+
+        }
+
+        private void ListBoxDecodedAsText_Leave(object sender, EventArgs e)
+        {
+            listBoxDecodedAsText.BackColor = NonFocusedColor;
+        }
+
+        private void ListBoxDecodedAsText_Enter(object sender, EventArgs e)
+        {
+            listBoxDecodedAsText.BackColor = FocusedColor;     
         }
 
         #region IREgressionTEstClient

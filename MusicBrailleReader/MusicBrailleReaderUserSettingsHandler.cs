@@ -18,9 +18,9 @@ namespace MusicBrailleReader
         //public enum CheckboxRelation  { Unknown, SameName, SameParent };
 
         //private string className = "UserSettingsHandler";
-        //private bool consoleTrace = false;
+        private bool consoleTrace = true;
         private TreeView treeView;
-        //private ListBoxTimesHandler listBoxTimesHandler;
+        private ListBox listBox;
 
         private TreeNode musicAsSound;
         //private TreeNode musicAsSoundVoices;
@@ -46,49 +46,49 @@ namespace MusicBrailleReader
 
         private Model model;
 
-        //public TreeNode MusicAsSound
-        //{
-        //    get
-        //    {
-        //        return musicAsSound;
-        //    }
-        //}
+        public TreeNode MusicAsSound
+        {
+            get
+            {
+                return musicAsSound;
+            }
+        }
 
-        //public TreeNode MusicAsText
-        //{
-        //    get
-        //    {
-        //        return musicAsText;
-        //    }
-        //}
+        public TreeNode MusicAsText
+        {
+            get
+            {
+                return musicAsText;
+            }
+        }
 
-        //public TreeNode MusicAsBraille
-        //{
-        //    get
-        //    {
-        //        return musicAsBraille;
-        //    }            
-        //}
-
-
-        //// Prevent construction
-        //private MusicBrailleReaderUserSettingsHandler()
-        //{
-        //}
+        public TreeNode MusicAsBraille
+        {
+            get
+            {
+                return musicAsBraille;
+            }
+        }
 
 
-        private MusicBrailleReaderUserSettingsHandler(TreeView treeView, Model model, ListBox listBoxTimesHandler)
+        // Prevent construction
+        private MusicBrailleReaderUserSettingsHandler()
+        {
+        }
+
+
+        private MusicBrailleReaderUserSettingsHandler(TreeView treeView, Model model, ListBox listBox)
         {
             this.treeView = treeView;
-            //this.listBoxTimesHandler = listBoxTimesHandler;
+            this.listBox = listBox;
             this.treeView.AfterCheck += TreeView_AfterCheck;
             this.model = model;
-            //this.treeView.AccessibleName = ResourcesForUI.TreeView_Accessible_Name;
-            //this.treeView.KeyDown += new System.Windows.Forms.KeyEventHandler(TreeView_KeyDown);
-            //this.treeView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(TreeView_KeyPress);
-            //this.treeView.KeyUp += new System.Windows.Forms.KeyEventHandler(TreeView_KeyUp);
-            //this.treeView.Enter += TreeView_Enter;
-            //this.treeView.Leave += TreeView_Leave;
+            this.treeView.AccessibleName = "Punktnodefilter"; // ResourcesForUI.TreeView_Accessible_Name;
+            this.treeView.KeyDown += new System.Windows.Forms.KeyEventHandler(TreeView_KeyDown);
+            this.treeView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(TreeView_KeyPress);
+            this.treeView.KeyUp += new System.Windows.Forms.KeyEventHandler(TreeView_KeyUp);
+            this.treeView.Enter += TreeView_Enter;
+            this.treeView.Leave += TreeView_Leave;
         }
 
         //private void OnUserSettingTouched()
@@ -99,46 +99,46 @@ namespace MusicBrailleReader
         //}
 
 
-        //private void TreeView_Leave(object sender, EventArgs e)
-        //{
-        //    this.treeView.BackColor = MainForm.NonFocusedColor;
-        //    // Reload the NoteList if UserSettings have changed  
+        private void TreeView_Leave(object sender, EventArgs e)
+        {
+            this.treeView.BackColor = MusicBrailleReaderMainForm.NonFocusedColor;
+            // Reload the NoteList if UserSettings have changed  
 
-        //    if (null == model.UserSettings)
-        //    {
-        //        return; 
-        //    }
+            //if (null == model.UserSettings)
+            //{
+            //    return;
+            //}
 
-        //    string speechSettingsAtLeave = model.UserSettings.ToXml(UserSettings.Category.Speech);
-        //    string musicBrailleSettingsAtLeave = model.UserSettings.ToXml(UserSettings.Category.MusicBraille);
+            //string speechSettingsAtLeave = model.UserSettings.ToXml(UserSettings.Category.Speech);
+            //string musicBrailleSettingsAtLeave = model.UserSettings.ToXml(UserSettings.Category.MusicBraille);
 
-        //    //if ((null == userSettingsAtEntry) || (null == userSettingsAtLeave) || (!userSettingsAtLeave.Equals(userSettingsAtEntry)))
+            //if ((null == userSettingsAtEntry) || (null == userSettingsAtLeave) || (!userSettingsAtLeave.Equals(userSettingsAtEntry)))
 
-        //    bool speechChanged = (null == speechSettingsAtEntry) || (null == speechSettingsAtLeave) || (!speechSettingsAtLeave.Equals(speechSettingsAtEntry));
-        //    bool musicBrailleChanged = (null == musicBrailleSettingsAtEntry) || (null == musicBrailleSettingsAtLeave) || (!musicBrailleSettingsAtLeave.Equals(musicBrailleSettingsAtEntry));
-        //    // Explicitly do not care of the Sound settengs: They are not reflected in the NoteList !!!
-        //    if (speechChanged || musicBrailleChanged)
-        //    {
-        //        listBoxTimesHandler.Load();
-        //    }
-        //}
+            //bool speechChanged = (null == speechSettingsAtEntry) || (null == speechSettingsAtLeave) || (!speechSettingsAtLeave.Equals(speechSettingsAtEntry));
+            //bool musicBrailleChanged = (null == musicBrailleSettingsAtEntry) || (null == musicBrailleSettingsAtLeave) || (!musicBrailleSettingsAtLeave.Equals(musicBrailleSettingsAtEntry));
+            // Explicitly do not care of the Sound settengs: They are not reflected in the NoteList !!!
+            //if (speechChanged || musicBrailleChanged)
+            //{
+            //    listBoxTimesHandler.Load();
+            //}
+        }
 
         ////private string userSettingsAtEntry;
         //private string musicBrailleSettingsAtEntry;
         //private string speechSettingsAtEntry;
 
 
-        //private void TreeView_Enter(object sender, EventArgs e)
-        //{
-        //    this.treeView.BackColor = MainForm.FocusedColor;
-        //    if (null == model.UserSettings)
-        //    {
-        //        return;
-        //    }
-        //    //userSettingsAtEntry = model.UserSettings.ToXml();
-        //    speechSettingsAtEntry = model.UserSettings.ToXml(UserSettings.Category.Speech);
-        //    musicBrailleSettingsAtEntry = model.UserSettings.ToXml(UserSettings.Category.MusicBraille);
-        //}
+        private void TreeView_Enter(object sender, EventArgs e)
+        {
+            this.treeView.BackColor = MusicBrailleReaderMainForm.FocusedColor;
+            //if (null == model.UserSettings)
+            //{
+            //    return;
+            //}
+            ////userSettingsAtEntry = model.UserSettings.ToXml();
+            //speechSettingsAtEntry = model.UserSettings.ToXml(UserSettings.Category.Speech);
+            //musicBrailleSettingsAtEntry = model.UserSettings.ToXml(UserSettings.Category.MusicBraille);
+        }
 
         public void Reset()
         {
@@ -146,15 +146,15 @@ namespace MusicBrailleReader
             treeView.Refresh();
         }
 
-        //private void TreeView_KeyPress(object sender, KeyPressEventArgs e)
-        //{
-        //    if (consoleTrace) Console.WriteLine("userSettingsTreeView_KeyPress"); 
-        //}
+        private void TreeView_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (consoleTrace) Console.WriteLine("userSettingsTreeView_KeyPress");
+        }
 
-        //private void TreeView_KeyUp(object sender, KeyEventArgs e)
-        //{
-        //    if (consoleTrace) Console.WriteLine("userSettingsTreeView_KeyUp");
-        //}
+        private void TreeView_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (consoleTrace) Console.WriteLine("userSettingsTreeView_KeyUp");
+        }
 
 
         //private bool UpdateNotesWithSameName(bool newValue, int level)
@@ -266,44 +266,45 @@ namespace MusicBrailleReader
         ////}
 
 
-        ///// <summary>
-        ///// Occurs when a key is pressed while treeView has focus         
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //public void TreeView_KeyDown(object sender, KeyEventArgs e)
-        //{
+        /// <summary>
+        /// Occurs when a key is pressed while treeView has focus         
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void TreeView_KeyDown(object sender, KeyEventArgs e)
+        {
 
-        //    if (consoleTrace) Console.WriteLine("userSettingsTreeView_KeyDown");
-        //    if (e.KeyData == ShortcutHandler.listBoxFocus)
-        //    {
-        //        listBoxTimesHandler.Focus(); // Easy way to move the focus to the main listbox
-        //        e.SuppressKeyPress = true;
-        //        return;
-        //    }
+            if (consoleTrace) Console.WriteLine("userSettingsTreeView_KeyDown");
 
-
-        //    if (null == treeView.SelectedNode)
-        //    {
-        //        e.SuppressKeyPress = true;
-        //        return;
-        //    }
+            //if (e.KeyData == ShortcutHandler.listBoxFocus)
+            //{
+            //    listBoxTimesHandler.Focus(); // Easy way to move the focus to the main listbox
+            //    e.SuppressKeyPress = true;
+            //    return;
+            //}
 
 
-        //    switch (e.KeyData)
-        //    {
-        //        case ShortcutHandler.uncheckOthers: e.Handled = UpdateCheckBoxes(CheckboxOperation.Uncheck, CheckboxRelation.SameParent); e.SuppressKeyPress = true; break;
-        //        case ShortcutHandler.checkOthers:   e.Handled = UpdateCheckBoxes(CheckboxOperation.Check, CheckboxRelation.SameParent); e.SuppressKeyPress = true; break;
-        //        // For the time being the cneckAll and uncheckAll commands are called through the menuline, which is not formally correct, 
-        //        // because they should only be active when the Treeview has focus. They may be activated by the 2 lines below !
-        //        //case ShortcutHandler.uncheckAll: e.Handled = UpdateCheckBoxes(CheckboxOperation.Uncheck, CheckboxRelation.SameParent); e.SuppressKeyPress = true; break;
-        //        //case ShortcutHandler.checkAll: e.Handled = UpdateCheckBoxes(CheckboxOperation.Check, CheckboxRelation.SameParent); e.SuppressKeyPress = true; break;
-        //        default: break;
-        //    }
+            //if (null == treeView.SelectedNode)
+            //{
+            //    e.SuppressKeyPress = true;
+            //    return;
+            //}
 
-        //    // Otherwise let the treeview itself handle it
 
-        //}
+            //switch (e.KeyData)
+            //{
+            //    case ShortcutHandler.uncheckOthers: e.Handled = UpdateCheckBoxes(CheckboxOperation.Uncheck, CheckboxRelation.SameParent); e.SuppressKeyPress = true; break;
+            //    case ShortcutHandler.checkOthers: e.Handled = UpdateCheckBoxes(CheckboxOperation.Check, CheckboxRelation.SameParent); e.SuppressKeyPress = true; break;
+            //    // For the time being the cneckAll and uncheckAll commands are called through the menuline, which is not formally correct, 
+            //    // because they should only be active when the Treeview has focus. They may be activated by the 2 lines below !
+            //    //case ShortcutHandler.uncheckAll: e.Handled = UpdateCheckBoxes(CheckboxOperation.Uncheck, CheckboxRelation.SameParent); e.SuppressKeyPress = true; break;
+            //    //case ShortcutHandler.checkAll: e.Handled = UpdateCheckBoxes(CheckboxOperation.Check, CheckboxRelation.SameParent); e.SuppressKeyPress = true; break;
+            //    default: break;
+            //}
+
+            // Otherwise let the treeview itself handle it
+
+        }
 
 
 
