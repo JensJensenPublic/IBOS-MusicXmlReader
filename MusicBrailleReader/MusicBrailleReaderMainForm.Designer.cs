@@ -107,7 +107,7 @@
             this.copyRenameToolStripMenuItem,
             this.transscribeHøjskolesangbogenToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // tactileMusicXmlReaderToolStripMenuItem
@@ -226,6 +226,7 @@
             // userSettingsTreeView
             // 
             this.userSettingsTreeView.AccessibleName = "Note Filter";
+            this.userSettingsTreeView.CheckBoxes = true;
             this.userSettingsTreeView.Location = new System.Drawing.Point(12, 39);
             this.userSettingsTreeView.Name = "userSettingsTreeView";
             this.userSettingsTreeView.Size = new System.Drawing.Size(240, 418);
