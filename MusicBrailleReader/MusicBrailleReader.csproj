@@ -71,6 +71,7 @@
     <Compile Include="MusicBrailleReaderMainForm.MenuStripLocalization.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MusicBrailleReaderUserSettingsHandler.cs" />
     <Compile Include="PerkinsEmulator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
