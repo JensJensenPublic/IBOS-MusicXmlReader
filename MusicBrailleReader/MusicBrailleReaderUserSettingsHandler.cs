@@ -549,29 +549,29 @@ namespace MusicBrailleReader
         //}
 
 
-        //public void LoadLevel0And1Nodes(UserSettings userSettings)
-        //{
-        //    // As default check all nodes at level 0 and 1;
-        //    // The notes at level 2 are checked according to the default values set up by the model.
+        public void LoadLevel0And1Nodes(UserSettings userSettings)
+        {
+            // As default check all nodes at level 0 and 1;
+            // The notes at level 2 are checked according to the default values set up by the model.
 
-        //    musicAsText.Checked = userSettings.MusicAsSpeech;
-        //    musicAsTextVoices.Checked = userSettings.MusicAsSpeechParts;
-        //    musicAsTextDetails.Checked = userSettings.MusicAsSpeechDetails;
+            musicAsText.Checked = true; // userSettings.MusicAsSpeech;
+            //musicAsTextVoices.Checked = userSettings.MusicAsSpeechParts;
+            //musicAsTextDetails.Checked = userSettings.MusicAsSpeechDetails;
 
-        //    musicAsSound.Checked = userSettings.MusicAsSound;
-        //    musicAsSoundVoices.Checked = userSettings.MusicAsSoundParts;
-        //    musicAsSoundDetails.Checked = userSettings.MusicAsSoundDetails;
+            musicAsSound.Checked = true; // userSettings.MusicAsSound;
+            //musicAsSoundVoices.Checked = userSettings.MusicAsSoundParts;
+            //musicAsSoundDetails.Checked = userSettings.MusicAsSoundDetails;
 
-        //    musicAsBraille.Checked = userSettings.MusicAsMusicBraille;
+            musicAsBraille.Checked = true; // userSettings.MusicAsMusicBraille;
         //    musicAsBrailleVoices.Checked = userSettings.MusicAsMusicBrailleParts;
         //    musicAsBrailleDetails.Checked = userSettings.MusicAsMusicBrailleDetails;
-        //}
+        }
 
 
-        //public void ExpandAllNodes()
-        //{
-        //    treeView.ExpandAll();
-        //}
+        public void ExpandAllNodes()
+        {
+            treeView.ExpandAll();
+        }
 
         //#region editHandlers 
         //// Handle clicks in the Edit menu by expanding and collapsing nodes in the treeView 

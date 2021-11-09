@@ -61,6 +61,9 @@ namespace MusicBrailleReader
             userSettingsHandler.Init(); // Builds up the fixed part of the treeview
             userSettingsHandler.Reset();
 
+            userSettingsHandler.LoadLevel0And1Nodes(model.UserSettings);
+            userSettingsHandler.ExpandAllNodes();
+
         }
 
         #region IREgressionTEstClient
