@@ -28,6 +28,9 @@ namespace MusicBrailleReader
         string[] arguments = null;
         bool developerMode = false;
         MusicBrailleEditor musicBrailleEditor;
+        MusicBrailleReaderUserSettingsHandler userSettingsHandler;
+
+
 
 
         public MusicBrailleReaderMainForm()
@@ -52,6 +55,12 @@ namespace MusicBrailleReader
             LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
             regressionTest = RegressionTest.Create(this as IRegressionTestClient);
             musicBrailleEditor = MusicBrailleEditor.Create(model, textBoxRawBraille6, listBoxDecodedAsText,textBoxEditResultAsDecodedText,textBoxDebugInfo);
+
+            // Create a handler for the user settings, in this case modelled as a treeview.
+            userSettingsHandler = MusicBrailleReaderUserSettingsHandler.Create(userSettingsTreeView, model, listBoxDecodedAsText);
+            userSettingsHandler.Init(); // Builds up the fixed part of the treeview
+            userSettingsHandler.Reset();
+
         }
 
         #region IREgressionTEstClient
