@@ -61,6 +61,7 @@
     <Compile Include="BatchTransscriber.cs" />
     <Compile Include="BatchBrailleMusicExportHandler.cs" />
     <Compile Include="IRegressionTestClient.cs" />
+    <Compile Include="ListboxOffsetsHandler.cs" />
     <Compile Include="MusicBrailleEditor.cs" />
     <Compile Include="MusicBrailleReaderMainForm.cs">
       <SubType>Form</SubType>

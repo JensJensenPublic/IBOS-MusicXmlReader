@@ -29,6 +29,8 @@ namespace MusicBrailleReader
         string[] arguments = null;
         bool developerMode = false;
         MusicBrailleEditor musicBrailleEditor;
+        private ListBoxOffsetsHandler listboxOffsetsHandler;
+
         MusicBrailleReaderUserSettingsHandler userSettingsHandler;
         public static readonly Color FocusedColor = Color.White;         // Mainly for debugging. For released versions use Color.White !
         public static readonly Color NonFocusedColor = Color.WhiteSmoke; // Mainly for debugging. For released versions use Color.White !
@@ -59,28 +61,19 @@ namespace MusicBrailleReader
             regressionTest = RegressionTest.Create(this as IRegressionTestClient);
             musicBrailleEditor = MusicBrailleEditor.Create(model, textBoxRawBraille6, listBoxOffsets,textBoxEditResultAsDecodedText,textBoxDebugInfo);
 
+            // Create a handler for the main listbox, which lists Music Braille information ordered after Offset
+            listboxOffsetsHandler = ListBoxOffsetsHandler.Create(model, this.listBoxOffsets);
+
             // Create a handler for the user settings, in this case modelled as a treeview.
-            userSettingsHandler = MusicBrailleReaderUserSettingsHandler.Create(userSettingsTreeView, model, listBoxOffsets);
+            userSettingsHandler = MusicBrailleReaderUserSettingsHandler.Create(userSettingsTreeView, model, listboxOffsetsHandler);
             userSettingsHandler.Init(); // Builds up the fixed part of the treeview
             userSettingsHandler.Reset();
 
             userSettingsHandler.LoadLevel0And1Nodes(model.UserSettings);
             userSettingsHandler.ExpandAllNodes();
-
-            listBoxOffsets.Enter += ListBoxDecodedAsText_Enter;
-            listBoxOffsets.Leave += ListBoxDecodedAsText_Leave;   
-
+  
         }
 
-        private void ListBoxDecodedAsText_Leave(object sender, EventArgs e)
-        {
-            listBoxOffsets.BackColor = NonFocusedColor;
-        }
-
-        private void ListBoxDecodedAsText_Enter(object sender, EventArgs e)
-        {
-            listBoxOffsets.BackColor = FocusedColor;     
-        }
 
         #region IREgressionTEstClient
         private delegate void SafeCallDelegate(string text);

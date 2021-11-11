@@ -20,7 +20,7 @@ namespace MusicBrailleReader
         //private string className = "UserSettingsHandler";
         private bool consoleTrace = true;
         private TreeView treeView;
-        private ListBox listBox;
+        private ListBoxOffsetsHandler listBoxOffsetsHandler;
 
         private TreeNode musicAsSound;
         //private TreeNode musicAsSoundVoices;
@@ -77,10 +77,10 @@ namespace MusicBrailleReader
         }
 
 
-        private MusicBrailleReaderUserSettingsHandler(TreeView treeView, Model model, ListBox listBox)
+        private MusicBrailleReaderUserSettingsHandler(TreeView treeView, Model model, ListBoxOffsetsHandler listBoxOffsetsHandler)
         {
             this.treeView = treeView;
-            this.listBox = listBox;
+            this.listBoxOffsetsHandler = listBoxOffsetsHandler;
             this.treeView.AfterCheck += TreeView_AfterCheck;
             this.model = model;
             this.treeView.AccessibleName = "Punktnodefilter"; // ResourcesForUI.TreeView_Accessible_Name;
@@ -420,7 +420,7 @@ namespace MusicBrailleReader
 
         }
 
-        public static MusicBrailleReaderUserSettingsHandler Create(TreeView treeView, Model model, ListBox listBoxTimesHandler)
+        public static MusicBrailleReaderUserSettingsHandler Create(TreeView treeView, Model model, ListBoxOffsetsHandler listBoxTimesHandler)
         {
             return new MusicBrailleReaderUserSettingsHandler(treeView, model, listBoxTimesHandler);
         }
