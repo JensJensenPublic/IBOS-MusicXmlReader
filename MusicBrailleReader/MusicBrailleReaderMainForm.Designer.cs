@@ -44,7 +44,7 @@
             this.copyRenameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transscribeHøjskolesangbogenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.listBoxDecodedAsText = new System.Windows.Forms.ListBox();
+            this.listBoxOffsets = new System.Windows.Forms.ListBox();
             this.textBoxRawBraille6 = new System.Windows.Forms.TextBox();
             this.textBoxEditResultAsDecodedText = new System.Windows.Forms.TextBox();
             this.textBoxDebugInfo = new System.Windows.Forms.TextBox();
@@ -107,7 +107,7 @@
             this.copyRenameToolStripMenuItem,
             this.transscribeHøjskolesangbogenToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // tactileMusicXmlReaderToolStripMenuItem
@@ -177,17 +177,17 @@
             // 
             this.openFileDialog.FileName = "openFileDialog";
             // 
-            // listBoxDecodedAsText
+            // listBoxOffsets
             // 
-            this.listBoxDecodedAsText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listBoxOffsets.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxDecodedAsText.FormattingEnabled = true;
-            this.listBoxDecodedAsText.Location = new System.Drawing.Point(258, 128);
-            this.listBoxDecodedAsText.Name = "listBoxDecodedAsText";
-            this.listBoxDecodedAsText.Size = new System.Drawing.Size(876, 329);
-            this.listBoxDecodedAsText.TabIndex = 1;
-            this.listBoxDecodedAsText.SelectedIndexChanged += new System.EventHandler(this.listBoxDecodedAsText_SelectedIndexChanged);
+            this.listBoxOffsets.FormattingEnabled = true;
+            this.listBoxOffsets.Location = new System.Drawing.Point(258, 128);
+            this.listBoxOffsets.Name = "listBoxOffsets";
+            this.listBoxOffsets.Size = new System.Drawing.Size(876, 329);
+            this.listBoxOffsets.TabIndex = 1;
+            this.listBoxOffsets.SelectedIndexChanged += new System.EventHandler(this.listBoxDecodedAsText_SelectedIndexChanged);
             // 
             // textBoxRawBraille6
             // 
@@ -241,7 +241,7 @@
             this.Controls.Add(this.textBoxDebugInfo);
             this.Controls.Add(this.textBoxEditResultAsDecodedText);
             this.Controls.Add(this.textBoxRawBraille6);
-            this.Controls.Add(this.listBoxDecodedAsText);
+            this.Controls.Add(this.listBoxOffsets);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MusicBrailleReaderMainForm";
@@ -258,7 +258,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem filesToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.ListBox listBoxDecodedAsText;
+        private System.Windows.Forms.ListBox listBoxOffsets;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tactileMusicXmlReaderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem museScoreToolStripMenuItem;

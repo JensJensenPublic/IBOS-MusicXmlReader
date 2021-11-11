@@ -57,29 +57,29 @@ namespace MusicBrailleReader
             this.Text = "MusicBraille Reader"; // ResourcefForUI...
             LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
             regressionTest = RegressionTest.Create(this as IRegressionTestClient);
-            musicBrailleEditor = MusicBrailleEditor.Create(model, textBoxRawBraille6, listBoxDecodedAsText,textBoxEditResultAsDecodedText,textBoxDebugInfo);
+            musicBrailleEditor = MusicBrailleEditor.Create(model, textBoxRawBraille6, listBoxOffsets,textBoxEditResultAsDecodedText,textBoxDebugInfo);
 
             // Create a handler for the user settings, in this case modelled as a treeview.
-            userSettingsHandler = MusicBrailleReaderUserSettingsHandler.Create(userSettingsTreeView, model, listBoxDecodedAsText);
+            userSettingsHandler = MusicBrailleReaderUserSettingsHandler.Create(userSettingsTreeView, model, listBoxOffsets);
             userSettingsHandler.Init(); // Builds up the fixed part of the treeview
             userSettingsHandler.Reset();
 
             userSettingsHandler.LoadLevel0And1Nodes(model.UserSettings);
             userSettingsHandler.ExpandAllNodes();
 
-            listBoxDecodedAsText.Enter += ListBoxDecodedAsText_Enter;
-            listBoxDecodedAsText.Leave += ListBoxDecodedAsText_Leave;   
+            listBoxOffsets.Enter += ListBoxDecodedAsText_Enter;
+            listBoxOffsets.Leave += ListBoxDecodedAsText_Leave;   
 
         }
 
         private void ListBoxDecodedAsText_Leave(object sender, EventArgs e)
         {
-            listBoxDecodedAsText.BackColor = NonFocusedColor;
+            listBoxOffsets.BackColor = NonFocusedColor;
         }
 
         private void ListBoxDecodedAsText_Enter(object sender, EventArgs e)
         {
-            listBoxDecodedAsText.BackColor = FocusedColor;     
+            listBoxOffsets.BackColor = FocusedColor;     
         }
 
         #region IREgressionTEstClient
@@ -87,15 +87,15 @@ namespace MusicBrailleReader
         public void OnNewLine(String line)
         {
             // Handle cross-thread problem
-            if (listBoxDecodedAsText.InvokeRequired)
+            if (listBoxOffsets.InvokeRequired)
             {
                 var d = new SafeCallDelegate(OnNewLine);
-                listBoxDecodedAsText.Invoke(d, new object[] { line });
+                listBoxOffsets.Invoke(d, new object[] { line });
             }
             else
             {
                 Logger.LogCF(string.Format(": {0}", line));
-                listBoxDecodedAsText.Items.Add(line);
+                listBoxOffsets.Items.Add(line);
             }       
         }
 
@@ -257,10 +257,10 @@ namespace MusicBrailleReader
             decoderOutputFileHandler.SaveInterpretation(strings, decoderOutputFileHandler.FullOutputFileName);
 
             // Write the decoded output as text to the listbox
-            listBoxDecodedAsText.ClearSelected();
+            listBoxOffsets.ClearSelected();
             foreach (DecoderItem decoderItem in interpretation)
             {
-                listBoxDecodedAsText.Items.Add(decoderItem);
+                listBoxOffsets.Items.Add(decoderItem);
             }
 
             if (null != musicBrailleEditor)
@@ -302,8 +302,8 @@ namespace MusicBrailleReader
 
         private void ClearUI()
         {
-            listBoxDecodedAsText.Items.Clear();
-            listBoxDecodedAsText.Refresh();
+            listBoxOffsets.Items.Clear();
+            listBoxOffsets.Refresh();
         }
 
         /// <summary>
@@ -342,8 +342,8 @@ namespace MusicBrailleReader
 #endif
         private void listBoxDecodedAsText_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int newIndex = listBoxDecodedAsText.SelectedIndex;
-            DecoderItem decoderItem = listBoxDecodedAsText.Items[newIndex] as DecoderItem;
+            int newIndex = listBoxOffsets.SelectedIndex;
+            DecoderItem decoderItem = listBoxOffsets.Items[newIndex] as DecoderItem;
             if (null != decoderItem)
             {
                 model.DecoderHandler.Play(decoderItem.XmlRepresentation);
@@ -454,7 +454,7 @@ namespace MusicBrailleReader
         /// <param name="e"></param>
         private void regressionTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            listBoxDecodedAsText.Items.Clear();
+            listBoxOffsets.Items.Clear();
             testThread = new Thread(new ParameterizedThreadStart(DoTest));
             testThread.Start(regressionTest);      
         }
