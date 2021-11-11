@@ -62,7 +62,7 @@ namespace MusicBrailleReader
             musicBrailleEditor = MusicBrailleEditor.Create(model, textBoxRawBraille6, listBoxOffsets,textBoxEditResultAsDecodedText,textBoxDebugInfo);
 
             // Create a handler for the main listbox, which lists Music Braille information ordered after Offset
-            listboxOffsetsHandler = ListBoxOffsetsHandler.Create(model, this.listBoxOffsets);
+            listboxOffsetsHandler = ListBoxOffsetsHandler.Create(model, this.listBoxOffsets,developerMode);
 
             // Create a handler for the user settings, in this case modelled as a treeview.
             userSettingsHandler = MusicBrailleReaderUserSettingsHandler.Create(userSettingsTreeView, model, listboxOffsetsHandler);

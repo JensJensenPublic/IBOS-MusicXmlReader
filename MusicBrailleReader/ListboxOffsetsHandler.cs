@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Xml;
+using System.Collections.Generic;
+using System.Text;
 using System.Windows.Forms;
 using MusicXmlReaderModel;
 
@@ -11,9 +14,10 @@ namespace MusicBrailleReader
         //        private string className = "ListBoxTimesHandler";
 
 
-                private Model model;
+        private Model model;
+        private bool developerMode;
         //       private DetailsHandler detailsHandler;
-                private ListBox listBoxOffsets;
+        private ListBox listBoxOffsets;
         //        private bool autoReload;    // Used to optimize performance when changing large parts of the UI within short time
         //        public bool AutoReload { get { return autoReload; } set { autoReload = value; } }
 
@@ -313,9 +317,10 @@ namespace MusicBrailleReader
         //        }
 
 
-        private ListBoxOffsetsHandler(Model model, ListBox listBoxOffsets)
+        private ListBoxOffsetsHandler(Model model, ListBox listBoxOffsets, bool developerMode)
         {
             this.model = model;
+            this.developerMode = developerMode;
             this.listBoxOffsets = listBoxOffsets;
             this.listBoxOffsets.AccessibleName = "ListbofOffsets"; // ResourcesForUI.ListView_Accessible_Name;
             this.listBoxOffsets.AccessibleRole = AccessibleRole.Default;  // Seems to prevent JAWS from announcing "N of M" when changing line
@@ -325,9 +330,9 @@ namespace MusicBrailleReader
             this.listBoxOffsets.Leave += new System.EventHandler(Leave);
         }
 
-        public static ListBoxOffsetsHandler Create(Model model, ListBox listBoxOffsets)
+        public static ListBoxOffsetsHandler Create(Model model, ListBox listBoxOffsets, bool developerMode)
         {
-            return new ListBoxOffsetsHandler(model, listBoxOffsets);
+            return new ListBoxOffsetsHandler(model, listBoxOffsets,developerMode);
         }
 
     }
