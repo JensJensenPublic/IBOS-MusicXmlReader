@@ -26,7 +26,7 @@ namespace MusicBrailleReader
         //private TreeNode musicAsSoundVoices;
         //private TreeNode musicAsSoundDetails;
 
-        private TreeNode musicAsText;
+        private TreeNode spaceNumber;
         //private TreeNode musicAsTextVoices;
         //private TreeNode musicAsTextDetails;
 
@@ -64,8 +64,10 @@ namespace MusicBrailleReader
         public void Update(ref DecoderOptions.FormatOptionsEnum excludedDecoderOptiones)
         {
             Update(ref excludedDecoderOptiones, DecoderOptions.FormatOptionsEnum.token, musicAsBraille.Checked); // "token" reflects "musicAsBraille"
+            Update(ref excludedDecoderOptiones, DecoderOptions.FormatOptionsEnum.spaceNumber, spaceNumber.Checked); // "token" reflects "musicAsBraille"
+
             // And the remaining settings go here...
-         }
+        }
 
         private Model model;
 
@@ -77,11 +79,11 @@ namespace MusicBrailleReader
             }
         }
 
-        public TreeNode MusicAsText
+        public TreeNode SpaceNumber
         {
             get
             {
-                return musicAsText;
+                return spaceNumber;
             }
         }
 
@@ -359,7 +361,7 @@ namespace MusicBrailleReader
                 {
                     //model.UserSettings.MusicAsSound = e.Node.Checked;
                 }
-                else if (e.Node.Equals(musicAsText))
+                else if (e.Node.Equals(spaceNumber))
                 {
                     //model.UserSettings.MusicAsSpeech = e.Node.Checked;
                 }
@@ -500,7 +502,7 @@ namespace MusicBrailleReader
             //musicAsSoundDetails.Name = NoAmp(ResourcesForUI.TreeView_MusicAsSound_Details);
 
             //musicAsText = treeView.Nodes.Insert(TextNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsSpeech));
-            musicAsText = treeView.Nodes.Insert(TextNodeIndex, NoAmp("Tale"));
+            spaceNumber = treeView.Nodes.Insert(TextNodeIndex, NoAmp("Rum nummer"));
             //musicAsTextVoices = musicAsText.Nodes.Insert(partsNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsSpeech_Parts + f + ResourcesForUI.TreeView_MusicAsSpeech));
             //musicAsTextVoices.Name = NoAmp(ResourcesForUI.TreeView_MusicAsSpeech_Parts);
             //musicAsTextDetails = musicAsText.Nodes.Insert(detailsNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsSpeech_Details + f + ResourcesForUI.TreeView_MusicAsSpeech));
@@ -582,7 +584,7 @@ namespace MusicBrailleReader
             // As default check all nodes at level 0 and 1;
             // The notes at level 2 are checked according to the default values set up by the model.
 
-            musicAsText.Checked = true; // userSettings.MusicAsSpeech;
+            spaceNumber.Checked = true; // userSettings.MusicAsSpeech;
             //musicAsTextVoices.Checked = userSettings.MusicAsSpeechParts;
             //musicAsTextDetails.Checked = userSettings.MusicAsSpeechDetails;
 
@@ -608,7 +610,7 @@ namespace MusicBrailleReader
         {
             treeView.Focus();
             musicAsSound.ExpandAll();
-            musicAsText.Collapse(false);
+            spaceNumber.Collapse(false);
             musicAsBraille.Collapse(false);
             treeView.SelectedNode = musicAsSound;
         }
@@ -616,10 +618,10 @@ namespace MusicBrailleReader
         public void ShowText()
         {
             treeView.Focus();
-            musicAsText.ExpandAll();
+            spaceNumber.ExpandAll();
             musicAsSound.Collapse(false);
             musicAsBraille.Collapse(false);
-            treeView.SelectedNode = musicAsText;
+            treeView.SelectedNode = spaceNumber;
         }
 
         public void ShowBraille()
@@ -627,7 +629,7 @@ namespace MusicBrailleReader
             treeView.Focus();
             treeView.Nodes[BrailleNodeIndex].ExpandAll();
             musicAsSound.Collapse(false);
-            musicAsText.Collapse(false);
+            spaceNumber.Collapse(false);
             treeView.SelectedNode = musicAsBraille;
         }
 
