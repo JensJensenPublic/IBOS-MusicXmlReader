@@ -50,6 +50,7 @@
             this.textBoxDebugInfo = new System.Windows.Forms.TextBox();
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.exporterSomMusicXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exporterSomTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +71,8 @@
             this.openUsingNOTAProfileToolStripMenuItem,
             this.openUsingBrailleOrchProfileToolStripMenuItem,
             this.openTestFileToolStripMenuItem,
-            this.exporterSomMusicXmlToolStripMenuItem});
+            this.exporterSomMusicXmlToolStripMenuItem,
+            this.exporterSomTextToolStripMenuItem});
             this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
             this.filesToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.filesToolStripMenuItem.Text = "Files";
@@ -241,6 +243,13 @@
             this.exporterSomMusicXmlToolStripMenuItem.Text = "Exporter som MusicXml";
             this.exporterSomMusicXmlToolStripMenuItem.Click += new System.EventHandler(this.exporterSomMusicXmlToolStripMenuItem_Click);
             // 
+            // exporterSomTextToolStripMenuItem
+            // 
+            this.exporterSomTextToolStripMenuItem.Name = "exporterSomTextToolStripMenuItem";
+            this.exporterSomTextToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.exporterSomTextToolStripMenuItem.Text = "Exporter som text";
+            this.exporterSomTextToolStripMenuItem.Click += new System.EventHandler(this.exporterSomTextToolStripMenuItem_Click);
+            // 
             // MusicBrailleReaderMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,6 +295,7 @@
         private System.Windows.Forms.TextBox textBoxDebugInfo;
         private System.Windows.Forms.TreeView userSettingsTreeView;
         private System.Windows.Forms.ToolStripMenuItem exporterSomMusicXmlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exporterSomTextToolStripMenuItem;
     }
 }
 

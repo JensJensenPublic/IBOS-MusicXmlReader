@@ -278,26 +278,24 @@ namespace MusicBrailleReader
             return result;
         }
 
+        private bool OnNoMusicBrailleFileLoaded()
+        {
+            MessageBox.Show("Ingen punktnodefil er åbnet.");
+            return false;
+        }
+
+
         /// <summary>
         /// Exports the interpretation of the current MusicBraille inputfile as an MuxicXml file
-        /// During test also exports the interpretation of the currnt MusicBraille inputfile as a simple text file.
         /// </summary>
         /// <param name="musicXmlDocument"></param>
-        private void ExportToFiles(XmlDocument musicXmlDocument)
+        private bool ExportToFileAsMusicXml(XmlDocument musicXmlDocument)
         {
+            // This handler may be called before the data structiures have been established so we need to check
+            if (null == decoderOutputFileHandler) return OnNoMusicBrailleFileLoaded();
+            if (null == musicXmlDocument) OnNoMusicBrailleFileLoaded();
+
             bool showXmlOnConsole = false;
-
-            List<string> strings = new List<string>();
-            foreach (DecoderItem decoderItem in currentInterpretation)
-            {
-                string s = decoderItem.XmlToString();
-                strings.Add(decoderItem.ToString() + s);
-            }
-
-            regressionTest.DecoderOutputRegressionTest(strings, decoderOutputFileHandler.FullOutputFileName);
-
-            // Write the decoded output as a text interpretation to a file
-            decoderOutputFileHandler.SaveInterpretation(strings, decoderOutputFileHandler.FullOutputFileName);
 
             string fileName = decoderOutputFileHandler.FullMusicXmlFileName;
 
@@ -309,14 +307,44 @@ namespace MusicBrailleReader
 
             latestMusicXmlFileGenerated = fileName;
 
-
-            // Open the output file in NotePad
-            //Utilities.RunExeWithFileArgument("NotePad", fullOutputFileName);
-
             // Open Explorer in the output directory.
             Utilities.RunExeWithDirArgument("Explorer", decoderOutputFileHandler.OutputDirectory);
-
+            return true;
         }
+
+
+        /// <summary>
+        /// Exports the interpretation of the currnt MusicBraille inputfile as a simple text file.
+        /// </summary>
+        /// <param name="decoderItems"></param>
+        private bool ExportToFileAsText(List<DecoderItem> decoderItems)
+        {
+            // This handler may be called before the data structiures have been established so we need to check
+            if (null == currentInterpretation) return OnNoMusicBrailleFileLoaded();
+            if (null == decoderOutputFileHandler) return OnNoMusicBrailleFileLoaded();
+
+            List<string> strings = new List<string>();
+            foreach (DecoderItem decoderItem in decoderItems)
+            {
+                string s = decoderItem.XmlToString();
+                strings.Add(decoderItem.ToString() + s);
+            }
+
+            regressionTest.DecoderOutputRegressionTest(strings, decoderOutputFileHandler.FullOutputFileName);
+
+            // Write the decoded output as a text interpretation to a file
+            decoderOutputFileHandler.SaveInterpretation(strings, decoderOutputFileHandler.FullOutputFileName);
+
+            string fileName = decoderOutputFileHandler.FullMusicXmlFileName;
+      
+            // Open Explorer in the output directory.
+            Utilities.RunExeWithDirArgument("Explorer", decoderOutputFileHandler.OutputDirectory);
+            return true;
+        }
+
+
+
+
 
         private void ShowUserWarnings(List<string> userWarnings,string caption)
         {
@@ -612,11 +640,12 @@ namespace MusicBrailleReader
 
         private void exporterSomMusicXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // This handler may be called before the data structiures have been established so we need to check
-            if (null == currentInterpretation) return;
-            if (null == decoderOutputFileHandler) return;
-            if (null == musicXmlDocument) return;
-            ExportToFiles(musicXmlDocument);
+            ExportToFileAsMusicXml(musicXmlDocument);
+        }
+
+        private void exporterSomTextToolStripMenuItem_Click(object sender, EventArgs e)
+        { 
+            ExportToFileAsText(currentInterpretation);
         }
     }
 }
