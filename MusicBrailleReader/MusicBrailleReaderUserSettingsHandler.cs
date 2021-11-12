@@ -509,7 +509,7 @@ namespace MusicBrailleReader
             //musicAsTextDetails.Name = NoAmp(ResourcesForUI.TreeView_MusicAsSpeech_Details);
 
             //musicAsBraille = treeView.Nodes.Insert(BrailleNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsBraille));
-            musicAsBraille = treeView.Nodes.Insert(BrailleNodeIndex, NoAmp("Punktnoder"));
+            musicAsBraille = treeView.Nodes.Insert(BrailleNodeIndex, NoAmp("Rå punktnoder"));
             //musicAsBrailleVoices = musicAsBraille.Nodes.Insert(partsNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsBraille_Parts + f + ResourcesForUI.TreeView_MusicAsBraille));
             //musicAsBrailleVoices.Name = NoAmp(ResourcesForUI.TreeView_MusicAsBraille_Parts);
             //musicAsBrailleDetails = musicAsBraille.Nodes.Insert(detailsNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsSound_Details + f + ResourcesForUI.TreeView_MusicAsBraille));
