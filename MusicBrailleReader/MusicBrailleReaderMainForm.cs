@@ -84,7 +84,10 @@ namespace MusicBrailleReader
         public void LeaveTreeView(object sender, EventArgs e)
         {
             listBoxOffsets.Items.Clear();
-            Decode(); // Use the latest regional options !           
+            // When we arrive here we can not be sure that a file has been loaded. In that case we just ignore.
+            if (null == fullFileName) return; // No file has been loaded yet.
+            if (! File.Exists(fullFileName)) return; //
+            Decode(latestRegionalOptions, false); // Use the latest regional options and do not show user warnings           
         }
 
 
@@ -211,15 +214,12 @@ namespace MusicBrailleReader
 
         private DecoderOptions.RegionalOptionsEnum latestRegionalOptions = DecoderOptions.RegionalOptionsEnum.Unknown;
 
-        /// <summary>
-        /// Use latest regional options if not specified
-        /// </summary>
-        private void Decode()
+        private List<DecoderItem> Decode(DecoderOptions.RegionalOptionsEnum regionalOptions)
         {
-            currentInterpretation =  Decode(latestRegionalOptions);
+            return Decode(regionalOptions, true);
         }
 
-        private List<DecoderItem> Decode(DecoderOptions.RegionalOptionsEnum regionalOptions)
+        private List<DecoderItem> Decode(DecoderOptions.RegionalOptionsEnum regionalOptions, bool showWarnings)
         {
             latestRegionalOptions = regionalOptions;
             musicXmlDocument = null;
@@ -257,9 +257,9 @@ namespace MusicBrailleReader
                 decoderOptions.ExcludeSubStrings(DecoderOptions.FormatOptionsEnum.xmlRepresentation);
             }
 
-            result = model.DecoderHandler.InterpretBrailleMusicFile(fullFileName, fileEncoding, out musicXmlDocument, decoderOptions); 
-            ShowUserWarnings(model.DecoderHandler.GetLocalUserWarnings(), model.DecoderHandler.GetLocalUserWarningsCaption());
+            result = model.DecoderHandler.InterpretBrailleMusicFile(fullFileName, fileEncoding, out musicXmlDocument, decoderOptions);
 
+            if (showWarnings)     ShowUserWarnings(model.DecoderHandler.GetLocalUserWarnings(), model.DecoderHandler.GetLocalUserWarningsCaption()); 
             if (showXmlOnConsole) musicXmlDocument.Save(Console.Out); // Disable to speed up
             decoderOutputFileHandler = DecoderOutputFileHandler.Create(fullFileName);   
 
