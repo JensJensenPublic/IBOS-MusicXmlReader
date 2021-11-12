@@ -43,6 +43,29 @@ namespace MusicBrailleReader
         //private const int partsNodeIndex = 0;
         //private const int detailsNodeIndex = 1;
 
+        private void Update(ref DecoderOptions.FormatOptionsEnum excludedFormatOptions, DecoderOptions.FormatOptionsEnum option,  bool setting)
+        {
+            if (setting)
+            {
+                excludedFormatOptions &= ~option;
+            }
+            else
+            {
+                excludedFormatOptions |= option;
+            }
+
+        }
+
+
+        /// <summary>
+        /// This function implements the mapping from the bool values of the checkboxes to the DecoderOptions.FormatOptionsEnum enumeration
+        /// </summary>
+        /// <param name="excludedDecoderOptiones"></param>
+        public void Update(ref DecoderOptions.FormatOptionsEnum excludedDecoderOptiones)
+        {
+            Update(ref excludedDecoderOptiones, DecoderOptions.FormatOptionsEnum.token, musicAsBraille.Checked); // "token" reflects "musicAsBraille"
+            // And the remaining settings go here...
+         }
 
         private Model model;
 

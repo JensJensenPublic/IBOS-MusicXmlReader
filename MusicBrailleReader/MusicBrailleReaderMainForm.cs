@@ -248,6 +248,8 @@ namespace MusicBrailleReader
                 | DecoderOptions.FormatOptionsEnum.value
                 | DecoderOptions.FormatOptionsEnum.none; // No value, only for ease of adding and removing lines
 
+            userSettingsHandler.Update(ref excludedDecoderOptiones);
+
             // Exclude the names of some categories (The information is fully contained in friendlyString)
             DecoderOptions.CategoryEnum hiddenCategoryNames =
                   DecoderOptions.CategoryEnum.Note
