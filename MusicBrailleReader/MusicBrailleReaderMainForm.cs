@@ -87,7 +87,7 @@ namespace MusicBrailleReader
             // When we arrive here we can not be sure that a file has been loaded. In that case we just ignore.
             if (null == fullFileName) return; // No file has been loaded yet.
             if (! File.Exists(fullFileName)) return; //
-            Decode(latestRegionalOptions, false); // Use the latest regional options and do not show user warnings           
+            GetInterpretation(latestRegionalOptions, false); // Use the latest regional options and do not show user warnings           
         }
 
 
@@ -214,12 +214,22 @@ namespace MusicBrailleReader
 
         private DecoderOptions.RegionalOptionsEnum latestRegionalOptions = DecoderOptions.RegionalOptionsEnum.Unknown;
 
-        private List<DecoderItem> Decode(DecoderOptions.RegionalOptionsEnum regionalOptions)
+        private List<DecoderItem> GetInterpretation(DecoderOptions.RegionalOptionsEnum regionalOptions)
         {
-            return Decode(regionalOptions, true);
+            return GetInterpretation(regionalOptions, true);
         }
 
-        private List<DecoderItem> Decode(DecoderOptions.RegionalOptionsEnum regionalOptions, bool showWarnings)
+
+        /// <summary>
+        /// Calls the Model to create an interpretation (in the form of a list of DecoderItems) of the currently loaded Music Braille file
+        /// This may happen as a consequence of that:
+        /// 1) The user has opened a new Music Braille input file.
+        /// 2) The uses has changed a UserSetting. 
+        /// </summary>
+        /// <param name="regionalOptions"></param>
+        /// <param name="showWarnings"></param>
+        /// <returns></returns>
+        private List<DecoderItem> GetInterpretation(DecoderOptions.RegionalOptionsEnum regionalOptions, bool showWarnings)
         {
             latestRegionalOptions = regionalOptions;
             musicXmlDocument = null;
@@ -539,7 +549,7 @@ namespace MusicBrailleReader
             string fullDir = Path.Combine(baseDir,currentTestDirectory);
             fullFileName = Path.Combine(fullDir, currentTestFileName); 
             fileEncoding = BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252;
-            currentInterpretation = Decode(DecoderOptions.RegionalOptionsEnum.Danish);
+            currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.Danish);
 #endif
         }
 
@@ -604,14 +614,14 @@ namespace MusicBrailleReader
         {
             if (!SelectAndOpenFile(false, false, GetOpenDialogName(sender))) return;
             ClearUI();
-            currentInterpretation = Decode(DecoderOptions.RegionalOptionsEnum.Danish);
+            currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.Danish);
         }
 
         private void openUsingBrailleOrchProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!SelectAndOpenFile(false, false, GetOpenDialogName(sender))) return;
             ClearUI();
-            currentInterpretation = Decode(DecoderOptions.RegionalOptionsEnum.English);
+            currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.English);
         }
 
         #region TextBoxRawBraille6EventHandlers        
