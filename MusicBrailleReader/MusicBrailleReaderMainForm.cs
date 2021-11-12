@@ -31,6 +31,10 @@ namespace MusicBrailleReader
         MusicBrailleEditor musicBrailleEditor;
         private ListBoxOffsetsHandler listboxOffsetsHandler;
 
+        List<DecoderItem> currentInterpretation; // Contains the full interpretation of the current inputfile with the current settings
+        DecoderOutputFileHandler decoderOutputFileHandler;
+        XmlDocument musicXmlDocument;
+
         MusicBrailleReaderUserSettingsHandler userSettingsHandler;
         public static readonly Color FocusedColor = Color.White;         // Mainly for debugging. For released versions use Color.White !
         public static readonly Color NonFocusedColor = Color.WhiteSmoke; // Mainly for debugging. For released versions use Color.White !
@@ -71,8 +75,18 @@ namespace MusicBrailleReader
 
             userSettingsHandler.LoadLevel0And1Nodes(model.UserSettings);
             userSettingsHandler.ExpandAllNodes();
-  
+
+
+            this.userSettingsTreeView.Leave += new System.EventHandler(LeaveTreeView); // Allow for calling Decode() again if usersettings have changed.
+
         }
+
+        public void LeaveTreeView(object sender, EventArgs e)
+        {
+            listBoxOffsets.Items.Clear();
+            Decode(); // Use the latest regional options !           
+        }
+
 
 
         #region IREgressionTEstClient
@@ -195,10 +209,22 @@ namespace MusicBrailleReader
             return true;
         }
 
-        private void Decode(DecoderOptions.RegionalOptionsEnum regionalOptions)
+        private DecoderOptions.RegionalOptionsEnum latestRegionalOptions = DecoderOptions.RegionalOptionsEnum.Unknown;
+
+        /// <summary>
+        /// Use latest regional options if not specified
+        /// </summary>
+        private void Decode()
         {
-            XmlDocument musicXmlDocument = null;
+            currentInterpretation =  Decode(latestRegionalOptions);
+        }
+
+        private List<DecoderItem> Decode(DecoderOptions.RegionalOptionsEnum regionalOptions)
+        {
+            latestRegionalOptions = regionalOptions;
+            musicXmlDocument = null;
             bool showXmlOnConsole = false;
+            List<DecoderItem> result;
 
             // Exclude some substrings from the string representation
             DecoderOptions.FormatOptionsEnum excludedDecoderOptiones =
@@ -231,14 +257,38 @@ namespace MusicBrailleReader
                 decoderOptions.ExcludeSubStrings(DecoderOptions.FormatOptionsEnum.xmlRepresentation);
             }
 
-            List<DecoderItem> interpretation = model.DecoderHandler.InterpretBrailleMusicFile(fullFileName, fileEncoding, out musicXmlDocument, decoderOptions); 
+            result = model.DecoderHandler.InterpretBrailleMusicFile(fullFileName, fileEncoding, out musicXmlDocument, decoderOptions); 
             ShowUserWarnings(model.DecoderHandler.GetLocalUserWarnings(), model.DecoderHandler.GetLocalUserWarningsCaption());
 
-            if (showXmlOnConsole) musicXmlDocument.Save(Console.Out); // Disable to speet up
-            DecoderOutputFileHandler decoderOutputFileHandler = DecoderOutputFileHandler.Create(fullFileName);
+            if (showXmlOnConsole) musicXmlDocument.Save(Console.Out); // Disable to speed up
+            decoderOutputFileHandler = DecoderOutputFileHandler.Create(fullFileName);   
+
+            // Write the decoded output as text to the listbox
+            listBoxOffsets.ClearSelected();
+            foreach (DecoderItem decoderItem in result)
+            {
+                listBoxOffsets.Items.Add(decoderItem);
+            }
+
+            if (null != musicBrailleEditor)
+            {
+                musicBrailleEditor.OnDecodedAsText();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Exports the interpretation of the current MusicBraille inputfile as an MuxicXml file
+        /// During test also exports the interpretation of the currnt MusicBraille inputfile as a simple text file.
+        /// </summary>
+        /// <param name="musicXmlDocument"></param>
+        private void ExportToFiles(XmlDocument musicXmlDocument)
+        {
+            bool showXmlOnConsole = false;
 
             List<string> strings = new List<string>();
-            foreach (DecoderItem decoderItem in interpretation)
+            foreach (DecoderItem decoderItem in currentInterpretation)
             {
                 string s = decoderItem.XmlToString();
                 strings.Add(decoderItem.ToString() + s);
@@ -249,21 +299,9 @@ namespace MusicBrailleReader
             // Write the decoded output as a text interpretation to a file
             decoderOutputFileHandler.SaveInterpretation(strings, decoderOutputFileHandler.FullOutputFileName);
 
-            // Write the decoded output as text to the listbox
-            listBoxOffsets.ClearSelected();
-            foreach (DecoderItem decoderItem in interpretation)
-            {
-                listBoxOffsets.Items.Add(decoderItem);
-            }
-
-            if (null != musicBrailleEditor)
-            {
-                musicBrailleEditor.OnDecodedAsText();
-            }
-
             string fileName = decoderOutputFileHandler.FullMusicXmlFileName;
-            
-            regressionTest.MusicXmlRegressionTest(fileName,musicXmlDocument);
+
+            regressionTest.MusicXmlRegressionTest(fileName, musicXmlDocument);
 
             // Save the MusicXml file
             if (showXmlOnConsole) musicXmlDocument.Save(Console.Out); // To the console. Disable to speed up debugging !
@@ -277,6 +315,7 @@ namespace MusicBrailleReader
 
             // Open Explorer in the output directory.
             Utilities.RunExeWithDirArgument("Explorer", decoderOutputFileHandler.OutputDirectory);
+
         }
 
         private void ShowUserWarnings(List<string> userWarnings,string caption)
@@ -466,12 +505,13 @@ namespace MusicBrailleReader
             string fullDir = Path.Combine(baseDir, "BrailleOrch");
             fullFileName = Path.Combine(fullDir, "Bor001.Beethoven - Für Elise.brf");
             fileEncoding = BrailleFileHandler.FileEncoding.BRF_ASCII_Ex;
-            Decode(DecoderOptions.RegionalOptionsEnum.English);
+            currentInterpretation = Decode(DecoderOptions.RegionalOptionsEnum.English);
+            ExportToFiles(musicXmlDocument);
 #else
             string fullDir = Path.Combine(baseDir,currentTestDirectory);
             fullFileName = Path.Combine(fullDir, currentTestFileName); 
-            fileEncoding = BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252;        
-            Decode(DecoderOptions.RegionalOptionsEnum.Danish);
+            fileEncoding = BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252;
+            currentInterpretation = Decode(DecoderOptions.RegionalOptionsEnum.Danish);
 #endif
         }
 
@@ -536,14 +576,14 @@ namespace MusicBrailleReader
         {
             if (!SelectAndOpenFile(false, false, GetOpenDialogName(sender))) return;
             ClearUI();
-            Decode(DecoderOptions.RegionalOptionsEnum.Danish);
+            currentInterpretation = Decode(DecoderOptions.RegionalOptionsEnum.Danish);
         }
 
         private void openUsingBrailleOrchProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!SelectAndOpenFile(false, false, GetOpenDialogName(sender))) return;
             ClearUI();
-            Decode(DecoderOptions.RegionalOptionsEnum.English);
+            currentInterpretation = Decode(DecoderOptions.RegionalOptionsEnum.English);
         }
 
         #region TextBoxRawBraille6EventHandlers        
@@ -568,6 +608,15 @@ namespace MusicBrailleReader
         private void textBoxRawBraille6_TextChanged(object sender, EventArgs e)
         {
             musicBrailleEditor.OnTextBoxRawBraille6_TextChanged(sender, e);
+        }
+
+        private void exporterSomMusicXmlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // This handler may be called before the data structiures have been established so we need to check
+            if (null == currentInterpretation) return;
+            if (null == decoderOutputFileHandler) return;
+            if (null == musicXmlDocument) return;
+            ExportToFiles(musicXmlDocument);
         }
     }
 }
