@@ -93,6 +93,25 @@ namespace MusicBrailleReader
         //            }
         //        }
 
+        int savedSelectedIndex;
+        int savedNumberOfLines;
+
+        public void SavePosition()
+        {
+            savedSelectedIndex = listBoxOffsets.SelectedIndex;
+            savedNumberOfLines = listBoxOffsets.Items.Count;
+        }
+
+        public void RestorePosition()
+        {
+            if (savedSelectedIndex < 0) return;
+            if (savedSelectedIndex >= listBoxOffsets.Items.Count) return;
+            listBoxOffsets.SelectedIndex = savedSelectedIndex;
+            if (savedNumberOfLines != listBoxOffsets.Items.Count)
+            {
+                Logger.LogCF(string.Format(": Number of lines changed from {0} to {1}", savedNumberOfLines, listBoxOffsets.Items.Count));
+            }
+        }
 
 
 

@@ -83,11 +83,13 @@ namespace MusicBrailleReader
 
         public void LeaveTreeView(object sender, EventArgs e)
         {
-            listBoxOffsets.Items.Clear();
             // When we arrive here we can not be sure that a file has been loaded. In that case we just ignore.
             if (null == fullFileName) return; // No file has been loaded yet.
-            if (! File.Exists(fullFileName)) return; //
-            GetInterpretation(latestRegionalOptions, false); // Use the latest regional options and do not show user warnings           
+            if (!File.Exists(fullFileName)) return; //
+            listboxOffsetsHandler.SavePosition();
+            listBoxOffsets.Items.Clear();        
+            GetInterpretation(latestRegionalOptions, false); // Use the latest regional options and do not show user warnings 
+            listboxOffsetsHandler.RestorePosition();
         }
 
 
