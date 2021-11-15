@@ -430,13 +430,36 @@ namespace MusicBrailleReader
         public void OnSelectedDecodedLineChanged()
         {
             textBoxBraille.Clear();
-            textBoxBraille.Text = "RAW BRAILLE GOES HERE";
+            textBoxBraille.Text = "";
             DecoderItem decoderItem = (listBoxOffsets.SelectedItem as DecoderItem);
             if ((null != decoderItem) & (null != decoderItem.TokenString))
             {
                 textBoxBraille.Text = decoderItem.TokenString;
             }
+            if ((string.IsNullOrEmpty(textBoxBraille.Text)))
+            {
+                // If the currently represented item does not represent a text we use all Braille characters in the decoderItem instead.
+                textBoxBraille.Text = GetAllBrailleCharacters(decoderItem.ToString());
+            }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        private string GetAllBrailleCharacters(string s)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach (char c in s)
+            {
+                if (c <  0x2800 ) continue;
+                if (c >= 0x2900 ) continue;
+                result.Append(c);
+            }
+            return result.ToString();
+        }
+
         
         private void tactileMusicXmlReaderToolStripMenuItem_Click(object sender, EventArgs e)
         {   
