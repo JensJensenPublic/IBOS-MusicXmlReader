@@ -48,8 +48,6 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.listBoxOffsets = new System.Windows.Forms.ListBox();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
-            this.textBoxEditResultAsDecodedText = new System.Windows.Forms.TextBox();
-            this.textBoxDebugInfo = new System.Windows.Forms.TextBox();
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
@@ -221,30 +219,6 @@
             this.textBoxBraille.Name = "textBoxBraille";
             this.textBoxBraille.Size = new System.Drawing.Size(1122, 62);
             this.textBoxBraille.TabIndex = 2;
-            this.textBoxBraille.TextChanged += new System.EventHandler(this.textBoxRawBraille6_TextChanged);
-            this.textBoxBraille.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxRawBraille6_KeyDown);
-            this.textBoxBraille.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxRawBraille6_KeyPress);
-            this.textBoxBraille.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxRawBraille6_KeyUp);
-            // 
-            // textBoxEditResultAsDecodedText
-            // 
-            this.textBoxEditResultAsDecodedText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxEditResultAsDecodedText.Location = new System.Drawing.Point(258, 65);
-            this.textBoxEditResultAsDecodedText.Name = "textBoxEditResultAsDecodedText";
-            this.textBoxEditResultAsDecodedText.Size = new System.Drawing.Size(876, 20);
-            this.textBoxEditResultAsDecodedText.TabIndex = 3;
-            // 
-            // textBoxDebugInfo
-            // 
-            this.textBoxDebugInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDebugInfo.Location = new System.Drawing.Point(258, 39);
-            this.textBoxDebugInfo.Name = "textBoxDebugInfo";
-            this.textBoxDebugInfo.Size = new System.Drawing.Size(876, 20);
-            this.textBoxDebugInfo.TabIndex = 4;
             // 
             // userSettingsTreeView
             // 
@@ -293,8 +267,6 @@
             this.Controls.Add(this.textBoxStatusInformation);
             this.Controls.Add(this.textBoxText);
             this.Controls.Add(this.userSettingsTreeView);
-            this.Controls.Add(this.textBoxDebugInfo);
-            this.Controls.Add(this.textBoxEditResultAsDecodedText);
             this.Controls.Add(this.textBoxBraille);
             this.Controls.Add(this.listBoxOffsets);
             this.Controls.Add(this.menuStrip1);
@@ -328,8 +300,6 @@
         private System.Windows.Forms.ToolStripMenuItem openUsingNOTAProfileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openUsingBrailleOrchProfileToolStripMenuItem;
         private System.Windows.Forms.TextBox textBoxBraille;
-        private System.Windows.Forms.TextBox textBoxEditResultAsDecodedText;
-        private System.Windows.Forms.TextBox textBoxDebugInfo;
         private System.Windows.Forms.TreeView userSettingsTreeView;
         private System.Windows.Forms.ToolStripMenuItem exporterSomMusicXmlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exporterSomTextToolStripMenuItem;

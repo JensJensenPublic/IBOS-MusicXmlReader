@@ -63,7 +63,9 @@ namespace MusicBrailleReader
             this.Text = "MusicBraille Reader"; // ResourcefForUI...
             LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
             regressionTest = RegressionTest.Create(this as IRegressionTestClient);
+#if false
             musicBrailleEditor = MusicBrailleEditor.Create(model, textBoxBraille, listBoxOffsets,textBoxEditResultAsDecodedText,textBoxDebugInfo);
+#endif
 
             // Create a handler for the main listbox, which lists Music Braille information ordered after Offset
             listboxOffsetsHandler = ListBoxOffsetsHandler.Create(model, this.listBoxOffsets,developerMode);
@@ -94,7 +96,7 @@ namespace MusicBrailleReader
 
 
 
-        #region IREgressionTEstClient
+#region IREgressionTEstClient
         private delegate void SafeCallDelegate(string text);
         public void OnNewLine(String line)
         {
@@ -126,9 +128,9 @@ namespace MusicBrailleReader
         {
             return model.DecoderHandler.InterpretBrailleMusicFile(s, fileEncoding, out musicXmlDocument, decoderOptions);
         }
-        #endregion
+#endregion
 
-        #region IDecoderUiClient
+#region IDecoderUiClient
         public void ShowMessageBox(string caption, List<string> messageLines)
         {
             StringBuilder sb = new StringBuilder();
@@ -138,7 +140,7 @@ namespace MusicBrailleReader
             } 
             MessageBox.Show(sb.ToString(), caption);
         }
-        #endregion
+#endregion
 
 
         private void Application_ApplicationExit(object sender, EventArgs e)
@@ -422,9 +424,20 @@ namespace MusicBrailleReader
             {
                 model.DecoderHandler.Play(decoderItem.XmlRepresentation);
             }
-            musicBrailleEditor.OnSelectedDecodedLineChanged();
+            OnSelectedDecodedLineChanged();
         }
 
+        public void OnSelectedDecodedLineChanged()
+        {
+            textBoxBraille.Clear();
+            textBoxBraille.Text = "RAW BRAILLE GOES HERE";
+            DecoderItem decoderItem = (listBoxOffsets.SelectedItem as DecoderItem);
+            if ((null != decoderItem) & (null != decoderItem.TokenString))
+            {
+                textBoxBraille.Text = decoderItem.TokenString;
+            }
+        }
+        
         private void tactileMusicXmlReaderToolStripMenuItem_Click(object sender, EventArgs e)
         {   
             // While running in the VS debugger  we attempt to look up an application in the same solution
@@ -628,6 +641,7 @@ namespace MusicBrailleReader
             currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.English);
         }
 
+#if false
         #region TextBoxRawBraille6EventHandlers        
 
         private void textBoxRawBraille6_KeyDown(object sender, KeyEventArgs e)
@@ -645,12 +659,13 @@ namespace MusicBrailleReader
             musicBrailleEditor.OnTextBoxRawBraille6_KeyUp(sender,e); // Simple pass on
         }
 
-        #endregion
+#endregion
 
         private void textBoxRawBraille6_TextChanged(object sender, EventArgs e)
         {
             musicBrailleEditor.OnTextBoxRawBraille6_TextChanged(sender, e);
         }
+#endif
 
         private void exporterSomMusicXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
