@@ -63,7 +63,7 @@ namespace MusicBrailleReader
             this.Text = "MusicBraille Reader"; // ResourcefForUI...
             LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
             regressionTest = RegressionTest.Create(this as IRegressionTestClient);
-            musicBrailleEditor = MusicBrailleEditor.Create(model, textBoxRawBraille6, listBoxOffsets,textBoxEditResultAsDecodedText,textBoxDebugInfo);
+            musicBrailleEditor = MusicBrailleEditor.Create(model, textBoxBraille, listBoxOffsets,textBoxEditResultAsDecodedText,textBoxDebugInfo);
 
             // Create a handler for the main listbox, which lists Music Braille information ordered after Offset
             listboxOffsetsHandler = ListBoxOffsetsHandler.Create(model, this.listBoxOffsets,developerMode);

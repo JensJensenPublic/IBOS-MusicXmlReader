@@ -33,6 +33,8 @@
             this.openUsingNOTAProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openUsingBrailleOrchProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openTestFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exporterSomMusicXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exporterSomTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tactileMusicXmlReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iBOSMusicXmlReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,12 +47,13 @@
             this.transscribeHøjskolesangbogenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.listBoxOffsets = new System.Windows.Forms.ListBox();
-            this.textBoxRawBraille6 = new System.Windows.Forms.TextBox();
+            this.textBoxBraille = new System.Windows.Forms.TextBox();
             this.textBoxEditResultAsDecodedText = new System.Windows.Forms.TextBox();
             this.textBoxDebugInfo = new System.Windows.Forms.TextBox();
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
-            this.exporterSomMusicXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exporterSomTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBoxText = new System.Windows.Forms.TextBox();
+            this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,6 +100,20 @@
             this.openTestFileToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.openTestFileToolStripMenuItem.Text = "Open test file";
             this.openTestFileToolStripMenuItem.Click += new System.EventHandler(this.openTestFileToolStripMenuItem_Click);
+            // 
+            // exporterSomMusicXmlToolStripMenuItem
+            // 
+            this.exporterSomMusicXmlToolStripMenuItem.Name = "exporterSomMusicXmlToolStripMenuItem";
+            this.exporterSomMusicXmlToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.exporterSomMusicXmlToolStripMenuItem.Text = "Exporter som MusicXml";
+            this.exporterSomMusicXmlToolStripMenuItem.Click += new System.EventHandler(this.exporterSomMusicXmlToolStripMenuItem_Click);
+            // 
+            // exporterSomTextToolStripMenuItem
+            // 
+            this.exporterSomTextToolStripMenuItem.Name = "exporterSomTextToolStripMenuItem";
+            this.exporterSomTextToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.exporterSomTextToolStripMenuItem.Text = "Exporter som text";
+            this.exporterSomTextToolStripMenuItem.Click += new System.EventHandler(this.exporterSomTextToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -187,25 +204,27 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxOffsets.FormattingEnabled = true;
-            this.listBoxOffsets.Location = new System.Drawing.Point(258, 128);
+            this.listBoxOffsets.Location = new System.Drawing.Point(258, 89);
             this.listBoxOffsets.Name = "listBoxOffsets";
-            this.listBoxOffsets.Size = new System.Drawing.Size(876, 329);
+            this.listBoxOffsets.Size = new System.Drawing.Size(876, 316);
             this.listBoxOffsets.TabIndex = 1;
             this.listBoxOffsets.SelectedIndexChanged += new System.EventHandler(this.listBoxDecodedAsText_SelectedIndexChanged);
             // 
-            // textBoxRawBraille6
+            // textBoxBraille
             // 
-            this.textBoxRawBraille6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxBraille.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxRawBraille6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRawBraille6.Location = new System.Drawing.Point(258, 91);
-            this.textBoxRawBraille6.Name = "textBoxRawBraille6";
-            this.textBoxRawBraille6.Size = new System.Drawing.Size(876, 31);
-            this.textBoxRawBraille6.TabIndex = 2;
-            this.textBoxRawBraille6.TextChanged += new System.EventHandler(this.textBoxRawBraille6_TextChanged);
-            this.textBoxRawBraille6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxRawBraille6_KeyDown);
-            this.textBoxRawBraille6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxRawBraille6_KeyPress);
-            this.textBoxRawBraille6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxRawBraille6_KeyUp);
+            this.textBoxBraille.BackColor = System.Drawing.Color.Black;
+            this.textBoxBraille.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxBraille.ForeColor = System.Drawing.Color.White;
+            this.textBoxBraille.Location = new System.Drawing.Point(12, 437);
+            this.textBoxBraille.Name = "textBoxBraille";
+            this.textBoxBraille.Size = new System.Drawing.Size(1122, 62);
+            this.textBoxBraille.TabIndex = 2;
+            this.textBoxBraille.TextChanged += new System.EventHandler(this.textBoxRawBraille6_TextChanged);
+            this.textBoxBraille.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxRawBraille6_KeyDown);
+            this.textBoxBraille.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxRawBraille6_KeyPress);
+            this.textBoxBraille.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxRawBraille6_KeyUp);
             // 
             // textBoxEditResultAsDecodedText
             // 
@@ -230,35 +249,53 @@
             // userSettingsTreeView
             // 
             this.userSettingsTreeView.AccessibleName = "Note Filter";
+            this.userSettingsTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.userSettingsTreeView.CheckBoxes = true;
-            this.userSettingsTreeView.Location = new System.Drawing.Point(12, 39);
+            this.userSettingsTreeView.Location = new System.Drawing.Point(12, 27);
             this.userSettingsTreeView.Name = "userSettingsTreeView";
-            this.userSettingsTreeView.Size = new System.Drawing.Size(240, 418);
+            this.userSettingsTreeView.Size = new System.Drawing.Size(240, 378);
             this.userSettingsTreeView.TabIndex = 5;
             // 
-            // exporterSomMusicXmlToolStripMenuItem
+            // textBoxText
             // 
-            this.exporterSomMusicXmlToolStripMenuItem.Name = "exporterSomMusicXmlToolStripMenuItem";
-            this.exporterSomMusicXmlToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
-            this.exporterSomMusicXmlToolStripMenuItem.Text = "Exporter som MusicXml";
-            this.exporterSomMusicXmlToolStripMenuItem.Click += new System.EventHandler(this.exporterSomMusicXmlToolStripMenuItem_Click);
+            this.textBoxText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxText.Location = new System.Drawing.Point(12, 504);
+            this.textBoxText.Name = "textBoxText";
+            this.textBoxText.Size = new System.Drawing.Size(1122, 20);
+            this.textBoxText.TabIndex = 6;
             // 
-            // exporterSomTextToolStripMenuItem
+            // textBoxStatusInformation
             // 
-            this.exporterSomTextToolStripMenuItem.Name = "exporterSomTextToolStripMenuItem";
-            this.exporterSomTextToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
-            this.exporterSomTextToolStripMenuItem.Text = "Exporter som text";
-            this.exporterSomTextToolStripMenuItem.Click += new System.EventHandler(this.exporterSomTextToolStripMenuItem_Click);
+            this.textBoxStatusInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxStatusInformation.Location = new System.Drawing.Point(12, 530);
+            this.textBoxStatusInformation.Name = "textBoxStatusInformation";
+            this.textBoxStatusInformation.Size = new System.Drawing.Size(1122, 20);
+            this.textBoxStatusInformation.TabIndex = 7;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox3.Location = new System.Drawing.Point(12, 411);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(1122, 20);
+            this.textBox3.TabIndex = 8;
             // 
             // MusicBrailleReaderMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1146, 470);
+            this.ClientSize = new System.Drawing.Size(1146, 557);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBoxStatusInformation);
+            this.Controls.Add(this.textBoxText);
             this.Controls.Add(this.userSettingsTreeView);
             this.Controls.Add(this.textBoxDebugInfo);
             this.Controls.Add(this.textBoxEditResultAsDecodedText);
-            this.Controls.Add(this.textBoxRawBraille6);
+            this.Controls.Add(this.textBoxBraille);
             this.Controls.Add(this.listBoxOffsets);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -290,12 +327,15 @@
         private System.Windows.Forms.ToolStripMenuItem transscribeHøjskolesangbogenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openUsingNOTAProfileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openUsingBrailleOrchProfileToolStripMenuItem;
-        private System.Windows.Forms.TextBox textBoxRawBraille6;
+        private System.Windows.Forms.TextBox textBoxBraille;
         private System.Windows.Forms.TextBox textBoxEditResultAsDecodedText;
         private System.Windows.Forms.TextBox textBoxDebugInfo;
         private System.Windows.Forms.TreeView userSettingsTreeView;
         private System.Windows.Forms.ToolStripMenuItem exporterSomMusicXmlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exporterSomTextToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBoxText;
+        private System.Windows.Forms.TextBox textBoxStatusInformation;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 
