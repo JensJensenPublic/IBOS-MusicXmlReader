@@ -205,7 +205,7 @@
             this.listBoxOffsets.Location = new System.Drawing.Point(258, 89);
             this.listBoxOffsets.Name = "listBoxOffsets";
             this.listBoxOffsets.Size = new System.Drawing.Size(876, 316);
-            this.listBoxOffsets.TabIndex = 1;
+            this.listBoxOffsets.TabIndex = 0;
             this.listBoxOffsets.SelectedIndexChanged += new System.EventHandler(this.listBoxDecodedAsText_SelectedIndexChanged);
             // 
             // textBoxBraille
@@ -218,7 +218,8 @@
             this.textBoxBraille.Location = new System.Drawing.Point(12, 437);
             this.textBoxBraille.Name = "textBoxBraille";
             this.textBoxBraille.Size = new System.Drawing.Size(1122, 62);
-            this.textBoxBraille.TabIndex = 2;
+            this.textBoxBraille.TabIndex = 0;
+            this.textBoxBraille.TabStop = false;
             // 
             // userSettingsTreeView
             // 
@@ -229,7 +230,7 @@
             this.userSettingsTreeView.Location = new System.Drawing.Point(12, 27);
             this.userSettingsTreeView.Name = "userSettingsTreeView";
             this.userSettingsTreeView.Size = new System.Drawing.Size(240, 378);
-            this.userSettingsTreeView.TabIndex = 5;
+            this.userSettingsTreeView.TabIndex = 1;
             // 
             // textBoxText
             // 
@@ -238,7 +239,8 @@
             this.textBoxText.Location = new System.Drawing.Point(12, 504);
             this.textBoxText.Name = "textBoxText";
             this.textBoxText.Size = new System.Drawing.Size(1122, 20);
-            this.textBoxText.TabIndex = 6;
+            this.textBoxText.TabIndex = 0;
+            this.textBoxText.TabStop = false;
             // 
             // textBoxStatusInformation
             // 
@@ -247,7 +249,8 @@
             this.textBoxStatusInformation.Location = new System.Drawing.Point(12, 530);
             this.textBoxStatusInformation.Name = "textBoxStatusInformation";
             this.textBoxStatusInformation.Size = new System.Drawing.Size(1122, 20);
-            this.textBoxStatusInformation.TabIndex = 7;
+            this.textBoxStatusInformation.TabIndex = 0;
+            this.textBoxStatusInformation.TabStop = false;
             // 
             // textBox3
             // 
@@ -257,6 +260,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(1122, 20);
             this.textBox3.TabIndex = 8;
+            this.textBox3.TabStop = false;
             // 
             // MusicBrailleReaderMainForm
             // 
