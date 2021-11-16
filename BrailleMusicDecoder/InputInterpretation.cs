@@ -599,12 +599,12 @@ namespace BrailleMusicDecoder
                                 || (category == InputCategoryEnum.ControlCharCRLFNumber)
                                 || (category == InputCategoryEnum.ControlCharFF) )? "" : token.ToUnicodeString();
             string localizedString = ToLocalizedString(category, subCategory, subSubCategory, TokenLength, rawOptions.VisibleCategoryNames);
-            string result = string.Format("{0}{1}{2}{3} {4,-5}",
+            string result = string.Format("{0} {1}{2}{3}{4} ",
+                (0 != (stringFormatOptions & StringFormatOptions.token)) ? tokenString : "",
                 (0 != (stringFormatOptions & StringFormatOptions.categories)) ? localizedString : "",
                 (0 != (stringFormatOptions & StringFormatOptions.value)) ? valuesString : "",
                 (0 != (stringFormatOptions & StringFormatOptions.friendlyValue)) ? friendlyValueString : "",
-                (0 != (stringFormatOptions & StringFormatOptions.extraString)) ? extraString : "",
-                (0 != (stringFormatOptions & StringFormatOptions.token)) ? tokenString : "");
+                (0 != (stringFormatOptions & StringFormatOptions.extraString)) ? extraString : "");
             return result;
         }
 

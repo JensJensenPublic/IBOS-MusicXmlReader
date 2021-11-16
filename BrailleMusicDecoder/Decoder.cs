@@ -143,7 +143,8 @@ namespace BrailleMusicDecoder
             {
                 // Even if a MusicXml file can not be generated result contains the decoded information
 //                string s = string.Format("{0} {1}", oldPosition, result.ToString(rawOptions));                         // CHECK !!
-                string s = string.Format("{0} {1}", oldPosition, inputInterpretation.ToString(rawOptions));                         // CHECK !!
+                string format = (string.IsNullOrWhiteSpace(oldPosition)) ? "{1}" : "{0} {1}";
+                string s = string.Format(format, oldPosition, inputInterpretation.ToString(rawOptions));                         // CHECK !!
                 return Token.Create(s,accumulatedText, inputInterpretation,initialIndex,initialDecoderState); // Show the token and accumulated text.
             }            
         }
