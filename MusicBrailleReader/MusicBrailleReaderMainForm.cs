@@ -422,7 +422,10 @@ namespace MusicBrailleReader
             DecoderItem decoderItem = listBoxOffsets.Items[newIndex] as DecoderItem;
             if (null != decoderItem)
             {
-                model.DecoderHandler.Play(decoderItem.XmlRepresentation);
+                if (userSettingsHandler.MusicAsSound.Checked)
+                {
+                    model.DecoderHandler.Play(decoderItem.XmlRepresentation);
+                }
             }
             OnSelectedDecodedLineChanged();
         }
