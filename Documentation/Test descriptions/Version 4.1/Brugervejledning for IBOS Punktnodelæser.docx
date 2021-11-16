@@ -1,1 +1,116 @@
+Brugervejledning for IBOS PunktNodelæser version 4.1
+
+IBOS Punktnodelæser er et midlertidigt, selvstændigt PC-program til brug ved den indledende test af understøttelsen af læsning af punktnoder i IBOS Nodelæser.
+Det er tanken at programmets funktion senere vil blive integreret ind i IBOS Nodelæser.
+
+Principperne for brugergrænsefladen i IBOS Punktnodelæser er derfor præcis de samme som i IBOS Nodelæser:
+
+Brugergrænsefladen består i hovedtrækkene af 3 almindelige Windows Forms kontroller:
+
+En Menulinie:
+Indeholder menupunkter for indlæsning af punktnodefiler samt for eksport af genererede  MusicXml filer.
+
+En Listbox:
+Indeholder den indlæste punktnode-fil, oversat til en simpel tekstrepræsentation.
+
+Et TreeView:
+Tillader at brugeren at kontrollere hvilke detaljer, der vises i listbox’en.
+
+Ved indlæsning af punktnodefiler vil der ofte optræde fejl, enten fordi der simpelthen er fejl i punktnode-filen, eller fordi punktnodefilen indeholder konstruktioner, som  IBOS PunktNodelæser endnu ikke understøtter. I så fald vises efter indlæsning af punktnode-filen en MessageBox, som opsummerer de fundne fejl.
+
+Efter indlæsning af en punktnode-fil vises den i en simpel tekstrepræsentation i listboxen:
+
+For hver linje i punktnode-filen vises øverst en linje indeholdende: 
+    • Sidetal (Som almindelig tekst-Braille)
+    • Linjenummer (Som almindelig tekst-Braille)
+    • Linjens ufortolkede indhold (som rå Braille)
+
+Under denne linje vises et antal linjer, hver indeholdende en tekstbaseret fortolkning af en del af den rå Braille linje. Hver linje indeholder typisk:
+    • Nummeret på dét rum, hvori fortolkningen starter.
+    • Dé (et eller flere) rå Braille-symboler, som fortolkes.
+    • Den fortolkede værdi.
+
+På næste side vises et typisk eksempel på visningen af linje de første 9 linjer af nummer 262 i Højskolesangbogen: Kaj Munks ”Den blå anemone”.
+
+  
+
+
+Kaj Munks ”Den blå anemone”, linje 1-9.
+
+Side 1 Linie   1  ?????????????????????
+   1 ? Til Tal 
+   2 Tekst 262.
+   6 ? Mellemrum 
+   7 Tekst den bl
+  13 ?? Faste fortegn 1 opløsningstegn 
+  15 Tekst anemone
+  22  Ny linie 
+Side 1 Linie   3  
+   1  Ny linie 
+Side 1 Linie   3  ???????????????????????????
+   1 Tekst hvad var det dog der skete?
+  28  Ny linie 
+Side 1 Linie   4  ?????????????????????
+   1 Tekst tekst: kaj munk 
+  17 ? Til Tal 
+  18 Tekst 1943
+  22  Ny linie 
+Side 1 Linie   5  ???????????????????????
+   1 Tekst mel.: egil harder 
+  19 ? Til Tal 
+  20 Tekst 1945
+  24  Ny linie 
+Side 1 Linie   7  
+   1  Ny linie 
+Side 1 Linie   7  ????????
+   1 Tekst     
+   5 ?? Til sænket ciffer Starter med optakt.  Antal takter= 
+   7 ? Sænket ciffer 9 
+   8 ? Sænket ciffer . 
+   9  Ny linie 
+Side 1 Linie   8  ??????????????????????????
+   1 ???  Højre hånd 
+   4 ???? Faste fortegn -3 
+   8 ???? Taktart 4/4 
+  12 ? Oktav 3 
+  13 ?  B/8  
+  14 ? Taktstreg 
+  15 ? Oktav 4 
+  16 ?  E/8  
+  17 ? Oktav 3 
+  18 ?  B/8  
+  19 ? Oktav 4 
+  20 ?  E/8  
+  21 ?  F/8  
+  22 ?  G/4 
+  23 ?  G/8 
+  24 ?  E/8  
+  25 ?? Stor bistemme 
+  27  Ny linie
+Side 1 Linie   9  ???????????????????????
+   1 ?? Taktstreg 
+   3 ? Oktav 3 
+   4 ?  G/4 
+   5 ?  A/4
+   6 ? Oktav 4 
+   7 ?  D/4 
+   8 ? Interval Terts 
+   9 ? Løst b 
+  10 ?  D/4 
+  11 ? Interval Terts 
+  12 ? Taktstreg 
+  13 ? Oktav 4 
+  14 ?  F/8  
+  15 ?  G/8 
+  16 ?  A/8 
+  17 ?  G/8 
+  18 ?  B/8  
+  19 ?  G/8
+  20 ?  F/8 
+  21 ?  G/8  
+  22 ?? Stor bistemme 
+  24  Ny linie  
+
+
+
 
