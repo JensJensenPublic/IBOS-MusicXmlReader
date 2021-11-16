@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSynthesis", "MusicSynthesis\MusicSynthesis.csproj", "{529D2C78-0FBC-4BF1-B5AE-F348695546C2}"
 EndProject
@@ -229,6 +229,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Materiale til brug ved fond
 		Documentation\Materiale til brug ved fondsansøgninger\Emner til Wroblewski Fond.ReadMe.txt = Documentation\Materiale til brug ved fondsansøgninger\Emner til Wroblewski Fond.ReadMe.txt
 		Documentation\Materiale til brug ved fondsansøgninger\Emner til Wroblewski Fond.txt = Documentation\Materiale til brug ved fondsansøgninger\Emner til Wroblewski Fond.txt
 		Documentation\Materiale til brug ved fondsansøgninger\Susanne Nolsøes Udkast Bilag til Johns referat møde om ibos nodelæser prioritering af arbejdsindsats 26 februar 2021.docx = Documentation\Materiale til brug ved fondsansøgninger\Susanne Nolsøes Udkast Bilag til Johns referat møde om ibos nodelæser prioritering af arbejdsindsats 26 februar 2021.docx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version 4.1", "Version 4.1", "{183B8079-580D-41A2-B3DF-D8460B19A600}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Test descriptions\Version 4.1\Brugervejledning for IBOS Punktnodelæser.docx = Documentation\Test descriptions\Version 4.1\Brugervejledning for IBOS Punktnodelæser.docx
 	EndProjectSection
 EndProject
 Global
@@ -492,5 +497,6 @@ Global
 		{CC42C5D1-FC48-472D-BFE8-2B90F05DBFFA} = {2FD59EAC-45B9-47D1-996B-451A5CD77E3B}
 		{E3B5D502-F5EC-4468-AF2C-78DC19D85093} = {1B62366B-E595-454C-846D-E36240015490}
 		{80127C2C-AB28-4873-8243-11ED5C63EDBD} = {1B62366B-E595-454C-846D-E36240015490}
+		{183B8079-580D-41A2-B3DF-D8460B19A600} = {A4CA3C5D-13DF-45A2-8AA6-992E83AE9C1C}
 	EndGlobalSection
 EndGlobal
