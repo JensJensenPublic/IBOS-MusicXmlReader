@@ -228,11 +228,11 @@ namespace MusicXmlReaderModel
                     {
                         // Insert an extra line informing about the new linenumber and formnumber.
                         string s = brailleMusicDecoder.FormLineString;
-                        string xmlBuilderString = brailleMusicDecoder.GetStateInformation();
-                        string offsetString = string.Format("Offset {0}", originalIndex); // Allow easy reference to LogFile
+                        string xmlBuilderString = decoderOptions.DeveloperMode ? "Tilstand" + brailleMusicDecoder.GetStateInformation() : "";
+                        string offsetString = decoderOptions.DeveloperMode ?  string.Format("Offset {0} ", originalIndex) : ""; // Allow easy reference to LogFile
                         string rawLine = brailleMusicDecoder.GetNextRawUnicodeLine(originalIndex); // The raw, undecoded contents of the line of Braille found at this point. Primarily for debugging.
-                        string rawLineAsdotNumbers = Decoder.ToDotNumbers(rawLine); // Converts from Unicode (0x2800..0x28ff) to DotNumbers
-                        string totalString = offsetString + " " + s + " " + " " + xmlBuilderString + " " + rawLine + " = " + rawLineAsdotNumbers;
+                        string rawLineAsdotNumbers = decoderOptions.DeveloperMode ? " =" + Decoder.ToDotNumbers(rawLine) : "" ; // Converts from Unicode (0x2800..0x28ff) to DotNumbers
+                        string totalString = offsetString + s + " " + xmlBuilderString + " " + rawLine + rawLineAsdotNumbers;
                         decodedLines.Add(DecoderItem.Create(totalString));
                         Logger.Log(string.Format("{0}", totalString));
                     }
