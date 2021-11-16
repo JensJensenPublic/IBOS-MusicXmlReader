@@ -78,16 +78,36 @@ namespace MusicBrailleReader
             userSettingsHandler.LoadLevel0And1Nodes(model.UserSettings);
             userSettingsHandler.ExpandAllNodes();
 
-
-            this.userSettingsTreeView.Leave += new System.EventHandler(LeaveTreeView); // Allow for calling Decode() again if usersettings have changed.
+            this.userSettingsTreeView.Enter += new System.EventHandler(TreeViewEnter); // Save relevant usersettings at entry
+            this.userSettingsTreeView.Leave += new System.EventHandler(TreeViewLeave); // Allow for calling Decode() again if usersettings have changed.
+         
 
         }
 
-        public void LeaveTreeView(object sender, EventArgs e)
+        bool musicAsBrailleCheckedAtEntry;
+        bool musicAsSoundCheckedAtEntry;
+        bool spaceNumberCheckedAtEntry;
+
+        private void TreeViewEnter(object sender, EventArgs e)
+        {
+            musicAsBrailleCheckedAtEntry = userSettingsHandler.MusicAsBraille.Checked;
+            musicAsSoundCheckedAtEntry = userSettingsHandler.MusicAsSound.Checked;
+            spaceNumberCheckedAtEntry = userSettingsHandler.SpaceNumber.Checked;
+        }
+
+        private bool ListBoxReloadNeeded()
+        {
+            if (userSettingsHandler.MusicAsBraille.Checked != musicAsBrailleCheckedAtEntry) return true;
+            if (userSettingsHandler.SpaceNumber.Checked != spaceNumberCheckedAtEntry) return true;
+            return false;
+        }
+
+        public void TreeViewLeave(object sender, EventArgs e)
         {
             // When we arrive here we can not be sure that a file has been loaded. In that case we just ignore.
             if (null == fullFileName) return; // No file has been loaded yet.
             if (!File.Exists(fullFileName)) return; //
+            if (!ListBoxReloadNeeded()) return; // If nothing has changed, that would change the Listbox we ignore 
             listboxOffsetsHandler.SavePosition();
             listBoxOffsets.Items.Clear();        
             GetInterpretation(latestRegionalOptions, false); // Use the latest regional options and do not show user warnings 
