@@ -461,8 +461,13 @@ namespace MusicBrailleReader
             }
             if ((string.IsNullOrEmpty(textBoxBraille.Text)))
             {
-                // If the currently represented item does not represent a text we use all Braille characters in the decoderItem instead.
+                // If the currently represented text is empty we use all Braille characters in the decoderItem instead.
                 textBoxBraille.Text = GetAllBrailleCharacters(decoderItem.ToString());
+            }
+            else
+            {
+                // Otherwise we romove any possible Non-Braille characters (This will remove any LF CF FF and other control characters)
+                textBoxBraille.Text = GetAllBrailleCharacters(textBoxBraille.Text);
             }
         }
 
