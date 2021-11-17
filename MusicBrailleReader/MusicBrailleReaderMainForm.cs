@@ -754,7 +754,7 @@ namespace MusicBrailleReader
                 return;
             }
             // At this point we can show the file in NotePad:
-            Utilities.RunExeWithFileArgument("notepad.exe", configurationFileName);
+            Utilities.RunExeWithFileArgument("notepad.exe", fullFileName);
         }
     }
 }
