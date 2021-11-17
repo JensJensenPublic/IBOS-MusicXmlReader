@@ -52,6 +52,7 @@
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.jAWSSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,7 +125,8 @@
             this.regressionTestToolStripMenuItem,
             this.regressionReferenceLocationToolStripMenuItem,
             this.copyRenameToolStripMenuItem,
-            this.transscribeHøjskolesangbogenToolStripMenuItem});
+            this.transscribeHøjskolesangbogenToolStripMenuItem,
+            this.jAWSSettingsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -262,6 +264,13 @@
             this.textBox3.TabIndex = 8;
             this.textBox3.TabStop = false;
             // 
+            // jAWSSettingsToolStripMenuItem
+            // 
+            this.jAWSSettingsToolStripMenuItem.Name = "jAWSSettingsToolStripMenuItem";
+            this.jAWSSettingsToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.jAWSSettingsToolStripMenuItem.Text = "JAWS Settings";
+            this.jAWSSettingsToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsToolStripMenuItem_Click);
+            // 
             // MusicBrailleReaderMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -310,6 +319,7 @@
         private System.Windows.Forms.TextBox textBoxText;
         private System.Windows.Forms.TextBox textBoxStatusInformation;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ToolStripMenuItem jAWSSettingsToolStripMenuItem;
     }
 }
 

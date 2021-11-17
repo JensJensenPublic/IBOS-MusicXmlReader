@@ -22,6 +22,8 @@ namespace MusicBrailleReader
         const string currentTestDirectory = "NOTA fra SN 2021.03.23";
 
         Model model;        // The Model containing all of the business logic.
+        string executingAssemblyFullPath = ""; // The (unlocalized) name and location of the program, 
+        string executingAssemblyShortName = ""; // The (unlocalized) short name of the program, used by for instance JAWS to name configuration file! 
         string fullFileName;
         BrailleFileHandler.FileEncoding fileEncoding;
         string latestMusicXmlFileGenerated = "";
@@ -44,6 +46,8 @@ namespace MusicBrailleReader
 
         public MusicBrailleReaderMainForm()
         {
+            executingAssemblyFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            executingAssemblyShortName = System.IO.Path.GetFileNameWithoutExtension(executingAssemblyFullPath);
             InitializeComponent();
             this.openTestFileToolStripMenuItem.Text = string.Format("Decode '{0}'", currentTestFileName);     
             string applicationName = "MusicBrailleReader";
@@ -726,6 +730,11 @@ namespace MusicBrailleReader
         private void exporterSomTextToolStripMenuItem_Click(object sender, EventArgs e)
         { 
             ExportToFileAsText(currentInterpretation);
+        }
+
+        private void jAWSSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName);
         }
     }
 }
