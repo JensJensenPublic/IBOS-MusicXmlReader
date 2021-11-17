@@ -734,7 +734,27 @@ namespace MusicBrailleReader
 
         private void jAWSSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // This mechanism should be replaced with the mechanism in MusicXmlREader when the programs are merged.
             string expectedDirectory = model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName);
+            if (string.IsNullOrEmpty(expectedDirectory))
+            {
+                MessageBox.Show("Mappen for JAWS applikations-specifik konfigurationsfil findes ikke");
+                string s = string.Format(": Directory for JAWS application-specific configurationfile for {0} does not exist", executingAssemblyShortName);
+                Logger.LogCF(s);
+                return;
+            }
+            string configurationFileName = executingAssemblyShortName + ".JCF";
+            string fullFileName = Path.Combine(expectedDirectory, configurationFileName);
+            if (!File.Exists(fullFileName))
+            {
+                string m = string.Format("JAWS applikations-specifik konfigurationsfil:\r\n'{0}'\r\n findes ikke", configurationFileName);
+                MessageBox.Show(m);
+                string s = string.Format(": JAWS application-specific configurationfile {0} is not found in {1}", configurationFileName, expectedDirectory);
+                Logger.LogCF(s);
+                return;
+            }
+            // At this point we can show the file in NotePad:
+
         }
     }
 }
