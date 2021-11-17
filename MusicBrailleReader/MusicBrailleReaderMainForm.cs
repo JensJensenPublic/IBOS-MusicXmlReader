@@ -735,7 +735,7 @@ namespace MusicBrailleReader
         private void jAWSSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // This mechanism should be replaced with the mechanism in MusicXmlREader when the programs are merged.
-            string expectedDirectory = model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName);
+            string expectedDirectory = model.ExternalToolsHandler.GetJawsDirectoryName(executingAssemblyShortName);
             if (string.IsNullOrEmpty(expectedDirectory))
             {
                 MessageBox.Show("Mappen for JAWS applikations-specifik konfigurationsfil findes ikke");

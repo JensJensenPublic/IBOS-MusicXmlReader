@@ -199,19 +199,10 @@ namespace MusicXmlReaderModel
             return s;
         }
 
-
-        /// <summary>
-        /// Show the JAWS application specific configuration file in notepad.
-        /// TO DO: The language specific "dan". Fix this !!
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns>The expected  directory name of the JAWS application specific configuration file</returns>
-        public string ReadJawsSettingsFile(string fileName)
+        public string GetJawsDirectoryName(string fileName)
         {
             // TODO Consider using a link file as for MuseScore and Sibelius !
-            string methodName = "ReadJawsSettingsFile";
-            string extension = "JCF"; // JAWS configuration file
-            string fileNameWithExtension = Path.ChangeExtension(fileName, extension);
+            string methodName = "GetJawsSettingsDirectoryName";
             string directoryName = "";
             try
             {
@@ -238,6 +229,26 @@ namespace MusicXmlReaderModel
                 directoryName = "";
                 Logger.Log(string.Format("{0}.{1} Exception caught while attempting to locate JAWS settings directory. Message='{2}'", className, methodName, e.Message));
             }
+            return directoryName;
+        }
+
+
+
+
+        /// <summary>
+        /// Show the JAWS application specific configuration file in notepad.
+        /// TO DO: The language specific "dan". Fix this !!
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns>The expected  directory name of the JAWS application specific configuration file</returns>
+        public string ReadJawsSettingsFile(string fileName)
+        {
+            string methodName = "ReadJawsSettingsFile";     
+            string extension = "JCF"; // JAWS configuration file
+            string fileNameWithExtension = Path.ChangeExtension(fileName, extension);
+
+            string directoryName = GetJawsDirectoryName(fileName);
+
             //string directoryName = @"C:\Users\Jens\AppData\Roaming\Freedom Scientific\JAWS\17.0\Settings\dan"; // Before version 1.0.0.0
 
             if (string.IsNullOrEmpty(directoryName))
