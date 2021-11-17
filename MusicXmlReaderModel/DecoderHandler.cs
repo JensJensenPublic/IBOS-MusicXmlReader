@@ -142,6 +142,11 @@ namespace MusicXmlReaderModel
 
         public void OnExit()
         {
+            if (null == brailleMusicDecoder)
+            {
+                Logger.LogCF(": No BrailleMusicDecoder found at exit");
+                return;
+            }
             brailleMusicDecoder.LogGlobalStatistics(); // The sum of all transitions during program lifetime.
         }
 
