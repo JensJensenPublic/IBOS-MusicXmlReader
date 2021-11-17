@@ -202,9 +202,11 @@ namespace MusicXmlReaderModel
 
         /// <summary>
         /// Show the JAWS application specific configuration file in notepad.
-        /// TO DO: The directory name is JAWS version specific "17.0" and language specific "dan". Fix this !!
+        /// TO DO: The language specific "dan". Fix this !!
         /// </summary>
-        public void ReadJawsSettingsFile(string fileName)
+        /// <param name="fileName"></param>
+        /// <returns>The expected  directory name of the JAWS application specific configuration file</returns>
+        public string ReadJawsSettingsFile(string fileName)
         {
             // TODO Consider using a link file as for MuseScore and Sibelius !
             string methodName = "ReadJawsSettingsFile";
@@ -254,6 +256,7 @@ namespace MusicXmlReaderModel
                     Utilities.RunExeWithFileArgument("notepad.exe", JawsSettingsFullFileName);
                 }
             }
+            return directoryName;
         }
 
 

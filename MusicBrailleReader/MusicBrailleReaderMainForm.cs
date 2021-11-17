@@ -734,7 +734,7 @@ namespace MusicBrailleReader
 
         private void jAWSSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName);
+            string expectedDirectory = model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName);
         }
     }
 }
