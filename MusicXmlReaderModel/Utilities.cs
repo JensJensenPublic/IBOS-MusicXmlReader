@@ -64,6 +64,7 @@ namespace MusicXmlReaderModel
         public static IUtilityClient UtilityClient;
 
         public const string ExplorerExe = "Explorer.exe";
+        public const string NotepadExe = "Notepad.exe";
 
         public static void ShowWarning(ModelMessageEnum textEnum, string parameter, string text)
         {

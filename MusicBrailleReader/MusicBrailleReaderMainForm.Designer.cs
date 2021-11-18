@@ -53,6 +53,7 @@
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.jAWSSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jAWSSettingsDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -126,7 +127,8 @@
             this.regressionReferenceLocationToolStripMenuItem,
             this.copyRenameToolStripMenuItem,
             this.transscribeHøjskolesangbogenToolStripMenuItem,
-            this.jAWSSettingsToolStripMenuItem});
+            this.jAWSSettingsToolStripMenuItem,
+            this.jAWSSettingsDirectoryToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -271,6 +273,13 @@
             this.jAWSSettingsToolStripMenuItem.Text = "JAWS Settings";
             this.jAWSSettingsToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsToolStripMenuItem_Click);
             // 
+            // jAWSSettingsDirectoryToolStripMenuItem
+            // 
+            this.jAWSSettingsDirectoryToolStripMenuItem.Name = "jAWSSettingsDirectoryToolStripMenuItem";
+            this.jAWSSettingsDirectoryToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.jAWSSettingsDirectoryToolStripMenuItem.Text = "JAWS Settings directory";
+            this.jAWSSettingsDirectoryToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsDirectoryToolStripMenuItem_Click);
+            // 
             // MusicBrailleReaderMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -320,6 +329,7 @@
         private System.Windows.Forms.TextBox textBoxStatusInformation;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ToolStripMenuItem jAWSSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jAWSSettingsDirectoryToolStripMenuItem;
     }
 }
 

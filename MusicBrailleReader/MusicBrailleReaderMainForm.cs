@@ -732,15 +732,21 @@ namespace MusicBrailleReader
             ExportToFileAsText(currentInterpretation);
         }
 
+
+        private void OnJAWSDirectoryNotFound()
+        {
+            MessageBox.Show("Mappen for JAWS applikations-specifik konfigurationsfil findes ikke");
+            string s = string.Format(": Directory for JAWS application-specific configurationfile for {0} does not exist", executingAssemblyShortName);
+            Logger.LogCF(s);
+        }
+
         private void jAWSSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // This mechanism should be replaced with the mechanism in MusicXmlREader when the programs are merged.
             string expectedDirectory = model.ExternalToolsHandler.GetJawsDirectoryName(executingAssemblyShortName);
             if (string.IsNullOrEmpty(expectedDirectory))
             {
-                MessageBox.Show("Mappen for JAWS applikations-specifik konfigurationsfil findes ikke");
-                string s = string.Format(": Directory for JAWS application-specific configurationfile for {0} does not exist", executingAssemblyShortName);
-                Logger.LogCF(s);
+                OnJAWSDirectoryNotFound();
                 return;
             }
             string configurationFileName = executingAssemblyShortName + ".JCF";
@@ -754,7 +760,19 @@ namespace MusicBrailleReader
                 return;
             }
             // At this point we can show the file in NotePad:
-            Utilities.RunExeWithFileArgument("notepad.exe", fullFileName);
+            Utilities.RunExeWithFileArgument(Utilities.NotepadExe, fullFileName);
+        }
+
+        private void jAWSSettingsDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // This mechanism should be replaced with the mechanism in MusicXmlREader when the programs are merged.
+            string expectedDirectory = model.ExternalToolsHandler.GetJawsDirectoryName(executingAssemblyShortName);
+            if (string.IsNullOrEmpty(expectedDirectory))
+            {
+                OnJAWSDirectoryNotFound();
+                return;
+            }
+            Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, expectedDirectory);
         }
     }
 }
