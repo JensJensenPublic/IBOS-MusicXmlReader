@@ -114,3 +114,63 @@ Side 1 Linie   9  ???????????????????????
 
 
 
+       Opsætning af JAWS for "IBOS Punktnodelæser"
+Hvis man ønsker at anvende IBOS Punktnodelæser sammen med et punktdisplay bør man straks efter installationen af IBOS Nodelæser ændre nogle få JAWS indstillinger. Disse ændringer laves KUN for IBOS Punktnodelæser og har altså ingen indflydelse for JAWS opførsel over for andre programmer.
+Selvom man ikke fra begyndelsen ønsker at bruge IBOS punktnodelæser sammen med et punktdisplay anbefales det, at man alligevel gennemfører nedenstående, så man ikke får problemer senere! 
+    1. Start JAWS
+    2. Start IBOS Nodelæser og giv programmet focus
+    3. Tast INSERT + F2 for at starte "JAWS Manager"
+    4. Vælg IndstillingsCenter og tryk for at vise dialogen "Tilføj ny konfiguration"
+    5. Vælg OK som  starter "JAWS Indstillingscenter–IBOS MusicXmlReader"
+
+Lav derefter følgende ændringer i JAWS indstillinger for "IBOS MusicXmlReader"
+
+Indstillings navn
+Handling
+Virkning
+Indhold af .JCF fil
+? Braille
+->Struktureret tilstand
+->Inkluder valgfrie komponenter
+->Type
+Vælg ”Fra”
+Fjerner overflødig visning af Windows kontrol-type fra Braille diaplayet
+[FocusXT14]
+StructuredModeInclusionFlags=8189
+
+Hvis men desuden ønsker at undgå at JAWS i tale ustandselig annoncerer positionsinformation (for eksempel ”Linie 4 af 27”) samt komponenttype, (for eksempel ”listbox”) kan man i JAWS indstillingscenter med fordel anvende følgende indstillinger:
+
+Indstillingens navn
+Handling
+Virkning
+Indhold af .JCF fil
+-> Taleinformation
+-> Konfigurer informationsniveau
+-> Begynder
+-> Positionsinformation
+Fjern markering fra checkbox
+Fjerner overflødig tale-information om position i og størrelse af den aktuelle listbox
+[OutputModes]
+POSITION=0|2|0|Positionsinformation
+-> Taleinformation
+-> Konfigurer informationsniveau
+-> Begynder
+-> Kontroltype
+Fjern markering fra checkbox
+Fjerner overflødig tale-information om type af alle kontroller
+[OutputModes]
+CONTROL_TYPE=0|2|2|Kontroltype
+
+NOTE: JAWS gemmer ovenstående konfigurationen i en simpel tekstfil.
+Et eksempel på en typisk placering på en dansk PC med brugeren "Jens", et ”Focus 14” Braille display og  JAWS 2021 er:
+
+C:\Users\Jens\AppData\Roaming\Freedom Scientific\JAWS\2021\Settings\dan\IBOS MusicBrailleReader.JCF
+
+Et typisk eksempel på indholdet af denne fil efter ovenstående opsætning er:
+
+[OutputModes]
+POSITION=0|2|0|Positionsinformation
+CONTROL_TYPE=0|2|2|Kontroltype
+[FocusXT14]
+StructuredModeInclusionFlags=8189
+
