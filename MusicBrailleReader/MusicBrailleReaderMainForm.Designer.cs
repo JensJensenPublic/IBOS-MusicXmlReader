@@ -54,6 +54,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.jAWSSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jAWSSettingsDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jAWSSettingsUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,7 +129,8 @@
             this.copyRenameToolStripMenuItem,
             this.transscribeHøjskolesangbogenToolStripMenuItem,
             this.jAWSSettingsToolStripMenuItem,
-            this.jAWSSettingsDirectoryToolStripMenuItem});
+            this.jAWSSettingsDirectoryToolStripMenuItem,
+            this.jAWSSettingsUpdateToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -280,6 +282,13 @@
             this.jAWSSettingsDirectoryToolStripMenuItem.Text = "JAWS Settings directory";
             this.jAWSSettingsDirectoryToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsDirectoryToolStripMenuItem_Click);
             // 
+            // jAWSSettingsUpdateToolStripMenuItem
+            // 
+            this.jAWSSettingsUpdateToolStripMenuItem.Name = "jAWSSettingsUpdateToolStripMenuItem";
+            this.jAWSSettingsUpdateToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.jAWSSettingsUpdateToolStripMenuItem.Text = "JAWS Settings update";
+            this.jAWSSettingsUpdateToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsUpdateToolStripMenuItem_Click);
+            // 
             // MusicBrailleReaderMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,6 +339,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ToolStripMenuItem jAWSSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jAWSSettingsDirectoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jAWSSettingsUpdateToolStripMenuItem;
     }
 }
 

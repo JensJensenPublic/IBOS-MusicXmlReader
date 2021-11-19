@@ -732,6 +732,7 @@ namespace MusicBrailleReader
             ExportToFileAsText(currentInterpretation);
         }
 
+        private const string extensionJCF = ".JCF";
 
         private void OnJAWSDirectoryNotFound()
         {
@@ -749,7 +750,7 @@ namespace MusicBrailleReader
                 OnJAWSDirectoryNotFound();
                 return;
             }
-            string configurationFileName = executingAssemblyShortName + ".JCF";
+            string configurationFileName = executingAssemblyShortName + extensionJCF;
             string fullFileName = Path.Combine(expectedDirectory, configurationFileName);
             if (!File.Exists(fullFileName))
             {
@@ -774,5 +775,46 @@ namespace MusicBrailleReader
             }
             Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, expectedDirectory);
         }
+
+        private void jAWSSettingsUpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string destinatinDirectory = model.ExternalToolsHandler.GetJawsDirectoryName(executingAssemblyShortName);
+            if (string.IsNullOrEmpty(destinatinDirectory))
+            {
+                OnJAWSDirectoryNotFound();
+                return;
+            }
+
+            bool ok = false;
+            try
+            {
+                string configurationFileName = executingAssemblyShortName + extensionJCF;
+                string configurationFileFullName = Path.Combine(destinatinDirectory, configurationFileName);
+                if (File.Exists(configurationFileFullName))
+                {
+                    // Save a backup of the existing file
+                    string savedFileShortName = executingAssemblyShortName + "." + DateTime.Now.Ticks.ToString() + extensionJCF;
+                    string savedFileFullName = Path.Combine(destinatinDirectory, savedFileShortName);
+                    File.Copy(configurationFileFullName, savedFileFullName);
+                }
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("[OutputModes]");
+                sb.AppendLine("POSITION=0|2|0|Positionsinformation");
+                sb.AppendLine("CONTROL_TYPE = 0 | 2 | 2 | Kontroltype");
+                sb.AppendLine("[FocusXT14]");
+                sb.AppendLine("StructuredModeInclusionFlags=8189");
+                string s = sb.ToString();
+                File.WriteAllText(configurationFileFullName, s);
+                ok = true;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogCFE(ex);
+            }
+            MessageBox.Show(string.Format("Opdatering af JAWS konfigurationsfil {0}",ok ? "lykkedes" : "mislykkedes")); 
+            Logger.LogCF(string.Format("Update of JAWS configuration file {0}", ok ? "succeeded" : "failed"));            
+        }
+
+
     }
 }
