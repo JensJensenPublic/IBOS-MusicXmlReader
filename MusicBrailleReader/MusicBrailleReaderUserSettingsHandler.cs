@@ -584,7 +584,7 @@ namespace MusicBrailleReader
             // As default check all nodes at level 0 and 1;
             // The notes at level 2 are checked according to the default values set up by the model.
 
-            spaceNumber.Checked = true; // userSettings.MusicAsSpeech;
+            spaceNumber.Checked = false; // userSettings.MusicAsSpeech;
             //musicAsTextVoices.Checked = userSettings.MusicAsSpeechParts;
             //musicAsTextDetails.Checked = userSettings.MusicAsSpeechDetails;
 
