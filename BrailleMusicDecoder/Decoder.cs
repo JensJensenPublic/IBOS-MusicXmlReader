@@ -22,6 +22,7 @@ namespace BrailleMusicDecoder
         IDecoderClient decoderClient;
         DecoderSpacePositionHandler decoderSpacePositionHandler;
         TypeAmbiguityHandler typeAmbiguityHandler;
+        readonly char[] removeStartingBlanks = new char[] { ' ' };
 
         // Cached Localization values
         public readonly string Text_Page = ResourcesForBrailleMusicDecoder.Text_Page;
@@ -79,7 +80,7 @@ namespace BrailleMusicDecoder
         
         /// <summary>
         ///  The main logic:
-        ///  Extracts the next Token from the input string of Unicode BRaille characters and updates the pusition within this stream.
+        ///  Extracts the next Token from the input string of Unicode Braille characters and updates the pusition within the string.
         /// </summary>
         /// <param name="i">The position within the input strin</param>
         /// <returns>A class representing the extracted token as clear text and (if relevant) as MusicXml</returns>
@@ -92,6 +93,7 @@ namespace BrailleMusicDecoder
             if ((i < 0) || (i >= brailleAsUnicode.Length)) return Token.Create(null,accumulatedText,initialDecoderState); // Outside the array of input characters          
 
             string oldPosition = OnPositionChanged(decoderSpacePositionHandler, initialIndex); // Update information possibly later used for Error reporting to user
+            oldPosition = oldPosition.TrimStart(removeStartingBlanks); // Remove starting blanks
 
             // **********************************************************
             // Get the InputInterpretation. This is where things happen !

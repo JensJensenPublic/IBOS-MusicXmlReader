@@ -63,7 +63,7 @@ namespace BrailleMusicDecoder
 
         public override string ToString()
         {
-            string result = string.Format("{0}{1}{2,02}{3}{4,02}",
+            string result = string.Format("{0}{1}{2,02}{3}{4}",
                 showPageNumber ? formNumber.ToString() : "", // 0
                 separator1, // 1
                 showLineNumber ? lineNumber.ToString() : "", // 2
