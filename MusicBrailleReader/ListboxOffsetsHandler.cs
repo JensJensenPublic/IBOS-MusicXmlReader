@@ -341,7 +341,6 @@ namespace MusicBrailleReader
             this.model = model;
             this.developerMode = developerMode;
             this.listBoxOffsets = listBoxOffsets;
-            this.listBoxOffsets.AccessibleName = "ListbofOffsets"; // ResourcesForUI.ListView_Accessible_Name;
             this.listBoxOffsets.AccessibleRole = AccessibleRole.Default;  // Seems to prevent JAWS from announcing "N of M" when changing line
             this.listBoxOffsets.SelectedIndexChanged += new System.EventHandler(SelectedIndexChanged);
             this.listBoxOffsets.KeyDown += new System.Windows.Forms.KeyEventHandler(KeyDown);

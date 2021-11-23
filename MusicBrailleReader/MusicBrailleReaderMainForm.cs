@@ -41,16 +41,32 @@ namespace MusicBrailleReader
         public static readonly Color FocusedColor = Color.White;         // Mainly for debugging. For released versions use Color.White !
         public static readonly Color NonFocusedColor = Color.WhiteSmoke; // Mainly for debugging. For released versions use Color.White !
 
+        string applicationName;
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private void LocalizeComponent()
+        {
+            /// All of these texts should be read from the reouece file ResourcefForUI...
+            this.applicationName = "IBOS punktnodelæser";
+            this.Text = this.applicationName;
+            this.userSettingsTreeView.AccessibleName = "Punktnode filter";      
+            this.listBoxOffsets.AccessibleName = "Punktnode liste";
+            this.textBoxBraille.AccessibleName = "Valgte symbol vist i stor fond";
+            this.textBoxStatusInformation.AccessibleName = "Status information";
+            this.textBoxText.AccessibleName = "Valgte symbol i tekstrepræsentation";
+        }
 
         public MusicBrailleReaderMainForm()
         {
             executingAssemblyFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingAssemblyShortName = System.IO.Path.GetFileNameWithoutExtension(executingAssemblyFullPath);
             InitializeComponent();
-            this.openTestFileToolStripMenuItem.Text = string.Format("Decode '{0}'", currentTestFileName);     
-            string applicationName = "MusicBrailleReader";
+            LocalizeComponent();  // Overwrite all items exept in MenuStrip with localized texts
+            this.openTestFileToolStripMenuItem.Text = string.Format("Decode '{0}'", currentTestFileName);    
+         
             Logger.Open(applicationName+".Log"); // "MusicBrailleReader.Log"
             Logger.ShowTimeStampInLog = false; // Use false to compare logfiles while ignoring timestampe.
             Logger.LogCF(""); // An empty line to catch the eye
@@ -64,7 +80,7 @@ namespace MusicBrailleReader
             Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings
             model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), applicationName, (this  as IDecoderUiClient));
             Application.ApplicationExit += Application_ApplicationExit; // Add an exit-handler to be sure all processes will be shut down on application exit !
-            this.Text = "MusicBraille Reader"; // ResourcefForUI...
+          
             LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
             regressionTest = RegressionTest.Create(this as IRegressionTestClient);
 #if false

@@ -45,6 +45,9 @@
             this.regressionReferenceLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyRenameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transscribeHøjskolesangbogenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jAWSSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jAWSSettingsDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jAWSSettingsUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.listBoxOffsets = new System.Windows.Forms.ListBox();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
@@ -52,9 +55,6 @@
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.jAWSSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jAWSSettingsDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jAWSSettingsUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -198,12 +198,34 @@
             this.transscribeHøjskolesangbogenToolStripMenuItem.Text = "Transscribe Højskolesangbogen";
             this.transscribeHøjskolesangbogenToolStripMenuItem.Click += new System.EventHandler(this.transscribeHøjskolesangbogenToolStripMenuItem_Click);
             // 
+            // jAWSSettingsToolStripMenuItem
+            // 
+            this.jAWSSettingsToolStripMenuItem.Name = "jAWSSettingsToolStripMenuItem";
+            this.jAWSSettingsToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.jAWSSettingsToolStripMenuItem.Text = "JAWS Settings";
+            this.jAWSSettingsToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsToolStripMenuItem_Click);
+            // 
+            // jAWSSettingsDirectoryToolStripMenuItem
+            // 
+            this.jAWSSettingsDirectoryToolStripMenuItem.Name = "jAWSSettingsDirectoryToolStripMenuItem";
+            this.jAWSSettingsDirectoryToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.jAWSSettingsDirectoryToolStripMenuItem.Text = "JAWS Settings directory";
+            this.jAWSSettingsDirectoryToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsDirectoryToolStripMenuItem_Click);
+            // 
+            // jAWSSettingsUpdateToolStripMenuItem
+            // 
+            this.jAWSSettingsUpdateToolStripMenuItem.Name = "jAWSSettingsUpdateToolStripMenuItem";
+            this.jAWSSettingsUpdateToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.jAWSSettingsUpdateToolStripMenuItem.Text = "JAWS Settings update";
+            this.jAWSSettingsUpdateToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsUpdateToolStripMenuItem_Click);
+            // 
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
             // 
             // listBoxOffsets
             // 
+            this.listBoxOffsets.AccessibleName = "Punktnodeliste";
             this.listBoxOffsets.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -267,27 +289,6 @@
             this.textBox3.Size = new System.Drawing.Size(1122, 20);
             this.textBox3.TabIndex = 8;
             this.textBox3.TabStop = false;
-            // 
-            // jAWSSettingsToolStripMenuItem
-            // 
-            this.jAWSSettingsToolStripMenuItem.Name = "jAWSSettingsToolStripMenuItem";
-            this.jAWSSettingsToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.jAWSSettingsToolStripMenuItem.Text = "JAWS Settings";
-            this.jAWSSettingsToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsToolStripMenuItem_Click);
-            // 
-            // jAWSSettingsDirectoryToolStripMenuItem
-            // 
-            this.jAWSSettingsDirectoryToolStripMenuItem.Name = "jAWSSettingsDirectoryToolStripMenuItem";
-            this.jAWSSettingsDirectoryToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.jAWSSettingsDirectoryToolStripMenuItem.Text = "JAWS Settings directory";
-            this.jAWSSettingsDirectoryToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsDirectoryToolStripMenuItem_Click);
-            // 
-            // jAWSSettingsUpdateToolStripMenuItem
-            // 
-            this.jAWSSettingsUpdateToolStripMenuItem.Name = "jAWSSettingsUpdateToolStripMenuItem";
-            this.jAWSSettingsUpdateToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.jAWSSettingsUpdateToolStripMenuItem.Text = "JAWS Settings update";
-            this.jAWSSettingsUpdateToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsUpdateToolStripMenuItem_Click);
             // 
             // MusicBrailleReaderMainForm
             // 
