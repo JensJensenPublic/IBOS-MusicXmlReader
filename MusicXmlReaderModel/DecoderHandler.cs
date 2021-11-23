@@ -131,14 +131,6 @@ namespace MusicXmlReaderModel
             return result;
         }
 
-        public string GetLocalUserWarningsCaption()
-        {
-            List<UserInfoBase> userInfoList = UserWarnings.GetlocalUSerWarnings();
-            if (0 == userInfoList.Count) return "No errors found";
-            return string.Format("{0} Warnings in '{1}'", userInfoList.Count, userInfoList[0].FileName);
-        }
-
-
 
         public void OnExit()
         {

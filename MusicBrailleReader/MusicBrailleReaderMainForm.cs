@@ -315,7 +315,8 @@ namespace MusicBrailleReader
 
             result = model.DecoderHandler.InterpretBrailleMusicFile(fullFileName, fileEncoding, out musicXmlDocument, decoderOptions);
 
-            if (showWarnings)     ShowUserWarnings(model.DecoderHandler.GetLocalUserWarnings(), model.DecoderHandler.GetLocalUserWarningsCaption()); 
+            ShowUserWarnings(UserWarningOptions.details); // Show the warnings through a MessageBox
+
             if (showXmlOnConsole) musicXmlDocument.Save(Console.Out); // Disable to speed up
             decoderOutputFileHandler = DecoderOutputFileHandler.Create(fullFileName);   
 
@@ -399,22 +400,29 @@ namespace MusicBrailleReader
         }
 
 
+        private enum UserWarningOptions { hide, overview, details};
 
-
-
-        private void ShowUserWarnings(List<string> userWarnings,string caption)
+        private void ShowUserWarnings(UserWarningOptions options)
         {
-            if (userWarnings.Count > 0)
+            if (options == UserWarningOptions.hide) return;
+            List<string> userWarnings = model.DecoderHandler.GetLocalUserWarnings();
+            if (0 == userWarnings.Count) return;
+            // Build a localized caption
+            string fileName = System.IO.Path.GetFileName(fullFileName);
+            string text1 = (1 == userWarnings.Count) ? "advarsel" : "advarsler";
+            string text2 = "fundet i punktnodefilen";
+            string caption = string.Format("{0} {1} {2} '{3}'", userWarnings.Count, text1, text2, fileName );
+            StringBuilder sb = new StringBuilder();
+            if (options == UserWarningOptions.details)
             {
-                StringBuilder sb = new StringBuilder();
                 foreach (string s in userWarnings)
                 {
                     sb.Append(s + "\r\n");
                 }
-                MessageBox.Show(sb.ToString(),caption);
             }
+            MessageBox.Show(sb.ToString(), caption);
         }
-
+  
 
         private void ClearUI()
         {
