@@ -277,7 +277,6 @@ namespace MusicBrailleReader
         {
             latestRegionalOptions = regionalOptions;
             musicXmlDocument = null;
-            bool showXmlOnConsole = false;
             List<DecoderItem> result;
 
             // Exclude some substrings from the string representation
@@ -313,11 +312,11 @@ namespace MusicBrailleReader
                 decoderOptions.ExcludeSubStrings(DecoderOptions.FormatOptionsEnum.xmlRepresentation);
             }
 
-            result = model.DecoderHandler.InterpretBrailleMusicFile(fullFileName, fileEncoding, out musicXmlDocument, decoderOptions);
+            result = model.DecoderHandler.InterpretBrailleMusicFile(fullFileName, fileEncoding, out musicXmlDocument, decoderOptions); // This is where everything happens !!!
 
             ShowUserWarnings(UserWarningOptions.details); // Show the warnings through a MessageBox
+            ShowAsMusicXml(ShowAsMusicXmlOptions.hide); // Show the MusicXml genereted- Use "hide" to speed up
 
-            if (showXmlOnConsole) musicXmlDocument.Save(Console.Out); // Disable to speed up
             decoderOutputFileHandler = DecoderOutputFileHandler.Create(fullFileName);   
 
             // Write the decoded output as text to the listbox
@@ -325,11 +324,6 @@ namespace MusicBrailleReader
             foreach (DecoderItem decoderItem in result)
             {
                 listBoxOffsets.Items.Add(decoderItem);
-            }
-
-            if (null != musicBrailleEditor)
-            {
-                musicBrailleEditor.OnDecodedAsText();
             }
 
             return result;
@@ -422,7 +416,18 @@ namespace MusicBrailleReader
             }
             MessageBox.Show(sb.ToString(), caption);
         }
-  
+
+
+        private enum ShowAsMusicXmlOptions { hide, onConsole }
+        private void  ShowAsMusicXml(ShowAsMusicXmlOptions options)
+        {
+            switch (options)
+            {
+                case ShowAsMusicXmlOptions.onConsole: musicXmlDocument.Save(Console.Out); break;
+                default: break;
+            }
+        }
+
 
         private void ClearUI()
         {
