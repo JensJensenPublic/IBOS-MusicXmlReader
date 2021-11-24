@@ -99,6 +99,7 @@ namespace BrailleMusicDecoder
         }
 
         /// <summary>
+        /// NOTE: The string presented to the user should be geneated by calling ToString(Options rawOptions), implemented later in this class NOTE
         /// Primarily for use during development and debugging.
         /// Only relaevant values are shown, neither "null" nor enum.None !
         /// </summary>
@@ -300,6 +301,7 @@ namespace BrailleMusicDecoder
 
         /// <summary>
         /// Generate a comprehensive stringrepresentation to be used for debugging
+        /// NOTE: The string presented to the user should be geneated by calling ToString(Options rawOptions), implemented later in this class NOTE
         /// </summary>
         /// <returns></returns>
         public string ToShortDebugString()
@@ -346,6 +348,7 @@ namespace BrailleMusicDecoder
 
         /// <summary>
         /// Only to be used for InputCategoryEnum.OtherValues! 
+        /// NOTE: The string presented to the user should be geneated by calling ToString(Options rawOptions), implemented later in this class NOTE
         /// </summary>
         /// <param name="subCategory"></param>
         /// <returns></returns>
@@ -570,14 +573,21 @@ namespace BrailleMusicDecoder
 
 
         /// <summary>
-        /// A string representation of this instance
+        /// Builds the string representation of this instance, as it will be presented to the user through the the UI.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="rawOptions">A simple enumeration parameter, containing flags for controlling the structure of the result</param>
+        /// <returns>The string representation to be  presented to the user through UI</returns>
         public string ToString(Options rawOptions)
-        {
+        {          
+            switch (this.category)   // Exclusively for setting breakpoints for specific input categories (in this case InputCategoryEnum.Note) during debugging.
+            {
+                case InputCategoryEnum.Note: break;
+                default: break;
+            }
+            
             StringFormatOptions stringFormatOptions = rawOptions.StringFormatOptions;
             string apostrophe =  0 != (stringFormatOptions & StringFormatOptions.apostrophesInValue) ?  "'" : "";
-            string friendlyValueString =  string.IsNullOrEmpty(FriendlyValue) ? "" : string.Format(" {0}{1}{2}", apostrophe, FriendlyValue, apostrophe); // Only show real values  FriendlyValue: Use Localized value if possible
+            string friendlyValueString =  string.IsNullOrEmpty(FriendlyValue) ? "" : string.Format("{0}{1}{2}", apostrophe, FriendlyValue, apostrophe); // Only show real values  FriendlyValue: Use Localized value if possible
             // We want to make it easy to find the NewMeasure items !
             string extraString = GetExtraString(category);
             string valuesString = "";
