@@ -130,7 +130,7 @@ namespace MusicBrailleReader
             if (!ListBoxReloadNeeded()) return; // If nothing has changed, that would change the Listbox we ignore 
             listboxOffsetsHandler.SavePosition();
             listBoxOffsets.Items.Clear();        
-            GetInterpretation(latestRegionalOptions, false); // Use the latest regional options and do not show user warnings 
+            GetInterpretation(latestRegionalOptions, UserWarningOptions.hide); // Use the latest regional options and do not show user warnings 
             listboxOffsetsHandler.RestorePosition();
         }
 
@@ -256,13 +256,7 @@ namespace MusicBrailleReader
             return true;
         }
 
-        private DecoderOptions.RegionalOptionsEnum latestRegionalOptions = DecoderOptions.RegionalOptionsEnum.Unknown;
-
-        private List<DecoderItem> GetInterpretation(DecoderOptions.RegionalOptionsEnum regionalOptions)
-        {
-            return GetInterpretation(regionalOptions, true);
-        }
-
+        private DecoderOptions.RegionalOptionsEnum latestRegionalOptions = DecoderOptions.RegionalOptionsEnum.Unknown;  
 
         /// <summary>
         /// Calls the Model to create an interpretation (in the form of a list of DecoderItems) of the currently loaded Music Braille file
@@ -273,7 +267,7 @@ namespace MusicBrailleReader
         /// <param name="regionalOptions"></param>
         /// <param name="showWarnings"></param>
         /// <returns></returns>
-        private List<DecoderItem> GetInterpretation(DecoderOptions.RegionalOptionsEnum regionalOptions, bool showWarnings)
+        private List<DecoderItem> GetInterpretation(DecoderOptions.RegionalOptionsEnum regionalOptions, UserWarningOptions options)
         {
             latestRegionalOptions = regionalOptions;
             musicXmlDocument = null;
@@ -314,7 +308,7 @@ namespace MusicBrailleReader
 
             result = model.DecoderHandler.InterpretBrailleMusicFile(fullFileName, fileEncoding, out musicXmlDocument, decoderOptions); // This is where everything happens !!!
 
-            ShowUserWarnings(UserWarningOptions.details); // Show the warnings through a MessageBox
+            ShowUserWarnings(options); // Show the warnings through a MessageBox
             ShowAsMusicXml(ShowAsMusicXmlOptions.hide); // Show the MusicXml genereted- Use "hide" to speed up
 
             decoderOutputFileHandler = DecoderOutputFileHandler.Create(fullFileName);   
@@ -650,7 +644,7 @@ namespace MusicBrailleReader
             string fullDir = Path.Combine(baseDir,currentTestDirectory);
             fullFileName = Path.Combine(fullDir, currentTestFileName); 
             fileEncoding = BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252;
-            currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.Danish);
+            currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.Danish,UserWarningOptions.details);
 #endif
         }
 
@@ -715,14 +709,14 @@ namespace MusicBrailleReader
         {
             if (!SelectAndOpenFile(false, false, GetOpenDialogName(sender))) return;
             ClearUI();
-            currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.Danish);
+            currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.Danish, UserWarningOptions.details);
         }
 
         private void openUsingBrailleOrchProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!SelectAndOpenFile(false, false, GetOpenDialogName(sender))) return;
             ClearUI();
-            currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.English);
+            currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.English, UserWarningOptions.details);
         }
 
 #if false
