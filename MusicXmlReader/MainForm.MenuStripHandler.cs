@@ -375,7 +375,7 @@ namespace MusicXmlReader
 
         private void musicBrailleReaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            userSettingsHandler.MusicBrailleReader(sender, e);
+            userSettingsHandler.StarMusicBrailleReader(sender, e);
         }
 
 

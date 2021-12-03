@@ -198,6 +198,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MusicBrailleReader\MusicBrailleReader.csproj">
+      <Project>{d6a09aa1-49e9-499f-a100-87d15c28c072}</Project>
+      <Name>MusicBrailleReader</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MusicXmlReaderModelBase\MusicXmlReaderModelBase.csproj">
       <Project>{05d0a6cf-3d9f-4dde-90e4-db7e4d3318ab}</Project>
       <Name>MusicXmlReaderModelBase</Name>

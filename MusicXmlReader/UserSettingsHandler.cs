@@ -7,6 +7,7 @@ using System.Windows.Forms;
 // using MusicXmlReaderUI;
 using System.Globalization;
 using MusicXmlReaderModel;
+// using MusicBrailleReader; // MusicBrailleReader is ewxplicitly mentioned where used!
 
 namespace MusicXmlReader
 {
@@ -43,6 +44,7 @@ namespace MusicXmlReader
 
  
         private Model model;
+        private Form creatingForm;
 
         public TreeNode MusicAsSound
         {
@@ -75,12 +77,13 @@ namespace MusicXmlReader
         }
 
 
-        private UserSettingsHandler(TreeView treeView,Model model, ListBoxTimesHandler listBoxTimesHandler)
+        private UserSettingsHandler(TreeView treeView,Model model, ListBoxTimesHandler listBoxTimesHandler,Form creatingForm)
         {  
             this.treeView = treeView;
             this.listBoxTimesHandler = listBoxTimesHandler;
             this.treeView.AfterCheck += TreeView_AfterCheck;
             this.model = model;
+            this.creatingForm = creatingForm;
             this.treeView.AccessibleName = ResourcesForUI.TreeView_Accessible_Name;
             this.treeView.KeyDown += new System.Windows.Forms.KeyEventHandler(TreeView_KeyDown);
             this.treeView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(TreeView_KeyPress);
@@ -413,9 +416,9 @@ namespace MusicXmlReader
 
         }
 
-        public static UserSettingsHandler Create(TreeView treeView,Model model, ListBoxTimesHandler listBoxTimesHandler)
+        public static UserSettingsHandler Create(TreeView treeView,Model model, ListBoxTimesHandler listBoxTimesHandler,Form creatingForm)
         {
-            return new UserSettingsHandler(treeView,model,listBoxTimesHandler);
+            return new UserSettingsHandler(treeView,model,listBoxTimesHandler,creatingForm);
         }
 
         public void clearAll()
@@ -628,9 +631,16 @@ namespace MusicXmlReader
             }
         }
 
-        public void MusicBrailleReader(object sender, EventArgs e)
+
+        private MusicBrailleReader.MusicBrailleReaderMainForm  musicBrailleReaderMainform;
+
+        public void StarMusicBrailleReader(object sender, EventArgs e)
         {
-            MessageBox.Show("Not implemented yet");
+            //MessageBox.Show("Not implemented yet");
+            //musicBrailleReaderMainform = new MusicBrailleReader.MusicBrailleReaderMainForm(); // Start the MusicBrailleReader as a separate form
+            musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(creatingForm, model); 
+            musicBrailleReaderMainform.Show();
+            creatingForm.Hide();
         }
         
 

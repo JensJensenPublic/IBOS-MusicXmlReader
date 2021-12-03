@@ -137,7 +137,7 @@ namespace MusicXmlReader
                 listBoxTimesHandler = ListBoxTimesHandler.Create(model, detailsHandler, listBoxTimes);
 
                 // Create a handler for the user settinge, in this case modelled as a treeview.
-                userSettingsHandler = UserSettingsHandler.Create(userSettingsTreeView, model, listBoxTimesHandler);
+                userSettingsHandler = UserSettingsHandler.Create(userSettingsTreeView, model, listBoxTimesHandler,this);
                 userSettingsHandler.Init(); // Builds up the fixed part of the treeview
                 userSettingsHandler.Reset();
                 // Create a handler for handling all Keyboard shortcuts

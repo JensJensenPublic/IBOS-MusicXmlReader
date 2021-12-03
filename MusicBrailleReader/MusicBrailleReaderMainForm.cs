@@ -22,6 +22,7 @@ namespace MusicBrailleReader
         const string currentTestDirectory = "NOTA fra SN 2021.03.23";
 
         Model model;        // The Model containing all of the business logic.
+        Form creatingForm;  // Holds the creating form this class was created by another form through the static Create()
         string executingAssemblyFullPath = ""; // The (unlocalized) name and location of the program, 
         string executingAssemblyShortName = ""; // The (unlocalized) short name of the program, used by for instance JAWS to name configuration file! 
         string fullFileName;
@@ -58,6 +59,16 @@ namespace MusicBrailleReader
             this.textBoxStatusInformation.AccessibleName = "Status information";
             this.textBoxText.AccessibleName = "Valgte symbol i tekstrepræsentation";
         }
+
+        public static  MusicBrailleReaderMainForm Create(Form creatingForm, Model model)
+        {
+            MusicBrailleReaderMainForm result = new MusicBrailleReaderMainForm();
+            result.model = model;
+            result.creatingForm = creatingForm;
+            //creatingForm.Hide();
+            return result;
+        }
+
 
         public MusicBrailleReaderMainForm()
         {
@@ -838,6 +849,11 @@ namespace MusicBrailleReader
             Logger.LogCF(string.Format("Update of JAWS configuration file {0}", ok ? "succeeded" : "failed"));            
         }
 
-
+        private void MusicBrailleReaderMainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // If this form was instantiated by another form using the static Create() method the creating form was hidden at that time. Show it again.
+            if (null == creatingForm) return;
+            creatingForm.Show();
+        }
     }
 }
