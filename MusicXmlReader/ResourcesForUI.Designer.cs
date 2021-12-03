@@ -1168,6 +1168,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start IBOS Music Braille Reader.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_MusicBrailleReader {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_MusicBrailleReader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MusicXml file location.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_OpenXmlFileLocation {

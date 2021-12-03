@@ -373,6 +373,12 @@ namespace MusicXmlReader
             userSettingsHandler.ShowFilterItems(false);
         }
 
+        private void musicBrailleReaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            userSettingsHandler.MusicBrailleReader(sender, e);
+        }
+
+
         #endregion // Edit
 
         #region Help

@@ -202,7 +202,7 @@
     <value>&amp;Logfil</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Logfile_Location" xml:space="preserve">
-    <value>Logfil &amp;placering</value>
+    <value>Logfil placering</value>
   </data>
   <data name="ToolStripMenuItem_Tools_MuseScore" xml:space="preserve">
     <value>&amp;MuseScore</value>
@@ -606,5 +606,9 @@
   </data>
   <data name="ToolStripMenuItem_Tools_InspectAsXml_Using_Chrome" xml:space="preserve">
     <value>MusicXml fil som rå XML med &amp;Google Chrome</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_MusicBrailleReader" xml:space="preserve">
+    <value>Start IBOS &amp;Punktnodelæser</value>
+    <comment>ToDo: Implement  in .NL</comment>
   </data>
 </root>

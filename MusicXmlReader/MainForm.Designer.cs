@@ -99,6 +99,7 @@
             this.unicodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autodetectedEncodingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userPreferencesLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.analyzeLocalizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -137,7 +138,7 @@
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
-            this.analyzeLocalizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.musicBrailleReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -566,7 +567,8 @@
             this.generateGraphicInformationToolStripMenuItem,
             this.interpretFileAsBrailleMusicToolStripMenuItem,
             this.userPreferencesLocationToolStripMenuItem,
-            this.analyzeLocalizationToolStripMenuItem});
+            this.analyzeLocalizationToolStripMenuItem,
+            this.musicBrailleReaderToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -714,6 +716,13 @@
             this.userPreferencesLocationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.userPreferencesLocationToolStripMenuItem.Text = "User Preferences location";
             this.userPreferencesLocationToolStripMenuItem.Click += new System.EventHandler(this.userPreferencesLocationToolStripMenuItem_Click);
+            // 
+            // analyzeLocalizationToolStripMenuItem
+            // 
+            this.analyzeLocalizationToolStripMenuItem.Name = "analyzeLocalizationToolStripMenuItem";
+            this.analyzeLocalizationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.analyzeLocalizationToolStripMenuItem.Text = "Analyze localization";
+            this.analyzeLocalizationToolStripMenuItem.Click += new System.EventHandler(this.analyzeLocalizationToolStripMenuItem_Click);
             // 
             // archivesToolStripMenuItem
             // 
@@ -1031,12 +1040,12 @@
             // 
             this.printDialog.UseEXDialog = true;
             // 
-            // analyzeLocalizationToolStripMenuItem
+            // musicBrailleReaderToolStripMenuItem
             // 
-            this.analyzeLocalizationToolStripMenuItem.Name = "analyzeLocalizationToolStripMenuItem";
-            this.analyzeLocalizationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
-            this.analyzeLocalizationToolStripMenuItem.Text = "Analyze localization";
-            this.analyzeLocalizationToolStripMenuItem.Click += new System.EventHandler(this.analyzeLocalizationToolStripMenuItem_Click);
+            this.musicBrailleReaderToolStripMenuItem.Name = "musicBrailleReaderToolStripMenuItem";
+            this.musicBrailleReaderToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.musicBrailleReaderToolStripMenuItem.Text = "Music Braille Reader";
+            this.musicBrailleReaderToolStripMenuItem.Click += new System.EventHandler(this.musicBrailleReaderToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1179,6 +1188,7 @@
         private System.Windows.Forms.ToolStripMenuItem startFinaleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inspectAsXMLUsingGoogleChromeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem analyzeLocalizationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem musicBrailleReaderToolStripMenuItem;
     }
 }
 
