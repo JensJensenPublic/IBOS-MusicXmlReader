@@ -128,7 +128,7 @@ namespace MusicBrailleReader
             // "File"
             Hide(openUsingBrailleOrchProfileToolStripMenuItem);
             Hide(openTestFileToolStripMenuItem);
-            Hide(exporterSomTextToolStripMenuItem);
+            //Hide(exporterSomTextToolStripMenuItem);
             // The "Tools"
             Hide(tactileMusicXmlReaderToolStripMenuItem);
             Hide(iBOSMusicXmlReaderToolStripMenuItem); // Version 4.0 can not accept a filename as argument !
