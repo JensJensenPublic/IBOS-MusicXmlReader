@@ -232,6 +232,7 @@
             this.listBoxOffsets.FormattingEnabled = true;
             this.listBoxOffsets.Location = new System.Drawing.Point(258, 89);
             this.listBoxOffsets.Name = "listBoxOffsets";
+            this.listBoxOffsets.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBoxOffsets.Size = new System.Drawing.Size(876, 316);
             this.listBoxOffsets.TabIndex = 0;
             this.listBoxOffsets.SelectedIndexChanged += new System.EventHandler(this.listBoxDecodedAsText_SelectedIndexChanged);

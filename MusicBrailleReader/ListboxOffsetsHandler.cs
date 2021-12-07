@@ -154,11 +154,22 @@ namespace MusicBrailleReader
         //        }
 
         /// <summary>
-        /// Occurs when a key is pressed while listBoxTimes has focus
+        /// Occurs when a key is pressed while listBoxOffsets has focus
         /// </summary>
         /// <param name="e"></param>
         private void KeyDown(object sender, KeyEventArgs e)
         {
+            // Allow user to copy/paste seplected items from listbox
+            // Inspired by https://stackoverflow.com/questions/51306469/how-to-allow-the-user-to-copy-items-from-listbox-and-paste-outside-of-windows-fo/51308473
+            if (e.Control && e.KeyCode == Keys.C)
+            {
+                StringBuilder sb = new System.Text.StringBuilder();
+                foreach (object item in listBoxOffsets.SelectedItems)
+                    sb.AppendLine(item.ToString());
+                if (sb.Length > 0)
+                    Clipboard.SetDataObject(sb.ToString());
+            }
+
             // string functionName = "listBoxTimes_KeyDown";
 
             //bool handled = true; // Will be set to false again by the "default:" case if the key is not handled  by one of the specific cases.
