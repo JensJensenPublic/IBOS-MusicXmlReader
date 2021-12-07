@@ -390,8 +390,40 @@ namespace MusicBrailleReader
 
             latestMusicXmlFileGenerated = fileName;
 
-            // Open Explorer in the output directory.
-            Utilities.RunExeWithDirArgument("Explorer", decoderOutputFileHandler.OutputDirectory);
+            if (developerMode)
+            {
+                // Open Explorer in the default output directory for the application, that is within the appData area:
+                Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, decoderOutputFileHandler.OutputDirectory);
+            }
+            else
+            {
+                // Let the User select directory and filename, but suggest decent default values
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.FileName = Path.GetFileName(fileName);
+                DialogResult dialogResult = saveFileDialog.ShowDialog();
+                if (DialogResult.OK != dialogResult) return false;
+                string fileNameSelectedByUser = saveFileDialog.FileName;
+                bool ok = false;
+                try
+                {
+                    musicXmlDocument.Save(fileNameSelectedByUser);
+                    ok = true;
+                }
+                catch (Exception e)
+                {
+                    Logger.LogCFE(e);         
+                }
+                if (!ok)
+                {
+                    MessageBox.Show(string.Format("Kunne ikke gemme filen\r\n'{0}'", fileNameSelectedByUser, this.applicationName));
+                    return false;
+                }
+
+                // Open Explorer in the output directory to let the user inspect the result with for instance MuseScore or IBOS MusicXmlReader
+                Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, Path.GetDirectoryName(fileNameSelectedByUser));
+            }
+
+
             return true;
         }
 
