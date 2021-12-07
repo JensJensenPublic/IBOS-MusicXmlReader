@@ -216,7 +216,7 @@
             // 
             this.jAWSSettingsUpdateToolStripMenuItem.Name = "jAWSSettingsUpdateToolStripMenuItem";
             this.jAWSSettingsUpdateToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.jAWSSettingsUpdateToolStripMenuItem.Text = "JAWS Settings update";
+            this.jAWSSettingsUpdateToolStripMenuItem.Text = "JAWS Settings restore defaults";
             this.jAWSSettingsUpdateToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsUpdateToolStripMenuItem_Click);
             // 
             // openFileDialog

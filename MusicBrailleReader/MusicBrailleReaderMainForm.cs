@@ -85,6 +85,7 @@ namespace MusicBrailleReader
             arguments = Environment.GetCommandLineArgs();
             string developerModeString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.DeveloperMode);
             developerMode = ("yes" == developerModeString);
+            HideDeveloperItems(developerMode);
             Logger.DeveloperMode = developerMode;
             Logger.LogArguments(arguments);
 
@@ -114,6 +115,31 @@ namespace MusicBrailleReader
          
 
         }
+
+        private void Hide(ToolStripMenuItem item)
+        {
+            item.Enabled = false;
+            item.Visible = false;
+        }
+
+        private void HideDeveloperItems(bool developerMode)
+        {
+            if (developerMode) return; // All items remain visible
+            // "File"
+            Hide(openUsingBrailleOrchProfileToolStripMenuItem);
+            Hide(openTestFileToolStripMenuItem);
+            Hide(exporterSomTextToolStripMenuItem);
+            // The "Tools"
+            Hide(tactileMusicXmlReaderToolStripMenuItem);
+            Hide(logfileLocationToolStripMenuItem);
+            Hide(logFileToolStripMenuItem);
+            Hide(regressionReferenceLocationToolStripMenuItem);
+            Hide(regressionTestToolStripMenuItem);
+            Hide(copyRenameToolStripMenuItem);
+            Hide(transscribeHøjskolesangbogenToolStripMenuItem);
+            Hide(jAWSSettingsDirectoryToolStripMenuItem);          
+        }
+
 
         bool musicAsBrailleCheckedAtEntry;
         bool musicAsSoundCheckedAtEntry;
