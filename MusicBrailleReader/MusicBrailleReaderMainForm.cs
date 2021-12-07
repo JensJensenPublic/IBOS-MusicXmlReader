@@ -131,6 +131,7 @@ namespace MusicBrailleReader
             Hide(exporterSomTextToolStripMenuItem);
             // The "Tools"
             Hide(tactileMusicXmlReaderToolStripMenuItem);
+            Hide(iBOSMusicXmlReaderToolStripMenuItem); // Version 4.0 can not accept a filename as argument !
             Hide(logfileLocationToolStripMenuItem);
             Hide(logFileToolStripMenuItem);
             Hide(regressionReferenceLocationToolStripMenuItem);
