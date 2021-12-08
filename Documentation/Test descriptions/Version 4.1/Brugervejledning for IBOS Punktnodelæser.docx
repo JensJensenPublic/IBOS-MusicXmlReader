@@ -1,30 +1,29 @@
-Brugervejledning for IBOS Punktnodelæser version 4.1
+Brugervejledning for IBOS Punktnodelæser Version 4.1
 
 
-IBOS Punktnodelæser er et midlertidigt, selvstændigt PC-program til brug ved den indledende test af understøttelsen af læsning af punktnoder i IBOS Nodelæser.
-Det er tanken at programmets funktion senere vil blive integreret ind i IBOS Nodelæser.
+IBOS Punktnodelæser er et midlertidigt, selvstændigt PC-program til brug ved den indledende test af fortolkning af punktnoder i IBOS Nodelæser. Det er tanken at programmets funktion senere vil blive integreret ind i IBOS Nodelæser.
 
 Principperne for brugergrænsefladen i IBOS Punktnodelæser er derfor præcis de samme som i IBOS Nodelæser:
 
 Brugergrænsefladen består i hovedtrækkene af 3 almindelige Windows Forms kontroller:
 
-En MenuLinje:
+En Menu:
 Indeholder menupunkter for indlæsning af punktnodefiler samt for eksport af genererede  MusicXml filer.
 
-En ListBox:
+En nodeliste:
 Indeholder den indlæste punktnode-fil, oversat til en simpel tekstrepræsentation.
 
-Et TreeView:
+Et nodefilter:
 Tillader at brugeren at kontrollere hvilke detaljer, der vises i listbox’en.
 
-Ved indlæsning og fortolkning af punktnode-filer vil der ofte optræde fejl, enten fordi der simpelthen er fejl i punktnode-filen, eller fordi punktnodefilen indeholder konstruktioner, som  IBOS Punktnodelæser endnu ikke understøtter. I så fald vises efter indlæsning af punktnode-filen en MessageBox, som opsummerer de fundne fejl.
+Ved indlæsning og fortolkning af punktnodefiler vil der ofte optræde fejl, enten fordi der er fejl i punktnodefilen, eller fordi punktnodefilen indeholder konstruktioner, som  IBOS Punktnodelæser endnu ikke understøtter. I så fald vises efter indlæsning af punktnode-filen en medelelse, som opsummerer de fundne fejl.
 
-Efter indlæsning af en punktnode-fil vises den i en simpel tekstrepræsentation i listboxen:
+Efter indlæsning og fortolkning af en punktnodefil vises dens indhold i en simpel tekstrepræsentation i listboxen:
 
 For hver linje i punktnode-filen vises øverst en linje indeholdende: 
     • Sidetal (Som almindelig tekst-Braille)
     • Linjenummer (Som almindelig tekst-Braille)
-    • Linjens ufortolkede indhold (som rå Braille)
+    • Linjens ufortolkede indhold (som rå Braille symboler)
 
 Under denne linje vises et antal linjer, hver indeholdende en tekstbaseret fortolkning af en del af den rå Braille linje. Hver linje indeholder typisk:
 
@@ -34,6 +33,7 @@ Under denne linje vises et antal linjer, hver indeholdende en tekstbaseret forto
 På næste side vises et typisk eksempel på visningen af linje de første 9 linjer af nummer 262 i Højskolesangbogen: Kaj Munks ”Den blå anemone”.
 
  
+
 
 
 
