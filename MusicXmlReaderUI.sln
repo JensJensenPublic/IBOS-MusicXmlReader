@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSynthesis", "MusicSynthesis\MusicSynthesis.csproj", "{529D2C78-0FBC-4BF1-B5AE-F348695546C2}"
 EndProject
@@ -233,7 +233,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Materiale til brug ved fond
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version 4.1", "Version 4.1", "{183B8079-580D-41A2-B3DF-D8460B19A600}"
 	ProjectSection(SolutionItems) = preProject
-		Documentation\Test descriptions\Version 4.1\Brugervejledning for IBOS Punktnodelæser.docx = Documentation\Test descriptions\Version 4.1\Brugervejledning for IBOS Punktnodelæser.docx
+		Documentation\Test descriptions\Version 4.1\Brugervejledning for IBOS Punktnodelæser.v4.1.docx = Documentation\Test descriptions\Version 4.1\Brugervejledning for IBOS Punktnodelæser.v4.1.docx
 	EndProjectSection
 EndProject
 Global
