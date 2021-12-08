@@ -163,7 +163,7 @@ namespace MusicBrailleReader
             // Inspired by https://stackoverflow.com/questions/51306469/how-to-allow-the-user-to-copy-items-from-listbox-and-paste-outside-of-windows-fo/51308473
             if (e.Control && e.KeyCode == Keys.C)
             {
-                StringBuilder sb = new System.Text.StringBuilder();
+                StringBuilder sb = new StringBuilder();
                 foreach (object item in listBoxOffsets.SelectedItems)
                     sb.AppendLine(item.ToString());
                 if (sb.Length > 0)
