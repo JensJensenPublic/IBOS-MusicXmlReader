@@ -357,6 +357,10 @@ namespace MusicBrailleReader
             {
                 listBoxOffsets.Items.Add(decoderItem);
             }
+            if (listBoxOffsets.Items.Count != 0)
+            {
+                listBoxOffsets.SelectedIndex = 0; // Select the first item from start to avoid crashes. 
+            }
 
             return result;
         }
