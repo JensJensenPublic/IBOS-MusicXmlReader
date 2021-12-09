@@ -398,48 +398,60 @@ namespace MusicBrailleReader
             {
                 // Open Explorer in the default output directory for the application, that is within the appData area:
                 Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, decoderOutputFileHandler.OutputDirectory);
+                return true;
             }
             else
             {
-                // Let the User select directory and filename, but suggest decent default values
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.FileName = Path.GetFileName(fileName);
-                DialogResult dialogResult = saveFileDialog.ShowDialog();
-                if (DialogResult.OK != dialogResult) return false;
-                string fileNameSelectedByUser = saveFileDialog.FileName;
-                bool ok = false;
-                try
-                {
-                    musicXmlDocument.Save(fileNameSelectedByUser);
-                    ok = true;
-                }
-                catch (Exception e)
-                {
-                    Logger.LogCFE(e);         
-                }
-                if (!ok)
-                {
-                    MessageBox.Show(string.Format("Kunne ikke gemme filen\r\n'{0}'", fileNameSelectedByUser, this.applicationName));
-                    return false;
-                }
+                return UserSave(fileName);
+            }          
+        }
 
-                string message =
-                      "Punktnodefilen blev gemt som en MusicXml fil\r\n"
-                    + "Tryk 'Ja' for at gå til MusicXml filen\r\n"
-                    + "Tryk 'Nej' for at fortsætte";
-                string caption = applicationName;
-                DialogResult messageBoxResult = MessageBox.Show(message, caption, MessageBoxButtons.YesNo);
 
-                // Open Explorer in the output directory to let the user inspect the result with for instance MuseScore or IBOS MusicXmlReader
-                if (DialogResult.Yes == messageBoxResult)
-                {
-                    Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, Path.GetDirectoryName(fileNameSelectedByUser));
-                }
+        /// <summary>
+        /// Let the user decide where to save the MusicXml file generated and wether or not to open an Explorer at the location. 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        private bool UserSave(string fileName)
+        {
+            // Let the User select directory and filename, but suggest decent default values
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = Path.GetFileName(fileName);
+            DialogResult dialogResult = saveFileDialog.ShowDialog();
+            if (DialogResult.OK != dialogResult) return false;
+            string fileNameSelectedByUser = saveFileDialog.FileName;
+            bool ok = false;
+            try
+            {
+                musicXmlDocument.Save(fileNameSelectedByUser);
+                ok = true;
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+            if (!ok)
+            {
+                MessageBox.Show(string.Format("Kunne ikke gemme filen\r\n'{0}'", fileNameSelectedByUser, this.applicationName));
+                return false;
             }
 
+            string message =
+                  "Punktnodefilen blev gemt som en MusicXml fil\r\n"
+                + "Tryk 'Ja' for at gå til MusicXml filen i Windows Stifinder\r\n"
+                + "Tryk 'Nej' for at fortsætte";
+            string caption = applicationName;
+            DialogResult messageBoxResult = MessageBox.Show(message, caption, MessageBoxButtons.YesNo);
 
+            // Open Explorer in the output directory to let the user inspect the result with for instance MuseScore or IBOS MusicXmlReader
+            if (DialogResult.Yes == messageBoxResult)
+            {
+                Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, Path.GetDirectoryName(fileNameSelectedByUser));
+            }
             return true;
         }
+
+
 
 
         /// <summary>
