@@ -22,17 +22,21 @@ namespace MusicBrailleReader
 
             // First sublevel
             // Children (and grandchildren) of  fileToolStripMenuItem
-            menuItemHandler.GenerateAccessibleName(this.openUsingNOTAProfileToolStripMenuItem, "&Åbn MusicBraille fil", Keys.None);
-            menuItemHandler.GenerateAccessibleName(this.openUsingNOTAProfileToolStripMenuItem, "Åbn med &NOTA profil", Keys.Control | Keys.O); // In the Danish version the CTRL-O shortcut goes here
-            menuItemHandler.GenerateAccessibleName(this.openUsingBrailleOrchProfileToolStripMenuItem, "Åbn med &BrailleOrch profil", Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.openUsingNOTAProfileToolStripMenuItem, "&Åbn punktnode fil", Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.openUsingNOTAProfileToolStripMenuItem, "Åbn &NOTA punktnodefil", Keys.Control | Keys.O); // In the Danish version the CTRL-O shortcut goes here
+            menuItemHandler.GenerateAccessibleName(this.openUsingBrailleOrchProfileToolStripMenuItem, "Åbn &BrailleOrch punktnodefil", Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.exporterSomMusicXmlToolStripMenuItem, "Eksportér som MusicXml", Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.exporterSomTextToolStripMenuItem, "Eksportér som tekst", Keys.None);
 
-            //menuItemHandler.GenerateAccessibleName(usingAutoselectedProfileToolStripMenuItem, "Åbn med &automatisk valgt profil", Keys.None);
+           //menuItemHandler.GenerateAccessibleName(usingAutoselectedProfileToolStripMenuItem, "Åbn med &automatisk valgt profil", Keys.None);
 
-            // Second sublevel below "Tools"
-            menuItemHandler.GenerateAccessibleName(tactileMusicXmlReaderToolStripMenuItem, "&Tactile MusicXmlReader", Keys.None);
-            menuItemHandler.GenerateAccessibleName(iBOSMusicXmlReaderToolStripMenuItem, "&IBOS Nodelæser", Keys.None);
-            menuItemHandler.GenerateAccessibleName(museScoreToolStripMenuItem, "&MuseScore", Keys.None);
-            menuItemHandler.GenerateAccessibleName(logfileLocationToolStripMenuItem, "&Logfil placering", Keys.None);
+           // Second sublevel below "Tools"
+           menuItemHandler.GenerateAccessibleName(this.tactileMusicXmlReaderToolStripMenuItem, "&Tactile MusicXmlReader", Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.iBOSMusicXmlReaderToolStripMenuItem, "&IBOS Nodelæser", Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.museScoreToolStripMenuItem, "Start &MuseScore", Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.logfileLocationToolStripMenuItem, "Åbn &Logfil placering", Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.jAWSSettingsToolStripMenuItem, "Inspicér nuværende &JAWS indstillinger", Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.jAWSSettingsUpdateToolStripMenuItem,"Gendan standard JAWS indstillinger ",Keys.None);
 
         }
 
