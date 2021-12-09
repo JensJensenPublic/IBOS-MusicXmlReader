@@ -584,4 +584,46 @@
   <data name="Text_Warning" xml:space="preserve">
     <value>Advarsel</value>
   </data>
+  <data name="Note_A_Flat" xml:space="preserve">
+    <value>As</value>
+  </data>
+  <data name="Note_A_Sharp" xml:space="preserve">
+    <value>Ais</value>
+  </data>
+  <data name="Note_B_Flat" xml:space="preserve">
+    <value>Bb</value>
+  </data>
+  <data name="Note_B_Sharp" xml:space="preserve">
+    <value>Bis</value>
+  </data>
+  <data name="Note_C_Flat" xml:space="preserve">
+    <value>Ces</value>
+  </data>
+  <data name="Note_C_Sharp" xml:space="preserve">
+    <value>Cis</value>
+  </data>
+  <data name="Note_D_Flat" xml:space="preserve">
+    <value>Des</value>
+  </data>
+  <data name="Note_D_Sharp" xml:space="preserve">
+    <value>Dis</value>
+  </data>
+  <data name="Note_E_Flat" xml:space="preserve">
+    <value>Es</value>
+  </data>
+  <data name="Note_E_Sharp" xml:space="preserve">
+    <value>Eis</value>
+  </data>
+  <data name="Note_F_Flat" xml:space="preserve">
+    <value>Fes</value>
+  </data>
+  <data name="Note_F_Sharp" xml:space="preserve">
+    <value>Fis</value>
+  </data>
+  <data name="Note_G_Flat" xml:space="preserve">
+    <value>Ges</value>
+  </data>
+  <data name="Note_G_Sharp" xml:space="preserve">
+    <value>Gis</value>
+  </data>
 </root>

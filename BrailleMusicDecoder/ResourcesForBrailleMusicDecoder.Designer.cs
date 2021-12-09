@@ -1357,6 +1357,132 @@ namespace BrailleMusicDecoder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A flat.
+        /// </summary>
+        internal static string Note_A_Flat {
+            get {
+                return ResourceManager.GetString("Note_A_Flat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A sharp.
+        /// </summary>
+        internal static string Note_A_Sharp {
+            get {
+                return ResourceManager.GetString("Note_A_Sharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B flat.
+        /// </summary>
+        internal static string Note_B_Flat {
+            get {
+                return ResourceManager.GetString("Note_B_Flat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B sharp.
+        /// </summary>
+        internal static string Note_B_Sharp {
+            get {
+                return ResourceManager.GetString("Note_B_Sharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C flat.
+        /// </summary>
+        internal static string Note_C_Flat {
+            get {
+                return ResourceManager.GetString("Note_C_Flat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C sharp.
+        /// </summary>
+        internal static string Note_C_Sharp {
+            get {
+                return ResourceManager.GetString("Note_C_Sharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to D flat.
+        /// </summary>
+        internal static string Note_D_Flat {
+            get {
+                return ResourceManager.GetString("Note_D_Flat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to D sharp.
+        /// </summary>
+        internal static string Note_D_Sharp {
+            get {
+                return ResourceManager.GetString("Note_D_Sharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E flat.
+        /// </summary>
+        internal static string Note_E_Flat {
+            get {
+                return ResourceManager.GetString("Note_E_Flat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E sharp.
+        /// </summary>
+        internal static string Note_E_Sharp {
+            get {
+                return ResourceManager.GetString("Note_E_Sharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to F flat.
+        /// </summary>
+        internal static string Note_F_Flat {
+            get {
+                return ResourceManager.GetString("Note_F_Flat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to F_Sharp.
+        /// </summary>
+        internal static string Note_F_Sharp {
+            get {
+                return ResourceManager.GetString("Note_F_Sharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to G flat.
+        /// </summary>
+        internal static string Note_G_Flat {
+            get {
+                return ResourceManager.GetString("Note_G_Flat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to G_Sharp.
+        /// </summary>
+        internal static string Note_G_Sharp {
+            get {
+                return ResourceManager.GetString("Note_G_Sharp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Equality.
         /// </summary>
         internal static string OtherValuesNameEnum_Equality {

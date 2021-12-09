@@ -338,36 +338,36 @@ namespace BrailleMusicDecoder
             }
             if (allowFlat)
             {
-                allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterA, AccidentalFlat), inputCategoryEnum, "Ab", InputSubCategoryEnum.FullStepA, "-1");
-                allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterB, AccidentalFlat), inputCategoryEnum, "Bb", InputSubCategoryEnum.FullStepB, "-1");
-                allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterC, AccidentalFlat), inputCategoryEnum, "Cb", InputSubCategoryEnum.FullStepC, "-1");
-                allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterD, AccidentalFlat), inputCategoryEnum, "Db", InputSubCategoryEnum.FullStepD, "-1");
-                allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterE, AccidentalFlat), inputCategoryEnum, "Eb", InputSubCategoryEnum.FullStepE, "-1");
-                allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterF, AccidentalFlat), inputCategoryEnum, "Fb", InputSubCategoryEnum.FullStepF, "-1");
-                allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterG, AccidentalFlat), inputCategoryEnum, "Gb", InputSubCategoryEnum.FullStepG, "-1");
+                allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterA, AccidentalFlat), inputCategoryEnum, A_Flat, InputSubCategoryEnum.FullStepA, "-1");
+                allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterB, AccidentalFlat), inputCategoryEnum, B_Flat, InputSubCategoryEnum.FullStepB, "-1");
+                allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterC, AccidentalFlat), inputCategoryEnum, C_Flat, InputSubCategoryEnum.FullStepC, "-1");
+                allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterD, AccidentalFlat), inputCategoryEnum, D_Flat, InputSubCategoryEnum.FullStepD, "-1");
+                allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterE, AccidentalFlat), inputCategoryEnum, E_Flat, InputSubCategoryEnum.FullStepE, "-1");
+                allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterF, AccidentalFlat), inputCategoryEnum, F_Flat, InputSubCategoryEnum.FullStepF, "-1");
+                allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterG, AccidentalFlat), inputCategoryEnum, G_Flat, InputSubCategoryEnum.FullStepG, "-1");
             }
 
 
-            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterA), inputCategoryEnum, "A", InputSubCategoryEnum.FullStepA, "");
-            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterA, AccidentalSharp), inputCategoryEnum, "A#", InputSubCategoryEnum.FullStepA, "+1");
+            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterA), inputCategoryEnum, A, InputSubCategoryEnum.FullStepA, "");
+            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterA, AccidentalSharp), inputCategoryEnum, A_Sharp, InputSubCategoryEnum.FullStepA, "+1");
 
-            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterB), inputCategoryEnum, "B", InputSubCategoryEnum.FullStepB, "");
-            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterB, AccidentalSharp), inputCategoryEnum, "B#", InputSubCategoryEnum.FullStepB, "+1");
+            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterB), inputCategoryEnum, B, InputSubCategoryEnum.FullStepB, "");
+            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterB, AccidentalSharp), inputCategoryEnum, B_Sharp, InputSubCategoryEnum.FullStepB, "+1");
 
-            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterC), inputCategoryEnum, "C", InputSubCategoryEnum.FullStepC, "");
-            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterC, AccidentalSharp), inputCategoryEnum, "C#", InputSubCategoryEnum.FullStepC, "+1");
+            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterC), inputCategoryEnum, C, InputSubCategoryEnum.FullStepC, "");
+            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterC, AccidentalSharp), inputCategoryEnum, C_Sharp, InputSubCategoryEnum.FullStepC, "+1");
 
-            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterD), inputCategoryEnum, "D", InputSubCategoryEnum.FullStepD, "");
-            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterD, AccidentalSharp), inputCategoryEnum, "D#", InputSubCategoryEnum.FullStepD, "+1");
+            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterD), inputCategoryEnum, D, InputSubCategoryEnum.FullStepD, "");
+            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterD, AccidentalSharp), inputCategoryEnum, D_Sharp, InputSubCategoryEnum.FullStepD, "+1");
 
-            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterE), inputCategoryEnum, "E", InputSubCategoryEnum.FullStepE, "");
-            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterE, AccidentalSharp), inputCategoryEnum, "E#", InputSubCategoryEnum.FullStepE, "+1");
+            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterE), inputCategoryEnum, E, InputSubCategoryEnum.FullStepE, "");
+            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterE, AccidentalSharp), inputCategoryEnum, E_Sharp, InputSubCategoryEnum.FullStepE, "+1");
 
-            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterF), inputCategoryEnum, "F", InputSubCategoryEnum.FullStepF, "");
-            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterF, AccidentalSharp), inputCategoryEnum, "F#", InputSubCategoryEnum.FullStepF, "+1");
+            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterF), inputCategoryEnum, F, InputSubCategoryEnum.FullStepF, "");
+            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterF, AccidentalSharp), inputCategoryEnum, F_Sharp, InputSubCategoryEnum.FullStepF, "+1");
 
-            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterG), inputCategoryEnum, "G", InputSubCategoryEnum.FullStepG, "");
-            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterG, AccidentalSharp), inputCategoryEnum, "G#", InputSubCategoryEnum.FullStepG, "+1");
+            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterG), inputCategoryEnum, G, InputSubCategoryEnum.FullStepG, "");
+            allInputInterpretations.Add(rawValues, new IntegerList(prefix, letterG, AccidentalSharp), inputCategoryEnum, G_Sharp, InputSubCategoryEnum.FullStepG, "+1");
         }
 
 
@@ -1173,6 +1173,30 @@ namespace BrailleMusicDecoder
             return errorMessage;
         }
 
+        // Simple names without sharp or flat will probably be constant across all localization. 
+        private const string A = " A";
+        private const string B = " B";
+        private const string C = " C";
+        private const string D = " D";
+        private const string E = " E";
+        private const string F = " F";
+        private const string G = " G";
+
+        private readonly string A_Flat = " " + ResourcesForBrailleMusicDecoder.Note_A_Flat;
+        private readonly string B_Flat = " " + ResourcesForBrailleMusicDecoder.Note_B_Flat;
+        private readonly string C_Flat = " " + ResourcesForBrailleMusicDecoder.Note_C_Flat;
+        private readonly string D_Flat = " " + ResourcesForBrailleMusicDecoder.Note_D_Flat;
+        private readonly string E_Flat = " " + ResourcesForBrailleMusicDecoder.Note_E_Flat;
+        private readonly string F_Flat = " " + ResourcesForBrailleMusicDecoder.Note_F_Flat;
+        private readonly string G_Flat = " " + ResourcesForBrailleMusicDecoder.Note_G_Flat;
+
+        private readonly string A_Sharp = " " + ResourcesForBrailleMusicDecoder.Note_A_Sharp;
+        private readonly string B_Sharp = " " + ResourcesForBrailleMusicDecoder.Note_B_Sharp;
+        private readonly string C_Sharp = " " + ResourcesForBrailleMusicDecoder.Note_C_Sharp;
+        private readonly string D_Sharp = " " + ResourcesForBrailleMusicDecoder.Note_D_Sharp;
+        private readonly string E_Sharp = " " + ResourcesForBrailleMusicDecoder.Note_E_Sharp;
+        private readonly string F_Sharp = " " + ResourcesForBrailleMusicDecoder.Note_F_Sharp;
+        private readonly string G_Sharp = " " + ResourcesForBrailleMusicDecoder.Note_G_Sharp;
 
 
         private RegionalOptions regionalOptions;
@@ -1181,7 +1205,7 @@ namespace BrailleMusicDecoder
         private TokenReaderUtilities(RegionalOptions regionalOptions)
         {
             this.regionalOptions = regionalOptions;
-            textBrailleToTextConverter = TextBrailleToTextConverter.Create(regionalOptions);
+            textBrailleToTextConverter = TextBrailleToTextConverter.Create(regionalOptions);     
         }
 
         public static TokenReaderUtilities Create(RegionalOptions regionalOptions)

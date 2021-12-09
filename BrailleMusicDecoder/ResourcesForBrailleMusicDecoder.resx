@@ -586,4 +586,46 @@
   <data name="Text_Warning" xml:space="preserve">
     <value>Warning</value>
   </data>
+  <data name="Note_A_Flat" xml:space="preserve">
+    <value>A flat</value>
+  </data>
+  <data name="Note_A_Sharp" xml:space="preserve">
+    <value>A sharp</value>
+  </data>
+  <data name="Note_B_Flat" xml:space="preserve">
+    <value>B flat</value>
+  </data>
+  <data name="Note_B_Sharp" xml:space="preserve">
+    <value>B sharp</value>
+  </data>
+  <data name="Note_C_Flat" xml:space="preserve">
+    <value>C flat</value>
+  </data>
+  <data name="Note_C_Sharp" xml:space="preserve">
+    <value>C sharp</value>
+  </data>
+  <data name="Note_D_Flat" xml:space="preserve">
+    <value>D flat</value>
+  </data>
+  <data name="Note_D_Sharp" xml:space="preserve">
+    <value>D sharp</value>
+  </data>
+  <data name="Note_E_Flat" xml:space="preserve">
+    <value>E flat</value>
+  </data>
+  <data name="Note_E_Sharp" xml:space="preserve">
+    <value>E sharp</value>
+  </data>
+  <data name="Note_F_Flat" xml:space="preserve">
+    <value>F flat</value>
+  </data>
+  <data name="Note_F_Sharp" xml:space="preserve">
+    <value>F_Sharp</value>
+  </data>
+  <data name="Note_G_Flat" xml:space="preserve">
+    <value>G flat</value>
+  </data>
+  <data name="Note_G_Sharp" xml:space="preserve">
+    <value>G_Sharp</value>
+  </data>
 </root>
