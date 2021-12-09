@@ -570,7 +570,7 @@ namespace BrailleMusicDecoder
                 case InputCategoryEnum.Slur: slurHandler.OnSlur(currentNote,input.SubCategory,input.SubSubCategory); break;
 
                 case InputCategoryEnum.Chords:
-                    input.FriendlyValue = "Chords";
+                    input.FriendlyValue = ""; // Not needed.
                     result = MusicXmlBuilderState.Create(MusicXmlBuilderStateEnum.Harmonies, this.musicXmlBuilder); // Change state !
 #if true
                     if ((result as MusicXmlBuilderStateMusic).CurrentPart == null)
