@@ -136,7 +136,7 @@
     <value>Nøgle</value>
   </data>
   <data name="InputCategoryEnum_ControlCharCRLF" xml:space="preserve">
-    <value>Ny linie</value>
+    <value>Ny linje</value>
   </data>
   <data name="InputCategoryEnum_Denominator" xml:space="preserve">
     <value>Tæller</value>
@@ -187,7 +187,7 @@
     <value>Faste fortegn</value>
   </data>
   <data name="InputCategoryEnum_LineContinuation" xml:space="preserve">
-    <value>Fortsat linie</value>
+    <value>Fortsat linje</value>
   </data>
   <data name="InputCategoryEnum_MeasureDivision" xml:space="preserve">
     <value>Skilletegn</value>
@@ -301,10 +301,10 @@
     <value>Legatobue uden afslutning</value>
   </data>
   <data name="InputSubCategoryEnum_SquareBracketBelowStaffEnd" xml:space="preserve">
-    <value>Firkantet klamme under nodelinien slut</value>
+    <value>Firkantet klamme under nodelinjen slut</value>
   </data>
   <data name="InputSubCategoryEnum_SquareBracketBelowStaffStart" xml:space="preserve">
-    <value>Firkantet klamme under nodelinien start</value>
+    <value>Firkantet klamme under nodelinjen start</value>
   </data>
   <data name="InputValueArticulation_Accent" xml:space="preserve">
     <value>Accent</value>
@@ -370,7 +370,7 @@
     <value>Lighed</value>
   </data>
   <data name="OtherValuesNameEnum_NewLine" xml:space="preserve">
-    <value>LinieSkift</value>
+    <value>LinjeSkift</value>
   </data>
   <data name="OtherValuesNameEnum_Ornament" xml:space="preserve">
     <value>Ornament</value>
@@ -495,7 +495,7 @@
     <value>Diminuendo start</value>
   </data>
   <data name="Text_Line" xml:space="preserve">
-    <value>Linie</value>
+    <value>Linje</value>
   </data>
   <data name="Text_Page" xml:space="preserve">
     <value>Side</value>
@@ -522,7 +522,7 @@
     <value>Anden volte</value>
   </data>
   <data name="InputCategoryEnum_ControlCharCRLFMeasureNumber" xml:space="preserve">
-    <value>Ny linie, Takt nummer</value>
+    <value>Ny linje, Takt nummer</value>
   </data>
   <data name="InputSubCategoryEnum.OthervaluesFullMeasureRepeat" xml:space="preserve">
     <value>Heltaktsgentagelse</value>
@@ -576,7 +576,7 @@
     <value>Becifring uden grundtone</value>
   </data>
   <data name="InputCategoryEnum_ControlCharCRLFContinuedLine" xml:space="preserve">
-    <value>Fortsat linie</value>
+    <value>Fortsat linje</value>
   </data>
   <data name="Text_Space" xml:space="preserve">
     <value>Rum</value>
