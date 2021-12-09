@@ -423,8 +423,18 @@ namespace MusicBrailleReader
                     return false;
                 }
 
+                string message =
+                      "Punktnodefilen blev gemt som en MusicXml fil\r\n"
+                    + "Tryk 'Ja' for at gå til MusicXml filen\r\n"
+                    + "Tryk 'Nej' for at fortsætte";
+                string caption = applicationName;
+                DialogResult messageBoxResult = MessageBox.Show(message, caption, MessageBoxButtons.YesNo);
+
                 // Open Explorer in the output directory to let the user inspect the result with for instance MuseScore or IBOS MusicXmlReader
-                Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, Path.GetDirectoryName(fileNameSelectedByUser));
+                if (DialogResult.Yes == messageBoxResult)
+                {
+                    Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, Path.GetDirectoryName(fileNameSelectedByUser));
+                }
             }
 
 
