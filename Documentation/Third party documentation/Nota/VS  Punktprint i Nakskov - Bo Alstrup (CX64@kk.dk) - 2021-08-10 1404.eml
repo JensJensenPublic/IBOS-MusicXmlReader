@@ -1,0 +1,1166 @@
+Return-Path: <CX64@kk.dk>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe004.lytzenitmail.local ([100.127.30.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id OOIzFj9rEmGZcwEAlE+V+A
+	(envelope-from <CX64@kk.dk>)
+	for <dsl248925@mail.jubii.dk>; Tue, 10 Aug 2021 14:04:15 +0200
+Received: from sv900pomx004.lytzenitmail.dk ([100.127.30.63])
+	by sv900ddwe004.lytzenitmail.local with LMTP
+	id AGt/FT9rEmH0cgAAuH+tKw
+	(envelope-from <CX64@kk.dk>)
+	for <dsl248925@mail.jubii.dk>; Tue, 10 Aug 2021 14:04:15 +0200
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.161])
+	by sv900pomx004.lytzenitmail.dk (Postfix) with ESMTPS id 54E6F305
+	for <holmeparken44@vip.cybercity.dk>; Tue, 10 Aug 2021 14:04:15 +0200 (CEST)
+Authentication-Results: mx01.lytzenitmail.dk; spf=Pass smtp.mailfrom=CX64@kk.dk
+Received-SPF: Pass (mx01.lytzenitmail.dk: domain of CX64@kk.dk
+  designates 193.169.154.135 as permitted sender)
+  identity=mailfrom; client-ip=193.169.154.135;
+  receiver=mx01.lytzenitmail.dk; envelope-from="CX64@kk.dk";
+  x-sender="CX64@kk.dk"; x-conformance=spf_only;
+  x-record-type="v=spf1"; x-record-text="v=spf1
+  ip4:193.169.154.135 ip4:193.169.154.136
+  ip6:2603:10a6:200::/40 include:spf.mailjet.com
+  include:spf.protection.outlook.com -all"
+IronPort-SDR: QLQW9OKtzHgB9YoJzbonZHLeGfhfX62iylQGTAnC+PErn7T8W9GJ+n6cXgQrFyrRqLBDLXKaCj
+ e/0lZItVW4Rq051xmNXNdZzvhhNpIr8aDI3zCek+iog8G5iHYIQ7AcF1zKllrYUYIwJAqnzlVN
+ OBBaHm/tjq3AvbwI+JT7uWr+CkaJF3KCVxaPeyl34cHJpOVAipZMmdSvY3WIsE/JE5URtnhdo2
+ FjXCJ0kXKzq3Ukc5rKjU7olINaqz+j6hGJ0QlZ1iVfoCgi9Z5A+Junba+U/DTMVU81b8n2inls
+ J/iKR7rnc6s1O3/3tIbYkcPy
+X-IPAS-Result: =?us-ascii?q?A0BUEwBdahJhh4eaqcFaHAEBATwBAQQEAQECAQEHAQEVg?=
+ =?us-ascii?q?VuBIRsCE1F+WAEpBwgxA4gPizWBIwaBQQOGcoN4hk6MJwsBAQEBAQEBAQEEA?=
+ =?us-ascii?q?QICEgIRDw0EAQGBeoJeAoJiAiQBOBMBAgQBAQEBAwIDAQEBAQUBAQEEAQEBA?=
+ =?us-ascii?q?gEBAgMEFAEBAQGBK2RYgU+CBAYDATANhkMCAQMFAQwTCAESAQEHMQ8CARYPA?=
+ =?us-ascii?q?QEBGAEGBwIFEA8MFBEBAQQSAQgGFIJKBAEBglUDCScDC5w+AYE6AgKLFYEzg?=
+ =?us-ascii?q?QGCBwEBBgQEgTYBg10DgkIHCYE4AgEBgy+CR4ERgVKFFCeBGYEQgRVDgyCCY?=
+ =?us-ascii?q?gICGIFIAwkJCA4JgxeCLoULATYbB3kGgXYBAY04gzmLfIFiDotMhhmDMwKIT?=
+ =?us-ascii?q?AEGAoMqiEMCC4FplCsSpm+UD6cbAgQCBAUCDgEHgXciD4FMTYIRgUsJCjoBA?=
+ =?us-ascii?q?gECAQwBAgIBAgECAQEBCAEBAQGOKA0Jg09NiUZLQgEwAgEBATMCBgEKAQEDC?=
+ =?us-ascii?q?Yh4AQE?=
+IronPort-PHdr: A9a23:e1o/ZhSVVEpKwPMdfUdxeIJHmdpsotOeAWYlg6HP6ppLYvz6uZDzI
+ F7S4/RxiVbIWcPX6KEMkPLY5pjpQndI+pOdqDYHeZ1IWQUCjJA9r1J8KM2GT0H4RBLzRxQzB
+ 98KFFp1pyj9NVlJCsv4ZkHXq3y2qzIRSF3zMg98J+K9HYCapPTpi8ix+NvfYGAqzHKxbKhzI
+ xO/sQjK/pBH2s07dPd3k0aV5CITJqxf3itwKEiWngrg68v455Nl/ylK+pdDv4ZBXaj8Y6UkX
+ OldBTUiPXoy4Z6jvh3CQA2To3oEBzxHyVwRXVmDtUymGM6q73if1KI1wiSRMMzoQKphXCT6t
+ uFvWQP6hSEGKzsw8WWRhs8jxK9dvh+loARyhoDOZ4TAftFOIP/1ftBcSWkLDaMzH2RRR5ixa
+ YcCFb9LFtYG86H+pB0CrlHtTRnpD+TpxDhSg3bw1qBvyPwvJgbA2B1zerBG+GSRttj+M70eF
+ Pyk1KSdhyuWdOtYgH2uoJiNaB0qpuuAGK59YdaEg1d6DBvL1zDy4cTkJ2/Hj7VW9THFvqw5C
+ L7p0jV64wBp/mr2l5xq09eYwNtIlhadrnscos59JMXmGhQlOYX2ScNZ6XPAb9MkEIR+Gylpv
+ i0+17EL64Wjcm4PwZUjxRPDLfeAdu3qqlriUu2VPDt11ml9dvSnnRGu/EO8y+r6EM6pzFJNq
+ SkDmd7J/jUE0xiZgiBoYvh+uEuii2/n6g==
+IronPort-HdrOrdr: A9a23:rTKG2a0prWiri319KfcFHQqjBQNyeYIsimQD101hICG9Lfb3qy
+ n+ppsmPEHP5Ar5AEtQ5OxoS5PwPU80lKQFrrX5WI3JPTUO11HYVb2KgbGSoQEIXheOjNK1tp
+ 0QPZSWaueAdWSS5PySiGLUc6dC/DDEytHSuQ609QYIcegeUdAH0+4PMHf9LqQZfngiObMJUL
+ 6nouZXrTupfnoaKu6hAGMeYuTFr9rX0Lr7fB8vHXccmUmzpALtzIS/PwmT3x8YXT8K66wl63
+ L5nwvw4bjmm+2nyyXby3TY4/1t6ZjcI5p4dY6xY/ouW3HRYzWTFcNcsnq5zXYISdSUmRMXeR
+ /30k4d1opImivslyqO0GTQMkHboUgTAjnZuB6laKzY0JfErXsBert8rJMcfR3D50U6utZglK
+ pNwmKCrpJSSQjNhSLn+rHzJlpXf2eP0DMfeNQo/jRiuEolGcpshJ1a+FkQHIYLHSr85oxiGO
+ 5yDNvE7PITdV+BdXjWsmRm3dTpBx0Ib1q7a1lHvtbQ3yldnXh/wUddzMsDnm0Y/JZ4T5Vf/e
+ zLPqlhibkLRM4LaqB2AvsHXKKMeybwaAOJNHjXLUXsFakBNX6Io5nr4K8t7OXvY5AMxItaou
+ W2bLqZjx9ER6vKM7zD4HRmyGG/fIyNZ0WY9igF3ekIhlTVfsuYDRG+
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.84,310,1620684000"; 
+   d="png'150?scan'150,208,217,150";a="184709068"
+Received: from smtp01.kk.dk ([193.169.154.135])
+  by mx01.lytzenitmail.dk with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Aug 2021 14:04:12 +0200
+Received: from smtp01.kk.dk (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id EBCC41320D6
+	for <holmeparken44@vip.cybercity.dk>; Tue, 10 Aug 2021 14:04:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=kk.dk; s=default;
+	t=1628597054; bh=+PQDBeIS0YUsWpKkSQ3KVSOUBnmdT5epdWObgPJvOqY=;
+	h=From;
+	b=OXN0jGR9mHS9tXyReWtgcZM8sKrb7lUQig3cq/0DgIcvZFwMIeUj4fupcmCzq3PIR
+	 UWzywEFxKa91CYps2UoaY/ZAajSVCiTI3Ly4RCf21w6vWAsTxL9ShCBsQzeiD8Kg0c
+	 eTUll0/aUm/ZoDfrdw/UFF9gyHxzpdZVxk0i24F3At4HP26/X792TALqG79W4aWAtK
+	 HvZLsfTJqRNkFk0IMU4cUVt90x4lnO+f931tnbKDTeugW6StShY6uajU8UUDD/T3Pq
+	 T3NN8hR1VQ4SkuAuda2g8VM/bIuFDne8uA3oCW7SnNpeBrJYH76mxGECefuLCMRtIG
+	 Wc8FCcLMtywcA==
+Received: from smtp01.kk.dk (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id B2A071320F0
+	for <holmeparken44@vip.cybercity.dk>; Tue, 10 Aug 2021 14:04:13 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Avqb85EwR1oaTd9Qi51nVdUTpCjnT78oKzRDCCUoPD/6YEdRFsIgXBlC2vXT+ie4kMZ+2iRSwLrYFkW3KQayG/jUvqckkF3XaC1SJQNiEjsGVBSZs+jm0NMJq/83ajWmsK7fwJldAk929iNrlaLynxD7atAa9CRR+ZAse/dnjIMgBXQqJpXOK5tW0HIsF8UYaamtvHMrs7xUEj69Nd4x1mPE5wsyXrJrSvZ3s/IKZ8DLrTRtE26BCTDGMcDF43vd5Ps+DdeIZ5bjW1XkSqGA7oLMeMbLyRc1iv0T5kChKdDQbcqljvc1PKaIsqb/kNCY0Svf3ijRzB5ue5CkY8hBaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=X/byuJPB/PW9RN4AYUhWM7bqcy81rWHMWdM9HyupSA4=;
+ b=lJMpbbGf/AzxiE/mcHbqz/ZONDzV59bcnE+YagdOCrEl2ehuatJibmsMz8Ius6/w7oPxtHlsLIOPi7VgLs4bnpH2UIV/IttgERONcqPUVRHs1r47Y963ms3K7NBcou3UVBf9YxXIZgJf4/9Pqn5eK3fB+PqNDMkQ0MJb4BjeWVJkDE4CWCCtko6AISX2evYRVNWYURhtsIybKyrXjuEAFVIdK2S0pBhZ9C48beR/5pcMPOuBizgd+kOJS8xbQbBfD+CQGyrTcHjiZof8dl2EFG4k+aItD4g6N1GbnVFMo2YekPvAJMPXDdyVdF6GPeYkz5vZ4kCd44xW4Km1+4EflA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kk.dk; dmarc=pass action=none header.from=kk.dk; dkim=pass
+ header.d=kk.dk; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kk.dk; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=X/byuJPB/PW9RN4AYUhWM7bqcy81rWHMWdM9HyupSA4=;
+ b=hqtSg24bpOYrsZlRRRVcmkE7gW7nYkysvTAcqXfJnzjOY8OfZ1r15dJO4LlIGW3AeCcvnhOPYZFIB7rKugczJgLAZkH9YlC7dERpahJsA+sBiXsJ6mx54IT338J5Oi+hY9eJ1wp1bZu+NF1DxQ9oII7YQVLQcLHY3DdwEE+mduP6EdMTCg5f3YKLqRfBVSF2aObmJXubYhDZrbFNfZ1nAayrfCQitKY+toi5iZ8aVdBjbRRYq1uczbwJL9a6WgnnRDQKD2/Y1lGmKvGNlylnpJgU8zC9i2D2t3lzxnaxbBSE0ZBoASk+niw8uqUXPhbSAM7abKjqxsQ9fqGK7JHFzA==
+Received: from AM9PR03MB7236.eurprd03.prod.outlook.com (2603:10a6:20b:260::7)
+ by AM0PR03MB4532.eurprd03.prod.outlook.com (2603:10a6:208:c8::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4394.21; Tue, 10 Aug
+ 2021 12:04:12 +0000
+Received: from AM9PR03MB7236.eurprd03.prod.outlook.com
+ ([fe80::3903:a03e:a25a:b12e]) by AM9PR03MB7236.eurprd03.prod.outlook.com
+ ([fe80::3903:a03e:a25a:b12e%3]) with mapi id 15.20.4394.023; Tue, 10 Aug 2021
+ 12:04:12 +0000
+From: Bo Alstrup <CX64@kk.dk>
+To: Jens Sundgaard <holmeparken44@vip.cybercity.dk>
+Subject: VS: Punktprint i Nakskov
+Thread-Topic: Punktprint i Nakskov
+Thread-Index: AdeNuzb6sgJ9HXpAS2aaaVU7uldWhgACe/vwAAEx7EAABXdIUA==
+Date: Tue, 10 Aug 2021 12:04:11 +0000
+Message-ID:
+ <AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79@AM9PR03MB7236.eurprd03.prod.outlook.com>
+References: <f575b4949fa142e4966e6834c9ad6088@nota.dk>
+ <AM9PR03MB72363829F282ABEAB066A59EC2F79@AM9PR03MB7236.eurprd03.prod.outlook.com>
+ <617af97ef2ac4d7f9090fb49ce11a579@nota.dk>
+In-Reply-To: <617af97ef2ac4d7f9090fb49ce11a579@nota.dk>
+Accept-Language: da-DK, en-US
+Content-Language: da-DK
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9a4b2487-cc17-4ecc-1346-08d95bf6f765
+x-ms-traffictypediagnostic: AM0PR03MB4532:
+x-microsoft-antispam-prvs:
+ <AM0PR03MB45327D9FABD57E662312F1B5C2F79@AM0PR03MB4532.eurprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3276;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ zome/p3QxUBMETZviNVu2WTjSs6omREw8gSxLwZDtT0+1D3d2oG3XIU5Mn6eU0uRqHanenGwHuEvtpyyzRSzLINGMlHv+o/8xv2adHqZ+7/ZXk+jJSRzokX9mS/SzcJkQO/QRr3BpQ2g6uJ/CbzYz5KJxsimQOXfi7Kj+2XgBmNcRuKJ5hgjWIC0UyuBcsOU8oUW2KbwCvKNawEZzN9wUs4lQJiO2qsV67XfyIbb/vGI3Hif6hI0rp0wP8Fts5fEoSskXwhqg+GlqjaEYQkJXftQJUsSDAfO/fdDAF8di39On15PFNa6zaTqbil41mlLQYVKu/iZyrfByLel2D3loN1Lh/J/t1YVpUUWF1dD9L1wtTWSHGi2j2gCoCvx7ZgFMVWmxzXfmO69hwih+41SOmTqSFmUOxCgtZXm+7QL9CcLVkGNWrbRdkRmXTqGjPzds4iOUVg0KXSq0JX53HjU/fdcaU53KJOSukjndt8hTg1xy+719ELP4wZcmGV2vLYO/ufBr68wBoih60egZc65W3aqLAPfVz11Wa5XUOudr5Og+acRSARXWmaiQHNE3/YMhZnspsHe/QLDMwR+C5t4ZtNDRFTB02lyUn/DGZ/MuuQsOj+ZIl5vqm2m1XZPw7H57fE3qQh91qY547oisDsap84KWEpIeK7R+eJTB3WXQZOKXnCOihoJjCvbmr44T5LeyCjjS59zMTkHDlcmI32iSPDsNZM6MU32LIpoqSBnX5n0KvR9ssgfMlWjZ+CthxfOoqNMawe9Uf3udBzrHAd/FbkJF1N7U++o8YVaQo/QQ5UJBS5x/qzwktxIbarnpQWgqLU+veeTkVaV8zkxAyXmJaDVQ8pnbeLjLv7FjmuBPg4=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:da;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR03MB7236.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(6916009)(786003)(8936002)(2906002)(38100700002)(66946007)(6506007)(66576008)(55016002)(76116006)(33656002)(166002)(66574015)(316002)(9686003)(38070700005)(7696005)(71200400001)(122000001)(66476007)(7116003)(86362001)(52536014)(64756008)(66556008)(66446008)(99936003)(5660300002)(508600001)(8676002)(186003)(26005)(88722004);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?tsqo801UY9x6xhKUAfTXOk05JUjGakZF6z3UcxUG5cm9pO92sdYYBGpDN/?=
+ =?iso-8859-1?Q?meSWCxk0bT7dJRGKH/YswmFvM8joZkTfV8nI4+5jk8ylHsly9ObJ0nykwI?=
+ =?iso-8859-1?Q?9j9Adz1mdTq+J88XhjNoxP1BIN/cxJrUOVhBXARNNgroPmU0RqpV0VX//K?=
+ =?iso-8859-1?Q?QS8XnoY3vFlpXvx5bwSAy48kbrYIePp9li24a6S2cLneLrc1xdW3tamlTx?=
+ =?iso-8859-1?Q?B+S+60UHdyC+wnZ1x2ujWwNrR2qRiZ3XErnpWChz8qd4sPFfy11mgTX/QV?=
+ =?iso-8859-1?Q?cQ1CUpjlynrnf29qYDYRc6bEdNe+YuY93LLbs81HjaY26mtn3feGfhBhbZ?=
+ =?iso-8859-1?Q?fmEHIw11GactWxTZJAvz4AbB10l4B5s8gDnmeHSaoBvxHT+aDHsh6LI9Vh?=
+ =?iso-8859-1?Q?Ot7OB2WbfEbMPwAuu3lNsoxr+eMA44y/YUHLaox9dU2kvA61qfmpjFZbwo?=
+ =?iso-8859-1?Q?V4cq1IyGaApWQW3Z85XSCL+sue1ftFXYSV0e5ucnu4Polo28s7I254Fjif?=
+ =?iso-8859-1?Q?bx4W+4zkB/1AcMOQHWD4uAVJS0TwC1VRB06yqBOCDCwvH7J4kUVJrrcxLG?=
+ =?iso-8859-1?Q?ewST29sz4skHi7i8DvnPOdsNYyPCvq1X/wwu8PQ8r9o0MqNMQT/uL6c5XA?=
+ =?iso-8859-1?Q?XjdZBs1D0BXhtp0Ouc4kWYbbL0jxUBxiIx5TXmFacWYlwc9lx/YlXN6YS6?=
+ =?iso-8859-1?Q?ZncNePIzl4q8uPj0/Htt9GtlmcGlvEJBd/B0AKKc9QTmBTXEQjCir5Rcpc?=
+ =?iso-8859-1?Q?JiiHNzX9AQKLICTLHI/5SQI3mwAUzX7he1xOlBSBk8BoVsgOmf37zSRuwh?=
+ =?iso-8859-1?Q?EgTq7fw0L8uniwvhUJD216xXxaL5S9vHOSdk+HmSif4Z5c64Y/Iuquy6vJ?=
+ =?iso-8859-1?Q?IsqoyX/yTeGRrPKBpfg8UDky2ReZerfoefcrQHzLofjqjtZ6+jekkdbvMr?=
+ =?iso-8859-1?Q?j0VU+Ja+GbQW6OGQD1fv2CLM9qpGQywES01ZkGip1fRnxjc5v6Rlqu+ntt?=
+ =?iso-8859-1?Q?XpmdrTs2JVP2Qxr+RDX5KPPLlXrbyvQJgXn/j/PFrYIMzyzR9ntkmuIMQi?=
+ =?iso-8859-1?Q?1BZP7gCXosdkytRlcs5Se3LWbOphGEo1Yzydib6kXbk3K1NUjI0g5jAn5J?=
+ =?iso-8859-1?Q?o8sztSKAB3cdzhJSnTmZIPBQFSzY22xNfKGgAtd27IL2WHwQtxAZJx854/?=
+ =?iso-8859-1?Q?j6uo+y2q+kM1xXN0HYDAg1Sw8aOHfRBD40dsDRFbPyrHE0IMMYk3qLTZXf?=
+ =?iso-8859-1?Q?Z/xkl1k58YqgrnzMgS0F5UOmVFXMZXuU1ESUnXvk6x8gF+9buGEBrkDT+8?=
+ =?iso-8859-1?Q?XdvZIJqEv8po/lgP97LApbJWO4fzP9ns3cGrF3uBvlQGq5oWZtfCP5txCZ?=
+ =?iso-8859-1?Q?XmFNEwd6ZL?=
+x-ms-exchange-transport-forked: True
+Content-Type: multipart/related;
+	boundary="_011_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_";
+	type="multipart/alternative"
+MIME-Version: 1.0
+X-OriginatorOrg: kk.dk
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR03MB7236.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a4b2487-cc17-4ecc-1346-08d95bf6f765
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Aug 2021 12:04:11.9378
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 769058ab-4487-418f-8b6c-f4b48243edd7
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: M1DNRsWlC1DFyzkJxxfL1rQf7lJvNV5zBwhRsfUZbVVx6dXJjPTvhVQ7ZD6OB3UP
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR03MB4532
+X-TM-AS-GCONF: 00
+
+--_011_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_
+Content-Type: multipart/alternative;
+	boundary="_000_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_"
+
+--_000_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Fyi
+
+
+Med venlig hilsen
+
+
+Bo Alstrup
+IKT-konsulent
+
+
+IBOS - Instituttet for Blinde og Svagsynede
+Rymarksvej 1, DK-2900 Hellerup
++45 39 45 25 71
+CX64@kk.dk<mailto:CX64@sof.kk.dk>, sikker e-mail: ibos@kk.dk<mailto:ibos@kk=
+.dk>
+
+[Billede af IBOS logo]
+
+IBOS er et nationalt kompetence- og rehabiliteringscenter for mennesker med=
+ nedsat syn.
+Vi l=F8ser det komplicerede, skaber det nye og arbejder for det inkluderend=
+e sammen med
+borgere, kommuner og synsprofessionelle i hele landet. www.ibos.dk<http://w=
+ww.ibos.dk/>
+
+[Billede af K=F8benhavns Kommunes Logo]
+
+
+Fra: Jesper Kryger <jrk@nota.dk>
+Sendt: 10. august 2021 11:35
+Til: Bo Alstrup <CX64@kk.dk>
+Emne: SV: Punktprint i Nakskov
+
+Hej igen Bo
+
+Til at generere pef-filer bruger vi vores eget program "Braille printing cl=
+ient.
+
+For at checke hvordan outputtet fra xml bliver som braille p=E5 papir bruge=
+r vores vi eget program "Autobraille client" - her kan vi se hvordan det bl=
+iver printet - og s=E5 lave xml-filen  om hvis det er helt tosset.
+
+Og jo jeg er i kontakt med Jesper Holten, der i =F8vrigt kommer herned p=E5=
+ fredag og snakker - kikker printer.
+
+
+Med venlig hilsen
+
+Jesper Kryger
+Specialp=E6dagogisk konsulent
+
+Tlf. 39 13 46 00
+jrk@nota.dk<mailto:jrk@nota.dk>
+
+Axeltorv 6
+4900 Nakskov
+Tlf. 39 13 46 00
+www.nota.dk<https://eur02.safelinks.protection.outlook.com/?url=3Dhttp%3A%2=
+F%2Fwww.nota.dk%2F&data=3D04%7C01%7C%7C41d3351eaf6a4663985008d95be224f1%7C7=
+69058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C637641849109821464%7CUnknown%7CTW=
+FpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3=
+D%7C1000&sdata=3DHZzkqV4XNZUodJWMtMNBC%2BsNOWgYCqL9SdaQ92JVOrM%3D&reserved=
+=3D0>
+
+________________________________
+
+[cid:image001.png@01D78DDB.B0DD0CF0]
+
+Det nationale bibliotek og videnscenter for mennesker med l=E6sevanskelighe=
+der.
+
+[cid:image002.png@01D78DDB.B0DD0CF0]<https://eur02.safelinks.protection.out=
+look.com/?url=3Dhttps%3A%2F%2Fwww.facebook.com%2Fnota.dk&data=3D04%7C01%7C%=
+7C41d3351eaf6a4663985008d95be224f1%7C769058ab4487418f8b6cf4b48243edd7%7C0%7=
+C0%7C637641849109821464%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjo=
+iV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&sdata=3D7LzU0q2a02Yfdd1pbx2T=
+vsJU4YDpReGJ7u5R81iIIEw%3D&reserved=3D0>   [cid:image003.png@01D78DDB.B0DD0=
+CF0] <https://eur02.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fw=
+ww.youtube.com%2Fuser%2Fnotabib&data=3D04%7C01%7C%7C41d3351eaf6a4663985008d=
+95be224f1%7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C637641849109831418%7=
+CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwi=
+LCJXVCI6Mn0%3D%7C1000&sdata=3Dva07UbZZu%2BPDuYvFSourvdSK3KhWYGzro0JnzPDEdgE=
+%3D&reserved=3D0>    [cid:image004.png@01D78DDB.B0DD0CF0] <https://eur02.sa=
+felinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fwww.linkedin.com%2Fcomp=
+any%2Fnota&data=3D04%7C01%7C%7C41d3351eaf6a4663985008d95be224f1%7C769058ab4=
+487418f8b6cf4b48243edd7%7C0%7C0%7C637641849109831418%7CUnknown%7CTWFpbGZsb3=
+d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000=
+&sdata=3DnOOdcTRDTLkzeoawIoYPqqmG08GIF6zj13G8o9HLaqA%3D&reserved=3D0>
+
+
+
+Fra: Bo Alstrup <CX64@kk.dk>
+Sendt: 10. august 2021 11:00
+Til: Jesper Kryger <jrk@nota.dk>
+Emne: SV: Punktprint i Nakskov
+
+Hej Jesper
+Hvor er det superfedt!
+Jeg ekspederer fluks dine informationer videre til Jens som er vores design=
+er p=E5 nodel=E6seren.
+
+Der skal nok v=E6re noget som vi kunne finde p=E5 at sp=F8rge om :)
+
+S=E5 du kan godt regne med at vi vender frygtelig tilbage...
+
+Hvis ikke det st=E5r i manualen, kunne jeg godt t=E6nke mig at vide hvilket=
+ program I bruger til at konvertere xml til pef og hvad I bruger til at tje=
+kke pef-filen med, - er det bare en notesblok eller er det noget mere intel=
+ligent?
+
+Har du et samarbejde med Jesper Holten fra DBS som ogs=E5 har/f=E5r en ny p=
+unktprinter til produktion?
+
+Med venlig hilsen
+
+
+Bo Alstrup
+IKT-konsulent
+
+
+IBOS - Instituttet for Blinde og Svagsynede
+Rymarksvej 1, DK-2900 Hellerup
++45 39 45 25 71
+CX64@kk.dk<mailto:CX64@sof.kk.dk>, sikker e-mail: ibos@kk.dk<mailto:ibos@kk=
+.dk>
+
+[Billede af IBOS logo]
+
+IBOS er et nationalt kompetence- og rehabiliteringscenter for mennesker med=
+ nedsat syn.
+Vi l=F8ser det komplicerede, skaber det nye og arbejder for det inkluderend=
+e sammen med
+borgere, kommuner og synsprofessionelle i hele landet. www.ibos.dk<https://=
+eur02.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fwww.ibos.dk%2F&d=
+ata=3D04%7C01%7C%7C41d3351eaf6a4663985008d95be224f1%7C769058ab4487418f8b6cf=
+4b48243edd7%7C0%7C0%7C637641849109841377%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC=
+4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&sdata=3DA0x=
+XuXRDiAtc7P3WBSO54FP9fC1cHEr%2BQUhmAjxgeGE%3D&reserved=3D0>
+
+[Billede af K=F8benhavns Kommunes Logo]
+
+
+Fra: Jesper Kryger <jrk@nota.dk<mailto:jrk@nota.dk>>
+Sendt: 10. august 2021 10:34
+Til: Bo Alstrup <CX64@kk.dk<mailto:CX64@kk.dk>>
+Emne: Punktprint i Nakskov
+
+Hej Bo
+
+Som lovet pr=F8ver jeg at forklare hvordan vores fine Braillo 650SF printer=
+:
+
+Printeren er installeret som en alm. Generic / Text only printer.
+
+Den m=E5de vi bruger den p=E5 er at vi fra en xml-fil laver en pef-fil der =
+s=E5 sendes til printeren.
+Under genereringen af pef-filen sker det sp=E6ndende s=E5 jeg vedh=E6fter e=
+n node-pef der kan kikkes efter i s=F8mmene.
+Jeg vedh=E6fter derudover de sider fra Brailloens manual der omhandler esca=
+pe-koder, der er vigtige for den m=E5de det bliver printet p=E5.
+
+Du gir bare lyd hvis der er noget jeg ikke har fortalt!
+
+Med venlig hilsen
+
+Jesper Kryger
+Specialp=E6dagogisk konsulent
+
+Tlf. 39 13 46 00
+jrk@nota.dk<mailto:jrk@nota.dk>
+
+Axeltorv 6
+4900 Nakskov
+Tlf. 39 13 46 00
+www.nota.dk<https://eur02.safelinks.protection.outlook.com/?url=3Dhttp%3A%2=
+F%2Fwww.nota.dk%2F&data=3D04%7C01%7C%7C41d3351eaf6a4663985008d95be224f1%7C7=
+69058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C637641849109841377%7CUnknown%7CTW=
+FpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3=
+D%7C1000&sdata=3DFXKW%2BkkycC5hoiBqOWXG3Or%2F6LLJUwNBGiJPr4BngUc%3D&reserve=
+d=3D0>
+
+________________________________
+
+[cid:image001.png@01D78DDB.B0DD0CF0]
+
+Det nationale bibliotek og videnscenter for mennesker med l=E6sevanskelighe=
+der.
+
+[cid:image002.png@01D78DDB.B0DD0CF0]<https://eur02.safelinks.protection.out=
+look.com/?url=3Dhttps%3A%2F%2Fwww.facebook.com%2Fnota.dk&data=3D04%7C01%7C%=
+7C41d3351eaf6a4663985008d95be224f1%7C769058ab4487418f8b6cf4b48243edd7%7C0%7=
+C0%7C637641849109841377%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjo=
+iV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&sdata=3DbzG8Q2Rd6ugAc7HO8nZb=
+sQHfxc9cvJgAY6B8xDE%2Fuac%3D&reserved=3D0>   [cid:image003.png@01D78DDB.B0D=
+D0CF0] <https://eur02.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
+Fwww.youtube.com%2Fuser%2Fnotabib&data=3D04%7C01%7C%7C41d3351eaf6a466398500=
+8d95be224f1%7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C637641849109851338=
+%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haW=
+wiLCJXVCI6Mn0%3D%7C1000&sdata=3D922d9GazKYSDeJklMAQmOeacymGDRW0TW%2BMJnqlHM=
+wE%3D&reserved=3D0>    [cid:image004.png@01D78DDB.B0DD0CF0] <https://eur02.=
+safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fwww.linkedin.com%2Fco=
+mpany%2Fnota&data=3D04%7C01%7C%7C41d3351eaf6a4663985008d95be224f1%7C769058a=
+b4487418f8b6cf4b48243edd7%7C0%7C0%7C637641849109851338%7CUnknown%7CTWFpbGZs=
+b3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C10=
+00&sdata=3DH5L8cz5XWaqnWeSzqVPKbEhOGSMsZUWjZwZl98ZBDKg%3D&reserved=3D0>
+
+
+
+
+--_000_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Arial",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1028" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DA" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:bre=
+ak-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Fyi<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">Med venlig hilsen<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;mso-fareast-language:DA"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;mso-fareast-language:DA"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:DA">Bo Alstrup</span></b><span style=3D"font-fa=
+mily:&quot;Arial&quot;,sans-serif;mso-fareast-language:DA"><o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">IKT-konsulent<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">IBOS - Instituttet for Blinde=
+ og Svagsynede<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">Rymarksvej 1, DK-2900 Helleru=
+p<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">+45 39 45 25 71<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA"><a href=3D"mailto:CX64@sof.kk=
+.dk"><span style=3D"color:blue">CX64@kk.dk</span></a>, sikker e-mail:
+<a href=3D"mailto:ibos@kk.dk"><span style=3D"color:blue">ibos@kk.dk</span><=
+/a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><!--[if gte vml 1]><v:shapetype id=3D"_x0000_t75" co=
+ordsize=3D"21600,21600" o:spt=3D"75" o:preferrelative=3D"t" path=3D"m@4@5l@=
+4@11@9@11@9@5xe" filled=3D"f" stroked=3D"f">
+<v:stroke joinstyle=3D"miter" />
+<v:formulas>
+<v:f eqn=3D"if lineDrawn pixelLineWidth 0" />
+<v:f eqn=3D"sum @0 1 0" />
+<v:f eqn=3D"sum 0 0 @1" />
+<v:f eqn=3D"prod @2 1 2" />
+<v:f eqn=3D"prod @3 21600 pixelWidth" />
+<v:f eqn=3D"prod @3 21600 pixelHeight" />
+<v:f eqn=3D"sum @0 0 1" />
+<v:f eqn=3D"prod @6 1 2" />
+<v:f eqn=3D"prod @7 21600 pixelWidth" />
+<v:f eqn=3D"sum @8 21600 0" />
+<v:f eqn=3D"prod @7 21600 pixelHeight" />
+<v:f eqn=3D"sum @10 21600 0" />
+</v:formulas>
+<v:path o:extrusionok=3D"f" gradientshapeok=3D"t" o:connecttype=3D"rect" />
+<o:lock v:ext=3D"edit" aspectratio=3D"t" />
+</v:shapetype><v:shape id=3D"Billede_x0020_3" o:spid=3D"_x0000_s1027" type=
+=3D"#_x0000_t75" alt=3D"Billede af IBOS logo" style=3D'width:180pt;height:6=
+9pt;visibility:visible;mso-wrap-style:square;mso-left-percent:-10001;mso-to=
+p-percent:-10001;mso-position-horizontal:absolute;mso-position-horizontal-r=
+elative:char;mso-position-vertical:absolute;mso-position-vertical-relative:=
+line;mso-left-percent:-10001;mso-top-percent:-10001'>
+<w:wrap type=3D"none"/>
+<w:anchorlock/>
+</v:shape><![endif]--><![if !vml]><img width=3D"240" height=3D"92" style=3D=
+"width:2.5in;height:.9583in" src=3D"cid:image007.png@01D78DF0.972CC4C0" alt=
+=3D"Billede af IBOS logo" v:shapes=3D"Billede_x0020_3"><![endif]><span styl=
+e=3D"font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-=
+language:DA"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">IBOS er et nationalt kompeten=
+ce- og rehabiliteringscenter for mennesker med nedsat syn.<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">Vi l=F8ser det komplicerede, =
+skaber det nye og arbejder for det inkluderende sammen med
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">borgere, kommuner og synsprof=
+essionelle i hele landet.
+<a href=3D"http://www.ibos.dk/"><span style=3D"color:blue">www.ibos.dk</spa=
+n></a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><!--[if gte vml 1]><v:shape id=3D"Billede_x0020_4" o=
+:spid=3D"_x0000_s1026" type=3D"#_x0000_t75" alt=3D"Billede af K=F8benhavns =
+Kommunes Logo" style=3D'width:135pt;height:45.75pt;visibility:visible;mso-w=
+rap-style:square;mso-left-percent:-10001;mso-top-percent:-10001;mso-positio=
+n-horizontal:absolute;mso-position-horizontal-relative:char;mso-position-ve=
+rtical:absolute;mso-position-vertical-relative:line;mso-left-percent:-10001=
+;mso-top-percent:-10001'>
+<w:wrap type=3D"none"/>
+<w:anchorlock/>
+</v:shape><![endif]--><![if !vml]><img width=3D"180" height=3D"61" style=3D=
+"width:1.875in;height:.6354in" src=3D"cid:image008.png@01D78DF0.972CC4C0" a=
+lt=3D"Billede af K=F8benhavns Kommunes Logo" v:shapes=3D"Billede_x0020_4"><=
+![endif]><span style=3D"font-size:10.5pt;font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:DA"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;mso-fareast-language:DA"><o:p>&nbsp;</o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"mso-fareast-language:DA">Fra:</spa=
+n></b><span style=3D"mso-fareast-language:DA"> Jesper Kryger &lt;jrk@nota.d=
+k&gt;
+<br>
+<b>Sendt:</b> 10. august 2021 11:35<br>
+<b>Til:</b> Bo Alstrup &lt;CX64@kk.dk&gt;<br>
+<b>Emne:</b> SV: Punktprint i Nakskov<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hej igen Bo</span><o:p=
+></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;</span><o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Til at generere pef-fi=
+ler bruger vi vores eget program &#8221;Braille printing client.</span><o:p=
+></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;</span><o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">For at checke hvordan =
+outputtet fra xml bliver som braille p=E5 papir bruger vores vi eget progra=
+m &#8221;Autobraille client&#8221; &#8211; her kan vi se hvordan det bliver=
+ printet &#8211; og s=E5 lave xml-filen&nbsp; om hvis det er helt tosset.</=
+span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;</span><o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Og jo jeg er i kontakt=
+ med Jesper Holten, der i =F8vrigt kommer herned p=E5 fredag og snakker - k=
+ikker printer.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;</span><o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;</span><o:p></o:=
+p></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:#383838;mso-fareast-language:DA">Med venlig hilse=
+n</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:9.0pt;font-family:&quot;=
+Arial&quot;,sans-serif;color:#383838;mso-fareast-language:DA">&nbsp;</span>=
+</b><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:9.0pt;font-family:&quot;=
+Arial&quot;,sans-serif;color:#383838;mso-fareast-language:DA">Jesper Kryger=
+</span></b><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:#383838;mso-fareast-language:DA">Specialp=E6dagog=
+isk konsulent</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:#383838;mso-fareast-language:DA">&nbsp;</span><o:=
+p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Arial&quot;,sans-serif;color:#383838;mso-fareast-language:DA">T=
+lf. 39 13 46 00</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#0074D9;mso-fareast-language:DA=
+"><a href=3D"mailto:jrk@nota.dk"><span lang=3D"EN-US" style=3D"font-size:9.=
+0pt;font-family:&quot;Arial&quot;,sans-serif;color:#0074D9;text-decoration:=
+none">jrk@nota.dk</span></a></span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Arial&quot;,sans-serif;color:#4E4540;mso-fareast-language:DA">&=
+nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Arial&quot;,sans-serif;color:#383838;mso-fareast-language:DA">A=
+xeltorv 6</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Arial&quot;,sans-serif;color:#383838;mso-fareast-language:DA">4=
+900 Nakskov</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Arial&quot;,sans-serif;color:#383838;mso-fareast-language:DA">T=
+lf. 39 13 46 00</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#0074D9;mso-fareast-language:DA=
+"><a href=3D"https://eur02.safelinks.protection.outlook.com/?url=3Dhttp%3A%=
+2F%2Fwww.nota.dk%2F&amp;data=3D04%7C01%7C%7C41d3351eaf6a4663985008d95be224f=
+1%7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C637641849109821464%7CUnknown=
+%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6=
+Mn0%3D%7C1000&amp;sdata=3DHZzkqV4XNZUodJWMtMNBC%2BsNOWgYCqL9SdaQ92JVOrM%3D&=
+amp;reserved=3D0"><span style=3D"font-size:9.0pt;font-family:&quot;Arial&qu=
+ot;,sans-serif;color:#0074D9">www.nota.dk</span></a></span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D;mso-fareast-language:DA=
+">&nbsp;</span><o:p></o:p></p>
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span=
+ style=3D"color:#1F497D;mso-fareast-language:DA">
+<hr size=3D"1" width=3D"99%" align=3D"center">
+</span></div>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D;mso-fareast-language:DA=
+">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:9.0pt;font-family:&quot;=
+Arial&quot;,sans-serif;color:#4E4540;mso-fareast-language:DA"><img border=
+=3D"0" width=3D"100" height=3D"32" style=3D"width:1.0416in;height:.3333in" =
+id=3D"Billede_x0020_12" src=3D"cid:image001.png@01D78DDB.B0DD0CF0"></span><=
+/b><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:#4E4540;mso-fareast-language:DA">&nbsp;</span><o:=
+p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:#383838;mso-fareast-language:DA">Det nationale bi=
+bliotek og videnscenter for mennesker med l=E6sevanskeligheder.</span><o:p>=
+</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:#484848;mso-fareast-language:DA">&nbsp;</span><o:=
+p></o:p></p>
+<p class=3D"MsoNormal"><a href=3D"https://eur02.safelinks.protection.outloo=
+k.com/?url=3Dhttps%3A%2F%2Fwww.facebook.com%2Fnota.dk&amp;data=3D04%7C01%7C=
+%7C41d3351eaf6a4663985008d95be224f1%7C769058ab4487418f8b6cf4b48243edd7%7C0%=
+7C0%7C637641849109821464%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIj=
+oiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3D7LzU0q2a02Yfdd1=
+pbx2TvsJU4YDpReGJ7u5R81iIIEw%3D&amp;reserved=3D0"><span style=3D"font-size:=
+9.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-language:DA;text=
+-decoration:none"><img border=3D"0" width=3D"31" height=3D"31" style=3D"wid=
+th:.3229in;height:.3229in" id=3D"Billede_x0020_11" src=3D"cid:image002.png@=
+01D78DDB.B0DD0CF0"></span></a><span lang=3D"DE" style=3D"font-size:9.0pt;fo=
+nt-family:&quot;Arial&quot;,sans-serif;color:#4E4540;mso-fareast-language:D=
+A">&nbsp;&nbsp;
+</span><a href=3D"https://eur02.safelinks.protection.outlook.com/?url=3Dhtt=
+ps%3A%2F%2Fwww.youtube.com%2Fuser%2Fnotabib&amp;data=3D04%7C01%7C%7C41d3351=
+eaf6a4663985008d95be224f1%7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C6376=
+41849109831418%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIi=
+LCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3Dva07UbZZu%2BPDuYvFSourvdS=
+K3KhWYGzro0JnzPDEdgE%3D&amp;reserved=3D0"><span style=3D"font-size:9.0pt;fo=
+nt-family:&quot;Arial&quot;,sans-serif;mso-fareast-language:DA;text-decorat=
+ion:none"><img border=3D"0" width=3D"32" height=3D"32" style=3D"width:.3333=
+in;height:.3333in" id=3D"Billede_x0020_10" src=3D"cid:image003.png@01D78DDB=
+.B0DD0CF0"></span></a><span lang=3D"DE" style=3D"font-size:9.0pt;font-famil=
+y:&quot;Arial&quot;,sans-serif;color:#4E4540;mso-fareast-language:DA">&nbsp=
+;&nbsp;
+</span><a href=3D"https://eur02.safelinks.protection.outlook.com/?url=3Dhtt=
+ps%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fnota&amp;data=3D04%7C01%7C%7C41d335=
+1eaf6a4663985008d95be224f1%7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C637=
+641849109831418%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzI=
+iLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DnOOdcTRDTLkzeoawIoYPqqmG=
+08GIF6zj13G8o9HLaqA%3D&amp;reserved=3D0"><span style=3D"font-size:9.0pt;fon=
+t-family:&quot;Arial&quot;,sans-serif;mso-fareast-language:DA;text-decorati=
+on:none"><img border=3D"0" width=3D"31" height=3D"31" style=3D"width:.3229i=
+n;height:.3229in" id=3D"Billede_x0020_9" src=3D"cid:image004.png@01D78DDB.B=
+0DD0CF0"></span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D;mso-fareast-language:DA=
+">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D;mso-fareast-language:DA=
+">&nbsp;</span><o:p></o:p></p>
+</div>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;</span><o:p></o:=
+p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"mso-fareast-language:DA">Fra:</spa=
+n></b><span style=3D"mso-fareast-language:DA"> Bo Alstrup &lt;CX64@kk.dk&gt=
+;
+<br>
+<b>Sendt:</b> 10. august 2021 11:00<br>
+<b>Til:</b> Jesper Kryger &lt;jrk@nota.dk&gt;<br>
+<b>Emne:</b> SV: Punktprint i Nakskov</span><o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Hej Jesper</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Hvor er det superfedt!</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Jeg ekspederer fluks dine informationer videre til Je=
+ns som er vores designer p=E5 nodel=E6seren.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Der skal nok v=E6re noget som vi kunne finde p=E5 at =
+sp=F8rge om :)</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">S=E5 du kan godt regne med at vi vender frygtelig til=
+bage&#8230;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Hvis ikke det st=E5r i manualen, kunne jeg godt t=E6n=
+ke mig at vide hvilket program I bruger til at konvertere xml til pef og hv=
+ad I bruger til at tjekke pef-filen med, - er det
+ bare en notesblok eller er det noget mere intelligent?</span><o:p></o:p></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Har du et samarbejde med Jesper Holten fra DBS som og=
+s=E5 har/f=E5r en ny punktprinter til produktion?</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">Med venlig hilsen</span><o:p>=
+</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;mso-fareast-language:DA">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;mso-fareast-language:DA">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Arial&quot;,sans=
+-serif;mso-fareast-language:DA">Bo Alstrup</span></b><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">IKT-konsulent</span><o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">IBOS - Instituttet for Blinde=
+ og Svagsynede</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">Rymarksvej 1, DK-2900 Helleru=
+p</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">+45 39 45 25 71</span><o:p></=
+o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA"><a href=3D"mailto:CX64@sof.kk=
+.dk"><span style=3D"color:blue">CX64@kk.dk</span></a>, sikker e-mail:
+<a href=3D"mailto:ibos@kk.dk"><span style=3D"color:blue">ibos@kk.dk</span><=
+/a></span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><img border=3D"0" width=3D"240" height=3D"92" style=
+=3D"width:2.5in;height:.9583in" id=3D"Billede_x0020_1" src=3D"cid:image005.=
+png@01D78DDB.B0DD0CF0" alt=3D"Billede af IBOS logo"><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">IBOS er et nationalt kompeten=
+ce- og rehabiliteringscenter for mennesker med nedsat syn.</span><o:p></o:p=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">Vi l=F8ser det komplicerede, =
+skaber det nye og arbejder for det inkluderende sammen med
+</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">borgere, kommuner og synsprof=
+essionelle i hele landet.
+<a href=3D"https://eur02.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F=
+%2Fwww.ibos.dk%2F&amp;data=3D04%7C01%7C%7C41d3351eaf6a4663985008d95be224f1%=
+7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C637641849109841377%7CUnknown%7=
+CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn=
+0%3D%7C1000&amp;sdata=3DA0xXuXRDiAtc7P3WBSO54FP9fC1cHEr%2BQUhmAjxgeGE%3D&am=
+p;reserved=3D0">
+<span style=3D"color:blue">www.ibos.dk</span></a></span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif;mso-fareast-language:DA">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><img border=3D"0" width=3D"180" height=3D"61" style=
+=3D"width:1.875in;height:.6354in" id=3D"_x0000_i1042" src=3D"cid:image006.p=
+ng@01D78DDB.B0DD0CF0" alt=3D"Billede af K=F8benhavns Kommunes Logo"><o:p></=
+o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;mso-fareast-language:DA">&nbsp;</span><o:p></o:p></p>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"mso-fareast-language:DA">Fra:</spa=
+n></b><span style=3D"mso-fareast-language:DA"> Jesper Kryger &lt;<a href=3D=
+"mailto:jrk@nota.dk">jrk@nota.dk</a>&gt;
+<br>
+<b>Sendt:</b> 10. august 2021 10:34<br>
+<b>Til:</b> Bo Alstrup &lt;<a href=3D"mailto:CX64@kk.dk">CX64@kk.dk</a>&gt;=
+<br>
+<b>Emne:</b> Punktprint i Nakskov</span><o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Hej Bo <o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Som lovet pr=F8ver jeg at forklare hvordan vores fin=
+e Braillo 650SF printer:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Printeren er installeret som en alm. Generic / Text =
+only printer.<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Den m=E5de vi bruger den p=E5 er at vi fra en xml-fi=
+l laver en pef-fil der s=E5 sendes til printeren.<o:p></o:p></p>
+<p class=3D"MsoNormal">Under genereringen af pef-filen sker det sp=E6ndende=
+ s=E5 jeg vedh=E6fter en node-pef der kan kikkes efter i s=F8mmene.<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">Jeg vedh=E6fter derudover de sider fra Brailloens ma=
+nual der omhandler escape-koder, der er vigtige for den m=E5de det bliver p=
+rintet p=E5.<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">Du gir bare lyd hvis der er noget jeg ikke har forta=
+lt!<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:#383838;mso-fareast-language:DA">Med venlig hilse=
+n</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:9.0pt;font-family:&quot;=
+Arial&quot;,sans-serif;color:#383838;mso-fareast-language:DA">&nbsp;</span>=
+</b><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:9.0pt;font-family:&quot;=
+Arial&quot;,sans-serif;color:#383838;mso-fareast-language:DA">Jesper Kryger=
+</span></b><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:#383838;mso-fareast-language:DA">Specialp=E6dagog=
+isk konsulent</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:#383838;mso-fareast-language:DA">&nbsp;</span><o:=
+p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Arial&quot;,sans-serif;color:#383838;mso-fareast-language:DA">T=
+lf. 39 13 46 00</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#0074D9;mso-fareast-language:DA=
+"><a href=3D"mailto:jrk@nota.dk"><span lang=3D"EN-US" style=3D"font-size:9.=
+0pt;font-family:&quot;Arial&quot;,sans-serif;color:#0074D9;text-decoration:=
+none">jrk@nota.dk</span></a></span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Arial&quot;,sans-serif;color:#4E4540;mso-fareast-language:DA">&=
+nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Arial&quot;,sans-serif;color:#383838;mso-fareast-language:DA">A=
+xeltorv 6</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Arial&quot;,sans-serif;color:#383838;mso-fareast-language:DA">4=
+900 Nakskov</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Arial&quot;,sans-serif;color:#383838;mso-fareast-language:DA">T=
+lf. 39 13 46 00</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"color:#0074D9;mso-fareast-language:DA=
+"><a href=3D"https://eur02.safelinks.protection.outlook.com/?url=3Dhttp%3A%=
+2F%2Fwww.nota.dk%2F&amp;data=3D04%7C01%7C%7C41d3351eaf6a4663985008d95be224f=
+1%7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C637641849109841377%7CUnknown=
+%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6=
+Mn0%3D%7C1000&amp;sdata=3DFXKW%2BkkycC5hoiBqOWXG3Or%2F6LLJUwNBGiJPr4BngUc%3=
+D&amp;reserved=3D0"><span style=3D"font-size:9.0pt;font-family:&quot;Arial&=
+quot;,sans-serif;color:#0074D9">www.nota.dk</span></a></span><o:p></o:p></p=
+>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:DA">&nbsp;</span=
+><o:p></o:p></p>
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span=
+ style=3D"mso-fareast-language:DA">
+<hr size=3D"1" width=3D"99%" align=3D"center">
+</span></div>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:DA">&nbsp;</span=
+><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:9.0pt;font-family:&quot;=
+Arial&quot;,sans-serif;color:#4E4540;mso-fareast-language:DA"><img border=
+=3D"0" width=3D"100" height=3D"32" style=3D"width:1.0416in;height:.3333in" =
+id=3D"Billede_x0020_2" src=3D"cid:image001.png@01D78DDB.B0DD0CF0"></span></=
+b><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:#4E4540;mso-fareast-language:DA">&nbsp;</span><o:=
+p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:#383838;mso-fareast-language:DA">Det nationale bi=
+bliotek og videnscenter for mennesker med l=E6sevanskeligheder.</span><o:p>=
+</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:&quot;Ari=
+al&quot;,sans-serif;color:#484848;mso-fareast-language:DA">&nbsp;</span><o:=
+p></o:p></p>
+<p class=3D"MsoNormal"><a href=3D"https://eur02.safelinks.protection.outloo=
+k.com/?url=3Dhttps%3A%2F%2Fwww.facebook.com%2Fnota.dk&amp;data=3D04%7C01%7C=
+%7C41d3351eaf6a4663985008d95be224f1%7C769058ab4487418f8b6cf4b48243edd7%7C0%=
+7C0%7C637641849109841377%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIj=
+oiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DbzG8Q2Rd6ugAc7H=
+O8nZbsQHfxc9cvJgAY6B8xDE%2Fuac%3D&amp;reserved=3D0"><span style=3D"font-siz=
+e:9.0pt;font-family:&quot;Arial&quot;,sans-serif;mso-fareast-language:DA;te=
+xt-decoration:none"><img border=3D"0" width=3D"31" height=3D"31" style=3D"w=
+idth:.3229in;height:.3229in" id=3D"Billede_x0020_3" src=3D"cid:image002.png=
+@01D78DDB.B0DD0CF0"></span></a><span lang=3D"DE" style=3D"font-size:9.0pt;f=
+ont-family:&quot;Arial&quot;,sans-serif;color:#4E4540;mso-fareast-language:=
+DA">&nbsp;&nbsp;
+</span><a href=3D"https://eur02.safelinks.protection.outlook.com/?url=3Dhtt=
+ps%3A%2F%2Fwww.youtube.com%2Fuser%2Fnotabib&amp;data=3D04%7C01%7C%7C41d3351=
+eaf6a4663985008d95be224f1%7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C6376=
+41849109851338%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIi=
+LCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3D922d9GazKYSDeJklMAQmOeacy=
+mGDRW0TW%2BMJnqlHMwE%3D&amp;reserved=3D0"><span style=3D"font-size:9.0pt;fo=
+nt-family:&quot;Arial&quot;,sans-serif;mso-fareast-language:DA;text-decorat=
+ion:none"><img border=3D"0" width=3D"32" height=3D"32" style=3D"width:.3333=
+in;height:.3333in" id=3D"Billede_x0020_4" src=3D"cid:image003.png@01D78DDB.=
+B0DD0CF0"></span></a><span lang=3D"DE" style=3D"font-size:9.0pt;font-family=
+:&quot;Arial&quot;,sans-serif;color:#4E4540;mso-fareast-language:DA">&nbsp;=
+&nbsp;
+</span><a href=3D"https://eur02.safelinks.protection.outlook.com/?url=3Dhtt=
+ps%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fnota&amp;data=3D04%7C01%7C%7C41d335=
+1eaf6a4663985008d95be224f1%7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C637=
+641849109851338%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzI=
+iLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DH5L8cz5XWaqnWeSzqVPKbEhO=
+GSMsZUWjZwZl98ZBDKg%3D&amp;reserved=3D0"><span style=3D"font-size:9.0pt;fon=
+t-family:&quot;Arial&quot;,sans-serif;mso-fareast-language:DA;text-decorati=
+on:none"><img border=3D"0" width=3D"31" height=3D"31" style=3D"width:.3229i=
+n;height:.3229in" id=3D"Billede_x0020_5" src=3D"cid:image004.png@01D78DDB.B=
+0DD0CF0"></span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:DA">&nbsp;</span=
+><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:DA">&nbsp;</span=
+><o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_--
+
+--_011_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_
+Content-Type: image/png; name="image001.png"
+Content-Description: image001.png
+Content-Disposition: inline; filename="image001.png"; size=3107;
+	creation-date="Tue, 10 Aug 2021 09:34:34 GMT";
+	modification-date="Tue, 10 Aug 2021 09:34:34 GMT"
+Content-ID: <image001.png@01D78DDB.B0DD0CF0>
+Content-Transfer-Encoding: base64
+
+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
+
+--_011_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_
+Content-Type: image/png; name="image002.png"
+Content-Description: image002.png
+Content-Disposition: inline; filename="image002.png"; size=960;
+	creation-date="Tue, 10 Aug 2021 09:34:34 GMT";
+	modification-date="Tue, 10 Aug 2021 09:34:34 GMT"
+Content-ID: <image002.png@01D78DDB.B0DD0CF0>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAAB8AAAAfCAYAAAAfrhY5AAAAAXNSR0IArs4c6QAAAGxlWElmTU0A
+KgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAIdpAAQAAAABAAAATgAA
+AAAAAABIAAAAAQAAAEgAAAABAAKgAgAEAAAAAQAAAB+gAwAEAAAAAQAAAB8AAAAAA7QBCQAAAAlw
+SFlzAAALEwAACxMBAJqcGAAAAuxJREFUSA3FV0trFEEQrprdRQIrHhQJggcx2RjQkwQPvv5ABCOi
+Zw8iiMfN6ioKAWFlzT/w4DkQRDAHb75AUPG8ZnbFi09QyCHEx2Sn/WoevbOzszs9cU3q0t3VVfV1
+dfdUf8NkKhV7EqbT5NJxtOirUSIeQfsT7VfoGmTRC7RLVC810KYKp1pUWqfJda8B5EiqrTbgV2RZ
+d6g+9lCrEjr9wavvS+S07wH0RIKfoYqfUyF3kWr77SSHZPBK8yyyvQ+HYpJTRt0qduEC1ccX435W
+XEFl+xIptQD9MIAlfNGLJ3Fj0p25ZCzASvUuKuaYecjsEvP56A50wL0zXn+LoMPKOGl9q1TIHw7v
+QF5beJcrIzDTD1K0jIwctJLIUVzQnI7Z2yn6l5hOypSfeXl5Bv0HvbYDNMw3aWq8Rue4ra1m7RUc
+2Q497texcjPyGQaZ81WsuJ9pgp6f0t3S7YQJM5VXNwjgUrncLAUE8ZmfaJQbrb30W1WIXFxShYpn
+IsCrfjggmU+bmHfZsFrR4z/uMYBe8cZZNq/tnMoHtVrHSuk4mH+D1D9rO6bvOLGXwXgKbUHPDerg
+jWAUlSZWPjbILjL3heYn9kTG3d2y/QuxtnUr+424JeeE12kIUv240xxY8NQoztx7Fs3QGXVgtnmL
+2H1M9YnXntP11kFy1BlaX9tlFiS04hGAy3tsWFwUbcetnsNtlwvngzvuIXzbc2FI45bVGrbdIwLG
+Pj2GfmXrUacqFH+TB8SIdaQGy27QsALqk9019OBMpTH0IsGVzJc6mg30NrrtucIjyyd74FybKsCr
+7XsnmWMLQPY2UwK8Dpko28/w2RmSRW7hMf4UrHc3PrVJ87WDVM6XvPdcHhZfhGU6pkwG5ViRaUkO
+EaQFkwFOIP62y0DorbBM4Vr/QySuxI/Q6A64AAq9VXR56AsQYIkbo8+dM49mu2W8PdwBYZmEy/FP
+In8siBPLOAyZnHk4K+2W/KtFF+AtYvh/qX8BC9/pIG5XXIIAAAAASUVORK5CYIIA
+
+--_011_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_
+Content-Type: image/png; name="image003.png"
+Content-Description: image003.png
+Content-Disposition: inline; filename="image003.png"; size=1124;
+	creation-date="Tue, 10 Aug 2021 09:34:35 GMT";
+	modification-date="Tue, 10 Aug 2021 09:34:35 GMT"
+Content-ID: <image003.png@01D78DDB.B0DD0CF0>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAGxlWElmTU0A
+KgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAIdpAAQAAAABAAAATgAA
+AAAAAABIAAAAAQAAAEgAAAABAAKgAgAEAAAAAQAAACCgAwAEAAAAAQAAACAAAAAA37W2DAAAAAlw
+SFlzAAALEwAACxMBAJqcGAAAA5BJREFUWAnFV01IVFEU/u57OqYjWgsNlApLEwrKXeDSgjZB0Epa
+RBBW2yBRyGgkAh0XLTNw0ap2rWoRhe2qpbUw/MM2SdmipMyccd7tO+/Nm583972ZbMoDM/fe8/u9
++3PuuQqVUmK1ERtfz0BbfdD6OM06AN3smas1tsv8zQDWNOJNT5Fo/eHJov9VtJjS4cVOZDJDgDrP
+wA1l9UVBqZ8E9xC2PY6xzsUom3AAieVdWE+PMug1OqiNchIhSxPMXcRrbyHR8cukZwYwuHAIcB5D
+45jJ6I95Cu+4NOcw0bUUtC0FMDjfw8DPOIWtQeW/G6tVKJzGxGHukzwVA5Av1/pV9YP7AQWE6i2c
+CcsXQdZcpr3qX56LwI7MKmO4sTx+HoC74aq05oUxg33ZVxIrS94SyFHbysySt93d7vurtE2jxj4i
+R7TGtdjKDJcPrjSncJ1ruEHdTe6VNA98xouobfIFfB359eTHqVu8vzxF/7/Wyy0YUJAMt/7tMw3N
+SUapSTq/g4bOFSSU43uIbBPaQnqpHSlnhH4vG3UlWcV371UYmutHBo9ClN4j2XWUAPj12yABsj4/
+y2PdbbRWdr/l5najlEyN59sOLj69GXsR5p4noo8A3IvFrGOpFaNg4lMcg/OTGFrab5QXMhU+Fg4D
+/R4BcDDALBhqueVK6YstdlfgbC0QyD3cWNxXquRzLLMPT9xhMT02+aolrVapEl4hQyNGIFeRyiwS
+yMVCUa7vODwtYaSb84koTKccX6k3gH2WOf5BOVWTnHlAigndYhJC6ZiRL0ylXsNSoxjv4sUVQZZV
+Cyfs9Ko1SURSyZgBQGUrnkCAZMt3cnoD3JChY/bhaS9zD6i3IZY8JbotVFapQKM9QnWGAJzpCIVT
+3GRRKTXClCKx1TgZrmRNV5KK76MuNo7bBz5UnJQk8Mh8G1LqpntcTQhyqViE1+em+H/JpJfjKd4D
+GlLpSm23yeMrxyvDAJrAbPa9ywi8U7RqLHMZcRNjChPdA95tWGOP8Tq+kHXCxkCaeR1uzvDyRuHt
+QAzFFBwXSzlKuxUzO14ekNJZqtf/RRIrW67nE5GUzm71+o9RSAyJlaXiHb6jRakgkrpdSmeweq06
++WV58dsgvwR+QKnbpXSu5nKIL7ccL34TSMhSAMKVmYjHTtAoyVHEbSbKkSRPs6Try/AqEsviPWDy
+tWOP0yCYSp/nln6J+j1PKn2e/wYNKjNq61N5SQAAAABJRU5ErkJgggA=
+
+--_011_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_
+Content-Type: image/png; name="image004.png"
+Content-Description: image004.png
+Content-Disposition: inline; filename="image004.png"; size=1002;
+	creation-date="Tue, 10 Aug 2021 09:34:35 GMT";
+	modification-date="Tue, 10 Aug 2021 09:34:35 GMT"
+Content-ID: <image004.png@01D78DDB.B0DD0CF0>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAAB8AAAAfCAYAAAAfrhY5AAAAAXNSR0IArs4c6QAAAGxlWElmTU0A
+KgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAIdpAAQAAAABAAAATgAA
+AAAAAABIAAAAAQAAAEgAAAABAAKgAgAEAAAAAQAAAB+gAwAEAAAAAQAAAB8AAAAAA7QBCQAAAAlw
+SFlzAAALEwAACxMBAJqcGAAAAxZJREFUSA3FV01oU0EQnnlJlNDcW/QgpSZS9abgxR/sOYiK4NmD
+CB4EoU1bipCTlUR6rnjQgxdBsWLBiyAqHhS8iZGkBSsIBcGDBkNqs+s3+5L3kvde/po0GUh2d3Zm
+vp2d3dl5TJ1SKj8J0SQpOoUWfT1GxFG0JbSb4OXIondoVymTyKFtS9xWIrV2npSaA8iJtrKOAH8g
+y7pDmYMrDiug0xx8fj1B/yr3AXo6QK9DFr+lSOgqLU7kgxSCwVOFS/D2ARRiQUpd8orYhSuUiT/x
+6lleBk3nr5HWj8HvB7CYjxl7YtdDjZ6LxwKstX9RHsWuh8yKmC/X74ALbmK8/QlG/R4zfwf/DxZ1
+pGvQRoUiRcLHamfA9dAcrkDgpzQSn6Bs4igxLTTa6noUsw+xrWeDy3VqdqrZekRp3jbiHH3YNZxP
+AbfH4BHSgpC5xz4pm6HUWWdGlaecfi+dKh6TZC6lv7S0xfwK8f6Fbb9ImsItZTudtPiwGEq2lGf+
+iZCMAngUwD8gewDp9Dex3jB62pyTcfA+Q+YjFhkB/yR+4LWkZLiaq1tJ3aPsoVtGIFU4hxA9B/Br
+8HBOQHNrU+AlkM+XzVj+0riqxcJtLHrW4Xk7eCMk5vJg7Jz26fcNwGIpjTudjc+jF5hWq2CTAJfX
+qQe6ES9Tav04zeSXaaZw07HErJFUXjpjX0ePAVyexR5IayZVWUGskZbVEs3m3YdI87fmljkqnpea
+C3Qws7CBndP7HclKXRgt/dfh+zq6JJ5LIbBzUluNO2eZ027bU1o3N8ybAEcFMhzKWdXSZ/DwKLnE
+89XBIwMxFHlh2cUeaq6BEvAWx7+ywTRFYuVZID7TFvhlM6cZ6VhHkUbllbNviTaP04iry2VkQNGB
+KO/B3153rtqzQhekuLTBhTedfwNB9476NPrFQFF5N3FGrEnMbZIqk6hYG+5Si0rG4BjzLriUt1Jl
+Sq21GyR2xX5dGe2CC6CUt5qu930BAix2PeWzG/N6b4dWt9d2QKpMwuHoieSLBXY8HtdMBntem5V2
+KN9q9Qswi+j/V+p/tSADl4ROmZEAAAAASUVORK5CYIIA
+
+--_011_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_
+Content-Type: image/png; name="image005.png"
+Content-Description: image005.png
+Content-Disposition: inline; filename="image005.png"; size=199;
+	creation-date="Tue, 10 Aug 2021 09:34:35 GMT";
+	modification-date="Tue, 10 Aug 2021 09:34:35 GMT"
+Content-ID: <image005.png@01D78DDB.B0DD0CF0>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAAPAAAABcCAMAAABnVcg1AAAAAXNSR0ICQMB9xQAAAANQTFRFAAAA
+p3o92gAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAE1p
+Y3Jvc29mdCBPZmZpY2V/7TVxAAAAK0lEQVR42u3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAA
+AAAAAAAA8GZWnAABk88VkQAAAABJRU5ErkJggg==
+
+--_011_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_
+Content-Type: image/png; name="image006.png"
+Content-Description: image006.png
+Content-Disposition: inline; filename="image006.png"; size=189;
+	creation-date="Tue, 10 Aug 2021 09:34:35 GMT";
+	modification-date="Tue, 10 Aug 2021 09:34:35 GMT"
+Content-ID: <image006.png@01D78DDB.B0DD0CF0>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAALQAAAA9CAMAAAAzrLMQAAAAAXNSR0ICQMB9xQAAAANQTFRFAAAA
+p3o92gAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAE1p
+Y3Jvc29mdCBPZmZpY2V/7TVxAAAAIUlEQVRo3u3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAcGSsh
+AAFCkaHrAAAAAElFTkSuQmCC
+
+--_011_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_
+Content-Type: image/png; name="image007.png"
+Content-Description: image007.png
+Content-Disposition: inline; filename="image007.png"; size=199;
+	creation-date="Tue, 10 Aug 2021 12:04:11 GMT";
+	modification-date="Tue, 10 Aug 2021 12:04:11 GMT"
+Content-ID: <image007.png@01D78DF0.972CC4C0>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAAPAAAABcCAMAAABnVcg1AAAAAXNSR0ICQMB9xQAAAANQTFRFAAAA
+p3o92gAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAE1p
+Y3Jvc29mdCBPZmZpY2V/7TVxAAAAK0lEQVR42u3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAA
+AAAAAAAA8GZWnAABk88VkQAAAABJRU5ErkJggg==
+
+--_011_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_
+Content-Type: image/png; name="image008.png"
+Content-Description: image008.png
+Content-Disposition: inline; filename="image008.png"; size=189;
+	creation-date="Tue, 10 Aug 2021 12:04:11 GMT";
+	modification-date="Tue, 10 Aug 2021 12:04:11 GMT"
+Content-ID: <image008.png@01D78DF0.972CC4C0>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAALQAAAA9CAMAAAAzrLMQAAAAAXNSR0ICQMB9xQAAAANQTFRFAAAA
+p3o92gAAAAF0Uk5TAEDm2GYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAE1p
+Y3Jvc29mdCBPZmZpY2V/7TVxAAAAIUlEQVRo3u3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAcGSsh
+AAFCkaHrAAAAAElFTkSuQmCC
+
+--_011_AM9PR03MB7236BBD51E6BD33D181C1B3AC2F79AM9PR03MB7236eurp_--
+
