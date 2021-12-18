@@ -57,6 +57,7 @@
     <Compile Include="BrailleFileHandler_BRF_Unicode.cs" />
     <Compile Include="BrailleFileHandler_BRL_OctoBraille_1252.cs" />
     <Compile Include="BrailleFileHandler_Generic.cs" />
+    <Compile Include="BrailleFileHandler_PEF.cs" />
     <Compile Include="BrailleFileUnicodeTester.cs" />
     <Compile Include="BrailleInAccordInfo.cs" />
     <Compile Include="BrailleInAccordSegment.cs" />
