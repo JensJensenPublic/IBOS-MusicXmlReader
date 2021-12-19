@@ -88,12 +88,47 @@ namespace MusicXmlReaderModel
             // No initialisation of conversion tables are needed here !
         }
 
-
+        const char carriageReturn = '\r';
+        const char lineFeed = '\n';
 
         public override bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls)
         {
             // The bodyElement is a member variable, initialized during construction
             bool result = false;
+
+            StringBuilder currentRowContents = new StringBuilder(this.charsPerLine);
+            XmlNode currentRowElement;
+
+            // Simple implementation without volume, section and page
+
+
+            foreach (char c in unicodeBraille)
+            {
+                if ((0x2800 <= c) && (c <= 0x28ff))
+                {
+                    currentRowContents.Append(c);
+                }
+                else
+                {
+                    switch ((int)c)
+                    {
+                        case CarriageReturn:
+                            currentRowElement = doc.CreateElement("row");
+                            string currentRowString = currentRowContents.ToString();
+                            currentRowElement.InnerText = currentRowString;
+                            bodyElement.AppendChild(currentRowElement);
+                            currentRowContents.Clear();
+                            break; 
+                        case LineFeed: break;
+                        case FormFeed: break;
+                        default:
+                            Logger.LogCF(string.Format(": Unexpected character= '{0}'", c));
+                            break;
+                    }
+
+                }
+
+            }
             
             // Build the "bodyElement" from the unicodeBraille representation 
 
