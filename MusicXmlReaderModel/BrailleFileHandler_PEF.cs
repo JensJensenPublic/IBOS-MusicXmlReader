@@ -94,12 +94,25 @@ namespace MusicXmlReaderModel
             // < title xmlns = "http://purl.org/dc/elements/1.1/" > Imudico's melodibog 28, for el-orgel, klaver og guitar med becifring og akkord-diagrammer (udeladt i punktudgaven)</title>
             // < identifier xmlns = "http://purl.org/dc/elements/1.1/" > 390120 </ identifier >
 
+            const string xmlnsName = "xmlns";
+            const string xmlnsValue = "http://purl.org/dc/elements/1.1/";
+
             // The pefNode contains the Head element
             XmlNode headElement = doc.CreateElement("head");
             pefNode.AppendChild(headElement);
             // The headElement contains the meta element
             XmlNode metaElement = doc.CreateElement("meta");
+
+            // Add childNotes to metaElement
+            XmlNode formatElement = doc.CreateElement("format");
+            formatElement.Attributes.Append(CreateAttribute(xmlnsName, xmlnsValue));
+            formatElement.InnerText = "application / x - pef + xml";
+            metaElement.AppendChild(formatElement);
+
+
             headElement.AppendChild(metaElement);
+
+
 
             // The pefNode also contains the body element
             XmlNode bodyElement = doc.CreateElement("body");
