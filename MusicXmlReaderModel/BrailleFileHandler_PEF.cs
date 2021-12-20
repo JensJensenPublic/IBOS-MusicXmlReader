@@ -43,6 +43,14 @@ namespace MusicXmlReaderModel
             return "PEF";
         }
 
+        private XmlAttribute CreateAttribute(string name, string value)
+        {
+            XmlAttribute attribute = doc.CreateAttribute(name);
+            attribute.Value = value;
+            return attribute;
+        }
+
+
         internal BrailleFileHandler_PEF(int charsPerLine, int linesPerForm)
         {
             this.charsPerLine = charsPerLine;
@@ -57,12 +65,8 @@ namespace MusicXmlReaderModel
 
             // <pef version="2008-1" xmlns="http://www.daisy.org/ns/2008/pef">
             XmlNode pefNode = doc.CreateElement("pef");
-            XmlAttribute versionAttribute = doc.CreateAttribute("version");
-            versionAttribute.Value = "2008-1";
-            pefNode.Attributes.Append(versionAttribute);
-            XmlAttribute xmlnsAttribute = doc.CreateAttribute("xmlns");
-            xmlnsAttribute.Value = "http://www.daisy.org/ns/2008/pef";
-            pefNode.Attributes.Append(xmlnsAttribute);
+            pefNode.Attributes.Append(CreateAttribute("version","2008-1"));
+            pefNode.Attributes.Append(CreateAttribute("xmlns", "http://www.daisy.org/ns/2008/pef"));
             doc.AppendChild(pefNode);
 
             // We still need to build the following lines, exemplified by the 390120.def sample file: 
@@ -84,22 +88,10 @@ namespace MusicXmlReaderModel
 
             // The body element contains the Volume Elenemt:     <volume cols="42" rows="25" duplex="true" rowgap="0">
             XmlNode volumeElement = doc.CreateElement("volume");
-            XmlAttribute colsAttribute = doc.CreateAttribute("cols");
-            colsAttribute.Value = "42";
-            volumeElement.Attributes.Append(colsAttribute);
-            //
-            XmlAttribute rowsAttribute = doc.CreateAttribute("rows");
-            rowsAttribute.Value = "25";
-            volumeElement.Attributes.Append(rowsAttribute);
-            //
-            XmlAttribute duplexAttribute = doc.CreateAttribute("duplex");
-            duplexAttribute.Value = "true";
-            volumeElement.Attributes.Append(duplexAttribute);
-            //
-            XmlAttribute rowgapAttribute = doc.CreateAttribute("rowgap");
-            rowgapAttribute.Value = "0";
-            volumeElement.Attributes.Append(rowgapAttribute);
-            //
+            volumeElement.Attributes.Append(CreateAttribute("cols","42"));    
+            volumeElement.Attributes.Append(CreateAttribute("rows","25"));
+            volumeElement.Attributes.Append(CreateAttribute("duplex","true"));
+            volumeElement.Attributes.Append(CreateAttribute("rowgap","0"));
             bodyElement.AppendChild(volumeElement);
 
             // The Volume element contains the Section Element.
@@ -122,6 +114,13 @@ namespace MusicXmlReaderModel
             // The bodyElement is a member variable, initialized during construction
             bool result = false;
 
+            // Statistic counters during debugging:
+            int nBraille = 0;
+            int nLF = 0;
+            int nCR = 0;
+            int nFF = 0;
+            int nOther = 0;
+
             StringBuilder currentRowContents = new StringBuilder(this.charsPerLine);
             XmlNode currentRowElement;
 
@@ -133,6 +132,7 @@ namespace MusicXmlReaderModel
                 if ((0x2800 <= c) && (c <= 0x28ff))
                 {
                     currentRowContents.Append(c);
+                    nBraille++;
                 }
                 else
                 {
@@ -144,10 +144,12 @@ namespace MusicXmlReaderModel
                             currentRowElement.InnerText = currentRowString;
                             currentSectionElement.AppendChild(currentRowElement);
                             currentRowContents.Clear();
+                            nCR++;
                             break; 
-                        case LineFeed: break;
-                        case FormFeed: break;
+                        case LineFeed: nLF++;  break;
+                        case FormFeed: nFF++;  break;
                         default:
+                            nOther++;
                             Logger.LogCF(string.Format(": Unexpected character= '{0}'", c));
                             break;
                     }
@@ -155,7 +157,10 @@ namespace MusicXmlReaderModel
                 }
 
             }
-            
+
+            string s = string.Format(": nBraille={0} nCR={1} nLF={2} nFF={3} nOther={4}", nBraille, nCR, nLF, nFF, nOther);
+            Logger.LogCF(s);
+
             // Build the "bodyElement" from the unicodeBraille representation 
 
             //
