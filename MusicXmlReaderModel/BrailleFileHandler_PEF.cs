@@ -132,10 +132,12 @@ namespace MusicXmlReaderModel
             bool result = false;
 
             // Add childNotes to metaElement
+            DateTime now = DateTime.Now;
+            string date = string.Format("{0}-{1}-{2}", now.Year, now.Month, now.Day);
             metaElement.RemoveAll();
             metaElement.AppendChild(CreateMetaChild("format", "application / x - pef + xml"));
-            metaElement.AppendChild(CreateMetaChild("date", "2021-12-20"));
-            metaElement.AppendChild(CreateMetaChild("title", "Titel"));
+            metaElement.AppendChild(CreateMetaChild("date", date));
+            metaElement.AppendChild(CreateMetaChild("title", "TITLE")); // ToDo: Find out what to put here and when and how.
             metaElement.AppendChild(CreateMetaChild("identifier", Path.GetFileNameWithoutExtension(fullFileName)));
 
             // Statistic counters during debugging:
