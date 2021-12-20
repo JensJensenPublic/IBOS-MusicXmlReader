@@ -12,6 +12,7 @@ namespace MusicXmlReaderModel
     {
         XmlDocument doc; // For building the PEF file as an XmlDocument 
         XmlNode currentSectionElement; // The element where the dynamic information is placed
+        
 
         public override int GetCodePage()
         {
@@ -48,6 +49,22 @@ namespace MusicXmlReaderModel
             XmlAttribute attribute = doc.CreateAttribute(name);
             attribute.Value = value;
             return attribute;
+        }
+
+        private void AddPage(List<XmlNode> rows)
+        {
+                if (rows.Count > 0)
+                {
+                // Create a new page and fill in with rows
+                XmlNode pageElement = doc.CreateElement("page");
+                foreach (XmlNode row in rows)
+                {
+                    pageElement.AppendChild(row);
+                }
+                rows.Clear();
+                // Append the new page to the section
+                currentSectionElement.AppendChild(pageElement);
+            }
         }
 
 
@@ -105,10 +122,7 @@ namespace MusicXmlReaderModel
 
             // No initialisation of conversion tables are needed here !
         }
-
-        const char carriageReturn = '\r';
-        const char lineFeed = '\n';
-
+        
         public override bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls)
         {
             // The bodyElement is a member variable, initialized during construction
@@ -122,7 +136,9 @@ namespace MusicXmlReaderModel
             int nOther = 0;
 
             StringBuilder currentRowContents = new StringBuilder(this.charsPerLine);
+            List<XmlNode> currentPageContents = new List<XmlNode>(this.linesPerForm);
             XmlNode currentRowElement;
+       
 
             // Simple implementation without volume, section and page
 
@@ -141,22 +157,20 @@ namespace MusicXmlReaderModel
                         case CarriageReturn:
                             currentRowElement = doc.CreateElement("row");
                             string currentRowString = currentRowContents.ToString();
-                            currentRowElement.InnerText = currentRowString;
-                            currentSectionElement.AppendChild(currentRowElement);
+                            currentRowElement.InnerText = currentRowString;               
+                            currentPageContents.Add(currentRowElement);
                             currentRowContents.Clear();
                             nCR++;
                             break; 
                         case LineFeed: nLF++;  break;
-                        case FormFeed: nFF++;  break;
-                        default:
-                            nOther++;
-                            Logger.LogCF(string.Format(": Unexpected character= '{0}'", c));
-                            break;
+                        case FormFeed: nFF++; AddPage(currentPageContents); break;
+                        default: nOther++; Logger.LogCF(string.Format(": Unexpected character= '{0}'", c));break;
                     }
-
-                }
-
+                }  
             }
+
+            // Add the last page, even if no FormFeed is found
+            AddPage(currentPageContents);
 
             string s = string.Format(": nBraille={0} nCR={1} nLF={2} nFF={3} nOther={4}", nBraille, nCR, nLF, nFF, nOther);
             Logger.LogCF(s);
