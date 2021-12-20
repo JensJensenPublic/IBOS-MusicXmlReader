@@ -12,7 +12,10 @@ namespace MusicXmlReaderModel
     {
         XmlDocument doc; // For building the PEF file as an XmlDocument 
         XmlNode currentSectionElement; // The element where the dynamic information is placed
-        
+
+        int maxRows = 0; // Statistics only. Max number of rows for a page
+        int maxCols = 0; // Statistics only. MAx number of coloumns for a line
+
 
         public override int GetCodePage()
         {
@@ -53,18 +56,17 @@ namespace MusicXmlReaderModel
 
         private void AddPage(List<XmlNode> rows)
         {
-                if (rows.Count > 0)
-                {
-                // Create a new page and fill in with rows
-                XmlNode pageElement = doc.CreateElement("page");
-                foreach (XmlNode row in rows)
-                {
-                    pageElement.AppendChild(row);
-                }
-                rows.Clear();
-                // Append the new page to the section
-                currentSectionElement.AppendChild(pageElement);
+            if (0 == rows.Count) return;
+            // Create a new page and fill in with rows
+            XmlNode pageElement = doc.CreateElement("page");
+            foreach (XmlNode row in rows)
+            {
+                pageElement.AppendChild(row);
             }
+            maxRows = Math.Max(maxRows, rows.Count);
+            rows.Clear();
+            // Append the new page to the section
+            currentSectionElement.AppendChild(pageElement);
         }
 
 
@@ -139,10 +141,7 @@ namespace MusicXmlReaderModel
             List<XmlNode> currentPageContents = new List<XmlNode>(this.linesPerForm);
             XmlNode currentRowElement;
        
-
-            // Simple implementation without volume, section and page
-
-
+            // Add the contents of unicodeBraille as a number of pages, each containing a number of rows
             foreach (char c in unicodeBraille)
             {
                 if ((0x2800 <= c) && (c <= 0x28ff))
@@ -159,6 +158,7 @@ namespace MusicXmlReaderModel
                             string currentRowString = currentRowContents.ToString();
                             currentRowElement.InnerText = currentRowString;               
                             currentPageContents.Add(currentRowElement);
+                            maxCols = Math.Max(maxCols, currentRowContents.Length);
                             currentRowContents.Clear();
                             nCR++;
                             break; 
@@ -172,14 +172,8 @@ namespace MusicXmlReaderModel
             // Add the last page, even if no FormFeed is found
             AddPage(currentPageContents);
 
-            string s = string.Format(": nBraille={0} nCR={1} nLF={2} nFF={3} nOther={4}", nBraille, nCR, nLF, nFF, nOther);
-            Logger.LogCF(s);
-
-            // Build the "bodyElement" from the unicodeBraille representation 
-
-            //
-            //
-            //
+            string s = string.Format(": nBraille={0} nCR={1} nLF={2} nFF={3} nOther={4} maxCols={5} maxRows={6}", nBraille, nCR, nLF, nFF, nOther, maxCols, maxRows);
+            Logger.LogCF(s);   
 
             try
             {
