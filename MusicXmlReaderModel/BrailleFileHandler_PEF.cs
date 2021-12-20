@@ -10,8 +10,8 @@ namespace MusicXmlReaderModel
 {
     class BrailleFileHandler_PEF : BrailleFileHandler
     {
-        XmlDocument doc; // For building the PEF file as an XmlDocument
-        XmlNode bodyElement; // The element where the real information is placed
+        XmlDocument doc; // For building the PEF file as an XmlDocument 
+        XmlNode currentSectionElement; // The element where the dynamic information is placed
 
         public override int GetCodePage()
         {
@@ -71,15 +71,41 @@ namespace MusicXmlReaderModel
             // < title xmlns = "http://purl.org/dc/elements/1.1/" > Imudico's melodibog 28, for el-orgel, klaver og guitar med becifring og akkord-diagrammer (udeladt i punktudgaven)</title>
             // < identifier xmlns = "http://purl.org/dc/elements/1.1/" > 390120 </ identifier >
 
-            // The Head element
+            // The pefNode contains the Head element
             XmlNode headElement = doc.CreateElement("head");
             pefNode.AppendChild(headElement);
+            // The headElement contains the meta element
             XmlNode metaElement = doc.CreateElement("meta");
             headElement.AppendChild(metaElement);
 
-            // The body element containing the dynamic information:
-            bodyElement = doc.CreateElement("body");
+            // The pefNode also contains the body element
+            XmlNode bodyElement = doc.CreateElement("body");
             pefNode.AppendChild(bodyElement);
+
+            // The body element contains the Volume Elenemt:     <volume cols="42" rows="25" duplex="true" rowgap="0">
+            XmlNode volumeElement = doc.CreateElement("volume");
+            XmlAttribute colsAttribute = doc.CreateAttribute("cols");
+            colsAttribute.Value = "42";
+            volumeElement.Attributes.Append(colsAttribute);
+            //
+            XmlAttribute rowsAttribute = doc.CreateAttribute("rows");
+            rowsAttribute.Value = "25";
+            volumeElement.Attributes.Append(rowsAttribute);
+            //
+            XmlAttribute duplexAttribute = doc.CreateAttribute("duplex");
+            duplexAttribute.Value = "true";
+            volumeElement.Attributes.Append(duplexAttribute);
+            //
+            XmlAttribute rowgapAttribute = doc.CreateAttribute("rowgap");
+            rowgapAttribute.Value = "0";
+            volumeElement.Attributes.Append(rowgapAttribute);
+            //
+            bodyElement.AppendChild(volumeElement);
+
+            // The Volume element contains the Section Element.
+            // The Section Element is a member variable currentSectionEmelemt because it holds the dynamic information to be filled in by the WriteToFile method
+            currentSectionElement = doc.CreateElement("section");
+            volumeElement.AppendChild(currentSectionElement);
 
             string temp = doc.OuterXml; // For inspection during debugging
 
@@ -116,7 +142,7 @@ namespace MusicXmlReaderModel
                             currentRowElement = doc.CreateElement("row");
                             string currentRowString = currentRowContents.ToString();
                             currentRowElement.InnerText = currentRowString;
-                            bodyElement.AppendChild(currentRowElement);
+                            currentSectionElement.AppendChild(currentRowElement);
                             currentRowContents.Clear();
                             break; 
                         case LineFeed: break;
