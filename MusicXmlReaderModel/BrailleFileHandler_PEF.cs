@@ -206,6 +206,54 @@ namespace MusicXmlReaderModel
         public override string ReadFromFile(string fullFileName)
         {
             string result = null;
+            try
+            {
+                // Get rid of namespaces by loading the .pef file in this way.
+                // Inspired by https://stackoverflow.com/questions/17161317/xml-document-selectsinglenode-returns-null/33231117
+                XmlTextReader xmlReader = new XmlTextReader(fullFileName);
+                xmlReader.Namespaces = false;
+                XmlDocument xmlDocument = new XmlDocument();
+                xmlDocument.Load(xmlReader);
+                Logger.LogCF(string.Format(": Loaded '{0}' containing {1} nodes:", Path.GetFileName(fullFileName), doc.ChildNodes.Count));
+                Logger.LogCF(string.Format(": doc.ChildNodes[0]='{0}'", doc.ChildNodes[0].OuterXml));
+
+                // Extract the interesting nodes:
+                XmlNode pefNode = xmlDocument.SelectSingleNode("pef");
+                XmlNode headNode = pefNode.SelectSingleNode("head");
+                XmlNode metaNode = headNode.SelectSingleNode("meta");
+                Logger.LogCF(string.Format(": 'head' contains:"));
+                foreach (XmlNode node in metaNode.ChildNodes)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (XmlNode attribute in node.Attributes)
+                    {
+                        sb.Append(attribute.InnerText);
+                    }
+                    Logger.LogCF(string.Format(": Name='{0}' Attributes='{1}' InnerXml='{2}' ",node.Name, sb.ToString(), node.InnerXml));
+                }
+
+                XmlNode bodyNode = pefNode.SelectSingleNode("body");
+                Logger.LogCF(string.Format(": 'body' contains:"));
+
+
+
+
+
+                //XmlDocument doc = new XmlDocument();
+                //doc.Load(fullFileName);
+                //XmlNode pefNode = (XmlElement) doc.ChildNodes[1];
+                //XmlNode h = pefNode.SelectSingleNode("head");
+                //XmlNode b = pefNode.SelectSingleNode("body");
+                //XmlNode headNode = pefNode.ChildNodes[0];
+                //XmlNode metaNode = headNode.SelectSingleNode("meta");
+                //XmlNode bodyNode = pefNode.ChildNodes[1];
+                //Logger.LogCF(string.Format(": headNode='{0}'", headNode.OuterXml));
+                //Logger.LogCF(string.Format(": bodyNode contains {0} childnodes", bodyNode.ChildNodes.Count));
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
             //try
             //{
             //    result = System.IO.File.ReadAllText(fullFileName);
