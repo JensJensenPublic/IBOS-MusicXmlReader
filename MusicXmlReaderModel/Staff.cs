@@ -145,16 +145,38 @@ namespace MusicXmlReaderModel
             }
         }
 
+
+        /// <summary>
+        /// Check that the number of lines in the caption matches BrailleUtilities.FirstPageCaptionSize
+        /// This will assure that all pages contain at most the maximum number of lines.
+        /// </summary>
+        private string BrailleCaption
+        {
+            get
+            {
+                string result =
+                    BrailleCaption1.ToBrailleString() + "\r\n" + //  Title in Braille
+                    BrailleCaption2.ToBrailleString() + "\r\n" + // PartName and staff number in Braille
+                    MusicBrailleIndicatorString + "\r\n";        // Indicate the start of Music Braille interpretation
+                // Check that the number of lines required by the caption does not exceed the number of lines reserved for the caption by BrailleUtilities.FirstPageCaptionSize
+                BrailleUtilities.CheckCaption(result);
+                return result;
+            }
+        }
+
+
+
         /// <summary>
         /// The full (End User) Braille representation of this Staff, including a Caption with Title, partName and StaffNumber
         /// </summary>
         public string FullBrailleRepresentation
         {
-            get {
-                return BrailleCaption1.ToBrailleString() + "\r\n" + //  Title in Braille
-                       BrailleCaption2.ToBrailleString() + "\r\n" + // PartName and staff number in Braille
-                       MusicBrailleIndicatorString + "\r\n" +       // Indicate the start of Music Braille interpretation
-                       BrailleMusicFormattedPage;}}                 // BrailleMusic  in Braille
+            get
+            {
+                return BrailleCaption +           // The caption represented in Text  Braille
+                       BrailleMusicFormattedPage; // The staff   represented in Music Braille
+            }
+        }  
 
 
         /// <summary>

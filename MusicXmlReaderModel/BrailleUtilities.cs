@@ -12,6 +12,11 @@ namespace MusicXmlReaderModel
         const byte LineFeed = 10;
         const byte FormFeed = 12;
 
+        /// <summary>
+        /// Number of lines reserved for a caption on the first page
+        /// </summary>
+        public const int FirstPageCaptionSize = 3; 
+
 
         /// <summary>
         /// Simple formatting for notetaker devices. Just keep the existing format !
@@ -31,24 +36,59 @@ namespace MusicXmlReaderModel
         }
 
 
-        /// Formats a list of UNICODE strings, each representing a musical event  in to a single UNICODE,
-        /// string taking into account the dimensions of the sheet to print on  
+        /// <summary>
+        /// Check that a caption does not exceed the number of lines statically defined by FirstPageCaptionSize.
+        /// In this way we assure that the first page does not exceed the maximum number of lines
         /// </summary>
-        /// <param name="unicodeBrailleList"></param>
-        /// <param name="fullFileName"></param>
+        /// <param name="caption"></param>
         /// <returns></returns>
-        static public string Format(List<string> unicodeBrailleList,int lineWidth, int formHeight)
+        static public bool CheckCaption(string caption)
+        {
+            bool result = true;
+            string[] splitCR = caption.Split('\r');
+            int nCR = splitCR.Length - 1;
+            string[] splitLF = caption.Split('\n');
+            int nLF = splitLF.Length - 1;
+            if ((nCR > FirstPageCaptionSize) || (nLF > FirstPageCaptionSize))
+            {
+                Logger.LogCF(string.Format(": nCR={0} or nLF={1} exceed BrailleUtilities.FirstPageCaptionSize={2}", nCR, nLF, FirstPageCaptionSize));
+                result = false;
+            }
+            return result;
+        }
+
+
+
+    /// Formats a list of UNICODE strings, each representing a musical event  in to a single UNICODE,
+    /// string taking into account the dimensions of the sheet to print on  
+    /// </summary>
+    /// <param name="unicodeBrailleList"></param>
+    /// <param name="fullFileName"></param>
+    /// <returns></returns>
+    static public string Format(List<string> unicodeBrailleList,int lineWidth, int formHeight)
         {
             if (0 == lineWidth && (0 == formHeight))
             {
                 return FormatForNoteTaker(unicodeBrailleList);
             }
 
+            if (formHeight < FirstPageCaptionSize )
+            {
+                // The height of the form is less than the number of lines reserved for the caption.
+                // This should be prevented in the code where the user sets up the format of the Music Braille representation! 
+                string s = string.Format(": FormHeight={0} < FirstPageCaptionSize={1} ",  formHeight, FirstPageCaptionSize);
+                Logger.LogCF(s);
+                // Maybe we should throw an exception here ?
+            }
+
+
             StringBuilder score = new StringBuilder();  // Represents the whole score
             int currentWidth = 0;
-            int currentHeight = 0;
+            int currentHeight = FirstPageCaptionSize; // Reserve a fixed number of lines on the first page for a caption
             int numberOfLines = 0; // For statistics only
             int numberOfForms = 1; // For statistics only
+
+
 
             foreach (string unicodeBraille in unicodeBrailleList)
             {

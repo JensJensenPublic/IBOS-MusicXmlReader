@@ -128,7 +128,7 @@ namespace MusicXmlReaderModel
         
         public override bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls)
         {
-            // The bodyElement is a member variable, initialized during construction
+            currentSectionElement.RemoveAll(); // Only keep the static part of the contents, remove all previously generated pages and rows.
             bool result = false;
 
             // Add childNotes to metaElement
