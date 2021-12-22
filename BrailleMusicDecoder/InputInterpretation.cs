@@ -699,7 +699,7 @@ string ToLocalizedString(InputCategoryEnum inputCategory,InputSubCategoryEnum su
                         case InputSubCategoryEnum.CharacterBlank: return ResourcesForBrailleMusicDecoder.InputSubCategoryEnum_Blank;
                         case InputSubCategoryEnum.CharacterBlankSequence: return tokenLength.ToString() + " " + ResourcesForBrailleMusicDecoder.InputSubCategoryEnum_BlankSequence; // English for instance: "19 Empty spaces"
                         case InputSubCategoryEnum.CharacterExpandedContraction: return ResourcesForBrailleMusicDecoder.InputSubCategoryEnum_Contraction;
-                        default: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_Character;
+                        default: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_Character + " "; // Need a space between the category and the value for readability
                     }
                 case InputCategoryEnum.Clef: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_Clef;
                 case InputCategoryEnum.Denominator: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_Denominator;
