@@ -261,22 +261,26 @@ namespace MusicXmlReaderModel
                 XmlNodeList pageNodes = sectionNode.SelectNodes("page");
                 Logger.LogCF(string.Format(": Document contains {0} pages", pageNodes.Count));
                 int pageNumber = 1; // For debugging only
+                StringBuilder rawMusicBraille = new StringBuilder(); // Here we collect the MusicBraille to be sent to the MusicBraille Decoder 
                 foreach (XmlNode pageNode in pageNodes)
                 {
                     XmlNodeList rowNodes = pageNode.SelectNodes("row");
                     StringBuilder symbolCount = new StringBuilder(" ");                           
                     foreach (XmlNode row in rowNodes)
                     {
-                        symbolCount.Append(row.InnerText.Length.ToString() + " ");
+                        string rowAsString = row.InnerText.ToString();
+                        symbolCount.Append(rowAsString.Length + " ");
+                        rawMusicBraille.Append(rowAsString + "\r\n");
                     }
                     Logger.LogCF(string.Format(": Page {0,2} contains {1,2} rows with ({2,2}) symbols", pageNumber++, rowNodes.Count, symbolCount.ToString()));
-                }              
+                    rawMusicBraille.Append(FormFeed);
+                }   
+                result = rawMusicBraille.ToString();           
             }
             catch (Exception e)
             {
                 Logger.LogCFE(e);
-            }
-    
+            }  
             return result;
         }
     }
