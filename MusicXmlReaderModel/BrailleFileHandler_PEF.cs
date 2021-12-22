@@ -273,7 +273,7 @@ namespace MusicXmlReaderModel
                         rawMusicBraille.Append(rowAsString + "\r\n");
                     }
                     Logger.LogCF(string.Format(": Page {0,2} contains {1,2} rows with ({2,2}) symbols", pageNumber++, rowNodes.Count, symbolCount.ToString()));
-                    rawMusicBraille.Append(FormFeed);
+                    rawMusicBraille.Append((char) FormFeed);
                 }   
                 result = rawMusicBraille.ToString();           
             }
