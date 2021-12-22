@@ -199,6 +199,40 @@ namespace MusicXmlReaderModel
         }
 
         /// <summary>
+        /// PRimarily for debugging
+        /// </summary>
+        /// <param name="doc"></param>
+        private void LogMetaInformation(XmlDocument doc)
+        {
+            try
+            {
+                // Extract the interesting nodes:
+                XmlNode pefNode = doc.SelectSingleNode("pef");
+                XmlNode headNode = pefNode.SelectSingleNode("head");
+                XmlNode metaNode = headNode.SelectSingleNode("meta");
+                Logger.LogCF(string.Format(": 'head' contains:"));
+                foreach (XmlNode node in metaNode.ChildNodes)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (XmlNode attribute in node.Attributes)
+                    {
+                        sb.Append(attribute.InnerText);
+                    }
+                    Logger.LogCF(string.Format(": Name='{0}' Attributes='{1}' InnerXml='{2}' ", node.Name, sb.ToString(), node.InnerXml));
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+
+        }
+
+
+
+
+
+        /// <summary>
         ///  Reads a file containing MusicBraille information and returns its contents as a UNICODE string
         /// </summary>
         /// <param name="fullFileName"></param>
@@ -217,53 +251,32 @@ namespace MusicXmlReaderModel
                 Logger.LogCF(string.Format(": Loaded '{0}' containing {1} nodes:", Path.GetFileName(fullFileName), doc.ChildNodes.Count));
                 Logger.LogCF(string.Format(": doc.ChildNodes[0]='{0}'", doc.ChildNodes[0].OuterXml));
 
-                // Extract the interesting nodes:
-                XmlNode pefNode = xmlDocument.SelectSingleNode("pef");
-                XmlNode headNode = pefNode.SelectSingleNode("head");
-                XmlNode metaNode = headNode.SelectSingleNode("meta");
-                Logger.LogCF(string.Format(": 'head' contains:"));
-                foreach (XmlNode node in metaNode.ChildNodes)
-                {
-                    StringBuilder sb = new StringBuilder();
-                    foreach (XmlNode attribute in node.Attributes)
-                    {
-                        sb.Append(attribute.InnerText);
-                    }
-                    Logger.LogCF(string.Format(": Name='{0}' Attributes='{1}' InnerXml='{2}' ",node.Name, sb.ToString(), node.InnerXml));
-                }
+                LogMetaInformation(xmlDocument); // Primarily for debugging
 
+                //// Extract the interesting nodes containing the musical information:
+                XmlNode pefNode = xmlDocument.SelectSingleNode("pef"); 
                 XmlNode bodyNode = pefNode.SelectSingleNode("body");
-                Logger.LogCF(string.Format(": 'body' contains:"));
-
-
-
-
-
-                //XmlDocument doc = new XmlDocument();
-                //doc.Load(fullFileName);
-                //XmlNode pefNode = (XmlElement) doc.ChildNodes[1];
-                //XmlNode h = pefNode.SelectSingleNode("head");
-                //XmlNode b = pefNode.SelectSingleNode("body");
-                //XmlNode headNode = pefNode.ChildNodes[0];
-                //XmlNode metaNode = headNode.SelectSingleNode("meta");
-                //XmlNode bodyNode = pefNode.ChildNodes[1];
-                //Logger.LogCF(string.Format(": headNode='{0}'", headNode.OuterXml));
-                //Logger.LogCF(string.Format(": bodyNode contains {0} childnodes", bodyNode.ChildNodes.Count));
+                XmlNode volumeNode = bodyNode.SelectSingleNode("volume");
+                XmlNode sectionNode = volumeNode.SelectSingleNode("section");
+                XmlNodeList pageNodes = sectionNode.SelectNodes("page");
+                Logger.LogCF(string.Format(": Document contains {0} pages", pageNodes.Count));
+                int pageNumber = 1; // For debugging only
+                foreach (XmlNode pageNode in pageNodes)
+                {
+                    XmlNodeList rowNodes = pageNode.SelectNodes("row");
+                    StringBuilder symbolCount = new StringBuilder(" ");                           
+                    foreach (XmlNode row in rowNodes)
+                    {
+                        symbolCount.Append(row.InnerText.Length.ToString() + " ");
+                    }
+                    Logger.LogCF(string.Format(": Page {0,2} contains {1,2} rows with ({2,2}) symbols", pageNumber++, rowNodes.Count, symbolCount.ToString()));
+                }              
             }
             catch (Exception e)
             {
                 Logger.LogCFE(e);
             }
-            //try
-            //{
-            //    result = System.IO.File.ReadAllText(fullFileName);
-            //    Logger.LogCF(string.Format(": read {0} characters from {1}", result.Length, fullFileName));
-            //}
-            //catch (Exception e)
-            //{
-            //    result = null;
-            //    Logger.LogCFE(e);
-            //}
+    
             return result;
         }
     }
