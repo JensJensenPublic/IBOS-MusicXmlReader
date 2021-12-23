@@ -770,6 +770,12 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public void AddHand(byte[] hand, string s)
+        {
+            Append(hand);
+            AppendText(s);
+        }
+
 
         public void AddClef(ClefElement clefElement,string s)
         {

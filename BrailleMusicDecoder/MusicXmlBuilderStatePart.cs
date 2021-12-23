@@ -126,7 +126,12 @@ namespace BrailleMusicDecoder
                 case 1: return "up";
                 case 2: return "down";
                 case 3: return "down"; // In some very seldom cases we have 3 voices inside a single part. Just take a decision.
-                default: throw new Exception(string.Format("GetStem({0}): Invalid parameter", voice));
+                case 4: return "down"; // In some very seldom cases we have 4 voices inside a single part. Just take a decision.
+                default:
+                    string s = string.Format("GetStem({0}): Invalid parameter", voice);
+                    Logger.LogCF(": " + s);
+                    // throw new Exception(s);
+                    return "down"; 
             }
         }
 

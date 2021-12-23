@@ -273,8 +273,21 @@ namespace MusicXmlReaderModel
         /// </summary>
         public void Unpack(int charsPerLine, int linesPerForm)
         {
+            string s = string.Format(": PartName={0} PartNumber={1} StaffNumber={2}", this.PartName, this.partNumber, this.staffNumber);
+            Logger.LogCF(s);
+
             brailleMusicStrings = new List<string>();
             brailleMusicTexts = new List<string>();
+
+            // Insert information about the hand or part as the first item
+            BrailleBuilder bbHand = BrailleBuilder.Create(0);
+            switch (this.staffNumber)
+            {
+                case 1: bbHand.AddHand(BrailleBuilder.HandRight,"HandRight"); brailleMusicBrailleBuilders.Insert(0, bbHand); break;
+                case 2: bbHand.AddHand(BrailleBuilder.HandLeft,"HandLeft" ); brailleMusicBrailleBuilders.Insert(0, bbHand); break;
+                default: break;
+            }
+
             foreach (BrailleBuilder bb in brailleMusicBrailleBuilders)
             {
                 brailleMusicStrings.Add(bb.ToBrailleString());
