@@ -205,6 +205,15 @@ namespace BrailleMusicDecoder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New page.
+        /// </summary>
+        internal static string InputCategoryEnum_ControlCharFF {
+            get {
+                return ResourceManager.GetString("InputCategoryEnum_ControlCharFF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Denominator.
         /// </summary>
         internal static string InputCategoryEnum_Denominator {

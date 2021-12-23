@@ -626,4 +626,7 @@
   <data name="Note_G_Sharp" xml:space="preserve">
     <value>Gis</value>
   </data>
+  <data name="InputCategoryEnum_ControlCharFF" xml:space="preserve">
+    <value>Ny side</value>
+  </data>
 </root>

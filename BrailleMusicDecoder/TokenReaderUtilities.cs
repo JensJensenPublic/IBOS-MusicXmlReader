@@ -480,6 +480,7 @@ namespace BrailleMusicDecoder
             {
                 case carriageReturn: return "CR";
                 case lineFeed: return "LF";
+                case formFeed: return "FF";
                 default: return "??";
             }
         }
@@ -519,9 +520,13 @@ namespace BrailleMusicDecoder
 
         public static string ToUnicodeChar(int i)
         {
-            if (carriageReturn == i) return " CR";
-            if (lineFeed == i) return " LF";
-            return ((char)(i + BrailleBase)).ToString();
+            switch (i)
+            {
+                case carriageReturn: return " CR";
+                case lineFeed: return " LF";
+                case formFeed: return " FF";
+                default: return ((char)(i + BrailleBase)).ToString();
+            }
         }
 
         public int ToNotBraille(char c)

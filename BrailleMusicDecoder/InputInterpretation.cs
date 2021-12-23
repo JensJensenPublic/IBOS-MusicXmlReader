@@ -327,6 +327,7 @@ namespace BrailleMusicDecoder
                 case InputCategoryEnum.Accidental: return string.Format("{0}", ToShortAccidentalString(subCategory));
                 case InputCategoryEnum.ControlCharCRLF: return "CRLF";
                 case InputCategoryEnum.ControlCharCRLFNumber: return string.Format("CRLF{0}",FriendlyValue);
+                case InputCategoryEnum.ControlCharFF: return "FF";
                 case InputCategoryEnum.Slur: return "Slur";
                 case InputCategoryEnum.Tie: return "Tie";
                 case InputCategoryEnum.InAccordTie: return "IaTie";
@@ -814,6 +815,7 @@ string ToLocalizedString(InputCategoryEnum inputCategory,InputSubCategoryEnum su
                         case InputSubCategoryEnum.ControlCharCRLFContinued: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_ControlCharCRLFContinuedLine;                      
                     }
                     return "?";
+                case InputCategoryEnum.ControlCharFF: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_ControlCharFF;
                 case InputCategoryEnum.ControlCharCRLFNumber: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_ControlCharCRLFMeasureNumber;
                 case InputCategoryEnum.EmbeddedTextRepresentation:
                     switch (subCategory)

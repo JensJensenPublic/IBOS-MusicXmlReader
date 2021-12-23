@@ -489,7 +489,7 @@ namespace BrailleMusicDecoder
 
 
             string inputString = ToString(inputInterpretation, brailleIntegers.List);
-            Logger.LogCF(string.Format(" {0,7} State={1,-15} Input={2} Result={3}      {4} ", startIndex, oldStateName, inputString, inputInterpretationString, newStateText));
+            Logger.LogCF(string.Format(" {0,7} State={1,-15} Input={2} Result={3,-20} {4} ", startIndex, oldStateName, inputString, inputInterpretationString, newStateText));
 
             return inputInterpretation;
         }

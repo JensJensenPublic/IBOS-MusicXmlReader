@@ -628,4 +628,7 @@
   <data name="Note_G_Sharp" xml:space="preserve">
     <value>G_Sharp</value>
   </data>
+  <data name="InputCategoryEnum_ControlCharFF" xml:space="preserve">
+    <value>New page</value>
+  </data>
 </root>
