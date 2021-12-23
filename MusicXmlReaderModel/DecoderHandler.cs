@@ -199,9 +199,23 @@ namespace MusicXmlReaderModel
             } while (null != s);            
             return sb.ToString();  
         }
-  
 
-        private List<DecoderItem> GetDecodedLines(Decoder brailleMusicDecoder, string brailleFileAsUnicode, DecoderOptions decoderOptions)
+
+        private string GetDotNumbers(ref string rawLine, bool developerMode)
+        {
+            if (0 == rawLine.CompareTo("\f"))
+            {
+                rawLine = "FormFeed";
+                return "";               
+            }
+            else
+            {
+                return developerMode ? " =" + Decoder.ToDotNumbers(rawLine) : ""; // Converts from Unicode (0x2800..0x28ff) to DotNumbers
+            }
+        }
+
+
+private List<DecoderItem> GetDecodedLines(Decoder brailleMusicDecoder, string brailleFileAsUnicode, DecoderOptions decoderOptions)
         {
             int i = 0;
             DecoderItem decodedLine = null;
@@ -228,10 +242,10 @@ namespace MusicXmlReaderModel
                         string xmlBuilderString = decoderOptions.DeveloperMode ? "Tilstand" + brailleMusicDecoder.GetStateInformation() : "";
                         string offsetString = decoderOptions.DeveloperMode ?  string.Format("Offset {0} ", originalIndex) : ""; // Allow easy reference to LogFile
                         string rawLine = brailleMusicDecoder.GetNextRawUnicodeLine(originalIndex); // The raw, undecoded contents of the line of Braille found at this point. Primarily for debugging.
-                        string rawLineAsdotNumbers = decoderOptions.DeveloperMode ? " =" + Decoder.ToDotNumbers(rawLine) : "" ; // Converts from Unicode (0x2800..0x28ff) to DotNumbers
+                        string rawLineAsdotNumbers = GetDotNumbers(ref rawLine,decoderOptions.DeveloperMode);
                         string totalString = offsetString + s + " " + xmlBuilderString + " " + rawLine + rawLineAsdotNumbers;
                         decodedLines.Add(DecoderItem.Create(totalString));
-                        Logger.Log(string.Format("{0}", totalString));
+                        Logger.LogCF(string.Format(":>>> {0} <<<", totalString)); // Easy to find in the log !
                     }
 
                     if (!string.IsNullOrEmpty(decodedLine.ToString()))
