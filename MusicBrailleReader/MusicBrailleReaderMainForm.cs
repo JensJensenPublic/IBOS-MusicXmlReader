@@ -494,6 +494,8 @@ namespace MusicBrailleReader
 
         private enum UserWarningOptions { hide, overview, details};
 
+#warning ToDo Make a costum Messagebox where wrapping can be controlled and where JAWS is better supported !
+
         private void ShowUserWarnings(UserWarningOptions options)
         {
             if (options == UserWarningOptions.hide) return;
@@ -503,15 +505,26 @@ namespace MusicBrailleReader
             string fileName = System.IO.Path.GetFileName(fullFileName);
             string text1 = (1 == userWarnings.Count) ? "advarsel" : "advarsler";
             string text2 = "fundet i punktnodefilen";
-            string caption = string.Format("{0} {1} {2} '{3}'", userWarnings.Count, text1, text2, fileName );
             StringBuilder sb = new StringBuilder();
+            int count = 0;
             if (options == UserWarningOptions.details)
             {
                 foreach (string s in userWarnings)
                 {
-                    sb.Append(s + "\r\n");
+                    if (!string.IsNullOrEmpty(s))
+                    {
+                        count++;
+                        string s1 = s.Replace("\r\n", ": "); // Remove all internal crlf        
+                        sb.Append(s1 + "\r\n");
+                    }
                 }
+                for (int i = count; (i < 50) ; i++)
+                {
+                    sb.Append(" \r\n"); // HACK Assure at least 50 lines, which seems to prevent lines from wrapping!
+                }
+              
             }
+            string caption = string.Format("{0} {1} {2} '{3}'", count, text1, text2, fileName);
             MessageBox.Show(sb.ToString(), caption);
         }
 
