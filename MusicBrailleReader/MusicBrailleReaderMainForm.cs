@@ -23,6 +23,7 @@ namespace MusicBrailleReader
 
         Model model;        // The Model containing all of the business logic.
         Form creatingForm;  // Holds the creating form this class was created by another form through the static Create()
+        string musicBrailleDirectory; // Holds the preferred musicBrailledirectory if specified by the creating form
         string executingAssemblyFullPath = ""; // The (unlocalized) name and location of the program, 
         string executingAssemblyShortName = ""; // The (unlocalized) short name of the program, used by for instance JAWS to name configuration file! 
         string fullFileName;
@@ -60,11 +61,12 @@ namespace MusicBrailleReader
             this.textBoxText.AccessibleName = "Valgte symbol i tekstrepræsentation";
         }
 
-        public static  MusicBrailleReaderMainForm Create(Form creatingForm, Model model)
+        public static  MusicBrailleReaderMainForm Create(Form creatingForm, Model model, string musicBrailleDirectory)
         {
             MusicBrailleReaderMainForm result = new MusicBrailleReaderMainForm();
             result.model = model;
             result.creatingForm = creatingForm;
+            result.musicBrailleDirectory = musicBrailleDirectory;
             //creatingForm.Hide();
             return result;
         }
@@ -234,6 +236,11 @@ namespace MusicBrailleReader
 
         private string GetFileOpenInitialDirectory(bool useRecentFile)
         {
+            if ((this.musicBrailleDirectory != null) && (Directory.Exists(this.musicBrailleDirectory)))
+            {
+                // If a preferred Braille Music directory is set up by the creating form, use it
+                return this.musicBrailleDirectory;
+            }
             string baseDirectory = null;
             string userName = System.Environment.UserName;
             string dropboxBase = Path.Combine(@"C:\Users", userName);

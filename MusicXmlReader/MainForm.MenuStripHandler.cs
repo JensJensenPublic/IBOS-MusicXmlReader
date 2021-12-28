@@ -595,7 +595,7 @@ namespace MusicXmlReader
 
         private void musicBrailleReaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(this, model);
+            musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(this, model, this.userPreferencesHandler.BrailleMusicDirectory);
             musicBrailleReaderMainform.Show();
             this.Hide();
         }
