@@ -42,6 +42,7 @@
             this.listBox.Name = "listBox";
             this.listBox.Size = new System.Drawing.Size(946, 225);
             this.listBox.TabIndex = 0;
+            this.listBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.listBox_KeyPress);
             // 
             // button1
             // 

@@ -31,5 +31,15 @@ namespace MusicBrailleReader
         {
             this.Hide();
         }
+
+        private void listBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char c = e.KeyChar;
+
+            if (c == 0x1b) // User pressed ESC
+            {
+                this.Hide();
+            }
+        }
     }
 }
