@@ -373,11 +373,6 @@ namespace MusicXmlReader
             userSettingsHandler.ShowFilterItems(false);
         }
 
-        private void musicBrailleReaderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            userSettingsHandler.StarMusicBrailleReader(sender, e);
-        }
-
 
         #endregion // Edit
 
@@ -595,8 +590,16 @@ namespace MusicXmlReader
             string appFullName = System.Reflection.Assembly.GetExecutingAssembly().Location;
             model.ExternalToolsHandler.OpenConfigurationFileLocation(appFullName);
         }
+        
+        private MusicBrailleReader.MusicBrailleReaderMainForm musicBrailleReaderMainform;
 
-
+        private void musicBrailleReaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(this, model);
+            musicBrailleReaderMainform.Show();
+            this.Hide();
+        }
+        
         private bool AppendLine(System.Text.StringBuilder sb, string fileName, BrailleFileHandler.FileEncoding encoding)
         {
             bool b = isValidBrailleMusic(fileName, encoding);

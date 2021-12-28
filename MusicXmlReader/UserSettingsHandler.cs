@@ -630,20 +630,7 @@ namespace MusicXmlReader
                 treeView.SelectedNode = musicAsSound.Nodes[UserSettingsHandler.detailsNodeIndex];
             }
         }
-
-
-        private MusicBrailleReader.MusicBrailleReaderMainForm  musicBrailleReaderMainform;
-
-        public void StarMusicBrailleReader(object sender, EventArgs e)
-        {
-            //MessageBox.Show("Not implemented yet");
-            //musicBrailleReaderMainform = new MusicBrailleReader.MusicBrailleReaderMainForm(); // Start the MusicBrailleReader as a separate form
-            musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(creatingForm, model); 
-            musicBrailleReaderMainform.Show();
-            creatingForm.Hide();
-        }
         
-
         #endregion
 
     }
