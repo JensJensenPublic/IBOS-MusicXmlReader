@@ -502,24 +502,14 @@ namespace MusicBrailleReader
             List<string> userWarnings = model.DecoderHandler.GetLocalUserWarnings();
             if (0 == userWarnings.Count) return;
 
-            // Get rid of empty lines
-            List<string> nonEmptyUserWarnings = new List<string>();
-            foreach (String s in userWarnings)
-            {
-                if (!string.IsNullOrEmpty(s))
-                {
-                    nonEmptyUserWarnings.Add(s);
-                }
-            }
-
             // Build a localized caption
             string fileName = System.IO.Path.GetFileName(fullFileName);
-            string text1 = (1 == nonEmptyUserWarnings.Count) ? "advarsel" : "advarsler";
+            string text1 = (1 == userWarnings.Count) ? "advarsel" : "advarsler";
             string text2 = "fundet i punktnodefilen";
-            string caption = string.Format("{0} {1} {2} '{3}'", nonEmptyUserWarnings.Count, text1, text2, fileName);
+            string caption = string.Format("{0} {1} {2} '{3}'", userWarnings.Count, text1, text2, fileName);
             if (options == UserWarningOptions.details)
             {             
-                UserMessageListForm userMessageListForm = new UserMessageListForm(caption, nonEmptyUserWarnings);
+                UserMessageListForm userMessageListForm = new UserMessageListForm(caption, userWarnings);
                 userMessageListForm.Show(); 
             }        
         }

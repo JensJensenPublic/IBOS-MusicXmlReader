@@ -125,8 +125,7 @@ namespace MusicXmlReaderModel
                         line = string.Format("{0} {1}", warningText, userInfoBase.Message);
                         break;
                 }
-                result.Add(line);
-                result.Add("");
+                result.Add(line);      
             }
             return result;
         }
