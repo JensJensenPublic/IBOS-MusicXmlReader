@@ -501,31 +501,27 @@ namespace MusicBrailleReader
             if (options == UserWarningOptions.hide) return;
             List<string> userWarnings = model.DecoderHandler.GetLocalUserWarnings();
             if (0 == userWarnings.Count) return;
+
+            // Get rid of empty lines
+            List<string> nonEmptyUserWarnings = new List<string>();
+            foreach (String s in userWarnings)
+            {
+                if (!string.IsNullOrEmpty(s))
+                {
+                    nonEmptyUserWarnings.Add(s);
+                }
+            }
+
             // Build a localized caption
             string fileName = System.IO.Path.GetFileName(fullFileName);
-            string text1 = (1 == userWarnings.Count) ? "advarsel" : "advarsler";
+            string text1 = (1 == nonEmptyUserWarnings.Count) ? "advarsel" : "advarsler";
             string text2 = "fundet i punktnodefilen";
-            StringBuilder sb = new StringBuilder();
-            int count = 0;
+            string caption = string.Format("{0} {1} {2} '{3}'", nonEmptyUserWarnings.Count, text1, text2, fileName);
             if (options == UserWarningOptions.details)
-            {
-                foreach (string s in userWarnings)
-                {
-                    if (!string.IsNullOrEmpty(s))
-                    {
-                        count++;
-                        string s1 = s.Replace("\r\n", ": "); // Remove all internal crlf        
-                        sb.Append(s1 + "\r\n");
-                    }
-                }
-                for (int i = count; (i < 50) ; i++)
-                {
-                    sb.Append(" \r\n"); // HACK Assure at least 50 lines, which seems to prevent lines from wrapping!
-                }
-              
-            }
-            string caption = string.Format("{0} {1} {2} '{3}'", count, text1, text2, fileName);
-            MessageBox.Show(sb.ToString(), caption);
+            {             
+                UserMessageListForm userMessageListForm = new UserMessageListForm(caption, nonEmptyUserWarnings);
+                userMessageListForm.Show(); 
+            }        
         }
 
 
