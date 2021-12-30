@@ -103,6 +103,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public override bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls)
         {
+            Logger.LogCF(string.Format("Entry: Length={0} File={1}, AcceptControls={2}", unicodeBraille.Length, Path.GetFileName(fullFileName), acceptControls));
             byte[] byteArray = ToBytes(unicodeBraille, acceptControls);
             return WriteToFile(byteArray, fullFileName);
         }

@@ -128,6 +128,7 @@ namespace MusicXmlReaderModel
         
         public override bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls)
         {
+            Logger.LogCF(string.Format("Entry: Length={0} File={1}, AcceptControls={2}", unicodeBraille.Length, Path.GetFileName(fullFileName), acceptControls));
             currentSectionElement.RemoveAll(); // Only keep the static part of the contents, remove all previously generated pages and rows.
             bool result = false;
 
