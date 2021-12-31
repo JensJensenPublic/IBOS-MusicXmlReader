@@ -364,6 +364,12 @@ namespace MusicXmlReaderModel
             }
         }
 
+        private string GetPartName(string partName)
+        {
+            if (0 == string.Compare(PartName, "MusicXML Part")) return ""; // Do not use this artificial partname to build a filename
+            return "." + Utilities.ToValidFileName(PartName);
+        }
+
 
         public string MusicBrailleFilenameAttribute
         {
@@ -372,7 +378,7 @@ namespace MusicXmlReaderModel
                 if (string.IsNullOrEmpty(name))
                 {
                     //string partString = NoCrLf(PartName);
-                    string partString = PartId + "." + Utilities.ToValidFileName(PartName);
+                    string partString = PartId + GetPartName(PartName);
                     return IsPartOfGrandStaff ? partString + "." + GetStaffName(staffNumber) : partString;
                 }
                 return name;
