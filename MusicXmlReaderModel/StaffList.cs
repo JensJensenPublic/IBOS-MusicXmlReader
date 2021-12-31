@@ -32,6 +32,16 @@ namespace MusicXmlReaderModel
         // And finally, primarily for testing:
         private List<List<string>> satbNames = new List<List<string>> { sopranoNames, altoNames ,tenorNames, basNames };
 
+        private int GetMinStaffNumber()
+        {
+            int result = int.MaxValue;
+            foreach (Staff staff in this.Staffs)
+            {
+                result = Math.Min(result, staff.StaffNumber);
+            }
+            return result;
+        }
+
 
         private const bool fromTop = true;
         private const bool fromBottom = false;
@@ -91,9 +101,9 @@ namespace MusicXmlReaderModel
                 // Logger.LogCF(string.Format(": PartId={0} minStaff={1} maxStaff={2} nElements={3}", part.Id, minStaffNumber, maxStaffNumber, nElements));
 
                 // Create and add all staffs for this part (typically 1 staff per part except for Piano, Organ, Harp etc)
-                bool isPartOfGrandStaff = minStaffNumber != maxStaffNumber;
+                bool isPartOfGrandStaff = minStaffNumber != maxStaffNumber;           
                 for (int i = minStaffNumber; i <= maxStaffNumber; i++)
-                {
+                {               
                     Staff staff = Staff.Create(partNumber, i, isPartOfGrandStaff,this);
                     staffs.Add(staff);
                     // Logger.LogCF(string.Format(": Added staff with staffNumber={0}  partId={1}", i, part.Id));
@@ -177,12 +187,14 @@ namespace MusicXmlReaderModel
             try
             {
                 EventDescription currentEventDescription;
+                int minStaffNumber = this.GetMinStaffNumber();   // Cache this value, which is needed to dermine the Interval direction           
                 foreach (Staff staff in this.Staffs)
                 {
-                    Logger.LogCF(string.Format(": Part={0} Staff={1}", staff.PartName,staff.StaffNumber));
+                    bool fromTop = ((staff.IsPartOfGrandStaff) && (staff.StaffNumber == minStaffNumber)); // The first staff in a grand staff uses fromtop notation. Fixes Error 502 2021.12.31
+                    Logger.LogCF(string.Format(": Part={0} Staff={1} FromTop={2}", staff.PartName,staff.StaffNumber,fromTop));
                     //userSettings.StaffNumber = staff.StaffNumber; // Ignore all other staff numbers
                     userSettings.SelectedStaffs = new List<StaffSelector>();
-                    userSettings.SelectedStaffs.Add(StaffSelector.Create(staff.PartId, staff.StaffNumber));  // Ignore all other staff numbers
+                    userSettings.SelectedStaffs.Add(StaffSelector.Create(staff.PartId, staff.StaffNumber,fromTop));  // Ignore all other staff numbers. Adding "fromTop" fixes Error 502 2021.12.31
                     List<BrailleBuilder> brailleBuilders = new List<BrailleBuilder>(); // For this particular staff in this particular part
 
 
