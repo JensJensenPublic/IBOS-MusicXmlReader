@@ -1050,4 +1050,16 @@
     <value>Beat</value>
     <comment>NL missing</comment>
   </data>
+  <data name="StaffName1" xml:space="preserve">
+    <value>Right hand</value>
+    <comment>No Dutch</comment>
+  </data>
+  <data name="StaffName2" xml:space="preserve">
+    <value>Left hand</value>
+    <comment>No Dutch</comment>
+  </data>
+  <data name="StaffNameDefault" xml:space="preserve">
+    <value>Staff</value>
+    <comment>No Dutch</comment>
+  </data>
 </root>

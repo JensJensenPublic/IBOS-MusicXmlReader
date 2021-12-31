@@ -2239,6 +2239,33 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Right hand.
+        /// </summary>
+        internal static string StaffName1 {
+            get {
+                return ResourceManager.GetString("StaffName1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left hand.
+        /// </summary>
+        internal static string StaffName2 {
+            get {
+                return ResourceManager.GetString("StaffName2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Staff.
+        /// </summary>
+        internal static string StaffNameDefault {
+            get {
+                return ResourceManager.GetString("StaffNameDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to continue.
         /// </summary>
         internal static string StartStopContinueElement_Continue {

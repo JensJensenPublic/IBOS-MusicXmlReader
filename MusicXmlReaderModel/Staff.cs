@@ -354,6 +354,15 @@ namespace MusicXmlReaderModel
         }
 
 
+        private string GetStaffName(int staffNumber)
+        {
+            switch (staffNumber)
+            {
+                case 1: return ResourcesForModel.StaffName1;
+                case 2: return ResourcesForModel.StaffName2;
+                default: return ResourcesForModel.StaffNameDefault + staffNumber.ToString();
+            }
+        }
 
 
         public string MusicBrailleFilenameAttribute
@@ -364,7 +373,7 @@ namespace MusicXmlReaderModel
                 {
                     //string partString = NoCrLf(PartName);
                     string partString = PartId + "." + Utilities.ToValidFileName(PartName);
-                    return IsPartOfGrandStaff ? partString + "." + staffNumber : partString;
+                    return IsPartOfGrandStaff ? partString + "." + GetStaffName(staffNumber) : partString;
                 }
                 return name;
             }
