@@ -51,7 +51,14 @@ namespace MusicXmlReader
             this.applicationName = applicationName;
             this.userPreferencesHandler = userPreferences;
             InitializeComponent();
- 
+
+            if (Logger.DeveloperMode)
+            {
+                // Allow for large page widths (number of columns per row) during development
+                this.numericUpDownWidth.Maximum = int.MaxValue;
+                // Allow for large page heights (number of rows per page) during development
+                this.numericUpDownHeight.Maximum = int.MaxValue;
+            }
 
             // Fill in title and tabels
             this.settingsHandler = BrailleMusicSettingsFormHandler.Create(deviceTypeEnum);

@@ -125,7 +125,16 @@ namespace MusicXmlReaderModel
 
             // No initialisation of conversion tables are needed here !
         }
-        
+
+        private void OnCarriageReturn(List<XmlNode> currentPageContents, StringBuilder rowContents)
+        {
+            XmlNode rowElement = doc.CreateElement("row");
+            rowElement.InnerText = rowContents.ToString();
+            currentPageContents.Add(rowElement);
+            maxCols = Math.Max(maxCols, rowContents.Length);
+            rowContents.Clear();          
+        }
+
         public override bool WriteToFile(string unicodeBraille, string fullFileName, bool acceptControls)
         {
             Logger.LogCF(string.Format("Entry: Length={0} File={1}, AcceptControls={2}", unicodeBraille.Length, Path.GetFileName(fullFileName), acceptControls));
@@ -149,8 +158,7 @@ namespace MusicXmlReaderModel
             int nOther = 0;
 
             StringBuilder currentRowContents = new StringBuilder(this.charsPerLine);
-            List<XmlNode> currentPageContents = new List<XmlNode>(this.linesPerForm);
-            XmlNode currentRowElement;
+            List<XmlNode> currentPageContents = new List<XmlNode>(this.linesPerForm); 
        
             // Add the contents of unicodeBraille as a number of pages, each containing a number of rows
             foreach (char c in unicodeBraille)
@@ -164,22 +172,16 @@ namespace MusicXmlReaderModel
                 {
                     switch ((int)c)
                     {
-                        case CarriageReturn:
-                            currentRowElement = doc.CreateElement("row");
-                            string currentRowString = currentRowContents.ToString();
-                            currentRowElement.InnerText = currentRowString;               
-                            currentPageContents.Add(currentRowElement);
-                            maxCols = Math.Max(maxCols, currentRowContents.Length);
-                            currentRowContents.Clear();
-                            nCR++;
-                            break; 
+                        case CarriageReturn: nCR++; OnCarriageReturn(currentPageContents,currentRowContents); break; 
                         case LineFeed: nLF++;  break;
                         case FormFeed: nFF++; AddPage(currentPageContents); break;
-                        default: nOther++; Logger.LogCF(string.Format(": Unexpected character= '{0}'", c));break;
+                        default: nOther++; Logger.LogCF(string.Format(": Unexpected character= '{0}'", c)); break;
                     }
                 }  
             }
 
+            // Add the contents of the last row even if no CarriageReturn is found
+            OnCarriageReturn(currentPageContents,currentRowContents);      
             // Add the last page, even if no FormFeed is found
             AddPage(currentPageContents);
 
