@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml;
+using System.Text;
 
 namespace BrailleMusicDecoder.MusicXmlElements
 {
@@ -87,9 +88,64 @@ namespace BrailleMusicDecoder.MusicXmlElements
             }
         }
 
+        #region debugtools
+        private string GetDebugInnerText(string childName)
+        {
+            XmlNodeList childNodes = this.SelectNodes(childName);
+            switch (childNodes.Count)
+            {
+                case 0:  return string.Format("'{0}': UNDEFINED", childName);
+                case 1:  return string.Format("'{0}'='{1}'", childName, childNodes[0].InnerText);
+                default: return string.Format("'{0} ({1} OCCURANCES)", childName,childNodes.Count); 
+            }
+        }
+
+        private string GetDebugAttributes(string childName, string attributeName)
+        {
+            XmlNodeList childNodes = this.SelectNodes(childName);
+            switch (childNodes.Count)
+            {
+                case 0: return string.Format("'{0}'=UNDEFINED", childName);
+                case 1: return string.Format("'{0}'.Attributes('{1}')={2}", childName, attributeName, childNodes[0].Attributes.GetNamedItem(attributeName).Value);
+                default:
+                    // More than one childelement with the given childName exists. Accumulate the value of the specified attribute across the children.
+                    StringBuilder attributeValues = new StringBuilder();
+                    foreach (XmlNode childNode in childNodes)
+                    {
+                        string value = childNode.Attributes.GetNamedItem(attributeName).Value;
+                        attributeValues.Append(value + " ");
+                    }
+                    return string.Format("'{0}' ({1} OCCURANCES).Attributes('{2}')={3} ", childName, childNodes.Count,attributeName, attributeValues.ToString());
+            }
+        }
+
+        
+        private string GetDebugMeasureNumberString()
+        {
+            XmlNode parentNode = this.ParentNode;
+            XmlNode parentNodeNumberAttribute =  parentNode.Attributes.GetNamedItem("number");
+            string measureNumber = parentNodeNumberAttribute.Value;
+            return string.Format("Measure={0} ", measureNumber);
+        }
+
+        private string ToDebugString()
+        {
+            string measure = this.GetDebugMeasureNumberString();
+            string pitch = this.GetDebugInnerText("pitch");
+            string duration = this.GetDebugInnerText("duration");
+            string tie = this.GetDebugAttributes("tie","type");
+            string notations = this.GetDebugInnerText("notations");
+            string result =  measure + " " + pitch + " " + duration + " " + tie + " "  + notations;
+            return result;
+        }
+
+        #endregion
 
         public void AddTieAndTied(MusicXmlElementFactory e, string startOrStop)
         {
+            string atEntry = ".Entry: " + this.ToDebugString();
+            LogCF(atEntry);
+
             // The sound is represented by the "tie" element, placed directly under the note
             // Find a "previousElement" to place the tie Element after.
             // Most notes contain a durationelement, but grace notes do NOT.
@@ -105,6 +161,9 @@ namespace BrailleMusicDecoder.MusicXmlElements
             XmlNode tied = e.TiedElement(startOrStop);
             XmlNode notations = SelectSingleNode("notations");
             notations.AppendChild(tied);
+
+            string atExit = ".Exit:  " + this.ToDebugString();
+            LogCF(atExit);
         }
 
 
