@@ -16,7 +16,8 @@ namespace MusicBrailleReader
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MusicBrailleReaderMainForm());
+            //Application.Run(new MusicBrailleReaderMainForm());
+            Application.Run(MusicBrailleReaderMainForm.Create());
         }
     }
 }
