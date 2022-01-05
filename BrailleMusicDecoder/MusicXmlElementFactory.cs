@@ -163,6 +163,8 @@ namespace BrailleMusicDecoder
             result.InnerXml = string.Copy(oldNote.InnerXml); // Copy the contents
             result.InsertBefore(Element("chord"), result.FirstChild); // Mark the clone as a "chord"
             result.ModifyPitch(interval, direction, accidentalHandler); // Modify pitch of the new note
+            result.RemoveNamedChild("tie"); // Do NOT clone  ties
+            result.RemoveGrandChildren("notations"); // Do NOT clone contents of notations (Such as "tied")
             return result;
         }
 

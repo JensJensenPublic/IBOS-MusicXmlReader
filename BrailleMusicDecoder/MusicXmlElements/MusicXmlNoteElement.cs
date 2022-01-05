@@ -26,7 +26,28 @@ namespace BrailleMusicDecoder.MusicXmlElements
                 octaveNode.InnerText = newOctaveNumber.ToString();
             }
         }
-        
+
+        public void RemoveNamedChild(string childName)
+        {
+            XmlNode childNode = this.SelectSingleNode(childName);
+            if (null != childNode)
+            {
+                this.RemoveChild(childNode);
+            }
+        }
+
+        public void RemoveGrandChildren(string childName)
+        {
+            XmlNode childNode = this.SelectSingleNode(childName);
+            if (null != childNode)
+            {
+                childNode.RemoveAll();
+                childNode.Attributes.RemoveAll();
+            }
+        }
+
+
+
         /// <summary>
         /// Convenience method for modifying the pitchElement within a NoteElement
         /// </summary>

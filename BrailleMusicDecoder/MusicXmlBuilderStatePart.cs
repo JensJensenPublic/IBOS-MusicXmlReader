@@ -34,6 +34,7 @@ namespace BrailleMusicDecoder
         // Interval notation  
         private IntervalDirectionEnum currentIntervalDirection = IntervalDirectionEnum.up;
         private List<MusicXmlNoteElement> currentIntervalNotes; // All noteElements currently taking part of an Interval Notation
+        private MusicXmlNoteElement latestIntervalNote = null; // The latest noteElement added taking part of an interval notation
         private MusicXmlNoteElement currentIntervalNotationBase // The noteElement currently acting as the (possible) base of an Interval notation
         {
             get
@@ -292,7 +293,8 @@ namespace BrailleMusicDecoder
                 chordNote.ModifyOctaveNumber(chordOctave);
             }
             CurrentMeasure.AppendChild(chordNote);
-            currentIntervalNotes.Add(chordNote); // Now contains the "Base" NoteElement in position 0 and 1 or more other NoteElements 
+            currentIntervalNotes.Add(chordNote); // Now contains the "Base" NoteElement in position 0 and 1 or more other NoteElements
+            latestIntervalNote = chordNote; // Now contains the latest Interval-notation-based note added;
         }
 
 
@@ -374,6 +376,7 @@ namespace BrailleMusicDecoder
                
                     currentIntervalNotes = new List<MusicXmlNoteElement>();
                     currentIntervalNotes.Add(currentNote);
+                    latestIntervalNote = null; // Mark that the latest note added was not represented by chord-notation
                     tieHandler.AddTieStop(currentNote);
 
                     // If the stickyAttributesHandler contains "sticky" articulations we must add them all before we add the articulations to the note
@@ -523,11 +526,20 @@ namespace BrailleMusicDecoder
                     break;
 
                 case InputCategoryEnum.Tie:
-                    // Do the same as for the InAccordTie, but only for currentNote
+                    // Do the same as for the InAccordTie, but only for currentNote or latestIntervalNote
                     //LogCF(string.Format("({0},{1})", input.Category.ToString(), input.FriendlyValue));
-                    // LogCF(input.ToDebugString());
-                    currentNote.AddTieAndTied(musicXmlElementFactory, "start");
-                    tieHandler.Add(currentNote);
+                    // LogCF(input.ToDebugString());                 
+                    MusicXmlNoteElement noteForTie = null;
+                    if (null != latestIntervalNote)
+                    {
+                        noteForTie = latestIntervalNote;
+                    }
+                    else
+                    {
+                        noteForTie = currentNote;
+                    }
+                    noteForTie.AddTieAndTied(musicXmlElementFactory, "start");
+                    tieHandler.Add(noteForTie);
                     break;
 
                 case InputCategoryEnum.Punctuation:
