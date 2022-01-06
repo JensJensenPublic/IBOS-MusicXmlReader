@@ -30,9 +30,7 @@ namespace MusicBrailleReader
         BrailleFileHandler.FileEncoding fileEncoding;
         string latestMusicXmlFileGenerated = "";
         RegressionTest regressionTest; // For isolating code for Regression test
-        string[] arguments = null;
-        bool developerMode = false;
-        MusicBrailleEditor musicBrailleEditor;
+        bool developerMode = Logger.DeveloperMode;
         private ListBoxOffsetsHandler listboxOffsetsHandler;
 
         List<DecoderItem> currentInterpretation; // Contains the full interpretation of the current inputfile with the current settings
