@@ -187,15 +187,15 @@ namespace BrailleMusicDecoder
             ii.Add(rawValues, new IntegerList(dot25, dot345, dot3), InputCategoryEnum.Chords, "+.");
 
             // Clefs (Use BANA 2015 definitions. See comments in BRailleBuilder.cs)
-            ii.Add(rawValues, new IntegerList(dot345, dot34, dot123), InputCategoryEnum.Clef, "G");
-            ii.Add(rawValues, new IntegerList(dot345, dot34, dot123, dot3), InputCategoryEnum.Clef, "G.");
-            ii.Add(rawValues, new IntegerList(dot345, dot3456, dot123), InputCategoryEnum.Clef, "F");
-            ii.Add(rawValues, new IntegerList(dot345, dot3456, dot123, dot3), InputCategoryEnum.Clef, "F.");
+            ii.Add(rawValues, new IntegerList(dot345, dot34, dot123), InputCategoryEnum.Clef, "G", InputSubCategoryEnum.ClefG);
+            ii.Add(rawValues, new IntegerList(dot345, dot34, dot123, dot3), InputCategoryEnum.Clef, "G.", InputSubCategoryEnum.ClefG);
+            ii.Add(rawValues, new IntegerList(dot345, dot3456, dot123), InputCategoryEnum.Clef, "F", InputSubCategoryEnum.ClefF);
+            ii.Add(rawValues, new IntegerList(dot345, dot3456, dot123, dot3), InputCategoryEnum.Clef, "F.", InputSubCategoryEnum.ClefF);
             // Clefs, preceeded by an empty space: Repeat the 4 lines above, preceeded with noDots. This prevents misinterpretation as "NewMeasure" followes by "Text"
-            ii.Add(rawValues, new IntegerList(noDots, dot345, dot34, dot123), InputCategoryEnum.Clef, "G");
-            ii.Add(rawValues, new IntegerList(noDots, dot345, dot34, dot123, dot3), InputCategoryEnum.Clef, "G.");
-            ii.Add(rawValues, new IntegerList(noDots, dot345, dot3456, dot123), InputCategoryEnum.Clef, "F");
-            ii.Add(rawValues, new IntegerList(noDots, dot345, dot3456, dot123, dot3), InputCategoryEnum.Clef, "F.");
+            ii.Add(rawValues, new IntegerList(noDots, dot345, dot34, dot123), InputCategoryEnum.Clef, "G", InputSubCategoryEnum.ClefG);
+            ii.Add(rawValues, new IntegerList(noDots, dot345, dot34, dot123, dot3), InputCategoryEnum.Clef, "G.", InputSubCategoryEnum.ClefG);
+            ii.Add(rawValues, new IntegerList(noDots, dot345, dot3456, dot123), InputCategoryEnum.Clef, "F", InputSubCategoryEnum.ClefF);
+            ii.Add(rawValues, new IntegerList(noDots, dot345, dot3456, dot123, dot3), InputCategoryEnum.Clef, "F.", InputSubCategoryEnum.ClefF);
 
 
             //Hands. (In some cases  a dot3 was appended to the Hand symbol (RefsNæs II blackpage 4)

@@ -702,7 +702,7 @@ string ToLocalizedString(InputCategoryEnum inputCategory,InputSubCategoryEnum su
                         case InputSubCategoryEnum.CharacterExpandedContraction: return ResourcesForBrailleMusicDecoder.InputSubCategoryEnum_Contraction;
                         default: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_Character + " "; // Need a space between the category and the value for readability
                     }
-                case InputCategoryEnum.Clef: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_Clef;
+                case InputCategoryEnum.Clef: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_Clef + " ";
                 case InputCategoryEnum.Denominator: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_Denominator;
                 case InputCategoryEnum.Digit: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_Digit;
                 //                case InputCategoryEnum.EndRepeat: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_EndRepeat;

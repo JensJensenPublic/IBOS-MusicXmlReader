@@ -139,6 +139,9 @@ namespace BrailleMusicDecoder
         ChordNumericExtension13,
         ChordNumericExtension13Flat,
         ChordNumericExtension13Sharp,
+        // Clefs
+        ClefF,
+        ClefG,
         // FullSteps
         FullStepA,
         FullStepB,
