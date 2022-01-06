@@ -378,7 +378,7 @@ namespace BrailleMusicDecoder
         /// </returns>
         private InputInterpretation ToInputInterpretation(int startIndex, out InputInterpretationList prioritizedInputValues)
         {
-            int breakIndex = 865;
+            int breakIndex = int.MaxValue; // No break
 
             prioritizedInputValues = null;
 

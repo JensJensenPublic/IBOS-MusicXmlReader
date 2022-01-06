@@ -498,8 +498,16 @@ namespace BrailleMusicDecoder
                     break;
 
                 case InputCategoryEnum.Clef:
-                    //currentAttributesElement.AppendChild(ClefElement(inputValue));
-                    currentAttributesElement.ReplaceChild(musicXmlElementFactory.ClefElement(input.Category, input.FriendlyValue, input.SubCategory), currentAttributesElement.SelectSingleNode("clef"));
+                    XmlNode newClefElement = musicXmlElementFactory.ClefElement(input.Category, input.FriendlyValue, input.SubCategory);
+                    XmlNode existingClefElement = currentAttributesElement.SelectSingleNode("clef");
+                    if (null == existingClefElement)
+                    {
+                        currentAttributesElement.AppendChild(newClefElement);
+                    }
+                    else
+                    {
+                        currentAttributesElement.ReplaceChild(newClefElement, existingClefElement);
+                    }
                     break;
 #warning TODO Remove existing ClefElement first
 

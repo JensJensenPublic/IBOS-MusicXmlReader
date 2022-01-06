@@ -191,6 +191,12 @@ namespace BrailleMusicDecoder
             ii.Add(rawValues, new IntegerList(dot345, dot34, dot123, dot3), InputCategoryEnum.Clef, "G.");
             ii.Add(rawValues, new IntegerList(dot345, dot3456, dot123), InputCategoryEnum.Clef, "F");
             ii.Add(rawValues, new IntegerList(dot345, dot3456, dot123, dot3), InputCategoryEnum.Clef, "F.");
+            // Clefs, preceeded by an empty space: Repeat the 4 lines above, preceeded with noDots. This prevents misinterpretation as "NewMeasure" followes by "Text"
+            ii.Add(rawValues, new IntegerList(noDots, dot345, dot34, dot123), InputCategoryEnum.Clef, "G");
+            ii.Add(rawValues, new IntegerList(noDots, dot345, dot34, dot123, dot3), InputCategoryEnum.Clef, "G.");
+            ii.Add(rawValues, new IntegerList(noDots, dot345, dot3456, dot123), InputCategoryEnum.Clef, "F");
+            ii.Add(rawValues, new IntegerList(noDots, dot345, dot3456, dot123, dot3), InputCategoryEnum.Clef, "F.");
+
 
             //Hands. (In some cases  a dot3 was appended to the Hand symbol (RefsNæs II blackpage 4)
             string stringRight = ResourcesForBrailleMusicDecoder.InputValueHand_Right; // NOTE: The part-name is needed by the MUSICXML generator

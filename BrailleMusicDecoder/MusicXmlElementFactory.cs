@@ -708,6 +708,13 @@ namespace BrailleMusicDecoder
 
         internal XmlNode ClefElement(InputCategoryEnum inputCategory, string inputValue, InputSubCategoryEnum inputSubCategory)
         {
+            // If an inputvalue is explicitly specified, use it
+            switch (inputValue)
+            {
+                case "G": return ClefElement("G", 2, 0);
+                case "F": return ClefElement("F", 4, 0);
+            }
+            // Otherwise rely on the inputSubcategory
             switch (inputSubCategory)
             {
                 case InputSubCategoryEnum.HandRight: return ClefElement("G", 2, 0);
