@@ -77,12 +77,27 @@ namespace MusicBrailleReader
 
 
         /// <summary>
-        /// To be called from program.cs if this form is used as a stand-alone program and MusicXmlReader.Model class is available
+        /// To be called from program.cs if this form is used as a stand-alone program and no MusicXmlReader.Model class is available
         /// </summary>
         /// <returns></returns>
         public static MusicBrailleReaderMainForm Create()
         {
-            MusicBrailleReaderMainForm result = new MusicBrailleReaderMainForm(null,null,null);
+            // Set up for logging by opening and initializing the (static) Logger class
+            string applicationName = "IBOS Punktnodelæser";
+            Logger.Open(applicationName+".Log"); // "IBOS Punktnodelæser.Log"
+            Logger.ShowTimeStampInLog = false; // Use false to compare logfiles while ignoring timestampe.
+            Logger.LogCF(""); // An empty line to catch the eye
+            Logger.LogCF(string.Format(": Starting: Date={0}", System.DateTime.Now.ToLongDateString()));
+            // Get and interpret commandline arguments
+            string[] arguments = Environment.GetCommandLineArgs();
+            string developerModeString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.DeveloperMode);
+            bool developerMode = ("yes" == developerModeString);        
+            Logger.DeveloperMode = developerMode;
+            Logger.LogArguments(arguments);
+            // Instantiate a Model instance containing lots of common code, originally designed for the MusicXmlReader
+            Model model = Model.Create(null, null, applicationName, null); 
+            //Create and return the Form itself
+            MusicBrailleReaderMainForm result = new MusicBrailleReaderMainForm(null,model,null);
             return result;
         }
 
@@ -92,38 +107,22 @@ namespace MusicBrailleReader
         private MusicBrailleReaderMainForm()
         { }
 
+
         private MusicBrailleReaderMainForm(Form creatingForm, Model model, string musicBrailleDirectory)
         {
             this.model = model;
             this.creatingForm = creatingForm;
             this.musicBrailleDirectory = musicBrailleDirectory;
-            //creatingForm.Hide();
 
             executingAssemblyFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingAssemblyShortName = System.IO.Path.GetFileNameWithoutExtension(executingAssemblyFullPath);
             InitializeComponent();
             LocalizeComponent();  // Overwrite all items exept in MenuStrip with localized texts
-            this.openTestFileToolStripMenuItem.Text = string.Format("Decode '{0}'", currentTestFileName);    
-         
-            Logger.Open(applicationName+".Log"); // "MusicBrailleReader.Log"
-            Logger.ShowTimeStampInLog = false; // Use false to compare logfiles while ignoring timestampe.
-            Logger.LogCF(""); // An empty line to catch the eye
-            Logger.LogCF(string.Format(": Starting: Date={0}", System.DateTime.Now.ToLongDateString()));
-            arguments = Environment.GetCommandLineArgs();
-            string developerModeString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.DeveloperMode);
-            developerMode = ("yes" == developerModeString);
-            HideDeveloperItems(developerMode);
-            Logger.DeveloperMode = developerMode;
-            Logger.LogArguments(arguments);
-
-            Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings
-
-            if (null == this.model) // Reuse the model if specified by the caller
-            {
-                this.model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), applicationName, (this as IDecoderUiClient));
-            }
+            this.openTestFileToolStripMenuItem.Text = string.Format("Decode '{0}'", currentTestFileName);
+            HideDeveloperItems(Logger.DeveloperMode);
+ 
             Application.ApplicationExit += Application_ApplicationExit; // Add an exit-handler to be sure all processes will be shut down on application exit !
-          
+        
             LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
             regressionTest = RegressionTest.Create(this as IRegressionTestClient);
 #if false
@@ -854,7 +853,7 @@ namespace MusicBrailleReader
         }
 
 #if false
-        #region TextBoxRawBraille6EventHandlers        
+#region TextBoxRawBraille6EventHandlers        
 
         private void textBoxRawBraille6_KeyDown(object sender, KeyEventArgs e)
         {
