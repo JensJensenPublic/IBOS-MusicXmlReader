@@ -911,7 +911,33 @@ namespace BrailleMusicDecoder
             allInputInterpretations.Add(rawValues, new IntegerList(toDigit, digit5, keySignatureSharp), category, "+5", BANA); // BANA 2015 Table 6. Accidentals and Key Signatures (Pars. 6.1–6.5.1)
             allInputInterpretations.Add(rawValues, new IntegerList(toDigit, digit6, keySignatureSharp), category, "+6", BANA); // BANA 2015 Table 6. Accidentals and Key Signatures (Pars. 6.1–6.5.1)
 
-#if true          
+#if true
+            // Added 2022.01.07 to avoid "Empty measure ignored" by eating any NoDots in front of a keysignature.
+            // Repeating all lines above, but inserting the "noDots" symbol first:
+
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots,keySignatureFlat, 0), category, "-1", InputSubCategoryEnum.None); // 
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, keySignatureFlat, keySignatureFlat, 0), category, "-2", InputSubCategoryEnum.None); // 
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, keySignatureFlat, keySignatureFlat, keySignatureFlat, 0), category, "-3", InputSubCategoryEnum.None); // 
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, digit4Lowered, keySignatureFlat, 0), category, "-4", DK); // Danish, Refsnæs
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, digit5Lowered, keySignatureFlat, 0), category, "-5", DK); // Danish, Refsnæs
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, digit6Lowered, keySignatureFlat, 0), category, "-6", DK); // Danish, Refsnæs
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, toDigit, digit4, keySignatureFlat), category, "-4", BANA); // BANA 2015 Table 6. Accidentals and Key Signatures (Pars. 6.1–6.5.1)
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, toDigit, digit5, keySignatureFlat), category, "-5", BANA); // BANA 2015 Table 6. Accidentals and Key Signatures (Pars. 6.1–6.5.1)
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, toDigit, digit6, keySignatureFlat), category, "-6", BANA); // BANA 2015 Table 6. Accidentals and Key Signatures (Pars. 6.1–6.5.1)
+
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, keySignatureSharp, 0), category, "+1", InputSubCategoryEnum.None); // 
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, keySignatureSharp, keySignatureSharp, 0), category, "+2", InputSubCategoryEnum.None); // 
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, keySignatureSharp, keySignatureSharp, keySignatureSharp, 0), category, "+3", InputSubCategoryEnum.None);
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, digit4Lowered, keySignatureSharp, 0), category, "+4", DK); // Danish, Refsnæs
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, digit5Lowered, keySignatureSharp, 0), category, "+5", DK); // Danish, Refsnæs
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, digit6Lowered, keySignatureSharp, 0), category, "+6", DK); //  Danish, Refsnæs
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, toDigit, digit4, keySignatureSharp), category, "+4", BANA); // BANA 2015 Table 6. Accidentals and Key Signatures (Pars. 6.1–6.5.1)
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, toDigit, digit5, keySignatureSharp), category, "+5", BANA); // BANA 2015 Table 6. Accidentals and Key Signatures (Pars. 6.1–6.5.1)
+            allInputInterpretations.Add(rawValues, new IntegerList(noDots, toDigit, digit6, keySignatureSharp), category, "+6", BANA); // BANA 2015 Table 6. Accidentals and Key Signatures (Pars. 6.1–6.5.1)
+#endif
+
+
+#if true
             InputSubSubCategoryEnum cancel = InputSubSubCategoryEnum.KeySignatureCancel; // Explicitly shows that this input is for cancelling, not adding sharp/flat. (Inplicitly shown by the missing "-"/"+" in FriendlyValue
             allInputInterpretations.Add(rawValues, new IntegerList(keySignatureNatural, 0), category, "1", InputSubCategoryEnum.None, cancel); // 
             allInputInterpretations.Add(rawValues, new IntegerList(keySignatureNatural, keySignatureNatural, 0), category, "2", InputSubCategoryEnum.None, cancel); // 
