@@ -961,7 +961,11 @@ namespace MusicXmlReaderModel
 
                     if (barlineElement.IsLastBar)
                     {
-                        lastBar = true;
+                        RepeatElement repeatElement = barlineElement.RepeatElement;
+                        if (null == repeatElement)
+                        {
+                            lastBar = true;
+                        }
                     }
 
                 } // foreach
