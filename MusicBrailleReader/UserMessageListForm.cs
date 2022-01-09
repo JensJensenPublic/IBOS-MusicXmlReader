@@ -13,6 +13,7 @@ namespace MusicBrailleReader
         public UserMessageListForm(string caption, List<string> messages)
         {
             InitializeComponent();
+            this.TopMost = true; // Assure this form (containing warnings) is always shown on top of other forms.
             this.Text = caption;
             int maxMessageLength = 0;
             foreach (string message in messages)
