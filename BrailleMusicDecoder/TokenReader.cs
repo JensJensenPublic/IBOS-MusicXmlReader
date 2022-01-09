@@ -207,8 +207,27 @@ namespace BrailleMusicDecoder
             ii.Add(rawValues, new IntegerList(HandLeft, Hand), InputCategoryEnum.Hand, stringLeft, InputSubCategoryEnum.HandLeft);
             ii.Add(rawValues, new IntegerList(HandLeft, Hand,Hand), InputCategoryEnum.Hand, stringLeft + "*** ReadDownWard ***", InputSubCategoryEnum.HandLeft,InputSubSubCategoryEnum.HandLeftIntervalsReadDownward);
             ii.Add(rawValues, new IntegerList(HandLeft, Hand, dot3), InputCategoryEnum.Hand, stringLeft, InputSubCategoryEnum.HandLeft, "."); // Dot 3 appended
+            // "ToMusicBraille" followed by a Hand symbol is decoded as a simple token                                                                                                                              //
+            ii.Add(rawValues, new IntegerList(dot6, dot3, HandRight, Hand), InputCategoryEnum.ToMusicBraille, stringRight, InputSubCategoryEnum.HandRight);
+            ii.Add(rawValues, new IntegerList(dot6, dot3, HandRight, Hand, Hand), InputCategoryEnum.ToMusicBraille, stringRight + "*** ReadUpward ***", InputSubCategoryEnum.HandRight, InputSubSubCategoryEnum.HandRightIntervalsReadUpward);
+            ii.Add(rawValues, new IntegerList(dot6, dot3, HandRight, Hand, dot3), InputCategoryEnum.ToMusicBraille, stringRight, InputSubCategoryEnum.HandRight, "."); // Dot 3 appended
+            ii.Add(rawValues, new IntegerList(dot6, dot3, HandLeft, Hand), InputCategoryEnum.ToMusicBraille, stringLeft, InputSubCategoryEnum.HandLeft);
+            ii.Add(rawValues, new IntegerList(dot6, dot3, HandLeft, Hand, Hand), InputCategoryEnum.ToMusicBraille, stringLeft + "*** ReadDownWard ***", InputSubCategoryEnum.HandLeft, InputSubSubCategoryEnum.HandLeftIntervalsReadDownward);
+            ii.Add(rawValues, new IntegerList(dot6, dot3, HandLeft, Hand, dot3), InputCategoryEnum.ToMusicBraille, stringLeft, InputSubCategoryEnum.HandLeft, "."); // Dot 3 appended
+            // Also when followed by carriagereturn,linefeed
+            ii.Add(rawValues, new IntegerList(dot6, dot3, carriageReturn, lineFeed,  HandRight, Hand), InputCategoryEnum.ToMusicBraille, stringRight, InputSubCategoryEnum.HandRight);
+            ii.Add(rawValues, new IntegerList(dot6, dot3, carriageReturn, lineFeed, HandRight, Hand, Hand), InputCategoryEnum.ToMusicBraille, stringRight + "*** ReadUpward ***", InputSubCategoryEnum.HandRight, InputSubSubCategoryEnum.HandRightIntervalsReadUpward);
+            ii.Add(rawValues, new IntegerList(dot6, dot3, carriageReturn, lineFeed, HandRight, Hand, dot3), InputCategoryEnum.ToMusicBraille, stringRight, InputSubCategoryEnum.HandRight, "."); // Dot 3 appended
+            ii.Add(rawValues, new IntegerList(dot6, dot3, carriageReturn, lineFeed, HandLeft, Hand), InputCategoryEnum.ToMusicBraille, stringLeft, InputSubCategoryEnum.HandLeft);
+            ii.Add(rawValues, new IntegerList(dot6, dot3, carriageReturn, lineFeed, HandLeft, Hand, Hand), InputCategoryEnum.ToMusicBraille, stringLeft + "*** ReadDownWard ***", InputSubCategoryEnum.HandLeft, InputSubSubCategoryEnum.HandLeftIntervalsReadDownward);
+            ii.Add(rawValues, new IntegerList(dot6, dot3, carriageReturn, lineFeed, HandLeft, Hand, dot3), InputCategoryEnum.ToMusicBraille, stringLeft, InputSubCategoryEnum.HandLeft, "."); // Dot 3 appended
 
-             MusicBrailleMapper m = musicBrailleMapper; // Establish a local shorthand for better readability
+
+
+
+
+
+            MusicBrailleMapper m = musicBrailleMapper; // Establish a local shorthand for better readability
             ii.Add(rawValues, new List<MusicBrailleMappingList>() { m.AllIntegersEmpty, m.HandLeft, m.Hand }, InputCategoryEnum.Hand, InputSubCategoryEnum.HandLeft); // Maybe "Marginal measure number ?
             // Same, but followed by dot3. "HACK for FourPiano Blues position 148, 1717,898,1849 "); // Maybe "Marginal measure number ?
             ii.Add(rawValues, new List<MusicBrailleMappingList>() { m.AllIntegersEmpty, m.HandLeft, m.Hand, m.Dot3List }, InputCategoryEnum.Hand, InputSubCategoryEnum.HandLeft); // Maybe "Marginal measure number ?

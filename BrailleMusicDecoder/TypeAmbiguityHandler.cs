@@ -61,6 +61,10 @@ namespace BrailleMusicDecoder
                     ToXml(inputInterpretation);     // From now on input goes to he new state (for instance to the LeftHand part instead of to the RightHand part) 
                     return;
 
+                case InputCategoryEnum.ToMusicBraille:
+                    ToXml(inputInterpretation);  
+                    return;
+
                 case InputCategoryEnum.Beat:  // Just pass it through in order to change the state of the MusicXmlBuilder  (and thus the value of the expected measure duration)
                     ToXml(inputInterpretation); // From now on type ambiguities are resolved using the new beat/beattype
                     return;
