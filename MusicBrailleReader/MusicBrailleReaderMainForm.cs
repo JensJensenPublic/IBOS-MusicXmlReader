@@ -325,6 +325,7 @@ namespace MusicBrailleReader
                     return false;
         
             }
+            this.Text = string.Format("{0} - {1}", shortFileName, this.applicationName); // Inspired by Microsoft standard way of showing this.
             return true;
         }
 
