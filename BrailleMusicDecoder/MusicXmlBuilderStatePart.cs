@@ -834,7 +834,7 @@ namespace BrailleMusicDecoder
 
                 case InputCategoryEnum.ToText: break; // Ignore here: Causes a state transition, but no further action. 
 
-
+                case InputCategoryEnum.ControlCharFF: break; // Ignore. Is only used for formatting when printing on a standard printer and has no MusicBraille meaning; 
 
                 // Not seen in sample files yet.
                 default:
