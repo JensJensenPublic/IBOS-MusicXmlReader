@@ -74,7 +74,9 @@ namespace MusicXmlReaderModel
                     case "tempo":  tempoValid =  Utilities.Parse(a.Value, ref tempoValue, (float)0, (float)float.MaxValue, "SoundElement: Invalid value of tempo"); break;
                     case "damper-pedal":        Utilities.ParseYesNoAttributeValue(functionName, a.Name, a.Value, ref damperPedal); break;
                     case "dynamics":            Utilities.Parse(a.Value, ref dynamics, (float)0, (float) float.MaxValue, "SoundElement: Invalid value of dynamics"); break;
-                    default: Logger.LogOnce(string.Format("{0}.{1} Unsupported attribute. Name='{2}' Value= '{3}'", className, functionName, a.Name, a.Value)); break;                                       
+                    default:
+                        Logger.Log(string.Format("{0}.{1} Unsupported attribute. Name='{2}' Value= '{3}'", className, functionName, a.Name, a.Value));
+                        Logger.LogOnce(string.Format("{0}.{1} Unsupported attribute. Name='{2}''", className, functionName, a.Name)); break; // Only Log Once per attributename 
                 }
             }
         }
