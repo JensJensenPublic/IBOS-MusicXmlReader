@@ -113,6 +113,7 @@ namespace MusicXmlReaderUI
                 case BrailleFileHandler.FileEncoding.BRF_Unicode_utf8: subDir = "Unicode (UTF-8)"; break;
                 case BrailleFileHandler.FileEncoding.BRF_ASCII:         subDir = "BRF_ASCII"; break;
                 case BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252: subDir = "BRL_OctoBraille_1252"; break;
+                case BrailleFileHandler.FileEncoding.PEF: subDir = "PEF"; break;
             }
             return Path.Combine(Logger.LogFileDirectory, subDir);
         }
@@ -129,7 +130,8 @@ namespace MusicXmlReaderUI
         {
             BrailleFileHandler.FileEncoding.BRF_Unicode_utf8,
             BrailleFileHandler.FileEncoding.BRF_ASCII,
-            BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252
+            BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252,
+            BrailleFileHandler.FileEncoding.PEF
         };
 
             /// <summary>

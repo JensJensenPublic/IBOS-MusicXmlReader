@@ -71,6 +71,7 @@ namespace MusicXmlReaderUI
                         break;
 
                     case ".xml":
+                    case ".musicxml":
                         if (IsAlreadyHandled(shortFileName)) break; // No need to handle the same file twice during same test
                         Logger.ClearStatistics(); // Start counting unimplemented elements and attributes for this file
                         ok = model.LoadMusicXmlFile(file,false); // Loads and parses the file
@@ -190,6 +191,7 @@ namespace MusicXmlReaderUI
 
             string testFileDirName = Path.Combine(dropBoxRoot,@"Visual Studio 2015\Projects\MusicXmlReaderUI\MusicXmlReader\bin\Debug\MusicXml samples"); // Released sample files
             string archiveDirName  = Path.Combine(dropBoxRoot,@"MusicXml sample file archive"); // All sample files
+            string højskoleSangbogen12DirName = @"C:\Users\Jens\Documents\Højskolesangbogen.12";
 
             // Recurse through all directories and load all musicXml files found
             int successes = 0;
@@ -219,8 +221,9 @@ namespace MusicXmlReaderUI
             // Logger.LogDelays(); // Use during debugging to check formatting rapidly! 
 
             Logger.ExecutionDelay.Start();
-            Recurse(testFileDirName, ref successes,ref failures);
-            Recurse(archiveDirName, ref successes, ref failures);
+            // Recurse(testFileDirName, ref successes,ref failures);
+            // Recurse(archiveDirName, ref successes, ref failures);
+            Recurse(højskoleSangbogen12DirName, ref successes, ref failures);
             Logger.ExecutionDelay.Stop();
 
             Logger.CheckDirectoriesDelay.Start();
