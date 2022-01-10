@@ -135,6 +135,8 @@ namespace MusicXmlReaderModel
                         Logger.LogCFOnce(string.Format(": Unsupported attribule. Name={0} Value= {1}", a.Name, a.Value));
                         break;
 
+                    case "print-object": break; // Ignore graphics
+
                     default:
                         Logger.LogCFOnce(string.Format(": Unexpected attribule. Name={0} Value= {1}", a.Name, a.Value));
                         break;
