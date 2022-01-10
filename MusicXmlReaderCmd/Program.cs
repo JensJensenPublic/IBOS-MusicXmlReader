@@ -41,7 +41,17 @@ namespace MusicXmlReaderUI
             return false;
         }
 
-        static void Recurse(string dir, ref int successes, ref int failures)
+        static void TestWithoutRecursion(string dir, ref int successes, ref int failures)
+        {
+            TestAllFiles(dir, ref successes, ref failures, false);
+        }
+
+        static void TestWithRecursion(string dir, ref int successes, ref int failures)
+        {
+            TestAllFiles(dir, ref successes, ref failures, true);
+        }
+
+        static private void TestAllFiles(string dir, ref int successes, ref int failures, bool doRecursion)
         {
             string[] files = System.IO.Directory.GetFiles(dir);
    
@@ -93,10 +103,13 @@ namespace MusicXmlReaderUI
                 }
 
             }
+
+            if (!doRecursion) return;
+
             string[] subDirs = System.IO.Directory.GetDirectories(dir);
             foreach(string subDir in subDirs)
             {
-                Recurse(subDir,ref successes, ref failures);
+                TestWithRecursion(subDir,ref successes, ref failures);
             }
         }
  
@@ -221,9 +234,9 @@ namespace MusicXmlReaderUI
             // Logger.LogDelays(); // Use during debugging to check formatting rapidly! 
 
             Logger.ExecutionDelay.Start();
-            // Recurse(testFileDirName, ref successes,ref failures);
-            // Recurse(archiveDirName, ref successes, ref failures);
-            Recurse(højskoleSangbogen12DirName, ref successes, ref failures);
+            // TestWithRecursion(testFileDirName, ref successes,ref failures); // Files are scattered around in a directory structure
+            // TestWithRecursion(archiveDirName, ref successes, ref failures); // Files are scattered around in a directory structure
+            TestWithoutRecursion(højskoleSangbogen12DirName, ref successes, ref failures); // All files are found flat in the same directory
             Logger.ExecutionDelay.Stop();
 
             Logger.CheckDirectoriesDelay.Start();
