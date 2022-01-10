@@ -394,7 +394,7 @@ namespace MusicXmlReaderModel
             bool strictRules = false;
             if (!IsWellformedIntervalRepresentation(noteElements, strictRules))
             {
-                Logger.LogCFOnce(string.Format(": Not wellformed"));
+                // Logger.LogCFOnce(string.Format(": Not wellformed"));
                 // Utilities.Beep();
                 return false;
             }

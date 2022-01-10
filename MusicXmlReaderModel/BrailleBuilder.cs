@@ -709,11 +709,14 @@ namespace MusicXmlReaderModel
                     beatType = (dot2 + dot5 + dot6);
                     switch (timeElement.Beats)
                     {
+                        case 1: bytes = new byte[] { Number, cipher1, beatType }; break; // 1/4 Not specified by REFSNÆS, suggested by JSJ
                         case 2: bytes = new byte[] { Number, cipher2, beatType }; break; // 2/4
                         case 3: bytes = new byte[] { Number, cipher3, beatType }; break; // 3/4
                         case 4: bytes = new byte[] { Number, cipher4, beatType }; break; // 4/4
                         case 5: bytes = new byte[] { Number, cipher5, beatType }; break; // 5/4 Not specified by REFSNÆS, suggested by JSJ
                         case 6: bytes = new byte[] { Number, cipher6, beatType }; break; // 6/4 Not specified by REFSNÆS, suggested by JSJ
+                        case 7: bytes = new byte[] { Number, cipher7, beatType }; break; // 7/4 Not specified by REFSNÆS, suggested by JSJ
+                        case 8: bytes = new byte[] { Number, cipher8, beatType }; break; // 8/4 Not specified by REFSNÆS, suggested by JSJ
                         case 12: bytes = new byte[] { Number, cipher1, cipher2, beatType }; break; // 12/4 Not specified by REFSNÆS, suggested by JSJ
                         case 14: bytes = new byte[] { Number, cipher1, cipher4, beatType }; break; // 14/4 Not specified by REFSNÆS, suggested by JSJ
                         case 16: bytes = new byte[] { Number, cipher1, cipher6, beatType }; break; // 16/4 Not specified by REFSNÆS, suggested by JSJ
