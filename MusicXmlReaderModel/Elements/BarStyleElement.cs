@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace MusicXmlReaderModel
 {
-    public enum BarStyleEnum { unknown, regular, dotted, dashed, heavy, lightLight, lightHeavy, heavyLight, heavyHeavy, tick, shortBarStyle }; // "short" is areserved word!
+    public enum BarStyleEnum { unknown, regular, dotted, dashed, heavy, lightLight, lightHeavy, heavyLight, heavyHeavy, tick, shortBarStyle, none }; // "short" is areserved word!
 
 
     /// <summary>
@@ -53,6 +53,7 @@ namespace MusicXmlReaderModel
                     case "heavy-heavy": barStyle = BarStyleEnum.heavyHeavy; break;
                     case "tick": barStyle = BarStyleEnum.tick; break;
                     case "short": barStyle = BarStyleEnum.shortBarStyle; break;
+                    case "none": barStyle = BarStyleEnum.none; break; // No barline appears.
                     default: Logger.LogOnce(string.Format("{0}: Unknown element value ={1} ", functionName, n.Value)); break;
                 }
             }
