@@ -21,6 +21,7 @@ namespace JSJ.MusicSynthesis
         // Suspended
         Sus2, Sus4,                                                 // 2 sus
         // 
+        Power,                                                      // No third
         None,                                                       // Explicitly: "No Chord"
         UnImplemented,                                              // Mentioned in the MusicXml definition, but not implemented here        
         Unknown                                                     // Not mentioned in the MusicXml definition, 
@@ -63,6 +64,8 @@ namespace JSJ.MusicSynthesis
         // Sustained 
         static readonly Interval[] Sus2ChordIntervals    = new Interval[] { Interval.Unison, Interval.MajorSecond, Interval.MajorSeventh };
         static readonly Interval[] Sus4ChordIntervals    = new Interval[] { Interval.Unison, Interval.Fourth, Interval.MinorSeventh };
+        // Others
+        static readonly Interval[] PowerChordIntervals = new Interval[] { Interval.Unison, Interval.PerfectFifth }; // No third !
 
         private List<MidiNote> midinotes = new List<MidiNote>();
 
@@ -129,8 +132,10 @@ namespace JSJ.MusicSynthesis
                 case "German":          // https://en.wikipedia.org/wiki/Augmented_sixth_chord#Italian_sixth
 
                 // Other kinds
-                case "pedal":
-                case "power":
+                case "power": return ChordType.Power; // Perfect Fifth (no third!) https://en.wikipedia.org/wiki/Power_chord {0,7}
+
+                // Currently unimplemented kinds
+                case "pedal":             
                 case "Tristan":
                 case "other": // The "other" kind is used when the harmony is entirely composed of add elements.
                     return ChordType.UnImplemented;
@@ -182,6 +187,8 @@ namespace JSJ.MusicSynthesis
                 // Sustained:
                 case ChordType.Sus2: return Sus2ChordIntervals;
                 case ChordType.Sus4: return Sus4ChordIntervals;
+                //
+                case ChordType.Power: return PowerChordIntervals; 
                 // Undefined
                 default:
                     throw new System.ArgumentException(string.Format("Chordtype {0} is not supported", chordType.ToString()));
@@ -288,6 +295,8 @@ namespace JSJ.MusicSynthesis
                 // Suspended
                 case ChordType.Sus2:    return ResourcesForMusicSynthesis.ChordKind_Sus2;   // "sus2";
                 case ChordType.Sus4:    return ResourcesForMusicSynthesis.ChordKind_Sus4;   // "sus4";
+
+                case ChordType.Power:   return ResourcesForMusicSynthesis.ChordKind_Power;  // "Power"
 
                 // "No Chord"
                 case ChordType.None: return ""; // Must be handled at higher level !!

@@ -194,6 +194,9 @@
     <value>No Chord</value>
     <comment>MISSING: JSJ guessed</comment>
   </data>
+  <data name="ChordKind_Power" xml:space="preserve">
+    <value>power</value>
+  </data>
   <data name="ChordKind_Sus2" xml:space="preserve">
     <value>sus2</value>
     <comment>sus2</comment>

@@ -216,7 +216,8 @@ namespace MusicXmlReaderModel
             }
             if (ChordType.Unknown == chordType)
             {
-                Logger.LogOnce(string.Format("{0}.{1} found unknown harmony kind={2}", className, functionName, kind));
+                // Logger.LogOnce(string.Format("{0}.{1} found unknown harmony kind={2}", className, functionName, kind));
+                Logger.LogOnce(string.Format("{0}.{1} found unknown harmony kind={2} File={3}", className, functionName, kind, Model.TheStaticXmlFileName));
             }
             localizedChordType = MidiChord.LocalizeChordType(chordType);
         }

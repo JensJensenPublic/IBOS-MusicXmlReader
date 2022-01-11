@@ -520,6 +520,15 @@ namespace MusicSynthesis {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to power.
+        /// </summary>
+        internal static string ChordKind_Power {
+            get {
+                return ResourceManager.GetString("ChordKind_Power", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to sus2.
         /// </summary>
         internal static string ChordKind_Sus2 {
