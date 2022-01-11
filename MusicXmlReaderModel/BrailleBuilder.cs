@@ -316,6 +316,11 @@ namespace MusicXmlReaderModel
                 case NoteTypeEnum.eight:  
                 case NoteTypeEnum.nt128th: return 0;
 
+                case NoteTypeEnum.breve:
+                    Logger.LogOnce(string.Format("{0}.GetTypeValue({1}) Unsupported noteDuration '{1}'", className, noteDuration.ToString()));
+                    // Found in "132.Langebro.musicxml" in Højskolesangbogen.12
+                    return noDots;
+
                 default:
                     Logger.LogOnce(string.Format("{0}.GetTypeValue({1}) Unknown noteDuration '{1}'", className, noteDuration.ToString()));
                     return noDots;
