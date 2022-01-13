@@ -15,7 +15,9 @@ namespace BrailleMusicDecoder
             Division0,  // Occured before a MeasureDivision mark 
             Division1, // Occured after the first MeasureDivision mark
             Division2, // Occured after the second MeasureDivision mark
-            full,  // Occurred immediately after a LullMeasureInAccord mark
+            Division3, // Occured after the third MeasureDivision mark. Seldom needed
+            Division4, // Occured after the fourth MeasureDivision mark. Very seldom needed
+            full,  // Occurred immediately after a FullMeasureInAccord mark
             numberOfCategories
         }
 
@@ -25,8 +27,17 @@ namespace BrailleMusicDecoder
             {
                 case VoiceCategoryEnum.Division0: return VoiceCategoryEnum.Division1;
                 case VoiceCategoryEnum.Division1: return VoiceCategoryEnum.Division2;
+                case VoiceCategoryEnum.Division2: return Log(VoiceCategoryEnum.Division3);
+                case VoiceCategoryEnum.Division3: return Log(VoiceCategoryEnum.Division4);
                 default: throw new Exception("");
             }
+        }
+
+        // Log the value but pass it unchanged.
+        static private VoiceCategoryEnum Log(VoiceCategoryEnum voiceCategoryEnum)
+        {
+            Logger.LogCF1(string.Format(": Unusually high value of VoiceCategoryEnum = {0}",voiceCategoryEnum.ToString()));
+            return voiceCategoryEnum;
         }
 
         private VoiceCategoryEnum voiceCategory = VoiceCategoryEnum.Division0;
