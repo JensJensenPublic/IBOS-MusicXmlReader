@@ -65,7 +65,7 @@ namespace BrailleMusicDecoder
             {
                 // In the music states we have lots of information available (and even more if desired!!
                 MusicXmlBuilderStateMusic stateMusic = state as MusicXmlBuilderStateMusic;
-                result = string.Format("{0}{1}  {2}'{3}'  {4}{5}",
+                result = string.Format("{0}={1}  {2}'{3}'  {4}{5}",
                     stateNameCaption, stateEnum.ToString(), //                 0 and 1 Example: "State=Part"  PartName='Højre hånd'  Measure=5
                     partNameCaption, stateMusic.FriendlyName, //               2 and 3 Example: "PartName='Højre hånd'" 
                     measureNumberCaption, stateMusic.CurrentMeasureNumber); // 4 and 5 Example: " Measure=5"
