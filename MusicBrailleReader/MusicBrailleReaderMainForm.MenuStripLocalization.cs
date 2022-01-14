@@ -17,8 +17,8 @@ namespace MusicBrailleReader
            // MenuItemHandler  menuItemHandler = MenuItemHandler.Create(); // Use the simple version, implicitly causing English localization of the MEnuItemHandler.
 
             // Children of MenuStrip
-            menuItemHandler.GenerateAccessibleName(filesToolStripMenuItem, "&Filer", Keys.None);
-            menuItemHandler.GenerateAccessibleName(toolsToolStripMenuItem, "Værk&tøjer",Keys.None);
+            menuItemHandler.GenerateAccessibleName(filesToolStripMenuItem, ResourcesForMusicBrailleReaderMainForm.ToolStripMenuItem_Files, Keys.None);
+            menuItemHandler.GenerateAccessibleName(toolsToolStripMenuItem, ResourcesForMusicBrailleReaderMainForm.ToolStripMenuItem_Tools, Keys.None);
 
             // First sublevel
             // Children (and grandchildren) of  fileToolStripMenuItem
@@ -30,7 +30,7 @@ namespace MusicBrailleReader
 
            //menuItemHandler.GenerateAccessibleName(usingAutoselectedProfileToolStripMenuItem, "Åbn med &automatisk valgt profil", Keys.None);
 
-           // Second sublevel below "Tools"
+           // Second sublevel below "Tools" // No need to localize as only used in developer mode !
             menuItemHandler.GenerateAccessibleName(this.iBOSMusicXmlReaderToolStripMenuItem, "&IBOS Nodelæser", Keys.None);
             menuItemHandler.GenerateAccessibleName(this.museScoreToolStripMenuItem, "Start &MuseScore", Keys.None);
             menuItemHandler.GenerateAccessibleName(this.logfileLocationToolStripMenuItem, "Åbn &Logfil placering", Keys.None);

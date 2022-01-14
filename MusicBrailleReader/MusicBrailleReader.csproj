@@ -78,6 +78,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegressionTest.cs" />
     <Compile Include="RenameTool.cs" />
+    <Compile Include="ResourcesForMusicBrailleReaderMainForm.da-DK.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourcesForMusicBrailleReaderMainForm.da-DK.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ResourcesForMusicBrailleReaderMainForm.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourcesForMusicBrailleReaderMainForm.resx</DependentUpon>
+    </Compile>
     <Compile Include="UserMessageListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +106,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ResourcesForMusicBrailleReaderMainForm.da-DK.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesForMusicBrailleReaderMainForm.da-DK.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourcesForMusicBrailleReaderMainForm.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesForMusicBrailleReaderMainForm.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserMessageListForm.resx">
       <DependentUpon>UserMessageListForm.cs</DependentUpon>
     </EmbeddedResource>
