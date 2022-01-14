@@ -36,7 +36,6 @@
             this.exporterSomMusicXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exporterSomTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tactileMusicXmlReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iBOSMusicXmlReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.museScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,7 +118,6 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tactileMusicXmlReaderToolStripMenuItem,
             this.iBOSMusicXmlReaderToolStripMenuItem,
             this.museScoreToolStripMenuItem,
             this.logFileToolStripMenuItem,
@@ -134,13 +132,6 @@
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
-            // 
-            // tactileMusicXmlReaderToolStripMenuItem
-            // 
-            this.tactileMusicXmlReaderToolStripMenuItem.Name = "tactileMusicXmlReaderToolStripMenuItem";
-            this.tactileMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.tactileMusicXmlReaderToolStripMenuItem.Text = "Tactile MusicXmlReader";
-            this.tactileMusicXmlReaderToolStripMenuItem.Click += new System.EventHandler(this.tactileMusicXmlReaderToolStripMenuItem_Click);
             // 
             // iBOSMusicXmlReaderToolStripMenuItem
             // 
@@ -321,7 +312,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.ListBox listBoxOffsets;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tactileMusicXmlReaderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem museScoreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logfileLocationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iBOSMusicXmlReaderToolStripMenuItem;

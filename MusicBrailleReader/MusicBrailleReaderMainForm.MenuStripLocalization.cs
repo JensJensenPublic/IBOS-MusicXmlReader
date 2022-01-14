@@ -31,7 +31,6 @@ namespace MusicBrailleReader
            //menuItemHandler.GenerateAccessibleName(usingAutoselectedProfileToolStripMenuItem, "Åbn med &automatisk valgt profil", Keys.None);
 
            // Second sublevel below "Tools"
-           menuItemHandler.GenerateAccessibleName(this.tactileMusicXmlReaderToolStripMenuItem, "&Tactile MusicXmlReader", Keys.None);
             menuItemHandler.GenerateAccessibleName(this.iBOSMusicXmlReaderToolStripMenuItem, "&IBOS Nodelæser", Keys.None);
             menuItemHandler.GenerateAccessibleName(this.museScoreToolStripMenuItem, "Start &MuseScore", Keys.None);
             menuItemHandler.GenerateAccessibleName(this.logfileLocationToolStripMenuItem, "Åbn &Logfil placering", Keys.None);

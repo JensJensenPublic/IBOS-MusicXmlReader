@@ -157,16 +157,10 @@ namespace MusicBrailleReader
             Hide(openUsingBrailleOrchProfileToolStripMenuItem);
             Hide(openTestFileToolStripMenuItem);
             //Hide(exporterSomTextToolStripMenuItem);
-            // The "Tools"
-            Hide(tactileMusicXmlReaderToolStripMenuItem);
-            Hide(iBOSMusicXmlReaderToolStripMenuItem); // Version 4.0 can not accept a filename as argument !
-            Hide(logfileLocationToolStripMenuItem);
-            Hide(logFileToolStripMenuItem);
-            Hide(regressionReferenceLocationToolStripMenuItem);
-            Hide(regressionTestToolStripMenuItem);
-            Hide(copyRenameToolStripMenuItem);
-            Hide(transscribeHøjskolesangbogenToolStripMenuItem);
-            Hide(jAWSSettingsDirectoryToolStripMenuItem);          
+            // The whole "Tools" menuItem
+            Hide(toolsToolStripMenuItem);
+
+          
         }
 
 
