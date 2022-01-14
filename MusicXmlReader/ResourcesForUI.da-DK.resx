@@ -608,7 +608,7 @@
     <value>MusicXml fil som rå XML med &amp;Google Chrome</value>
   </data>
   <data name="ToolStripMenuItem_Tools_MusicBrailleReader" xml:space="preserve">
-    <value>Start IBOS &amp;Punktnodelæser</value>
+    <value>IBOS &amp;Punktnodelæser</value>
     <comment>ToDo: Implement  in .NL</comment>
   </data>
 </root>

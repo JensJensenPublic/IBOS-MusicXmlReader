@@ -100,6 +100,7 @@
             this.autodetectedEncodingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userPreferencesLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.analyzeLocalizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.musicBrailleReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -138,7 +139,6 @@
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
-            this.musicBrailleReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -551,6 +551,7 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.musicBrailleReaderToolStripMenuItem,
             this.museScoreToolStripMenuItem,
             this.sibeliusToolStripMenuItem,
             this.startCapellaToolStripMenuItem,
@@ -567,8 +568,7 @@
             this.generateGraphicInformationToolStripMenuItem,
             this.interpretFileAsBrailleMusicToolStripMenuItem,
             this.userPreferencesLocationToolStripMenuItem,
-            this.analyzeLocalizationToolStripMenuItem,
-            this.musicBrailleReaderToolStripMenuItem});
+            this.analyzeLocalizationToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -723,6 +723,13 @@
             this.analyzeLocalizationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.analyzeLocalizationToolStripMenuItem.Text = "Analyze localization";
             this.analyzeLocalizationToolStripMenuItem.Click += new System.EventHandler(this.analyzeLocalizationToolStripMenuItem_Click);
+            // 
+            // musicBrailleReaderToolStripMenuItem
+            // 
+            this.musicBrailleReaderToolStripMenuItem.Name = "musicBrailleReaderToolStripMenuItem";
+            this.musicBrailleReaderToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.musicBrailleReaderToolStripMenuItem.Text = "Music Braille Reader";
+            this.musicBrailleReaderToolStripMenuItem.Click += new System.EventHandler(this.musicBrailleReaderToolStripMenuItem_Click);
             // 
             // archivesToolStripMenuItem
             // 
@@ -1039,13 +1046,6 @@
             // printDialog
             // 
             this.printDialog.UseEXDialog = true;
-            // 
-            // musicBrailleReaderToolStripMenuItem
-            // 
-            this.musicBrailleReaderToolStripMenuItem.Name = "musicBrailleReaderToolStripMenuItem";
-            this.musicBrailleReaderToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
-            this.musicBrailleReaderToolStripMenuItem.Text = "Music Braille Reader";
-            this.musicBrailleReaderToolStripMenuItem.Click += new System.EventHandler(this.musicBrailleReaderToolStripMenuItem_Click);
             // 
             // MainForm
             // 

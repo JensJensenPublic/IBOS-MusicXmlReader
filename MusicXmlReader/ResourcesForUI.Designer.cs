@@ -1168,7 +1168,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start IBOS Music Braille Reader.
+        ///   Looks up a localized string similar to IBOS Music Braille Reader.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_MusicBrailleReader {
             get {

@@ -592,7 +592,7 @@
     <value>MusicXml file  as raw Xml Using &amp;Google Chrome</value>
   </data>
   <data name="ToolStripMenuItem_Tools_MusicBrailleReader" xml:space="preserve">
-    <value>Start IBOS Music Braille Reader</value>
+    <value>IBOS Music Braille Reader</value>
     <comment>ToDo: Implement  in .NL</comment>
   </data>
 </root>

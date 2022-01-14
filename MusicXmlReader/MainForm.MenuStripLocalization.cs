@@ -120,6 +120,7 @@ namespace MusicXmlReader
 
 
             // Children of  toolsToolStripMenuItem
+            musicBrailleReaderToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_MusicBrailleReader;
             museScoreToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_MuseScore;
             sibeliusToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Sibelius;
             startCapellaToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Capella;
@@ -134,7 +135,7 @@ namespace MusicXmlReader
             jAWSSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_JAWS_Settings;
             userSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_User_Settings;
             generateMusicBrailleTestpatternToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern;
-            musicBrailleReaderToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_MusicBrailleReader;
+      
 
             // Children of  helpToolStripMenuItem
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = string.Format("{0} {1}", ResourcesForUI.ToolStripMenuItem_Help_About, applicationName);
