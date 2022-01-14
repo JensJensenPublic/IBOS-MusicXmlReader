@@ -238,8 +238,8 @@ private List<DecoderItem> GetDecodedLines(Decoder brailleMusicDecoder, string br
                     {
                         // Insert an extra line informing about the new linenumber and formnumber.
                         string s = brailleMusicDecoder.FormLineString;
-                        string xmlBuilderString = decoderOptions.DeveloperMode ? "Tilstand" + brailleMusicDecoder.GetStateInformation() : "";
-                        string offsetString = decoderOptions.DeveloperMode ?  string.Format("Offset {0} ", originalIndex) : ""; // Allow easy reference to LogFile
+                        string xmlBuilderString = decoderOptions.DeveloperMode ? "State" + brailleMusicDecoder.GetStateInformation() : ""; 
+                        string offsetString = decoderOptions.DeveloperMode ?  string.Format("Offset {0} ", originalIndex) : ""; // Allow easy reference to LogFile. No Localization needed: Developermode only
                         string rawLine = brailleMusicDecoder.GetNextRawUnicodeLine(originalIndex); // The raw, undecoded contents of the line of Braille found at this point. Primarily for debugging.
                         string rawLineAsdotNumbers = GetDotNumbers(ref rawLine,decoderOptions.DeveloperMode);
                         string totalString = offsetString + s + " " + xmlBuilderString + " " + rawLine + rawLineAsdotNumbers;
