@@ -381,7 +381,8 @@ namespace MusicBrailleReader
 
             result = model.DecoderHandler.InterpretBrailleMusicFile(fullFileName, fileEncoding, out musicXmlDocument, decoderOptions); // This is where everything happens !!!
 
-            ShowUserWarnings(options); // Show the warnings through a MessageBox
+            // ShowUserWarnings(options); // Show the warnings through a MessageBox Has been moved to ExportToFileAsMusicXml) because it is only relevant for generation of MusicXml 
+
             ShowAsMusicXml(ShowAsMusicXmlOptions.hide); // Show the MusicXml genereted- Use "hide" to speed up
 
             decoderOutputFileHandler = DecoderOutputFileHandler.Create(fullFileName);   
@@ -416,6 +417,8 @@ namespace MusicBrailleReader
             // This handler may be called before the data structiures have been established so we need to check
             if (null == decoderOutputFileHandler) return OnNoMusicBrailleFileLoaded();
             if (null == musicXmlDocument) OnNoMusicBrailleFileLoaded();
+
+            ShowUserWarnings(UserWarningOptions.details); // Show the warnings through a MessageBox in a detailled format
 
             bool showXmlOnConsole = false;
 
