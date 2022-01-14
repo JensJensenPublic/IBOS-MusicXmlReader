@@ -800,7 +800,10 @@ string ToLocalizedString(InputCategoryEnum inputCategory,InputSubCategoryEnum su
                     return ResourcesForBrailleMusicDecoder.InputCategoryEnum_TextVersal;
                 case InputCategoryEnum.Tie: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_Tie;
                 case InputCategoryEnum.TimeModification: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_TimeModification;
-                case InputCategoryEnum.ToMusicBraille: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_ToMusicBraille;
+                case InputCategoryEnum.ToMusicBraille:
+                    // Add a concatenator if followed by a hand specification to make text more readable for JAWS
+                    string concatenator = ((InputSubCategoryEnum.HandLeft == subCategory) || (InputSubCategoryEnum.HandRight == subCategory)) ? " " : "";
+                    return ResourcesForBrailleMusicDecoder.InputCategoryEnum_ToMusicBraille + concatenator; 
                 case InputCategoryEnum.ToNumber: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_ToNumber;
                 case InputCategoryEnum.ToText: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_ToText;
                 case InputCategoryEnum.ToWord: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_ToWord;
