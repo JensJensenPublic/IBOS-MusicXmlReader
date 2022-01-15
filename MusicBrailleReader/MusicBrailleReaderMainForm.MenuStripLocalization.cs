@@ -22,11 +22,11 @@ namespace MusicBrailleReader
 
             // First sublevel
             // Children (and grandchildren) of  fileToolStripMenuItem
-            menuItemHandler.GenerateAccessibleName(this.openUsingNOTAProfileToolStripMenuItem, "&Åbn punktnode fil", Keys.None);
-            menuItemHandler.GenerateAccessibleName(this.openUsingNOTAProfileToolStripMenuItem, "Åbn &NOTA punktnodefil", Keys.Control | Keys.O); // In the Danish version the CTRL-O shortcut goes here
-            menuItemHandler.GenerateAccessibleName(this.openUsingBrailleOrchProfileToolStripMenuItem, "Åbn &BrailleOrch punktnodefil", Keys.None);
-            menuItemHandler.GenerateAccessibleName(this.exporterSomMusicXmlToolStripMenuItem, "Eksportér som MusicXml", Keys.None);
-            menuItemHandler.GenerateAccessibleName(this.exporterSomTextToolStripMenuItem, "Eksportér som tekst", Keys.None);
+            // menuItemHandler.GenerateAccessibleName(this.openUsingNOTAProfileToolStripMenuItem, "&Åbn punktnode fil", Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.openUsingNOTAProfileToolStripMenuItem, ResourcesForMusicBrailleReaderMainForm.ToolStripMenuItem_Files_OpenUsingNOTA, Keys.Control | Keys.O); // In the Danish version the CTRL-O shortcut goes here
+            menuItemHandler.GenerateAccessibleName(this.openUsingBrailleOrchProfileToolStripMenuItem, ResourcesForMusicBrailleReaderMainForm.ToolStripMenuItem_Files_OpenUsingBrailleOrch, Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.exporterSomMusicXmlToolStripMenuItem, ResourcesForMusicBrailleReaderMainForm.ToolStripMenuItem_Files_ExportAsMusicXml, Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.exporterSomTextToolStripMenuItem, ResourcesForMusicBrailleReaderMainForm.ToolStripMenuItem_Files_ExportAsText, Keys.None);
 
            //menuItemHandler.GenerateAccessibleName(usingAutoselectedProfileToolStripMenuItem, "Åbn med &automatisk valgt profil", Keys.None);
 

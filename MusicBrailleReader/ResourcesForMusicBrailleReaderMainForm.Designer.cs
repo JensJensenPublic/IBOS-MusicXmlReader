@@ -70,6 +70,42 @@ namespace MusicBrailleReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export as &amp;MusicXml.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_ExportAsMusicXml {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_ExportAsMusicXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export as &amp;text.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_ExportAsText {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_ExportAsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open &amp;BrailleOrch Braille Music file.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_OpenUsingBrailleOrch {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_OpenUsingBrailleOrch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open &amp;NOTA  Braille Music file.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_OpenUsingNOTA {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_OpenUsingNOTA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Tools.
         /// </summary>
         internal static string ToolStripMenuItem_Tools {

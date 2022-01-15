@@ -120,6 +120,18 @@
   <data name="ToolStripMenuItem_Files" xml:space="preserve">
     <value>&amp;Filer</value>
   </data>
+  <data name="ToolStripMenuItem_Files_ExportAsMusicXml" xml:space="preserve">
+    <value>Eksportér som &amp;MusicXml</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ExportAsText" xml:space="preserve">
+    <value>Eksportér som &amp;tekst</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_OpenUsingBrailleOrch" xml:space="preserve">
+    <value>Åbn &amp;BrailleOrch punktnodefil</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_OpenUsingNOTA" xml:space="preserve">
+    <value>Åbn &amp;NOTA punktnodefil</value>
+  </data>
   <data name="ToolStripMenuItem_Tools" xml:space="preserve">
     <value>Værk&amp;tøjer</value>
   </data>

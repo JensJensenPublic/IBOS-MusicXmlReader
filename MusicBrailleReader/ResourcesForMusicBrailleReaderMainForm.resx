@@ -120,6 +120,18 @@
   <data name="ToolStripMenuItem_Files" xml:space="preserve">
     <value>&amp;Files</value>
   </data>
+  <data name="ToolStripMenuItem_Files_ExportAsMusicXml" xml:space="preserve">
+    <value>Export as &amp;MusicXml</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ExportAsText" xml:space="preserve">
+    <value>Export as &amp;text</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_OpenUsingBrailleOrch" xml:space="preserve">
+    <value>Open &amp;BrailleOrch Braille Music file</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_OpenUsingNOTA" xml:space="preserve">
+    <value>Open &amp;NOTA  Braille Music file</value>
+  </data>
   <data name="ToolStripMenuItem_Tools" xml:space="preserve">
     <value>&amp;Tools</value>
     <comment>Actually only needed in Developer mode</comment>
