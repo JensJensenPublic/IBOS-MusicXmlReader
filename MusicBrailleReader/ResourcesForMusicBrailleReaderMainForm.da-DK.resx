@@ -144,4 +144,13 @@
   <data name="ToolStripMenuItem_Tools" xml:space="preserve">
     <value>Værk&amp;tøjer</value>
   </data>
+  <data name="TreeView_RawBraille" xml:space="preserve">
+    <value>Rå punktnode symboler</value>
+  </data>
+  <data name="TreeView_SpaceNumber" xml:space="preserve">
+    <value>Rum nummer</value>
+  </data>
+  <data name="TreeView_Tones" xml:space="preserve">
+    <value>Toner</value>
+  </data>
 </root>

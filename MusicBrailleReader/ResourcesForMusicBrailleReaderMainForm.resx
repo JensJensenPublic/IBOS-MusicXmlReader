@@ -145,4 +145,13 @@
     <value>&amp;Tools</value>
     <comment>Actually only needed in Developer mode</comment>
   </data>
+  <data name="TreeView_RawBraille" xml:space="preserve">
+    <value>Raw Braille symbols</value>
+  </data>
+  <data name="TreeView_SpaceNumber" xml:space="preserve">
+    <value>Space number</value>
+  </data>
+  <data name="TreeView_Tones" xml:space="preserve">
+    <value>Tones</value>
+  </data>
 </root>

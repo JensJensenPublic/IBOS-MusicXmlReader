@@ -140,5 +140,32 @@ namespace MusicBrailleReader {
                 return ResourceManager.GetString("ToolStripMenuItem_Tools", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Raw Braille symbols.
+        /// </summary>
+        internal static string TreeView_RawBraille {
+            get {
+                return ResourceManager.GetString("TreeView_RawBraille", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Space number.
+        /// </summary>
+        internal static string TreeView_SpaceNumber {
+            get {
+                return ResourceManager.GetString("TreeView_SpaceNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tones.
+        /// </summary>
+        internal static string TreeView_Tones {
+            get {
+                return ResourceManager.GetString("TreeView_Tones", resourceCulture);
+            }
+        }
     }
 }

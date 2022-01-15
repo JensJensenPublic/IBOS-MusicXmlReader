@@ -12,6 +12,9 @@ using MusicXmlReaderModel;
 
 namespace MusicBrailleReader
 {
+
+    using LocRes = ResourcesForMusicBrailleReaderMainForm; // Simple shorthand for the one and only localization ressource rerferenced in this file
+
     public class MusicBrailleReaderUserSettingsHandler
     {
         //public enum CheckboxOperation { Unknown, Check, Uncheck, ToggleAndCopy };
@@ -495,21 +498,21 @@ namespace MusicBrailleReader
 
 
             //musicAsSound = treeView.Nodes.Insert(MusicNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsSound));
-            musicAsSound = treeView.Nodes.Insert(MusicNodeIndex, NoAmp("Toner"));
+            musicAsSound = treeView.Nodes.Insert(MusicNodeIndex, NoAmp(LocRes.TreeView_Tones));
             //musicAsSoundVoices = musicAsSound.Nodes.Insert(partsNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsSound_Parts + f + ResourcesForUI.TreeView_MusicAsSound));
             //musicAsSoundVoices.Name = NoAmp(ResourcesForUI.TreeView_MusicAsSound_Parts);
             //musicAsSoundDetails = musicAsSound.Nodes.Insert(detailsNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsSound_Details + f + ResourcesForUI.TreeView_MusicAsSound));
             //musicAsSoundDetails.Name = NoAmp(ResourcesForUI.TreeView_MusicAsSound_Details);
 
             //musicAsText = treeView.Nodes.Insert(TextNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsSpeech));
-            spaceNumber = treeView.Nodes.Insert(TextNodeIndex, NoAmp("Rum nummer"));
+            spaceNumber = treeView.Nodes.Insert(TextNodeIndex, NoAmp(LocRes.TreeView_SpaceNumber));
             //musicAsTextVoices = musicAsText.Nodes.Insert(partsNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsSpeech_Parts + f + ResourcesForUI.TreeView_MusicAsSpeech));
             //musicAsTextVoices.Name = NoAmp(ResourcesForUI.TreeView_MusicAsSpeech_Parts);
             //musicAsTextDetails = musicAsText.Nodes.Insert(detailsNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsSpeech_Details + f + ResourcesForUI.TreeView_MusicAsSpeech));
             //musicAsTextDetails.Name = NoAmp(ResourcesForUI.TreeView_MusicAsSpeech_Details);
 
             //musicAsBraille = treeView.Nodes.Insert(BrailleNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsBraille));
-            musicAsBraille = treeView.Nodes.Insert(BrailleNodeIndex, NoAmp("Rå punktnoder"));
+            musicAsBraille = treeView.Nodes.Insert(BrailleNodeIndex, NoAmp(LocRes.TreeView_RawBraille));
             //musicAsBrailleVoices = musicAsBraille.Nodes.Insert(partsNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsBraille_Parts + f + ResourcesForUI.TreeView_MusicAsBraille));
             //musicAsBrailleVoices.Name = NoAmp(ResourcesForUI.TreeView_MusicAsBraille_Parts);
             //musicAsBrailleDetails = musicAsBraille.Nodes.Insert(detailsNodeIndex, NoAmp(ResourcesForUI.TreeView_MusicAsSound_Details + f + ResourcesForUI.TreeView_MusicAsBraille));
