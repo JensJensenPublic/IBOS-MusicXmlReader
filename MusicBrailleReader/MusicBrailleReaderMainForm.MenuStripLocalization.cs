@@ -1,10 +1,14 @@
 ﻿using System.Windows.Forms;
 using UiAccessibilityModel;
 
+
 namespace MusicBrailleReader
 {
+    using LocRes = ResourcesForMusicBrailleReaderMainForm; // Simple shorthand for the one and only localization ressource rerferenced in this file 
+
     partial class MusicBrailleReaderMainForm
     {
+        
         /// <summary>
         /// Handles all localization of the texts in the MusicBrailleReaderMainForm menustrip
         /// Originally based on ...\Solutions\Tactile MusicXmlReader\MusicXmlReader\MainForm.MenuStripLocalization.cs
@@ -17,16 +21,16 @@ namespace MusicBrailleReader
            // MenuItemHandler  menuItemHandler = MenuItemHandler.Create(); // Use the simple version, implicitly causing English localization of the MEnuItemHandler.
 
             // Children of MenuStrip
-            menuItemHandler.GenerateAccessibleName(filesToolStripMenuItem, ResourcesForMusicBrailleReaderMainForm.ToolStripMenuItem_Files, Keys.None);
-            menuItemHandler.GenerateAccessibleName(toolsToolStripMenuItem, ResourcesForMusicBrailleReaderMainForm.ToolStripMenuItem_Tools, Keys.None);
+            menuItemHandler.GenerateAccessibleName(filesToolStripMenuItem, LocRes.ToolStripMenuItem_Files, Keys.None);
+            menuItemHandler.GenerateAccessibleName(toolsToolStripMenuItem, LocRes.ToolStripMenuItem_Tools, Keys.None);
 
             // First sublevel
             // Children (and grandchildren) of  fileToolStripMenuItem
             // menuItemHandler.GenerateAccessibleName(this.openUsingNOTAProfileToolStripMenuItem, "&Åbn punktnode fil", Keys.None);
-            menuItemHandler.GenerateAccessibleName(this.openUsingNOTAProfileToolStripMenuItem, ResourcesForMusicBrailleReaderMainForm.ToolStripMenuItem_Files_OpenUsingNOTA, Keys.Control | Keys.O); // In the Danish version the CTRL-O shortcut goes here
-            menuItemHandler.GenerateAccessibleName(this.openUsingBrailleOrchProfileToolStripMenuItem, ResourcesForMusicBrailleReaderMainForm.ToolStripMenuItem_Files_OpenUsingBrailleOrch, Keys.None);
-            menuItemHandler.GenerateAccessibleName(this.exporterSomMusicXmlToolStripMenuItem, ResourcesForMusicBrailleReaderMainForm.ToolStripMenuItem_Files_ExportAsMusicXml, Keys.None);
-            menuItemHandler.GenerateAccessibleName(this.exporterSomTextToolStripMenuItem, ResourcesForMusicBrailleReaderMainForm.ToolStripMenuItem_Files_ExportAsText, Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.openUsingNOTAProfileToolStripMenuItem, LocRes.ToolStripMenuItem_Files_OpenUsingNOTA, Keys.Control | Keys.O); // In the Danish version the CTRL-O shortcut goes here
+            menuItemHandler.GenerateAccessibleName(this.openUsingBrailleOrchProfileToolStripMenuItem, LocRes.ToolStripMenuItem_Files_OpenUsingBrailleOrch, Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.exporterSomMusicXmlToolStripMenuItem, LocRes.ToolStripMenuItem_Files_ExportAsMusicXml, Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.exporterSomTextToolStripMenuItem, LocRes.ToolStripMenuItem_Files_ExportAsText, Keys.None);
 
            //menuItemHandler.GenerateAccessibleName(usingAutoselectedProfileToolStripMenuItem, "Åbn med &automatisk valgt profil", Keys.None);
 
