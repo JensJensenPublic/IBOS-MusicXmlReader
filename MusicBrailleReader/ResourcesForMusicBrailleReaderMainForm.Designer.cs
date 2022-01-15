@@ -61,6 +61,33 @@ namespace MusicBrailleReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ALT.
+        /// </summary>
+        internal static string JAWS_Alt {
+            get {
+                return ResourceManager.GetString("JAWS_Alt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CONTROL.
+        /// </summary>
+        internal static string JAWS_Control {
+            get {
+                return ResourceManager.GetString("JAWS_Control", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SHIFT.
+        /// </summary>
+        internal static string JAWS_Shift {
+            get {
+                return ResourceManager.GetString("JAWS_Shift", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Files.
         /// </summary>
         internal static string ToolStripMenuItem_Files {

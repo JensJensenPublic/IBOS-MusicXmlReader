@@ -16,8 +16,11 @@ namespace MusicBrailleReader
         /// </summary>
         private void LocalizeMenuStrip()
         {
-           // The MenuHandler is only needed in this method, so no need to make it a member variable.
-            MenuItemHandler menuItemHandler = MenuItemHandler.Create("KONTROL", "ALT", "SKIFT"); // Use simple danish terms until we get localization files.
+            // The MenuHandler is only needed in this method, so no need to make it a member variable.
+
+
+//            MenuItemHandler menuItemHandler = MenuItemHandler.Create("KONTROL", "ALT", "SKIFT"); // Use simple danish terms until we get localization files.
+            MenuItemHandler menuItemHandler = MenuItemHandler.Create(LocRes.JAWS_Control, LocRes.JAWS_Alt, LocRes.JAWS_Shift); // Force JAWS to speak (Localized) strings for Control keys
            // MenuItemHandler  menuItemHandler = MenuItemHandler.Create(); // Use the simple version, implicitly causing English localization of the MEnuItemHandler.
 
             // Children of MenuStrip
