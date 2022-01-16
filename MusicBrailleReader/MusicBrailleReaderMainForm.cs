@@ -11,6 +11,9 @@ using System.Drawing;
 
 namespace MusicBrailleReader
 {
+
+    using LocRes = ResourcesForMusicBrailleReaderMainForm; // Simple shorthand for the one and only localization ressource rerferenced in this file 
+
     /// <summary>
     /// Simple UI project for demonstrating the Music Braille decoder without involving the maim MusicXmlReader application or ots alia.
     /// Everything is stolen from C:\Users\Jens\Dropbox\Visual Studio 2015\Solutions\Tactile MusicXmlReader\MusicXmlReader\MAinForm.cs
@@ -50,13 +53,30 @@ namespace MusicBrailleReader
         private void LocalizeComponent()
         {
             /// All of these texts should be read from the reouece file ResourcefForUI...
-            this.applicationName = "IBOS punktnodelæser";
-            this.Text = this.applicationName;
-            this.userSettingsTreeView.AccessibleName = "Punktnode filter";      
-            this.listBoxOffsets.AccessibleName = "Punktnode liste";
-            this.textBoxBraille.AccessibleName = "Valgte symbol vist i stor fond";
-            this.textBoxStatusInformation.AccessibleName = "Status information";
-            this.textBoxText.AccessibleName = "Valgte symbol i tekstrepræsentation";
+
+            string s = "";
+
+            s = LocRes.Application_Name; //  "IBOS punktnodelæser";
+            this.applicationName = s;
+            this.Text = s;
+
+            s = LocRes.TreeViewUsersSettings_Name; //  "Punktnode filter";
+            this.userSettingsTreeView.AccessibleName = s;
+
+            s = LocRes.ListBoxOffsets_Name;
+            this.listBoxOffsets.AccessibleName = s;
+
+            s = LocRes.TextBoxNormalText_Name;
+            this.textBox3.AccessibleName = s;
+
+            s = LocRes.TextBoxBraille_Name;
+            this.textBoxBraille.AccessibleName = s;
+
+            s = LocRes.TextBoxStatusInformation_Name;
+            this.textBoxStatusInformation.AccessibleName = s; //"Status information";
+
+            s = LocRes.TextBoxTextInformation_Name;
+            this.textBoxText.AccessibleName = s;  //"Valgte symbol i tekstrepræsentation";
         }
 
 

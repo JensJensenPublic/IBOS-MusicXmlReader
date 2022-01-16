@@ -61,6 +61,15 @@ namespace MusicBrailleReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IBOS Braille Music Reader.
+        /// </summary>
+        internal static string Application_Name {
+            get {
+                return ResourceManager.GetString("Application_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ALT.
         /// </summary>
         internal static string JAWS_Alt {
@@ -84,6 +93,51 @@ namespace MusicBrailleReader {
         internal static string JAWS_Shift {
             get {
                 return ResourceManager.GetString("JAWS_Shift", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Braille Music List.
+        /// </summary>
+        internal static string ListBoxOffsets_Name {
+            get {
+                return ResourceManager.GetString("ListBoxOffsets_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Braille Symbols.
+        /// </summary>
+        internal static string TextBoxBraille_Name {
+            get {
+                return ResourceManager.GetString("TextBoxBraille_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        internal static string TextBoxNormalText_Name {
+            get {
+                return ResourceManager.GetString("TextBoxNormalText_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status information.
+        /// </summary>
+        internal static string TextBoxStatusInformation_Name {
+            get {
+                return ResourceManager.GetString("TextBoxStatusInformation_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text representation.
+        /// </summary>
+        internal static string TextBoxTextInformation_Name {
+            get {
+                return ResourceManager.GetString("TextBoxTextInformation_Name", resourceCulture);
             }
         }
         
@@ -165,6 +219,15 @@ namespace MusicBrailleReader {
         internal static string TreeView_Tones {
             get {
                 return ResourceManager.GetString("TreeView_Tones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Braille Music Filter.
+        /// </summary>
+        internal static string TreeViewUsersSettings_Name {
+            get {
+                return ResourceManager.GetString("TreeViewUsersSettings_Name", resourceCulture);
             }
         }
     }

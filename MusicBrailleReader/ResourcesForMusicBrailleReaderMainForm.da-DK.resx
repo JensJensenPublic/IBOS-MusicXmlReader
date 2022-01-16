@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Application_Name" xml:space="preserve">
+    <value>IBOS Punktnodelæser</value>
+  </data>
   <data name="JAWS_Alt" xml:space="preserve">
     <value>ALT</value>
   </data>
@@ -125,6 +128,21 @@
   </data>
   <data name="JAWS_Shift" xml:space="preserve">
     <value>SKIFT</value>
+  </data>
+  <data name="ListBoxOffsets_Name" xml:space="preserve">
+    <value>Punktnode liste</value>
+  </data>
+  <data name="TextBoxBraille_Name" xml:space="preserve">
+    <value>Valgte punktnode symboler</value>
+  </data>
+  <data name="TextBoxNormalText_Name" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="TextBoxStatusInformation_Name" xml:space="preserve">
+    <value>Status information</value>
+  </data>
+  <data name="TextBoxTextInformation_Name" xml:space="preserve">
+    <value>Text repræsentation</value>
   </data>
   <data name="ToolStripMenuItem_Files" xml:space="preserve">
     <value>&amp;Filer</value>
@@ -143,6 +161,9 @@
   </data>
   <data name="ToolStripMenuItem_Tools" xml:space="preserve">
     <value>Værk&amp;tøjer</value>
+  </data>
+  <data name="TreeViewUsersSettings_Name" xml:space="preserve">
+    <value>Punktnode filter</value>
   </data>
   <data name="TreeView_RawBraille" xml:space="preserve">
     <value>Rå punktnode symboler</value>
