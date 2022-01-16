@@ -52,31 +52,18 @@ namespace MusicBrailleReader
         /// </summary>
         private void LocalizeComponent()
         {
-            /// All of these texts should be read from the reouece file ResourcefForUI...
+            /// All of these texts are read from the resource files according to "using LocRes = ResourcesForMusicBrailleReaderMainForm;"
 
-            string s = "";
+            this.applicationName = LocRes.Application_Name; //  "IBOS punktnodelæser"
+            this.Text = LocRes.Application_Name; //  "IBOS punktnodelæser"
 
-            s = LocRes.Application_Name; //  "IBOS punktnodelæser";
-            this.applicationName = s;
-            this.Text = s;
-
-            s = LocRes.TreeViewUsersSettings_Name; //  "Punktnode filter";
-            this.userSettingsTreeView.AccessibleName = s;
-
-            s = LocRes.ListBoxOffsets_Name;
-            this.listBoxOffsets.AccessibleName = s;
-
-            s = LocRes.TextBoxNormalText_Name;
-            this.textBox3.AccessibleName = s;
-
-            s = LocRes.TextBoxBraille_Name;
-            this.textBoxBraille.AccessibleName = s;
-
-            s = LocRes.TextBoxStatusInformation_Name;
-            this.textBoxStatusInformation.AccessibleName = s; //"Status information";
-
-            s = LocRes.TextBoxTextInformation_Name;
-            this.textBoxText.AccessibleName = s;  //"Valgte symbol i tekstrepræsentation";
+            // The following items ore only identified by their AccessibleNAme 
+            this.userSettingsTreeView.AccessibleName = LocRes.TreeViewUsersSettings_Name; //  "Punktnode filter";
+            this.listBoxOffsets.AccessibleName = LocRes.ListBoxOffsets_Name;
+            this.textBox3.AccessibleName = LocRes.TextBoxNormalText_Name;
+            this.textBoxBraille.AccessibleName = LocRes.TextBoxBraille_Name;
+            this.textBoxStatusInformation.AccessibleName = LocRes.TextBoxStatusInformation_Name; //"Status information";
+            this.textBoxText.AccessibleName = LocRes.TextBoxTextInformation_Name; //"Valgte symbol i tekstrepræsentation";
         }
 
 
