@@ -12,6 +12,10 @@ namespace MusicXmlReaderModel
         const byte LineFeed = 10;
         const byte FormFeed = 12;
 
+        // Constants used for inserting the MusicHyphen (Dot5) while formatting with respect to embosser width and height
+        readonly static char BrailleSpaceAsUnicode = (char)(0x2800 + 0);
+        readonly static char MusicHyphenAsUnicode  = (char)(0x2800 + BrailleBuilder.MusicHyphen);
+
         /// <summary>
         /// Number of lines reserved for a caption on the first page
         /// </summary>
@@ -97,7 +101,7 @@ namespace MusicXmlReaderModel
                 bool done = false;
                 while (!done)
                 {
-                    if (currentWidth + remainingChars.Length <= lineWidth)
+                    if (currentWidth + remainingChars.Length <= lineWidth - 1) // "-1" to mate room for a Music Hyphen if needed !
                     {
                         nextLine = remainingChars;
                         done = true;
@@ -106,6 +110,10 @@ namespace MusicXmlReaderModel
                     else
                     {
                         // The next string (representing an event does not fit into the rest of this line, so we must add a new line
+                        if (!StartsWithNewMeasure(remainingChars))
+                        {
+                            score.Append(MusicHyphenAsUnicode); // Add the MusicHyphen (Dot5) if needed.
+                        }
                         score.Append((char)CarriageReturn);
                         score.Append((char)LineFeed);
                         numberOfLines++;
@@ -134,6 +142,16 @@ namespace MusicXmlReaderModel
             }
             // Logger.LogCF(string.Format("(CharsPerLine={0} ,LinesPerForm={1}): Generated {2} forms containing {3} lines", lineWidth, formHeight, numberOfForms, numberOfLines));
             return score.ToString();
+        }
+
+        static private bool StartsWithNewMeasure(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return false;
+            if (s[0] == BrailleSpaceAsUnicode)
+            {
+                return true;
+            }
+            return false;
         }
 
 
