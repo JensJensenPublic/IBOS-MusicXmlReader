@@ -494,7 +494,7 @@ namespace MusicXmlReader
             for (int i = 0; (i < partList.NumberOfParts()); i++)
             {
                 ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
-                TreeNode node = treeNode.Nodes.Add(string.Format("{0} {1}", scorePartElement.partId, scorePartElement.partName));
+                TreeNode node = treeNode.Nodes.Add(string.Format("{0} {1}", scorePartElement.partId, scorePartElement.PartName));
                 bool b = model.UserSettings.GetParts(category,i);                 
                 node.Checked = b;
             } 

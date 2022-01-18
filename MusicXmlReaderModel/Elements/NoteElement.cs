@@ -1251,7 +1251,7 @@ namespace MusicXmlReaderModel
                                (null == pitchElement) ? "" : "Pitch=" + pitchElement.ToString(),  // 3
                                (null == restElement) ? "" : restElement.ToString(), // 4
                                scorePartElement.partId.ToString(), // 5
-                               scorePartElement.partName.ToString(), // 6
+                               scorePartElement.PartName.ToString(), // 6
                                divisions.ToString(), // 7
                                duration.ToString(), // 8
                                this.printObjectAttributeValue.ToString()// 9
@@ -1495,7 +1495,7 @@ namespace MusicXmlReaderModel
         {
             try
             {
-                string partName = scorePartElement.partName;
+                string partName = scorePartElement.PartName;
 #warning ToDo add other instruments if needed.
                 bool showLeftRightHand = ((partName == "Piano") || (partName == "Organ"));
                 return showLeftRightHand ? this.LocalizedHand() : "";
@@ -1518,7 +1518,7 @@ namespace MusicXmlReaderModel
             try
             {
                 string partId = scorePartElement.partId;
-                string partName = scorePartElement.partName;
+                string partName = scorePartElement.PartName;
                 return string.IsNullOrEmpty(partName) ? partId : partName; // Prefere PartName for PartId, i.i "Violin" for "P1"
             }
             catch (Exception e)

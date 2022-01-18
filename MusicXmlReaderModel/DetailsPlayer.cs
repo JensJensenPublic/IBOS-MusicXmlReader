@@ -235,7 +235,7 @@ namespace MusicXmlReaderModel
                         // The eventdescription contains notes for this part so we dig out the part parameters:
                         ScorePartElement scorePartElement = partList.GetPartFromNumber(i);
                         partId = scorePartElement.partId;
-                        partName = scorePartElement.partName;
+                        partName = scorePartElement.PartName;
                         // By using  ToString() for formatting the notes we assure the usage of identical formatting.
                         notes = notesForStaff.ToString(userSettings);
                         // By using ToLyrics() for formatting the lyrics we assure the usage of identical formatting.

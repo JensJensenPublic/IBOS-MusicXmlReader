@@ -38,7 +38,7 @@ namespace MusicXmlReaderModel
         public string PartName
         {
  //           get { return (null == scorePartElement) ? "UndefinedPartName" : Utilities.ToValidFileName(scorePartElement.partName); }
-            get { return (null == scorePartElement) ? "" : Utilities.ToValidFileName(scorePartElement.partName); }
+            get { return (null == scorePartElement) ? "" : Utilities.ToValidFileName(scorePartElement.PartName); }
         }
 
         public string PartId
@@ -366,8 +366,9 @@ namespace MusicXmlReaderModel
 
         private string GetPartName(string partName)
         {
-            if (0 == string.Compare(PartName, "MusicXML Part")) return ""; // Do not use this artificial partname to build a filename
-            return "." + Utilities.ToValidFileName(PartName);
+            // JSJ 2022.01 Changed confusing use of membervariable "PartName" to call parameter "partname" twice below
+            if (0 == string.Compare(partName, "MusicXML Part")) return ""; // Do not use this artificial partname to build a filename
+            return "." + Utilities.ToValidFileName(partName);
         }
 
 
@@ -399,7 +400,7 @@ namespace MusicXmlReaderModel
             try
             {
                 string partAbbreviation = Utilities.ToValidFileName(scorePartElement.PartAbbreviation);
-                string partName = Utilities.ToValidFileName(scorePartElement.partName);
+                string partName = Utilities.ToValidFileName(scorePartElement.PartName);
                 string instrumentName = "";
                 if ((null != scorePartElement.ScoreInstrumentElement) && (null != scorePartElement.ScoreInstrumentElement.InstrumentName))
                 {

@@ -103,7 +103,7 @@ namespace MusicXmlReaderModel
         {
             foreach (ScorePartElement scorePartElement in partArray)
             {
-                if (name == scorePartElement.partName) return scorePartElement;
+                if (name == scorePartElement.PartName) return scorePartElement;
             }
             return null;
         }
@@ -130,7 +130,7 @@ namespace MusicXmlReaderModel
             {
                 // Build up all substrings first:
                 string partId = scorePartElement.partId;
-                string partName = scorePartElement.partName;  
+                string partName = scorePartElement.PartName;  
                 string scoreInstrumentString = (null == scorePartElement.ScoreInstrumentElement) ? "" : scorePartElement.ScoreInstrumentElement.ToUserFriendlyString();
                 string midiInstrumentString = (null == scorePartElement.MidiInstrumentElement) ? "" : scorePartElement.MidiInstrumentElement.ToUserFriendlyString();
                 // Concatenate
@@ -161,7 +161,7 @@ namespace MusicXmlReaderModel
             foreach (ScorePartElement scorePartElement in partArray)
             {
                 string part = ResourcesForModel.PartListElement_Part;
-                list.Add(string.Format("{0}[{1}]: {2} ({3})", part,scorePartElement.partNumber, scorePartElement.partName, scorePartElement.partId));
+                list.Add(string.Format("{0}[{1}]: {2} ({3})", part,scorePartElement.partNumber, scorePartElement.PartName, scorePartElement.partId));
                 list.Add(string.Format("   {0}", scorePartElement.ScoreInstrumentString));
                 list.Add(string.Format("   {0}", scorePartElement.MidiInstrumentString));
 

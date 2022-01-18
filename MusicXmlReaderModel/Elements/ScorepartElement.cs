@@ -8,7 +8,7 @@ namespace MusicXmlReaderModel
         bool verboseLogging = false;
         const string className = "ScorePartElement";
         public string partId = ""; // For instance "P1"
-        public string partName = ""; // For instance "Soprano"
+        private string partName = ""; // For instance "Soprano" 
         public int partNumber; // A unique artificial index  for this part.
         private ScoreInstrumentElement scoreInstrumentElement;
         private MidiInstrumentElement midiInstrumentElement;
@@ -23,6 +23,12 @@ namespace MusicXmlReaderModel
 
         private List<ScoreInstrumentElement> scoreInstruments = new List<ScoreInstrumentElement>() ;
         private List<MidiInstrumentElement> midiInstruments = new List<MidiInstrumentElement>();
+
+        public string PartName
+        {
+            get { return partName; }
+        }
+        
 
         public ScoreInstrumentElement ScoreInstrumentElement
         {

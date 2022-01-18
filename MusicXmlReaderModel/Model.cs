@@ -1336,7 +1336,7 @@ namespace MusicXmlReaderModel
                     if ((userSettings.GetParts(UserSettings.Category.MusicBraille, i)))
                     {
                         // Use the name if it exists, otherwise the id))
-                        string name = partList.GetPartFromNumber(i).partName;
+                        string name = partList.GetPartFromNumber(i).PartName;
                         string id = partList.GetPartFromNumber(i).partId;
                         string s = string.IsNullOrEmpty(name) ? id : name;
                         result.Add(s);

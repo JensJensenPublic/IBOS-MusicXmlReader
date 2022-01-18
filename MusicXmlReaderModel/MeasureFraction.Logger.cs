@@ -36,7 +36,7 @@ namespace MusicXmlReaderModel
                     IntegerFraction fractionSum = GetFractionSum(testItem);
 
                     string noteElementString = string.Format(" NoteElement( '{0}' {1}{2}{3}{4} Voice={5} Actual={6} Normal={7} {8} )",
-                        ne.ScorePartElement.partName.TrimStart(' '), // 0
+                        ne.ScorePartElement.PartName.TrimStart(' '), // 0
                         ne.PrintObjectAttributeValue ? "" : "NotPrinted", // 1
                         ne.GraceNote ? " GraceNote" : "", // 2
                         ne.CueNote ? "CueNote" : "", // 3
