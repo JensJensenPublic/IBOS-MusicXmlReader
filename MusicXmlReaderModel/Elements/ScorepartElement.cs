@@ -9,6 +9,8 @@ namespace MusicXmlReaderModel
         const string className = "ScorePartElement";
         public string partId = ""; // For instance "P1"
         private string partName = ""; // For instance "Soprano" 
+        private bool partNamePrintObject = false;
+        public bool PartNamePrintObject { get { return partNamePrintObject; } }
         public int partNumber; // A unique artificial index  for this part.
         private ScoreInstrumentElement scoreInstrumentElement;
         private MidiInstrumentElement midiInstrumentElement;
@@ -113,6 +115,18 @@ namespace MusicXmlReaderModel
             }
         }
 
+        private bool GetPrintObjectValue(XmlNode n)
+        {
+            foreach (XmlAttribute a in n.Attributes)
+            {
+                if ((a.Name == "print-object") && (a.Value == "no"))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
 
         /// <summary>
         /// Private constructor, used by the Crate() method
@@ -142,7 +156,10 @@ namespace MusicXmlReaderModel
             {
                 switch (n.Name)
                 {
-                    case "part-name": partName = n.InnerText; break;
+                    case "part-name":
+                        partName = n.InnerText;
+                        partNamePrintObject = GetPrintObjectValue(n); // For the PartName we need to know the value of the "print-object" attribute because the PArtName may have an artificial value added by the MusicXML file creator
+                        break;
                     case "score-instrument":
                         scoreInstrumentElement = ScoreInstrumentElement.Create(n);
                         if (verboseLogging) Logger.Log(string.Format(scoreInstrumentElement.ToString())); // Not of interest for the normal user !

@@ -1510,7 +1510,9 @@ namespace MusicXmlReaderModel
     
 
         /// <summary>
-        /// Convenience method for reporting the name of the part, but defaulting to the Id of the part if no name is specified
+        /// Convenience method for reporting the name of the part, but defaulting to the Id of the part if either
+        /// 1) No name is specified or
+        /// 2) A name is specified with "print-object" = "no" attribute
         /// </summary>
         /// <returns></returns>
         public string GetPartString()
@@ -1518,7 +1520,7 @@ namespace MusicXmlReaderModel
             try
             {
                 string partId = scorePartElement.partId;
-                string partName = scorePartElement.PartName;
+                string partName = scorePartElement.PartNamePrintObject ?   scorePartElement.PartName : "";
                 return string.IsNullOrEmpty(partName) ? partId : partName; // Prefere PartName for PartId, i.i "Violin" for "P1"
             }
             catch (Exception e)
