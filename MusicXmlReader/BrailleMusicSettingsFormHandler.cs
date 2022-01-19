@@ -41,7 +41,7 @@ namespace MusicXmlReader
         // LabelEscapeSequence: Inherrit value 
         // LabelApplicationName: Inherrit value
         // LabelApplicationLocation: Inherrit value
-        public override List<BrailleFileHandler.FileEncoding> EnabledEncodings { get { return allEncodings; } }
+        public override List<BrailleFileHandler.FileEncoding> EnabledEncodings { get { return  Logger.DeveloperMode ? allEncodings : defaultEncodings; } }
     }
 
 
@@ -60,6 +60,7 @@ namespace MusicXmlReader
         // Shorthand for the 3 most common encodings
         protected List<BrailleFileHandler.FileEncoding> defaultEncodings = new List<BrailleFileHandler.FileEncoding>()
         {
+            BrailleFileHandler.FileEncoding.PEF,
             BrailleFileHandler.FileEncoding.BRF_ASCII,
             BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252,
             BrailleFileHandler.FileEncoding.BRF_Unicode_utf8
@@ -68,13 +69,13 @@ namespace MusicXmlReader
         // Shorthand for all encodings implemented
         protected List<BrailleFileHandler.FileEncoding> allEncodings = new List<BrailleFileHandler.FileEncoding>()
         {
+            BrailleFileHandler.FileEncoding.PEF,
             BrailleFileHandler.FileEncoding.BRF_ASCII,
             BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252,
             BrailleFileHandler.FileEncoding.BRF_Unicode_utf8,
             BrailleFileHandler.FileEncoding.BRF_Unicode,
             BrailleFileHandler.FileEncoding.BRF_Unicode_utf16,
-            BrailleFileHandler.FileEncoding.BRF_Unicode_utf32,
-            BrailleFileHandler.FileEncoding.PEF
+            BrailleFileHandler.FileEncoding.BRF_Unicode_utf32
         };
 
         // Shorthand for all Braille Page Layouts implemented

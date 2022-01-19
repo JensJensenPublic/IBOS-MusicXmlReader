@@ -87,7 +87,7 @@
             this.listBoxFileFormat.FormattingEnabled = true;
             this.listBoxFileFormat.Location = new System.Drawing.Point(205, 25);
             this.listBoxFileFormat.Name = "listBoxFileFormat";
-            this.listBoxFileFormat.Size = new System.Drawing.Size(207, 43);
+            this.listBoxFileFormat.Size = new System.Drawing.Size(207, 56);
             this.listBoxFileFormat.TabIndex = 10;
             // 
             // textBoxApplicationName
@@ -201,7 +201,7 @@
             // labelBraillePageLayout
             // 
             this.labelBraillePageLayout.AutoSize = true;
-            this.labelBraillePageLayout.Location = new System.Drawing.Point(12, 92);
+            this.labelBraillePageLayout.Location = new System.Drawing.Point(15, 92);
             this.labelBraillePageLayout.Name = "labelBraillePageLayout";
             this.labelBraillePageLayout.Size = new System.Drawing.Size(90, 13);
             this.labelBraillePageLayout.TabIndex = 91;
