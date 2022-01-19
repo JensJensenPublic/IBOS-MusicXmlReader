@@ -605,10 +605,8 @@ namespace BrailleMusicDecoder
                 sb.Append(") ");
                 valuesString = sb.ToString(); 
             }
-            // The CR, LF and FF  characters can not  be  shown as Unicode characters:
-            string tokenString =(  (category == InputCategoryEnum.ControlCharCRLF)
-                                || (category == InputCategoryEnum.ControlCharCRLFNumber)
-                                || (category == InputCategoryEnum.ControlCharFF) )? "" : token.ToUnicodeString();
+            // InputCategoryEnum.ControlCharCRLFNumbers can not  (yet) be  shown as Unicode characters:
+            string tokenString = (category == InputCategoryEnum.ControlCharCRLFNumber) ? "" : token.ToUnicodeString();
             string localizedString = ToLocalizedString(category, subCategory, subSubCategory, TokenLength, rawOptions.VisibleCategoryNames);
             string result = string.Format("{0} {1}{2}{3}{4} ",
                 (0 != (stringFormatOptions & StringFormatOptions.token)) ? tokenString : "",
