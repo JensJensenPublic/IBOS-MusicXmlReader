@@ -518,14 +518,27 @@ namespace BrailleMusicDecoder
             return c - BrailleBase;
         }
 
+
+        /// <summary>
+        /// Convert from the internal braille representation, which represents Braille6 as numbers in [0..63] and has special values for CR LF  and FF - and nothing else !
+        /// </summary>
+        /// <param name="i">The internal code to convert</param>
+        /// <returns>The Unicode representation of the input parameter</returns>
         public static string ToUnicodeChar(int i)
         {
+            if ((0 <= i) && (i <= 63))
+            {
+                return ((char)(i + BrailleBase)).ToString();
+            }
+
             switch (i)
             {
                 case carriageReturn: return " CR";
                 case lineFeed: return " LF";
                 case formFeed: return " FF";
-                default: return ((char)(i + BrailleBase)).ToString();
+                default:
+                    Logger.LogCF(string.Format(": Unexpected input: i={0}", i));
+                    return " ??"; // Represents an unexpected value !
             }
         }
 
