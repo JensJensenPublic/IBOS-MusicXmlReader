@@ -170,6 +170,7 @@ namespace MusicBrailleReader
             // MenuItems under the "File" menuItem
             Hide(openUsingBrailleOrchProfileToolStripMenuItem);
             Hide(openTestFileToolStripMenuItem);
+            Hide(exporterSomMusicXmlToolStripMenuItem); // This very important feature is still not in a functional state!!!
 
             // The whole "Tools" menuItem
             Hide(toolsToolStripMenuItem);
