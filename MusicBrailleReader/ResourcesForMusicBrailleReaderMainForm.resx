@@ -147,6 +147,9 @@
   <data name="ToolStripMenuItem_Files" xml:space="preserve">
     <value>&amp;Files</value>
   </data>
+  <data name="ToolStripMenuItem_Files_Exit" xml:space="preserve">
+    <value>E&amp;xit</value>
+  </data>
   <data name="ToolStripMenuItem_Files_ExportAsMusicXml" xml:space="preserve">
     <value>Export as &amp;MusicXml</value>
   </data>

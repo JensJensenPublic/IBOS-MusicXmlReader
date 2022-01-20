@@ -34,10 +34,11 @@ namespace MusicBrailleReader
             menuItemHandler.GenerateAccessibleName(this.openUsingBrailleOrchProfileToolStripMenuItem, LocRes.ToolStripMenuItem_Files_OpenUsingBrailleOrch, Keys.None);
             menuItemHandler.GenerateAccessibleName(this.exporterSomMusicXmlToolStripMenuItem, LocRes.ToolStripMenuItem_Files_ExportAsMusicXml, Keys.None);
             menuItemHandler.GenerateAccessibleName(this.exporterSomTextToolStripMenuItem, LocRes.ToolStripMenuItem_Files_ExportAsText, Keys.None);
+            menuItemHandler.GenerateAccessibleName(this.exitToolStripMenuItem, LocRes.ToolStripMenuItem_Files_Exit, Keys.Alt | Keys.F4);
 
            //menuItemHandler.GenerateAccessibleName(usingAutoselectedProfileToolStripMenuItem, "Åbn med &automatisk valgt profil", Keys.None);
 
-           // Second sublevel below "Tools" // No need to localize as only used in developer mode !
+            // Second sublevel below "Tools" // No need to localize as only used in developer mode !
             menuItemHandler.GenerateAccessibleName(this.iBOSMusicXmlReaderToolStripMenuItem, "&IBOS Nodelæser", Keys.None);
             menuItemHandler.GenerateAccessibleName(this.museScoreToolStripMenuItem, "Start &MuseScore", Keys.None);
             menuItemHandler.GenerateAccessibleName(this.logfileLocationToolStripMenuItem, "Åbn &Logfil placering", Keys.None);

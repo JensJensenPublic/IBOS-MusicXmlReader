@@ -994,5 +994,20 @@ namespace MusicBrailleReader
             if (null == creatingForm) return;
             creatingForm.Show();
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (null == creatingForm)
+            {
+                Logger.LogCF(": Closing application.");
+                Application.Exit();
+            }
+            else
+            {
+                // We were started from the MainForm
+                Logger.LogCF(": Closing form.");
+                this.Close();
+            } 
+        }
     }
 }

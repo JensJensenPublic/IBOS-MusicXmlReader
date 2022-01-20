@@ -151,6 +151,15 @@ namespace MusicBrailleReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E&amp;xit.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_Exit {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export as &amp;MusicXml.
         /// </summary>
         internal static string ToolStripMenuItem_Files_ExportAsMusicXml {
