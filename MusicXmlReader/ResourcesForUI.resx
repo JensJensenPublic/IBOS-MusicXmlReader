@@ -598,4 +598,7 @@
   <data name="BrailleDevice_HighSpeedEmbosserName" xml:space="preserve">
     <value>High speed embosser</value>
   </data>
+  <data name="ToolStripMenuItem_Settings_HighspeedEmbosser" xml:space="preserve">
+    <value>Settings for &amp;high speed embosser profile</value>
+  </data>
 </root>

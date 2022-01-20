@@ -613,5 +613,10 @@
   </data>
   <data name="BrailleDevice_HighSpeedEmbosserName" xml:space="preserve">
     <value>Højhastigheds punktprinter</value>
+    <comment>MISSING NL</comment>
+  </data>
+  <data name="ToolStripMenuItem_Settings_HighspeedEmbosser" xml:space="preserve">
+    <value>Indstillinger for &amp;højhastigheds punktprinter profil</value>
+    <comment>MISSING NL</comment>
   </data>
 </root>

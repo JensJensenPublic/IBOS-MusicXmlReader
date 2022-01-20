@@ -1060,6 +1060,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Settings for &amp;high speed embosser profile.
+        /// </summary>
+        internal static string ToolStripMenuItem_Settings_HighspeedEmbosser {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Settings_HighspeedEmbosser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings for &amp;universal Braille-device profile.
         /// </summary>
         internal static string ToolStripMenuItem_Settings_MusicBraille {

@@ -989,8 +989,14 @@ namespace MusicXmlReader
         {
             Export(userPreferencesHandler.embosser);
         }
-
         #endregion Embosser
+
+        #region highspeedembosser
+        private void toHighSpeedEmbosserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Export(userPreferencesHandler.highSpeedEmbosser);
+        }
+        #endregion
 
         // After selecting GenericDevice all parameters: Encoding, pagewidth and pageheight are automatically taken from Settings->Generic Braille Device
         #region GenericDevice

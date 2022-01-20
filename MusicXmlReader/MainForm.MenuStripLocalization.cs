@@ -114,6 +114,7 @@ namespace MusicXmlReader
 
             generelSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Settings_General;
             embosserSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Settings_Embosser;
+            highSpeedEmbosserSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Settings_HighspeedEmbosser;
             notetakerSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Settings_NoteTaker;
             musicBrailleSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Settings_MusicBraille;
             resetAllUserSettingsToDefaultValuesToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Settings_ResetAll;

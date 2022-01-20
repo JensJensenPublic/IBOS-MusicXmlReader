@@ -75,6 +75,7 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.notetakerSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.embosserSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.highSpeedEmbosserSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.musicBrailleSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.resetAllUserSettingsToDefaultValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -139,7 +140,7 @@
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
-            this.highSpeedEmbosserSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toHighSpeedEmbosserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -230,6 +231,7 @@
             this.exportMusicBrailleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toNotetakerToolStripMenuItem,
             this.toEmbosserToolStripMenuItem,
+            this.toHighSpeedEmbosserToolStripMenuItem,
             this.toGenericDeviceToolStripMenuItem,
             this.inOptionalFormatToolStripMenuItem});
             this.exportMusicBrailleToolStripMenuItem.Name = "exportMusicBrailleToolStripMenuItem";
@@ -239,21 +241,21 @@
             // toNotetakerToolStripMenuItem
             // 
             this.toNotetakerToolStripMenuItem.Name = "toNotetakerToolStripMenuItem";
-            this.toNotetakerToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.toNotetakerToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.toNotetakerToolStripMenuItem.Text = "to notetaker";
             this.toNotetakerToolStripMenuItem.Click += new System.EventHandler(this.toNotetakerToolStripMenuItem_Click);
             // 
             // toEmbosserToolStripMenuItem
             // 
             this.toEmbosserToolStripMenuItem.Name = "toEmbosserToolStripMenuItem";
-            this.toEmbosserToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.toEmbosserToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.toEmbosserToolStripMenuItem.Text = "to embosser";
             this.toEmbosserToolStripMenuItem.Click += new System.EventHandler(this.toEmbosserToolStripMenuItem_Click);
             // 
             // toGenericDeviceToolStripMenuItem
             // 
             this.toGenericDeviceToolStripMenuItem.Name = "toGenericDeviceToolStripMenuItem";
-            this.toGenericDeviceToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.toGenericDeviceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.toGenericDeviceToolStripMenuItem.Text = "to generic device";
             this.toGenericDeviceToolStripMenuItem.Click += new System.EventHandler(this.toIbosGenericDeviceToolStripMenuItem_Click);
             // 
@@ -264,7 +266,7 @@
             this.brfASCIIToolStripMenuItem1,
             this.brfUnicodeToolStripMenuItem1});
             this.inOptionalFormatToolStripMenuItem.Name = "inOptionalFormatToolStripMenuItem";
-            this.inOptionalFormatToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.inOptionalFormatToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.inOptionalFormatToolStripMenuItem.Text = "in optional format";
             this.inOptionalFormatToolStripMenuItem.Click += new System.EventHandler(this.inOptionalFormatToolStripMenuItem_Click);
             // 
@@ -530,6 +532,13 @@
             this.embosserSettingsToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
             this.embosserSettingsToolStripMenuItem.Text = "Embosser settings";
             this.embosserSettingsToolStripMenuItem.Click += new System.EventHandler(this.embosserSettingsToolStripMenuItem_Click);
+            // 
+            // highSpeedEmbosserSettingsToolStripMenuItem
+            // 
+            this.highSpeedEmbosserSettingsToolStripMenuItem.Name = "highSpeedEmbosserSettingsToolStripMenuItem";
+            this.highSpeedEmbosserSettingsToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+            this.highSpeedEmbosserSettingsToolStripMenuItem.Text = "HighSpeed Embosser Settings";
+            this.highSpeedEmbosserSettingsToolStripMenuItem.Click += new System.EventHandler(this.highSpeedEmbosserSettingsToolStripMenuItem_Click);
             // 
             // musicBrailleSettingsToolStripMenuItem
             // 
@@ -1049,12 +1058,12 @@
             // 
             this.printDialog.UseEXDialog = true;
             // 
-            // highSpeedEmbosserSettingsToolStripMenuItem
+            // toHighSpeedEmbosserToolStripMenuItem
             // 
-            this.highSpeedEmbosserSettingsToolStripMenuItem.Name = "highSpeedEmbosserSettingsToolStripMenuItem";
-            this.highSpeedEmbosserSettingsToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
-            this.highSpeedEmbosserSettingsToolStripMenuItem.Text = "HighSpeed Embosser Settings";
-            this.highSpeedEmbosserSettingsToolStripMenuItem.Click += new System.EventHandler(this.highSpeedEmbosserSettingsToolStripMenuItem_Click);
+            this.toHighSpeedEmbosserToolStripMenuItem.Name = "toHighSpeedEmbosserToolStripMenuItem";
+            this.toHighSpeedEmbosserToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.toHighSpeedEmbosserToolStripMenuItem.Text = "to high speed embosser";
+            this.toHighSpeedEmbosserToolStripMenuItem.Click += new System.EventHandler(this.toHighSpeedEmbosserToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1199,6 +1208,7 @@
         private System.Windows.Forms.ToolStripMenuItem analyzeLocalizationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem musicBrailleReaderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem highSpeedEmbosserSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toHighSpeedEmbosserToolStripMenuItem;
     }
 }
 
