@@ -595,4 +595,7 @@
     <value>IBOS Music Braille Reader</value>
     <comment>ToDo: Implement  in .NL</comment>
   </data>
+  <data name="BrailleDevice_HighSpeedEmbosserName" xml:space="preserve">
+    <value>High speed embosser</value>
+  </data>
 </root>

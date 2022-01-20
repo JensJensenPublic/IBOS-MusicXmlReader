@@ -611,4 +611,7 @@
     <value>IBOS &amp;Punktnodelæser</value>
     <comment>ToDo: Implement  in .NL</comment>
   </data>
+  <data name="BrailleDevice_HighSpeedEmbosserName" xml:space="preserve">
+    <value>Højhastigheds punktprinter</value>
+  </data>
 </root>

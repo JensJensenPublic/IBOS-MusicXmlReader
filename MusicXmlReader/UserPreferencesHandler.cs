@@ -126,6 +126,27 @@ namespace MusicXmlReader
         }
     }
 
+    public class BrailleHighSpeedEmbosser : BrailleDevice
+    {
+        private Settings settings;
+        public override string DeviceName { get { return Localize(settings.HighSpeedEmbosserName, ResourcesForUI.BrailleDevice_HighSpeedEmbosserName); } set { settings.HighSpeedEmbosserName = value; } }
+        public override string EscapeSequence { get { return settings.HighSpeedEmbosserEscapeSequence; } set { settings.HighSpeedEmbosserEscapeSequence = value; } }
+        public override string FileFormat { get { return settings.HighSpeedEmbosserFileFormat; } set { settings.HighSpeedEmbosserFileFormat = value; } }
+        public override int PageWidth { get { return settings.HighSpeedEmbosserPageWidth; } set { settings.HighSpeedEmbosserPageWidth = value; } }
+        public override int PageHeight { get { return settings.HighSpeedEmbosserPageHeight; } set { settings.HighSpeedEmbosserPageHeight = value; } }
+        public override string ApplicationName { get { return settings.HighSpeedEmbosserApplicationName; } set { settings.HighSpeedEmbosserApplicationName = value; } } 
+        public override string ApplicationLocation { get { return settings.HighSpeedEmbosserApplicationLocation; } set { settings.HighSpeedEmbosserApplicationLocation = value; } } 
+        public override BrailleFileHandler.FileEncoding BrailleFileFormat { get { return ToEncoding(settings.HighSpeedEmbosserFileFormat); } set { settings.HighSpeedEmbosserFileFormat = FromEncoding(value); } }
+        public override Model.BrailleStyleEnum BraillePageLayout { get { return ToPageLayout(settings.HighSpeedEmbosserPageLayout); } set { settings.HighSpeedEmbosserPageLayout = FromPageLayout(value); } }
+
+        internal BrailleHighSpeedEmbosser(MusicXmlReader.Properties.Settings settings)
+        {
+            this.settings = settings;
+        }
+    }
+    
+
+
     public class BrailleNoteTaker : BrailleDevice
     {
         private Settings settings;
@@ -211,6 +232,11 @@ namespace MusicXmlReader
         /// The embosser used by the current user
         /// </summary>
         public BrailleDevice embosser;
+
+        /// <summary>
+        /// The high speed embosser used by the current user
+        /// </summary>
+        public BrailleDevice highSpeedEmbosser;
 
         /// <summary>
         /// The Notetaker used by the current user
@@ -314,6 +340,7 @@ namespace MusicXmlReader
                 s = MusicXmlReader.Properties.Settings.Default; // Establish a shorthand notation
                 embosser = new BrailleEmbosser(s);
                 noteTaker = new BrailleNoteTaker(s);
+                highSpeedEmbosser = new BrailleHighSpeedEmbosser(s);
                 genericBrailleDevice = new BrailleGenericDevice(s);
             }
             catch (Exception e)

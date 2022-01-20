@@ -178,6 +178,24 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to High speed embosser name.
+        /// </summary>
+        internal static string Braille_HighSpeedEmbosserName {
+            get {
+                return ResourceManager.GetString("Braille_HighSpeedEmbosserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High speed embosser profile.
+        /// </summary>
+        internal static string Braille_HighSpeedEmbosserSettingsCaption {
+            get {
+                return ResourceManager.GetString("Braille_HighSpeedEmbosserSettingsCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to BANA 2015 layout: Using interval notation and in-accord notation.
         /// </summary>
         internal static string Braille_LayoutBANA {

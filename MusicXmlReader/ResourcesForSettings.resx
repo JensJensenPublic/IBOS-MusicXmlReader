@@ -226,4 +226,12 @@
     <value>Finale path</value>
     <comment>MISSING DUTCH</comment>
   </data>
+  <data name="Braille_HighSpeedEmbosserName" xml:space="preserve">
+    <value>High speed embosser name</value>
+    <comment>MISSING DUTCH</comment>
+  </data>
+  <data name="Braille_HighSpeedEmbosserSettingsCaption" xml:space="preserve">
+    <value>High speed embosser profile</value>
+    <comment>MISSING DUTCH</comment>
+  </data>
 </root>

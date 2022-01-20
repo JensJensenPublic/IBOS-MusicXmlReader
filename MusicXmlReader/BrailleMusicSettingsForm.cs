@@ -14,7 +14,7 @@ namespace MusicXmlReader
 
     public partial class BrailleMusicSettingsForm : Form
     {
-        public enum DeviceTypeEnum { Unknown, Embosser, NoteTaker, GeneralDevice}
+        public enum DeviceTypeEnum { Unknown, Embosser, HighSpeedEmbosser, NoteTaker, GeneralDevice}
         private DeviceTypeEnum deviceTypeEnum;
         private string applicationName;
         private UserPreferencesHandler userPreferencesHandler;
@@ -80,6 +80,7 @@ namespace MusicXmlReader
             {
                 case DeviceTypeEnum.Embosser: brailleDevicePreferences = userPreferencesHandler.embosser; break;
                 case DeviceTypeEnum.NoteTaker: brailleDevicePreferences = userPreferencesHandler.noteTaker; break;
+                case DeviceTypeEnum.HighSpeedEmbosser: brailleDevicePreferences = userPreferencesHandler.highSpeedEmbosser; break;
                 case DeviceTypeEnum.GeneralDevice: brailleDevicePreferences = userPreferencesHandler.genericBrailleDevice; break; 
                 default:
                     Logger.LogCF(string.Format(": Device type not implemented: {0}", deviceTypeEnum.ToString()));

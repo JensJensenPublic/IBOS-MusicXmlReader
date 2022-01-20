@@ -394,5 +394,101 @@ namespace MusicXmlReader.Properties {
                 this["FinaleExe"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Braillo 650 SF")]
+        public string HighSpeedEmbosserName {
+            get {
+                return ((string)(this["HighSpeedEmbosserName"]));
+            }
+            set {
+                this["HighSpeedEmbosserName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("PEF")]
+        public string HighSpeedEmbosserFileFormat {
+            get {
+                return ((string)(this["HighSpeedEmbosserFileFormat"]));
+            }
+            set {
+                this["HighSpeedEmbosserFileFormat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("42")]
+        public int HighSpeedEmbosserPageWidth {
+            get {
+                return ((int)(this["HighSpeedEmbosserPageWidth"]));
+            }
+            set {
+                this["HighSpeedEmbosserPageWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int HighSpeedEmbosserPageHeight {
+            get {
+                return ((int)(this["HighSpeedEmbosserPageHeight"]));
+            }
+            set {
+                this["HighSpeedEmbosserPageHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("BANA")]
+        public string HighSpeedEmbosserPageLayout {
+            get {
+                return ((string)(this["HighSpeedEmbosserPageLayout"]));
+            }
+            set {
+                this["HighSpeedEmbosserPageLayout"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string HighSpeedEmbosserEscapeSequence {
+            get {
+                return ((string)(this["HighSpeedEmbosserEscapeSequence"]));
+            }
+            set {
+                this["HighSpeedEmbosserEscapeSequence"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string HighSpeedEmbosserApplicationName {
+            get {
+                return ((string)(this["HighSpeedEmbosserApplicationName"]));
+            }
+            set {
+                this["HighSpeedEmbosserApplicationName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string HighSpeedEmbosserApplicationLocation {
+            get {
+                return ((string)(this["HighSpeedEmbosserApplicationLocation"]));
+            }
+            set {
+                this["HighSpeedEmbosserApplicationLocation"] = value;
+            }
+        }
     }
 }

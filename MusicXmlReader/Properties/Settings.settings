@@ -95,5 +95,29 @@
     <Setting Name="FinaleExe" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Program Files (x86)\Finale NotePad 2012\Finale NotePad.exe</Value>
     </Setting>
+    <Setting Name="HighSpeedEmbosserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Braillo 650 SF</Value>
+    </Setting>
+    <Setting Name="HighSpeedEmbosserFileFormat" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PEF</Value>
+    </Setting>
+    <Setting Name="HighSpeedEmbosserPageWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">42</Value>
+    </Setting>
+    <Setting Name="HighSpeedEmbosserPageHeight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="HighSpeedEmbosserPageLayout" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BANA</Value>
+    </Setting>
+    <Setting Name="HighSpeedEmbosserEscapeSequence" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HighSpeedEmbosserApplicationName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HighSpeedEmbosserApplicationLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

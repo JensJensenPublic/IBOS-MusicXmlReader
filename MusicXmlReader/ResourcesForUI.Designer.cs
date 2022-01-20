@@ -79,6 +79,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to High speed embosser.
+        /// </summary>
+        internal static string BrailleDevice_HighSpeedEmbosserName {
+            get {
+                return ResourceManager.GetString("BrailleDevice_HighSpeedEmbosserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NoteTaker.
         /// </summary>
         internal static string BrailleDevice_NoteTakerName {

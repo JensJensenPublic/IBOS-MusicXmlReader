@@ -440,6 +440,11 @@ namespace MusicXmlReader
             ShowBrailleMusicSettingsDialog(BrailleMusicSettingsForm.DeviceTypeEnum.Embosser);
         }
 
+        private void highSpeedEmbosserSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowBrailleMusicSettingsDialog(BrailleMusicSettingsForm.DeviceTypeEnum.HighSpeedEmbosser);
+        }
+
         private void notetakerSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowBrailleMusicSettingsDialog(BrailleMusicSettingsForm.DeviceTypeEnum.NoteTaker);

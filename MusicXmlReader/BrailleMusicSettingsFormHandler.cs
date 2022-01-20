@@ -17,6 +17,19 @@ namespace MusicXmlReader
         public override string LabelApplicationLocation { get { return ResourcesForSettings.Braille_EmbosserProgramLocation; } }
     }
 
+    // BrailleMusicSettingsFormHighSpeedEmbosserHandler is copied over BrailleMusicSettingsFormEmbosserHandler
+    class BrailleMusicSettingsFormHighSpeedEmbosserHandler : BrailleMusicSettingsFormHandler
+    {
+        public override string Title { get { return ResourcesForSettings.Braille_HighSpeedEmbosserSettingsCaption; } } 
+        public override string LabelDeviceName { get { return ResourcesForSettings.Braille_HighSpeedEmbosserName; } }
+        // LabelBrailleFileFormat: Inherit value
+        public override string LabelWidth { get { return ResourcesForSettings.Braille_PageWidth; } }
+        public override string LabelHeight { get { return ResourcesForSettings.Braille_PageHeight; } }
+        public override string LabelEscapeSequence { get { return ""; /* ResourcesForSettings.Braille_EmbosserEscapeSequence;*/ } } // Only UI. Not implemented yet !
+        public override string LabelApplicationName { get { return ""; } }  
+        public override string LabelApplicationLocation { get { return ""; } } 
+    }
+
 
     class BrailleMusicSettingsFormNoteTakerHandler : BrailleMusicSettingsFormHandler
     {
@@ -105,6 +118,7 @@ namespace MusicXmlReader
             {
                 case BrailleMusicSettingsForm.DeviceTypeEnum.Embosser: return new BrailleMusicSettingsFormEmbosserHandler();
                 case BrailleMusicSettingsForm.DeviceTypeEnum.NoteTaker: return new BrailleMusicSettingsFormNoteTakerHandler();
+                case BrailleMusicSettingsForm.DeviceTypeEnum.HighSpeedEmbosser: return new BrailleMusicSettingsFormHighSpeedEmbosserHandler();
                 case BrailleMusicSettingsForm.DeviceTypeEnum.GeneralDevice: return new BrailleMusicSettingsFormGenericHandler();
                     default:
                     Logger.LogCF(string.Format(": Unsupported device type '{0}'", deviceTypeEnum.ToString()));

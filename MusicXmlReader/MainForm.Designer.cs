@@ -79,6 +79,7 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.resetAllUserSettingsToDefaultValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.musicBrailleReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.museScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sibeliusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startCapellaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,7 +101,6 @@
             this.autodetectedEncodingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userPreferencesLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.analyzeLocalizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.musicBrailleReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -139,6 +139,7 @@
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
+            this.highSpeedEmbosserSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -496,6 +497,7 @@
             this.toolStripSeparator6,
             this.notetakerSettingsToolStripMenuItem,
             this.embosserSettingsToolStripMenuItem,
+            this.highSpeedEmbosserSettingsToolStripMenuItem,
             this.musicBrailleSettingsToolStripMenuItem,
             this.toolStripSeparator7,
             this.resetAllUserSettingsToDefaultValuesToolStripMenuItem});
@@ -572,6 +574,13 @@
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
             this.toolsToolStripMenuItem.Text = "&Tools";
+            // 
+            // musicBrailleReaderToolStripMenuItem
+            // 
+            this.musicBrailleReaderToolStripMenuItem.Name = "musicBrailleReaderToolStripMenuItem";
+            this.musicBrailleReaderToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.musicBrailleReaderToolStripMenuItem.Text = "Music Braille Reader";
+            this.musicBrailleReaderToolStripMenuItem.Click += new System.EventHandler(this.musicBrailleReaderToolStripMenuItem_Click);
             // 
             // museScoreToolStripMenuItem
             // 
@@ -723,13 +732,6 @@
             this.analyzeLocalizationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.analyzeLocalizationToolStripMenuItem.Text = "Analyze localization";
             this.analyzeLocalizationToolStripMenuItem.Click += new System.EventHandler(this.analyzeLocalizationToolStripMenuItem_Click);
-            // 
-            // musicBrailleReaderToolStripMenuItem
-            // 
-            this.musicBrailleReaderToolStripMenuItem.Name = "musicBrailleReaderToolStripMenuItem";
-            this.musicBrailleReaderToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
-            this.musicBrailleReaderToolStripMenuItem.Text = "Music Braille Reader";
-            this.musicBrailleReaderToolStripMenuItem.Click += new System.EventHandler(this.musicBrailleReaderToolStripMenuItem_Click);
             // 
             // archivesToolStripMenuItem
             // 
@@ -1047,6 +1049,13 @@
             // 
             this.printDialog.UseEXDialog = true;
             // 
+            // highSpeedEmbosserSettingsToolStripMenuItem
+            // 
+            this.highSpeedEmbosserSettingsToolStripMenuItem.Name = "highSpeedEmbosserSettingsToolStripMenuItem";
+            this.highSpeedEmbosserSettingsToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+            this.highSpeedEmbosserSettingsToolStripMenuItem.Text = "HighSpeed Embosser Settings";
+            this.highSpeedEmbosserSettingsToolStripMenuItem.Click += new System.EventHandler(this.highSpeedEmbosserSettingsToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1189,6 +1198,7 @@
         private System.Windows.Forms.ToolStripMenuItem inspectAsXMLUsingGoogleChromeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem analyzeLocalizationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem musicBrailleReaderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem highSpeedEmbosserSettingsToolStripMenuItem;
     }
 }
 

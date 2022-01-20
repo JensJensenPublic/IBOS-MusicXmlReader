@@ -218,4 +218,10 @@
   <data name="General_FinaleLocation" xml:space="preserve">
     <value>Finale sti</value>
   </data>
+  <data name="Braille_HighSpeedEmbosserName" xml:space="preserve">
+    <value>Højhastigheds punktprinter navn</value>
+  </data>
+  <data name="Braille_HighSpeedEmbosserSettingsCaption" xml:space="preserve">
+    <value>Højhastigheds punktprinter profil</value>
+  </data>
 </root>
