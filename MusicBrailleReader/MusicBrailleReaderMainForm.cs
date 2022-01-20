@@ -517,11 +517,14 @@ namespace MusicBrailleReader
             List<string> strings = new List<string>();
             foreach (DecoderItem decoderItem in decoderItems)
             {
-                string s = decoderItem.XmlToString();
+                string s = Logger.DeveloperMode ?  decoderItem.XmlToString() : "" ; // Only add the XML interpretation (which shows the attempts to fix ambiguities) in Developer mode  
                 strings.Add(decoderItem.ToString() + s);
             }
 
-            regressionTest.DecoderOutputRegressionTest(strings, decoderOutputFileHandler.FullOutputFileName);
+            if (Logger.DeveloperMode)
+            {
+                regressionTest.DecoderOutputRegressionTest(strings, decoderOutputFileHandler.FullOutputFileName);
+            }
 
             // Write the decoded output as a text interpretation to a file
             decoderOutputFileHandler.SaveInterpretation(strings, decoderOutputFileHandler.FullOutputFileName);
