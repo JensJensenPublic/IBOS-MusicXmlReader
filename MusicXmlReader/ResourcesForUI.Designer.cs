@@ -952,6 +952,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to to high speed embosser.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_ToHighSpeedEmbosser {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_ToHighSpeedEmbosser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to to NoteTaker.
         /// </summary>
         internal static string ToolStripMenuItem_Files_ToNoteTaker {

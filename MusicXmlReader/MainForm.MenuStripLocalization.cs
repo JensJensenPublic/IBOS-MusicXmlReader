@@ -50,6 +50,7 @@ namespace MusicXmlReader
 
             toNotetakerToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker; //  Second level
             toEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser; //   Second level
+            toHighSpeedEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToHighSpeedEmbosser; //   Second level
             toGenericDeviceToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToGenericDevice; // Second level
             inOptionalFormatToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_InOptionalFormat; //  Second level
 

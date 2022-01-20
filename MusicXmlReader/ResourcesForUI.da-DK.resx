@@ -615,6 +615,10 @@
     <value>Højhastigheds punktprinter</value>
     <comment>MISSING NL</comment>
   </data>
+  <data name="ToolStripMenuItem_Files_ToHighSpeedEmbosser" xml:space="preserve">
+    <value>til &amp;højhastigheds punktprinter</value>
+    <comment>MISSING NL</comment>
+  </data>
   <data name="ToolStripMenuItem_Settings_HighspeedEmbosser" xml:space="preserve">
     <value>Indstillinger for &amp;højhastigheds punktprinter profil</value>
     <comment>MISSING NL</comment>
