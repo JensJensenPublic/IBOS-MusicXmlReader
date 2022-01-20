@@ -180,7 +180,7 @@
     <value>.brf (Unicode UTF-32)</value>
   </data>
   <data name="Braille_UnicodeUtf8" xml:space="preserve">
-    <value>.brf (Unicode(UTF-8)</value>
+    <value>.brf (Unicode UTF-8)</value>
   </data>
   <data name="General_CapellaLocation" xml:space="preserve">
     <value>Capella sti</value>
