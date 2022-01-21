@@ -48,6 +48,7 @@ namespace MusicXmlReader
             // exportMusicBrailleToolStripMenuItem.ShortcutKeys = ShortcutHandler.exportMusicBraille;
             // GenerateAccessibleName(ref exportMusicBrailleToolStripMenuItem);
 
+            // The next 4 lines could be replaced by a call to LocalizeToolMenuItems(null) See implementation below !
             toNotetakerToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker; //  Second level
             toEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser; //   Second level
             toHighSpeedEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToHighSpeedEmbosser; //   Second level
@@ -151,13 +152,26 @@ namespace MusicXmlReader
         private void LocalizeToolsMenuItems(UserPreferencesHandler uph)
         {
             MusicXmlReaderModel.Logger.LogCF(": Entry");
-            toNotetakerToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker + ((uph == null) ? "" : uph.noteTaker.MenuItemString);
-            toEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser + ((uph == null) ? "" : uph.embosser.MenuItemString);
-            toHighSpeedEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToHighSpeedEmbosser + ((uph == null) ? "" : uph.highSpeedEmbosser.MenuItemString);
-            toGenericDeviceToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToGenericDevice + ((uph == null) ? "" : uph.genericBrailleDevice.MenuItemString);
+            toNotetakerToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker + ((uph == null) ? "" : SpaceOnException(uph.noteTaker.MenuItemString));
+            toEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser + ((uph == null) ? "" : SpaceOnException(uph.embosser.MenuItemString));
+            toHighSpeedEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToHighSpeedEmbosser + ((uph == null) ? "" : SpaceOnException(uph.highSpeedEmbosser.MenuItemString));
+            toGenericDeviceToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToGenericDevice + ((uph == null) ? "" : SpaceOnException(uph.genericBrailleDevice.MenuItemString));
             MusicXmlReaderModel.Logger.LogCF(": Exit");
         }
 
+        private string SpaceOnException(string s)
+        {
+            try
+            {
+                // throw new Exception("For test only");
+                return s;
+            }
+            catch (Exception e)
+            {
+                MusicXmlReaderModel.Logger.LogCFE(e);
+            }
+            return " ";
+        }
 
     }
 }
