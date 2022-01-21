@@ -856,11 +856,16 @@ namespace MusicBrailleReader
 
         bool useRecentFile = true;
 
+        // At this point of time (immediately after opening and interpreting the BrailleMusic file) all error information has been collected, 
+        // but we do not want to reveal the error information only related to the MusicXml generation now. So we use the following mask:
+        UserInfoEnum mask = UserInfoEnum.All & ~(UserInfoEnum.FailedToFixDuration | UserInfoEnum.UnSupportedVoiceList);
+
         private void openUsingNOTAProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!SelectAndOpenFile(false, useRecentFile, GetOpenDialogName(sender))) return;
             ClearUI();
             currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.Danish, UserWarningOptions.details);
+            ShowUserWarnings(UserWarningOptions.details, mask); // Show some  warnings through a MessageBox in a detailled format
         }
 
         private void openUsingBrailleOrchProfileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -868,6 +873,7 @@ namespace MusicBrailleReader
             if (!SelectAndOpenFile(false, useRecentFile, GetOpenDialogName(sender))) return;
             ClearUI();
             currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.English, UserWarningOptions.details);
+            ShowUserWarnings(UserWarningOptions.details, mask); // Show some  warnings through a MessageBox in a detailled format
         }
 
 #if false

@@ -6,11 +6,11 @@
     public enum UserInfoEnum
     {
         None = 0x00000000,
-        unspecified = 0x00000001,
-        interpretationWarning = 0x00000002,
-        insertion = 0x00000004,
-        replacement = 0x00000008,
-        deletetion = 0x00000010, 
+        Unspecified = 0x00000001,
+        InterpretationWarning = 0x00000002,
+        Insertion = 0x00000004,
+        Replacement = 0x00000008,
+        Deletetion = 0x00000010, 
         NoInterpretationFound = 0x00000020, 
         MoreThanOneInterpretationFound = 0x00000040,
         AddedSelectedEvent = 0x00000080,
@@ -115,7 +115,7 @@
             return string.Format("{0} {1} {2} DOT {3}", paddedfileName, position, message, dotsToInsert);
         }
 
-        public override UserInfoEnum GetInfoEnum() { return UserInfoEnum.insertion; } 
+        public override UserInfoEnum GetInfoEnum() { return UserInfoEnum.Insertion; } 
     }
 
     public class DecoderUserReplacementInfo : DecoderUserInfoBase
@@ -150,7 +150,7 @@
             return string.Format("{0} {1} Replaced Braille={2} (DOTS={3}) by Braille={4} (DOTS={5})", paddedfileName ,position , oldContents, oldContentsAsDots, newContents, newContentsAsDots);
         }
 
-        public override UserInfoEnum GetInfoEnum() { return UserInfoEnum.replacement; }
+        public override UserInfoEnum GetInfoEnum() { return UserInfoEnum.Replacement; }
     }
 
     /// <summary>
@@ -223,7 +223,7 @@
         /// </summary>
         public string BrailleDotNumberString { get { return string.Format("DOT{0,-6}",brailleDotNumbers); } }
 
-        private UserInfoEnum userInfoEnum = UserInfoEnum.interpretationWarning;
+        private UserInfoEnum userInfoEnum = UserInfoEnum.InterpretationWarning;
         public UserInfoEnum UserInfoEnum { set { userInfoEnum = value; } } // Allow for further specifying the warning type
 
         public override UserInfoEnum GetInfoEnum() { return userInfoEnum; }
