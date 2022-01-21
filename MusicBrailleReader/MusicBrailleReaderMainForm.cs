@@ -862,22 +862,26 @@ namespace MusicBrailleReader
 
         private void openUsingNOTAProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!SelectAndOpenFile(false, useRecentFile, GetOpenDialogName(sender))) return;
-            ClearUI();
-            currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.Danish, UserWarningOptions.details);
-            ShowUserWarnings(UserWarningOptions.details, mask); // Show some  warnings through a MessageBox in a detailled format
+            OnOpenClick(sender, DecoderOptions.RegionalOptionsEnum.Danish);
         }
 
         private void openUsingBrailleOrchProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            OnOpenClick(sender, DecoderOptions.RegionalOptionsEnum.English);
+        }
+
+        private void OnOpenClick(object sender, DecoderOptions.RegionalOptionsEnum regionalOptions)
+        {
             if (!SelectAndOpenFile(false, useRecentFile, GetOpenDialogName(sender))) return;
             ClearUI();
-            currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.English, UserWarningOptions.details);
+            currentInterpretation = GetInterpretation(regionalOptions, UserWarningOptions.details);
             ShowUserWarnings(UserWarningOptions.details, mask); // Show some  warnings through a MessageBox in a detailled format
         }
 
+
+
 #if false
-#region TextBoxRawBraille6EventHandlers        
+        #region TextBoxRawBraille6EventHandlers        
 
         private void textBoxRawBraille6_KeyDown(object sender, KeyEventArgs e)
         {
@@ -894,7 +898,7 @@ namespace MusicBrailleReader
             musicBrailleEditor.OnTextBoxRawBraille6_KeyUp(sender,e); // Simple pass on
         }
 
-#endregion
+        #endregion
 
         private void textBoxRawBraille6_TextChanged(object sender, EventArgs e)
         {

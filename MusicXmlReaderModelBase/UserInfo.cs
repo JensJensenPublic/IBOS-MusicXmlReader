@@ -1,8 +1,11 @@
 ﻿namespace MusicXmlReaderModel
 {
+    using System;
+
     /// <summary>
     /// Identifies the exact type of information (Usable as case in a switch) or as masks
     /// </summary>
+    [Flags]
     public enum UserInfoEnum
     {
         None = 0x00000000,
