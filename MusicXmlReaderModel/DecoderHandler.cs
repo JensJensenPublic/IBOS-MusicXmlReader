@@ -80,7 +80,7 @@ namespace MusicXmlReaderModel
         /// The messages are formatted to fit into a standard MessageBox.
         /// </summary>
         /// <returns></returns>
-        public List<string> GetLocalUserWarnings()
+        public List<string> GetLocalUserWarnings(UserInfoEnum mask)
         {
             List<string> result = new List<string>();
             List<UserInfoBase> userInfoList = UserWarnings.GetlocalUSerWarnings();
@@ -91,6 +91,10 @@ namespace MusicXmlReaderModel
                 UserInfoEnum userInfoEnum = userInfoBase.GetInfoEnum();
                 Logger.LogCF(string.Format(": UserInfoEnum={0}", userInfoEnum.ToString()));
 
+                if (0 == (( mask) & userInfoEnum))
+                {
+                    continue; // Continue with next userInfoBase, skipping this one 
+                }
 
                 //result.Add(string.Format("{0} {1} Warning:\r\n{2}", userInfo.PageLineSpace, userInfo.BrailleDotNumberString, userInfo.Message)); // Insert a newline between position and Message. MessageBox has limited width !
                 // Build texts one by one

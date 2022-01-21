@@ -430,7 +430,8 @@ namespace MusicBrailleReader
             if (null == decoderOutputFileHandler) return OnNoMusicBrailleFileLoaded();
             if (null == musicXmlDocument) OnNoMusicBrailleFileLoaded();
 
-            ShowUserWarnings(UserWarningOptions.details); // Show the warnings through a MessageBox in a detailled format
+            ShowUserWarnings(UserWarningOptions.details, UserInfoEnum.All); // Show All  warnings through a MessageBox in a detailled format
+            //ShowUserWarnings(UserWarningOptions.details, UserInfoEnum.All & ~UserInfoEnum.FailedToFixDuration); // Show some  warnings through a MessageBox in a detailled format
 
             bool showXmlOnConsole = false;
 
@@ -541,10 +542,10 @@ namespace MusicBrailleReader
 
 #warning ToDo Make a costum Messagebox where wrapping can be controlled and where JAWS is better supported !
 
-        private void ShowUserWarnings(UserWarningOptions options)
+        private void ShowUserWarnings(UserWarningOptions options, UserInfoEnum mask)
         {
             if (options == UserWarningOptions.hide) return;
-            List<string> userWarnings = model.DecoderHandler.GetLocalUserWarnings();
+            List<string> userWarnings = model.DecoderHandler.GetLocalUserWarnings(mask);
             if (0 == userWarnings.Count) return;
 
             // Build a localized caption
