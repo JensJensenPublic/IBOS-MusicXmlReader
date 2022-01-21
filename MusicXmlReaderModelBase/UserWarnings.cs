@@ -24,27 +24,28 @@ namespace MusicXmlReaderModel
         ///  Retreived (for UI use) by GetLocalUserWarnings  or GetGlobalUserWarnings
         /// </summary>
         /// <param name="s"></param>
-        public static void LogUserWarning(string message)
+        public static void LogUserWarning(string message,UserInfoEnum userInfoEnum)
         {
             string fileName = GetShortFileName(Logger.CurrentMusicBrailleSourceFileName);
             DecoderUserInfo userInfo = new DecoderUserInfo(fileName, userPositionInfo, message); // When userPositionInfo is not specified rely on the local value (Previously coded as a callback)
+            userInfo.UserInfoEnum = userInfoEnum;
             localUserWarnings.Add(userInfo);
             globalUserWarnings.Add(userInfo);
         }
 
 
-        /// <summary>
-        /// NEW CODE !!!
-        /// </summary>
-        /// <param name="message"></param>
-        /// <param name="userPositionInfo"></param>
-        public static void LogUserWarning(string message, UserPositionInfo userPositionInfo)
-        {
-            string fileName = GetShortFileName(Logger.CurrentMusicBrailleSourceFileName);
-            DecoderUserInfo userInfo = new DecoderUserInfo(fileName, userPositionInfo, message); // When userPosition is explicitly specified, use the explicit value
-            localUserWarnings.Add(userInfo);
-            globalUserWarnings.Add(userInfo);
-        }
+        ///// <summary>
+        ///// NEW CODE !!!
+        ///// </summary>
+        ///// <param name="message"></param>
+        ///// <param name="userPositionInfo"></param>
+        //public static void LogUserWarning(string message, UserPositionInfo userPositionInfo)
+        //{
+        //    string fileName = GetShortFileName(Logger.CurrentMusicBrailleSourceFileName);
+        //    DecoderUserInfo userInfo = new DecoderUserInfo(fileName, userPositionInfo, message); // When userPosition is explicitly specified, use the explicit value
+        //    localUserWarnings.Add(userInfo);
+        //    globalUserWarnings.Add(userInfo);
+        //}
 
 
 
@@ -56,11 +57,12 @@ namespace MusicXmlReaderModel
         /// <param name="formNumber"></param>
         /// <param name="LineNumber"></param>
         /// <param name="spaceNumber"></param>
-        public static void LogUserWarning(string s, UserPositionInfo userPositionInfo, string brailleString, string brailleDotNumbers)
+        public static void LogUserWarning(string s, UserPositionInfo userPositionInfo, string brailleString, string brailleDotNumbers,UserInfoEnum userInfoEnum)
         {
             DecoderUserInfo userInfo = new DecoderUserInfo("", userPositionInfo, brailleString, brailleDotNumbers);
             userInfo.FileName = GetShortFileName(Logger.CurrentMusicBrailleSourceFileName);
             userInfo.Message = s;
+            userInfo.UserInfoEnum = userInfoEnum;
             localUserWarnings.Add(userInfo);
             globalUserWarnings.Add(userInfo);
         }

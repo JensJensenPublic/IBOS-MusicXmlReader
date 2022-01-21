@@ -88,6 +88,10 @@ namespace MusicXmlReaderModel
             // Take the filename from the first item
             foreach (UserInfoBase userInfoBase in userInfoList)
             {
+                UserInfoEnum userInfoEnum = userInfoBase.GetInfoEnum();
+                Logger.LogCF(string.Format(": UserInfoEnum={0}", userInfoEnum.ToString()));
+
+
                 //result.Add(string.Format("{0} {1} Warning:\r\n{2}", userInfo.PageLineSpace, userInfo.BrailleDotNumberString, userInfo.Message)); // Insert a newline between position and Message. MessageBox has limited width !
                 // Build texts one by one
                 // As this line is meant to be shown in a (narrow) standardmessagebox during handling of a single file the filename is not included.

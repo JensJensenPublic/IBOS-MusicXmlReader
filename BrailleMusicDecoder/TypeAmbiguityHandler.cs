@@ -136,7 +136,7 @@ namespace BrailleMusicDecoder
             if (0 == notesAndRestsAndPunctuations)
             {
                 string warning = string.Format("{0} {1}",PreAmble," Empty measure is ignored ! ");
-                UserWarnings.LogUserWarning(warning);
+                UserWarnings.LogUserWarning(warning,UserInfoEnum.EmptyMeasureIsIgnored);
                 ConditionalLogCF("-" + warning);
                 return false;
             }
@@ -422,7 +422,7 @@ namespace BrailleMusicDecoder
    
             ConditionalLogCF(string.Format(": {0} ( {1} )", message, voice.ToShortDebugString())); // Add the actual contents to the logmessage.
             if (isFirstMeasure) return; // For the time being we cant fix ambuguities in the first measure because it needs not be complete. We log them but dont report them!
-            UserWarnings.LogUserWarning(message);
+            UserWarnings.LogUserWarning(message,UserInfoEnum.FailedToFixDuration);
         }
 
         private void OnEmptyVoice(int voiceNumber)

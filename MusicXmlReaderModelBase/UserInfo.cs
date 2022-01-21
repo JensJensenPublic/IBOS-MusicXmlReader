@@ -1,9 +1,31 @@
 ﻿namespace MusicXmlReaderModel
 {
     /// <summary>
-    /// Identifies the exact type of information (Usable as case in a switch).
+    /// Identifies the exact type of information (Usable as case in a switch) or as masks
     /// </summary>
-    public enum UserInfoEnum { interpretationWarning, insertion, replacement, deletetion }
+    public enum UserInfoEnum
+    {
+        None = 0x00000000,
+        unspecified = 0x00000001,
+        interpretationWarning = 0x00000002,
+        insertion = 0x00000004,
+        replacement = 0x00000008,
+        deletetion = 0x00000010, 
+        NoInterpretationFound = 0x00000020, 
+        MoreThanOneInterpretationFound = 0x00000040,
+        AddedSelectedEvent = 0x00000080,
+        UnSupportedInput = 0x00000100,
+        UnsupportedMuxicXmlElement = 0x00000200,
+        EmptyMeasureIsIgnored = 0x00000400,
+        FailedToFixDuration = 0x00000800,
+        UnSupportedVoiceList = 0x00001000,
+        UnsupportedInAccordConfiguration = 0x00002000,
+        UnExpectedInputCharacter = 0x00004000,
+        UnsupportedExtensionToMinorChord = 0x00008000,
+        UnsupportedExtensionToMajorChord = 0x00010000,
+        All = 0x7fffffff
+
+    }
 
     /// <summary>
     /// Base class for all classes describing user information, such as warnings and errors to be shown in the UI,
@@ -40,6 +62,7 @@
         // To be defined
     }
 
+
     /// <summary>
     /// For reporting errors from the Music Braille Decoder 
     /// Contain positioninformation, which is all contained in the userPositionInfo.  
@@ -58,9 +81,6 @@
         /// The absolute index within the Unicode MusicBraille file
         /// </summary>
         public string IndexString { get { return string.Format("Index={0,-4}", Index); } }
-
-   
-
     }
 
     public class DecoderUserInsertionInfo : DecoderUserInfoBase
@@ -152,7 +172,7 @@
             base.userPositionInfo = userPosition;
             base.message = "";
             this.brailleValue = brailleValue; //  Represents a Unicode character in the Braille6 interval 0x2800..0x283f
-            this.brailleDotNumbers = brailleDotNumbers;
+            this.brailleDotNumbers = brailleDotNumbers;    
         }
 
 
@@ -203,7 +223,10 @@
         /// </summary>
         public string BrailleDotNumberString { get { return string.Format("DOT{0,-6}",brailleDotNumbers); } }
 
-        public override UserInfoEnum GetInfoEnum() { return UserInfoEnum.interpretationWarning; }
+        private UserInfoEnum userInfoEnum = UserInfoEnum.interpretationWarning;
+        public UserInfoEnum UserInfoEnum { set { userInfoEnum = value; } } // Allow for further specifying the warning type
+
+        public override UserInfoEnum GetInfoEnum() { return userInfoEnum; }
 
     }
 

@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using MusicXmlReaderModel;
 
 namespace BrailleMusicDecoder.MusicXmlElements
 {
@@ -25,7 +26,7 @@ namespace BrailleMusicDecoder.MusicXmlElements
                 case "9b": AddDegree(9,-1) ; return "dominant";  // Build from a dominant (-seventh)!
                 case "9#": AddDegree(9,+1) ;  return "dominant";  // Build from a dominant (-seventh)!
             }
-            LogUserWarning(UnSupportedMessage(s));
+            LogUserWarning(UnSupportedMessage(s), UserInfoEnum.UnsupportedExtensionToMajorChord);
             LogCF(UnSupportedMessage(s));
             return "major";
         }
@@ -49,7 +50,7 @@ namespace BrailleMusicDecoder.MusicXmlElements
                 case "9b": AddDegree(9, -1); return "minor-seventh"; // Build from a minor-seventh!
                 case "9#": AddDegree(9, -1); return "minor-seventh";  // Build from a minor-seventh!
             }
-            LogUserWarning(UnSupportedMessage(s));
+            LogUserWarning(UnSupportedMessage(s), UserInfoEnum.UnsupportedExtensionToMinorChord);
             LogCF(UnSupportedMessage(s));
             return "minor";
         }
