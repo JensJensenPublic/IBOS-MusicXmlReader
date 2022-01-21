@@ -144,6 +144,20 @@ namespace MusicXmlReader
             this.keyboardShortcutsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help_Shortcuts;
             this.linkToNewestSoftwareToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help_SoftwareUpdate;
             this.usersManualToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Help_ShowUsersManual;
-        }        
+        }
+
+        // Special implementation for the itemStrips referencing BrailleDevices, allowing the ItemStrip to show the current settings
+        // When called with (uph == null) it implements normal localozation.
+        private void LocalizeToolsMenuItems(UserPreferencesHandler uph)
+        {
+            MusicXmlReaderModel.Logger.LogCF(": Entry");
+            toNotetakerToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker + ((uph == null) ? "" : uph.noteTaker.MenuItemString);
+            toEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser + ((uph == null) ? "" : uph.embosser.MenuItemString);
+            toHighSpeedEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToHighSpeedEmbosser + ((uph == null) ? "" : uph.highSpeedEmbosser.MenuItemString);
+            toGenericDeviceToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToGenericDevice + ((uph == null) ? "" : uph.genericBrailleDevice.MenuItemString);
+            MusicXmlReaderModel.Logger.LogCF(": Exit");
+        }
+
+
     }
 }

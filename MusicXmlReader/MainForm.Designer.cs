@@ -237,6 +237,7 @@
             this.exportMusicBrailleToolStripMenuItem.Name = "exportMusicBrailleToolStripMenuItem";
             this.exportMusicBrailleToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
             this.exportMusicBrailleToolStripMenuItem.Text = "Export Music Braille";
+            this.exportMusicBrailleToolStripMenuItem.Paint += new System.Windows.Forms.PaintEventHandler(this.exportMusicBrailleToolStripMenuItem_Paint);
             // 
             // toNotetakerToolStripMenuItem
             // 
@@ -244,7 +245,6 @@
             this.toNotetakerToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.toNotetakerToolStripMenuItem.Text = "to notetaker";
             this.toNotetakerToolStripMenuItem.Click += new System.EventHandler(this.toNotetakerToolStripMenuItem_Click);
-            this.toNotetakerToolStripMenuItem.Paint += new System.Windows.Forms.PaintEventHandler(this.toNotetakerToolStripMenuItem_Paint);
             // 
             // toEmbosserToolStripMenuItem
             // 
@@ -252,7 +252,6 @@
             this.toEmbosserToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.toEmbosserToolStripMenuItem.Text = "to embosser";
             this.toEmbosserToolStripMenuItem.Click += new System.EventHandler(this.toEmbosserToolStripMenuItem_Click);
-            this.toEmbosserToolStripMenuItem.Paint += new System.Windows.Forms.PaintEventHandler(this.toEmbosserToolStripMenuItem_Paint);
             // 
             // toHighSpeedEmbosserToolStripMenuItem
             // 
@@ -260,7 +259,6 @@
             this.toHighSpeedEmbosserToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.toHighSpeedEmbosserToolStripMenuItem.Text = "to high speed embosser";
             this.toHighSpeedEmbosserToolStripMenuItem.Click += new System.EventHandler(this.toHighSpeedEmbosserToolStripMenuItem_Click);
-            this.toHighSpeedEmbosserToolStripMenuItem.Paint += new System.Windows.Forms.PaintEventHandler(this.toHighSpeedEmbosserToolStripMenuItem_Paint);
             // 
             // toGenericDeviceToolStripMenuItem
             // 
@@ -268,7 +266,6 @@
             this.toGenericDeviceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.toGenericDeviceToolStripMenuItem.Text = "to generic device";
             this.toGenericDeviceToolStripMenuItem.Click += new System.EventHandler(this.toIbosGenericDeviceToolStripMenuItem_Click);
-            this.toGenericDeviceToolStripMenuItem.Paint += new System.Windows.Forms.PaintEventHandler(this.toGenericDeviceToolStripMenuItem_Paint);
             // 
             // inOptionalFormatToolStripMenuItem
             // 
