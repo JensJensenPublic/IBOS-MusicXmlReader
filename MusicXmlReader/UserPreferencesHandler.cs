@@ -18,8 +18,9 @@ namespace MusicXmlReader
         public abstract string ApplicationLocation { get; set; }
         public abstract BrailleFileHandler.FileEncoding BrailleFileFormat { get; set; }
         public abstract Model.BrailleStyleEnum BraillePageLayout { get; set; }
+        public virtual string MenuItemString { get { return string.Format("   ({0}  {1} * {2})",FileFormat,PageWidth,PageHeight); } } // Common representation for MenuStrings in UI
 
-        // DO NOT CHANGER these strings. They asssure that the file representation is unchanged!
+        // DO NOT CHANGE these strings. They asssure that the file representation is unchanged!
         private const string Unknown = "UNKNOWN";
 
         private const string BRF_ASCII = "BRF_ASCII";
@@ -120,7 +121,7 @@ namespace MusicXmlReader
         public override BrailleFileHandler.FileEncoding BrailleFileFormat { get { return ToEncoding(settings.EmbosserFileFormat); } set { settings.EmbosserFileFormat = FromEncoding(value); } }
         public override Model.BrailleStyleEnum BraillePageLayout { get { return ToPageLayout(settings.EmbosserPageLayout); } set { settings.EmbosserPageLayout = FromPageLayout(value); } }
 
-        internal BrailleEmbosser(MusicXmlReader.Properties.Settings settings)
+    internal BrailleEmbosser(MusicXmlReader.Properties.Settings settings)
         {
             this.settings = settings;
         }
@@ -183,8 +184,6 @@ namespace MusicXmlReader
         public override string ApplicationLocation { get { return settings.GenericDeviceApplicationLocation; } set { settings.GenericDeviceApplicationLocation = value; } }
         public override BrailleFileHandler.FileEncoding BrailleFileFormat { get { return ToEncoding(settings.GenericDeviceFileFormat); } set { settings.GenericDeviceFileFormat = FromEncoding(value); } }
         public override Model.BrailleStyleEnum BraillePageLayout { get { return ToPageLayout(settings.GenericDevicePageLayout); } set { settings.GenericDevicePageLayout = FromPageLayout(value); } }
-
-
 
         internal BrailleGenericDevice(MusicXmlReader.Properties.Settings settings)
         {

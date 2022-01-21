@@ -39,6 +39,7 @@
             this.exportMusicBrailleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toNotetakerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toEmbosserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toHighSpeedEmbosserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toGenericDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inOptionalFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtOctoBraille1252ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -140,7 +141,6 @@
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
-            this.toHighSpeedEmbosserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -244,6 +244,7 @@
             this.toNotetakerToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.toNotetakerToolStripMenuItem.Text = "to notetaker";
             this.toNotetakerToolStripMenuItem.Click += new System.EventHandler(this.toNotetakerToolStripMenuItem_Click);
+            this.toNotetakerToolStripMenuItem.Paint += new System.Windows.Forms.PaintEventHandler(this.toNotetakerToolStripMenuItem_Paint);
             // 
             // toEmbosserToolStripMenuItem
             // 
@@ -251,6 +252,15 @@
             this.toEmbosserToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.toEmbosserToolStripMenuItem.Text = "to embosser";
             this.toEmbosserToolStripMenuItem.Click += new System.EventHandler(this.toEmbosserToolStripMenuItem_Click);
+            this.toEmbosserToolStripMenuItem.Paint += new System.Windows.Forms.PaintEventHandler(this.toEmbosserToolStripMenuItem_Paint);
+            // 
+            // toHighSpeedEmbosserToolStripMenuItem
+            // 
+            this.toHighSpeedEmbosserToolStripMenuItem.Name = "toHighSpeedEmbosserToolStripMenuItem";
+            this.toHighSpeedEmbosserToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.toHighSpeedEmbosserToolStripMenuItem.Text = "to high speed embosser";
+            this.toHighSpeedEmbosserToolStripMenuItem.Click += new System.EventHandler(this.toHighSpeedEmbosserToolStripMenuItem_Click);
+            this.toHighSpeedEmbosserToolStripMenuItem.Paint += new System.Windows.Forms.PaintEventHandler(this.toHighSpeedEmbosserToolStripMenuItem_Paint);
             // 
             // toGenericDeviceToolStripMenuItem
             // 
@@ -258,6 +268,7 @@
             this.toGenericDeviceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.toGenericDeviceToolStripMenuItem.Text = "to generic device";
             this.toGenericDeviceToolStripMenuItem.Click += new System.EventHandler(this.toIbosGenericDeviceToolStripMenuItem_Click);
+            this.toGenericDeviceToolStripMenuItem.Paint += new System.Windows.Forms.PaintEventHandler(this.toGenericDeviceToolStripMenuItem_Paint);
             // 
             // inOptionalFormatToolStripMenuItem
             // 
@@ -1057,13 +1068,6 @@
             // printDialog
             // 
             this.printDialog.UseEXDialog = true;
-            // 
-            // toHighSpeedEmbosserToolStripMenuItem
-            // 
-            this.toHighSpeedEmbosserToolStripMenuItem.Name = "toHighSpeedEmbosserToolStripMenuItem";
-            this.toHighSpeedEmbosserToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.toHighSpeedEmbosserToolStripMenuItem.Text = "to high speed embosser";
-            this.toHighSpeedEmbosserToolStripMenuItem.Click += new System.EventHandler(this.toHighSpeedEmbosserToolStripMenuItem_Click);
             // 
             // MainForm
             // 

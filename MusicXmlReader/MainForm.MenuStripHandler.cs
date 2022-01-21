@@ -1040,6 +1040,45 @@ namespace MusicXmlReader
             Logger.LogCF("Unused");
         }
 
+        #region Export painthandlers
+
+        // The handlers in this region allows for using the current profiles as part of the menu texts
+
+        private void toNotetakerToolStripMenuItem_Paint(object sender, PaintEventArgs e)
+        {
+            string s = userPreferencesHandler.noteTaker.MenuItemString;
+            toNotetakerToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToNoteTaker + s ;
+            Logger.LogCF("");
+        }
+
+        private void toEmbosserToolStripMenuItem_Paint(object sender, PaintEventArgs e)
+        {
+            string s = userPreferencesHandler.embosser.MenuItemString;
+            toEmbosserToolStripMenuItem.Text =  ResourcesForUI.ToolStripMenuItem_Files_ToEmbosser+ s;
+            Logger.LogCF("");
+        }
+
+        private void toHighSpeedEmbosserToolStripMenuItem_Paint(object sender, PaintEventArgs e)
+        {
+            string s = userPreferencesHandler.highSpeedEmbosser.MenuItemString;
+            toHighSpeedEmbosserToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToHighSpeedEmbosser + s;
+            Logger.LogCF("");
+        }
+
+        private void toGenericDeviceToolStripMenuItem_Paint(object sender, PaintEventArgs e)
+        {
+            string s = userPreferencesHandler.genericBrailleDevice.MenuItemString;
+            toGenericDeviceToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ToGenericDevice + s;
+            Logger.LogCF("");
+        }
+ 
+        #endregion
+
+
+
+
+
+
         #endregion // Export of Music Braille
 
         /// <summary>
