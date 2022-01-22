@@ -8,26 +8,29 @@
     [Flags]
     public enum UserInfoEnum
     {
+        // The following values represent 3 diffent kinds of unspecified warnings
         None = 0x00000000,
         Unspecified = 0x00000001,
         InterpretationWarning = 0x00000002,
+        // The following values represent warnings only intended for the developer during development: 
         Insertion = 0x00000004,
         Replacement = 0x00000008,
-        Deletetion = 0x00000010, 
+        Deletetion = 0x00000010,
+        // The following  values represent warnings intended for the normal end user after File->Open:
         NoInterpretationFound = 0x00000020, 
         MoreThanOneInterpretationFound = 0x00000040,
         AddedSelectedEvent = 0x00000080,
         UnSupportedInput = 0x00000100,
-        UnsupportedMuxicXmlElement = 0x00000200,
-        EmptyMeasureIsIgnored = 0x00000400,
-        FailedToFixDuration = 0x00000800,
-        UnSupportedVoiceList = 0x00001000,
-        UnsupportedInAccordConfiguration = 0x00002000,
-        UnExpectedInputCharacter = 0x00004000,
+        EmptyMeasureIsIgnored = 0x00000200,
+        UnExpectedInputCharacter = 0x00000400,
+        // The following values represent warnings intended for the developer after File->Export to MusicXml
+        UnsupportedMuxicXmlElement = 0x00000800,
+        FailedToFixDuration = 0x00001000,
+        UnSupportedVoiceList = 0x00002000,
+        UnsupportedInAccordConfiguration = 0x00004000,   
         UnsupportedExtensionToMinorChord = 0x00008000,
         UnsupportedExtensionToMajorChord = 0x00010000,
         All = 0x7fffffff
-
     }
 
     /// <summary>
