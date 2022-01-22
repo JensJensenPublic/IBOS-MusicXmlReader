@@ -430,7 +430,7 @@ namespace MusicBrailleReader
             if (null == decoderOutputFileHandler) return OnNoMusicBrailleFileLoaded();
             if (null == musicXmlDocument) OnNoMusicBrailleFileLoaded();
 
-            ShowUserWarnings(UserWarningOptions.details, UserInfoEnum.All); // Show All  warnings through a MessageBox in a detailled format
+            ShowUserWarnings(UserWarningOptions.details, UserInfoEnum.AllFlags); // Show All  warnings through a MessageBox in a detailled format
             //ShowUserWarnings(UserWarningOptions.details, UserInfoEnum.All & ~UserInfoEnum.FailedToFixDuration); // Show some  warnings through a MessageBox in a detailled format
 
             bool showXmlOnConsole = false;
@@ -858,7 +858,7 @@ namespace MusicBrailleReader
 
         // At this point of time (immediately after opening and interpreting the BrailleMusic file) all error information has been collected, 
         // but we do not want to reveal the error information only related to the MusicXml generation now. So we use the following mask:
-        UserInfoEnum mask = UserInfoEnum.All & ~(UserInfoEnum.FailedToFixDuration | UserInfoEnum.UnSupportedVoiceList);
+        UserInfoEnum mask = UserInfoEnum.AllFlags & ~(UserInfoEnum.FailedToFixDuration | UserInfoEnum.UnSupportedVoiceList);
 
         private void openUsingNOTAProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {

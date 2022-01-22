@@ -6,31 +6,35 @@
     /// Identifies the exact type of information (Usable as case in a switch) or as masks
     /// </summary>
     [Flags]
-    public enum UserInfoEnum
+    public enum UserInfoEnum : ulong  // "ulong" enables use of up to 64 bits instead of 31. Same trick as in DecoderOPtions.cs, where the 64 bits are actueally needed!
     {
-        // The following values represent 3 diffent kinds of unspecified warnings
-        None = 0x00000000,
-        Unspecified = 0x00000001,
+        // The following values represent 3 diffent kinds of unspecified warnings, using bit 0 to 7
+        NoFlags               = 0x00000000,
+        AllUnspecifiedFlags   = 0x000000ff,
+        Unspecified           = 0x00000001,
         InterpretationWarning = 0x00000002,
-        // The following values represent warnings only intended for the developer during development: 
-        Insertion = 0x00000004,
-        Replacement = 0x00000008,
-        Deletetion = 0x00000010,
+        // The following values represent warnings only intended for the developer during development, , using bit 8 to 15
+        AllDeveloperFlags     = 0x0000ff00,
+        Insertion             = 0x00000100,
+        Replacement           = 0x00000200,
+        Deletetion            = 0x00000400,
         // The following  values represent warnings intended for the normal end user after File->Open:
-        NoInterpretationFound = 0x00000020, 
-        MoreThanOneInterpretationFound = 0x00000040,
-        AddedSelectedEvent = 0x00000080,
-        UnSupportedInput = 0x00000100,
-        EmptyMeasureIsIgnored = 0x00000200,
-        UnExpectedInputCharacter = 0x00000400,
+        AllBrailleMusicInterpretationFlags = 0x00ff0000,
+        NoInterpretationFound              = 0x00010000, 
+        MoreThanOneInterpretationFound     = 0x00020000,
+        AddedSelectedEvent                 = 0x00040000,
+        UnSupportedInput                   = 0x00080000,
+        EmptyMeasureIsIgnored              = 0x00100000,
+        UnExpectedInputCharacter           = 0x00200000,
         // The following values represent warnings intended for the developer after File->Export to MusicXml
-        UnsupportedMuxicXmlElement = 0x00000800,
-        FailedToFixDuration = 0x00001000,
-        UnSupportedVoiceList = 0x00002000,
-        UnsupportedInAccordConfiguration = 0x00004000,   
-        UnsupportedExtensionToMinorChord = 0x00008000,
-        UnsupportedExtensionToMajorChord = 0x00010000,
-        All = 0x7fffffff
+        AllMusicXmlGEnerationFlags         = 0xff000000, 
+        UnsupportedMuxicXmlElement         = 0x01000000,
+        FailedToFixDuration                = 0x02000000,
+        UnSupportedVoiceList               = 0x04000000,
+        UnsupportedInAccordConfiguration   = 0x08000000,   
+        UnsupportedExtensionToMinorChord   = 0x10000000,
+        UnsupportedExtensionToMajorChord   = 0x20000000,
+        AllFlags                   = 0xffffffffffffffff
     }
 
     /// <summary>
