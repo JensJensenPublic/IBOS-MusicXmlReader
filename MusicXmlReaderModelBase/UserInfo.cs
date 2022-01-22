@@ -6,7 +6,7 @@
     /// Identifies the exact type of information (Usable as case in a switch) or as masks
     /// </summary>
     [Flags]
-    public enum UserInfoEnum : ulong  // "ulong" enables use of up to 64 bits instead of 31. Same trick as in DecoderOPtions.cs, where the 64 bits are actueally needed!
+    public enum UserInfoFlagsEnum : ulong  // "ulong" enables use of up to 64 bits instead of 31. Same trick as in DecoderOPtions.cs, where the 64 bits are actueally needed!
     {
         // The following values represent 3 diffent kinds of unspecified warnings, using bit 0 to 7
         NoFlags               = 0x00000000,
@@ -49,7 +49,7 @@
 
         public abstract string ToString(int fileNameLength);
 
-        public abstract UserInfoEnum GetInfoEnum();
+        public abstract UserInfoFlagsEnum GetInfoEnum();
 
         protected string message;
         public string Message { get { return message; } set { message = value; } }
@@ -125,7 +125,7 @@
             return string.Format("{0} {1} {2} DOT {3}", paddedfileName, position, message, dotsToInsert);
         }
 
-        public override UserInfoEnum GetInfoEnum() { return UserInfoEnum.Insertion; } 
+        public override UserInfoFlagsEnum GetInfoEnum() { return UserInfoFlagsEnum.Insertion; } 
     }
 
     public class DecoderUserReplacementInfo : DecoderUserInfoBase
@@ -160,7 +160,7 @@
             return string.Format("{0} {1} Replaced Braille={2} (DOTS={3}) by Braille={4} (DOTS={5})", paddedfileName ,position , oldContents, oldContentsAsDots, newContents, newContentsAsDots);
         }
 
-        public override UserInfoEnum GetInfoEnum() { return UserInfoEnum.Replacement; }
+        public override UserInfoFlagsEnum GetInfoEnum() { return UserInfoFlagsEnum.Replacement; }
     }
 
     /// <summary>
@@ -233,10 +233,10 @@
         /// </summary>
         public string BrailleDotNumberString { get { return string.Format("DOT{0,-6}",brailleDotNumbers); } }
 
-        private UserInfoEnum userInfoEnum = UserInfoEnum.InterpretationWarning;
-        public UserInfoEnum UserInfoEnum { set { userInfoEnum = value; } } // Allow for further specifying the warning type
+        private UserInfoFlagsEnum userInfoEnum = UserInfoFlagsEnum.InterpretationWarning;
+        public UserInfoFlagsEnum UserInfoEnum { set { userInfoEnum = value; } } // Allow for further specifying the warning type
 
-        public override UserInfoEnum GetInfoEnum() { return userInfoEnum; }
+        public override UserInfoFlagsEnum GetInfoEnum() { return userInfoEnum; }
 
     }
 

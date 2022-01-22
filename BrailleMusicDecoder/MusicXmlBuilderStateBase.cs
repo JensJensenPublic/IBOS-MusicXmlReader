@@ -132,12 +132,12 @@ namespace BrailleMusicDecoder
 
         protected void AddSelectedEvent(string selectedEvent)
         {
-            UserWarnings.LogUserWarning(selectedEvent,UserInfoEnum.AddedSelectedEvent);
+            UserWarnings.LogUserWarning(selectedEvent,UserInfoFlagsEnum.AddedSelectedEvent);
         }
 
         protected void OnUnsupportedInput(string prefix,InputInterpretation input)
         {
-            UserWarnings.LogUserWarning(string.Format("{0} Unsupported InputCategory={1}", prefix, input.Category.ToString()),UserInfoEnum.UnSupportedInput); // For the list of user warnings
+            UserWarnings.LogUserWarning(string.Format("{0} Unsupported InputCategory={1}", prefix, input.Category.ToString()),UserInfoFlagsEnum.UnSupportedInput); // For the list of user warnings
         }
  
         

@@ -71,7 +71,7 @@ namespace BrailleMusicDecoder
         private void LogAndWarn(string s)
         {
             Logger.LogCF1(string.Format(": {0}: {1}", UnsupportedVoiceList, s));
-            UserWarnings.LogUserWarning(string.Format("{0}: {1}", UnsupportedVoiceList,s),UserInfoEnum.UnSupportedVoiceList);
+            UserWarnings.LogUserWarning(string.Format("{0}: {1}", UnsupportedVoiceList,s),UserInfoFlagsEnum.UnSupportedVoiceList);
         }
 
         // Issue a Log or an warning when we meet an unsupported configuration
@@ -83,7 +83,7 @@ namespace BrailleMusicDecoder
             if ((nMeasureDivisionMarks == 0) && (nInAccordPartMeasureMarks == 0) && (nInAccordFullMeasureMarks == 1)) return; // The simple InAccordFullMeasure case
             Logger.LogCF1(string.Format(": {0}: nMeasureDivisionMarks={1} nInAccordPartMeasureMarks={2} nInAccordFullMeasureMarks={3}",
                 UnsupportedVoiceList,nMeasureDivisionMarks, nInAccordPartMeasureMarks, nInAccordFullMeasureMarks)); // Not explicitly handled yet !
-            UserWarnings.LogUserWarning(string.Format("{0}:  nDivisionsMarks={1}  nPartMeasure={2}  nFullMeasure={3})", UnsupportedVoiceList, nMeasureDivisionMarks, nInAccordPartMeasureMarks, nInAccordFullMeasureMarks),UserInfoEnum.UnsupportedInAccordConfiguration);
+            UserWarnings.LogUserWarning(string.Format("{0}:  nDivisionsMarks={1}  nPartMeasure={2}  nFullMeasure={3})", UnsupportedVoiceList, nMeasureDivisionMarks, nInAccordPartMeasureMarks, nInAccordFullMeasureMarks),UserInfoFlagsEnum.UnsupportedInAccordConfiguration);
         }
 
         private void AddVoice(Voice voice)

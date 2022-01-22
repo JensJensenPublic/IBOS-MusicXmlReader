@@ -112,7 +112,7 @@ namespace BrailleMusicDecoder
             {
                 string message = OnNoResult(initialIndex, oldPosition); // Common message for decoder textfile and selected events
                 string userWarning = string.Format("Rum{0}", message);
-                UserWarnings.LogUserWarning(userWarning,UserInfoEnum.NoInterpretationFound);
+                UserWarnings.LogUserWarning(userWarning,UserInfoFlagsEnum.NoInterpretationFound);
                 return Token.Create(message, accumulatedText,initialDecoderState);
             }
              
@@ -482,7 +482,7 @@ namespace BrailleMusicDecoder
                 string message = string.Format(": Arbitrarily choose filteredvalues[0] = {0}", inputInterpretationString);
                 Logger.LogCF(message); // The arbitrarily chosen inputValæue. May be the wrong choise !!!
                 //decoderWarnings.Add(message + "  " + epilogue); // Collect selected log messages locally in the decoder
-                UserWarnings.LogUserWarning(message + "  " + epilogue,UserInfoEnum.MoreThanOneInterpretationFound);
+                UserWarnings.LogUserWarning(message + "  " + epilogue,UserInfoFlagsEnum.MoreThanOneInterpretationFound);
             }
 
             string newStateText = stateChanged ? string.Format("NewState={0} ", newStateName) : "";

@@ -28,7 +28,7 @@ namespace BrailleMusicDecoder.MusicXmlElements
             Logger.LogCF1(s);
         }
 
-        protected void LogUserWarning(string s,UserInfoEnum userInfoEnum)
+        protected void LogUserWarning(string s,UserInfoFlagsEnum userInfoEnum)
         {
             UserWarnings.LogUserWarning(s,userInfoEnum);
         }

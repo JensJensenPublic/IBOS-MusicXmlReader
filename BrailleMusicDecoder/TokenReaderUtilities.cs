@@ -1196,7 +1196,7 @@ namespace BrailleMusicDecoder
             char c = userPositionInfo.BrailleAsUnicode;
             string logMessage = string.Format("Unicode representation contains unexpected Unicode character='{0}' (Hewvalue=0x{1:x}) Will be interpreted as Braille NoDots", c, (int)c);
             // Log a warning for the user, specifying the exact values. The normal Logger.LogUserWarning(errorMessage) takes parameters by callback to the Decoder and requires that the Decoder has been created)   
-            UserWarnings.LogUserWarning(logMessage, userPositionInfo, "X", "0",UserInfoEnum.UnExpectedInputCharacter); // Use "X" for unexpected character to avoid confusion: The Console represents all 0x2900..0x28ff as "?"
+            UserWarnings.LogUserWarning(logMessage, userPositionInfo, "X", "0",UserInfoFlagsEnum.UnExpectedInputCharacter); // Use "X" for unexpected character to avoid confusion: The Console represents all 0x2900..0x28ff as "?"
             string errorMessage = string.Format(": {0} at Form={1} Line={2} Space={3}", logMessage, userPositionInfo.Form, userPositionInfo.Line, userPositionInfo.Space); // Add extra information
             Logger.LogCF(errorMessage);
             // Log the valid start of the file in order to easier identify the error. But only do this for the first error.

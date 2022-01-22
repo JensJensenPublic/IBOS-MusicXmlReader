@@ -24,7 +24,7 @@ namespace MusicXmlReaderModel
         ///  Retreived (for UI use) by GetLocalUserWarnings  or GetGlobalUserWarnings
         /// </summary>
         /// <param name="s"></param>
-        public static void LogUserWarning(string message,UserInfoEnum userInfoEnum)
+        public static void LogUserWarning(string message,UserInfoFlagsEnum userInfoEnum)
         {
             string fileName = GetShortFileName(Logger.CurrentMusicBrailleSourceFileName);
             DecoderUserInfo userInfo = new DecoderUserInfo(fileName, userPositionInfo, message); // When userPositionInfo is not specified rely on the local value (Previously coded as a callback)
@@ -57,7 +57,7 @@ namespace MusicXmlReaderModel
         /// <param name="formNumber"></param>
         /// <param name="LineNumber"></param>
         /// <param name="spaceNumber"></param>
-        public static void LogUserWarning(string s, UserPositionInfo userPositionInfo, string brailleString, string brailleDotNumbers,UserInfoEnum userInfoEnum)
+        public static void LogUserWarning(string s, UserPositionInfo userPositionInfo, string brailleString, string brailleDotNumbers,UserInfoFlagsEnum userInfoEnum)
         {
             DecoderUserInfo userInfo = new DecoderUserInfo("", userPositionInfo, brailleString, brailleDotNumbers);
             userInfo.FileName = GetShortFileName(Logger.CurrentMusicBrailleSourceFileName);

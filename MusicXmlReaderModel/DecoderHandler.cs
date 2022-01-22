@@ -80,7 +80,7 @@ namespace MusicXmlReaderModel
         /// The messages are formatted to fit into a standard MessageBox.
         /// </summary>
         /// <returns></returns>
-        public List<string> GetLocalUserWarnings(UserInfoEnum mask)
+        public List<string> GetLocalUserWarnings(UserInfoFlagsEnum mask)
         {
             List<string> result = new List<string>();
             List<UserInfoBase> userInfoList = UserWarnings.GetlocalUSerWarnings();
@@ -88,7 +88,7 @@ namespace MusicXmlReaderModel
             // Take the filename from the first item
             foreach (UserInfoBase userInfoBase in userInfoList)
             {
-                UserInfoEnum userInfoEnum = userInfoBase.GetInfoEnum();
+                UserInfoFlagsEnum userInfoEnum = userInfoBase.GetInfoEnum();
                 Logger.LogCF(string.Format(": UserInfoEnum={0}", userInfoEnum.ToString()));
 
                 if (0 == (( mask) & userInfoEnum))
@@ -106,7 +106,7 @@ namespace MusicXmlReaderModel
                 // Instead we must build the lines here, where localization information is available 
                 switch (userInfoBase.GetInfoEnum())
                 {
-                    case UserInfoEnum.InterpretationWarning:
+                    case UserInfoFlagsEnum.InterpretationWarning:
                         // This is a complicated warning contanin exact information about page, line and space etc
                         DecoderUserInfo userInfo = userInfoBase as DecoderUserInfo;
                         string pageText = string.Format("{0}={1,-4}", brailleMusicDecoder.Text_Page, userInfo.Page); // Page=9999
@@ -116,14 +116,14 @@ namespace MusicXmlReaderModel
                         line = string.Format("{0} {1} {2} {3} {4}\r\n{5}", pageText, lineText, spaceText, dotsText, warningText, userInfo.Message); // Limited width in MessageBox. Force controlled linebreak!
                         break;                                                                                                                           // Build line from strings
 
-                    case UserInfoEnum.Insertion:
+                    case UserInfoFlagsEnum.Insertion:
                         DecoderUserInsertionInfo insertionInfo = userInfoBase as DecoderUserInsertionInfo;
                         // This is a warning about insertion of MusicBraille symbols into the original sourceFile
                         line = string.Format("Index={0}: {1} DOT {2}",  insertionInfo.Index,  insertionInfo.Message, insertionInfo.DotsToInsert);
                         break;
 
                     // This is a warning about replacement of MusicBraille symbols with others in the original sourceFile
-                    case UserInfoEnum.Replacement:
+                    case UserInfoFlagsEnum.Replacement:
                         DecoderUserReplacementInfo info = userInfoBase as DecoderUserReplacementInfo;
                         line = string.Format("Index={0} Replaced Braille={1} (DOTS={2}) by Braille={3} (DOTS={4})", info.Index, info.OldContents, info.OldContentsAsDots , info.NewContents, info.NewContentsAsDots);
                         break;
