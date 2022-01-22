@@ -18,7 +18,7 @@
         Insertion             = 0x00000100,
         Replacement           = 0x00000200,
         Deletetion            = 0x00000400,
-        // The following  values represent warnings intended for the normal end user after File->Open:
+        // The following  values represent warnings intended for the normal end user after File->Open, using bit 16 to 23
         AllBrailleMusicInterpretationFlags = 0x00ff0000,
         NoInterpretationFound              = 0x00010000, 
         MoreThanOneInterpretationFound     = 0x00020000,
@@ -26,7 +26,7 @@
         UnSupportedInput                   = 0x00080000,
         EmptyMeasureIsIgnored              = 0x00100000,
         UnExpectedInputCharacter           = 0x00200000,
-        // The following values represent warnings intended for the developer after File->Export to MusicXml
+        // The following values represent warnings intended for the developer after File->Export to MusicXml, using bits 24 to 31
         AllMusicXmlGEnerationFlags         = 0xff000000, 
         UnsupportedMuxicXmlElement         = 0x01000000,
         FailedToFixDuration                = 0x02000000,
@@ -34,7 +34,7 @@
         UnsupportedInAccordConfiguration   = 0x08000000,   
         UnsupportedExtensionToMinorChord   = 0x10000000,
         UnsupportedExtensionToMajorChord   = 0x20000000,
-        AllFlags                   = 0xffffffffffffffff
+        AllFlags                   = 0xffffffffffffffff // Bits 0 to 63
     }
 
     /// <summary>
