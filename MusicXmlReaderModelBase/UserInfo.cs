@@ -14,26 +14,26 @@
         Unspecified           = 0x00000001,
         InterpretationWarning = 0x00000002,
         // The following values represent warnings only intended for the developer during development, , using bit 8 to 15
-        AllDeveloperFlags     = 0x0000ff00,
-        Insertion             = 0x00000100,
-        Replacement           = 0x00000200,
-        Deletetion            = 0x00000400,
-        // The following  values represent warnings intended for the normal end user after File->Open, using bit 16 to 23
-        AllBrailleMusicInterpretationFlags = 0x00ff0000,
-        NoInterpretationFound              = 0x00010000, 
-        MoreThanOneInterpretationFound     = 0x00020000,
-        AddedSelectedEvent                 = 0x00040000,
-        UnSupportedInput                   = 0x00080000,
-        EmptyMeasureIsIgnored              = 0x00100000,
-        UnExpectedInputCharacter           = 0x00200000,
-        // The following values represent warnings intended for the developer after File->Export to MusicXml, using bits 24 to 31
-        AllMusicXmlGEnerationFlags         = 0xff000000, 
-        UnsupportedMuxicXmlElement         = 0x01000000,
-        FailedToFixDuration                = 0x02000000,
-        UnSupportedVoiceList               = 0x04000000,
-        UnsupportedInAccordConfiguration   = 0x08000000,   
-        UnsupportedExtensionToMinorChord   = 0x10000000,
-        UnsupportedExtensionToMajorChord   = 0x20000000,
+        AllDeveloperFlags                = 0x0000ff00,
+        DevelopmentInsertion             = 0x00000100,
+        DevelopmentReplacement           = 0x00000200,
+        DevelopmentDeletetion            = 0x00000400,
+        // The following  values represent warnings related to Interpretation of Music Braille after File->Open, using bit 16 to 23
+        InterpretationAllFlags           = 0x00ff0000,
+        InterpretationNotFound           = 0x00010000, 
+        InterpretationMoreThanOneFound   = 0x00020000,
+        InterpretationAddedSelectedEvent = 0x00040000,
+        InterpretationUnSupportedInput   = 0x00080000,
+        InterpretationEmptyMeasureIgnored= 0x00100000,
+        InterpretationUnExpectedInput    = 0x00200000,
+        // The following values represent warnings related to Generation of MusicXml after File->Export to MusicXml, using bits 24 to 31
+        GenerationAllFlags                           = 0xff000000, 
+        GenerationUnsupportedMuxicXmlElement         = 0x01000000,
+        GenerationFailedToFixDuration                = 0x02000000,
+        GenerationUnSupportedVoiceList               = 0x04000000,
+        GenerationUnsupportedInAccordConfiguration   = 0x08000000,   
+        GenerationUnsupportedExtensionToMinorChord   = 0x10000000,
+        GenerationUnsupportedExtensionToMajorChord   = 0x20000000,
         AllFlags                   = 0xffffffffffffffff // Bits 0 to 63
     }
 
@@ -125,7 +125,7 @@
             return string.Format("{0} {1} {2} DOT {3}", paddedfileName, position, message, dotsToInsert);
         }
 
-        public override UserInfoFlagsEnum GetInfoEnum() { return UserInfoFlagsEnum.Insertion; } 
+        public override UserInfoFlagsEnum GetInfoEnum() { return UserInfoFlagsEnum.DevelopmentInsertion; } 
     }
 
     public class DecoderUserReplacementInfo : DecoderUserInfoBase
@@ -160,7 +160,7 @@
             return string.Format("{0} {1} Replaced Braille={2} (DOTS={3}) by Braille={4} (DOTS={5})", paddedfileName ,position , oldContents, oldContentsAsDots, newContents, newContentsAsDots);
         }
 
-        public override UserInfoFlagsEnum GetInfoEnum() { return UserInfoFlagsEnum.Replacement; }
+        public override UserInfoFlagsEnum GetInfoEnum() { return UserInfoFlagsEnum.DevelopmentReplacement; }
     }
 
     /// <summary>

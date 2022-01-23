@@ -116,14 +116,14 @@ namespace MusicXmlReaderModel
                         line = string.Format("{0} {1} {2} {3} {4}\r\n{5}", pageText, lineText, spaceText, dotsText, warningText, userInfo.Message); // Limited width in MessageBox. Force controlled linebreak!
                         break;                                                                                                                           // Build line from strings
 
-                    case UserInfoFlagsEnum.Insertion:
+                    case UserInfoFlagsEnum.DevelopmentInsertion:
                         DecoderUserInsertionInfo insertionInfo = userInfoBase as DecoderUserInsertionInfo;
                         // This is a warning about insertion of MusicBraille symbols into the original sourceFile
                         line = string.Format("Index={0}: {1} DOT {2}",  insertionInfo.Index,  insertionInfo.Message, insertionInfo.DotsToInsert);
                         break;
 
                     // This is a warning about replacement of MusicBraille symbols with others in the original sourceFile
-                    case UserInfoFlagsEnum.Replacement:
+                    case UserInfoFlagsEnum.DevelopmentReplacement:
                         DecoderUserReplacementInfo info = userInfoBase as DecoderUserReplacementInfo;
                         line = string.Format("Index={0} Replaced Braille={1} (DOTS={2}) by Braille={3} (DOTS={4})", info.Index, info.OldContents, info.OldContentsAsDots , info.NewContents, info.NewContentsAsDots);
                         break;

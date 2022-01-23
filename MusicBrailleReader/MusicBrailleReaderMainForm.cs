@@ -858,7 +858,7 @@ namespace MusicBrailleReader
 
         // At this point of time (immediately after opening and interpreting the BrailleMusic file) all error information has been collected, 
         // but we do not want to reveal the error information only related to the MusicXml generation now. So we use the following mask:
-        UserInfoFlagsEnum mask = UserInfoFlagsEnum.AllFlags & ~(UserInfoFlagsEnum.FailedToFixDuration | UserInfoFlagsEnum.UnSupportedVoiceList);
+        UserInfoFlagsEnum mask = UserInfoFlagsEnum.AllFlags & ~(UserInfoFlagsEnum.GenerationFailedToFixDuration | UserInfoFlagsEnum.GenerationUnSupportedVoiceList);
 
         private void openUsingNOTAProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
