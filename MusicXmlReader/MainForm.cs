@@ -18,6 +18,7 @@ namespace MusicXmlReader
         string className = "MainForm";
         bool developerMode; // Can be set in app.Config
         bool decoderDeveloperMode; // Can be set in app.Config
+        bool exportToMusicXml;  // Can be set in app.Config 
         string localizationMessage = ""; // Will contain a formatted message if the default UI Culture is overwritten by App.Config
         //bool experimentalCode;  // Can be set in app.Config
         public static readonly Color FocusedColor = Color.White;         // Mainly for debugging. For released versions use Color.White !
@@ -64,6 +65,10 @@ namespace MusicXmlReader
                 developerMode = ("yes" == developerModeString);
                 Logger.DeveloperMode = developerMode;
                 Logger.LogArguments(arguments);
+
+                string exportToMusicXmlString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.ExportToMusicXml);
+                bool exportToMusicXml = ("yes" == exportToMusicXmlString);
+                Logger.ExportToMusicXml = exportToMusicXml;
 
                 string decoderDeveloperModeString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.DecoderDeveloperMode);
                 decoderDeveloperMode = ("yes" == decoderDeveloperModeString);

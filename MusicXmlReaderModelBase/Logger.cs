@@ -23,6 +23,8 @@ namespace MusicXmlReaderModel
         static private bool developerMode = false;
         static public bool DeveloperMode { get { return developerMode; } set { developerMode = value; } }
 
+        static private bool exportToMusicXml = false;
+        static public bool ExportToMusicXml { get { return exportToMusicXml; } set { exportToMusicXml = value; } }
 
         #region DelayMeasurement
         // Overall delays. Only ExecutionDelay is relevant for the UI version    

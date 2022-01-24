@@ -15,7 +15,8 @@ namespace MusicXmlReader
             ExperimentalCode,
             HandleGraphics,
             DecoderDeveloperMode,
-            UseExternal7Zip
+            UseExternal7Zip,
+            ExportToMusicXml
         }
 
         /// <summary>
@@ -34,6 +35,7 @@ namespace MusicXmlReader
                 case KeyEnum.HandleGraphics: return "HandleGraphics";
                 case KeyEnum.DecoderDeveloperMode: return "DecoderDeveloperMode";
                 case KeyEnum.UseExternal7Zip: return "UseExternal7Zip";
+                case KeyEnum.ExportToMusicXml: return "ExportToMusicXml";
                 default: return null;
             }
         }

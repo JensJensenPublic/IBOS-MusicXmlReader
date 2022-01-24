@@ -125,7 +125,12 @@ namespace MusicBrailleReader
             LocalizeComponent();  // Overwrite all items exept in MenuStrip with localized texts
             this.openTestFileToolStripMenuItem.Text = string.Format("Decode '{0}'", currentTestFileName);
             HideDeveloperItems(Logger.DeveloperMode);
- 
+
+            if (!Logger.ExportToMusicXml)
+            {
+                Hide(exporterSomMusicXmlToolStripMenuItem); // This very important feature is still not in a functional state!!!
+            }
+
             Application.ApplicationExit += Application_ApplicationExit; // Add an exit-handler to be sure all processes will be shut down on application exit !
         
             LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
@@ -169,8 +174,7 @@ namespace MusicBrailleReader
 
             // MenuItems under the "File" menuItem
             Hide(openUsingBrailleOrchProfileToolStripMenuItem);
-            Hide(openTestFileToolStripMenuItem);
-            Hide(exporterSomMusicXmlToolStripMenuItem); // This very important feature is still not in a functional state!!!
+            Hide(openTestFileToolStripMenuItem);         
 
             // The whole "Tools" menuItem
             Hide(toolsToolStripMenuItem);
