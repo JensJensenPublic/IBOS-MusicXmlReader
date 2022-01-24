@@ -595,12 +595,42 @@ namespace MusicXmlReader
             string appFullName = System.Reflection.Assembly.GetExecutingAssembly().Location;
             model.ExternalToolsHandler.OpenConfigurationFileLocation(appFullName);
         }
-        
+
+        #region IMusicBrailleReaderClient
+        // Implement IMusicBrailleReaderClient
+        public void HideForm()
+        {
+            this.Hide();
+        }
+        public void ShowForm()
+        {
+            this.Show();
+        }
+
+        /// <summary>
+        /// Allows another form to read the Latest Braille Music Path from the User preferences
+        /// </summary>
+        /// <returns></returns>
+        public string GetLatestBrailleMusicPath()
+        {
+            return this.userPreferencesHandler.BrailleMusicDirectory;
+        }
+
+        /// <summary>
+        ///  Allows another form to write the Latest Braille Music Path to the User preferences
+        /// </summary>
+        /// <param name="s"></param>
+        public void SetLatestBrailleMusicPath(string s)
+        {
+            this.userPreferencesHandler.BrailleMusicDirectory = s;
+        }
+        #endregion 
+
         private MusicBrailleReader.MusicBrailleReaderMainForm musicBrailleReaderMainform;
 
         private void musicBrailleReaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(this, model, this.userPreferencesHandler.BrailleMusicDirectory);
+            musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(this as MusicBrailleReader.IMusicBrailleReaderClient, model);
             musicBrailleReaderMainform.Show();
             this.Hide();
         }

@@ -25,7 +25,7 @@ namespace MusicBrailleReader
         const string currentTestDirectory = "NOTA fra SN 2021.03.23";
 
         Model model;        // The Model containing all of the business logic.
-        Form creatingForm;  // Holds the creating form this class was created by another form through the static Create()
+        IMusicBrailleReaderClient creatingForm;  // Holds the creating form this class was created by another form through the static Create()
         string musicBrailleDirectory; // Holds the preferred musicBrailledirectory if specified by the creating form
         string executingAssemblyFullPath = ""; // The (unlocalized) name and location of the program, 
         string executingAssemblyShortName = ""; // The (unlocalized) short name of the program, used by for instance JAWS to name configuration file! 
@@ -74,9 +74,9 @@ namespace MusicBrailleReader
         /// <param name="model">The MusicXmlReader.Model class (used by the consuming application) to use.</param>
         /// <param name="musicBrailleDirectory">The default directory for MusicBraille files to use</param>
         /// <returns></returns>
-        public static  MusicBrailleReaderMainForm Create(Form creatingForm, Model model, string musicBrailleDirectory)
+        public static  MusicBrailleReaderMainForm Create(IMusicBrailleReaderClient creatingForm, Model model)
         {
-            MusicBrailleReaderMainForm result = new MusicBrailleReaderMainForm(creatingForm,model, musicBrailleDirectory);
+            MusicBrailleReaderMainForm result = new MusicBrailleReaderMainForm(creatingForm,model);
             return result;
         }
 
@@ -102,7 +102,7 @@ namespace MusicBrailleReader
             // Instantiate a Model instance containing lots of common code, originally designed for the MusicXmlReader
             Model model = Model.Create(null, null, applicationName, null); 
             //Create and return the Form itself
-            MusicBrailleReaderMainForm result = new MusicBrailleReaderMainForm(null,model,null);
+            MusicBrailleReaderMainForm result = new MusicBrailleReaderMainForm(null,model);
             return result;
         }
 
@@ -113,11 +113,11 @@ namespace MusicBrailleReader
         { }
 
 
-        private MusicBrailleReaderMainForm(Form creatingForm, Model model, string musicBrailleDirectory)
+        private MusicBrailleReaderMainForm(IMusicBrailleReaderClient creatingForm, Model model)
         {
             this.model = model;
             this.creatingForm = creatingForm;
-            this.musicBrailleDirectory = musicBrailleDirectory;
+            this.musicBrailleDirectory = creatingForm.GetLatestBrailleMusicPath();
 
             executingAssemblyFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingAssemblyShortName = System.IO.Path.GetFileNameWithoutExtension(executingAssemblyFullPath);
@@ -338,6 +338,7 @@ namespace MusicBrailleReader
         
             }
             this.Text = string.Format("{0} - {1}", shortFileName, this.applicationName); // Inspired by Microsoft standard way of showing this.
+            creatingForm.SetLatestBrailleMusicPath(Path.GetDirectoryName(fullFileName)); // Remember the path for next time using the User preferences system in the creating form !
             return true;
         }
 
@@ -1003,7 +1004,7 @@ namespace MusicBrailleReader
         {
             // If this form was instantiated by another form using the static Create() method the creating form was hidden at that time. Show it again.
             if (null == creatingForm) return;
-            creatingForm.Show();
+            creatingForm.ShowForm();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
