@@ -279,13 +279,7 @@ namespace MusicBrailleReader
                 // If a preferred Braille Music directory is set up by the creating form, use it
                 return this.musicBrailleDirectory;
             }
-            string baseDirectory = null;
-            string userName = System.Environment.UserName;
-            string dropboxBase = Path.Combine(@"C:\Users", userName);
-            string dropboxDir = Path.Combine(dropboxBase, "Dropbox"); // The Dropbox directory for the current user on the current PC
-            string dropBoxRoot = Path.Combine(dropboxDir, "Root"); // Owned by G75Z, shared by IMB and JJP
-            baseDirectory = Path.Combine(dropboxDir, @"Visual Studio 2015\Solutions\Tactile MusicXmlReader\BrailleMusicDecoder\Testfiles for Decoder");
-            return baseDirectory;
+            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);     
         }
 
         private bool SelectAndOpenFile(bool useDefaultSettings, bool useRecentFile,string dialogTitle)
