@@ -12,5 +12,6 @@ namespace MusicBrailleReader
         void ShowForm();
         string GetLatestBrailleMusicPath();
         void SetLatestBrailleMusicPath(string s);
+        string GetMyMusicXmlDirectory();
     }
 }

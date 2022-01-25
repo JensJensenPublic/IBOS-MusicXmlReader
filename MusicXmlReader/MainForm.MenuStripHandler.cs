@@ -617,6 +617,16 @@ namespace MusicXmlReader
         }
 
         /// <summary>
+        /// Allows another form to read the value of the default directory for the MusicXmlReader application (Where for instance the MusicXml Sample files are located)
+        /// </summary>
+        /// <returns></returns>
+        public string GetMyMusicXmlDirectory()
+        {
+            return this.myMusicXmlDirectory;
+        }
+
+
+        /// <summary>
         ///  Allows another form to write the Latest Braille Music Path to the User preferences
         /// </summary>
         /// <param name="s"></param>

@@ -271,19 +271,20 @@ namespace MusicBrailleReader
             model.OnApplicationExit(); // Let the Model clean up its resources etc 
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private string GetFileOpenInitialDirectory(bool useRecentFile)
         {
-            if ((this.musicBrailleDirectory != null) && (Directory.Exists(this.musicBrailleDirectory)))
+            if (useRecentFile  && (this.musicBrailleDirectory != null) && (Directory.Exists(this.musicBrailleDirectory)))
             {
-                // If a preferred Braille Music directory is set up by the creating form, use it
+                // If a preferred Braille Music directory is already set up, use it
+                // The  path can be set by either
+                //  1) A previous reading of a MusicBraille file by "File->Open" in this form
+                //  2) A previous writing of a MusicBraille file by "File->Export Braille Music to file" by the creating form (In this case the MusicXmlReader MainForm) 
                 return this.musicBrailleDirectory;
             }
-            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);     
+            // Otherways use the default directory used by the creating form (In this case the MusicXmlReader MainForm.)
+            return creatingForm.GetMyMusicXmlDirectory();
+
+            // Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);     
         }
 
         private bool SelectAndOpenFile(bool useDefaultSettings, bool useRecentFile,string dialogTitle)
