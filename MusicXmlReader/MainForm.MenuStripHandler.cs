@@ -606,6 +606,10 @@ namespace MusicXmlReader
         {
             this.Show();
         }
+        public void EnableForm(bool b)
+        {
+            this.Enabled=b;
+        }
 
         /// <summary>
         /// Allows another form to read the Latest Braille Music Path from the User preferences
@@ -642,7 +646,8 @@ namespace MusicXmlReader
         {
             musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(this as MusicBrailleReader.IMusicBrailleReaderClient, model);
             musicBrailleReaderMainform.Show();
-            this.Hide();
+            this.Enabled = false; // Will be enabled again when  musicBrailleReaderMainform closes !
+            //this.Hide();  // Will be shown again when  musicBrailleReaderMainform closes !
         }
         
         private bool AppendLine(System.Text.StringBuilder sb, string fileName, BrailleFileHandler.FileEncoding encoding)

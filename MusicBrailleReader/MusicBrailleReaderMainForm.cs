@@ -70,9 +70,8 @@ namespace MusicBrailleReader
         /// <summary>
         /// To be called if this form is used as a part of the MusicXmlReader application or similar, which already has a Model 
         /// </summary>
-        /// <param name="creatingForm">The Form (belonging to the consuming application) which called this Create-method</param>
+        /// <param name="creatingForm">An interface to the Form (belonging to the consuming application) which called this Create-method</param>
         /// <param name="model">The MusicXmlReader.Model class (used by the consuming application) to use.</param>
-        /// <param name="musicBrailleDirectory">The default directory for MusicBraille files to use</param>
         /// <returns></returns>
         public static  MusicBrailleReaderMainForm Create(IMusicBrailleReaderClient creatingForm, Model model)
         {
@@ -1003,7 +1002,9 @@ namespace MusicBrailleReader
         {
             // If this form was instantiated by another form using the static Create() method the creating form was hidden at that time. Show it again.
             if (null == creatingForm) return;
+            // Show and enable the creating form
             creatingForm.ShowForm();
+            creatingForm.EnableForm(true);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
