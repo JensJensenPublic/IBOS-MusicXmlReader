@@ -2,18 +2,20 @@
 using System.Windows.Forms;
 using System.Drawing;
 using MusicXmlReaderModel;
+using MusicBrailleReader;
 
 namespace MusicXmlReader
 {
     /// <summary>
-    /// The 3 interfaces are used for
+    /// The 4 interfaces are used for
     /// IBrailleDisplayerClient     Let the Model write MusicBraille patterns to the appropriate Textbox
     /// IObjectCollection   Let the Model access the main Listbox when auto-playing music
     /// IUtilityClient      Let the Model show MessageBoxes
+    /// IMusicBrailleReaderClient Let the MusicBrailleReader access some of the variables of the MainFoem 
     /// By using these interfaces we avoid that the Model needs to know anything abour Windows Forms!
     /// This makes it much easier to reuse the Model for othea applications and other platforms.
     /// </summary>
-    public partial class MainForm : Form, IDebugDisplayerClient, IObjectCollection, IUtilityClient, MusicBrailleReader.IMusicBrailleReaderClient
+    public partial class MainForm : Form, IDebugDisplayerClient, IObjectCollection, IUtilityClient, IMusicBrailleReaderClient
     {
         string className = "MainForm";
         bool developerMode; // Can be set in app.Config
@@ -67,7 +69,7 @@ namespace MusicXmlReader
                 Logger.LogArguments(arguments);
 
                 string exportToMusicXmlString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.ExportToMusicXml);
-                bool exportToMusicXml = ("yes" == exportToMusicXmlString);
+                exportToMusicXml = ("yes" == exportToMusicXmlString);
                 Logger.ExportToMusicXml = exportToMusicXml;
 
                 string decoderDeveloperModeString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.DecoderDeveloperMode);
@@ -293,9 +295,7 @@ namespace MusicXmlReader
 #endif
 
 
-
-
-
+// Implementation of interfaces:
 
 #region IDebugDisplayerClient
 
@@ -390,8 +390,51 @@ namespace MusicXmlReader
         {
             messageHandler.ShowWarning(messageId, parameter, text);
         }
-#endregion IMessageShower
+        #endregion IMessageShower
 
+#region IMusicBrailleReaderClient
+        // Implement IMusicBrailleReaderClient
+        public void HideForm()
+        {
+            this.Hide();
+        }
+        public void ShowForm()
+        {
+            this.Show();
+        }
+        public void EnableForm(bool b)
+        {
+            this.Enabled = b;
+        }
+
+        /// <summary>
+        /// Allows another form to read the Latest Braille Music Path from the User preferences
+        /// </summary>
+        /// <returns></returns>
+        public string GetLatestBrailleMusicPath()
+        {
+            return this.userPreferencesHandler.BrailleMusicDirectory;
+        }
+
+        /// <summary>
+        /// Allows another form to read the value of the default directory for the MusicXmlReader application (Where for instance the MusicXml Sample files are located)
+        /// </summary>
+        /// <returns></returns>
+        public string GetMyMusicXmlDirectory()
+        {
+            return this.myMusicXmlDirectory;
+        }
+
+
+        /// <summary>
+        ///  Allows another form to write the Latest Braille Music Path to the User preferences
+        /// </summary>
+        /// <param name="s"></param>
+        public void SetLatestBrailleMusicPath(string s)
+        {
+            this.userPreferencesHandler.BrailleMusicDirectory = s;
+        }
+#endregion 
 
         /// <summary>
         ///  Clear the contents of the listbox showing the timed events (important when loading a new file)

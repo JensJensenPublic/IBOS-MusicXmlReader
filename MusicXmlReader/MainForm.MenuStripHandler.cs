@@ -596,49 +596,6 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.OpenConfigurationFileLocation(appFullName);
         }
 
-        #region IMusicBrailleReaderClient
-        // Implement IMusicBrailleReaderClient
-        public void HideForm()
-        {
-            this.Hide();
-        }
-        public void ShowForm()
-        {
-            this.Show();
-        }
-        public void EnableForm(bool b)
-        {
-            this.Enabled=b;
-        }
-
-        /// <summary>
-        /// Allows another form to read the Latest Braille Music Path from the User preferences
-        /// </summary>
-        /// <returns></returns>
-        public string GetLatestBrailleMusicPath()
-        {
-            return this.userPreferencesHandler.BrailleMusicDirectory;
-        }
-
-        /// <summary>
-        /// Allows another form to read the value of the default directory for the MusicXmlReader application (Where for instance the MusicXml Sample files are located)
-        /// </summary>
-        /// <returns></returns>
-        public string GetMyMusicXmlDirectory()
-        {
-            return this.myMusicXmlDirectory;
-        }
-
-
-        /// <summary>
-        ///  Allows another form to write the Latest Braille Music Path to the User preferences
-        /// </summary>
-        /// <param name="s"></param>
-        public void SetLatestBrailleMusicPath(string s)
-        {
-            this.userPreferencesHandler.BrailleMusicDirectory = s;
-        }
-        #endregion 
 
         private MusicBrailleReader.MusicBrailleReaderMainForm musicBrailleReaderMainform;
 
