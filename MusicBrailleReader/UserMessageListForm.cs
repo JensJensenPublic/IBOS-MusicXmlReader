@@ -30,7 +30,8 @@ namespace MusicBrailleReader
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void listBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -39,8 +40,15 @@ namespace MusicBrailleReader
 
             if (c == 0x1b) // User pressed ESC
             {
-                this.Hide();
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
             }
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

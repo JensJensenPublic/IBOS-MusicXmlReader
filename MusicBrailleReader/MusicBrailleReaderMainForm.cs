@@ -431,9 +431,14 @@ namespace MusicBrailleReader
             if (null == decoderOutputFileHandler) return OnNoMusicBrailleFileLoaded();
             if (null == musicXmlDocument) OnNoMusicBrailleFileLoaded();
 
-            ShowUserWarnings(UserWarningOptions.details, UserInfoFlagsEnum.AllFlags); // Show All  warnings through a MessageBox in a detailled format
-            //ShowUserWarnings(UserWarningOptions.details, UserInfoEnum.All & ~UserInfoEnum.FailedToFixDuration); // Show some  warnings through a MessageBox in a detailled format
+            DialogResult dialogResult = ShowUserWarnings(UserWarningOptions.details, UserInfoFlagsEnum.AllFlags); // Show All  warnings in a detailled format
+           // DialogResult dialogResult = ShowUserWarnings(UserWarningOptions.details, UserInfoEnum.All & ~UserInfoEnum.FailedToFixDuration); // Show some  warnings in a detailled format
 
+            if (DialogResult.OK != dialogResult)
+            {
+                Logger.LogCF1(": Export cancelled by user");
+                return false;
+            }
             bool showXmlOnConsole = false;
 
             string fileName = decoderOutputFileHandler.FullMusicXmlFileName;
@@ -541,24 +546,27 @@ namespace MusicBrailleReader
 
         private enum UserWarningOptions { hide, overview, details};
 
-#warning ToDo Make a costum Messagebox where wrapping can be controlled and where JAWS is better supported !
 
-        private void ShowUserWarnings(UserWarningOptions options, UserInfoFlagsEnum mask)
-        {
-            if (options == UserWarningOptions.hide) return;
+
+        private DialogResult ShowUserWarnings(UserWarningOptions options, UserInfoFlagsEnum mask)
+        { 
+            if (options == UserWarningOptions.hide) return DialogResult.OK;
             List<string> userWarnings = model.DecoderHandler.GetLocalUserWarnings(mask);
-            if (0 == userWarnings.Count) return;
+            if (0 == userWarnings.Count) return DialogResult.OK;
 
             // Build a localized caption
             string fileName = System.IO.Path.GetFileName(fullFileName);
             string text1 = (1 == userWarnings.Count) ? "advarsel" : "advarsler";
             string text2 = "fundet i punktnodefilen";
             string caption = string.Format("{0} {1} {2} '{3}'", userWarnings.Count, text1, text2, fileName);
+            DialogResult dialogResult = DialogResult.OK;
             if (options == UserWarningOptions.details)
-            {             
+            {
+                // Use a costum Messagebox where wrapping can be controlled and where JAWS is better supported !       
                 UserMessageListForm userMessageListForm = new UserMessageListForm(caption, userWarnings);
-                userMessageListForm.Show(); 
-            }        
+                dialogResult = userMessageListForm.ShowDialog();  // Use ShowDialog() instead of Show() to wait for userMessageListForm to receive input
+            }
+            return dialogResult;      
         }
 
 
@@ -876,7 +884,7 @@ namespace MusicBrailleReader
             if (!SelectAndOpenFile(false, useRecentFile, GetOpenDialogName(sender))) return;
             ClearUI();
             currentInterpretation = GetInterpretation(regionalOptions, UserWarningOptions.details);
-            ShowUserWarnings(UserWarningOptions.details, mask); // Show some  warnings through a MessageBox in a detailled format
+            ShowUserWarnings(UserWarningOptions.details, mask); // Show some  warnings in a detailled format
         }
 
 
