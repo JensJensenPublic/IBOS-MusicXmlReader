@@ -558,15 +558,21 @@ namespace MusicBrailleReader
             string fileName = System.IO.Path.GetFileName(fullFileName);
             string text1 = (1 == userWarnings.Count) ? "advarsel" : "advarsler";
             string text2 = "fundet i punktnodefilen";
-            string caption = string.Format("{0} {1} {2} '{3}'", userWarnings.Count, text1, text2, fileName);
-            DialogResult dialogResult = DialogResult.OK;
+            string errorMessage = string.Format("{0} {1} {2} '{3}'", userWarnings.Count, text1, text2, fileName);
+
+            //options = UserWarningOptions.overview; // Until we gwt a better localization of the error messages we stick to the overview. See Logfile for details
             if (options == UserWarningOptions.details)
             {
                 // Use a costum Messagebox where wrapping can be controlled and where JAWS is better supported !       
-                UserMessageListForm userMessageListForm = new UserMessageListForm(caption, userWarnings);
-                dialogResult = userMessageListForm.ShowDialog();  // Use ShowDialog() instead of Show() to wait for userMessageListForm to receive input
+                UserMessageListForm userMessageListForm = new UserMessageListForm(errorMessage, userWarnings);
+                return userMessageListForm.ShowDialog();  // Use ShowDialog() instead of Show() to wait for userMessageListForm to receive input
             }
-            return dialogResult;      
+            else
+            {
+                // Use a standard MessageBox
+                string caption = string.Format("{0} {1} {2}", userWarnings.Count, text1, text2);
+                return MessageBox.Show(caption,fileName,MessageBoxButtons.OKCancel);             
+            }
         }
 
 
