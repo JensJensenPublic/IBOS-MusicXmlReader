@@ -132,6 +132,15 @@
   <data name="ListBoxOffsets_Name" xml:space="preserve">
     <value>Punktnode liste</value>
   </data>
+  <data name="Message_FoundInBrailleMusicFile" xml:space="preserve">
+    <value>fundet i punktnodefilen</value>
+  </data>
+  <data name="Message_Warning" xml:space="preserve">
+    <value>advarsel</value>
+  </data>
+  <data name="Message_Warnings" xml:space="preserve">
+    <value>advarsler</value>
+  </data>
   <data name="OpenDialog_FilterName" xml:space="preserve">
     <value>Punktnoder</value>
   </data>

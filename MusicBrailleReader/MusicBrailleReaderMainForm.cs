@@ -554,13 +554,13 @@ namespace MusicBrailleReader
             List<string> userWarnings = model.DecoderHandler.GetLocalUserWarnings(mask);
             if (0 == userWarnings.Count) return DialogResult.OK;
 
-            // Build a localized caption
+            // Build a localized errorMessage
             string fileName = System.IO.Path.GetFileName(fullFileName);
-            string text1 = (1 == userWarnings.Count) ? "advarsel" : "advarsler";
-            string text2 = "fundet i punktnodefilen";
+            string text1 = (1 == userWarnings.Count) ? LocRes.Message_Warning : LocRes.Message_Warnings;
+            string text2 = LocRes.Message_FoundInBrailleMusicFile;
             string errorMessage = string.Format("{0} {1} {2} '{3}'", userWarnings.Count, text1, text2, fileName);
 
-            //options = UserWarningOptions.overview; // Until we gwt a better localization of the error messages we stick to the overview. See Logfile for details
+            options = UserWarningOptions.overview; // Until we get a better localization of the error messages we stick to the overview. See Logfile for details
             if (options == UserWarningOptions.details)
             {
                 // Use a costum Messagebox where wrapping can be controlled and where JAWS is better supported !       

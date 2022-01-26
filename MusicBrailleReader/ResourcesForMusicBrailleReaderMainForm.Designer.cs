@@ -106,6 +106,33 @@ namespace MusicBrailleReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to found in the Braille Music file.
+        /// </summary>
+        internal static string Message_FoundInBrailleMusicFile {
+            get {
+                return ResourceManager.GetString("Message_FoundInBrailleMusicFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to warning.
+        /// </summary>
+        internal static string Message_Warning {
+            get {
+                return ResourceManager.GetString("Message_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to warnings.
+        /// </summary>
+        internal static string Message_Warnings {
+            get {
+                return ResourceManager.GetString("Message_Warnings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Braille Music.
         /// </summary>
         internal static string OpenDialog_FilterName {

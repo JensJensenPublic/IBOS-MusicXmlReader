@@ -132,6 +132,15 @@
   <data name="ListBoxOffsets_Name" xml:space="preserve">
     <value>Braille Music List</value>
   </data>
+  <data name="Message_FoundInBrailleMusicFile" xml:space="preserve">
+    <value>found in the Braille Music file</value>
+  </data>
+  <data name="Message_Warning" xml:space="preserve">
+    <value>warning</value>
+  </data>
+  <data name="Message_Warnings" xml:space="preserve">
+    <value>warnings</value>
+  </data>
   <data name="OpenDialog_FilterName" xml:space="preserve">
     <value>Braille Music</value>
   </data>
