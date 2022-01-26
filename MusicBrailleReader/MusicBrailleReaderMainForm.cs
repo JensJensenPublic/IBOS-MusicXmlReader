@@ -44,6 +44,7 @@ namespace MusicBrailleReader
         public static readonly Color NonFocusedColor = Color.WhiteSmoke; // Mainly for debugging. For released versions use Color.White !
 
         string applicationName;
+        string openFileDialogFilterName;
 
 
         /// <summary>
@@ -63,6 +64,7 @@ namespace MusicBrailleReader
             this.textBoxBraille.AccessibleName = LocRes.TextBoxBraille_Name;
             this.textBoxStatusInformation.AccessibleName = LocRes.TextBoxStatusInformation_Name; //"Status information";
             this.textBoxText.AccessibleName = LocRes.TextBoxTextInformation_Name; //"Valgte symbol i tekstrepræsentation";
+            this.openFileDialogFilterName = LocRes.OpenDialog_FilterName; 
         }
 
 
@@ -291,7 +293,7 @@ namespace MusicBrailleReader
             openFileDialog.Reset(); // Prevent survival of strange settings from latest usage of this reused OpenFileDialog
             openFileDialog.Title = dialogTitle; 
             openFileDialog.FileName = ""; // No default
-            openFileDialog.Filter = string.Format("{0}|*.brl;*.brf;*.txt;*.pef", "Punktnoder");
+            openFileDialog.Filter = string.Format("{0}|*.brl;*.brf;*.txt;*.pef", openFileDialogFilterName); // "Punktnoder" or "Braille Music"
             openFileDialog.InitialDirectory = GetFileOpenInitialDirectory(useRecentFile);
             //openFileDialog.FileName = GetFileOpenInitialFileName(useRecentFile);
 

@@ -132,6 +132,9 @@
   <data name="ListBoxOffsets_Name" xml:space="preserve">
     <value>Braille Music List</value>
   </data>
+  <data name="OpenDialog_FilterName" xml:space="preserve">
+    <value>Braille Music</value>
+  </data>
   <data name="TextBoxBraille_Name" xml:space="preserve">
     <value>Selected Braille Symbols</value>
   </data>

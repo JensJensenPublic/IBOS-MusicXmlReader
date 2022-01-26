@@ -106,6 +106,15 @@ namespace MusicBrailleReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Braille Music.
+        /// </summary>
+        internal static string OpenDialog_FilterName {
+            get {
+                return ResourceManager.GetString("OpenDialog_FilterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected Braille Symbols.
         /// </summary>
         internal static string TextBoxBraille_Name {

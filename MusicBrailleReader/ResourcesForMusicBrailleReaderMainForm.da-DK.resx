@@ -132,6 +132,9 @@
   <data name="ListBoxOffsets_Name" xml:space="preserve">
     <value>Punktnode liste</value>
   </data>
+  <data name="OpenDialog_FilterName" xml:space="preserve">
+    <value>Punktnoder</value>
+  </data>
   <data name="TextBoxBraille_Name" xml:space="preserve">
     <value>Valgte punktnode symboler</value>
   </data>
