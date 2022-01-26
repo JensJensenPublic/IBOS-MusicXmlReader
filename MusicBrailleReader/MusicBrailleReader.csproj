@@ -60,6 +60,7 @@
     <Compile Include="AppConfigHandler.cs" />
     <Compile Include="BatchTransscriber.cs" />
     <Compile Include="BatchBrailleMusicExportHandler.cs" />
+    <Compile Include="DummyMusicBrailleReaderClient.cs" />
     <Compile Include="IMusicBrailleReaderClient.cs" />
     <Compile Include="IRegressionTestClient.cs" />
     <Compile Include="ListboxOffsetsHandler.cs" />

@@ -26,7 +26,6 @@ namespace MusicBrailleReader
 
         Model model;        // The Model containing all of the business logic.
         IMusicBrailleReaderClient creatingForm;  // Holds the creating form this class was created by another form through the static Create()
-        string musicBrailleDirectory; // Holds the preferred musicBrailledirectory if specified by the creating form
         string executingAssemblyFullPath = ""; // The (unlocalized) name and location of the program, 
         string executingAssemblyShortName = ""; // The (unlocalized) short name of the program, used by for instance JAWS to name configuration file! 
         string fullFileName;
@@ -99,9 +98,11 @@ namespace MusicBrailleReader
             Logger.DeveloperMode = developerMode;
             Logger.LogArguments(arguments);
             // Instantiate a Model instance containing lots of common code, originally designed for the MusicXmlReader
-            Model model = Model.Create(null, null, applicationName, null); 
-            //Create and return the Form itself
-            MusicBrailleReaderMainForm result = new MusicBrailleReaderMainForm(null,model);
+            Model model = Model.Create(null, null, applicationName, null);
+            // Instantiate a dummy stand in for the MusicXmlReader application, only implementing a few interface functions
+            DummyMusicBrailleReaderClient dummyMusicBrailleReaderClient = DummyMusicBrailleReaderClient.Create(applicationName, model);
+            // Create the Form and return it
+            MusicBrailleReaderMainForm result = new MusicBrailleReaderMainForm(dummyMusicBrailleReaderClient, model);
             return result;
         }
 
