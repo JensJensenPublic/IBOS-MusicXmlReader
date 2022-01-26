@@ -24,10 +24,6 @@ namespace MusicBrailleReader
                 Directory.CreateDirectory(defaultPath);
             }
         }
-
-        public void HideForm() { }
-        public void ShowForm() { }
-        public void EnableForm(bool b) { }
         public string GetLatestBrailleMusicPath() { return defaultPath; }
         public void SetLatestBrailleMusicPath(string s) { } // We don't want to save this information as a user setting !
         public string GetMyMusicXmlDirectory() { return defaultPath; }

@@ -602,9 +602,7 @@ namespace MusicXmlReader
         private void musicBrailleReaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(this as MusicBrailleReader.IMusicBrailleReaderClient, model);
-            musicBrailleReaderMainform.Show();
-            this.Enabled = false; // Will be enabled again when  musicBrailleReaderMainform closes !
-            //this.Hide();  // Will be shown again when  musicBrailleReaderMainform closes !
+            musicBrailleReaderMainform.ShowDialog(); // Using ShowDialog() instead of Show() will freeze MainForm until musicBrailleReaderMainform closes.
         }
         
         private bool AppendLine(System.Text.StringBuilder sb, string fileName, BrailleFileHandler.FileEncoding encoding)

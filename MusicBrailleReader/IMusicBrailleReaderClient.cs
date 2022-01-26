@@ -8,9 +8,6 @@ namespace MusicBrailleReader
 {
     public interface IMusicBrailleReaderClient
     {
-        void HideForm();
-        void ShowForm();
-        void EnableForm(bool b);
         string GetLatestBrailleMusicPath();
         void SetLatestBrailleMusicPath(string s);
         string GetMyMusicXmlDirectory();

@@ -1016,11 +1016,7 @@ namespace MusicBrailleReader
 
         private void MusicBrailleReaderMainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // If this form was instantiated by another form using the static Create() method the creating form was hidden at that time. Show it again.
-            if (null == creatingForm) return;
-            // Show and enable the creating form
-            creatingForm.ShowForm();
-            creatingForm.EnableForm(true);
+            Logger.LogCF("");
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

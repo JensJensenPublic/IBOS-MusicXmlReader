@@ -393,20 +393,7 @@ namespace MusicXmlReader
         #endregion IMessageShower
 
 #region IMusicBrailleReaderClient
-        // Implement IMusicBrailleReaderClient
-        public void HideForm()
-        {
-            this.Hide();
-        }
-        public void ShowForm()
-        {
-            this.Show();
-        }
-        public void EnableForm(bool b)
-        {
-            this.Enabled = b;
-        }
-
+        // Implement IMusicBrailleReaderClient 
         /// <summary>
         /// Allows another form to read the Latest Braille Music Path from the User preferences
         /// </summary>
