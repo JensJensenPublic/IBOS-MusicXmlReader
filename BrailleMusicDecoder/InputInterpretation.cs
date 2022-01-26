@@ -690,7 +690,7 @@ string ToLocalizedString(InputCategoryEnum inputCategory,InputSubCategoryEnum su
                     // This is an error:
                     return "???";
                 case InputCategoryEnum.Articulation: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_Articulation;
-                case InputCategoryEnum.Beat: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_Beat;
+                case InputCategoryEnum.Beat: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_Beat + " ";
                 case InputCategoryEnum.Character:
                     switch (subCategory)
                     {
@@ -875,7 +875,7 @@ string ToLocalizedString(InputCategoryEnum inputCategory,InputSubCategoryEnum su
                             return "?";
                     }
 
-                case InputCategoryEnum.KeySignature: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_KeySignature;
+                case InputCategoryEnum.KeySignature: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_KeySignature + " ";
                 case InputCategoryEnum.KeySignatureText:
                     this.localizedFriendlyValue = GetLocalizedKeySignatureText(); // Especially for this explicit category: Handle the localization here to help the MuxicXml generator
                     this.localizedCategoryName = ResourcesForBrailleMusicDecoder.InputCategoryEnum_KeySignatureText;
