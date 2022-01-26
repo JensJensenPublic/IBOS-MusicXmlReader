@@ -116,8 +116,6 @@ namespace MusicBrailleReader
         {
             this.model = model;
             this.creatingForm = creatingForm;
-            this.musicBrailleDirectory = creatingForm.GetLatestBrailleMusicPath();
-
             executingAssemblyFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             executingAssemblyShortName = System.IO.Path.GetFileNameWithoutExtension(executingAssemblyFullPath);
             InitializeComponent();
@@ -272,13 +270,14 @@ namespace MusicBrailleReader
 
         private string GetFileOpenInitialDirectory(bool useRecentFile)
         {
-            if (useRecentFile  && (this.musicBrailleDirectory != null) && (Directory.Exists(this.musicBrailleDirectory)))
+            string musicBrailleDirectory = creatingForm.GetLatestBrailleMusicPath();
+            if (useRecentFile  && (musicBrailleDirectory != null) && (Directory.Exists(musicBrailleDirectory)))
             {
                 // If a preferred Braille Music directory is already set up, use it
                 // The  path can be set by either
                 //  1) A previous reading of a MusicBraille file by "File->Open" in this form
                 //  2) A previous writing of a MusicBraille file by "File->Export Braille Music to file" by the creating form (In this case the MusicXmlReader MainForm) 
-                return this.musicBrailleDirectory;
+                return musicBrailleDirectory;
             }
             // Otherways use the default directory used by the creating form (In this case the MusicXmlReader MainForm.)
             return creatingForm.GetMyMusicXmlDirectory();
