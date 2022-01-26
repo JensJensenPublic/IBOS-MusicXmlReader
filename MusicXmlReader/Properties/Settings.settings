@@ -102,10 +102,10 @@
       <Value Profile="(Default)">PEF</Value>
     </Setting>
     <Setting Name="HighSpeedEmbosserPageWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">42</Value>
+      <Value Profile="(Default)">32</Value>
     </Setting>
     <Setting Name="HighSpeedEmbosserPageHeight" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">25</Value>
     </Setting>
     <Setting Name="HighSpeedEmbosserPageLayout" Type="System.String" Scope="User">
       <Value Profile="(Default)">BANA</Value>

@@ -421,7 +421,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("42")]
+        [global::System.Configuration.DefaultSettingValueAttribute("32")]
         public int HighSpeedEmbosserPageWidth {
             get {
                 return ((int)(this["HighSpeedEmbosserPageWidth"]));
@@ -433,7 +433,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("25")]
         public int HighSpeedEmbosserPageHeight {
             get {
                 return ((int)(this["HighSpeedEmbosserPageHeight"]));
