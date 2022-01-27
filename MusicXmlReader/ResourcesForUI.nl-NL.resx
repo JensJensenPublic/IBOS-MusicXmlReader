@@ -496,7 +496,7 @@
     <value>Open</value>
   </data>
   <data name="ToolStripMenuItem_Settings" xml:space="preserve">
-    <value>&amp;Instillingen</value>
+    <value>&amp;Instellingen</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Capella" xml:space="preserve">
     <value>&amp;Capella</value>
