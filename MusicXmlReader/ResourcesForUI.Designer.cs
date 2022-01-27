@@ -556,6 +556,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unexpected program file.
+        /// </summary>
+        internal static string Messsage_UnexpectedProgramFile {
+            get {
+                return ResourceManager.GetString("Messsage_UnexpectedProgramFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MusicXml files.
         /// </summary>
         internal static string OpenFileDialog_Filter {

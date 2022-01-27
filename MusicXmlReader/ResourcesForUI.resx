@@ -607,4 +607,8 @@
     <value>Settings for &amp;high speed embosser profile</value>
     <comment>NO NL</comment>
   </data>
+  <data name="Messsage_UnexpectedProgramFile" xml:space="preserve">
+    <value>Unexpected program file</value>
+    <comment>NO NL</comment>
+  </data>
 </root>

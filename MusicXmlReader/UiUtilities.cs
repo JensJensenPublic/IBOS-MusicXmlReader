@@ -272,6 +272,19 @@ namespace MusicXmlReader
         }
 
 
+        public static bool CheckExe(string caption, string actualPath, string expectedExeName)
+        {
+            string exeName = System.IO.Path.GetFileName(actualPath);
+            if (0 != string.Compare(exeName, expectedExeName))
+            {
+                string message = ResourcesForUI.Messsage_UnexpectedProgramFile; //  "Unsexpected program file";
+                Logger.LogCF1(string.Format(": {0}:'{1}'", message, exeName));
+                MessageBox.Show(string.Format("{0}:\r\n{1}",message, exeName), caption, MessageBoxButtons.OK);
+                return false;
+            }
+            return true;
+        } 
+
 
         /// <summary>
         /// Simpel utility for chacking if the installation directory is polluted with extra files or directories.

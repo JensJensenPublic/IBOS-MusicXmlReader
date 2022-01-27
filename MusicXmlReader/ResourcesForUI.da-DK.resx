@@ -623,4 +623,8 @@
     <value>Indstillinger for &amp;højhastigheds punktprinter profil</value>
     <comment>MISSING NL</comment>
   </data>
+  <data name="Messsage_UnexpectedProgramFile" xml:space="preserve">
+    <value>Uventet programfil</value>
+    <comment>NO NL</comment>
+  </data>
 </root>

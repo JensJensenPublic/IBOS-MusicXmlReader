@@ -76,7 +76,7 @@ namespace MusicXmlReader
                 decoderDeveloperMode = ("yes" == decoderDeveloperModeString);
 
 
-                UiUtilities.CheckInstallation(executingAssemblyFullPath, 30, 4); // Warn about unexpected files in the installation directory
+                UiUtilities.CheckInstallation(executingAssemblyFullPath, 30, 4); // Warn about unexpected files in the installation directory          
 
                 Logger.LogCF(string.Format(": DeveloperModeString={0} DeveloperMode={1}", developerModeString, developerMode));
                 string developerCultureString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.DeveloperCulture);
@@ -91,6 +91,7 @@ namespace MusicXmlReader
 
                 // Do any UI localization before we create the model. In this way we avoid showing unlocalized texts if an error is reported by a messagebox.
                 applicationName = organisationDependencies.ApplicationName; // Defaults to ResourcesForUI.MainForm_ApplicationName;
+                UiUtilities.CheckExe(applicationName, executingAssemblyFullPath, "IBOS MusicXmlReader.exe"); // Check that this is not for instance a Git "modstridende kopi" file
                 Logger.Log(string.Format("This program is compiled for a {0} bit architechture. It uses the following locally installed executable", is64Bit ? "64" : "32"));
                 // Utilities is a static class so we can it call it before creationg the Model!
                 Utilities.CheckExe(System.IO.Path.GetFileName(executingAssemblyFullPath), System.IO.Path.GetDirectoryName(executingAssemblyFullPath), is64Bit);
