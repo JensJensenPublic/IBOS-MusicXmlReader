@@ -103,7 +103,7 @@ namespace MusicXmlReader
             string esc = EscapeSequence;
             int width = PageWidth;
             int height = PageHeight;
-            Logger.LogCF(string.Format(": Class='{0}' Name='{1}' EscapeSequence='{2}' PageWidth={3} PageHeight={4}", className , deviceName, esc,width,height ));
+            Logger.LogCF(string.Format(": Class={0,-25} Name={1,-15} EscapeSequence={2,-5} PageWidth={3} PageHeight={4}", className , deviceName, esc,width,height ));
         }
     }
 
@@ -254,8 +254,10 @@ namespace MusicXmlReader
             //Log("MusicXmlDirectory", this.MusicXmlDirectory);
             Log("MusicXmlFile", this.MusicXmlFile);
             Log("BrailleMusicDirectory", this.BrailleMusicDirectory);
-            embosser.Log();
-            noteTaker.Log();
+            this.embosser.Log();
+            this.noteTaker.Log();
+            this.highSpeedEmbosser.Log();
+            this.genericBrailleDevice.Log();
         }
 
         private Settings s;
@@ -333,7 +335,7 @@ namespace MusicXmlReader
 
         UserPreferencesHandler()
         {
-            Logger.LogCF(": Entry");
+            // Logger.LogCF(": Entry");
             try
             {
                 s = MusicXmlReader.Properties.Settings.Default; // Establish a shorthand notation
@@ -347,7 +349,7 @@ namespace MusicXmlReader
                 Logger.LogCFE(e);
                 Utilities.Beep();
             }
-            Logger.LogCF(": Exit");
+            //Logger.LogCF(": Exit");
         }
 
         public void Save()
