@@ -281,7 +281,7 @@ namespace MusicXmlReaderModel
                 string machineTypeWarning = (machineType == expectedMachineType) ? "" : string.Format(" (Expected {0} !!!)", expectedMachineType);
                 // Get the file version.
                 System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(fullFileName);
-                Logger.Log(string.Format(" {0,-30} LastWriteTimeUtc={1} Length={2,-8} MachineType={3} {4} CompanyName={5} FileVersion={6}",
+                Logger.Log(string.Format(" {0,-30} LastWriteTimeUtc={1} Length={2,-8} MachineType={3,-25} {4} CompanyName={5} FileVersion={6}",
                                     fi.Name, fi.LastWriteTimeUtc, fi.Length, machineType, machineTypeWarning, fvi.CompanyName, fvi.FileVersion));
             }
             return true;
