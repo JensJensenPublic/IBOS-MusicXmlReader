@@ -279,8 +279,10 @@ namespace MusicXmlReaderModel
                 FileInfo fi = new FileInfo(fullFileName);
                 MachineType machineType = TryGetDllMachineType(fullFileName);
                 string machineTypeWarning = (machineType == expectedMachineType) ? "" : string.Format(" (Expected {0} !!!)", expectedMachineType);
-                Logger.Log(string.Format(" {0,-30} LastWriteTimeUtc={1} Length={2,-8} MachineType={3} {4}",
-                                    fi.Name, fi.LastWriteTimeUtc, fi.Length, machineType, machineTypeWarning));
+                // Get the file version.
+                System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(fullFileName);
+                Logger.Log(string.Format(" {0,-30} LastWriteTimeUtc={1} Length={2,-8} MachineType={3} {4} CompanyName={5} FileVersion={6}",
+                                    fi.Name, fi.LastWriteTimeUtc, fi.Length, machineType, machineTypeWarning, fvi.CompanyName, fvi.FileVersion));
             }
             return true;
         }
@@ -387,7 +389,6 @@ namespace MusicXmlReaderModel
             result &= CheckDll("BrailleMusicDecoder.dll", directory, is64Bit);          // Decoding of Braille Music files back to text representation
             result &= CheckDll("MusicXmlReaderModel.dll", directory, is64Bit);          // The main Model, binding everything together 
             result &= CheckDll("PlatformDependencies.dll", directory, is64Bit);         // Isolates all platform dependent functionality (PC / MAC / iPhone / Android) 
-            result &= CheckDll("MusicSynthesis.dll", directory, is64Bit);               // Generation of MIDI sound  
 
             if (!result)
             {
