@@ -388,6 +388,7 @@ namespace MusicXmlReaderModel
             result &= CheckDll("MusicSynthesis.dll", directory, is64Bit);               // Generation of MIDI sound  
             result &= CheckDll("BrailleMusicDecoder.dll", directory, is64Bit);          // Decoding of Braille Music files back to text representation
             result &= CheckDll("MusicXmlReaderModel.dll", directory, is64Bit);          // The main Model, binding everything together 
+            result &= CheckDll("MusicXmlReaderModelBase.dll", directory, is64Bit);      // The main Model Base, containing all common definitions  
             result &= CheckDll("PlatformDependencies.dll", directory, is64Bit);         // Isolates all platform dependent functionality (PC / MAC / iPhone / Android) 
 
             if (!result)
