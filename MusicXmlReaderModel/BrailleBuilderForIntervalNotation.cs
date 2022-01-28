@@ -10,6 +10,14 @@ namespace MusicXmlReaderModel
     // https://www.loc.gov/nls/wp-content/uploads/2016/03/music_braille_code.pdf
 
 
+    /// <summary>
+    /// Class for generating  Music Braille for Interval Notation. The class hierachi is as follows, where each level of indentions represents a level of enheritage
+    /// BrailleBuilderBase handles Braille  in general,
+    ///   BrailleBuilderForMusic adds general details for handling Music Braille
+    ///     BrailleBuilderForNotes adds further details for handling of notes.
+    ///     BrailleHandlerForIntervalNotation adds further details for handling Interval notation 
+    ///   BrailleBuilderForText  adds general knowledge for handling Text Braille
+    /// </summary>
     public class BrailleBuilderForIntervalNotation : BrailleBuilderForMusic
     {
         private bool logWellFormedNess = false; // Loggin option

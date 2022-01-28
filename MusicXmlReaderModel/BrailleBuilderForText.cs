@@ -6,6 +6,16 @@ using System.Threading.Tasks;
 
 namespace MusicXmlReaderModel
 {
+
+
+    /// <summary>
+    /// Class for generating any kind of Text Braille. The class hierachi is as follows, where each level of indentions represents a level of enheritage
+    /// BrailleBuilderBase handles Braille  in general,
+    ///   BrailleBuilderForMusic adds general details for handling Music Braille
+    ///     BrailleBuilderForNotes adds further details for handling of notes.
+    ///     BrailleHandlerForIntervalNotation adds further details for handling Interval notation 
+    ///   BrailleBuilderForText  adds general knowledge for handling Text Braille
+    /// </summary>
     public class BrailleBuilderForText : BrailleBuilderBase
     {
 
