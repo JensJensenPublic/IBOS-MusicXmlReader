@@ -8,7 +8,13 @@ namespace MusicXmlReaderModel
         private static int lastSemiTonesAboveC0 = initalValue;
         private static int lastOctave = initalValue;
 
-
+        /// <summary>
+        /// Resets the state variables used deciding if Octave marks are needed to force generation of an octave mark for the next note.
+        /// Must be called every time the normal sequence of note generation is broken, for instance
+        /// 1) At the start of each part
+        /// 2) After use of interval notation
+        /// 3) After use of InAccord notation
+        /// </summary>
         public static void ResetMusicBrailleState()
         {
             // Logger.LogCF("");
