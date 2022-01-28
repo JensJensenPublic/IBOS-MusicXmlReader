@@ -55,13 +55,13 @@ namespace MusicXmlReaderModel
         public EventDescription NextEventDescription { get { return nextEventDescription; } }
         int measureNumber; // Primarily for debugging !!
 
-        public BrailleBuilder ToBraille(UserSettings userSettings, bool fromTop)
+        public BrailleBuilderForMusic ToBraille(UserSettings userSettings, bool fromTop)
         {
 
             //if (!newVersion) return ToBraille(userSettings);
 
             // Now follows the new implementation:
-            BrailleBuilder result = BrailleBuilder.Create(firstEventDescription.StartTime);
+            BrailleBuilderForMusic result = BrailleBuilderForMusic.Create(firstEventDescription.StartTime);
             // First create a list of notelists, each notelist representing notes from the same part, staff  and voice
             for (int i = 0; (i < localEvents.Count); i++)
             {

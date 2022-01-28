@@ -194,7 +194,7 @@ namespace MusicXmlReaderUI
             thisThread = System.Threading.Thread.CurrentThread;
             thisThread.CurrentUICulture = new CultureInfo("en-US"); // Use this culture instead of the default culture for this machine.
 #endif
-            BrailleBuilder.verbose = false; // Reduce amount of logging
+            BrailleBuilderForMusic.verbose = false; // Reduce amount of logging
             model = Model.Create();
             Console.WriteLine(string.Format("Model.Create {0}", (model != null) ? "succeeded" : "failed"));
             if (null == model) return;

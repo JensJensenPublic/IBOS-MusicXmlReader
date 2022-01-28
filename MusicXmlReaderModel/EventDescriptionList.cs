@@ -235,7 +235,7 @@ namespace MusicXmlReaderModel
                     if (o is EventDescription)
                     {
                         EventDescription eventDescription = o as EventDescription;
-                        BrailleBuilder bb = eventDescription.ToBraille(); // The original, parameterless version
+                        BrailleBuilderForMusic bb = eventDescription.ToBraille(); // The original, parameterless version
                         string eventAsMusicBraille = bb.ToBrailleString();
                         eventList.Add(eventAsMusicBraille);                // Keep the structure !
                         scoreAsMusicBraille.Append(eventAsMusicBraille);    // Just append eerything

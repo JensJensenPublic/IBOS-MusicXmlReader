@@ -10,7 +10,7 @@ namespace MusicXmlReaderModel
     // https://www.loc.gov/nls/wp-content/uploads/2016/03/music_braille_code.pdf
 
 
-    public class BrailleBuilderForIntervalNotation : BrailleBuilder
+    public class BrailleBuilderForIntervalNotation : BrailleBuilderForMusic
     {
         private bool logWellFormedNess = false; // Loggin option
 
@@ -344,7 +344,7 @@ namespace MusicXmlReaderModel
             string tieText = "";
             if (noteElement.TieStart)
             {
-                tieMark = BrailleBuilder.Tie;
+                tieMark = BrailleBuilderForMusic.Tie;
                 tieText = "Tie";
             }
 
@@ -353,7 +353,7 @@ namespace MusicXmlReaderModel
             // Add any slur
             if (noteElement.SlurStart)
             {
-                slurMark = new byte[] {BrailleBuilder.Slur };
+                slurMark = new byte[] {BrailleBuilderForMusic.Slur };
                 slurText = "Slur";
             }
 

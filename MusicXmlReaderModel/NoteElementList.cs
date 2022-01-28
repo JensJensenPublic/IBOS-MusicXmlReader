@@ -86,7 +86,7 @@ namespace MusicXmlReaderModel
         /// <param name="userSettings"></param>
         /// <param name="owningEventDescription"></param>
         /// <returns></returns>
-        public BrailleBuilder ToBraille(UserSettings userSettings, EventDescription owningEventDescription)
+        public BrailleBuilderForMusic ToBraille(UserSettings userSettings, EventDescription owningEventDescription)
         {
             EventDescription dummyArgument = null;
             return ToBraille(userSettings, owningEventDescription, false, out dummyArgument);
@@ -108,7 +108,7 @@ namespace MusicXmlReaderModel
         /// When MeasureDivision notation is used set to the first EventDescription AFTER the block of EventDescriptions handled by the current MeasureDescription!
         /// </param>
         /// <returns></returns>
-        public BrailleBuilder ToBraille(UserSettings userSettings, EventDescription owningEventDescription, bool useChordNotation, out EventDescription nextEventDescription)
+        public BrailleBuilderForMusic ToBraille(UserSettings userSettings, EventDescription owningEventDescription, bool useChordNotation, out EventDescription nextEventDescription)
         {
             // Extract what we need from owningEventDescription.
             long startTime = owningEventDescription.StartTime;
@@ -160,7 +160,7 @@ namespace MusicXmlReaderModel
                     )
                     {
                         // bool addNotations = userSettings.GetMusicBrailleSettings(UserSettings.MusicBrailleSettingsEnum.Notations);
-                        BrailleBuilder bb1 = BrailleBuilder.Create(startTime); // TO DO: Why not use bb directly ???
+                        BrailleBuilderForMusic bb1 = BrailleBuilderForMusic.Create(startTime); // TO DO: Why not use bb directly ???
                                                                                     // userSettings.ReadNotePitch, userSettings.ReadNoteOctave, userSettings.ReadNoteDuration (Danish: Tone/Oktav/Varighed)
 #warning TODO Refactor: Only the calls to bb.AddRest/bb.AddNote seem to be different !
                         if (noteElement.IsPause)

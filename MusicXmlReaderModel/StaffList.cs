@@ -152,10 +152,10 @@ namespace MusicXmlReaderModel
 
         }
 
-        private int GetLength(List<BrailleBuilder> bbs)
+        private int GetLength(List<BrailleBuilderForMusic> bbs)
         {
             int totalLength = 0;
-            foreach (BrailleBuilder bb in bbs)
+            foreach (BrailleBuilderForMusic bb in bbs)
             {
                 totalLength += bb.ToBrailleString().Length;
             }
@@ -195,13 +195,13 @@ namespace MusicXmlReaderModel
                     //userSettings.StaffNumber = staff.StaffNumber; // Ignore all other staff numbers
                     userSettings.SelectedStaffs = new List<StaffSelector>();
                     userSettings.SelectedStaffs.Add(StaffSelector.Create(staff.PartId, staff.StaffNumber,fromTop));  // Ignore all other staff numbers. Adding "fromTop" fixes Error 502 2021.12.31
-                    List<BrailleBuilder> brailleBuilders = new List<BrailleBuilder>(); // For this particular staff in this particular part
+                    List<BrailleBuilderForMusic> brailleBuilders = new List<BrailleBuilderForMusic>(); // For this particular staff in this particular part
 
 
                     currentEventDescription = events.firstEventDescription;
                     while(null != currentEventDescription)
                     {
-                        BrailleBuilder bb = currentEventDescription.ToBraille(false, true, out currentEventDescription); // (false,true) <=> ( "Separate parts", "Use interval notation")
+                        BrailleBuilderForMusic bb = currentEventDescription.ToBraille(false, true, out currentEventDescription); // (false,true) <=> ( "Separate parts", "Use interval notation")
                         brailleBuilders.Add(bb);
                     }
                     staff.BrailleMusicBrailleBuilders = brailleBuilders;
@@ -301,10 +301,10 @@ namespace MusicXmlReaderModel
         private void InitPseudoStaff(Staff pseudoStaff, EventDescription currentEventDescription)
         {
             // Generate Music Braille
-            List<BrailleBuilder> brailleBuilders = new List<BrailleBuilder>(); // For all staffs in all selected parts      
+            List<BrailleBuilderForMusic> brailleBuilders = new List<BrailleBuilderForMusic>(); // For all staffs in all selected parts      
             while (null != currentEventDescription)
             {
-                BrailleBuilder bb = currentEventDescription.ToBraille(true, true, out currentEventDescription); // (true,true) <=> ( "Merged parts", "Use interval notation")
+                BrailleBuilderForMusic bb = currentEventDescription.ToBraille(true, true, out currentEventDescription); // (true,true) <=> ( "Merged parts", "Use interval notation")
                 brailleBuilders.Add(bb);
             }
 

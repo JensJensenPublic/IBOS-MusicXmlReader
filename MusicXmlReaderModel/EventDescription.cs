@@ -713,7 +713,7 @@ namespace MusicXmlReaderModel
         /// Converts each part separately, thus not allowing for Interval notation across parts
         /// </summary>
         /// <returns></returns>
-        public BrailleBuilder ToBraille()
+        public BrailleBuilderForMusic ToBraille()
         {
             EventDescription dummyArgument = null;
             return ToBraille(false,false, out dummyArgument); // Convert each part separately, thus NOT allowing for Interval notation across parts. Do not use Chord Notation at all.
@@ -726,17 +726,17 @@ namespace MusicXmlReaderModel
         /// If mergeAllParts is true,  all parts are merged before converting, thus allowing for Interval Notation across parts
         /// </summary>
         /// <returns></returns>
-        public BrailleBuilder ToBraille(bool mergeAllParts, bool useChordNotation, out EventDescription nextEventDescription)
+        public BrailleBuilderForMusic ToBraille(bool mergeAllParts, bool useChordNotation, out EventDescription nextEventDescription)
         {
             nextEventDescription = this.Next; // The default
-            if (!userSettings.MusicAsMusicBraille) return BrailleBuilder.Create(this.startTime);
+            if (!userSettings.MusicAsMusicBraille) return BrailleBuilderForMusic.Create(this.startTime);
 
             string functionName = "ToBraille";
             bool repeatForward  = false; // Max one Repeat forward per eventdescription
             bool repeatBackward = false; // Max one Repeat backward per eventdescription
 
             // const string functionName = "EventDescription.ToBraille";
-            BrailleBuilder bbBeforeNotes = BrailleBuilder.Create(this.startTime); // For information not contained in notes
+            BrailleBuilderForMusic bbBeforeNotes = BrailleBuilderForMusic.Create(this.startTime); // For information not contained in notes
 
 
             //string divisions = userSettings.GetReaderSettings(UserSettings.ReaderSettings.Divisions) ? string.Format("{0,6}: ", startTime, "") : "";
@@ -905,7 +905,7 @@ namespace MusicXmlReaderModel
             }
 
       
-            BrailleBuilder bbNotes = BrailleBuilder.Create(this.startTime);
+            BrailleBuilderForMusic bbNotes = BrailleBuilderForMusic.Create(this.startTime);
             if (mergeAllParts)
             {
                 NoteElementList allNotes = NoteElementList.Create();
@@ -914,7 +914,7 @@ namespace MusicXmlReaderModel
                 {
                     allNotes.NoteElements.AddRange(noteElementList.NoteElements);                  
                 }
-                BrailleBuilder notes = allNotes.ToBraille(userSettings,this,useChordNotation,out nextEventDescription); // One single BrailleBuilder represents all notes for all parts
+                BrailleBuilderForMusic notes = allNotes.ToBraille(userSettings,this,useChordNotation,out nextEventDescription); // One single BrailleBuilder represents all notes for all parts
                 bbNotes.Append(notes);
             }
             else
@@ -922,13 +922,13 @@ namespace MusicXmlReaderModel
                 // Iterate over the parts and build a complete representation of all notes and of all texts
                 foreach (NoteElementList noteElementList in noteLists) // Iterate over the fixed number of parts.
                 {
-                    BrailleBuilder notes = noteElementList.ToBraille(userSettings,this,useChordNotation,out nextEventDescription); // One BrailleBuilder per part
+                    BrailleBuilderForMusic notes = noteElementList.ToBraille(userSettings,this,useChordNotation,out nextEventDescription); // One BrailleBuilder per part
                     bbNotes.Append(notes);
                 }
             }
 
             // Extract information to be shown after the notes
-            BrailleBuilder bbAfterNotes = BrailleBuilder.Create(this.startTime);
+            BrailleBuilderForMusic bbAfterNotes = BrailleBuilderForMusic.Create(this.startTime);
             // Look for repeat forward/backward and insert, but only one of each per event description !!
             // Look for a termination (Danish "Helslutning") and insert the appropriate sequence
             bool lastBar = false;
@@ -975,7 +975,7 @@ namespace MusicXmlReaderModel
             if ((lastBar) || (this.isLastEvent))
             {
                 // By inspecting this.isLastEvent we even handle the case where the terminating Barline is missing !
-                bbAfterNotes.Append(BrailleBuilder.fullEnd, "FullEnd");
+                bbAfterNotes.Append(BrailleBuilderForMusic.fullEnd, "FullEnd");
                 // Logger.LogOnce(string.Format("{0}.{1}: Found last bar", className, functionName));
                 if (!lastBar)
                 {
@@ -988,7 +988,7 @@ namespace MusicXmlReaderModel
             //return measure + repeatForward + divisions + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endEventString + soundString + keyString + clefString + timeString + repeatBackward;
 
             // Ad the various components:
-            BrailleBuilder total = BrailleBuilder.Create(this.startTime);
+            BrailleBuilderForMusic total = BrailleBuilderForMusic.Create(this.startTime);
             total.Append(bbBeforeNotes);
             total.Append(bbNotes);
             total.Append(bbAfterNotes);
@@ -1006,7 +1006,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public override string ToString()
         {
-            BrailleBuilder bb = ToBraille(); // The original, parameterless version, designed to be used by the Listbox !!
+            BrailleBuilderForMusic bb = ToBraille(); // The original, parameterless version, designed to be used by the Listbox !!
             musicBrailleRepresentation = bb.ToBrailleString();
             musicBrailleAsTextRepresentation = bb.ToEquvivalentTextRepresentation(); // Primarily for dedugging
             textRepresentation = ToNormalTextString();

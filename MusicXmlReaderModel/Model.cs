@@ -1031,7 +1031,7 @@ namespace MusicXmlReaderModel
             {
                 string musicBraille = "";
                 // Start new code for showing MusicBraille in singleNoteDetails
-                BrailleBuilder bb = BrailleBuilder.Create(0);
+                BrailleBuilderForMusic bb = BrailleBuilderForMusic.Create(0);
                 bb.AddNote(note, null);
                 Logger.LogCF(string.Format(": {0} {1}", bb.ToBrailleString(), bb.Text));
                 // Note: These lines will later be sorted before they are displayed (using DetailsPlayer.Compare), so we can not expect the same sequence in the Log!! 

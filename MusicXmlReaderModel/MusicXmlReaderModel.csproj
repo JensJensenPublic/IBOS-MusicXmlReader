@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrailleBuilder.cs" />
+    <Compile Include="BrailleBuilderForMusic.cs" />
     <Compile Include="BrailleBuilderBase.cs" />
     <Compile Include="BrailleBuilderForIntervalNotation.cs" />
     <Compile Include="BrailleBuilderForText.cs" />

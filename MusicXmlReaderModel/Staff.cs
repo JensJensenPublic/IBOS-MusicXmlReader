@@ -30,7 +30,7 @@ namespace MusicXmlReaderModel
         public int StaffNumber { get { return staffNumber; } }
         private string name = "";
         public string Name { get { return name; } set { name = value; } }
-        private readonly string MusicBrailleIndicatorString = BrailleBuilder.Create(0).ToUnicodeString(BrailleBuilder.MusicBrailleIndicator); // 
+        private readonly string MusicBrailleIndicatorString = BrailleBuilderForMusic.Create(0).ToUnicodeString(BrailleBuilderForMusic.MusicBrailleIndicator); // 
 
         private ScorePartElement scorePartElement = null;
         public ScorePartElement ScorePartElement { get { return scorePartElement; } set { scorePartElement = value; } } // Holds a lot of extra information about the part
@@ -233,8 +233,8 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// Holds the BrailleMusic representation for this staff as a list of BrailleBuilders (containing timestamps)
         /// </summary>
-        public List<BrailleBuilder> BrailleMusicBrailleBuilders { get { return brailleMusicBrailleBuilders; } set { brailleMusicBrailleBuilders = value; } }
-        private List<BrailleBuilder> brailleMusicBrailleBuilders = new List<BrailleBuilder>();
+        public List<BrailleBuilderForMusic> BrailleMusicBrailleBuilders { get { return brailleMusicBrailleBuilders; } set { brailleMusicBrailleBuilders = value; } }
+        private List<BrailleBuilderForMusic> brailleMusicBrailleBuilders = new List<BrailleBuilderForMusic>();
 
         /// <summary>
         /// Holds the BrailleMusic representation for this staff as a list of Unicode strings in the [0x2800..0x28ff] range
@@ -280,15 +280,15 @@ namespace MusicXmlReaderModel
             brailleMusicTexts = new List<string>();
 
             // Insert information about the hand or part as the first item
-            BrailleBuilder bbHand = BrailleBuilder.Create(0);
+            BrailleBuilderForMusic bbHand = BrailleBuilderForMusic.Create(0);
             switch (this.staffNumber)
             {
-                case 1: bbHand.AddHand(BrailleBuilder.HandRight,"HandRight"); brailleMusicBrailleBuilders.Insert(0, bbHand); break;
-                case 2: bbHand.AddHand(BrailleBuilder.HandLeft,"HandLeft" ); brailleMusicBrailleBuilders.Insert(0, bbHand); break;
+                case 1: bbHand.AddHand(BrailleBuilderForMusic.HandRight,"HandRight"); brailleMusicBrailleBuilders.Insert(0, bbHand); break;
+                case 2: bbHand.AddHand(BrailleBuilderForMusic.HandLeft,"HandLeft" ); brailleMusicBrailleBuilders.Insert(0, bbHand); break;
                 default: break;
             }
 
-            foreach (BrailleBuilder bb in brailleMusicBrailleBuilders)
+            foreach (BrailleBuilderForMusic bb in brailleMusicBrailleBuilders)
             {
                 brailleMusicStrings.Add(bb.ToBrailleString());
                 brailleMusicTexts.Add(bb.ToEquvivalentTextRepresentation());
@@ -321,7 +321,7 @@ namespace MusicXmlReaderModel
             //int height = 32;
 
             int lines = 0;
-            foreach (BrailleBuilder bb in brailleMusicBrailleBuilders)
+            foreach (BrailleBuilderForMusic bb in brailleMusicBrailleBuilders)
             {
                 string nextBraille  = bb.ToBrailleString();
                 string nextText =  bb.ToEquvivalentTextRepresentation();

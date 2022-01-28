@@ -14,7 +14,7 @@ namespace MusicXmlReaderModel
 
         // Constants used for inserting the MusicHyphen (Dot5) while formatting with respect to embosser width and height
         readonly static char BrailleSpaceAsUnicode = (char)(0x2800 + 0);
-        readonly static char MusicHyphenAsUnicode  = (char)(0x2800 + BrailleBuilder.MusicHyphen);
+        readonly static char MusicHyphenAsUnicode  = (char)(0x2800 + BrailleBuilderForMusic.MusicHyphen);
 
         /// <summary>
         /// Number of lines reserved for a caption on the first page

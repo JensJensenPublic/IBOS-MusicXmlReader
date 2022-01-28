@@ -246,7 +246,7 @@ namespace MusicXmlReaderModel
                     string musicBraille = "";
                     if ((userSettings.MusicAsMusicBraille) && (userSettings.GetParts(UserSettings.Category.MusicBraille,i)))
                     { 
-                        BrailleBuilder musicBrailleDetails = notesForStaff.ToBraille(userSettings,eventDescription);  // Use the simple ToBraille without chord notation
+                        BrailleBuilderForMusic musicBrailleDetails = notesForStaff.ToBraille(userSettings,eventDescription);  // Use the simple ToBraille without chord notation
                         musicBraille = musicBrailleDetails.ToBrailleString();
                     }
 
@@ -302,7 +302,7 @@ namespace MusicXmlReaderModel
 #if true
                             /* Start new code for showing MusicBraille in singleNoteDetails */
                            NoteElementList noteElementList = NoteElementList.Create(noteElement); // Use the existing conversion of a NoteElementList !
-                           BrailleBuilder bb = noteElementList.ToBraille(userSettings, eventDescription);  // Use the simple ToBraille without chord notation
+                           BrailleBuilderForMusic bb = noteElementList.ToBraille(userSettings, eventDescription);  // Use the simple ToBraille without chord notation
                            musicBraille = bb.ToBrailleString();
                             /* End new code  for showing MusicBraille in singleNoteDetails */
 #endif

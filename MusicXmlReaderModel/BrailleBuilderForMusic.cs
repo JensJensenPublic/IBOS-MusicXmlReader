@@ -7,7 +7,7 @@ namespace MusicXmlReaderModel
 {
 
 
-    public partial class BrailleBuilder : BrailleBuilderBase
+    public partial class BrailleBuilderForMusic : BrailleBuilderBase
     {
         // References:
         // Ref.1: http://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-articulations.htm
@@ -269,15 +269,15 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// To force the use of the Create() method
         /// </summary>
-        protected BrailleBuilder(Int64 timeStamp) : base(timeStamp)
+        protected BrailleBuilderForMusic(Int64 timeStamp) : base(timeStamp)
         {           
         }
 
 
 
-        public static BrailleBuilder Create(Int64 timeStamp)
+        public static BrailleBuilderForMusic Create(Int64 timeStamp)
         {
-            return new BrailleBuilder(timeStamp);
+            return new BrailleBuilderForMusic(timeStamp);
         }
 
         private const string className = "BrailleBuilder"; // Only used for logging ! 
@@ -652,7 +652,7 @@ namespace MusicXmlReaderModel
 
         public void AddFullEnd()
         {
-            Append(BrailleBuilder.fullEnd);
+            Append(BrailleBuilderForMusic.fullEnd);
             AppendText("FullEnd");
             //(BrailleBuilder.fullEnd, "FullEnd");
         }
@@ -902,7 +902,7 @@ namespace MusicXmlReaderModel
         public void AppendMeasureDivisionMarkAtEnd()
         {
             // In order to append it AFTER the last existing child we need to append it as a new child.
-            BrailleBuilder bb = BrailleBuilder.Create(this.TimeStamp);
+            BrailleBuilderForMusic bb = BrailleBuilderForMusic.Create(this.TimeStamp);
             bb.Append(measureDivision);
             bb.AppendText("<>");
             this.Append(bb); 
@@ -915,7 +915,7 @@ namespace MusicXmlReaderModel
         /// <param name="isFullMeasure"></param>
         public void AddInAccordMark(bool isFullMeasure)
         {
-            Append(isFullMeasure ? BrailleBuilder.inAccordFullMeasure : BrailleBuilder.inAccordPartMeasure);
+            Append(isFullMeasure ? BrailleBuilderForMusic.inAccordFullMeasure : BrailleBuilderForMusic.inAccordPartMeasure);
             AppendText(isFullMeasure ? "||" : "!!"); // Defined by JSJ for debugging only. )
             // Logger.LogCF(string.Format("({0})",isFullMeasure ? "FullMeasure" : "PartMeasure"));
         }

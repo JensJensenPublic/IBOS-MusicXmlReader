@@ -37,7 +37,7 @@ namespace MusicXmlReaderModel
         /// <param name="nNonEmptyVoices">The number of non-eppty voices handled until now in this BrailleInAccordSegment </param>
         /// <param name="isFullMeasure">True iff the current segment is represents a full measure</param>
         /// <returns></returns>
-        private BrailleBuilder Format(BrailleBuilder line, ref int nNonEmptyVoices, bool isFullMeasure)
+        private BrailleBuilderForMusic Format(BrailleBuilderForMusic line, ref int nNonEmptyVoices, bool isFullMeasure)
         {
             if (string.IsNullOrEmpty(line.ToBrailleString()))
             {
@@ -46,7 +46,7 @@ namespace MusicXmlReaderModel
             }
             else
             {
-                BrailleBuilder result = BrailleBuilder.Create(line.TimeStamp);
+                BrailleBuilderForMusic result = BrailleBuilderForMusic.Create(line.TimeStamp);
                 if (0 == nNonEmptyVoices)
                 {
                     //Logger.LogCF(string.Format(": nVoices=0 Returned line"));
@@ -80,12 +80,12 @@ namespace MusicXmlReaderModel
         /// <param name="userSettings"></param>
         /// <param name="isMainVoice"></param>
         /// <returns></returns>
-        public BrailleBuilder ToBraille(UserSettings userSettings,ref int nVoices,bool isFullMeasure)
+        public BrailleBuilderForMusic ToBraille(UserSettings userSettings,ref int nVoices,bool isFullMeasure)
         {
             if (!this.containsChords)
             {
                 EventDescription eventDescription = notes.NoteElements[0].OwningEventDescription;
-                BrailleBuilder line = notes.ToBraille(userSettings, eventDescription);
+                BrailleBuilderForMusic line = notes.ToBraille(userSettings, eventDescription);
                 return this.Format(line, ref nVoices, isFullMeasure);
             }
 
@@ -152,7 +152,7 @@ namespace MusicXmlReaderModel
                 }
             }
 
-            BrailleBuilder result = BrailleBuilder.Create(0);
+            BrailleBuilderForMusic result = BrailleBuilderForMusic.Create(0);
             // result.Append(0, "V");
             for (int row = 0; (row < numberOfRows); row++)
             {
@@ -162,7 +162,7 @@ namespace MusicXmlReaderModel
                     notes.NoteElements.Add(noteMatrix[row, col]);
                 }
 #warning ToDo Find out what to do about the eventDescription parameter !!    
-                BrailleBuilder line = notes.ToBraille(userSettings, notes.NoteElements[0].OwningEventDescription); // Convert the line to Braille
+                BrailleBuilderForMusic line = notes.ToBraille(userSettings, notes.NoteElements[0].OwningEventDescription); // Convert the line to Braille
                 result.Append(this.Format(line,ref nVoices, isFullMeasure)); // 
                 if (logLines) Logger.LogCF(string.Format(": Measure={0} Row={1} {2}", measure, row, notes.ToDebugString(false)));
             }

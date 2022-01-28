@@ -43,7 +43,7 @@ namespace MusicXmlReaderModel
         private List<byte> braille = new List<byte>(); // Contains the raw Braille 6-Bit patterns
         private StringBuilder text = new StringBuilder(); // Contains a (homemade) textrepresentation of the 6-bit patterns. Used by developers during debugging
         private Int64 timeStamp = NoTimeStamp;    // Contains the timestamp of the EventDescription which was used for generating this BrailleBuilder. -1 if not related to an EventDescription.  
-        private List<BrailleBuilder> children = new List<BrailleBuilder>(); // Contains the BrailleBuilders used for building this BrailleBuilder
+        private List<BrailleBuilderBase> children = new List<BrailleBuilderBase>(); // Contains the BrailleBuilders used for building this BrailleBuilder
 
         public long TimeStamp { get { return timeStamp; } }
 
@@ -141,7 +141,7 @@ namespace MusicXmlReaderModel
         /// This allows for concatenating Braille and Text at a later time when the dimensions of the embosser or notataker is known
         /// </summary>
         /// <param name="bb"></param>
-        public void Append(BrailleBuilder bb)
+        public void Append(BrailleBuilderBase bb)
         {
             Concatenate(bb);  // Empty function unless in TestMode ///
             this.children.Add(bb);
@@ -202,7 +202,7 @@ namespace MusicXmlReaderModel
             // The new implementation relying on late concatenatin
             StringBuilder sb = new StringBuilder();
             sb.Append(ToUnicodeString(this.braille));
-            foreach (BrailleBuilder child in children)
+            foreach (BrailleBuilderBase child in children)
             {
                 sb.Append(child.ToLinkedBrailleString());
             }
@@ -219,7 +219,7 @@ namespace MusicXmlReaderModel
             // The new implementation relying on late concatenatin
             StringBuilder sb = new StringBuilder();
             sb.Append(this.text);
-            foreach (BrailleBuilder child in children)
+            foreach (BrailleBuilderBase child in children)
             {
                 sb.Append(child.ToLinkedEquvivalentTextRepresentation());
             }
@@ -312,7 +312,7 @@ namespace MusicXmlReaderModel
         private const bool IsTestMode = true;
 #else
         // Empty functions used as placeholders for functions only used in TestMode
-        private void Concatenate(BrailleBuilder bb) { }
+        private void Concatenate(BrailleBuilderBase bb) { }
         private void TestBraille(string linked){}
         private void TestEquvivalentText(string linked){}
         private  bool IsTestMode = false;
