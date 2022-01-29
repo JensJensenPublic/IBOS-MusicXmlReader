@@ -186,18 +186,28 @@ namespace MusicXmlReaderModel
             AddPage(currentPageContents);
 
             string s = string.Format(": nBraille={0} nCR={1} nLF={2} nFF={3} nOther={4} maxCols={5} maxRows={6}", nBraille, nCR, nLF, nFF, nOther, maxCols, maxRows);
-            Logger.LogCF(s);   
+            Logger.LogCF(s);
 
             try
             {
+                if (File.Exists(fullFileName))
+                {
+                    File.Delete(fullFileName);
+                }
                 doc.Save(fullFileName);
+                // NOTE: For some strange reason doc.Save() does sets the times of the new file to the times of the file that has just been deleted!!!
+                // Instead of finding out in details why we use brute force and overwrite the times. This seems to work !
+                DateTime saveTime = DateTime.Now;
+                File.SetCreationTime(fullFileName, saveTime);
+                File.SetLastWriteTime(fullFileName, saveTime);
+                File.SetLastAccessTime(fullFileName, saveTime);
                 result = true;
             }
             catch (Exception e)
             {
                 Logger.LogCFE(e);
             }
-            
+        
             return result;
         }
 

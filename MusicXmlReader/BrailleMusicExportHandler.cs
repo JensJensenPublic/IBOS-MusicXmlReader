@@ -251,7 +251,7 @@ namespace MusicXmlReader
         /// <param name="initialDirectory">The suggested directory for saving the file(s)</param>
         /// <returns></returns>
         DialogResult PromptForSavePath(string xmlFileName, BrailleFileHandler brailleFileHandler, string initialDirectory)
-        {
+        {   
             string fileFormatName = brailleFileHandler.GetFileFormat(); // Currently "BRF_Unicode" , "BRL_OctoBraille_1252" or "BRF_ASCII"
             string extension = brailleFileHandler.GetExtension(); // Currently ".brf" or ".brl" Maybe later ".pef" ?  
             saveBrailleFileDialog.InitialDirectory = initialDirectory;
@@ -259,11 +259,33 @@ namespace MusicXmlReader
             string fileNameWithNewExtension = Path.ChangeExtension(fileName, extension);
             saveBrailleFileDialog.FileName = fileNameWithNewExtension;
             saveBrailleFileDialog.DefaultExt = extension;
+            saveBrailleFileDialog.OverwritePrompt = false;
             saveBrailleFileDialog.Filter = string.Format("{0}|*{1}", fileFormatName, extension); // Shown as for instance "BRF_ASCII (*.brf)" accepting all .brf files.
             DialogResult dialogResult = saveBrailleFileDialog.ShowDialog();
+            string directory = Path.GetDirectoryName(saveBrailleFileDialog.FileName);
+            // The following strange code is a consequence of using a dialog designed for selecting a file for selecting a directory
+            // in combination with the manipulation of the filenames.
+            // Alternatively the user might end up with very strange and long file names
+            string suggestedtedFullFileNameWithoutExtension = Path.Combine(initialDirectory, Path.GetFileNameWithoutExtension(xmlFileName));
+            string selectedFullFileNameWithoutExtension = GetFullPathWithoutExtension(saveBrailleFileDialog.FileName);
+            if (selectedFullFileNameWithoutExtension.StartsWith(suggestedtedFullFileNameWithoutExtension))
+            {
+                // The user did not change the directory, but only clicked one of the existing files, already containing information about part and staff.
+                saveBrailleFileDialog.FileName = Path.Combine(initialDirectory, fileNameWithNewExtension);
+                Logger.LogCF("");
+            }
+            //saveBrailleFileDialog.FileName = Path.Combine(directory,shortFileName);
             return dialogResult;
         }
 
+        private string GetFullPathWithoutExtension(string path)
+        {
+            string directoryName = Path.GetDirectoryName(path);
+            string filenameWithoutExtension = Path.GetFileNameWithoutExtension(path);
+            string result =  Path.Combine(directoryName, filenameWithoutExtension);
+            return result;
+
+        } 
 
 
         /// <summary>
