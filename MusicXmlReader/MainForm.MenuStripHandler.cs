@@ -937,7 +937,13 @@ namespace MusicXmlReader
             {
                 MessageBox.Show("ExportMusicBrailleToFile()\r\n" + FormatExportMessage(brailleDevice, "\r\n")); // In Messagebox use CR LF as delimiter
             }
-            brailleMusicExportHandler.ExportMusicBrailleToFile(brailleDevice.BrailleFileFormat, brailleDevice.PageWidth, brailleDevice.PageHeight, brailleDevice.BraillePageLayout, brailleDevice.DeviceName);
+            bool ok = brailleMusicExportHandler.ExportMusicBrailleToFile(brailleDevice.BrailleFileFormat, brailleDevice.PageWidth, brailleDevice.PageHeight, brailleDevice.BraillePageLayout, brailleDevice.DeviceName);
+            if (ok)
+            {
+                // Everything succeeded and the user accepted to open the BrailleREader
+                musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(this as MusicBrailleReader.IMusicBrailleReaderClient, model);
+                musicBrailleReaderMainform.ShowDialog(); // Using ShowDialog() instead of Show() will freeze MainForm until musicBrailleReaderMainform closes.
+            }
         }
 
 

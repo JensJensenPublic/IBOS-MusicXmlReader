@@ -94,17 +94,17 @@ namespace MusicXmlReader
         /// <param name="charsPerLine"></param>
         /// <param name="linesPerPage"></param>
         /// <param name="format"></param>
-        public void ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding fileEncoding, int charsPerLine, int linesPerPage, Model.BrailleStyleEnum brailleStyle,string profileName)
+        public bool ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding fileEncoding, int charsPerLine, int linesPerPage, Model.BrailleStyleEnum brailleStyle,string profileName)
         {
 
-            if (!ScoreIsLoaded()) return; // Beeps and logs.
-            if (!ScoreIsSupported(brailleStyle)) return; // Shows warning dialog
+            if (!ScoreIsLoaded()) return false; // Beeps and logs.
+            if (!ScoreIsSupported(brailleStyle)) return false; // Shows warning dialog
             // In this simple implementation the file format is determined by the localization !
 
             //BrailleFileHandler.FileEncoding fileEncoding = GetCultureDependentEncoding();
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, charsPerLine, linesPerPage);
             StaffList brailleRepresentations = model.GetBrailleRepresentation(brailleFileHandler.CharsPerLine, brailleFileHandler.LinesPerForm, brailleStyle);
-            this.ExportMusicBrailleToFile(brailleFileHandler, brailleRepresentations,profileName);
+            return this.ExportMusicBrailleToFile(brailleFileHandler, brailleRepresentations,profileName);
         }
 
 
@@ -114,9 +114,9 @@ namespace MusicXmlReader
         /// Common handling of all file formats and styles
         /// </summary>
         /// <param name="brailleFileHandler"></param>
-        private void ExportMusicBrailleToFile(BrailleFileHandler brailleFileHandler, StaffList brailleRepresentations, string profileName)
+        private bool ExportMusicBrailleToFile(BrailleFileHandler brailleFileHandler, StaffList brailleRepresentations, string profileName)
         {
-            this.WriteToFiles(model.TheMusicXmlFileName, brailleFileHandler, brailleRepresentations, profileName);
+            return this.WriteToFiles(model.TheMusicXmlFileName, brailleFileHandler, brailleRepresentations, profileName);
         }
 
 
@@ -165,7 +165,7 @@ namespace MusicXmlReader
         /// <param name="xmlFileName">The name of the MusicXml File to be exported</param>
         /// <param name="brailleFileHandler">The Braille File handler to use (contents Braille encoding, width, height etc)</param>
         /// <param name="brailleRepresentations">The StaffList containing the actual Music Braille information to export</param>
-        public void WriteToFiles(string xmlFileName, BrailleFileHandler brailleFileHandler, StaffList brailleRepresentations,string profileName)
+        public bool WriteToFiles(string xmlFileName, BrailleFileHandler brailleFileHandler, StaffList brailleRepresentations,string profileName)
         {
             string regressionTestDirectory = null; // Will be set to point to the latest directory containing the Music Braille files for the same score. Null if not found.
             BrailleFileHandler developerBrailleFileHandler = BrailleFileHandler.Create(BrailleFileHandler.FileEncoding.BRF_Unicode, 0, 0); // Only osed in Experimental Mode
@@ -185,7 +185,7 @@ namespace MusicXmlReader
                 message.AppendLine();
                 message.AppendLine(ResourcesForUI.Message_PleaseSeeLogFile);
                 messageHandler.ShowMessage(message.ToString());
-                return;
+                return false;
             }
 
             // Conversion succeeded. Determine and create a directory for saving the files
@@ -207,7 +207,7 @@ namespace MusicXmlReader
             if (DialogResult.OK != dialogResult)
             {
                 Logger.LogCF(string.Format(": SaveDialog returned {0}", dialogResult.ToString()));
-                return;
+                return false;
             }
 
             // Create and write the files
@@ -237,7 +237,7 @@ namespace MusicXmlReader
             }
             // If DeveloperMode is enabled we execute a simple regressiontest and report the result to the user/developer
             this.ExecuteRegressionTest(initialDirectory, Path.GetDirectoryName(saveBrailleFileDialog.FileName), regressionTestDirectory);
-          
+            return allOk;
         }
 
 
@@ -316,7 +316,7 @@ namespace MusicXmlReader
         /// <param name="allOk"></param>
         /// <param name="exportPath"></param>
         /// <param name="fileNames"></param>
-        private void LogResult(int numberOfStaffs, bool allOk, string exportPath, List<string> fileNames)
+        private bool LogResult(int numberOfStaffs, bool allOk, string exportPath, List<string> fileNames)
         {
             // allOk = false; // For test only !
 
@@ -346,7 +346,10 @@ namespace MusicXmlReader
                     message.Append(fileName); // The filename already contains \r\n
                 }
             }
-            messageHandler.ShowMessage(message.ToString());
+            // messageHandler.ShowMessage(message.ToString());
+            DialogResult dialogResult = messageHandler.ShowMessage(message.ToString(), MessageBoxButtons.YesNo);
+            return (DialogResult.Yes == dialogResult);
+     
         }
 
         /// <summary>

@@ -27,7 +27,15 @@ namespace MusicXmlReader
         public void ShowMessage(string text)
         {
             if (null == text) return;
-            MessageBox.Show( text,applicationName);
+            MessageBox.Show(text, applicationName);
+        }
+
+        // Decide how to show a simple message directly from the UI       
+        public DialogResult ShowMessage(string text,MessageBoxButtons messageBoxButtons)
+        {
+            if (null == text) return DialogResult.Cancel;
+            DialogResult result = MessageBox.Show(text, applicationName,messageBoxButtons);
+            return result;
         }
 
         private string LocalizeMessage(ModelMessageEnum messageEnum)
