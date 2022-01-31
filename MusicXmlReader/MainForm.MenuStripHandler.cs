@@ -937,8 +937,8 @@ namespace MusicXmlReader
             {
                 MessageBox.Show("ExportMusicBrailleToFile()\r\n" + FormatExportMessage(brailleDevice, "\r\n")); // In Messagebox use CR LF as delimiter
             }
-            bool ok = brailleMusicExportHandler.ExportMusicBrailleToFile(brailleDevice.BrailleFileFormat, brailleDevice.PageWidth, brailleDevice.PageHeight, brailleDevice.BraillePageLayout, brailleDevice.DeviceName);
-            if (ok)
+            BrailleMusicHandlerResult result = brailleMusicExportHandler.ExportMusicBrailleToFile(brailleDevice.BrailleFileFormat, brailleDevice.PageWidth, brailleDevice.PageHeight, brailleDevice.BraillePageLayout, brailleDevice.DeviceName);
+            if (BrailleMusicHandlerResult.OkShowBrailleMusicReader == result)
             {
                 // Everything succeeded and the user accepted to open the BrailleREader
                 musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(this as MusicBrailleReader.IMusicBrailleReaderClient, model);
@@ -970,7 +970,8 @@ namespace MusicXmlReader
                 {
                     MessageBox.Show("ExportMusicBrailleToFile()\r\n" + FormatExportMessage(message, noteTaker.BrailleFileFormat.ToString(), 0, 0, noteTaker.BraillePageLayout.ToString(), "\r\n"));
                 }
-                brailleMusicExportHandler.ExportMusicBrailleToFile(noteTaker.BrailleFileFormat, 0, 0, noteTaker.BraillePageLayout, null);
+                // This is tho old, original export of "IBOS style", only suitable for notetaker. Ignore result.
+                BrailleMusicHandlerResult result = brailleMusicExportHandler.ExportMusicBrailleToFile(noteTaker.BrailleFileFormat, 0, 0, noteTaker.BraillePageLayout, null);
             }
             else
             {
