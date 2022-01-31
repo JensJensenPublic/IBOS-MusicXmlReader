@@ -611,4 +611,12 @@
     <value>Unexpected program file</value>
     <comment>NO NL</comment>
   </data>
+  <data name="Message_PressEscapeToContinue" xml:space="preserve">
+    <value>Press Escape  to continue.</value>
+    <comment>No NL</comment>
+  </data>
+  <data name="Message_PressOkToOpen" xml:space="preserve">
+    <value>Press OK to open the Braille Music files in IBOS Braille Music Reader.</value>
+    <comment>No NL</comment>
+  </data>
 </root>

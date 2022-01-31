@@ -238,7 +238,7 @@ namespace MusicXmlReader
             // Report result
             string directory = Path.GetDirectoryName(saveBrailleFileDialog.FileName);
 
-            BrailleMusicHandlerResult result =  LogResult(brailleRepresentations.Staffs.Count, allOk,directory, fileNames); // To LogFile and MessageBox 
+            BrailleMusicHandlerResult result =  ShowResult(brailleRepresentations.Staffs.Count, allOk,directory, fileNames); // To LogFile and MessageBox 
             if (allOk)
             {
                 userPreferencesHandler.BrailleMusicDirectory = directory;
@@ -324,7 +324,7 @@ namespace MusicXmlReader
         /// <param name="allOk"></param>
         /// <param name="exportPath"></param>
         /// <param name="fileNames"></param>
-        private BrailleMusicHandlerResult LogResult(int numberOfStaffs, bool allOk, string exportPath, List<string> fileNames)
+        private BrailleMusicHandlerResult ShowResult(int numberOfStaffs, bool allOk, string exportPath, List<string> fileNames)
         {
             // allOk = false; // For test only !
 
@@ -334,8 +334,6 @@ namespace MusicXmlReader
             // We need to localize the messagebox, so we use a less complicated text:
             string exportOfMusicBraille = ResourcesForUI.Message_ExportToMusicBraille; //   "Export of Music Braille";
             string result = allOk ? ResourcesForUI.Message_Succeeded : ResourcesForUI.Message_Failed; //  "Succeeded" : "Failed";
-            string directory = ResourcesForUI.Message_Directory; //  "Directory";
-            string files = ResourcesForUI.Message_Files; //  "Files";
 
             StringBuilder message = new StringBuilder();
             message.AppendLine(string.Format("{0} {1}.",exportOfMusicBraille,result));
@@ -343,23 +341,13 @@ namespace MusicXmlReader
             {
                 return BrailleMusicHandlerResult.ErrorConversionFailed;
             }
-
-                // This information only makes sense in case of success.
-                message.AppendLine();
-                message.AppendLine(string.Format("{0}:", directory));
-                message.AppendLine();
-                message.AppendLine(exportPath); // We appearantly can NOT force a MessageBox to avoid wrapping lines.
-                message.AppendLine();
-                message.AppendLine(string.Format("{0} :", files));
-                message.AppendLine();
-                foreach (string fileName in fileNames)
-                {
-                    message.Append(fileName); // The filename already contains \r\n
-                }
-
-            // messageHandler.ShowMessage(message.ToString());
-            DialogResult dialogResult = messageHandler.ShowMessage(message.ToString(), MessageBoxButtons.YesNo);
-            return (DialogResult.Yes == dialogResult) ? BrailleMusicHandlerResult.OkShowBrailleMusicReader : BrailleMusicHandlerResult.Ok;
+     
+            // Only makes sense in case of success:
+            message.AppendLine();
+            message.AppendLine(ResourcesForUI.Message_PressOkToOpen); // Allows the user to directly open the IBOS Braille Music Reader
+            message.AppendLine(ResourcesForUI.Message_PressEscapeToContinue);
+            DialogResult dialogResult = messageHandler.ShowMessage(message.ToString(), MessageBoxButtons.OK);
+            return (DialogResult.OK == dialogResult) ? BrailleMusicHandlerResult.OkShowBrailleMusicReader : BrailleMusicHandlerResult.Ok;
         }
 
         /// <summary>

@@ -493,6 +493,24 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Press Escape  to continue..
+        /// </summary>
+        internal static string Message_PressEscapeToContinue {
+            get {
+                return ResourceManager.GetString("Message_PressEscapeToContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press OK to open the Braille Music files in IBOS Braille Music Reader..
+        /// </summary>
+        internal static string Message_PressOkToOpen {
+            get {
+                return ResourceManager.GetString("Message_PressOkToOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please go to Control Panel - Devices - Pen &amp; Windows Ink and change &apos;Choose which hand you write with&apos; from &apos;Right Hand&apos; to &apos;Left Hand&apos; .
         /// </summary>
         internal static string Message_RightAlignedMenus {
