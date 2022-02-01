@@ -236,6 +236,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version 4.1", "Version 4.1", "{183B8079-580D-41A2-B3DF-D8460B19A600}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Test descriptions\Version 4.1\Brugervejledning for IBOS Punktnodelæser.v4.1.docx = Documentation\Test descriptions\Version 4.1\Brugervejledning for IBOS Punktnodelæser.v4.1.docx
+		Documentation\Test descriptions\Version 4.1\Testvejledning for IBOS Nodelæser v4.1.docx = Documentation\Test descriptions\Version 4.1\Testvejledning for IBOS Nodelæser v4.1.docx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nota", "Nota", "{5271E7FB-5537-472D-803A-F54E923D5428}"

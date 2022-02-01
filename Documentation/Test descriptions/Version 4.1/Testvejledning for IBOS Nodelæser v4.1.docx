@@ -1,0 +1,44 @@
+IBOS Nodelæser version 4.1 er en midlertidig testversion på vejen til version 5.0
+
+Det vil være meget værdifuldt at få testet især følgende hovedområder:
+
+    1. Fejlrettelser af fejl i eksport til punktnoder, som forventes at være rettet siden version 4.0.
+    2. Fejlrettelser af andre fejl  som forventes at være rettet siden version 4.0.
+    3. Ny funktionalitet for indlæsning og fortolkning  af punktnoder i ”IBOS Punktnodelæser”
+    4. Integration mellem eksport af punktnoder og fortolkning af punktnoder.
+    5. Format af .pef filer.
+
+Punkterne 1,2, 3 og 4 kan med fordel udføres af rutinerede brugere af IBOS Nodelæser 4.0.
+Punkt 4 kan kun udføres af testere, der har adgang til en punktprinter, som accepterer punktnoder i .pef format som input.
+
+I det følgende foreslås fremgangsmåder til testene 1, 2 og 3.
+
+Forslag til test punkt 1: 
+
+Indlæs kendte MusicXml filer og eksporter dem til en punktprinter eller et notatapparat på samme måde som  under testen af version 4.0.
+
+Check i outputtet specielt følgende:
+
+Forekommer der deling ved linjeskift af punktnode-symboler, som ikke må deles ?
+Er der indsat henvisningstegn hver en linje deles inde i en takt ?
+Er der oktavtegn alle steder, hvor der skal være ?
+Er der oktavtegn på steder, hvor der ikke bør være det ?
+
+Forslag til test af punkt 2:
+
+Vises den ønskede punktrepræsentation i detalje-visningen ?
+
+Forslag til test af punkt 3:
+
+
+I ”IBOS Nodelæser” start ”IBOS punktnodelæser”:
+”Vælg ”Værktøjer”, ”IBOS Punktnodelæser” eventuelt med ALT,t,p
+
+I ”IBOS Punktnodelæser”: Åbn en eksisterende NOTA punktnodefil:
+”Filer”,
+”Åbn NOTA Punktnodefil”
+Browse frem til filen i almindelig Windows ”Fil åben” dialog
+”Åbn”
+Gennemgå fortolkningen af den indlæste punktnodefil med pil-op og pil-ned
+
+Forslag til test af punkt 4:
