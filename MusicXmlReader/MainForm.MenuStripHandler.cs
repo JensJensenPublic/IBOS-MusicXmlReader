@@ -937,16 +937,24 @@ namespace MusicXmlReader
             {
                 MessageBox.Show("ExportMusicBrailleToFile()\r\n" + FormatExportMessage(brailleDevice, "\r\n")); // In Messagebox use CR LF as delimiter
             }
-            this.Enabled = false;
-            BrailleMusicHandlerResult result = brailleMusicExportHandler.ExportMusicBrailleToFile(brailleDevice.BrailleFileFormat, brailleDevice.PageWidth, brailleDevice.PageHeight, brailleDevice.BraillePageLayout, brailleDevice.DeviceName);
-            this.Enabled = true;
-
-            if (BrailleMusicHandlerResult.OkShowBrailleMusicReader == result)
+            this.Enabled = false; // This prevents JAWS from talking about irrelavant items in the MainForm
+            try
             {
-                // Everything succeeded and the user accepted to open the BrailleREader
-                musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(this as MusicBrailleReader.IMusicBrailleReaderClient, model);
-                musicBrailleReaderMainform.ShowDialog(); // Using ShowDialog() instead of Show() will freeze MainForm until musicBrailleReaderMainform closes.
+                // throw new Exception(); // For test only
+                BrailleMusicHandlerResult result = brailleMusicExportHandler.ExportMusicBrailleToFile(brailleDevice.BrailleFileFormat, brailleDevice.PageWidth, brailleDevice.PageHeight, brailleDevice.BraillePageLayout, brailleDevice.DeviceName);
+                if (BrailleMusicHandlerResult.OkShowBrailleMusicReader == result)
+                {
+                    // Everything succeeded and the user accepted to open the BrailleREader
+                    musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(this as MusicBrailleReader.IMusicBrailleReaderClient, model);
+                    musicBrailleReaderMainform.ShowDialog(); // Using ShowDialog() instead of Show() will freeze MainForm until musicBrailleReaderMainform closes.
+                }
             }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+                messageHandler.ShowMessage(ResourcesForUI.Message_OperationFailed, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            this.Enabled = true; // Be sure to ehable agan, whatever happens 
         }
 
 

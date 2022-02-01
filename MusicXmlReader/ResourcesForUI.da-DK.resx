@@ -628,9 +628,12 @@
     <comment>NO NL</comment>
   </data>
   <data name="Message_PressCancelToRemain" xml:space="preserve">
-    <value>Tryk Annuler for at forblive i IBOS Nodelæser.</value>
+    <value>Tryk Annullér for at forblive i IBOS Nodelæser.</value>
   </data>
   <data name="Message_PressOkToOpen" xml:space="preserve">
     <value>Tryk OK for at åbne punktnodefilerne i IBOS Punktnodelæser.</value>
+  </data>
+  <data name="Message_OperationFailed" xml:space="preserve">
+    <value>Handlingen mislykkedes!</value>
   </data>
 </root>

@@ -484,6 +484,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Operation failed!.
+        /// </summary>
+        internal static string Message_OperationFailed {
+            get {
+                return ResourceManager.GetString("Message_OperationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please see Log File (Tools-&gt;Log File).
         /// </summary>
         internal static string Message_PleaseSeeLogFile {

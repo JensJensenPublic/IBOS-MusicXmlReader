@@ -619,4 +619,8 @@
     <value>Press OK to open the Braille Music files in IBOS Braille Music Reader.</value>
     <comment>No NL</comment>
   </data>
+  <data name="Message_OperationFailed" xml:space="preserve">
+    <value>Operation failed!</value>
+    <comment>No NL</comment>
+  </data>
 </root>
