@@ -31,10 +31,10 @@ namespace MusicXmlReader
         }
 
         // Decide how to show a simple message directly from the UI       
-        public DialogResult ShowMessage(string text,MessageBoxButtons messageBoxButtons)
+        public DialogResult ShowMessage(string text,MessageBoxButtons messageBoxButtons,MessageBoxIcon icon)
         {
-            if (null == text) return DialogResult.Cancel;
-            DialogResult result = MessageBox.Show(text, applicationName,messageBoxButtons);
+            if (null == text) return DialogResult.Cancel;    
+            DialogResult result = MessageBox.Show(text, applicationName,messageBoxButtons,icon);
             return result;
         }
 

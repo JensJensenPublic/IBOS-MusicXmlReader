@@ -493,11 +493,11 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Press Escape  to continue..
+        ///   Looks up a localized string similar to Press Cancel  to remain in IBOS MusicXmlReader..
         /// </summary>
-        internal static string Message_PressEscapeToContinue {
+        internal static string Message_PressCancelToRemain {
             get {
-                return ResourceManager.GetString("Message_PressEscapeToContinue", resourceCulture);
+                return ResourceManager.GetString("Message_PressCancelToRemain", resourceCulture);
             }
         }
         

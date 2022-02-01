@@ -345,8 +345,8 @@ namespace MusicXmlReader
             // Only makes sense in case of success:
             message.AppendLine();
             message.AppendLine(ResourcesForUI.Message_PressOkToOpen); // Allows the user to directly open the IBOS Braille Music Reader
-            message.AppendLine(ResourcesForUI.Message_PressEscapeToContinue);
-            DialogResult dialogResult = messageHandler.ShowMessage(message.ToString(), MessageBoxButtons.OK);
+            message.AppendLine(ResourcesForUI.Message_PressCancelToRemain);  // Allows the user to remain in IBOS Music Reader
+            DialogResult dialogResult = messageHandler.ShowMessage(message.ToString(), MessageBoxButtons.OKCancel,MessageBoxIcon.Information);
             return (DialogResult.OK == dialogResult) ? BrailleMusicHandlerResult.OkShowBrailleMusicReader : BrailleMusicHandlerResult.Ok;
         }
 

@@ -627,10 +627,10 @@
     <value>Uventet programfil</value>
     <comment>NO NL</comment>
   </data>
-  <data name="Message_PressEscapeToContinue" xml:space="preserve">
-    <value>Tryk Escape for at fortsætte.</value>
+  <data name="Message_PressCancelToRemain" xml:space="preserve">
+    <value>Tryk Annuler for at forblive i IBOS Nodelæser.</value>
   </data>
   <data name="Message_PressOkToOpen" xml:space="preserve">
-    <value>Tryk OK for at åbne punktnodefilerne i IBOS Punktnodelæser</value>
+    <value>Tryk OK for at åbne punktnodefilerne i IBOS Punktnodelæser.</value>
   </data>
 </root>

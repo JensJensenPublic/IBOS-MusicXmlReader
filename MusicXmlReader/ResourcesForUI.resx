@@ -611,8 +611,8 @@
     <value>Unexpected program file</value>
     <comment>NO NL</comment>
   </data>
-  <data name="Message_PressEscapeToContinue" xml:space="preserve">
-    <value>Press Escape  to continue.</value>
+  <data name="Message_PressCancelToRemain" xml:space="preserve">
+    <value>Press Cancel  to remain in IBOS MusicXmlReader.</value>
     <comment>No NL</comment>
   </data>
   <data name="Message_PressOkToOpen" xml:space="preserve">
