@@ -141,6 +141,7 @@
             this.textBoxScreenReader = new System.Windows.Forms.TextBox();
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
+            this.textBoxEmpty = new System.Windows.Forms.TextBox();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1066,11 +1067,21 @@
             // 
             this.printDialog.UseEXDialog = true;
             // 
+            // textBoxEmpty
+            // 
+            this.textBoxEmpty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxEmpty.Location = new System.Drawing.Point(1197, 606);
+            this.textBoxEmpty.Name = "textBoxEmpty";
+            this.textBoxEmpty.Size = new System.Drawing.Size(18, 20);
+            this.textBoxEmpty.TabIndex = 13;
+            this.textBoxEmpty.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1219, 641);
+            this.Controls.Add(this.textBoxEmpty);
             this.Controls.Add(this.textBoxScreenReader);
             this.Controls.Add(this.listBoxDetails);
             this.Controls.Add(this.textBoxStatusInformation);
@@ -1210,6 +1221,7 @@
         private System.Windows.Forms.ToolStripMenuItem musicBrailleReaderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem highSpeedEmbosserSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toHighSpeedEmbosserToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBoxEmpty;
     }
 }
 
