@@ -35,6 +35,7 @@
             this.openTestFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exporterSomMusicXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exporterSomTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iBOSMusicXmlReaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.museScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +55,6 @@
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,6 +116,13 @@
             this.exporterSomTextToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
             this.exporterSomTextToolStripMenuItem.Text = "Exporter som text";
             this.exporterSomTextToolStripMenuItem.Click += new System.EventHandler(this.exporterSomTextToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -284,13 +291,6 @@
             this.textBox3.TabIndex = 8;
             this.textBox3.TabStop = false;
             // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
             // MusicBrailleReaderMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,6 +304,7 @@
             this.Controls.Add(this.listBoxOffsets);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimizeBox = false;
             this.Name = "MusicBrailleReaderMainForm";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MusicBrailleReaderMainForm_FormClosing);
