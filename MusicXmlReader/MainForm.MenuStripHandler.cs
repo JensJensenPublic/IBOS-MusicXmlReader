@@ -937,7 +937,11 @@ namespace MusicXmlReader
             {
                 MessageBox.Show("ExportMusicBrailleToFile()\r\n" + FormatExportMessage(brailleDevice, "\r\n")); // In Messagebox use CR LF as delimiter
             }
-            this.Enabled = false; // This prevents JAWS from talking about irrelavant items in the MainForm
+
+            int index = this.listBoxTimes.SelectedIndex;  // This prevents JAWS from reading irrelevant lines from listbox during the Export operation   
+
+            string emptyLine = "";
+            listBoxTimes.Items.Insert(listBoxTimes.SelectedIndex, emptyLine); // Attract JAWS attension to make it stop talking
             try
             {
                 // throw new Exception(); // For test only
@@ -953,10 +957,12 @@ namespace MusicXmlReader
             {
                 Logger.LogCFE(e);
                 messageHandler.ShowMessage(ResourcesForUI.Message_OperationFailed, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            this.Enabled = true; // Be sure to ehable agan, whatever happens 
-        }
+            }    
 
+            listBoxTimes.Items.Remove(emptyLine); // Revert the operation that temporarily attracted JAWS attension
+
+        }
+          
 
         // After selecting GenericDevice all parameters: Encoding, pagewidth and pageheight are automatically taken from Settings->NoteTaker
         #region NoteTaker
