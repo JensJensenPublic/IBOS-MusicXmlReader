@@ -1,44 +1,79 @@
-IBOS Nodelæser version 4.1 er en midlertidig testversion på vejen til version 5.0
+Testvejledning for IBOS Nodelæser version  4.1
+
+
+IBOS Nodelæser version 4.1 er en midlertidig testversion på vej til version 5.0
 
 Det vil være meget værdifuldt at få testet især følgende hovedområder:
 
-    1. Fejlrettelser af fejl i eksport til punktnoder, som forventes at være rettet siden version 4.0.
-    2. Fejlrettelser af andre fejl  som forventes at være rettet siden version 4.0.
-    3. Ny funktionalitet for indlæsning og fortolkning  af punktnoder i ”IBOS Punktnodelæser”
-    4. Integration mellem eksport af punktnoder og fortolkning af punktnoder.
+    1. Fejlrettelser af fejl i eksport til punktnoder, forsøgt rettet siden version 4.0.
+    2. Fejlrettelser af andre fejl forsøgt siden version 4.0.
+    3. Ny funktionalitet for fortolkning  af punktnoder i ”IBOS Punktnodelæser”
+    4. Integration mellem eksport til punktnoder og fortolkning af punktnoder.
     5. Format af .pef filer.
 
-Punkterne 1,2, 3 og 4 kan med fordel udføres af rutinerede brugere af IBOS Nodelæser 4.0.
+Punkterne 1,2,3 og 4 kan med fordel udføres af rutinerede brugere af IBOS Nodelæser 4.0.
+
 Punkt 4 kan kun udføres af testere, der har adgang til en punktprinter, som accepterer punktnoder i .pef format som input.
 
-I det følgende foreslås fremgangsmåder til testene 1, 2 og 3.
+I det følgende foreslås fremgangsmåder til testene 1, 2, 3 og 4.
 
-Forslag til test punkt 1: 
+Forslag til punkt 1 : ”Fejlrettelser af fejl i eksport til punktnoder, forsøgt rettet siden version 4.0.”
 
 Indlæs kendte MusicXml filer og eksporter dem til en punktprinter eller et notatapparat på samme måde som  under testen af version 4.0.
 
 Check i outputtet specielt følgende:
 
-Forekommer der deling ved linjeskift af punktnode-symboler, som ikke må deles ?
-Er der indsat henvisningstegn hver en linje deles inde i en takt ?
-Er der oktavtegn alle steder, hvor der skal være ?
-Er der oktavtegn på steder, hvor der ikke bør være det ?
+    • Forekommer der deling ved linjeskift af punktnode-symboler, som ikke må deles ?
+    • Er der indsat henvisningstegn hver en linje deles inde i en takt ?
+    • Er der oktavtegn alle steder, hvor der skal være ?
+    • Er der oktavtegn på steder, hvor der ikke bør være det ?
 
-Forslag til test af punkt 2:
+Vigtigt: Bemærk at følgende fejl og uhensigtsmæssigheder ikke er forsøgt rettet i version 4.1 
 
-Vises den ønskede punktrepræsentation i detalje-visningen ?
+    • Unødigt kompliceret opdeling af komplicerede takter i dele, hvor hver del beskrives enten med lille bistemme eller intervalnotation.
+      
+    • Manglende generering af punktnoder af visse musikalske notifikationer, for eksempel ”piano”, ”forte” og ”crescendo”
 
-Forslag til test af punkt 3:
 
 
-I ”IBOS Nodelæser” start ”IBOS punktnodelæser”:
-”Vælg ”Værktøjer”, ”IBOS Punktnodelæser” eventuelt med ALT,t,p
 
-I ”IBOS Punktnodelæser”: Åbn en eksisterende NOTA punktnodefil:
-”Filer”,
-”Åbn NOTA Punktnodefil”
-Browse frem til filen i almindelig Windows ”Fil åben” dialog
-”Åbn”
-Gennemgå fortolkningen af den indlæste punktnodefil med pil-op og pil-ned
+
+Forslag til punkt 2: ”Fejlrettelser af andre fejl forsøgt siden version 4.0.”
+
+Vises den valgte punktrepræsentation nu i detalje-visningen ?
+
+
+Forslag til punkt 3: ”Ny funktionalitet for fortolkning  af punktnoder i IBOS Punktnodelæser”
+
+IBOS Punktnodelæser er et helt nyt program, som distribueres under menupunktet ”værktøjer” i IBOS Nodelæser. IBOS Punktnodelæsers brugergrænsefladeer opbygget efter præcis de samme principper som ”IBOS Nodelæser”, nemlig :
+
+    • En menulinje til betjening
+    • En listbox til visning 
+    • Et filtertræ til kontrol af visningen i listboxen 
+
+Menulinien indeholder dog hér kun et enkelt punkt ”Filer”.
+Listboxen viser fortolkede  punktnode-symboler i stedet for noder-
+Filtertræet indeholder kun et enkelt niveau med  checkboxe, som kontrollerer følgende:
+
+    • ”Toner”: Afspilning af relevante punktnodesymboler i form af toner.
+    • ”Rum”: Oplæsning af rum nummer for linjens første ikke blanke punktnodesymbol.
+    • ”Rå punktnode symboler”: Oplæsning af enkeltpunkter som for eksempel ”punkt 1 2 3” ”punkt 2 5 6”. 
+
+Selve testen:
+
+For at starte IBOS Punktnodelæser:
+    1. I ”IBOS Nodelæser”: vælg ”Værktøjer”, ”IBOS Punktnodelæser” eventuelt med ALT,t,p
+
+For at åbne en eksisterende NOTA punktnodefil:
+    1. I ”IBOS Punktnodelæser”: vælg ”Filer”,”Åbn NOTA Punktnodefil”
+    2. Find frem til en NOTA punktnodefil i den almindelige Windows ”Fil åben” dialog
+    3. Vælg ”Åbn”
+    4. Gennemgå fortolkningen af den indlæste punktnodefil med pil-op og pil-ned
+
+Hvis punktnodefilen er syntaktisk korrekt vises dens indhold på tekstform.
+
+
+
+
 
 Forslag til test af punkt 4:
