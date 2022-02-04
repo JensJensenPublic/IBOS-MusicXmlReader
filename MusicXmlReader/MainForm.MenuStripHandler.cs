@@ -1051,7 +1051,7 @@ namespace MusicXmlReader
 
         /// <summary>
         /// Export in "IBOS" style. Only used for backward compatability with version 3.
-        /// Refactored in order to resemble the Export() method used for export using a predefined Braille device profile
+        /// JSJ 2022.02.04: Refactored in order to resemble the Export() method used for export using a predefined Braille device profile
         /// In this way we can use the same "textBoxEmpty" trick as in Export() for making JAWS stop talking about irrelevant issues. 
         /// </summary>
         /// <param name="fileEncoding"></param>
@@ -1061,7 +1061,17 @@ namespace MusicXmlReader
             textBoxEmpty.Focus();
             try
             {
-                brailleMusicExportHandler.ExportMusicBrailleToFile(fileEncoding, IbosStyle);
+     
+                BrailleMusicHandlerResult result =  brailleMusicExportHandler.ExportMusicBrailleToFile(fileEncoding, IbosStyle);
+                // Do exactly as in the BANA case, implemented in Export().
+                // (We might decide to handle the IDOS case otherwise decause the output is not well suited for the IBOS MusicBrailleReader.)
+                if (BrailleMusicHandlerResult.OkShowBrailleMusicReader == result)
+                {
+                    // Everything succeeded and the user accepted to open the BrailleREader
+                    musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(this as MusicBrailleReader.IMusicBrailleReaderClient, model);
+                    musicBrailleReaderMainform.ShowDialog(); // Using ShowDialog() instead of Show() will freeze MainForm until musicBrailleReaderMainform closes.
+                }
+
             }
             catch (Exception e)
             {

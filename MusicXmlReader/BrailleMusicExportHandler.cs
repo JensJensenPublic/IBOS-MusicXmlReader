@@ -134,10 +134,10 @@ namespace MusicXmlReader
         /// The user is prompted for the formatting parameters
         /// </summary>
         /// <param name="fileEncoding"></param>
-        public void ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding fileEncoding, Model.BrailleStyleEnum brailleStyle)
+        public BrailleMusicHandlerResult ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding fileEncoding, Model.BrailleStyleEnum brailleStyle)
         {
-            if (!ScoreIsLoaded()) return; // Beeps and logs.
-            if (!ScoreIsSupported(brailleStyle)) return; // Shows warning dialog
+            if (!ScoreIsLoaded()) return BrailleMusicHandlerResult.ErrorNoScoreLoaded; // Beeps and logs.
+            if (!ScoreIsSupported(brailleStyle)) return BrailleMusicHandlerResult.ErrorScoreIsUnsupported; // Shows warning dialog
             bool acceptCancel = false; //  Do not accept cancel as "use default parameters"
             bool validParams = false;
             while (!validParams)
@@ -151,14 +151,14 @@ namespace MusicXmlReader
                     DialogResult dialogResult = MessageBox.Show(text, caption, MessageBoxButtons.RetryCancel,MessageBoxIcon.Error);
                     if (DialogResult.Cancel == dialogResult)
                     {
-                        return; // Operation cancelled by user.
+                        return BrailleMusicHandlerResult.ErrorUserCancelled; // Operation cancelled by user.
                     }
                 }
             }
             // Received valid params from the user. Continue using these parameters
             BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, model.UserPreferences.CharsPerLine, model.UserPreferences.LinesPerForm);
             StaffList brailleRepresentations = model.GetBrailleRepresentation(brailleFileHandler.CharsPerLine, brailleFileHandler.LinesPerForm, brailleStyle);
-            this.ExportMusicBrailleToFile(brailleFileHandler, brailleRepresentations, null); // Use null as profileName because we do not use a profile in this case
+            return this.ExportMusicBrailleToFile(brailleFileHandler, brailleRepresentations, null); // Use null as profileName because we do not use a profile in this case
         }
 
 
