@@ -1033,19 +1033,41 @@ namespace MusicXmlReader
         // After selecting "IBOS", "Any Format" , "Braille1252"
         private void txtOctoBraille1252ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, IbosStyle);
+            IbosExport(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252);
         }
 
         // After selecting "IBOS", "Any Format" , "ASCII"
         private void brfASCIIToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_ASCII, IbosStyle);
+            IbosExport(BrailleFileHandler.FileEncoding.BRF_ASCII);
         }
 
         // After selecting "IBOS" "Any Format" , "Unicode"
         private void brfUnicodeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.ExportMusicBrailleToFile(BrailleFileHandler.FileEncoding.BRF_Unicode, IbosStyle);
+            IbosExport(BrailleFileHandler.FileEncoding.BRF_Unicode);
+        }
+
+
+        /// <summary>
+        /// Export in "IBOS" style. Only used for backward compatability with version 3.
+        /// Refactored in order to resemble the Export() method used for export using a predefined Braille device profile
+        /// In this way we can use the same "textBoxEmpty" trick as in Export() for making JAWS stop talking about irrelevant issues. 
+        /// </summary>
+        /// <param name="fileEncoding"></param>
+        private void IbosExport(BrailleFileHandler.FileEncoding fileEncoding)
+        {
+            textBoxEmpty.Show(); // Attract JAWS attension to make it stop talking
+            textBoxEmpty.Focus();
+            try
+            {
+                brailleMusicExportHandler.ExportMusicBrailleToFile(fileEncoding, IbosStyle);
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+            textBoxEmpty.Hide(); // Return JAWS atension to where it was 
         }
 
         #endregion OptionalFormat
