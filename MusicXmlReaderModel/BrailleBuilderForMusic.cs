@@ -378,12 +378,33 @@ namespace MusicXmlReaderModel
         }
 
 
+        // Adds "Dynamics" in MusicBraille known as "Nuances" and described in table 22 in BANA 2015        
+        public void AddDynamics(DynamicsElement dynamics )
+        {
+            if (null == dynamics) return;
+
+            Logger.LogCF(string.Format(": Dynamics={0}", dynamics.Value)); // Initial debugging
+            switch (dynamics.Value)
+            {
+                case DynamicsEnum.Pianissimi: Append(Pianissimo, "pp"); break;
+                case DynamicsEnum.Piano: Append(Piano, "p"); break;
+                case DynamicsEnum.Forte: Append(Forte, "f"); break;
+                case DynamicsEnum.Fortissimo: Append(Fortissimo, "ff"); break;
+                case DynamicsEnum.mezzoforte: Append(MezzoForte, "mf"); break;
+                case DynamicsEnum.mezzopiano: Append(MezzoPiano, "mp"); break;
+                default:
+                    Logger.LogCF(string.Format(": Unsupported Dynamics: Value={0}", dynamics.Value)); break;
+            }
+        }
+
+
         public void AddBrailleNotationsBeforeNoteOrRest(NotationsElement notations) // Some notations are added Before the note itself
         {
             const string functionName = "AddBrailleNotationsBeforeNoteOrRest";
             if (null == notations) return;
             //if (null == notations.Articulations) return;
 
+//            AddDynamics(notations.DynamicsElement);
 
             if (null != notations.TupletElement)
             {

@@ -22,6 +22,15 @@ namespace MusicXmlReaderModel
 
         private ArticulationsElement articulations;
 
+        internal DynamicsElement DynamicsElement
+        {
+
+            get
+            {
+                return dynamicsElement;
+            }
+        }
+
         internal ArticulationsElement Articulations
         {
             get

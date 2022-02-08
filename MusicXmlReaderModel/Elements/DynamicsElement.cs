@@ -22,6 +22,14 @@ namespace MusicXmlReaderModel
         string className = "DynamicsElement";
         //string value = "";
         DynamicsEnum value;
+        internal DynamicsEnum Value
+        {
+            get
+            {
+                return value;
+            }
+        }
+
         // Prevent construction
         private DynamicsElement()
         {

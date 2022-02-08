@@ -904,7 +904,23 @@ namespace MusicXmlReaderModel
                 bbBeforeNotes.AppendText(")");
             }
 
-      
+            // The following if {} was added 2022.02.08 in order to support at least some dynamics (implemented in BrailleBuilderForMusic.AddDynamics())
+            // Currently supported are p pp pf f ff fp
+            if (null != this.directionElements) // 
+            {
+                foreach (DirectionElement directionElement in this.directionElements)
+                {
+                    //DirectionTypeElement directionTypeElement = directionElement.DirectionTypeElement; // Not really used
+                    DynamicsElement dynamicsElement = directionElement.DynamicsElement;
+                    if (null != dynamicsElement)
+                    {
+                        bbBeforeNotes.AddDynamics(dynamicsElement);
+                    } 
+                }
+            }
+
+
+
             BrailleBuilderForMusic bbNotes = BrailleBuilderForMusic.Create(this.startTime);
             if (mergeAllParts)
             {
