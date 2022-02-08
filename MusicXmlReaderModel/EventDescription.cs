@@ -910,11 +910,28 @@ namespace MusicXmlReaderModel
             {
                 foreach (DirectionElement directionElement in this.directionElements)
                 {
-                    //DirectionTypeElement directionTypeElement = directionElement.DirectionTypeElement; // Not really used
+                    DirectionTypeElement directionTypeElement = directionElement.DirectionTypeElement;
+                    if (null != directionTypeElement)
+                    {
+                        DirectionTypeElement directionType = directionElement.DirectionTypeElement;
+                        if (null != directionType.WedgeElement)
+                        {
+                            Logger.LogCF(string.Format(": Unsupported: WedgeElement={0}",directionType.WedgeElement.Wedge.ToString())); // Creschendo and Diminuendo are WedgeTypeElemkent
+                        }
+
+                        if (null != directionType.WordsElement)
+                        {
+                            Logger.LogCF(string.Format(": Unsupported: WordsElement={0}",directionType.WordsElement.Words.ToString()));
+                        }
+
+                   }
+                     
                     DynamicsElement dynamicsElement = directionElement.DynamicsElement;
                     if (null != dynamicsElement)
                     {
                         bbBeforeNotes.AddDynamics(dynamicsElement);
+                        MusicBrailleState.ResetMusicBrailleState(); // Force an octave mark on the next note as required.
+                        // Octave marks do not contain dot1 dot2 or dot3, so this often removes the need to insert an extra dot3                        
                     } 
                 }
             }
