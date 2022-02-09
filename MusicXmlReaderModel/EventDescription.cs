@@ -917,6 +917,8 @@ namespace MusicXmlReaderModel
                         if (null != directionType.WedgeElement)
                         {
                             bbBeforeNotes.AddWedge(directionType.WedgeElement);
+                            MusicBrailleState.ResetMusicBrailleState(); // Force an octave mark on the next note.
+                            // The octave mark is not required in spec, but helps interpretor because it avoids dot1 dot2 and dot3 if the following item is a note.
                         }
 
                         if (null != directionType.WordsElement)
