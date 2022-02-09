@@ -382,11 +382,11 @@ namespace MusicXmlReaderModel
 
 
         // Adds "Dynamics" in MusicBraille known as "Nuances" and described in table 22 in BANA 2015        
-        public void AddDynamics(DynamicsElement dynamics )
+        public void AddDynamics(DynamicsElement dynamics , List<DynamicsEnum> values)
         {
             if (null == dynamics) return;
-
             Logger.LogCF(string.Format(": Dynamics={0}", dynamics.Value)); // Initial debugging
+            if ( values.Contains(dynamics.Value)) return; // Only add the same dynamics once
             switch (dynamics.Value)
             {
                 case DynamicsEnum.Pianissimi: Append(Pianissimo, "pp"); break;
@@ -398,12 +398,14 @@ namespace MusicXmlReaderModel
                 default:
                     Logger.LogCF(string.Format(": Unsupported Dynamics: Value={0}", dynamics.Value)); break;
             }
+            values.Add(dynamics.Value);
         }
 
 
-        public void AddWedge(WedgeElement wedgeElement)
+        public void AddWedge(WedgeElement wedgeElement, List<WedgeEnum> wedges)
         {
             if (null == wedgeElement) return;
+            if (wedges.Contains(wedgeElement.Wedge)) return;
             switch (wedgeElement.Wedge)
             {
                 
@@ -415,6 +417,7 @@ namespace MusicXmlReaderModel
                     Logger.LogCF(string.Format(": Unsupported: WedgeElement={0}", wedgeElement.Wedge.ToString()));
                     break;
             }
+            wedges.Add(wedgeElement.Wedge);
         }
 
 

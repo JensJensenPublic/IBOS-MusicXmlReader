@@ -9,7 +9,7 @@ namespace MusicXmlReaderModel
 {
     // https://usermanuals.musicxml.com/MusicXML/Content/EL-MusicXML-dynamics.htm
 
-    enum DynamicsEnum {
+    public enum DynamicsEnum {
         unknown,
         Forte,Fortissimo,Fortississimo,ffff,fffff,Fortepiano,
         sforzando,mezzoforte,mezzopiano,otherDynamics,

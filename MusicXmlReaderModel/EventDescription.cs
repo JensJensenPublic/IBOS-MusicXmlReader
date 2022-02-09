@@ -908,6 +908,8 @@ namespace MusicXmlReaderModel
             // Currently supported are p pp pf f ff fp
             if (null != this.directionElements) // 
             {
+                List<DynamicsEnum> dynamics = new List<DynamicsEnum>(); // For preventing multiple instances of dynamic at same place 
+                List<WedgeEnum> wedges = new List<WedgeEnum>(); // For preventing multiple instances of dynamic at same wedge 
                 foreach (DirectionElement directionElement in this.directionElements)
                 {
                     DirectionTypeElement directionTypeElement = directionElement.DirectionTypeElement;
@@ -916,7 +918,7 @@ namespace MusicXmlReaderModel
                         DirectionTypeElement directionType = directionElement.DirectionTypeElement;
                         if (null != directionType.WedgeElement)
                         {
-                            bbBeforeNotes.AddWedge(directionType.WedgeElement);
+                            bbBeforeNotes.AddWedge(directionType.WedgeElement,wedges);
                             MusicBrailleState.ResetMusicBrailleState(); // Force an octave mark on the next note.
                             // The octave mark is not required in spec, but helps interpretor because it avoids dot1 dot2 and dot3 if the following item is a note.
                         }
@@ -931,7 +933,7 @@ namespace MusicXmlReaderModel
                     DynamicsElement dynamicsElement = directionElement.DynamicsElement;
                     if (null != dynamicsElement)
                     {
-                        bbBeforeNotes.AddDynamics(dynamicsElement);
+                        bbBeforeNotes.AddDynamics(dynamicsElement,dynamics);
                         MusicBrailleState.ResetMusicBrailleState(); // Force an octave mark on the next note as required.
                         // Octave marks do not contain dot1 dot2 or dot3, so this often removes the need to insert an extra dot3                        
                     } 
