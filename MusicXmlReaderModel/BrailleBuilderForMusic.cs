@@ -59,6 +59,9 @@ namespace MusicXmlReaderModel
         public static readonly byte WordSign = 28; //  Must preceed all musical indications.
         public static readonly byte WordApostrophe = 32; // The word will be continued on the following line
         public static readonly byte[] CrescendoHairpin = new byte[] { 28, 9 };
+        public static readonly byte[] DiminuendoendoHairpin = new byte[] { 28, 25 };
+        public static readonly byte[] CrescendoHairpinEnd = new byte[] { 28, 18 };
+        public static readonly byte[] DiminuendoendoHairpinEnd = new byte[] { 28, 50 };
         public static readonly byte[] Crescendo = new byte[] { 28, 9, 23 };
         public static readonly byte[] DimShape = new byte[] { 28, 25 };
         public static readonly byte[] Forte = new byte[] { 28, 11 };
@@ -396,6 +399,24 @@ namespace MusicXmlReaderModel
                     Logger.LogCF(string.Format(": Unsupported Dynamics: Value={0}", dynamics.Value)); break;
             }
         }
+
+
+        public void AddWedge(WedgeElement wedgeElement)
+        {
+            if (null == wedgeElement) return;
+            switch (wedgeElement.Wedge)
+            {
+                
+                case WedgeEnum.diminuendo: Append(DiminuendoendoHairpin, "diminuendo");  break; // Creschendo and Diminuendo are WedgeTypeElemkent
+                case WedgeEnum.crescendo: Append(CrescendoHairpin, "crescendo"); break; // Creschendo and Diminuendo are WedgeTypeElemkent
+                case WedgeEnum.stopWwedge: Append(DiminuendoendoHairpinEnd, "diminuendoEnd"); break;
+                case WedgeEnum.continueWedge: Append(CrescendoHairpinEnd, "crescendoEnd"); break;
+                default:
+                    Logger.LogCF(string.Format(": Unsupported: WedgeElement={0}", wedgeElement.Wedge.ToString()));
+                    break;
+            }
+        }
+
 
 
         public void AddBrailleNotationsBeforeNoteOrRest(NotationsElement notations) // Some notations are added Before the note itself

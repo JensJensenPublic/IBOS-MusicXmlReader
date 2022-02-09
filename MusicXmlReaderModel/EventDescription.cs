@@ -916,7 +916,7 @@ namespace MusicXmlReaderModel
                         DirectionTypeElement directionType = directionElement.DirectionTypeElement;
                         if (null != directionType.WedgeElement)
                         {
-                            Logger.LogCF(string.Format(": Unsupported: WedgeElement={0}",directionType.WedgeElement.Wedge.ToString())); // Creschendo and Diminuendo are WedgeTypeElemkent
+                            bbBeforeNotes.AddWedge(directionType.WedgeElement);
                         }
 
                         if (null != directionType.WordsElement)
