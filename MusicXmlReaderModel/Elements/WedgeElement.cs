@@ -54,13 +54,12 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         {
-#warning TODO Localize
             switch (wedge)
             {
-                case WedgeEnum.crescendo: return "crescendo";
-                case WedgeEnum.diminuendo: return "diminuendo";
-                case WedgeEnum.stopWwedge: return "stop wedge";
-                case WedgeEnum.continueWedge: return "continue wedge";
+                case WedgeEnum.crescendo: return ResourcesForModel.Wedge_Crescendo;
+                case WedgeEnum.diminuendo: return ResourcesForModel.Wedge_Diminuendo;
+                case WedgeEnum.stopWwedge: return ResourcesForModel.Wedge_Stop_Wedge;
+                case WedgeEnum.continueWedge: return ResourcesForModel.Wedge_Continue_Wedge;
                 default:  return "";
             }
         }

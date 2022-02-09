@@ -2849,5 +2849,41 @@ namespace MusicXmlReaderModel {
                 return ResourceManager.GetString("UserSettings_ReaderNames_Octaves", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue wedge.
+        /// </summary>
+        internal static string Wedge_Continue_Wedge {
+            get {
+                return ResourceManager.GetString("Wedge_Continue_Wedge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crescendo.
+        /// </summary>
+        internal static string Wedge_Crescendo {
+            get {
+                return ResourceManager.GetString("Wedge_Crescendo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diminuendo.
+        /// </summary>
+        internal static string Wedge_Diminuendo {
+            get {
+                return ResourceManager.GetString("Wedge_Diminuendo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop wedge.
+        /// </summary>
+        internal static string Wedge_Stop_Wedge {
+            get {
+                return ResourceManager.GetString("Wedge_Stop_Wedge", resourceCulture);
+            }
+        }
     }
 }

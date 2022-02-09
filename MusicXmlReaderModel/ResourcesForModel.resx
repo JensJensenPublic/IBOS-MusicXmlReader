@@ -1062,4 +1062,20 @@
     <value>Staff</value>
     <comment>No Dutch</comment>
   </data>
+  <data name="Wedge_Continue_Wedge" xml:space="preserve">
+    <value>Continue wedge</value>
+    <comment>NoNL</comment>
+  </data>
+  <data name="Wedge_Crescendo" xml:space="preserve">
+    <value>Crescendo</value>
+    <comment>No NL</comment>
+  </data>
+  <data name="Wedge_Diminuendo" xml:space="preserve">
+    <value>Diminuendo</value>
+    <comment>No NL</comment>
+  </data>
+  <data name="Wedge_Stop_Wedge" xml:space="preserve">
+    <value>Stop wedge</value>
+    <comment>No NL</comment>
+  </data>
 </root>

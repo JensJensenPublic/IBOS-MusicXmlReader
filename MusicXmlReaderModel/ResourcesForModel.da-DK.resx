@@ -1067,4 +1067,20 @@
     <value>Staff</value>
     <comment>System means something else!</comment>
   </data>
+  <data name="Wedge_Continue_Wedge" xml:space="preserve">
+    <value>Fortsæt kile</value>
+    <comment>No NL</comment>
+  </data>
+  <data name="Wedge_Crescendo" xml:space="preserve">
+    <value>Crescendo</value>
+    <comment>NoNL</comment>
+  </data>
+  <data name="Wedge_Diminuendo" xml:space="preserve">
+    <value>Diminuendo</value>
+    <comment>No NL</comment>
+  </data>
+  <data name="Wedge_Stop_Wedge" xml:space="preserve">
+    <value>Stop kile</value>
+    <comment>No NL</comment>
+  </data>
 </root>
