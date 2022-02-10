@@ -833,7 +833,7 @@ string ToLocalizedString(InputCategoryEnum inputCategory,InputSubCategoryEnum su
                         case InputSubCategoryEnum.TextPiano: return "Piano";
                         case InputSubCategoryEnum.TextPianoPianissimo: return "Piano Pianissimo";
                         case InputSubCategoryEnum.TextFreeText:
-                            return ResourcesForBrailleMusicDecoder.InputCategoryEnum_EmbeddedTextFreeText;
+                            return ResourcesForBrailleMusicDecoder.InputCategoryEnum_EmbeddedTextFreeText + " ";
                         default: return "?";
                     }
                 case InputCategoryEnum.LineContinuation: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_LineContinuation;

@@ -398,6 +398,11 @@ namespace MusicXmlReaderModel
                 default:
                     Logger.LogCF(string.Format(": Unsupported Dynamics: Value={0}", dynamics.Value)); break;
             }
+            this.Append(dot3, "dot3");
+            // As required by BANA 2015 22.3(d): Must be followed by dot 3 if the following sign contains dot 1, 2, or 3, except when
+            // (1) it is the last sign of the measure,
+            // (2) the following sign is a word sign, or
+            // (3) a dot 3 representing a period is already present
             values.Add(dynamics.Value);
         }
 
@@ -417,6 +422,11 @@ namespace MusicXmlReaderModel
                     Logger.LogCF(string.Format(": Unsupported: WedgeElement={0}", wedgeElement.Wedge.ToString()));
                     break;
             }
+            this.Append(dot3, "dot3");
+            // As required by BANA 2015 22.3(d): Must be followed by dot 3 if the following sign contains dot 1, 2, or 3, except when
+            // (1) it is the last sign of the measure,
+            // (2) the following sign is a word sign, or
+            // (3) a dot 3 representing a period is already present
             wedges.Add(wedgeElement.Wedge);
         }
 

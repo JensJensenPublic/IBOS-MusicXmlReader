@@ -929,12 +929,15 @@ namespace MusicXmlReaderModel
                         if (null != directionType.WedgeElement)
                         {
                             bbBeforeNotes.AddWedge(directionType.WedgeElement,wedges);
+                            // BANA 2015 22.3 (e) require that an octave mark be given for the next note
                             MusicBrailleState.ResetMusicBrailleState(); // Force an octave mark on the next note.
                             // The octave mark is not required in spec, but helps interpretor because it avoids dot1 dot2 and dot3 if the following item is a note.
                         }
 
                         if (null != directionType.WordsElement)
                         {
+                            // BANA 2015 22.3 (e) require that an octave mark be given for the next note
+                            MusicBrailleState.ResetMusicBrailleState(); // Force an octave mark on the next note.
                             Logger.LogCF(string.Format(": Unsupported: WordsElement={0}",directionType.WordsElement.Words.ToString()));
                         }
 
@@ -944,6 +947,7 @@ namespace MusicXmlReaderModel
                     if (null != dynamicsElement)
                     {
                         bbBeforeNotes.AddDynamics(dynamicsElement,dynamics);
+                        // BANA 2015 22.3 (e) require that an octave mark be given for the next note
                         MusicBrailleState.ResetMusicBrailleState(); // Force an octave mark on the next note as required.
                         // Octave marks do not contain dot1 dot2 or dot3, so this often removes the need to insert an extra dot3                        
                     } 
