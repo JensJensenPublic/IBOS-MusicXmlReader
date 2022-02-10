@@ -906,6 +906,16 @@ namespace MusicXmlReaderModel
 
             // The following if {} was added 2022.02.08 in order to support at least some dynamics (implemented in BrailleBuilderForMusic.AddDynamics())
             // Currently supported are p pp pf f ff fp
+            //
+            // Important Notes for the developer:
+            // 1: Some items are always relates to a specific part and staff, for instance notes and pauses
+            // 2: Other items ate always related to the all parts, for instance repeat information and tempo information.
+            // 3: Finally, some items are sometimes related to all parts, sometimes to a specific part.
+            // For instance Category 3 covers dynamics: "p", "f", wedges (crescendo, diminuendo) and informal, informative text "flowing"
+            // It is not always clear for the sighted user how to interpret items of caregory 3, but it is often possible to make an educated guess.
+            // Unfortunately this program is not good at making educated guesses on the behalf of the user, so the handling of directionelement (catrgory 3 above)
+            // is not ecpected to be perfect in all cases!
+            // A better solution will probably involve references to the current user preferences in the same way as for notes.
             if (null != this.directionElements) // 
             {
                 List<DynamicsEnum> dynamics = new List<DynamicsEnum>(); // For preventing multiple instances of dynamic at same place 
