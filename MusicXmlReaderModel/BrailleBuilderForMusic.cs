@@ -686,6 +686,16 @@ namespace MusicXmlReaderModel
             // Add Octavemark, either caused by the interval rule or because this is the first note in a scorepart
             if ((MusicBrailleState.NeedOctaveMark(noteElement.Octave, noteElement.PitchValue.SemiTonesAboveC0)) || noteElement.IsFirstNoteInScorePart)
             {
+                if (0 != MusicBrailleState.BbDynamics.Braille.Count)
+                {
+                   // Place all new dynamics immediately in front of the Octave Mark
+                   // Maybe this should be refined as separate BBs to facilitate fitting to best linelength . Unpack()
+                    foreach (byte b in MusicBrailleState.BbDynamics.Braille)
+                    {
+                        this.Append(b, "");
+                    }
+                }
+                MusicBrailleState.ClearDynamics();
                 byte[] octaveMark = GetOctaveMark(noteElement.Octave);
                 Append(octaveMark, noteElement.Octave.ToString());
             }

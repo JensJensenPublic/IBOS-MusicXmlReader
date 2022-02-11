@@ -41,6 +41,7 @@ namespace MusicXmlReaderModel
         public const Int64 NoTimeStamp = -1;
         // The basic variables used for building up Braille strings
         private List<byte> braille = new List<byte>(); // Contains the raw Braille 6-Bit patterns
+        public List<byte> Braille { get { return braille; } }
         private StringBuilder text = new StringBuilder(); // Contains a (homemade) textrepresentation of the 6-bit patterns. Used by developers during debugging
         private Int64 timeStamp = NoTimeStamp;    // Contains the timestamp of the EventDescription which was used for generating this BrailleBuilder. -1 if not related to an EventDescription.  
         private List<BrailleBuilderBase> children = new List<BrailleBuilderBase>(); // Contains the BrailleBuilders used for building this BrailleBuilder

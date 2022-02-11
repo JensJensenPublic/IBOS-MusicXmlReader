@@ -7,6 +7,18 @@ namespace MusicXmlReaderModel
         private const int initalValue = 0;
         private static int lastSemiTonesAboveC0 = initalValue;
         private static int lastOctave = initalValue;
+        private static BrailleBuilderForMusic bbDynamics = BrailleBuilderForMusic.Create(0); // For holding dynamics until immediately before next octavemark to help the interpreter
+
+        /// <summary>
+        /// Used for saving Wedge information and dynamics information until the appearance of the next Octave Mark
+        /// This makes  it possible for the interpretator to use the Octave mark as a terminator (As well as using the ToText symbol)
+        /// </summary>
+        public static BrailleBuilderForMusic BbDynamics { get { return bbDynamics; } }
+
+        public static void ClearDynamics()
+        {
+            bbDynamics = BrailleBuilderForMusic.Create(0);
+        }
 
         /// <summary>
         /// Resets the state variables used deciding if Octave marks are needed to force generation of an octave mark for the next note.
