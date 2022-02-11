@@ -82,6 +82,16 @@ namespace MusicBrailleReader
 
 
         /// <summary>
+        /// Let the owning application emulate OnOpenClick()
+        /// </summary>
+        public void  OpenLatestDirectory()
+        {            
+            // This will cause JAWS to speak the name text from the menuItem as the Name of the FileOpen dialog.
+            string menuText = LocRes.ToolStripMenuItem_Files_OpenUsingNOTA;
+            OnOpen(menuText.Replace("&", ""), DecoderOptions.RegionalOptionsEnum.Danish);
+        }
+
+        /// <summary>
         /// To be called from program.cs if this form is used as a stand-alone program and no MusicXmlReader.Model class is available
         /// </summary>
         /// <returns></returns>
@@ -887,7 +897,12 @@ namespace MusicBrailleReader
 
         private void OnOpenClick(object sender, DecoderOptions.RegionalOptionsEnum regionalOptions)
         {
-            if (!SelectAndOpenFile(false, useRecentFile, GetOpenDialogName(sender))) return;
+            OnOpen(GetOpenDialogName(sender), regionalOptions);
+        }
+
+        private void OnOpen(string dialogTitle, DecoderOptions.RegionalOptionsEnum regionalOptions)
+        {
+            if (!SelectAndOpenFile(false, useRecentFile, dialogTitle)) return;
             ClearUI();
             currentInterpretation = GetInterpretation(regionalOptions, UserWarningOptions.details);
             ShowUserWarnings(UserWarningOptions.details, mask); // Show some  warnings in a detailled format

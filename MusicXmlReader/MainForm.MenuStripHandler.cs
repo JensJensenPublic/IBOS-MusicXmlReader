@@ -604,7 +604,9 @@ namespace MusicXmlReader
             musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(this as MusicBrailleReader.IMusicBrailleReaderClient, model);
             musicBrailleReaderMainform.ShowDialog(); // Using ShowDialog() instead of Show() will freeze MainForm until musicBrailleReaderMainform closes.
         }
-        
+
+ 
+
         private bool AppendLine(System.Text.StringBuilder sb, string fileName, BrailleFileHandler.FileEncoding encoding)
         {
             bool b = isValidBrailleMusic(fileName, encoding);
@@ -948,6 +950,7 @@ namespace MusicXmlReader
                 {
                     // Everything succeeded and the user accepted to open the BrailleREader
                     musicBrailleReaderMainform = MusicBrailleReader.MusicBrailleReaderMainForm.Create(this as MusicBrailleReader.IMusicBrailleReaderClient, model);
+                    musicBrailleReaderMainform.OpenLatestDirectory(); // Emulate that the user used the File menu to start an OPenDialog
                     musicBrailleReaderMainform.ShowDialog(); // Using ShowDialog() instead of Show() will freeze MainForm until musicBrailleReaderMainform closes.
                 }
             }
