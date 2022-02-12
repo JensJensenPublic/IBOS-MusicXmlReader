@@ -688,12 +688,9 @@ namespace MusicXmlReaderModel
             {
                 if (0 != MusicBrailleState.BbDynamics.Braille.Count)
                 {
-                   // Place all new dynamics immediately in front of the Octave Mark
-                   // Maybe this should be refined as separate BBs to facilitate fitting to best linelength . Unpack()
-                    foreach (byte b in MusicBrailleState.BbDynamics.Braille)
-                    {
-                        this.Append(b, "");
-                    }
+                    // Place all new dynamics immediately in front of the Octave Mark
+                    // Maybe this should be refined as separate BBs to facilitate fitting to best linelength . Unpack()
+                    this.Append(MusicBrailleState.BbDynamics.Braille, "Dynamics");
                 }
                 MusicBrailleState.ClearDynamics();
                 byte[] octaveMark = GetOctaveMark(noteElement.Octave);
