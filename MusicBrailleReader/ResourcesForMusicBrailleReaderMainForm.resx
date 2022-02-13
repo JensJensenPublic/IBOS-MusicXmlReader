@@ -132,6 +132,10 @@
   <data name="ListBoxOffsets_Name" xml:space="preserve">
     <value>Braille Music List</value>
   </data>
+  <data name="Message_AnUnexpectedErrorOccurred" xml:space="preserve">
+    <value>An unexpected error occurred. Details are found in the Log File</value>
+    <comment>NO NL</comment>
+  </data>
   <data name="Message_FoundInBrailleMusicFile" xml:space="preserve">
     <value>found in the Braille Music file</value>
   </data>

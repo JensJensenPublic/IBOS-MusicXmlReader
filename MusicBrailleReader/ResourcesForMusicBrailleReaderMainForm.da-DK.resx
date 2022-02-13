@@ -132,6 +132,10 @@
   <data name="ListBoxOffsets_Name" xml:space="preserve">
     <value>Punktnode liste</value>
   </data>
+  <data name="Message_AnUnexpectedErrorOccurred" xml:space="preserve">
+    <value>En uventet fejl opstod. Detaljer fremgår af logfilen.</value>
+    <comment>NO NL</comment>
+  </data>
   <data name="Message_FoundInBrailleMusicFile" xml:space="preserve">
     <value>fundet i punktnodefilen</value>
   </data>

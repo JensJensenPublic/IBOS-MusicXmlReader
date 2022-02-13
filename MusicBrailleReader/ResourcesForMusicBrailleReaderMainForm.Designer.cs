@@ -106,6 +106,15 @@ namespace MusicBrailleReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unexpected error occurred. Details are found in the Log File.
+        /// </summary>
+        internal static string Message_AnUnexpectedErrorOccurred {
+            get {
+                return ResourceManager.GetString("Message_AnUnexpectedErrorOccurred", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to found in the Braille Music file.
         /// </summary>
         internal static string Message_FoundInBrailleMusicFile {
