@@ -15,7 +15,7 @@ namespace MusicXmlReader
     /// By using these interfaces we avoid that the Model needs to know anything abour Windows Forms!
     /// This makes it much easier to reuse the Model for othea applications and other platforms.
     /// </summary>
-    public partial class MainForm : Form, IDebugDisplayerClient, IObjectCollection, IUtilityClient, IMusicBrailleReaderClient
+    public partial class MainForm : Form, IDebugDisplayerClient, IObjectCollection, IUtilityClient, IMusicBrailleReaderClient, IUserMessageBox
     {
         string className = "MainForm";
         bool developerMode; // Can be set in app.Config
@@ -62,6 +62,8 @@ namespace MusicXmlReader
                 Logger.Log(""); // An empty line to catch the eye
                 Logger.Log(string.Format("{0}.{1} Starting: Date={2}", className, functionName, System.DateTime.Now.ToLongDateString()));
                 Application.ApplicationExit += Application_ApplicationExit;
+
+                UserMessageBox.Init(this as IUserMessageBox); // Allows any part of the application with reference to MusicXmlReaderBase to show a MEssageBox 
 
                 string developerModeString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.DeveloperMode);
                 developerMode = ("yes" == developerModeString);
@@ -422,7 +424,19 @@ namespace MusicXmlReader
         {
             this.userPreferencesHandler.BrailleMusicDirectory = s;
         }
-#endregion 
+        #endregion
+
+#region IUserMessageBox
+        /// <summary>
+        /// Implement IUserMessageBox
+        /// Use this mechanism to show messageboxes from anywhere in the application, for instance in case of thrown exceptopns
+        /// </summary>
+        /// <param name="message"></param>
+        public void ShowUserMessageBox(string message)
+        {
+            MessageBox.Show(message, applicationName);
+        }
+#endregion
 
         /// <summary>
         ///  Clear the contents of the listbox showing the timed events (important when loading a new file)

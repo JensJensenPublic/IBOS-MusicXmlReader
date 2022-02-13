@@ -902,10 +902,18 @@ namespace MusicBrailleReader
 
         private void OnOpen(string dialogTitle, DecoderOptions.RegionalOptionsEnum regionalOptions)
         {
-            if (!SelectAndOpenFile(false, useRecentFile, dialogTitle)) return;
-            ClearUI();
-            currentInterpretation = GetInterpretation(regionalOptions, UserWarningOptions.details);
-            ShowUserWarnings(UserWarningOptions.details, mask); // Show some  warnings in a detailled format
+            try
+            {
+                if (!SelectAndOpenFile(false, useRecentFile, dialogTitle)) return;
+                ClearUI();
+                currentInterpretation = GetInterpretation(regionalOptions, UserWarningOptions.details);
+                ShowUserWarnings(UserWarningOptions.details, mask); // Show some  warnings in a detailled format
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+                UserMessageBox.Show("An unexpected error occurred. Please see the LogFile "); // Use the static UserMssageBox class implemented in MusicXmlReaderBase class to demonstrate how to use that class from anywhere !
+            }
         }
 
 

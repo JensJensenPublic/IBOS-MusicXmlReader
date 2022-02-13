@@ -41,11 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ILoggerLocationInfo.cs" />
+    <Compile Include="IUserMessageBox.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="LoggerCounters.cs" />
     <Compile Include="LoggerDelayCounter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInfo.cs" />
+    <Compile Include="UserMessageBox.cs" />
     <Compile Include="UserWarnings.cs" />
   </ItemGroup>
   <ItemGroup>
