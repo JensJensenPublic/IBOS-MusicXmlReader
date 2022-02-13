@@ -553,7 +553,16 @@ namespace BrailleMusicDecoder
                 case InputCategoryEnum.Punctuation:
                     typeNode = currentNote.SelectSingleNode("type");
                     XmlNode durationNode = currentNote.SelectSingleNode("duration");
-                    string durationValue = durationNode.FirstChild.Value;
+                    // If no duration is found we assume it is a grace note and log if it is not.
+                    if (null == durationNode)
+                    {
+                        if (null == currentNote.SelectSingleNode("grace"))
+                        {
+                            Logger.LogCF1(": CurrentNote has no duration and is not a GraceNote");
+                        }
+                        break;
+                    }
+                    string durationValue =  durationValue = durationNode.FirstChild.Value;                
                     int existingDuration = int.Parse(durationValue);
                     int newDuration = existingDuration;
                     int nDots = 0;
