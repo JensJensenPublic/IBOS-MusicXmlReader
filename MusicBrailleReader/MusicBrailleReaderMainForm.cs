@@ -907,12 +907,14 @@ namespace MusicBrailleReader
                 if (!SelectAndOpenFile(false, useRecentFile, dialogTitle)) return;
                 ClearUI();
                 currentInterpretation = GetInterpretation(regionalOptions, UserWarningOptions.details);
-                ShowUserWarnings(UserWarningOptions.details, mask); // Show some  warnings in a detailled format
+                throw new Exception("Only for debugging!"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                ShowUserWarnings(UserWarningOptions.details, mask); // Show some  warnings in a detailled format        
             }
             catch (Exception e)
             {
                 Logger.LogCFE(e);
-                UserMessageBox.Show("An unexpected error occurred. Please see the LogFile "); // Use the static UserMssageBox class implemented in MusicXmlReaderBase class to demonstrate how to use that class from anywhere !
+                string message = "An unexpected error occurred. Details are found in the Log File "; // Localize
+                ModelBaseMessageBox.Show(message,ModelBaseMessageBoxButtons.OK,ModelBaseMessageBoxIcon.Error); // Use the static UserMssageBox class implemented in MusicXmlReaderBase class to demonstrate how to use that class from anywhere !
             }
         }
 

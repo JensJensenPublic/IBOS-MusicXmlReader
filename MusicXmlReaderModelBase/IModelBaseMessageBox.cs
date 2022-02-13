@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace MusicXmlReaderModel
 {
-    public interface IUserMessageBox
+    public interface IModelBaseMessageBox
     {
-        void ShowUserMessageBox(string Message);
+        void ShowUserMessageBox(string Message, ModelBaseMessageBoxButtons buttons, ModelBaseMessageBoxIcon icon);
     }
 }

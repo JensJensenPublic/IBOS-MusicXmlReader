@@ -15,7 +15,7 @@ namespace MusicXmlReader
     /// By using these interfaces we avoid that the Model needs to know anything abour Windows Forms!
     /// This makes it much easier to reuse the Model for othea applications and other platforms.
     /// </summary>
-    public partial class MainForm : Form, IDebugDisplayerClient, IObjectCollection, IUtilityClient, IMusicBrailleReaderClient, IUserMessageBox
+    public partial class MainForm : Form, IDebugDisplayerClient, IObjectCollection, IUtilityClient, IMusicBrailleReaderClient, IModelBaseMessageBox
     {
         string className = "MainForm";
         bool developerMode; // Can be set in app.Config
@@ -63,7 +63,7 @@ namespace MusicXmlReader
                 Logger.Log(string.Format("{0}.{1} Starting: Date={2}", className, functionName, System.DateTime.Now.ToLongDateString()));
                 Application.ApplicationExit += Application_ApplicationExit;
 
-                UserMessageBox.Init(this as IUserMessageBox); // Allows any part of the application with reference to MusicXmlReaderBase to show a MEssageBox 
+                ModelBaseMessageBox.Init(this as IModelBaseMessageBox); // Allows any part of the application with reference to MusicXmlReaderBase to show a MEssageBox 
 
                 string developerModeString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.DeveloperMode);
                 developerMode = ("yes" == developerModeString);
@@ -432,9 +432,10 @@ namespace MusicXmlReader
         /// Use this mechanism to show messageboxes from anywhere in the application, for instance in case of thrown exceptopns
         /// </summary>
         /// <param name="message"></param>
-        public void ShowUserMessageBox(string message)
+        public void ShowUserMessageBox(string message, ModelBaseMessageBoxButtons buttons, ModelBaseMessageBoxIcon icon)
         {
-            MessageBox.Show(message, applicationName);
+            // Assuming that Windows.Forms enumerations do not change we can avoid the lookup
+            MessageBox.Show(message, applicationName, (MessageBoxButtons) buttons, (MessageBoxIcon) icon);
         }
 #endregion
 
