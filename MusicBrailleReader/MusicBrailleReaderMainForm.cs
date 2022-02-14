@@ -484,6 +484,7 @@ namespace MusicBrailleReader
             // Let the User select directory and filename, but suggest decent default values
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.FileName = Path.GetFileName(fileName);
+            saveFileDialog.Filter = string.Format("{0}|*{1}", "MusicXml", ".musicxml"); // No need to localize !
             DialogResult dialogResult = saveFileDialog.ShowDialog();
             if (DialogResult.OK != dialogResult) return false;
             string fileNameSelectedByUser = saveFileDialog.FileName;
