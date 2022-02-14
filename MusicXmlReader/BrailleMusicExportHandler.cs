@@ -161,9 +161,21 @@ namespace MusicXmlReader
             return this.ExportMusicBrailleToFile(brailleFileHandler, brailleRepresentations, null); // Use null as profileName because we do not use a profile in this case
         }
 
-
-
-
+        /// <summary>
+        /// Suggest a default path to (if possible) avoid the use of a saveFileDialog to select a directory
+        /// </summary>
+        /// <param name="defaultPath"></param>
+        /// <returns></returns>
+        DialogResult ShowExportSucceededMessageBox(string defaultPath)
+        {     
+            string text0 = "Conversion to Braille Music succeeded.";
+            string text1 = "Press Yes to save the result in the default subdirectory:";
+            string text2 = defaultPath;
+            string text3 = "Press No  to choose another directory:";
+            string text4 = "Press Cancel to cancel the operation.";
+            string text = string.Format("{0}\r\n\r\n{1}\r\n{2}\r\n\r\n{3}\r\n{4}", text0,text1, text2, text3, text4);
+            return messageHandler.ShowMessage(text, MessageBoxButtons.YesNoCancel,MessageBoxIcon.None);
+        }
 
 
         /// <summary>
@@ -209,12 +221,32 @@ namespace MusicXmlReader
                 Logger.LogCF(string.Format(": Created directory '{0}'", initialDirectory));
             }
 
-            //Prompt user for filename
-            DialogResult dialogResult = PromptForSavePath(xmlFileName, brailleFileHandler, initialDirectory);
-            if (DialogResult.OK != dialogResult)
+            // Suggest to use the default path to avoid the use of a saveFileDialog to select a directory (if the user accepts the dafault path)
+            DialogResult dialogResult0 = ShowExportSucceededMessageBox(fileFormatName); // Or fileFormatName + @"\" + scoreName;
+
+            bool useDefaultLocation = true;
+            switch (dialogResult0)
             {
-                Logger.LogCF(string.Format(": SaveDialog returned {0}", dialogResult.ToString()));
-                return BrailleMusicHandlerResult.ErrorUserCancelled;
+                case DialogResult.Yes: useDefaultLocation = true; break;
+                case DialogResult.No: useDefaultLocation = false; break;
+                default: return BrailleMusicHandlerResult.ErrorUserCancelled;
+            }
+
+            // Generate a full path to the files. 
+            string path = Path.Combine(initialDirectory, scoreName);
+            string location = path + brailleFileHandler.GetExtension();
+
+            if (!useDefaultLocation)
+            {
+                //Prompt user for a filename, actually representing a directory. This requires a SaveFileDialog, which is actually not well suited for selecting a directory!
+                DialogResult dialogResult = PromptForSavePath(xmlFileName, brailleFileHandler, initialDirectory);
+                if (DialogResult.OK != dialogResult)
+                {
+                    Logger.LogCF(string.Format(": SaveDialog returned {0}", dialogResult.ToString()));
+                    return BrailleMusicHandlerResult.ErrorUserCancelled;
+                }
+                // Overwrite the location with the path selected by the user
+                location = saveBrailleFileDialog.FileName;
             }
 
             // Create and write the files
@@ -225,18 +257,18 @@ namespace MusicXmlReader
                 if (staff.Enabled)
                 {
                     // Write the Music Braille representation of this staff to a file
-                    string userFileName = this.GetFileName(saveBrailleFileDialog.FileName, staff.MusicBrailleFilenameAttribute); // Insert staff number within part for grand staffs
+                    string userFileName = this.GetFileName(location, staff.MusicBrailleFilenameAttribute); // Insert staff number within part for grand staffs
                     this.WriteToFile(brailleFileHandler, staff.FullBrailleRepresentation, userFileName, ref allOk, fileNames, staff.BrailleMusicFormattedPageSize);
 
                     // If DeveloperModeSupport is enabled Repeat for Developer representation: 
                     // Create and use a separate subdirectory under  for the Development files under the directory of saveBrailleFileDialog.FileName and place the Developer files there.
-                    string developerFileName = this.GetDeveloperFileName(saveBrailleFileDialog.FileName, userFileName); // Returns null unless DeveloperModeSupport is enabled !!
+                    string developerFileName = this.GetDeveloperFileName(location, userFileName); // Returns null unless DeveloperModeSupport is enabled !!
                     this.WriteToFile(developerBrailleFileHandler, staff.FullDeveloperBrailleRepresentation, developerFileName, ref allOk, fileNames, staff.BrailleMusicFormattedPageSize);
                 }
             }
 
             // Report result
-            string directory = Path.GetDirectoryName(saveBrailleFileDialog.FileName);
+            string directory = Path.GetDirectoryName(location);
 
             BrailleMusicHandlerResult result =  ShowResult(brailleRepresentations.Staffs.Count, allOk,directory, fileNames); // To LogFile and MessageBox 
             if (allOk)
@@ -244,7 +276,7 @@ namespace MusicXmlReader
                 userPreferencesHandler.BrailleMusicDirectory = directory;
             }
             // If DeveloperMode is enabled we execute a simple regressiontest and report the result to the user/developer
-            this.ExecuteRegressionTest(initialDirectory, Path.GetDirectoryName(saveBrailleFileDialog.FileName), regressionTestDirectory);
+            this.ExecuteRegressionTest(initialDirectory, Path.GetDirectoryName(location), regressionTestDirectory);
             return result;
         }
 
