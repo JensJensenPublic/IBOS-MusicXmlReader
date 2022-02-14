@@ -623,4 +623,17 @@
     <value>Operation failed!</value>
     <comment>No NL</comment>
   </data>
+  <data name="Message_ConversionToMusicBrailleSucceeded" xml:space="preserve">
+    <value>Conversion to Music Braille succeeded</value>
+    <comment>NO NL</comment>
+  </data>
+  <data name="Message_PressCancelToCancelTheOperation" xml:space="preserve">
+    <value>Press cnacel to cancel the operation</value>
+  </data>
+  <data name="Message_PressNoToSelectAnotherDirectory" xml:space="preserve">
+    <value>Press no to select an other directory</value>
+  </data>
+  <data name="Message_PressYesToSaveTheResultInDefault" xml:space="preserve">
+    <value>Press Yes to save the result in the default directory</value>
+  </data>
 </root>

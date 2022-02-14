@@ -636,4 +636,20 @@
   <data name="Message_OperationFailed" xml:space="preserve">
     <value>Handlingen mislykkedes!</value>
   </data>
+  <data name="Message_ConversionToMusicBrailleSucceeded" xml:space="preserve">
+    <value>Konvertering til punktnoder lykkedes</value>
+    <comment>NO NL</comment>
+  </data>
+  <data name="Message_PressCancelToCancelTheOperation" xml:space="preserve">
+    <value>Tryk Annuller for at afbryde</value>
+    <comment>NO NL</comment>
+  </data>
+  <data name="Message_PressNoToSelectAnotherDirectory" xml:space="preserve">
+    <value>Tryk Nej for at vælge en anden mappe</value>
+    <comment>NO NL</comment>
+  </data>
+  <data name="Message_PressYesToSaveTheResultInDefault" xml:space="preserve">
+    <value>Tryk Ja for at gemme resultatet i default mappen</value>
+    <comment>NO NL</comment>
+  </data>
 </root>

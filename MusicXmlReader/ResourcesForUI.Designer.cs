@@ -277,6 +277,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Conversion to Music Braille succeeded.
+        /// </summary>
+        internal static string Message_ConversionToMusicBrailleSucceeded {
+            get {
+                return ResourceManager.GetString("Message_ConversionToMusicBrailleSucceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Directory.
         /// </summary>
         internal static string Message_Directory {
@@ -502,6 +511,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Press cnacel to cancel the operation.
+        /// </summary>
+        internal static string Message_PressCancelToCancelTheOperation {
+            get {
+                return ResourceManager.GetString("Message_PressCancelToCancelTheOperation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Press Cancel  to remain in IBOS MusicXmlReader..
         /// </summary>
         internal static string Message_PressCancelToRemain {
@@ -511,11 +529,29 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Press no to select an other directory.
+        /// </summary>
+        internal static string Message_PressNoToSelectAnotherDirectory {
+            get {
+                return ResourceManager.GetString("Message_PressNoToSelectAnotherDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Press OK to open the Braille Music files in IBOS Braille Music Reader..
         /// </summary>
         internal static string Message_PressOkToOpen {
             get {
                 return ResourceManager.GetString("Message_PressOkToOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press Yes to save the result in the default directory.
+        /// </summary>
+        internal static string Message_PressYesToSaveTheResultInDefault {
+            get {
+                return ResourceManager.GetString("Message_PressYesToSaveTheResultInDefault", resourceCulture);
             }
         }
         

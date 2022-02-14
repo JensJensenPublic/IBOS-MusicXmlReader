@@ -167,12 +167,12 @@ namespace MusicXmlReader
         /// <param name="defaultPath"></param>
         /// <returns></returns>
         DialogResult ShowExportSucceededMessageBox(string defaultPath)
-        {     
-            string text0 = "Conversion to Braille Music succeeded.";
-            string text1 = "Press Yes to save the result in the default subdirectory:";
+        {
+            string text0 = ResourcesForUI.Message_ConversionToMusicBrailleSucceeded;// "Conversion to Braille Music succeeded.";
+            string text1 = ResourcesForUI.Message_PressYesToSaveTheResultInDefault; //  "Press Yes to save the result in the default subdirectory:";
             string text2 = defaultPath;
-            string text3 = "Press No  to choose another directory:";
-            string text4 = "Press Cancel to cancel the operation.";
+            string text3 = ResourcesForUI.Message_PressNoToSelectAnotherDirectory; // Press No  to choose another directory:";
+            string text4 = ResourcesForUI.Message_PressCancelToCancelTheOperation; // "Press Cancel to cancel the operation.";
             string text = string.Format("{0}\r\n\r\n{1}\r\n{2}\r\n\r\n{3}\r\n{4}", text0,text1, text2, text3, text4);
             return messageHandler.ShowMessage(text, MessageBoxButtons.YesNoCancel,MessageBoxIcon.None);
         }
