@@ -241,7 +241,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version 4.1", "Version 4.1"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nota", "Nota", "{5271E7FB-5537-472D-803A-F54E923D5428}"
 	ProjectSection(SolutionItems) = preProject
+		Documentation\Third party documentation\Nota\106_109.pdf = Documentation\Third party documentation\Nota\106_109.pdf
+		Documentation\Third party documentation\Nota\319002.pef = Documentation\Third party documentation\Nota\319002.pef
 		Documentation\Third party documentation\Nota\390120.pef = Documentation\Third party documentation\Nota\390120.pef
+		Documentation\Third party documentation\Nota\390131.pef = Documentation\Third party documentation\Nota\390131.pef
 		Documentation\Third party documentation\Nota\ESC_Braillo-B650-SF.pdf = Documentation\Third party documentation\Nota\ESC_Braillo-B650-SF.pdf
 		Documentation\Third party documentation\Nota\ReadMe.JSJ.txt = Documentation\Third party documentation\Nota\ReadMe.JSJ.txt
 		Documentation\Third party documentation\Nota\VS  Punktprint i Nakskov - Bo Alstrup (CX64@kk.dk) - 2021-08-10 1111.eml = Documentation\Third party documentation\Nota\VS  Punktprint i Nakskov - Bo Alstrup (CX64@kk.dk) - 2021-08-10 1111.eml
