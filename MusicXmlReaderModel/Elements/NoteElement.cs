@@ -96,11 +96,8 @@ namespace MusicXmlReaderModel
 
         // Simple booleans describing special variants of notes
         bool unpitched; // Set if the note is marked as unpitched
-        public bool IsUnpitchedNote { get { return unpitched; } }
         bool isCueNote; // Set if the note is marked as a cue note
-        public bool IsCueNote { get { return isCueNote; } }
-        bool graceNote; // Set if the note is marked as a grace note
-        public bool IsGraceNote { get { return graceNote; } } 
+        bool graceNote; // Set if the note is marked as a grace note 
 
         // Values directly contained as attributes to the NoteElement
         bool measureAttributeValue = false;    // Default: This object is not a full measure pause
