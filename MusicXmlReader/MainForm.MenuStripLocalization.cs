@@ -128,6 +128,8 @@ namespace MusicXmlReader
             sibeliusToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Sibelius;
             startCapellaToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Capella;
             startFinaleToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Finale;
+            startBrailleMusicEditor2ToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_BrailleMusicEditor2;
+            startPhotoScoreToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_PhotoScore;
             logfileToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Logfile;
             openXMLFileLocationToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_OpenXmlFileLocation;
             openLogFileLocationToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Logfile_Location;

@@ -652,4 +652,12 @@
     <value>Tryk Ja for at gemme resultatet i default mappen</value>
     <comment>NO NL</comment>
   </data>
+  <data name="ToolStripMenuItem_Tools_BrailleMusicEditor2" xml:space="preserve">
+    <value>Braille Music &amp;Editor 2</value>
+    <comment>NO NL</comment>
+  </data>
+  <data name="ToolStripMenuItem_Tools_PhotoScore" xml:space="preserve">
+    <value>PhotoScore</value>
+    <comment>NO NL</comment>
+  </data>
 </root>

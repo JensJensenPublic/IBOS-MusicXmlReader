@@ -1186,6 +1186,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Braille Music &amp;Editor 2.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_BrailleMusicEditor2 {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_BrailleMusicEditor2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Capella.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_Capella {
@@ -1281,6 +1290,15 @@ namespace MusicXmlReader {
         internal static string ToolStripMenuItem_Tools_OpenXmlFileLocation {
             get {
                 return ResourceManager.GetString("ToolStripMenuItem_Tools_OpenXmlFileLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PhotoScore.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_PhotoScore {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_PhotoScore", resourceCulture);
             }
         }
         

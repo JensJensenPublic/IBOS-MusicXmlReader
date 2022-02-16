@@ -636,4 +636,12 @@
   <data name="Message_PressYesToSaveTheResultInDefault" xml:space="preserve">
     <value>Press Yes to save the result in the default directory</value>
   </data>
+  <data name="ToolStripMenuItem_Tools_BrailleMusicEditor2" xml:space="preserve">
+    <value>Braille Music &amp;Editor 2</value>
+    <comment>NO NL</comment>
+  </data>
+  <data name="ToolStripMenuItem_Tools_PhotoScore" xml:space="preserve">
+    <value>PhotoScore</value>
+    <comment>NO NL</comment>
+  </data>
 </root>
