@@ -1,0 +1,16 @@
+From
+
+https://eur02.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.neuratron.com%2Fneuraweb%2Fdownloads%2Fdownload.aspx&amp;data=04%7C01%7C%7C5d2231d53da94738cfa108d9e571f475%7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C637793099856144328%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=xJWx3x8tUInYBoHhMedOKXrw7caVENN3ub9LJJGqQtU%3D&amp;reserved=0
+
+downloaded PSNUltimate2020.1.exe and placed it in
+Download<Neuratrun\photoscore
+
+Using Username = ult9
+Password= scoreread
+
+Ran it
+”Installer alligevel”
+
+Product id = 210-2812518
+
+Reatart required.

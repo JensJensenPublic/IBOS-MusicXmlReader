@@ -256,6 +256,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PEF Specifications", "PEF S
 		Documentation\Third party documentation\PEF specifications\Links.txt = Documentation\Third party documentation\PEF specifications\Links.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PhotoScore", "PhotoScore", "{54805055-035C-4E0E-827E-C184A5D4519F}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Third party documentation\Photoscore\Installation and codes.txt = Documentation\Third party documentation\Photoscore\Installation and codes.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -520,5 +525,6 @@ Global
 		{183B8079-580D-41A2-B3DF-D8460B19A600} = {A4CA3C5D-13DF-45A2-8AA6-992E83AE9C1C}
 		{5271E7FB-5537-472D-803A-F54E923D5428} = {DCD9E9C9-E80A-4979-ABD9-0E19AB23E73B}
 		{A36294B9-3CE8-437B-AD39-D114792A4C5A} = {DCD9E9C9-E80A-4979-ABD9-0E19AB23E73B}
+		{54805055-035C-4E0E-827E-C184A5D4519F} = {DCD9E9C9-E80A-4979-ABD9-0E19AB23E73B}
 	EndGlobalSection
 EndGlobal
