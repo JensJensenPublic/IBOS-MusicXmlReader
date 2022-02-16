@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSynthesis", "MusicSynthesis\MusicSynthesis.csproj", "{529D2C78-0FBC-4BF1-B5AE-F348695546C2}"
 EndProject
@@ -242,9 +242,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Nota", "Nota", "{5271E7FB-5537-472D-803A-F54E923D5428}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Third party documentation\Nota\106_109.pdf = Documentation\Third party documentation\Nota\106_109.pdf
-		Documentation\Third party documentation\Nota\319002.pef = Documentation\Third party documentation\Nota\319002.pef
-		Documentation\Third party documentation\Nota\390120.pef = Documentation\Third party documentation\Nota\390120.pef
-		Documentation\Third party documentation\Nota\390131.pef = Documentation\Third party documentation\Nota\390131.pef
+		Documentation\Third party documentation\Nota\319002.Korbog 1 Bibelske motetter.pef = Documentation\Third party documentation\Nota\319002.Korbog 1 Bibelske motetter.pef
+		Documentation\Third party documentation\Nota\390120.Imudicos melodibog 28.pef = Documentation\Third party documentation\Nota\390120.Imudicos melodibog 28.pef
+		Documentation\Third party documentation\Nota\390131.Mariä Wiegenlied op.76 nr.5.pef = Documentation\Third party documentation\Nota\390131.Mariä Wiegenlied op.76 nr.5.pef
 		Documentation\Third party documentation\Nota\ESC_Braillo-B650-SF.pdf = Documentation\Third party documentation\Nota\ESC_Braillo-B650-SF.pdf
 		Documentation\Third party documentation\Nota\ReadMe.JSJ.txt = Documentation\Third party documentation\Nota\ReadMe.JSJ.txt
 		Documentation\Third party documentation\Nota\VS  Punktprint i Nakskov - Bo Alstrup (CX64@kk.dk) - 2021-08-10 1111.eml = Documentation\Third party documentation\Nota\VS  Punktprint i Nakskov - Bo Alstrup (CX64@kk.dk) - 2021-08-10 1111.eml
