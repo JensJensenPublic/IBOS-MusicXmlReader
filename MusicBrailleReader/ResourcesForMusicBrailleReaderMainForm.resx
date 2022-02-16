@@ -136,6 +136,14 @@
     <value>An unexpected error occurred. Details are found in the Log File</value>
     <comment>NO NL</comment>
   </data>
+  <data name="Message_ConversionToMusicXml_1" xml:space="preserve">
+    <value>NOTE: Conversion from Music Braille and back to MusicXml can not be expected to be 100% correct!</value>
+    <comment>NO NL</comment>
+  </data>
+  <data name="Message_ConversionToMusicXml_2" xml:space="preserve">
+    <value>This feature has only been implemented for demonstration purposes and as a development tool!</value>
+    <comment>NO NL</comment>
+  </data>
   <data name="Message_FoundInBrailleMusicFile" xml:space="preserve">
     <value>found in the Braille Music file</value>
   </data>

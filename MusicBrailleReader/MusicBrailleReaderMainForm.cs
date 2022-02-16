@@ -949,6 +949,10 @@ namespace MusicBrailleReader
 
         private void exporterSomMusicXmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            List<string> lines = new List<string>();
+            lines.Add(ResourcesForMusicBrailleReaderMainForm.Message_ConversionToMusicXml_1);
+            lines.Add(ResourcesForMusicBrailleReaderMainForm.Message_ConversionToMusicXml_2);
+            ShowMessageBox(applicationName, lines);
             ExportToFileAsMusicXml(musicXmlDocument);
         }
 

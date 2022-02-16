@@ -115,6 +115,24 @@ namespace MusicBrailleReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NOTE: Conversion from Music Braille and back to MusicXml can not be expected to be 100% correct!.
+        /// </summary>
+        internal static string Message_ConversionToMusicXml_1 {
+            get {
+                return ResourceManager.GetString("Message_ConversionToMusicXml_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This feature has only been implemented for demonstration purposes and as a development tool!.
+        /// </summary>
+        internal static string Message_ConversionToMusicXml_2 {
+            get {
+                return ResourceManager.GetString("Message_ConversionToMusicXml_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to found in the Braille Music file.
         /// </summary>
         internal static string Message_FoundInBrailleMusicFile {

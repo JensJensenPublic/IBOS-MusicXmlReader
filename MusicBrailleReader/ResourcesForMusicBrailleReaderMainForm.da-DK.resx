@@ -136,6 +136,14 @@
     <value>En uventet fejl opstod. Detaljer fremgår af logfilen.</value>
     <comment>NO NL</comment>
   </data>
+  <data name="Message_ConversionToMusicXml_1" xml:space="preserve">
+    <value>BEMÆRK: Konvertering fra punktnoder tilbage til MusicXml kan ikke forventes at være 100% korrekt!</value>
+    <comment>NO NL</comment>
+  </data>
+  <data name="Message_ConversionToMusicXml_2" xml:space="preserve">
+    <value>Denne  funktion er udelukkende implementeret til  demonstrationsformål og som et udviklingsredskab!</value>
+    <comment>NO NL</comment>
+  </data>
   <data name="Message_FoundInBrailleMusicFile" xml:space="preserve">
     <value>fundet i punktnodefilen</value>
   </data>
