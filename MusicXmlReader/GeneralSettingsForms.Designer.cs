@@ -184,14 +184,14 @@
             // 
             // textBoxPhotoScore
             // 
-            this.textBoxPhotoScore.Location = new System.Drawing.Point(172, 226);
+            this.textBoxPhotoScore.Location = new System.Drawing.Point(172, 224);
             this.textBoxPhotoScore.Name = "textBoxPhotoScore";
             this.textBoxPhotoScore.Size = new System.Drawing.Size(643, 20);
             this.textBoxPhotoScore.TabIndex = 96;
             // 
             // textBoxBrailleMusicEditor2
             // 
-            this.textBoxBrailleMusicEditor2.Location = new System.Drawing.Point(172, 259);
+            this.textBoxBrailleMusicEditor2.Location = new System.Drawing.Point(172, 253);
             this.textBoxBrailleMusicEditor2.Name = "textBoxBrailleMusicEditor2";
             this.textBoxBrailleMusicEditor2.Size = new System.Drawing.Size(643, 20);
             this.textBoxBrailleMusicEditor2.TabIndex = 97;
@@ -199,7 +199,7 @@
             // labelPhotoScore
             // 
             this.labelPhotoScore.AutoSize = true;
-            this.labelPhotoScore.Location = new System.Drawing.Point(30, 226);
+            this.labelPhotoScore.Location = new System.Drawing.Point(30, 227);
             this.labelPhotoScore.Name = "labelPhotoScore";
             this.labelPhotoScore.Size = new System.Drawing.Size(63, 13);
             this.labelPhotoScore.TabIndex = 98;
@@ -208,7 +208,7 @@
             // labelBrailleMusicEditor2
             // 
             this.labelBrailleMusicEditor2.AutoSize = true;
-            this.labelBrailleMusicEditor2.Location = new System.Drawing.Point(30, 261);
+            this.labelBrailleMusicEditor2.Location = new System.Drawing.Point(30, 256);
             this.labelBrailleMusicEditor2.Name = "labelBrailleMusicEditor2";
             this.labelBrailleMusicEditor2.Size = new System.Drawing.Size(105, 13);
             this.labelBrailleMusicEditor2.TabIndex = 99;
