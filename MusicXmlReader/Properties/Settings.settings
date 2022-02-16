@@ -119,5 +119,11 @@
     <Setting Name="HighSpeedEmbosserApplicationLocation" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="PhotoScoreExe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files (x86)\Neuratron\PhotoScore + NotateMe Ultimate 2020\Neuratron PhotoScore.exe</Value>
+    </Setting>
+    <Setting Name="BrailleMusicEditor2Exe" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files (x86)\Bme2\bme2.exe</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

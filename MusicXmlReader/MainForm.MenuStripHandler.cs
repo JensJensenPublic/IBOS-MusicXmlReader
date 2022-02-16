@@ -518,6 +518,22 @@ namespace MusicXmlReader
             this.ExecuteOnCurrentMusicXmlFile(this.userPreferencesHandler.FinaleExe, ResourcesForSettings.General_FinaleLocation);
         }
 
+        private void startPhotoScoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(this.userPreferencesHandler.PhotoScoreExe))
+            {
+                Utilities.RunExeWithArgument(this.userPreferencesHandler.PhotoScoreExe, "");
+            }
+        }
+
+        private void startBrailleMusicEditor2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(this.userPreferencesHandler.BrailleMusicEditor2Exe))
+            {
+                Utilities.RunExeWithArgument(this.userPreferencesHandler.BrailleMusicEditor2Exe, "");
+            }
+        }
+
         private void logfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             model.ExternalToolsHandler.ReadLogFile();

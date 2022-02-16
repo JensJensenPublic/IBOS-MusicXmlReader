@@ -225,6 +225,9 @@ namespace MusicXmlReader
         public string CapellaExe { get { return s.CapellaExe; } set { s.CapellaExe = value; } }
         public string FinaleExe { get { return s.FinaleExe; } set { s.FinaleExe = value; } }
 
+        public string PhotoScoreExe { get { return s.PhotoScoreExe; } set { s.PhotoScoreExe = value; } }
+        public string BrailleMusicEditor2Exe { get { return s.BrailleMusicEditor2Exe; } set { s.BrailleMusicEditor2Exe = value; } }
+
 
 
         /// <summary>

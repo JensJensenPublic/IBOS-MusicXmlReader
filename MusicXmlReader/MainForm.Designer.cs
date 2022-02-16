@@ -142,6 +142,8 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
+            this.startPhotoScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startBrailleMusicEditor2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -576,6 +578,8 @@
             this.sibeliusToolStripMenuItem,
             this.startCapellaToolStripMenuItem,
             this.startFinaleToolStripMenuItem,
+            this.startPhotoScoreToolStripMenuItem,
+            this.startBrailleMusicEditor2ToolStripMenuItem,
             this.logfileToolStripMenuItem,
             this.openLogFileLocationToolStripMenuItem,
             this.openXMLFileLocationToolStripMenuItem,
@@ -1076,6 +1080,20 @@
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
             // 
+            // startPhotoScoreToolStripMenuItem
+            // 
+            this.startPhotoScoreToolStripMenuItem.Name = "startPhotoScoreToolStripMenuItem";
+            this.startPhotoScoreToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.startPhotoScoreToolStripMenuItem.Text = "Start PhotoScore";
+            this.startPhotoScoreToolStripMenuItem.Click += new System.EventHandler(this.startPhotoScoreToolStripMenuItem_Click);
+            // 
+            // startBrailleMusicEditor2ToolStripMenuItem
+            // 
+            this.startBrailleMusicEditor2ToolStripMenuItem.Name = "startBrailleMusicEditor2ToolStripMenuItem";
+            this.startBrailleMusicEditor2ToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.startBrailleMusicEditor2ToolStripMenuItem.Text = "Start Braille Music Editor 2";
+            this.startBrailleMusicEditor2ToolStripMenuItem.Click += new System.EventHandler(this.startBrailleMusicEditor2ToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1222,6 +1240,8 @@
         private System.Windows.Forms.ToolStripMenuItem highSpeedEmbosserSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toHighSpeedEmbosserToolStripMenuItem;
         private System.Windows.Forms.TextBox textBoxEmpty;
+        private System.Windows.Forms.ToolStripMenuItem startPhotoScoreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startBrailleMusicEditor2ToolStripMenuItem;
     }
 }
 

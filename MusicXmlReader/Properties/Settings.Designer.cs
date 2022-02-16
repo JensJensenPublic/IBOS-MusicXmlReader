@@ -490,5 +490,30 @@ namespace MusicXmlReader.Properties {
                 this["HighSpeedEmbosserApplicationLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\Neuratron\\PhotoScore + NotateMe Ultimate 2020\\Neuratron Ph" +
+            "otoScore.exe")]
+        public string PhotoScoreExe {
+            get {
+                return ((string)(this["PhotoScoreExe"]));
+            }
+            set {
+                this["PhotoScoreExe"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files (x86)\\Bme2\\bme2.exe")]
+        public string BrailleMusicEditor2Exe {
+            get {
+                return ((string)(this["BrailleMusicEditor2Exe"]));
+            }
+            set {
+                this["BrailleMusicEditor2Exe"] = value;
+            }
+        }
     }
 }

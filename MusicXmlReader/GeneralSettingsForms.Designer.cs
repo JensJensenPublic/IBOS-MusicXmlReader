@@ -44,6 +44,10 @@
             this.textBoxCapella = new System.Windows.Forms.TextBox();
             this.textBoxFinale = new System.Windows.Forms.TextBox();
             this.labelFinale = new System.Windows.Forms.Label();
+            this.textBoxPhotoScore = new System.Windows.Forms.TextBox();
+            this.textBoxBrailleMusicEditor2 = new System.Windows.Forms.TextBox();
+            this.labelPhotoScore = new System.Windows.Forms.Label();
+            this.labelBrailleMusicEditor2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelMusicXmlFile
@@ -80,7 +84,7 @@
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(740, 226);
+            this.buttonOK.Location = new System.Drawing.Point(740, 296);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 90;
@@ -90,7 +94,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(605, 226);
+            this.buttonCancel.Location = new System.Drawing.Point(612, 296);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 80;
@@ -178,11 +182,47 @@
             this.labelFinale.TabIndex = 95;
             this.labelFinale.Text = "Finale";
             // 
+            // textBoxPhotoScore
+            // 
+            this.textBoxPhotoScore.Location = new System.Drawing.Point(172, 226);
+            this.textBoxPhotoScore.Name = "textBoxPhotoScore";
+            this.textBoxPhotoScore.Size = new System.Drawing.Size(643, 20);
+            this.textBoxPhotoScore.TabIndex = 96;
+            // 
+            // textBoxBrailleMusicEditor2
+            // 
+            this.textBoxBrailleMusicEditor2.Location = new System.Drawing.Point(172, 259);
+            this.textBoxBrailleMusicEditor2.Name = "textBoxBrailleMusicEditor2";
+            this.textBoxBrailleMusicEditor2.Size = new System.Drawing.Size(643, 20);
+            this.textBoxBrailleMusicEditor2.TabIndex = 97;
+            // 
+            // labelPhotoScore
+            // 
+            this.labelPhotoScore.AutoSize = true;
+            this.labelPhotoScore.Location = new System.Drawing.Point(30, 226);
+            this.labelPhotoScore.Name = "labelPhotoScore";
+            this.labelPhotoScore.Size = new System.Drawing.Size(63, 13);
+            this.labelPhotoScore.TabIndex = 98;
+            this.labelPhotoScore.Text = "PhotoScore";
+            // 
+            // labelBrailleMusicEditor2
+            // 
+            this.labelBrailleMusicEditor2.AutoSize = true;
+            this.labelBrailleMusicEditor2.Location = new System.Drawing.Point(30, 261);
+            this.labelBrailleMusicEditor2.Name = "labelBrailleMusicEditor2";
+            this.labelBrailleMusicEditor2.Size = new System.Drawing.Size(105, 13);
+            this.labelBrailleMusicEditor2.TabIndex = 99;
+            this.labelBrailleMusicEditor2.Text = "Braille Music Editor 2";
+            // 
             // GeneralSettingsForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 261);
+            this.ClientSize = new System.Drawing.Size(824, 331);
+            this.Controls.Add(this.labelBrailleMusicEditor2);
+            this.Controls.Add(this.labelPhotoScore);
+            this.Controls.Add(this.textBoxBrailleMusicEditor2);
+            this.Controls.Add(this.textBoxPhotoScore);
             this.Controls.Add(this.labelFinale);
             this.Controls.Add(this.textBoxFinale);
             this.Controls.Add(this.textBoxCapella);
@@ -225,5 +265,9 @@
         private System.Windows.Forms.TextBox textBoxCapella;
         private System.Windows.Forms.TextBox textBoxFinale;
         private System.Windows.Forms.Label labelFinale;
+        private System.Windows.Forms.TextBox textBoxPhotoScore;
+        private System.Windows.Forms.TextBox textBoxBrailleMusicEditor2;
+        private System.Windows.Forms.Label labelPhotoScore;
+        private System.Windows.Forms.Label labelBrailleMusicEditor2;
     }
 }

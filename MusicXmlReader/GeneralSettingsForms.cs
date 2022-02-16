@@ -75,6 +75,10 @@ public GeneralSettingsForms(string applicationName,  UserPreferencesHandler user
             InitTextBoxAndLabel(textBoxSibelius, labelSibelius, ResourcesForSettings.General_SibeliusLocation, userPreferences.SibeliusExe, false);
             InitTextBoxAndLabel(textBoxCapella, labelCapella, ResourcesForSettings.General_CapellaLocation, userPreferences.CapellaExe, false);
             InitTextBoxAndLabel(textBoxFinale, labelFinale, ResourcesForSettings.General_FinaleLocation, userPreferences.FinaleExe, false);
+
+            InitTextBoxAndLabel(textBoxPhotoScore, labelPhotoScore, "PhotoScoreLocation", userPreferences.PhotoScoreExe, false);
+            InitTextBoxAndLabel(textBoxBrailleMusicEditor2, labelBrailleMusicEditor2, "BrailleMusicEditor2Location", userPreferences.BrailleMusicEditor2Exe, false);
+
         }
 
 
