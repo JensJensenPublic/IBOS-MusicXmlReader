@@ -498,6 +498,19 @@ namespace MusicXmlReader
             }
         }
 
+        private void Execute(string executable,string argument,string settingName)
+        {
+            if (File.Exists(executable))
+            {
+                Utilities.RunExeWithArgument(executable,argument);
+            }
+            else
+            {
+                messageHandler.ShowMessage(GetExternalProgramNotFoundMessage(executable, ResourcesForUI.ToolStripMenuItem_Settings_General, settingName));
+            }
+        }
+
+
         private void museScoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.ExecuteOnCurrentMusicXmlFile(this.userPreferencesHandler.MuseScoreExe, ResourcesForSettings.General_MuseScoreLocation);
@@ -517,21 +530,15 @@ namespace MusicXmlReader
         {
             this.ExecuteOnCurrentMusicXmlFile(this.userPreferencesHandler.FinaleExe, ResourcesForSettings.General_FinaleLocation);
         }
-
+ 
         private void startPhotoScoreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (File.Exists(this.userPreferencesHandler.PhotoScoreExe))
-            {
-                Utilities.RunExeWithArgument(this.userPreferencesHandler.PhotoScoreExe, "");
-            }
+            Execute(this.userPreferencesHandler.PhotoScoreExe,"", ResourcesForSettings.General_PhotoScoreLocation);        
         }
 
         private void startBrailleMusicEditor2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (File.Exists(this.userPreferencesHandler.BrailleMusicEditor2Exe))
-            {
-                Utilities.RunExeWithArgument(this.userPreferencesHandler.BrailleMusicEditor2Exe, "");
-            }
+            Execute(this.userPreferencesHandler.BrailleMusicEditor2Exe,"",ResourcesForSettings.General_BrailleMusicEditor2Location);
         }
 
         private void logfileToolStripMenuItem_Click(object sender, EventArgs e)
