@@ -86,6 +86,12 @@ namespace MusicXmlReaderModel
             this.charsPerLine = charsPerLine;
             this.linesPerForm = linesPerForm;
 
+            // Retreive some information for the PEF meta information.
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetEntryAssembly();
+            string programName = assembly.GetName().Name.ToString();
+            string programVersion = assembly.GetName().Version.ToString();
+
+
             // The following code is inspired by C:\Users\Jens\Dropbox\Root\Visual Studio 2015\Projects\MusicXmlReaderUI\BrailleMusicDecoder\MusicXmlBuilder.cs
             doc = new XmlDocument();
             // <? xml version = "1.0" encoding = "utf-8" ?>
