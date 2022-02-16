@@ -234,4 +234,12 @@
     <value>High speed embosser profile</value>
     <comment>MISSING DUTCH</comment>
   </data>
+  <data name="General_BrailleMusicEditor2Location" xml:space="preserve">
+    <value>Braille Music Editor 2 path</value>
+    <comment>MISSING NL</comment>
+  </data>
+  <data name="General_PhotoScoreLocation" xml:space="preserve">
+    <value>PhotoScore path</value>
+    <comment>MISING NL</comment>
+  </data>
 </root>

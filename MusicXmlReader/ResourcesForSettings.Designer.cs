@@ -304,6 +304,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Braille Music Editor 2 path.
+        /// </summary>
+        internal static string General_BrailleMusicEditor2Location {
+            get {
+                return ResourceManager.GetString("General_BrailleMusicEditor2Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Capella path.
         /// </summary>
         internal static string General_CapellaLocation {
@@ -363,6 +372,15 @@ namespace MusicXmlReader {
         internal static string General_MuseScoreLocation {
             get {
                 return ResourceManager.GetString("General_MuseScoreLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PhotoScore path.
+        /// </summary>
+        internal static string General_PhotoScoreLocation {
+            get {
+                return ResourceManager.GetString("General_PhotoScoreLocation", resourceCulture);
             }
         }
         

@@ -76,8 +76,8 @@ public GeneralSettingsForms(string applicationName,  UserPreferencesHandler user
             InitTextBoxAndLabel(textBoxCapella, labelCapella, ResourcesForSettings.General_CapellaLocation, userPreferences.CapellaExe, false);
             InitTextBoxAndLabel(textBoxFinale, labelFinale, ResourcesForSettings.General_FinaleLocation, userPreferences.FinaleExe, false);
 
-            InitTextBoxAndLabel(textBoxPhotoScore, labelPhotoScore, "PhotoScoreLocation", userPreferences.PhotoScoreExe, false);
-            InitTextBoxAndLabel(textBoxBrailleMusicEditor2, labelBrailleMusicEditor2, "BrailleMusicEditor2Location", userPreferences.BrailleMusicEditor2Exe, false);
+            InitTextBoxAndLabel(textBoxPhotoScore, labelPhotoScore, ResourcesForSettings.General_PhotoScoreLocation, userPreferences.PhotoScoreExe, false);
+            InitTextBoxAndLabel(textBoxBrailleMusicEditor2, labelBrailleMusicEditor2, ResourcesForSettings.General_BrailleMusicEditor2Location, userPreferences.BrailleMusicEditor2Exe, false);
 
         }
 
