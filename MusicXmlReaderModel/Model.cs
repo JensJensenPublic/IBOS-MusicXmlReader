@@ -53,6 +53,7 @@ namespace MusicXmlReaderModel
         DefaultsElement defaults; // Score-wide defaults for scaling, layout and appearance. Exactly one DefaultElement is expected per score.
         public DefaultsElement Defaults { get { return defaults; } }
         //private LoggerProxy loggerProxy;
+        MetaInformation metaInformation = null; // Holds filename, title, composer, arranger etc. related to a specific score
 
         string executingAssembly;
         string executingDirectory;
@@ -79,7 +80,7 @@ namespace MusicXmlReaderModel
             get { return (null == screenReaderAPI) ? "" : screenReaderAPI.ScreenReaderName; }
         }
 
-        MetaInformation metaInformation = MetaInformation.Create(); // Holds filename, title, composer, arranger etc.
+
 
         /// <summary>
         /// Create to be used by UI-less applications

@@ -25,7 +25,7 @@ namespace MusicBrailleReader
             Model.BrailleStyleEnum brailleStyle = Model.BrailleStyleEnum.BANA2015;
             string profileName = "Punktprinter";
             BrailleFileHandler.FileEncoding fileEncoding = BrailleFileHandler.FileEncoding.BRF_ASCII;
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, charsPerLine, linesPerPage);
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, charsPerLine, linesPerPage, model.MetaInformation);
             StaffList brailleRepresentations = model.GetBrailleRepresentation(brailleFileHandler.CharsPerLine, brailleFileHandler.LinesPerForm, brailleStyle);
             this.ExportMusicBrailleToFile(brailleFileHandler, brailleRepresentations, profileName);
         }

@@ -65,6 +65,8 @@ namespace MusicXmlReaderModel
 
     /// <summary>
     /// Class for holding all meta information , such as file name, title, composer etc
+    /// This class is intended for collecting the information from various sources and then passing it
+    /// as a parameter to the BrailleFileHandler
     /// </summary>
     public class MetaInformation
     {

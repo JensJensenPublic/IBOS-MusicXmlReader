@@ -21,7 +21,7 @@ namespace MusicXmlReaderModel
         protected int charsPerLine = 14;
         public int CharsPerLine { get { return charsPerLine; } }
         protected int linesPerForm = 32;
-        public int LinesPerForm { get { return linesPerForm; } }
+        public int LinesPerForm { get { return linesPerForm; } }    
 
         protected byte[] byteMap; //  Maps from a UNICODE 0x2800..0x283F char to a byte.    Is filled in during initialization !
         protected char[] charMap; //  Maps from a byte to a UNICODE char in 0x2800..0x283F  Is filled in during initialization !
@@ -381,7 +381,27 @@ namespace MusicXmlReaderModel
 
         // Construction
 
+        /// <summary>
+        /// For construction from all kinds of testprograms, not needing metainformation. Maps to the other Create() with metaInformation = null
+        /// </summary>
+        /// <param name="fileEncoding"></param>
+        /// <param name="charsPerLine"></param>
+        /// <param name="linesPerForm"></param>
+        /// <returns></returns>
         public static BrailleFileHandler Create(FileEncoding fileEncoding, int charsPerLine, int linesPerForm)
+        {
+            return BrailleFileHandler.Create(fileEncoding, charsPerLine, linesPerForm, null);
+        }
+
+        /// <summary>
+        /// For creation from the MusicXmlReader application
+        /// </summary>
+        /// <param name="fileEncoding"></param>
+        /// <param name="charsPerLine"></param>
+        /// <param name="linesPerForm"></param>
+        /// <param name="metaInformation"></param>
+        /// <returns></returns>
+        public static BrailleFileHandler Create(FileEncoding fileEncoding, int charsPerLine, int linesPerForm, MetaInformation metaInformation)
         {
             switch (fileEncoding)
             {
@@ -390,7 +410,7 @@ namespace MusicXmlReaderModel
                 case FileEncoding.BRF_ASCII_Ex: return new BrailleFileHandler_BRF_ASCII_Ex(charsPerLine, linesPerForm);
                 case FileEncoding.BRF_Unicode: return new BrailleFileHandler_BRF_Unicode(charsPerLine, linesPerForm);
                 case FileEncoding.BRL_OctoBraille_1252: return new BrailleFileHandler_BRL_OctoBraille_1252(charsPerLine, linesPerForm);
-                case FileEncoding.PEF: return new BrailleFileHandler_PEF(charsPerLine, linesPerForm);
+                case FileEncoding.PEF: return new BrailleFileHandler_PEF(charsPerLine, linesPerForm,metaInformation);
                 // Uses the generic class and an Encoding parameter
                 case FileEncoding.BRF_Unicode_utf8: return new BrailleFileHandler_Generic(charsPerLine, linesPerForm, ".brf", Encoding.UTF8);
                 case FileEncoding.BRF_Unicode_utf16: return new BrailleFileHandler_Generic(charsPerLine, linesPerForm, ".brf", Encoding.Unicode);

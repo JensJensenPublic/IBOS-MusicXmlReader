@@ -109,7 +109,7 @@ namespace MusicXmlReader
             // In this simple implementation the file format is determined by the localization !
 
             //BrailleFileHandler.FileEncoding fileEncoding = GetCultureDependentEncoding();
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, charsPerLine, linesPerPage);
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(fileEncoding, charsPerLine, linesPerPage, model.MetaInformation);
             StaffList brailleRepresentations = model.GetBrailleRepresentation(brailleFileHandler.CharsPerLine, brailleFileHandler.LinesPerForm, brailleStyle);
             return this.ExportMusicBrailleToFile(brailleFileHandler, brailleRepresentations,profileName);
         }

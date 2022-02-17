@@ -13,6 +13,7 @@ namespace MusicXmlReaderModel
         XmlDocument doc; // For building the PEF file as an XmlDocument
         XmlNode metaElement; // The element where the metainformation is placed by the "WriteToFile method"
         XmlNode currentSectionElement; // The element where the dynamic information is placed by the "WriteToFile method"
+        private MetaInformation metaInformation; // Various metainformation for the current score
 
         int maxRows = 0; // Statistics only. Max number of rows for a page
         int maxCols = 0; // Statistics only. MAx number of coloumns for a line
@@ -81,10 +82,11 @@ namespace MusicXmlReaderModel
         }
 
 
-        internal BrailleFileHandler_PEF(int charsPerLine, int linesPerForm)
+        internal BrailleFileHandler_PEF(int charsPerLine, int linesPerForm, MetaInformation metaInformation)
         {
             this.charsPerLine = charsPerLine;
             this.linesPerForm = linesPerForm;
+            this.metaInformation = (null == metaInformation) ? MetaInformation.Create() : metaInformation;   // If null, Create a dummy MetaInformation, holding no information at all.    
 
             // Retreive some information for the PEF meta information.
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetEntryAssembly();
