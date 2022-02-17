@@ -9,6 +9,31 @@ namespace MusicXmlReaderModel
 
     /// <summary>
     /// Class for holding a simple name/value pair of meta information
+    /// The class is heavily inspired by the definitions found at 
+    /// 
+    /// http://braillespecs.github.io/pef/pef-specification.html
+    /// 
+    /// This document (amongst other information) contains the following list of the 15 Dublin Core elements: 
+    ///
+    ///dc:format(mandatory)
+    ///dc:identifier(mandatory)
+    ///dc:title(optional)
+    ///dc:creator(zero or more)
+    ///dc:subject(zero or more)
+    ///dc:description(optional)
+    ///dc:publisher(zero or more)
+    ///dc:contributor(zero or more)
+    ///dc:date(optional)
+    ///dc:type(zero or more)
+    ///dc:source(zero or more)
+    ///dc:language(zero or more)
+    ///dc:relation(zero or more)
+    ///dc:coverage(zero or more)
+    ///dc:rights(zero or more)
+    ///
+    /// These elements are collected from several parts of the application.
+    /// Some of them primarily depend on the score currently being processed, while others are common for all scores.
+    /// 
     /// </summary>
     public class MetaInfoItem
     {
