@@ -87,17 +87,10 @@ namespace MusicXmlReaderModel
         }
     }
 
-
-    /// <summary>
-    /// Class for holding all meta information , such as file name, title, composer etc
-    /// This class is intended for collecting the information from various sources and then passing it
-    /// as a parameter to the BrailleFileHandler
-    /// </summary>
-    public class MetaInformation
+    public class DublinCore
     {
-        // Conveniency: Init everything to empty strings!
-
         // The following 15 items are found in the PEF specification
+        // Conveniency: Init everything to empty strings!
         private MetaInfoItem format = MetaInfoItem.Create();     // Found in NOTA sample files with constant value "application/x-pef+xml"
         private MetaInfoItem identifier = MetaInfoItem.Create(); // Found in NOTA sample files with sample value "390120"
         private MetaInfoItem title = MetaInfoItem.Create();      // Found in NOTA sample files with sample value "Imudico's melodibog 28, for el-orgel, klaver og guitar med becifring og akkord-diagrammer (udeladt i punktudgaven)"
@@ -114,8 +107,36 @@ namespace MusicXmlReaderModel
         private MetaInfoItem coverage = MetaInfoItem.Create();
         private MetaInfoItem rights = MetaInfoItem.Create();
 
+        //Accessors
+        public MetaInfoItem Creator { get { return creator; } set { creator = value; } }
+        public MetaInfoItem Source { get { return source; } set { source = value; } }
 
-        // The following items are found i .pef files from NOTA received as sample files in february 2022 but are not part of the official pef definition
+        private DublinCore()
+        { }
+
+        public static DublinCore Create()
+        {
+            return new DublinCore();
+        }
+
+    }
+
+
+
+
+    /// <summary>
+    /// Class for holding all meta information , such as file name, title, composer etc
+    /// This class is intended for collecting the information from various sources and then passing it
+    /// as a parameter to the BrailleFileHandler
+    /// </summary>
+    public class MetaInformation
+    {
+        // Conveniency: Init everything to empty strings!
+
+        private DublinCore dublincore = DublinCore.Create(); // Holds exactly the 15 items defined by DublinCore
+        public DublinCore DublinCore { get { return dublincore; } }
+
+        // The following items are found in the MusicXml file (See MusicXmlInterpretor.cs) but are not part of the official pef definition
         private MetaInfoItem fileName = MetaInfoItem.Create();
         private MetaInfoItem work = MetaInfoItem.Create();
         private MetaInfoItem movementTitle = MetaInfoItem.Create();
@@ -126,9 +147,7 @@ namespace MusicXmlReaderModel
         public MetaInfoItem FileName { get { return fileName; } set { fileName = value; } }
         public MetaInfoItem Work { get { return work; } set { work = value; } }
         public MetaInfoItem MovementTitle { get { return movementTitle; } set { movementTitle = value; } }
-        public MetaInfoItem MovementNumber { get { return movementNumber; } set { movementNumber = value; } }
-        public MetaInfoItem Creator { get { return creator; } set { creator = value; } }
-        public MetaInfoItem Source { get { return source; } set { source = value; } }
+        public MetaInfoItem MovementNumber { get { return movementNumber; } set { movementNumber = value; } }    
         public MetaInfoItem Encoding { get { return encoding; } set { encoding = value; Logger.CurrentEncoding = encoding.ToString(); } }
    
 

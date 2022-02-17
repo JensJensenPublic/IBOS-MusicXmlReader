@@ -126,7 +126,7 @@ namespace MusicXmlReaderModel
                 case "creator":
                     CreatorElement creatorElement = CreatorElement.Create(node);
                     allMusicXmlObjecsts.Add(creatorElement);
-                    metaInformation.Creator = MetaInfoItem.Create(creatorElement.Name, creatorElement.Value);
+                    metaInformation.DublinCore.Creator = MetaInfoItem.Create(creatorElement.Name, creatorElement.Value);
                     continueRecursion = false;
                     break;
                 case "rights":
@@ -261,7 +261,7 @@ namespace MusicXmlReaderModel
                 case "source":
                     SimpleTextElement source = SimpleTextElement.Create(node, "Source");
                     allMusicXmlObjecsts.Add(source);
-                    metaInformation.Source = MetaInfoItem.Create(source.Name, source.Text);
+                    metaInformation.DublinCore.Source = MetaInfoItem.Create(source.Name, source.Text);
                     continueRecursion = false;
                     break;
                 case "miscellaneous":

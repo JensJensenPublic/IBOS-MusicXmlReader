@@ -264,8 +264,8 @@ namespace MusicXmlReader
                                             , model.MetaInformation.MovementTitle // 2
                                             , model.MetaInformation.MovementNumber // 3
                                             , model.MetaInformation.Work // 4
-                                            , model.MetaInformation.Source // 5 
-                                            , model.MetaInformation.Creator // 6
+                                            , model.MetaInformation.DublinCore.Source // 5 
+                                            , model.MetaInformation.DublinCore.Creator // 6
                                             , model.MetaInformation.Encoding // 7
                                          );
             return result;
