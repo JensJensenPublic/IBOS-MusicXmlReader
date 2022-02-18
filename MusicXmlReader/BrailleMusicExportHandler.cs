@@ -360,7 +360,7 @@ namespace MusicXmlReader
         {
             // allOk = false; // For test only !
 
-            string logLine = string.Format("Export of {0} staffs to {1} files {2}. The files were exported to: \r\n\r\n{3}\r\n", numberOfStaffs, fileNames.Count, allOk ? "succeded" : "failed", exportPath);
+            string logLine = string.Format("Export of {0} staffs to {1} files {2}. The files were exported to: {3}", numberOfStaffs, fileNames.Count, allOk ? "succeded" : "failed", exportPath);
             Logger.LogCF(": " + logLine);
 
             // We need to localize the messagebox, so we use a less complicated text:

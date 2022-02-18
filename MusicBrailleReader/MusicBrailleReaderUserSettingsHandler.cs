@@ -347,7 +347,10 @@ namespace MusicBrailleReader
             //bool consoleTrace = true;
             //string functionName = "TreeView_AfterCheck";
             //if (consoleTrace) Console.WriteLine(functionName);
-            Logger.LogCF(string.Format(": Level={0} Name='{1}' Text='{2,-10}' Checked={3}",e.Node.Level,  e.Node.Name, e.Node.Text, e.Node.Checked));
+            if (Logger.DeveloperMode)
+            {
+                Logger.LogCF(string.Format(": Level={0} Name='{1}' Text='{2,-10}' Checked={3}", e.Node.Level, e.Node.Name, e.Node.Text, e.Node.Checked));
+            }
             TreeNode level0Node = null;
             //if (null == model.UserSettings)
             //{

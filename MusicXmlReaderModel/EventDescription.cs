@@ -939,7 +939,10 @@ namespace MusicXmlReaderModel
                         {
                             // BANA 2015 22.3 (e) require that an octave mark be given for the next note
                             MusicBrailleState.ResetMusicBrailleState(); // Force an octave mark on the next note.
-                            Logger.LogCF(string.Format(": Unsupported: WordsElement={0}",directionType.WordsElement.Words.ToString()));
+                            if (Logger.DeveloperMode) // No need to bother the end user . All chords go here because they ar represented as directionType.WordsElement, for instance "C/g"
+                            {
+                                Logger.LogCF(string.Format(": Unsupported: WordsElement={0}", directionType.WordsElement.Words.ToString()));
+                            }
                         }
 
                    }
