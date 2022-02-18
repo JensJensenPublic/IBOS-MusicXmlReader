@@ -177,7 +177,7 @@ namespace BrailleMusicDecoder
         }
 
 
-        static bool inUse = false;
+        //static bool inUse = false;
         static int[] categoryCounters = new int[InputInterpretation.nCategories]; // Count across the whole program lifetime. 
         static int[] subCategoryCounters = new int[InputInterpretation.nSubCategories]; // Count across the whole program lifetime. 
         static int[] subSubCategoryCounters = new int[InputInterpretation.nSubSubCategories]; // Count across the whole program lifetime. 
@@ -189,7 +189,7 @@ namespace BrailleMusicDecoder
         /// <param name="category"></param>
         public void CountCategories(InputInterpretation input)
         {
-            inUse = true;
+            if (!Logger.DeveloperMode) return;
             categoryCounters[input.CategoryNumber]++;
             subCategoryCounters[(int)input.SubCategory]++;
             subSubCategoryCounters[(int)input.SubSubCategory]++;
@@ -211,7 +211,7 @@ namespace BrailleMusicDecoder
 
         public void DumpCategories(bool sort)
         {
-            if (!inUse) return;
+            if (!Logger.DeveloperMode) return;
             Logger.LogCF("+");
             // Dump with largest count first
             List<SortItem> items = GetItems(categoryCounters, sort);
@@ -228,7 +228,7 @@ namespace BrailleMusicDecoder
 
         public void DumpSubCategories(bool sort)
         {
-            if (!inUse) return;
+            if (!Logger.DeveloperMode) return;
             Logger.LogCF("+");
             // Dump with largest count first
             List<SortItem> items = GetItems(subCategoryCounters, sort);          
@@ -245,7 +245,7 @@ namespace BrailleMusicDecoder
 
         public void DumpSubSubCategories(bool sort)
         {
-            if (!inUse) return;
+            if (!Logger.DeveloperMode) return;
             Logger.LogCF("+");
             // Dump with largest count first
             List<SortItem> items = GetItems(subSubCategoryCounters, sort);
