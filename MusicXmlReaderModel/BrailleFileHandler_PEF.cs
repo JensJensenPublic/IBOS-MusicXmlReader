@@ -151,7 +151,10 @@ namespace MusicXmlReaderModel
             dc.Identifier = MetaInfoItem.Create("identifier", Path.GetFileName(fullFileName));
             dc.Title = MetaInfoItem.Create("title", Path.GetFileNameWithoutExtension(fullFileName));
 
-            dc.LogAllItems(); // For debugging
+            if (Logger.DeveloperMode)
+            {
+                dc.LogAllItems();
+            }
 
             metaElement.RemoveAll();
             // All information is currently taken from the Dublin Core part of the Meta information.
