@@ -485,11 +485,12 @@ namespace BrailleMusicDecoder
                 UserWarnings.LogUserWarning(message + "  " + epilogue,UserInfoFlagsEnum.InterpretationMoreThanOneFound);
             }
 
-            string newStateText = stateChanged ? string.Format("NewState={0} ", newStateName) : "";
-
-
-            string inputString = ToString(inputInterpretation, brailleIntegers.List);
-            Logger.LogCF(string.Format(" {0,7} State={1,-15} Input={2} Result={3,-20} {4} ", startIndex, oldStateName, inputString, inputInterpretationString, newStateText));
+            if (Logger.DeveloperMode)
+            {
+                string newStateText = stateChanged ? string.Format("NewState={0} ", newStateName) : "";
+                string inputString = ToString(inputInterpretation, brailleIntegers.List);
+                Logger.LogCF(string.Format(" {0,7} State={1,-15} Input={2} Result={3,-20} {4} ", startIndex, oldStateName, inputString, inputInterpretationString, newStateText));
+            }
 
             return inputInterpretation;
         }
