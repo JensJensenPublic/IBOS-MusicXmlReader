@@ -129,6 +129,21 @@ namespace MusicXmlReaderModel
         // Accessors
 
         /// <summary>
+        /// From the filename extension of the file generated
+        /// </summary>
+        public MetaInfoItem Format { get { return format; } set { format = value; } }
+
+        /// <summary>
+        ///  From the filename of the file generated
+        /// </summary>
+        public MetaInfoItem Identifier { get { return identifier; } set { identifier = value; } }
+
+        /// <summary>
+        ///  From the filename of the file generated
+        /// </summary>
+        public MetaInfoItem Title { get { return title; } set { title = value; } }
+
+        /// <summary>
         /// From System.Time.Now
         /// </summary>
         public MetaInfoItem Date { get { return date; } set { date = value; }  }

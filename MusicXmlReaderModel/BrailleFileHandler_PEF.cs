@@ -88,15 +88,7 @@ namespace MusicXmlReaderModel
             this.linesPerForm = linesPerForm;
             this.metaInformation = (null == metaInformation) ? MetaInformation.Create() : metaInformation;   // If null, Create a dummy MetaInformation, holding no information at all.
 
-
-
-            metaInformation.DublinCore.LogAllItems(); // For debugging   
-
-            // Retreive some information for the PEF meta information.
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetEntryAssembly();
-            string programName = assembly.GetName().Name.ToString();
-            string programVersion = assembly.GetName().Version.ToString();
-
+            // metaInformation.DublinCore.LogAllItems(); // For debugging 
 
             // The following code is inspired by C:\Users\Jens\Dropbox\Root\Visual Studio 2015\Projects\MusicXmlReaderUI\BrailleMusicDecoder\MusicXmlBuilder.cs
             doc = new XmlDocument();
@@ -153,14 +145,21 @@ namespace MusicXmlReaderModel
             currentSectionElement.RemoveAll(); // Only keep the static part of the contents, remove all previously generated pages and rows.
             bool result = false;
 
-            // Add childNotes to metaElement
-            DateTime now = DateTime.Now;
-            string date = string.Format("{0}-{1}-{2}", now.Year, now.Month, now.Day);
+            // Fill in remaining Dublin Core information before we start writing the meta part of the .pef file.
+            DublinCore dc = this.metaInformation.DublinCore; // Just a local shorthand
+            dc.Format = MetaInfoItem.Create("format", "application / x - pef + xml");
+            dc.Identifier = MetaInfoItem.Create("identifier", Path.GetFileName(fullFileName));
+            dc.Title = MetaInfoItem.Create("title", Path.GetFileNameWithoutExtension(fullFileName));
+
+            dc.LogAllItems(); // For debugging
+
             metaElement.RemoveAll();
-            metaElement.AppendChild(CreateMetaChild("format", "application / x - pef + xml"));
-            metaElement.AppendChild(CreateMetaChild("date", date));
-            metaElement.AppendChild(CreateMetaChild("title", "TITLE")); // ToDo: Find out what to put here and when and how.
-            metaElement.AppendChild(CreateMetaChild("identifier", Path.GetFileNameWithoutExtension(fullFileName)));
+            // All information is currently taken from the Dublin Core part of the Meta information.
+            // Other nodes outside the Dublin Core specification may be added if required.
+            metaElement.AppendChild(CreateMetaChild(dc.Format.Name,dc.Format.Value));
+            metaElement.AppendChild(CreateMetaChild(dc.Date.Name, dc.Date.Value));
+            metaElement.AppendChild(CreateMetaChild(dc.Title.Name, dc.Title.Value));
+            metaElement.AppendChild(CreateMetaChild(dc.Identifier.Name, dc.Identifier.Value));
 
             // Statistic counters during debugging:
             int nBraille = 0;
