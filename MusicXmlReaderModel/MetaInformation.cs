@@ -89,8 +89,8 @@ namespace MusicXmlReaderModel
 
     public class DublinCore
     {
-        // The following 15 items are found in the PEF specification
-        // Conveniency: Init everything to empty strings!
+        // The following 15 items are found in the PEF specification. For conveniens: Init everything to empty strings!
+        //
         private MetaInfoItem format = MetaInfoItem.Create();     // Found in NOTA sample files with constant value "application/x-pef+xml"
         private MetaInfoItem identifier = MetaInfoItem.Create(); // Found in NOTA sample files with sample value "390120"
         private MetaInfoItem title = MetaInfoItem.Create();      // Found in NOTA sample files with sample value "Imudico's melodibog 28, for el-orgel, klaver og guitar med becifring og akkord-diagrammer (udeladt i punktudgaven)"
@@ -107,7 +107,37 @@ namespace MusicXmlReaderModel
         private MetaInfoItem coverage = MetaInfoItem.Create();
         private MetaInfoItem rights = MetaInfoItem.Create();
 
+  
+        public List<MetaInfoItem> AllItems
+        {
+            get
+            {
+                return new List<MetaInfoItem>() { format, identifier, title, creator, subject, description, publisher, contributor, date, type, source, language, relation, coverage, rights };
+            }
+        }
+
+        public void LogAllItems()
+        {
+            List<MetaInfoItem> items = AllItems;
+            Logger.LogCF("");
+            foreach (MetaInfoItem item in items)
+            {
+                Logger.Log((null == item) ? "null" : string.Format("Name={0,-10} Value={1}", item.Name, item.Value));
+            }
+        }
+
         // Accessors
+
+        /// <summary>
+        /// From System.Time.Now
+        /// </summary>
+        public MetaInfoItem Date { get { return date; } set { date = value; }  }
+
+
+        /// <summary>
+        /// From System.Reflection.Assembly.GetEntryAssembly().FullName
+        /// </summary>
+        public MetaInfoItem Publisher { get { return publisher; } set { publisher = value; } }
 
         /// <summary>
         /// From the MusicXml "creator" element
@@ -119,7 +149,7 @@ namespace MusicXmlReaderModel
         public MetaInfoItem Source { get { return source; } set { source = value; } }
 
         private DublinCore()
-        { }
+        {}
 
         public static DublinCore Create()
         {

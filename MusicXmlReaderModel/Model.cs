@@ -282,8 +282,7 @@ namespace MusicXmlReaderModel
                 {
                     //                    defaults = null; // 
                     string status = "";
-                    metaInformation = MetaInformation.Create();
-                    metaInformation.FileName = MetaInfoItem.Create(ResourcesForModel.MetaInfoText_FileName, Path.GetFileName(fullXmlFileName));
+                    metaInformation = CreateInitialMetaInformation(Path.GetFileName(fullXmlFileName));
                     Logger.Log(string.Format("{0}.{1}: Loaded >>>>>>>>>> '{2}' <<<<<<<<<<", className, functionName, Path.GetFileName(fullXmlFileName)));
                     Logger.Log(string.Format("{0}.{1}: From   '{2}'", className, functionName, Path.GetDirectoryName(fullXmlFileName)));
                     allMusicXmlObjecsts = new List<MusicXmlObject>(); // Create the list holding all MusicXml elements read from file
@@ -361,6 +360,25 @@ namespace MusicXmlReaderModel
             }
             return ok;
         }
+
+
+        /// <summary>
+        /// Creates an initial instance of the MetaInformation object, which will later be passed around in the application
+        /// and will be filled in with other details as these details become available.
+        /// The MetaInformation will also be used as a data source when creating meta information in .pef files.
+        /// </summary>
+        /// <param name="fullXmlFileName"></param>
+        /// <returns></returns>
+        private MetaInformation CreateInitialMetaInformation(string fullXmlFileName)
+        {
+            metaInformation = MetaInformation.Create();
+            metaInformation.FileName = MetaInfoItem.Create(ResourcesForModel.MetaInfoText_FileName,fullXmlFileName);     // Such as "Danmark nu blunder den lyse nat.musicxml"
+            metaInformation.DublinCore.Source = MetaInfoItem.Create("source",fullXmlFileName);                           // Such as "Danmark nu blunder den lyse nat.musicxml"
+            metaInformation.DublinCore.Date = MetaInfoItem.Create("date", System.DateTime.Now.Date.ToShortDateString()); // Such as: "dd-mm-yyyy"             
+            metaInformation.DublinCore.Publisher = MetaInfoItem.Create("publisher", System.Reflection.Assembly.GetEntryAssembly().FullName); // Such as "IBOS MusicXmlReader, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null"
+            return metaInformation;
+        }
+
 
 
         /// <summary>

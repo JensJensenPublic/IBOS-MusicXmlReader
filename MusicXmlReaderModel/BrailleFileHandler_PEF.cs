@@ -86,7 +86,11 @@ namespace MusicXmlReaderModel
         {
             this.charsPerLine = charsPerLine;
             this.linesPerForm = linesPerForm;
-            this.metaInformation = (null == metaInformation) ? MetaInformation.Create() : metaInformation;   // If null, Create a dummy MetaInformation, holding no information at all.    
+            this.metaInformation = (null == metaInformation) ? MetaInformation.Create() : metaInformation;   // If null, Create a dummy MetaInformation, holding no information at all.
+
+
+
+            metaInformation.DublinCore.LogAllItems(); // For debugging   
 
             // Retreive some information for the PEF meta information.
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetEntryAssembly();
