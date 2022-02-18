@@ -333,7 +333,10 @@ namespace BrailleMusicDecoder
                 || (rawValue3 == dot13))    // Double Bar
                 {
                     allowFlat = false;
-                    Logger.LogCF(string.Format(": Setting AllowFlat=false because rawValues.Count={0} and rawValues.List[3] == dot23 or dot13 ", rawValues.Count));
+                    if (Logger.DeveloperMode)
+                    {
+                        Logger.LogCF(string.Format(": Setting AllowFlat=false because rawValues.Count={0} and rawValues.List[3] == dot23 or dot13 ", rawValues.Count));
+                    }
                 }
             }
             if (allowFlat)

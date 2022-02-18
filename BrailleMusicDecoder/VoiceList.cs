@@ -376,6 +376,7 @@ namespace BrailleMusicDecoder
 
         public void Log(string preAmble)
         {
+            if (!Logger.DeveloperMode) return;
             for (int i = 0; (i < NumberOfVoices); i++)
             {
                 Voice voice = allVoices[i];

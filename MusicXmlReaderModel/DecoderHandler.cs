@@ -252,7 +252,10 @@ private List<DecoderItem> GetDecodedLines(Decoder brailleMusicDecoder, string br
                         string rawLineAsdotNumbers = GetDotNumbers(ref rawLine,decoderOptions.DeveloperMode);
                         string totalString = offsetString + s + " " + xmlBuilderString + " " + rawLine + rawLineAsdotNumbers;
                         decodedLines.Add(DecoderItem.Create(totalString));
-                        Logger.LogCF(string.Format(":>>> {0} <<<", totalString)); // Easy to find in the log !
+                        if (Logger.DeveloperMode)
+                        {
+                            Logger.LogCF(string.Format(":>>> {0} <<<", totalString)); // Easy to find in the log !
+                        }
                     }
 
                     if (!string.IsNullOrEmpty(decodedLine.ToString()))
