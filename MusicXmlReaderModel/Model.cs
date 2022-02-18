@@ -374,7 +374,8 @@ namespace MusicXmlReaderModel
             metaInformation = MetaInformation.Create();
             metaInformation.FileName = MetaInfoItem.Create(ResourcesForModel.MetaInfoText_FileName,fullXmlFileName);     // Such as "Danmark nu blunder den lyse nat.musicxml"
             metaInformation.DublinCore.Source = MetaInfoItem.Create("source",fullXmlFileName);                           // Such as "Danmark nu blunder den lyse nat.musicxml"
-            metaInformation.DublinCore.Date = MetaInfoItem.Create("date", System.DateTime.Now.Date.ToShortDateString()); // Such as: "dd-mm-yyyy"             
+            metaInformation.DublinCore.Date = MetaInfoItem.Create("date", System.DateTime.Now.Date.ToShortDateString()); // Such as: "dd-mm-yyyy" 
+            metaInformation.DublinCore.Language = MetaInfoItem.Create("language", "Braille");                            // May contain Text-Braille as well as Music-Braille
             metaInformation.DublinCore.Publisher = MetaInfoItem.Create("publisher", System.Reflection.Assembly.GetEntryAssembly().FullName); // Such as "IBOS MusicXmlReader, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null"
             return metaInformation;
         }

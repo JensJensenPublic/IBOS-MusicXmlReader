@@ -91,21 +91,21 @@ namespace MusicXmlReaderModel
     {
         // The following 15 items are found in the PEF specification. For conveniens: Init everything to empty strings!
         //
-        private MetaInfoItem format = MetaInfoItem.Create();     // Found in NOTA sample files with constant value "application/x-pef+xml"
-        private MetaInfoItem identifier = MetaInfoItem.Create(); // Found in NOTA sample files with sample value "390120"
-        private MetaInfoItem title = MetaInfoItem.Create();      // Found in NOTA sample files with sample value "Imudico's melodibog 28, for el-orgel, klaver og guitar med becifring og akkord-diagrammer (udeladt i punktudgaven)"
-        private MetaInfoItem creator = MetaInfoItem.Create();
-        private MetaInfoItem subject = MetaInfoItem.Create();
-        private MetaInfoItem description = MetaInfoItem.Create();
-        private MetaInfoItem publisher = MetaInfoItem.Create();
-        private MetaInfoItem contributor = MetaInfoItem.Create();
-        private MetaInfoItem date = MetaInfoItem.Create();       // Found in NOTA sample files with sample value "2021-10-05"
-        private MetaInfoItem type = MetaInfoItem.Create();
-        private MetaInfoItem source = MetaInfoItem.Create();
-        private MetaInfoItem language = MetaInfoItem.Create();
-        private MetaInfoItem relation = MetaInfoItem.Create();
-        private MetaInfoItem coverage = MetaInfoItem.Create();
-        private MetaInfoItem rights = MetaInfoItem.Create();
+        private MetaInfoItem format = MetaInfoItem.Create("format","");     // Found in NOTA sample files with constant value "application/x-pef+xml"
+        private MetaInfoItem identifier = MetaInfoItem.Create("identifier",""); // Found in NOTA sample files with sample value "390120"
+        private MetaInfoItem title = MetaInfoItem.Create("title","");      // Found in NOTA sample files with sample value "Imudico's melodibog 28, for el-orgel, klaver og guitar med becifring og akkord-diagrammer (udeladt i punktudgaven)"
+        private MetaInfoItem creator = MetaInfoItem.Create("creator","");
+        private MetaInfoItem subject = MetaInfoItem.Create("subject","");
+        private MetaInfoItem description = MetaInfoItem.Create("description","");
+        private MetaInfoItem publisher = MetaInfoItem.Create("publisher","");
+        private MetaInfoItem contributor = MetaInfoItem.Create("contributor","");
+        private MetaInfoItem date = MetaInfoItem.Create("date","");       // Found in NOTA sample files with sample value "2021-10-05"
+        private MetaInfoItem type = MetaInfoItem.Create("type","");
+        private MetaInfoItem source = MetaInfoItem.Create("source","");
+        private MetaInfoItem language = MetaInfoItem.Create("language","");
+        private MetaInfoItem relation = MetaInfoItem.Create("relation","");
+        private MetaInfoItem coverage = MetaInfoItem.Create("coverage","");
+        private MetaInfoItem rights = MetaInfoItem.Create("rights","");
 
   
         public List<MetaInfoItem> AllItems
@@ -122,7 +122,7 @@ namespace MusicXmlReaderModel
             Logger.LogCF("");
             foreach (MetaInfoItem item in items)
             {
-                Logger.Log((null == item) ? "null" : string.Format("Name={0,-10} Value={1}", item.Name, item.Value));
+                Logger.Log((null == item) ? "null" : string.Format("Name={0,-15} Value={1}", item.Name, item.Value));
             }
         }
 
@@ -147,6 +147,11 @@ namespace MusicXmlReaderModel
         /// From the MusocXml "source" element
         /// </summary>
         public MetaInfoItem Source { get { return source; } set { source = value; } }
+
+        /// <summary>
+        /// Will always return "Braille"
+        /// </summary>
+        public MetaInfoItem Language { get { return language; } set { language = value; } } 
 
         private DublinCore()
         {}
