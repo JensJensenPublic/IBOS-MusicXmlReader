@@ -32,7 +32,7 @@ namespace BrailleMusicDecoder
 
         private DevelopmentOptionEnum developmentOptions = DevelopmentOptionEnum.None;
 
-        private bool enableLogging = true;
+        private bool EnableLogging = Logger.DeveloperMode;
 
         /// <summary>
         /// Simple mechanism for turning all local logging on or off
@@ -40,7 +40,7 @@ namespace BrailleMusicDecoder
         /// <param name="s"></param>
         private void ConditionalLogCF(string s)
         {
-            if (!enableLogging) return;
+            if (!EnableLogging) return;
             Logger.LogCF1(s);
         }
 
