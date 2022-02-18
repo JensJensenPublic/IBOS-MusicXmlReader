@@ -107,8 +107,15 @@ namespace MusicXmlReaderModel
         private MetaInfoItem coverage = MetaInfoItem.Create();
         private MetaInfoItem rights = MetaInfoItem.Create();
 
-        //Accessors
+        // Accessors
+
+        /// <summary>
+        /// From the MusicXml "creator" element
+        /// </summary>
         public MetaInfoItem Creator { get { return creator; } set { creator = value; } }
+        /// <summary>
+        /// From the MusocXml "source" element
+        /// </summary>
         public MetaInfoItem Source { get { return source; } set { source = value; } }
 
         private DublinCore()
@@ -144,10 +151,23 @@ namespace MusicXmlReaderModel
         private MetaInfoItem encoding = MetaInfoItem.Create();
 
         // Accessors:
+
         public MetaInfoItem FileName { get { return fileName; } set { fileName = value; } }
+        /// <summary>
+        /// From the MusicXml "work" element
+        /// </summary>
         public MetaInfoItem Work { get { return work; } set { work = value; } }
+        /// <summary>
+        /// From the MusicXml "movement-title" element
+        /// </summary>
         public MetaInfoItem MovementTitle { get { return movementTitle; } set { movementTitle = value; } }
-        public MetaInfoItem MovementNumber { get { return movementNumber; } set { movementNumber = value; } }    
+        /// <summary>
+        /// From the MusicXml "movement-number" element
+        /// </summary>
+        public MetaInfoItem MovementNumber { get { return movementNumber; } set { movementNumber = value; } }
+        /// <summary>
+        /// From the MusicXml "encoding-description" element
+        /// </summary>
         public MetaInfoItem Encoding { get { return encoding; } set { encoding = value; Logger.CurrentEncoding = encoding.ToString(); } }
    
 

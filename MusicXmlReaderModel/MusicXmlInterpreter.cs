@@ -118,7 +118,9 @@ namespace MusicXmlReaderModel
                     continueRecursion = false;
                     break;
                 case "movement-number":
-                    allMusicXmlObjecsts.Add(SimpleTextElement.Create(node, "Nummer"));
+                    SimpleTextElement movementNumber = SimpleTextElement.Create(node, "Nummer"); // TODO Localize
+                    allMusicXmlObjecsts.Add(movementNumber);
+                    metaInformation.MovementTitle = MetaInfoItem.Create(movementNumber.Name, movementNumber.Text);
                     continueRecursion = false;
                     break;
                 case "identification":
