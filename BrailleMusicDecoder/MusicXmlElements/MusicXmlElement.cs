@@ -25,6 +25,7 @@ namespace BrailleMusicDecoder.MusicXmlElements
 
         protected void LogCF(string s)
         {
+            if (!Logger.DeveloperMode) return;
             Logger.LogCF1(s);
         }
 
