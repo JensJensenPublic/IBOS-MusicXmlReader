@@ -1276,7 +1276,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IBOS Music Braille Reader.
+        ///   Looks up a localized string similar to &amp;IBOS Music Braille Reader.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_MusicBrailleReader {
             get {
@@ -1294,7 +1294,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PhotoScore.
+        ///   Looks up a localized string similar to &amp;PhotoScore.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_PhotoScore {
             get {

@@ -608,7 +608,7 @@
     <value>MusicXml fil som rå XML med &amp;Google Chrome</value>
   </data>
   <data name="ToolStripMenuItem_Tools_MusicBrailleReader" xml:space="preserve">
-    <value>IBOS &amp;Punktnodelæser</value>
+    <value>&amp;IBOS Punktnodelæser</value>
     <comment>ToDo: Implement  in .NL</comment>
   </data>
   <data name="BrailleDevice_HighSpeedEmbosserName" xml:space="preserve">
@@ -657,7 +657,7 @@
     <comment>NO NL</comment>
   </data>
   <data name="ToolStripMenuItem_Tools_PhotoScore" xml:space="preserve">
-    <value>PhotoScore</value>
+    <value>&amp;PhotoScore</value>
     <comment>NO NL</comment>
   </data>
 </root>
