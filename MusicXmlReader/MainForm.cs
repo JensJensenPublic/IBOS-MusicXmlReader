@@ -222,7 +222,8 @@ namespace MusicXmlReader
             generateMusicBrailleTestpatternToolStripMenuItem.Visible = false;
             brailleFileToolStripMenuItem.Visible = false;
             userPreferencesLocationToolStripMenuItem.Visible = false;
-            viewAsInterpretedXMLToolStripMenuItem.Visible = false;          
+            viewAsInterpretedXMLToolStripMenuItem.Visible = false;
+            analyzeLocalizationToolStripMenuItem.Visible = false;         
         }
 
         /// <summary>
