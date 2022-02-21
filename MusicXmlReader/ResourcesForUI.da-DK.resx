@@ -328,7 +328,8 @@
     <value>Link til nyeste &amp;software</value>
   </data>
   <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
-    <value>http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html</value>
+    <value>https://ibos.dk/index.php/viden/ibos-nodelaeser/</value>
+    <comment>Same link for all languages</comment>
   </data>
   <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
     <value>Importér &amp;overførsler</value>
@@ -657,7 +658,7 @@
     <comment>NO NL</comment>
   </data>
   <data name="ToolStripMenuItem_Tools_PhotoScore" xml:space="preserve">
-    <value>&amp;PhotoScore</value>
+    <value>PhotoScore</value>
     <comment>NO NL</comment>
   </data>
 </root>

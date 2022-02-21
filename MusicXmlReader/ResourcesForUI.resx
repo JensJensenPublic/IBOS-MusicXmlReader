@@ -330,7 +330,7 @@
     <value>Link to newest &amp;software</value>
   </data>
   <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
-    <value>http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html</value>
+    <value>https://ibos.dk/index.php/engelsk-side/ibos-musicxml-reader/</value>
   </data>
   <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
     <value>Import &amp;downloads</value>

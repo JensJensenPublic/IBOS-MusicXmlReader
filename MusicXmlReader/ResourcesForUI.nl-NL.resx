@@ -387,7 +387,8 @@
     <value>&amp;Link naar de nieuwste software</value>
   </data>
   <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
-    <value>&amp;Link naar de nieuwste software</value>
+    <value>https://ibos.dk/index.php/engelsk-side/ibos-musicxml-reader/</value>
+    <comment>Explicitly use english version</comment>
   </data>
   <data name="ToolStripMenuItem_Tools" xml:space="preserve">
     <value>Bewer&amp;k</value>

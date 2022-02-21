@@ -1105,7 +1105,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html.
+        ///   Looks up a localized string similar to https://ibos.dk/index.php/engelsk-side/ibos-musicxml-reader/.
         /// </summary>
         internal static string ToolStripMenuItem_Help_SoftwareUpdateLink {
             get {
