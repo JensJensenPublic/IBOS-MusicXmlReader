@@ -1,0 +1,360 @@
+Return-Path: <lars.organist@gmail.com>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe003.lytzenitmail.local ([100.127.30.102])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id SB6HEoqjBmI52QEAlE+V+A
+	(envelope-from <lars.organist@gmail.com>)
+	for <dsl248925@mail.jubii.dk>; Fri, 11 Feb 2022 18:57:30 +0100
+Received: from sv900pomx003.lytzenitmail.dk ([100.127.30.62])
+	by sv900ddwe003.lytzenitmail.local with LMTP
+	id 2DjYEYqjBmLIcQAA1csBbA
+	(envelope-from <lars.organist@gmail.com>)
+	for <dsl248925@mail.jubii.dk>; Fri, 11 Feb 2022 18:57:30 +0100
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.164])
+	by sv900pomx003.lytzenitmail.dk (Postfix) with ESMTPS id 45782E3E
+	for <holmeparken44@vip.cybercity.dk>; Fri, 11 Feb 2022 18:57:30 +0100 (CET)
+Authentication-Results: mx01.lytzenitmail.dk; spf=Pass smtp.mailfrom=lars.organist@gmail.com
+Received-SPF: Pass (mx01.lytzenitmail.dk: domain of
+  lars.organist@gmail.com designates 209.85.208.54 as permitted
+  sender) identity=mailfrom; client-ip=209.85.208.54;
+  receiver=mx01.lytzenitmail.dk;
+  envelope-from="lars.organist@gmail.com";
+  x-sender="lars.organist@gmail.com"; x-conformance=spf_only;
+  x-record-type="v=spf1"; x-record-text="v=spf1
+  ip4:35.190.247.0/24 ip4:64.233.160.0/19 ip4:66.102.0.0/20
+  ip4:66.249.80.0/20 ip4:72.14.192.0/18 ip4:74.125.0.0/16
+  ip4:108.177.8.0/21 ip4:173.194.0.0/16 ip4:209.85.128.0/17
+  ip4:216.58.192.0/19 ip4:216.239.32.0/19 ~all"
+IronPort-SDR: qC3cxfMxqTJwJL2TZWSQ9vs3YaGPdj9iMzpCQ5hdJM57M9FiyhH5bdGf1DDCkGNzeN77vobdzL
+ Pa8nrCyrK6VCfs5dlmsc751dyH/5jeftlxpF8ahLRLAwY//UbeEAhGC5IarbQ/seEJXfqMJR5G
+ fZJE3Gbc56ENqdDL4EZTEjSQ27aG8CxWYwxWEfhe8fUodk4QlQdWl9Qb0fP8fbuAVJU7IXKgd8
+ PYxf/rImCZAvJI00PVY+g5Bt6tNX0arOh8SpeSn2Sv1pjro9NnrycQ9hbvQcHrqOB5m31aumU0
+ 25P93z/qKTlWVqLfWLLwkpPs
+X-IPAS-Result: =?us-ascii?q?A0A4AwAjogZifzbQVdFaHAEBAQEBAQcBARIBAQQEAQGCG?=
+ =?us-ascii?q?oEhgQd+VysHRwOEVFqILIk9gi2FYYgDhF2GZYEAWAELAQEBAQEBAQEBCAE5B?=
+ =?us-ascii?q?gIEAQGFBwJRCYMlAiQBOBMBAgQBAQEBAwIDAQEBAQUBAQEEAQEBAgEBAgMEF?=
+ =?us-ascii?q?AEBDQsJBwgKBw4OBWABYQMBRIFPgXQLAzENhkMCAQMIAggRBQUTARseAwkDA?=
+ =?us-ascii?q?gQQAwUvAgIZCAIRAQUBHAIEEwsFEoJjgg5WAQMuBAufN4EEPYlpGjV6gQEUB?=
+ =?us-ascii?q?ReBAYIJBnlGAYEbgW0KGSgNaoFYAgcJAQiBKIYNAYEhAQGCXIQzJ4IpgRWDa?=
+ =?us-ascii?q?IEPgQUNQgQYgXOCaxOCUgSUTCtQlBqDYpdGkXlrBwODRoE/ApgnhiyBE48Yh?=
+ =?us-ascii?q?gORYpZJiGZchx+RRIQiAgQBAQEDBwYQIxKBQ4F+cIEBgjcBCTYPAQIBAQENA?=
+ =?us-ascii?q?QIBAQMBAgECCQEBAo4dg3GKCVZAMwIBNQIGAQoBAQMJAYI6gy8PB4sZAQE?=
+IronPort-PHdr: A9a23:sbS2Jh07ptWupyLYsmDOawUyDhhOgF2VFgsFssNhj6NSYKml/ojnN
+ U3bo/lu3xfSRYuO0/tfkKLNtrz4H2kJ4JKPqncHJZhFTQRDjt8ZlgohG9KtBkjyLfqsZCs/d
+ ChbfGds5GrzcU1FQJ+4Y0zOsHC07CIXExT7cwZ2dKz5HYvbjsL/0O7XmdWbZwxSn3y6e7x7K
+ hStsS3es8AXhc1pLaN5xhbSo3ROcvhb3isyfQPVz0u6vJ/gusM/uy1L8+os7ctBTbn3c8FaB
+ fRDATIqPnp0rMznuB/fTBees34VU2EYiB1NUEDO6BD3WIu0szOv7LIsnnnHe5euHfZpBWfHj
+ e8jUhLjhSYZOiRs9XGP04p0nb5JrRSguxl2woqSbILGUZg2Nq7bY94eQnJMG8hLUCkUSIe1d
+ ZBJCPAONOBZtJXVqF4HrB/4Dg6pTrCKqHcAljrt0Ks23v50WwXPxhdmGMgBuXLVt8ndO6IbU
+ OTzx67Nh2aLf7Zd3jHz75LNexYqrKSXRbxHdszV2BpKdUuNnhCKpIfiJT/QyvUVvj3R8b97T
+ ez2wT1vu0RrrzOo3MtploTZmtdf1AXf7SsgpeR9bdygFBwgPJj9QcMW7X3FcdMxGJ9qQnk06
+ nhmjOdd4tjiInBMkNN+llbec6DVLdbOu0q5Er7XeXAi3BcHMPq+n0rgrxbmkLGtEJnslg4N9
+ HINk8GQ5C9XkUWPrJHWEL0luR7xkTeXi1KMtqcdex1yzeyDbMd/p9x43psL7RaaRn+wwRqpy
+ v/QLgJ+o6Cp87i1O+q94MbNa8kszFm5a/pmm9TjU75gY05eAi7Co7T6jPq6oiibCP1LlqFky
+ PCH9s2KY51K/OjhRFYEmoc7t0TlVmngio9J2yJdagoCIUPPmYHtPxumyB/QAvK2glDqmzBul
+ amuAw==
+IronPort-Data: A9a23:SfuH3KnYxEzfZiwSenFNQwro5gzfIERdPkR7XQ2eYbSJt1+Wr1Gzt
+ xIbCDvXbvaJZ2Ggft5+a4S08UkCuZfUzN5gTQNv+SljFi4T+ZvOCP2ndUqhZCn6wu8v7a5EA
+ 2fyTvGacajYm1eF/k/F3oAMLhCQ7InQLlbGILes1htZGEk0GE/NtTo5w7Rj2tQx2IDja++wk
+ YqaT/P3aQLNNwFcbD98B5Kr8HuDa9yr5Vv0FnRnDRx6lAe2e0s9VfrzFonrR5fMebS4K8bhL
+ wr1IBFVyUuCl/slIovNfr8W6STmSJaKVeSFoiI+t6RPHnGuqwRqupvXOsbwZm9NljzX2Ncgz
+ O9BtKy/GDcTebXvp+40Bkww/yFWZcWq+ZfCKHm79MGflgjILieqzPJpA0U7e4Yf/46bA0kUr
+ a1eeG1LNEjTwb/qqF64YrEEasALKMDxJ8UYoH5pyzDCEd4pRJnCR+PB4towMDIY35ETQq+OO
+ ZNAAdZpRA/CSBh3OnVJM543sdvxjHXtaG1Kul3A8MLb5ECKlFAruFT3C/LVfdiPSN1chEWVo
+ D6a13r4GlcRJdaS0zGE7mPqiuynoM/gcIcbFbn9+/IzxVPOmiocDxoZUVb9qv684qKjZz5BA
+ 1YJ83Rpqvk2zkCqftasbyf/uF27tDdJDrK8DNYGwA2Kz6PV5SOQCW4FUiNNZbQaWCkeFWxCO
+ rihz4KBONB/jFGGYSnCqerM/FteLQBQfDBSP3ZVJecQy4C7+Nlbs/7Zcjp0/EeIYjDdHDjxx
+ 3WHoHF7iehPy8EM0Kq/8BbMhDfESnn1ouwdtlS/soGNtFsRiGuZi2qAtwOzARFoctjxc7V5l
+ CJY8/VyFchXZX13qASDQf8WAJai7OufPTvXjDZHRsd9q2n3pif7ItsMv1mSwXuF1O5UKVcFh
+ 2eD6GtsCGN7YRNGkIcrOdvqU51ypUQePY69Cq2IBjaxXnSBXFbfoHsGib+40Gfqn0wh+ZzTy
+ r/KGftA+U0yUPw9pBLvH7l1+eZymkgWmD2OLbimkEzP+efPPBa9FOZeWHPTP7BRxP3f+239r
+ Y0PX/ZmPj0FD4USlAGModBNRb3LRFBnba3LRzt/KLLdfFo8RT1J5j246epJRrGJVp99zo/gl
+ kxRkGcBoLYmrXGYewiMdF55b7bjAcR2oX4hbH4jOF+p3z4oZoP2tPUTcJ4+fL8G8u1/zK4sH
+ 6NVJZnYWvkfGC7a/zk9bIXmqNMweRmugzWINXX3bTU6ealmWAGUqMTveRHi9XVVAyfu7Zk+r
+ rSs2xn1W50GQwg+Xs/aZOj+nVy0tHkZ3ul1WhKQcNVUfUzt9qlsKjDw3qdneZFSdU2by2LDh
+ QiMABoeqe3cmKMP8YHE1fKesoOkM+piBU4FTWTW6LCBMyOFrGeuxIl3VvnRIWLQWWbyz6WVZ
+ etPysb6PvBazk1BtJBxEuoywK8zu4nvqrtdwlg2FXnHdQ7wWLZpI33D0MUW86MQmvlWvgy5X
+ k/J8d5fYO3bNMTgGV8XBQwkcuXTiq1Oy2eKtaw4cBfg+St63LubSkEObROCvypQceluO4Q/z
+ OZ95cMbt16lhhwxPorUhyxY7T7XfHkJUqFiu51DRYG21kwkzVZNZZGaASjzucndZ9JJO0gsA
+ zmVmKuS2OgGlxSaKyI+RSrXwO5QpZUSoxQWnlUMEFKEx4jejfgt0RwNrDk6Q2y5FPmcPz6f5
+ 4SqC6G3Df3mE/RUaAxrUGWlGgUHDxqckqA040Vcj3XXFiFESUSURFAA1T6xwX0k
+IronPort-HdrOrdr: A9a23:KLcSuKvk8m1SQ7cXqkRBSb9F7skDVdV00zEX/kB9WHVpm7+j5r
+ yTdZUgpGTJYVMqMk3I9urwXpVoLUmslqKdpLNhWYtKPzOWwFdATrsSlLcKqgeIc0afygce79
+ YET0EXMrzN5DNB/KHHCXyDYqsdKbe8gcKVbCTlo0uFjzsGV0it1WhE436gYzdLrcB9a6YEKA
+ ==
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.88,361,1635199200"; 
+   d="scan'208,217";a="195718611"
+Received: from mail-ed1-f54.google.com ([209.85.208.54])
+  by mx01.lytzenitmail.dk with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Feb 2022 18:57:29 +0100
+Received: by mail-ed1-f54.google.com with SMTP id b13so17806570edn.0
+        for <holmeparken44@vip.cybercity.dk>; Fri, 11 Feb 2022 09:57:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:references:in-reply-to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=7kzCXdvlIyQ95ck/exB7oyj1E3zCond8c50E1ndjTps=;
+        b=E30hJRPR8Y/WKRamsRLVAhL8vwqGR24hFtbMXxX4u2S7fxi4f0DXbvwpzfANkS3aiJ
+         wDzzncDNH+zheNLQiqasn0zwbF8OoijLFN9KtuBBUymir7s0py2PjLRP3ZOwkloYpwcH
+         EFgLiLFiSddZPcaiLI9AmmN7etqnOfqPh7caLi5FTpx8t++B3jA/0Qkgi2tDi4zADwPc
+         uuknWwWgmK7abgzhGU/sDAF7CGyHd+pdsrZCbW8vICoge24IA2n5f1+SLp43B6GTPpHV
+         5hOG6L7UxcxkfLRlYMtgLtyD7KZlGko4WHqjp/F6o4BDhLttZ1E4Fpekb1qOU+AhQmeR
+         TOeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:references:in-reply-to:subject:date
+         :message-id:mime-version:thread-index:content-language;
+        bh=7kzCXdvlIyQ95ck/exB7oyj1E3zCond8c50E1ndjTps=;
+        b=SyT1tmgG6cSdnbUmyh9paqx0f46VYi3VxRDx2cv4Ku3dYg0t0JTE1vNlBcNKv1Y62d
+         vzhX8gWbyJS9TnIHT7d7ANlJtiWHmJmhXjPuf5Kd/sbnr3qcOjL7EUrJHKSGGlvWMt8s
+         47P2o9OoYl2FvUNeWQL/B3tzY30l2uoEdqKiQfm0rA5owm7wtiCZ2fY55hpWPLm0OiKb
+         PLP+1jyBoGHPKRek0TXP+Cl3qnuAcUT/Sdj+0OvrypGB3qHnY299vFlLKu6obyxce8ct
+         cTdD/u1qS042GrCM0+E6wtua+4FCoWaU8XQP2rwTIXom49F60tOcetiutEYzhZnGUQy9
+         kuDA==
+X-Gm-Message-State: AOAM5303cw7RURfVlvz0zp3U1tPt4IrArkX6A4zms6VkaHMR4/6VJzK4
+	IbNOn5CImqRgEEVfLbq1eciHiRgUjzg=
+X-Google-Smtp-Source: ABdhPJx+2YhjFj5ugsCsBNYNiO0T6NJaPJ6mPidhQwhbjZSjqrzDn3UxiutgWoVrAabldZLa02iwcQ==
+X-Received: by 2002:aa7:d809:: with SMTP id v9mr3210944edq.2.1644602248361;
+        Fri, 11 Feb 2022 09:57:28 -0800 (PST)
+Received: from LarsPetersenPc (5.103.158.176.dhcp.fibianet.dk. [5.103.158.176])
+        by smtp.gmail.com with ESMTPSA id i16sm468221ejo.214.2022.02.11.09.57.27
+        for <holmeparken44@vip.cybercity.dk>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 11 Feb 2022 09:57:27 -0800 (PST)
+From: "Lars Petersen" <lars.organist@gmail.com>
+To: "'Jens Sundgaard'" <holmeparken44@vip.cybercity.dk>
+References: <2c75cb37-f873-e108-4065-c93a43055c67@vip.cybercity.dk>
+In-Reply-To: <2c75cb37-f873-e108-4065-c93a43055c67@vip.cybercity.dk>
+Subject: =?utf-8?Q?SV:_Test_af_IBOS_Nodel=C3=A6ser_versi?=
+	=?utf-8?Q?on_4.1?=
+Date: Fri, 11 Feb 2022 18:57:27 +0100
+Message-ID: <000001d81f70$d53220a0$7f9661e0$@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0001_01D81F79.36F74BF0"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHLTNigWlyTGJepXqwgYGg6v03b16yoRA6A
+Content-Language: da
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0001_01D81F79.36F74BF0
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hej Jens.=20
+
+S=C3=A5 har jeg gestet det jeg kunne.
+
+1 de enkelte stemmer st=C3=A5r som de skal.=20
+
+2 jeg =C3=A5bnede danmark nu blunder den lyse nat der bliver der sat for =
+mange oktavtegn.=20
+
+3 bas og tenor har samme fejl der er ogs=C3=A5 for mange oktavtegn.=20
+
+Og n=C3=A5r man har en sats der er skrevet som sa bt s=C3=A5 skal =
+stemmerne st=C3=A5 som n=C3=A5r man f=C3=A5r udskrevet sa og bt.=20
+
+=20
+
+4 henvisningstegn st=C3=A5r som det skal.=20
+
+5 bistemmer.=20
+
+De sm=C3=A5 bistemmer st=C3=A5r som de skal, men der er jo ogs=C3=A5 =
+store bistemmer, jeg ved ikke om du har f=C3=A5et det med men stor =
+bistemme bruges n=C3=A5r det er en hel takt alts=C3=A5 alle fire slag i =
+takten s=C3=A5 er det den store bistemme men er det to slag i takten =
+s=C3=A5 er det lille bistemme.=20
+
+6 nodel=C3=A6seren.=20
+
+Jeg har ikke f=C3=A5et den til at virke i alle de ting jeg har =
+pr=C3=B8vet jeg f=C3=A5r ingen fortolkning af tegn jeg kan ikke finde ud =
+af hvad der g=C3=A5r galt men det m=C3=A5 vi lige tale sammen om.=20
+
+=20
+
+Printning=20
+
+Jeg kan fint printe til min punt printer men jeg har ikke haft mulighed =
+for at teste pef formatet da min printer ikke kan printe i dette format. =
+
+
+Men med hensyn til nodel=C3=A6seren s=C3=A5 er det ok n=C3=A5r ellers =
+filen bliver vist som den skal.=20
+
+Jeg h=C3=A5ber du kan bruge disse ting.=20
+
+K=C3=A6rlig hilsen Lars.=20
+
+=20
+
+Fra: Jens Sundgaard <holmeparken44@vip.cybercity.dk>=20
+Sendt: 4. februar 2022 08:38
+Til: Susanne Nols=C3=B8e <susanne@obj.dk>; Lars Petersen =
+<lars.organist@gmail.com>
+Cc: Bo Alstrup IBOS <cx64@kk.dk>
+Emne: Test af IBOS Nodel=C3=A6ser version 4.1
+
+=20
+
+Hej Susanne og Lars=20
+
+Jeg har lige hele 2 gange fors=C3=B8gt at sende version 4.1 til Jer,  =
+men havde glemt at man ikke kan sende komprimerede filer vedh=C3=A6ftet =
+=C3=A5benbart heller ikke maskeret som en tekstfil.
+
+I stedet m=C3=A5 jeg bede jer downloade programmet fra Dropbox via =
+linket:
+
+https://www.dropbox.com/s/a0jlus92o74oece/Public%20files%20for%20MusicXml=
+Reader%20Version%204.1.zip?dl=3D0
+
+
+Alts=C3=A5: Download filen "Public Files for MusicXmlRader 4.1.zip" via =
+ovenst=C3=A5ende link. Pak den ud og k=C3=B8r den udpakkede "IBOS =
+MusicXmlReader.exe"
+
+(Programmet skal IKKE "installeres", blot k=C3=B8res direkte fra disken, =
+s=C3=A5 I skal muligvis acceptere en sikkerhedsadvarsel hver gang I =
+starter det!)
+
+
+Den vedh=C3=A6ftede "Testvejledning for IBOS Nodel=C3=A6ser =
+Version4.1.docx" er mit forslag til tests.=20
+
+Testvejledningen er selvf=C3=B8lgelig netop kun t=C3=A6nkt som en =
+vejledning, s=C3=A5 find endelig selv p=C3=A5 mere.=20
+
+God forn=C3=B8jelse !=20
+
+mvh Jens=20
+
+
+------=_NextPart_000_0001_01D81F79.36F74BF0
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DDA link=3Dblue =
+vlink=3Dpurple style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'>Hej Jens. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>S=C3=A5 har =
+jeg gestet det jeg kunne.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>1 de =
+enkelte stemmer st=C3=A5r som de skal. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>2 jeg =
+=C3=A5bnede danmark nu blunder den lyse nat der bliver der sat for mange =
+oktavtegn. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'>3 bas og tenor har samme fejl der =
+er ogs=C3=A5 for mange oktavtegn. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Og n=C3=A5r =
+man har en sats der er skrevet som sa bt s=C3=A5 skal stemmerne st=C3=A5 =
+som n=C3=A5r man f=C3=A5r udskrevet sa og bt. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'>=C2=A0<o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>4 =
+henvisningstegn st=C3=A5r som det skal. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>5 =
+bistemmer. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'>De sm=C3=A5 bistemmer st=C3=A5r som =
+de skal, men der er jo ogs=C3=A5 store bistemmer, jeg ved ikke om du har =
+f=C3=A5et det med men stor bistemme bruges n=C3=A5r det er en hel takt =
+alts=C3=A5 alle fire slag i takten s=C3=A5 er det den store bistemme men =
+er det to slag i takten s=C3=A5 er det lille bistemme. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'>6 nodel=C3=A6seren. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'>Jeg har ikke f=C3=A5et den til at =
+virke i alle de ting jeg har pr=C3=B8vet jeg f=C3=A5r ingen fortolkning =
+af tegn jeg kan ikke finde ud af hvad der g=C3=A5r galt men det m=C3=A5 =
+vi lige tale sammen om. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Printning =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'>Jeg kan fint printe til min punt =
+printer men jeg har ikke haft mulighed for at teste pef formatet da min =
+printer ikke kan printe i dette format. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Men med =
+hensyn til nodel=C3=A6seren s=C3=A5 er det ok n=C3=A5r ellers filen =
+bliver vist som den skal. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>Jeg =
+h=C3=A5ber du kan bruge disse ting. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'mso-fareast-language:EN-US'>K=C3=A6rlig =
+hilsen Lars. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div><di=
+v style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b>Fra:</b> Jens Sundgaard =
+&lt;holmeparken44@vip.cybercity.dk&gt; <br><b>Sendt:</b> 4. februar 2022 =
+08:38<br><b>Til:</b> Susanne Nols=C3=B8e &lt;susanne@obj.dk&gt;; Lars =
+Petersen &lt;lars.organist@gmail.com&gt;<br><b>Cc:</b> Bo Alstrup IBOS =
+&lt;cx64@kk.dk&gt;<br><b>Emne:</b> Test af IBOS Nodel=C3=A6ser version =
+4.1<o:p></o:p></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p>Hej Susanne og Lars =
+<br><br>Jeg har lige hele 2 gange fors=C3=B8gt at sende version 4.1 til =
+Jer,&nbsp; men havde glemt at man ikke kan sende komprimerede filer =
+vedh=C3=A6ftet<b> =C3=A5benbart heller ikke maskeret som en =
+tekstfil</b>.<o:p></o:p></p><p>I stedet m=C3=A5 jeg bede jer downloade =
+programmet fra Dropbox via linket:<o:p></o:p></p><p><a =
+href=3D"https://www.dropbox.com/s/a0jlus92o74oece/Public%20files%20for%20=
+MusicXmlReader%20Version%204.1.zip?dl=3D0">https://www.dropbox.com/s/a0jl=
+us92o74oece/Public%20files%20for%20MusicXmlReader%20Version%204.1.zip?dl=3D=
+0</a><o:p></o:p></p><p><br>Alts=C3=A5: Download filen &quot;Public Files =
+for MusicXmlRader 4.1.zip&quot; via ovenst=C3=A5ende link. Pak den ud og =
+k=C3=B8r den udpakkede &quot;IBOS =
+MusicXmlReader.exe&quot;<o:p></o:p></p><p>(Programmet skal IKKE =
+&quot;installeres&quot;, blot k=C3=B8res direkte fra disken, s=C3=A5 I =
+skal muligvis acceptere en sikkerhedsadvarsel hver gang I starter =
+det!)<br><br><br>Den vedh=C3=A6ftede &quot;Testvejledning for IBOS =
+Nodel=C3=A6ser Version4.1.docx&quot; er mit forslag til tests. =
+<br><br>Testvejledningen er selvf=C3=B8lgelig netop kun t=C3=A6nkt som =
+en vejledning, s=C3=A5 find endelig selv p=C3=A5 mere. <br><br>God =
+forn=C3=B8jelse ! <br><br>mvh Jens <o:p></o:p></p></div></body></html>
+------=_NextPart_000_0001_01D81F79.36F74BF0--
+

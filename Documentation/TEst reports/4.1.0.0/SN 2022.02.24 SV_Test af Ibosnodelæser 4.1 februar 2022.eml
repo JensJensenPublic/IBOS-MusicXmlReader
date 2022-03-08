@@ -1,0 +1,527 @@
+Return-Path: <susanne@obj.dk>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe004.lytzenitmail.local ([100.127.30.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id 0LAONOOHF2Jb/QAAlE+V+A
+	(envelope-from <susanne@obj.dk>)
+	for <dsl248925@mail.jubii.dk>; Thu, 24 Feb 2022 14:28:03 +0100
+Received: from sv900pomx004.lytzenitmail.dk ([100.127.30.63])
+	by sv900ddwe004.lytzenitmail.local with LMTP
+	id 4JhdM+OHF2KdSwAAuH+tKw
+	(envelope-from <susanne@obj.dk>)
+	for <dsl248925@mail.jubii.dk>; Thu, 24 Feb 2022 14:28:03 +0100
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.161])
+	by sv900pomx004.lytzenitmail.dk (Postfix) with ESMTPS id CF20C29B
+	for <holmeparken44@vip.cybercity.dk>; Thu, 24 Feb 2022 14:28:03 +0100 (CET)
+Authentication-Results: mx01.lytzenitmail.dk; spf=None smtp.mailfrom=susanne@obj.dk
+Received-SPF: None (mx01.lytzenitmail.dk: no sender authenticity
+  information available from domain of susanne@obj.dk)
+  identity=mailfrom; client-ip=94.231.106.240;
+  receiver=mx01.lytzenitmail.dk;
+  envelope-from="susanne@obj.dk"; x-sender="susanne@obj.dk";
+  x-conformance=spf_only
+IronPort-SDR: 6dEDI+sjQqm27qhztvKCDj/gisp3Yl0I0UCr9W4QLPW32qW+r3c49q1iOnp3T9OrmVWES9Es/i
+ FmnBlO8JGw6exYBsCAH1tZg54AQzA3MiPVq7QXM4NE8sM/6j7CmRQreRCfD+gr+In+Fg67J2/I
+ j5lB/rL1AiV0S6evpi+7sUKUy6NLDsQWisz3FJUNuZ3RuqoNCuqFIQL/llV33AxK9Qf3Te4S/Y
+ njdxVvHkCLMolx1TEgfLAeaCV6YhtD/9u1sjtsiqmaNGPi0FojK3lrv6PVP1eH+5WR7ZZIEaT6
+ xYZP8fCQteU1KejZpAjxMpAr
+X-IPAS-Result: =?us-ascii?q?A0AfAgCOhxdih/Bq515ahASBB35XASoEC0SEFj6JBok9g?=
+ =?us-ascii?q?i2NZY0bCwEBAQEBAQEBAQk/AgQBAYUHAoQNAiM6EwECBAEBAQEDAgMBAQEBB?=
+ =?us-ascii?q?QEBAQQBAQECAQECAwQUAQEBAQsNCQUICgcOEAVBZGOBT4F5BgQwDYZDAwMIA?=
+ =?us-ascii?q?gIXBQUTAQE3AQwDAgcQNAICGT4CBBMLBYJ0AYIOgQySC5wMgQEwgQGCCAEBB?=
+ =?us-ascii?q?oZFgR0JgTyHMAEBglyDO3onHIFJRIEVM4M1gQUKhk6CZZYqeVIMbMBGg1KgG?=
+ =?us-ascii?q?ZYyDJFYlk+iJ4RMNYFDgX4zIjCDJD8PAQIBAgEMAQICAQIBAgECCQEBAo4pC?=
+ =?us-ascii?q?wIJhB2KEkABMzgCBgEKAQEDCQGCOQGDLxaNCwEB?=
+IronPort-PHdr: A9a23:/v7uoRer75t9UeOnUL05AF41lGM+utzLVj580XJGo7deKv3l+4X+L
+ kHZ5OlohV7NG4nYuLpfk+SDlafmVCQb5IqZ9nULcZhCTRgA3N4LhAUmBsOtDkf5avLpB8AjN
+ OJFUlItv3SraRETHNfidVDUo2G35D8WXBn8Z0JzIazuF4jegt7/3v2u+5DVfwRDhSasBNE6Z
+ BSwowLLs8AKgIxkYq8vwxrNq3FMdqxY32RtbV6Umh/94I+38tZ47j9ZvfQs38lKU+P2fOVdL
+ /QQDTgrNXw0+Ny+sBDCSQWV4X5PGm4SkxdOH03E9ESrAtGr6XK877IjnnPGZZ6TL/h8Qzmp4
+ qZ1RQW9jTdfbng94X3Fh8pxkKdSoRbnqx8spuycKIyTKvd6ebvQON0AQm8UFN1MTCVHBI6Ua
+ IENSeYCd7UQv8zmql0CoAHrTxKxH+rpzDJggXX0m6E5mbdEc0mOzEkrGNQAt27RpdP+OfIJS
+ e6Cy6/M3F0rgNtR0zW75IuaKngc
+IronPort-Data: A9a23:RGy0hq1/oaAIChEOmPbD5aB3kn2cJEfYwER7XKvMYLTBsI5bpzwOn
+ GBOUGCHaKqLZ2ugKopwbdzk8RsAu5aBy4JrSlZkqSg9HnlHgPSeCIXCJC8cHc8zwu4v7q5Dx
+ 59DAjUVBJlsFhcwnvouW1TYhSEUOZugH9IQM8aZfHEpLeNYYH1500g7wbRl2tUAbeWRWmthh
+ /uj/qUzB3f7hlaYAkpMg05UgEoy1BhakGpwUm0WPZinjneH/5UmJMh3yZWKEpfNatI88thW5
+ wr05OrREmvxp3/BAz4++1rxWhVirrX6ZWBihpfKMkSvqkAqm8A87ko0HKEsME0G1CiGpNZo2
+ fpcmMKSRg47M5SZzYzxUzEAe81/FbZD5KeCJmWj6IqIzkjed2qqyPJrZK00FdxEvLwsWCcXr
+ aJecmxVBvyAr7reLLaTUfR3j8IlIeHsNoFZtnIIITTxV656Hc6dGv6ajTNe9B0/qsVWHcrvX
+ toQb2ZwQzffOEYSMFhCXfrSm8/z2iakL2wBwL6PnoI35GzWwRR4yrvgNoaJUsKLXYNej0yVv
+ GnH43W/DhJyCTCE4SGA7mrpgfLTxGXgWYcKEKz+/flv6LGO+oANIEYmDFHq/uS2sUinSv1OB
+ hI29SM8oJFnoSRHUeLBdxG/pXeFuDsVVNxRD/A25WmxJkz8vlzx6o8sE2UpVTA2iCMlbWF0j
+ gTYxbsFERQ+4ebMEhpx45/N9WvaBMQDEYMVTQMnJefvy+LgqYc/gwjFScxseEJepo2rR2mYL
+ 9yihyU4m68aiYYpyrm/9FbL6w9AS7DSSxItowLKQjvj9QJ8fIq0IYev7DA3DMqszq7HHzFtX
+ 1Bew6ByCdzi67nRykRhp81RQdmUCw6tamG0vLKWN8BJG86R03CiZ5tMxzp1OV1kNM0JERewP
+ hOO518IvMcLYiXzBUOSX25XI5l0pUQHPYm7Ps04kvIUOvCdiSfboHs+NSZ8IUi0yBVw+U3AB
+ XtrWZ3wUi1GWP0PIMueW+oU1Pkhwj0zjW/eQ5Xy1Rfv2P2FDEN5up9bWGZimtsRtfveyC2Mq
+ 4g3H5LTl313DbOiCgGKr997BQ1bdRATWMGtw+QKJ77rClQ9QgkJVaSOqY7NjqQ+wsy5YM+To
+ iriMqKZoXKj7UD6xfKiMC47M+q3Bc4lxZ/5VAR1VWuVN7EYSd7HxM8im1EfJOBPGDVLwaEmQ
+ v8bVd+HB/gTGD3L9y5DP573rspud03z1w6JOiOkZhk5foJhHlSRp4K+JVG3rCReXDCqscYeo
+ qG70l+JS5Q0WAk/Xt3db+iizg3tsCFFyv5yRUbBPvJaZF7orNpxMyX0g/Jue5MMJBzPyyG0z
+ QGTBRtE9+DBr5Vrot7Dh+aIrN7xQed5G0NbGUjd7Kq3bHGCozf5mtUYCOvRJGLTTmL5/qmmd
+ N559fCkPa1VhktOvqp9D61vkfA06ezwquII1Q9jBnjKMQimU+syPnmc0MBTnaRR3bsF6xCuU
+ 0eC99QGa7WEPMTpTAwYKAY/NLzRzvQIgnzV8OhsZl774Tdz7fyMVkALZ0uAjylULb1UNoI5w
+ Ld55p9Hs1Dn0hd6YMybii109niXKiBSWasQsJxHUpTgjRAmyw0fbJGAWDX65oqDN4dFPkUwe
+ GfGn6/en/Fb21abNWEyEGDJzKxWgpFX4EJGy1oLJlKonNvZh69vgkwAqWhvFgkFnA9a1+9TO
+ 3RwMxEnL6u5+To11tNIWHqhGl0cCRCUkqArJ4DlSIENo4iUuq7ldAXR+tphOGge+WAacjszE
+ HR0Dor6eW6CQfwdBhcPZHM=
+IronPort-HdrOrdr: A9a23:9gltQKjCF7B03LX087RjCHWjA3BQXuEji2hC6mlwRA09TyVXra
+ 6TdYcgpGbJYVcqKRYdcLW7VZVoLkmsl6KdjbN8AV7mZmnbUQiTXeVfBOnZsljd8kTFn4Y3v5
+ uIMZIeNDSaNykYsS+O2njBLz9P+ra6GdiT9IHj80s=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.90,134,1643670000"; 
+   d="scan'208,217";a="204466138"
+Received: from smtp-out1.simply.com ([94.231.106.240])
+  by mx01.lytzenitmail.dk with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2022 14:28:02 +0100
+Received: from localhost (localhost [127.0.0.1])
+	by smtp.simply.com (Simply.com) with ESMTP id 4K4DHP3VNPz681f;
+	Thu, 24 Feb 2022 14:28:01 +0100 (CET)
+Received: from DESKTOPDMOOD5I (87-57-144-108-cable.dk.customer.tdc.net [87.57.144.108])
+	by smtp.simply.com (Simply.com) with ESMTPA id 4K4DHP1XhLz67y6;
+	Thu, 24 Feb 2022 14:28:01 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=obj.dk; s=unoeuro;
+	t=1645709281; bh=Me+++lXFx1dFvD3/yb9Z8zh7jOwiJj52tiQPTEcdgSQ=;
+	h=From:To:Cc:References:In-Reply-To:Subject:Date;
+	b=TFLHXJ9DtWaS+wcF/SuyORuVF+GW6SPiIOfPb9+NLyJmpwM8RNOGE/f5R1rgPThWV
+	 AqVVOwx3S3RtNuV8RtcXQioJw/R2KBCA+KGgKxfOTP/5Jn0I1Wr5DaZxBfLfcSJK+h
+	 UTb8yE9SDEzJW+IMRwSoFeW9m32JXqjyx5d9sg5A=
+From: =?UTF-8?Q?Susanne_Nols=C3=B8e?= <susanne@obj.dk>
+To: "'Jens Sundgaard'" <holmeparken44@vip.cybercity.dk>
+Cc: "'Bo Alstrup IBOS'" <cx64@kk.dk>,
+	"'Bo Alstrup'" <bo@c2tal.dk>
+References: <006601d82932$07d801d0$17880570$@obj.dk> <ef3d216a-9406-f574-63cd-588b2d349158@vip.cybercity.dk>
+In-Reply-To: <ef3d216a-9406-f574-63cd-588b2d349158@vip.cybercity.dk>
+Subject: =?UTF-8?Q?SV:_Test_af_Ibosnodel=C3=A6ser_4.1_fe?=
+	=?UTF-8?Q?bruar_2022?=
+Date: Thu, 24 Feb 2022 14:28:00 +0100
+Message-ID: <002101d82982$580305b0$08091110$@obj.dk>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0022_01D8298A.B9C8F450"
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: da
+Thread-Index: AQFCTUDjspEF3LArLyQRTMFLyz7WFAF8dhJHrcJ6+rA=
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0022_01D8298A.B9C8F450
+Content-Type: text/plain;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hej Jens cc Bo=20
+
+=20
+
+Ja, jeg t=C3=A6nker de par ting, som jeg foresl=C3=A5r i forhold til =
+becifring nok forholdsvis let kan implementeres. Og begrundelsen om =
+becifring g=C3=A5r meget p=C3=A5, jeg t=C3=A6nker de fleste =
+fritidsmusikkere arbejder med becifring p=C3=A5 en eller anden led. Og =
+teksten er jo s=C3=A6rdeles vigtig for de mange, som synger i kor. =
+M=C3=A5ske kunne man lave et lille program. Som nemt kan tr=C3=A6kke =
+teksten ud af en dekodertekstfil fra notesblok, ind til du har f=C3=A5et =
+det til at virke i selve programmet. S=C3=A5 er man da kommet et stykke =
+af vejen.=20
+
+=20
+
+I forhold til behovet for pedalnoder, s=C3=A5 er jeg helt enig med Lars, =
+det er et vigtigt punkt for professionelle, og det er vigtigt det =
+ogs=C3=A5 f=C3=A5r en h=C3=B8j prioritering, da =C3=B8konomien jo =
+spiller en v=C3=A6sentlig rolle for, hvad du i praksis kan f=C3=A5 lavet =
+af noder til erhvervsbrug fra udlandet. Og det er vigtigt, at de =
+f=C3=A5, som fortsat har musik som erhverv eller sandsynligvis kan =
+f=C3=A5 en mulighed for erhverv, ikke skal bremses fordi de ikke kan =
+f=C3=A5 adgang til relevante noder. Det er bare med at holde p=C3=A5 de =
+relativt f=C3=A5 erhverv, som vi nu har mulighed for at bestride.=20
+
+=20
+
+I forhold til noder med forkortede tekster fra Nota er jeg klar over, =
+det vil v=C3=A6re et problem at f=C3=A5 gennemanalyseret maskinelt. Men =
+hvis du kan f=C3=A5 den til at respektere teksttegnet, n=C3=A5r det er =
+der, vil det alligevel hj=C3=A6lpe en hel del, lige som jeg ogs=C3=A5 =
+mener, det vil v=C3=A6re v=C3=A6sentligt, om du som bruger kan f=C3=A5 =
+mulighed for at inds=C3=A6tte nodetegn eller teksttegn i dekoderfilen, =
+og derefter generere en musikXML, s=C3=A5 vil resultatet i hvert fald =
+nodem=C3=A6ssigt blive korrekt. Det kunne s=C3=A5m=C3=A6nd ogs=C3=A5 =
+v=C3=A6re fint, hvis man kunne f=C3=A5 lov at rette forkortelserne som =
+bruger. Det skal jo s=C3=A5dan set kun g=C3=B8res en gang for alle =
+nota-nodefilerne og s=C3=A5 skal de bare gemmes, s=C3=A5 vil de fremover =
+kunne udprintes korrekt. De kunne m=C3=A5ske ogs=C3=A5 i en periode give =
+eventuelt et fleksjob til en node- og forkortelseskyndig punktl=C3=A6ser =
+hos Nota. En hel del af de her problematikker vedr=C3=B8rer is=C3=A6r =
+Notas =C3=A6ldre bestand af punktnoder og nok ikke nutidige producerede =
+filer?=20
+
+=20
+
+Jeg synes ogs=C3=A5, det lige nu er vigtigt, at nodel=C3=A6ser fortsat =
+kommer med en fejlmelding, og det er ogs=C3=A5 vigtigt, at du ikke pga. =
+den bliver stoppet i at fors=C3=B8ge at generere en nodefil. Som du selv =
+skrev, s=C3=A5 har jeg ikke fundet noget rigtigt alvorligt, som kan =
+stoppe programmet. Og det er netop fordi jeg fortsat kan f=C3=A5 lov at =
+se indholdet af dekoderfilen, det betyder ogs=C3=A5, at kan du l=C3=A6se =
+ordentlig noder, s=C3=A5 kan du fortsat komme ud over stepperne, =
+ogs=C3=A5 selv om programmet ikke kan spille de rigtige noder, hvor =
+programmet bare har missed sammenh=C3=A6ngen mellem tekst og noder. Du =
+kan stadig med dekoderfilen i h=C3=A5nden i notesblok f=C3=A5 fuld =
+adgang til noder og/eller teksten og dermed tilegne dig materialet, =
+hvilket grundl=C3=A6ggende er meget vigtigt for at forst=C3=A5, hvad og =
+hvor, det er g=C3=A5et galt, men samtidig ogs=C3=A5 mulighed for fortsat =
+at kunne fungere i et erhverv, hvor du ofte bare m=C3=A5 g=C3=A5 en =
+omvej og g=C3=B8re noget ekstra for at f=C3=A5 det til at fungere, selv =
+om det er mere besv=C3=A6rligt. Hvis ikke du har muligheden, har du =
+m=C3=A5ske heller ikke noget job l=C3=A6ngere. S=C3=A5 behold endelig de =
+nuv=C3=A6rende =C3=A5bne muligheder for at se indholdet af dekoderfilen, =
+selv om den har fejl.=20
+
+=20
+
+Jeg skal nok g=C3=A5 i t=C3=A6nkeboks over en 5 til 10 nye prioritering =
+i forhold til nodel=C3=A6seren, n=C3=A5r I skal til at s=C3=B8ge igen. =
+Men kan I ikke lade mig vide, hvilken tidshorisont i arbejder med, =
+s=C3=A5 skal jeg nok komme op med et eller andet.=20
+
+=20
+
+Mange hilsner=20
+
+=20
+
+Susanne=20
+
+Fra: Jens Sundgaard <holmeparken44@vip.cybercity.dk>=20
+Sendt: 24. februar 2022 09:22
+Til: Susanne Nols=C3=B8e <susanne@obj.dk>
+Cc: 'Bo Alstrup IBOS' <cx64@kk.dk>; 'Bo Alstrup' <bo@c2tal.dk>
+Emne: Re: Test af Ibosnodel=C3=A6ser 4.1 februar 2022
+
+=20
+
+Hej Susanne, det er helt i orden med forsinkelsen, jeg ville n=C3=A6ppe =
+kunne have n=C3=A5et at rette ret mange af fejlene alligevel.
+
+Jeg har l=C3=A6st dit dokument igennem og kan se at du heldigvis ikke =
+har fundet nogen egentlige show-stoppere.
+
+Jeg vil nu gennemg=C3=A5 dokumentet i detaljer samt pr=C3=B8ve at =
+oms=C3=A6tte dine iagttagelser til aktiviteter og f=C3=B8je dem til =
+vores To Do liste
+
+Den helt nye funktionalitet i "IBOS Punktnodel=C3=A6ser" er klart den =
+mest problematiske. Egentlig lavede jeg den mest som et eksperiment og =
+som et n=C3=B8dvendigt v=C3=A6rkt=C3=B8j,
+
+som tillod mig let selv at inspicere de punktnodefiler, som "IBOS =
+Nodel=C3=A6ser"  genererer. Ofte lader brugervenligheden derfor en del =
+tilbage at =C3=B8nske,
+
+specielt hvis man bruger den p=C3=A5 en punktnodefil, som p=C3=A5 en =
+eller anden m=C3=A5de afviger fra normalen, for eksempel ved at =
+indeholde forkortet tekst eller becifringer i en alternativ notation.
+
+Det m=C3=A5 vi nok fors=C3=B8ge at h=C3=A5ndtere p=C3=A5 en mere =
+brugervenlig m=C3=A5de, for eksempel ved at programmet simpelthen kommer =
+med deciderede fejlmeldinger, hvis punktnodefilen er for problematisk.
+
+Og s=C3=A5 "p=C3=A5 den lidt l=C3=A6ngere bane", som politikerne siger:
+
+Bo og jeg vil nok snart fors=C3=B8ge at finde nogle punkter, som kan =
+bruges i en ny ans=C3=B8gning til Wroblevski eller andre.
+
+I den forbindelse vil vi meget gerne h=C3=B8re, hvad du kunne t=C3=A6nke =
+dig:
+
+Eksempelvis vil Lars Petersen meget gerne have support for pedalnoder, =
+men er n=C3=A6rmest ligeglad med becifringer.
+
+Og fra mange sider, osse fra dig =C3=B8nskes support af lyrik =
+(alts=C3=A5 nodetekst).
+
+Kunne du ved lejlighed sende en (gerne prioriteret) liste p=C3=A5 5-10 =
+punkter, som du kunne =C3=B8nske dig implementeret i en eventuel ny =
+version 6.0?
+
+=20
+
+mvh Jens
+
+=20
+
+Den 24-02-2022 kl. 04:53 skrev Susanne Nols=C3=B8e:
+
+Hej Jens og Bo=20
+
+=20
+
+Jeg er ked af, at jeg ikke har haft mulighed for at v=C3=A6re tidligere =
+ude med tilbagemeldingen p=C3=A5 testningen. S=C3=A5 jeg forst=C3=A5r =
+godt, hvis ikke der er meget tid at g=C3=B8re med i forhold til mine =
+=C3=A6ndringsforslag.=20
+
+=20
+
+Vedh=C3=A6ftet er min test. Overordnet synes jeg, der er rigtigt mange =
+gode ting i den ny udgave. Og der er formentlig ogs=C3=A5 en del af mine =
+forslag, som f=C3=B8rst kan komme med i en senere udgave. Dog =
+t=C3=A6nker jeg, det er vigtigt at g=C3=B8re klart, hvor =
+nodel=C3=A6seren har svage sider i forhold til det, som man m=C3=A5 =
+forvente vil blive printet fra Notas filer. Jeg har faktisk helt glemt =
+at sp=C3=B8rge i min testfil, wordfilen, om nodel=C3=A6seren nu kan =
+genere tekster og noder, eller fortsat kun noder?=20
+
+=20
+
+De to filer, som hedder nr 380 danmark se solen stiger op over =
+bilkirkeg=C3=A5rden txt og svantes lykkeligedag txt er de originale =
+notafiler. Jeg har ikke lavet nogen dekoder txt fil af nr 380 danmark se =
+solen stiger op over bilkirkeg=C3=A5rden, dette sagt for I ikke skal =
+lede efter den. Jeg mener at have vedh=C3=A6ftet alle filer i =
+forbindelse med testen.=20
+
+=20
+
+God l=C3=A6selyst, og bliv nu ikke al for traurig, men hold hum=C3=B8ret =
+h=C3=B8jt, der er som sagt rigtig mange gode forbedringer!=20
+
+=20
+
+Mange hilsner=20
+
+=20
+
+Susanne=20
+
+
+------=_NextPart_000_0022_01D8298A.B9C8F450
+Content-Type: text/html;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	mso-fareast-language:DA;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DDA =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Hej Jens cc Bo =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Ja, jeg t=C3=A6nker de =
+par ting, som jeg foresl=C3=A5r i forhold til becifring nok forholdsvis =
+let kan implementeres. Og begrundelsen om becifring g=C3=A5r meget =
+p=C3=A5, jeg t=C3=A6nker de fleste fritidsmusikkere arbejder med =
+becifring p=C3=A5 en eller anden led. Og teksten er jo s=C3=A6rdeles =
+vigtig for de mange, som synger i kor. M=C3=A5ske kunne man lave et =
+lille program. Som nemt kan tr=C3=A6kke teksten ud af en dekodertekstfil =
+fra notesblok, ind til du har f=C3=A5et det til at virke i selve =
+programmet. S=C3=A5 er man da kommet et stykke af vejen. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>I forhold til behovet =
+for pedalnoder, s=C3=A5 er jeg helt enig med Lars, det er et vigtigt =
+punkt for professionelle, og det er vigtigt det ogs=C3=A5 f=C3=A5r en =
+h=C3=B8j prioritering, da =C3=B8konomien jo spiller en v=C3=A6sentlig =
+rolle for, hvad du i praksis kan f=C3=A5 lavet af noder til erhvervsbrug =
+fra udlandet. Og det er vigtigt, at de f=C3=A5, som fortsat har musik =
+som erhverv eller sandsynligvis kan f=C3=A5 en mulighed for erhverv, =
+ikke skal bremses fordi de ikke kan f=C3=A5 adgang til relevante noder. =
+Det er bare med at holde p=C3=A5 de relativt f=C3=A5 erhverv, som vi nu =
+har mulighed for at bestride. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>I forhold til noder med =
+forkortede tekster fra Nota er jeg klar over, det vil v=C3=A6re et =
+problem at f=C3=A5 gennemanalyseret maskinelt. Men hvis du kan f=C3=A5 =
+den til at respektere teksttegnet, n=C3=A5r det er der, vil det =
+alligevel hj=C3=A6lpe en hel del, lige som jeg ogs=C3=A5 mener, det vil =
+v=C3=A6re v=C3=A6sentligt, om du som bruger kan f=C3=A5 mulighed for at =
+inds=C3=A6tte nodetegn eller teksttegn i dekoderfilen, og derefter =
+generere en musikXML, s=C3=A5 vil resultatet i hvert fald =
+nodem=C3=A6ssigt blive korrekt. Det kunne s=C3=A5m=C3=A6nd ogs=C3=A5 =
+v=C3=A6re fint, hvis man kunne f=C3=A5 lov at rette forkortelserne som =
+bruger. Det skal jo s=C3=A5dan set kun g=C3=B8res en gang for alle =
+nota-nodefilerne og s=C3=A5 skal de bare gemmes, s=C3=A5 vil de fremover =
+kunne udprintes korrekt. De kunne m=C3=A5ske ogs=C3=A5 i en periode give =
+eventuelt et fleksjob til en node- og forkortelseskyndig punktl=C3=A6ser =
+hos Nota. En hel del af de her problematikker vedr=C3=B8rer is=C3=A6r =
+Notas =C3=A6ldre bestand af punktnoder og nok ikke nutidige producerede =
+filer? <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Jeg synes ogs=C3=A5, det =
+lige nu er vigtigt, at nodel=C3=A6ser fortsat kommer med en fejlmelding, =
+og det er ogs=C3=A5 vigtigt, at du ikke pga. den bliver stoppet i at =
+fors=C3=B8ge at generere en nodefil. Som du selv skrev, s=C3=A5 har jeg =
+ikke fundet noget rigtigt alvorligt, som kan stoppe programmet. Og det =
+er netop fordi jeg fortsat kan f=C3=A5 lov at se indholdet af =
+dekoderfilen, det betyder ogs=C3=A5, at kan du l=C3=A6se ordentlig =
+noder, s=C3=A5 kan du fortsat komme ud over stepperne, ogs=C3=A5 selv om =
+programmet ikke kan spille de rigtige noder, hvor programmet bare har =
+missed sammenh=C3=A6ngen mellem tekst og noder. Du kan stadig med =
+dekoderfilen i h=C3=A5nden i notesblok f=C3=A5 fuld adgang til noder =
+og/eller teksten og dermed tilegne dig materialet, hvilket =
+grundl=C3=A6ggende er meget vigtigt for at forst=C3=A5, hvad og hvor, =
+det er g=C3=A5et galt, men samtidig ogs=C3=A5 mulighed for fortsat at =
+kunne fungere i et erhverv, hvor du ofte bare m=C3=A5 g=C3=A5 en omvej =
+og g=C3=B8re noget ekstra for at f=C3=A5 det til at fungere, selv om det =
+er mere besv=C3=A6rligt. Hvis ikke du har muligheden, har du m=C3=A5ske =
+heller ikke noget job l=C3=A6ngere. S=C3=A5 behold endelig de =
+nuv=C3=A6rende =C3=A5bne muligheder for at se indholdet af dekoderfilen, =
+selv om den har fejl. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Jeg skal nok g=C3=A5 i =
+t=C3=A6nkeboks over en 5 til 10 nye prioritering i forhold til =
+nodel=C3=A6seren, n=C3=A5r I skal til at s=C3=B8ge igen. Men kan I ikke =
+lade mig vide, hvilken tidshorisont i arbejder med, s=C3=A5 skal jeg nok =
+komme op med et eller andet. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Mange hilsner =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:#1F497D'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span style=3D'color:#1F497D'>Susanne =
+<o:p></o:p></span></p><div><div style=3D'border:none;border-top:solid =
+#E1E1E1 1.0pt;padding:3.0pt 0cm 0cm 0cm'><p class=3DMsoNormal><b><span =
+style=3D'mso-fareast-language:DA'>Fra:</span></b><span =
+style=3D'mso-fareast-language:DA'> Jens Sundgaard =
+&lt;holmeparken44@vip.cybercity.dk&gt; <br><b>Sendt:</b> 24. februar =
+2022 09:22<br><b>Til:</b> Susanne Nols=C3=B8e =
+&lt;susanne@obj.dk&gt;<br><b>Cc:</b> 'Bo Alstrup IBOS' =
+&lt;cx64@kk.dk&gt;; 'Bo Alstrup' &lt;bo@c2tal.dk&gt;<br><b>Emne:</b> Re: =
+Test af Ibosnodel=C3=A6ser 4.1 februar =
+2022<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p>Hej Susanne, det er helt i =
+orden med forsinkelsen, jeg ville n=C3=A6ppe kunne have n=C3=A5et at =
+rette ret mange af fejlene alligevel.<span =
+style=3D'font-size:12.0pt;mso-fareast-language:DA'><o:p></o:p></span></p>=
+<p>Jeg har l=C3=A6st dit dokument igennem og kan se at du heldigvis ikke =
+har fundet nogen egentlige show-stoppere.<o:p></o:p></p><p>Jeg vil nu =
+gennemg=C3=A5 dokumentet i detaljer samt pr=C3=B8ve at oms=C3=A6tte dine =
+iagttagelser til aktiviteter og f=C3=B8je dem til vores To Do =
+liste<o:p></o:p></p><p>Den helt nye funktionalitet i &quot;IBOS =
+Punktnodel=C3=A6ser&quot; er klart den mest problematiske. Egentlig =
+lavede jeg den mest som et eksperiment og som et n=C3=B8dvendigt =
+v=C3=A6rkt=C3=B8j,<o:p></o:p></p><p>som tillod mig let selv at inspicere =
+de punktnodefiler, som &quot;IBOS Nodel=C3=A6ser&quot;&nbsp; genererer. =
+Ofte lader brugervenligheden derfor en del tilbage at =
+=C3=B8nske,<o:p></o:p></p><p>specielt hvis man bruger den p=C3=A5 en =
+punktnodefil, som p=C3=A5 en eller anden m=C3=A5de afviger fra normalen, =
+for eksempel ved at indeholde forkortet tekst eller becifringer i en =
+alternativ notation.<o:p></o:p></p><p>Det m=C3=A5 vi nok fors=C3=B8ge at =
+h=C3=A5ndtere p=C3=A5 en mere brugervenlig m=C3=A5de, for eksempel ved =
+at programmet simpelthen kommer med deciderede fejlmeldinger, hvis =
+punktnodefilen er for problematisk.<o:p></o:p></p><p>Og s=C3=A5 =
+&quot;p=C3=A5 den lidt l=C3=A6ngere bane&quot;, som politikerne =
+siger:<o:p></o:p></p><p>Bo og jeg vil nok snart fors=C3=B8ge at finde =
+nogle punkter, som kan bruges i en ny ans=C3=B8gning til Wroblevski =
+eller andre.<o:p></o:p></p><p>I den forbindelse vil vi meget gerne =
+h=C3=B8re, hvad du kunne t=C3=A6nke dig:<o:p></o:p></p><p>Eksempelvis =
+vil Lars Petersen meget gerne have support for pedalnoder, men er =
+n=C3=A6rmest ligeglad med becifringer.<o:p></o:p></p><p>Og fra mange =
+sider, osse fra dig =C3=B8nskes support af lyrik (alts=C3=A5 =
+nodetekst).<o:p></o:p></p><p>Kunne du ved lejlighed sende en (gerne =
+prioriteret) liste p=C3=A5 5-10 punkter, som du kunne =C3=B8nske dig =
+implementeret i en eventuel ny version =
+6.0?<o:p></o:p></p><p><o:p>&nbsp;</o:p></p><p>mvh Jens<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p class=3DMsoNormal>Den =
+24-02-2022 kl. 04:53 skrev Susanne =
+Nols=C3=B8e:<o:p></o:p></p></div><blockquote =
+style=3D'margin-top:5.0pt;margin-bottom:5.0pt'><p class=3DMsoNormal>Hej =
+Jens og Bo <o:p></o:p></p><p class=3DMsoNormal>&nbsp;<o:p></o:p></p><p =
+class=3DMsoNormal>Jeg er ked af, at jeg ikke har haft mulighed for at =
+v=C3=A6re tidligere ude med tilbagemeldingen p=C3=A5 testningen. S=C3=A5 =
+jeg forst=C3=A5r godt, hvis ikke der er meget tid at g=C3=B8re med i =
+forhold til mine =C3=A6ndringsforslag. <o:p></o:p></p><p =
+class=3DMsoNormal>&nbsp;<o:p></o:p></p><p =
+class=3DMsoNormal>Vedh=C3=A6ftet er min test. Overordnet synes jeg, der =
+er rigtigt mange gode ting i den ny udgave. Og der er formentlig =
+ogs=C3=A5 en del af mine forslag, som f=C3=B8rst kan komme med i en =
+senere udgave. Dog t=C3=A6nker jeg, det er vigtigt at g=C3=B8re klart, =
+hvor nodel=C3=A6seren har svage sider i forhold til det, som man m=C3=A5 =
+forvente vil blive printet fra Notas filer. Jeg har faktisk helt glemt =
+at sp=C3=B8rge i min testfil, wordfilen, om nodel=C3=A6seren nu kan =
+genere tekster og noder, eller fortsat kun noder? <o:p></o:p></p><p =
+class=3DMsoNormal>&nbsp;<o:p></o:p></p><p class=3DMsoNormal>De to filer, =
+som hedder nr 380 danmark se solen stiger op over bilkirkeg=C3=A5rden =
+txt og svantes lykkeligedag txt er de originale notafiler. Jeg har ikke =
+lavet nogen dekoder txt fil af nr 380 danmark se solen stiger op over =
+bilkirkeg=C3=A5rden, dette sagt for I ikke skal lede efter den. Jeg =
+mener at have vedh=C3=A6ftet alle filer i forbindelse med testen. =
+<o:p></o:p></p><p class=3DMsoNormal>&nbsp;<o:p></o:p></p><p =
+class=3DMsoNormal>God l=C3=A6selyst, og bliv nu ikke al for traurig, men =
+hold hum=C3=B8ret h=C3=B8jt, der er som sagt rigtig mange gode =
+forbedringer! <o:p></o:p></p><p =
+class=3DMsoNormal>&nbsp;<o:p></o:p></p><p class=3DMsoNormal>Mange =
+hilsner <o:p></o:p></p><p class=3DMsoNormal>&nbsp;<o:p></o:p></p><p =
+class=3DMsoNormal>Susanne =
+<o:p></o:p></p></blockquote></div></body></html>
+------=_NextPart_000_0022_01D8298A.B9C8F450--
+

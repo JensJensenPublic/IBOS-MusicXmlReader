@@ -1,0 +1,142 @@
+Return-Path: <lars.organist@gmail.com>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe001.lytzenitmail.local ([100.127.30.100])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id GJfuFvksEmJ/ywAAlE+V+A
+	(envelope-from <lars.organist@gmail.com>)
+	for <dsl248925@mail.jubii.dk>; Sun, 20 Feb 2022 12:58:49 +0100
+Received: from sv900pomx001.lytzenitmail.dk ([100.127.30.60])
+	by sv900ddwe001.lytzenitmail.local with LMTP
+	id +ERIFvksEmLeLwAAPDtoZg
+	(envelope-from <lars.organist@gmail.com>)
+	for <dsl248925@mail.jubii.dk>; Sun, 20 Feb 2022 12:58:49 +0100
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.165])
+	by sv900pomx001.lytzenitmail.dk (Postfix) with ESMTPS id 4F524C025AC
+	for <holmeparken44@vip.cybercity.dk>; Sun, 20 Feb 2022 12:58:49 +0100 (CET)
+Authentication-Results: mx01.lytzenitmail.dk; spf=Pass smtp.mailfrom=lars.organist@gmail.com
+Received-SPF: Pass (mx01.lytzenitmail.dk: domain of
+  lars.organist@gmail.com designates 209.85.208.46 as permitted
+  sender) identity=mailfrom; client-ip=209.85.208.46;
+  receiver=mx01.lytzenitmail.dk;
+  envelope-from="lars.organist@gmail.com";
+  x-sender="lars.organist@gmail.com"; x-conformance=spf_only;
+  x-record-type="v=spf1"; x-record-text="v=spf1
+  ip4:35.190.247.0/24 ip4:64.233.160.0/19 ip4:66.102.0.0/20
+  ip4:66.249.80.0/20 ip4:72.14.192.0/18 ip4:74.125.0.0/16
+  ip4:108.177.8.0/21 ip4:173.194.0.0/16 ip4:209.85.128.0/17
+  ip4:216.58.192.0/19 ip4:216.239.32.0/19 ~all"
+IronPort-SDR: vZsQKLLHaJtzodyry9vV17egY7U4M/8fMaAbA8aMSQM38M+wWhVkrUXqrNlrItW8w2WMGc/brz
+ LdAya7wIfloVSTEK+0XiZuAgWcYMaEMQiuvyT4ZguiPslbzsvAe1wah0iEqiyq7KWJCL4qlSZK
+ 9GWww+NEGhGGR8FmGpi24rGUPEUMGjfLqpuNY8/s+E1hximhWUtujGX6ta/zumZQxOuei4QErw
+ b8L9KkrwQZF5xp8a7dxO03ag8DJzZG9t8bDRXLxW4xYvjHUIu0UrWmT2AyhR2R4lXUeKR9Cm86
+ Yyt2FaCLFlTDFNX88hkoxxbk
+X-IPAS-Result: =?us-ascii?q?A0B+JgD2KxJify7QVdFaGwEBAQErCwYBAQEDAwEBAQIBA?=
+ =?us-ascii?q?QEFAQEBgXFMZAoCQih+VysHSoRUiQaJSIpniX2DCYU1CwEBAQEBAQEBAQgBE?=
+ =?us-ascii?q?gEBGRICBAEBhSeDZwIkATgTAQIEAQEBAQMCAwEBAQEFAQEBBAEBAQIBAQIDB?=
+ =?us-ascii?q?BQBAQ0LCQcICgIFDg4FYAFhAwFEgU+BTyULAzENhlsRDwENAQgTHgMSBQ4FB?=
+ =?us-ascii?q?wIFEw4CERICEQEFASITIoJjgmQBAy4EnxCBBD2LMoEVBReBAYIJBoFAAYMIC?=
+ =?us-ascii?q?hkoDWcDOoEeAgcJAQh+KgIBAYYMAYEhhxMngimBFTaCdD6BUFGFPIJlBJZAl?=
+ =?us-ascii?q?3aMJoskkXprB4JkZoE/iUWOZYYsli+RY5ZNkGGEUJEYAgQBAQEDBwYQIxKBQ?=
+ =?us-ascii?q?4F+cIMBCi4JRQECAQEBDQECAQEDAQIBAgkBAQKSDoR9hgIgNDoGAQuFU4wlA?=
+ =?us-ascii?q?QE?=
+IronPort-PHdr: A9a23:z4Db2RcIWP5+SFIzWU6AbAe9lGM+cd/LVj580XJGo7deKv3l+4X+L
+ kHZ5OlohV7NG4nYuLpfk+SDi6n7QiQb5IqZ9nULcZhCTRgA3MEfhRdmB9SKAEv6N+LCYCkzH
+ cAEX1hgl52iGXBcA922J1jC+iT06S8OCBj5NBZwL+XxXILR3Yy70OW7+pubZAst5nL1ZbpoN
+ 1OxtwrYsMgNnaNtL68wzl3CpX4Ad+lNxGxuLE6ehF6mvpb2rMMlqXwA/a5/v8dbGb33ZaE5U
+ aBVAFFEeygu6cvnuAOCBQqD630AU3kHxx9BAgzL9hb/Dd/6tir3sPY42THPZ5WnC+BpH276v
+ +E3FkyN6m9PLTMy/WDJh9YlibID+VSltgBtzojVfIScNf44cqCOGLFSDWdHQMtVUDRMR42ma
+ I5aRe4IJ/0eqJPyrl0PtgeWCgylBeepwThNzCyTv+Vyw6E6HAfK0RZ1VdYHqm+Sq8/6PaETS
+ vydw6zBzDGFZPRTk2S1+M3DdRYvpuuJVLR7fJ/K0UcYEAXBnwb1y8StL3aP2+8KqWTe8/t4W
+ LfllTs8sw8o6Gvn1oI2h4LOnI5Q1l3U6XAz3tMuPdPhLSwzKd+8TMkL6mfDZtMwGJ99BTkv4
+ npyy6Va68DnOnJRk9J+mUaZM7veIsCJ+k6xCrjXeG8iwiojIPXl33PQuQCh0rGuCJfyigob6
+ Hod1IGL7ChF1gSPuJfdDKIhuB7wg3DXkFmDouBcfRJryeyCccNnmvho0cNN1CaLVi7uxBev1
+ P/QLxp7vLjus6O9O/3nvsPObtAvzFivbuJ23JT4WLpwMxBSDTLDqKLsifu6px2/GPIT0ZhU2
+ uHYqMyIf51F4PPpRVYEiMB7rE/uRza+jIZCxCdBdgkUPkndydCuYgCGNvn8Cb3Xa7uEnzJix
+ vSANbrkUMylEw==
+IronPort-Data: A9a23:gGYj3qOTdDD9pgrvrR3BkcFynXyQoLVcMsEvi/4bfWQNrUp21GAPm
+ DAWWGCFaancZGX2LdFyao/gp05S7MDdmN9gTAZtpSBmQlt08seUXt7xwmUcns+xwm8vaGo9s
+ q3yv/GZdJhcokcxJX5BC5C5xZVG/fjgqoHUVaiUakideSc+EH170Ug5w7Zj6mJVqYHR7z2l6
+ I6aT/L3ZgLNNw5cagr4PIra9XuDFNyr0N8plgRWicJj5TcypFFPZH4rHpxdGlOjKmVi8k5Wc
+ M6YpF2x1juxEx7AkbpJmJ6jGqEBaua60QRjFhO6VoD66iWuqBDe3Y5qMdpNRHt3ogynxc521
+ N9Ht76QCg02a/ikdOQ1C3G0Egl7NKxCvbLLeD2x7ZLVwErBfH/hhf5pCSnaP6VCorcxUTwIr
+ 6RIbmxTBvyAr7reLLaTTuB2nYIkNsbiOoIEpllvyDjYCbAtRpWrr6DivI4FgWlr3pAedRrYT
+ 9YoNDZKRTHrWBNsClhQWKwgoqDxnHaqJlW0r3rM/fZti4TJ9yRx17zoPcLcYN+HQ5kJtliZv
+ iTN7m70GBobKM3ZxTntz563rurGnCe+VY5LUbPkqLhlh1qcwmFVAxoTPbemnRWnoh+7e4NyF
+ 2w9wwR0s68u/kapbPm+VQLt9RZooSUgc9ZXFuQ77iSExazV/xuVCwA4othpOINOWCgeFWxC6
+ 7OZoz/6LWcw7+DNGBpx4p/R/GziY3FERYMXTXZcFVNt3jX1nG0kYvvyojtLFae0ipj4FWi1z
+ WzU6ic5gLoXgIgA0KDTEbH7b9CE98Ghou0dvF2/soeZAuVROtXNi2uAtwWz0Bq4BNzFJmRtR
+ VBd8yRk0MgADIuWiAuGS/gXEbei6p6taWOA3AQ+QsV5r2v2oxZPmLy8Bhkuey+F1e5UKVfUj
+ LP75Gu9GbcPZiLxNfYvC25PI51yk/K+fTgaahwkRoMWPsIZmP6v8yZpakqdt10BY2B9+ZzTz
+ ayzKJ72ZV5DUfoP5GPvH481iOZ3rghjmz67bc2kl3yPjOvGDFbIGOxtGAbfPogRsvjfyC2Lq
+ IY3Cid/408AOAEISnKHr9B7wJFjBSRTOK0aXOQNKLbYe1I+QDtJ5j246epJRrGJVp99zo/gl
+ kxRkGcCoLYmrXGYewiMdF55b7bjAcR2oX4hbH4jOF+p3z4oZoP2tPUTcJ4+fL8G8u1/zK4sH
+ 6NVJZnYWvkfGC7a/zk9bIXmqNMweRmugzWINXX3bTU6ealmWAGUqMTveRHi9XVVAyfu7Zk+r
+ rSs2xn1W50GQwg+Xs/aZOj+nVy0tHkZ3ul1WhKQcNVUfUzt9qlsKjDw3qdneZFSdU2by2LDh
+ QiMABoeqe3cmKMP8YHE1fKesoOkM+piBU4FTWTW6LCBMyOFrGeuxIl3VvnRIWLQWWbyz6WVZ
+ etPysb6PvBazk1BtJBxEuoywK8zu4nvqrtdwlg2FXnHdQ7wWLZpI33D0MUW86MRmPlWvgy5X
+ k/J8d5fYO3bNMTgGV8XBQwkcuXTiq1Oy2eKtaw4cBfg+St63LubSkEObROCvypQceluO4Q/z
+ OZ95cMbt16lhhwxPorUhyxY7T7XfHkJUqFiu51DRYG31EwkzVZNZZGaASjzucndZ9JJO0gsA
+ zmVmKuS2OgGlxSaKyI+RSrXwO5QpZUSoxQWnlUMEFKEx4jejfgt0RwNrDk6Q2y5FPmcPz6f5
+ 4SqC6G3Df3mE/RUaAxrUGWlGgUHDxqckqA040Vcj3XXFiFESUSURFAA1T6xwX0k
+IronPort-HdrOrdr: A9a23:E+yiMqlf7r5uA2A57pcBBEak7R/pDfLx3DAbv31ZSRFFG/Fw8P
+ re5sjztCWE8wr5PUtLpTnuAtjifZqxz+8M3WBzB8bFYOCFghrOEGgK1+KLqF3d8kXFl9K1vp
+ 0QF5SWZueAaGSSTvyX3OB7Kbsd6ejC3qavi+LTi1F3TQ9rbKlkqypwFwrzKDwVeOCLP/UE/e
+ Knl7N6TvObF0gqUg==
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.88,383,1635199200"; 
+   d="scan'208";a="195563088"
+Received: from mail-ed1-f46.google.com ([209.85.208.46])
+  by mx01.lytzenitmail.dk with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Feb 2022 12:58:48 +0100
+Received: by mail-ed1-f46.google.com with SMTP id m3so17791363eda.10
+        for <holmeparken44@vip.cybercity.dk>; Sun, 20 Feb 2022 03:58:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:to:subject:message-id:mime-version:from
+         :content-transfer-encoding;
+        bh=zz4tJ2+SolpZazVF/1Y32O+fjGSpHhfhX53UKvPjDLk=;
+        b=mR8kvCSuBEMMeefPXxAhrTRIKTByskNSmQC6dVrEwMxLgxO+nrvUBz6SolcUHgxUDr
+         BxY7ICL5eclBuJh2aqwe60/3/b75GyTaQ1HiHgjrepQTs07UCw2gHBbd/YIn8Q+CSRMX
+         8AdaYjJDRngkx6LL0d2qnycdh+lXbJii8ZpKcTOv6oDqq6yKS3d40/NeGUubrnSkzObk
+         Xkc1TdEZJU6meLZVHdmaj5YFMcT4H+I/GYqK/FRLkHLQdPJzwWnmKk7nDRfwjdOXGzsx
+         Nj+O5SqIhgosMlx2S3ayIHjf25oPdsYDC02W00TvAJsn50is1hyTYZvQSKe8hnFX6KMt
+         +Kmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:to:subject:message-id:mime-version:from
+         :content-transfer-encoding;
+        bh=zz4tJ2+SolpZazVF/1Y32O+fjGSpHhfhX53UKvPjDLk=;
+        b=NVIT4FkZVYnCkgdjnS1dOeU644qQK9fUlhnxe8vSjD1jMjrODokEyJFqw3bJ+BXico
+         L0wE3mrFViPoBT3LyKBaZ0+9Ed/1801EJ/LTRUkGzJJ6gaXKA3HSLNVtmgyldqkPWWoG
+         YesUbN24XGw98P0ELf1zJu1/+0arz8jMqFePtH4suUKcaQCxESJ5m9wWxy6ZVnTbMYch
+         z7IFuiFYtO6AFDoxHkxK4SjIBSIYIWxrwaWUjjvjiHpkDFmQQfyPnYlx3z1Mm34b8F/h
+         KmjU/lfe1DVJoDUfWgG9B/ER8OAZloHm+byhbsThk6L5moyEh7JQXbyDrKLmSPssSEyc
+         qkKQ==
+X-Gm-Message-State: AOAM5303ZmBbzskhx2PES7WfTi4hkWxADpjDASDNJxpWxLExHR6dOrZN
+	GOtD5iCmTQwjJ0d/EGU0Suh9EK9jn+s=
+X-Google-Smtp-Source: ABdhPJyqK3Xvo2nrgtVm+QuDePqzav93+cS/WIRgAjNNWxAgkGDdaTZDTvUBlwpXVUqZ6vFCYiey/Q==
+X-Received: by 2002:a05:6402:1e8f:b0:3fa:72cb:1733 with SMTP id f15-20020a0564021e8f00b003fa72cb1733mr16151556edf.24.1645358327499;
+        Sun, 20 Feb 2022 03:58:47 -0800 (PST)
+Received: from infraware.co.kr (5.103.158.176.dhcp.fibianet.dk. [5.103.158.176])
+        by smtp.gmail.com with ESMTPSA id q7sm4068964ejj.8.2022.02.20.03.58.46
+        for <holmeparken44@vip.cybercity.dk>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 20 Feb 2022 03:58:47 -0800 (PST)
+Date: Sun, 20 Feb 2022 03:58:47 -0800 (PST)
+X-Google-Original-Date: Sun, 20 Feb 2022 11:58:44 GMT
+To: =?utf-8?B?SmVucyBTdW5kZ2FhcmQ=?= <holmeparken44@vip.cybercity.dk>
+Subject: Re: Re: pef fil
+Message-ID: <000f4242.632786b46676ed4d@infraware.co.kr>
+MIME-Version: 1.0
+X-Mailer: Infraware POLARIS Mobile Mailer v2.5
+From: =?utf-8?B?bGFycyBwZXRlcnNlbg==?= <lars.organist@gmail.com>
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+
+hej jens. <BR />der er jo så en grund til at der ikke vises fermat i venstre hånd, når det heller ikke står i xml filen så vises det jo ikke. <BR />men det vil være godt hvis du kunne løse hvor fermaten skal stå vil det være godt. <BR />du spørger om sabt når vi skriver f.eks sa satsen så står de to stemmer i højre hånd <BR />skriver man bt så står de to stemmer i venstre hånd. <BR />det er også sådan det skal det også stå når man vælger sabt.<BR />jeg håber det er forståligt. <BR />kh. lars. <BR /><BR />---Oprindelig meddelelse---<BR />Fra: Jens Sundgaard <holmeparken44@vip.cybercity.dk><BR />Til: lars.organist@gmail.com<BR />Dato søndag 20. februar 2022 12:12<BR />Emne: Re: pef fil<BR /><BR />Hej Lars.<BR /><BR />Jeg har kigget lidt mere på fermat-problemet, og der er faktisk hele 2 grunde til at der ikke vises fermater i venstre hånd:<BR /><BR />1: Der er  slet ingen fermater i venstre hånd i musicxml filen, som ligger til grund. Kun i højre hånd, 
+ og fermaterne vises derfor i den grafiske visning også kun i højre hånd.<BR /><BR />2: Selv om jeg tilføjer fermater i venstre hånd i musicxml filen dukker de ikke altid op: Det er en fejl i IBOS Nodelæser, som jeg skal se nærmere på (ligesom placeringen af fermaten mellem node og intervaltegn).<BR /><BR />Jeg har også et spørgsmål til dig: I svaret på den første test skrev du:<BR /><BR />"Og når man har en sats der er skrevet som sa bt så skal stemmerne stå som når man får udskrevet sa og bt."<BR /><BR />Kan du ikke lige præcisere dét, jeg er ikke helt sikker på hvad du mener.<BR /><BR />mvh Jens<BR /><BR />Den 18-02-2022 kl. 21:05 skrev lars.organist@gmail.com:<BR /><BR />Hej Jens. Ja man kan godt se det men jeg glemte at sige at fejlen er også i ibos nodelæser og det er faktisk sådan at fermaten også skal stå i venstre hånd det gør den ikke deg kan jeg ikke forstå at den ikke gør. <BR /><BR />KH. Lars. <BR /><BR /> <BR /><BR />Fra: Jens Sundgaard <h
+ olmeparken44@vip.cybercity.dk> <BR />Sendt: 18. februar 2022 17:18<BR />Til: lars.organist@gmail.com<BR />Cc: Bo Alstrup IBOS <cx64@kk.dk>; Jesper Kryger <jrk@nota.dk><BR />Emne: Re: pef fil<BR /><BR /> <BR /><BR />Hej Lars<BR /><BR />Det er faktisk vældig gode nyheder !<BR /><BR />For hele testen gik jo primært ud på at teste om vi kan generere .pef filer, som NOTA kan printe.<BR /><BR />At du så oven i købet har fundet er lille fejl i det udprintede er jo kun en ekstra gevinst, den kommer bare på listen.<BR /><BR />Og jeg kan faktisk selv reproducere fejlen med det nye værktøj "IBOS Punktnodelæser":<BR /><BR />Hvis jeg åbner "003.Nu rinder solen op.P1.Højre hånd.pef" (som er den fil jeg sendte til NOTA)  i "IBOS Nodelæser" med værktøjet "IBOS Punktnodelæser" <BR /><BR />og bladrer lidt ned i den får jeg oplæst:<BR /><BR />G/4<BR /><BR />Talmodifikation Fermat<BR /><BR />Interval Kvint<BR /><BR />som jo er præcis det, du rapporterer.<BR /><BR />Prøv det gerne 
+ selv med "IBOS Nodelæser" version 4.1.<BR /><BR />Jeg har vedhæftet .pef filen.<BR /><BR />mvh og god weekend<BR /><BR />Jens<BR /><BR /> <BR /><BR />Den 18-02-2022 kl. 14:19 skrev lars.organist@gmail.com:<BR /><BR />Hej Jens. Jeg har modtaget en printet fil i pef format det står som det skal. Men der er en fejl takt 3 i nu rinder solen op er der en fermat den står efter tonen g i højre hånd og så står intervaltegnet bagefter det skal være sådan at intervaltegnert står lige efter noden man må aldrig skille intervaltegn fra noderne med andre tegn jeg kan ikke sige dig om venstre hånd er ok da jeg kun har fået højrehånd. <BR /><BR />KH. Lars. <BR /><BR /> <BR /><BR /> <BR /><BR />Denne e-mail blev kontrolleret for virusser af Avast antivirussoftware. <BR />www.avast.com 
+

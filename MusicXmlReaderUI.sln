@@ -278,6 +278,61 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Problemer med pef", "Proble
 		Documentation\Problemer med pef\Problemer med pef filer.txt = Documentation\Problemer med pef\Problemer med pef filer.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1.0.0", "4.1.0.0", "{599A7EDB-DCC5-4593-B267-7CE05F94CF58}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\TEst reports\4.1.0.0\LP 2022.02.12 Mariä_Wiegenlied__op__76_nr__52.txt = Documentation\TEst reports\4.1.0.0\LP 2022.02.12 Mariä_Wiegenlied__op__76_nr__52.txt
+		Documentation\TEst reports\4.1.0.0\LP 2022.02.20Re  pef fil - lars petersen (lars.organist@gmail.com) - 2022-02-20 1258.eml = Documentation\TEst reports\4.1.0.0\LP 2022.02.20Re  pef fil - lars petersen (lars.organist@gmail.com) - 2022-02-20 1258.eml
+		Documentation\TEst reports\4.1.0.0\LP 2022.02.28 SV_Test af Ibosnodelæser 4.1 februar 2022.eml = Documentation\TEst reports\4.1.0.0\LP 2022.02.28 SV_Test af Ibosnodelæser 4.1 februar 2022.eml
+		Documentation\TEst reports\4.1.0.0\SN 2022.02.24 SV_Test af Ibosnodelæser 4.1 februar 2022.eml = Documentation\TEst reports\4.1.0.0\SN 2022.02.24 SV_Test af Ibosnodelæser 4.1 februar 2022.eml
+		Documentation\TEst reports\4.1.0.0\SN 2022.02.24 Test af Ibosnodelæser 4.1 februar 2022.eml = Documentation\TEst reports\4.1.0.0\SN 2022.02.24 Test af Ibosnodelæser 4.1 februar 2022.eml
+		Documentation\TEst reports\4.1.0.0\SN 2022.02.28 Test af Ibosnodelæser 4.1 februar 2022.eml = Documentation\TEst reports\4.1.0.0\SN 2022.02.28 Test af Ibosnodelæser 4.1 februar 2022.eml
+		Documentation\TEst reports\4.1.0.0\SN 2022.04.24 testIbosnodelæser2022.zip = Documentation\TEst reports\4.1.0.0\SN 2022.04.24 testIbosnodelæser2022.zip
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SN 2022.04.24 testibosnodelæser2020", "SN 2022.04.24 testibosnodelæser2020", "{EAEF8CA6-D9AE-4071-ADFB-4805F16385EE}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Autumn Leaves.xml = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Autumn Leaves.xml
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Befal du dine veje.musicxml = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Befal du dine veje.musicxml
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Jens Testvejledning for IBOS Nodelæser Version 4.1.docx = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Jens Testvejledning for IBOS Nodelæser Version 4.1.docx
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\nr. 380 danmark se solen stiger op over bilkirkegården.musicxml = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\nr. 380 danmark se solen stiger op over bilkirkegården.musicxml
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\nr. 380 danmark se solen stiger op over bilkirkegården.txt = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\nr. 380 danmark se solen stiger op over bilkirkegården.txt
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Svantes dekoder txt til u2 18 tegn lykkelige dag.P1.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Svantes dekoder txt til u2 18 tegn lykkelige dag.P1.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Svantes dekoder txt til u2 18 tegn lykkelige dag.TUTTI.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Svantes dekoder txt til u2 18 tegn lykkelige dag.TUTTI.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Svantes lykkelige dag.Decode.txt.txt = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Svantes lykkelige dag.Decode.txt.txt
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Svantes lykkelige dag.txt = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Svantes lykkelige dag.txt
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Test Ibos Nodelæser Susanne februar 2022.docx = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\Test Ibos Nodelæser Susanne februar 2022.docx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Befal 18 tegn", "Befal 18 tegn", "{EBD40FE8-FB41-46B0-934B-29EEA7A6D3EF}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.BT.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.BT.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.P1.Soprano.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.P1.Soprano.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.P2.Alto.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.P2.Alto.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.P3.Tenor.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.P3.Tenor.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.P4.Bass.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.P4.Bass.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.SA.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.SA.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.SATB.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.SATB.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.TUTTI.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal18tegn\Befal du dine veje.TUTTI.brl
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Befal 32 tegn", "Befal 32 tegn", "{74EB3A10-4661-4B5F-891D-156ABEEBDC4C}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.BT.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.BT.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.P1.Soprano.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.P1.Soprano.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.P2.Alto.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.P2.Alto.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.P3.Tenor.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.P3.Tenor.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.P4.Bass.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.P4.Bass.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.SA.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.SA.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.SATB.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.SATB.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.TUTTI.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\befal32tegn\Befal du dine veje.TUTTI.brl
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Svante U2Export 18 ten", "Svante U2Export 18 ten", "{233E2705-C3EA-430C-9797-A9516A50B635}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\svante u2eksport18tegn\Svantes dekoder txt til u2 18 tegn lykkelige dag.P1.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\svante u2eksport18tegn\Svantes dekoder txt til u2 18 tegn lykkelige dag.P1.brl
+		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\svante u2eksport18tegn\Svantes dekoder txt til u2 18 tegn lykkelige dag.TUTTI.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\svante u2eksport18tegn\Svantes dekoder txt til u2 18 tegn lykkelige dag.TUTTI.brl
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -544,5 +599,10 @@ Global
 		{A36294B9-3CE8-437B-AD39-D114792A4C5A} = {DCD9E9C9-E80A-4979-ABD9-0E19AB23E73B}
 		{54805055-035C-4E0E-827E-C184A5D4519F} = {DCD9E9C9-E80A-4979-ABD9-0E19AB23E73B}
 		{F8DF01DD-227A-46D2-851A-10942C5C6F6B} = {1B62366B-E595-454C-846D-E36240015490}
+		{599A7EDB-DCC5-4593-B267-7CE05F94CF58} = {79DD0BA3-6AD9-4599-B8D4-1D09CC2CE379}
+		{EAEF8CA6-D9AE-4071-ADFB-4805F16385EE} = {599A7EDB-DCC5-4593-B267-7CE05F94CF58}
+		{EBD40FE8-FB41-46B0-934B-29EEA7A6D3EF} = {EAEF8CA6-D9AE-4071-ADFB-4805F16385EE}
+		{74EB3A10-4661-4B5F-891D-156ABEEBDC4C} = {EAEF8CA6-D9AE-4071-ADFB-4805F16385EE}
+		{233E2705-C3EA-430C-9797-A9516A50B635} = {EAEF8CA6-D9AE-4071-ADFB-4805F16385EE}
 	EndGlobalSection
 EndGlobal

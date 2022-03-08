@@ -1,0 +1,862 @@
+Side 1 Linje   1  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠎⠧⠈⠳⠎⠀⠇⠽⠅⠨⠇⠊⠻⠀⠙⠁⠛
+ Ingen fortolkning af ⠳ DOT1256
+ Ingen fortolkning af ⠨ DOT46
+ Ingen fortolkning af ⠻ DOT12456
+ Tekst            sv's lykli dag
+ CR LF Ny linje 
+Side 1 Linje   2  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠳⠅⠵⠀⠉⠀⠍⠥⠎⠊⠅⠒⠀⠃⠣⠝⠽⠀⠈⠾⠎⠣
+ Ingen fortolkning af ⠳ DOT1256
+ Ingen fortolkning af ⠣ DOT126
+ Ingen fortolkning af ⠾ DOT23456
+ Ingen fortolkning af ⠣ DOT126
+ Tekst          kz c musik: bny 's
+ CR LF Ny linje 
+Side 1 Linje   3  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠅⠭⠎⠁⠞⠎⠒⠀⠎⠪⠗⠣⠀⠃⠊⠗⠉⠓
+ Tekst            kxsats: sør
+⠣⠀ Faste fortegn1 b 
+ Tekst birch
+ CR LF Ny linje 
+Side 1 Linje   4  ⠰⠆⠶⠎⠄⠁⠄⠞⠄⠃⠄⠒⠶⠀⠼⠁⠲⠀⠎⠑⠂⠀⠺⠊⠇⠅⠣⠀⠍⠭⠛⠣⠵⠥⠟⠖⠀⠀⠎⠕
+ Ingen fortolkning af ⠰ DOT56
+ Tekst ;/s.a.t.b.:/ 
+⠼⠁⠲ BeatAsText1/4 
+⠀ Mellemrum 
+ Tekst se, wilk
+⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠣ DOT126
+ Tekst mxgzuq!  so
+ CR LF Ny linje 
+Side 1 Linje   5  ⠀⠀⠤⠇⠣⠀⠱⠀⠗⠪⠙⠀⠉⠀⠗⠥⠟⠀⠀⠝⠊⠝⠁⠀⠱⠀⠛⠡⠬⠀⠊⠀⠃⠁⠙⠂⠀⠀⠚
+ Tekst   -l
+⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠬ DOT346
+ Tekst  rød c ruq  nina  gå i bad,  j
+ CR LF Ny linje 
+Side 1 Linje   6  ⠀⠀⠎⠏⠊⠎⠱⠀⠕⠵⠑⠍⠁⠙⠲⠀⠀⠇⠊⠧⠬⠀⠱⠀⠊⠅⠀⠮⠀⠧⠜⠗⠵⠑⠀⠍⠈
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠮ DOT2346
+ Tekst   spis ozemad.  liv  ik  værze m'
+ CR LF Ny linje 
+Side 1 Linje   7  ⠀⠀⠓⠀⠀⠉⠀⠕⠍⠀⠇⠊⠙⠞⠀⠱⠀⠅⠁⠋⠋⠣⠀⠅⠇⠁⠗⠲
+ Ingen fortolkning af ⠱ DOT156
+ Tekst   h  c om lidt  kaff
+⠣⠀ Faste fortegn1 b 
+ Tekst klar.
+ CR LF Ny linje 
+Side 1 Linje   8  ⠜⠶⠎⠄⠁⠄⠶⠀⠣⠣⠣⠀⠼⠙⠲⠀⠐⠗⠬⠬⠳⠳⠀⠳⠪⠎⠀⠎⠺⠪⠬⠀⠪⠳⠗⠣⠜⠐⠻⠐
+ Tekst æ/s.a./
+⠀⠣⠣⠣⠀ Faste fortegn3 b 
+⠼⠙⠲ BeatAsText4/4 
+⠀ Mellemrum 
+ Ingen fortolkning af ⠐ DOT5
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠳ DOT1256
+ Ingen fortolkning af ⠳ DOT1256
+ Ingen fortolkning af ⠳ DOT1256
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠳ DOT1256
+ Ingen fortolkning af ⠣ DOT126
+ Ingen fortolkning af ⠐ DOT5
+ Ingen fortolkning af ⠻ DOT12456
+ Tekst r øs swø øræ
+⠐ CR LF⠀⠀ Fortsat linje 
+Side 1 Linje   9  ⠫⠫⠉⠻⠀⠐⠳⠬⠡⠊⠼⠚⠔⠺⠔⠊⠼⠓⠬⠀⠟⠄⠐⠤⠧⠀⠻⠐⠤⠚⠼⠑⠴⠴⠹⠄⠚
+ Ingen fortolkning af ⠫ DOT1246
+ Ingen fortolkning af ⠫ DOT1246
+ Ingen fortolkning af ⠻ DOT12456
+ Ingen fortolkning af ⠐ DOT5
+ Ingen fortolkning af ⠳ DOT1256
+ Ingen fortolkning af ⠬ DOT346
+ Tekst c åi
+⠼⠚⠔ BeatAsText0/9 
+ Ingen fortolkning af ⠺ DOT2456
+⠔ Tæller/9 
+ Tekst 9
+⠼ Til Tal 
+ Ingen fortolkning af ⠬ DOT346
+ Tekst 8
+⠀ Mellemrum 
+ Ingen fortolkning af ⠐ DOT5
+ Ingen fortolkning af ⠻ DOT12456
+ Ingen fortolkning af ⠐ DOT5
+ Tekst q.-v -j
+⠼⠑⠴⠴ BeatAsText5/0 
+ Ingen fortolkning af ⠹ DOT1456
+ Tekst .0
+ CR LF Ny linje 
+Side 1 Linje  10  ⠀⠀⠞⠴⠥⠀⠺⠡⠔⠚⠔⠚⠔⠺⠼⠚⠼⠚⠼⠀⠺⠬⠊⠡⠼⠓⠬⠪⠬⠓⠔⠛⠼⠼⠀⠺⠄⠚⠪⠐
+ Ingen fortolkning af ⠴ DOT356
+ Ingen fortolkning af ⠔ DOT35
+ Ingen fortolkning af ⠔ DOT35
+ Ingen fortolkning af ⠔ DOT35
+ Tekst   tu wåjjw
+⠼ Til Tal 
+ Tekst 0
+⠼ Til Tal 
+ Tekst 0
+⠼ Til Tal 
+⠀ Mellemrum 
+ Ingen fortolkning af ⠬ DOT346
+ Tekst wiå
+⠼ Til Tal 
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠪ DOT246
+ Ingen fortolkning af ⠬ DOT346
+ Tekst 88
+⠔ Tæller/9 
+ Tekst 7
+⠼ Til Tal 
+⠼ Til Tal 
+⠀ Mellemrum 
+ Tekst w.jø
+⠐ CR LF⠀⠀ Fortsat linje 
+Side 1 Linje  11  ⠺⠼⠀⠗⠄⠬⠧⠣⠅
+ Tekst w
+⠼ Til Tal 
+⠀ Mellemrum 
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠣ DOT126
+ Tekst r.vk
+ CR LF Ny linje 
+Side 1 Linje  12  FormFeed
+ FF Ny side 
+ CR LF Ny linje 
+Side 1 Linje  14  
+ CR LF Ny linje 
+Side 1 Linje  15  
+ CR LF Ny linje 
+Side 1 Linje  15  ⠜⠶⠃⠄⠞⠄⠶⠀⠣⠣⠣⠀⠼⠙⠲⠀⠸⠏⠔⠹⠤⠶⠀⠻⠔⠶⠏⠴⠀⠕⠴⠺⠐⠬⠱⠒
+ Tekst æ/b.t./
+⠀⠣⠣⠣⠀ Faste fortegn3 b 
+⠼⠙⠲ BeatAsText4/4 
+⠀ Mellemrum 
+ Ingen fortolkning af ⠸ DOT456
+ Ingen fortolkning af ⠔ DOT35
+ Ingen fortolkning af ⠹ DOT1456
+ Ingen fortolkning af ⠻ DOT12456
+ Ingen fortolkning af ⠔ DOT35
+ Ingen fortolkning af ⠴ DOT356
+ Ingen fortolkning af ⠴ DOT356
+ Ingen fortolkning af ⠐ DOT5
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠱ DOT156
+ Tekst p-/ /p ow:
+ CR LF Ny linje 
+Side 1 Linje  16  ⠀⠀⠫⠣⠴⠫⠔⠫⠉⠔⠱⠡⠴⠀⠹⠤⠙⠤⠙⠤⠹⠔⠙⠡⠴⠴⠙⠀⠕⠱⠉⠫⠴⠀⠻⠻⠐
+ Ingen fortolkning af ⠫ DOT1246
+ Ingen fortolkning af ⠣ DOT126
+ Ingen fortolkning af ⠴ DOT356
+ Ingen fortolkning af ⠫ DOT1246
+ Ingen fortolkning af ⠔ DOT35
+ Ingen fortolkning af ⠫ DOT1246
+ Ingen fortolkning af ⠔ DOT35
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠴ DOT356
+ Ingen fortolkning af ⠹ DOT1456
+ Ingen fortolkning af ⠹ DOT1456
+ Ingen fortolkning af ⠔ DOT35
+ Ingen fortolkning af ⠴ DOT356
+ Ingen fortolkning af ⠴ DOT356
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠫ DOT1246
+ Ingen fortolkning af ⠴ DOT356
+ Ingen fortolkning af ⠻ DOT12456
+ Ingen fortolkning af ⠻ DOT12456
+ Tekst   cå -d-d-dåd oc 
+⠐ CR LF⠀⠀ Fortsat linje 
+Side 1 Linje  17  ⠻⠄⠘⠚⠣⠜⠐⠱⠙⠸⠉⠚⠡⠪⠄⠚⠀⠘⠞⠸⠺⠪⠣⠜⠸⠞⠥⠀⠸⠳⠳⠻⠻⠣⠜
+ Ingen fortolkning af ⠻ DOT12456
+ Ingen fortolkning af ⠘ DOT45
+ Ingen fortolkning af ⠣ DOT126
+ Ingen fortolkning af ⠐ DOT5
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠘ DOT45
+ Ingen fortolkning af ⠸ DOT456
+ Ingen fortolkning af ⠣ DOT126
+ Ingen fortolkning af ⠸ DOT456
+ Ingen fortolkning af ⠸ DOT456
+ Ingen fortolkning af ⠳ DOT1256
+ Ingen fortolkning af ⠳ DOT1256
+ Ingen fortolkning af ⠻ DOT12456
+ Ingen fortolkning af ⠻ DOT12456
+ Ingen fortolkning af ⠣ DOT126
+ Tekst .jædCut-timejåø.j twøætu æ
+ CR LF Ny linje 
+Side 1 Linje  18  ⠀⠀⠣⠐⠱⠑⠑⠶⠀⠡⠸⠫⠴⠙⠤⠙⠤⠻⠔⠣⠋⠴⠴⠋⠀⠱⠄⠑⠴⠹⠤⠱⠴⠀⠏⠄⠔⠧⠣⠅
+ Ingen fortolkning af ⠣ DOT126
+ Ingen fortolkning af ⠐ DOT5
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠸ DOT456
+ Ingen fortolkning af ⠫ DOT1246
+ Ingen fortolkning af ⠴ DOT356
+ Ingen fortolkning af ⠻ DOT12456
+ Ingen fortolkning af ⠔ DOT35
+ Ingen fortolkning af ⠣ DOT126
+ Ingen fortolkning af ⠴ DOT356
+ Ingen fortolkning af ⠴ DOT356
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠴ DOT356
+ Ingen fortolkning af ⠹ DOT1456
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠴ DOT356
+ Ingen fortolkning af ⠔ DOT35
+ Ingen fortolkning af ⠣ DOT126
+ Tekst   ee/ åd-d-ff .e- p.vk
+ CR LF Ny linje 
+Side 1 Linje  20  
+ CR LF Ny linje 
+Side 1 Linje  20  ⠀⠀⠧⠱⠎⠑⠫⠀⠼⠃⠤⠼⠑⠀⠏⠼⠛
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠫ DOT1246
+ Tekst   vse 
+⠼ Til Tal 
+ Tekst 2_
+⠼ Til Tal 
+ Tekst 5
+⠀ Mellemrum 
+ Tekst p
+⠼ Til Tal 
+ Tekst 7
+ CR LF Ny linje 
+Side 1 Linje  22  
+ CR LF Ny linje 
+Side 1 Linje  22  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠅⠭⠵⠑⠍⠍⠱⠒
+ Ingen fortolkning af ⠱ DOT156
+ Tekst                 kxzemm:
+ CR LF Ny linje 
+Side 1 Linje  23  ⠀⠀⠀⠀⠀⠀⠎⠕⠏⠗⠈⠒
+ Tekst       sopr':
+ CR LF Ny linje 
+Side 1 Linje  24  ⠰⠆⠼⠁⠲⠀⠎⠑⠂⠀⠺⠊⠇⠅⠣⠀⠍⠭⠛⠣⠵⠥⠟⠖⠀⠀⠎⠕⠇⠣⠀⠱⠀⠗⠪⠙⠀⠉
+ Ingen fortolkning af ⠰ DOT56
+ Tekst ;
+⠼⠁⠲ BeatAsText1/4 
+⠀ Mellemrum 
+ Tekst se, wilk
+⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠣ DOT126
+ Tekst mxgzuq!  sol
+⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠱ DOT156
+ Tekst  rød c
+ CR LF Ny linje 
+Side 1 Linje  25  ⠀⠀⠗⠥⠟⠀⠀⠝⠊⠝⠁⠀⠱⠀⠛⠡⠬⠀⠊⠀⠃⠁⠙⠂⠀⠀⠚⠀⠎⠏⠊⠎⠱⠀⠕⠵⠑⠤
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠱ DOT156
+ Tekst   ruq  nina  gå i bad,  j spis oze-
+ CR LF Ny linje 
+Side 1 Linje  26  ⠀⠀⠍⠁⠙⠲⠀⠀⠇⠊⠧⠬⠀⠱⠀⠊⠅⠀⠮⠀⠧⠜⠗⠵⠑⠀⠍⠈⠀⠓⠀⠀⠉⠀⠕⠍
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠮ DOT2346
+ Tekst   mad.  liv  ik  værze m' h  c om
+ CR LF Ny linje 
+Side 1 Linje  27  ⠀⠀⠇⠊⠙⠞⠀⠱⠀⠅⠁⠋⠋⠣⠀⠅⠇⠁⠗⠲
+ Ingen fortolkning af ⠱ DOT156
+ Tekst   lidt  kaff
+⠣⠀ Faste fortegn1 b 
+ Tekst klar.
+ CR LF Ny linje 
+Side 1 Linje  28  ⠠⠄⠣⠣⠣⠀⠼⠙⠲⠀⠐⠗⠳⠳⠀⠳⠪⠎⠀⠎⠺⠪⠀⠪⠳⠗⠀⠳⠡⠊⠚⠺⠊⠓⠀⠟⠄⠧
+⠠⠄ Til Music Braille 
+⠣⠣⠣⠀ Faste fortegn -3 
+⠼⠙⠲⠀ Taktart 4/4 
+⠐ Oktav4 
+⠗ G/2 
+⠳ G/4 
+⠳ G/4 
+⠀ Taktstreg 
+⠳ G/4 
+⠪ A/4 
+⠎ A/2 
+⠀ Taktstreg 
+⠎ A/2 
+⠺ B/4 
+⠪ A/4 
+⠀ Taktstreg 
+⠪ A/4 
+⠳ G/4 
+⠗ G/2 
+⠀ Taktstreg 
+⠳ G/4 
+⠡ Opløsningstegn 
+⠊ A/8 
+⠚ B/8 
+⠺ B/4 
+⠊ A/8 
+⠓ G/8 
+⠀ Taktstreg 
+⠟ F/2 
+⠄ Punktering 
+⠧ Pause/4 
+ CR LF Ny linje 
+Side 1 Linje  29  ⠀⠀⠻⠚⠑⠹⠄⠚⠀⠞⠥⠀⠺⠚⠚⠺⠚⠚⠀⠺⠊⠓⠪⠓⠛⠀⠺⠄⠚⠪⠺⠀⠗⠄⠧⠣⠅
+⠀⠀ Taktstreg 
+⠻ F/4 
+⠚ B/8 
+⠑ D/8 
+⠹ C/4 
+⠄ Punktering 
+⠚ B/8 
+⠀ Taktstreg 
+⠞ B/2 
+⠥ Pause/2 
+⠀ Taktstreg 
+⠺ B/4 
+⠚ B/8 
+⠚ B/8 
+⠺ B/4 
+⠚ B/8 
+⠚ B/8 
+⠀ Taktstreg 
+⠺ B/4 
+⠊ A/8 
+⠓ G/8 
+⠪ A/4 
+⠓ G/8 
+⠛ F/8 
+⠀ Taktstreg 
+⠺ B/4 
+⠄ Punktering 
+⠚ B/8 
+⠪ A/4 
+⠺ B/4 
+⠀ Taktstreg 
+⠗ G/2 
+⠄ Punktering 
+⠧ Pause/4 
+⠣⠅ Afsluttende dobbelt taktstreg 
+ CR LF Ny linje 
+Side 1 Linje  31  
+ CR LF Ny linje 
+Side 1 Linje  31  ⠀⠀⠀⠀⠀⠀⠁⠇⠞⠒
+ Tekst       alt:
+ CR LF Ny linje 
+Side 1 Linje  32  ⠰⠆⠼⠁⠲⠀⠎⠑⠂⠀⠺⠊⠇⠅⠣⠀⠍⠭⠛⠣⠵⠥⠟⠖⠀⠀⠎⠕⠇⠣⠀⠱⠀⠗⠪⠙⠀⠉
+ Ingen fortolkning af ⠰ DOT56
+ Tekst ;
+⠼⠁⠲ BeatAsText1/4 
+⠀ Mellemrum 
+ Tekst se, wilk
+⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠣ DOT126
+ Tekst mxgzuq!  sol
+⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠱ DOT156
+ Tekst  rød c
+ CR LF Ny linje 
+Side 1 Linje  33  ⠀⠀⠗⠥⠟⠀⠀⠝⠊⠝⠁⠀⠱⠀⠛⠡⠬⠀⠊⠀⠃⠁⠙⠂⠀⠀⠚⠀⠎⠏⠊⠎⠱⠀⠀⠀⠀⠏⠼⠑
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠱ DOT156
+ Tekst   ruq  nina  gå i bad,  j spis
+⠀⠀⠀⠀⠏⠼⠑ Sidenummer5 
+ CR LF Ny linje 
+Side 1 Linje  34  FormFeed
+ FF Ny side 
+ CR LF Ny linje 
+Side 1 Linje  36  
+ CR LF Ny linje 
+Side 1 Linje  37  
+ CR LF Ny linje 
+Side 1 Linje  37  ⠀⠀⠕⠵⠑⠍⠁⠙⠲⠀⠀⠇⠊⠧⠬⠀⠱⠀⠊⠅⠀⠮⠀⠧⠜⠗⠵⠑⠀⠍⠈⠀⠓⠀⠀⠉⠀⠕⠍
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠮ DOT2346
+ Tekst   ozemad.  liv  ik  værze m' h  c om
+ CR LF Ny linje 
+Side 1 Linje  38  ⠀⠀⠇⠊⠙⠞⠀⠱⠀⠅⠁⠋⠋⠣⠀⠅⠇⠁⠗⠲
+ Ingen fortolkning af ⠱ DOT156
+ Tekst   lidt  kaff
+⠣⠀ Faste fortegn1 b 
+ Tekst klar.
+ CR LF Ny linje 
+Side 1 Linje  39  ⠠⠄⠣⠣⠣⠀⠼⠙⠲⠀⠐⠏⠫⠫⠀⠫⠻⠟⠀⠟⠳⠻⠀⠻⠫⠫⠉⠻⠀⠫⠋⠋⠫⠋⠋
+⠠⠄ Til Music Braille 
+⠣⠣⠣⠀ Faste fortegn -3 
+⠼⠙⠲⠀ Taktart 4/4 
+⠐ Oktav4 
+⠏ E/2 
+⠫ E/4 
+⠫ E/4 
+⠀ Taktstreg 
+⠫ E/4 
+⠻ F/4 
+⠟ F/2 
+⠀ Taktstreg 
+⠟ F/2 
+⠳ G/4 
+⠻ F/4 
+⠀ Taktstreg 
+⠻ F/4 
+⠫ E/4 
+⠫ E/4 
+⠉ Legatobue 
+⠻ F/4 
+⠀ Taktstreg 
+⠫ E/4 
+⠋ E/8 
+⠋ E/8 
+⠫ E/4 
+⠋ E/8 
+⠋ E/8 
+ CR LF Ny linje 
+Side 1 Linje  40  ⠀⠀⠟⠄⠧⠀⠻⠛⠛⠫⠄⠑⠀⠕⠥⠀⠡⠫⠋⠋⠻⠛⠛⠀⠳⠡⠋⠋⠻⠙⠙⠀⠻⠄⠛⠫⠻
+⠀⠀ Taktstreg 
+⠟ F/2 
+⠄ Punktering 
+⠧ Pause/4 
+⠀ Taktstreg 
+⠻ F/4 
+⠛ F/8 
+⠛ F/8 
+⠫ E/4 
+⠄ Punktering 
+⠑ D/8 
+⠀ Taktstreg 
+⠕ D/2 
+⠥ Pause/2 
+⠀ Taktstreg 
+⠡ Opløsningstegn 
+⠫ E/4 
+⠋ E/8 
+⠋ E/8 
+⠻ F/4 
+⠛ F/8 
+⠛ F/8 
+⠀ Taktstreg 
+⠳ G/4 
+⠡ Opløsningstegn 
+⠋ E/8 
+⠋ E/8 
+⠻ F/4 
+⠙ C/8 
+⠙ C/8 
+⠀ Taktstreg 
+⠻ F/4 
+⠄ Punktering 
+⠛ F/8 
+⠫ E/4 
+⠻ F/4 
+ CR LF Ny linje 
+Side 1 Linje  41  ⠀⠀⠏⠄⠧⠣⠅
+⠀⠀ Taktstreg 
+⠏ E/2 
+⠄ Punktering 
+⠧ Pause/4 
+⠣⠅ Afsluttende dobbelt taktstreg 
+ CR LF Ny linje 
+Side 1 Linje  43  
+ CR LF Ny linje 
+Side 1 Linje  43  ⠀⠀⠀⠀⠀⠀⠳⠝⠭⠒
+ Ingen fortolkning af ⠳ DOT1256
+ Tekst       nx:
+ CR LF Ny linje 
+Side 1 Linje  44  ⠰⠆⠼⠁⠲⠀⠎⠑⠂⠀⠺⠊⠇⠅⠣⠀⠍⠭⠛⠣⠵⠥⠟⠖⠀⠀⠎⠕⠇⠣⠀⠱⠀⠗⠪⠙⠀⠉
+ Ingen fortolkning af ⠰ DOT56
+ Tekst ;
+⠼⠁⠲ BeatAsText1/4 
+⠀ Mellemrum 
+ Tekst se, wilk
+⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠣ DOT126
+ Tekst mxgzuq!  sol
+⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠱ DOT156
+ Tekst  rød c
+ CR LF Ny linje 
+Side 1 Linje  45  ⠀⠀⠗⠥⠟⠀⠀⠝⠊⠝⠁⠀⠱⠀⠛⠡⠬⠀⠊⠀⠃⠁⠙⠂⠀⠀⠚⠀⠎⠏⠊⠎⠱⠀⠕⠵⠑⠤
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠱ DOT156
+ Tekst   ruq  nina  gå i bad,  j spis oze-
+ CR LF Ny linje 
+Side 1 Linje  46  ⠀⠀⠍⠁⠙⠲⠀⠀⠇⠊⠧⠬⠀⠱⠀⠊⠅⠀⠮⠀⠧⠜⠗⠵⠑⠀⠍⠈⠀⠓⠀⠀⠉⠀⠕⠍
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠮ DOT2346
+ Tekst   mad.  liv  ik  værze m' h  c om
+ CR LF Ny linje 
+Side 1 Linje  47  ⠀⠀⠇⠊⠙⠞⠀⠱⠀⠅⠁⠋⠋⠣⠀⠅⠇⠁⠗⠲
+ Ingen fortolkning af ⠱ DOT156
+ Tekst   lidt  kaff
+⠣⠀ Faste fortegn1 b 
+ Tekst klar.
+ CR LF Ny linje 
+Side 1 Linje  48  ⠠⠄⠣⠣⠣⠀⠼⠙⠲⠀⠸⠞⠹⠹⠀⠹⠹⠝⠀⠞⠱⠹⠀⠣⠹⠺⠺⠉⠡⠺⠀⠹⠙⠙⠸⠳⠡⠊⠊
+⠠⠄ Til Music Braille 
+⠣⠣⠣⠀ Faste fortegn -3 
+⠼⠙⠲⠀ Taktart 4/4 
+⠸ Oktav3 
+⠞ B/2 
+⠹ C/4 
+⠹ C/4 
+⠀ Taktstreg 
+⠹ C/4 
+⠹ C/4 
+⠝ C/2 
+⠀ Taktstreg 
+⠞ B/2 
+⠱ D/4 
+⠹ C/4 
+⠀ Taktstreg 
+⠣ Løst b 
+⠹ C/4 
+⠺ B/4 
+⠺ B/4 
+⠉ Legatobue 
+⠡ Opløsningstegn 
+⠺ B/4 
+⠀ Taktstreg 
+⠹ C/4 
+⠙ C/8 
+⠙ C/8 
+⠸ Oktav3 
+⠳ G/4 
+⠡ Opløsningstegn 
+⠊ A/8 
+⠊ A/8 
+ CR LF Ny linje 
+Side 1 Linje  49  ⠀⠀⠞⠺⠉⠹⠀⠱⠙⠸⠉⠚⠡⠪⠄⠚⠀⠞⠥⠀⠣⠱⠑⠑⠱⠑⠑⠀⠹⠙⠙⠹⠙⠙⠀⠺⠄⠚⠐
+⠀⠀ Taktstreg 
+⠞ B/2 
+⠺ B/4 
+⠉ Legatobue 
+⠹ C/4 
+⠀ Taktstreg 
+⠱ D/4 
+⠙ C/8 
+⠸ Oktav3 
+⠉ Legatobue 
+⠚ B/8 
+⠡ Opløsningstegn 
+⠪ A/4 
+⠄ Punktering 
+⠚ B/8 
+⠀ Taktstreg 
+⠞ B/2 
+⠥ Pause/2 
+⠀ Taktstreg 
+⠣ Løst b 
+⠱ D/4 
+⠑ D/8 
+⠑ D/8 
+⠱ D/4 
+⠑ D/8 
+⠑ D/8 
+⠀ Taktstreg 
+⠹ C/4 
+⠙ C/8 
+⠙ C/8 
+⠹ C/4 
+⠙ C/8 
+⠙ C/8 
+⠀ Taktstreg 
+⠺ B/4 
+⠄ Punktering 
+⠚ B/8 
+⠐ CR LF⠀⠀ Fortsat linje 
+Side 1 Linje  50  ⠹⠺⠀⠞⠄⠧⠣⠅
+⠹ C/4 
+⠺ B/4 
+⠀ Taktstreg 
+⠞ B/2 
+⠄ Punktering 
+⠧ Pause/4 
+⠣⠅ Afsluttende dobbelt taktstreg 
+ CR LF Ny linje 
+Side 1 Linje  52  
+ CR LF Ny linje 
+Side 1 Linje  52  ⠀⠀⠀⠀⠀⠀⠃⠁⠎⠒
+ Tekst       bas:
+ CR LF Ny linje 
+Side 1 Linje  53  ⠰⠆⠼⠁⠲⠀⠎⠑⠂⠀⠺⠊⠇⠅⠣⠀⠍⠭⠛⠣⠵⠥⠟⠖⠀⠀⠎⠕⠇⠣⠀⠱⠀⠗⠪⠙⠀⠉
+ Ingen fortolkning af ⠰ DOT56
+ Tekst ;
+⠼⠁⠲ BeatAsText1/4 
+⠀ Mellemrum 
+ Tekst se, wilk
+⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠣ DOT126
+ Tekst mxgzuq!  sol
+⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠱ DOT156
+ Tekst  rød c
+ CR LF Ny linje 
+Side 1 Linje  54  ⠀⠀⠗⠥⠟⠀⠀⠝⠊⠝⠁⠀⠱⠀⠛⠡⠬⠀⠊⠀⠃⠁⠙⠂⠀⠀⠚⠀⠎⠏⠊⠎⠱⠀⠕⠵⠑⠤
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠱ DOT156
+ Tekst   ruq  nina  gå i bad,  j spis oze-
+ CR LF Ny linje 
+Side 1 Linje  55  ⠀⠀⠍⠁⠙⠲⠀⠀⠇⠊⠧⠬⠀⠱⠀⠊⠅⠀⠮⠀⠧⠜⠗⠵⠑⠀⠍⠈⠀⠓⠀⠀⠉⠀⠕⠍
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠮ DOT2346
+ Tekst   mad.  liv  ik  værze m' h  c om
+ CR LF Ny linje 
+Side 1 Linje  56  FormFeed
+ FF Ny side 
+ CR LF Ny linje 
+Side 1 Linje  58  
+ CR LF Ny linje 
+Side 1 Linje  59  
+ CR LF Ny linje 
+Side 1 Linje  59  ⠀⠀⠇⠊⠙⠞⠀⠱⠀⠅⠁⠋⠋⠣⠀⠅⠇⠁⠗⠲
+ Ingen fortolkning af ⠱ DOT156
+ Tekst   lidt  kaff
+⠣⠀ Faste fortegn1 b 
+ Tekst klar.
+ CR LF Ny linje 
+Side 1 Linje  60  ⠠⠄⠣⠣⠣⠀⠼⠙⠲⠀⠸⠏⠹⠹⠀⠻⠻⠏⠀⠕⠺⠱⠀⠫⠫⠫⠉⠱⠀⠹⠙⠙⠹⠙⠙⠀⠕⠐
+⠠⠄ Til Music Braille 
+⠣⠣⠣⠀ Faste fortegn -3 
+⠼⠙⠲⠀ Taktart 4/4 
+⠸ Oktav3 
+⠏ E/2 
+⠹ C/4 
+⠹ C/4 
+⠀ Taktstreg 
+⠻ F/4 
+⠻ F/4 
+⠏ E/2 
+⠀ Taktstreg 
+⠕ D/2 
+⠺ B/4 
+⠱ D/4 
+⠀ Taktstreg 
+⠫ E/4 
+⠫ E/4 
+⠫ E/4 
+⠉ Legatobue 
+⠱ D/4 
+⠀ Taktstreg 
+⠹ C/4 
+⠙ C/8 
+⠙ C/8 
+⠹ C/4 
+⠙ C/8 
+⠙ C/8 
+⠀ Taktstreg 
+⠕ D/2 
+⠐ CR LF⠀⠀ Fortsat linje 
+Side 1 Linje  61  ⠱⠉⠫⠀⠻⠻⠻⠄⠘⠚⠀⠞⠸⠺⠪⠀⠳⠳⠻⠻⠀⠡⠫⠙⠙⠻⠣⠋⠋⠀⠱⠄⠑⠹⠱
+⠱ D/4 
+⠉ Legatobue 
+⠫ E/4 
+⠀ Taktstreg 
+⠻ F/4 
+⠻ F/4 
+⠻ F/4 
+⠄ Punktering 
+⠘ Oktav2 
+⠚ B/8 
+⠀ Taktstreg 
+⠞ B/2 
+⠸ Oktav3 
+⠺ B/4 
+⠪ A/4 
+⠀ Taktstreg 
+⠳ G/4 
+⠳ G/4 
+⠻ F/4 
+⠻ F/4 
+⠀ Taktstreg 
+⠡ Opløsningstegn 
+⠫ E/4 
+⠙ C/8 
+⠙ C/8 
+⠻ F/4 
+⠣ Løst b 
+⠋ E/8 
+⠋ E/8 
+⠀ Taktstreg 
+⠱ D/4 
+⠄ Punktering 
+⠑ D/8 
+⠹ C/4 
+⠱ D/4 
+ CR LF Ny linje 
+Side 1 Linje  62  ⠀⠀⠏⠄⠧⠣⠅
+⠀⠀ Taktstreg 
+⠏ E/2 
+⠄ Punktering 
+⠧ Pause/4 
+⠣⠅ Afsluttende dobbelt taktstreg 
+ CR LF Ny linje 
+Side 1 Linje  64  
+ CR LF Ny linje 
+Side 1 Linje  64  ⠀⠀⠀⠀⠧⠱⠎⠑⠫⠀⠼⠃⠤⠼⠑⠒
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠫ DOT1246
+ Tekst     vse 
+⠼ Til Tal 
+ Tekst 2_
+⠼ Til Tal 
+ Tekst 5
+⠒ Tæller/3 
+ CR LF Ny linje 
+Side 1 Linje  65  ⠼⠃⠲⠀⠃⠇⠕⠍⠵⠱⠫⠀⠃⠇⠕⠍⠵⠗⠱⠀⠕⠲
+⠼⠃⠲ BeatAsText2/4 
+⠀ Mellemrum 
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠫ DOT1246
+ Ingen fortolkning af ⠱ DOT156
+ Tekst blomz blomzr o.
+ CR LF Ny linje 
+Side 1 Linje  66  ⠾⠀⠛⠡⠗⠀⠣⠀⠑⠙⠾⠅⠕⠏⠲
+ Ingen fortolkning af ⠾ DOT23456
+ Tekst  går
+⠀⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠾ DOT23456
+ Tekst edkop.
+ CR LF Ny linje 
+Side 1 Linje  67  ⠋⠥⠛⠸⠫⠀⠋⠇⠽⠧⠱⠀⠊⠀⠋⠇⠕⠅
+ Ingen fortolkning af ⠸ DOT456
+ Ingen fortolkning af ⠫ DOT1246
+ Ingen fortolkning af ⠱ DOT156
+ Tekst fug flyv i flok
+ CR LF Ny linje 
+Side 1 Linje  68  ⠝⠀⠹⠀⠱⠀⠍⠻⠀⠝⠕⠅⠲
+ Ingen fortolkning af ⠹ DOT1456
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠻ DOT12456
+ Tekst n   m nok.
+ CR LF Ny linje 
+Side 1 Linje  69  ⠇⠽⠅⠅⠣⠀⠱⠀⠊⠅⠀⠮⠀⠧⠜⠗⠵⠑⠀⠍⠈⠀⠓
+ Tekst lykk
+⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠮ DOT2346
+ Tekst  ik  værze m' h
+ CR LF Ny linje 
+Side 1 Linje  70  ⠉⠀⠕⠍⠀⠇⠊⠙⠞⠀⠱⠀⠅⠁⠋⠋⠣⠀⠅⠇⠁⠗⠲
+ Ingen fortolkning af ⠱ DOT156
+ Tekst c om lidt  kaff
+⠣⠀ Faste fortegn1 b 
+ Tekst klar.
+ CR LF Ny linje 
+Side 1 Linje  72  
+ CR LF Ny linje 
+Side 1 Linje  72  ⠼⠉⠲⠀⠛⠗⠜⠎⠎⠬⠀⠱⠀⠛⠗⠪⠝⠞⠀⠉⠀⠧⠡⠙⠞⠲
+⠼⠉⠲ BeatAsText3/4 
+⠀ Mellemrum 
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠱ DOT156
+ Tekst græss  grønt c vådt.
+ CR LF Ny linje 
+Side 1 Linje  73  ⠃⠊⠱⠫⠀⠓⠀⠮⠀⠛⠕⠙⠞⠲
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠫ DOT1246
+ Ingen fortolkning af ⠮ DOT2346
+ Tekst bi h  godt.
+ CR LF Ny linje 
+Side 1 Linje  74  ⠇⠥⠦⠱⠫⠀⠋⠗⠡⠙⠎⠱⠀⠊⠀⠇⠥⠋⠞⠲
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠫ DOT1246
+ Ingen fortolkning af ⠱ DOT156
+ Tekst lu? fråds i luft.
+ CR LF Ny linje 
+Side 1 Linje  75  ⠡⠓⠂⠀⠺⠊⠇⠅⠣⠀⠎⠝⠱⠸⠙⠥⠋⠞⠲
+ Tekst åh, wilk
+⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠸ DOT456
+ Tekst snduft.
+ CR LF Ny linje 
+Side 1 Linje  76  ⠛⠇⠜⠯⠀⠱⠀⠊⠅⠀⠮⠀⠧⠜⠗⠵⠑⠀⠍⠈⠀⠓
+ Ingen fortolkning af ⠯ DOT12346
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠮ DOT2346
+ Tekst glæ  ik  værze m' h
+ CR LF Ny linje 
+Side 1 Linje  77  ⠉⠀⠕⠍⠀⠇⠊⠙⠞⠀⠱⠀⠅⠁⠋⠋⠣⠀⠅⠇⠁⠗⠲⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠏⠼⠛
+ Ingen fortolkning af ⠱ DOT156
+ Tekst c om lidt  kaff
+⠣⠀ Faste fortegn1 b 
+ Tekst klar.
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠏⠼⠛ Sidenummer7 
+ CR LF Ny linje 
+Side 1 Linje  78  FormFeed
+ FF Ny side 
+ CR LF Ny linje 
+Side 1 Linje  80  
+ CR LF Ny linje 
+Side 1 Linje  81  
+ CR LF Ny linje 
+Side 1 Linje  81  ⠼⠙⠲⠀⠎⠁⠦⠀⠟⠀⠃⠗⠥⠎⠑⠃⠁⠙⠲
+⠼⠙⠲ BeatAsText4/4 
+⠀ Mellemrum 
+ Tekst sa? q brusebad.
+ CR LF Ny linje 
+Side 1 Linje  82  ⠥⠀⠍⠡⠀⠧⠊⠵⠀⠜⠀⠛⠇⠁⠙⠲
+ Tekst u m
+⠡⠀ Faste fortegn1 opløsningstegn 
+ Tekst viz æ glad.
+ CR LF Ny linje 
+Side 1 Linje  83  ⠓⠊⠍⠇⠣⠀⠱⠀⠳⠍⠩⠇⠔⠀⠃⠇⠡⠲
+ Tekst himl
+⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠳ DOT1256
+ Ingen fortolkning af ⠩ DOT146
+ Ingen fortolkning af ⠔ DOT35
+ Tekst  ml blå.
+ CR LF Ny linje 
+Side 1 Linje  84  ⠮⠀⠅⠁⠀⠚⠀⠛⠕⠙⠞⠀⠋⠭⠵⠡⠲
+ Ingen fortolkning af ⠮ DOT2346
+ Tekst  ka j godt fxzå.
+ CR LF Ny linje 
+Side 1 Linje  85  ⠇⠽⠅⠅⠣⠀⠱⠀⠊⠅⠀⠮⠀⠧⠜⠗⠵⠑⠀⠍⠈⠀⠓
+ Tekst lykk
+⠣⠀ Faste fortegn1 b 
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠮ DOT2346
+ Tekst  ik  værze m' h
+ CR LF Ny linje 
+Side 1 Linje  86  ⠉⠀⠕⠍⠀⠇⠊⠙⠞⠀⠱⠀⠅⠁⠋⠋⠣⠀⠅⠇⠁⠗⠲
+ Ingen fortolkning af ⠱ DOT156
+ Tekst c om lidt  kaff
+⠣⠀ Faste fortegn1 b 
+ Tekst klar.
+ CR LF Ny linje 
+Side 1 Linje  88  
+ CR LF Ny linje 
+Side 1 Linje  88  ⠼⠑⠲⠀⠝⠥⠀⠅⠱⠀⠝⠊⠝⠁⠀⠥⠙⠂
+⠼⠑⠲ BeatAsText5/4 
+⠀ Mellemrum 
+ Ingen fortolkning af ⠱ DOT156
+ Tekst nu k nina ud,
+ CR LF Ny linje 
+Side 1 Linje  89  ⠝⠪⠛⠣⠂⠀⠍⠀⠋⠥⠛⠞⠔⠀⠓⠥⠙⠂
+ Ingen fortolkning af ⠣ DOT126
+ Ingen fortolkning af ⠔ DOT35
+ Tekst nøg, m fugt hud,
+ CR LF Ny linje 
+Side 1 Linje  90  ⠅⠽⠎⠎⠱⠀⠍⠔⠀⠅⠜⠗⠇⠔⠞⠀⠉⠀⠛⠡⠗
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠔ DOT35
+ Ingen fortolkning af ⠔ DOT35
+ Tekst kyss m kærlt c går
+ CR LF Ny linje 
+Side 1 Linje  91  ⠊⠟⠀⠋⠀⠁⠀⠗⠑⠄⠀⠎⠞⠀⠓⠡⠗⠲
+ Tekst iq f a re. st hår.
+ CR LF Ny linje 
+Side 1 Linje  92  ⠇⠊⠧⠬⠀⠱⠀⠊⠅⠀⠮⠀⠧⠜⠗⠵⠑⠀⠍⠈⠀⠓
+ Ingen fortolkning af ⠬ DOT346
+ Ingen fortolkning af ⠱ DOT156
+ Ingen fortolkning af ⠮ DOT2346
+ Tekst liv  ik  værze m' h
+ CR LF Ny linje 
+Side 1 Linje  93  ⠉⠀⠕⠍⠀⠇⠊⠙⠞⠀⠱⠀⠅⠁⠋⠋⠣⠀⠅⠇⠁⠗⠲
+ Ingen fortolkning af ⠱ DOT156
+ Tekst c om lidt  kaff
+⠣⠀ Faste fortegn1 b 
+ Tekst klar.
+ CR LF Ny linje 
