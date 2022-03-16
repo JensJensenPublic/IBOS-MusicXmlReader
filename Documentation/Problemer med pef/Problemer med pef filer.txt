@@ -20,3 +20,5 @@
 04-03-2011 Jens kommunikerer med Don ??? fra Duxbury, som ikke vist ikke aner hvad han taler om.
 
 04-03-2022 Jens opretter dokumentet "Konklusion og forslag til løsning""
+
+16-03-2022 Jens genererer en Danmark nu blunder den lyse nat.P1.Soprano.brf med format 42*25 (samme format som .pef filen) og sender den til Jesper Holten, DBS
