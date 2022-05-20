@@ -1,0 +1,2183 @@
+Return-Path: <CX64@kk.dk>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe002.lytzenitmail.local ([100.127.30.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id iMH+OYWog2JgfgEAlE+V+A
+	(envelope-from <CX64@kk.dk>)
+	for <dsl248925@mail.jubii.dk>; Tue, 17 May 2022 15:52:05 +0200
+Received: from sv900pomx002.lytzenitmail.dk ([100.127.30.61])
+	by sv900ddwe002.lytzenitmail.local with LMTP
+	id 8NVfOYWog2JLYQAANmPVvw
+	(envelope-from <CX64@kk.dk>)
+	for <dsl248925@mail.jubii.dk>; Tue, 17 May 2022 15:52:05 +0200
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.163])
+	by sv900pomx002.lytzenitmail.dk (Postfix) with ESMTPS id E62FD2E2
+	for <holmeparken44@vip.cybercity.dk>; Tue, 17 May 2022 15:52:05 +0200 (CEST)
+Authentication-Results: mx01.lytzenitmail.dk; spf=Pass smtp.mailfrom=CX64@kk.dk
+Received-SPF: Pass (mx01.lytzenitmail.dk: domain of CX64@kk.dk
+  designates 193.169.154.135 as permitted sender)
+  identity=mailfrom; client-ip=193.169.154.135;
+  receiver=mx01.lytzenitmail.dk; envelope-from="CX64@kk.dk";
+  x-sender="CX64@kk.dk"; x-conformance=spf_only;
+  x-record-type="v=spf1"; x-record-text="v=spf1
+  ip4:193.169.154.135 ip4:193.169.154.136
+  ip6:2603:10a6:200::/40 include:spf.mailjet.com
+  include:spf.protection.outlook.com -all"
+IronPort-SDR: p4JImc0KiGZWv876rYgOH5QZnetdCro7FwKlo8hrqWJfIEaSpK/GdVTDI8VDKSz/0LyJcJR+5m
+ D5KEMXIGXXZUcJrIm+n4lRrB8neTpq87O/4SyUw3BZYxdmoIvXPauO+UbwKlxLBSqnIxv4lnlk
+ egfPdIcLj1Y4WAT7yO03K4E7O5eM67MjXxUH28VcpJdDtYA+t+0SLvN3CASrJoenmubfGV7UVz
+ immKGOgpb417Yk0SkS1Vbzvpn9c3i6t9znpHL1raQ530oadYB+PJwoWfL3qRb9CFag9aI5Lu6e
+ /y5SMzR+whvff9aW/1lO9KRl
+X-IPAS-Result: =?us-ascii?q?A0DNBgBKp4Nih4eaqcFaHQEBAQEJARIBBQUBQIFPgSExU?=
+ =?us-ascii?q?nwCKi4qBwhDA4gaijqDAgOLJIR3ggeKVoFoCwEBAQEBAQEBAQQBAgI2CAQEA?=
+ =?us-ascii?q?QGCJYJYAwIChT4CJAE4EwECBAEBAQEDAgMBAQEBBQEBAQQBAQECAQECBAQUA?=
+ =?us-ascii?q?QEBAQ0LCQUIDAUQDgVBZFiBT4IEBgMBMA2GQwIBAwUBDBMIARIBAQcZAQEHD?=
+ =?us-ascii?q?w8CARYPAQEBGAEGBwIVBgkMFAMOAgQSAQgBBRSCVgQBAYJjAx4UAwufegGBP?=
+ =?us-ascii?q?gICiU4aNXiBM4EBgggBAQYEBIE3AYNVA4JGBwmBPIFUhFCBF4FmhT8ngRmBE?=
+ =?us-ascii?q?IEVQ4I1cIJXCwQYgQwFARECARwBBQcDAgkICAYJAoNVgi6TA4MtA1SBBRKBI?=
+ =?us-ascii?q?UQtAQgGBgcKBTIGAgwYFAQCExJTHgITDAocDlQZDA8DEgMRAQcCCxIIFSwIA?=
+ =?us-ascii?q?wIDCAMCAy4CAxgJBwoDHQgKHBIQFAIEEx8LCAMaHy0JAgQOA0MICwoDEQQDE?=
+ =?us-ascii?q?xgLFggQBAYDCS8NKAsDFA8BBgMGAgUFAQMgAxQDBScHAyEHCyYNDQQjHQMDB?=
+ =?us-ascii?q?SYDAgIbBwICAwIGFwYCAnEKKA0IBAgEHB4lEwUCBzEFBC8CHgQFBhEJAhYCB?=
+ =?us-ascii?q?gQFAgQEFgICEggCCCcbBxY2GQEFXQYLCSMcLBEFBhYDJmQFBIE7JgEBlEEJg?=
+ =?us-ascii?q?T1EKRNMBQETCA8BExwpDipHAwQBIxEfCQ0CLVYBAZEyFAkWDI0agXYMA4IDk?=
+ =?us-ascii?q?xIBh12CDQEGAoNOhXKDIwKBUTKIOYxTFYN1gU+Kb5ExhnWUf4FngkqKXplYA?=
+ =?us-ascii?q?gQCBAUCDgEHgXgyQAIBEwZwTYIRgUoJChgBEREBAgECAQwBAgIBAgECAQEBC?=
+ =?us-ascii?q?QEBAQGOHRmDWU2ER4R/S3UCAQEBNgIGAQoBAQMJjw8BAQ?=
+IronPort-PHdr: A9a23:hHpS5hzyWfhfpNXXCzKxy1BlVkEcU9TcOx5Ns9wjmq5cf6Ki45HrP
+ UiZ6fY+xETRU9Dj4ulfw/HTr7imXGUB5Zibt3VXW6wSCzcGioManGTMGea9AFbgZL7vf3RjW
+ sBTSE1o+XCnNEFUHIDyZA+arnq35D8UUhLxfSFFeLjdGY2Ug8fStaj695DIYgpOjSawevsrf
+ U7w9FuA8JBL3c07cft5wwCBunZSfuVK2W5kbUmemRrx/IbVntYr8ihdve4g698VVKz7e6oiS
+ rkLRD8iMm0z+IjqrUyaHFDJvyVNFDxLzlwRWFWWiXOyFo38uSb7qOdnjSyKZZSwSaEoSzmk7
+ rtuQR7szisEZHY09n/ajstogedVuhWk8lZU89CISIKWcvZ9NPC4H5tSVS9aU8BdWjYUSKiMM
+ dcnDOlHMeUS/MHt4lAJqxW5HwylAujinyRQiEjx26krgIFDWUnWmRYtFNUUvDHIvc34Ye0MB
+ PutwvCCnn3TKulb0jDn5M3UfwA99LuSCKlof5O0qwFnFhuZ3AzB8sq8YWLTj7lR9THAsqJhT
+ b790j987Vgv8372m5tq09KX4+BdglHcq3cjnt5ud4TgQRApO4b8QskX63nSNo19Rt4uTjNzo
+ Ch8z7QHvZy2YG4Bz5FCpVaXavqMd5WE70D4TOjXOS1/mH9uZLO4gVC17FSkzer/EMKz1R4Pp
+ y5B2LEkWVgO1Frf6ZreIsY=
+IronPort-Data: A9a23:rehsrqrrj7BpUFJhbBHhlckW/+JeBmKnYhIvgKrLsJaIsI4StFCzt
+ garIBnXOqqOMWqhLo9zbdm/900AvZ+DzoNiTVBt+C8zESNE9pacVYWSI27OZC7DdceroGCLT
+ ik9hnssCOhuExcwcz/0auCJQUGRVshkf5KkYAL+EnkZqTRMFWFw0HqPp8Zj2tQy2YXgXFvX0
+ T/Pi5S31GGNimMc3l08tf/rRCNH5JwebxtB4zTSzdgS1LPvvyF94KA3fMldHFOiKmVgJdNWc
+ s6YpF2PEsM1yD92Yj+tuu6TnkTn2dc+NyDW4pZdc/DKbhSvOkXe345jXMfwZ3u7hB2CmI5Lm
+ IVnhKaOSDYLNZTFhetNUjBhRnQW0a1uoNcrIFCktNCLlxSAcHiqz/YG4EMeZNxDvL8pUCcXq
+ KBecWtQBvyAr7reLLaTYdky2uwgL4/nP+vzv1k6lG2HUKh4GM2rr6Pi7oAfhCUZ3/h3MrXHX
+ tAbdidWMTfOWkgaUrsQIMliwb/w3iiXnydjgFKSoa86+2HJzwF3jOTFLtvNPNebT8hPlUeEt
+ yTK/AzE7goyL9mD0WLctHGvwOPM9c/mZG4MPLa/qMQ60Hei/FISOT8dbFKmrqm4o3frDrqzN
+ Hco0iYpqKEz8mmiQd/8QwC0rRa4g/IMZzZDO7Bntl/dmsI49y7AXDVUEWQphMkO6acLqSoWO
+ kihs/CB6dZHm7qNRHSd/7iZq1te0gBMcTZbDcPoZSAM+9j/qYV7tB/AT9FleJNZY/XuHC3om
+ 2nMryt4i7Z7YS83O0eTowuvb9GE/MOhousJCuP/AjjNAuRRONfNWmBQwQKHhcus1a7AJrV7g
+ FAKmtKF8McFBoyXmSqGTY0lRe/0vanfbWyG0A4/QvHNEghBHVb/J+i8BxkifS9U3jssIGKyP
+ ic/RysIufe/w0dGnYcsP9/pU5x7pUQRPdfiXP3SbtNQZNBycwqC4SdjDXN8LEix+HXAZZoXY
+ M/BGe71VC5yIf0+nFKeGrlBuZd2mHFW7T6DFPjTkkX8uZLDNS79YeleajOmMLtmhJ5oVS2Or
+ r6zwePRl04AOAA/CwGLmbMuwacidyNrWMyn8pUKKYZu4GNOQQkcNhMY+pt5E6QNokifvr6gE
+ qiVVhAKxVzhq2fALAnWOHlvZKmyD5V86344ZHR+MVGt0nklQICu8KZPLMNtJOZ5rLRunaxuU
+ v0IW8ScGfATGD7JzCsQMMvmp4t4eRX12Q/XZ3i5YCIydoJLThDS/oO2ZRPm8SQDV3LltcY3r
+ 7C6+BncRJ4PG1ZrAMrMNaCszBW9viFFyu51WkLJJPhVeVntoNMycXWu0KdvLphVexvZxzac2
+ wKHOjsipLHA890v7d3EpaGYtIP1QeFwKVVXQjvA5rGsOCiEomf6md1cUPyFdCz2XX/v/Pnwf
+ v1cyvzxPaFVnFtOtIYgQb9nwbhnvYn0oqNCll0iH3aNY1fyUuFsJXyP3M9usKxRx+8C4VHvB
+ RzXotQKa6+UPM7FEUIKIFt3Z+uO4vgYhz3O4KlnO079/iJ2oOKKXBkAJRWKkyABfrJ5PJl8m
+ 7U6vdIOs1X5iRlsPtXf1nJY8GGFL3ohVaQ7t8FBWNWy1VRzklwSM4bBDiLW4Y2Ub4QeO0YnF
+ TaYma7eiukO3UHFaXcySSDA0Oc1aU7iY/yWIIvu5mhlWPKd7hP04PGV2Tc0CAhWpvmC+/wmI
+ XBlbiWZOo3XlwpVaBB/Yl2R
+IronPort-HdrOrdr: A9a23:Ink7Kq4LNj4WEqEZIgPXwU2BI+orL9Y04lQ7vn2ZFiY6TiXIra
+ +TdaoguSMc0AxhJU3I6urwRJVoIEmsuKKdhLN6XItKMzOWwVdAQLsSj7cKhgeQYREWldQtmZ
+ uIEZIOcOEYZGIS5a2WgHjaLz9j+qj9zEnCv5a7854Zd3ANV0gW1XYfNu/0KDwSeCB2Qb4CUL
+ aM7MtOoDStPV4NaN6gO3UDV+/f4/XWiZPPe3c9dlAawTjLqQntxK/xEhCe0BtbeShI260e/W
+ /MlBG8zrm/ssu81gTX2wbontVrcZrau5t+7f63+4oowwbX+0OVjUNaKvm/VQUO0aKSAZAR4Z
+ 7xSlkbToJOAjjqDx6ISFPWqnfdOXAVmjDfIIij8CLeSIXCNUMHItsEioRDfhTD7U08+Nl6za
+ JQxmqc84FaFBXagU3GlpD1vjxR5zyJSEAZ4KcuZr1kIP4jQa4UqZZa8FJeEZ8GEi6/4Ic7EP
+ N2BMWZ4PpNa1uVY33Qo2EqmbWXLz4ONwbDRlJHtt2e0jBQknw8x0wExNYHlnNF8J4mUZFL6+
+ nNL6wtnrBTSc0da757GY46MICKI32IRQiJPHOZIFzhGq1CM3XRq4Tv6LFw/+2ucIxg9upEpH
+ 0AaiItiYcfQTOcNSTV5uw6zvnkehTOYQjQ
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.91,233,1647298800"; 
+   d="xml'?gif'147?docx'147,72,48?scan'147,72,48,208,217,147,72,48?rels'147,72,48,208,217,147,72,48";a="214656615"
+Received: from smtp01.kk.dk ([193.169.154.135])
+  by mx01.lytzenitmail.dk with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 May 2022 15:52:03 +0200
+Received: from smtp01.kk.dk (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 6F0291320CF
+	for <holmeparken44@vip.cybercity.dk>; Tue, 17 May 2022 15:52:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=kk.dk; s=default;
+	t=1652795522; bh=m+SUr6O70y+IUP/IA6R6H/5wj6/pm1reDmelnAjqHtE=;
+	h=From;
+	b=K0DigUXOsOeCWEjU4VV8RGP1UhPa7DznSGIzwDI1QGGg3dJtQfYb9VyvFCVE2/c4a
+	 31wpM9V/e5A/7nhxeig8pR03aLVfZVavGBOCM2OhSPCg3aYwQlIbArO7BGEy+aCOKS
+	 5vItU/hDA8xt0HB+ujOgtb0qzDIrUE4SLWig3VeeWP5UrtWUwfHHCxVcfah6xp88sw
+	 F0Sc+YTzngxCwB2CSHjSlcxZpTOuoiLp+UrPaIOpADti51cCzPnHLBq8FaWJmcOL+5
+	 X5tBe0sZotG/E84DZo5usGmgd/WX4dGxwlZmYTQ+bVvtDhCdMS4KZHtKFhwLUTBLPR
+	 yOuQGfP6mgiSg==
+Received: from smtp01.kk.dk (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 2272E1320CB
+	for <holmeparken44@vip.cybercity.dk>; Tue, 17 May 2022 15:52:02 +0200 (CEST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iaExeJoOViBbhUW4jpFZMPsnBlP2SSS/VJF23d1VXbgHsSYzyMN9FkN2/gBF7ZX50Beln49n8Y17DFc5Xc2T1uB5r1B/nCZQsTPtXsEqhm/n0u6OGF2fURuaiXXfOAL+Il77odQSDYnPB2k8wpLXcp0WLMFthmuyp7hrO2YAtF9MCBLe57qOOBugaQ7ixkLvlXjHVSX+fqJVleAydzoevV3fNAXcljmNQmrRhdmWc2rquHDeINr7pH2p6OHDxBpenwbWuIvK1B6e5i6SNkyZmlTq/NVNAjeN/tQIfwGsZUjA/QmIZq0ktJnIqOD4eEk6V7G/HO2dak3sMkKU1wX+HA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HEJ8Z6vcbvYLsxmys2kZSnq8Gk863sGefa+DU9RfLyg=;
+ b=TxCzEHyK+40Uz31G33tN0JCaeNvAXLeo/Zps2TIwr9F3I2pU7wEmzazUf7UnjBYKWIINxsn5DdlSEgqWy/uieAfhxwPKPumeHHyYsMFwKfa46qmnPDTCGdcjzi7uqTjEmh3I8h+lIU5bUb2gsFwM62XVatzn6t5wLTEgIT2MnJmINSgC9cKQCixRdOj9KVxcQIv6InTR3bxqqz3yYDm+895l5jf8sAKxh8cIkyL6rWCbn5yAMKuEIa5907rDP6y5oB6o8Ue2eb+Fhn/jymGB94xMRA2/g7zabN4/+kOMqrWgRY4/bj71St40AIDklLkAX5/YEIH5pBMG6850pD5s4w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kk.dk; dmarc=pass action=none header.from=kk.dk; dkim=pass
+ header.d=kk.dk; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kk.dk; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HEJ8Z6vcbvYLsxmys2kZSnq8Gk863sGefa+DU9RfLyg=;
+ b=TVIUiYwBktRFc34u1H9j8l/cv45CYarVgJFDN4E9dZjr74Jlp948a0bqu7tW0ZypNVF7DqqkqimfeI8uxbMgvlJ0xgSPK+wUP/OPb/JskFLAYbIQ5JcG90LvpjgSd0oBtg/oF4NxxExOveLMbg9Tt48NHoF+ECwbBHB/UEx6OvxscSEX5Lz7ZqorG86TOdSkpYAxRIv8jLsqOth7dNJgToMSYGZNNIWTb113u65ziUC2BlSrE+tMiao7TrMgmbkMc7cld2piAYlJyfoaCeYC5wOxtpEp059FIqpe8KtwrGfAjPd9qzGhSEK7zbpp0DSZsr6gpZvqzmu3HCdFB2ChuQ==
+Received: from AM9PR03MB7236.eurprd03.prod.outlook.com (2603:10a6:20b:260::7)
+ by AM6PR0302MB3399.eurprd03.prod.outlook.com (2603:10a6:209:20::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5250.18; Tue, 17 May
+ 2022 13:51:43 +0000
+Received: from AM9PR03MB7236.eurprd03.prod.outlook.com
+ ([fe80::c0f5:8959:393:30be]) by AM9PR03MB7236.eurprd03.prod.outlook.com
+ ([fe80::c0f5:8959:393:30be%4]) with mapi id 15.20.5250.018; Tue, 17 May 2022
+ 13:51:43 +0000
+From: Bo Alstrup <CX64@kk.dk>
+To: Jens Sundgaard <holmeparken44@vip.cybercity.dk>
+Subject: VS: Nodelaeser
+Thread-Topic: Nodelaeser
+Thread-Index:
+ AdfiOa5tlrLuwvMdSjS91jspa1h+gQAksQzkAAlsX7AAe7A8ARZ3qdKAADWjhdAH2UZVoAAn13PQAWjOuNABLdcnQA==
+Date: Tue, 17 May 2022 13:51:43 +0000
+Message-ID:
+ <AM9PR03MB72364CAFA14A88B2C5469681C2CE9@AM9PR03MB7236.eurprd03.prod.outlook.com>
+References:
+ <VI1P194MB0384374FD4E68BE066100ADEAA629@VI1P194MB0384.EURP194.PROD.OUTLOOK.COM>
+ <AM0PR03MB3777B584C5657D104581953985639@AM0PR03MB3777.eurprd03.prod.outlook.com>
+ <VI1P194MB038427F058D9BD97B17E8331AA639@VI1P194MB0384.EURP194.PROD.OUTLOOK.COM>
+ <AM0PR03MB37770E5931EDCAAD6808CC4B85669@AM0PR03MB3777.eurprd03.prod.outlook.com>
+ <VI1P194MB038431000A30D32406E95ABEAA189@VI1P194MB0384.EURP194.PROD.OUTLOOK.COM>
+ <AM9PR03MB7236276FA42ABD84F407026FC2199@AM9PR03MB7236.eurprd03.prod.outlook.com>
+ <VI1P194MB0384BD5B2AF9B630BB074CE0AAC09@VI1P194MB0384.EURP194.PROD.OUTLOOK.COM>
+ <AM0P194MB06437A0A4EAAD280A0E2AFF2A3C39@AM0P194MB0643.EURP194.PROD.OUTLOOK.COM>
+ <AM0P194MB0643CCE0E2B8C7DBD60B10D7A3CA9@AM0P194MB0643.EURP194.PROD.OUTLOOK.COM>
+In-Reply-To:
+ <AM0P194MB0643CCE0E2B8C7DBD60B10D7A3CA9@AM0P194MB0643.EURP194.PROD.OUTLOOK.COM>
+Accept-Language: da-DK, en-US
+Content-Language: da-DK
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 75b33e4f-88d4-47a8-932b-08da380c6096
+x-ms-traffictypediagnostic: AM6PR0302MB3399:EE_
+x-microsoft-antispam-prvs:
+ <AM6PR0302MB339947CDEEE43019C142CEF4C2CE9@AM6PR0302MB3399.eurprd03.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ NqKaO6qEWlPXwpR+AEegAhM5FMk0wUhoXnRHFoPLZ0yRESwwZTKq39TdPqWXQSBoX94sWJM9Yvxq/G32CXkIOMgum5lguXGJ4li8JgZMWRXok9Lx79k8FhNtNGunUnCOmr96whwkRSFjmaBOF45qtVUW3NSbxM4ceHIB4nIzO50RwkjstXIK9ywA6R5pX1grJIsuPGQzauRDRqTNMEPE0EcgwF7AnkfJgofBBJnaMLwL+NQ60id7xG3Qh5ICJpk3+7qSBYvYG6WisgcmzAbBq8ESIVhEEPCOgwYFiYcF9gG+xp8o80YPhRS7EVuZeXqQROcKVnNiIjoOPT6jcIIWmvrrX0gxzFf0ceQB0wgLB3MZcys70O/iumuOmHbM74p/CoHuidqEVZ46eByiM+V6NJ3XdXakQkPM0WRTV58WmmVf3J09x8Anol0pW0/aWDmaGBedyvyi+SxsX4dXSS4Jill3wgG7vUhM9pypUxfn+gZVg3D6QpPjIsx25rQaeh/vJJbwEsC7230JoOguE/+xjXFe7ApLFrEc13fSJ/+OEhS8Hn+zWEnaaXLRfUl7k3cMKiebD3igYyd7PZIx9XhV+VNW98C6Z0dzqJGIqpM3i9spyHKLOef3/LImWGdx9fRLRWBb2lqpFP9Rnr7JTThmRBUvegOIlcItiHOtPCPzyIBNGRRNLFHnH2BmZ0CI8bzqN012KORttFX2vJiQl/MddzSZ4kPMr0A57jwOZZPMPSmJpGjspucFW68I+QgOicuiTxD2qWjgp+TG3Re7WKkrvw==
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR03MB7236.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(5660300002)(52536014)(86362001)(6916009)(33656002)(7116003)(83380400001)(7696005)(9686003)(786003)(186003)(66476007)(38100700002)(122000001)(8676002)(2906002)(66556008)(66446008)(64756008)(71200400001)(38070700005)(508600001)(166002)(99936003)(55016003)(316002)(66574015)(26005)(8936002)(76116006)(6506007)(66946007)(88722005)(579004);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?Yv6h3pBHX3NjFxHh16AX0Ym9H9VlWE+tIMCxEl0sIQgrtXGjGU/ig8hgTc?=
+ =?iso-8859-1?Q?lnRgZs3yntCW15NsjItRkyLPnK93MumpWkvSDExljjxA+12hwPGQhLL3oQ?=
+ =?iso-8859-1?Q?CYI5hBxQQQt+dbYGq4uyOeppX0jAEY4p+Z45UOgUNNLCTlyvjjHkBqcSV7?=
+ =?iso-8859-1?Q?dMoydNdbIiMgYDKcLwqDko9FUbAgW+JQc3bS2UF7yttp3OvbGp6ZX2IYIz?=
+ =?iso-8859-1?Q?qMNQdtWnK5RGunXBqGqfcGkJ2YVQC6E5Ks270OOE1MiG+njg5YaRdNcGVr?=
+ =?iso-8859-1?Q?qwgp83HV2ZujeSKxObsEyQ9eu4sbkt2E6dIo+qYmXqC/EHpqL8NGGXbdOO?=
+ =?iso-8859-1?Q?GZct2bhd4YzTL5kV0aZLaR0uPGmQwMNr9pc4Cprd/rPAJIaFji2rR0Mu2c?=
+ =?iso-8859-1?Q?jmS/h1+TqaKpP87otcX8YqnQmK666vifuuTemrrkDPX5BIjvss9JXCWNR1?=
+ =?iso-8859-1?Q?T0X9grK9XEdP7C8Q2YVxOsC/hyc5scsDAZp3GBWPZdSBOvOayMRyDiKx22?=
+ =?iso-8859-1?Q?DS0e0sJZEu50BmAzoj+/2JdnEebl6NVFNdH+oqi8cjfzPT585P9HUO2EEo?=
+ =?iso-8859-1?Q?0mJL4cHhUy2dSPrbHNDKbWkJqvDnnmyoCBLvN5qnZAJ/R9SuIJYwT8260H?=
+ =?iso-8859-1?Q?RIdqDOAvkz4qIEN7tujRgeQJp//Vx1jXasyCxlYULMY+ZvIk1hY2PAVPea?=
+ =?iso-8859-1?Q?9jwzRm+r4Cmy3Pfj8mbfWN84gazwKzm9PXesKvjmmhQg4mEO28903E5SxM?=
+ =?iso-8859-1?Q?N8MgNHBiMXZi+SQqSvXRyWj8oYUrvfkMFkP2oTX1jxOzzUWG44MVICVnmv?=
+ =?iso-8859-1?Q?r3wC648TbwQiouSh8AgtkRFZHhAJmC8PpAz/MnMEy+NflTwRLMXyNA7Tz7?=
+ =?iso-8859-1?Q?XYJUulRe4D05mu8TJc1A4Ijz/24lshG6x3ITvNPxUNaSGC0ZDwIj9oPiak?=
+ =?iso-8859-1?Q?yeh16gXz21rfIFM879N/cxPV8B3Dvoi3BdvpmBB3xxkNyfSClWNGowxQm5?=
+ =?iso-8859-1?Q?7bFOwLBkCZIoOJrsWl1Lv165Rpp1Oc6iKEyvDYHikOpkC/+y06IR14M9Rb?=
+ =?iso-8859-1?Q?5kJpiICvnFcitjj3kH7cTkQSl/+SxgBDkQq6gciafg/RMUThUQjCbhR8Co?=
+ =?iso-8859-1?Q?03yg9i5GhyBRUmUzWM+n7utP4jzEC9FI1wo1kKBuGBlByLTtpTl0qQHpvj?=
+ =?iso-8859-1?Q?8Hdb5NpwTQhA2AHXS434EvZcSv3i4U0U+hGa5tiyuuuozE5aRwTqj5c2gi?=
+ =?iso-8859-1?Q?Sb5TOxJOBDD9NxVGpHIDQqILGTtEInOSxsebizhTP0VQ5ABBU/np/AGOoa?=
+ =?iso-8859-1?Q?OKP2AAkrLMLdoO/T6QqGUPLw8EQ4VS5WYHevG8q36flW75QHYOOiYGeTnH?=
+ =?iso-8859-1?Q?yeVQdRTsiI5GNbgrVsM3VaEWXlOGepBG4xZsJN+l6LopB9g6u8HKghu5eP?=
+ =?iso-8859-1?Q?U7Gh8DA/xVCOCZgt/Sqb5Jn5E0lBAJZGbaWGVDhRGfryvtkzHpuceEu7T8?=
+ =?iso-8859-1?Q?N2Lx9GYOuzoWPVjymOGUoXRv5dAE2nlzBSc6m456zCgD0PojGUF7Wl7AbL?=
+ =?iso-8859-1?Q?P713sH0rJQ78Yk0t5HJJ+ET0sO0f4hQ+ZpV9L67BqHEWVi1G9y5Ph1R2jy?=
+ =?iso-8859-1?Q?DM1/t9IstnroMZQg7RObhEJltUpc1jpZns3ppFCGl/xkW7rmEtsVcyX+VY?=
+ =?iso-8859-1?Q?e1S3gjtZp+fGu2Mqfnlk7C/HwtZvPRYHPUjiTwNYFDn8SpFmBOCl262UEs?=
+ =?iso-8859-1?Q?f70ws3cdZaNV3xDc/0DX7sftCgU3rm6sT4DjEfEEB6nh15?=
+Content-Type: multipart/mixed;
+	boundary="_007_AM9PR03MB72364CAFA14A88B2C5469681C2CE9AM9PR03MB7236eurp_"
+MIME-Version: 1.0
+X-OriginatorOrg: kk.dk
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR03MB7236.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 75b33e4f-88d4-47a8-932b-08da380c6096
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 May 2022 13:51:43.6965
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 769058ab-4487-418f-8b6c-f4b48243edd7
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0D1K6wTKVOjhjhYBBq937oP94YFIELFsk9zaws8jmTp7uu/HfbjwTNIFnqG7hkAv
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR0302MB3399
+X-TM-AS-GCONF: 00
+
+--_007_AM9PR03MB72364CAFA14A88B2C5469681C2CE9AM9PR03MB7236eurp_
+Content-Type: multipart/related;
+	boundary="_006_AM9PR03MB72364CAFA14A88B2C5469681C2CE9AM9PR03MB7236eurp_";
+	type="multipart/alternative"
+
+--_006_AM9PR03MB72364CAFA14A88B2C5469681C2CE9AM9PR03MB7236eurp_
+Content-Type: multipart/alternative;
+	boundary="_000_AM9PR03MB72364CAFA14A88B2C5469681C2CE9AM9PR03MB7236eurp_"
+
+--_000_AM9PR03MB72364CAFA14A88B2C5469681C2CE9AM9PR03MB7236eurp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hej Jens
+Se hvad jeg fandt i min indbakke :)
+
+Med venlig hilsen
+
+
+Bo Alstrup
+IKT-konsulent
+
+
+IBOS - Instituttet for Blinde og Svagsynede
+Rymarksvej 1, DK-2900 Hellerup
++45 39 45 25 71
+CX64@kk.dk<mailto:CX64@sof.kk.dk>, sikker e-mail: ibos@kk.dk<mailto:ibos@kk=
+.dk>
+
+[Billede af IBOS logo]
+
+IBOS er et nationalt kompetence- og rehabiliteringscenter for mennesker med=
+ nedsat syn.
+Vi l=F8ser det komplicerede, skaber det nye og arbejder for det inkluderend=
+e sammen med
+borgere, kommuner og synsprofessionelle i hele landet. www.ibos.dk<https://=
+eur02.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fwww.ibos.dk%2F&d=
+ata=3D04%7C01%7C%7C5c2477eb4fe1440d28be08d9a9ca863b%7C769058ab4487418f8b6cf=
+4b48243edd7%7C0%7C0%7C637727509567643459%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC=
+4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&sdata=3Dja4=
+AZ%2BALDEJRptDyAWVJqCLr7Xs8OTlynxj9S1k%2BR9g%3D&reserved=3D0>
+
+[Billede af K=F8benhavns Kommunes Logo]
+
+Fra: Marc Stovers <marcstovers@visio.org>
+Sendt: 13. maj 2022 08:50
+Til: Bo Alstrup <CX64@kk.dk>
+Cc: Aukje Snijders <AukjeSnijders@visio.org>; Jorien Habing <JorienHabing@v=
+isio.org>; Mirjam Baas-Ridderhof <MirjamBaas@visio.org>; Dorthe Marie Degn =
+<AB8E@kk.dk>; 'geertmaessen@dedicon.nl' <geertmaessen@dedicon.nl>
+Emne: RE: Nodelaeser
+
+Hi Bo,
+
+Here is an update regarding the Nodelaeser braille conversion. Geert Maesse=
+n, a professional braille music transcriber at Dedicon, Netherlands has bee=
+n so kind to do a good and quite thorough research on the braille conversio=
+n of version 4 of Nodeleaser.
+
+I send you the results, it may be of use for your developement team. Unfort=
+unately it is in Dutch but I hope standard translation will be appropriate.=
+ (Full results including testfiles can be provided).
+
+Raw conclusion: the braille conversion is very promising, basically it is O=
+K but work needs to be done to make the output (easier) readable, following=
+ standard braille rules.
+This counts especially for multipart pieces.
+However, musicians that use single part sheet music and not too complex pie=
+ces (e.g. amateur flute players, or choir singers), can already use and ben=
+efit from the conversion as it is now.
+
+Good to mention that Geert is willing to help / think / test with future de=
+velopments.
+I have included his mailadress in cc. Feel free to contact him.
+
+It would be great if Nodelaeser keeps on developing. And it would be great =
+if we could stay in touch.
+
+Kind regards,
+Marc Stovers
+Roya Dutch Visio
+
+Van: Marc Stovers
+Verzonden: woensdag 4 mei 2022 11:55
+Aan: CX64@kk.dk
+CC: Aukje Snijders <AukjeSnijders@visio.org>; Jorien Habing <JorienHabing@v=
+isio.org>; Mirjam Baas-Ridderhof <MirjamBaas@visio.org>; AB8E@kk.dk
+Onderwerp: RE: Nodelaeser
+
+Hi Bo,
+
+Thanks for your reply. We have tried out Nodelaeser and our first implressi=
+on is very positive. We are very enthousiastic about this product and we th=
+ink it can be very useful for visual impaired people, the blind in particul=
+ar.
+
+One thing we unfortunately cannot check ourselves due to the lack of specif=
+ic expertise is the quality of the braille conversion. However, sounds like=
+ a very unique feature, as we do know this is a complex job to do and sever=
+al attempts have been made worldwide the past decade (and failed).
+So were really interested in this feature and we'd like to ask you if you h=
+ave specific test or user feedback about the Music XML to Braille conversio=
+n? This would save us all the work of testing ourselves (and funding it).
+Would be grateful if you could provide this information.
+
+Furthermore, contact info of the Dutch co-operators would be appreciated.
+
+And a question: we tried out version 4, you mentioned verson 5. Is it corre=
+ct that version 5 is not available yet? (download file says 4.0.0.0).
+
+I'm considering to publish a short review on the Dutch platform kennisporta=
+al.visio.org<https://eur02.safelinks.protection.outlook.com/?url=3Dhttps%3A=
+%2F%2Fkennisportaal.visio.org%2F&data=3D05%7C01%7C%7Ca8753836961d4dfdc53208=
+da34accc29%7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C637880214167843539%=
+7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWw=
+iLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=3DFrhFwSbZSamn4zZd42IR1ACrvjtDKHqS0Ou=
+0PsRD%2FO8%3D&reserved=3D0> , the practical knowledge base and self service=
+ portal for the visual impaired in the Netherlands, from which I am the edi=
+tor and content manager. So also in this respect any test & experience info=
+rmation would be useful.
+The article would also be published in Infovisie MagaZIEN, a Belgium magazi=
+ne on tech for visually impaired.
+
+Thank you very much, in advance,
+
+Marc Stovers
+Editor Visio Kennisportaal<https://eur02.safelinks.protection.outlook.com/?=
+url=3Dhttps%3A%2F%2Fkennisportaal.visio.org%2F&data=3D05%7C01%7C%7Ca8753836=
+961d4dfdc53208da34accc29%7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C63788=
+0214167843539%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiL=
+CJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=3DFrhFwSbZSamn4zZd42IR1=
+ACrvjtDKHqS0Ou0PsRD%2FO8%3D&reserved=3D0>
+Adviseur en Trainer OTC (Ondersteunende Technologie Communicatie)
+
+Van: Bo Alstrup <CX64@kk.dk<mailto:CX64@kk.dk>>
+Verzonden: donderdag 24 maart 2022 16:55
+Aan: Aukje Snijders <AukjeSnijders@visio.org<mailto:AukjeSnijders@visio.org=
+>>; Dorthe Marie Degn <AB8E@kk.dk<mailto:AB8E@kk.dk>>
+CC: Marc Stovers <marcstovers@visio.org<mailto:marcstovers@visio.org>>; Jor=
+ien Habing <JorienHabing@visio.org<mailto:JorienHabing@visio.org>>; Mirjam =
+Baas-Ridderhof <MirjamBaas@visio.org<mailto:MirjamBaas@visio.org>>
+Onderwerp: SV: Nodelaeser
+
+Dear Aukje
+
+Thank you for your interest in the IBOS Nodel=E6ser.
+
+We have just finished the version 5 and are about to release it on our web-=
+site.
+
+The further development depends on the possibilities of raising funding.
+
+As to the ducch  localization  we have been in contact with dutch musicians=
+. I shall get back with their contact info.
+
+We get very positive feedback from the  users: professionals, amateurs  and=
+ students .
+
+Have you tried it out?
+
+Among other things the new version contains facilities to import existing b=
+raille scores and supports embossing on Braillo embossers via .pef files.
+
+I shall get back to you as soon as our web-site is updated.
+Med venlig hilsen
+
+
+Bo Alstrup
+IKT-konsulent
+
+
+IBOS - Instituttet for Blinde og Svagsynede
+Rymarksvej 1, DK-2900 Hellerup
++45 39 45 25 71
+CX64@kk.dk<mailto:CX64@sof.kk.dk>, sikker e-mail: ibos@kk.dk<mailto:ibos@kk=
+.dk>
+
+[Billede af IBOS logo]
+
+IBOS er et nationalt kompetence- og rehabiliteringscenter for mennesker med=
+ nedsat syn.
+Vi l=F8ser det komplicerede, skaber det nye og arbejder for det inkluderend=
+e sammen med
+borgere, kommuner og synsprofessionelle i hele landet. www.ibos.dk<https://=
+eur02.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fwww.ibos.dk%2F&d=
+ata=3D05%7C01%7C%7Ca8753836961d4dfdc53208da34accc29%7C769058ab4487418f8b6cf=
+4b48243edd7%7C0%7C0%7C637880214167843539%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC=
+4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sd=
+ata=3DUQWHa7KJ5w1z703G1lMiLwmoRoVLDTeuuR7LWY%2BmfKE%3D&reserved=3D0>
+
+[Billede af K=F8benhavns Kommunes Logo]
+
+Fra: Aukje Snijders <AukjeSnijders@visio.org<mailto:AukjeSnijders@visio.org=
+>>
+Sendt: 23. marts 2022 15:15
+Til: Dorthe Marie Degn <AB8E@kk.dk<mailto:AB8E@kk.dk>>; Bo Alstrup <CX64@kk=
+.dk<mailto:CX64@kk.dk>>
+Cc: Marc Stovers <marcstovers@visio.org<mailto:marcstovers@visio.org>>; Jor=
+ien Habing <JorienHabing@visio.org<mailto:JorienHabing@visio.org>>; Mirjam =
+Baas-Ridderhof <MirjamBaas@visio.org<mailto:MirjamBaas@visio.org>>
+Emne: RE: Nodelaeser
+
+Dear Dorthe, dear Bo,
+
+I hope this email finds you well. A little while ago we were in contact abo=
+ut the nodelaeser. We are still very interested to talk to the team about t=
+he development and the current status of the product. We had some initial q=
+uestions, see below. And would love to talk to the development team and exc=
+hange experiences if that is at all possible.
+
+We hope to hear from you, maybe we can plan an online meeting?
+
+Kind regards,
+Aukje
+
+Van: Dorthe Marie Degn <AB8E@kk.dk<mailto:AB8E@kk.dk>>
+Verzonden: maandag 29 november 2021 06:22
+Aan: Aukje Snijders <AukjeSnijders@visio.org<mailto:AukjeSnijders@visio.org=
+>>; Bo Alstrup <CX64@kk.dk<mailto:CX64@kk.dk>>
+Onderwerp: Re: Nodelaeser
+
+Sorry, I contacted Bo in a separate mail
+Kind regards
+Dorthe
+________________________________
+Fra: Aukje Snijders <AukjeSnijders@visio.org<mailto:AukjeSnijders@visio.org=
+>>
+Sendt: fredag, november 26, 2021 7:20 PM
+Til: Dorthe Marie Degn
+Emne: RE: Nodelaeser
+
+Dear Dorthe,
+
+I think you forgot to CC Bo. Could you please resend your email?
+
+Kind regards,
+Aukje
+
+Van: Dorthe Marie Degn <AB8E@kk.dk<mailto:AB8E@kk.dk>>
+Verzonden: vrijdag 26 november 2021 14:56
+Aan: Aukje Snijders <AukjeSnijders@visio.org<mailto:AukjeSnijders@visio.org=
+>>
+CC: Marc Stovers <marcstovers@visio.org<mailto:marcstovers@visio.org>>; Jor=
+ien Habing <JorienHabing@visio.org<mailto:JorienHabing@visio.org>>; Mirjam =
+Baas-Ridderhof <MirjamBaas@visio.org<mailto:MirjamBaas@visio.org>>
+Onderwerp: Re: Nodelaeser
+
+Hi Aukje
+I'm sure Bo Alstrup (Bcc) and his colleague will be happy to talk to Marc. =
+The Nodelaeser is currently undergoing it's third development.
+
+Kind regards
+Dorthe
+________________________________
+Fra: Aukje Snijders <AukjeSnijders@visio.org<mailto:AukjeSnijders@visio.org=
+>>
+Sendt: torsdag, november 25, 2021 9:19 PM
+Til: Dorthe Marie Degn
+Cc: Marc Stovers; Jorien Habing; Mirjam Baas-Ridderhof
+Emne: Nodelaeser
+
+Dear Dorthe,
+
+Last week you shared the info on the Nodelaeser. My colleague Marc (a diffe=
+rent Marc ;-) is really interested as has some questions for you.
+
+1. Will this product be developed further?
+2. What are the current experiences?
+3. Who prepared the Dutch version and the manual?
+
+Could you maybe bring us into contact with the developers of the applicatio=
+n? We would love to exchange experiences and share ideas with them.
+
+Kind regards,
+Aukje
+
+Aukje Snijders
+Programme Manager Europe
+Expertise and Knowledge Development
++31 6 460 48329
+
+Royal Dutch Visio
+Centre of Expertise for Partially Sighted and Blind People
+www.visio.org<https://eur02.safelinks.protection.outlook.com/?url=3Dhttp%3A=
+%2F%2Fwww.visio.org%2F&data=3D05%7C01%7C%7Ca8753836961d4dfdc53208da34accc29=
+%7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C637880214167843539%7CUnknown%=
+7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6M=
+n0%3D%7C3000%7C%7C%7C&sdata=3DibbS2Gya5c01gkjW2qBJYXhG2Ht9yW03rvt%2F1kq0xcw=
+%3D&reserved=3D0>
+www.visio.org/international<https://eur02.safelinks.protection.outlook.com/=
+?url=3Dhttp%3A%2F%2Fwww.visio.org%2Finternational&data=3D05%7C01%7C%7Ca8753=
+836961d4dfdc53208da34accc29%7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C63=
+7880214167843539%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMz=
+IiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=3D%2Bkn7srjw6qXaQNHF=
+%2FEKG%2BLA%2FxHSAQ8eoOZTiQJDng3Q%3D&reserved=3D0>
+
+
+--_000_AM9PR03MB72364CAFA14A88B2C5469681C2CE9AM9PR03MB7236eurp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+span.EmailStyle24
+	{mso-style-type:personal-reply;
+	font-family:"Arial",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DA" link=3D"blue" vlink=3D"purple" style=3D"word-wrap:break-w=
+ord">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;mso-fareast-language:EN-US">Hej Jens<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;mso-fareast-language:EN-US">Se hvad jeg fandt i min indbakke :)<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;mso-fareast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
+<div>
+<div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Med venlig hilsen<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Arial&quot;,sans-serif">Bo Alstrup</span></b><span style=3D"font-size:11.0=
+pt;font-family:&quot;Arial&quot;,sans-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">IKT-konsulent<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">IBOS - Instituttet for Blinde og Svagsynede<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Rymarksvej 1, DK-2900 Hellerup<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">+45 39 45 25 71<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><a href=3D"mailto:CX64@sof.kk.dk">CX64@kk.dk</a>, sik=
+ker e-mail:
+<a href=3D"mailto:ibos@kk.dk">ibos@kk.dk</a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><img border=3D"0" width=3D"240" height=3D"96" style=
+=3D"width:2.5in;height:1.0in" id=3D"Billede_x0020_3" src=3D"cid:image001.gi=
+f@01D8654E.90A24E00" alt=3D"Billede af IBOS logo"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">IBOS er et nationalt kompetence- og rehabiliteringsce=
+nter for mennesker med nedsat syn.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Vi l=F8ser det komplicerede, skaber det nye og arbejd=
+er for det inkluderende sammen med
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">borgere, kommuner og synsprofessionelle i hele landet=
+.
+<a href=3D"https://eur02.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F=
+%2Fwww.ibos.dk%2F&amp;data=3D04%7C01%7C%7C5c2477eb4fe1440d28be08d9a9ca863b%=
+7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C637727509567643459%7CUnknown%7=
+CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn=
+0%3D%7C3000&amp;sdata=3Dja4AZ%2BALDEJRptDyAWVJqCLr7Xs8OTlynxj9S1k%2BR9g%3D&=
+amp;reserved=3D0">
+www.ibos.dk</a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:12.0pt"><span style=3D"font-siz=
+e:10.5pt;font-family:&quot;Arial&quot;,sans-serif"><img border=3D"0" width=
+=3D"182" height=3D"58" style=3D"width:1.8958in;height:.6041in" id=3D"Billed=
+e_x0020_4" src=3D"cid:image002.gif@01D8654E.90A24E00" alt=3D"Billede af K=
+=F8benhavns Kommunes Logo"></span><span style=3D"font-size:11.0pt;font-fami=
+ly:&quot;Arial&quot;,sans-serif"><o:p></o:p></span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;mso-fareast-language:EN-US"><o:p>&nbsp;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif">Fra:</span></b><span style=3D"font-size:11.0pt;f=
+ont-family:&quot;Calibri&quot;,sans-serif"> Marc Stovers &lt;marcstovers@vi=
+sio.org&gt;
+<br>
+<b>Sendt:</b> 13. maj 2022 08:50<br>
+<b>Til:</b> Bo Alstrup &lt;CX64@kk.dk&gt;<br>
+<b>Cc:</b> Aukje Snijders &lt;AukjeSnijders@visio.org&gt;; Jorien Habing &l=
+t;JorienHabing@visio.org&gt;; Mirjam Baas-Ridderhof &lt;MirjamBaas@visio.or=
+g&gt;; Dorthe Marie Degn &lt;AB8E@kk.dk&gt;; 'geertmaessen@dedicon.nl' &lt;=
+geertmaessen@dedicon.nl&gt;<br>
+<b>Emne:</b> RE: Nodelaeser<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Hi Bo,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Here is an update regarding the Nodelaeser braille conversion. Geert Maes=
+sen, a professional braille music transcriber at
+ Dedicon, Netherlands has been so kind to do a good and quite thorough rese=
+arch on the braille conversion of version 4 of Nodeleaser.<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">I send you the results, it may be of use for your developement team. Unfo=
+rtunately it is in Dutch but I hope standard translation
+ will be appropriate. (Full results including testfiles can be provided).<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Raw conclusion: the braille conversion is very promising, basically it is=
+ OK but work needs to be done to make the output
+ (easier) readable, following standard braille rules.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">This counts especially for multipart pieces.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">However, musicians that use single part sheet music and not too complex p=
+ieces (e.g. amateur flute players, or choir singers),
+ can already use and benefit from the conversion as it is now.<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Good to mention that Geert is willing to help / think / test with future =
+developments.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">I have included his mailadress in cc. Feel free to contact him.<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">It would be great if Nodelaeser keeps on developing. And it would be grea=
+t if we could stay in touch.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Kind regards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Marc Stovers<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Roya Dutch Visio<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"NL" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif">Van:</span></b><span lang=3D"NL" sty=
+le=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"> Marc St=
+overs
+<br>
+<b>Verzonden:</b> woensdag 4 mei 2022 11:55<br>
+<b>Aan:</b> CX64@kk.dk<br>
+<b>CC:</b> Aukje Snijders &lt;AukjeSnijders@visio.org&gt;; Jorien Habing &l=
+t;JorienHabing@visio.org&gt;; Mirjam Baas-Ridderhof &lt;MirjamBaas@visio.or=
+g&gt;; AB8E@kk.dk<br>
+<b>Onderwerp:</b> RE: Nodelaeser<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><span lang=3D"NL"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Hi Bo,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Thanks for your reply. We have tried out Nodelaeser and our first implres=
+sion is very positive. We are very enthousiastic
+ about this product and we think it can be very useful for visual impaired =
+people, the blind in particular.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">One thing we unfortunately cannot check ourselves due to the lack of spec=
+ific expertise is the quality of the braille conversion.
+ However, sounds like a <b>very </b>unique feature, as we do know this is a=
+ complex job to do and several attempts have been made worldwide the past d=
+ecade (and failed).
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">So were really interested in this feature and we&#8217;d like to ask you =
+if you have specific test or user feedback about the Music
+ XML to Braille conversion? This would save us all the work of testing ours=
+elves (and funding it).
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Would be grateful if you could provide this information.<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Furthermore, contact info of the Dutch co-operators would be appreciated.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">And a question: we tried out version 4, you mentioned verson 5. Is it cor=
+rect that version 5 is not available yet? (download
+ file says 4.0.0.0).<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">I&#8217;m considering to publish a short review on the Dutch platform
+</span><span lang=3D"NL"><a href=3D"https://eur02.safelinks.protection.outl=
+ook.com/?url=3Dhttps%3A%2F%2Fkennisportaal.visio.org%2F&amp;data=3D05%7C01%=
+7C%7Ca8753836961d4dfdc53208da34accc29%7C769058ab4487418f8b6cf4b48243edd7%7C=
+0%7C0%7C637880214167843539%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQ=
+IjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=3DFrhF=
+wSbZSamn4zZd42IR1ACrvjtDKHqS0Ou0PsRD%2FO8%3D&amp;reserved=3D0"><span style=
+=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-fareast=
+-language:EN-US">kennisportaal.visio.org</span></a></span><span lang=3D"NL"=
+ style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;color=
+:#1F497D;mso-fareast-language:EN-US">
+ , the practical knowledge base and self service portal for the visual impa=
+ired in the Netherlands, from which I am the editor and content manager. So=
+ also in this respect any test &amp; experience information would be useful=
+.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">The article would also be published in Infovisie MagaZIEN, a Belgium maga=
+zine on tech for visually impaired.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Thank you very much, in advance,<o:p></o:p></span></p>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Marc Stovers<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Editor
+</span><span lang=3D"NL"><a href=3D"https://eur02.safelinks.protection.outl=
+ook.com/?url=3Dhttps%3A%2F%2Fkennisportaal.visio.org%2F&amp;data=3D05%7C01%=
+7C%7Ca8753836961d4dfdc53208da34accc29%7C769058ab4487418f8b6cf4b48243edd7%7C=
+0%7C0%7C637880214167843539%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQ=
+IjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=3DFrhF=
+wSbZSamn4zZd42IR1ACrvjtDKHqS0Ou0PsRD%2FO8%3D&amp;reserved=3D0"><span style=
+=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-fareast=
+-language:EN-US">Visio
+ Kennisportaal</span></a></span><span lang=3D"NL" style=3D"font-size:10.0pt=
+;font-family:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-langu=
+age:EN-US"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Adviseur en Trainer OTC (Ondersteunende Technologie Communicatie)<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+"><o:p>&nbsp;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"NL" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif">Van:</span></b><span lang=3D"NL" sty=
+le=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"> Bo Alst=
+rup &lt;</span><span lang=3D"NL"><a href=3D"mailto:CX64@kk.dk"><span style=
+=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">CX64@kk.dk=
+</span></a></span><span lang=3D"NL" style=3D"font-size:11.0pt;font-family:&=
+quot;Calibri&quot;,sans-serif">&gt;
+<br>
+<b>Verzonden:</b> donderdag 24 maart 2022 16:55<br>
+<b>Aan:</b> Aukje Snijders &lt;</span><span lang=3D"NL"><a href=3D"mailto:A=
+ukjeSnijders@visio.org"><span style=3D"font-size:11.0pt;font-family:&quot;C=
+alibri&quot;,sans-serif">AukjeSnijders@visio.org</span></a></span><span lan=
+g=3D"NL" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-ser=
+if">&gt;;
+ Dorthe Marie Degn &lt;</span><span lang=3D"NL"><a href=3D"mailto:AB8E@kk.d=
+k"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-ser=
+if">AB8E@kk.dk</span></a></span><span lang=3D"NL" style=3D"font-size:11.0pt=
+;font-family:&quot;Calibri&quot;,sans-serif">&gt;<br>
+<b>CC:</b> Marc Stovers &lt;</span><span lang=3D"NL"><a href=3D"mailto:marc=
+stovers@visio.org"><span style=3D"font-size:11.0pt;font-family:&quot;Calibr=
+i&quot;,sans-serif">marcstovers@visio.org</span></a></span><span lang=3D"NL=
+" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">&gt=
+;;
+ Jorien Habing &lt;</span><span lang=3D"NL"><a href=3D"mailto:JorienHabing@=
+visio.org"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,=
+sans-serif">JorienHabing@visio.org</span></a></span><span lang=3D"NL" style=
+=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">&gt;;
+ Mirjam Baas-Ridderhof &lt;</span><span lang=3D"NL"><a href=3D"mailto:Mirja=
+mBaas@visio.org"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&=
+quot;,sans-serif">MirjamBaas@visio.org</span></a></span><span lang=3D"NL" s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">&gt;<b=
+r>
+<b>Onderwerp:</b> SV: Nodelaeser<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><span lang=3D"NL"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;mso-fareast-language:EN-US">Dear Aukje</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;mso-fareast-language:EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">Thank you for your interest =
+in the IBOS Nodel=E6ser.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">We have just finished the ve=
+rsion 5 and are about to release it on our web-site.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">The further development depe=
+nds on the possibilities of raising funding.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">As to the ducch&nbsp; locali=
+zation &nbsp;we have been in contact with dutch musicians. I shall get back=
+ with their contact info.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">We get very positive feedbac=
+k from the&nbsp; users: professionals, amateurs &nbsp;and students .</span>=
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">Have you tried it out?</span=
+><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">Among other things the new v=
+ersion contains facilities to import existing braille scores and supports e=
+mbossing on Braillo embossers via .pef files.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-family:&quot;Aria=
+l&quot;,sans-serif;mso-fareast-language:EN-US">I shall get back to you as s=
+oon as our web-site is updated.</span><o:p></o:p></p>
+<div>
+<div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Med venlig hilsen</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Arial&quot;,sans-serif">Bo Alstrup</span></b><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">IKT-konsulent</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">IBOS - Instituttet for Blinde og Svagsynede</span><o:=
+p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Rymarksvej 1, DK-2900 Hellerup</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">+45 39 45 25 71</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"NL"><a href=3D"mailto:CX64@sof.kk.dk">=
+<span lang=3D"DA" style=3D"font-size:10.5pt;font-family:&quot;Arial&quot;,s=
+ans-serif">CX64@kk.dk</span></a></span><span style=3D"font-size:10.5pt;font=
+-family:&quot;Arial&quot;,sans-serif">, sikker e-mail:
+</span><span lang=3D"NL"><a href=3D"mailto:ibos@kk.dk"><span lang=3D"DA" st=
+yle=3D"font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif">ibos@kk.d=
+k</span></a></span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:10.5pt;font-fam=
+ily:&quot;Arial&quot;,sans-serif"><img border=3D"0" width=3D"240" height=3D=
+"96" style=3D"width:2.5in;height:1.0in" id=3D"Billede_x0020_1" src=3D"cid:i=
+mage001.gif@01D8654E.90A24E00" alt=3D"Billede af IBOS logo"></span><o:p></o=
+:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">IBOS er et nationalt kompetence- og rehabiliteringsce=
+nter for mennesker med nedsat syn.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">Vi l=F8ser det komplicerede, skaber det nye og arbejd=
+er for det inkluderende sammen med
+</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">borgere, kommuner og synsprofessionelle i hele landet=
+.
+</span><span lang=3D"NL"><a href=3D"https://eur02.safelinks.protection.outl=
+ook.com/?url=3Dhttp%3A%2F%2Fwww.ibos.dk%2F&amp;data=3D05%7C01%7C%7Ca8753836=
+961d4dfdc53208da34accc29%7C769058ab4487418f8b6cf4b48243edd7%7C0%7C0%7C63788=
+0214167843539%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiL=
+CJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=3DUQWHa7KJ5w1z703G1=
+lMiLwmoRoVLDTeuuR7LWY%2BmfKE%3D&amp;reserved=3D0"><span lang=3D"DA" style=
+=3D"font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif">www.ibos.dk<=
+/span></a></span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ar=
+ial&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"line-height:12.0pt"><span lang=3D"NL" style=
+=3D"font-size:10.5pt;font-family:&quot;Arial&quot;,sans-serif"><img border=
+=3D"0" width=3D"182" height=3D"58" style=3D"width:1.8958in;height:.6041in" =
+id=3D"Billede_x0020_2" src=3D"cid:image002.gif@01D8654E.90A24E00" alt=3D"Bi=
+llede af K=F8benhavns Kommunes Logo"></span><o:p></o:p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;mso-fareast-language:EN-US">&nbsp;</span><o:p></o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif">Fra:</span></b><span style=3D"font-size:11.0pt;f=
+ont-family:&quot;Calibri&quot;,sans-serif"> Aukje Snijders &lt;</span><span=
+ lang=3D"NL"><a href=3D"mailto:AukjeSnijders@visio.org"><span lang=3D"DA" s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">AukjeS=
+nijders@visio.org</span></a></span><span style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif">&gt;
+<br>
+<b>Sendt:</b> 23. marts 2022 15:15<br>
+<b>Til:</b> Dorthe Marie Degn &lt;</span><span lang=3D"NL"><a href=3D"mailt=
+o:AB8E@kk.dk"><span lang=3D"DA" style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif">AB8E@kk.dk</span></a></span><span style=3D"font-=
+size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">&gt;; Bo Alstrup
+ &lt;</span><span lang=3D"NL"><a href=3D"mailto:CX64@kk.dk"><span lang=3D"D=
+A" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">CX=
+64@kk.dk</span></a></span><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif">&gt;<br>
+<b>Cc:</b> Marc Stovers &lt;</span><span lang=3D"NL"><a href=3D"mailto:marc=
+stovers@visio.org"><span lang=3D"DA" style=3D"font-size:11.0pt;font-family:=
+&quot;Calibri&quot;,sans-serif">marcstovers@visio.org</span></a></span><spa=
+n style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">&gt=
+;;
+ Jorien Habing &lt;</span><span lang=3D"NL"><a href=3D"mailto:JorienHabing@=
+visio.org"><span lang=3D"DA" style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif">JorienHabing@visio.org</span></a></span><span style=
+=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">&gt;;
+ Mirjam Baas-Ridderhof &lt;</span><span lang=3D"NL"><a href=3D"mailto:Mirja=
+mBaas@visio.org"><span lang=3D"DA" style=3D"font-size:11.0pt;font-family:&q=
+uot;Calibri&quot;,sans-serif">MirjamBaas@visio.org</span></a></span><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">&gt;<b=
+r>
+<b>Emne:</b> RE: Nodelaeser</span><o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN=
+-US">Dear Dorthe, dear Bo,</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN=
+-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN=
+-US">I hope this email finds you well. A little while ago we were in contac=
+t about the nodelaeser. We are still very interested
+ to talk to the team about the development and the current status of the pr=
+oduct. We had some initial questions, see below. And would love to talk to =
+the development team and exchange experiences if that is at all possible.</=
+span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN=
+-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN=
+-US">We hope to hear from you, maybe we can plan an online meeting?</span><=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN=
+-US">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Kind regards,</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">Aukje</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US=
+">&nbsp;</span><o:p></o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"NL" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif">Van:</span></b><span lang=3D"NL" sty=
+le=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"> Dorthe =
+Marie Degn &lt;</span><span lang=3D"NL"><a href=3D"mailto:AB8E@kk.dk"><span=
+ style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">AB8E=
+@kk.dk</span></a></span><span lang=3D"NL" style=3D"font-size:11.0pt;font-fa=
+mily:&quot;Calibri&quot;,sans-serif">&gt;
+<br>
+<b>Verzonden:</b> maandag 29 november 2021 06:22<br>
+<b>Aan:</b> Aukje Snijders &lt;</span><span lang=3D"NL"><a href=3D"mailto:A=
+ukjeSnijders@visio.org"><span style=3D"font-size:11.0pt;font-family:&quot;C=
+alibri&quot;,sans-serif">AukjeSnijders@visio.org</span></a></span><span lan=
+g=3D"NL" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-ser=
+if">&gt;;
+ Bo Alstrup &lt;</span><span lang=3D"NL"><a href=3D"mailto:CX64@kk.dk"><spa=
+n style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">CX6=
+4@kk.dk</span></a></span><span lang=3D"NL" style=3D"font-size:11.0pt;font-f=
+amily:&quot;Calibri&quot;,sans-serif">&gt;<br>
+<b>Onderwerp:</b> Re: Nodelaeser</span><o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><span lang=3D"NL">&nbsp;</span><o:p></o:p></p>
+<div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">Sorry, I contacted Bo in a sepa=
+rate mail</span><o:p></o:p></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"NL">Kind regards</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"NL">Dorthe</span><o:p></o:p></p>
+</div>
+</div>
+<div id=3D"id-17896731-9622-44d7-8029-0ebf4e60cb34">
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span=
+ lang=3D"NL">
+<hr size=3D"3" width=3D"98%" noshade=3D"" style=3D"color:black" align=3D"ce=
+nter">
+</span></div>
+<div id=3D"divRplyFwdMsg">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-GB" style=3D"font-family:&quot;C=
+alibri&quot;,sans-serif">Fra:</span></b><span lang=3D"EN-GB" style=3D"font-=
+family:&quot;Calibri&quot;,sans-serif"> Aukje Snijders &lt;</span><span lan=
+g=3D"NL"><a href=3D"mailto:AukjeSnijders@visio.org"><span lang=3D"EN-GB" st=
+yle=3D"font-family:&quot;Calibri&quot;,sans-serif">AukjeSnijders@visio.org<=
+/span></a></span><span lang=3D"EN-GB" style=3D"font-family:&quot;Calibri&qu=
+ot;,sans-serif">&gt;<br>
+<b>Sendt:</b> fredag, november 26, 2021 7:20 PM<br>
+<b>Til:</b> Dorthe Marie Degn<br>
+<b>Emne:</b> RE: Nodelaeser </span><o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-family:&quot;Cali=
+bri&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D">Dear Dorthe,
+</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D">&nbsp;</span><o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D">I think you forgot to =
+CC Bo. Could you please resend your email?</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;color:#1F497D">&nbsp;</span><o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif;color:#1F497D">Kind regards,</span><o:p>=
+</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif;color:#1F497D">Aukje</span><o:p></o:p></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif;color:#1F497D">&nbsp;</span><o:p></o:p><=
+/p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"NL" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif">Van:</span></b><span lang=3D"NL" sty=
+le=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"> Dorthe =
+Marie Degn &lt;</span><span lang=3D"NL"><a href=3D"mailto:AB8E@kk.dk"><span=
+ style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">AB8E=
+@kk.dk</span></a></span><span lang=3D"NL" style=3D"font-size:11.0pt;font-fa=
+mily:&quot;Calibri&quot;,sans-serif">&gt;
+<br>
+<b>Verzonden:</b> vrijdag 26 november 2021 14:56<br>
+<b>Aan:</b> Aukje Snijders &lt;</span><span lang=3D"NL"><a href=3D"mailto:A=
+ukjeSnijders@visio.org"><span style=3D"font-size:11.0pt;font-family:&quot;C=
+alibri&quot;,sans-serif">AukjeSnijders@visio.org</span></a></span><span lan=
+g=3D"NL" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-ser=
+if">&gt;<br>
+<b>CC:</b> Marc Stovers &lt;</span><span lang=3D"NL"><a href=3D"mailto:marc=
+stovers@visio.org"><span style=3D"font-size:11.0pt;font-family:&quot;Calibr=
+i&quot;,sans-serif">marcstovers@visio.org</span></a></span><span lang=3D"NL=
+" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">&gt=
+;;
+ Jorien Habing &lt;</span><span lang=3D"NL"><a href=3D"mailto:JorienHabing@=
+visio.org"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,=
+sans-serif">JorienHabing@visio.org</span></a></span><span lang=3D"NL" style=
+=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">&gt;;
+ Mirjam Baas-Ridderhof &lt;</span><span lang=3D"NL"><a href=3D"mailto:Mirja=
+mBaas@visio.org"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&=
+quot;,sans-serif">MirjamBaas@visio.org</span></a></span><span lang=3D"NL" s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">&gt;<b=
+r>
+<b>Onderwerp:</b> Re: Nodelaeser</span><o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><span lang=3D"NL">&nbsp;</span><o:p></o:p></p>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">Hi Aukje</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">I&#8217;m sure Bo Alstrup (Bcc)=
+ and his colleague will be happy to talk to Marc. The Nodelaeser is current=
+ly undergoing it&#8217;s third development.</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">&nbsp;</span><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">Kind regards</span><o:p></o:p><=
+/p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">Dorthe</span><o:p></o:p></p>
+</div>
+</div>
+<div id=3D"id-caedb904-c0b1-4d92-be11-29a72b17afb1">
+<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span=
+ lang=3D"NL">
+<hr size=3D"3" width=3D"98%" noshade=3D"" style=3D"color:black" align=3D"ce=
+nter">
+</span></div>
+<div id=3D"divRplyFwdMsg">
+<p class=3D"MsoNormal"><b><span lang=3D"NL" style=3D"font-family:&quot;Cali=
+bri&quot;,sans-serif">Fra:</span></b><span lang=3D"NL" style=3D"font-family=
+:&quot;Calibri&quot;,sans-serif"> Aukje Snijders &lt;</span><span lang=3D"N=
+L"><a href=3D"mailto:AukjeSnijders@visio.org"><span style=3D"font-family:&q=
+uot;Calibri&quot;,sans-serif">AukjeSnijders@visio.org</span></a></span><spa=
+n lang=3D"NL" style=3D"font-family:&quot;Calibri&quot;,sans-serif">&gt;<br>
+<b>Sendt:</b> torsdag, november 25, 2021 9:19 PM<br>
+<b>Til:</b> Dorthe Marie Degn<br>
+<b>Cc:</b> Marc Stovers; Jorien Habing; Mirjam Baas-Ridderhof<br>
+<b>Emne:</b> Nodelaeser </span><o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"NL" style=3D"font-family:&quot;Calibri=
+&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Verdana&quot;,sans-serif">Dear Dorthe,</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Verdana&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Verdana&quot;,sans-serif">Last week you shared the info on the=
+ Nodelaeser. My colleague Marc (a different Marc ;-) is really interested a=
+s has some questions for you.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Verdana&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Verdana&quot;,sans-serif">1. Will this product be developed fu=
+rther?</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Verdana&quot;,sans-serif">2. What are the current experiences?=
+</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Verdana&quot;,sans-serif">3. Who prepared the Dutch version an=
+d the manual?</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Verdana&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Verdana&quot;,sans-serif">Could you maybe bring us into contac=
+t with the developers of the application? We would love to exchange experie=
+nces and share ideas with them.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Verdana&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Verdana&quot;,sans-serif">Kind regards,</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Verdana&quot;,sans-serif">Aukje</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-=
+family:&quot;Verdana&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><sub><span lang=3D"EN-US" style=3D"font-size:10.0=
+pt;font-family:&quot;Verdana&quot;,sans-serif">Aukje Snijders</span></sub><=
+/b><o:p></o:p></p>
+<p class=3D"MsoNormal"><sub><span lang=3D"EN-US" style=3D"font-size:10.0pt;=
+font-family:&quot;Verdana&quot;,sans-serif">Programme Manager Europe</span>=
+</sub><o:p></o:p></p>
+<p class=3D"MsoNormal"><sub><span lang=3D"EN-US" style=3D"font-size:10.0pt;=
+font-family:&quot;Verdana&quot;,sans-serif">Expertise and Knowledge
+</span></sub><sub><span lang=3D"EN-GB" style=3D"font-size:10.0pt;font-famil=
+y:&quot;Verdana&quot;,sans-serif">Development</span></sub><o:p></o:p></p>
+<p class=3D"MsoNormal"><sub><span lang=3D"EN-US" style=3D"font-size:10.0pt;=
+font-family:&quot;Verdana&quot;,sans-serif">+31 6 460 48329</span></sub><o:=
+p></o:p></p>
+<p class=3D"MsoNormal"><b><sub><span lang=3D"EN-US" style=3D"font-size:10.0=
+pt;font-family:&quot;Verdana&quot;,sans-serif">&nbsp;</span></sub></b><o:p>=
+</o:p></p>
+<p class=3D"MsoNormal"><b><sub><span lang=3D"EN-US" style=3D"font-size:10.0=
+pt;font-family:&quot;Verdana&quot;,sans-serif">Royal Dutch Visio</span></su=
+b></b><o:p></o:p></p>
+<p class=3D"MsoNormal"><sub><span lang=3D"EN-US" style=3D"font-size:10.0pt;=
+font-family:&quot;Verdana&quot;,sans-serif">Centre of Expertise for Partial=
+ly Sighted and Blind People</span></sub><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"NL"><a href=3D"https://eur02.safelinks=
+.protection.outlook.com/?url=3Dhttp%3A%2F%2Fwww.visio.org%2F&amp;data=3D05%=
+7C01%7C%7Ca8753836961d4dfdc53208da34accc29%7C769058ab4487418f8b6cf4b48243ed=
+d7%7C0%7C0%7C637880214167843539%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDA=
+iLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=
+=3DibbS2Gya5c01gkjW2qBJYXhG2Ht9yW03rvt%2F1kq0xcw%3D&amp;reserved=3D0" targe=
+t=3D"_blank"><sub><span lang=3D"DA" style=3D"font-size:10.0pt;font-family:&=
+quot;Verdana&quot;,sans-serif;color:#0563C1">www.visio.org</span></sub></a>=
+</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"NL"><a href=3D"https://eur02.safelinks=
+.protection.outlook.com/?url=3Dhttp%3A%2F%2Fwww.visio.org%2Finternational&a=
+mp;data=3D05%7C01%7C%7Ca8753836961d4dfdc53208da34accc29%7C769058ab4487418f8=
+b6cf4b48243edd7%7C0%7C0%7C637880214167843539%7CUnknown%7CTWFpbGZsb3d8eyJWIj=
+oiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7=
+C&amp;sdata=3D%2Bkn7srjw6qXaQNHF%2FEKG%2BLA%2FxHSAQ8eoOZTiQJDng3Q%3D&amp;re=
+served=3D0"><sub><span lang=3D"DA" style=3D"font-size:10.0pt;font-family:&q=
+uot;Verdana&quot;,sans-serif;color:#0563C1">www.visio.org/international</sp=
+an></sub></a></span><sub><span lang=3D"NL" style=3D"font-size:10.0pt;font-f=
+amily:&quot;Verdana&quot;,sans-serif">
+</span></sub><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_AM9PR03MB72364CAFA14A88B2C5469681C2CE9AM9PR03MB7236eurp_--
+
+--_006_AM9PR03MB72364CAFA14A88B2C5469681C2CE9AM9PR03MB7236eurp_
+Content-Type: image/gif; name="image001.gif"
+Content-Description: image001.gif
+Content-Disposition: inline; filename="image001.gif"; size=12283;
+	creation-date="Fri, 13 May 2022 06:49:53 GMT";
+	modification-date="Tue, 17 May 2022 13:51:43 GMT"
+Content-ID: <image001.gif@01D8654E.90A24E00>
+Content-Transfer-Encoding: base64
+
+R0lGODlh8ABcAPcAAABlbABka////wBla//7/f/5+/v3+f/5/f/9//77/fz5+/v7//n5/f39//v7
+/fn5+/j7//L5/vr9//j7/fb5+/b7/vT5/OPw+O72+vj9//L3+e3z9efy9cje49zq7arM0uXv8oq2
+vZ3Ey8zg49Tm6d/s7gCEjyyPmUKTnEmXoEyYoV2fp3iutIK4v36yuIG0u4e2vYm4v4y4vpC6wKXH
+y8Ha3cTc39jo6vH5+u319unx8gB0fgB0fgCAigCEjQCGjwuJkxCGjyGLlDaQmDmSmlOcpFGaoVqd
+pGilq3Cpr4S2vIu6wIq2u420uZa/xJS9wqrJzK7Mz7PP0rbS1cre4MTY2src3tHj5QByegBzewB2
+fgBzewB4gAB2fgB5ggB6ggB4fwB8hAB6gQB+hgB/hwCBiACEjAqCiBaIkBeEjBaGjR2JkSyNlSiJ
+kDKPlkWWnUCQlkyWnIa4vX+wtISzuIm4vYe2u5vCxZ/Ex7zV18DY2tnm5+Tv8ODr7ABlcABncABj
+bgBlbgBjbABhagBjbABocQBlbgBpcgBqcgBsdQBtdgBweABsdABudgBrcwBtdABxeQBtdABwdgBw
+dwBxeABscwB2fABxdwB2fAB2fABzeQB6gAB4fgB9gwCGjYi0uMrb3Nbl5uDu7wBpcQBnbgBlbABj
+agBhZwBfZABnbgBlbABjagBhZwBnbgBkagBmbABhZgBmbQBpcABkagBnbQBkaABobwBrcgBobo+4
+u8HW18Xa2wBnbABlaQBjZwBhZQBlaQBnbABjZwBhZQBnaQBlZwBjZQBhY7vT08TY2Mze3s7g4Nro
+6Nzq6uTu7vP7++vz897n5/j9/fb7+/T5+fH29vz///r9/fj7+/b5+dPi4efv7uPs6+Du7Ozx8O31
+8+Xu7OHq6Pb7+fb49/Dy8fz//fr9+/j7+fP18/z/+/z/+f//+f//+/39+f///f39+/v7+f/9+fv5
+9//9+/77+f/7+P/7+//5+fv39//9/f77+/z5+f39/fv7+/n5+f///yH/C1hNUCBEYXRhWE1QPD94
+cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1w
+bWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4z
+LWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4
+bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8
+cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5j
+b20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0v
+IiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNl
+UmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSIgeG1w
+TU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBRDI4QkU3MjZCMzMxMUU0ODI1NkM0NzI3NTc2MUREQyIg
+eG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBRDI4QkU3MzZCMzMxMUU0ODI1NkM0NzI3NTc2MURE
+QyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkFEMjhCRTcw
+NkIzMzExRTQ4MjU2QzQ3Mjc1NzYxRERDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkFEMjhC
+RTcxNkIzMzExRTQ4MjU2QzQ3Mjc1NzYxRERDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpS
+REY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s
+6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSz
+srGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6
+eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JB
+QD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkI
+BwYFBAMCAQAAIfkEAAAAAAAsAAAAAPAAXAAACP8Avf3z1ilWMWGoihVLuFBYMVbDDkZcqBCVQ1as
+DjLc6HBYRoQVFQ7r+HFjxY4OQVJsWGykxpcsXYJUyVBmRJoiL96smfPhzpAtL36cSJSkRKAuPcKs
+iXJpT4tHVbqEOpMnS2E/jaX4xzWUD1nAigEzpJBsMVVhhTk8WFYh2oMOgalqW8xQ2rhz6ypcq1Zs
+XrN24foVC/ju4LFlDcslnFiwqrmI9TqGbJavW8p01z7ey5nt2bxrK18eLFkzZMye3/aNrDnsYtZu
+w25GLOzWG2o5PEFVSMyYsLBiWyocPhI4MKzDixErrvD4RN7M9z5XHt158uW/myMfDqz69ubenwP/
+M66d6PjoR5t3zy4WOdbza6Vz7578uLH5EY0Lu68+v3b+wU13XHzABSeWb9y1NB5vxhhzDCpFtIFI
+MQ12Zplgnl3YV4YWatghhhqm5KFgG4YI4oclojgiXyvu1eKJHJK4oogWuggjizfamOJBxywyi2vA
+rRWAjQtuOKRgC3p25GqGFXPkW0UKqRArcSl2JJVOGrbKlQ4FoOWVsSEJ5lmK5ZURmUiaGeZqaqLJ
+5pRr4gVnlmnO6aWYB51552pDCqOnYmnpSeFa8A0XTHJiFajQofWtZyii5yXHaF5JPtoooozOd+ai
+kAKzaTGZqvdpqIl+mpem3J0q6nyIvsVqcnNt/1opp7JiZ6ifr94qq6Kg4qoepn6ymFKNOWbY14zD
+xrjjiMpylqyHz9YYX7PTQpuctcMxm6201xLbbYzfXhiut9AO4tAqa60iUmfoKqSucJ6t8u5aE72L
+oGf17qXuhoMo1O9B+9LrL43HTmRuUCQabGO72/3bF8MKx5tSxOnO629Pwuwb8bwaX4xwxun9e7BN
+B4lM8E0i68hfysX80d1srSC4XzAvQxZzfDQPM1sw9xbTiqfckfqzzpDxLEwrCv1szM49I20MzWIJ
+7VnUAPo8s2yqVI00qFhP18rVn3kN9mPDAMPo1/GRndzXxvwc9tobvt0c227PKRbabtMs6815A/89
+t29bd5YtjVPb+O3giE6L6LbXKu744oovXvjkk0cOeeKPN5445ptrfrjhjCP+OYahgy446FRNPKdM
+qj+Ecetnsp5e7CevXrvrCGPpHu0Pqe7rRLrf9/uUKQkfO/EHGb9u7yQez7zMzmMJ/fLSpxR9U7hu
+h6VMQ9mesN2jrd2qqj6PjyjSaZMfePjDrf8Zge67OjeigXGHdvuKAuN+3fOvnf/+/ztfAP1XHwAW
+UIAEMgv+6qM+RW1GfJKLoAQneK1PUfCCybEgBjEYtw168IMgDOEFfSXCEKYuPUX5HrxkN7yPtS6F
+BVseC8/EO93dJIU2RCHyjnW95OmQefuZ3ev/flg9IjpEZkTpCRKph73uMY9kvuJdEKOoED8oBjBh
+GsYwfHMks6jmQoWpk2QC86YxGmZHZJRTZMi4xYwZY41nBKONZoPF1KCmNZ8hjWjyuJjSjKaPYZzN
+HePEmNS4BjSdecsDLxSW6fSGPcBBxCISQUnf6Gc6QSEPorBzyeuEB1EuKU99PokIRCSilAayTnJC
+2R7xrKeTCtKkRIjRH0h+J1Ky7E8q90OM99BHPwDiVXsIJJwC9ayRleqZ7lZ0DEV0QAfMcMYIMnEM
+EzWrWDhalo5mlCNhzIIGy1gGFZahiGOoiFjHepE2jYVOw3FznelEJ+FMBM95dsYlAViSQpaE/4pM
+VIMr/9hGD1CxpC7p00k2yieGCuqkPkmJeXuKC5ecFLBibIl4w0AECQD6j0zQcJ8VBcaYAhDSkVrJ
+TidFKJ34hFLBXBR3EbWoSV0604f16U948tWR8IOz4RwDEs4AKAjGgApSFYpTjZqOUeljKfxIClED
+UAlSRTILKgA0A5lQnN5cNABM+W2qi/qq2bxaH0Yd6jfTGutTz/TGYLDyULJyK85IaLa30tU+usrV
+ooLlomjxCKgA5UYYUMEfYY0LLn41bIuq5VNUDEMWsmiWMWhxBY5iobDOetBjI8shxnb2sJFbCyos
+gghZ0JJxfDHGaIWBiGAcy1mbs8zjZKsQ1f+i4hWthe3l2CKMg23oXRMRxjEyQQ2AMiMTjkVREi3q
+zuXNi3AUe2FtMzGGJFQjD0pp2H5mwQyAWgO5HtsiMSBRXRzkISEOu53DdEQx9iqEC574BA7uMAyI
+ecwYhwiDEPBQjS+YsxgsiyGABwZElBHYT7HIBBCiMA4fmDO9PhywhF02jGAcSn89cyskuiHUgRqq
+OxYWnc9AfGGj4a/CJRbg0041rVgwwxowvkIAeCa+jLJgCThuQSLax5ZhJGIPANUDKo7h2qeFxcJi
+MzKo3ApBqCFZJIjIAYz/0QIUi024SJjyAzLBH7odWRXi8TLXzuQQvB15GEUYB1cUIASL9G3/b4Ab
+XQeNAQluAJQPg+2ciE9HOj5LLnMKkYUGAHoFc0bOQaNNdNXYYgwseBcZJ5QzoCW4lmOMQc1ccUJw
+MXeMGQA0G1zec+Uyh6NseZorFOhBNfWMutvRsJ846PCQh6g9WgPP1t4T8EcQ8U+ujCC5v7vIMYY9
+ZGMslxU/rQBAz3sM4BUvT0z0YQuXmadjfKHX/6AvD5eHilP/4wFe+K+zBwVteG3PerPryDBY8Okx
+3EeKsEuk+pJG520A1BmDjd+8JbXv4TyQx7BSlf4UcogcEPq/A0+OXYLpvkNhoQEAhXR8fgY/BNpP
+gAU8hhew/YIwI+oYcvj0FhbNv7thnDsK/0wacI7xAoBSQ9UjDvj5Pjhcg3MFBB5mdXIepGgQ8rzn
+lxMGLWz+jxE8x3KYXNxPnxHk0XbmU8kajgYpXZFNYPsOu5EcKpYA0AdwYdEU/DlhKdgRF3TdwZST
+4Ak3RJRjYGEDAG0GF5IblESPNiK2xQIRiPCGwRJWYC6k0GhtAYS9E8ELtXA6cuyOCqJbgfGocJTY
+I08Uux+CAQCNAuRFNPltwmUYjHeR3buA7Vww/oh2VwJAx1EJxo/kiCKyrYLfQIQewGK1N6yI3ZPQ
+deSeXtq3LoYVYeTFYWBBBwDtQ7jzAuY31CAPNfhAJB7kBmQwAxvTMAcfakADW/w3jGo5Bv8rjpCH
+K3wDG+aYRglGkIckuFYVqJCDHuavB3QA9Lr0rwESIh8WVLSgBvOXB4pwJMawAgFYAxIAUN+ADHmg
+B9C3AhZBNh9AfzTwEYaDCkZQA8+nB7ohFqjgBACYB1TgAAClAw3YgFh3EElwgvbGFQ1wBQGoBx+Q
+Z3yEESu4B9XADg8AAlQQBYM1JLTRClMQgM3AUVeQB7rggHngYa+xR42EKJbUHHQWVDc3UMYxDEjQ
+dWEACy6ADRzFUR7ABhbRSajwBSSQD1/4hZAQEahgA2mYhjCGdb30IG7IFfwACfzBCnfwhm/oBKzw
+RsVAC+fAFdbgAVoESqPFboRIBBuxUXz/6F0lAAv7EQOPyFHlAAQM0X+oAAQ38IgakATDcAxFEgmV
+yFHp0GZlAxyPhDjw5HbIxxXOQFSFdQxvUIKVwALWkABfOAEAtQ2yyBnA0E+v+IgJgIeqpQelCFBY
+dwz3gQp5AFAcsAj/JQxPkIxcsQR/uB+qwAEARQLPIlosIA0AxYi+gQrL8IYkyFE3YBHHwHXJiABt
+JjwIoQLWkIxOUGwH0Qi6aI0nQFj3ciH4BIRHsiQ1d2dERZBEAFCigATNkID/QAVTYFVfmAe3QGbC
+NQkewFHZoAst4AIikAeD9g+Q0Gxb1wd90Ax9wFEYcAUm6QzbwAJ/p1o1oJCLEDssAALO/xANIMBR
+OXAFfFAC0aADdDALarEfw0gCGbEnzYgKZkeI/VgMDyIFIHCSw/gA4GCSzeAM53UQK9AHzlACVMgV
+3oCS0eAMVmCFggcEX/gBLJAELCACLlgB1oAEh2gMiYCSfXAFylaCPlkCfcAMTHhT+9QpEWFWPgUJ
+oiBrpwWVQwBQDkABmfYDkEALkCAEz8hRMDccqLAC9cgVVwAEtpBoiNADb4AEE6IQiMAFXNAFXBBr
+voYFqukFXyCNwoMKM8kVGgAJyXELX+AFmfADGQBQNRAJvZkJYQAJTBaI0ABQoeAQW6WZSVAO4+h0
+x8ADX8AFmUAEIfkPTqCaXOCbp5UI3//JBXvIFQ7wBpngnbpJSxlxC0AGUEYwC3ZHBC34D9SAhwox
+ANfJBVhQjVyBDW+ABfuZCVszK72CJdsiLj8VlqLwBVl3DGrJUdbwBqNFbKjgCHX4D9agBBuCCrew
+C4HlAxXaIDzHSg4ybK1AdL82bA9iaIKHjLgpjcOhWg+SCAoAUFMwZCwqPAfRCkfJo/HxIIqoof1Y
+aUOGClxQehU6bDNKbKrHFePgCDo6ZGuhWk35D+VAoTpKbCqwj9bAAs/Boky5enPHosy4W9ZjT/CC
+EJngmv/ADFzApBrhCZ3JD9z5IJ2BgeYAUCUgC7XZA53JnTq6PBXCdgfBa8vWbBTyX1j/ggogyhV9
+UE5z4iCQII5cwWzBZT20sJxdQTCoxwLSyRXkiCAnunEA5QTVFG8LkQtdF25zkhHDQAsS+Q9WgAhj
+t0VQiQpFeHOvcBEpcQy4yBXZUAbmlKnS9lEtAwxPc2E3Yyh0Zmc3R1SGcgw+wFHQIKL4M2y2sKtc
+gQj3EQzH8AMctQRZlzdFUzWyYHPWcAUVVlhH0xKoAKP/kJtH4jQO55D/IHFs42TFMAtHuUVOxjOJ
+6F1P2Rkah20wgGJaE3518GmhZjVPsxApkI7WkAJFtR95MwwrAFAJ8ANudmZXig1tdjRH9j9xJnWc
+c5gcxhV8MAb/VRE+EKgfMGvZkhHm/8hRp7kQPoCv5MoQVDcc6UpoN+FOztiZ91k1DvFTlvoPQpYQ
+HVQMh/CjimOz0TmdeagQxxAGVxd8g3MMMuCwANKhLhCq5DBQPDqjisBR91g1xnClqcZKERQ3LBR8
+oZgJ2zlUqBA7lsZReJAQvPMglQVQ3gqVx9ADHLUHmkB3cwsnxoCovqaowSaTyacIVrFFkIB5Ggpp
+5jYxm8qcvupDo3Wl1vCUPGRtW7tt8LJ1n+aq5nYMsEADALULt6CoT5RR2ylktTuk2eBuuLO4uGMa
+M4e1kFCfsUhkmtkDwXmNQ0YqwXCzgssf/bSyXGEDWOB0/iZwW5OiQts/onWb/4ABkP8QJEljfIHK
+bGtRN950lBlRcsGYBIFKjvZzsADVcfaTLMfABCKHWT6DCl1QAsr4dyp3RLKgDADVAUNWNyzXbuZU
+couUNB9kDP4ka8lhDOLKFeUAk5KjWhn6D4MreO4IUMtwAon3snHLCNjGrhEkubi5hotDZ5ibr2Mn
+ObLAqf/QnJLzILznlD7rU9f2v4iCoAvhBKsLdqhQrVzhDnMAeYx3mf+wDDtMIW77AySMQSwEeKCH
+Bd8Qd2UqEkUcqORKuzKBCtqAs5yBCpuwkxhwoxo6BSwwdwC8HTdhwk2XewgTr3e2CFYhXJDAi5c6
+ZMa6HzPcjfIobagAqlaLRMOgtcr/+Ho/9IGd+QBdsFwIQacApQ1J4JYskMmazAIuMIxXQKXq5gKd
+OQ5h8G4YIzzBl0ad4UWNNozKhwqsbLgAVQcJEUaAy1GJcB/QGwYbsAChqqHWEA4foBtqZBYFB1A2
+oDOFtHC2WYKL8C6B0SAPF3G1PEeq4K/daIFoMrA6zEeqIL9coQSMDEhYCwMiNxFm4SARaonlkA7p
+YA7lIA3lMM/epQ0WoRmscKUPgAYuiiZ01BlPOMGQNAyIWYI554GewFEw6bPW4ag4W1hs2AgfUFxp
+qAEwKYqcdKgnPAwZ3UpFu8L8YR3JtmyzdkvKyZyHWEuoULWiOnbrQQyme6pJpB8I/+FtD/AFIR1E
+m/jL1tiNdHcg+gwEZ4oVxNAdSbKKnhcj0ky8g8UX1MpRcuC0BosKgdutZ0uiRTwFcJeGtPyPCvEK
+RFdoHvIg8voNMuoZDQIJavwPW5lNxjAA3MgVJHC2QSSkBOu0Tj0G2KZp63QMDSusW7BphLvO/1AN
+zFAC22CS28ANfcAHzuCVfNAHJZAHksgiH0wNvJtNI+IS8lJu78IK/ZTFVbgboB2zAPXFnx0XYkzG
+zNPZCFHES0DD8+vS7xK0nil+FpXaC6EHnekMixB8AUDQ+Iqp+xR7R9klF2jILd0gQjIMPIBtS8DI
+KnUmqssVDxAGjLpPOw1QUDAJXP/QA+nZA9g5Bl/QBV8wBpnwBV/gLuqCbKIMpS5rUWGBJcCwL2fy
+LnoFKjOKBdjWskXlUwkNUBhMKguxwR2sSw0yWmGQBA/AUe6An73yWCr6HKECet6bm4pDS5AAAdSM
+MwXSuZ06Zo2Vw0T603UVwVwxA+JBKtX9DxRQykpXwcqbaMRmpja+V7Cqz2jnWrsCLEC8W1CJBTsJ
+izQIs/jaAviIKM7LFTsG5IKHCmuAbf/gAgxRlIqw0aWz2wClAYuwaHq8tMwWOkdz3LyVHCv9vjTr
+U3ot0xMEcvmbOGUo2v8gAmleWxM0LMbwAp2ZDT0ApHeeJwTjPMJlt3GHXMEVrhz/RctrqnuOiKWD
+W6Wtw4wPIgTelaPrwlrYNgXZ5WwaHHeU+6p0tpds7bc7FKs0bMPU9iCiS7oTE9OZxsi1thA2zbqx
+YwyLMKug4Ai4zTw5FEXqNqTUQKy/+2xUlKxLdjcZRtDS69/Tatpc8QJpTnELYQUPPWKOEx8DkAj2
+N73WS3AnzAo0xmOqxcS52WUU4lZYkLyjTmRg89XDmAMjEbAJ/gS/zIjHQAzhDs7/kLAWtrDC9df/
+AGpdhrEIQYlcoQ+Y2EttU7KWYWZYq89rUE19Az8nG7fT8qwGucOITohJXC1bhAqzysGFZUFxYwyy
+IK9C1jO2/Q+FRjkPwsQ4wMI2/0JnDd7HhDMcsUDD3xALiqNaWPCeJY6yUKnIXEFf4AMXXgu2iIPD
+HAWBffa7plMMISvUU5uygRfroNemsiZuqBAG6v7FMLTaz4swkBt8qIAIKckVOWrKmA5QN4DbwbYQ
+u9CZkSpuU6K0JE27y3QMGWndZeBYNIIKROAOHDWq1mNt26lt6Ja6H+x1dt87/cStfYDH79YUrzAL
+vkFDodyZDkAEpnz1wQe84pO0w6uQ+TajshzOCeE+CzEC1Z40kHB7q1Y+DyLjDbB/JicWRLcNUCEX
+Z9vMXIEBi3BQhwIJ/QBQVhCKtTUABTIMUcBRNeBYYYFoYYBp3Ww/xkd0zeCzwv9wUMDKUfuXFg2C
+NA8CuxbMAg+y8NlyDIOAnOe7clf6DzA5cKHUwOUzQhkxXBjQiwcNEMVQ/bD2zyALVMeKLWQocJdB
+g4gYourx7w4QRKg0bhQiDuI/LA0XsqIGkQKRjahiMRSGqgZEDZCMiSw2LFEziA5WpFw58cTHf0sq
+bbTlhkPBj0SOzWw4bBAHiNl+pJwlEpWLjx1mUZ24pSREF5JSbqyUxJoXpk2NfLxRayOsqjRFDhNW
+TFjduwuH6T2GBRrEZlxQ7a157AdEa0tQ1dRb9xiqKx8RzXzsA+IUFiuKrEByByK2f1BQMSXMKjJE
+aEiIFFGyk64xVHoggli0uBj/q4XChs1y8tHbHCMrlqzAO1OWM6DakiRhkcegDhE6DFp7sziv7mLH
+pEP8huQNkiVIFhM+VvFjlCNFWDjpgaoubCTJkxDxtMmTChd7/knIZJvV+2PG+KgdKY5YgQUoprJr
+JuxuW8gQYOyqy66FVKlwGCy2+6cPLo6JsBhVKEIqqIQsBPFDVJaRbKYQPckAsXKAgsgbLIyxEBgT
+URlCRmt6FGGwCGODSIdFJjSypTdGBOqJ0VSx8BgVlJzuow+4AAGiFJbCsZgtjZkBKHfcMYiGJvWS
+RQIwy+lRCIVORMUsg0D7x51vRPlGyR7anFAVYWS54TOD1PwHJWO23JLCYogB/4YwhowR5sNijMFi
+A4hyaA9Swz5C6NGFgFkUNipWXKi8B2SU0RkgFiOGrg+NQcQKU8txAhViYHMJogdkYmkvYY6RJQpT
+/3mClUIXPeYYF/gJ9h8SaBnDm+mKWMzTYTytaRFKTcVjWmEoW8tUaVJlTKA3v1r2nww6zKtT2E64
+xtR01pj2w1onlPBeRI08BpJmxtlAg2jyZKqlHnDQYINqXkho4Nxi08Dfaiaj0BhPprhCAxkVuAGP
+WxRyNLfc9oXir482QMg2VKTIoRoF+FhEz9wcgwSKKz/SAQm8JhwGlSJG0NCgZqY4BJUwPMimmmqS
+MMZRIxdC5YsRMC4ZoaVi5v/5igQ+ymeEMGzLC7ZN8ijBVB06+AAISI8UiAgSSsVVG4E/zrexYlZZ
+xS7c6h6pri+I+OEEIGQx5m7GEjkBcCEkUYjw/yI1pofDgRCilboaf0yYE5JowYklnGghBUdQWSVC
+YXADhvDRH/vBhSWeWKKFH2Axhq7sgADiBCJ8CIbxhQK4u1dUxnih8yVY6GEVBusCxrFhxmCdcxca
+Ga1bIIi4vYuce1/ImMdOeIHzJ5DwxL/e60LlFSM2f70IRY4JgPS6XolFo0xWUN/1FdrTSBjU7yZ2
+VFm8oQWdawERFOEeLv0ub4RjCI5ot5BgiOQxGqlaBBs1wYRAUCSqIEZKPLT/QWBgcCyj4RKjimFB
+C5JrLFWDIAU1ckKRBAMYecvOCrlEQxjaZYSjMUYEj5UQD9EQGCl0mg3lBkPciJCCPXRQpwYwqh1y
+a4gabMgQbeXBBpqIIcEonUjsJRfHgbFRaRHjTMhIk6Vx71jHIuMXWXLBNSpkXY0S4xu3F8e0uBGO
+bKwjosAYRxbOEWSRwiPI9DgqQJ6xaWhM5Bm9eJfGXSdvpSkO3vSyt3t1cVyRxMskMSnJUdENlJus
+3Hv2MjtMRpJXpRElXghDyUyysiZmdOVIWmkXWTZuaZHKZfa4d8nbZK9Bk6QMg3iVt8ap0pKkXNAy
+8/YHYPQwgsBoxRFlaC9q/1ozmsGYZjCO2IptdvOb4eSSN+0FTmmWk4ytiJQM1dkQdvYwQlaEpx+5
+uc5uufOe8MxnhPbJEHY25J8LoZwxwHlCb/LToP5MKEC7ddCBUvOh/lxeAyknDIhWtFPVxChFjZRN
+jDYEh/hiyEgFqUmWfBGlMWvISkn6Upi6UY8yfaQXayrSm5a0j01MqUhM6saf+jSntmwpUIfaxOvY
+i3bdWiYsmapJp3YSmLqUKjM/BlVMXtWTwayJVIdZl6XiZpi3HGtXY0nUpdayiWnFJVqFKUu2ljWu
+cC1lW6FaV+xglatP3eqeTDShgPp1kIGt0F8JOkgnDXaDhi0GYUFkWGoi9v9DynMshEAWWUQd1KKD
+hRSXHKvZjXK2ip/tLGYBW1rSjla0EwKGIVbbKcYeVLCZ3WltbVtbpt5Wt7vlbW99+1vgBle3cSXN
+9oRZ3EgdF5hXrWQTmdvMccVVZ2Rl0CSV2yDCXMeYwNQudLNbydx+N5NMydvXmiveqyKXqviCZXrb
+ylX3ljW+srRsXg5lIlXAj0v4rZB+79vfex1qT/7l74kyqTz8EliyAb5Rghm83wqx1FAFZm2DI4wo
+awl4wf9FVH4hDKIF25exHp7whi3c4XmemLXjWki9PkStBq6KU1xaVANf3Kkad0rGDWQxMGR8YxN2
+9cUN4tKOO0VkH7PqyIz/gvGQmVxjJ9u4WlHG8ZR3JWVrcempU7ayltMC4wbmlsZd7uyYs1xmamW5
+XgzJxCHwtUi1zS1fcB7kXa54DDhnT84zXuQEPWSrOrN0XbbSk57z/OZAI3rPdJ5zotW2rkNDus6G
+rrOfSTdpRU9oCpDAswIXwri62G2ZoK6bp/VWjAB8GnlheMMbwkDeUJua1LF4xQgZdII3cJoYPchE
+BEktalG3hAspqFGp8cW7uuk51U0k3LqWPcIHInvZ65K2oFH3aZaKmtn+i/WouU2EXDtqgapO4KgX
+8o8fVQvPsxwAKnvlqXUPwxjt5pWHyozCCFkoE87okQuCnF8TEpFLxkCC/wtYwAIXdK1bHCjHTjKx
+AV1wWuAA31KvnvCPFShEhkIU+MYb2PEZfnwhs0iCHEzOBdaCnOMPPGHIO4VCCLq8nDFE6aG22EVj
+rMk2MW/5h2/OCoPkQQiT6EIkEpEJSnCBEl1IhCO4sIUtFP3oSacEDxIRiS4sLcg0OQYSrKGHMCjC
+joMUIyp+xgfxHEMU/6gOJP5hhfaB8UiomMM/VJDHnR4y0SyZhWzm5A6E9PGkNBV83lsql/fkYBxC
+2Plt7/KZaowDaRp42MOQJnnLR77ykq+GBnKgBESsm5mPKcI/cpEQVohw3arn6s7WXgRaeOYKkUDF
+DaxhhGnhZmcjfE9KsP9SBIWI8L15G0uhksh7vDymBf/ohg9ukTsMHp9WvD/lCPF8xcFM0DEauSIs
+NlJKDA4jbyLMAQ6m0pKU7LW6RD1X+881gljwKWfg7NUmPJOHM9BCIUBAwgqAMDRjMBwugIQT8IFj
+uCaBEIUEOAGNcAcdGANUCIVBQQVaEIIeIIZi+IITCIYxeAMiSITFQAVGWIEj2ASvU4FjoAtPSAIV
++AIWaqzsEIb7MAIgeAWDMgZWAAIDkYUe8ARi4CKncY5tYaPyOIFMiBREKECF8ITMUYExYBCK0IxY
+gJxEEIgwWI0NXIQTEIJg6KAx2EBFOAEuSAQjMIIemIlgGAZISIEkOAH/WRgA8/EBIyCCW9CBcQCC
+NTqBIyCCL0AFBNyouwgo9xtEU9mUt4IFCZyO8XEBa7iGGMEDWziGMJCAZrgCa5iVZlI7czgDivgH
+KtA/USgHlMgEa6CCyZiCcvgApBCBWjgGSegAg6iAlzCCx4iPHMgGHWiPhpgds7AGcwiNpUGFFZgO
+KZAGaICFLnoMGviHcOgE94ANGpCGKNCIFciAaQQCaygHarCGb/gC7gGCXyyHKcABaxifIhiHHimH
+RSAIawBBSACBcpiFE7CGbrCBbBQHbzSGTBgBa5COaWwXpLACaqiGVDEGzziKHBgfnmKpcyNEhzSI
+G7ANWJqFMViCf5gC/0+QBU8oB1EAgi+ARQbkghghAWKDjd7rhn/IAygIh2aAwGPwgH+QlktISVpA
+hd6ohjcoghdpjyP4BykIgyIoCGnpAQqgAUroiFAIvZFABSG4BhzwgUyYgphEBUnoA4wrgw6whlAY
+DFzqCxz4h2r4hFpDBU/AAWbQCCmwBjdAhU04gTDIhIv7AI0AhXJ4gk6YAmvgg64BBwp4gy8AgjSE
+gn9IlSMoh2n0gW9AN09wDoVBBRqwhhTABcEEvhT5BznghA8Ay1TZBGv4gEhwg5SEBTlav3F5yIc8
+y8NClFUQRmEZjTuwhpMhAmvAg2PIBINoDw+ZkGBABZxwAAf4BxtoRf9hCAVRRAW3ywNEEIbH3AlE
+sABraI/XZANUAAZgqQ6s8AFUmIUosAZIWLZhOIblmwONSIJ/0Aae+Qdy0IjSuwLbmKLafIh/aAYs
+OAZYYAZ0GIoRwIZW1IhgkAUgGIetDIMNgAa34IIH4IZLqD1rSAIXSoJ1IBMW+Ie1HINtsIatwArR
+6IJt0ICdSYF/UAZUyAQdyIEEdYSHUQPHrAbGi4VxaIZMUIjEoq1iME2HJIGdI7LsGMYfERIGpYhy
+oIJYyIR0SIAX5brXY80r4AFUgEmZpElUuDhpiQRu+AcfMIaHYDxUoAO7m4VlJIE9oAJ6+Icj3J5Z
+uLgU0Ag2uAZoQAX/JCiHK4ANMKgGG+U6YFgBjBkBjZDKJOiBbyiBY8GCOygHZ9iGf2BPNqAHUUgI
+s3MGwUiBv4CCFz2GSCgBHUAFPOBOiviGBqg18qwBskSHQtUGQi0BVOAEchAF2TmGHNCAVImGf+AA
+bcCJwSQhMaJRQmQGWFiu5GvTO0iIKygH8UAFIPiHETiELviHchAMUVI7B5BOY6iG20OFEiiH6uCB
+lAy9J6AO49wACTgebSgHLI3QFIgFvPwA4lkCSCCPV/CMIdCItYiGN/kHD+CeMRgHG22uYHyDbGgG
+W9ARa2iBYZQWVLBHFuCCIcgG8zyBfuiG0RgGaPAGlyyDD3AHiIUN/xuAhh7gBmSYHx/YgHLwPhZw
+h14VAg2QBuJpAfHgAh0QBWJBhRyghvG5AWkwV89pgTDgFbXKG1sdxBuICwdrCa/7kWPAg384mTj4
+h23hAmvgBy4gDA9riW5YwIQAVWnRhn8400goB+Q0hmWUFlwAh384Q89IFViQArtjU2uYipT4kBCJ
+j8aMjzxABTcwB2ioxWuwUYXYEgwqg2zwAP0TBp90ggw4oE1whjVFBTbABhu9BD6oBrEAA2xg1B9y
+zIvUCBfIBn5EieCRjlobRjIBg23IgRGqhWbwhlsIUWq4Q1RABgfQ3I2YJhVryJ09l2aABSUbs+zg
+1YQQEHJIA0RADv+U4IJ8sIYO6RTGQIVQdAE3sAFihQRpLU7b1AVaGIY7kAbcWwR+w84TKAc9YAQk
+yBrc6wF5IIczgIU2SAJZaJWB0AdsGINNIFQ4oMrIcAI3KAFrYM+aCBIjuAM1III/iduamAJpkAYb
+mJ99a4dNoAVk+Idl0IiXkIJOkA0Xtck2sIXMFA1XxJhyTIgeIId/ANl/2IU8rYcnqIVaSIJOeAxY
+fAFYkMpqGB8gcAdwCINagIMjGA81u6phmN32u4GlqjNUYIEG2NGug4Z3OIdvWIJaywRxeICsA+Jm
+4Ad9yAYCuALGM4ZQ0AfcU4R/QIbQ61pUiARoIADsjIQ8OOJlgAL/BEiCx0gCaGiHdkCHKhCc3IAN
+FnjjfxgHEZiFxyCCKRWFJ4AGGx2YN4kRg7iCV5udb0EChUAFOcCGeXCGJ/AG9kQFR8AaHViCashF
+VFAGeCiAByABXTkG2RgBTqMIaHCAVgjichhCW3iJcxhf4JNEmBwHKfCADUgVVFACEIAHecAHxUie
+ROPhc/EAZDy1SNJH8bGOY/iC5ega42g1ROiJSCqGFFiBFUgBIpgFM/KEIuC0VkCCE3iFYuiBJNgE
+PxSCFUiEY2EFFUiCMICE/JmJEE2CFyACWxickaDnLkgCF5gKR4GNTCgCSciEamgGBFoQRVgBJ7gD
+JDDJmTiEFUgC/+cNRiJgAewsApQQCFpIgamAhj6IhGY+EBUIoVGJDzpYjABUgSL4zi9AgpvVDWMo
+guXwgbjAEBdAgkMAgjeIxMeABCRIghSIxG7TJMIh5mXpWSpiCFUIhgnSID/DwL14oYnbzZRIixcq
+IsoYjVphIzOiIIFok1XZCDSMIQyaiQGYBTzUiFxISRKaIuxrk4ng6hbiPo0gBsPYClQ4AnboAHnD
+IDnSCG1wgOo4BmJAPygKpI2Qa6e2a1qtIbCGLZoDXKQ2FQ+IBb2LFLnYpe3pozTS7Nri7MOrI+4R
+bUbi7GPggVBQBmSoggZIF0dSo9g+I9OGDT3QBmRABtBg0O3ZJf/YWAHZsAHRrKMvMm1CcqQxyuyY
+qWxTaYZZAKtPqqqoeq/2UitYUqavMqsuKitOGr7o1iFYuINV1QAQaA8dJqru5u63epNveBgdKALd
+WKWltAMMuIHx2a61AitTcia8Eitk+iTS1FnmBgofZjn64ybPmiOImqaAAiiNSvB6EgZ3kqgI/7gv
+YqeOQqgLD0SGYq1jEYZXYCNu2vAMH3F+KnEgtDMP4eOlMHGm5p4AGA0Xr4uLsilAzPCDmiKJwvEH
+xyxBHPCP8IBZYLll6indEqSYsvHRHjuGZHKYMqkgCyqcKiqhaqkzknKdOrAqN3IxQvKREgkg/4ja
+nar3kO6sMnO8+ELzxgmr4dNvS5Krt3Krs8rvObeuOicrurpz7c5ZusFuO/dzMm8mrKLsMP8HamBA
+G0EsxnKtDlt0Rb8sRh8wSF8wCmmtQXKnSo90nrMvx3InTr90/7Kg0wowUSeoUB+k+no5VL+0D5uQ
+VG/1B2H1GAWs2iz06UCGrBYuXd91Xu91X//1MtKIF7B1iKCBToiLOGO0pHI0Sms0SXN2ZW/2R1N2
+hox2R6t2Zs80QbP2Z5/2bJc0YcgEF6CGgAAAOw==
+
+--_006_AM9PR03MB72364CAFA14A88B2C5469681C2CE9AM9PR03MB7236eurp_
+Content-Type: image/gif; name="image002.gif"
+Content-Description: image002.gif
+Content-Disposition: inline; filename="image002.gif"; size=5238;
+	creation-date="Fri, 13 May 2022 06:49:53 GMT";
+	modification-date="Tue, 17 May 2022 13:51:43 GMT"
+Content-ID: <image002.gif@01D8654E.90A24E00>
+Content-Transfer-Encoding: base64
+
+R0lGODlhtAA9APcAAAA8tAAqwwA8twAswwA4xAA4xAA+tAA+twBFuwBGuwBFvQBGvQBOvgBOvwBQ
+vwBQwABawwAqxQAsxgA4yAA4yAA4zQBFywBGywBFzgBHzgBFywBGywBEzgBGzgBTzABaxABT0ABX
+zQNT0CBf0gBT1SNf1gBmyABlyABoyQBuyiBh0gJwzQBxywBxziBh1C1f0ytf1Apwyyhh0hBwzjlu
+0w1xywVxzit70jJx0zB80yhh1Ddu1z1s3D5t1zVx2Cp81DB81Ep82kx83VJ72lF83UOH10GJ2EqI
+00mH2F2H20eJ2FqP22GH3l6J3maH3mCQ202T2VWT2kyU21eT21+R2WaV3nCV4Guf32yh4F2I5HGV
+42iX5HiU4XOe34Wi4X6t4oWs4nmT44Wg5YSi5oCt5Yqi54St5Zav6Zew7I2y6pS46JO56JS46pO6
+6pyu6Zyu7Jm46Zi66ae86Ze46pi666e87a287qfG7aTJ7qrG6arG7rnI76rJ7rjJ8LnS8bnI87jJ
+877J8MDH777U8cjW8cTZ77/I877K9L/V88rW9MfZ88vV+s/W9dXg9Njg9dPi9drk9tzk+uDk9+Xv
+9+nv+OXk+eXv+urv+/Lv/eTw+Ovx9uTx+uvx/PHy9/f+9/Hx/f///wAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94
+cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1w
+bWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4z
+LWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4
+bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8
+cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5j
+b20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0v
+IiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNl
+UmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSIgeG1w
+TU06SW5zdGFuY2VJRD0ieG1wLmlpZDoxRUIxNUM2QjZCNDExMUU0OTYzQUQzNzUxN0MyNjBDOSIg
+eG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDoxRUIxNUM2QzZCNDExMUU0OTYzQUQzNzUxN0MyNjBD
+OSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjFFQjE1QzY5
+NkI0MTExRTQ5NjNBRDM3NTE3QzI2MEM5IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjFFQjE1
+QzZBNkI0MTExRTQ5NjNBRDM3NTE3QzI2MEM5Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpS
+REY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s
+6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSz
+srGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6
+eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JB
+QD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkI
+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
+
+--_006_AM9PR03MB72364CAFA14A88B2C5469681C2CE9AM9PR03MB7236eurp_--
+
+--_007_AM9PR03MB72364CAFA14A88B2C5469681C2CE9AM9PR03MB7236eurp_
+Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document;
+	name="IBOS_test.docx"
+Content-Description: IBOS_test.docx
+Content-Disposition: attachment; filename="IBOS_test.docx"; size=27968;
+	creation-date="Fri, 13 May 2022 06:50:16 GMT";
+	modification-date="Tue, 17 May 2022 13:51:43 GMT"
+Content-ID: <E1FCB63F03E98B4C8E6EDDEAC063471C@eurprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
+
+UEsDBBQABgAIAAAAIQDfpNJsWgEAACAFAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAAC
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC0
+lMtuwjAQRfeV+g+Rt1Vi6KKqKgKLPpYtUukHGHsCVv2Sx7z+vhMCUVUBkQpsIiUz994zVsaD0dqa
+bAkRtXcl6xc9loGTXmk3K9nX5C1/ZBkm4ZQw3kHJNoBsNLy9GUw2ATAjtcOSzVMKT5yjnIMVWPgA
+jiqVj1Ykeo0zHoT8FjPg973eA5feJXApT7UHGw5eoBILk7LXNX1uSCIYZNlz01hnlUyEYLQUiep8
+6dSflHyXUJBy24NzHfCOGhg/mFBXjgfsdB90NFEryMYipndhqYuvfFRcebmwpCxO2xzg9FWlJbT6
+2i1ELwGRztyaoq1Yod2e/ygHpo0BvDxF49sdDymR4BoAO+dOhBVMP69G8cu8E6Si3ImYGrg8Rmvd
+CZFoA6F59s/m2NqciqTOcfQBaaPjP8ber2ytzmngADHp039dm0jWZ88H9W2gQB3I5tv7bfgDAAD/
+/wMAUEsDBBQABgAIAAAAIQAekRq37wAAAE4CAAALAAgCX3JlbHMvLnJlbHMgogQCKKAAAgAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArJLBasMw
+DEDvg/2D0b1R2sEYo04vY9DbGNkHCFtJTBPb2GrX/v082NgCXelhR8vS05PQenOcRnXglF3wGpZV
+DYq9Cdb5XsNb+7x4AJWFvKUxeNZw4gyb5vZm/cojSSnKg4tZFYrPGgaR+IiYzcAT5SpE9uWnC2ki
+Kc/UYySzo55xVdf3mH4zoJkx1dZqSFt7B6o9Rb6GHbrOGX4KZj+xlzMtkI/C3rJdxFTqk7gyjWop
+9SwabDAvJZyRYqwKGvC80ep6o7+nxYmFLAmhCYkv+3xmXBJa/ueK5hk/Nu8hWbRf4W8bnF1B8wEA
+AP//AwBQSwMEFAAGAAgAAAAhADxrPx63PQAAnKEBABEAAAB3b3JkL2RvY3VtZW50LnhtbOx923Lb
+2LXg+1TNP+DwVCVylUThfnEfK4Nr4ky70xV32uk8pAskt0iYJMADgJKtP5jPmMdT83g+oX9s1lp7
+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
+
+--_007_AM9PR03MB72364CAFA14A88B2C5469681C2CE9AM9PR03MB7236eurp_--
+

@@ -1,0 +1,375 @@
+Return-Path: <128621e7.AUYAAEvEd20AAAAAAAAAAB-aQMAAAAAAmY8AAAAAABitCQBiH57E@bnc3.mailjet.com>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from sv900ddwe001.lytzenitmail.local ([100.127.30.100])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	by sv900dima003.lytzenitmail.local with LMTPS
+	id uMSaONKeH2ImTAEAlE+V+A
+	(envelope-from <128621e7.AUYAAEvEd20AAAAAAAAAAB-aQMAAAAAAmY8AAAAAABitCQBiH57E@bnc3.mailjet.com>)
+	for <dsl248925@mail.jubii.dk>; Wed, 02 Mar 2022 17:44:02 +0100
+Received: from sv900pomx001.lytzenitmail.dk ([100.127.30.60])
+	by sv900ddwe001.lytzenitmail.local with LMTP
+	id qNMUONKeH2K7HQAAPDtoZg
+	(envelope-from <128621e7.AUYAAEvEd20AAAAAAAAAAB-aQMAAAAAAmY8AAAAAABitCQBiH57E@bnc3.mailjet.com>)
+	for <dsl248925@mail.jubii.dk>; Wed, 02 Mar 2022 17:44:02 +0100
+Received: from mx01.lytzenitmail.dk (unknown [100.127.30.160])
+	by sv900pomx001.lytzenitmail.dk (Postfix) with ESMTPS id E277AC008E6
+	for <holmeparken44@vip.cybercity.dk>; Wed,  2 Mar 2022 17:44:02 +0100 (CET)
+Authentication-Results: mx01.lytzenitmail.dk; spf=Pass smtp.mailfrom=128621e7.AUYAAEvEd20AAAAAAAAAAB-aQMAAAAAAmY8AAAAAABitCQBiH57E@bnc3.mailjet.com
+Received-SPF: Pass (mx01.lytzenitmail.dk: domain of
+  128621e7.AUYAAEvEd20AAAAAAAAAAB-aQMAAAAAAmY8AAAAAABitCQBiH57E@bnc3.mailjet.com
+  designates 87.253.234.171 as permitted sender)
+  identity=mailfrom; client-ip=87.253.234.171;
+  receiver=mx01.lytzenitmail.dk;
+  envelope-from="128621e7.AUYAAEvEd20AAAAAAAAAAB-aQMAAAAAAmY8AAAAAABitCQBiH57E@bnc3.mailjet.com";
+  x-sender="128621e7.AUYAAEvEd20AAAAAAAAAAB-aQMAAAAAAmY8AAAAAABitCQBiH57E@bnc3.mailjet.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 ip4:87.253.232.0/21
+  ip4:185.189.236.0/22 ip4:185.211.120.0/22
+  ip4:185.250.236.0/22 ~all"
+IronPort-SDR: jn91fmVk/44hsp/cuUUvyKxnyZL/z5jshG8obXlrEnH8jmwK0y4LP07hyhb3SdCJr1HJ1PDthe
+ ifnxTr4TCGqNUwWlNI0zfUB31BAXu846Bx+tb2rkrJ0WFtwrwmLSCPYUIf0/HD4cGY4LPopSml
+ WWvbMZPbYTUqLaa2yRr3/qcldYVL3NwoCaMhIjReC4ev4MgB1SPwJ5bmfuVx1h/fJMzAKywflS
+ 0TaHM6kVDnjLw3LedXHx/SeX9FTpGUMOJbkchAbgjTvKiW/uhj4qmBI3z8+4zl554VWoplxLPk
+ mRS1vFrmQEiaL7j6lhChWx27
+X-IPAS-Result: =?us-ascii?q?A0CbAwCPnh9inKvq/VdXAxwBAQE8AQEEBAEBAgEBBwEBg?=
+ =?us-ascii?q?XGBHxsCAUEoGQFkgQIHTAKEUo4uggVkA4sghnmKWIERA0sUAQEBAQEBAQEBC?=
+ =?us-ascii?q?RICEQUBCgwEAQGCEoJ1hBwCJAE4EwECBAEBAQEDAgMBAQEBBQEBAQQBAQECA?=
+ =?us-ascii?q?QECAwQUAQEBAQEBAQEJCwQFBQgKBw4QBTYGaV8EZgZfBGeBEggCAwglDYZDA?=
+ =?us-ascii?q?QIBAgMMARMdAQEEDyUGCQsOChwOAgJXBgoJgwQBgxoLrBwBAXmBHhOBAYIIA?=
+ =?us-ascii?q?QEGgkdbhEAJCQENgSMCAQEBhg8TQkoBhxInHH2BBwl1BRuDKj6BU4EQAgF7L?=
+ =?us-ascii?q?wESAU0bglIXgiwiL5R2VjxCASkBgRJOJSAIEQ2BAZEzCgSNYoIViyeSaoNSg?=
+ =?us-ascii?q?06GH4EdjmqGKoNzgU6KXZgHllSNE5QshTiBQTeBDmoGTSMVgVkvgRwJRQECA?=
+ =?us-ascii?q?QINAQICAQIBAgECAgEBAgMBAQICAQICAYwjgxgBAoI+C4JkgjCFaCYxAgsoA?=
+ =?us-ascii?q?wIGAQoBAQMJk3ABAQ?=
+IronPort-PHdr: A9a23:H4zW/hb3h0RFPlknNQm+0KL/LTFJ0IqcDmcuAvsPjqIWK+Kn7ojwM
+ Ure+fBkjVuPUYaIo+lchb/uurv7EXcF/Y7HtXkDdJJWUBpQ0J9GwVZ5DZHDIHDKBdfHcQE2R
+ pxrfXZM1liSGGF8MoP3Xnj7i1SbxBcXK0XWHCNcD83fG5L5tu62973t1rXZZQ4Twj+0YLdwI
+ QnwpgLU3iUPqbNrMb15ih7Z+iIOf/VK125uJE6Wlhf4oMuzrtZv9CFZuvRp8MAlM+2yJv5oE
+ +YBAWtgGl0EzeTGqzTPF1Omz1I1e0w/uzNhKU3M1TTTd77YmwL/h7pU8QCzFOTcTKwfYB6jz
+ /o0ZTfijixccTsw8WXVh9A2h6VexXDp7xBy2I/bZoiJOeE2LvybJ45BAzAaAoAICHUJC5j0d
+ 4YVCusdIetU55LwoVcDt1rbZ0HkBe/izCNJmm6j2KQ71+o7FgSVlAckHt8IrDHVtICla+FID
+ LvzlvKUi2ycNqAzu3+18oXDfxE/rOvZWKIoKIzV2FU9GgXEklCZqIijMzDGs4ZF+2Wd8edkU
+ vqizmA9rAQk6GH1lpl204SWwKso+3nt2DtUzNxtDPSRYWdSSPeNObEVvhi/HqJfa+oLRlA4k
+ Q8T45Qvk5+nVxEgybR6mDP3YfqMKM6N6xPnVuuNZzx/gTg2HdD3zwb36kWmxuDmA4PtigYU9
+ HNIzZ/li0Ek/jHNx8TdEtJU126I8B+m/in5r+h9BGkdvIPyApsQkpcZv7M6mG7CAgTPskTW0
+ fC7Xk8i8bPu7u3mZrfrutmXMIo+2WSceuw+38e4B+o/KA0HWWOWrP+k2ork+0noE/1ay+c7m
+ a7DvNXGNNwW8+SnVhRN3N9puHPdR3+2lc4Vln4dIBdZdQKb2sL3bkrWLqmwDO/j0QTz1m02n
+ LacZeenWtKXdx2h2P/gZeovsh4BjlNjnJYFvMwSUvZberryQhOj7YyFSEVgakrtmb6hUJInj
+ OZ8ESqOGvPLafOP9wXVvqR1eLfKPMhP4n7rIvwhrZYGYlczn1RGO6yg3J8VZWz+FfNjcRzxX
+ A==
+IronPort-Data: A9a23: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
+IronPort-HdrOrdr: A9a23:n925xKpg3cRYUui1MFZxy18aV5r+eYIsimQD101hICG9Afbo6P
+ xG/c5rqSMc7Qx7ZJhOo6HiBEH9KkmskaKdjbN/AV7mZniAhILQFvAG0WK6+UyDJ8SczIJgPN
+ lbHpSW2OeAa2SS5PySiDVQUexQueVvlprHuQ639R1QpGpRC52IgT0ZNu/VKDwPeOHcbqBJb6
+ Z1xqB81kCdke59VLXHOkU4
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.90,149,1643670000"; 
+   d="scan'208,217";a="208843924"
+Received: from o171.p9.mailjet.com ([87.253.234.171])
+  by mx01.lytzenitmail.dk with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 17:43:50 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; q=dns/txt;
+  d=duxsys.com; i=support@duxsys.com; s=mailjet;
+  h=message-id:mime-version:from:from:reply-to:to:to:subject:subject:date:list-unsubscribe-post:
+  list-unsubscribe:feedback-id:in-reply-to:organization:references:x-csa-complaints:
+  x-mj-mid:x-mj-smtpguid:x-report-abuse-to:content-type:content-language;
+  bh=fMpKkf5Jgz85fwvrIhGBFkF2TIAR5FfWWLRz4suK6aA=;
+  b=hIVX5ZHJdNxBjAS1GrcC9rijIS+OlfbGv3/bYgx6MVvcJpfmNMH73Qkpv
+ A3eHmOH9JlAl9nakq9DjKyWS2BMx8TGKuqLZkNHWWReYgQZNpvbKJSANUvhB
+ 6PCPkHv3P7v9vOQJbV8XFGxu0Dt0SMDfekWQGr+1Ml9rpZx7EACAB4=
+Message-Id: <128621e7.AUYAAEvEd20AAAAAAAAAAB-aQMAAAAAAmY8AAAAAABitCQBiH57E@mailjet.com>
+MIME-Version: 1.0
+From: Don Breda <support@duxsys.com>
+Reply-To: support@duxsys.com
+To: Jens Sundgaard <holmeparken44@vip.cybercity.dk>
+Subject: Re: Handling .pef files with DBT
+Date: Wed, 2 Mar 2022 11:43:46 -0500
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Unsubscribe:
+	<mailto:unsub-128621e7.x97ro.lloywuvv09ht@bnc3.mailjet.com>,
+	<https://x97ro.mjt.lu/unsub2?m=AUYAAEvEd20AAAAAAAAAAB-aQMAAAAAAmY8AAAAAABitCQBiH57ES1aQOjfXRGux2N-L_ihWUQAYEbg&b=128621e7&e=3179e932&x=3qwxqZd6E2RGmDegtuY3a8fILjVEoTEVhLXWbe-Yo-I>
+Feedback-Id: 42.1617161.1577400:MJ
+In-Reply-To: <dc321751-16df-e3d2-225e-e5dc876331cf@vip.cybercity.dk>
+Organization: Duxbury Systems Inc.
+References: <dc321751-16df-e3d2-225e-e5dc876331cf@vip.cybercity.dk>
+X-CSA-Complaints: csa-complaints@eco.de
+X-MJ-Mid:
+	AUYAAEvEd20AAAAAAAAAAB-aQMAAAAAAmY8AAAAAABitCQBiH57ES1aQOjfXRGux2N-L_ihWUQAYEbg
+X-MJ-SMTPGUID: 4b56903a-37d7-446b-b1d8-df8bfe285651
+X-REPORT-ABUSE-TO: Message sent by Mailjet please report to
+	abuse@mailjet.com with a copy of the message
+Content-Type: multipart/alternative;
+	boundary=------------RcJz0BNGT40GBgMo1Xs8c0De
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------RcJz0BNGT40GBgMo1Xs8c0De
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Hello,
+
+
+At this time we do not support .pef files.
+
+
+This may be possible in the future but this is the first we have been 
+made aware of them.
+
+
+
+It would not be something we can tackle immediately.
+
+I can try to find a workaround in the meantime if you attach a .pef file 
+for me to look at.
+
+Thanks.
+
+Don
+bOn 3/2/2022 11:09 AM, Jens Sundgaard wrote:
+>
+> Hi Duxbury Support
+>
+> At IBOS (The Institute for the Blind and Partially Sighted) in Denmark 
+> we have developed the "IBOS MusicXmlReader" which can convert standard 
+> MusicXml files into Music Braille.
+>
+> The Music Braille information is:
+>
+>   * Generated according to the rules in the BANA 2015 specification in
+>     http://www.brailleauthority.org/music/Music_Braille_Code_2015.pdf
+>   * Stored in a .pef file, as specified in
+>     http://braillespecs.github.io/pef/pef-specification.html
+>
+> Two of our  users: NOTA and DBS (both of them are Danish organisations 
+> supporting the blind and partially sighted)  use identical "Braille 
+> 650 SF2" high speed embossers but use different software:
+>
+>   * NOTA uses a home-made conversion tool for transferring the .pef
+>     files to the Braillo embosser. This works apparently fine.
+>   * DBS uses Duxbury DBT and can not find a way to transfer the .pef
+>     files correctly to the embosser.
+>
+> I am trying to help DBS and have installed a DEMO version of DBS 12.5 
+> SR4 on my PC.
+>
+> First, in "Global", "Embosser Setup" I select Brailleo 650 SF becase I 
+> need the DTB functionality for handling this specific Norwegian printer.
+>
+> Then, after opening a .pef file I look for in the Input Filter for a 
+> filter named ".pef" (or something similar) but it does not exist.
+>
+> So my questions are:
+>
+>  1. Does DBT support the .pef file format ?
+>  2. If "Yes": How do I open a .pef file as input in "DBT"?
+>  3. If "No": Can you suggest any alternatives?
+>
+> What I need is a simple "dot by dot" mapping of the contents of the 
+> .pef file where the Music Braille information is already fully 
+> formatted in rows and columns as Unicode characters in the Unicode 
+> Braille interval 0x2800 to 0x283F.
+>
+> No conversion is required, except the trivial removal of the XML 
+> notation in the .pef file.
+>
+> I hope you can help me and DBS here!
+>
+> Best regards
+>
+> Jens Sundgaard,
+>
+> IBOS, Denmark
+>
+>
+>
+>
+> ______________________________________________________________________
+> This email has been scanned by the Symantec Email Security.cloud service.
+> For more information please visit http://www.symanteccloud.com
+> ______________________________________________________________________
+
+-- 
+Duxbury Systems, Inc.
+
+270 Littleton Road, #6; Westford, MA 01886-3523 USA
+
+TEL: + 978-692-3000 FAX: + 978-692-7912
+
+Email (Tech support):support@duxsys.com
+Email (general):info@duxsys.com
+
+Web site:http://www.DuxburySystems.com
+
+Duxbury Systems, the first name in software for Braille - since 1975.
+
+  
+
+--------------RcJz0BNGT40GBgMo1Xs8c0De
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Hello,</p>
+    <p><br>
+    </p>
+    <p>At this time we do not support .pef files.</p>
+    <p><br>
+    </p>
+    <p>This may be possible in the future but this is the first we have
+      been made aware of them.<br>
+    </p>
+    <div class="moz-cite-prefix"><br>
+    </div>
+    <div class="moz-cite-prefix"><br>
+    </div>
+    <div class="moz-cite-prefix">It would not be something we can tackle
+      immediately.</div>
+    <div class="moz-cite-prefix"><br>
+    </div>
+    <div class="moz-cite-prefix">I can try to find a workaround in the
+      meantime if you attach a .pef file for me to look at.</div>
+    <div class="moz-cite-prefix"><br>
+    </div>
+    <div class="moz-cite-prefix">Thanks.</div>
+    <div class="moz-cite-prefix"><br>
+    </div>
+    <div class="moz-cite-prefix">Don</div>
+    <div class="moz-cite-prefix">bOn 3/2/2022 11:09 AM, Jens Sundgaard
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:dc321751-16df-e3d2-225e-e5dc876331cf@vip.cybercity.dk">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <p>Hi Duxbury Support</p>
+      <p>At IBOS (<span style="color: rgb(0, 0, 0); font-family:
+          -apple-system, BlinkMacSystemFont, &quot;Open Sans&quot;,
+          sans-serif; font-size: 16px; font-style: normal;
+          font-variant-ligatures: normal; font-variant-caps: normal;
+          font-weight: 400; letter-spacing: normal; orphans: 2;
+          text-align: left; text-indent: 0px; text-transform: none;
+          white-space: normal; widows: 2; word-spacing: 0px;
+          -webkit-text-stroke-width: 0px; background-color: rgb(255,
+          255, 252); text-decoration-thickness: initial;
+          text-decoration-style: initial; text-decoration-color:
+          initial; display: inline !important; float: none;">The
+          Institute for the Blind and Partially Sighted</span>) in
+        Denmark we have developed the "IBOS MusicXmlReader" which can
+        convert standard MusicXml files into Music Braille.</p>
+      <p>The Music Braille information is:</p>
+      <ul>
+        <li> Generated according to the rules in the BANA 2015
+          specification in <a class="moz-txt-link-freetext"
+            href="http://www.brailleauthority.org/music/Music_Braille_Code_2015.pdf"
+            moz-do-not-send="true">http://www.brailleauthority.org/music/Music_Braille_Code_2015.pdf</a><br>
+        </li>
+        <li> Stored in a .pef file, as specified in <a
+            class="moz-txt-link-freetext"
+            href="http://braillespecs.github.io/pef/pef-specification.html"
+            moz-do-not-send="true">http://braillespecs.github.io/pef/pef-specification.html</a></li>
+      </ul>
+      <p>Two of our  users: NOTA and DBS (both of them are Danish
+        organisations supporting the blind and partially sighted)  use
+        identical "Braille 650 SF2" high speed embossers but use
+        different software:</p>
+      <ul>
+        <li>NOTA uses a home-made conversion tool for transferring the
+          .pef files to the Braillo embosser. This works apparently
+          fine.</li>
+        <li>DBS uses Duxbury DBT and can not find a way to transfer the
+          .pef files correctly to the embosser.</li>
+      </ul>
+      <p> I am trying to help DBS and have installed a DEMO version of
+        DBS 12.5 SR4 on my PC.</p>
+      <p>First, in "Global", "Embosser Setup" I select Brailleo 650 SF
+        becase I need the DTB functionality for handling this specific
+        Norwegian printer.</p>
+      <p>Then, after opening a .pef file I look for in the Input Filter
+        for a filter named ".pef" (or something similar) but it does not
+        exist.</p>
+      <p>So my questions are:</p>
+      <ol>
+        <li>Does DBT support the .pef file format ?</li>
+        <li>If "Yes": How do I open a .pef file as input in "DBT"?</li>
+        <li>If "No": Can you suggest any alternatives?</li>
+      </ol>
+      <p>What I need is a simple "dot by dot" mapping of the contents of
+        the .pef file where the Music Braille information is already
+        fully formatted in rows and columns as Unicode characters in the
+        Unicode Braille interval 0x2800 to 0x283F.</p>
+      <ol>
+      </ol>
+      <p>No conversion is required, except the trivial removal of the
+        XML notation in the .pef file.<br>
+      </p>
+      <p> I hope you can help me and DBS here!</p>
+      <p>Best regards</p>
+      <p>Jens Sundgaard,</p>
+      <p>IBOS, Denmark<br>
+      </p>
+      <p><br>
+      </p>
+      <p><br>
+      </p>
+      <br clear="all">
+______________________________________________________________________<br>
+      This email has been scanned by the Symantec Email Security.cloud
+      service.<br>
+      For more information please visit <a class="moz-txt-link-freetext" href="http://www.symanteccloud.com">http://www.symanteccloud.com</a><br>
+______________________________________________________________________<br>
+    </blockquote>
+    <pre class="moz-signature" cols="72">-- 
+Duxbury Systems, Inc.
+
+270 Littleton Road, #6; Westford, MA 01886-3523 USA
+
+TEL: + 978-692-3000 FAX: + 978-692-7912
+
+Email (Tech support): <a class="moz-txt-link-abbreviated" href="mailto:support@duxsys.com">support@duxsys.com</a>
+Email (general): <a class="moz-txt-link-abbreviated" href="mailto:info@duxsys.com">info@duxsys.com</a>
+
+Web site: <a class="moz-txt-link-freetext" href="http://www.DuxburySystems.com">http://www.DuxburySystems.com</a>
+
+Duxbury Systems, the first name in software for Braille - since 1975.
+
+ 
+
+</pre>
+  </body>
+</html>
+
+--------------RcJz0BNGT40GBgMo1Xs8c0De--
