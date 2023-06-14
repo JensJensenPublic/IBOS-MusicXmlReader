@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSynthesis", "MusicSynthesis\MusicSynthesis.csproj", "{529D2C78-0FBC-4BF1-B5AE-F348695546C2}"
 EndProject
@@ -103,8 +103,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardTestSupport", "KeyboardTestSupport\KeyboardTestSupport.csproj", "{AAFF9629-680D-478E-9541-871CEFEB7FD2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardDemo", "KeyboardDemo\KeyboardDemo.csproj", "{DF2ABC03-3595-4EE8-80EB-7E7D42B47E13}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpreadsheetGenerator", "SpreadsheetGenerator\SpreadsheetGenerator.csproj", "{47C312F7-94E8-45D9-8388-2DBDB1E94B21}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test reports", "Test reports", "{79DD0BA3-6AD9-4599-B8D4-1D09CC2CE379}"
 	ProjectSection(SolutionItems) = preProject
@@ -465,18 +463,6 @@ Global
 		{DF2ABC03-3595-4EE8-80EB-7E7D42B47E13}.Release|x64.Build.0 = Release|Any CPU
 		{DF2ABC03-3595-4EE8-80EB-7E7D42B47E13}.Release|x86.ActiveCfg = Release|Any CPU
 		{DF2ABC03-3595-4EE8-80EB-7E7D42B47E13}.Release|x86.Build.0 = Release|Any CPU
-		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Debug|x64.Build.0 = Debug|Any CPU
-		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Debug|x86.Build.0 = Debug|Any CPU
-		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Release|Any CPU.Build.0 = Release|Any CPU
-		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Release|x64.ActiveCfg = Release|Any CPU
-		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Release|x64.Build.0 = Release|Any CPU
-		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Release|x86.ActiveCfg = Release|Any CPU
-		{47C312F7-94E8-45D9-8388-2DBDB1E94B21}.Release|x86.Build.0 = Release|Any CPU
 		{27A3D41B-569A-480A-9E30-413102B8E386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{27A3D41B-569A-480A-9E30-413102B8E386}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27A3D41B-569A-480A-9E30-413102B8E386}.Debug|x64.ActiveCfg = Debug|Any CPU
