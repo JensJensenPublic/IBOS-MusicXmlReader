@@ -1,0 +1,1 @@
+This folder was renamed from "Alle mails om test af 2.7 til 3.0 uredigeret kopi" to "2.7-3.0" in order to reduce path length.

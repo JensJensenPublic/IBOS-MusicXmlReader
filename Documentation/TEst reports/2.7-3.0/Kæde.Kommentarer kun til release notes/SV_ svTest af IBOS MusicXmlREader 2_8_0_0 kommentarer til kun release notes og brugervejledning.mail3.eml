@@ -1,0 +1,1126 @@
+Return-Path: <susanne@obj.dk>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from DKBAL-IMAPDIRECTOR01 ([10.1.2.3])
+	by DKBAL-IMAP15 (Dovecot) with LMTP id kgZxJIOr/Ft5fAAA6M2Fcg
+	for <dsl248925@mail.jubii.dk>; Tue, 27 Nov 2018 03:27:20 +0100
+Received: from DKBAL-POSTFIX03.mailcore.local ([10.1.2.3])
+	by DKBAL-IMAPDIRECTOR01 (Dovecot) with LMTP id K4clAjiV/Fu5ZwAAbQprTw
+	; Tue, 27 Nov 2018 03:27:18 +0100
+Received: from DKBAL-EDGE03.mailcore.local (unknown [10.1.1.3])
+	by DKBAL-POSTFIX03.mailcore.local (Postfix) with ESMTP id D8F4A19D
+	for <dsl248925@mail.jubii.dk>; Tue, 27 Nov 2018 03:27:19 +0100 (CET)
+Received: from localhost (unknown [10.1.3.8])
+	by DKBAL-EDGE03.mailcore.local (Postfix) with ESMTP id CB00A20214
+	for <dsl248925@mail.jubii.dk>; Tue, 27 Nov 2018 03:27:19 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at DKBAL-AMAVIS08.mailcore.local
+X-Spam-Flag: NO
+X-Spam-Score: -0.799
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.799 tagged_above=-999 required=3
+	tests=[DKIM_SIGNED=0.1, DKIM_VALID=-0.1, DKIM_VALID_AU=-0.1,
+	HTML_MESSAGE=0.001, RCVD_IN_DNSWL_LOW=-0.7] autolearn=disabled
+Received: from DKBAL-EDGE03.mailcore.local ([10.1.1.3])
+	by localhost (DKBAL-AMAVIS08.mailcore.local [10.1.3.8]) (amavisd-new, port 10024)
+	with ESMTP id Mg47z63jIUZo for <dsl248925@mail.jubii.dk>;
+	Tue, 27 Nov 2018 03:27:18 +0100 (CET)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+Received: from asmtp.unoeuro.com (asmtp.unoeuro.com [94.231.106.220])
+	by DKBAL-EDGE03.mailcore.local (Postfix) with ESMTPS id 5F3E920138
+	for <holmeparken44@vip.cybercity.dk>; Tue, 27 Nov 2018 03:27:17 +0100 (CET)
+Received: from DESKTOPDMOOD5I (87-57-144-108-cable.dk.customer.tdc.net [87.57.144.108])
+	by asmtp.unoeuro.com (UnoEuro) with ESMTPA id 433njw2pYWz5wdv;
+	Tue, 27 Nov 2018 03:27:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=obj.dk; s=unoeuro;
+	t=1543285636; bh=iNvw0xSSXsQJ1FgQqi5F2jqpQanpcR566YRzO/Q1ztk=;
+	h=From:To:Cc:References:In-Reply-To:Subject:Date:From;
+	b=VHxRdY5dX5Phj8ystEvaEYYaHfz7TxtGG79zz+aMcq4dmMy4AbLgzZd93AsLgWf1h
+	 YCrdmugbqq2dRlh4cVZ4x4OSOxAYETnsGxrknnI5kP2FZN7Q2fCdSImYWeNkFfwGZI
+	 zGJyZft+A+BBeaXV+0M3Sxt6nF+tsMAyqXaxooL4=
+From: =?utf-8?Q?Susanne_Nols=C3=B8e?= <susanne@obj.dk>
+To: "'Bo Alstrup \(hjem\)'" <bo@c2tal.dk>,
+	"'Jens Sundgaard'" <holmeparken44@vip.cybercity.dk>,
+	"'Bo Alstrup'" <CX64@kk.dk>,
+	"'Jens Sundgaard'" <holmeparken44@vip.cybercity.dk>,
+	"'Ole Brun Jensen'" <ole@obj.dk>
+Cc: "'Ole Brun Jensen'" <ole@obj.dk>,
+	"'Ole Brun Jensen'" <ole@obj.dk>
+References: <002101d484fa$429e2d60$c7da8820$@obj.dk> <000301d484fe$177748c0$4665da40$@c2tal.dk>
+In-Reply-To: <000301d484fe$177748c0$4665da40$@c2tal.dk>
+Subject: SV: svTest af IBOS MusicXmlREader 2.8.0.0 kommentarer til kun release notes og brugervejledning 
+Date: Tue, 27 Nov 2018 03:27:14 +0100
+Message-ID: <009001d485f8$b5d70be0$218523a0$@obj.dk>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0091_01D48601.17A02ED0"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQErjQd2fQrwIaKLD82WOAAhNDy0fQIOSoRmpqRkAmA=
+Content-Language: da
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0091_01D48601.17A02ED0
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hej bo=20
+
+=20
+
+Mange tak for roserne. J Nu regner jeg med, at =E2=80=9Djagten p=C3=A5 =
+fejl=E2=80=9D er slut for denne gang. Men det har v=C3=A6ret sjovt! =
+S=C3=A5 jeg vil gerne give en h=C3=A5nd med en anden gang. Og ja, jeg =
+vil bestemt se frem til en stor kold fad=C3=B8l med dug p=C3=A5 og hele, =
+n=C3=A5r vi ses ved lejlighed.=20
+
+=20
+
+Mange hilsner=20
+
+=20
+
+Susanne=20
+
+=20
+
+Fra: Bo Alstrup (hjem) <bo@c2tal.dk>=20
+Sendt: 25. november 2018 21:33
+Til: 'Susanne Nols=C3=B8e' <susanne@obj.dk>; 'Jens Sundgaard' =
+<holmeparken44@vip.cybercity.dk>; 'Bo Alstrup' <CX64@kk.dk>; 'Jens =
+Sundgaard' <holmeparken44@vip.cybercity.dk>; 'Ole Brun Jensen' =
+<ole@obj.dk>
+Cc: 'Ole Brun Jensen' <ole@obj.dk>; 'Ole Brun Jensen' <ole@obj.dk>
+Emne: SV: svTest af IBOS MusicXmlREader 2.8.0.0 kommentarer til kun =
+release notes og brugervejledning=20
+
+=20
+
+Hej Susanne
+
+Jamen, hold nu k=C3=A6ft hvor er det skide-hamrende overgodt.
+
+Det er helt fantastisk dejligt med dine skarpe iagtagelser og =
+pr=C3=A6cise kommentarer!
+
+Det viser bare igen at der ikke er noen som engagerede brugere til at =
+finde og jage fejl.
+
+Tusind tak for det.
+
+Skulle jeg glemme det vil jeg bede dig om at minde mig om at give en =
+omgang ved f=C3=B8rstkommende lejlighed!
+
+Masser af jagthilsener til dig og Ole
+
+Bo
+
+Fra: Susanne Nols=C3=B8e [mailto:susanne@obj.dk]=20
+Sendt: 25. november 2018 21:06
+Til: 'Jens Sundgaard'; 'Bo Alstrup'; 'Bo Alstrup'; 'Jens Sundgaard'; Ole =
+Brun Jensen
+Cc: 'Bo Alstrup'; Ole Brun Jensen; Ole Brun Jensen; 'Bo Alstrup'
+Emne: svTest af IBOS MusicXmlREader 2.8.0.0 kommentarer til kun release =
+notes og brugervejledning=20
+
+=20
+
+Hej med jer=20
+
+=20
+
+SN: kommentarer til kun release notes og brugervejledning Eventuelle =
+kommentarer til brug af nodeprogrammet i praksis f=C3=B8lger i en anden =
+mail.=20
+
+=20
+
+F=C3=B8rst til Release notes: B=C3=B8r der ikke under punkt 2 og 8 =
+st=C3=A5 up arow og down arow i stedet for som nu kun down og up? I =
+princippet kunne der jo ogs=C3=A5 v=C3=A6re tale om page up eller down.=20
+
+=20
+
+Til brugervejledningen:=20
+
+Afsnittet Grundl=C3=A6ggende principper. Der er enten mellemrum eller =
+blank linje, som f=C3=A5r Jaws til at l=C3=A6se ordet indeholdende =
+underligt op, ligesom der er lidt grammatisk eksempelvis afsnittet: =
+=E2=80=9D=E2=80=A6 Bem=C3=A6rk: P=C3=A5 dansk benyttes ordet "node" i =
+fl=C3=A6ng om enten en beskrivelsen af en enkelt tone eller beskrivelsen =
+af et helt musikstykke. Dette giver let anledning til forvirring!
+
+I det f=C3=B8lgende benyttes derfor ordet "node" om beskrivelsen af en =
+enkelt tone, mens ordet "partitur" benyttes om beskrivelsen af et helt =
+musikstykke (inde=C2=ADhol=C2=AD dende et st=C3=B8rre eller mindre antal =
+noder). =E2=80=A6=E2=80=9D Det kan nok fanges med en stavekontrol=20
+
+=20
+
+Til IBOS Nodel=C3=A6sers visnings-komponenter:=20
+
+Tabellen med oversigt over menupunkter og tilh=C3=B8rende genvejstaster =
+b=C3=B8r for at lette l=C3=A6sningen med Jaws opdeles s=C3=A5ledes, at =
+hvert enkelt menupunkt med tilh=C3=B8rende genvej har en celle hver i =
+tabellen, og ikke som nu, hvor eksempelvis alle genvejene l=C3=A6ses op =
+i en lang sm=C3=B8rre, fordi de st=C3=A5r i samme celle, og s=C3=A5 =
+m=C3=A5 brugeren selv regne ud, hvilket menupunkt det tilh=C3=B8rer.=20
+
+=20
+
+Duer ikke:=20
+
+
+Rediger
+
+Start redigering af Alle Filtre
+
+Start redigering af Filtre
+
+Start redigering af Musik Afspilning
+
+Start redigering af Tekst visning
+
+Start redigering af Braille (punktnode) visning
+
+Start redigering af Stemmer
+
+Start redigering af Detaljer
+
+Fjern markering fra alle
+
+Mark=C3=A9r alle
+
+G=C3=A5 til takt
+
+Repet=C3=A9r taktinterval
+
+S=C3=A6t afspilningstempo (til % af Normelt tempo)
+
+=20
+
+CONTROL + F
+
+CONTROL + M
+
+CONTROL + T
+
+CONTROL + B
+
+=20
+
+=20
+
+CONTROL + 0
+
+CONTROL + 1
+
+CONTROL + G
+
+CONTROL + R
+
+CONTROL + N=20
+
+=20
+
+Duer:=20
+
+
+Rediger
+
+Start redigering af Alle Filtre
+
+CONTROL + F
+
+=09
+Start redigering af Filtre
+
+CONTROL + M
+
+=09
+Start redigering af Musik Afspilning
+
+CONTROL + T
+
+=09
+Start redigering af Tekst visning
+
+CONTROL + B
+
+=09
+Start redigering af Braille (punktnode) visning
+
+=09
+=09
+Start redigering af Stemmer
+
+CONTROL + 0
+
+=09
+Start redigering af Detaljer
+
+CONTROL + 1
+
+=09
+Fjern markering fra alle
+
+CONTROL + G
+
+=09
+Mark=C3=A9r alle
+
+CONTROL + R
+
+=09
+G=C3=A5 til takt
+
+CONTROL + R
+
+=09
+Repet=C3=A9r taktinterval
+
+CONTROL + N=20
+
+=09
+S=C3=A6t afspilningstempo (til % af Normelt tempo
+
+=09
+
+=20
+
+Jeg ved godt, at genvejene som jeg har sat ind ikke er de rigtige, det =
+var bare for at illustrere princippet. Desuden ville jeg have haft =
+kolonne 1 med rediger samlet i kun 1 celle, men det kunne jeg ikke lige =
+f=C3=A5 til at lykkes, mens de =C3=B8vrige celler skulle st=C3=A5 som nu =
+for at v=C3=A6re ordentligt l=C3=A6sbare med Jaws.=20
+
+=20
+
+Skal der ikke st=C3=A5 en genvej til hj=C3=A6lp i tabellen?=20
+
+=20
+
+Til afsnittet Nodelisten=20
+
+=20
+
+S=C3=A5 vidt jeg kan se er teksten vist ikke opdateret med det nyeste =
+fra de seneste release notes om akkordl=C3=A6sning, s=C3=A5 her skal det =
+tekstafsnit, som har f=C3=B8lgende start tjekkes efter og ogs=C3=A5 den =
+efterf=C3=B8lgende oversigtsform om brug af piletasterne i nodelisten.=20
+
+=20
+
+=E2=80=9D=E2=80=A6 Hver linie i nodelisten repr=C3=A6senterer alt, hvad =
+der sker i musikken p=C3=A5 et bestemt tidspunkt
+
+=E2=80=A6=E2=80=9D=20
+
+=20
+
+Til afsnittet Detaljelisten=20
+
+Tjek om de opgivne tastetryk fortsat er korrekte.=20
+
+=20
+
+Til afsnittet Enkelttoner for alle stemmer=20
+
+Er der ikke en skrivefejl mht. tastekommando i dette tekststykke? Eller =
+er det den tilh=C3=B8rende forklaring? Det virker underligt. =
+=E2=80=9D=E2=80=A6 PIL-NED opl=C3=B8ser linien i nodelisten i =
+enkelttoner, startende med enkelttonerne i den f=C3=B8rste stemme
+
+PIL-NED  opl=C3=B8ser linien i nodelisten i enkelttoner, startende med =
+enkelttonerne i den sidste stemme
+
+=E2=80=A6=E2=80=9D=20
+
+=20
+
+Til afsnittet Tastaturgenveje=20
+
+
+I tabellen F=C3=B8lgende specielle tastaturgenveje og kommandoer kan =
+anvendes i forbindelse med Nodelisten  skal indf=C3=B8jes de ny =
+tastaturgenveje, som er n=C3=A6vnt i afsnittet fra Detaljelisten og til =
+og med tekstafsnittet lige f=C3=B8r Import af noder fra internettet. om =
+blandt andet status detaljer, becifring, Enkelttoner for alle stemmer, =
+Enkeltstemmer, Enkelttoner for valgt enkeltstemme, samt de ny genveje =
+omtalt i release notes, enkeltnodevisning og den med hvor er jeg. I =
+tabellen om F=C3=B8lgende specielle tastaturgenveje kan bruges i =
+forbindelse med redigering af nodefilteret er den f=C3=B8rste celle i =
+r=C3=A6kke 2 tom, skal den v=C3=A6re det, eller er der ikke nogen =
+tastegenvej? Hvis ikke, s=C3=A5 b=C3=B8r dette st=C3=A5 der i stedet for =
+kun en tom celle.=20
+
+
+=20
+
+Til afsnittet Brug af perkinstastatur=20
+
+Der skal vel st=C3=A5 perkinstastatur? =E2=80=9D=E2=80=A6 Fra og med =
+version 2.0.0.0 er IBOS Nodel=C3=A6ser optimeret til at kunne =
+kontrolleres alene vedhj=C3=A6lp af en l=C3=A6seliste med et =
+Perkins-tastatus.
+
+=E2=80=A6=E2=80=9D=20
+
+=20
+
+Mvh.=20
+
+=20
+
+Susanne           =20
+
+Fra: Jens Sundgaard <holmeparken44@vip.cybercity.dk =
+<mailto:holmeparken44@vip.cybercity.dk> >=20
+Sendt: 23. november 2018 20:27
+Til: Susanne Nols=C3=B8e <susanne@obj.dk <mailto:susanne@obj.dk> >; Bo =
+Alstrup <bo@c2tal.dk <mailto:bo@c2tal.dk> >; Bo Alstrup <CX64@kk.dk =
+<mailto:CX64@kk.dk> >
+Emne: Test af IBOS MusicXmlREader 2.8.0.0
+
+=20
+
+Hej Alle
+
+=20
+
+Jeg har nu lavet en version 2.8.0.0.
+
+I kan p=C3=A5 s=C3=A6dvanlig m=C3=A5de hente den via et DropBox Link:
+
+=20
+
+https://www.dropbox.com/s/12wcbjwdxese95b/Dropboxlink%20for%20zip%20file.=
+txt?dl=3D0
+
+=20
+
+Desuden vedh=C3=A6fter jer release notes og Brugervejledning.
+
+=20
+
+Jeg vil snarest gennemg=C3=A5 alle de input jeg har f=C3=A5et under =
+testen af 2.7.0.0
+
+for at f=C3=A5 et overblik over:
+
+Fejl, der er rettet i 2.8.0.0
+
+Fejl, som er erkendt, men som ikke n=C3=A5r at komme med i 2.8.0.0
+
+Forslag til forbedringer, som ikke n=C3=A5r at komme med i 2.8.0.0
+
+Fejlrapporter, som ikke var fejl alligevel=20
+
+=20
+
+Se venligst Release Notes for en liste over ny funktionalitet, som jo =
+nok kr=C3=A6ver mest opm=C3=A6rksomhed.
+
+=20
+
+Jeg er stadig lidt bekymret omkring =E2=80=9CDen tavse JAWS=E2=80=9D, =
+som vi m=C3=A5ske har oplevet,
+
+men som vi ikke rigtig kan reproducere ordentligt.
+
+=20
+
+Ellers er der selvf=C3=B8lgelig altid faren for at jeg har f=C3=A5et =
+indf=C3=B8rt nye fejl mellem 2.7.0.0 og 2.8.0.0
+
+=20
+
+mvh =E2=80=93 og god weekend
+
+=20
+
+Jens
+
+=20
+
+=20
+
+
+------=_NextPart_000_0091_01D48601.17A02ED0
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Calibri Light";
+	panose-1:2 15 3 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Andale Sans UI";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+h1
+	{mso-style-priority:9;
+	mso-style-link:"Overskrift 1 Tegn";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Calibri Light",sans-serif;
+	color:#2E74B5;
+	font-weight:normal;}
+h3
+	{mso-style-priority:9;
+	mso-style-link:"Overskrift 3 Tegn";
+	margin-top:7.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{mso-style-priority:99;
+	mso-style-link:"Br=C3=B8dtekst Tegn";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoTocHeading, li.MsoTocHeading, div.MsoTocHeading
+	{mso-style-priority:39;
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Calibri Light",sans-serif;
+	color:#2E74B5;}
+span.Overskrift1Tegn
+	{mso-style-name:"Overskrift 1 Tegn";
+	mso-style-priority:9;
+	mso-style-link:"Overskrift 1";
+	font-family:"Calibri Light",sans-serif;
+	color:#2E74B5;}
+span.Overskrift3Tegn
+	{mso-style-name:"Overskrift 3 Tegn";
+	mso-style-priority:9;
+	mso-style-link:"Overskrift 3";
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.BrdtekstTegn
+	{mso-style-name:"Br=C3=B8dtekst Tegn";
+	mso-style-priority:99;
+	mso-style-link:Br=C3=B8dtekst;
+	font-family:"Andale Sans UI";}
+p.Tabelindhold, li.Tabelindhold, div.Tabelindhold
+	{mso-style-name:Tabelindhold;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle24
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle25
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle26
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DDA link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Hej bo <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Mange tak for roserne. J Nu regner jeg med, =
+at =E2=80=9Djagten p=C3=A5 fejl=E2=80=9D er slut for denne gang. Men det =
+har v=C3=A6ret sjovt! S=C3=A5 jeg vil gerne give en h=C3=A5nd med en =
+anden gang. Og ja, jeg vil bestemt se frem til en stor kold fad=C3=B8l =
+med dug p=C3=A5 og hele, n=C3=A5r vi ses ved lejlighed. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Mange hilsner <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Susanne <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>Fra:</span></=
+b><span style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'> Bo =
+Alstrup (hjem) &lt;bo@c2tal.dk&gt; <br><b>Sendt:</b> 25. november 2018 =
+21:33<br><b>Til:</b> 'Susanne Nols=C3=B8e' &lt;susanne@obj.dk&gt;; 'Jens =
+Sundgaard' &lt;holmeparken44@vip.cybercity.dk&gt;; 'Bo Alstrup' =
+&lt;CX64@kk.dk&gt;; 'Jens Sundgaard' =
+&lt;holmeparken44@vip.cybercity.dk&gt;; 'Ole Brun Jensen' =
+&lt;ole@obj.dk&gt;<br><b>Cc:</b> 'Ole Brun Jensen' &lt;ole@obj.dk&gt;; =
+'Ole Brun Jensen' &lt;ole@obj.dk&gt;<br><b>Emne:</b> SV: svTest af IBOS =
+MusicXmlREader 2.8.0.0 kommentarer til kun release notes og =
+brugervejledning <o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+>Hej Susanne<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+>Jamen, hold nu k=C3=A6ft hvor er det skide-hamrende =
+overgodt.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+>Det er helt fantastisk dejligt med dine skarpe iagtagelser og =
+pr=C3=A6cise kommentarer!<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+>Det viser bare igen at der ikke er noen som engagerede brugere til at =
+finde og jage fejl.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+>Tusind tak for det.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+>Skulle jeg glemme det vil jeg bede dig om at minde mig om at give en =
+omgang ved f=C3=B8rstkommende lejlighed!<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+>Masser af jagthilsener til dig og Ole<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
+>Bo<o:p></o:p></span></p><div><div style=3D'border:none;border-top:solid =
+#B5C4DF 1.0pt;padding:3.0pt 0cm 0cm 0cm'><p class=3DMsoNormal><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif'>Fra:</span></b=
+><span style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif'> =
+Susanne Nols=C3=B8e [<a =
+href=3D"mailto:susanne@obj.dk">mailto:susanne@obj.dk</a>] =
+<br><b>Sendt:</b> 25. november 2018 21:06<br><b>Til:</b> 'Jens =
+Sundgaard'; 'Bo Alstrup'; 'Bo Alstrup'; 'Jens Sundgaard'; Ole Brun =
+Jensen<br><b>Cc:</b> 'Bo Alstrup'; Ole Brun Jensen; Ole Brun Jensen; 'Bo =
+Alstrup'<br><b>Emne:</b> svTest af IBOS MusicXmlREader 2.8.0.0 =
+kommentarer til kun release notes og brugervejledning =
+<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Hej med jer <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>SN: kommentarer til kun release notes og =
+brugervejledning Eventuelle kommentarer til brug af nodeprogrammet i =
+praksis f=C3=B8lger i en anden mail. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>F=C3=B8rst til Release notes: B=C3=B8r der =
+ikke under punkt 2 og 8 st=C3=A5 up arow og down arow i stedet for som =
+nu kun down og up? I princippet kunne der jo ogs=C3=A5 v=C3=A6re tale om =
+page up eller down. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Til brugervejledningen: =
+<o:p></o:p></span></p><p class=3DMsoBodyText><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Afsnittet Grundl=C3=A6ggende principper. Der =
+er enten mellemrum eller blank linje, som f=C3=A5r Jaws til at l=C3=A6se =
+ordet indeholdende underligt op, ligesom der er lidt grammatisk =
+eksempelvis afsnittet: =E2=80=9D=E2=80=A6 </span><span =
+style=3D'font-family:"Verdana",sans-serif'>Bem=C3=A6rk: P=C3=A5 dansk =
+benyttes ordet &quot;node&quot; i fl=C3=A6ng om enten en beskrivelsen af =
+en enkelt tone eller beskrivelsen af et helt musikstykke. Dette giver =
+let anledning til forvirring!<o:p></o:p></span></p><p =
+class=3DMsoNormal><span style=3D'font-family:"Verdana",sans-serif'>I det =
+f=C3=B8lgende benyttes derfor ordet &quot;node&quot; om beskrivelsen af =
+en enkelt tone, mens ordet &quot;partitur&quot; benyttes om beskrivelsen =
+af et helt musikstykke (inde=C2=ADhol=C2=AD dende et st=C3=B8rre eller =
+mindre antal noder). =E2=80=A6=E2=80=9D Det kan nok fanges med en =
+stavekontrol <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'><o:p>&nbsp;</o:p></span></p><p=
+ class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Til I</span><span =
+style=3D'font-family:"Verdana",sans-serif'>BOS Nodel=C3=A6sers =
+visnings-komponenter: <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'>Tabellen med oversigt over =
+menupunkter og tilh=C3=B8rende genvejstaster b=C3=B8r for at lette =
+l=C3=A6sningen med Jaws opdeles s=C3=A5ledes, at hvert enkelt menupunkt =
+med tilh=C3=B8rende genvej har en celle hver i tabellen, og ikke som nu, =
+hvor eksempelvis alle genvejene l=C3=A6ses op i en lang sm=C3=B8rre, =
+fordi de st=C3=A5r i samme celle, og s=C3=A5 m=C3=A5 brugeren selv regne =
+ud, hvilket menupunkt det tilh=C3=B8rer. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'><o:p>&nbsp;</o:p></span></p><p=
+ class=3DMsoNormal><span style=3D'font-family:"Verdana",sans-serif'>Duer =
+ikke: <o:p></o:p></span></p><table class=3DMsoNormalTable border=3D0 =
+cellspacing=3D0 cellpadding=3D0 =
+style=3D'margin-left:2.75pt;border-collapse:collapse'><tr><td =
+width=3D106 valign=3Dtop =
+style=3D'width:79.5pt;border-top:none;border-left:solid black =
+1.0pt;border-bottom:solid black 1.0pt;border-right:none;padding:2.75pt =
+2.75pt 2.75pt 2.75pt'><p class=3DTabelindhold><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>Rediger<o:p><=
+/o:p></span></p></td><td width=3D374 valign=3Dtop =
+style=3D'width:280.5pt;border-top:none;border-left:solid black =
+1.0pt;border-bottom:solid black 1.0pt;border-right:none;padding:2.75pt =
+2.75pt 2.75pt 2.75pt'><p class=3DTabelindhold><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>Start =
+redigering af Alle Filtre<o:p></o:p></span></p><p =
+class=3DTabelindhold><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>Start =
+redigering af Filtre<o:p></o:p></span></p><p class=3DTabelindhold><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>Start =
+redigering af Musik Afspilning<o:p></o:p></span></p><p =
+class=3DTabelindhold><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>Start =
+redigering af Tekst visning<o:p></o:p></span></p><p =
+class=3DTabelindhold><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>Start =
+redigering af Braille (punktnode) visning<o:p></o:p></span></p><p =
+class=3DTabelindhold><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>Start =
+redigering af Stemmer<o:p></o:p></span></p><p class=3DTabelindhold><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>Start =
+redigering af Detaljer<o:p></o:p></span></p><p =
+class=3DTabelindhold><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>Fjern =
+markering fra alle<o:p></o:p></span></p><p class=3DTabelindhold><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>Mark=C3=A9r =
+alle<o:p></o:p></span></p><p class=3DTabelindhold><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>G=C3=A5 til =
+takt<o:p></o:p></span></p><p class=3DTabelindhold><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>Repet=C3=A9r =
+taktinterval<o:p></o:p></span></p><p class=3DTabelindhold><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>S=C3=A6t =
+afspilningstempo (til % af Normelt tempo)<o:p></o:p></span></p></td><td =
+width=3D163 valign=3Dtop style=3D'width:122.25pt;border:solid black =
+1.0pt;border-top:none;padding:2.75pt 2.75pt 2.75pt 2.75pt'><p =
+class=3DTabelindhold><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'><o:p>&nbsp;</=
+o:p></span></p><p class=3DTabelindhold><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>CONTROL + =
+F<o:p></o:p></span></p><p class=3DTabelindhold><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>CONTROL + =
+M<o:p></o:p></span></p><p class=3DTabelindhold><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>CONTROL + =
+T<o:p></o:p></span></p><p class=3DTabelindhold><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>CONTROL + =
+B<o:p></o:p></span></p><p class=3DTabelindhold><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'><o:p>&nbsp;</=
+o:p></span></p><p class=3DTabelindhold><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'><o:p>&nbsp;</=
+o:p></span></p><p class=3DTabelindhold><span lang=3DEN-GB =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>CONTROL + =
+0<o:p></o:p></span></p><p class=3DTabelindhold><span lang=3DEN-GB =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>CONTROL + =
+1<o:p></o:p></span></p><p class=3DTabelindhold><span lang=3DEN-GB =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>CONTROL + =
+G<o:p></o:p></span></p><p class=3DTabelindhold><span lang=3DEN-GB =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>CONTROL + =
+R<o:p></o:p></span></p><p class=3DTabelindhold><span lang=3DEN-GB =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif'>CONTROL + N =
+<o:p></o:p></span></p></td></tr></table><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'><o:p>&nbsp;</o:p></span></p><p=
+ class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'>Duer: =
+<o:p></o:p></span></p><table class=3DMsoNormalTable border=3D0 =
+cellspacing=3D0 cellpadding=3D0 width=3D0 =
+style=3D'width:410.0pt;border-collapse:collapse'><tr =
+style=3D'height:15.0pt'><td width=3D66 nowrap valign=3Dbottom =
+style=3D'width:48.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>R=
+ediger<o:p></o:p></span></p></td><td width=3D361 nowrap =
+style=3D'width:271.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+tart redigering af Alle Filtre<o:p></o:p></span></p></td><td width=3D121 =
+nowrap style=3D'width:91.0pt;padding:0cm 3.5pt 0cm =
+3.5pt;height:15.0pt'><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>C=
+ONTROL + F</span><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p></td></tr><tr style=3D'height:15.0pt'><td =
+width=3D66 nowrap valign=3Dbottom style=3D'width:48.0pt;padding:0cm =
+3.5pt 0cm 3.5pt;height:15.0pt'></td><td width=3D361 nowrap =
+style=3D'width:271.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+tart redigering af Filtre<o:p></o:p></span></p></td><td width=3D121 =
+nowrap style=3D'width:91.0pt;padding:0cm 3.5pt 0cm =
+3.5pt;height:15.0pt'><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>C=
+ONTROL + M</span><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p></td></tr><tr style=3D'height:15.0pt'><td =
+width=3D66 nowrap valign=3Dbottom style=3D'width:48.0pt;padding:0cm =
+3.5pt 0cm 3.5pt;height:15.0pt'></td><td width=3D361 nowrap =
+style=3D'width:271.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+tart redigering af Musik Afspilning<o:p></o:p></span></p></td><td =
+width=3D121 nowrap style=3D'width:91.0pt;padding:0cm 3.5pt 0cm =
+3.5pt;height:15.0pt'><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>C=
+ONTROL + T</span><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p></td></tr><tr style=3D'height:15.0pt'><td =
+width=3D66 nowrap valign=3Dbottom style=3D'width:48.0pt;padding:0cm =
+3.5pt 0cm 3.5pt;height:15.0pt'></td><td width=3D361 nowrap =
+style=3D'width:271.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+tart redigering af Tekst visning<o:p></o:p></span></p></td><td =
+width=3D121 nowrap style=3D'width:91.0pt;padding:0cm 3.5pt 0cm =
+3.5pt;height:15.0pt'><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>C=
+ONTROL + B</span><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p></td></tr><tr style=3D'height:15.0pt'><td =
+width=3D66 nowrap valign=3Dbottom style=3D'width:48.0pt;padding:0cm =
+3.5pt 0cm 3.5pt;height:15.0pt'></td><td width=3D361 nowrap =
+style=3D'width:271.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+tart redigering af Braille (punktnode) =
+visning<o:p></o:p></span></p></td><td width=3D121 nowrap =
+style=3D'width:91.0pt;padding:0cm 3.5pt 0cm =
+3.5pt;height:15.0pt'></td></tr><tr style=3D'height:15.0pt'><td =
+width=3D66 nowrap valign=3Dbottom style=3D'width:48.0pt;padding:0cm =
+3.5pt 0cm 3.5pt;height:15.0pt'></td><td width=3D361 nowrap =
+style=3D'width:271.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+tart redigering af Stemmer<o:p></o:p></span></p></td><td width=3D121 =
+nowrap style=3D'width:91.0pt;padding:0cm 3.5pt 0cm =
+3.5pt;height:15.0pt'><p class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>C=
+ONTROL + 0</span><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p></td></tr><tr style=3D'height:15.0pt'><td =
+width=3D66 nowrap valign=3Dbottom style=3D'width:48.0pt;padding:0cm =
+3.5pt 0cm 3.5pt;height:15.0pt'></td><td width=3D361 nowrap =
+style=3D'width:271.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+tart redigering af Detaljer<o:p></o:p></span></p></td><td width=3D121 =
+nowrap style=3D'width:91.0pt;padding:0cm 3.5pt 0cm =
+3.5pt;height:15.0pt'><p class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>C=
+ONTROL + 1</span><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p></td></tr><tr style=3D'height:15.0pt'><td =
+width=3D66 nowrap valign=3Dbottom style=3D'width:48.0pt;padding:0cm =
+3.5pt 0cm 3.5pt;height:15.0pt'></td><td width=3D361 nowrap =
+style=3D'width:271.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>F=
+jern markering fra alle<o:p></o:p></span></p></td><td width=3D121 nowrap =
+style=3D'width:91.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>C=
+ONTROL + G</span><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p></td></tr><tr style=3D'height:15.0pt'><td =
+width=3D66 nowrap valign=3Dbottom style=3D'width:48.0pt;padding:0cm =
+3.5pt 0cm 3.5pt;height:15.0pt'></td><td width=3D361 nowrap =
+style=3D'width:271.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>M=
+ark=C3=A9r alle<o:p></o:p></span></p></td><td width=3D121 nowrap =
+style=3D'width:91.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>C=
+ONTROL + R</span><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p></td></tr><tr style=3D'height:15.0pt'><td =
+width=3D66 nowrap valign=3Dbottom style=3D'width:48.0pt;padding:0cm =
+3.5pt 0cm 3.5pt;height:15.0pt'></td><td width=3D361 nowrap =
+style=3D'width:271.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>G=
+=C3=A5 til takt<o:p></o:p></span></p></td><td width=3D121 nowrap =
+style=3D'width:91.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>C=
+ONTROL + R</span><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p></td></tr><tr style=3D'height:15.0pt'><td =
+width=3D66 nowrap valign=3Dbottom style=3D'width:48.0pt;padding:0cm =
+3.5pt 0cm 3.5pt;height:15.0pt'></td><td width=3D361 nowrap =
+style=3D'width:271.0pt;padding:0cm 3.5pt 0cm 3.5pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>R=
+epet=C3=A9r taktinterval<o:p></o:p></span></p></td><td width=3D121 =
+nowrap valign=3Dbottom style=3D'width:91.0pt;padding:0cm 3.5pt 0cm =
+3.5pt;height:15.0pt'><p class=3DMsoNormal><span lang=3DEN-GB =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>C=
+ONTROL + N </span><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'><=
+o:p></o:p></span></p></td></tr><tr style=3D'height:15.0pt'><td =
+width=3D66 nowrap valign=3Dbottom style=3D'width:48.0pt;padding:0cm =
+3.5pt 0cm 3.5pt;height:15.0pt'></td><td width=3D361 nowrap =
+valign=3Dbottom style=3D'width:271.0pt;padding:0cm 3.5pt 0cm =
+3.5pt;height:15.0pt'><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Verdana",sans-serif;color:black'>S=
+=C3=A6t afspilningstempo (til % af Normelt =
+tempo<o:p></o:p></span></p></td><td width=3D121 nowrap valign=3Dbottom =
+style=3D'width:91.0pt;padding:0cm 3.5pt 0cm =
+3.5pt;height:15.0pt'></td></tr></table><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'><o:p>&nbsp;</o:p></span></p><p=
+ class=3DMsoNormal><span style=3D'font-family:"Verdana",sans-serif'>Jeg =
+ved godt, at genvejene som jeg har sat ind ikke er de rigtige, det var =
+bare for at illustrere princippet. Desuden ville jeg have haft kolonne 1 =
+med rediger samlet i kun 1 celle, men det kunne jeg ikke lige f=C3=A5 =
+til at lykkes, mens de =C3=B8vrige celler skulle st=C3=A5 som nu for at =
+v=C3=A6re ordentligt l=C3=A6sbare med Jaws. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'><o:p>&nbsp;</o:p></span></p><p=
+ class=3DMsoNormal><span style=3D'font-family:"Verdana",sans-serif'>Skal =
+der ikke st=C3=A5 en genvej til hj=C3=A6lp i tabellen? =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'><o:p>&nbsp;</o:p></span></p><p=
+ class=3DMsoNormal><span style=3D'font-family:"Verdana",sans-serif'>Til =
+afsnittet Nodelisten <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'><o:p>&nbsp;</o:p></span></p><p=
+ class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'>S=C3=A5 vidt jeg kan se er =
+teksten vist ikke opdateret med det nyeste fra de seneste release notes =
+om akkordl=C3=A6sning, s=C3=A5 her skal det tekstafsnit, som har =
+f=C3=B8lgende start tjekkes efter og ogs=C3=A5 den efterf=C3=B8lgende =
+oversigtsform om brug af piletasterne i nodelisten. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'><o:p>&nbsp;</o:p></span></p><p=
+ class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'>=E2=80=9D=E2=80=A6 Hver linie =
+i nodelisten repr=C3=A6senterer alt, hvad der sker i musikken p=C3=A5 et =
+bestemt tidspunkt<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'>=E2=80=A6=E2=80=9D =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'><o:p>&nbsp;</o:p></span></p><p=
+ class=3DMsoNormal><span style=3D'font-family:"Verdana",sans-serif'>Til =
+afsnittet Detaljelisten <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'>Tjek om de opgivne tastetryk =
+fortsat er korrekte. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'><o:p>&nbsp;</o:p></span></p><p=
+ class=3DMsoNormal><span style=3D'font-family:"Verdana",sans-serif'>Til =
+afsnittet Enkelttoner for alle stemmer <o:p></o:p></span></p><p =
+class=3DMsoBodyText><span style=3D'font-family:"Verdana",sans-serif'>Er =
+der ikke en skrivefejl mht. tastekommando i dette tekststykke? Eller er =
+det den tilh=C3=B8rende forklaring? Det virker underligt. =
+=E2=80=9D=E2=80=A6 </span>PIL-NED opl=C3=B8ser linien i nodelisten i =
+enkelttoner, startende med enkelttonerne i den f=C3=B8rste =
+stemme<o:p></o:p></p><p class=3DMsoBodyText>PIL-NED&nbsp; opl=C3=B8ser =
+linien i nodelisten i enkelttoner, startende med enkelttonerne i den =
+sidste stemme<o:p></o:p></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'>=E2=80=A6=E2=80=9D =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'><o:p>&nbsp;</o:p></span></p><p=
+ class=3DMsoNormal><span style=3D'font-family:"Verdana",sans-serif'>Til =
+afsnittet Tastaturgenveje <o:p></o:p></span></p><h3 =
+style=3D'margin-left:36.0pt'><span =
+style=3D'font-family:"Verdana",sans-serif'>I tabellen F=C3=B8lgende =
+specielle tastaturgenveje og kommandoer kan anvendes i forbindelse med =
+Nodelisten &nbsp;skal indf=C3=B8jes de ny tastaturgenveje, som er =
+n=C3=A6vnt i afsnittet fra Detaljelisten og til og med tekstafsnittet =
+lige f=C3=B8r Import af noder fra internettet. om blandt andet status =
+detaljer, becifring, </span><a name=3D"_Toc530757585">Enkelttoner for =
+alle stemmer</a>,<span style=3D'font-family:"Verdana",sans-serif'> =
+</span><a name=3D"_Toc530757586">Enkeltstemmer</a>,<span =
+style=3D'font-family:"Verdana",sans-serif'> </span><a =
+name=3D"_Toc530757587">Enkelttoner for valgt enkeltstemme</a>,<span =
+style=3D'font-family:"Verdana",sans-serif'> samt de ny genveje omtalt i =
+release notes, enkeltnodevisning og den med hvor er jeg. I tabellen om =
+F=C3=B8lgende specielle tastaturgenveje kan bruges i forbindelse med =
+redigering af nodefilteret er den f=C3=B8rste celle i r=C3=A6kke 2 tom, =
+skal den v=C3=A6re det, eller er der ikke nogen tastegenvej? Hvis ikke, =
+s=C3=A5 b=C3=B8r dette st=C3=A5 der i stedet for kun en tom celle. =
+<o:p></o:p></span></h3><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'><o:p>&nbsp;</o:p></span></p><p=
+ class=3DMsoNormal><span style=3D'font-family:"Verdana",sans-serif'>Til =
+afsnittet Brug af perkinstastatur <o:p></o:p></span></p><p =
+class=3DMsoBodyText><span style=3D'font-family:"Verdana",sans-serif'>Der =
+skal vel st=C3=A5 perkinstastatur? =E2=80=9D=E2=80=A6 Fra og med version =
+2.0.0.0 er IBOS Nodel=C3=A6ser optimeret til at kunne kontrolleres alene =
+vedhj=C3=A6lp af en l=C3=A6seliste med et =
+Perkins-tastatus.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Verdana",sans-serif'>=E2=80=A6=E2=80=9D =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Mvh. <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Susanne =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+<o:p></o:p></span></p><div><div style=3D'border:none;border-top:solid =
+#E1E1E1 1.0pt;padding:3.0pt 0cm 0cm 0cm'><p class=3DMsoNormal><b><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>Fra:</span></=
+b><span style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'> =
+Jens Sundgaard &lt;<a =
+href=3D"mailto:holmeparken44@vip.cybercity.dk">holmeparken44@vip.cybercit=
+y.dk</a>&gt; <br><b>Sendt:</b> 23. november 2018 20:27<br><b>Til:</b> =
+Susanne Nols=C3=B8e &lt;<a =
+href=3D"mailto:susanne@obj.dk">susanne@obj.dk</a>&gt;; Bo Alstrup &lt;<a =
+href=3D"mailto:bo@c2tal.dk">bo@c2tal.dk</a>&gt;; Bo Alstrup &lt;<a =
+href=3D"mailto:CX64@kk.dk">CX64@kk.dk</a>&gt;<br><b>Emne:</b> Test af =
+IBOS MusicXmlREader 2.8.0.0<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Hej =
+Alle<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Jeg har nu lavet =
+en version 2.8.0.0.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>I kan p=C3=A5 =
+s=C3=A6dvanlig m=C3=A5de hente den via et DropBox =
+Link:<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'><a =
+href=3D"https://www.dropbox.com/s/12wcbjwdxese95b/Dropboxlink%20for%20zip=
+%20file.txt?dl=3D0" =
+title=3D"https://www.dropbox.com/s/12wcbjwdxese95b/Dropboxlink%20for%20zi=
+p%20file.txt?dl=3D0">https://www.dropbox.com/s/12wcbjwdxese95b/Dropboxlin=
+k%20for%20zip%20file.txt?dl=3D0</a><o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Desuden =
+vedh=C3=A6fter jer release notes og =
+Brugervejledning.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Jeg vil snarest =
+gennemg=C3=A5 alle de input jeg har f=C3=A5et under testen af =
+2.7.0.0<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>for at f=C3=A5 et =
+overblik over:<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Fejl, der er =
+rettet i 2.8.0.0<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Fejl, som er =
+erkendt, men som ikke n=C3=A5r at komme med i =
+2.8.0.0<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Forslag til =
+forbedringer, som ikke n=C3=A5r at komme med i =
+2.8.0.0<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Fejlrapporter, =
+som ikke var fejl alligevel <o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Se venligst =
+Release Notes for en liste over ny funktionalitet, som jo nok =
+kr=C3=A6ver mest opm=C3=A6rksomhed.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Jeg er stadig =
+lidt bekymret omkring =E2=80=9CDen tavse JAWS=E2=80=9D, som vi =
+m=C3=A5ske har oplevet,<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>men som vi ikke =
+rigtig kan reproducere ordentligt.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Ellers er der =
+selvf=C3=B8lgelig altid faren for at jeg har f=C3=A5et indf=C3=B8rt nye =
+fejl mellem 2.7.0.0 og 2.8.0.0<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>mvh =E2=80=93 og =
+god weekend<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Jens<o:p></o:p></s=
+pan></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div></div></div></div></body></html>
+------=_NextPart_000_0091_01D48601.17A02ED0--
+

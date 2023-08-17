@@ -1,0 +1,744 @@
+Return-Path: <susanne@obj.dk>
+Delivered-To: dsl248925@mail.jubii.dk
+Received: from DKBAL-IMAPDIRECTOR02 ([10.1.2.1])
+	by DKBAL-IMAP15 (Dovecot) with LMTP id L4NwMhhf+1t1KAAA6M2Fcg
+	for <dsl248925@mail.jubii.dk>; Mon, 26 Nov 2018 03:49:09 +0100
+Received: from DKBAL-POSTFIX01.mailcore.local ([10.1.2.1])
+	by DKBAL-IMAPDIRECTOR02 (Dovecot) with LMTP id pKRkAnda+1u5cQAAMBqhvg
+	; Mon, 26 Nov 2018 03:49:01 +0100
+Received: from DKBAL-EDGE01.mailcore.local (unknown [10.1.1.1])
+	by DKBAL-POSTFIX01.mailcore.local (Postfix) with ESMTP id AAE486CD9
+	for <dsl248925@mail.jubii.dk>; Mon, 26 Nov 2018 03:49:09 +0100 (CET)
+Received: from localhost (unknown [10.1.3.2])
+	by DKBAL-EDGE01.mailcore.local (Postfix) with ESMTP id 9DF1E20216
+	for <dsl248925@mail.jubii.dk>; Mon, 26 Nov 2018 03:49:09 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at DKBAL-AMAVIS02.mailcore.local
+X-Spam-Flag: NO
+X-Spam-Score: -0.799
+X-Spam-Level: 
+X-Spam-Status: No, score=-0.799 tagged_above=-999 required=3
+	tests=[DKIM_SIGNED=0.1, DKIM_VALID=-0.1, DKIM_VALID_AU=-0.1,
+	HTML_MESSAGE=0.001, RCVD_IN_DNSWL_LOW=-0.7] autolearn=disabled
+Received: from DKBAL-EDGE01.mailcore.local ([10.1.1.1])
+	by localhost (DKBAL-AMAVIS02.mailcore.local [10.1.3.2]) (amavisd-new, port 10024)
+	with ESMTP id 711fWxhPudlu for <dsl248925@mail.jubii.dk>;
+	Mon, 26 Nov 2018 03:49:08 +0100 (CET)
+X-Greylist: from auto-whitelisted by SQLgrey-1.8.0
+Received: from asmtp.unoeuro.com (asmtp.unoeuro.com [94.231.106.220])
+	by DKBAL-EDGE01.mailcore.local (Postfix) with ESMTPS id 23EFC201FC
+	for <holmeparken44@vip.cybercity.dk>; Mon, 26 Nov 2018 03:49:06 +0100 (CET)
+Received: from DESKTOPDMOOD5I (87-57-144-108-cable.dk.customer.tdc.net [87.57.144.108])
+	by asmtp.unoeuro.com (UnoEuro) with ESMTPA id 433BFY5qRPz5vhD;
+	Mon, 26 Nov 2018 03:49:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=obj.dk; s=unoeuro;
+	t=1543200545; bh=1e+rTpIFhwOckmuD4q6aXV6SxpBQmxFb6M0X4f5fwtM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=olPFxSJA8+A3smYYLJJwSPP87+qD6Jj2ek1x87msyHz3qiGolukhMUDE0N3tMKfcI
+	 NGuHax1ZnxCDAiizEr9xSLbxGPH2B/W59GTcl2Xkym6jFpTqZvpYfD3Z8eqGUrT0WQ
+	 hjxsNVxxUPAEOL/EOglBlnzx3P3sNJvNlwWbTdfw=
+From: =?utf-8?Q?Susanne_Nols=C3=B8e?= <susanne@obj.dk>
+To: "'Jens Sundgaard'" <holmeparken44@vip.cybercity.dk>,
+	"'Bo Alstrup'" <bo@c2tal.dk>,
+	"'Bo Alstrup'" <CX64@kk.dk>
+Cc: "Ole Brun Jensen" <ole@obj.dk>
+Subject: SV: Test af IBOS MusicXmlREader 2.8.0.0 kommentarer til nodeprogrammet
+Date: Mon, 26 Nov 2018 03:49:04 +0100
+Message-ID: <003901d48532$9847fa60$c8d7ef20$@obj.dk>
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_003A_01D4853A.FA0F2180"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdSFMjxMemKotiodQkSYPTaORtr0hw==
+Content-Language: da
+
+This is a multipart message in MIME format.
+
+------=_NextPart_000_003A_01D4853A.FA0F2180
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hej Jens og Bo og Ole=20
+
+=20
+
+Kommentarer til nodeprogrammet=20
+
+=20
+
+Dette er s=C3=A5 test med version 2.8. Men det bliver atter stille=20
+
+I korrespondancen fra 2.7 har jeg igen testet takt 30 mht. bas og =
+tenorstemmen. Det er u=C3=A6ndret her fra 2.7 til 2.8. Jens du har =
+tidligere skrevet f=C3=B8lgende til det:=20
+
+JSJ: Nodelisten viser Bas=3DA2 og Tenor=3DF3 og tenoren afspilles =
+ogs=C3=A5 s=C3=A5dan at tenoren pitcher h=C3=B8jest.
+
+S=C3=A5 d=C3=A9n del af det ser ud til at v=C3=A6re korrekt. Skal din =
+kommentar forst=C3=A5s s=C3=A5dan at der vises noget andet i =
+punktnoderne?=20
+
+SN: Bassen viser a2 og spiller ogs=C3=A5 a2. Tenoren viser blot et f, =
+(som nok stemmem=C3=A6ssigt burde v=C3=A6re f3, hvilket du ogs=C3=A5 =
+selv skriver), men den spiller klart f2. Og du har selv set fejlen i =
+takt 27, hvor tenoren skulle spille as3, men spiller as2. Noget lignende =
+g=C3=B8r sig j=C3=A6vnt hen g=C3=A6ldende allerede tilbage fra takt 17 + =
+en halv og ff, og m=C3=A5ske endog tidligere end takt 17, men det har =
+jeg ikke testet yderligere.=20
+
+=20
+
+Til takt 13 + 5 ottendedele (78 af 275), hvor du skriver:=20
+
+JSJ: Der er ikke en egentlig fejl i noden, men den er ikke skrevet helt =
+konsistent: B=C3=A5de tenot og bas har pause i hele takt 13. Tenorens =
+pause er noteret som to halvtaktspauser. Bassens pause er noteret som en =
+heltaktspause. S=C3=A5 derfor giver det mening at den anden af tenorens =
+to halvtaktspauser rapporteres af programmet: Der "sker" jo noget i =
+tenorstemmen p=C3=A5 d=C3=A9t sted, nemlig noget s=C3=A5 dramatisk som =
+overgang fra =C3=A9n halvtaktspause til en anden. S=C3=A5 ingen fejl, =
+men en virkelig skarp iagttagelse !=20
+
+SN: Her i version 2.8 kan jeg f=C3=A5 vist de 2 sopranstemmer og begge =
+altstemmer. Men den helnode pause og halvnodepause, som du omtaler kan =
+jeg ikke f=C3=A5 vist hverken med tekst eller noder, selv om alle 4 =
+stemmer er markeret i musikafspilning, tekstvisning og punktnodevisning. =
+Hvorfor ikke? Det pudsige er, at g=C3=A5r jeg tilbage til f=C3=B8rste =
+taktslag i takt 13 +0, s=C3=A5 kan jeg f=C3=A5 vist alle 4 stemmer, men =
+bem=C3=A6rk, her er bassen angivet til at have halvnodepausen mens =
+tenoren st=C3=A5r til helnodepausen! G=C3=A5r jeg 1 node mod h=C3=B8jre =
+stadig i takt 13, n=C3=A5r jeg sp=C3=B8rger med Alt+Pil ned siges takt =
+13 + 1 fjerdedel, her kan jeg kun f=C3=A5 vist altstemmen og intet andet =
+ved at trykke ctrl+pil ned. G=C3=A5r jeg endnu en node mod h=C3=B8jre =
+til takt 13 + 3 ottendedele alts=C3=A5 et ottendeles a i realiteten =
+p=C3=A5 2 og i takten, s=C3=A5 kan jeg kun f=C3=A5 vist sopranstemmen. =
+N=C3=A5r jeg piler en node til h=C3=B8jre p=C3=A5 takt 13 + en halv, =
+s=C3=A5 kan jeg f=C3=A5 vist sopran, alt og kun bas med en halvnode =
+pause. I takt 13 + 5 ottendedele alts=C3=A5 p=C3=A5 slaget 3 og kan jeg =
+kun f=C3=A5 vist sopran og alt. Ved pil en node til h=C3=B8jre til takt =
+13 + 3 fjerdedele alts=C3=A5 p=C3=A5 4 i takten vises ogs=C3=A5 kun =
+sopran og altstemmen. Det samme g=C3=B8r sig g=C3=A6ldende p=C3=A5 takt =
+13 + 7 ottendedele alts=C3=A5 taktslag 4 og. Er der mon byttet om =
+p=C3=A5 bas og tenorstemmen p=C3=A5 en m=C3=A5de j=C3=A6vnf=C3=B8r =
+ovenfor i takt 17 og frem til takt 30? Principielt synes jeg, man altid =
+b=C3=B8r kunne se alle stemmer, uanset hvor man st=C3=A5r i takten, =
+ogs=C3=A5 selv om de har pause. Men jeg ved ikke, om det er en =
+st=C3=B8rre operation at f=C3=A5 det til at virke? =20
+
+=20
+
+Visning af enkelttoner for alle stemmer=20
+
+Fortsat det bliver atter stille takt 14 + 1 fjerdedel =20
+
+I brugervejledningen st=C3=A5r: For hver enkelttone vises f=C3=B8rst den =
+tilh=C3=B8rende stemme, b=C3=A5de som stemmenummer og stemmenavn. Men =
+det er ikke helt korrekt Eksempel ALTO H3 fjerdedel. Her er kun angivet =
+stemmenavn og noden og dennes v=C3=A6rdi, men ikke stemmenummer. Men jeg =
+kunne godt t=C3=A6nke mig, at noden ogs=C3=A5 blev vist og ikke kun =
+oplysningerne som tekst i eksemplet h3 ogs=C3=A5 blev vist som node helt =
+til venstre p=C3=A5 linjen. Er det ikke muligt? Hvis man tager Eksempel =
+med takt 13 + 0 og trykker CTRL+Pil ned s=C3=A5 vises det, som jeg =
+ogs=C3=A5 synes b=C3=B8r vises ved tryk pil op eller ned alene: =
+f=C3=B8rst helt til venstre p=C3=A5 linjen noden g, dern=C3=A6st =
+stemmenummer, stemmenavn og noderne og deres v=C3=A6rdier i tekst =
+=E2=A0=B3=E2=A0=84 P1 SOPRANO G punkteret fjerdedel. S=C3=A5 programmet =
+g=C3=B8r det, som jeg =C3=B8nsker, n=C3=A5r der blot trykkes CTRL+Pil =
+ned. Man kan ogs=C3=A5 sige, at det vil v=C3=A6re smart ud fra en =
+p=C3=A6dagogisk betragtning, at noden vises i punkt samtidig med at =
+tekstinformationerne ogs=C3=A5 gives, s=C3=A5 indl=C3=A6res ogs=C3=A5 =
+nodens udseende. Hertil kommer, n=C3=A5r nodens udseende er =
+indl=C3=A6rt, s=C3=A5 afl=C3=A6ses denne information langt hurtigere af =
+brugeren, fordi noden repr=C3=A6senteres af kun et eller to tegn, mens =
+den tilh=C3=B8rende opl=C3=A6ste tekst jo er betydeligt l=C3=A6ngere at =
+l=C3=A6se igennem, s=C3=A5 med tiden kan der spares tid ved selve =
+indl=C3=A6ringen af musikken.=20
+
+=20
+
+Enkelttoner for valgt enkeltstemme=20
+
+Det virker fint som beskrevet.=20
+
+=20
+
+Becifring=20
+
+Her er taget udgangspunkt i Men det bliver atter stille takt 13 + 0:=20
+
+Det virker fint som beskrevet, dog savner jeg noderepr=C3=A6sentationen =
+i becifringen helt til venstre p=C3=A5 linjen til venstre for teksten =
+c-mol. I nodefiltret er becifring sl=C3=A5et til b=C3=A5de ved =
+musikafspilning, tekstvisning og punktnodevisning. Men =
+punktnodebecifringen vises alts=C3=A5 ikke. Kan programmet ikke vise =
+punktnodebecifringen eller er det en fejl i xml-filen?=20
+
+I takt 12 + 0 angives becifringen til at v=C3=A6re G sus4 best=C3=A5ende =
+af grundtone g, kvart c og lille septim f. I noden st=C3=A5r stemmerne =
+sopran tostemmigt med c og d og alt med g. Skulle der ikke i becifringen =
+have st=C3=A5et grundtone g, kvart c ogkvint d?=20
+
+=20
+
+Statuslinjen=20
+
+Insert+page down for statuslinjen virker ikke her. Der opl=C3=A6ses ikke =
+en dyt i nodeprogrammet! Men i brugervejledniingen i Word l=C3=A6ses =
+f=C3=B8lgende op ved Insert+page down: side 11
+Sidetal Side 11 af 19
+Ordopt=C3=A6lling 3868 ord
+Stave- og grammatikkontrol Fejl
+Udskriftslayout
+Zoom ud
+Zoom ind
+Zoom 126 %. F=C3=B8rst troede jeg, det m=C3=A5ske havde noget med at =
+g=C3=B8re, at jeg sidder med en HP-b=C3=A6rbar og jeg kan ikke huske, =
+hvad den ellers hedder ud over HP. Men n=C3=A5r den kan l=C3=A6se op fra =
+Word, s=C3=A5 er det vel ikke det? Jaws er indstillet til at bruge =
+labtop tastatur.=20
+
+=20
+
+Tears in heaven=20
+
+H=C3=B8jre og venstreh=C3=A5ndstegn vises ikke i punkt, selv om teksten =
+siger det er der i xml-filen. Eksempel takt 2 + en halv. Jeg trykkede =
+pil op og ned alene. Og alle flueben i nodefiltret er sl=C3=A5et til, =
+det g=C3=B8r tilsyneladende ikke nogen forskel i denne fil.=20
+
+=20
+
+Ole har snakket noget om, der nogle overbindinger i Paradis, som ikke =
+afspilles rigtigt, men jeg har ikke f=C3=A5et det tjekket endnu. =
+M=C3=A5ske kan I selv tjekke det, ellers kan jeg m=C3=A5ske n=C3=A5 at =
+pr=C3=B8ve det af op af mandagen, hvis det er tids nok. Jeg ved jo =
+heller ikke, om det er en rettelse som kan n=C3=A5 at komme med.=20
+
+=20
+
+Det var vist alt for nu.=20
+
+=20
+
+Mvh.=20
+
+=20
+
+Susanne=20
+
+=20
+
+=20
+
+=20
+
+Fra: Jens Sundgaard <holmeparken44@vip.cybercity.dk>=20
+Sendt: 25. november 2018 09:15
+Til: Susanne Nols=C3=B8e <susanne@obj.dk>; Bo Alstrup <bo@c2tal.dk>; Bo =
+Alstrup <CX64@kk.dk>
+Emne: Re: Test af IBOS MusicXmlREader 2.8.0.0
+
+=20
+
+Hej Alle.=20
+
+=20
+
+Beklager det forkerte link. Her er det rigtige.
+
+=20
+
+=20
+
+https://www.dropbox.com/s/0jje27c8gaudl5n/IBOS%20Nodel%C3%A6ser%202.8.0.0=
+.zip?dl=3D0
+
+=20
+
+=20
+
+God jagt...
+
+=20
+
+Og ja, Ingelise er min kone, og (Dropboxens formelle ejer).
+
+=20
+
+mvh Jens
+
+=20
+
+From: Jens Sundgaard=20
+
+Sent: Friday, November 23, 2018 8:26 PM
+
+To: Susanne Nols=C3=B8e ; Bo Alstrup ; Bo Alstrup=20
+
+Subject: Test af IBOS MusicXmlREader 2.8.0.0
+
+=20
+
+Hej Alle
+
+=20
+
+Jeg har nu lavet en version 2.8.0.0.
+
+I kan p=C3=A5 s=C3=A6dvanlig m=C3=A5de hente den via et DropBox Link:
+
+=20
+
+https://www.dropbox.com/s/12wcbjwdxese95b/Dropboxlink%20for%20zip%20file.=
+txt?dl=3D0
+
+=20
+
+Desuden vedh=C3=A6fter jer release notes og Brugervejledning.
+
+=20
+
+Jeg vil snarest gennemg=C3=A5 alle de input jeg har f=C3=A5et under =
+testen af 2.7.0.0
+
+for at f=C3=A5 et overblik over:
+
+Fejl, der er rettet i 2.8.0.0
+
+Fejl, som er erkendt, men som ikke n=C3=A5r at komme med i 2.8.0.0
+
+Forslag til forbedringer, som ikke n=C3=A5r at komme med i 2.8.0.0
+
+Fejlrapporter, som ikke var fejl alligevel=20
+
+=20
+
+Se venligst Release Notes for en liste over ny funktionalitet, som jo =
+nok kr=C3=A6ver mest opm=C3=A6rksomhed.
+
+=20
+
+Jeg er stadig lidt bekymret omkring =E2=80=9CDen tavse JAWS=E2=80=9D, =
+som vi m=C3=A5ske har oplevet,
+
+men som vi ikke rigtig kan reproducere ordentligt.
+
+=20
+
+Ellers er der selvf=C3=B8lgelig altid faren for at jeg har f=C3=A5et =
+indf=C3=B8rt nye fejl mellem 2.7.0.0 og 2.8.0.0
+
+=20
+
+mvh =E2=80=93 og god weekend
+
+=20
+
+Jens
+
+=20
+
+=20
+
+
+------=_NextPart_000_003A_01D4853A.FA0F2180
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Segoe UI Symbol";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:"Andale Sans UI";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{mso-style-link:"Br=C3=B8dtekst Tegn";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.BrdtekstTegn
+	{mso-style-name:"Br=C3=B8dtekst Tegn";
+	mso-style-link:Br=C3=B8dtekst;
+	font-family:"Andale Sans UI";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 2.0cm 3.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DDA link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Hej Jens og Bo og Ole =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Kommentarer til nodeprogrammet =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Dette er s=C3=A5 test med version 2.8. Men =
+det bliver atter stille <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>I korrespondancen fra 2.7 har jeg igen =
+testet takt 30 mht. bas og tenorstemmen. Det er u=C3=A6ndret her fra 2.7 =
+til 2.8. Jens du har tidligere skrevet f=C3=B8lgende til det: =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:red;mso-=
+fareast-language:EN-US'>JSJ: Nodelisten viser Bas=3DA2 og Tenor=3DF3 og =
+tenoren afspilles ogs=C3=A5 s=C3=A5dan at tenoren pitcher =
+h=C3=B8jest.</span><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:red;mso-=
+fareast-language:EN-US'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:red;mso-=
+fareast-language:EN-US'>S=C3=A5 d=C3=A9n del af det ser ud til at =
+v=C3=A6re korrekt. Skal din kommentar forst=C3=A5s s=C3=A5dan at der =
+vises noget andet i punktnoderne? <o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>SN: Bassen viser a2 og spiller ogs=C3=A5 a2. =
+Tenoren viser blot et f, (som nok stemmem=C3=A6ssigt burde v=C3=A6re f3, =
+hvilket du ogs=C3=A5 selv skriver), men den spiller klart f2. Og du har =
+selv set fejlen i takt 27, hvor tenoren skulle spille as3, men spiller =
+as2. Noget lignende g=C3=B8r sig j=C3=A6vnt hen g=C3=A6ldende allerede =
+tilbage fra takt 17 + en halv og ff, og m=C3=A5ske endog tidligere end =
+takt 17, men det har jeg ikke testet yderligere. =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Til takt 13 + 5 ottendedele (78 af 275), =
+hvor du skriver: <o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:red;mso-=
+fareast-language:EN-US'>JSJ: Der er ikke en egentlig fejl i noden, men =
+den er ikke skrevet helt konsistent: B=C3=A5de tenot og bas har pause i =
+hele takt 13. Tenorens pause er noteret som to halvtaktspauser. Bassens =
+pause er noteret som en heltaktspause. S=C3=A5 derfor giver det mening =
+at den anden af tenorens to halvtaktspauser rapporteres af programmet: =
+Der &quot;sker&quot; jo noget i tenorstemmen p=C3=A5 d=C3=A9t sted, =
+nemlig noget s=C3=A5 dramatisk som overgang fra =C3=A9n halvtaktspause =
+til en anden. S=C3=A5 ingen fejl, men en virkelig skarp iagttagelse ! =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>SN: Her i version 2.8 kan jeg f=C3=A5 vist =
+de 2 sopranstemmer og begge altstemmer. Men den helnode pause og =
+halvnodepause, som du omtaler kan jeg ikke f=C3=A5 vist hverken med =
+tekst eller noder, selv om alle 4 stemmer er markeret i musikafspilning, =
+tekstvisning og punktnodevisning. Hvorfor ikke? Det pudsige er, at =
+g=C3=A5r jeg tilbage til f=C3=B8rste taktslag i takt 13 +0, s=C3=A5 kan =
+jeg f=C3=A5 vist alle 4 stemmer, men bem=C3=A6rk, her er bassen angivet =
+til at have halvnodepausen mens tenoren st=C3=A5r til helnodepausen! =
+G=C3=A5r jeg 1 node mod h=C3=B8jre stadig i takt 13, n=C3=A5r jeg =
+sp=C3=B8rger med Alt+Pil ned siges takt 13 + 1 fjerdedel, her kan jeg =
+kun f=C3=A5 vist altstemmen og intet andet ved at trykke ctrl+pil ned. =
+G=C3=A5r jeg endnu en node mod h=C3=B8jre til takt 13 + 3 ottendedele =
+alts=C3=A5 et ottendeles a i realiteten p=C3=A5 2 og i takten, s=C3=A5 =
+kan jeg kun f=C3=A5 vist sopranstemmen. N=C3=A5r jeg piler en node til =
+h=C3=B8jre p=C3=A5 takt 13 + en halv, s=C3=A5 kan jeg f=C3=A5 vist =
+sopran, alt og kun bas med en halvnode pause. I takt 13 + 5 ottendedele =
+alts=C3=A5 p=C3=A5 slaget 3 og kan jeg kun f=C3=A5 vist sopran og alt. =
+Ved pil en node til h=C3=B8jre til takt 13 + 3 fjerdedele alts=C3=A5 =
+p=C3=A5 4 i takten vises ogs=C3=A5 kun sopran og altstemmen. Det samme =
+g=C3=B8r sig g=C3=A6ldende p=C3=A5 takt 13 + 7 ottendedele alts=C3=A5 =
+taktslag 4 og. Er der mon byttet om p=C3=A5 bas og tenorstemmen p=C3=A5 =
+en m=C3=A5de j=C3=A6vnf=C3=B8r ovenfor i takt 17 og frem til takt 30? =
+Principielt synes jeg, man altid b=C3=B8r kunne se alle stemmer, uanset =
+hvor man st=C3=A5r i takten, ogs=C3=A5 selv om de har pause. Men jeg ved =
+ikke, om det er en st=C3=B8rre operation at f=C3=A5 det til at virke? =
+=C2=A0<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Visning af enkelttoner for alle stemmer =
+<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>Fortsat det bliver atter stille takt 14 + 1 =
+fjerdedel =C2=A0<o:p></o:p></span></p><p class=3DMsoBodyText><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'>I brugervejledningen st=C3=A5r: </span>For =
+hver enkelttone vises f=C3=B8rst den tilh=C3=B8rende stemme, b=C3=A5de =
+som stemmenummer og stemmenavn. Men det er ikke helt korrekt Eksempel =
+ALTO H3 fjerdedel. Her er kun angivet stemmenavn og noden og dennes =
+v=C3=A6rdi, men ikke stemmenummer. Men jeg kunne godt t=C3=A6nke mig, at =
+noden ogs=C3=A5 blev vist og ikke kun oplysningerne som tekst i =
+eksemplet h3 ogs=C3=A5 blev vist som node helt til venstre p=C3=A5 =
+linjen. Er det ikke muligt? Hvis man tager Eksempel med takt 13 + 0 og =
+trykker CTRL+Pil ned s=C3=A5 vises det, som jeg ogs=C3=A5 synes b=C3=B8r =
+vises ved tryk pil op eller ned alene: f=C3=B8rst helt til venstre =
+p=C3=A5 linjen noden g, dern=C3=A6st stemmenummer, stemmenavn og noderne =
+og deres v=C3=A6rdier i tekst <span style=3D'font-family:"Segoe UI =
+Symbol",sans-serif'>=E2=A0=B3=E2=A0=84</span> P1 SOPRANO G punkteret =
+fjerdedel. S=C3=A5 programmet g=C3=B8r det, som jeg =C3=B8nsker, =
+n=C3=A5r der blot trykkes CTRL+Pil ned. Man kan ogs=C3=A5 sige, at det =
+vil v=C3=A6re smart ud fra en p=C3=A6dagogisk betragtning, at noden =
+vises i punkt samtidig med at tekstinformationerne ogs=C3=A5 gives, =
+s=C3=A5 indl=C3=A6res ogs=C3=A5 nodens udseende. Hertil kommer, n=C3=A5r =
+nodens udseende er indl=C3=A6rt, s=C3=A5 afl=C3=A6ses denne information =
+langt hurtigere af brugeren, fordi noden repr=C3=A6senteres af kun et =
+eller to tegn, mens den tilh=C3=B8rende opl=C3=A6ste tekst jo er =
+betydeligt l=C3=A6ngere at l=C3=A6se igennem, s=C3=A5 med tiden kan der =
+spares tid ved selve indl=C3=A6ringen af musikken. <o:p></o:p></p><p =
+class=3DMsoBodyText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoBodyText>Enkelttoner for valgt enkeltstemme <o:p></o:p></p><p =
+class=3DMsoBodyText>Det virker fint som beskrevet. <o:p></o:p></p><p =
+class=3DMsoBodyText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoBodyText>Becifring <o:p></o:p></p><p class=3DMsoBodyText>Her =
+er taget udgangspunkt i Men det bliver atter stille takt 13 + 0: =
+<o:p></o:p></p><p class=3DMsoBodyText>Det virker fint som beskrevet, dog =
+savner jeg noderepr=C3=A6sentationen i becifringen helt til venstre =
+p=C3=A5 linjen til venstre for teksten c-mol. I nodefiltret er becifring =
+sl=C3=A5et til b=C3=A5de ved musikafspilning, tekstvisning og =
+punktnodevisning. Men punktnodebecifringen vises alts=C3=A5 ikke. Kan =
+programmet ikke vise punktnodebecifringen eller er det en fejl i =
+xml-filen? <o:p></o:p></p><p class=3DMsoBodyText>I takt 12 + 0 angives =
+becifringen til at v=C3=A6re G sus4 best=C3=A5ende af grundtone g, kvart =
+c og lille septim f. I noden st=C3=A5r stemmerne sopran tostemmigt med c =
+og d og alt med g. Skulle der ikke i becifringen have st=C3=A5et =
+grundtone g, kvart c ogkvint d? <o:p></o:p></p><p =
+class=3DMsoBodyText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoBodyText>Statuslinjen <o:p></o:p></p><p =
+class=3DMsoBodyText>Insert+page down for statuslinjen virker ikke her. =
+Der opl=C3=A6ses ikke en dyt i nodeprogrammet! Men i brugervejledniingen =
+i Word l=C3=A6ses f=C3=B8lgende op ved Insert+page down: side =
+11<br>Sidetal Side 11 af 19<br>Ordopt=C3=A6lling 3868 ord<br>Stave- og =
+grammatikkontrol Fejl<br>Udskriftslayout<br>Zoom ud<br>Zoom ind<br>Zoom =
+126 %. F=C3=B8rst troede jeg, det m=C3=A5ske havde noget med at =
+g=C3=B8re, at jeg sidder med en HP-b=C3=A6rbar og jeg kan ikke huske, =
+hvad den ellers hedder ud over HP. Men n=C3=A5r den kan l=C3=A6se op fra =
+Word, s=C3=A5 er det vel ikke det? Jaws er indstillet til at bruge =
+labtop tastatur. <o:p></o:p></p><p =
+class=3DMsoBodyText><o:p>&nbsp;</o:p></p><p class=3DMsoBodyText>Tears in =
+heaven <o:p></o:p></p><p class=3DMsoBodyText>H=C3=B8jre og =
+venstreh=C3=A5ndstegn vises ikke i punkt, selv om teksten siger det er =
+der i xml-filen. Eksempel takt 2 + en halv. Jeg trykkede pil op og ned =
+alene. Og alle flueben i nodefiltret er sl=C3=A5et til, det g=C3=B8r =
+tilsyneladende ikke nogen forskel i denne fil. <o:p></o:p></p><p =
+class=3DMsoBodyText><o:p>&nbsp;</o:p></p><p class=3DMsoBodyText>Ole har =
+snakket noget om, der nogle overbindinger i Paradis, som ikke afspilles =
+rigtigt, men jeg har ikke f=C3=A5et det tjekket endnu. M=C3=A5ske kan I =
+selv tjekke det, ellers kan jeg m=C3=A5ske n=C3=A5 at pr=C3=B8ve det af =
+op af mandagen, hvis det er tids nok. Jeg ved jo heller ikke, om det er =
+en rettelse som kan n=C3=A5 at komme med. <o:p></o:p></p><p =
+class=3DMsoBodyText><o:p>&nbsp;</o:p></p><p class=3DMsoBodyText>Det var =
+vist alt for nu. <o:p></o:p></p><p =
+class=3DMsoBodyText><o:p>&nbsp;</o:p></p><p class=3DMsoBodyText>Mvh. =
+<o:p></o:p></p><p class=3DMsoBodyText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoBodyText>Susanne <o:p></o:p></p><p =
+class=3DMsoBodyText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoBodyText><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D;=
+mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b><span =
+style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>Fra:</span></=
+b><span style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'> =
+Jens Sundgaard &lt;holmeparken44@vip.cybercity.dk&gt; <br><b>Sendt:</b> =
+25. november 2018 09:15<br><b>Til:</b> Susanne Nols=C3=B8e =
+&lt;susanne@obj.dk&gt;; Bo Alstrup &lt;bo@c2tal.dk&gt;; Bo Alstrup =
+&lt;CX64@kk.dk&gt;<br><b>Emne:</b> Re: Test af IBOS MusicXmlREader =
+2.8.0.0<o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Hej Alle. =
+<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Beklager det =
+forkerte link. Her er det rigtige.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'><a =
+href=3D"https://www.dropbox.com/s/0jje27c8gaudl5n/IBOS%20Nodel%C3%A6ser%2=
+02.8.0.0.zip?dl=3D0" =
+title=3D"https://www.dropbox.com/s/0jje27c8gaudl5n/IBOS%20Nodel%C3%A6ser%=
+202.8.0.0.zip?dl=3D0">https://www.dropbox.com/s/0jje27c8gaudl5n/IBOS%20No=
+del%C3%A6ser%202.8.0.0.zip?dl=3D0</a><o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>God =
+jagt...<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Og ja, Ingelise =
+er min kone, og (Dropboxens formelle =
+ejer).<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>mvh =
+Jens<o:p></o:p></span></p></div><div><div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'>&n=
+bsp;<o:p></o:p></span></p></div><div><div><p class=3DMsoNormal =
+style=3D'background:whitesmoke'><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'>Fr=
+om:</span></b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'> =
+Jens Sundgaard <o:p></o:p></span></p></div><div><p class=3DMsoNormal =
+style=3D'background:whitesmoke'><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'>Se=
+nt:</span></b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'> =
+Friday, November 23, 2018 8:26 PM<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal style=3D'background:whitesmoke'><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'>To=
+:</span></b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'> =
+Susanne Nols=C3=B8e ; Bo Alstrup ; Bo Alstrup =
+<o:p></o:p></span></p></div><div><p class=3DMsoNormal =
+style=3D'background:whitesmoke'><b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'>Su=
+bject:</span></b><span =
+style=3D'font-size:10.0pt;font-family:"Tahoma",sans-serif;color:black'> =
+Test af IBOS MusicXmlREader =
+2.8.0.0<o:p></o:p></span></p></div></div></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div></div><div><div><div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Hej =
+Alle<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Jeg har nu lavet =
+en version 2.8.0.0.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>I kan p=C3=A5 =
+s=C3=A6dvanlig m=C3=A5de hente den via et DropBox =
+Link:<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'><a =
+href=3D"https://www.dropbox.com/s/12wcbjwdxese95b/Dropboxlink%20for%20zip=
+%20file.txt?dl=3D0" =
+title=3D"https://www.dropbox.com/s/12wcbjwdxese95b/Dropboxlink%20for%20zi=
+p%20file.txt?dl=3D0">https://www.dropbox.com/s/12wcbjwdxese95b/Dropboxlin=
+k%20for%20zip%20file.txt?dl=3D0</a><o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Desuden =
+vedh=C3=A6fter jer release notes og =
+Brugervejledning.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Jeg vil snarest =
+gennemg=C3=A5 alle de input jeg har f=C3=A5et under testen af =
+2.7.0.0<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>for at f=C3=A5 et =
+overblik over:<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Fejl, der er =
+rettet i 2.8.0.0<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Fejl, som er =
+erkendt, men som ikke n=C3=A5r at komme med i =
+2.8.0.0<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Forslag til =
+forbedringer, som ikke n=C3=A5r at komme med i =
+2.8.0.0<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Fejlrapporter, =
+som ikke var fejl alligevel <o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Se venligst =
+Release Notes for en liste over ny funktionalitet, som jo nok =
+kr=C3=A6ver mest opm=C3=A6rksomhed.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Jeg er stadig =
+lidt bekymret omkring =E2=80=9CDen tavse JAWS=E2=80=9D, som vi =
+m=C3=A5ske har oplevet,<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>men som vi ikke =
+rigtig kan reproducere ordentligt.<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Ellers er der =
+selvf=C3=B8lgelig altid faren for at jeg har f=C3=A5et indf=C3=B8rt nye =
+fejl mellem 2.7.0.0 og 2.8.0.0<o:p></o:p></span></p></div><div><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>mvh =E2=80=93 og =
+god weekend<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>Jens<o:p></o:p></s=
+pan></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div><div><p class=3DMsoNormal><span =
+style=3D'font-family:"Calibri",sans-serif;color:black'>&nbsp;<o:p></o:p><=
+/span></p></div></div></div></div></div></div></div></body></html>
+------=_NextPart_000_003A_01D4853A.FA0F2180--
+
