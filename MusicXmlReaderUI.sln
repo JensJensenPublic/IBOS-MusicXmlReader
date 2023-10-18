@@ -333,6 +333,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Svante U2Export 18 ten", "S
 		Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\svante u2eksport18tegn\Svantes dekoder txt til u2 18 tegn lykkelige dag.TUTTI.brl = Documentation\TEst reports\4.1.0.0\testIbosnodelæser2022\svante u2eksport18tegn\Svantes dekoder txt til u2 18 tegn lykkelige dag.TUTTI.brl
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version 6.0", "Version 6.0", "{E515FBB4-F5DB-40F4-B2A3-FA78EFB35229}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Materiale til brug ved fondsansøgninger\Version 6.0\Tidsestimater.docx = Documentation\Materiale til brug ved fondsansøgninger\Version 6.0\Tidsestimater.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -592,5 +597,9 @@ Global
 		{EBD40FE8-FB41-46B0-934B-29EEA7A6D3EF} = {EAEF8CA6-D9AE-4071-ADFB-4805F16385EE}
 		{74EB3A10-4661-4B5F-891D-156ABEEBDC4C} = {EAEF8CA6-D9AE-4071-ADFB-4805F16385EE}
 		{233E2705-C3EA-430C-9797-A9516A50B635} = {EAEF8CA6-D9AE-4071-ADFB-4805F16385EE}
+		{E515FBB4-F5DB-40F4-B2A3-FA78EFB35229} = {80127C2C-AB28-4873-8243-11ED5C63EDBD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F56F3540-8991-49FF-BE35-F2288FD224A2}
 	EndGlobalSection
 EndGlobal
