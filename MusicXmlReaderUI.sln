@@ -338,6 +338,30 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version 6.0", "Version 6.0"
 		Documentation\Materiale til brug ved fondsansøgninger\Version 6.0\Tidsestimater.docx = Documentation\Materiale til brug ved fondsansøgninger\Version 6.0\Tidsestimater.docx
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThirdPartyDlls", "ThirdPartyDlls", "{3FD06CF7-583C-4E50-92FC-3D491A5B60A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7Zip", "7Zip", "{438ADB95-EAED-4164-A8DD-4D0598E73C39}"
+	ProjectSection(SolutionItems) = preProject
+		ThirdPartyDlls\7Zip\7z.dll = ThirdPartyDlls\7Zip\7z.dll
+		ThirdPartyDlls\7Zip\7z.exe = ThirdPartyDlls\7Zip\7z.exe
+		ThirdPartyDlls\7Zip\readme.jsj.txt = ThirdPartyDlls\7Zip\readme.jsj.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AMD64", "AMD64", "{1440FB39-0548-4C16-92D6-674453CC4EA9}"
+	ProjectSection(SolutionItems) = preProject
+		ThirdPartyDlls\AMD64\fsbrldspapi.dll = ThirdPartyDlls\AMD64\fsbrldspapi.dll
+		ThirdPartyDlls\AMD64\readme.jsj.txt = ThirdPartyDlls\AMD64\readme.jsj.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "i386", "i386", "{56288F23-B557-4CA4-9B03-536202DCB0E8}"
+	ProjectSection(SolutionItems) = preProject
+		ThirdPartyDlls\I386\FSAPI.dll = ThirdPartyDlls\I386\FSAPI.dll
+		ThirdPartyDlls\I386\fsbrldspapi.dll = ThirdPartyDlls\I386\fsbrldspapi.dll
+		ThirdPartyDlls\I386\NAudio.dll = ThirdPartyDlls\I386\NAudio.dll
+		ThirdPartyDlls\I386\nvdaControllerClient32.dll = ThirdPartyDlls\I386\nvdaControllerClient32.dll
+		ThirdPartyDlls\I386\readme.jsj.txt = ThirdPartyDlls\I386\readme.jsj.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -598,6 +622,9 @@ Global
 		{74EB3A10-4661-4B5F-891D-156ABEEBDC4C} = {EAEF8CA6-D9AE-4071-ADFB-4805F16385EE}
 		{233E2705-C3EA-430C-9797-A9516A50B635} = {EAEF8CA6-D9AE-4071-ADFB-4805F16385EE}
 		{E515FBB4-F5DB-40F4-B2A3-FA78EFB35229} = {80127C2C-AB28-4873-8243-11ED5C63EDBD}
+		{438ADB95-EAED-4164-A8DD-4D0598E73C39} = {3FD06CF7-583C-4E50-92FC-3D491A5B60A1}
+		{1440FB39-0548-4C16-92D6-674453CC4EA9} = {3FD06CF7-583C-4E50-92FC-3D491A5B60A1}
+		{56288F23-B557-4CA4-9B03-536202DCB0E8} = {3FD06CF7-583C-4E50-92FC-3D491A5B60A1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F56F3540-8991-49FF-BE35-F2288FD224A2}
