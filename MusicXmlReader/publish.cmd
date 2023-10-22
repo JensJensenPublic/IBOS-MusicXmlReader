@@ -1,6 +1,19 @@
-exit
 
-rem This file seems to be run from C:\Users\Jens\Dropbox\Root\Visual Studio 2015\Projects\MusicXmlReaderUI\MusicXmlReader\bin\Debug
+
+rem This file is run from SsolutionDir>\MusicXmlReader\bin\Debug
+
+rem Copy all needed native dlls from the  ThirdPartyDlls directory (which is controlled by Git) to the Debug Directory.
+rem The managed dlls need no copying, because they are all explicitly referenced by the source code and thus copied by VS
+rem dir ..\..\..\ThirdPartyDlls
+copy ..\..\..\ThirdPartyDlls\i386\NAudio.dll
+copy ..\..\..\ThirdPartyDlls\i386\fsbrldspapi.dll
+copy ..\..\..\ThirdPartyDlls\i386\FSapi.dll
+copy ..\..\..\ThirdPartyDlls\i386\jfwapi.dll
+copy ..\..\..\ThirdPartyDlls\i386\nvdaControllerClient32.dll
+copy ..\..\..\ThirdPartyDlls\7Zip\7z.dll
+copy ..\..\..\ThirdPartyDlls\7Zip\7z.exe
+
+exit
 
 rem dir "..\..\..\Documentation\Official Documentation"
 
