@@ -17,6 +17,11 @@ namespace BrailleMusicDecoder.MusicXmlElements
         public void ModifyOctaveNumber(int newOctaveNumber)
         { 
             XmlNode pitchNode = this.SelectSingleNode("pitch");
+            if (null == pitchNode)
+            {
+                LogCF(string.Format(": No PitchNode found. NewOctaveNumber={0}", newOctaveNumber));
+                return;
+            }
             XmlNode octaveNode = pitchNode.SelectSingleNode("octave");
             string octaveString = octaveNode.InnerText;
             int existingOctaveNumber = int.Parse(octaveString);
@@ -57,11 +62,11 @@ namespace BrailleMusicDecoder.MusicXmlElements
         {
             // Find the relevalt nodes
             XmlNode pitchNode = this.SelectSingleNode("pitch");
-            //if (null == pitchNode)
-            //{
-            //    LogCF(string.Format(": No PitchNode found. Interval={0} Direction={1}",interval, direction));
-            //    return;
-            //}
+            if (null == pitchNode)
+            {
+                LogCF(string.Format(": No PitchNode found. Interval={0} Direction={1}", interval, direction));
+                return;
+            }
             XmlNode stepNode = pitchNode.SelectSingleNode("step");
             XmlNode octaveNode = pitchNode.SelectSingleNode("octave");
             // Read the relavant values

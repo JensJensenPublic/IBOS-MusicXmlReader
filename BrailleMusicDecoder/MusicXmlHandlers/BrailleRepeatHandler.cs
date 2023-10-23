@@ -34,6 +34,16 @@ namespace BrailleMusicDecoder
         }
 
         /// <summary>
+        /// To te called after handling a pert measure repeat.
+        /// Prepare for another PartMeasureRepeat within the same measure, not repeating again the notes that have just been repeated once.
+        /// Fixes error 1012 2023.08.30
+        /// </summary>
+        public void OnPartMeasureRepeatEnd()
+        {
+            repetitionStart = null;
+        }
+
+        /// <summary>
         /// To be called whenever a new node is added to a measure
         /// </summary>
         /// <param name="xmlNode"></param>
@@ -115,9 +125,14 @@ namespace BrailleMusicDecoder
             {
                 nodesToRepeat.Add(node);
                 // Extract duration
+                int durationInt = 0;
                 XmlNode durationElement = node.SelectSingleNode("duration");
-                string durationString = durationElement.InnerText;
-                int durationInt = int.Parse(durationString);                
+                if (null != durationElement)
+                {
+                    Logger.LogCF(string.Format(": No DurationElement found. NumberOfRepetitions={0}", numberOfRepetitions));
+                    string durationString = durationElement.InnerText;
+                    durationInt = int.Parse(durationString);
+                }
                 totalRepeatDuration += durationInt;
                 nodeDurations.Add(durationInt); // Pick up the durations on the way
                 node = node.NextSibling;
@@ -150,6 +165,7 @@ namespace BrailleMusicDecoder
             }
             int finalCount = measureNode.ChildNodes.Count;
             Logger.LogCF(string.Format(": MeasureNumber={0} NodesToRepeat={1} changing number of nodes from {2} to {3} ", measureNumber, nodesToRepeat.Count,initialCount,finalCount));
+            OnPartMeasureRepeatEnd(); // Prepare for another PartMeasureRepeat within the same measure
         }
 
         MusicXmlBuilderStatePart musicXmlBuilderStatePart;
