@@ -13,6 +13,15 @@ copy ..\..\..\ThirdPartyDlls\i386\nvdaControllerClient32.dll
 copy ..\..\..\ThirdPartyDlls\7Zip\7z.dll
 copy ..\..\..\ThirdPartyDlls\7Zip\7z.exe
 
+rem Create an empty directory "\MusicXmlReader\bin\Debug\MusicXml samples" and xcopy all file from ..<Solution>\Tactile MusicXmlReader\MusicXmlSamples there:
+
+rmdir "MusicXml samples" /S/Q
+
+mkdir "MusicXml samples"
+
+xcopy   ..\..\..\MusicXmlSamples "MusicXml samples" /s/e/v
+
+
 exit
 
 rem dir "..\..\..\Documentation\Official Documentation"
