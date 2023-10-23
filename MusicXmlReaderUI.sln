@@ -362,6 +362,74 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "i386", "i386", "{56288F23-B
 		ThirdPartyDlls\I386\readme.jsj.txt = ThirdPartyDlls\I386\readme.jsj.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MusicXmlSamples", "MusicXmlSamples", "{F5C0F584-5E39-48CC-B2D8-FEB09A4E6124}"
+	ProjectSection(SolutionItems) = preProject
+		MusicXmlSamples\Billie_Jean.xml = MusicXmlSamples\Billie_Jean.xml
+		MusicXmlSamples\Danmark nu blunder den lyse nat.xml = MusicXmlSamples\Danmark nu blunder den lyse nat.xml
+		MusicXmlSamples\Hotel_California_Full_Intro.xml = MusicXmlSamples\Hotel_California_Full_Intro.xml
+		MusicXmlSamples\Moments Musicaux Op16 No4.xml = MusicXmlSamples\Moments Musicaux Op16 No4.xml
+		MusicXmlSamples\Murder_At_The_Masquerade_2016-17.xml = MusicXmlSamples\Murder_At_The_Masquerade_2016-17.xml
+		MusicXmlSamples\Revolutionary Study.xml = MusicXmlSamples\Revolutionary Study.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cafe-Puccini.dk", "Cafe-Puccini.dk", "{682E3579-2B48-4960-A23D-A4A926FA5F78}"
+	ProjectSection(SolutionItems) = preProject
+		MusicXmlSamples\Cafe-Puccini.dk\01.O_Fortuna.xml = MusicXmlSamples\Cafe-Puccini.dk\01.O_Fortuna.xml
+		MusicXmlSamples\Cafe-Puccini.dk\Danmark nu blunder den lyse nat.xml = MusicXmlSamples\Cafe-Puccini.dk\Danmark nu blunder den lyse nat.xml
+		MusicXmlSamples\Cafe-Puccini.dk\stille_hjerte_sol_gaar_ned.xml = MusicXmlSamples\Cafe-Puccini.dk\stille_hjerte_sol_gaar_ned.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JuleMusik", "JuleMusik", "{901FE25F-D39F-4E6B-8D5B-F437094B883C}"
+	ProjectSection(SolutionItems) = preProject
+		MusicXmlSamples\Julemusik\Maria gennem torne ga.xml = MusicXmlSamples\Julemusik\Maria gennem torne ga.xml
+		MusicXmlSamples\Julemusik\O_Little_Town_of_Bethlehem-_SATB.xml = MusicXmlSamples\Julemusik\O_Little_Town_of_Bethlehem-_SATB.xml
+		MusicXmlSamples\Julemusik\White_Christmas.xml = MusicXmlSamples\Julemusik\White_Christmas.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MuseScore.com", "MuseScore.com", "{C56D1FAC-1FAA-4683-A5F4-6B3AA5D7F455}"
+	ProjectSection(SolutionItems) = preProject
+		MusicXmlSamples\MuseScore.com\Beethoven_sonata_27_n2.xml = MusicXmlSamples\MuseScore.com\Beethoven_sonata_27_n2.xml
+		MusicXmlSamples\MuseScore.com\Bohemian_Rhapsody_kvarteto_klavir_zpev.xml = MusicXmlSamples\MuseScore.com\Bohemian_Rhapsody_kvarteto_klavir_zpev.xml
+		MusicXmlSamples\MuseScore.com\Magnificat.xml = MusicXmlSamples\MuseScore.com\Magnificat.xml
+		MusicXmlSamples\MuseScore.com\Matador_Original.xml = MusicXmlSamples\MuseScore.com\Matador_Original.xml
+		MusicXmlSamples\MuseScore.com\Mitt_i_tiden.xml = MusicXmlSamples\MuseScore.com\Mitt_i_tiden.xml
+		MusicXmlSamples\MuseScore.com\Murder_At_The_Masquerade_2016-17.xml = MusicXmlSamples\MuseScore.com\Murder_At_The_Masquerade_2016-17.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenMusicScore.org", "OpenMusicScore.org", "{CEC156B7-FD18-4B8A-8AD8-A9C28A5AD060}"
+	ProjectSection(SolutionItems) = preProject
+		MusicXmlSamples\OpenMusicScore.org\Elite Syncopations.xml = MusicXmlSamples\OpenMusicScore.org\Elite Syncopations.xml
+		MusicXmlSamples\OpenMusicScore.org\Entertainer.xml = MusicXmlSamples\OpenMusicScore.org\Entertainer.xml
+		MusicXmlSamples\OpenMusicScore.org\Fantasia and Imitation BWV563.xml = MusicXmlSamples\OpenMusicScore.org\Fantasia and Imitation BWV563.xml
+		MusicXmlSamples\OpenMusicScore.org\Fugue in G Minor.xml = MusicXmlSamples\OpenMusicScore.org\Fugue in G Minor.xml
+		MusicXmlSamples\OpenMusicScore.org\Maple Leaf Rag.xml = MusicXmlSamples\OpenMusicScore.org\Maple Leaf Rag.xml
+		MusicXmlSamples\OpenMusicScore.org\Moments Musicaux Op16 No4.xml = MusicXmlSamples\OpenMusicScore.org\Moments Musicaux Op16 No4.xml
+		MusicXmlSamples\OpenMusicScore.org\NOCTURNE number 1.celloGuitare.xml = MusicXmlSamples\OpenMusicScore.org\NOCTURNE number 1.celloGuitare.xml
+		MusicXmlSamples\OpenMusicScore.org\Revolutionary Study.xml = MusicXmlSamples\OpenMusicScore.org\Revolutionary Study.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "www.musicxml.com", "www.musicxml.com", "{52209C59-1888-4C5B-BF02-178325883851}"
+	ProjectSection(SolutionItems) = preProject
+		MusicXmlSamples\www.musicxml.com\ActorPreludeSample.xml = MusicXmlSamples\www.musicxml.com\ActorPreludeSample.xml
+		MusicXmlSamples\www.musicxml.com\BeetAnGeSample.xml = MusicXmlSamples\www.musicxml.com\BeetAnGeSample.xml
+		MusicXmlSamples\www.musicxml.com\Binchois.xml = MusicXmlSamples\www.musicxml.com\Binchois.xml
+		MusicXmlSamples\www.musicxml.com\BrahWiMeSample.xml = MusicXmlSamples\www.musicxml.com\BrahWiMeSample.xml
+		MusicXmlSamples\www.musicxml.com\BrookeWestSample.xml = MusicXmlSamples\www.musicxml.com\BrookeWestSample.xml
+		MusicXmlSamples\www.musicxml.com\Chant.xml = MusicXmlSamples\www.musicxml.com\Chant.xml
+		MusicXmlSamples\www.musicxml.com\DebuMandSample.xml = MusicXmlSamples\www.musicxml.com\DebuMandSample.xml
+		MusicXmlSamples\www.musicxml.com\Dichterliebe01.xml = MusicXmlSamples\www.musicxml.com\Dichterliebe01.xml
+		MusicXmlSamples\www.musicxml.com\Echigo-Jishi.xml = MusicXmlSamples\www.musicxml.com\Echigo-Jishi.xml
+		MusicXmlSamples\www.musicxml.com\FaurReveSample.xml = MusicXmlSamples\www.musicxml.com\FaurReveSample.xml
+		MusicXmlSamples\www.musicxml.com\MahlFaGe4Sample.xml = MusicXmlSamples\www.musicxml.com\MahlFaGe4Sample.xml
+		MusicXmlSamples\www.musicxml.com\MozaChloSample.xml = MusicXmlSamples\www.musicxml.com\MozaChloSample.xml
+		MusicXmlSamples\www.musicxml.com\MozartPianoSonata.xml = MusicXmlSamples\www.musicxml.com\MozartPianoSonata.xml
+		MusicXmlSamples\www.musicxml.com\MozartTrio.xml = MusicXmlSamples\www.musicxml.com\MozartTrio.xml
+		MusicXmlSamples\www.musicxml.com\MozaVeilSample.xml = MusicXmlSamples\www.musicxml.com\MozaVeilSample.xml
+		MusicXmlSamples\www.musicxml.com\Saltarello.xml = MusicXmlSamples\www.musicxml.com\Saltarello.xml
+		MusicXmlSamples\www.musicxml.com\SchbAvMaSample.xml = MusicXmlSamples\www.musicxml.com\SchbAvMaSample.xml
+		MusicXmlSamples\www.musicxml.com\Telemann.xml = MusicXmlSamples\www.musicxml.com\Telemann.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -625,6 +693,11 @@ Global
 		{438ADB95-EAED-4164-A8DD-4D0598E73C39} = {3FD06CF7-583C-4E50-92FC-3D491A5B60A1}
 		{1440FB39-0548-4C16-92D6-674453CC4EA9} = {3FD06CF7-583C-4E50-92FC-3D491A5B60A1}
 		{56288F23-B557-4CA4-9B03-536202DCB0E8} = {3FD06CF7-583C-4E50-92FC-3D491A5B60A1}
+		{682E3579-2B48-4960-A23D-A4A926FA5F78} = {F5C0F584-5E39-48CC-B2D8-FEB09A4E6124}
+		{901FE25F-D39F-4E6B-8D5B-F437094B883C} = {F5C0F584-5E39-48CC-B2D8-FEB09A4E6124}
+		{C56D1FAC-1FAA-4683-A5F4-6B3AA5D7F455} = {F5C0F584-5E39-48CC-B2D8-FEB09A4E6124}
+		{CEC156B7-FD18-4B8A-8AD8-A9C28A5AD060} = {F5C0F584-5E39-48CC-B2D8-FEB09A4E6124}
+		{52209C59-1888-4C5B-BF02-178325883851} = {F5C0F584-5E39-48CC-B2D8-FEB09A4E6124}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F56F3540-8991-49FF-BE35-F2288FD224A2}
