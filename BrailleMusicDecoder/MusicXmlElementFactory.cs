@@ -714,6 +714,7 @@ namespace BrailleMusicDecoder
                 case InputSubCategoryEnum.ClefG: return ClefElement("G", 2, 0);
                 case InputSubCategoryEnum.HandRight: return ClefElement("G", 2, 0);
                 case InputSubCategoryEnum.HandLeft: return ClefElement("F", 4, 0);
+                case InputSubCategoryEnum.HandPedal: return ClefElement("F", 4, 0);
             }
             Logger.LogCF(string.Format("ClefElement: Illegal inputSubCategory={0}", inputSubCategory.ToString()));
             return null;

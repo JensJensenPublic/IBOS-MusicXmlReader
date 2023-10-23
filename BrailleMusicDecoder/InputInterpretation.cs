@@ -730,6 +730,8 @@ string ToLocalizedString(InputCategoryEnum inputCategory,InputSubCategoryEnum su
                         {
                             case InputSubCategoryEnum.PartMeasureRepeatOnce: return ResourcesForBrailleMusicDecoder.InputCategoryEnum_OthervaluesPartMeasureRepeat;
                             case InputSubCategoryEnum.PartMeasureRepeatTwice: return ResourcesForBrailleMusicDecoder.InputSubCategoryEnum_OtherValuesPartMeasureRepeatTwice;
+                            case InputSubCategoryEnum.PartMeasureRepeatThreeTimes: return ResourcesForBrailleMusicDecoder.InputSubCategoryEnum_OtherValuesPartMeasureRepeatThreeTimes;
+#warning Missing localization
                             default:
                                 Logger.LogCF(string.Format(": Unimplemented other value {0}", subCategory));
                                 return "?";

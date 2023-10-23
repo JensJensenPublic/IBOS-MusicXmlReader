@@ -117,6 +117,7 @@ namespace BrailleMusicDecoder
 
             const int repeat = dot2356;
             ii.Add(rawValues, new IntegerList(repeat, repeat), InputCategoryEnum.PartMeasureRepeat, "2", InputSubCategoryEnum.PartMeasureRepeatTwice); // BANA 2015 Measure or part-measure repeat (18) 18.1–18.5
+            ii.Add(rawValues, new IntegerList(repeat, repeat, repeat), InputCategoryEnum.PartMeasureRepeat, "3", InputSubCategoryEnum.PartMeasureRepeatThreeTimes); // Added 2023.08.24
             // FullMeasureRepeat
             //            allInputInterpretations.Add(rawValues, new IntegerList(repeat, noDots), InputCategoryEnum.OtherValues, "", InputSubCategoryEnum.OthervaluesFullMeasureRepeatNoInitialBlank); // BANA 2015: 18.2. Full-Measure Repeats
             ii.Add(rawValues, new IntegerList(noDots, repeat), OtherValues, "1", InputSubCategoryEnum.OthervaluesFullMeasureRepeat); // BANA 2015: 18.2. Full-Measure Repeats
@@ -222,8 +223,9 @@ namespace BrailleMusicDecoder
             ii.Add(rawValues, new IntegerList(dot6, dot3, carriageReturn, lineFeed, HandLeft, Hand, Hand), InputCategoryEnum.ToMusicBraille, stringLeft + "*** ReadDownWard ***", InputSubCategoryEnum.HandLeft, InputSubSubCategoryEnum.HandLeftIntervalsReadDownward);
             ii.Add(rawValues, new IntegerList(dot6, dot3, carriageReturn, lineFeed, HandLeft, Hand, dot3), InputCategoryEnum.ToMusicBraille, stringLeft, InputSubCategoryEnum.HandLeft, "."); // Dot 3 appended
 
-
-
+            // Pedal. Same structure as for Hands
+            string stringPedal = "Pedal"; // ResourcesForBrailleMusicDecoder.InputValuePedal; // NOTE: The part-name is needed by the MUSICXML generator
+            ii.Add(rawValues, new IntegerList(HandPedal, Hand), InputCategoryEnum.Hand, stringPedal, InputSubCategoryEnum.HandPedal);
 
 
 
@@ -346,8 +348,8 @@ namespace BrailleMusicDecoder
             ii.Add(rawValues, new IntegerList(noDots, noDots), InputCategoryEnum.NewMeasure,"",InputSubCategoryEnum.ExtraSpace1); // A measurebar followed by a single space
             ii.Add(rawValues, new IntegerList(noDots, noDots, noDots), InputCategoryEnum.NewMeasure, "", InputSubCategoryEnum.ExtraSpace2); // A measurebar followed by 2 empty spaces
             ii.Add(rawValues, new IntegerList(noDots, noDots, noDots,noDots), InputCategoryEnum.NewMeasure, "", InputSubCategoryEnum.ExtraSpace3); // A measurebar followed by 3 empty spaces
-            ii.Add(rawValues, new IntegerList(carriageReturn, lineFeed,  noDots, noDots, noDots, noDots), InputCategoryEnum.LineContinuation,"", InputSubCategoryEnum.ExtraSpace3); // CR/LF followed by 4 empty spaces
-            ii.Add(rawValues, new IntegerList(carriageReturn, lineFeed, noDots, noDots, noDots, noDots, noDots), InputCategoryEnum.LineContinuation,"", InputSubCategoryEnum.ExtraSpace4); // CR/LF followed by 5 empty spaces
+            ii.Add(rawValues, new IntegerList(carriageReturn, lineFeed,  noDots, noDots, noDots, noDots), InputCategoryEnum.LineContinuation,"", InputSubCategoryEnum.ExtraSpace4); // CR/LF followed by 4 empty spaces
+            ii.Add(rawValues, new IntegerList(carriageReturn, lineFeed, noDots, noDots, noDots, noDots, noDots), InputCategoryEnum.LineContinuation,"", InputSubCategoryEnum.ExtraSpace5); // CR/LF followed by 5 empty spaces
 
 
             // The special representation of "First MeasureNUmber", "NumberOfMeasures" is started with a lowered ("0" or "1") followed by an underscore :

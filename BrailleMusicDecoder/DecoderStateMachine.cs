@@ -134,7 +134,8 @@ namespace BrailleMusicDecoder
         const InputCategoryEnum allowedInMusicStates = InputCategoryEnum.Note | InputCategoryEnum.Octave | InputCategoryEnum.Rest | InputCategoryEnum.InsertedRest | InputCategoryEnum.NewMeasure | InputCategoryEnum.SectionHeader
             | InputCategoryEnum.MeasureDivision | InputCategoryEnum.InAccordPartMeasure | InputCategoryEnum.InAccordFullMeasure | InputCategoryEnum.Clef
             | InputCategoryEnum.ToMusicBraille | InputCategoryEnum.ToText | InputCategoryEnum.TimeModification | InputCategoryEnum.GeneralSigns
-            | InputCategoryEnum.ControlCharCRLF | InputCategoryEnum.ControlCharCRLFNumber | InputCategoryEnum.ControlCharFF | InputCategoryEnum.MusicalHyphenAndSpace
+            | InputCategoryEnum.ControlCharCRLF // | InputCategoryEnum.ControlCharCRLFNumber was removeded 2023.08.28 to fix Error 1010
+            | InputCategoryEnum.ControlCharFF | InputCategoryEnum.MusicalHyphenAndSpace 
             | InputCategoryEnum.LineContinuation | InputCategoryEnum.PrintPagination | InputCategoryEnum.GuideDots | InputCategoryEnum.OtherValues | InputCategoryEnum.PartMeasureRepeat;
 
         const InputCategoryEnum allowedInNumberStates = InputCategoryEnum.Digit | InputCategoryEnum.Denominator | InputCategoryEnum.Space | InputCategoryEnum.ToMusicBraille

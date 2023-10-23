@@ -313,6 +313,7 @@ namespace BrailleMusicDecoder
                         {
                             case InputSubCategoryEnum.PartMeasureRepeatOnce: numberOfRepetitions = 1; break;
                             case InputSubCategoryEnum.PartMeasureRepeatTwice: numberOfRepetitions = 2; break;
+                            case InputSubCategoryEnum.PartMeasureRepeatThreeTimes: numberOfRepetitions = 3; break;
                             default:
                                 Logger.LogCF("");
                                 throw new Exception("");

@@ -104,7 +104,9 @@
     <Compile Include="VoiceList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ResourcesForBrailleMusicDecoder.da-DK.resx" />
+    <EmbeddedResource Include="ResourcesForBrailleMusicDecoder.da-DK.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ResourcesForBrailleMusicDecoder.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesForBrailleMusicDecoder.Designer.cs</LastGenOutput>

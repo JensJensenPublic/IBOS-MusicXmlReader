@@ -1051,6 +1051,15 @@ namespace BrailleMusicDecoder {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Part measure repeat 3 times.
+        /// </summary>
+        internal static string InputSubCategoryEnum_OtherValuesPartMeasureRepeatThreeTimes {
+            get {
+                return ResourceManager.GetString("InputSubCategoryEnum_OtherValuesPartMeasureRepeatThreeTimes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Part measure repeat twice.
         /// </summary>
         internal static string InputSubCategoryEnum_OtherValuesPartMeasureRepeatTwice {

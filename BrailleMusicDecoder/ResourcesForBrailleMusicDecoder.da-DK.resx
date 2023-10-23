@@ -629,4 +629,7 @@
   <data name="InputCategoryEnum_ControlCharFF" xml:space="preserve">
     <value>Ny side</value>
   </data>
+  <data name="InputSubCategoryEnum_OtherValuesPartMeasureRepeatThreeTimes" xml:space="preserve">
+    <value>Deltaktsgentagelse 3 gange</value>
+  </data>
 </root>

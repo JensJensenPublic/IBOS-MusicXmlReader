@@ -90,6 +90,7 @@ namespace BrailleMusicDecoder
                     {
                         case InputSubCategoryEnum.HandRight: partName = input.FriendlyValue; break;
                         case InputSubCategoryEnum.HandLeft: partName = input.FriendlyValue; break;
+                        case InputSubCategoryEnum.HandPedal: partName = input.FriendlyValue; break;
                         default: partName = "NoName"; break;
                     }
                     // Change state to MusicXmlBuilderStateEnum.Part and let the new state handle the input
@@ -159,6 +160,8 @@ namespace BrailleMusicDecoder
                 case "7/8": musicXmlBuilder.SetDefaultBeatParameters(7, 8); break;
                 case "8/8": musicXmlBuilder.SetDefaultBeatParameters(8, 8); break;
                 case "9/8": musicXmlBuilder.SetDefaultBeatParameters(9, 8); break;
+
+  //              case "C": musicXmlBuilder.SetDefaultBeatParameters(4, 4); break; // 2013.08.28
 
                 default:
                     LogCF(string.Format(": Unexpected input parameter '{0}'", stringValue));  break;

@@ -512,7 +512,9 @@ namespace BrailleMusicDecoder
 #warning TODO Remove existing ClefElement first
 
 
-                case InputCategoryEnum.Beat: OnBeat(input); break;
+                case InputCategoryEnum.Beat: OnBeat(input);
+                    Logger.LogCF("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+                    break;
                     //GetBeatParameters(input, out currentBeats, out currentBeatType);
                     //currentAttributesElement.ReplaceChild(musicXmlElementFactory.TimeElement(currentBeats, currentBeatType), currentAttributesElement.SelectSingleNode("time"));
                     //// Append a TimeElement, but it must be packed within an AttributesElement.
@@ -745,6 +747,7 @@ namespace BrailleMusicDecoder
                         {
                             case InputSubCategoryEnum.PartMeasureRepeatOnce: brailleRepeatHandler.RepeatFromRepetitionStart(); break;// Repeat from the start of the latest  measure og fullpartInAccord, whatever is latest
                             case InputSubCategoryEnum.PartMeasureRepeatTwice: brailleRepeatHandler.RepeatFromRepetitionStart(2); break; // Repeat twice from the start of the latest  measure og fullpartInAccord, whatever is latest
+                            case InputSubCategoryEnum.PartMeasureRepeatThreeTimes: brailleRepeatHandler.RepeatFromRepetitionStart(3); break; // Repeat three times from the start of the latest  measure og fullpartInAccord, whatever is latest
                             default:    break;
 
                         }

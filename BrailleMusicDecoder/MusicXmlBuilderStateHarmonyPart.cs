@@ -379,6 +379,7 @@ namespace BrailleMusicDecoder
                         {
                             case InputSubCategoryEnum.PartMeasureRepeatOnce: break;
                             case InputSubCategoryEnum.PartMeasureRepeatTwice: break;
+                            case InputSubCategoryEnum.PartMeasureRepeatThreeTimes: break;
                             default: break;
                         }
                     } break;

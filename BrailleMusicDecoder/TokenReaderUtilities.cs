@@ -233,7 +233,7 @@ namespace BrailleMusicDecoder
                 //                case dot14: otherValues = "Legato"; break;
 //                case dot2356: otherValuesSubcategory = InputSubCategoryEnum.OtherValuesPartMeasureRepeat; otherValues = ""; break; // BANA 2015 Measure or part-measure repeat (18) 18.1–18.5
                 //case dot25: otherValues = "Newline"; break; // Same as Character("-") 
-                case dot235: otherValuesSubcategory = InputSubCategoryEnum.OtherValuesTrill; otherValues = ToLocalizedString(OtherValuesNameEnum.trill); break;
+                case dot235: otherValuesSubcategory = InputSubCategoryEnum.OtherValuesTrill; otherValues = ""; /*  ToLocalizedString(OtherValuesNameEnum.trill); */ break;
                 case dot26: otherValuesSubcategory = InputSubCategoryEnum.OthervaluesShortAppoggiatura; otherValues = ""; break; // BANA 2015: Table 16. Ornaments
                                                                                                                                  //                case dot256: otherValues = "DoublebeatOnNote"; break; // For the time being we omit this because it clashes with 4 lowered in 4/4
                 default: return;

@@ -23,10 +23,14 @@ namespace BrailleMusicDecoder
     public class TypeAmbiguityHandler
     {
         // Some simple shorthands for reducing the amount of text:
+        private const InputSubSubCategoryEnum aNtWholeOr16nd = InputSubSubCategoryEnum.NoteTypeFullMeasureOrWholeOr16th;
         private const InputSubSubCategoryEnum aNt2ndOr32nd = InputSubSubCategoryEnum.NoteTypeHalfOr32nd;
+        private const InputSubSubCategoryEnum aNt4thOr64th = InputSubSubCategoryEnum.NoteTypeQuarterOr64th;
         private const InputSubSubCategoryEnum aNt8thOr128th = InputSubSubCategoryEnum.NoteTypeEighthOr128th;
         private const UnAmbiguousNoteTypeEnum uNt16th = UnAmbiguousNoteTypeEnum.Type16th;
         private const UnAmbiguousNoteTypeEnum uNt32nd = UnAmbiguousNoteTypeEnum.Type32nd;
+        private const UnAmbiguousNoteTypeEnum uNt64nd = UnAmbiguousNoteTypeEnum.Type64th;
+        private const UnAmbiguousNoteTypeEnum uNt128th = UnAmbiguousNoteTypeEnum.Type128th;
 
         private bool useExperimentalCode = false;
 
@@ -287,18 +291,20 @@ namespace BrailleMusicDecoder
                     for (int i = 0; (i <= nrp.Count - 4);)
                     {
                         // Check the ambiguous notetypes for grouping of 1/16th
-                        if ((nrp[i].SubSubCategory == aNt2ndOr32nd)
-                        && (nrp[i + 1].SubSubCategory == aNt8thOr128th)
+                        InputSubSubCategoryEnum firstNoteInGroup = nrp[i].SubSubCategory;
+                        UnAmbiguousNoteTypeEnum groupingNoteType = GetGroupingNoteType(firstNoteInGroup); // Returns "Unknown" if grouping is not supported!"
+                        if ((UnAmbiguousNoteTypeEnum.TypeUnknown != groupingNoteType) // Either a 1/32 or a  1/16                    
+                        && (nrp[i + 1].SubSubCategory == aNt8thOr128th) // followed by 3 1/8
                         && (nrp[i + 2].SubSubCategory == aNt8thOr128th)
                         && (nrp[i + 3].SubSubCategory == aNt8thOr128th))
                         {
-                            // Identified a grouping of 4 notes. Set the Unambiguous values ti 1/16
-                            nrp[i].UnAmbiguousNoteType = uNt32nd;
-                            nrp[i + 1].UnAmbiguousNoteType = uNt32nd;
-                            nrp[i + 2].UnAmbiguousNoteType = uNt32nd;
-                            nrp[i + 3].UnAmbiguousNoteType = uNt32nd;
+                            // Identified a grouping of 4 notes. Set the Unambiguous values ti 1/16                    
+                            nrp[i].UnAmbiguousNoteType = groupingNoteType;
+                            nrp[i + 1].UnAmbiguousNoteType = groupingNoteType;
+                            nrp[i + 2].UnAmbiguousNoteType = groupingNoteType;
+                            nrp[i + 3].UnAmbiguousNoteType = groupingNoteType;
                             i += 4;
-                            ConditionalLogCF(string.Format(": Grouping {0} notes or rests as 1/16;", 4));
+                            ConditionalLogCF(string.Format(": Grouping {0} notes or rests as {1};", 4, groupingNoteType));
                         }
                         else
                         {
@@ -327,6 +333,25 @@ namespace BrailleMusicDecoder
 
 
             OnFixFailed(voice);
+        }
+
+
+        /// <summary>
+        /// Returns the unambiguous notetype to be used for grouping of notes of the input type specified
+        /// Retuerns Unknown if grouping is not implemented for the input type specified.
+        /// </summary>
+        /// <param name="subsubCategory"></param>
+        /// <returns></returns>
+        private UnAmbiguousNoteTypeEnum  GetGroupingNoteType(InputSubSubCategoryEnum subsubCategory)
+        {
+            switch (subsubCategory)
+            {
+                case aNtWholeOr16nd: return uNt16th;
+                case aNt2ndOr32nd: return uNt32nd;
+                //case aNt4thOr64th: return uNt64nd; // Maybe later
+                //case aNt8thOr128th: return uNt128th; // Maybe later
+                default: return UnAmbiguousNoteTypeEnum.TypeUnknown;                       
+            } 
         }
 
         private const int DurationOfQuarterNote = MusicXmlBuilderStateMusic.DivisionsPerQuarterNote;

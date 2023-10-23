@@ -100,6 +100,7 @@ namespace BrailleMusicDecoder
         // Hands
         HandRight,
         HandLeft,
+        HandPedal,
         // Accidentals
         AccidentalSharp,
         AccidentalFlat,
@@ -203,6 +204,7 @@ namespace BrailleMusicDecoder
         SlursThatDoNotLeadtoNotes,
         PartMeasureRepeatOnce,
         PartMeasureRepeatTwice,
+        PartMeasureRepeatThreeTimes,
         OthervaluesFullMeasureRepeat,
         //        OthervaluesFullMeasureRepeatOnce,
         OthervaluesFullMeasureRepeatTwice,
@@ -481,6 +483,9 @@ namespace BrailleMusicDecoder
         public const int Hand = dot345;
         public const int HandRight = dot46;
         public const int HandLeft = dot456;
+
+        // Pedal
+        public const int HandPedal = dot45; // Pedal is modelled as a third Hand besides HandRight and HandLeft
 
         // Intervals
         public const int IntervalSecond = dot34;
