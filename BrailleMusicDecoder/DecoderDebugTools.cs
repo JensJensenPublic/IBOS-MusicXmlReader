@@ -20,7 +20,8 @@ namespace BrailleMusicDecoder
         GodmorgenLilleLand,
         Nr76ADuSomGirOsLivOgGørOsGlade,
         SangenOmLarsen,
-        DetErIdagEtVejr
+        DetErIdagEtVejr,
+        AchtKleinePraeludienUndFugen
     };
 
     public class DecoderDebugTools
@@ -47,6 +48,7 @@ namespace BrailleMusicDecoder
             if (fileName.EndsWith("Nr. 76A Du som gir os liv og gør os glade.txt")) return DevelopmentOptionEnum.Nr76ADuSomGirOsLivOgGørOsGlade;
             if (fileName.EndsWith("Nr. 107 Sangen om Larsen.txt")) return DevelopmentOptionEnum.SangenOmLarsen;
             if (fileName.EndsWith("nr 266A 267 Det er i dag et vejr.txt")) return DevelopmentOptionEnum.DetErIdagEtVejr;
+            if (fileName.EndsWith("802631 - Acht kleine Praeludien und Fugen.txt")) return DevelopmentOptionEnum.AchtKleinePraeludienUndFugen;
             return DevelopmentOptionEnum.None;
         }
 
@@ -127,7 +129,11 @@ namespace BrailleMusicDecoder
                     //string harmonyBaseC = ToString(new List<int>() { TokenReader.dot6 });
                     //brailleFileAsUnicode = ReplaceContents(546, brailleFileAsUnicode, illegalAmphersand, harmonyBaseC);
                     break;
-
+                case DevelopmentOptionEnum.AchtKleinePraeludienUndFugen:
+                    char measureBar = (char)(0x2800 + 00);
+                    brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2343, measureBar.ToString()); // Pedal: measurebar between measure 5 and 6 
+                    brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2211, measureBar.ToString()); // LeftHand: measurebar between measure 6 and 7  
+                    break;
                 // case... others to come ..
 
                 default: // No modification is needed !
