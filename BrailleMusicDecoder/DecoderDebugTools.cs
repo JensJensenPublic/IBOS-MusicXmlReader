@@ -131,6 +131,8 @@ namespace BrailleMusicDecoder
                     break;
                 case DevelopmentOptionEnum.AchtKleinePraeludienUndFugen:
                     char measureBar = (char)(0x2800 + 00);
+ //                   brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2786, measureBar.ToString()); // LeftHand: measurebar between measure 14 and 15 
+                    brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2781, measureBar.ToString()); // LeftHand: measurebar between measure 14 and 15 
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2377, measureBar.ToString()); // Pedal: measurebar between measure 10 and 11 
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2343, measureBar.ToString()); // Pedal: measurebar between measure 5 and 6 
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2247, measureBar.ToString()); // LeftHand: measurebar between measure 9 and 10
