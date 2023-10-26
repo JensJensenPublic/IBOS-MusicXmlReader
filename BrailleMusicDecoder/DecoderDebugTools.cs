@@ -136,6 +136,7 @@ namespace BrailleMusicDecoder
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2849, measureBar.ToString()); // LeftHand: measurebar between measure 17 and 18
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2811, measureBar.ToString()); // LeftHand: measurebar between measure 16 and 17 
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2781, measureBar.ToString()); // LeftHand: measurebar between measure 14 and 15 
+                    brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2574, measureBar.ToString()); // Right: measurebar between measure 22 and 23 Strange grouping!
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2539, measureBar.ToString()); // Right: measurebar between measure 20 and 21 
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2472, measureBar.ToString()); // Right: measurebar between measure 16 and 17 
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2377, measureBar.ToString()); // Pedal: measurebar between measure 10 and 11 
