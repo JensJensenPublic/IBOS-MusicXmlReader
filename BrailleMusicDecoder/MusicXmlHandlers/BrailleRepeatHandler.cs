@@ -91,7 +91,7 @@ namespace BrailleMusicDecoder
         private string GetPartInfo()
         {
             MusicXmlBuilderStatePart part = this.musicXmlBuilderStatePart; // Just a shorthand in the following:
-            string message = string.Format(": Part.CurrentMeasureNumber={0} Part.CurrentMeasure.MeasureNumber={1}",part.CurrentMeasureNumber,part.CurrentMeasure.Value);
+            string message = string.Format(": Part.CurrentMeasureNumber={0} Part.CurrentMeasure.MeasureNumber={1}",part.GetCurrentMeasureNumber(), part.CurrentMeasure.Value);
             return message;
         }
 

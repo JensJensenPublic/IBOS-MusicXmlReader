@@ -18,9 +18,12 @@ namespace BrailleMusicDecoder
         public XmlNode CurrentPart { get { return currentPart; } }
         protected MusicXmlMeasureHandler measureHandler;
         protected string CurrentPartName { get { return (CurrentPart == null) ? "null" : currentPart.Attributes.GetNamedItem("id").Value.ToString(); } }
+
         public const int FirstMeasureNumber = 1;
-        protected int currentMeasureNumber = FirstMeasureNumber;
-        public int CurrentMeasureNumber { get { return currentMeasureNumber; } }
+        private int currentMeasureNumber = FirstMeasureNumber;
+        protected int CurrentMeasureNumber { get { return currentMeasureNumber; } set { currentMeasureNumber = value; } }
+        public int GetCurrentMeasureNumber() { return currentMeasureNumber; }
+
         protected XmlNode currentAttributesElement = null;
         public XmlNode CurrentAttributesElement { get { return currentAttributesElement; } }
         //        public const int DivisionsPerQuarterNote = 24; //  Number of divisions of a quarternode. IBOS  MusicXmlReader uses this as default. MuseScore seems to use this as default
@@ -67,7 +70,7 @@ namespace BrailleMusicDecoder
         {
             get
             {
-                return string.Format("Part={0} Voice={1} MeasureNumber={2}", CurrentPartName, currentVoice, currentMeasureNumber);
+                return string.Format("Part={0} Voice={1} MeasureNumber={2}", CurrentPartName, currentVoice, CurrentMeasureNumber);
             }
         }
 
@@ -307,7 +310,7 @@ namespace BrailleMusicDecoder
             part.Attributes.Append(musicXmlElementFactory.NameValueAttribute("id", partName));
             scorePartwiseNode.AppendChild(part);
             currentPart = part;
-            currentMeasureNumber = FirstMeasureNumber;
+            CurrentMeasureNumber = FirstMeasureNumber;
 
             // Create an element for holding such things as key, clef, beat etc until we have a MeasureElement available
             // We need to create empty placeholders because the sequence of XML nodes must be correct !
@@ -326,7 +329,7 @@ namespace BrailleMusicDecoder
         // Common helper method for generating LogLines
         public override string GetDebugInfo()
         {
-            string s = string.Format("Part='{0}' CurrentMeasureNumber={1} InnerXml={2}", this.FriendlyName, currentMeasureNumber, (null == currentMeasure) ? "" : currentMeasure.InnerXml);
+            string s = string.Format("Part='{0}' CurrentMeasureNumber={1} InnerXml={2}", this.FriendlyName, CurrentMeasureNumber, (null == currentMeasure) ? "" : currentMeasure.InnerXml);
             return s;
         }
 
@@ -336,9 +339,9 @@ namespace BrailleMusicDecoder
         public void RepeatLatestFullMeasure()
         { 
             MusicXmlMeasureElement lastMeasure = CurrentPart.LastChild as MusicXmlMeasureElement;
-            MusicXmlMeasureElement clonedMeasure = lastMeasure.Clone(this.currentMeasureNumber);
+            MusicXmlMeasureElement clonedMeasure = lastMeasure.Clone(this.CurrentMeasureNumber);
             CurrentPart.AppendChild(clonedMeasure);
-            this.currentMeasureNumber++;      
+            this.CurrentMeasureNumber++;      
             this.currentMeasure = clonedMeasure;
         }
 
@@ -350,7 +353,7 @@ namespace BrailleMusicDecoder
         protected virtual void RepeatFullMeasures(int repeatOffset, int repeatLength)
         {
             LogCF(string.Format(": {0} : RepeatSequence : Offset={1} Length={2}", LoggerLocationInfo, repeatOffset, repeatLength));
-            int initialCurrentMeasureNumber = this.currentMeasureNumber;
+            int initialCurrentMeasureNumber = this.CurrentMeasureNumber;
             // Specified as "Repetitionstegn og partielle forkortelser" in Refsnæs I page 28
             // Append the measures as specified in offset and length.
             XmlNode thisPart = CurrentPart;
@@ -372,7 +375,7 @@ namespace BrailleMusicDecoder
             this.currentMeasure = lastChild;
             string exitMessage = string.Format(": ReinInserted the original Measure {0} as Measure {1}", oldLastMeasureNumber, newLastMeasureNumber);
             LogCF(exitMessage);
-            this.currentMeasureNumber = initialCurrentMeasureNumber + repeatLength; // Ready for next measure
+            this.CurrentMeasureNumber = initialCurrentMeasureNumber + repeatLength; // Ready for next measure
         }
 
         public void ClonePreviousMeasure()
@@ -381,9 +384,9 @@ namespace BrailleMusicDecoder
             XmlNode previousMeasure = currentMeasure.PreviousSibling;
             XmlNode theClone = previousMeasure.Clone();
             currentPart.InsertAfter(theClone, previousMeasure); // Inserts the clone between previousMeasure and currentMeasure
-            theClone.Attributes.GetNamedItem("number").Value = currentMeasureNumber.ToString(); // Set the measurenumber of the clone to the measurenumber of the node it replaced.
-            currentMeasureNumber++;
-            currentMeasure.Attributes.GetNamedItem("number").Value = currentMeasureNumber.ToString(); // Set the measurenumber of the currentMeasure to its new value
+            theClone.Attributes.GetNamedItem("number").Value = CurrentMeasureNumber.ToString(); // Set the measurenumber of the clone to the measurenumber of the node it replaced.
+            CurrentMeasureNumber++;
+            currentMeasure.Attributes.GetNamedItem("number").Value = CurrentMeasureNumber.ToString(); // Set the measurenumber of the currentMeasure to its new value
             LogCF(string.Format(": Exit  {0}", GetDebugInfo()));
         }
 
@@ -395,10 +398,10 @@ namespace BrailleMusicDecoder
         public void AddNewMeasure(MusicXmlElementFactory.BarStyleEnum barStyleEnum)
         {
             // Add a new measure to the current part
-            currentMeasure = musicXmlElementFactory.MeasureElement(currentMeasureNumber);
+            currentMeasure = musicXmlElementFactory.MeasureElement(CurrentMeasureNumber);
             currentMeasure.AppendChild(musicXmlElementFactory.BarLineElement(barStyleEnum,MusicXmlElementFactory.BarLocationEnum.left)); // Locate the barline first in the measure
 
-            if (FirstMeasureNumber == currentMeasureNumber)
+            if (FirstMeasureNumber == CurrentMeasureNumber)
             {
                 //// Avoid overlap of work-title and first notes by adding a printeæleemnt hee.
                 //XmlNode printElement = elements.PrintElement();
@@ -411,7 +414,7 @@ namespace BrailleMusicDecoder
                 // More to come...
             }
 
-            currentMeasureNumber++;
+            CurrentMeasureNumber++;
             currentVoice = 1; // Voices within a part are numbered from1 and up
             currentPart.AppendChild(currentMeasure);
         }

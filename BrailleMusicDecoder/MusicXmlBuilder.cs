@@ -68,7 +68,7 @@ namespace BrailleMusicDecoder
                 result = string.Format("{0}={1}  {2}'{3}'  {4}{5}",
                     stateNameCaption, stateEnum.ToString(), //                 0 and 1 Example: "State=Part"  PartName='Højre hånd'  Measure=5
                     partNameCaption, stateMusic.FriendlyName, //               2 and 3 Example: "PartName='Højre hånd'" 
-                    measureNumberCaption, stateMusic.CurrentMeasureNumber); // 4 and 5 Example: " Measure=5"
+                    measureNumberCaption, stateMusic.GetCurrentMeasureNumber()); // 4 and 5 Example: " Measure=5"
                 return result;
             }
           
@@ -162,7 +162,7 @@ namespace BrailleMusicDecoder
         {
             MusicXmlBuilderStateMusic musicState = this.state as MusicXmlBuilderStateMusic;
             if (null == musicState) return -1;
-            return musicState.CurrentMeasureNumber;
+            return musicState.GetCurrentMeasureNumber();
         }
 
         /// <summary>

@@ -270,7 +270,7 @@ namespace BrailleMusicDecoder
                 if (!string.IsNullOrEmpty(sectionHeader))
                 {
                     XmlNode direction = musicXmlElementFactory.DirectionElement(string.Format("({0})", sectionHeader));
-                    LogCF(string.Format(": Adding Direction containing Sectionheader='{0}' to Measure={1} Part={2}", sectionHeader, currentMeasureNumber,CurrentPartName));
+                    LogCF(string.Format(": Adding Direction containing Sectionheader='{0}' to Measure={1} Part={2}", sectionHeader, CurrentMeasureNumber,CurrentPartName));
                     CurrentMeasure.AppendChild(direction);
                 }
             }
@@ -868,7 +868,7 @@ namespace BrailleMusicDecoder
         // For Logging only
         private string LoggingInfo()
         {
-            string result = string.Format("Part={0} MeasureNumber={1}", this.CurrentPartName, this.currentMeasureNumber);
+            string result = string.Format("Part={0} MeasureNumber={1}", this.CurrentPartName, this.CurrentMeasureNumber);
             return result;
         }
 
