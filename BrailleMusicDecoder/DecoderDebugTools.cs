@@ -131,6 +131,7 @@ namespace BrailleMusicDecoder
                     break;
                 case DevelopmentOptionEnum.AchtKleinePraeludienUndFugen:
                     char measureBar = (char)(0x2800 + 00);
+                    brailleFileAsUnicode = DeleteFrom(brailleFileAsUnicode, 3190); // Delete everything from measure 29
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 3118, measureBar.ToString()); // Pedal: measurebar between measure 23 and 24
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 3080, measureBar.ToString()); // Pedal: measurebar between measure 17 and 18
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2989, measureBar.ToString()); // LeftHand: measurebar between measure 26 and 27
@@ -194,6 +195,12 @@ namespace BrailleMusicDecoder
         {
             UserWarnings.LogUserInsertionWarning(string.Format("Inserted {0} ", stringToInsert), target, index, stringToInsert, Decoder.ToDotNumbers(stringToInsert));
             return target.Insert(index, stringToInsert);
+        }
+
+        private string DeleteFrom(string target, int index)
+        {
+            return target.Substring(0, index);
+#warning TODO Insert warning here
         }
 
 
