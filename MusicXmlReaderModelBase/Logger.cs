@@ -56,6 +56,13 @@ namespace MusicXmlReaderModel
         static private string currentMusicXmlPath;
         static public string CurrentMusicXmlPath { get { return (null == currentMusicXmlPath) ? "" : currentMusicXmlPath; } set { currentMusicXmlPath = value; } }
 
+        static private int currentMusicBrailleMeasureNumber;
+        /// <summary>
+        /// Exclusively used for logging and debuggging
+        /// </summary>
+        static public int CurrentMusicBrailleMeasureNumber { get { return currentMusicBrailleMeasureNumber; }  set{ currentMusicBrailleMeasureNumber = value; } } 
+
+
         static private Int64 globalCount = 0;
         static public Int64 GlobalCount { get { return globalCount; } }
 

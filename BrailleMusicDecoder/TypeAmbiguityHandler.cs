@@ -121,6 +121,8 @@ namespace BrailleMusicDecoder
         /// <returns>true <==> The current measure is not empty</returns>
         private bool OnEndOfCurrentMeasure(List<InputInterpretation> inputSequence)
         {
+            BreakInMeasure(24); // Break here during debugging
+
             // First check if measure contains notes, rests or puctuations
             // Also find the set of all Categories represented in the inputsequence
             InputCategoryEnum categoriesRepresented = 0;
@@ -554,7 +556,7 @@ namespace BrailleMusicDecoder
             bool result = false;
             if (measureNumber == musicXmlBuilder.GetCurrentMeasureNumber())
             {
-                //Logger.LogCF1(string.Format("BreakPoint in measure={0}", measureNumber));
+                Logger.LogCF1(string.Format("BreakPoint in measure={0}", measureNumber));
                 result = true;
             }
             return result;

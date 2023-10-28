@@ -21,7 +21,7 @@ namespace BrailleMusicDecoder
 
         public const int FirstMeasureNumber = 1;
         private int currentMeasureNumber = FirstMeasureNumber;
-        protected int CurrentMeasureNumber { get { return currentMeasureNumber; } set { currentMeasureNumber = value; } }
+        protected int CurrentMeasureNumber { get { return currentMeasureNumber; } set { currentMeasureNumber = value; Logger.CurrentMusicBrailleMeasureNumber = currentMeasureNumber; } }
         public int GetCurrentMeasureNumber() { return currentMeasureNumber; }
 
         protected XmlNode currentAttributesElement = null;
