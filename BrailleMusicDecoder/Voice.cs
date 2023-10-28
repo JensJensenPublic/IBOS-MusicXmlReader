@@ -10,6 +10,42 @@ namespace BrailleMusicDecoder
     /// </summary>
     class Voice
     {
+
+        public void ExpandPartMeasureRepeats()
+        {
+            // Make a fast way out in the typical case!
+            bool found = false;
+            foreach (InputInterpretation i in inputInterpretations)
+            {
+                if (i.Category == InputCategoryEnum.PartMeasureRepeat) { found = true; } 
+            }
+            if (!found) { return; }
+
+            // At least 1 PartMeasureRepeat was found. Expand all of them:
+
+            List<InputInterpretation> result = new List<InputInterpretation>();
+            List<InputInterpretation> repeats = new List<InputInterpretation>();
+
+            foreach (InputInterpretation i in inputInterpretations)
+            {
+                switch (i.Category)
+                {
+                    case InputCategoryEnum.PartMeasureRepeat:
+                        // When a PartMeasureRepeat occurs we add the items received since last time
+                        result.AddRange(repeats);
+                        Logger.LogCF(string.Format(": Repeated {0} items", repeats.Count));
+                        repeats.Clear();
+                        break;
+                    default:
+                        result.Add(i);
+                        repeats.Add(i);
+                        break;
+                }
+            }
+            inputInterpretations.Clear();
+            inputInterpretations.AddRange(result);
+        }
+
         public enum VoiceCategoryEnum
         { 
             Division0,  // Occured before a MeasureDivision mark 

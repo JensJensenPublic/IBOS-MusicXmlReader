@@ -199,10 +199,11 @@ namespace BrailleMusicDecoder
             }
             return difference;
         }
-
+  
 
         private void OnEndOFVoice(Voice voice)
-        {       
+        {
+            voice.ExpandPartMeasureRepeats(); // Start by expanding all PartMasure repeats. 
 
             int dif = DurationDifference(voice);
             if (0 == dif) return; // The actual length of the inputsequence when using default values (1/2 1/4 1/8 1/16) for the ambiguities notetypes fits the expectation. Leave it there! 
