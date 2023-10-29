@@ -10,19 +10,21 @@ namespace BrailleMusicDecoder
     /// </summary>
     class Voice
     {
+        private bool Contains(InputCategoryEnum inputCategoryEnum)
+        {
+            foreach (InputInterpretation i in inputInterpretations)
+            {
+                if (i.Category == inputCategoryEnum) return true;
+            }
+            return false;
+        }
 
         public void ExpandPartMeasureRepeats()
         {
             // Make a fast way out in the typical case!
-            bool found = false;
-            foreach (InputInterpretation i in inputInterpretations)
-            {
-                if (i.Category == InputCategoryEnum.PartMeasureRepeat) { found = true; } 
-            }
-            if (!found) { return; }
+            if (!this.Contains(InputCategoryEnum.PartMeasureRepeat)) return;        
 
             // At least 1 PartMeasureRepeat was found. Expand all of them:
-
             List<InputInterpretation> result = new List<InputInterpretation>();
             List<InputInterpretation> repeats = new List<InputInterpretation>();
 
