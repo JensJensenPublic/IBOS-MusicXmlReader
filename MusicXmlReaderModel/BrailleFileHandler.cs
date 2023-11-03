@@ -219,7 +219,7 @@ namespace MusicXmlReaderModel
         }
 
 
-        private string ToUnicode(byte[] bytes)
+        protected string ToUnicode(byte[] bytes)
         {
             StringBuilder sb = new StringBuilder(); // The valid bytes
             StringBuilder ib = new StringBuilder(); // The invalid bytes for logging
@@ -270,14 +270,14 @@ namespace MusicXmlReaderModel
         /// Reads a file containing MusicBraille information and returns its contents as a UNICODE string
         /// </summary>
         /// <param name="fullFilefileName"></param>
-        protected string ReadBytesFromFile(string fullFileName)
+        protected virtual string ReadBytesFromFile(string fullFileName)
         {
             byte[] bytes;
             string result = null;
             try
             {
                 bytes = File.ReadAllBytes(fullFileName);
-                Logger.LogCF(string.Format(": read {0} bytes from {1}", bytes.Length, fullFileName));
+                Logger.LogCF(string.Format(": File.ReadAllBytes() read {0} bytes from {1}", bytes.Length, fullFileName));
                 result = ToUnicode(bytes);
             }
             catch (Exception e)

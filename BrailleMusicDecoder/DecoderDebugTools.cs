@@ -21,7 +21,8 @@ namespace BrailleMusicDecoder
         Nr76ADuSomGirOsLivOgGørOsGlade,
         SangenOmLarsen,
         DetErIdagEtVejr,
-        AchtKleinePraeludienUndFugen
+        AchtKleinePraeludienUndFugen,
+        KenderDuDet
     };
 
     public class DecoderDebugTools
@@ -49,6 +50,7 @@ namespace BrailleMusicDecoder
             if (fileName.EndsWith("Nr. 107 Sangen om Larsen.txt")) return DevelopmentOptionEnum.SangenOmLarsen;
             if (fileName.EndsWith("nr 266A 267 Det er i dag et vejr.txt")) return DevelopmentOptionEnum.DetErIdagEtVejr;
             if (fileName.EndsWith("802631 - Acht kleine Praeludien und Fugen.txt")) return DevelopmentOptionEnum.AchtKleinePraeludienUndFugen;
+            if (fileName.EndsWith("Kender du det.txt")) return DevelopmentOptionEnum.KenderDuDet;
             return DevelopmentOptionEnum.None;
         }
 
@@ -148,6 +150,11 @@ namespace BrailleMusicDecoder
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2247, measureBar.ToString()); // LeftHand: measurebar between measure 9 and 10
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2211, measureBar.ToString()); // LeftHand: measurebar between measure 6 and 7
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2038, measureBar.ToString()); // RightHand: measurebar between measure 8 and 9                                                                                 // 
+                    break;
+                case DevelopmentOptionEnum.KenderDuDet:
+                    brailleFileAsUnicode = DeleteFrom(brailleFileAsUnicode, 400); // Delete everything after last note
+                    string StartOfMusic = string.Format("{0}{1}",(char) (0x2800 + 32), (char) (0x2800 + 4)); // DOT6,DOT3
+                    brailleFileAsUnicode = Insert(brailleFileAsUnicode, 135, StartOfMusic); // Seems to be missing in the NOTA original! 
                     break;
                 // case... others to come ..
 

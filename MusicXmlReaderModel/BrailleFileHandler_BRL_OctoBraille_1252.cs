@@ -48,6 +48,42 @@ namespace MusicXmlReaderModel
             return "BRL_OctoBraille_1252";
         }
 
+        /// <summary>
+        /// Reads the full contents of a file which is coded uaing codepage 1252 (which is the encoding used by OctoBraille_1252)
+        /// Overrides the default method (implemented in BrailleFileHandler.cs), which internally uses File.ReadAllBytes().
+        /// Instead the current implementation uses System.IO.File.ReadAllText(fullFileName, Encoding.GetEncoding(1252)); 
+        /// This is needed in cases where the input file contains a "BOM" ("Byte Order Mark"): The hexadecimal sequence 0xEF,0xBB, 0XBF)
+        /// Please see for instance: https://en.m.wikipedia.org/wiki/Byte_order_mark
+        /// Bu using this approach we leave the torblems of recognizing the BOM etc to Windows
+        /// </summary>
+        /// <param name="fullFileName"></param>
+        /// <returns></returns>
+        protected override string ReadBytesFromFile(string fullFileName)
+        {
+            // Start new
+            string s1252 = System.IO.File.ReadAllText(fullFileName, Encoding.GetEncoding(1252)); // We can safely assume codepage 1252                                                                              // 
+            Logger.LogCF(string.Format(": File.ReadAllText()  read {0} chars from {1}", s1252.Length, fullFileName));          
+            Logger.LogCF(string.Format("Characters read=\r\n{0}", s1252));
+            byte[] bytes1252 = ToBytes(s1252);
+            string result = ToUnicode(bytes1252);
+            return result;
+        }
+
+        private byte[] ToBytes(string s)
+        {
+            char minChar = char.MaxValue; // For error reporting
+            char maxChar = char.MinValue; // For error reporting
+            byte[] result = new byte[s.Length];
+            for (int i = 0; i < s.Length; i++)
+            {
+                char c = s[i];
+                if (c < minChar) minChar = c;
+                if (c > maxChar) maxChar = c;
+                result[i] = (byte)c;
+            }
+            Logger.LogCF(string.Format(": The string contains characters in the intervaf from {0} to {1}", (ushort)minChar, (ushort)maxChar));
+            return result;
+        }
 
 
         /// <summary>
