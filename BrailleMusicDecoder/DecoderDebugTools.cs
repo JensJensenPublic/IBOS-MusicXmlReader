@@ -22,7 +22,8 @@ namespace BrailleMusicDecoder
         SangenOmLarsen,
         DetErIdagEtVejr,
         AchtKleinePraeludienUndFugen,
-        KenderDuDet
+        KenderDuDet,
+        Rose
     };
 
     public class DecoderDebugTools
@@ -51,6 +52,7 @@ namespace BrailleMusicDecoder
             if (fileName.EndsWith("nr 266A 267 Det er i dag et vejr.txt")) return DevelopmentOptionEnum.DetErIdagEtVejr;
             if (fileName.EndsWith("802631 - Acht kleine Praeludien und Fugen.txt")) return DevelopmentOptionEnum.AchtKleinePraeludienUndFugen;
             if (fileName.EndsWith("Kender du det.txt")) return DevelopmentOptionEnum.KenderDuDet;
+            if (fileName.EndsWith("Rose.txt")) return DevelopmentOptionEnum.Rose;          
             return DevelopmentOptionEnum.None;
         }
 
@@ -153,9 +155,16 @@ namespace BrailleMusicDecoder
                     break;
                 case DevelopmentOptionEnum.KenderDuDet:
                     brailleFileAsUnicode = DeleteFrom(brailleFileAsUnicode, 400); // Delete everything after last note
-                    string StartOfMusic = string.Format("{0}{1}",(char) (0x2800 + 32), (char) (0x2800 + 4)); // DOT6,DOT3
+                    //string StartOfMusic = string.Format("{0}{1}",(char) (0x2800 + 32), (char) (0x2800 + 4)); // DOT6,DOT3
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 135, StartOfMusic); // Seems to be missing in the NOTA original! 
                     break;
+
+                case DevelopmentOptionEnum.Rose:
+                    //string StartOfMusic = string.Format("{0}{1}", (char)(0x2800 + 32), (char)(0x2800 + 4)); // DOT6,DOT3
+                    //brailleFileAsUnicode = Insert(brailleFileAsUnicode, 57, StartOfMusic); // Seems to be missing in the NOTA original! 
+                    brailleFileAsUnicode = Insert(brailleFileAsUnicode, 67, StartOfMusic); // Seems to be missing in the NOTA original! 
+                    break;
+
                 // case... others to come ..
 
                 default: // No modification is needed !
@@ -163,6 +172,8 @@ namespace BrailleMusicDecoder
             }
             return brailleFileAsUnicode;
         }
+
+        readonly private string StartOfMusic = string.Format("{0}{1}", (char)(0x2800 + 32), (char)(0x2800 + 4)); // DOT6,DOT3
 
         private string ToString(List<int> symbolList)
         {
