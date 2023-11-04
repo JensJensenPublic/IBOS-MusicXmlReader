@@ -16,17 +16,64 @@ namespace MusicXmlReaderModel
         protected const byte CarriageReturn = 13;
         protected const byte LineFeed = 10;
         protected const byte FormFeed = 12;
-        protected byte[] controlCharacters = new byte[] { CarriageReturn, LineFeed, FormFeed};
+        protected byte[] controlCharacters = new byte[] { CarriageReturn, LineFeed, FormFeed };
 
         protected int charsPerLine = 14;
         public int CharsPerLine { get { return charsPerLine; } }
         protected int linesPerForm = 32;
-        public int LinesPerForm { get { return linesPerForm; } }    
+        public int LinesPerForm { get { return linesPerForm; } }
 
         protected byte[] byteMap; //  Maps from a UNICODE 0x2800..0x283F char to a byte.    Is filled in during initialization !
         protected char[] charMap; //  Maps from a byte to a UNICODE char in 0x2800..0x283F  Is filled in during initialization !
 
-   
+        public enum ByteOrderMarkEnum { Unknown, FileNotFound, None, UFT8, UTF16BE, UTF16LE,UTF32BE, UTF32LE }
+
+        public static ByteOrderMarkEnum GetByteOrderMark(string fileName)
+        { 
+            ByteOrderMarkEnum result = GetByteOrderMarkPrivate(fileName);
+            Logger.LogCF(string.Format("{0} returns {1}", fileName, result));
+            return result;
+        }
+
+        /// <summary>
+        /// See  https://en.m.wikipedia.org/wiki/Byte_order_mark
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        private static ByteOrderMarkEnum GetByteOrderMarkPrivate(string fileName)
+        {
+            if (!File.Exists(fileName)) return ByteOrderMarkEnum.FileNotFound;
+            byte[] bytes;
+            try
+            {
+                bytes = File.ReadAllBytes(fileName);
+            }
+            catch (Exception e)
+            {
+                return ByteOrderMarkEnum.FileNotFound;
+            }
+
+            if ((bytes.Length >= 3) & (bytes[0] == 0xEF) && (bytes[1] == 0xBB) & (bytes[2] == 0xBF)) return ByteOrderMarkEnum.UFT8;
+            if ((bytes.Length >= 2) & (bytes[0] == 0xFE) && (bytes[1] == 0xFF)) return ByteOrderMarkEnum.UTF16BE;
+            if ((bytes.Length >= 2) & (bytes[0] == 0xFF) && (bytes[1] == 0xFE))  return ByteOrderMarkEnum.UTF16LE;
+            if ((bytes.Length >= 4) & (bytes[0] == 0x00) && (bytes[1] == 0x00) & (bytes[2] == 0xFE) && (bytes[3] == 0xFF)) return ByteOrderMarkEnum.UTF32BE;
+            if ((bytes.Length >= 4) & (bytes[0] == 0xFF) && (bytes[1] == 0xFE) & (bytes[2] == 0x00) && (bytes[3] == 0x00)) return ByteOrderMarkEnum.UTF32LE;
+            // Hopefully no more are needed
+            return ByteOrderMarkEnum.None;
+        }
+
+        private bool IsUtf8(byte[] bytes)
+        {
+            // Check if a BOM (Byte Order Mark) is found
+            if (bytes.Length < 3) return false;
+            if (bytes[0] != 0xEF) return false;
+            if (bytes[1] != 0xBB) return false;
+            if (bytes[2] != 0xBF) return false;
+            return true;
+        }
+
+
+
 
         // Some general information about Braille file formats:
         //
