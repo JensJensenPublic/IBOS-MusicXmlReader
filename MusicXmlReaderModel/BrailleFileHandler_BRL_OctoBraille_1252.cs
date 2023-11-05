@@ -66,28 +66,15 @@ namespace MusicXmlReaderModel
             {
                 case ByteOrderMarkEnum.None: return base.ReadBytesFromFile(fullFileName);
                 case ByteOrderMarkEnum.UFT8:
-                    string sUTF8 = System.IO.File.ReadAllText(fullFileName, Encoding.UTF8);                                                                               // 
-                    Logger.LogCF(string.Format(": File.ReadAllText()  read {0} chars from {1}", sUTF8.Length, fullFileName));
-                    Logger.LogCF(string.Format("Characters read=\r\n{0}", sUTF8));
-                    byte[] bytesUTF8 = ToBytes(sUTF8);
-                    string resultUTF8 =  ToUnicode(bytesUTF8);
-                    return resultUTF8;
+                    // Handles a file, originally encoded as OctoBraille_1252, but later packed into a a layer of utf8, for instance by a simple text editor.
+                    string octoBraille_1252 = System.IO.File.ReadAllText(fullFileName, Encoding.UTF8); // Read the file, encoded as utf8. Deliver a Unicode string in OctoBraille_1252 representation!                                                                                // 
+                    Logger.LogCF(string.Format(": File.ReadAllText()  read {0} chars from {1}", octoBraille_1252.Length, fullFileName));
+                    Logger.LogCF(string.Format("Characters read=\r\n{0}", octoBraille_1252));
+                    byte[] bytesOctoBraille_1252 = ToBytes(octoBraille_1252);
+                    string resultUnicodeBraille =  ToUnicode(bytesOctoBraille_1252);
+                    return resultUnicodeBraille;
                 default: throw new NotImplementedException("");
             }
-
-            //byte[] bytes = System.IO.File.ReadAllBytes(fullFileName);
-            //Logger.LogCF(string.Format(": File.ReadAllBytes() read {0} bytes from {1}", bytes.Length, fullFileName));
-            //string result = ToUnicode(bytes);
-            //if (IsUtf8(bytes))
-            //{
-            //    // It looks like this file is in Utf8 format.
-            //    string s1252 = System.IO.File.ReadAllText(fullFileName, Encoding.UTF8); // We can safely assume codepage 1252                                                                              // 
-            //    Logger.LogCF(string.Format(": File.ReadAllText()  read {0} chars from {1}", s1252.Length, fullFileName));
-            //    Logger.LogCF(string.Format("Characters read=\r\n{0}", s1252));
-            //    byte[] bytes1252 = ToBytes(s1252);
-            //    result = ToUnicode(bytes1252);            
-            //}
-            //return result;
         }
 
         private bool IsUtf8(byte[] bytes)
