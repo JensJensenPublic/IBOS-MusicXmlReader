@@ -142,11 +142,38 @@ namespace MusicBrailleReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File not found.
+        /// </summary>
+        internal static string Message_FileNotFound {
+            get {
+                return ResourceManager.GetString("Message_FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to found in the Braille Music file.
         /// </summary>
         internal static string Message_FoundInBrailleMusicFile {
             get {
                 return ResourceManager.GetString("Message_FoundInBrailleMusicFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Illegal value in input-file.
+        /// </summary>
+        internal static string Message_IllegalValueInInput {
+            get {
+                return ResourceManager.GetString("Message_IllegalValueInInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not implemented.
+        /// </summary>
+        internal static string Message_NotImplemented {
+            get {
+                return ResourceManager.GetString("Message_NotImplemented", resourceCulture);
             }
         }
         

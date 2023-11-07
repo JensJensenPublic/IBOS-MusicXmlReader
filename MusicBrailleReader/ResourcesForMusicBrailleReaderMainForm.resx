@@ -148,8 +148,20 @@
     <value>Details are found in the Log File</value>
     <comment>NO NL</comment>
   </data>
+  <data name="Message_FileNotFound" xml:space="preserve">
+    <value>File not found</value>
+    <comment>NO NL</comment>
+  </data>
   <data name="Message_FoundInBrailleMusicFile" xml:space="preserve">
     <value>found in the Braille Music file</value>
+  </data>
+  <data name="Message_IllegalValueInInput" xml:space="preserve">
+    <value>Illegal value in input-file</value>
+    <comment>NO NL</comment>
+  </data>
+  <data name="Message_NotImplemented" xml:space="preserve">
+    <value>Not implemented</value>
+    <comment>NO NL</comment>
   </data>
   <data name="Message_Warning" xml:space="preserve">
     <value>warning</value>

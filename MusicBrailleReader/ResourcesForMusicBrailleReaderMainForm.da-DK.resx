@@ -148,8 +148,20 @@
     <value>Detaljer fremgår af logfilen.</value>
     <comment>NO NL</comment>
   </data>
+  <data name="Message_FileNotFound" xml:space="preserve">
+    <value>Filen findes ikke</value>
+    <comment>NO NL</comment>
+  </data>
   <data name="Message_FoundInBrailleMusicFile" xml:space="preserve">
     <value>fundet i punktnodefilen</value>
+  </data>
+  <data name="Message_IllegalValueInInput" xml:space="preserve">
+    <value>Ulovlig værdi i inputfil</value>
+    <comment>NO NL</comment>
+  </data>
+  <data name="Message_NotImplemented" xml:space="preserve">
+    <value>Ikke implementeret</value>
+    <comment>NO NL</comment>
   </data>
   <data name="Message_Warning" xml:space="preserve">
     <value>advarsel</value>

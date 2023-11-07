@@ -916,30 +916,34 @@ namespace MusicBrailleReader
         }
 
         private void OnOpen(string dialogTitle, DecoderOptions.RegionalOptionsEnum regionalOptions)
-        {
-            //string message = null;
+        {   
             try
             {
                 if (!SelectFile(false, useRecentFile, dialogTitle)) return;
                 ClearUI();
                 currentInterpretation = GetInterpretation(regionalOptions, UserWarningOptions.details);
+             
+                //throw new NotImplementedException("Only for debugging!");
+                //throw new InvalidDataException("Only for debugging!");
+                //throw new FileNotFoundException("Only for debugging!");
                 //throw new Exception("Only for debugging!"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
                 ShowUserWarnings(UserWarningOptions.details, mask); // Show some  warnings in a detailled format        
             }
 
             catch (NotImplementedException e)
             {
-                OnException("Ikke implementeret", e);         
+                OnException(ResourcesForMusicBrailleReaderMainForm.Message_NotImplemented, e);         
             }
 
             catch (InvalidDataException e)
             {
-                OnException("Ulovlig værdi fundet i inputfil", e);      
+                OnException(ResourcesForMusicBrailleReaderMainForm.Message_IllegalValueInInput, e);      
             }
 
             catch (FileNotFoundException e)
             {
-                OnException("Filen findes ikke", e);    
+                OnException(ResourcesForMusicBrailleReaderMainForm.Message_FileNotFound, e);    
             }
 
             catch (Exception e)
