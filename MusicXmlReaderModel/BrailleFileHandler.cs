@@ -331,6 +331,7 @@ namespace MusicXmlReaderModel
             {
                 result = null;
                 Logger.LogCFE(e);
+                throw; // Rethrow the exception in order to let UI handle it
             }
             return result;
         }
