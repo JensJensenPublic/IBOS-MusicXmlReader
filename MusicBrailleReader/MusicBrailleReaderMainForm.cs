@@ -917,7 +917,7 @@ namespace MusicBrailleReader
 
         private void OnOpen(string dialogTitle, DecoderOptions.RegionalOptionsEnum regionalOptions)
         {
-            string message = null;
+            //string message = null;
             try
             {
                 if (!SelectFile(false, useRecentFile, dialogTitle)) return;
@@ -929,37 +929,32 @@ namespace MusicBrailleReader
 
             catch (NotImplementedException e)
             {
-                // Logger.LogCFE(e); // Only neededduring debugging
-                message = "Ikke Implementeret\r\n" // Localize !!!
-                    + HandleNull(e.Message) + "\r\n"
-                    + "Se venligst detaljer i Logfilen"; // Localize
+                OnException("Ikke implementeret", e);         
             }
 
             catch (InvalidDataException e)
-            { 
-                    message = "Ulovlig værdi fundet i inputfil\r\n"
-                    + HandleNull(e.Message) + "\r\n"
-                    + "Se venligst detaljer i Logfilen"; // Localize
+            {
+                OnException("Ulovlig værdi fundet i inputfil", e);      
             }
-
 
             catch (FileNotFoundException e)
             {
-                // Only neededduring debugging
-                message = "Filen findes ikke"; // Localize !!!
+                OnException("Filen findes ikke", e);    
             }
 
             catch (Exception e)
             {
-                Logger.LogCFE(e); // Some very unexpected errror ouucred! Log as much as possible !       
-                message = ResourcesForMusicBrailleReaderMainForm.Message_AnUnexpectedErrorOccurred;
+                Logger.LogCFE(e); // Some very unexpected errror ouucred! Log as much as possible !
+                OnException(ResourcesForMusicBrailleReaderMainForm.Message_AnUnexpectedErrorOccurred, e);
             }
+        }
 
-            if (null != message)
-            {
-                // Report through MessageBox
-                ModelBaseMessageBox.Show(message, ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Error); // Use the static UserMssageBox class implemented in MusicXmlReaderBase class to demonstrate how to use that class from anywhere !
-            }
+        private void OnException(string upperLine, Exception e)
+        {
+            // Use the static UserMssageBox class implemented in MusicXmlReaderBase class to demonstrate how to use that class from anywhere !
+            string message = upperLine + "\r\n" + HandleNull(e.Message) + "\r\n" + "Please see Logfile";
+            ModelBaseMessageBox.Show(message, ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Error);
+
         }
 
 

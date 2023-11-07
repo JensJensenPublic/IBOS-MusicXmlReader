@@ -62,7 +62,7 @@ namespace MusicXmlReaderModel
         {
             // Start new         
             ByteOrderMarkEnum byteOrderMark = BrailleFileHandler.GetByteOrderMark(fullFileName);
-            // byteOrderMark = ByteOrderMarkEnum.Unknown; // ONLY for testing the exception mechanism
+            //byteOrderMark = ByteOrderMarkEnum.Unknown; // ONLY for testing the exception mechanism
             switch (byteOrderMark)
             {
                 case ByteOrderMarkEnum.None: return base.ReadBytesFromFile(fullFileName); // The normal case: Plain OctoBraille_1252 encoding
