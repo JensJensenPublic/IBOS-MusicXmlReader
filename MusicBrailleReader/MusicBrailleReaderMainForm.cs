@@ -909,8 +909,15 @@ namespace MusicBrailleReader
             OnOpen(GetOpenDialogName(sender), regionalOptions);
         }
 
+        private string HandleNull(string s)
+        {
+            if (string.IsNullOrWhiteSpace(s)) return "";
+            return s;
+        }
+
         private void OnOpen(string dialogTitle, DecoderOptions.RegionalOptionsEnum regionalOptions)
         {
+            string message = null;
             try
             {
                 if (!SelectFile(false, useRecentFile, dialogTitle)) return;
@@ -919,14 +926,33 @@ namespace MusicBrailleReader
                 // throw new Exception("Only for debugging!"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 ShowUserWarnings(UserWarningOptions.details, mask); // Show some  warnings in a detailled format        
             }
+
+            catch (NotImplementedException e)
+            {
+                // Logger.LogCFE(e); // Only neededduring debugging
+                message = "Ikke Implementeret\r\n" // Localize !!!
+                    + HandleNull(e.Message) + "\r\n"
+                    + "Se venligst detaljer i Logfilen"; // Localize
+            }
+
+            catch (FileNotFoundException e)
+            {
+                // Only neededduring debugging
+                message = "Filen findes ikke"; // Localize !!!
+            }
+
             catch (Exception e)
             {
-                Logger.LogCFE(e);
-                string message = ResourcesForMusicBrailleReaderMainForm.Message_AnUnexpectedErrorOccurred; 
-                ModelBaseMessageBox.Show(message,ModelBaseMessageBoxButtons.OK,ModelBaseMessageBoxIcon.Error); // Use the static UserMssageBox class implemented in MusicXmlReaderBase class to demonstrate how to use that class from anywhere !
+                Logger.LogCFE(e); // Some very unexpected errror ouucred! Log as much as possible !       
+                message = ResourcesForMusicBrailleReaderMainForm.Message_AnUnexpectedErrorOccurred;
+            }
+
+            if (null != message)
+            {
+                // Report through MessageBox
+                ModelBaseMessageBox.Show(message, ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Error); // Use the static UserMssageBox class implemented in MusicXmlReaderBase class to demonstrate how to use that class from anywhere !
             }
         }
-
 
 
 #if false

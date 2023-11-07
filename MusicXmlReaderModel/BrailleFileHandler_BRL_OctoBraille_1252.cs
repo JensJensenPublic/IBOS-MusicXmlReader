@@ -49,12 +49,12 @@ namespace MusicXmlReaderModel
         }
 
         /// <summary>
-        /// Reads the full contents of a file which is coded uaing codepage 1252 (which is the encoding used by OctoBraille_1252)
-        /// Overrides the default method (implemented in BrailleFileHandler.cs), which internally uses File.ReadAllBytes().
-        /// Instead the current implementation uses System.IO.File.ReadAllText(fullFileName, Encoding.GetEncoding(1252)); 
+        /// For handling either plain OctoBraille_1252, or OctoBraille_1252, wrapped into an extra layer of utf8: 
+        /// Overrides the default method (implemented in BrailleFileHandler.cs), which always internally uses File.ReadAllBytes().
+        /// Instead the current implementation may choose first to use System.IO.File.ReadAllText(fullFileName, Encoding.UTF8) to remove the extra layer of utf8 encoding 
         /// This is needed in cases where the input file contains a "BOM" ("Byte Order Mark"): The hexadecimal sequence 0xEF,0xBB, 0XBF)
         /// Please see for instance: https://en.m.wikipedia.org/wiki/Byte_order_mark
-        /// Bu using this approach we leave the torblems of recognizing the BOM etc to Windows
+        /// Bu using this approach we leave the problems of recognizing the BOM and decoding the outer layer of utf8 to System.IO.
         /// </summary>
         /// <param name="fullFileName"></param>
         /// <returns></returns>
@@ -62,18 +62,22 @@ namespace MusicXmlReaderModel
         {
             // Start new         
             ByteOrderMarkEnum byteOrderMark = BrailleFileHandler.GetByteOrderMark(fullFileName);
+            // byteOrderMark = ByteOrderMarkEnum.Unknown; // ONLY for testing the exception mechanism
             switch (byteOrderMark)
             {
-                case ByteOrderMarkEnum.None: return base.ReadBytesFromFile(fullFileName);
-                case ByteOrderMarkEnum.UFT8:
-                    // Handles a file, originally encoded as OctoBraille_1252, but later packed into a a layer of utf8, for instance by a simple text editor.
+                case ByteOrderMarkEnum.None: return base.ReadBytesFromFile(fullFileName); // The normal case: Plain OctoBraille_1252 encoding
+                case ByteOrderMarkEnum.UFT8: // Special case: OctoBraille_1252, wrapped into an extra layer of utf8
+                    // Handles a file, originally encoded as OctoBraille_1252, but later wrapped into a a layer of utf8, for instance by a simple text editor.
                     string octoBraille_1252 = System.IO.File.ReadAllText(fullFileName, Encoding.UTF8); // Read the file, encoded as utf8. Deliver a Unicode string in OctoBraille_1252 representation!                                                                                // 
                     Logger.LogCF(string.Format(": File.ReadAllText()  read {0} chars from {1}", octoBraille_1252.Length, fullFileName));
                     Logger.LogCF(string.Format("Characters read=\r\n{0}", octoBraille_1252));
                     byte[] bytesOctoBraille_1252 = ToBytes(octoBraille_1252);
                     string resultUnicodeBraille =  ToUnicode(bytesOctoBraille_1252);
                     return resultUnicodeBraille;
-                default: throw new NotImplementedException("");
+                default: // Unimplemented special cases: OctoBraille wrapped into something else
+                    string message = string.Format("ByteOrderMark={0} is not implemented for encapsulating OctoBraille_1252", byteOrderMark);
+                    Logger.LogCF(string.Format(": {0}", message));
+                    throw new NotImplementedException(message); // The exception is expected to be handled by some higher layer, typically by the UI
             }
         }
 
@@ -99,7 +103,7 @@ namespace MusicXmlReaderModel
                 if (c > maxChar) maxChar = c;
                 result[i] = (byte)c;
             }
-            Logger.LogCF(string.Format(": The string contains characters in the intervaf from {0} to {1}", (ushort)minChar, (ushort)maxChar));
+            Logger.LogCF(string.Format(": The string contains characters in the interval from {0} to {1}", (ushort)minChar, (ushort)maxChar));
             return result;
         }
 

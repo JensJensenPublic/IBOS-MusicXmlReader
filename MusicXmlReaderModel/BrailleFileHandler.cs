@@ -26,7 +26,7 @@ namespace MusicXmlReaderModel
         protected byte[] byteMap; //  Maps from a UNICODE 0x2800..0x283F char to a byte.    Is filled in during initialization !
         protected char[] charMap; //  Maps from a byte to a UNICODE char in 0x2800..0x283F  Is filled in during initialization !
 
-        public enum ByteOrderMarkEnum { Unknown, FileNotFound, None, UFT8, UTF16BE, UTF16LE,UTF32BE, UTF32LE }
+        public enum ByteOrderMarkEnum { Unknown, None, UFT8, UTF16BE, UTF16LE,UTF32BE, UTF32LE }
 
         public static ByteOrderMarkEnum GetByteOrderMark(string fileName)
         { 
@@ -42,17 +42,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         private static ByteOrderMarkEnum GetByteOrderMarkPrivate(string fileName)
         {
-            if (!File.Exists(fileName)) return ByteOrderMarkEnum.FileNotFound;
-            byte[] bytes;
-            try
-            {
-                bytes = File.ReadAllBytes(fileName);
-            }
-            catch (Exception e)
-            {
-                return ByteOrderMarkEnum.FileNotFound;
-            }
-
+            byte[] bytes = File.ReadAllBytes(fileName); // Let the system throw an exception if file is not found!
             if ((bytes.Length >= 3) & (bytes[0] == 0xEF) && (bytes[1] == 0xBB) & (bytes[2] == 0xBF)) return ByteOrderMarkEnum.UFT8;
             if ((bytes.Length >= 2) & (bytes[0] == 0xFE) && (bytes[1] == 0xFF)) return ByteOrderMarkEnum.UTF16BE;
             if ((bytes.Length >= 2) & (bytes[0] == 0xFF) && (bytes[1] == 0xFE))  return ByteOrderMarkEnum.UTF16LE;
