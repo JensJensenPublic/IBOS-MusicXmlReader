@@ -923,7 +923,7 @@ namespace MusicBrailleReader
                 if (!SelectFile(false, useRecentFile, dialogTitle)) return;
                 ClearUI();
                 currentInterpretation = GetInterpretation(regionalOptions, UserWarningOptions.details);
-                // throw new Exception("Only for debugging!"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                //throw new Exception("Only for debugging!"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 ShowUserWarnings(UserWarningOptions.details, mask); // Show some  warnings in a detailled format        
             }
 
@@ -952,7 +952,7 @@ namespace MusicBrailleReader
         private void OnException(string upperLine, Exception e)
         {
             // Use the static UserMssageBox class implemented in MusicXmlReaderBase class to demonstrate how to use that class from anywhere !
-            string message = upperLine + "\r\n" + HandleNull(e.Message) + "\r\n" + "Please see Logfile";
+            string message = upperLine + "\r\n" + HandleNull(e.Message) + "\r\n" + ResourcesForMusicBrailleReaderMainForm.Message_DetailsAreFoundInTheLogFile;
             ModelBaseMessageBox.Show(message, ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Error);
 
         }

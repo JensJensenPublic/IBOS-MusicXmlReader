@@ -133,7 +133,7 @@
     <value>Punktnode liste</value>
   </data>
   <data name="Message_AnUnexpectedErrorOccurred" xml:space="preserve">
-    <value>En uventet fejl opstod. Detaljer fremgår af logfilen.</value>
+    <value>En uventet fejl opstod.</value>
     <comment>NO NL</comment>
   </data>
   <data name="Message_ConversionToMusicXml_1" xml:space="preserve">
@@ -142,6 +142,10 @@
   </data>
   <data name="Message_ConversionToMusicXml_2" xml:space="preserve">
     <value>Denne  funktion er udelukkende implementeret til  demonstrationsformål og som et udviklingsredskab!</value>
+    <comment>NO NL</comment>
+  </data>
+  <data name="Message_DetailsAreFoundInTheLogFile" xml:space="preserve">
+    <value>Detaljer fremgår af logfilen.</value>
     <comment>NO NL</comment>
   </data>
   <data name="Message_FoundInBrailleMusicFile" xml:space="preserve">

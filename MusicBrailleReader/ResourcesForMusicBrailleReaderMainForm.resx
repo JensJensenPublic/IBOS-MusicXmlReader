@@ -133,7 +133,7 @@
     <value>Braille Music List</value>
   </data>
   <data name="Message_AnUnexpectedErrorOccurred" xml:space="preserve">
-    <value>An unexpected error occurred. Details are found in the Log File</value>
+    <value>An unexpected error occurred.</value>
     <comment>NO NL</comment>
   </data>
   <data name="Message_ConversionToMusicXml_1" xml:space="preserve">
@@ -142,6 +142,10 @@
   </data>
   <data name="Message_ConversionToMusicXml_2" xml:space="preserve">
     <value>This feature has only been implemented for demonstration purposes and as a development tool!</value>
+    <comment>NO NL</comment>
+  </data>
+  <data name="Message_DetailsAreFoundInTheLogFile" xml:space="preserve">
+    <value>Details are found in the Log File</value>
     <comment>NO NL</comment>
   </data>
   <data name="Message_FoundInBrailleMusicFile" xml:space="preserve">
