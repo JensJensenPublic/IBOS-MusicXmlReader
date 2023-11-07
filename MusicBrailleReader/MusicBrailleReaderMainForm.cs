@@ -935,6 +935,14 @@ namespace MusicBrailleReader
                     + "Se venligst detaljer i Logfilen"; // Localize
             }
 
+            catch (InvalidDataException e)
+            { 
+                    message = "Ulovlig værdi fundet i inputfil\r\n"
+                    + HandleNull(e.Message) + "\r\n"
+                    + "Se venligst detaljer i Logfilen"; // Localize
+            }
+
+
             catch (FileNotFoundException e)
             {
                 // Only neededduring debugging

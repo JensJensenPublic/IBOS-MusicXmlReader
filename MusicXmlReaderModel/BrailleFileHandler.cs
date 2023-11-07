@@ -298,6 +298,16 @@ namespace MusicXmlReaderModel
                 Logger.LogCF(string.Format(": Invalid values (as decimal): {0}", sbd.ToString()));
             }
 
+            int errorCount = lb.Count;
+            // errorCount = 1; // For debugging only
+            if (0 != errorCount)
+            {
+                string exceptionMessage = string.Format("Found {0} invalid data values",errorCount);
+                Logger.LogCF(string.Format(": {0}", exceptionMessage));
+                throw new InvalidDataException(exceptionMessage);
+            }
+            
+
             return sb.ToString();
         }
 
