@@ -298,7 +298,15 @@ namespace MusicBrailleReader
             // Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);     
         }
 
-        private bool SelectAndOpenFile(bool useDefaultSettings, bool useRecentFile,string dialogTitle)
+        /// <summary>
+        /// Simple UI stuff for selecting a file using standard UI mechanism.
+        /// Absolutely no Braille-related code found, except for the filename extensions!
+        /// </summary>
+        /// <param name="useDefaultSettings"></param>
+        /// <param name="useRecentFile"></param>
+        /// <param name="dialogTitle"></param>
+        /// <returns></returns>
+        private bool SelectFile(bool useDefaultSettings, bool useRecentFile,string dialogTitle)
         {
             openFileDialog.Reset(); // Prevent survival of strange settings from latest usage of this reused OpenFileDialog
             openFileDialog.Title = dialogTitle; 
@@ -905,7 +913,7 @@ namespace MusicBrailleReader
         {
             try
             {
-                if (!SelectAndOpenFile(false, useRecentFile, dialogTitle)) return;
+                if (!SelectFile(false, useRecentFile, dialogTitle)) return;
                 ClearUI();
                 currentInterpretation = GetInterpretation(regionalOptions, UserWarningOptions.details);
                 // throw new Exception("Only for debugging!"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
