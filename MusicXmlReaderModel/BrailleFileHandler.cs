@@ -256,6 +256,13 @@ namespace MusicXmlReaderModel
         }
 
 
+        /// <summary>
+        /// Common mechanism for converting the contents of a Braille file, coded in either ASCII or OctoBraille_1252 encoding, to Unicode.
+        /// Implemented by a simple lookup table "charMap", which is filled in during initialization.
+        /// </summary>
+        /// <param name="bytes">The contents of the inputfile, as read by File.ReadAllBytes()</param>
+        /// <returns>A string containing the Unicode representing of the inputfile. All chars are in the Unicode Braille interval [0x2800..0x28ff]</returns>
+        /// <exception cref="InvalidDataException">Thrown when the input file contains an value, which is invalid in the current encoding</exception>
         protected string ToUnicode(byte[] bytes)
         {
             StringBuilder sb = new StringBuilder(); // The valid bytes
