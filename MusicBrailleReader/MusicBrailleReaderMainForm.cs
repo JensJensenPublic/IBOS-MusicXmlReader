@@ -434,7 +434,16 @@ namespace MusicBrailleReader
 
         private bool OnNoMusicBrailleFileLoaded()
         {
-            MessageBox.Show("Ingen punktnodefil er åbnet.");
+            ModelBaseMessageBox.Show("Ingen punktnodefil er åbnet." + "\r\n" + ResourcesForMusicBrailleReaderMainForm.Message_DetailsAreFoundInTheLogFile,
+                ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Warning);
+            //MessageBox.Show("Ingen punktnodefil er åbnet." + "\r\n" + ResourcesForMusicBrailleReaderMainForm.Message_DetailsAreFoundInTheLogFile );
+            return false;
+        }
+#warning todo localize 
+        private bool OnMusicXmlGenerationFailed()
+        {
+            ModelBaseMessageBox.Show("Ingen MusicXmlfil er genereret for denne punktnodefil." + "\r\n" + ResourcesForMusicBrailleReaderMainForm.Message_DetailsAreFoundInTheLogFile,
+                ModelBaseMessageBoxButtons.OK,ModelBaseMessageBoxIcon.Exclamation);
             return false;
         }
 
@@ -447,7 +456,9 @@ namespace MusicBrailleReader
         {
             // This handler may be called before the data structiures have been established so we need to check
             if (null == decoderOutputFileHandler) return OnNoMusicBrailleFileLoaded();
-            if (null == musicXmlDocument) OnNoMusicBrailleFileLoaded();
+            if (null == musicXmlDocument) return OnNoMusicBrailleFileLoaded();
+            if (model.DecoderHandler.MusicXmlGenerationFailed) return OnMusicXmlGenerationFailed();
+            
 
             DialogResult dialogResult = ShowUserWarnings(UserWarningOptions.details, UserInfoFlagsEnum.AllFlags); // Show All  warnings in a detailled format
            // DialogResult dialogResult = ShowUserWarnings(UserWarningOptions.details, UserInfoEnum.All & ~UserInfoEnum.FailedToFixDuration); // Show some  warnings in a detailled format

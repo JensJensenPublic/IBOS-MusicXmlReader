@@ -24,6 +24,9 @@ namespace BrailleMusicDecoder
         TypeAmbiguityHandler typeAmbiguityHandler;
         readonly char[] removeStartingBlanks = new char[] { ' ' };
 
+        bool musicXmlGenerationFailed = false;
+        public bool MusicXmlGenerationFailed { get { return musicXmlGenerationFailed; } }
+
         // Cached Localization values
         public readonly string Text_Page = ResourcesForBrailleMusicDecoder.Text_Page;
         public readonly string Text_Line = ResourcesForBrailleMusicDecoder.Text_Line;
@@ -115,21 +118,39 @@ namespace BrailleMusicDecoder
                 UserWarnings.LogUserWarning(userWarning,UserInfoFlagsEnum.InterpretationNotFound);
                 return Token.Create(message, accumulatedText,initialDecoderState);
             }
-             
 
-            // Start experimental code  
-            //*******************************************************************************************************
-            if (decoderStateMachine.IsInAnyMusicState()                                 // The Decoder state machine is in of the 3 Musicxxx states AFTER this state transition.
-            || (inputInterpretation.Category == InputCategoryEnum.FinalDoubleBar))      // The new token is a final double bar, which must trigger a flush of he latest measure.
+
+            // Start experimental code for generating MusicXml "on the fly"
+            // If ths code for generating MusicXml fails by throwing an exception we attempt not to influence the interpretation of MusicBraille as text
+            //******************************************************************************************************************************************
+            if (!musicXmlGenerationFailed)
             {
-                typeAmbiguityHandler.ApplyNextInput(inputInterpretation); // ** This is where wa call the TypeAmbiguityHandler which calls the MusicXmlBuilder to build MusicXml **
-            }
-            else
-            {
-                musicXmlBuilder.ApplyNextInput(inputInterpretation); // ** This is where wa call the  the MusicXmlBuilder directly to build embedded text **
+                try
+                {
+                    //throw new Exception("ONLY For debugging ");
+                    if (decoderStateMachine.IsInAnyMusicState()                                 // The Decoder state machine is in of the 3 Musicxxx states AFTER this state transition.
+                    || (inputInterpretation.Category == InputCategoryEnum.FinalDoubleBar))      // The new token is a final double bar, which must trigger a flush of he latest measure.
+                    {
+                        typeAmbiguityHandler.ApplyNextInput(inputInterpretation); // ** This is where wa call the TypeAmbiguityHandler which calls the MusicXmlBuilder to build MusicXml **
+                    }
+                    else
+                    {
+                        musicXmlBuilder.ApplyNextInput(inputInterpretation); // ** This is where wa call the  the MusicXmlBuilder directly to build embedded text **
+                    }
+                }
+                catch (Exception e)
+                {
+                    // This will allow the decoding to continue even if the generation of MusicXml throws an exception
+                    Logger.LogCFE(e); ;
+                    musicXmlGenerationFailed = true;
+                    ModelBaseMessageBox.Show("Generering af MusicXml mislykkedes!" + "\r\n" + e.Message + "\r\n"
+                                           + "Fortolkning af punktnoder forsøges gennemført.",
+                                              ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Exclamation);
+#warning TODO Localize
+                }
             }
             // End experimental code
-            //*******************************************************************************************************
+            //*********************************************************************************************************************************************
 
             //Accumulate all sequences of simple input characters and save the startindex
             Accumulate(inputInterpretation, oldPosition, ref accumulatedText);
