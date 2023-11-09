@@ -261,7 +261,7 @@ namespace MusicXmlReaderModel
         /// Implemented by a simple lookup table "charMap", which is filled in during initialization.
         /// </summary>
         /// <param name="bytes">The contents of the inputfile, as read by File.ReadAllBytes()</param>
-        /// <returns>A string containing the Unicode representing of the inputfile. All chars are in the Unicode Braille interval [0x2800..0x28ff]</returns>
+        /// <returns>A string containing the Unicode representing of the inputfile. All chars are CarriageReturn, LineFeed, FormFeed or in the Unicode Braille interval [0x2800..0x28ff]</returns>
         /// <exception cref="InvalidDataException">Thrown when the input file contains an value, which is invalid in the current encoding</exception>
         protected string ToUnicode(byte[] bytes)
         {
