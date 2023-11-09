@@ -24,8 +24,9 @@ namespace BrailleMusicDecoder
         TypeAmbiguityHandler typeAmbiguityHandler;
         readonly char[] removeStartingBlanks = new char[] { ' ' };
 
-        bool musicXmlGenerationFailed = false;
-        public bool MusicXmlGenerationFailed { get { return musicXmlGenerationFailed; } }
+        string musicXmlGenerationError = null;
+        public string MusicXmlGenerationError { get { return (null == musicXmlGenerationError) ? "" : musicXmlGenerationError; } }
+        public bool MusicXmlGenerationFailed { get { return (null != musicXmlGenerationError); } }
 
         // Cached Localization values
         public readonly string Text_Page = ResourcesForBrailleMusicDecoder.Text_Page;
@@ -123,11 +124,11 @@ namespace BrailleMusicDecoder
             // Start experimental code for generating MusicXml "on the fly"
             // If ths code for generating MusicXml fails by throwing an exception we attempt not to influence the interpretation of MusicBraille as text
             //******************************************************************************************************************************************
-            if (!musicXmlGenerationFailed)
+            if (!MusicXmlGenerationFailed)
             {
                 try
                 {
-                    //throw new Exception("ONLY For debugging ");
+                    // string temp = null; temp.ToString(); // ONLY for debbuging: Trigger an exception
                     if (decoderStateMachine.IsInAnyMusicState()                                 // The Decoder state machine is in of the 3 Musicxxx states AFTER this state transition.
                     || (inputInterpretation.Category == InputCategoryEnum.FinalDoubleBar))      // The new token is a final double bar, which must trigger a flush of he latest measure.
                     {
@@ -142,8 +143,8 @@ namespace BrailleMusicDecoder
                 {
                     // This will allow the decoding to continue even if the generation of MusicXml throws an exception
                     Logger.LogCFE(e); ;
-                    musicXmlGenerationFailed = true;
-                    ModelBaseMessageBox.Show("Generering af MusicXml mislykkedes!" + "\r\n" + e.Message + "\r\n"
+                    musicXmlGenerationError = (null == e.Message) ? "" : e.Message;
+                    ModelBaseMessageBox.Show("Generering af MusicXml mislykkedes!" + "\r\n" + musicXmlGenerationError + "\r\n"
                                            + "Fortolkning af punktnoder forsøges gennemført.",
                                               ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Exclamation);
 #warning TODO Localize

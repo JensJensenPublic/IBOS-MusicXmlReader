@@ -13,6 +13,7 @@ namespace MusicXmlReaderModel
     public class DecoderHandler : IDecoderClient
     {
         public bool MusicXmlGenerationFailed { get { return brailleMusicDecoder.MusicXmlGenerationFailed; } }
+        public string MusicXmlGenerationError { get { return brailleMusicDecoder.MusicXmlGenerationError; } }
         Decoder brailleMusicDecoder;
         MusicPlayer musicPlayer;
         IDecoderUiClient decoderUiClient;
