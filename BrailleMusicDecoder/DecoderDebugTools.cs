@@ -135,14 +135,16 @@ namespace BrailleMusicDecoder
                     break;
                 case DevelopmentOptionEnum.AchtKleinePraeludienUndFugen:
                     char measureBar = (char)(0x2800 + 00);
-                    brailleFileAsUnicode = DeleteFrom(brailleFileAsUnicode, 3190); // Delete everything from measure 29
+                    brailleFileAsUnicode = DeleteFrom(brailleFileAsUnicode, 3190); // Delete everything from measure 29         
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 3118, measureBar.ToString()); // Pedal: measurebar between measure 23 and 24
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 3080, measureBar.ToString()); // Pedal: measurebar between measure 17 and 18
+                    brailleFileAsUnicode = Insert(brailleFileAsUnicode, 3040 - 15, measureBar.ToString()); // LeftHand: measurebar between measure 28 and 29 Just before "Second Volta"
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2989, measureBar.ToString()); // LeftHand: measurebar between measure 26 and 27
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2918, measureBar.ToString()); // LeftHand: measurebar between measure 21 and 22
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2849, measureBar.ToString()); // LeftHand: measurebar between measure 17 and 18
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2811, measureBar.ToString()); // LeftHand: measurebar between measure 16 and 17 
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2781, measureBar.ToString()); // LeftHand: measurebar between measure 14 and 15
+                    brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2728 - 9, measureBar.ToString()); // Right MeasureBar between 28 and 29 Just before "Second volta"
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2610, measureBar.ToString()); // Right: measurebar between measure 24 and 25  
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2574, measureBar.ToString()); // Right: measurebar between measure 22 and 23 Strange grouping!
                     brailleFileAsUnicode = Insert(brailleFileAsUnicode, 2539, measureBar.ToString()); // Right: measurebar between measure 20 and 21 
