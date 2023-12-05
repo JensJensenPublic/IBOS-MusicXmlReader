@@ -1,0 +1,23 @@
+Hej Bo
+
+Hermed et forslag til 2 ansøgninger til hhv DBS og Wroblewski.
+Hver ansøgning beskriver aktiviteter for 135 arbejdstimer.
+
+Jeg har vedhæftet 2 filer med det egentlige indhold:
+ Dokumentet "Tidsestimater.docx" er en overordnet læsevejledning
+ Regnearket "Tidsestimater.2023.12.05.xlsx" indeholder 3 underark:
+  Underarket "Oversigt"    indeholder alle aktiviteter, osse nogle, som er enten urealstiske eller umulige at estimere.
+  Underarket "Ansøgning 1" indeholder foreslåede aktiviteter for ansøgning 1.
+  Underarket "Ansøgning 2" indeholder foreslåede aktiviteter for ansøgning 2.
+
+Det vil være hensigtsmæssigt at udføre aktiviteterne i "Ansøgning 1" før aktiviteterne i "Ansøgning 2":
+Blandt andet er upload til Github en del af "Ansøgning 1" - og denne aktivitet ville det jo være rart at starte med.
+
+Jeg kunne forestille mig at aktiviteterne kunne foregå i:
+ januar-april for "Ansøgning 1"
+ november-februar 2024 for "Ansøgning 2"
+
+mvh. 
+Jens.
+
+
