@@ -337,6 +337,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version 6.0", "Version 6.0", "{E515FBB4-F5DB-40F4-B2A3-FA78EFB35229}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Materiale til brug ved fondsansøgninger\Version 6.0\Råtekst til Bo.txt = Documentation\Materiale til brug ved fondsansøgninger\Version 6.0\Råtekst til Bo.txt
+		Documentation\Materiale til brug ved fondsansøgninger\Version 6.0\Tidsestimater for ansøgning 1.xlsx = Documentation\Materiale til brug ved fondsansøgninger\Version 6.0\Tidsestimater for ansøgning 1.xlsx
+		Documentation\Materiale til brug ved fondsansøgninger\Version 6.0\Tidsestimater for ansøgning 2.xlsx = Documentation\Materiale til brug ved fondsansøgninger\Version 6.0\Tidsestimater for ansøgning 2.xlsx
 		Documentation\Materiale til brug ved fondsansøgninger\Version 6.0\Tidsestimater.2023.12.05.xlsx = Documentation\Materiale til brug ved fondsansøgninger\Version 6.0\Tidsestimater.2023.12.05.xlsx
 		Documentation\Materiale til brug ved fondsansøgninger\Version 6.0\Tidsestimater.docx = Documentation\Materiale til brug ved fondsansøgninger\Version 6.0\Tidsestimater.docx
 	EndProjectSection
