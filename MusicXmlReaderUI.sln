@@ -440,6 +440,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Setup", "GitHub Setu
 		Documentation\GitHub Setup\GitHub Initial Setup.docx = Documentation\GitHub Setup\GitHub Initial Setup.docx
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibLouisWrapperTestCmd", "LibLouisWrapperTestCmd\LibLouisWrapperTestCmd.csproj", "{B6EDF969-89E6-4B44-8415-D090C80C0133}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibLouisWrapper", "LibLouisWrapper\LibLouisWrapper.csproj", "{6F225350-2083-400C-980F-B1BC6C537D2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -666,6 +670,30 @@ Global
 		{165F2EE0-8852-40C3-9EF0-B7EE6B6314B3}.Release|x64.Build.0 = Release|Any CPU
 		{165F2EE0-8852-40C3-9EF0-B7EE6B6314B3}.Release|x86.ActiveCfg = Release|Any CPU
 		{165F2EE0-8852-40C3-9EF0-B7EE6B6314B3}.Release|x86.Build.0 = Release|Any CPU
+		{B6EDF969-89E6-4B44-8415-D090C80C0133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6EDF969-89E6-4B44-8415-D090C80C0133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6EDF969-89E6-4B44-8415-D090C80C0133}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B6EDF969-89E6-4B44-8415-D090C80C0133}.Debug|x64.Build.0 = Debug|Any CPU
+		{B6EDF969-89E6-4B44-8415-D090C80C0133}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B6EDF969-89E6-4B44-8415-D090C80C0133}.Debug|x86.Build.0 = Debug|Any CPU
+		{B6EDF969-89E6-4B44-8415-D090C80C0133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6EDF969-89E6-4B44-8415-D090C80C0133}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6EDF969-89E6-4B44-8415-D090C80C0133}.Release|x64.ActiveCfg = Release|Any CPU
+		{B6EDF969-89E6-4B44-8415-D090C80C0133}.Release|x64.Build.0 = Release|Any CPU
+		{B6EDF969-89E6-4B44-8415-D090C80C0133}.Release|x86.ActiveCfg = Release|Any CPU
+		{B6EDF969-89E6-4B44-8415-D090C80C0133}.Release|x86.Build.0 = Release|Any CPU
+		{6F225350-2083-400C-980F-B1BC6C537D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F225350-2083-400C-980F-B1BC6C537D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F225350-2083-400C-980F-B1BC6C537D2D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6F225350-2083-400C-980F-B1BC6C537D2D}.Debug|x64.Build.0 = Debug|Any CPU
+		{6F225350-2083-400C-980F-B1BC6C537D2D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6F225350-2083-400C-980F-B1BC6C537D2D}.Debug|x86.Build.0 = Debug|Any CPU
+		{6F225350-2083-400C-980F-B1BC6C537D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F225350-2083-400C-980F-B1BC6C537D2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F225350-2083-400C-980F-B1BC6C537D2D}.Release|x64.ActiveCfg = Release|Any CPU
+		{6F225350-2083-400C-980F-B1BC6C537D2D}.Release|x64.Build.0 = Release|Any CPU
+		{6F225350-2083-400C-980F-B1BC6C537D2D}.Release|x86.ActiveCfg = Release|Any CPU
+		{6F225350-2083-400C-980F-B1BC6C537D2D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
