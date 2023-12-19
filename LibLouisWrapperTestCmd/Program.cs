@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LibLouisWrapper;
+using static LibLouisWrapper.Wrapper;
 
 namespace LibLouisWrapperTestCmd
 {
@@ -19,6 +20,11 @@ namespace LibLouisWrapperTestCmd
             {
                 charSize = LibLouisWrapper.Wrapper.lou_charSize();
                 Console.WriteLine(string.Format("CharSize = {0}", charSize));
+
+                string text = "Hej";
+                Typeforms[] sourceTypeformMap = null;
+                string s = TranslateString(text, sourceTypeformMap);
+
                 LibLouisNativeDllVersion = LibLouisWrapper.Wrapper.lou_version();
                 Console.WriteLine(string.Format("No Exception"));
             }
