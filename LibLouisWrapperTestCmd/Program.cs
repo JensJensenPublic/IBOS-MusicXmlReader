@@ -20,9 +20,11 @@ namespace LibLouisWrapperTestCmd
                 charSize = LibLouisWrapper.Wrapper.lou_charSize();
                 Console.WriteLine(string.Format("CharSize = {0}", charSize));
                 LibLouisNativeDllVersion = LibLouisWrapper.Wrapper.lou_version();
+                Console.WriteLine(string.Format("No Exception"));
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(string.Format("Exception.Message='{0}'", e.Message));
                 result = false;            
             }
             Console.WriteLine(string.Format("Result = {0}", result));
