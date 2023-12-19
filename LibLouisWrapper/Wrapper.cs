@@ -9,6 +9,13 @@ namespace LibLouisWrapper
 {
     /// <summary>
     /// Ideas stolen from the GitHub project LibLouis.Net
+    /// 
+    /// Other recommended reading: 
+    /// 
+    /// https://github.com/liblouis/liblouis/issues/1280
+    /// https://stackoverflow.com/questions/20857649/c-dll-import-throws-marshall-directive-exception-in-c-sharp
+    /// 
+    /// 
     /// </summary>
 
 
