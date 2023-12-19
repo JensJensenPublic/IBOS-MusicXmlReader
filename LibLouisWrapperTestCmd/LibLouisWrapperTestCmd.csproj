@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibLouisWrapper\LibLouisWrapper.csproj">
+      <Project>{6f225350-2083-400c-980f-b1bc6c537d2d}</Project>
+      <Name>LibLouisWrapper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
