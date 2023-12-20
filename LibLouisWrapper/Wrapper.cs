@@ -21,14 +21,14 @@ namespace LibLouisWrapper
 
         public static class Wrapper
         {
-            [DllImport("liblouis.dll", CallingConvention = CallingConvention.StdCall)]
+            [DllImport(@"Liblouis\bin\liblouis.dll", CallingConvention = CallingConvention.StdCall)]
             public static extern int lou_charSize();
 
-            [DllImport("liblouis.dll", CallingConvention = CallingConvention.StdCall)]
+            [DllImport(@"Liblouis\bin\liblouis.dll", CallingConvention = CallingConvention.StdCall)]
             [return: MarshalAs(UnmanagedType.LPStr)]
             public static extern string lou_version();
 
-            [DllImport("liblouis.dll", CallingConvention = CallingConvention.StdCall)]
+            [DllImport(@"Liblouis\bin\liblouis.dll", CallingConvention = CallingConvention.StdCall)]
             public static extern int lou_charToDots(
                 [MarshalAs(UnmanagedType.LPStr)]
             [In]
@@ -78,7 +78,8 @@ namespace LibLouisWrapper
 
             //Get the translation table
             //var tables = @"liblouis\tables\en-ueb-g2.ctb";
-            var tables = @"en-ueb-g2.ctb";
+            var tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb";
+            //var tables = @"en-ueb-g2.ctb";
 
 
             unsafe
