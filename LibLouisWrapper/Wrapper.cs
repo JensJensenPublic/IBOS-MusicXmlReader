@@ -56,8 +56,8 @@ namespace LibLouisWrapper
                 [In]  [MarshalAs(UnmanagedType.LPStr)] string tableList,
                 [In]  [MarshalAs(UnmanagedType.LPArray)] byte[] inbuf,
                 [Out] [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] byte[] outbuf,
-                [Out] int length,
-                int mode
+                [In] int length,
+                [In] int mode
             );
 
 
@@ -106,7 +106,8 @@ namespace LibLouisWrapper
                 //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
                 //Yet this works current at the size of input.
                 //Run the translation
-                int result = lou_charToDots(tables, converted, outBuff, 0, mode);
+                int result = lou_charToDots(tables, converted, outBuff, text.Length, mode);
+                Console.WriteLine(string.Format("lou_charToDots() returned result={0}", result));
 
                 Array.Resize(ref outBuff, maxOutSize * size);
                 //Decode the translation
