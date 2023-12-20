@@ -21,7 +21,7 @@ namespace LibLouisWrapperTestCmd
                 charSize = LibLouisWrapper.Wrapper.lou_charSize();
                 Console.WriteLine(string.Format("CharSize = {0}", charSize));
 
-                string text = "Hej";
+                string text = "abcdefghxxxxx";
                 Typeforms[] sourceTypeformMap = null;
                 string s = TranslateString(text, sourceTypeformMap);
 
