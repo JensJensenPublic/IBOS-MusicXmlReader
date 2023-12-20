@@ -23,6 +23,23 @@ namespace LibLouisWrapper
 
         public static class Wrapper
         {
+
+        /// <summary>
+        /// As defined in liblouis.h
+        /// </summary>
+        [Flags]
+        public enum TranslationModeEnum {
+            NoContractions = 1,
+            CompbrlAtCursor = 2,
+            DotsIO = 4,
+            // for historic reasons 8 and 16 are free
+            CompbrlLeftCursor = 32,
+            UnicodeBraille = 64 , // In liblouis.h: ucBrl = 64,
+            NoUndefined = 128,
+            PartialTrans = 256
+        }  
+
+
         // The dll is placed in a folder named "binary" instead of "bin" to please the default GitExclude which wil not accept a "bin" folder.
         private const string LibLouisDll = @"Liblouis\binary\liblouis.dll";
         //private const string LibLouisDll = @"Liblouis\bin\liblouis.dll";
@@ -84,12 +101,13 @@ namespace LibLouisWrapper
             {
                 var intPtr = new IntPtr(&maxInSize);
                 var outPrt = new IntPtr(&maxOutSize);
+                int mode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille);
 
                 //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
                 //Yet this works current at the size of input.
                 //Run the translation
                 lou_translateString(tables, converted, intPtr,
-                    outBuff, outPrt, sourceTypeformMap, null, 128);
+                    outBuff, outPrt, sourceTypeformMap, null, mode);
 
                 Array.Resize(ref outBuff, maxOutSize * size);
                 //Decode the translation
