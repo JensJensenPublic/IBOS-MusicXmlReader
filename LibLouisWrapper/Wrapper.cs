@@ -19,16 +19,22 @@ namespace LibLouisWrapper
     /// </summary>
 
 
+
+
         public static class Wrapper
         {
-            [DllImport(@"Liblouis\bin\liblouis.dll", CallingConvention = CallingConvention.StdCall)]
+        // The dll is placed in a folder named "binary" instead of "bin" to please the default GitExclude which wil not accept a "bin" folder.
+        private const string LibLouisDll = @"Liblouis\binary\liblouis.dll";
+        //private const string LibLouisDll = @"Liblouis\bin\liblouis.dll";
+
+        [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
             public static extern int lou_charSize();
 
-            [DllImport(@"Liblouis\bin\liblouis.dll", CallingConvention = CallingConvention.StdCall)]
+            [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
             [return: MarshalAs(UnmanagedType.LPStr)]
             public static extern string lou_version();
 
-            [DllImport(@"Liblouis\bin\liblouis.dll", CallingConvention = CallingConvention.StdCall)]
+            [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
             public static extern int lou_charToDots(
                 [MarshalAs(UnmanagedType.LPStr)]
             [In]

@@ -56,4 +56,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>call "$(SolutionDir)\LibLouisWrapper\publish.cmd"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
