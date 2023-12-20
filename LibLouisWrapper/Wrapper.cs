@@ -36,33 +36,25 @@ namespace LibLouisWrapper
 
             [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
             public static extern int lou_charToDots(
-                [MarshalAs(UnmanagedType.LPStr)]
-            [In]
-            string tableList,
-                [In]
-            [MarshalAs(UnmanagedType.LPArray)]
-            byte[] inbuf,
-                [Out]
-            [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)]
-            byte[] outbuf,
-                [Out]
-            int length,
+                [In]  [MarshalAs(UnmanagedType.LPStr)] string tableList,
+                [In]  [MarshalAs(UnmanagedType.LPArray)] byte[] inbuf,
+                [Out] [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] byte[] outbuf,
+                [Out] int length,
                 int mode
             );
 
 
         [DllImport(@"liblouis.dll", CharSet = CharSet.Unicode)]
         private static extern unsafe int lou_translateString(
-     [MarshalAs(UnmanagedType.LPStr)]
-            [In] string tableList,
-     [In] byte[] inbuf,
-     [In, Out] IntPtr inlen,
-     [Out] byte[] outbuf,
-     [In, Out] IntPtr outlen,
-     [In] Typeforms[] typeform,
-     [MarshalAs(UnmanagedType.LPStr)]
-            string spacing,
-     int mode);
+                [In][MarshalAs(UnmanagedType.LPStr)] string tableList,
+                [In] byte[] inbuf,
+                [In, Out] IntPtr inlen,
+                [Out] byte[] outbuf,
+                [In, Out] IntPtr outlen,
+                [In] Typeforms[] typeform,
+                [MarshalAs(UnmanagedType.LPStr)] string spacing,
+                int mode
+         );
 
 
 
