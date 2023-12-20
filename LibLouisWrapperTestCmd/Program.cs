@@ -27,6 +27,9 @@ namespace LibLouisWrapperTestCmd
 
                 Console.WriteLine(string.Format("Translatestring('{0}') returned '{1}'", text, s));
 
+                string dots = CharsToDots(text, sourceTypeformMap);
+                Console.WriteLine(string.Format("CharsToDots('{0}') returned '{1}'", text, dots));
+
                 // LibLouisNativeDllVersion = LibLouisWrapper.Wrapper.lou_version();
                 Console.WriteLine(string.Format("No Exception"));
             }

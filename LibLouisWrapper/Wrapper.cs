@@ -75,6 +75,49 @@ namespace LibLouisWrapper
 
 
 
+        public static string CharsToDots(string text, Typeforms[] sourceTypeformMap)
+        {
+            //Get the encoding type based on the lou_charSize.
+            var size = lou_charSize();
+            var encoding = GetEncoding(size);
+
+            //Encode the input string and set up buffers and int pointers.
+            var converted = encoding.GetBytes(text);
+            var maxInSize = text.Length * size;
+
+            //Set up the output buffers.
+            var maxOutSize = Math.Max(text.Length * (size * 2), 4096);
+            var outBuff = new byte[maxOutSize];
+
+            var translation = "";
+
+            //Get the translation table
+            //var tables = @"liblouis\tables\en-ueb-g2.ctb";
+            var tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb";
+            //var tables = @"en-ueb-g2.ctb";
+
+
+            unsafe
+            {
+                var intPtr = new IntPtr(&maxInSize);
+                var outPrt = new IntPtr(&maxOutSize);
+                int mode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille);
+
+                //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
+                //Yet this works current at the size of input.
+                //Run the translation
+                int result = lou_charToDots(tables, converted, outBuff, 0, mode);
+
+                Array.Resize(ref outBuff, maxOutSize * size);
+                //Decode the translation
+                translation = encoding.GetString(outBuff);
+            }
+
+            //trim out any empty characters.
+            return translation;
+        }
+
+
         public static string TranslateString(string text, Typeforms[] sourceTypeformMap)
         {
             //Get the encoding type based on the lou_charSize.
