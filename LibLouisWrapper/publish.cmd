@@ -4,7 +4,9 @@ rem The LibLouisWrapper project expects to find i there.
 
 dir ..\..\..\ThirdPartyDlls\liblouis 
 
-xcopy ..\..\..\ThirdPartyDlls\liblouis /s/e/v
+mkdir liblouis
+
+xcopy ..\..\..\ThirdPartyDlls\liblouis liblouis /s/e/v
 
 dir liblouis
 
