@@ -25,7 +25,7 @@ namespace LibLouisWrapperTestCmd
                 Typeforms[] sourceTypeformMap = null;
                 string s = TranslateString(text, sourceTypeformMap);
 
-                Console.WriteLine(string.Format("Translatestring({0} returned '{1}')", text, s));
+                Console.WriteLine(string.Format("Translatestring('{0}') returned '{1}'", text, s));
 
                 // LibLouisNativeDllVersion = LibLouisWrapper.Wrapper.lou_version();
                 Console.WriteLine(string.Format("No Exception"));
