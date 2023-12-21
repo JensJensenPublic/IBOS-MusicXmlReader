@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LibLouisWrapper;
 using static LibLouisWrapper.Wrapper;
+using MusicXmlReaderModel;
+
 
 namespace LibLouisWrapperTestCmd
 {
@@ -12,6 +15,9 @@ namespace LibLouisWrapperTestCmd
     {
         static void Main(string[] args)
         {
+            //MusicXmlReaderModel.Logger.LogCF(": Starting");
+            Logger.Open(@"c:\temp\LibLouis\LibLouisWrapperTestCmd.log");
+            Logger.LogCF(": Starting");
             bool result = true;
             int charSize = -1;
           
