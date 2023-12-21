@@ -49,6 +49,12 @@
   <ItemGroup>
     <None Include="publish.cmd" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MusicXmlReaderModelBase\MusicXmlReaderModelBase.csproj">
+      <Project>{0d994560-ff94-4a4b-b150-647d76432de1}</Project>
+      <Name>MusicXmlReaderModelBase</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

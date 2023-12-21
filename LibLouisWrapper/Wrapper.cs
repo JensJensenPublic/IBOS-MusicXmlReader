@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using MusicXmlReaderModel; 
 
 namespace LibLouisWrapper
 {
@@ -97,24 +98,16 @@ namespace LibLouisWrapper
 
         public bool CharsToDots(string chars, out string dots, Typeforms[] sourceTypeformMap)
         {
-            dots = "";           
-
-            //Encode the input string and set up buffers and int pointers.
-            byte[] converted = encoding.GetBytes(chars);
-            int maxInSize = chars.Length * charSize;
-
-            //Set up the output buffers.
+            dots = ""; 
+            byte[] converted = encoding.GetBytes(chars); // Encode the input string and set up buffers and int pointers.     
             int maxOutSize = Math.Max(chars.Length * (charSize * 2), 4096);
-            byte[] outBuff = new byte[maxOutSize];           
-
-            //Get the translation table
-            string tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb"; // Only one table used in this case
+            byte[] outBuff = new byte[maxOutSize]; 
 
             // Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
             // Yet this works current at the size of input.
 
             int result = lou_charToDots(tables, converted, outBuff, chars.Length, translationMode); // Call native code to translate
-            Console.WriteLine(string.Format("lou_charToDots() returned result={0}", result));
+            // Log(string.Format("lou_charToDots() returned result={0}", result));
             if (0 == result) return false; 
             string translation = encoding.GetString(outBuff);      //Encode the translation
             dots = translation.TrimEnd(new char[] {'\0'} ); // Remove all trailing null characters        
@@ -124,29 +117,28 @@ namespace LibLouisWrapper
 
         public bool DotsToChars(string dots, out string chars, Typeforms[] sourceTypeformMap)
         {
-            chars = "";
-
-            //Encode the input string and set up buffers and int pointers.
-            byte[] converted = encoding.GetBytes(dots);
-            int maxInSize = dots.Length * charSize;
-
-            //Set up the output buffers.
+            chars = "";           
+            byte[] converted = encoding.GetBytes(dots);  // Encode the input string and set up buffers.
             int maxOutSize = Math.Max(dots.Length * (charSize * 2), 4096);
             byte[] outBuff = new byte[maxOutSize];
-
-            //Get the translation table
-            string tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb"; // Only one table used in this case
 
             // Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
             // Yet this works current at the size of input.
 
             int result = lou_dotsToChar(tables, converted, outBuff, dots.Length, translationMode); // Call native code to translate
-            Console.WriteLine(string.Format("lou_charToDots() returned result={0}", result));
+            // Log(string.Format("lou_charToDots() returned result={0}", result));
             if (0 == result) return false;
             string translation = encoding.GetString(outBuff);      //Encode the translation
             chars = translation.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters        
             return true;
         }
+
+         private void Log(string s)
+        {
+            Console.WriteLine(s);
+            Logger.LogCF1(": " + s);    // Append Class and Function for the function calling Log()    
+        }
+
 
 
 #if false
@@ -222,12 +214,15 @@ namespace LibLouisWrapper
 
         private int charSize;
         Encoding encoding;
+        string tables;
 
         private Wrapper()
         {
             // Get the encoding type based on the lou_charSize.
             charSize = lou_charSize(); 
             encoding = GetEncoding(charSize);
+            // Get the translation table
+            tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb"; // Only one table used in this case
         }
         public static Wrapper Create()
         { return new Wrapper(); }   
