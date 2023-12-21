@@ -52,6 +52,8 @@ namespace LibLouisWrapperTestCmd
                 // string LibLouisNativeDllVersion; ;
                 // LibLouisNativeDllVersion = LibLouisWrapper.Wrapper.lou_version(); // Does not work, and hangs the program !
 
+                libLouisWrapper.Free();
+                Log("LibLouisWrapper.Free() returned.");
                 Log(string.Format("No Exception"));
             }
             catch (Exception e)
@@ -60,6 +62,9 @@ namespace LibLouisWrapperTestCmd
                 result = false;            
             }
             Log(string.Format("Result = {0}", result));
+
+          
+
             Log(string.Format("Press any key to exit"));
             //Console.ReadLine();           
         }

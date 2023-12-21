@@ -76,10 +76,8 @@ namespace LibLouisWrapper
             [In] int mode
             );
 
-
-
-
-
+            [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
+            public static extern void lou_free();
 
 #if false
         [DllImport(@"liblouis.dll", CharSet = CharSet.Unicode)]
@@ -133,7 +131,13 @@ namespace LibLouisWrapper
             return true;
         }
 
-         private void Log(string s)
+        public void Free()
+        {
+            lou_free();
+        }
+
+
+        private void Log(string s)
         {
             Console.WriteLine(s);
             Logger.LogCF1(": " + s);    // Append Class and Function for the function calling Log()    
