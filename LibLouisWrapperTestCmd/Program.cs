@@ -38,6 +38,12 @@ namespace LibLouisWrapperTestCmd
                 Console.WriteLine(string.Format("CharsToDots('{0}') returned '{1}'", text, dots));
                 Logger.LogCF(string.Format(": CharsToDots('{0}') returned {1}.   Dots={2}) ", text, ok ? "Success" : "Error!", dots));
 
+                string charsResult = "";
+                bool okDotsToChars = DotsToChar(dots, out charsResult, sourceTypeformMap);
+                Logger.LogCF(string.Format(": DotsToChar('{0}') returned {1}.   Chars={2}) ", dots, ok ? "Success" : "Error!", charsResult));
+
+
+
                 // string LibLouisNativeDllVersion; ;
                 // LibLouisNativeDllVersion = LibLouisWrapper.Wrapper.lou_version(); // Does not work, and hangs the program !
 

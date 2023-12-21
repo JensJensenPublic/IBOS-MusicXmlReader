@@ -15,13 +15,16 @@ namespace LibLouisWrapper
     /// https://github.com/liblouis/liblouis/issues/1280
     /// https://stackoverflow.com/questions/20857649/c-dll-import-throws-marshall-directive-exception-in-c-sharp
     /// 
+    /// Official LibLouis documentation is found at
+    /// https://liblouis.io/documentation/liblouis.html
+    /// 
     /// 
     /// </summary>
 
 
 
 
-        public static class Wrapper
+    public static class Wrapper
         {
 
         /// <summary>
@@ -61,6 +64,21 @@ namespace LibLouisWrapper
                 [In] int length,
                 [In] int mode
             );
+
+
+            [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
+            public static extern int lou_dotsToChar(
+            [In][MarshalAs(UnmanagedType.LPStr)] string tableList,
+            [In][MarshalAs(UnmanagedType.LPArray)] byte[] inbuf,
+            [Out][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] byte[] outbuf,
+            [In] int length,
+            [In] int mode
+            );
+
+
+
+
+
 
 #if false
         [DllImport(@"liblouis.dll", CharSet = CharSet.Unicode)]
@@ -105,6 +123,37 @@ namespace LibLouisWrapper
             dots = translation.TrimEnd(new char[] {'\0'} ); // Remove all trailing null characters        
             return true;
         }
+
+
+        public static bool DotsToChar(string dots, out string chars, Typeforms[] sourceTypeformMap)
+        {
+            chars = "";
+            //Get the encoding type based on the lou_charSize.
+            int size = lou_charSize();
+            Encoding encoding = GetEncoding(size);
+
+            //Encode the input string and set up buffers and int pointers.
+            byte[] converted = encoding.GetBytes(dots);
+            int maxInSize = dots.Length * size;
+
+            //Set up the output buffers.
+            int maxOutSize = Math.Max(dots.Length * (size * 2), 4096);
+            byte[] outBuff = new byte[maxOutSize];
+
+            //Get the translation table
+            string tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb"; // Only one table used in this case
+
+            // Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
+            // Yet this works current at the size of input.
+
+            int result = lou_dotsToChar(tables, converted, outBuff, dots.Length, translationMode); // Call native code to translate
+            Console.WriteLine(string.Format("lou_charToDots() returned result={0}", result));
+            if (0 == result) return false;
+            string translation = encoding.GetString(outBuff);      //Encode the translation
+            chars = translation.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters        
+            return true;
+        }
+
 
 #if false
         public static string TranslateString(string text, Typeforms[] sourceTypeformMap)
