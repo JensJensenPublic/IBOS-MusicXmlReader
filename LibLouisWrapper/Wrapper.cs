@@ -96,22 +96,20 @@ namespace LibLouisWrapper
             //Get the translation table
             string tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb"; // Only one table
 
-            unsafe
-            {
-             
-                //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
-                //Yet this works current at the size of input.
-                //Run the translation
-                int result = lou_charToDots(tables, converted, outBuff, text.Length, translationMode);
-                Console.WriteLine(string.Format("lou_charToDots() returned result={0}", result));
+            //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
+            //Yet this works current at the size of input.
+            //Run the translation
+            int result = lou_charToDots(tables, converted, outBuff, text.Length, translationMode);
+            Console.WriteLine(string.Format("lou_charToDots() returned result={0}", result));
 
-                Array.Resize(ref outBuff, maxOutSize * size);
-                //Decode the translation
-                translation = encoding.GetString(outBuff);
-            }
+            //Array.Resize(ref outBuff, maxOutSize * size);
+            //Decode the translation            
+            translation = encoding.GetString(outBuff);
+            //trimchars[0] = '\0';
+            string trimmedTranslation = translation.TrimEnd(new char[] {'\0'} ); // Remove all trailing null characters
 
             //trim out any empty characters.
-            return translation;
+            return trimmedTranslation;
         }
 
 
