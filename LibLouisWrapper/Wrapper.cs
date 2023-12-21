@@ -37,7 +37,9 @@ namespace LibLouisWrapper
             UnicodeBraille = 64 , // In liblouis.h: ucBrl = 64,
             NoUndefined = 128,
             PartialTrans = 256
-        }  
+        }
+
+        const int translationMode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille); // Common for all member functions
 
 
         // The dll is placed in a folder named "binary" instead of "bin" to please the default GitExclude which wil not accept a "bin" folder.
@@ -78,35 +80,29 @@ namespace LibLouisWrapper
         public static string CharsToDots(string text, Typeforms[] sourceTypeformMap)
         {
             //Get the encoding type based on the lou_charSize.
-            var size = lou_charSize();
-            var encoding = GetEncoding(size);
+            int size = lou_charSize();
+            Encoding encoding = GetEncoding(size);
 
             //Encode the input string and set up buffers and int pointers.
-            var converted = encoding.GetBytes(text);
-            var maxInSize = text.Length * size;
+            byte[] converted = encoding.GetBytes(text);
+            int maxInSize = text.Length * size;
 
             //Set up the output buffers.
-            var maxOutSize = Math.Max(text.Length * (size * 2), 4096);
-            var outBuff = new byte[maxOutSize];
+            int maxOutSize = Math.Max(text.Length * (size * 2), 4096);
+            byte[] outBuff = new byte[maxOutSize];
 
-            var translation = "";
+            string translation = "";
 
             //Get the translation table
-            //var tables = @"liblouis\tables\en-ueb-g2.ctb";
-            var tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb";
-            //var tables = @"en-ueb-g2.ctb";
-
+            string tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb"; // Only one table
 
             unsafe
             {
-                var intPtr = new IntPtr(&maxInSize);
-                var outPrt = new IntPtr(&maxOutSize);
-                int mode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille);
-
+             
                 //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
                 //Yet this works current at the size of input.
                 //Run the translation
-                int result = lou_charToDots(tables, converted, outBuff, text.Length, mode);
+                int result = lou_charToDots(tables, converted, outBuff, text.Length, translationMode);
                 Console.WriteLine(string.Format("lou_charToDots() returned result={0}", result));
 
                 Array.Resize(ref outBuff, maxOutSize * size);
