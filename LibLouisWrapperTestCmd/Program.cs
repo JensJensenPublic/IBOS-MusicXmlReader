@@ -14,7 +14,7 @@ namespace LibLouisWrapperTestCmd
         {
             bool result = true;
             int charSize = -1;
-            string LibLouisNativeDllVersion; ;
+          
             Console.WriteLine(string.Format("Starting."));
             try
             {
@@ -27,10 +27,13 @@ namespace LibLouisWrapperTestCmd
 
                 Console.WriteLine(string.Format("Translatestring('{0}') returned '{1}'", text, s));
 
-                string dots = CharsToDots(text, sourceTypeformMap);
+                string dots = "";
+                bool ok = CharsToDots(text, out dots,sourceTypeformMap);
                 Console.WriteLine(string.Format("CharsToDots('{0}') returned '{1}'", text, dots));
 
-                // LibLouisNativeDllVersion = LibLouisWrapper.Wrapper.lou_version();
+                // string LibLouisNativeDllVersion; ;
+                // LibLouisNativeDllVersion = LibLouisWrapper.Wrapper.lou_version(); // Does not work, and hangs the program !
+
                 Console.WriteLine(string.Format("No Exception"));
             }
             catch (Exception e)

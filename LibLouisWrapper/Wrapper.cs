@@ -77,39 +77,33 @@ namespace LibLouisWrapper
 
 
 
-        public static string CharsToDots(string text, Typeforms[] sourceTypeformMap)
+        public static bool CharsToDots(string chars, out string dots, Typeforms[] sourceTypeformMap)
         {
+            dots = "";          
             //Get the encoding type based on the lou_charSize.
             int size = lou_charSize();
             Encoding encoding = GetEncoding(size);
 
             //Encode the input string and set up buffers and int pointers.
-            byte[] converted = encoding.GetBytes(text);
-            int maxInSize = text.Length * size;
+            byte[] converted = encoding.GetBytes(chars);
+            int maxInSize = chars.Length * size;
 
             //Set up the output buffers.
-            int maxOutSize = Math.Max(text.Length * (size * 2), 4096);
-            byte[] outBuff = new byte[maxOutSize];
-
-            string translation = "";
+            int maxOutSize = Math.Max(chars.Length * (size * 2), 4096);
+            byte[] outBuff = new byte[maxOutSize];           
 
             //Get the translation table
-            string tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb"; // Only one table
+            string tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb"; // Only one table used in this case
 
-            //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
-            //Yet this works current at the size of input.
-            //Run the translation
-            int result = lou_charToDots(tables, converted, outBuff, text.Length, translationMode);
+            // Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
+            // Yet this works current at the size of input.
+
+            int result = lou_charToDots(tables, converted, outBuff, chars.Length, translationMode); // Call native code to translate
             Console.WriteLine(string.Format("lou_charToDots() returned result={0}", result));
-
-            //Array.Resize(ref outBuff, maxOutSize * size);
-            //Decode the translation            
-            translation = encoding.GetString(outBuff);
-            //trimchars[0] = '\0';
-            string trimmedTranslation = translation.TrimEnd(new char[] {'\0'} ); // Remove all trailing null characters
-
-            //trim out any empty characters.
-            return trimmedTranslation;
+            if (0 == result) return false; 
+            string translation = encoding.GetString(outBuff);      //Encode the translation
+            dots = translation.TrimEnd(new char[] {'\0'} ); // Remove all trailing null characters        
+            return true;
         }
 
 
