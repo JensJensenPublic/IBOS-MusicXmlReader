@@ -29,10 +29,10 @@ namespace LibLouisWrapperTestCmd
 
                 string text = "abcdefghxxxxx";
                 Typeforms[] sourceTypeformMap = null;
+#if false
                 string s = TranslateString(text, sourceTypeformMap);
-
                 Console.WriteLine(string.Format("Translatestring('{0}') returned '{1}'", text, s));
-
+#endif
                 string dots = "";
                 bool ok = CharsToDots(text, out dots,sourceTypeformMap);
                 Console.WriteLine(string.Format("CharsToDots('{0}') returned '{1}'", text, dots));

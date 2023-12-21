@@ -62,7 +62,7 @@ namespace LibLouisWrapper
                 [In] int mode
             );
 
-
+#if false
         [DllImport(@"liblouis.dll", CharSet = CharSet.Unicode)]
         private static extern unsafe int lou_translateString(
                 [In][MarshalAs(UnmanagedType.LPStr)] string tableList,
@@ -74,7 +74,7 @@ namespace LibLouisWrapper
                 [MarshalAs(UnmanagedType.LPStr)] string spacing,
                 int mode
          );
-
+#endif
 
 
         public static bool CharsToDots(string chars, out string dots, Typeforms[] sourceTypeformMap)
@@ -106,7 +106,7 @@ namespace LibLouisWrapper
             return true;
         }
 
-
+#if false
         public static string TranslateString(string text, Typeforms[] sourceTypeformMap)
         {
             //Get the encoding type based on the lou_charSize.
@@ -149,7 +149,7 @@ namespace LibLouisWrapper
             //trim out any empty characters.
             return translation;
         }
-
+#endif
         /// <summary>
         /// Gets the encoding based on the character size from libluois
         /// </summary>
