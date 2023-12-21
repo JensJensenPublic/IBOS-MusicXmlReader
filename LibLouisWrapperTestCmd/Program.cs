@@ -13,11 +13,19 @@ namespace LibLouisWrapperTestCmd
 {
     internal class Program
     {
+
+        static private void Log(string s)
+        {
+            Console.WriteLine(s);
+            Logger.LogCF1(s);    // Append Class anf Function for the function calling Log()    
+        }
+
         static void Main(string[] args)
         {
             //MusicXmlReaderModel.Logger.LogCF(": Starting");
             Logger.Open(@"c:\temp\LibLouis\LibLouisWrapperTestCmd.log");
-            Logger.LogCF(": Starting");
+            Log("---------------------------------------------------");
+            Log(": Starting");
             Wrapper libLouisWrapper;
             bool result = true;       
           
@@ -25,7 +33,7 @@ namespace LibLouisWrapperTestCmd
             try
             {
                 libLouisWrapper = Wrapper.Create();
-                Console.WriteLine(string.Format("CharSize = {0}", libLouisWrapper.CharSize));
+                Log(string.Format(": CharSize = {0}", libLouisWrapper.CharSize));
 
                 string text = "abcdefghxxxxx";
                 Typeforms[] sourceTypeformMap = null;
@@ -35,28 +43,27 @@ namespace LibLouisWrapperTestCmd
 #endif
                 string dots = "";
                 bool ok = libLouisWrapper.CharsToDots(text, out dots,sourceTypeformMap);
-                Console.WriteLine(string.Format("CharsToDots('{0}') returned '{1}'", text, dots));
-                Logger.LogCF(string.Format(": CharsToDots('{0}') returned {1}.   Dots={2}) ", text, ok ? "Success" : "Error!", dots));
+                Log(string.Format(": CharsToDots('{0}') returned {1}.   Dots={2}) ", text, ok ? "Success" : "Error!", dots));
 
                 string charsResult = "";
-                bool okDotsToChars = libLouisWrapper.DotsToChar(dots, out charsResult, sourceTypeformMap);
-                Logger.LogCF(string.Format(": DotsToChar('{0}') returned {1}.   Chars={2}) ", dots, ok ? "Success" : "Error!", charsResult));
+                bool okDotsToChars = libLouisWrapper.DotsToChars(dots, out charsResult, sourceTypeformMap);
+                Log(string.Format(": DotsToChar('{0}') returned {1}.   Chars={2}) ", dots, ok ? "Success" : "Error!", charsResult));
 
 
 
                 // string LibLouisNativeDllVersion; ;
                 // LibLouisNativeDllVersion = LibLouisWrapper.Wrapper.lou_version(); // Does not work, and hangs the program !
 
-                Console.WriteLine(string.Format("No Exception"));
+                Log(string.Format(": No Exception"));
             }
             catch (Exception e)
             {
-                Console.WriteLine(string.Format("Exception.Message='{0}'", e.Message));
+                Log(string.Format("Exception.Message='{0}'", e.Message));
                 result = false;            
             }
-            Console.WriteLine(string.Format("Result = {0}", result));
-            Console.ReadLine();
-
+            Log(string.Format(": Result = {0}", result));
+            Log(string.Format(": Press any key to xxit"));
+            //Console.ReadLine();           
         }
     }
 }

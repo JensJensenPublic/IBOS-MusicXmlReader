@@ -122,7 +122,7 @@ namespace LibLouisWrapper
         }
 
 
-        public bool DotsToChar(string dots, out string chars, Typeforms[] sourceTypeformMap)
+        public bool DotsToChars(string dots, out string chars, Typeforms[] sourceTypeformMap)
         {
             chars = "";
 
