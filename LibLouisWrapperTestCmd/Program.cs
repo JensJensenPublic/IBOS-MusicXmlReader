@@ -18,14 +18,14 @@ namespace LibLouisWrapperTestCmd
             //MusicXmlReaderModel.Logger.LogCF(": Starting");
             Logger.Open(@"c:\temp\LibLouis\LibLouisWrapperTestCmd.log");
             Logger.LogCF(": Starting");
-            bool result = true;
-            int charSize = -1;
+            Wrapper libLouisWrapper;
+            bool result = true;       
           
             Console.WriteLine(string.Format("Starting."));
             try
             {
-                charSize = LibLouisWrapper.Wrapper.lou_charSize();
-                Console.WriteLine(string.Format("CharSize = {0}", charSize));
+                libLouisWrapper = Wrapper.Create();
+                Console.WriteLine(string.Format("CharSize = {0}", libLouisWrapper.CharSize));
 
                 string text = "abcdefghxxxxx";
                 Typeforms[] sourceTypeformMap = null;
@@ -34,12 +34,12 @@ namespace LibLouisWrapperTestCmd
                 Console.WriteLine(string.Format("Translatestring('{0}') returned '{1}'", text, s));
 #endif
                 string dots = "";
-                bool ok = CharsToDots(text, out dots,sourceTypeformMap);
+                bool ok = libLouisWrapper.CharsToDots(text, out dots,sourceTypeformMap);
                 Console.WriteLine(string.Format("CharsToDots('{0}') returned '{1}'", text, dots));
                 Logger.LogCF(string.Format(": CharsToDots('{0}') returned {1}.   Dots={2}) ", text, ok ? "Success" : "Error!", dots));
 
                 string charsResult = "";
-                bool okDotsToChars = DotsToChar(dots, out charsResult, sourceTypeformMap);
+                bool okDotsToChars = libLouisWrapper.DotsToChar(dots, out charsResult, sourceTypeformMap);
                 Logger.LogCF(string.Format(": DotsToChar('{0}') returned {1}.   Chars={2}) ", dots, ok ? "Success" : "Error!", charsResult));
 
 

@@ -24,7 +24,7 @@ namespace LibLouisWrapper
 
 
 
-    public static class Wrapper
+    public class Wrapper
         {
 
         /// <summary>
@@ -95,19 +95,16 @@ namespace LibLouisWrapper
 #endif
 
 
-        public static bool CharsToDots(string chars, out string dots, Typeforms[] sourceTypeformMap)
+        public bool CharsToDots(string chars, out string dots, Typeforms[] sourceTypeformMap)
         {
-            dots = "";          
-            //Get the encoding type based on the lou_charSize.
-            int size = lou_charSize();
-            Encoding encoding = GetEncoding(size);
+            dots = "";           
 
             //Encode the input string and set up buffers and int pointers.
             byte[] converted = encoding.GetBytes(chars);
-            int maxInSize = chars.Length * size;
+            int maxInSize = chars.Length * charSize;
 
             //Set up the output buffers.
-            int maxOutSize = Math.Max(chars.Length * (size * 2), 4096);
+            int maxOutSize = Math.Max(chars.Length * (charSize * 2), 4096);
             byte[] outBuff = new byte[maxOutSize];           
 
             //Get the translation table
@@ -125,19 +122,16 @@ namespace LibLouisWrapper
         }
 
 
-        public static bool DotsToChar(string dots, out string chars, Typeforms[] sourceTypeformMap)
+        public bool DotsToChar(string dots, out string chars, Typeforms[] sourceTypeformMap)
         {
             chars = "";
-            //Get the encoding type based on the lou_charSize.
-            int size = lou_charSize();
-            Encoding encoding = GetEncoding(size);
 
             //Encode the input string and set up buffers and int pointers.
             byte[] converted = encoding.GetBytes(dots);
-            int maxInSize = dots.Length * size;
+            int maxInSize = dots.Length * charSize;
 
             //Set up the output buffers.
-            int maxOutSize = Math.Max(dots.Length * (size * 2), 4096);
+            int maxOutSize = Math.Max(dots.Length * (charSize * 2), 4096);
             byte[] outBuff = new byte[maxOutSize];
 
             //Get the translation table
@@ -224,7 +218,19 @@ namespace LibLouisWrapper
             TNEmbed = 16,
         }
 
+        public int CharSize { get { return charSize; } }
 
+        private int charSize;
+        Encoding encoding;
+
+        private Wrapper()
+        {
+            // Get the encoding type based on the lou_charSize.
+            charSize = lou_charSize(); 
+            encoding = GetEncoding(charSize);
+        }
+        public static Wrapper Create()
+        { return new Wrapper(); }   
 
     }
 }
