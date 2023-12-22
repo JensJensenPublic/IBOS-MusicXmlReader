@@ -83,8 +83,7 @@ namespace LibLouisWrapper
         public delegate void Func(int level, string message);
         public static void MyFunc(int level, string message)
         {
-            Console.WriteLine("Callback executed. Level={0} Message={1}",level, message);
-            Logger.LogCF(string.Format("Received callback from LibLouis, describing an error: Level={0} Message={1}", level, message));
+            Log(string.Format(": Received callback from LibLouis, describing an error: Level={0} Message={1}", level, message));
         }
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         public static extern void lou_registerLogCallback(Func callback);
@@ -148,10 +147,10 @@ namespace LibLouisWrapper
         }
 
 
-        private void Log(string s)
+        private static void Log(string s)
         {
             Console.WriteLine(s);
-            Logger.LogCF1(": " + s);    // Append Class and Function for the function calling Log()    
+            Logger.LogCF1(s);    // Append Class and Function for the function calling Log()    
         }
 
 
@@ -230,7 +229,6 @@ namespace LibLouisWrapper
         private int charSize;
         Encoding encoding;
         string tables;
-
         bool simulateErrorCallback = false;
 
         private Wrapper()
@@ -244,7 +242,7 @@ namespace LibLouisWrapper
             if (simulateErrorCallback)
             {
                 tables = @"liblouis\share\liblouis\tables\en-ueb-g2.xxx"; // ONLY to check the callback registered by  lou_registerLogCallback()
-                Logger.LogCF(string.Format(": Simulating use of nonexisting translationtable in order to check the lou_registerLogCallback() mechanism!!"));
+                Log(string.Format(": WARNING: Simulating use of nonexisting translationtable in order to check the lou_registerLogCallback() mechanism!!"));
             }
         }
         public static Wrapper Create()
