@@ -9,21 +9,26 @@ using MusicXmlReaderModel;
 namespace LibLouisWrapper
 {
     /// <summary>
-    /// Ideas stolen from the GitHub project LibLouis.Net
+    /// Simple wrapper class for using the LibLouis library (LibLouis.dll) from C#
+    /// Intensionally only contains 4 public methods:
+    ///  public static Wrapper Create()
+    ///  public bool CharsToDots(string chars, out string dots, Typeforms[] sourceTypeformMap)
+    ///  public bool DotsToChars(string dots, out string chars, Typeforms[] sourceTypeformMap)
+    ///  public void Free()
+    ///  
+    /// More public methods can easily be added if needed. 
     /// 
-    /// Other recommended reading: 
     /// 
-    /// https://github.com/liblouis/liblouis/issues/1280
-    /// https://stackoverflow.com/questions/20857649/c-dll-import-throws-marshall-directive-exception-in-c-sharp
-    /// 
+    /// Some ideas were stolen from the GitHub project LibLouis.Net 
     /// Official LibLouis documentation is found at
     /// https://liblouis.io/documentation/liblouis.html
     /// 
-    /// 
+    /// Other recommended reading:  
+    /// https://github.com/liblouis/liblouis/issues/1280
+    /// https://stackoverflow.com/questions/20857649/c-dll-import-throws-marshall-directive-exception-in-c-sharp  
+    /// Official LibLouis documentation is found at
+    /// https://liblouis.io/documentation/liblouis.html
     /// </summary>
-
-
-
 
     public class Wrapper
         {
@@ -51,14 +56,14 @@ namespace LibLouisWrapper
         //private const string LibLouisDll = @"Liblouis\bin\liblouis.dll";
 
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
-            public static extern int lou_charSize();
+            private static extern int lou_charSize();
 
             [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
             [return: MarshalAs(UnmanagedType.LPStr)]
-            public static extern string lou_version();
+            private static extern string lou_version();
 
             [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
-            public static extern int lou_charToDots(
+            private static extern int lou_charToDots(
                 [In]  [MarshalAs(UnmanagedType.LPStr)] string tableList,
                 [In]  [MarshalAs(UnmanagedType.LPArray)] byte[] inbuf,
                 [Out] [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] byte[] outbuf,
@@ -68,7 +73,7 @@ namespace LibLouisWrapper
 
 
             [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
-            public static extern int lou_dotsToChar(
+            private static extern int lou_dotsToChar(
             [In][MarshalAs(UnmanagedType.LPStr)] string tableList,
             [In][MarshalAs(UnmanagedType.LPArray)] byte[] inbuf,
             [Out][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] byte[] outbuf,
@@ -77,16 +82,16 @@ namespace LibLouisWrapper
             );
 
             [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
-            public static extern void lou_free();
+            private static extern void lou_free();
 
 #if true
-        public delegate void Func(int level, string message);
-        public static void MyFunc(int level, string message)
+        private delegate void Func(int level, string message);
+        private static void MyFunc(int level, string message)
         {
             Log(string.Format(": Received callback from LibLouis, describing an error: Level={0} Message={1}", level, message));
         }
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
-        public static extern void lou_registerLogCallback(Func callback);
+        private static extern void lou_registerLogCallback(Func callback);
 #endif
 
 #if false
@@ -224,7 +229,7 @@ namespace LibLouisWrapper
             TNEmbed = 16,
         }
 
-        public int CharSize { get { return charSize; } }
+        //public int CharSize { get { return charSize; } }
 
         private int charSize;
         private Encoding encoding;
