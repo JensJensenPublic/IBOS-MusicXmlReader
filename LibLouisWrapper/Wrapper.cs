@@ -122,7 +122,7 @@ namespace LibLouisWrapper
 #endif
 
 
-        public bool CharsToDots(string chars, out string dots, Typeforms[] sourceTypeformMap)
+        public bool CharsToDots(string chars, out string dots)
         {
             dots = "";
             byte[] converted = encoding.GetBytes(chars); // Encode the input string and set up buffers and int pointers.     
@@ -141,7 +141,7 @@ namespace LibLouisWrapper
         }
 
 
-        public bool DotsToChars(string dots, out string chars, Typeforms[] sourceTypeformMap)
+        public bool DotsToChars(string dots, out string chars)
         {
             chars = "";
             byte[] converted = encoding.GetBytes(dots);  // Encode the input string and set up buffers.

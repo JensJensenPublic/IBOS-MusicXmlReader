@@ -30,27 +30,19 @@ namespace LibLouisWrapperTestCmd
             bool result = true;    
             try
             {
-                libLouisWrapper = Wrapper.Create();   
+                libLouisWrapper = Wrapper.Create();  
 
                 string text = "abcdefghxxxxx";
-                Typeforms[] sourceTypeformMap = null;
-#if false
-                string s = TranslateString(text, sourceTypeformMap);
-                Console.WriteLine(string.Format("Translatestring('{0}') returned '{1}'", text, s));
-#endif
                 string dots = "";
-                bool ok = libLouisWrapper.CharsToDots(text, out dots,sourceTypeformMap);
-                Log(string.Format(": CharsToDots('{0}') returned {1}.   Dots={2}) ", text, ok ? "Success" : "Error!", dots));
+
+                bool okCharsToDots = libLouisWrapper.CharsToDots(text, out dots);
+                Log(string.Format(": CharsToDots('{0}') returned {1}.   Dots={2}) ", text, okCharsToDots ? "Success" : "Error!", dots));
 
                 string charsResult = "";
-                bool okDotsToChars = libLouisWrapper.DotsToChars(dots, out charsResult, sourceTypeformMap);
-                Log(string.Format(": DotsToChar('{0}') returned {1}.   Chars={2}) ", dots, ok ? "Success" : "Error!", charsResult));
 
-
-
-                // string LibLouisNativeDllVersion; ;
-                // LibLouisNativeDllVersion = LibLouisWrapper.Wrapper.lou_version(); // Does not work, and hangs the program !
-
+                bool okDotsToChars = libLouisWrapper.DotsToChars(dots, out charsResult);
+                Log(string.Format(": DotsToChar('{0}') returned {1}.   Chars={2}) ", dots, okDotsToChars ? "Success" : "Error!", charsResult));
+   
                 libLouisWrapper.Free();
                 Log(": LibLouisWrapper.Free() returned.");
                 Log(string.Format(": No Exception was thrown during test."));
