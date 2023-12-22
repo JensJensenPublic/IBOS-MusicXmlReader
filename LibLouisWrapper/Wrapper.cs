@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
-using MusicXmlReaderModel; 
+using MusicXmlReaderModel;
 
 namespace LibLouisWrapper
 {
@@ -31,21 +28,35 @@ namespace LibLouisWrapper
     /// </summary>
 
     public class Wrapper
-        {
+    {
 
         /// <summary>
         /// As defined in liblouis.h
         /// </summary>
         [Flags]
-        public enum TranslationModeEnum {
+        public enum TranslationModeEnum
+        {
             NoContractions = 1,
             CompbrlAtCursor = 2,
             DotsIO = 4,
             // for historic reasons 8 and 16 are free
             CompbrlLeftCursor = 32,
-            UnicodeBraille = 64 , // In liblouis.h: ucBrl = 64,
+            UnicodeBraille = 64, // In liblouis.h: ucBrl = 64,
             NoUndefined = 128,
             PartialTrans = 256
+        }
+
+        /// <summary>
+        /// As defined in liblouis.h
+        /// </summary>
+        public enum Typeforms : ushort
+        {
+            None = 0,
+            Italic = 1,
+            Underline = 2,
+            Bold = 4,
+            Script = 8,
+            TNEmbed = 16,
         }
 
         const int translationMode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille); // Common for all member functions
@@ -55,36 +66,38 @@ namespace LibLouisWrapper
         private const string LibLouisDll = @"Liblouis\binary\liblouis.dll";
         //private const string LibLouisDll = @"Liblouis\bin\liblouis.dll";
 
+#region DllImport
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
-            private static extern int lou_charSize();
+        private static extern int lou_charSize();
 
-            [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
-            [return: MarshalAs(UnmanagedType.LPStr)]
-            private static extern string lou_version();
+        [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
+        [return: MarshalAs(UnmanagedType.LPStr)]
+        private static extern string lou_version();
 
-            [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
-            private static extern int lou_charToDots(
-                [In]  [MarshalAs(UnmanagedType.LPStr)] string tableList,
-                [In]  [MarshalAs(UnmanagedType.LPArray)] byte[] inbuf,
-                [Out] [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] byte[] outbuf,
-                [In] int length,
-                [In] int mode
-            );
-
-
-            [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
-            private static extern int lou_dotsToChar(
+        [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
+        private static extern int lou_charToDots(
             [In][MarshalAs(UnmanagedType.LPStr)] string tableList,
             [In][MarshalAs(UnmanagedType.LPArray)] byte[] inbuf,
             [Out][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] byte[] outbuf,
             [In] int length,
             [In] int mode
-            );
+        );
 
-            [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
-            private static extern void lou_free();
 
-#if true
+        [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
+        private static extern int lou_dotsToChar(
+        [In][MarshalAs(UnmanagedType.LPStr)] string tableList,
+        [In][MarshalAs(UnmanagedType.LPArray)] byte[] inbuf,
+        [Out][MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] byte[] outbuf,
+        [In] int length,
+        [In] int mode
+        );
+
+        [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
+        private static extern void lou_free();
+#endregion
+
+#region LogCallBack
         private delegate void Func(int level, string message);
         private static void MyFunc(int level, string message)
         {
@@ -92,7 +105,7 @@ namespace LibLouisWrapper
         }
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         private static extern void lou_registerLogCallback(Func callback);
-#endif
+#endregion 
 
 #if false
         [DllImport(@"liblouis.dll", CharSet = CharSet.Unicode)]
@@ -111,26 +124,26 @@ namespace LibLouisWrapper
 
         public bool CharsToDots(string chars, out string dots, Typeforms[] sourceTypeformMap)
         {
-            dots = ""; 
+            dots = "";
             byte[] converted = encoding.GetBytes(chars); // Encode the input string and set up buffers and int pointers.     
             int maxOutSize = Math.Max(chars.Length * (charSize * 2), 4096);
-            byte[] outBuff = new byte[maxOutSize]; 
+            byte[] outBuff = new byte[maxOutSize];
 
             // Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
             // Yet this works current at the size of input.
 
             int result = lou_charToDots(tables, converted, outBuff, chars.Length, translationMode); // Call native code to translate
             // Log(string.Format("lou_charToDots() returned result={0}", result));
-            if (0 == result) return false; 
+            if (0 == result) return false;
             string translation = encoding.GetString(outBuff);      //Encode the translation
-            dots = translation.TrimEnd(new char[] {'\0'} ); // Remove all trailing null characters        
+            dots = translation.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters        
             return true;
         }
 
 
         public bool DotsToChars(string dots, out string chars, Typeforms[] sourceTypeformMap)
         {
-            chars = "";           
+            chars = "";
             byte[] converted = encoding.GetBytes(dots);  // Encode the input string and set up buffers.
             int maxOutSize = Math.Max(dots.Length * (charSize * 2), 4096);
             byte[] outBuff = new byte[maxOutSize];
@@ -219,18 +232,7 @@ namespace LibLouisWrapper
             return Encoding.GetEncoding("UTF-16");
         }
 
-        public enum Typeforms : ushort
-        {
-            None = 0,
-            Italic = 1,
-            Underline = 2,
-            Bold = 4,
-            Script = 8,
-            TNEmbed = 16,
-        }
-
-        //public int CharSize { get { return charSize; } }
-
+        // Member variables:
         private int charSize;
         private Encoding encoding;
         private string tables;
@@ -240,7 +242,7 @@ namespace LibLouisWrapper
         /// Private constructor. Use Wrapper.Create() from the outside.
         /// </summary>
         private Wrapper()
-        {           
+        {
             Log(string.Format(": Registering LibLouis LogCallback function"));
             lou_registerLogCallback(MyFunc); // Register the static function MyFunc as a callback""
             charSize = lou_charSize();
@@ -252,12 +254,12 @@ namespace LibLouisWrapper
             if (simulateErrorCallback)
             {
                 tables = @"liblouis\share\liblouis\tables\en-ueb-g2.xxx"; // ONLY to check the callback registered by  lou_registerLogCallback()
-                Log(string.Format(": WARNING: Simulating use of nonexisting translationtable '{0}' in order to check the lou_registerLogCallback() mechanism!!",tables));
+                Log(string.Format(": WARNING: Simulating use of nonexisting translationtable '{0}' in order to check the lou_registerLogCallback() mechanism!!", tables));
             }
             Log(string.Format(": Tables='{0}'", tables));
         }
         public static Wrapper Create()
-        { return new Wrapper(); }   
+        { return new Wrapper(); }
 
     }
 }
