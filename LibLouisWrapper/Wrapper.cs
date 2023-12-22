@@ -231,6 +231,8 @@ namespace LibLouisWrapper
         Encoding encoding;
         string tables;
 
+        bool simulateErrorCallback = false;
+
         private Wrapper()
         {
             // Get the encoding type based on the lou_charSize.
@@ -239,7 +241,11 @@ namespace LibLouisWrapper
             lou_registerLogCallback(MyFunc); // Register the static function MyFunc as a callback""
             // Get the translation table
             tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb"; // Only one table used in this case
-            // tables = @"liblouis\share\liblouis\tables\en-ueb-g2.xxx"; // ONLY to check the callback registered by  lou_registerLogCallback()
+            if (simulateErrorCallback)
+            {
+                tables = @"liblouis\share\liblouis\tables\en-ueb-g2.xxx"; // ONLY to check the callback registered by  lou_registerLogCallback()
+                Logger.LogCF(string.Format(": Simulating use of nonexisting translationtable in order to check the lou_registerLogCallback() mechanism!!"));
+            }
         }
         public static Wrapper Create()
         { return new Wrapper(); }   
