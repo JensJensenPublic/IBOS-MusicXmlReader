@@ -17,7 +17,7 @@ namespace LibLouisWrapperTestCmd
         static private void Log(string s)
         {
             Console.WriteLine(s);
-            Logger.LogCF1(": " + s);    // Append Class anf Function for the function calling Log()    
+            Logger.LogCF1(s);    // Append Class anf Function for the function calling Log()    
         }
 
         static void Main(string[] args)
@@ -25,7 +25,7 @@ namespace LibLouisWrapperTestCmd
             //MusicXmlReaderModel.Logger.LogCF(": Starting");
             Logger.Open(@"c:\temp\LibLouis\LibLouisWrapperTestCmd.log");
             Log(": ---------------------------------------------------");
-            Log(": Starting");
+            Log(string.Format(": Starting {0}",Environment.CommandLine.ToString()));
             Wrapper libLouisWrapper;
             bool result = true;    
             try
