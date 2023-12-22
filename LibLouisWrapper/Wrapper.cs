@@ -79,6 +79,17 @@ namespace LibLouisWrapper
             [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
             public static extern void lou_free();
 
+#if true
+        public delegate void Func(int level, string message);
+        public static void MyFunc(int level, string message)
+        {
+            Console.WriteLine("Callback executed. Level={0} Message={1}",level, message);
+            Logger.LogCF(string.Format("Received callback from LibLouis, describing an error: Level={0} Message={1}", level, message));
+        }
+        [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
+        public static extern void lou_registerLogCallback(Func callback);
+#endif
+
 #if false
         [DllImport(@"liblouis.dll", CharSet = CharSet.Unicode)]
         private static extern unsafe int lou_translateString(
@@ -225,8 +236,10 @@ namespace LibLouisWrapper
             // Get the encoding type based on the lou_charSize.
             charSize = lou_charSize(); 
             encoding = GetEncoding(charSize);
+            lou_registerLogCallback(MyFunc); // Register the static function MyFunc as a callback""
             // Get the translation table
             tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb"; // Only one table used in this case
+            // tables = @"liblouis\share\liblouis\tables\en-ueb-g2.xxx"; // ONLY to check the callback registered by  lou_registerLogCallback()
         }
         public static Wrapper Create()
         { return new Wrapper(); }   
