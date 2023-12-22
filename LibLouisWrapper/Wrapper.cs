@@ -227,23 +227,29 @@ namespace LibLouisWrapper
         public int CharSize { get { return charSize; } }
 
         private int charSize;
-        Encoding encoding;
-        string tables;
-        bool simulateErrorCallback = false;
+        private Encoding encoding;
+        private string tables;
+        private bool simulateErrorCallback = false;
 
+        /// <summary>
+        /// Private constructor. Use Wrapper.Create() from the outside.
+        /// </summary>
         private Wrapper()
-        {
-            // Get the encoding type based on the lou_charSize.
-            charSize = lou_charSize(); 
-            encoding = GetEncoding(charSize);
+        {           
+            Log(string.Format(": Registering LibLouis LogCallback function"));
             lou_registerLogCallback(MyFunc); // Register the static function MyFunc as a callback""
+            charSize = lou_charSize();
+            Log(string.Format(": CharSize={0}", charSize));
+            encoding = GetEncoding(charSize);  // Get the encoding type based on the lou_charSize.
+            Log(string.Format(": Encoding={0}", encoding.ToString()));
             // Get the translation table
-            tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb"; // Only one table used in this case
+            tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb"; // Only one table used in this case         
             if (simulateErrorCallback)
             {
                 tables = @"liblouis\share\liblouis\tables\en-ueb-g2.xxx"; // ONLY to check the callback registered by  lou_registerLogCallback()
-                Log(string.Format(": WARNING: Simulating use of nonexisting translationtable in order to check the lou_registerLogCallback() mechanism!!"));
+                Log(string.Format(": WARNING: Simulating use of nonexisting translationtable '{0}' in order to check the lou_registerLogCallback() mechanism!!",tables));
             }
+            Log(string.Format(": Tables='{0}'", tables));
         }
         public static Wrapper Create()
         { return new Wrapper(); }   

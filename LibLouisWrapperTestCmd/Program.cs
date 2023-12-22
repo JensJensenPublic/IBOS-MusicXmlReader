@@ -30,8 +30,7 @@ namespace LibLouisWrapperTestCmd
             bool result = true;    
             try
             {
-                libLouisWrapper = Wrapper.Create();
-                Log(string.Format(": CharSize = {0}", libLouisWrapper.CharSize));
+                libLouisWrapper = Wrapper.Create();   
 
                 string text = "abcdefghxxxxx";
                 Typeforms[] sourceTypeformMap = null;
@@ -54,7 +53,7 @@ namespace LibLouisWrapperTestCmd
 
                 libLouisWrapper.Free();
                 Log(": LibLouisWrapper.Free() returned.");
-                Log(string.Format(": No Exception"));
+                Log(string.Format(": No Exception was thrown during test."));
             }
             catch (Exception e)
             {
