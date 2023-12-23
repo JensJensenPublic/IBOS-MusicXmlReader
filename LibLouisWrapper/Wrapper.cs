@@ -118,17 +118,17 @@ namespace LibLouisWrapper
         private static extern void lou_registerLogCallback(Func callback);
 #endregion 
 
-#if false
+#if true
         [DllImport(@"liblouis.dll", CharSet = CharSet.Unicode)]
         private static extern unsafe int lou_translateString(
-                [In][MarshalAs(UnmanagedType.LPStr)] string tableList,
-                [In] byte[] inbuf,
-                [In, Out] IntPtr inlen,
-                [Out] byte[] outbuf,
-                [In, Out] IntPtr outlen,
-                [In] Typeforms[] typeform,
-                [MarshalAs(UnmanagedType.LPStr)] string spacing,
-                int mode
+                [In][MarshalAs(UnmanagedType.LPStr)] string tableList, // const char *tableList
+                [In] byte[] inbuf,                                     // const widechar *inbuf
+                [In, Out] IntPtr inlen,                                // int *inlen
+                [Out] byte[] outbuf,                                   // widechar *outbuf 
+                [In, Out] IntPtr outlen,                               // int *outlen  
+                [In] Typeforms[] typeform,                             // formtype *typeform 
+                [MarshalAs(UnmanagedType.LPStr)] string spacing,       // char *spacing
+                int mode                                               //  int mode 
          );
 #endif
 
@@ -184,28 +184,18 @@ namespace LibLouisWrapper
 
 
 
-#if false
-        public static string TranslateString(string text, Typeforms[] sourceTypeformMap)
+#if true
+        public string TranslateString(string text, Typeforms[] sourceTypeformMap)
         {
-            //Get the encoding type based on the lou_charSize.
-            var size = lou_charSize();
-            var encoding = GetEncoding(size);
-
             //Encode the input string and set up buffers and int pointers.
             var converted = encoding.GetBytes(text);
-            var maxInSize = text.Length * size;
+            var maxInSize = text.Length * charSize;
 
             //Set up the output buffers.
-            var maxOutSize = Math.Max(text.Length * (size * 2), 4096);
+            var maxOutSize = Math.Max(text.Length * (charSize * 2), 4096);
             var outBuff = new byte[maxOutSize];
 
             var translation = "";
-
-            //Get the translation table
-            //var tables = @"liblouis\tables\en-ueb-g2.ctb";
-            var tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb";
-            //var tables = @"en-ueb-g2.ctb";
-
 
             unsafe
             {
@@ -216,10 +206,17 @@ namespace LibLouisWrapper
                 //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
                 //Yet this works current at the size of input.
                 //Run the translation
-                lou_translateString(tables, converted, intPtr,
-                    outBuff, outPrt, sourceTypeformMap, null, mode);
+                lou_translateString(
+                    tablePaths, // const char *tableList
+                    converted,  // const widechar *inbuf,
+                    intPtr,     // int * inlen,
+                    outBuff,    // widechar *outbuf,
+                    outPrt,     // int *outlen,
+                    sourceTypeformMap, // formtype *typeform,
+                    null,       //  char *spacing
+                    mode);      //  int mode
 
-                Array.Resize(ref outBuff, maxOutSize * size);
+                Array.Resize(ref outBuff, maxOutSize * charSize);
                 //Decode the translation
                 translation = encoding.GetString(outBuff);
             }
