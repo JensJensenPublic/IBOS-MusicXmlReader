@@ -64,6 +64,7 @@ namespace LibLouisWrapper
         private static int globalErrorCount = 0; // Counts errors reported from LibLouis dll and is used for checking the Logger Callback mechanism
 
         const int translationMode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille); // Common for all member functions
+        const int translationMode1 = (int)( TranslationModeEnum.UnicodeBraille); // For experiment
 
         /// <summary>
         /// Path to be combined with tableName before passing to LibLouis
@@ -216,16 +217,17 @@ namespace LibLouisWrapper
                     outPrt,             // int *outlen,
                     sourceTypeformMap,  // formtype *typeform,
                     null,               //  char *spacing
-                    translationMode);   //  int mode
+                    translationMode1);   //  int mode
 
 
                 Log(string.Format(": lou_translateString('{0}') returned {1}", text, result));
-                Log(string.Format(": lou_translateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", maxInSize, inSize, maxOutSize, outSize));
+             
 
                 Array.Resize(ref outBuff, maxOutSize * charSize);
                 //Decode the translation
                 translation = encoding.GetString(outBuff);
-                Log(string.Format(": lou_translateString(): Translation='{0}'  ", translation));
+                Log(string.Format(": lou_translateString='{0}'  ", translation));
+                Log(string.Format(": lou_translateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", maxInSize, inSize, maxOutSize, outSize));
             }
 
             //trim out any empty characters.
