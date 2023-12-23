@@ -188,12 +188,12 @@ namespace LibLouisWrapper
         public string TranslateString(string text, Typeforms[] sourceTypeformMap)
         {
             //Encode the input string and set up buffers and int pointers.
-            var converted = encoding.GetBytes(text);
-            var maxInSize = text.Length * charSize;
+            byte[] converted = encoding.GetBytes(text);
+            int maxInSize = text.Length * charSize;
 
             //Set up the output buffers.
-            var maxOutSize = Math.Max(text.Length * (charSize * 2), 4096);
-            var outBuff = new byte[maxOutSize];
+            int maxOutSize = Math.Max(text.Length * (charSize * 2), 4096);
+            byte[] outBuff = new byte[maxOutSize];
 
             var translation = "";
 
@@ -201,20 +201,19 @@ namespace LibLouisWrapper
             {
                 var intPtr = new IntPtr(&maxInSize);
                 var outPrt = new IntPtr(&maxOutSize);
-                int mode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille);
 
                 //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
                 //Yet this works current at the size of input.
                 //Run the translation
                 lou_translateString(
-                    tablePaths, // const char *tableList
-                    converted,  // const widechar *inbuf,
-                    intPtr,     // int * inlen,
-                    outBuff,    // widechar *outbuf,
-                    outPrt,     // int *outlen,
-                    sourceTypeformMap, // formtype *typeform,
-                    null,       //  char *spacing
-                    mode);      //  int mode
+                    tablePaths,         // const char *tableList
+                    converted,          // const widechar *inbuf,
+                    intPtr,             // int * inlen,
+                    outBuff,            // widechar *outbuf,
+                    outPrt,             // int *outlen,
+                    sourceTypeformMap,  // formtype *typeform,
+                    null,               //  char *spacing
+                    translationMode);   //  int mode
 
                 Array.Resize(ref outBuff, maxOutSize * charSize);
                 //Decode the translation
