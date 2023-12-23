@@ -139,7 +139,7 @@ namespace LibLouisWrapper
             // Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
             // Yet this works current at the size of input.
 
-            int result = lou_charToDots(tables, converted, outBuff, chars.Length, translationMode); // Call native code to translate
+            int result = lou_charToDots(tablePaths, converted, outBuff, chars.Length, translationMode); // Call native code to translate
             // Log(string.Format("lou_charToDots() returned result={0}", result));
             if (0 == result) return false;
             string translation = encoding.GetString(outBuff);      //Encode the translation
@@ -158,7 +158,7 @@ namespace LibLouisWrapper
             // Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
             // Yet this works current at the size of input.
 
-            int result = lou_dotsToChar(tables, converted, outBuff, dots.Length, translationMode); // Call native code to translate
+            int result = lou_dotsToChar(tablePaths, converted, outBuff, dots.Length, translationMode); // Call native code to translate
             // Log(string.Format("lou_charToDots() returned result={0}", result));
             if (0 == result) return false;
             string translation = encoding.GetString(outBuff);      //Encode the translation
@@ -242,13 +242,13 @@ namespace LibLouisWrapper
         // Member variables:
         private int charSize;
         private Encoding encoding;
-        private string tables;
+        private string tablePaths;
         private bool simulateErrorCallback = false;
 
         /// <summary>
         /// Private constructor. Use Wrapper.Create() from the outside.
         /// </summary>
-        private Wrapper()
+        private Wrapper(string tableNames)
         {
             Log(string.Format(": Registering LibLouis LogCallback function"));
             lou_registerLogCallback(MyFunc); // Register the static function MyFunc as a callback""
@@ -257,16 +257,22 @@ namespace LibLouisWrapper
             encoding = GetEncoding(charSize);  // Get the encoding type based on the lou_charSize.
             Log(string.Format(": Encoding={0}", encoding.ToString()));
             // Get the translation table
-            tables = Path.Combine(tableBase,"en-ueb-g2.ctb"); // Only one table used in this case         
+            tablePaths = Path.Combine(tableBase,tableNames); // Only one table used in this case         
             if (simulateErrorCallback)
             {
-                tables = Path.Combine(tableBase,"en-ueb-g2.xxx"); // ONLY to check the callback registered by  lou_registerLogCallback()
-                Log(string.Format(": WARNING: Simulating use of nonexisting translationtable '{0}' in order to check the lou_registerLogCallback() mechanism!!", tables));
+                tablePaths = Path.Combine(tableBase,"en-ueb-g2.xxx"); // ONLY to check the callback registered by  lou_registerLogCallback()
+                Log(string.Format(": WARNING: Simulating use of nonexisting translationtable '{0}' in order to check the lou_registerLogCallback() mechanism!!", tablePaths));
             }
-            Log(string.Format(": Tables='{0}'", tables));
+            Log(string.Format(": Tables='{0}'", tablePaths));
         }
-        public static Wrapper Create()
-        { return new Wrapper(); }
+
+        /// <summary>
+        /// Pevent use of default constructor
+        /// </summary>
+        private Wrapper(){ }
+
+        public static Wrapper Create(string tableNames)
+        { return new Wrapper(tableNames); }
 
     }
 }

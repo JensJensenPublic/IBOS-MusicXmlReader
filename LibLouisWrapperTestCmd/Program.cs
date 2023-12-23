@@ -30,7 +30,7 @@ namespace LibLouisWrapperTestCmd
             bool result = true;    
             try
             {
-                libLouisWrapper = Wrapper.Create();  
+                libLouisWrapper = Wrapper.Create("en-ueb-g2.ctb"); // Only one table used in this case );  
 
                 string text = "abcdefghxxxxx";
                 string dots = "";
