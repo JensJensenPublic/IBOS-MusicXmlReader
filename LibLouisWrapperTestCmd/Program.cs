@@ -32,7 +32,7 @@ namespace LibLouisWrapperTestCmd
             {
                 libLouisWrapper = Wrapper.Create("en-ueb-g2.ctb,en-ueb-math.ctb"); // Two tables used in this case );  
 
-                string text = "The quick brown fox jumps over the lazy dog";
+                string text = "the quick brown fox jumps over the lazy dog";
                 string dots = "";
 
                 bool okCharsToDots = libLouisWrapper.CharsToDots(text, out dots);
