@@ -220,10 +220,8 @@ namespace LibLouisWrapper
                     null,               //  char *spacing
                     translationMode);   //  int mode
 
-                dots = translation.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters 
-                Log(string.Format(": lou_translateString('{0}') returned {1}", text, result));
-             
-
+            
+                Log(string.Format(": lou_translateString('{0}') returned {1}", text, result));  
                 Array.Resize(ref outBuff, maxOutSize * charSize);
                 //Decode the translation
                 translation = encoding.GetString(outBuff);
