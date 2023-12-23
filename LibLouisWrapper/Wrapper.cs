@@ -186,7 +186,7 @@ namespace LibLouisWrapper
 
 
 #if true
-        public string TranslateString(string text, Typeforms[] sourceTypeformMap)
+        public bool TranslateString(string text, out string dots, Typeforms[] sourceTypeformMap)
         {
             //Encode the input string and set up buffers and int pointers.
             byte[] converted = encoding.GetBytes(text);
@@ -200,6 +200,7 @@ namespace LibLouisWrapper
             int inSize = maxInSize;    // Will be changed during the operation
             int outSize = maxOutSize;  // Will be changed during the operation
             var translation = "";
+            int result = 0;
 
             unsafe
             {
@@ -209,7 +210,7 @@ namespace LibLouisWrapper
                 //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
                 //Yet this works current at the size of input.
                 //Run the translation
-                int result = lou_translateString(
+                result = lou_translateString(
                     tablePaths,         // const char *tableList
                     converted,          // const widechar *inbuf,
                     intPtr,             // int * inlen,
@@ -219,19 +220,21 @@ namespace LibLouisWrapper
                     null,               //  char *spacing
                     translationMode);   //  int mode
 
-
+                dots = translation.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters 
                 Log(string.Format(": lou_translateString('{0}') returned {1}", text, result));
              
 
                 Array.Resize(ref outBuff, maxOutSize * charSize);
                 //Decode the translation
                 translation = encoding.GetString(outBuff);
-                Log(string.Format(": lou_translateString='{0}'  ", translation));
+                dots = translation.TrimEnd(new char[] { '\0' });
+                Log(string.Format(": lou_translateString='{0}'  ", dots));
                 Log(string.Format(": lou_translateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", maxInSize, inSize, maxOutSize, outSize));
+              
             }
 
             //trim out any empty characters.
-            return translation;
+            return ( 1 == result);
         }
 #endif
         /// <summary>
