@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using MusicXmlReaderModel;
@@ -61,6 +62,12 @@ namespace LibLouisWrapper
 
         const int translationMode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille); // Common for all member functions
 
+        /// <summary>
+        /// Path to be combined with tableName before passing to LibLouis
+        /// Must contain the path to the conversion tables, relative to the path of LibLouis.dll.
+        /// LibLouis.dll can find the exact absolute path to the tables using this information.
+        /// </summary>
+        private const string tableBase =  @"liblouis\share\liblouis\tables";  
 
         // The dll is placed in a folder named "binary" instead of "bin" to please the default GitExclude which wil not accept a "bin" folder.
         private const string LibLouisDll = @"Liblouis\binary\liblouis.dll";
@@ -250,10 +257,10 @@ namespace LibLouisWrapper
             encoding = GetEncoding(charSize);  // Get the encoding type based on the lou_charSize.
             Log(string.Format(": Encoding={0}", encoding.ToString()));
             // Get the translation table
-            tables = @"liblouis\share\liblouis\tables\en-ueb-g2.ctb"; // Only one table used in this case         
+            tables = Path.Combine(tableBase,"en-ueb-g2.ctb"); // Only one table used in this case         
             if (simulateErrorCallback)
             {
-                tables = @"liblouis\share\liblouis\tables\en-ueb-g2.xxx"; // ONLY to check the callback registered by  lou_registerLogCallback()
+                tables = Path.Combine(tableBase,"en-ueb-g2.xxx"); // ONLY to check the callback registered by  lou_registerLogCallback()
                 Log(string.Format(": WARNING: Simulating use of nonexisting translationtable '{0}' in order to check the lou_registerLogCallback() mechanism!!", tables));
             }
             Log(string.Format(": Tables='{0}'", tables));
