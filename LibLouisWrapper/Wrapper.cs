@@ -60,6 +60,8 @@ namespace LibLouisWrapper
             TNEmbed = 16,
         }
 
+        private static int globalErrorCount = 0; // Counts errors reported from LibLouis dll and is used for checking the Logger Callback mechanism
+
         const int translationMode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille); // Common for all member functions
 
         /// <summary>
@@ -109,6 +111,7 @@ namespace LibLouisWrapper
         private static void MyFunc(int level, string message)
         {
             Log(string.Format(": Received callback from LibLouis, describing an error: Level={0} Message={1}", level, message));
+            globalErrorCount++;
         }
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         private static extern void lou_registerLogCallback(Func callback);
@@ -243,7 +246,6 @@ namespace LibLouisWrapper
         private int charSize;
         private Encoding encoding;
         private string tablePaths;
-        private bool simulateErrorCallback = false;
 
         /// <summary>
         /// Private constructor. Use Wrapper.Create() from the outside.
@@ -257,13 +259,26 @@ namespace LibLouisWrapper
             Log(string.Format(": CharSize={0}", charSize));
             encoding = GetEncoding(charSize);  // Get the encoding type based on the lou_charSize.
             Log(string.Format(": Encoding={0}", encoding.ToString()));
-            // Get the translation table
-            tablePaths = Path.Combine(tableBase,tableNames); // According to the documentation only the first name needs to contain the tableBase !!        
-            if (simulateErrorCallback)
+
+            // Check the Logging callback mechanism by temporarily using a nonexisting tablepath
+            tablePaths = Path.Combine(tableBase, "en-ueb-g2.xxx"); // Does not exist !
+
+            Log(": Simulating error on order to test the LibLouis Log-Callback mechanism!");
+            string teststring;
+            int oldErrorCount = globalErrorCount;
+            CharsToDots("x", out teststring); // Is expected to fail and thereby to increase globalErrorCount;
+            if (globalErrorCount == oldErrorCount)
             {
-                tablePaths = Path.Combine(tableBase,"en-ueb-g2.xxx"); // ONLY to check the callback registered by  lou_registerLogCallback()
-                Log(string.Format(": WARNING: Simulating use of nonexisting translationtable '{0}' in order to check the lou_registerLogCallback() mechanism!!", tablePaths));
+                Log(string.Format(": TEST FAILED! Simulated error was not reported from LibLouis by the LibLouis Log-Callback mechanism !"));
             }
+            else
+            {
+                Log(string.Format(": TEST PASSED! Simulated error was reported from LibLouis by the LibLouis Log-Callback mechanism !"));
+            }
+
+
+            // Get the real translation table
+            tablePaths = Path.Combine(tableBase,tableNames); // According to the documentation only the first name needs to contain the tableBase !! 
             Log(string.Format(": Tables='{0}'", tablePaths));
         }
 
