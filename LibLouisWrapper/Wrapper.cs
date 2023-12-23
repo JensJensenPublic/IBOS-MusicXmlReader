@@ -250,6 +250,7 @@ namespace LibLouisWrapper
         /// </summary>
         private Wrapper(string tableNames)
         {
+            Log(string.Format(": TableNames='{0}'", tableNames));
             Log(string.Format(": Registering LibLouis LogCallback function"));
             lou_registerLogCallback(MyFunc); // Register the static function MyFunc as a callback""
             charSize = lou_charSize();
@@ -257,7 +258,7 @@ namespace LibLouisWrapper
             encoding = GetEncoding(charSize);  // Get the encoding type based on the lou_charSize.
             Log(string.Format(": Encoding={0}", encoding.ToString()));
             // Get the translation table
-            tablePaths = Path.Combine(tableBase,tableNames); // Only one table used in this case         
+            tablePaths = Path.Combine(tableBase,tableNames); // According to the documentation only the first name needs to contain the tableBase !!        
             if (simulateErrorCallback)
             {
                 tablePaths = Path.Combine(tableBase,"en-ueb-g2.xxx"); // ONLY to check the callback registered by  lou_registerLogCallback()
