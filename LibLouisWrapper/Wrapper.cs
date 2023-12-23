@@ -63,7 +63,7 @@ namespace LibLouisWrapper
 
         private static int globalErrorCount = 0; // Counts errors reported from LibLouis dll and is used for checking the Logger Callback mechanism
 
-        const int translationMode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille); // Common for all member functions
+        const int translationMode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille | TranslationModeEnum.DotsIO); // Common for all member functions
         const int translationMode1 = (int)( TranslationModeEnum.UnicodeBraille); // For experiment
 
         /// <summary>
