@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using Microsoft.SqlServer.Server;
 using MusicXmlReaderModel;
 
 namespace LibLouisWrapper
@@ -248,9 +249,26 @@ namespace LibLouisWrapper
         private string tablePaths;
 
         /// <summary>
-        /// Private constructor. Use Wrapper.Create() from the outside.
+        /// Simple mechanism used by the constructor only.
+        /// Tests the LibLouis Log-Callback mechanism.
         /// </summary>
-        private Wrapper(string tableNames)
+        private void ExecuteCallbackTest()
+        {
+            string testItem = " the LibLouis Log-Callback mechanism!";
+            Log(string.Format(": Simulating error on order to test{0}",testItem));
+            string teststring;
+            int oldErrorCount = globalErrorCount;
+            CharsToDots("x", out teststring); // Is expected to fail and thereby to increase globalErrorCount;
+            bool ok = (globalErrorCount > oldErrorCount);          
+            Log(string.Format(": TEST {0}! Simulated error was {1} reported from LibLouis by{2} !", ok ? "PASSED" : "FAILED", ok ? "": "NOT", testItem));       
+        }
+
+
+
+/// <summary>
+/// Private constructor. Use Wrapper.Create() from the outside.
+/// </summary>
+private Wrapper(string tableNames)
         {
             Log(string.Format(": TableNames='{0}'", tableNames));
             Log(string.Format(": Registering LibLouis LogCallback function"));
@@ -260,24 +278,11 @@ namespace LibLouisWrapper
             encoding = GetEncoding(charSize);  // Get the encoding type based on the lou_charSize.
             Log(string.Format(": Encoding={0}", encoding.ToString()));
 
-            // Check the Logging callback mechanism by temporarily using a nonexisting tablepath
-            tablePaths = Path.Combine(tableBase, "en-ueb-g2.xxx"); // Does not exist !
+            // Check the Logging callback mechanism:
+            tablePaths = Path.Combine(tableBase, "DoesNotExist.xxx"); // Temporarily set up a nonexisting tablepath while checking
+            ExecuteCallbackTest();       
 
-            Log(": Simulating error on order to test the LibLouis Log-Callback mechanism!");
-            string teststring;
-            int oldErrorCount = globalErrorCount;
-            CharsToDots("x", out teststring); // Is expected to fail and thereby to increase globalErrorCount;
-            if (globalErrorCount == oldErrorCount)
-            {
-                Log(string.Format(": TEST FAILED! Simulated error was not reported from LibLouis by the LibLouis Log-Callback mechanism !"));
-            }
-            else
-            {
-                Log(string.Format(": TEST PASSED! Simulated error was reported from LibLouis by the LibLouis Log-Callback mechanism !"));
-            }
-
-
-            // Get the real translation table
+            // Set up the real translation table
             tablePaths = Path.Combine(tableBase,tableNames); // According to the documentation only the first name needs to contain the tableBase !! 
             Log(string.Format(": Tables='{0}'", tablePaths));
         }
