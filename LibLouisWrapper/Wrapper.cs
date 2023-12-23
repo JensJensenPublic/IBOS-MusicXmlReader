@@ -217,7 +217,7 @@ namespace LibLouisWrapper
                     outPrt,             // int *outlen,
                     sourceTypeformMap,  // formtype *typeform,
                     null,               //  char *spacing
-                    translationMode1);   //  int mode
+                    translationMode);   //  int mode
 
 
                 Log(string.Format(": lou_translateString('{0}') returned {1}", text, result));
