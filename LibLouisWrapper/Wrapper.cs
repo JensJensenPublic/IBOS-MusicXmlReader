@@ -195,17 +195,20 @@ namespace LibLouisWrapper
             int maxOutSize = Math.Max(text.Length * (charSize * 2), 4096);
             byte[] outBuff = new byte[maxOutSize];
 
+
+            int inSize = maxInSize;    // Will be changed during the operation
+            int outSize = maxOutSize;  // Will be changed during the operation
             var translation = "";
 
             unsafe
             {
-                var intPtr = new IntPtr(&maxInSize);
-                var outPrt = new IntPtr(&maxOutSize);
+                var intPtr = new IntPtr(&inSize);
+                var outPrt = new IntPtr(&outSize);
 
                 //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
                 //Yet this works current at the size of input.
                 //Run the translation
-                lou_translateString(
+                int result = lou_translateString(
                     tablePaths,         // const char *tableList
                     converted,          // const widechar *inbuf,
                     intPtr,             // int * inlen,
@@ -215,9 +218,14 @@ namespace LibLouisWrapper
                     null,               //  char *spacing
                     translationMode);   //  int mode
 
+
+                Log(string.Format(": lou_translateString('{0}') returned {1}", text, result));
+                Log(string.Format(": lou_translateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", maxInSize, inSize, maxOutSize, outSize));
+
                 Array.Resize(ref outBuff, maxOutSize * charSize);
                 //Decode the translation
                 translation = encoding.GetString(outBuff);
+                Log(string.Format(": lou_translateString(): Translation='{0}'  ", translation));
             }
 
             //trim out any empty characters.
