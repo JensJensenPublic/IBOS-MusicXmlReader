@@ -43,6 +43,9 @@ namespace LibLouisWrapperTestCmd
                 bool okDotsToChars = libLouisWrapper.DotsToChars(dots, out charsResult);
                 Log(string.Format(": DotsToChar('{0}') returned {1}.   Text={2}) ", dots, okDotsToChars ? "Success" : "Error!", charsResult));
 
+                bool equal = (0 == string.Compare(text, charsResult));
+                Log(string.Format(": DotsToChars(CharsToDots(text)) {0} text", equal ? "==" : "<>"));
+
                 dots = "";
                 bool okTranslateString = libLouisWrapper.TranslateString(text, out dots,null);
                 Log(string.Format(": TranslateString('{0}') returned {1} Dots='{2}') ", text, okTranslateString, dots));
@@ -50,6 +53,9 @@ namespace LibLouisWrapperTestCmd
                 string backTranslationResult = "";
                 bool okBackTranslateString = libLouisWrapper.BackTranslateString(dots, out backTranslationResult,null);
                 Log(string.Format(": BackTranslateString('{0}') returned {1} Text='{2}') ", dots, okBackTranslateString, backTranslationResult));
+
+                bool equalTranstation = (0 == string.Compare(text, backTranslationResult)) ;
+                Log(string.Format(": BackTranslateString(TranslateString(text) {0} text", equalTranstation ? "==" : "<>"));
 
 
                 libLouisWrapper.Free();
