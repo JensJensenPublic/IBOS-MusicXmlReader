@@ -47,6 +47,10 @@ namespace LibLouisWrapperTestCmd
                 bool okTranslateString = libLouisWrapper.TranslateString(text, out dots,null);
                 Log(string.Format(": TranslateString('{0}') returned {1} Dots='{2}') ", text, okTranslateString, dots));
 
+                string backTranslationResult = "";
+                bool okBackTranslateString = libLouisWrapper.BackTranslateString(dots, out backTranslationResult,null);
+                Log(string.Format(": BackTranslateString('{0}') returned {1} Dots='{2}') ", dots, okBackTranslateString, backTranslationResult));
+
 
                 libLouisWrapper.Free();
                 Log(": LibLouisWrapper.Free() returned.");
