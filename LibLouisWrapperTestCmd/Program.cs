@@ -49,7 +49,7 @@ namespace LibLouisWrapperTestCmd
 
                 string backTranslationResult = "";
                 bool okBackTranslateString = libLouisWrapper.BackTranslateString(dots, out backTranslationResult,null);
-                Log(string.Format(": BackTranslateString('{0}') returned {1} Dots='{2}') ", dots, okBackTranslateString, backTranslationResult));
+                Log(string.Format(": BackTranslateString('{0}') returned {1} Text='{2}') ", dots, okBackTranslateString, backTranslationResult));
 
 
                 libLouisWrapper.Free();

@@ -285,7 +285,7 @@ namespace LibLouisWrapper
                     outPrt,             // int *outlen,
                     sourceTypeformMap,  // formtype *typeform,
                     null,               //  char *spacing
-                    translationMode);   //  int mode
+                    0);                 //  int mode. Depricated for this function. MUST BE SET TO 0 !!
 
 
                 Log(string.Format(": lou_backTranslateString('{0}') returned {1}", inputDots, result));
