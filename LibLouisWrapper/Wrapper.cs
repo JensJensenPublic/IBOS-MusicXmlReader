@@ -9,10 +9,12 @@ namespace LibLouisWrapper
 {
     /// <summary>
     /// Simple wrapper class for using the LibLouis library (LibLouis.dll) from C#
-    /// Intensionally only contains 4 public methods:
+    /// Intensionally only contains 6 public methods:
     ///  public static Wrapper Create()
     ///  public bool CharsToDots(string chars, out string dots, Typeforms[] sourceTypeformMap)
     ///  public bool DotsToChars(string dots, out string chars, Typeforms[] sourceTypeformMap)
+    ///  public bool TranslateString(string text, out string dots, Typeforms[] sourceTypeformMap)
+    ///  public bool BackTranslateString(string inputDots, out string outputText, Typeforms[] sourceTypeformMap)
     ///  public void Free()
     ///  
     /// More public methods can easily be added if needed. 
