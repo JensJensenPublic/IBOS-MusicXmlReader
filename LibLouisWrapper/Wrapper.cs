@@ -61,6 +61,7 @@ namespace LibLouisWrapper
             TNEmbed = 16,
         }
 
+        private int depricatedModeParameter = 0;
         private static int globalErrorCount = 0; // Counts errors reported from LibLouis dll and is used for checking the Logger Callback mechanism
 
         const int translationMode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille | TranslationModeEnum.DotsIO); // Common for all member functions
@@ -178,8 +179,8 @@ namespace LibLouisWrapper
 
             // Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
             // Yet this works current at the size of input.
-
-            int result = lou_dotsToChar(tablePaths, converted, outBuff, dots.Length, translationMode); // Call native code to translate
+          
+            int result = lou_dotsToChar(tablePaths, converted, outBuff, dots.Length, depricatedModeParameter); // Call native code to translate. The "mode" parameter is deprivated and set to 0
             // Log(string.Format("lou_charToDots() returned result={0}", result));
             if (0 == result) return false;
             string translation = encoding.GetString(outBuff);      //Encode the translation
@@ -285,7 +286,7 @@ namespace LibLouisWrapper
                     outPrt,             // int *outlen,
                     sourceTypeformMap,  // formtype *typeform,
                     null,               //  char *spacing
-                    0);                 //  int mode. Depricated for this function. MUST BE SET TO 0 !!
+                    depricatedModeParameter);  //  int mode. Depricated for this function. MUST BE SET TO 0 !!
 
 
                 Log(string.Format(": lou_backTranslateString('{0}') returned {1}", inputDots, result));

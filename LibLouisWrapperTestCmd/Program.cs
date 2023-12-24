@@ -41,7 +41,7 @@ namespace LibLouisWrapperTestCmd
                 string charsResult = "";
 
                 bool okDotsToChars = libLouisWrapper.DotsToChars(dots, out charsResult);
-                Log(string.Format(": DotsToChar('{0}') returned {1}.   Chars={2}) ", dots, okDotsToChars ? "Success" : "Error!", charsResult));
+                Log(string.Format(": DotsToChar('{0}') returned {1}.   Text={2}) ", dots, okDotsToChars ? "Success" : "Error!", charsResult));
 
                 dots = "";
                 bool okTranslateString = libLouisWrapper.TranslateString(text, out dots,null);
