@@ -24,7 +24,7 @@ namespace LibLouisWrapper
         {
             inputBuffer = encoding.GetBytes(input); // Encode the input string    
             outputBufferSize = Math.Max(inputBuffer.Length * sizeFactor, 4096);
-            byte[] outBuff = new byte[outputBufferSize];
+            outputBuffer = new byte[outputBufferSize];
         }
         /// <summary>
         /// Prevent construction
@@ -32,7 +32,7 @@ namespace LibLouisWrapper
         private BufferStructure() { }
 
 
-        public BufferStructure Create(string input, Encoding encoding)
+        public static BufferStructure Create(string input, Encoding encoding)
         {
             return new BufferStructure(input, encoding, 2, 4096);
         }

@@ -156,17 +156,15 @@ namespace LibLouisWrapper
         public bool CharsToDots(string chars, out string dots)
         {
             dots = "";
-            byte[] converted = encoding.GetBytes(chars); // Encode the input string and set up buffers and int pointers.     
-            int maxOutSize = Math.Max(chars.Length * (charSize * 2), 4096);
-            byte[] outBuff = new byte[maxOutSize];
+            BufferStructure bs = BufferStructure.Create(chars, encoding);     
 
             // Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
             // Yet this works current at the size of input.
 
-            int result = lou_charToDots(tablePaths, converted, outBuff, chars.Length, translationMode); // Call native code to translate
+            int result = lou_charToDots(tablePaths, bs.InputBuffer, bs.OutputBuffer, chars.Length, translationMode); // Call native code to translate
             // Log(string.Format("lou_charToDots() returned result={0}", result));
             if (0 == result) return false;
-            string translation = encoding.GetString(outBuff);      //Encode the translation
+            string translation = encoding.GetString(bs.OutputBuffer);      //Encode the translation
             dots = translation.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters        
             return true;
         }
@@ -175,17 +173,15 @@ namespace LibLouisWrapper
         public bool DotsToChars(string dots, out string chars)
         {
             chars = "";
-            byte[] converted = encoding.GetBytes(dots);  // Encode the input string and set up buffers.
-            int maxOutSize = Math.Max(dots.Length * (charSize * 2), 4096);
-            byte[] outBuff = new byte[maxOutSize];
+            BufferStructure bs = BufferStructure.Create(dots, encoding);
 
             // Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
             // Yet this works current at the size of input.
           
-            int result = lou_dotsToChar(tablePaths, converted, outBuff, dots.Length, depricatedModeParameter); // Call native code to translate. The "mode" parameter is deprivated and set to 0
+            int result = lou_dotsToChar(tablePaths, bs.InputBuffer, bs.OutputBuffer, dots.Length, depricatedModeParameter); // Call native code to translate. The "mode" parameter is deprivated and set to 0
             // Log(string.Format("lou_charToDots() returned result={0}", result));
             if (0 == result) return false;
-            string translation = encoding.GetString(outBuff);      //Encode the translation
+            string translation = encoding.GetString(bs.OutputBuffer);      //Encode the translation
             chars = translation.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters        
             return true;
         }
