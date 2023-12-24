@@ -13,6 +13,7 @@ namespace LibLouisWrapper
     internal class BufferStructure
     {
 
+        private Encoding encoding;
         private byte[] inputBuffer;
         public byte[] InputBuffer { get { return inputBuffer; } }
         private byte[] outputBuffer;
@@ -20,8 +21,15 @@ namespace LibLouisWrapper
         private int outputBufferSize;
         public int OutputBufferSize { get { return outputBufferSize; } }
 
+        public string TransGetranslation()
+        {
+            string translation = encoding.GetString(outputBuffer);      //Encode the translation
+            return translation.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters                                                              
+        }
+
         private BufferStructure(string input, Encoding encoding, int sizeFactor, int minimumSize)
         {
+            this.encoding = encoding;   
             inputBuffer = encoding.GetBytes(input); // Encode the input string    
             outputBufferSize = Math.Max(inputBuffer.Length * sizeFactor, 4096);
             outputBuffer = new byte[outputBufferSize];
