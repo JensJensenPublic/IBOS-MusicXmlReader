@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.SqlServer.Server;
 using MusicXmlReaderModel;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LibLouisWrapper
 {
@@ -233,22 +234,16 @@ namespace LibLouisWrapper
         }
 
 
-#if true
+
         public bool BackTranslateString(string inputDots, out string outputText, Typeforms[] sourceTypeformMap)
         {
-            //Encode the input string and set up buffers and int pointers.
-            byte[] convertedInputDots = encoding.GetBytes(inputDots);
+            outputText = "";
+            BufferStructure bs = BufferStructure.Create(inputDots, encoding);
             int maxInSize = inputDots.Length * charSize;
-
-            //Set up the output buffers.
             int maxOutSize = Math.Max(inputDots.Length * (charSize * 2), 4096);
-            byte[] outBuff = new byte[maxOutSize];
-
-
             int inSize = maxInSize;    // Will be changed during the operation
             int outSize = maxOutSize;  // Will be changed during the operation
-            var translation = "";
-            int result = 0;
+            int iResult = 0;
 
             unsafe
             {
@@ -257,37 +252,26 @@ namespace LibLouisWrapper
 
                 //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
                 //Yet this works current at the size of input.
+
                 //Run the translation
-                result = lou_backTranslateString(
+                iResult = lou_backTranslateString(
                     tablePaths,         // const char *tableList
-                    convertedInputDots, // const widechar *inbuf,
+                    bs.InputBuffer,     // const widechar *inbuf,
                     intPtr,             // int * inlen,
-                    outBuff,            // widechar *outbuf,
+                    bs.OutputBuffer,    // widechar *outbuf,
                     outPrt,             // int *outlen,
                     sourceTypeformMap,  // formtype *typeform,
                     null,               //  char *spacing
                     depricatedModeParameter);  //  int mode. Depricated for this function. MUST BE SET TO 0 !!
-
-
-                Log(string.Format(": lou_backTranslateString('{0}') returned {1}", inputDots, result));
-                Array.Resize(ref outBuff, maxOutSize * charSize);
-                //Decode the translation
-                translation = encoding.GetString(outBuff);
-                outputText = translation.TrimEnd(new char[] { '\0' });
-                Log(string.Format(": lou_backTranslateString='{0}'  ", outputText));
-                Log(string.Format(": lou_backTtranslateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", maxInSize, inSize, maxOutSize, outSize));
-
             }
 
-            //trim out any empty characters.
-            return (1 == result);
+            Log(string.Format(": lou_backTranslateString('{0}') returned {1}", inputDots, iResult));
+            if (0 == iResult) return false;
+            bool ok = bs.GetTranslation(out outputText);
+            Log(string.Format(": lou_backTranslateString='{0}'  ", outputText));
+            Log(string.Format(": lou_backTranslateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", maxInSize, inSize, maxOutSize, outSize));
+            return ok;
         }
-#endif
-
-
-
-
-
 
 
         /// <summary>
