@@ -21,6 +21,10 @@ namespace LibLouisWrapper
         private int outputBufferSize;
         public int OutputBufferSize { get { return outputBufferSize; } }
 
+        public int MaxInSize { get { return inputBuffer.Length; } }
+        public int MaxOutSize { get { return outputBuffer.Length; } }
+
+
         public bool GetTranslation(out string translation)
         {      
             translation = null;

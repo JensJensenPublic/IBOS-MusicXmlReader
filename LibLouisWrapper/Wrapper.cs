@@ -200,16 +200,14 @@ namespace LibLouisWrapper
         {
             dots = "";
             BufferStructure bs = BufferStructure.Create(text, encoding);
-            int maxInSize = text.Length * charSize;  
-            int maxOutSize = Math.Max(text.Length * (charSize * 2), 4096);
-            int inSize = maxInSize;    // Will be changed during the operation
-            int outSize = maxOutSize;  // Will be changed during the operation
+            int inSize =  bs.MaxInSize;    // Will be changed during the operation
+            int outSize = bs.MaxOutSize;  // Will be changed during the operation
             int iResult = 0;
 
             unsafe
             {
-                var intPtr = new IntPtr(&inSize);
-                var outPrt = new IntPtr(&outSize);
+                IntPtr inPtr = new IntPtr(&inSize);
+                IntPtr outPrt = new IntPtr(&outSize);
 
                 //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
                 //Yet this works current at the size of input.
@@ -218,7 +216,7 @@ namespace LibLouisWrapper
                 iResult = lou_translateString(
                     tablePaths,         // const char *tableList
                     bs.InputBuffer,     // const widechar *inbuf,
-                    intPtr,             // int * inlen,
+                    inPtr,              // int * inlen,
                     bs.OutputBuffer,    // widechar *outbuf,
                     outPrt,             // int *outlen,
                     sourceTypeformMap,  // formtype *typeform,
@@ -229,7 +227,7 @@ namespace LibLouisWrapper
             if ( 0 == iResult) return false;
             bool ok = bs.GetTranslation(out dots);
             Log(string.Format(": lou_translateString='{0}'  ", dots));
-            Log(string.Format(": lou_translateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", maxInSize, inSize, maxOutSize, outSize));       
+            Log(string.Format(": lou_translateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", bs.MaxInSize, inSize, bs.MaxOutSize, outSize));       
             return ok;
         }
 
@@ -239,16 +237,14 @@ namespace LibLouisWrapper
         {
             outputText = "";
             BufferStructure bs = BufferStructure.Create(inputDots, encoding);
-            int maxInSize = inputDots.Length * charSize;
-            int maxOutSize = Math.Max(inputDots.Length * (charSize * 2), 4096);
-            int inSize = maxInSize;    // Will be changed during the operation
-            int outSize = maxOutSize;  // Will be changed during the operation
+            int inSize = bs.MaxInSize;    // Will be changed during the operation
+            int outSize = bs.MaxOutSize;  // Will be changed during the operation
             int iResult = 0;
 
             unsafe
             {
-                var intPtr = new IntPtr(&inSize);
-                var outPrt = new IntPtr(&outSize);
+                IntPtr inPtr = new IntPtr(&inSize);
+                IntPtr outPrt = new IntPtr(&outSize);
 
                 //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
                 //Yet this works current at the size of input.
@@ -257,7 +253,7 @@ namespace LibLouisWrapper
                 iResult = lou_backTranslateString(
                     tablePaths,         // const char *tableList
                     bs.InputBuffer,     // const widechar *inbuf,
-                    intPtr,             // int * inlen,
+                    inPtr,              // int * inlen,
                     bs.OutputBuffer,    // widechar *outbuf,
                     outPrt,             // int *outlen,
                     sourceTypeformMap,  // formtype *typeform,
@@ -269,7 +265,7 @@ namespace LibLouisWrapper
             if (0 == iResult) return false;
             bool ok = bs.GetTranslation(out outputText);
             Log(string.Format(": lou_backTranslateString='{0}'  ", outputText));
-            Log(string.Format(": lou_backTranslateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", maxInSize, inSize, maxOutSize, outSize));
+            Log(string.Format(": lou_backTranslateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", bs.MaxInSize, inSize, bs.MaxOutSize, outSize));
             return ok;
         }
 
