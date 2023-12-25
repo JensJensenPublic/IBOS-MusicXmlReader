@@ -195,23 +195,15 @@ namespace LibLouisWrapper
         }
 
 
-
-#if true
         public bool TranslateString(string text, out string dots, Typeforms[] sourceTypeformMap)
         {
-            //Encode the input string and set up buffers and int pointers.
-            byte[] converted = encoding.GetBytes(text);
-            int maxInSize = text.Length * charSize;
-
-            //Set up the output buffers.
+            dots = "";
+            BufferStructure bs = BufferStructure.Create(text, encoding);
+            int maxInSize = text.Length * charSize;  
             int maxOutSize = Math.Max(text.Length * (charSize * 2), 4096);
-            byte[] outBuff = new byte[maxOutSize];
-
-
             int inSize = maxInSize;    // Will be changed during the operation
             int outSize = maxOutSize;  // Will be changed during the operation
-            var translation = "";
-            int result = 0;
+            int iResult = 0;
 
             unsafe
             {
@@ -220,32 +212,26 @@ namespace LibLouisWrapper
 
                 //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
                 //Yet this works current at the size of input.
+
                 //Run the translation
-                result = lou_translateString(
+                iResult = lou_translateString(
                     tablePaths,         // const char *tableList
-                    converted,          // const widechar *inbuf,
+                    bs.InputBuffer,     // const widechar *inbuf,
                     intPtr,             // int * inlen,
-                    outBuff,            // widechar *outbuf,
+                    bs.OutputBuffer,    // widechar *outbuf,
                     outPrt,             // int *outlen,
                     sourceTypeformMap,  // formtype *typeform,
-                    null,               //  char *spacing
-                    translationMode);   //  int mode
-
-            
-                Log(string.Format(": lou_translateString('{0}') returned {1}", text, result));  
-                Array.Resize(ref outBuff, maxOutSize * charSize);
-                //Decode the translation
-                translation = encoding.GetString(outBuff);
-                dots = translation.TrimEnd(new char[] { '\0' });
-                Log(string.Format(": lou_translateString='{0}'  ", dots));
-                Log(string.Format(": lou_translateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", maxInSize, inSize, maxOutSize, outSize));
-              
+                    null,               // char *spacing
+                    translationMode);   // int mode
             }
-
-            //trim out any empty characters.
-            return ( 1 == result);
+            Log(string.Format(": lou_translateString('{0}') returned {1}", text, iResult));
+            if ( 0 == iResult) return false;
+            bool ok = bs.GetTranslation(out dots);
+            Log(string.Format(": lou_translateString='{0}'  ", dots));
+            Log(string.Format(": lou_translateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", maxInSize, inSize, maxOutSize, outSize));       
+            return ok;
         }
-#endif
+
 
 #if true
         public bool BackTranslateString(string inputDots, out string outputText, Typeforms[] sourceTypeformMap)
