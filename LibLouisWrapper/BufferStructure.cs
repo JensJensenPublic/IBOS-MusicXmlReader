@@ -21,16 +21,19 @@ namespace LibLouisWrapper
         private int outputBufferSize;
         public int OutputBufferSize { get { return outputBufferSize; } }
 
+        private Wrapper.TypeformEnum[] typeFormBuffer;
+        public Wrapper.TypeformEnum[] TypeFormBuffer { get { return typeFormBuffer; } }
+
         public int MaxInSize { get { return inputBuffer.Length; } }
         public int MaxOutSize { get { return outputBuffer.Length; } }
 
 
         public bool GetTranslation(out string translation)
         {      
-            translation = null;
+            translation = null; 
             if (null == outputBuffer) return false;
             string s = encoding.GetString(outputBuffer);  // Decode
-            translation = s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters
+            translation = s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters   
             return true;                                        
         }
 
@@ -39,7 +42,8 @@ namespace LibLouisWrapper
             this.encoding = encoding;   
             inputBuffer = encoding.GetBytes(input); // Encode the input string    
             outputBufferSize = Math.Max(inputBuffer.Length * sizeFactor, 4096);
-            outputBuffer = new byte[outputBufferSize];
+            outputBuffer = new byte[outputBufferSize];           
+            typeFormBuffer = new Wrapper.TypeformEnum[Math.Max(inputBuffer.Length,4096)];
         }
         /// <summary>
         /// Prevent construction

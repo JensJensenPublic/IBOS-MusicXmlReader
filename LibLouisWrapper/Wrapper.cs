@@ -54,7 +54,7 @@ namespace LibLouisWrapper
         /// <summary>
         /// As defined in liblouis.h
         /// </summary>
-        public enum Typeforms : ushort
+        public enum TypeformEnum : ushort
         {
             None = 0,
             Italic = 1,
@@ -131,7 +131,7 @@ namespace LibLouisWrapper
                 [In, Out] IntPtr inlen,                                // int *inlen
                 [Out] byte[] outbuf,                                   // widechar *outbuf 
                 [In, Out] IntPtr outlen,                               // int *outlen  
-                [In] Typeforms[] typeform,                             // formtype *typeform 
+                [In] TypeformEnum[] typeform,                             // formtype *typeform 
                 [MarshalAs(UnmanagedType.LPStr)] string spacing,       // char *spacing
                 int mode                                               //  int mode 
          );
@@ -145,7 +145,7 @@ namespace LibLouisWrapper
                 [In, Out] IntPtr inlen,                                // int *inlen
                 [Out] byte[] outbuf,                                   // widechar *outbuf 
                 [In, Out] IntPtr outlen,                               // int *outlen  
-                [In] Typeforms[] typeform,                             // formtype *typeform 
+                [In] TypeformEnum[] typeform,                             // formtype *typeform 
                 [MarshalAs(UnmanagedType.LPStr)] string spacing,       // char *spacing
                 int mode                                               //  int mode 
          );
@@ -196,7 +196,7 @@ namespace LibLouisWrapper
         }
 
 
-        public bool TranslateString(string text, out string dots, Typeforms[] sourceTypeformMap)
+        public bool TranslateString(string text, out string dots, TypeformEnum[] sourceTypeformMap)
         {
             dots = "";
             BufferStructure bs = BufferStructure.Create(text, encoding);
@@ -219,7 +219,7 @@ namespace LibLouisWrapper
                     inPtr,              // int * inlen,
                     bs.OutputBuffer,    // widechar *outbuf,
                     outPrt,             // int *outlen,
-                    sourceTypeformMap,  // formtype *typeform,
+                    bs.TypeFormBuffer,  // formtype *typeform,
                     null,               // char *spacing
                     translationMode);   // int mode
             }
@@ -233,7 +233,7 @@ namespace LibLouisWrapper
 
 
 
-        public bool BackTranslateString(string inputDots, out string outputText, Typeforms[] sourceTypeformMap)
+        public bool BackTranslateString(string inputDots, out string outputText, TypeformEnum[] sourceTypeformMap)
         {
             outputText = "";
             BufferStructure bs = BufferStructure.Create(inputDots, encoding);
@@ -256,7 +256,7 @@ namespace LibLouisWrapper
                     inPtr,              // int * inlen,
                     bs.OutputBuffer,    // widechar *outbuf,
                     outPrt,             // int *outlen,
-                    sourceTypeformMap,  // formtype *typeform,
+                    bs.TypeFormBuffer,  // formtype *typeform,
                     null,               //  char *spacing
                     depricatedModeParameter);  //  int mode. Depricated for this function. MUST BE SET TO 0 !!
             }
