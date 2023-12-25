@@ -21,10 +21,13 @@ namespace LibLouisWrapper
         private int outputBufferSize;
         public int OutputBufferSize { get { return outputBufferSize; } }
 
-        public string Getranslation()
-        {
-            string translation = encoding.GetString(outputBuffer);      //Encode the translation
-            return translation.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters                                                              
+        public bool GetTranslation(out string translation)
+        {      
+            translation = null;
+            if (null == outputBuffer) return false;
+            string s = encoding.GetString(outputBuffer);  // Decode
+            translation = s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters
+            return true;                                        
         }
 
         private BufferStructure(string input, Encoding encoding, int sizeFactor, int minimumSize)
