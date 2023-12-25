@@ -164,8 +164,7 @@ namespace LibLouisWrapper
             int result = lou_charToDots(tablePaths, bs.InputBuffer, bs.OutputBuffer, chars.Length, translationMode); // Call native code to translate
             // Log(string.Format("lou_charToDots() returned result={0}", result));
             if (0 == result) return false;
-            string translation = encoding.GetString(bs.OutputBuffer);      //Encode the translation
-            dots = translation.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters        
+            dots = bs.Getranslation();
             return true;
         }
 
@@ -181,8 +180,7 @@ namespace LibLouisWrapper
             int result = lou_dotsToChar(tablePaths, bs.InputBuffer, bs.OutputBuffer, dots.Length, depricatedModeParameter); // Call native code to translate. The "mode" parameter is deprivated and set to 0
             // Log(string.Format("lou_charToDots() returned result={0}", result));
             if (0 == result) return false;
-            string translation = encoding.GetString(bs.OutputBuffer);      //Encode the translation
-            chars = translation.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters        
+            chars = bs.Getranslation(); 
             return true;
         }
 
