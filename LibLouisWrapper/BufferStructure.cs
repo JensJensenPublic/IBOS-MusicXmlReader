@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using static LibLouisWrapper.Wrapper;
 
 namespace LibLouisWrapper
 {
@@ -30,11 +31,17 @@ namespace LibLouisWrapper
 
         public bool GetTranslation(out string translation)
         {      
-            translation = null; 
+            translation = null;         
             if (null == outputBuffer) return false;
             string s = encoding.GetString(outputBuffer);  // Decode
-            translation = s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters   
+            translation = s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters            
             return true;                                        
+        }
+
+        public bool GetTypeForms(out TypeformEnum[] typeFormEmums, int length)
+        {    
+            typeFormEmums = typeFormBuffer.Take(length).ToArray(); // The CURRENT length of OutputBuffer
+            return true;
         }
 
         private BufferStructure(string input, Encoding encoding, int sizeFactor, int minimumSize)

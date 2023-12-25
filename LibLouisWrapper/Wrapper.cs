@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.SqlServer.Server;
 using MusicXmlReaderModel;
 using static System.Net.Mime.MediaTypeNames;
+using static LibLouisWrapper.Wrapper;
 
 namespace LibLouisWrapper
 {
@@ -196,9 +198,10 @@ namespace LibLouisWrapper
         }
 
 
-        public bool TranslateString(string text, out string dots, TypeformEnum[] sourceTypeformMap)
+        public bool TranslateString(string text, out string dots, out TypeformEnum[] typeformEnums)
         {
             dots = "";
+            typeformEnums = null;
             BufferStructure bs = BufferStructure.Create(text, encoding);
             int inSize =  bs.MaxInSize;    // Will be changed during the operation
             int outSize = bs.MaxOutSize;  // Will be changed during the operation
@@ -227,15 +230,17 @@ namespace LibLouisWrapper
             if ( 0 == iResult) return false;
             bool ok = bs.GetTranslation(out dots);
             Log(string.Format(": lou_translateString='{0}'  ", dots));
-            Log(string.Format(": lou_translateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", bs.MaxInSize, inSize, bs.MaxOutSize, outSize));       
+            Log(string.Format(": lou_translateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", bs.MaxInSize, inSize, bs.MaxOutSize, outSize));
+            bs.GetTypeForms(out typeformEnums,outSize); 
             return ok;
         }
 
 
 
-        public bool BackTranslateString(string inputDots, out string outputText, TypeformEnum[] sourceTypeformMap)
+        public bool BackTranslateString(string inputDots, out string outputText, out TypeformEnum[] typeformEnums)
         {
             outputText = "";
+            typeformEnums = null;
             BufferStructure bs = BufferStructure.Create(inputDots, encoding);
             int inSize = bs.MaxInSize;    // Will be changed during the operation
             int outSize = bs.MaxOutSize;  // Will be changed during the operation
@@ -266,6 +271,7 @@ namespace LibLouisWrapper
             bool ok = bs.GetTranslation(out outputText);
             Log(string.Format(": lou_backTranslateString='{0}'  ", outputText));
             Log(string.Format(": lou_backTranslateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", bs.MaxInSize, inSize, bs.MaxOutSize, outSize));
+            bs.GetTypeForms(out typeformEnums, outSize);
             return ok;
         }
 

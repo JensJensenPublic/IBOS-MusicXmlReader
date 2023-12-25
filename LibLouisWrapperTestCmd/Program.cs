@@ -47,11 +47,13 @@ namespace LibLouisWrapperTestCmd
                 Log(string.Format(": DotsToChars(CharsToDots(text)) {0} text", equal ? "==" : "<>"));
 
                 dots = "";
-                bool okTranslateString = libLouisWrapper.TranslateString(text, out dots,null);
+                TypeformEnum[] typeForms;
+                bool okTranslateString = libLouisWrapper.TranslateString(text, out dots,out typeForms);
                 Log(string.Format(": TranslateString('{0}') returned {1} Dots='{2}') ", text, okTranslateString, dots));
 
                 string backTranslationResult = "";
-                bool okBackTranslateString = libLouisWrapper.BackTranslateString(dots, out backTranslationResult,null);
+                TypeformEnum[] typeFormsBack;
+                bool okBackTranslateString = libLouisWrapper.BackTranslateString(dots, out backTranslationResult,out typeFormsBack);
                 Log(string.Format(": BackTranslateString('{0}') returned {1} Text='{2}') ", dots, okBackTranslateString, backTranslationResult));
 
                 bool equalTranstation = (0 == string.Compare(text, backTranslationResult)) ;
