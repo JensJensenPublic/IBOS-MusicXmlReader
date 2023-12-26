@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -70,20 +71,20 @@ namespace LibLouisWrapper
         private static int globalErrorCount = 0; // Counts errors reported from LibLouis dll and is used for checking the Logger Callback mechanism
 
         const int translationMode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille | TranslationModeEnum.DotsIO); // Common for all member functions
-        const int translationMode1 = (int)( TranslationModeEnum.UnicodeBraille); // For experiment
+        const int translationMode1 = (int)(TranslationModeEnum.UnicodeBraille); // For experiment
 
         /// <summary>
         /// Path to be combined with tableName before passing to LibLouis
         /// Must contain the path to the conversion tables, relative to the path of LibLouis.dll.
         /// LibLouis.dll can find the exact absolute path to the tables using this information.
         /// </summary>
-        private const string tableBase =  @"liblouis\share\liblouis\tables";  
+        private const string tableBase = @"liblouis\share\liblouis\tables";
 
         // The dll is placed in a folder named "binary" instead of "bin" to please the default GitExclude which wil not accept a "bin" folder.
         private const string LibLouisDll = @"Liblouis\binary\liblouis.dll";
         //private const string LibLouisDll = @"Liblouis\bin\liblouis.dll";
 
-#region DllImport
+        #region DllImport
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         private static extern int lou_charSize();
 
@@ -112,9 +113,9 @@ namespace LibLouisWrapper
 
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         private static extern void lou_free();
-#endregion
+        #endregion
 
-#region LogCallBack
+        #region LogCallBack
         private delegate void Func(int level, string message);
         private static void MyFunc(int level, string message)
         {
@@ -123,7 +124,7 @@ namespace LibLouisWrapper
         }
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         private static extern void lou_registerLogCallback(Func callback);
-#endregion 
+        #endregion
 
 #if true
         [DllImport(@"liblouis.dll", CharSet = CharSet.Unicode)]
@@ -153,6 +154,54 @@ namespace LibLouisWrapper
          );
 #endif
 
+#if true
+        private enum NativeFunctionEnum
+        {
+            charsToDots,
+            dotsToChars,
+            translateString,
+            backTranslateString       
+        
+        }
+
+
+        private bool test(string input, out string output, NativeFunctionEnum nativeFunctionEnum )
+        {     
+            output = null;
+            int inputLength = input.Length;
+            int outputLngth = inputLength * 2;
+            byte[] inBuf = encoding.GetBytes(input);
+            byte[] outBuf = new byte[outputLngth]; 
+            int result = 0;
+            unsafe
+            {
+                IntPtr inPtr = new IntPtr(&inputLength);
+                IntPtr outPrt = new IntPtr(&outputLngth);
+
+                fixed (byte* pInBuf = inBuf, pOutBuf = outBuf) // Prevents GarbageCollector from moving the buffers
+                {
+                    switch (nativeFunctionEnum)
+                    {
+                        case NativeFunctionEnum.charsToDots: result = lou_charToDots(tablePaths, inBuf, outBuf, inputLength, translationMode); break; // Call native code to translate
+                        case NativeFunctionEnum.dotsToChars: result = lou_dotsToChar(tablePaths, inBuf, outBuf, inputLength, depricatedModeParameter); break;
+                        case NativeFunctionEnum.translateString: result = lou_translateString( tablePaths,inBuf, inPtr,  outBuf, outPrt,  null, null, translationMode); break;
+                        case NativeFunctionEnum.backTranslateString: result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, null, null, depricatedModeParameter); break;
+                        OtherWise: throw new NotImplementedException(); break;                   
+                    
+                    } 
+                }
+            }
+            if (1 != result) return false;
+
+
+
+
+
+            return (1 == result);
+        }
+
+
+#endif
 
 
 
@@ -341,7 +390,12 @@ private Wrapper(string tableNames)
         private Wrapper(){ }
 
         public static Wrapper Create(string tableNames)
-        { return new Wrapper(tableNames); }
+        {
+            Wrapper wrapper =  new Wrapper(tableNames);
+            string s;
+            wrapper.test("X", out s, NativeFunctionEnum.charsToDots);
+            return wrapper;
+        }
 
     }
 }
