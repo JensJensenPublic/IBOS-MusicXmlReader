@@ -119,8 +119,10 @@ namespace LibLouisWrapper
         private delegate void Func(int level, string message);
         private static void MyFunc(int level, string message)
         {
-            Log(string.Format(": Received callback from LibLouis, describing an error: Level={0} Message={1}", level, message));
             globalErrorCount++;
+            if (ignoreFirstError) return; // Do not log simulated  error generated for test-purposes !
+            Log(string.Format(": Received callback from LibLouis, describing an error: Level={0} Message={1}", level, message));
+           
         }
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         private static extern void lou_registerLogCallback(Func callback);
@@ -367,6 +369,7 @@ namespace LibLouisWrapper
         private int charSize;
         private Encoding encoding;
         private string tablePaths;
+        private static bool ignoreFirstError = false;
 
         /// <summary>
         /// Simple mechanism used by the constructor only.
@@ -374,11 +377,14 @@ namespace LibLouisWrapper
         /// </summary>
         private void ExecuteCallbackTest()
         {
+           
             string testItem = " the LibLouis Log-Callback mechanism!";
             Log(string.Format(": Simulating error on order to test{0}",testItem));
             string teststring;
             int oldErrorCount = globalErrorCount;
+            ignoreFirstError = true;
             CharsToDots1("x", out teststring); // Is expected to fail and thereby to increase globalErrorCount;
+            ignoreFirstError = false;
             bool ok = (globalErrorCount > oldErrorCount);          
             Log(string.Format(": TEST {0}! Simulated error was {1} reported from LibLouis by{2} !", ok ? "PASSED" : "FAILED", ok ? "": "NOT", testItem));       
         }
