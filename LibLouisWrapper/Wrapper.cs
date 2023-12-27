@@ -204,7 +204,14 @@ namespace LibLouisWrapper
                         case NativeFunctionEnum.dotsToChars: result = lou_dotsToChar(tablePaths, inBuf, outBuf, inputLength, depricatedModeParameter); break;
                         case NativeFunctionEnum.translateString: result = lou_translateString( tablePaths,inBuf, inPtr,  outBuf, outPrt,  null, null, translationMode); break;
                         case NativeFunctionEnum.backTranslateString: result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, null, null, depricatedModeParameter); break;                                                
-                    } 
+                    }
+                    fixed (byte* pInBufAfter = inBuf, pOutBufAfter = outBuf)
+                    {
+                        // Log(string.Format("{0} {1}", (int)pInBuf, (int)pInBufAfter));
+                        CheckPinning("inBuf ", (int)pInBuf, (int)pInBufAfter);
+                        CheckPinning("outBuf", (int)pOutBuf, (int)pOutBufAfter);
+                    }
+
                 }
             }
             if (1 != result) return OnError( "1 != result");          
@@ -214,6 +221,19 @@ namespace LibLouisWrapper
             Logger.LogCF(string.Format("({0},'{1}' = '{2}'", nativeFunctionEnum, input, output));
             return true;
         }
+
+        private void CheckPinning(string id, int pBefore, int pAfter)
+        {
+            if (pBefore == pAfter)
+            {
+                Log(string.Format(": Passed!"));
+                return; 
+            }
+            string message = string.Format(": {0} changed grom {1} to {2}", id, pBefore, pAfter);
+            Log(message);
+            throw new Exception(message);
+        }
+
 
         private bool OnError(string s)
         {
