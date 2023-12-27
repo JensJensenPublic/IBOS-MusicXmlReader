@@ -208,8 +208,8 @@ namespace LibLouisWrapper
                     fixed (byte* pInBufAfter = inBuf, pOutBufAfter = outBuf)
                     {
                         // Log(string.Format("{0} {1}", (int)pInBuf, (int)pInBufAfter));
-                        CheckPinning("inBuf ", (int)pInBuf, (int)pInBufAfter);
-                        CheckPinning("outBuf", (int)pOutBuf, (int)pOutBufAfter);
+                        CheckPinning("InBuf ", (int)pInBuf, (int)pInBufAfter);
+                        CheckPinning("OutBuf", (int)pOutBuf, (int)pOutBufAfter);
                     }
 
                 }
@@ -226,10 +226,10 @@ namespace LibLouisWrapper
         {
             if (pBefore == pAfter)
             {
-                Log(string.Format(": Passed!"));
+                // Log(string.Format(": Passed!"));
                 return; 
             }
-            string message = string.Format(": {0} changed grom {1} to {2}", id, pBefore, pAfter);
+            string message = string.Format(": The buffer '{0}' changed from {1} to {2} during call to native code - even if it was supposed to be pinned!", id, pBefore, pAfter);
             Log(message);
             throw new Exception(message);
         }
