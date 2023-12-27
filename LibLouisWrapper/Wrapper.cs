@@ -168,20 +168,31 @@ namespace LibLouisWrapper
         public bool TranslateString1(string text, out string dots) { return CommonNativeCall(text, out dots, NativeFunctionEnum.translateString); }
         public bool BackTranslateString1(string inputDots, out string outputText) { return CommonNativeCall(inputDots, out outputText, NativeFunctionEnum.backTranslateString); }
 
+        private int GetOutputLength(int inputLength, NativeFunctionEnum nativeFunctionEnum)
+        {
+            int defaultResult = Math.Max((inputLength * 2), 1024);  // Twice the inputbuffer size, but at least 1kB
+            switch (nativeFunctionEnum)
+            {
+                case NativeFunctionEnum.charsToDots: break;
+                case NativeFunctionEnum.dotsToChars: break;
+                case NativeFunctionEnum.translateString: break;
+                case NativeFunctionEnum.backTranslateString: break;
+            }
+            return defaultResult;
+        }
 
         private bool CommonNativeCall(string input, out string output, NativeFunctionEnum nativeFunctionEnum )
         {     
             output = null;
-            int sizeFactor = 4; // TODO 
-            int inputLength = input.Length;
-            int outputLngth = inputLength * 2 * sizeFactor;
+            int inputLength = input.Length;          
             byte[] inBuf = encoding.GetBytes(input);
-            byte[] outBuf = new byte[outputLngth]; 
+            int outputLength = GetOutputLength(inBuf.Length, nativeFunctionEnum);
+            byte[] outBuf = new byte[outputLength]; 
             int result = 0;
             unsafe
             {
                 IntPtr inPtr = new IntPtr(&inputLength);
-                IntPtr outPrt = new IntPtr(&outputLngth);
+                IntPtr outPrt = new IntPtr(&outputLength);
 
                 fixed (byte* pInBuf = inBuf, pOutBuf = outBuf) // Prevents GarbageCollector from moving the buffers
                 {
