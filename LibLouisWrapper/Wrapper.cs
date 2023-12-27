@@ -160,12 +160,16 @@ namespace LibLouisWrapper
             charsToDots,
             dotsToChars,
             translateString,
-            backTranslateString       
-        
+            backTranslateString 
         }
 
+        public bool CharsToDots1(string chars, out string dots) { return CommonNativeCall(chars, out dots, NativeFunctionEnum.charsToDots); }
+        public bool DotsToChars1(string dots, out string chars) { return CommonNativeCall(dots, out chars, NativeFunctionEnum.dotsToChars); }
+        public bool TranslateString1(string text, out string dots) { return CommonNativeCall(text, out dots, NativeFunctionEnum.translateString); }
+        public bool BackTranslateString1(string inputDots, out string outputText) { return CommonNativeCall(inputDots, out outputText, NativeFunctionEnum.backTranslateString); }
 
-        private bool test(string input, out string output, NativeFunctionEnum nativeFunctionEnum )
+
+        private bool CommonNativeCall(string input, out string output, NativeFunctionEnum nativeFunctionEnum )
         {     
             output = null;
             int inputLength = input.Length;
@@ -182,22 +186,25 @@ namespace LibLouisWrapper
                 {
                     switch (nativeFunctionEnum)
                     {
-                        case NativeFunctionEnum.charsToDots: result = lou_charToDots(tablePaths, inBuf, outBuf, inputLength, translationMode); break; // Call native code to translate
+                        case NativeFunctionEnum.charsToDots: result = lou_charToDots(tablePaths, inBuf, outBuf, inputLength, translationMode); break;
                         case NativeFunctionEnum.dotsToChars: result = lou_dotsToChar(tablePaths, inBuf, outBuf, inputLength, depricatedModeParameter); break;
                         case NativeFunctionEnum.translateString: result = lou_translateString( tablePaths,inBuf, inPtr,  outBuf, outPrt,  null, null, translationMode); break;
-                        case NativeFunctionEnum.backTranslateString: result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, null, null, depricatedModeParameter); break;
-                        OtherWise: throw new NotImplementedException(); break;                   
-                    
+                        case NativeFunctionEnum.backTranslateString: result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, null, null, depricatedModeParameter); break;                                                
                     } 
                 }
             }
-            if (1 != result) return false;
+            if (1 != result) return OnError( "1 != result");          
+            if (null == outBuf) return OnError("null == outBuf");      
+            string s = encoding.GetString(outBuf);  // Decode
+            output = s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters 
+            Logger.LogCF(string.Format("({0},'{1}' = '{2}'", nativeFunctionEnum, input, output));
+            return true;
+        }
 
-
-
-
-
-            return (1 == result);
+        private bool OnError(string s)
+        {
+            Logger.LogCF1(string.Format(": Error: '{s}'", s));
+            return false;        
         }
 
 
@@ -392,8 +399,8 @@ private Wrapper(string tableNames)
         public static Wrapper Create(string tableNames)
         {
             Wrapper wrapper =  new Wrapper(tableNames);
-            string s;
-            wrapper.test("X", out s, NativeFunctionEnum.charsToDots);
+            //string s;
+            //wrapper.CommonNativeCall("X", out s, NativeFunctionEnum.charsToDots);
             return wrapper;
         }
 
