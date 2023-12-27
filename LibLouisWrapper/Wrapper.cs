@@ -211,7 +211,21 @@ namespace LibLouisWrapper
 
 #endif
 
+        public void Free()
+        {
+            lou_free();
+        }
 
+
+        private static void Log(string s)
+        {
+            Console.WriteLine(s);
+            Logger.LogCF1(s);    // Append Class and Function for the function calling Log()    
+        }
+
+
+
+#if false
 
         public bool CharsToDots(string chars, out string dots)
         {
@@ -242,17 +256,7 @@ namespace LibLouisWrapper
             return  bs.GetTranslation(out chars); 
         }
 
-        public void Free()
-        {
-            lou_free();
-        }
-
-
-        private static void Log(string s)
-        {
-            Console.WriteLine(s);
-            Logger.LogCF1(s);    // Append Class and Function for the function calling Log()    
-        }
+   
 
 
         public bool TranslateString(string text, out string dots, out TypeformEnum[] typeformEnums)
@@ -331,7 +335,7 @@ namespace LibLouisWrapper
             bs.GetTypeForms(out typeformEnums, outSize);
             return ok;
         }
-
+#endif
 
         /// <summary>
         /// Gets the encoding based on the character size from libluois
@@ -363,7 +367,7 @@ namespace LibLouisWrapper
             Log(string.Format(": Simulating error on order to test{0}",testItem));
             string teststring;
             int oldErrorCount = globalErrorCount;
-            CharsToDots("x", out teststring); // Is expected to fail and thereby to increase globalErrorCount;
+            CharsToDots1("x", out teststring); // Is expected to fail and thereby to increase globalErrorCount;
             bool ok = (globalErrorCount > oldErrorCount);          
             Log(string.Format(": TEST {0}! Simulated error was {1} reported from LibLouis by{2} !", ok ? "PASSED" : "FAILED", ok ? "": "NOT", testItem));       
         }
