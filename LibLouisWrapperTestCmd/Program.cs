@@ -66,7 +66,7 @@ namespace LibLouisWrapperTestCmd
             }
             catch (Exception e)
             {
-                Log(string.Format(": Exception.Message='{0}'", e.Message));
+                Log(string.Format(": Main() failed because of an exception!  Exception.Message='{0}'", e.Message));
                 result = false;            
             }
             Log(string.Format(": Result = {0}", result));          
