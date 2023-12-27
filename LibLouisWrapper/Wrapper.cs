@@ -165,10 +165,10 @@ namespace LibLouisWrapper
             backTranslateString 
         }
 
-        public bool CharsToDots1(string chars, out string dots) { return CommonNativeCall(chars, out dots, NativeFunctionEnum.charsToDots); }
-        public bool DotsToChars1(string dots, out string chars) { return CommonNativeCall(dots, out chars, NativeFunctionEnum.dotsToChars); }
-        public bool TranslateString1(string text, out string dots) { return CommonNativeCall(text, out dots, NativeFunctionEnum.translateString); }
-        public bool BackTranslateString1(string inputDots, out string outputText) { return CommonNativeCall(inputDots, out outputText, NativeFunctionEnum.backTranslateString); }
+        public bool CharsToDots1(string chars, out string dots) { return CommonNativeCall(NativeFunctionEnum.charsToDots, chars, out dots ); }
+        public bool DotsToChars1(string dots, out string chars) { return CommonNativeCall(NativeFunctionEnum.dotsToChars, dots, out chars); }
+        public bool TranslateString1(string text, out string dots) { return CommonNativeCall(NativeFunctionEnum.translateString, text, out dots ); }
+        public bool BackTranslateString1(string dots, out string text) { return CommonNativeCall(NativeFunctionEnum.backTranslateString, dots, out text ); }
 
         private int GetOutputLength(int inputLength, NativeFunctionEnum nativeFunctionEnum)
         {
@@ -183,7 +183,7 @@ namespace LibLouisWrapper
             return defaultResult;
         }
 
-        private bool CommonNativeCall(string input, out string output, NativeFunctionEnum nativeFunctionEnum )
+        private bool CommonNativeCall(NativeFunctionEnum nativeFunctionEnum, string input, out string output )
         {     
             output = null;
             int inputLength = input.Length;          
