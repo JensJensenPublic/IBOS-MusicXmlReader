@@ -204,7 +204,7 @@ namespace LibLouisWrapper
 
         private bool OnError(string s)
         {
-            Logger.LogCF1(string.Format(": Error: '{s}'", s));
+            Logger.LogCF1(string.Format(": Error: '{0}'", s));
             return false;        
         }
 
