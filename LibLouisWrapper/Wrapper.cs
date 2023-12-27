@@ -172,8 +172,9 @@ namespace LibLouisWrapper
         private bool CommonNativeCall(string input, out string output, NativeFunctionEnum nativeFunctionEnum )
         {     
             output = null;
+            int sizeFactor = 4; // TODO 
             int inputLength = input.Length;
-            int outputLngth = inputLength * 2;
+            int outputLngth = inputLength * 2 * sizeFactor;
             byte[] inBuf = encoding.GetBytes(input);
             byte[] outBuf = new byte[outputLngth]; 
             int result = 0;

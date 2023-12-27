@@ -35,12 +35,12 @@ namespace LibLouisWrapperTestCmd
                 string text = "the quick brown fox jumps over the lazy dog";
                 string dots = "";
 
-                bool okCharsToDots = libLouisWrapper.CharsToDots(text, out dots);
+                bool okCharsToDots = libLouisWrapper.CharsToDots1(text, out dots);
                 Log(string.Format(": CharsToDots('{0}') returned {1}.   Dots={2}) ", text, okCharsToDots ? "Success" : "Error!", dots));
 
                 string charsResult = "";
 
-                bool okDotsToChars = libLouisWrapper.DotsToChars(dots, out charsResult);
+                bool okDotsToChars = libLouisWrapper.DotsToChars1(dots, out charsResult);
                 Log(string.Format(": DotsToChar('{0}') returned {1}.   Text={2}) ", dots, okDotsToChars ? "Success" : "Error!", charsResult));
 
                 bool equal = (0 == string.Compare(text, charsResult));
@@ -48,12 +48,12 @@ namespace LibLouisWrapperTestCmd
 
                 dots = "";
                 TypeformEnum[] typeForms;
-                bool okTranslateString = libLouisWrapper.TranslateString(text, out dots,out typeForms);
+                bool okTranslateString = libLouisWrapper.TranslateString1(text, out dots);
                 Log(string.Format(": TranslateString('{0}') returned {1} Dots='{2}') ", text, okTranslateString, dots));
 
                 string backTranslationResult = "";
                 TypeformEnum[] typeFormsBack;
-                bool okBackTranslateString = libLouisWrapper.BackTranslateString(dots, out backTranslationResult,out typeFormsBack);
+                bool okBackTranslateString = libLouisWrapper.BackTranslateString1(dots, out backTranslationResult);
                 Log(string.Format(": BackTranslateString('{0}') returned {1} Text='{2}') ", dots, okBackTranslateString, backTranslationResult));
 
                 bool equalTranstation = (0 == string.Compare(text, backTranslationResult)) ;
