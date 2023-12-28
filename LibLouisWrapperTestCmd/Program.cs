@@ -88,7 +88,9 @@ namespace LibLouisWrapperTestCmd
                     return;
                 }
 
-                string text = "The quick brown fox jumps over the lazy dog";
+                //string text = "The quick brown fox jumps over the lazy dog";
+                string text = "abcdefghijklmnopqrstuvwxyzæøå";
+
                 for (int i = 0;((result) && (i < 100)); i++)
                 { 
                    result &= CharsToDotsToCharsTest(text.ToLower());     // Seems NOT to handle Capital letters !
