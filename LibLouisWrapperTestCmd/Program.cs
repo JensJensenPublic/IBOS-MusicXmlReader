@@ -77,13 +77,16 @@ namespace LibLouisWrapperTestCmd
             Logger.Open(@"c:\temp\LibLouis\LibLouisWrapperTestCmd.log");
             Log(": ---------------------------------------------------");
             Log(string.Format(": Starting {0}",Environment.CommandLine.ToString()));       
-            bool result = true;    
+            bool result = true;
             try
             {
                 libLouisWrapper = Wrapper.Create("en-ueb-g2.ctb,en-ueb-math.ctb"); // Two tables used in this case );
-                string text = "the quick brown fox jumps over the lazy dog";
-                CharsToDotsToCharsTest(text);
-                StringToDotsToStringTest(text);
+                string text = "The quick brown fox jumps over the lazy dog";
+                for (int i = 0;((result) && (i < 100)); i++)
+                { 
+                   result &= CharsToDotsToCharsTest(text.ToLower());     // Seems NOT to handle Capital letters !
+                   result &= StringToDotsToStringTest(text);             // Seems to handle Capital letters !
+                }
                 libLouisWrapper.Free();
                 Log(": LibLouisWrapper.Free() returned.");
                 Log(string.Format(": No Exception was thrown during test."));
