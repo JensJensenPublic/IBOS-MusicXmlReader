@@ -501,12 +501,18 @@ private Wrapper(string tableNames)
             if (!DirectoryExists(libLouisDir2)) return false;
             string tablesDir = Path.Combine(libLouisDir2, "tables");
             if (!DirectoryExists(tablesDir)) return false;
-
-#warning TODO run through all names in tableNames            
-
-            string tableFile = Path.Combine(tablesDir, tableNames);
-            if (!FileExists(tableFile)) return false;
-            Log(string.Format(": Table '{0}' was found", tableNames));
+      
+            string[] names = tableNames.Split(',');
+            {                          
+                foreach (string name in names)
+                {
+                    // Only the first name contains the full path !
+                    string shortName = Path.GetFileName(name);
+                    string fullPath = (Path.Combine(tablesDir, shortName));
+                    if (!FileExists(fullPath)) return false;                 
+                }
+            }
+            Log(string.Format(": All tables in '{0}' were found", tableNames));
             return true;
         }
             
@@ -516,8 +522,6 @@ private Wrapper(string tableNames)
         {
             if (! CheckInstallation(tableNames)) return null;        
             Wrapper wrapper =  new Wrapper(tableNames);
-            //string s;
-            //wrapper.CommonNativeCall("X", out s, NativeFunctionEnum.charsToDots);
             return wrapper;
         }
 
