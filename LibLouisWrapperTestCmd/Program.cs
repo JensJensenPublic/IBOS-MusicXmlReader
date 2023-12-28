@@ -82,6 +82,12 @@ namespace LibLouisWrapperTestCmd
             {
                 //libLouisWrapper = Wrapper.Create("en-ueb-g2.ctb,en-ueb-math.ctb"); // Two tables used in this case );
                 libLouisWrapper = Wrapper.Create("da-dk-g26.ctb"); //  Danish table for 6 dots grade 2 forward and backward translation (2022)
+                if (null == libLouisWrapper)
+                {
+                    Log(string.Format(": LibLouis directory of file is missing. Please see logfile for details."));
+                    return;
+                }
+
                 string text = "The quick brown fox jumps over the lazy dog";
                 for (int i = 0;((result) && (i < 100)); i++)
                 { 
