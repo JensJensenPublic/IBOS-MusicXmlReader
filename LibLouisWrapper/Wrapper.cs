@@ -418,7 +418,7 @@ namespace LibLouisWrapper
         {
            
             string testItem = " the LibLouis Log-Callback mechanism!";
-            Log(string.Format(": Simulating error on order to test{0}",testItem));
+            Log(string.Format(": Simulating error in order to test{0}",testItem));
             string teststring;
             int oldErrorCount = globalErrorCount;
             ignoreFirstError = true;
