@@ -457,8 +457,46 @@ private Wrapper(string tableNames)
         /// </summary>
         private Wrapper(){ }
 
+        private static bool OnCreationError(string s)
+        {
+            Log(s);
+            return false;
+        }
+
+        /// <summary>
+        /// Simple code for checking that all directories and files needed by liblouis are found at the right locations
+        /// </summary>
+        /// <param name="tableNames"></param>
+        /// <returns></returns>
+        private static bool CheckInstallation(string tableNames)
+        {
+            string executingDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string liblouisDir = Path.Combine(executingDirectory, "liblouis");
+            if (!Directory.Exists(liblouisDir)) return OnCreationError(string.Format(": Directory not found: {0}", liblouisDir));
+            string binaryDir = Path.Combine(liblouisDir, "binary");
+            if (!Directory.Exists(binaryDir)) return OnCreationError(string.Format(": Directory not found: {0}", binaryDir));
+            string liblouisDll = Path.Combine(binaryDir, "liblouis.dll");
+            if (!File.Exists(liblouisDll)) return OnCreationError(string.Format(": File not found: {0}", liblouisDll));
+            string shareDir = Path.Combine(liblouisDir, "share");
+            if (!Directory.Exists(shareDir)) return OnCreationError(string.Format(": Directory not found: {0}", shareDir));
+            string libLouisDir2 = Path.Combine(shareDir, "liblouis");
+            if (!Directory.Exists(libLouisDir2)) return OnCreationError(string.Format(": Directory not found: {0}", libLouisDir2));
+            string tablesDir = Path.Combine(libLouisDir2, "tables");
+            if (!Directory.Exists(tablesDir)) return OnCreationError(string.Format(": Directory not found: {0}", tablesDir));
+
+#warning TODO run through all names in tableNames            
+
+            string tableFile = Path.Combine(tablesDir, tableNames);
+            if (!File.Exists(tableFile)) return OnCreationError(string.Format(": File not found: {0}", tableFile));
+            Log(string.Format(": Table '{0}' was found", tableNames));
+            return true;
+        }
+            
+
+
         public static Wrapper Create(string tableNames)
         {
+            CheckInstallation(tableNames);
             Wrapper wrapper =  new Wrapper(tableNames);
             //string s;
             //wrapper.CommonNativeCall("X", out s, NativeFunctionEnum.charsToDots);
