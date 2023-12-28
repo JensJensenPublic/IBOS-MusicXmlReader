@@ -48,13 +48,13 @@ namespace LibLouisWrapperTestCmd
 
                 dots = "";
                 TypeformEnum[] typeForms;
-                bool okTranslateString = libLouisWrapper.TranslateString1(text, out dots);
-                Log(string.Format(": TranslateString('{0}') returned {1} Dots='{2}') ", text, okTranslateString, dots));
+                bool okTranslateString = libLouisWrapper.TranslateString1(text, out dots, out typeForms);
+                Log(string.Format(": TranslateString('{0}') returned {1} Tfe.Length={2} Dots='{3}') ", text, okTranslateString, typeForms.Length,dots));
 
                 string backTranslationResult = "";
                 TypeformEnum[] typeFormsBack;
-                bool okBackTranslateString = libLouisWrapper.BackTranslateString1(dots, out backTranslationResult);
-                Log(string.Format(": BackTranslateString('{0}') returned {1} Text='{2}') ", dots, okBackTranslateString, backTranslationResult));
+                bool okBackTranslateString = libLouisWrapper.BackTranslateString1(dots, out backTranslationResult,out typeFormsBack);
+                Log(string.Format(": BackTranslateString('{0}') returned {1} Tfe.Length={2} Text='{3}') ", dots, okBackTranslateString, typeFormsBack.Length, backTranslationResult));
 
                 bool equalTranstation = (0 == string.Compare(text, backTranslationResult)) ;
                 Log(string.Format(": BackTranslateString(TranslateString(text) {0} text", equalTranstation ? "==" : "<>"));

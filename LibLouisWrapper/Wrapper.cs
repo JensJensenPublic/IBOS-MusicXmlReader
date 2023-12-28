@@ -165,10 +165,12 @@ namespace LibLouisWrapper
             backTranslateString 
         }
 
-        public bool CharsToDots1(string chars, out string dots) { return CommonNativeCall(NativeFunctionEnum.charsToDots, chars, out dots ); }
-        public bool DotsToChars1(string dots, out string chars) { return CommonNativeCall(NativeFunctionEnum.dotsToChars, dots, out chars); }
-        public bool TranslateString1(string text, out string dots) { return CommonNativeCall(NativeFunctionEnum.translateString, text, out dots ); }
-        public bool BackTranslateString1(string dots, out string text) { return CommonNativeCall(NativeFunctionEnum.backTranslateString, dots, out text ); }
+        private  TypeformEnum[] dummyTfe = null;
+
+        public bool CharsToDots1(string chars, out string dots) { return CommonNativeCall(NativeFunctionEnum.charsToDots, chars, out dots, out dummyTfe); }
+        public bool DotsToChars1(string dots, out string chars) { return CommonNativeCall(NativeFunctionEnum.dotsToChars, dots, out chars, out dummyTfe); }
+        public bool TranslateString1(string text, out string dots, out TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.translateString, text, out dots, out tfe); }
+        public bool BackTranslateString1(string dots, out string text,out TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.backTranslateString, dots, out text, out tfe ); }
 
         private int GetOutputLength(int inputLength, NativeFunctionEnum nativeFunctionEnum)
         {
@@ -183,13 +185,24 @@ namespace LibLouisWrapper
             return defaultResult;
         }
 
-        private bool CommonNativeCall(NativeFunctionEnum nativeFunctionEnum, string input, out string output )
+        
+
+        private int GetTfeLength(int inputLength, NativeFunctionEnum nativeFunctionEnum)
+        { 
+            return inputLength * 2; // Room for 2 TypeFormEnum values for each character in the inputstring
+        }
+
+
+        private bool CommonNativeCall(NativeFunctionEnum nativeFunctionEnum, string input, out string output, out TypeformEnum[] tfe)
         {     
             output = null;
+            tfe = null;
             int inputLength = input.Length;          
             byte[] inBuf = encoding.GetBytes(input);
             int outputLength = GetOutputLength(inBuf.Length, nativeFunctionEnum);
-            byte[] outBuf = new byte[outputLength]; 
+            byte[] outBuf = new byte[outputLength];
+            int tfeLength = GetTfeLength(input.Length, nativeFunctionEnum);
+            TypeformEnum[] tfeBuf = new TypeformEnum[tfeLength];
             int result = 0;
             unsafe
             {
@@ -198,26 +211,32 @@ namespace LibLouisWrapper
 
                 fixed (byte* pInBuf = inBuf, pOutBuf = outBuf) // Prevents GarbageCollector from moving the buffers
                 {
-                    switch (nativeFunctionEnum)
+                    fixed (TypeformEnum* pTfeBuf = tfeBuf) // Two levels are needed for fixing different types !
                     {
-                        case NativeFunctionEnum.charsToDots: result = lou_charToDots(tablePaths, inBuf, outBuf, inputLength, translationMode); break;
-                        case NativeFunctionEnum.dotsToChars: result = lou_dotsToChar(tablePaths, inBuf, outBuf, inputLength, depricatedModeParameter); break;
-                        case NativeFunctionEnum.translateString: result = lou_translateString( tablePaths,inBuf, inPtr,  outBuf, outPrt,  null, null, translationMode); break;
-                        case NativeFunctionEnum.backTranslateString: result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, null, null, depricatedModeParameter); break;                                                
+                        switch (nativeFunctionEnum)
+                        {
+                            case NativeFunctionEnum.charsToDots: result = lou_charToDots(tablePaths, inBuf, outBuf, inputLength, translationMode); break;
+                            case NativeFunctionEnum.dotsToChars: result = lou_dotsToChar(tablePaths, inBuf, outBuf, inputLength, depricatedModeParameter); break;
+                            case NativeFunctionEnum.translateString: result = lou_translateString(tablePaths, inBuf, inPtr, outBuf, outPrt, tfeBuf, null, translationMode); break;
+                            case NativeFunctionEnum.backTranslateString: result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, null, null, depricatedModeParameter); break;
+                        }
+                        fixed (byte* pInBufAfter = inBuf, pOutBufAfter = outBuf)
+                        {
+                            CheckPinning("InBuf ", (int)pInBuf, (int)pInBufAfter);
+                            CheckPinning("OutBuf", (int)pOutBuf, (int)pOutBufAfter);
+                        }
+                        fixed (TypeformEnum*  pTfeBufAfter = tfeBuf)
+                        {   
+                            CheckPinning("TfeBuf ", (int)pTfeBuf, (int)pTfeBufAfter);         
+                        }
                     }
-                    fixed (byte* pInBufAfter = inBuf, pOutBufAfter = outBuf)
-                    {
-                        // Log(string.Format("{0} {1}", (int)pInBuf, (int)pInBufAfter));
-                        CheckPinning("InBuf ", (int)pInBuf, (int)pInBufAfter);
-                        CheckPinning("OutBuf", (int)pOutBuf, (int)pOutBufAfter);
-                    }
-
                 }
             }
             if (1 != result) return OnError( "1 != result");          
             if (null == outBuf) return OnError("null == outBuf");      
             string s = encoding.GetString(outBuf);  // Decode
-            output = s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters 
+            output = s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters
+            tfe = tfeBuf;
             Logger.LogCF(string.Format("({0},'{1}' = '{2}'", nativeFunctionEnum, input, output));
             return true;
         }
