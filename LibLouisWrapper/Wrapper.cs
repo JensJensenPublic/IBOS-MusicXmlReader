@@ -463,6 +463,24 @@ private Wrapper(string tableNames)
             return false;
         }
 
+        private static bool DirectoryExists(string path)
+        {
+            if (Directory.Exists(path)) return true;
+            return OnMissingItem("Directory", path);
+        }
+
+        private static bool FileExists(string path)
+        {
+            if (File.Exists(path)) return true;
+            return OnMissingItem("File", path);
+        }
+
+        private static bool OnMissingItem(string itemType, string path)
+        {
+            Log(string.Format("{0} does not exist: '{1}'", itemType, path));
+            return false;
+        }
+
         /// <summary>
         /// Simple code for checking that all directories and files needed by liblouis are found at the right locations
         /// </summary>
@@ -472,22 +490,22 @@ private Wrapper(string tableNames)
         {
             string executingDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             string liblouisDir = Path.Combine(executingDirectory, "liblouis");
-            if (!Directory.Exists(liblouisDir)) return OnCreationError(string.Format(": Directory not found: {0}", liblouisDir));
+            if (!DirectoryExists(liblouisDir)) return false;
             string binaryDir = Path.Combine(liblouisDir, "binary");
-            if (!Directory.Exists(binaryDir)) return OnCreationError(string.Format(": Directory not found: {0}", binaryDir));
+            if (!DirectoryExists(binaryDir)) return false;
             string liblouisDll = Path.Combine(binaryDir, "liblouis.dll");
-            if (!File.Exists(liblouisDll)) return OnCreationError(string.Format(": File not found: {0}", liblouisDll));
+            if (!FileExists(liblouisDll)) return false;
             string shareDir = Path.Combine(liblouisDir, "share");
-            if (!Directory.Exists(shareDir)) return OnCreationError(string.Format(": Directory not found: {0}", shareDir));
+            if (!DirectoryExists(shareDir)) return false;
             string libLouisDir2 = Path.Combine(shareDir, "liblouis");
-            if (!Directory.Exists(libLouisDir2)) return OnCreationError(string.Format(": Directory not found: {0}", libLouisDir2));
+            if (!DirectoryExists(libLouisDir2)) return false;
             string tablesDir = Path.Combine(libLouisDir2, "tables");
-            if (!Directory.Exists(tablesDir)) return OnCreationError(string.Format(": Directory not found: {0}", tablesDir));
+            if (!DirectoryExists(tablesDir)) return false;
 
 #warning TODO run through all names in tableNames            
 
             string tableFile = Path.Combine(tablesDir, tableNames);
-            if (!File.Exists(tableFile)) return OnCreationError(string.Format(": File not found: {0}", tableFile));
+            if (!FileExists(tableFile)) return false;
             Log(string.Format(": Table '{0}' was found", tableNames));
             return true;
         }
@@ -496,7 +514,7 @@ private Wrapper(string tableNames)
 
         public static Wrapper Create(string tableNames)
         {
-            CheckInstallation(tableNames);
+            if (! CheckInstallation(tableNames)) return null;        
             Wrapper wrapper =  new Wrapper(tableNames);
             //string s;
             //wrapper.CommonNativeCall("X", out s, NativeFunctionEnum.charsToDots);
