@@ -88,6 +88,7 @@ namespace LibLouisWrapper
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         private static extern int lou_charSize();
 
+        // liblouis.h contains: LIBLOUIS_API const char *EXPORT_CALL lou_version(void);
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         [return: MarshalAs(UnmanagedType.LPStr)]
         private static extern string lou_version();
@@ -171,6 +172,13 @@ namespace LibLouisWrapper
         public bool DotsToChars1(string dots, out string chars) { return CommonNativeCall(NativeFunctionEnum.dotsToChars, dots, out chars, out dummyTfe); }
         public bool TranslateString1(string text, out string dots, out TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.translateString, text, out dots, out tfe); }
         public bool BackTranslateString1(string dots, out string text,out TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.backTranslateString, dots, out text, out tfe ); }
+
+        public string GetVersion()
+        {
+#warning TODO Implement            
+            string result = "Could not be determined !";
+            return result;            
+        }
 
         private int GetOutputLength(int inputLength, NativeFunctionEnum nativeFunctionEnum)
         {
@@ -438,6 +446,8 @@ private Wrapper(string tableNames)
             Log(string.Format(": TableNames='{0}'", tableNames));
             Log(string.Format(": Registering LibLouis LogCallback function"));
             lou_registerLogCallback(MyFunc); // Register the static function MyFunc as a callback""
+            string version = GetVersion();
+            Log(string.Format(": LibLouis Version {0}", version));
             charSize = lou_charSize();
             Log(string.Format(": CharSize={0}", charSize));
             encoding = GetEncoding(charSize);  // Get the encoding type based on the lou_charSize.
