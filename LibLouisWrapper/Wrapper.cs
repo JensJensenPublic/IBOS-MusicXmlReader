@@ -436,13 +436,14 @@ namespace LibLouisWrapper
             Log(string.Format(": TEST {0}! Simulated error was {1} reported from LibLouis by{2} !", ok ? "PASSED" : "FAILED", ok ? "": "NOT", testItem));       
         }
 
+        private readonly Func myFunc; // Only for preventing GC from collecting the delegate
 
-
-/// <summary>
-/// Private constructor. Use Wrapper.Create() from the outside.
-/// </summary>
-private Wrapper(string tableNames)
+        /// <summary>
+        /// Private constructor. Use Wrapper.Create() from the outside.
+        /// </summary>
+        private Wrapper(string tableNames)
         {
+            myFunc = MyFunc;
             Log(string.Format(": TableNames='{0}'", tableNames));
             Log(string.Format(": Registering LibLouis LogCallback function"));
             lou_registerLogCallback(MyFunc); // Register the static function MyFunc as a callback""
