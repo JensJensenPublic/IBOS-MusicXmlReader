@@ -175,8 +175,34 @@ namespace LibLouisWrapper
 
         public string GetVersion()
         {
-#warning TODO Implement            
-            string result = "Could not be determined !";
+#warning TODO Implement  using lou_version()          
+            string result = "could not be determined !";
+            // 
+            // This is just a silly, temporary solution !
+            try
+            {
+                //throw new Exception(""); // For test
+                string executingDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                string fileName = Path.Combine(executingDirectory, @"liblouis\lib\pkgconfig\liblouis.pc");
+                if (File.Exists(fileName))
+                {
+                    Log(string.Format(": Found file {0}", fileName));
+                    string[] lines = File.ReadAllLines(fileName);
+                    string versionPrompt = "Version:";
+                    foreach (string line in lines)
+                    {
+                        if (line.StartsWith(versionPrompt))
+                        {
+                            return line.Replace(versionPrompt,"");
+                        }                    
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Log(string.Format(": Exception caught while attempting to read LibLouis version. Message={0}", e.Message));
+            
+            }
             return result;            
         }
 
