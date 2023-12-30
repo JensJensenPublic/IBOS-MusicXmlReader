@@ -168,13 +168,13 @@ namespace LibLouisWrapper
             backTranslateStringTfe // Use the TypeFormEnum parameter
         }
 
-        private  TypeformEnum[] dummyTfe = null;
+        //private  TypeformEnum[] dummyTfe = null;
 
-        public bool CharsToDots1(string chars, out string dots) { return CommonNativeCall(NativeFunctionEnum.charsToDots, chars, out dots, out dummyTfe); }
-        public bool DotsToChars1(string dots, out string chars) { return CommonNativeCall(NativeFunctionEnum.dotsToChars, dots, out chars, out dummyTfe); }
-        public bool TranslateString1(string text, out string dots) { return CommonNativeCall(NativeFunctionEnum.translateString, text, out dots, out dummyTfe); }
+        public bool CharsToDots1(string chars, out string dots) { return CommonNativeCall(NativeFunctionEnum.charsToDots, chars, out dots); }
+        public bool DotsToChars1(string dots, out string chars) { return CommonNativeCall(NativeFunctionEnum.dotsToChars, dots, out chars); }
+        public bool TranslateString1(string text, out string dots) { return CommonNativeCall(NativeFunctionEnum.translateString, text, out dots); }
         public bool TranslateStringTFE(string text, out string dots, out TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.translateStringTfe, text, out dots, out tfe); }
-        public bool BackTranslateString1(string dots, out string text) { return CommonNativeCall(NativeFunctionEnum.backTranslateString, dots, out text, out dummyTfe); }
+        public bool BackTranslateString1(string dots, out string text) { return CommonNativeCall(NativeFunctionEnum.backTranslateString, dots, out text); }
         public bool BackTranslateStringTFE(string dots, out string text, out TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.backTranslateStringTfe, dots, out text, out tfe); }
 
         public string GetVersion()
@@ -228,6 +228,12 @@ namespace LibLouisWrapper
         private int GetTfeLength(int inputLength, NativeFunctionEnum nativeFunctionEnum)
         { 
             return inputLength * 2; // Room for 2 TypeFormEnum values for each character in the inputstring
+        }
+
+        private bool CommonNativeCall(NativeFunctionEnum nativeFunctionEnum, string input, out string output)
+        {
+            TypeformEnum[] dummyTfe = new TypeformEnum[0];
+            return CommonNativeCall(nativeFunctionEnum, input, out output, out dummyTfe);
         }
 
 
