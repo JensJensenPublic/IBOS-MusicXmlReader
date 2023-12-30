@@ -227,7 +227,12 @@ namespace LibLouisWrapper
 
         private int GetTfeLength(int inputLength, NativeFunctionEnum nativeFunctionEnum)
         { 
-            return inputLength * 2; // Room for 2 TypeFormEnum values for each character in the inputstring
+            switch (nativeFunctionEnum) 
+            {
+                case NativeFunctionEnum.translateStringTfe:
+                case NativeFunctionEnum.backTranslateStringTfe:return (inputLength * 2); // Twice the inputbuffer size,
+            }
+            return 0;
         }
 
         private bool CommonNativeCall(NativeFunctionEnum nativeFunctionEnum, string input, out string output)
