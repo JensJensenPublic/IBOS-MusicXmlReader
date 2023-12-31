@@ -269,8 +269,8 @@ namespace LibLouisWrapper
                             case NativeFunctionEnum.translateString:        result = lou_translateString(tablePaths, inBuf, inPtr, outBuf, outPrt, null, null, translationMode); break;
                             case NativeFunctionEnum.translateStringTfe:     result = lou_translateString(tablePaths, inBuf, inPtr, outBuf, outPrt, tfeBuf, null, translationMode); break;
                             case NativeFunctionEnum.backTranslateString:    result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, null, null, depricatedModeParameter); break;
-                            case NativeFunctionEnum.backTranslateStringTfe: result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, null, null, depricatedModeParameter); break;
-                            //case NativeFunctionEnum.backTranslateStringTfe: result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, tfeBuf, null, depricatedModeParameter); break;
+                            //case NativeFunctionEnum.backTranslateStringTfe: result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, null, null, depricatedModeParameter); break;
+                            case NativeFunctionEnum.backTranslateStringTfe: result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, tfeBuf, null, depricatedModeParameter); break;
 #warning TODO Find out what happens when the last call replaces null with tfeBuf (which ought to be correct !)
                         }
                         fixed (byte* pInBufAfter = inBuf, pOutBufAfter = outBuf)
@@ -289,10 +289,12 @@ namespace LibLouisWrapper
             if (null == outBuf) return OnError("null == outBuf");      
             string s = encoding.GetString(outBuf);  // Decode
             output = s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters
+            string sReplaced = "";               // Experiment!   
+            // sReplaced = s.Replace("\0", "");  // Experiment! When enabled: Seems to solve the problem introduced in line 272 by calling with tfeBuf        
             tfe = tfeBuf;           
             Log(string.Format("({0},'{1}')='{2}'", nativeFunctionEnum, input, output));
             Log(string.Format("(...) Tfe={0}", TfeToString(tfe)));
-            Log(string.Format("(...) Outbuf.Length={0} s.Length={1}, outbuf.Length={2}", outBuf.Length, s.Length, output.Length)); // During initial debugging  
+            Log(string.Format("(...) Outbuf.Length={0} s.Length={1}, sReplaced.Length={2} outbuf.Length={3}", outBuf.Length, s.Length, sReplaced.Length, output.Length)); // During initial debugging  
             return true;
         }
 
