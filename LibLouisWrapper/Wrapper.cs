@@ -289,9 +289,10 @@ namespace LibLouisWrapper
             if (null == outBuf) return OnError("null == outBuf");      
             string s = encoding.GetString(outBuf);  // Decode
             output = s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters
-            tfe = tfeBuf;
+            tfe = tfeBuf;           
             Log(string.Format("({0},'{1}')='{2}'", nativeFunctionEnum, input, output));
             Log(string.Format("(...) Tfe={0}", TfeToString(tfe)));
+            Log(string.Format("(...) Outbuf.Length={0} s.Length={1}, outbuf.Length={2}", outBuf.Length, s.Length, output.Length)); // During initial debugging  
             return true;
         }
 
