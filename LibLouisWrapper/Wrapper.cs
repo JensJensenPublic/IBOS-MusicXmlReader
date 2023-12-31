@@ -290,8 +290,20 @@ namespace LibLouisWrapper
             string s = encoding.GetString(outBuf);  // Decode
             output = s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters
             tfe = tfeBuf;
-            Logger.LogCF(string.Format("({0},'{1}' = '{2}'", nativeFunctionEnum, input, output));
+            Log(string.Format("({0},'{1}')='{2}'", nativeFunctionEnum, input, output));
+            Log(string.Format("(...) Tfe={0}", TfeToString(tfe)));
             return true;
+        }
+
+        private string TfeToString(TypeformEnum[] tfe)
+        {
+            if (null == tfe) return "null";
+            StringBuilder sb = new StringBuilder();
+            foreach (TypeformEnum t in tfe)
+            {
+                sb.Append(String.Format("{0} ", (int)t));
+            }
+            return(string.Format("Length={0} Values={1}", tfe.Length, sb.ToString()));
         }
 
         private void CheckPinning(string id, int pBefore, int pAfter)
@@ -309,7 +321,7 @@ namespace LibLouisWrapper
 
         private bool OnError(string s)
         {
-            Logger.LogCF1(string.Format(": Error: '{0}'", s));
+            Log(string.Format(": Error: '{0}'", s));
             return false;        
         }
 
