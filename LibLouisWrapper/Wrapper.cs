@@ -304,9 +304,9 @@ namespace LibLouisWrapper
             StringBuilder sb = new StringBuilder();
             foreach (TypeformEnum t in tfe)
             {
-                sb.Append(String.Format("{0} ", (int)t));
+                sb.Append(String.Format("{0:x} ", (int)t));
             }
-            return(string.Format("Length={0} Values={1}", tfe.Length, sb.ToString()));
+            return(string.Format("Length={0} HexValues={1}", tfe.Length, sb.ToString()));
         }
 
         private void CheckPinning(string id, int pBefore, int pAfter)
