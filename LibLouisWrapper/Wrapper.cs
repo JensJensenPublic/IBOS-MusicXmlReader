@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics.SymbolStore;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -249,6 +250,7 @@ namespace LibLouisWrapper
             int inputLength = input.Length;          
             byte[] inBuf = encoding.GetBytes(input);
             int outputLength = GetOutputLength(inBuf.Length, nativeFunctionEnum);
+            int initialOutputLength = outputLength; // Only used for logging 
             byte[] outBuf = new byte[outputLength];
             int tfeLength = GetTfeLength(input.Length, nativeFunctionEnum);
             TypeformEnum[] tfeBuf = new TypeformEnum[tfeLength];
@@ -286,17 +288,50 @@ namespace LibLouisWrapper
                 }
             }
             if (1 != result) return OnError( "1 != result");          
-            if (null == outBuf) return OnError("null == outBuf");      
-            string s = encoding.GetString(outBuf);  // Decode
-            output = s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters
-            string sReplaced = "";               // Experiment!   
-            // sReplaced = s.Replace("\0", "");  // Experiment! When enabled: Seems to solve the problem introduced in line 272 by calling with tfeBuf        
+            if (null == outBuf) return OnError("null == outBuf");
+            Log(string.Format(": OutputLength changed from {0} to {1}", initialOutputLength, outputLength));
+            output = GetOutputString(nativeFunctionEnum, outBuf, outputLength, charSize);
             tfe = tfeBuf;           
             Log(string.Format("({0},'{1}')='{2}'", nativeFunctionEnum, input, output));
-            Log(string.Format("(...) Tfe={0}", TfeToString(tfe)));
-            Log(string.Format("(...) Outbuf.Length={0} s.Length={1}, sReplaced.Length={2} outbuf.Length={3}", outBuf.Length, s.Length, sReplaced.Length, output.Length)); // During initial debugging  
+            Log(string.Format("(...) Tfe: {0}", TfeToString(tfe)));
+            Log(string.Format("(...) Outbuf.Length={0} output.Length={1}", outBuf.Length, output.Length)); // During initial debugging  
             return true;
         }
+
+        /// <summary>
+        /// If the length of the outputbuffer received from native code is known we use that information.
+        /// Otherwise we just remove any tariling null-vharacters.
+        /// </summary>
+        /// <param name="nativeFunctionEnum"></param>
+        /// <param name="output"></param>
+        /// <param name="outputLength"></param>
+        /// <param name="charSize"></param>
+        /// <returns></returns>
+        private string GetOutputString(NativeFunctionEnum nativeFunctionEnum, byte[] output, int outputLength, int charSize)
+        {
+            bool lengthIsKnown = false;
+            string s;
+
+            switch (nativeFunctionEnum)
+            {
+                case NativeFunctionEnum.translateString: lengthIsKnown = true; break;
+                case NativeFunctionEnum.backTranslateString: lengthIsKnown = true; break;
+                case NativeFunctionEnum.translateStringTfe: lengthIsKnown = true; break;
+                case NativeFunctionEnum.backTranslateStringTfe: lengthIsKnown = true; break;
+            }
+
+            if (lengthIsKnown)
+            {
+                s = encoding.GetString(output, 0, outputLength * 4);
+            }
+            else
+            {
+                s = encoding.GetString(output);
+            }
+            return s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters
+        }
+
+
 
         private string TfeToString(TypeformEnum[] tfe)
         {
