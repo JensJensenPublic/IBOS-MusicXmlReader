@@ -309,26 +309,28 @@ namespace LibLouisWrapper
         /// <returns></returns>
         private string GetOutputString(NativeFunctionEnum nativeFunctionEnum, byte[] output, int outputLength, int charSize)
         {
-            bool lengthIsKnown = false;
             string s;
-
-            switch (nativeFunctionEnum)
+            if (OutputLengthIsKnown(nativeFunctionEnum))
             {
-                case NativeFunctionEnum.translateString: lengthIsKnown = true; break;
-                case NativeFunctionEnum.backTranslateString: lengthIsKnown = true; break;
-                case NativeFunctionEnum.translateStringTfe: lengthIsKnown = true; break;
-                case NativeFunctionEnum.backTranslateStringTfe: lengthIsKnown = true; break;
-            }
-
-            if (lengthIsKnown)
-            {
-                s = encoding.GetString(output, 0, outputLength * 4);
+                s = encoding.GetString(output, 0, outputLength * charSize); // Only use the relevalt part of the outputbuffer
             }
             else
             {
-                s = encoding.GetString(output);
+                s = encoding.GetString(output); // The whole outputbuffer
             }
             return s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters
+        }
+
+        private bool OutputLengthIsKnown(NativeFunctionEnum nativeFunctionEnum)
+        {  
+            switch (nativeFunctionEnum)
+            {
+                case NativeFunctionEnum.translateString: return true; 
+                case NativeFunctionEnum.backTranslateString: return true;
+                case NativeFunctionEnum.translateStringTfe: return true; 
+                case NativeFunctionEnum.backTranslateStringTfe: return true;
+            }
+            return false;
         }
 
 
