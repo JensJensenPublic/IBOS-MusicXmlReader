@@ -117,6 +117,7 @@ namespace LibLouisWrapperTestCmd
                    result &= CharsToDotsToCharsTest(text.ToLower());     // Seems NOT to handle Capital letters !
                    result &= StringToDotsToStringTest(text);               // Seems to handle Capital letters !
                    result &= StringToDotsToStringTFETest(text);             // Seems to handle Capital letters !
+                   if (!result) throw new Exception("Test failed!");
                 }
                 libLouisWrapper.Free();
                 Log(": LibLouisWrapper.Free() returned.");
