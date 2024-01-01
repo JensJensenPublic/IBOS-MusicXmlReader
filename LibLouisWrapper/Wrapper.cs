@@ -130,7 +130,7 @@ namespace LibLouisWrapper
         private static extern void lou_registerLogCallback(Func callback);
         #endregion
 
-#if true
+
         [DllImport(@"liblouis.dll", CharSet = CharSet.Unicode)]
         private static extern unsafe int lou_translateString(
                 [In][MarshalAs(UnmanagedType.LPStr)] string tableList, // const char *tableList
@@ -142,9 +142,8 @@ namespace LibLouisWrapper
                 [MarshalAs(UnmanagedType.LPStr)] string spacing,       // char *spacing
                 int mode                                               //  int mode 
          );
-#endif
 
-#if true
+
         [DllImport(@"liblouis.dll", CharSet = CharSet.Unicode)]
         private static extern unsafe int lou_backTranslateString(
                 [In][MarshalAs(UnmanagedType.LPStr)] string tableList, // const char *tableList
@@ -156,9 +155,9 @@ namespace LibLouisWrapper
                 [MarshalAs(UnmanagedType.LPStr)] string spacing,       // char *spacing
                 int mode                                               //  int mode 
          );
-#endif
 
-#if true
+
+
         private enum NativeFunctionEnum
         {
             charsToDots,
@@ -363,134 +362,16 @@ namespace LibLouisWrapper
             return false;        
         }
 
-
-#endif
-
         public void Free()
         {
             lou_free();
         }
-
 
         private static void Log(string s)
         {
             Console.WriteLine(s);
             Logger.LogCF1(s);    // Append Class and Function for the function calling Log()    
         }
-
-
-
-#if false
-
-        public bool CharsToDots(string chars, out string dots)
-        {
-            dots = "";
-            BufferStructure bs = BufferStructure.Create(chars, encoding);     
-
-            // Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
-            // Yet this works current at the size of input.
-
-            int result = lou_charToDots(tablePaths, bs.InputBuffer, bs.OutputBuffer, chars.Length, translationMode); // Call native code to translate
-            // Log(string.Format("lou_charToDots() returned result={0}", result));
-            if (0 == result) return false;
-            return bs.GetTranslation(out dots);        
-        }
-
-
-        public bool DotsToChars(string dots, out string chars)
-        {
-            chars = "";
-            BufferStructure bs = BufferStructure.Create(dots, encoding);
-
-            // Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
-            // Yet this works current at the size of input.
-          
-            int result = lou_dotsToChar(tablePaths, bs.InputBuffer, bs.OutputBuffer, dots.Length, depricatedModeParameter); // Call native code to translate. The "mode" parameter is deprivated and set to 0
-            // Log(string.Format("lou_charToDots() returned result={0}", result));
-            if (0 == result) return false;
-            return  bs.GetTranslation(out chars); 
-        }
-
-   
-
-
-        public bool TranslateString(string text, out string dots, out TypeformEnum[] typeformEnums)
-        {
-            dots = "";
-            typeformEnums = null;
-            BufferStructure bs = BufferStructure.Create(text, encoding);
-            int inSize =  bs.MaxInSize;    // Will be changed during the operation
-            int outSize = bs.MaxOutSize;  // Will be changed during the operation
-            int iResult = 0;
-
-            unsafe
-            {
-                IntPtr inPtr = new IntPtr(&inSize);
-                IntPtr outPrt = new IntPtr(&outSize);
-
-                //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
-                //Yet this works current at the size of input.
-
-                //Run the translation
-                iResult = lou_translateString(
-                    tablePaths,         // const char *tableList
-                    bs.InputBuffer,     // const widechar *inbuf,
-                    inPtr,              // int * inlen,
-                    bs.OutputBuffer,    // widechar *outbuf,
-                    outPrt,             // int *outlen,
-                    bs.TypeFormBuffer,  // formtype *typeform,
-                    null,               // char *spacing
-                    translationMode);   // int mode
-            }
-            Log(string.Format(": lou_translateString('{0}') returned {1}", text, iResult));
-            if ( 0 == iResult) return false;
-            bool ok = bs.GetTranslation(out dots);
-            Log(string.Format(": lou_translateString='{0}'  ", dots));
-            Log(string.Format(": lou_translateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", bs.MaxInSize, inSize, bs.MaxOutSize, outSize));
-            bs.GetTypeForms(out typeformEnums,outSize); 
-            return ok;
-        }
-
-
-
-        public bool BackTranslateString(string inputDots, out string outputText, out TypeformEnum[] typeformEnums)
-        {
-            outputText = "";
-            typeformEnums = null;
-            BufferStructure bs = BufferStructure.Create(inputDots, encoding);
-            int inSize = bs.MaxInSize;    // Will be changed during the operation
-            int outSize = bs.MaxOutSize;  // Will be changed during the operation
-            int iResult = 0;
-
-            unsafe
-            {
-                IntPtr inPtr = new IntPtr(&inSize);
-                IntPtr outPrt = new IntPtr(&outSize);
-
-                //Note: Liblouis docs on typeforms says the input buffer should be the size of the max output buffer.
-                //Yet this works current at the size of input.
-
-                //Run the translation
-                iResult = lou_backTranslateString(
-                    tablePaths,         // const char *tableList
-                    bs.InputBuffer,     // const widechar *inbuf,
-                    inPtr,              // int * inlen,
-                    bs.OutputBuffer,    // widechar *outbuf,
-                    outPrt,             // int *outlen,
-                    bs.TypeFormBuffer,  // formtype *typeform,
-                    null,               //  char *spacing
-                    depricatedModeParameter);  //  int mode. Depricated for this function. MUST BE SET TO 0 !!
-            }
-
-            Log(string.Format(": lou_backTranslateString('{0}') returned {1}", inputDots, iResult));
-            if (0 == iResult) return false;
-            bool ok = bs.GetTranslation(out outputText);
-            Log(string.Format(": lou_backTranslateString='{0}'  ", outputText));
-            Log(string.Format(": lou_backTranslateString() changed InSize from {0} to {1} Changed OutSize from {2} to {3}", bs.MaxInSize, inSize, bs.MaxOutSize, outSize));
-            bs.GetTypeForms(out typeformEnums, outSize);
-            return ok;
-        }
-#endif
 
         /// <summary>
         /// Gets the encoding based on the character size from libluois
