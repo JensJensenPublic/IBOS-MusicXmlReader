@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="publish.cmd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LibLouisWrapper\LibLouisWrapper.csproj">
@@ -92,6 +93,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>call "$(SolutionDir)\LibLouisWrapper\publish.cmd"</PostBuildEvent>
+    <PostBuildEvent>call "$(ProjectDir)\publish.cmd"
+call "$(SolutionDir)\LibLouisWrapper\publish.cmd"
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

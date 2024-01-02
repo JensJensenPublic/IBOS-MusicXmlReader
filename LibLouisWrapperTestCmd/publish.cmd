@@ -12,6 +12,5 @@ xcopy ..\..\TestInputFiles TestInputFiles /s/e/v
 
 dir TestInputFiles
 
-pause
 
-exit
+
