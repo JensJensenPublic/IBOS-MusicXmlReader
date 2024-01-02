@@ -57,12 +57,12 @@ namespace LibLouisWrapperTestCmd
 
             TypeformEnum[] typeForms;
             ok = libLouisWrapper.TranslateStringTFE(text, out dots, out typeForms);
-            Log(string.Format(": TranslateStringTFE('{0}') returned {1}. Tfe.Length={2} Dots[{3}]='{4}') ", text, ok, typeForms.Length, dots.Length,dots));
+            Log(GetTranslateResultTFE("TranslateStringTFE",  text, ok, dots, typeForms));
 
             string backTranslationResult;
             TypeformEnum[] typeFormsBack;
             ok = libLouisWrapper.BackTranslateStringTFE(dots, out backTranslationResult, out typeFormsBack);
-            Log(string.Format(": BackTranslateStringTFE('{0}') returned {1}. Tfe.Length={2} Text[{3}]='{4}') ", dots, ok, typeFormsBack.Length, backTranslationResult.Length, backTranslationResult));
+            Log(GetTranslateResultTFE("BackTranslateStringTFE", dots, ok,  backTranslationResult, typeFormsBack));
 
             bool equal = (0 == string.Compare(text, backTranslationResult));
             Log(string.Format(": {0} BackTranslateStringTFE(TranslateStringTFE(text)) {1} text", equal ? "PASSED" : "FAILED" , equal ? "==" : "<>"));
@@ -77,17 +77,28 @@ namespace LibLouisWrapperTestCmd
             bool ok;
          
             ok = libLouisWrapper.TranslateString1(text, out dots);
-            Log(string.Format(": TranslateString('{0}') returned {1}. Dots[{2}]='{3}') ", text, ok, dots.Length, dots));
+            Log(GetTranslateResult("TranslateString", text, ok, dots));
 
             string backTranslationResult;    
             ok = libLouisWrapper.BackTranslateString1(dots, out backTranslationResult);
-            Log(string.Format(": BackTranslateString('{0}') returned {1}. Text[{2}]='{3}') ", dots, ok, backTranslationResult.Length, backTranslationResult));
+            Log(GetTranslateResult("BackTranslateString",dots, ok, backTranslationResult));
 
             bool equal = (0 == string.Compare(text, backTranslationResult));
             Log(string.Format(": BackTranslateString(TranslateString(text)) {0} text for text[{1}]='{2}'", equal ? "==" : "<>",text.Length,text));
 
             return equal;
         }
+
+        private static string GetTranslateResult(string method,string input, bool result, string output)
+        {
+            return string.Format(": {0}('{1}') returned {2}. OutPut[{3}]='{4}') ",method, input, result, output.Length, output);
+        }
+
+        private static string GetTranslateResultTFE(string method, string input, bool result, string output, TypeformEnum[] tfe)
+        {
+            return string.Format(": {0}('{1}') returned {2}. Tfe.Length={3} Output[{4}]='{5}') ",method, input, result, tfe,output.Length, output);
+        }
+
 
 
         private static bool CheckInstallation()
