@@ -84,7 +84,7 @@ namespace LibLouisWrapperTestCmd
             Log(string.Format(": BackTranslateString('{0}') returned {1}. Text[{2}]='{3}') ", dots, ok, backTranslationResult.Length, backTranslationResult));
 
             bool equal = (0 == string.Compare(text, backTranslationResult));
-            Log(string.Format(": BackTranslateString(TranslateString(text)) {0} text", equal ? "==" : "<>"));
+            Log(string.Format(": BackTranslateString(TranslateString(text)) {0} text for text[{1}]='{2}'", equal ? "==" : "<>",text.Length,text));
 
             return equal;
         }
@@ -144,7 +144,7 @@ namespace LibLouisWrapperTestCmd
                     string[] lines = File.ReadAllLines(file);
                     foreach (string line in lines)
                     {
-                        result &= StringToDotsToStringTFETest(line);
+                        result &= StringToDotsToStringTest(line); // StringToDotsToStringTestTFE(texy) fails with text="012345678abcdefghijklmnopqrstuvwxyzæøåABCDEFGHIJKLMNOPQRSTUV"
                     }
                 }
 
