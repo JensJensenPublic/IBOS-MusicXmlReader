@@ -57,15 +57,15 @@ namespace LibLouisWrapperTestCmd
 
             TypeformEnum[] typeForms;
             ok = libLouisWrapper.TranslateStringTFE(text, out dots, out typeForms);
-            Log(string.Format(": TranslateStringTFE('{0}') returned {1}. Tfe.Length={2} Dots='{3}') ", text, ok, typeForms.Length, dots));
+            Log(string.Format(": TranslateStringTFE('{0}') returned {1}. Tfe.Length={2} Dots[{3}]='{4}') ", text, ok, typeForms.Length, dots.Length,dots));
 
             string backTranslationResult;
             TypeformEnum[] typeFormsBack;
             ok = libLouisWrapper.BackTranslateStringTFE(dots, out backTranslationResult, out typeFormsBack);
-            Log(string.Format(": BackTranslateStringTFE('{0}') returned {1}. Tfe.Length={2} Text='{3}') ", dots, ok, typeFormsBack.Length, backTranslationResult));
+            Log(string.Format(": BackTranslateStringTFE('{0}') returned {1}. Tfe.Length={2} Text[{3}]='{4}') ", dots, ok, typeFormsBack.Length, backTranslationResult.Length, backTranslationResult));
 
             bool equal = (0 == string.Compare(text, backTranslationResult));
-            Log(string.Format(": BackTranslateStringTFE(TranslateStringTFE(text) {0} text", equal ? "==" : "<>"));
+            Log(string.Format(": {0} BackTranslateStringTFE(TranslateStringTFE(text)) {1} text", equal ? "PASSED" : "FAILED" , equal ? "==" : "<>"));
 
             return equal;
         }
@@ -77,14 +77,14 @@ namespace LibLouisWrapperTestCmd
             bool ok;
          
             ok = libLouisWrapper.TranslateString1(text, out dots);
-            Log(string.Format(": TranslateString('{0}') returned {1}. Dots='{2}') ", text, ok, dots));
+            Log(string.Format(": TranslateString('{0}') returned {1}. Dots[{2}]='{3}') ", text, ok, dots.Length, dots));
 
             string backTranslationResult;    
             ok = libLouisWrapper.BackTranslateString1(dots, out backTranslationResult);
-            Log(string.Format(": BackTranslateString('{0}') returned {1}. Text='{2}') ", dots, ok,  backTranslationResult));
+            Log(string.Format(": BackTranslateString('{0}') returned {1}. Text[{2}]='{3}') ", dots, ok, backTranslationResult.Length, backTranslationResult));
 
             bool equal = (0 == string.Compare(text, backTranslationResult));
-            Log(string.Format(": BackTranslateString(TranslateString(text) {0} text", equal ? "==" : "<>"));
+            Log(string.Format(": BackTranslateString(TranslateString(text)) {0} text", equal ? "==" : "<>"));
 
             return equal;
         }
