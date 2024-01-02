@@ -8,6 +8,7 @@ using LibLouisWrapper;
 using static LibLouisWrapper.Wrapper;
 using MusicXmlReaderModel;
 using static System.Net.Mime.MediaTypeNames;
+using System.IO;
 
 
 namespace LibLouisWrapperTestCmd
@@ -89,15 +90,31 @@ namespace LibLouisWrapperTestCmd
         }
 
 
+        private static bool CheckInstallation()
+        {
+            string executingDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string testInputDir = Path.Combine(executingDirectory, "TestInputFiles");
+            if (!DirectoryExists(testInputDir)) return false;
+            string[] testFiles = Directory.GetFiles(testInputDir);
+            Log(string.Format(": Found {0} testfiles in {1}:", testFiles.Length, testInputDir));
+            foreach (string testFile in testFiles)
+            {
+                Log(string.Format("   {0}", Path.GetFileName(testFile)));
+            }
+            return true;
+        }
+
 
         static Wrapper libLouisWrapper;
+        static string testInputDir;
 
         static void Main(string[] args)
         {
             //MusicXmlReaderModel.Logger.LogCF(": Starting");
             Logger.Open(@"c:\temp\LibLouis\LibLouisWrapperTestCmd.log");
             Log(": ---------------------------------------------------");
-            Log(string.Format(": Starting {0}",Environment.CommandLine.ToString()));       
+            Log(string.Format(": Starting {0}",Environment.CommandLine.ToString()));
+            if (!CheckInstallation()) return;
             bool result = true;
             try
             {

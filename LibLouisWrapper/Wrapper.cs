@@ -450,7 +450,7 @@ namespace LibLouisWrapper
             return false;
         }
 
-        private static bool DirectoryExists(string path)
+        public static bool DirectoryExists(string path)
         {
             if (Directory.Exists(path)) return true;
             return OnMissingItem("Directory", path);
