@@ -57,12 +57,12 @@ namespace LibLouisWrapperTestCmd
 
             TypeformEnum[] typeForms;
             ok = libLouisWrapper.TranslateStringTFE(text, out dots, out typeForms);
-            Log(GetTranslateResultTFE("TranslateStringTFE",  text, ok, dots, typeForms));
+            Log(FormatTranslateResultTFE("TranslateStringTFE",  text, ok, dots, typeForms));
 
             string backTranslationResult;
             TypeformEnum[] typeFormsBack;
             ok = libLouisWrapper.BackTranslateStringTFE(dots, out backTranslationResult, out typeFormsBack);
-            Log(GetTranslateResultTFE("BackTranslateStringTFE", dots, ok,  backTranslationResult, typeFormsBack));
+            Log(FormatTranslateResultTFE("BackTranslateStringTFE", dots, ok,  backTranslationResult, typeFormsBack));
 
             bool equal = (0 == string.Compare(text, backTranslationResult));
             Log(string.Format(": {0} BackTranslateStringTFE(TranslateStringTFE(text)) {1} text", equal ? "PASSED" : "FAILED" , equal ? "==" : "<>"));
@@ -77,11 +77,11 @@ namespace LibLouisWrapperTestCmd
             bool ok;
          
             ok = libLouisWrapper.TranslateString1(text, out dots);
-            Log(GetTranslateResult("TranslateString", text, ok, dots));
+            Log(FormatTranslateResult("TranslateString", text, ok, dots));
 
             string backTranslationResult;    
             ok = libLouisWrapper.BackTranslateString1(dots, out backTranslationResult);
-            Log(GetTranslateResult("BackTranslateString",dots, ok, backTranslationResult));
+            Log(FormatTranslateResult("BackTranslateString",dots, ok, backTranslationResult));
 
             bool equal = (0 == string.Compare(text, backTranslationResult));
             Log(string.Format(": BackTranslateString(TranslateString(text)) {0} text for text[{1}]='{2}'", equal ? "==" : "<>",text.Length,text));
@@ -89,12 +89,12 @@ namespace LibLouisWrapperTestCmd
             return equal;
         }
 
-        private static string GetTranslateResult(string method,string input, bool result, string output)
+        private static string FormatTranslateResult(string method,string input, bool result, string output)
         {
             return string.Format(": {0}('{1}') returned {2}. OutPut[{3}]='{4}') ",method, input, result, output.Length, output);
         }
 
-        private static string GetTranslateResultTFE(string method, string input, bool result, string output, TypeformEnum[] tfe)
+        private static string FormatTranslateResultTFE(string method, string input, bool result, string output, TypeformEnum[] tfe)
         {
             return string.Format(": {0}('{1}') returned {2}. Tfe.Length={3} Output[{4}]='{5}') ",method, input, result, tfe,output.Length, output);
         }
