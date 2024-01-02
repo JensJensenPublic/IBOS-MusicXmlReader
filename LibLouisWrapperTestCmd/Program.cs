@@ -93,7 +93,7 @@ namespace LibLouisWrapperTestCmd
         private static bool CheckInstallation()
         {
             string executingDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            string testInputDir = Path.Combine(executingDirectory, "TestInputFiles");
+            testInputDir = Path.Combine(executingDirectory, "TestInputFiles");
             if (!DirectoryExists(testInputDir)) return false;
             string[] testFiles = Directory.GetFiles(testInputDir);
             Log(string.Format(": Found {0} testfiles in {1}:", testFiles.Length, testInputDir));
@@ -136,6 +136,17 @@ namespace LibLouisWrapperTestCmd
                    result &= StringToDotsToStringTFETest(text);             // Seems to handle Capital letters !
                    if (!result) throw new Exception("Test failed!");
                 }
+
+                // Run all tests described in the TestFiles directory
+                foreach (string file in Directory.GetFiles(testInputDir))
+                {
+                    string[] lines = File.ReadAllLines(file);
+                    foreach (string line in lines)
+                    {
+                        result &= StringToDotsToStringTFETest(line);
+                    }
+                }
+
                 libLouisWrapper.Free();
                 Log(": LibLouisWrapper.Free() returned.");
                 Log(string.Format(": No Exception was thrown during test."));
