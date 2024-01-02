@@ -8,7 +8,7 @@ dir ..\..\TestInputFiles
 rmdir TestInputFiles
 mkdir TestInputFiles
 
-xcopy ..\..\TestInputFiles TestInputFiles /s/e/v
+xcopy ..\..\TestInputFiles TestInputFiles /s/e/v/y
 
 dir TestInputFiles
 

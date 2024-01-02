@@ -140,13 +140,15 @@ namespace LibLouisWrapperTestCmd
                 // Run all tests described in the TestFiles directory
                 foreach (string file in Directory.GetFiles(testInputDir))
                 {
-                    Log(string.Format(": \r\n>>>>>>>>>>TestFileName='{0}'<<<<<<<<<<\r\n", Path.GetFileName(file)));
+                    Log(string.Format("\r\n\r\n>>>>>>>>>>TestFileName='{0}'<<<<<<<<<<\r\n", Path.GetFileName(file)));
                     string[] lines = File.ReadAllLines(file);
                     foreach (string line in lines)
                     {
                         result &= StringToDotsToStringTFETest(line);
                     }
                 }
+
+                Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testTiles)<<<<<<<<<<\r\n"));
 
                 libLouisWrapper.Free();
                 Log(": LibLouisWrapper.Free() returned.");

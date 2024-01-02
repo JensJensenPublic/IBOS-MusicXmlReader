@@ -9,7 +9,7 @@ dir ..\..\..\ThirdPartyDlls\liblouis
 rmdir liblouis
 mkdir liblouis
 
-xcopy ..\..\..\ThirdPartyDlls\liblouis liblouis /s/e/v
+xcopy ..\..\..\ThirdPartyDlls\liblouis liblouis /s/e/v/y
 
 dir liblouis
 
