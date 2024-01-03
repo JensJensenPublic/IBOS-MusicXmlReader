@@ -60,13 +60,29 @@ namespace LibLouisWrapper
         /// </summary>
         public enum TypeformEnum : ushort
         {
-            None = 0,
-            Italic = 1,
-            Underline = 2,
-            Bold = 4,
-            Script = 8,
-            TNEmbed = 16,
+            plain_text = 0x0000,
+            emph_1 = 0x0001,
+            emph_2 = 0x0002,
+            emph_3 = 0x0004,
+            emph_4 = 0x0008,
+            emph_5 = 0x0010,
+            emph_6 = 0x0020,
+            emph_7 = 0x0040,
+            emph_8 = 0x0080,
+            emph_9 = 0x0100,
+            emph_10 = 0x0200,
+            computer_braille = 0x0400,
+            no_translate = 0x0800,
+            no_contract = 0x1000,
+            // SYLLABLE_MARKER_1  0x2000,
+            // SYLLABLE_MARKER_1  0x4000
+            // CAPSEMPH  0x4000
         }
+
+        const TypeformEnum italic = TypeformEnum.emph_1;
+        const TypeformEnum underline = TypeformEnum.emph_2;
+        const TypeformEnum bold = TypeformEnum.emph_3;
+
 
         private int depricatedModeParameter = 0;
         private static int globalErrorCount = 0; // Counts errors reported from LibLouis dll and is used for checking the Logger Callback mechanism
