@@ -11,6 +11,7 @@ using static System.Net.Mime.MediaTypeNames;
 using System.IO;
 
 
+
 namespace LibLouisWrapperTestCmd
 {
     internal class Program
@@ -101,7 +102,7 @@ namespace LibLouisWrapperTestCmd
 
 
 
-        private static bool CheckInstallation()
+        private static bool CheckTestFileInstallation()
         {
             string executingDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             testInputDir = Path.Combine(executingDirectory, "TestInputFiles");
@@ -140,17 +141,19 @@ namespace LibLouisWrapperTestCmd
         }
 
 
-
         static Wrapper libLouisWrapper;
         static string testInputDir;
 
         static void Main(string[] args)
-        {
+        {            
             //MusicXmlReaderModel.Logger.LogCF(": Starting");
             Logger.Open(@"c:\temp\LibLouis\LibLouisWrapperTestCmd.log");
             Log(": ---------------------------------------------------");
             Log(string.Format(": Starting {0}",Environment.CommandLine.ToString()));
-            if (!CheckInstallation()) return;
+            Log(string.Format("Setting Console.OutputEncoding to {0} in order do display Braille symbols",Encoding.Unicode));
+            Console.OutputEncoding = Encoding.Unicode; 
+
+            if (!CheckTestFileInstallation()) return;
             bool result = true;
             try
             {
