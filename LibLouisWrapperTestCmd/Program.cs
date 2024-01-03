@@ -41,8 +41,12 @@ namespace LibLouisWrapperTestCmd
             Log(FormatTranslateResult("DotsToChar", dots, ok, newText));
 
             bool equal = (0 == string.Compare(text, newText));
-            Log(string.Format(": DotsToChars(CharsToDots(text)) {0} text", equal ? "==" : "<>"));
-
+            string message = string.Format(": DotsToChars(CharsToDots(text)) {0} text", equal ? "==" : "<>");
+            Log(message);
+            if (!equal)
+            {
+                errorList.Add(Logger.GetCF(message));
+            }
             return equal;
         }
 
@@ -66,10 +70,16 @@ namespace LibLouisWrapperTestCmd
             Log(FormatTranslateResultTFE("BackTranslateStringTFE", dots, ok,  newText, typeFormsBack));
 
             bool equal = (0 == string.Compare(text, newText));
-            Log(string.Format(": {0} BackTranslateStringTFE(TranslateStringTFE(text)) {1} text", equal ? "PASSED" : "FAILED" , equal ? "==" : "<>"));
-
+            string message = string.Format(": {0} BackTranslateStringTFE(TranslateStringTFE(text)) {1} text", equal ? "PASSED" : "FAILED" , equal ? "==" : "<>");
+            Log(message);
+            if (!equal)
+            {
+                errorList.Add(Logger.GetCF(message));
+            }
             return equal;
         }
+
+        private static List<string> errorList = new List<string>();
 
 
         static bool StringToDotsToStringTest(string text)
@@ -85,8 +95,9 @@ namespace LibLouisWrapperTestCmd
             Log(FormatTranslateResult("BackTranslateString",dots, ok, newText));
 
             bool equal = (0 == string.Compare(text, newText));
-            Log(string.Format(": BackTranslateString(TranslateString(text)) {0} text for text[{1}]='{2}'", equal ? "==" : "<>",text.Length,text));
-
+            string message = string.Format(": BackTranslateString(TranslateString(text)) {0} text for text[{1}]='{2}'", equal ? "==" : "<>",text.Length,text);
+            Log(message);
+            if (!equal) errorList.Add(Logger.GetCF(message)); 
             return equal;
         }
 
@@ -173,16 +184,16 @@ namespace LibLouisWrapperTestCmd
                    result &= CharsToDotsToCharsTest(text.ToLower());     // Seems NOT to handle Capital letters !
                    result &= StringToDotsToStringTest(text);               // Seems to handle Capital letters !
                    result &= StringToDotsToStringTFETest(text);             // Seems to handle Capital letters !
-                   if (!result) throw new Exception("Test failed!");
+                   //if (!result) throw new Exception("Test failed!");
                 }
 
                 // Run explicitly named testfiles
                 result &= RunTestFile(Path.Combine(testInputDir, "Danish.txt"));
-                if (!result) throw new Exception("Test failed!");
+                //if (!result) throw new Exception("Test failed!");
                 result &= RunTestFile(Path.Combine(testInputDir, "DanishGraphics.txt")); // https://blind.dk/punktskrift-2022    Den danske punktskrift 2022
-                if (!result) throw new Exception("Test failed!");
+                //if (!result) throw new Exception("Test failed!");
                 result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));
-                if (!result) throw new Exception("Test failed!");
+                //if (!result) throw new Exception("Test failed!");
 
 
                 //result &= RunAllTestFiles();
@@ -197,9 +208,14 @@ namespace LibLouisWrapperTestCmd
                 Log(string.Format(": Main() failed because of an exception!  Exception.Message='{0}'", e.Message));
                 result = false;            
             }
-            Log(string.Format(": Result = {0}", result));          
+            Log(string.Format(": Result = {0}", result));
 
-           
+            Logger.Log(string.Format("\r\n{0} Errors were detected", errorList.Count));
+            foreach (string error in errorList)
+            {
+                Logger.Log(error);
+            }
+
         }
     }
 }

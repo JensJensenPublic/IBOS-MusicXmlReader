@@ -337,6 +337,26 @@ namespace MusicXmlReaderModel
             //Console.WriteLine(Namespace + "." + Class.Name + "." + methodBase.Name);
         }
 
+        /// <summary>
+        /// Same as LogCF(s) except that the resulting string is returned, not logged.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string GetCF(string s)
+        { 
+            return string.Format("{0}{1}", GetCallingMethod(), s);
+        }
+
+
+        /// <summary>
+        /// Same as LogCF1(s) except that the resulting string is returned, not logged.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string GetCF1(string s)
+        {
+            return string.Format("{0}{1}", GetCallingMethod(1), s);
+        }
 
         /// <summary>
         /// Same as LogCF, but reports the ClassName and MethodName of the method one extra level up the stack.
