@@ -178,8 +178,11 @@ namespace LibLouisWrapperTestCmd
 
                 // Run explicitly named testfiles
                 result &= RunTestFile(Path.Combine(testInputDir, "Danish.txt"));
+                if (!result) throw new Exception("Test failed!");
                 result &= RunTestFile(Path.Combine(testInputDir, "DanishGraphics.txt")); // https://blind.dk/punktskrift-2022    Den danske punktskrift 2022
+                if (!result) throw new Exception("Test failed!");
                 result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));
+                if (!result) throw new Exception("Test failed!");
 
 
                 //result &= RunAllTestFiles();
