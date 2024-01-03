@@ -91,6 +91,7 @@
   <ItemGroup>
     <Content Include="TestInputFiles\Danish.txt" />
     <Content Include="TestInputFiles\DanishBold.txt" />
+    <Content Include="TestInputFiles\DanishGraphics.txt" />
     <Content Include="TestInputFiles\DanishItalics.txt" />
     <Content Include="TestInputFiles\SpecialCharacters.txt" />
   </ItemGroup>
