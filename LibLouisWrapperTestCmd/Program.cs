@@ -32,14 +32,14 @@ namespace LibLouisWrapperTestCmd
         {
             string dots;
             bool ok;
-            ok = libLouisWrapper.CharsToDots1(text, out dots);
-            Log(string.Format(": CharsToDots('{0}') returned {1}.   Dots={2}) ", text, ok ? "Success" : "Error!", dots));
+            ok = libLouisWrapper.CharsToDots1(text, out dots);     
+            Log(FormatTranslateResult("CharsToDot", text, ok, dots));
 
-            string charsResult;
-            ok = libLouisWrapper.DotsToChars1(dots, out charsResult);
-            Log(string.Format(": DotsToChar('{0}') returned {1}.   Text={2}) ", dots, ok ? "Success" : "Error!", charsResult));
+            string newText;
+            ok = libLouisWrapper.DotsToChars1(dots, out newText);
+            Log(FormatTranslateResult("DotsToChar", dots, ok, newText));
 
-            bool equal = (0 == string.Compare(text, charsResult));
+            bool equal = (0 == string.Compare(text, newText));
             Log(string.Format(": DotsToChars(CharsToDots(text)) {0} text", equal ? "==" : "<>"));
 
             return equal;
@@ -59,12 +59,12 @@ namespace LibLouisWrapperTestCmd
             ok = libLouisWrapper.TranslateStringTFE(text, out dots, out typeForms);
             Log(FormatTranslateResultTFE("TranslateStringTFE",  text, ok, dots, typeForms));
 
-            string backTranslationResult;
+            string newText;
             TypeformEnum[] typeFormsBack;
-            ok = libLouisWrapper.BackTranslateStringTFE(dots, out backTranslationResult, out typeFormsBack);
-            Log(FormatTranslateResultTFE("BackTranslateStringTFE", dots, ok,  backTranslationResult, typeFormsBack));
+            ok = libLouisWrapper.BackTranslateStringTFE(dots, out newText, out typeFormsBack);
+            Log(FormatTranslateResultTFE("BackTranslateStringTFE", dots, ok,  newText, typeFormsBack));
 
-            bool equal = (0 == string.Compare(text, backTranslationResult));
+            bool equal = (0 == string.Compare(text, newText));
             Log(string.Format(": {0} BackTranslateStringTFE(TranslateStringTFE(text)) {1} text", equal ? "PASSED" : "FAILED" , equal ? "==" : "<>"));
 
             return equal;
@@ -79,11 +79,11 @@ namespace LibLouisWrapperTestCmd
             ok = libLouisWrapper.TranslateString1(text, out dots);
             Log(FormatTranslateResult("TranslateString", text, ok, dots));
 
-            string backTranslationResult;    
-            ok = libLouisWrapper.BackTranslateString1(dots, out backTranslationResult);
-            Log(FormatTranslateResult("BackTranslateString",dots, ok, backTranslationResult));
+            string newText;    
+            ok = libLouisWrapper.BackTranslateString1(dots, out newText);
+            Log(FormatTranslateResult("BackTranslateString",dots, ok, newText));
 
-            bool equal = (0 == string.Compare(text, backTranslationResult));
+            bool equal = (0 == string.Compare(text, newText));
             Log(string.Format(": BackTranslateString(TranslateString(text)) {0} text for text[{1}]='{2}'", equal ? "==" : "<>",text.Length,text));
 
             return equal;
