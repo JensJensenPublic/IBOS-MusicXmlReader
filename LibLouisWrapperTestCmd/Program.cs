@@ -115,6 +115,31 @@ namespace LibLouisWrapperTestCmd
             return true;
         }
 
+        private static bool RunAllTestFiles()
+        {
+            bool result = true;
+            // Run all tests described in the TestFiles directory
+            foreach (string fullFileName in Directory.GetFiles(testInputDir))
+            {
+                result &= RunTestFile(fullFileName);
+            }
+            Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testFiles)<<<<<<<<<<\r\n"));
+            return result;
+        }
+
+        static bool RunTestFile(string fullFileName)
+        {
+            bool result = true;
+            Log(string.Format("\r\n\r\n>>>>>>>>>>TestFileName='{0}'<<<<<<<<<<\r\n", Path.GetFileName(fullFileName)));
+            string[] lines = File.ReadAllLines(fullFileName);
+            foreach (string line in lines)
+            {
+                result &= StringToDotsToStringTest(line); // StringToDotsToStringTestTFE(texy) fails with text="012345678abcdefghijklmnopqrstuvwxyzæøåABCDEFGHIJKLMNOPQRSTUV"
+            }
+            return result;
+        }
+
+
 
         static Wrapper libLouisWrapper;
         static string testInputDir;
@@ -148,18 +173,8 @@ namespace LibLouisWrapperTestCmd
                    if (!result) throw new Exception("Test failed!");
                 }
 
-                // Run all tests described in the TestFiles directory
-                foreach (string file in Directory.GetFiles(testInputDir))
-                {
-                    Log(string.Format("\r\n\r\n>>>>>>>>>>TestFileName='{0}'<<<<<<<<<<\r\n", Path.GetFileName(file)));
-                    string[] lines = File.ReadAllLines(file);
-                    foreach (string line in lines)
-                    {
-                        result &= StringToDotsToStringTest(line); // StringToDotsToStringTestTFE(texy) fails with text="012345678abcdefghijklmnopqrstuvwxyzæøåABCDEFGHIJKLMNOPQRSTUV"
-                    }
-                }
-
-                Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testTiles)<<<<<<<<<<\r\n"));
+                result &= RunAllTestFiles();
+                if (!result) throw new Exception("Test failed!");
 
                 libLouisWrapper.Free();
                 Log(": LibLouisWrapper.Free() returned.");
