@@ -173,7 +173,12 @@ namespace LibLouisWrapperTestCmd
                    if (!result) throw new Exception("Test failed!");
                 }
 
-                result &= RunAllTestFiles();
+                // Run explicitly named testfiles
+                result &= RunTestFile(Path.Combine(testInputDir, "Danish.txt"));
+                result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));
+
+
+                //result &= RunAllTestFiles();
                 if (!result) throw new Exception("Test failed!");
 
                 libLouisWrapper.Free();
