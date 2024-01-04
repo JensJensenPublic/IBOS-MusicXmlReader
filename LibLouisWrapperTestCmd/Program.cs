@@ -190,7 +190,7 @@ namespace LibLouisWrapperTestCmd
                 result &= RunTestFile(Path.Combine(testInputDir, "DanishGraphics.txt")); // https://blind.dk/punktskrift-2022    Den danske punktskrift 2022           
                 result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));
 
-                //result &= RunAllTestFiles();              
+                result &= RunAllTestFiles();              
 
                 Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testFiles)<<<<<<<<<<\r\n"));
 
