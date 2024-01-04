@@ -393,7 +393,7 @@ namespace MusicXmlReaderModel
         {
             if (!show) return "";
             System.DateTime now = System.DateTime.Now;
-            string time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
+            string time = string.Format("{0}.{1:D3}", now.ToLongTimeString(), now.Millisecond); // Always use 3 digits for milliseconds
             return time;
         }
 
