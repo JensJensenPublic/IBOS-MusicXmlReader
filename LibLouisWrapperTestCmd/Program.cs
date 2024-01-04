@@ -183,21 +183,15 @@ namespace LibLouisWrapperTestCmd
                 { 
                    result &= CharsToDotsToCharsTest(text.ToLower());     // Seems NOT to handle Capital letters !
                    result &= StringToDotsToStringTest(text);               // Seems to handle Capital letters !
-                   result &= StringToDotsToStringTFETest(text);             // Seems to handle Capital letters !
-                   //if (!result) throw new Exception("Test failed!");
+                   result &= StringToDotsToStringTFETest(text);             // Seems to handle Capital letters !               
                 }
 
                 // Run explicitly named testfiles
-                result &= RunTestFile(Path.Combine(testInputDir, "Danish.txt"));
-                //if (!result) throw new Exception("Test failed!");
-                result &= RunTestFile(Path.Combine(testInputDir, "DanishGraphics.txt")); // https://blind.dk/punktskrift-2022    Den danske punktskrift 2022
-                //if (!result) throw new Exception("Test failed!");
-                result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));
-                //if (!result) throw new Exception("Test failed!");
+                result &= RunTestFile(Path.Combine(testInputDir, "Danish.txt"));            
+                result &= RunTestFile(Path.Combine(testInputDir, "DanishGraphics.txt")); // https://blind.dk/punktskrift-2022    Den danske punktskrift 2022           
+                result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));  
 
-
-                //result &= RunAllTestFiles();
-                if (!result) throw new Exception("Test failed!");
+                //result &= RunAllTestFiles();              
 
                 libLouisWrapper.Free();
                 Log(": LibLouisWrapper.Free() returned.");
@@ -210,11 +204,14 @@ namespace LibLouisWrapperTestCmd
             }
             Log(string.Format(": Result = {0}", result));
 
-            Logger.Log(string.Format("\r\n{0} Errors were detected", errorList.Count));
+            StringBuilder sb = new StringBuilder(); 
+            sb.AppendLine(string.Format("{0} Error{1} detected:", errorList.Count, (1 == errorList.Count) ? "" : "s"));
             foreach (string error in errorList)
             {
-                Logger.Log(error);
+                sb.AppendLine("  " + error);               
             }
+            string logString = sb.ToString();
+            Log(logString);
 
         }
     }

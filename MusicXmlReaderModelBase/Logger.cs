@@ -343,8 +343,9 @@ namespace MusicXmlReaderModel
         /// <param name="s"></param>
         /// <returns></returns>
         public static string GetCF(string s)
-        { 
-            return string.Format("{0}{1}", GetCallingMethod(), s);
+        {
+            string timeStamp = GetLogTime(showTimeStampInLog);
+            return string.Format("{0} {1}{2}",timeStamp, GetCallingMethod(), s);
         }
 
 
@@ -355,7 +356,8 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public static string GetCF1(string s)
         {
-            return string.Format("{0}{1}", GetCallingMethod(1), s);
+            string timeStamp = GetLogTime(showTimeStampInLog);
+            return string.Format("{0} {1}{2}", timeStamp, GetCallingMethod(1), s);      
         }
 
         /// <summary>
@@ -387,6 +389,15 @@ namespace MusicXmlReaderModel
             //Console.WriteLine(Namespace + "." + Class.Name + "." + methodBase.Name);
         }
 
+        private static string GetLogTime(bool show)
+        {
+            if (!show) return "";
+            System.DateTime now = System.DateTime.Now;
+            string time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
+            return time;
+        }
+
+
         private static void Log(string s, bool showTimeStamp)
         {
             globalCount++; // Increment a global counter, usable for diagnostics
@@ -397,12 +408,7 @@ namespace MusicXmlReaderModel
             try
             {
                 Trace(s); // We will se repeated lines in the Trace if the file operation failes !
-                string time = "";
-                if (showTimeStamp)
-                {
-                    System.DateTime now = System.DateTime.Now;
-                    time = string.Format("{0}.{1,03}", now.ToLongTimeString(), now.Millisecond.ToString()); // Always use 3 digits for milliseconds
-                }
+                string time = GetLogTime(showTimeStamp); 
                 // string r = (0 == i) ? "" : string.Format("R={0} ", i); // Illustrate that  the file write operation has been retried R times
                 string line = time + " " + s + "\r\n";
                 signaled = mutex.WaitOne(1000); // Wait up to 1000 mS 
