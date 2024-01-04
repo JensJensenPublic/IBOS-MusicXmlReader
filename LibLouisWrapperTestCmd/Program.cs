@@ -135,7 +135,6 @@ namespace LibLouisWrapperTestCmd
             {
                 result &= RunTestFile(fullFileName);
             }
-            Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testFiles)<<<<<<<<<<\r\n"));
             return result;
         }
 
@@ -189,9 +188,11 @@ namespace LibLouisWrapperTestCmd
                 // Run explicitly named testfiles
                 result &= RunTestFile(Path.Combine(testInputDir, "Danish.txt"));            
                 result &= RunTestFile(Path.Combine(testInputDir, "DanishGraphics.txt")); // https://blind.dk/punktskrift-2022    Den danske punktskrift 2022           
-                result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));  
+                result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));
 
                 //result &= RunAllTestFiles();              
+
+                Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testFiles)<<<<<<<<<<\r\n"));
 
                 libLouisWrapper.Free();
                 Log(": LibLouisWrapper.Free() returned.");
@@ -202,10 +203,15 @@ namespace LibLouisWrapperTestCmd
                 Log(string.Format(": Main() failed because of an exception!  Exception.Message='{0}'", e.Message));
                 result = false;            
             }
-            Log(string.Format(": Result = {0}", result));
 
+            // Report overall test result
+
+            Log(string.Format(": Test {0}", result ? "PASSED" : "FAILED")  );
+            if (result) return;
+
+            // In case of errors report any error information:
             StringBuilder sb = new StringBuilder(); 
-            sb.AppendLine(string.Format("{0} Error{1} detected:", errorList.Count, (1 == errorList.Count) ? "" : "s"));
+            sb.AppendLine(string.Format(": {0} Error{1} detected:", errorList.Count, (1 == errorList.Count) ? "" : "s"));
             foreach (string error in errorList)
             {
                 sb.AppendLine("  " + error);               
