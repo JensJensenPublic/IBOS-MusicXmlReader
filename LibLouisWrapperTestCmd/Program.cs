@@ -33,11 +33,11 @@ namespace LibLouisWrapperTestCmd
         {
             string dots;
             bool ok;
-            ok = libLouisWrapper.CharsToDots1(text, out dots);     
+            ok = libLouisWrapper.CharsToDots(text, out dots);     
             Log(FormatTranslateResult("CharsToDot", text, ok, dots));
 
             string newText;
-            ok = libLouisWrapper.DotsToChars1(dots, out newText);
+            ok = libLouisWrapper.DotsToChars(dots, out newText);
             Log(FormatTranslateResult("DotsToChar", dots, ok, newText));
 
             bool equal = (0 == string.Compare(text, newText));
@@ -87,11 +87,11 @@ namespace LibLouisWrapperTestCmd
             string dots;
             bool ok;
          
-            ok = libLouisWrapper.TranslateString1(text, out dots);
+            ok = libLouisWrapper.TranslateString(text, out dots);
             Log(FormatTranslateResult("TranslateString", text, ok, dots));
 
             string newText;    
-            ok = libLouisWrapper.BackTranslateString1(dots, out newText);
+            ok = libLouisWrapper.BackTranslateString(dots, out newText);
             Log(FormatTranslateResult("BackTranslateString",dots, ok, newText));
 
             bool equal = (0 == string.Compare(text, newText));

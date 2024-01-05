@@ -186,11 +186,11 @@ namespace LibLouisWrapper
 
         //private  TypeformEnum[] dummyTfe = null;
 
-        public bool CharsToDots1(string chars, out string dots) { return CommonNativeCall(NativeFunctionEnum.charsToDots, chars, out dots); }
-        public bool DotsToChars1(string dots, out string chars) { return CommonNativeCall(NativeFunctionEnum.dotsToChars, dots, out chars); }
-        public bool TranslateString1(string text, out string dots) { return CommonNativeCall(NativeFunctionEnum.translateString, text, out dots); }
+        public bool CharsToDots(string chars, out string dots) { return CommonNativeCall(NativeFunctionEnum.charsToDots, chars, out dots); }
+        public bool DotsToChars(string dots, out string chars) { return CommonNativeCall(NativeFunctionEnum.dotsToChars, dots, out chars); }
+        public bool TranslateString(string text, out string dots) { return CommonNativeCall(NativeFunctionEnum.translateString, text, out dots); }
         public bool TranslateStringTFE(string text, out string dots, out TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.translateStringTfe, text, out dots, out tfe); }
-        public bool BackTranslateString1(string dots, out string text) { return CommonNativeCall(NativeFunctionEnum.backTranslateString, dots, out text); }
+        public bool BackTranslateString(string dots, out string text) { return CommonNativeCall(NativeFunctionEnum.backTranslateString, dots, out text); }
         public bool BackTranslateStringTFE(string dots, out string text, out TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.backTranslateStringTfe, dots, out text, out tfe); }
 
         public string GetVersion()
@@ -445,7 +445,7 @@ namespace LibLouisWrapper
             string teststring;
             int oldErrorCount = globalErrorCount;
             ignoreFirstError = true;
-            CharsToDots1("x", out teststring); // Is expected to fail and thereby to increase globalErrorCount;
+            CharsToDots("x", out teststring); // Is expected to fail and thereby to increase globalErrorCount;
             ignoreFirstError = false;
             bool ok = (globalErrorCount > oldErrorCount);          
             Log(string.Format(": TEST {0}! Simulated error was {1} reported from LibLouis by{2} !", ok ? "PASSED" : "FAILED", ok ? "": "NOT", testItem));       
