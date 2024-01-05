@@ -304,11 +304,8 @@ namespace LibLouisWrapper
             if (null == outBuf) return OnError("null == outBuf");
             Log(string.Format(": OutputLength changed from {0} to {1}", initialOutputLength, outputLength));
             output = GetOutputString(nativeFunctionEnum, outBuf, outputLength, charSize);
-            tfe = GetOutputTypeForms(nativeFunctionEnum, tfeBuf, outputLength);  
-            //tfe = tfeBuf;           
             Log(string.Format("({0},'{1}')='{2}'", nativeFunctionEnum, input, output));
-            Log(string.Format("(...) Tfe: {0}", TfeToString(tfe)));
-            Log(string.Format("(...) Outbuf.Length={0} output.Length={1}", outBuf.Length, output.Length)); // During initial debugging  
+            tfe = GetOutputTypeForms(nativeFunctionEnum, tfeBuf, outputLength); 
             return true;
         }
 
@@ -345,6 +342,7 @@ namespace LibLouisWrapper
             int length = OutputLengthIsKnown(nativeFunctionEnum) ? outputLength : 0;
             TypeformEnum[] result = new TypeformEnum[length];
             Array.Copy(tfeBuf, result, length);
+            Log(string.Format("(): Tfe.{0}", TfeToString(result)));
             return result;
         }
 
