@@ -304,7 +304,8 @@ namespace LibLouisWrapper
             if (null == outBuf) return OnError("null == outBuf");
             Log(string.Format(": OutputLength changed from {0} to {1}", initialOutputLength, outputLength));
             output = GetOutputString(nativeFunctionEnum, outBuf, outputLength, charSize);
-            tfe = tfeBuf;           
+            tfe = GetOutputTypeForms(nativeFunctionEnum, tfeBuf, outputLength);  
+            //tfe = tfeBuf;           
             Log(string.Format("({0},'{1}')='{2}'", nativeFunctionEnum, input, output));
             Log(string.Format("(...) Tfe: {0}", TfeToString(tfe)));
             Log(string.Format("(...) Outbuf.Length={0} output.Length={1}", outBuf.Length, output.Length)); // During initial debugging  
@@ -334,13 +335,37 @@ namespace LibLouisWrapper
             return s.TrimEnd(new char[] { '\0' }); // Remove all trailing null characters
         }
 
+
+        private TypeformEnum[] GetOutputTypeForms(NativeFunctionEnum nativeFunctionEnum, TypeformEnum[] tfeBuf, int outputLength)
+        {
+            if (!TfeMustBeCopied(nativeFunctionEnum))
+            {
+                return new TypeformEnum[0];
+            }
+            int length = OutputLengthIsKnown(nativeFunctionEnum) ? outputLength : 0;
+            TypeformEnum[] result = new TypeformEnum[length];
+            Array.Copy(tfeBuf, result, length);
+            return result;
+        }
+
+
         private bool OutputLengthIsKnown(NativeFunctionEnum nativeFunctionEnum)
-        {  
+        {
             switch (nativeFunctionEnum)
             {
-                case NativeFunctionEnum.translateString: return true; 
+                case NativeFunctionEnum.translateString: return true;
                 case NativeFunctionEnum.backTranslateString: return true;
-                case NativeFunctionEnum.translateStringTfe: return true; 
+                case NativeFunctionEnum.translateStringTfe: return true;
+                case NativeFunctionEnum.backTranslateStringTfe: return true;
+            }
+            return false;
+        }
+
+        private bool TfeMustBeCopied(NativeFunctionEnum nativeFunctionEnum)
+        {
+            switch (nativeFunctionEnum)
+            {
+                case NativeFunctionEnum.translateStringTfe: return true;
                 case NativeFunctionEnum.backTranslateStringTfe: return true;
             }
             return false;
