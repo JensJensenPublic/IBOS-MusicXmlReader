@@ -191,6 +191,8 @@ namespace LibLouisWrapperTestCmd
                 result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));
                 result &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
 
+                //result &= RunTestFile(Path.Combine(testInputDir, "English.txt")); // Should be used with other table !!
+
                 // result &= RunAllTestFiles();              
 
                 Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testFiles)<<<<<<<<<<\r\n"));
