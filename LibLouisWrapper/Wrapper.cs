@@ -101,6 +101,17 @@ namespace LibLouisWrapper
         private const string LibLouisDll = @"Liblouis\binary\liblouis.dll";
         //private const string LibLouisDll = @"Liblouis\bin\liblouis.dll";
 
+        #region LogCallBack
+        private delegate void Func(int level, string message);
+        private static void MyFunc(int level, string message)
+        {
+            globalErrorCount++;
+            if (ignoreFirstError) return; // Do not log simulated  error generated for test-purposes !
+            Log(string.Format(": Received callback from LibLouis, describing an error: Level={0} Message={1}", level, message));
+
+        }
+        #endregion
+
         #region DllImport
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         private static extern int lou_charSize();
@@ -119,7 +130,6 @@ namespace LibLouisWrapper
             [In] int mode
         );
 
-
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         private static extern int lou_dotsToChar(
         [In][MarshalAs(UnmanagedType.LPStr)] string tableList,
@@ -131,21 +141,10 @@ namespace LibLouisWrapper
 
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         private static extern void lou_free();
-        #endregion
-
-        #region LogCallBack
-        private delegate void Func(int level, string message);
-        private static void MyFunc(int level, string message)
-        {
-            globalErrorCount++;
-            if (ignoreFirstError) return; // Do not log simulated  error generated for test-purposes !
-            Log(string.Format(": Received callback from LibLouis, describing an error: Level={0} Message={1}", level, message));
-           
-        }
+  
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         private static extern void lou_registerLogCallback(Func callback);
-        #endregion
-
+       
 
         [DllImport(@"liblouis.dll", CharSet = CharSet.Unicode)]
         private static extern unsafe int lou_translateString(
@@ -171,7 +170,7 @@ namespace LibLouisWrapper
                 [MarshalAs(UnmanagedType.LPStr)] string spacing,       // char *spacing
                 int mode                                               //  int mode 
          );
-
+        #endregion
 
 
         private enum NativeFunctionEnum
