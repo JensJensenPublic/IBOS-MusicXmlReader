@@ -94,6 +94,7 @@
     <Content Include="TestInputFiles\DanishGraphics.txt" />
     <Content Include="TestInputFiles\DanishItalics.txt" />
     <Content Include="TestInputFiles\English.txt" />
+    <Content Include="TestInputFiles\EnglishWithoutTabs.txt" />
     <Content Include="TestInputFiles\EscapeSequences.txt" />
     <Content Include="TestInputFiles\SpecialCharacters.txt" />
   </ItemGroup>
