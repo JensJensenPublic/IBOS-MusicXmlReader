@@ -80,6 +80,7 @@ namespace LibLouisWrapperTestCmd
         }
 
         private static List<string> errorList = new List<string>();
+        private static int successes = 0;
 
 
         static bool StringToDotsToStringTest(string text)
@@ -95,11 +96,24 @@ namespace LibLouisWrapperTestCmd
             Log(FormatTranslateResult("BackTranslateString",dots, ok, newText));
 
             bool equal = (0 == string.Compare(text, newText));
-            string message = string.Format(": BackTranslateString(TranslateString(text)) {0} text for text[{1}]='{2}'", equal ? "==" : "<>",text.Length,text);
+
+            string message;
+            if (equal)
+            {
+                message = string.Format(": BackTranslateString(TranslateString(text)) == text for text[{0}]='{1}'", text.Length, text); // Report in one line
+            }
+            else
+            {
+                message = string.Format(": BackTranslateString(TranslateString(text)) <> text:\r\n{0}\r\n{1}", text, newText); // Show each text from start of a line to ease compring 
+            }
             Log(message);
             if (!equal)
             {
                 errorList.Add(Logger.GetCF(message));
+            }
+            else
+            {
+                successes++;
             }
             return equal;
         }
@@ -217,7 +231,7 @@ namespace LibLouisWrapperTestCmd
                 englishResult &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
                 englishResult &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt")); // ";" will fail !
                 //englishResult &= RunTestFile(Path.Combine(testInputDir, "English.txt"));
-                // englishResult &= RunTestFile(Path.Combine(testInputDir, "EnglishWithoutTabs.txt")); 
+                //englishResult &= RunTestFile(Path.Combine(testInputDir, "EnglishWithoutTabs.txt")); 
                         
 
                 Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testFiles)<<<<<<<<<<\r\n"));
@@ -246,6 +260,8 @@ namespace LibLouisWrapperTestCmd
             }
             string logString = sb.ToString();
             Log(logString);
+
+            Log(string.Format("Successes={0} Errors={1}",successes,errorList.Count));   
 
         }
     }
