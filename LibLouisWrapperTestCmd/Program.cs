@@ -97,7 +97,10 @@ namespace LibLouisWrapperTestCmd
             bool equal = (0 == string.Compare(text, newText));
             string message = string.Format(": BackTranslateString(TranslateString(text)) {0} text for text[{1}]='{2}'", equal ? "==" : "<>",text.Length,text);
             Log(message);
-            if (!equal) errorList.Add(Logger.GetCF(message)); 
+            if (!equal)
+            {
+                errorList.Add(Logger.GetCF(message));
+            }
             return equal;
         }
 
@@ -171,18 +174,18 @@ namespace LibLouisWrapperTestCmd
                 libLouisWrapper = Wrapper.Create("da-dk-g26.ctb"); //  Danish table for 6 dots grade 2 forward and backward translation (2022)
                 if (null == libLouisWrapper)
                 {
-                    Log(string.Format(": LibLouis directory of file is missing. Please see logfile for details."));
+                    Log(string.Format(": LibLouis directory or file is missing. Please see logfile for details."));
                     return;
                 }
 
                 //string text = "The quick brown fox jumps over the lazy dog";
-                string text = "abcdefghijklmnopqrstuvwxyzæøå";
+                string danishCharacters = "abcdefghijklmnopqrstuvwxyzæøå";
 
                 for (int i = 0;((result) && (i < 1)); i++)
                 { 
-                   result &= CharsToDotsToCharsTest(text.ToLower());     // Seems NOT to handle Capital letters !
-                   result &= StringToDotsToStringTest(text);               // Seems to handle Capital letters !
-                   result &= StringToDotsToStringTFETest(text);             // Seems to handle Capital letters !               
+                   result &= CharsToDotsToCharsTest(danishCharacters.ToLower());     // Seems NOT to handle Capital letters !
+                   result &= StringToDotsToStringTest(danishCharacters);               // Seems to handle Capital letters !
+                   result &= StringToDotsToStringTFETest(danishCharacters);             // Seems to handle Capital letters !               
                 }
 
                 // Run explicitly named testfiles
@@ -191,14 +194,35 @@ namespace LibLouisWrapperTestCmd
                 result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));
                 result &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
 
-                //result &= RunTestFile(Path.Combine(testInputDir, "English.txt")); // Should be used with other table !!
-                result &= RunTestFile(Path.Combine(testInputDir, "EnglishWithoutTabs.txt")); // Should be used with other table !!
+                //
+                // Start testing with  English table
+                //
+                bool englishResult = true;
+                libLouisWrapper.Free();
+                libLouisWrapper = Wrapper.Create("en-ueb-g2.ctb");  
+                if (null == libLouisWrapper)
+                {
+                    Log(string.Format(": LibLouis directory or file is missing. Please see logfile for details."));
+                    return;
+                }
 
-                // result &= RunAllTestFiles();              
+                string englishCharacters = "abcdefghijklmnopqrstuvwxyz"; // No æøå
+                for (int i = 0; ((englishResult) && (i < 1)); i++)
+                {
+                    englishResult &= CharsToDotsToCharsTest(englishCharacters.ToLower());     // Seems NOT to handle Capital letters !
+                    englishResult &= StringToDotsToStringTest(englishCharacters);               // Seems to handle Capital letters !
+                    englishResult &= StringToDotsToStringTFETest(englishCharacters);             // Seems to handle Capital letters !               
+                }
+
+                englishResult &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
+                //result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));
+                //result &= RunTestFile(Path.Combine(testInputDir, "English.txt"));
+                //result &= RunTestFile(Path.Combine(testInputDir, "EnglishWithoutTabs.txt")); 
+                        
 
                 Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testFiles)<<<<<<<<<<\r\n"));
 
-                libLouisWrapper.Free();
+              
                 Log(": LibLouisWrapper.Free() returned.");
                 Log(string.Format(": No Exception was thrown during test."));
             }
@@ -210,7 +234,7 @@ namespace LibLouisWrapperTestCmd
 
             // Report overall test result
 
-            Log(string.Format(": Test {0}", result ? "PASSED" : "FAILED")  );
+            Log(string.Format(": Test {0} ****************************************************************************************************", result ? "PASSED" : "FAILED")  );
             if (result) return;
 
             // In case of errors report any error information:

@@ -403,6 +403,7 @@ namespace LibLouisWrapper
         public void Free()
         {
             lou_free();
+            Log(string.Format(": Call to native method 'lou_free()' returned."));
         }
 
         private static void Log(string s)

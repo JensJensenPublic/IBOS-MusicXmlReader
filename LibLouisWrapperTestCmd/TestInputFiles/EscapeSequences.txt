@@ -4,5 +4,5 @@
 \f FormFeed
 \n NewLine
 \r Return
-\t Tab
+\t HorizontalTab
 \v VerticalTab
