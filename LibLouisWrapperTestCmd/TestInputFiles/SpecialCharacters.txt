@@ -1,1 +1,4 @@
-.,:;
+. Dot
+, Comma
+: Colon
+; Semicolon

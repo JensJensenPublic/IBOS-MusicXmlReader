@@ -190,7 +190,7 @@ namespace LibLouisWrapperTestCmd
 
                 // Run explicitly named testfiles
                 result &= RunTestFile(Path.Combine(testInputDir, "Danish.txt"));            
-                result &= RunTestFile(Path.Combine(testInputDir, "DanishGraphics.txt")); // https://blind.dk/punktskrift-2022    Den danske punktskrift 2022           
+                result &= RunTestFile(Path.Combine(testInputDir, "DanishGraphics.txt")); // https://blind.dk/punktskrift-2022    Den danske punktskrift 2022    "÷" will fail       
                 result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));
                 result &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
 
@@ -215,9 +215,9 @@ namespace LibLouisWrapperTestCmd
                 }
 
                 englishResult &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
-                //result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));
-                //result &= RunTestFile(Path.Combine(testInputDir, "English.txt"));
-                //result &= RunTestFile(Path.Combine(testInputDir, "EnglishWithoutTabs.txt")); 
+                englishResult &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt")); // ";" will fail !
+                //englishResult &= RunTestFile(Path.Combine(testInputDir, "English.txt"));
+                // englishResult &= RunTestFile(Path.Combine(testInputDir, "EnglishWithoutTabs.txt")); 
                         
 
                 Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testFiles)<<<<<<<<<<\r\n"));
