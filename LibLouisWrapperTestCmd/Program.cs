@@ -109,21 +109,15 @@ namespace LibLouisWrapperTestCmd
             if (equal)
             {
                 message = string.Format("{0}='{1}'", messageStart, text); // Report successes in one line
+                successes++;
             }
             else
             {
                 string diffReport = GetDiffReport(text, newText);
                 message = string.Format("{0}: {1}\r\n{2}\r\n{3}", messageStart,diffReport, text, newText); // Report failures in 3 lines
-            }
-            Log(message);
-            if (!equal)
-            {
                 errorList.Add(Logger.GetCF(message));
             }
-            else
-            {
-                successes++;
-            }
+            Log(message);    
             return equal;
         }
 
@@ -138,7 +132,11 @@ namespace LibLouisWrapperTestCmd
                     char c0 = t0[i];
                     char c1 = t1[i];
                     string diff = string.Format("(Chars:'{0}' <> '{1}')   (Integers:{2} <> {3})",c0, c1, (int)c0, (int)c1);
-                    allDiffs.Add(diff); 
+                    bool found = allDiffs.Any(s => s.Equals(diff));
+                    if (!found)
+                    {
+                        allDiffs.Add(diff); // Only add if not already found
+                    }
                     return string.Format("First diff found at index {0}: {1}", i, diff );
                 
                 }       
