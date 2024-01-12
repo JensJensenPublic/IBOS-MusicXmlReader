@@ -81,6 +81,7 @@ namespace LibLouisWrapperTestCmd
 
         private static List<string> errorList = new List<string>();
         private static int successes = 0;
+        private static List<string> allDiffs = new List<string>();
 
 
         static bool StringToDotsToStringTest(string text)
@@ -136,7 +137,9 @@ namespace LibLouisWrapperTestCmd
                 {
                     char c0 = t0[i];
                     char c1 = t1[i];
-                    return string.Format("First diff found at index {0}: (Chars:'{1}' <> '{2}')   (Integers:{3} <> {4})", i, c0, c1, (int)c0,(int)c1 );
+                    string diff = string.Format("(Chars:'{0}' <> '{1}')   (Integers:{2} <> {3})",c0, c1, (int)c0, (int)c1);
+                    allDiffs.Add(diff); 
+                    return string.Format("First diff found at index {0}: {1}", i, diff );
                 
                 }       
             }
@@ -293,7 +296,16 @@ namespace LibLouisWrapperTestCmd
             string logString = sb.ToString();
             Log(logString);
 
-            Log(string.Format("Successes={0} Errors={1}",successes,errorList.Count));   
+
+            foreach (string diff in allDiffs)
+            {
+                Log(diff);
+            }
+
+            Log(string.Format("Successes={0} Errors={1}",successes,errorList.Count));
+
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
 
         }
     }
