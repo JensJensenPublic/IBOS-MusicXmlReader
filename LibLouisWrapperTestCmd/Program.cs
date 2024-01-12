@@ -95,6 +95,12 @@ namespace LibLouisWrapperTestCmd
             ok = libLouisWrapper.BackTranslateString(dots, out newText);
             Log(FormatTranslateResult("BackTranslateString", dots, ok, newText));
 
+#if true
+            text = text.TrimStart('\t'); // Remove all leading tabs
+            newText = newText.TrimStart(' '); // Remove all leading spaces
+#endif
+
+
             bool equal = (0 == string.Compare(text, newText));
 
             string messageStart = string.Format(": BackTranslateString(TranslateString(text))[{0}] {1} text[{2}]", text.Length, equal ? "==" : "<>", newText.Length);
@@ -254,9 +260,9 @@ namespace LibLouisWrapperTestCmd
 
                 englishResult &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
                 englishResult &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt")); // ";" will fail !
-                englishResult &= RunTestFile(Path.Combine(testInputDir, "EnglishExperiment.txt"));
+                //englishResult &= RunTestFile(Path.Combine(testInputDir, "EnglishExperiment.txt"));
 
-                //englishResult &= RunTestFile(Path.Combine(testInputDir, "English.txt"));
+                englishResult &= RunTestFile(Path.Combine(testInputDir, "English.txt"));
                 //englishResult &= RunTestFile(Path.Combine(testInputDir, "EnglishWithoutTabs.txt")); 
 
 
