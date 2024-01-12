@@ -29,11 +29,11 @@ namespace LibLouisWrapperTestCmd
         /// </summary>
         /// <param name="text">The string to take through the roundtrip</param>
         /// <returns>True <==> success</returns>
-        static bool CharsToDotsToCharsTest( string text)
+        static bool CharsToDotsToCharsTest(string text)
         {
             string dots;
             bool ok;
-            ok = libLouisWrapper.CharsToDots(text, out dots);     
+            ok = libLouisWrapper.CharsToDots(text, out dots);
             Log(FormatTranslateResult("CharsToDot", text, ok, dots));
 
             string newText;
@@ -62,15 +62,15 @@ namespace LibLouisWrapperTestCmd
 
             TypeformEnum[] typeForms;
             ok = libLouisWrapper.TranslateStringTFE(text, out dots, out typeForms);
-            Log(FormatTranslateResultTFE("TranslateStringTFE",  text, ok, dots, typeForms));
+            Log(FormatTranslateResultTFE("TranslateStringTFE", text, ok, dots, typeForms));
 
             string newText;
             TypeformEnum[] typeFormsBack;
             ok = libLouisWrapper.BackTranslateStringTFE(dots, out newText, out typeFormsBack);
-            Log(FormatTranslateResultTFE("BackTranslateStringTFE", dots, ok,  newText, typeFormsBack));
+            Log(FormatTranslateResultTFE("BackTranslateStringTFE", dots, ok, newText, typeFormsBack));
 
             bool equal = (0 == string.Compare(text, newText));
-            string message = string.Format(": {0} BackTranslateStringTFE(TranslateStringTFE(text)) {1} text", equal ? "PASSED" : "FAILED" , equal ? "==" : "<>");
+            string message = string.Format(": {0} BackTranslateStringTFE(TranslateStringTFE(text)) {1} text", equal ? "PASSED" : "FAILED", equal ? "==" : "<>");
             Log(message);
             if (!equal)
             {
@@ -87,13 +87,13 @@ namespace LibLouisWrapperTestCmd
         {
             string dots;
             bool ok;
-         
+
             ok = libLouisWrapper.TranslateString(text, out dots);
             Log(FormatTranslateResult("TranslateString", text, ok, dots));
 
-            string newText;    
+            string newText;
             ok = libLouisWrapper.BackTranslateString(dots, out newText);
-            Log(FormatTranslateResult("BackTranslateString",dots, ok, newText));
+            Log(FormatTranslateResult("BackTranslateString", dots, ok, newText));
 
             bool equal = (0 == string.Compare(text, newText));
 
@@ -105,7 +105,8 @@ namespace LibLouisWrapperTestCmd
             }
             else
             {
-                message = string.Format("{0}:\r\n{1}\r\n{2}",messageStart, text, newText); // Report failures in 3 lines
+                string diffReport = GetDiffReport(text, newText);
+                message = string.Format("{0}: {1}\r\n{2}\r\n{3}", messageStart,diffReport, text, newText); // Report failures in 3 lines
             }
             Log(message);
             if (!equal)
@@ -118,6 +119,28 @@ namespace LibLouisWrapperTestCmd
             }
             return equal;
         }
+
+        private static string GetDiffReport(string t0, string t1)
+        {
+            if ((string.IsNullOrEmpty(t0)) || (string.IsNullOrEmpty(t1)))return "At least one argument is null or empty";
+            int minLength = Math.Min(t0.Length, t1.Length);
+            for (int i = 0; i < minLength; i++)
+            {
+                if (t0[i] != t1[i])
+                {
+                    char c0 = t0[i];
+                    char c1 = t1[i];
+                    return string.Format("First diff found at index {0}: (Chars:'{1}' <> '{2}')   (Integers:{3} <> {4})", i, c0, c1, (int)c0,(int)c1 );
+                
+                }       
+            }
+            return "No difference found";
+        
+        }
+
+
+
+
 
         private static string FormatTranslateResult(string method,string input, bool result, string output)
         {
