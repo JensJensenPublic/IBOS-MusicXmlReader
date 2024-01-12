@@ -9,15 +9,13 @@ namespace LibLouisWrapperTestCmd
 {
     internal class Program
     {
+        static string testInputDir;
 
         static private void Log(string s)
         {
             Console.WriteLine(s);
             Logger.LogCF1(s);    // Append Class and Function for the function calling Log()    
         }
-
-        private static List<string> errorList = new List<string>();
-
         private static bool CheckTestFileInstallation()
         {
             string executingDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -31,8 +29,7 @@ namespace LibLouisWrapperTestCmd
             }
             return true;
         }
-   
-        static string testInputDir;
+      
 
         static void Main(string[] args)
         {            
@@ -43,8 +40,8 @@ namespace LibLouisWrapperTestCmd
             Log(string.Format("Setting Console.OutputEncoding to {0} in order do display Braille symbols",Encoding.Unicode));
             Console.OutputEncoding = Encoding.Unicode; 
 
-            if (!CheckTestFileInstallation()) return;
-            bool result = true;
+            if (!CheckTestFileInstallation()) return; // No reason to continue
+   
             try
             {         
                 TestHandlerForDanish testHandlerForDanish = TestHandlerForDanish.Create(testInputDir);
@@ -57,28 +54,11 @@ namespace LibLouisWrapperTestCmd
             }
             catch (Exception e)
             {
-                Log(string.Format(": Main() failed because of an exception!  Exception.Message='{0}'", e.Message));
-                result = false;            
+                Log(string.Format(": Main() failed because of an exception!  Exception.Message='{0}'", e.Message));                         
             }
-
-            // Report overall test result
-
-            Log(string.Format(": Test {0} ****************************************************************************************************", result ? "PASSED" : "FAILED")  );
-            if (result) return;
-
-            // In case of errors report any error information:
-            StringBuilder sb = new StringBuilder(); 
-            sb.AppendLine(string.Format(": {0} Error{1} detected:", errorList.Count, (1 == errorList.Count) ? "" : "s"));
-            foreach (string error in errorList)
-            {
-                sb.AppendLine("  " + error);               
-            }
-            string logString = sb.ToString();
-            Log(logString);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
-
         }
     }
 }

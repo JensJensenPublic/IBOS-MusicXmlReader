@@ -36,7 +36,7 @@ namespace LibLouisWrapperTestCmd
             testResult &= RunTestFile(Path.Combine(testInputDir, "English.txt"));
             //englishResult &= RunTestFile(Path.Combine(testInputDir, "EnglishWithoutTabs.txt")); 
 
-            OnEndOfTestFiles();
+            OnEndOfTestFiles("English");
             FreeWrapper();
             return testResult;
             

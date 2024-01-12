@@ -20,6 +20,7 @@ namespace LibLouisWrapperTestCmd
         protected int successes = 0;
         protected DiffList allDiffs = DiffList.Create();
 
+
         protected void Log(string s)
         {
             Console.WriteLine(s);
@@ -182,9 +183,23 @@ namespace LibLouisWrapperTestCmd
         }
 
 
-        protected void OnEndOfTestFiles()
+        protected void OnEndOfTestFiles(string language)
         {
-            Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testFiles)<<<<<<<<<<\r\n"));
+            Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testFiles for {0})<<<<<<<<<<\r\n", language));
+            Log(string.Format(": Test {0} ****************************************************************************************************", testResult ? "PASSED" : "FAILED"));
+            if (!testResult)
+            {
+                // In case of errors report any error information:
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine(string.Format(": {0} Error{1} detected:", errorList.Count, (1 == errorList.Count) ? "" : "s"));
+                foreach (string error in errorList)
+                {
+                    sb.AppendLine("  " + error);
+                }
+                string logString = sb.ToString();
+                Log(logString);
+            }
+
             foreach (Diff diff in allDiffs.Diffs)
             {
                 string s = string.Format("{0,-45}: Count={1}", diff.Description, diff.Count);

@@ -38,7 +38,7 @@ namespace LibLouisWrapperTestCmd
             testResult &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
 
 
-            OnEndOfTestFiles();
+            OnEndOfTestFiles("Danish");
             FreeWrapper();
             return testResult;
         }
