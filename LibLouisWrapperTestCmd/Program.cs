@@ -97,14 +97,15 @@ namespace LibLouisWrapperTestCmd
 
             bool equal = (0 == string.Compare(text, newText));
 
+            string messageStart = string.Format(": BackTranslateString(TranslateString(text))[{0}] {1} text[{2}]", text.Length, equal ? "==" : "<>", newText.Length);
             string message;
             if (equal)
             {
-                message = string.Format(": BackTranslateString(TranslateString(text)) == text for text[{0}]='{1}'", text.Length, text); // Report in one line
+                message = string.Format("{0}='{1}'", messageStart, text); // Report successes in one line
             }
             else
             {
-                message = string.Format(": BackTranslateString(TranslateString(text)) <> text:\r\n{0}\r\n{1}", text, newText); // Show each text from start of a line to ease compring 
+                message = string.Format("{0}:\r\n{1}\r\n{2}",messageStart, text, newText); // Report failures in 3 lines
             }
             Log(message);
             if (!equal)
@@ -230,9 +231,11 @@ namespace LibLouisWrapperTestCmd
 
                 englishResult &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
                 englishResult &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt")); // ";" will fail !
+                englishResult &= RunTestFile(Path.Combine(testInputDir, "EnglishExperiment.txt"));
+
                 //englishResult &= RunTestFile(Path.Combine(testInputDir, "English.txt"));
                 //englishResult &= RunTestFile(Path.Combine(testInputDir, "EnglishWithoutTabs.txt")); 
-                        
+
 
                 Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testFiles)<<<<<<<<<<\r\n"));
 
