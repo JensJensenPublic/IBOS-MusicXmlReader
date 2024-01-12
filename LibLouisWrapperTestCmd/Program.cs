@@ -81,7 +81,7 @@ namespace LibLouisWrapperTestCmd
 
         private static List<string> errorList = new List<string>();
         private static int successes = 0;
-        private static List<string> allDiffs = new List<string>();
+        private static DiffList allDiffs = DiffList.Create();
 
 
         static bool StringToDotsToStringTest(string text)
@@ -132,11 +132,7 @@ namespace LibLouisWrapperTestCmd
                     char c0 = t0[i];
                     char c1 = t1[i];
                     string diff = string.Format("(Chars:'{0}' <> '{1}')   (Integers:{2} <> {3})",c0, c1, (int)c0, (int)c1);
-                    bool found = allDiffs.Any(s => s.Equals(diff));
-                    if (!found)
-                    {
-                        allDiffs.Add(diff); // Only add if not already found
-                    }
+                    allDiffs.Add(diff); 
                     return string.Format("First diff found at index {0}: {1}", i, diff );
                 
                 }       
@@ -295,9 +291,10 @@ namespace LibLouisWrapperTestCmd
             Log(logString);
 
 
-            foreach (string diff in allDiffs)
+            foreach (Diff diff in allDiffs.Diffs)
             {
-                Log(diff);
+                string s = string.Format("{0,-45}: Count={1}", diff.Description, diff.Count);
+                Log(s);
             }
 
             Log(string.Format("Successes={0} Errors={1}",successes,errorList.Count));
