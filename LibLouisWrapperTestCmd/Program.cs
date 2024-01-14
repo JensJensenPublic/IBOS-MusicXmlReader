@@ -43,12 +43,21 @@ namespace LibLouisWrapperTestCmd
             if (!CheckTestFileInstallation()) return; // No reason to continue
    
             try
-            {         
-                TestHandlerForDanish testHandlerForDanish = TestHandlerForDanish.Create(testInputDir);
-                testHandlerForDanish.ExecuteTests();  
+            {
+                for (int i = 0; i < 1; i++) // Prepare for "endurance" test
+                {
 
-                TestHandlerForEnglish testHandlerForEnglish = TestHandlerForEnglish.Create(testInputDir);
-                testHandlerForEnglish.ExecuteTests();
+                    using (TestHandler testHandlerForDanish = TestHandlerForDanish.Create(testInputDir))
+                    {
+                        testHandlerForDanish.ExecuteTests(); // The "using" clause will cause a call to Dispose()
+                    }
+
+                    using (TestHandler testHandlerForEnglish = TestHandlerForEnglish.Create(testInputDir))
+                    {
+                        testHandlerForEnglish.ExecuteTests(); // The "using" clause will cause a call to Dispose()
+                    }
+
+                }
 
                 Log(string.Format(": No Exception was thrown during test."));
             }

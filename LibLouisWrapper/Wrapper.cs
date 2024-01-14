@@ -406,6 +406,13 @@ namespace LibLouisWrapper
             Log(string.Format(": Call to native method 'lou_free()' returned."));
         }
 
+        public void UnregisterCallback()
+        {
+            lou_registerLogCallback(null);
+            Log(string.Format(": Call to native method 'lou_registerLogCallback(null)' returned."));
+        }
+
+
         private static void Log(string s)
         {
             Console.WriteLine(s);

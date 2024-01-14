@@ -17,7 +17,7 @@ namespace LibLouisWrapperTestCmd
         TestHandlerForEnglish(string testInputDir) : base("en-ueb-g2.ctb",testInputDir)
         {}
 
-        internal bool ExecuteTests()
+        internal override bool ExecuteTests()
         {
             if (!CheckWrapper()) return false;
 
@@ -37,7 +37,6 @@ namespace LibLouisWrapperTestCmd
             //englishResult &= RunTestFile(Path.Combine(testInputDir, "EnglishWithoutTabs.txt")); 
 
             OnEndOfTestFiles("English");
-            FreeWrapper();
             return testResult;
             
         }

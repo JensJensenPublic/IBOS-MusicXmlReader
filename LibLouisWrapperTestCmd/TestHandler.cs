@@ -10,7 +10,7 @@ using static LibLouisWrapper.Wrapper;
 
 namespace LibLouisWrapperTestCmd
 {
-    internal abstract class TestHandler
+    internal abstract class TestHandler : IDisposable
     {
         private Wrapper libLouisWrapper;    
         protected bool testResult = true; // Untill an error id found
@@ -20,6 +20,13 @@ namespace LibLouisWrapperTestCmd
         protected int successes = 0;
         protected DiffList allDiffs = DiffList.Create();
 
+        internal abstract bool ExecuteTests();
+
+        public void Dispose()
+        {     
+            libLouisWrapper.Free();                    // Clear all tables
+            libLouisWrapper.UnregisterCallback(); // Prevent callbacks to delegate belonging to this obgect            
+        }
 
         protected void Log(string s)
         {

@@ -17,7 +17,7 @@ namespace LibLouisWrapperTestCmd
         TestHandlerForDanish(string testInputDir) : base("da-dk-g26.ctb",testInputDir) //  Danish table for 6 dots grade 2 forward and backward translation (2022)
         {}
 
-        internal bool ExecuteTests()
+        internal override bool ExecuteTests()
         {
             if (!CheckWrapper()) return false;
 
@@ -39,7 +39,7 @@ namespace LibLouisWrapperTestCmd
 
 
             OnEndOfTestFiles("Danish");
-            FreeWrapper();
+
             return testResult;
         }
     }
