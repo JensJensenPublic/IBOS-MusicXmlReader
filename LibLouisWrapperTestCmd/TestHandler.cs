@@ -24,8 +24,8 @@ namespace LibLouisWrapperTestCmd
 
         public void Dispose()
         {     
-            libLouisWrapper.Free();                    // Clear all tables
-            libLouisWrapper.UnregisterCallback(); // Prevent callbacks to delegate belonging to this obgect            
+            libLouisWrapper.Dispose();                 
+               
         }
 
         protected void Log(string s)

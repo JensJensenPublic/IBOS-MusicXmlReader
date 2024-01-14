@@ -36,7 +36,7 @@ namespace LibLouisWrapper
     /// https://liblouis.io/documentation/liblouis.html
     /// </summary>
 
-    public class Wrapper
+    public class Wrapper : IDisposable
     {
 
         /// <summary>
@@ -548,7 +548,19 @@ namespace LibLouisWrapper
             Log(string.Format(": All tables in '{0}' were found", tableNames));
             return true;
         }
-            
+
+
+        private bool disposed = false;
+
+        public void Dispose()
+        {
+            if (!disposed)
+            {
+                Free();                // Clear all tables
+                UnregisterCallback();  // Prevent callbacks to delegate belonging to this object
+                disposed = true;       // HAndles later async calls from the GC 
+            }                   
+        }
 
 
         public static Wrapper Create(string tableNames)
