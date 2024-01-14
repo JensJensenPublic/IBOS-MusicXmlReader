@@ -465,7 +465,7 @@ namespace LibLouisWrapper
         /// </summary>
         private Wrapper(string tableNames)
         {
-            myFunc = MyFunc;
+            myFunc = MyFunc; // See https://stackoverflow.com/questions/75223488/delegate-getting-gc-even-after-pinning
             Log(string.Format(": TableNames='{0}'", tableNames));
             Log(string.Format(": Registering LibLouis LogCallback function"));
             lou_registerLogCallback(MyFunc); // Register the static function MyFunc as a callback""
