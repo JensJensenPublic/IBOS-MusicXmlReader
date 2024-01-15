@@ -37,7 +37,7 @@ namespace LibLouisWrapperTestCmd
         protected TestHandler(string tableName, string testInputDir)
         {
             this.testInputDir = testInputDir;
-            libLouisWrapper = Wrapper.Create(tableName); //  Danish table for 6 dots grade 2 forward and backward translation (2022) 
+            libLouisWrapper = Wrapper.Create(tableName, OptionsEnum.None); //  Danish table for 6 dots grade 2 forward and backward translation (2022) 
         }
 
         protected bool CheckWrapper()

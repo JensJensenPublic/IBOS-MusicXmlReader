@@ -439,6 +439,7 @@ namespace LibLouisWrapper
         private Encoding encoding;
         private string tablePaths;
         private static bool ignoreFirstError = false;
+        private bool useLogCallback = false;
 
         /// <summary>
         /// Simple mechanism used by the constructor only.
@@ -446,7 +447,7 @@ namespace LibLouisWrapper
         /// </summary>
         private void ExecuteCallbackTest()
         {
-           
+            if (!useLogCallback) return;           
             string testItem = " the LibLouis Log-Callback mechanism!";
             Log(string.Format(": Simulating error in order to test{0}",testItem));
             string teststring;
@@ -458,17 +459,30 @@ namespace LibLouisWrapper
             Log(string.Format(": TEST {0}! Simulated error was {1} reported from LibLouis by{2} !", ok ? "PASSED" : "FAILED", ok ? "": "NOT", testItem));       
         }
 
+        [Flags]
+        public enum OptionsEnum
+        {
+            None = 0,           // Use this for published versions!
+            UseLogCallback = 1  // Use of the LibLouis LogCallback mechanism is konwn to cause nullreference exceptions turing heavy test and should only be used in a debug situation!
+                                // The exceptionis probably caused by the Garbage Collector moving the delegate, but should of course be further investigated!
+        }
+
+
         private readonly Func myFunc; // Only for preventing GC from collecting the delegate
 
         /// <summary>
         /// Private constructor. Use Wrapper.Create() from the outside.
         /// </summary>
-        private Wrapper(string tableNames)
+        private Wrapper(string tableNames,OptionsEnum options)
         {
-            myFunc = MyFunc; // See https://stackoverflow.com/questions/75223488/delegate-getting-gc-even-after-pinning
             Log(string.Format(": TableNames='{0}'", tableNames));
-            Log(string.Format(": Registering LibLouis LogCallback function"));
-            lou_registerLogCallback(MyFunc); // Register the static function MyFunc as a callback""
+            this.useLogCallback = (0 != (options & OptionsEnum.UseLogCallback));
+            if (useLogCallback)
+            {
+                myFunc = MyFunc; // See https://stackoverflow.com/questions/75223488/delegate-getting-gc-even-after-pinning
+                Log(string.Format(": Registering LibLouis LogCallback function"));
+                lou_registerLogCallback(MyFunc); // Register the static function MyFunc as a callback""
+            }
             string version = GetVersion();
             Log(string.Format(": LibLouis Version {0}", version));
             charSize = lou_charSize();
@@ -478,8 +492,7 @@ namespace LibLouisWrapper
 
             // Check the Logging callback mechanism:
             tablePaths = Path.Combine(tableBase, "DoesNotExist.xxx"); // Temporarily set up a nonexisting tablepath while checking
-            ExecuteCallbackTest();       
-
+            ExecuteCallbackTest();  
             // Set up the real translation table
             tablePaths = Path.Combine(tableBase,tableNames); // According to the documentation only the first name needs to contain the tableBase !! 
             Log(string.Format(": Tables='{0}'", tablePaths));
@@ -563,10 +576,10 @@ namespace LibLouisWrapper
         }
 
 
-        public static Wrapper Create(string tableNames)
+        public static Wrapper Create(string tableNames, OptionsEnum options)
         {
             if (! CheckInstallation(tableNames)) return null;        
-            Wrapper wrapper =  new Wrapper(tableNames);
+            Wrapper wrapper =  new Wrapper(tableNames,options);
             return wrapper;
         }
 
