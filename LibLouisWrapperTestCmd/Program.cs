@@ -52,7 +52,7 @@ namespace LibLouisWrapperTestCmd
 
             try
             {
-                for (int i = 0; i < 1; i++) // Prepare for "endurance" test
+                for (int i = 0; i < 100; i++) // Prepare for "endurance" test
                 {
 
                     using (TestHandler testHandlerForDanish = TestHandlerForDanish.Create(testInputDir))

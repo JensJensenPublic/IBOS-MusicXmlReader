@@ -468,8 +468,13 @@ namespace LibLouisWrapper
         }
 
 
-        private readonly Func myFunc; // Only for preventing GC from collecting the delegate
+        /// <summary>
+        /// Only for preventing GC from collecting the delegate. MUST BE STATIC to keep the GC away !!
+        /// See https://stackoverflow.com/questions/75223488/delegate-getting-gc-even-after-pinning
+        /// </summary>
+        private static readonly Func myFunc = MyFunc; 
 
+  
         /// <summary>
         /// Private constructor. Use Wrapper.Create() from the outside.
         /// </summary>
@@ -478,10 +483,9 @@ namespace LibLouisWrapper
             Log(string.Format(": TableNames='{0}'", tableNames));
             this.useLogCallback = (0 != (options & OptionsEnum.UseLogCallback));
             if (useLogCallback)
-            {
-                myFunc = MyFunc; // See https://stackoverflow.com/questions/75223488/delegate-getting-gc-even-after-pinning
+            {       
                 Log(string.Format(": Registering LibLouis LogCallback function"));
-                lou_registerLogCallback(MyFunc); // Register the static function MyFunc as a callback""
+                lou_registerLogCallback(myFunc); // Register the static function MyFunc as a callback""
             }
             string version = GetVersion();
             Log(string.Format(": LibLouis Version {0}", version));
