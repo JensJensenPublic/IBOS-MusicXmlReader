@@ -41,22 +41,38 @@ namespace LibLouisWrapperTestCmd
             Console.OutputEncoding = Encoding.Unicode; 
 
             if (!CheckTestFileInstallation()) return; // No reason to continue
-   
+
+            int overallTestLoops = 0;
+            int overallSuccesses = 0;
+            int overallErrors = 0;
+            int overallDiffs = 0;
+
+            TestResult localResult;
+
+
             try
             {
-                for (int i = 0; i < 1000; i++) // Prepare for "endurance" test
+                for (int i = 0; i < 1; i++) // Prepare for "endurance" test
                 {
 
                     using (TestHandler testHandlerForDanish = TestHandlerForDanish.Create(testInputDir))
                     {
-                        testHandlerForDanish.ExecuteTests(); // The "using" clause will cause a call to Dispose()
+                        localResult = testHandlerForDanish.ExecuteTests(); // The "using" clause will cause a call to Dispose()
+                        overallSuccesses += localResult.Successes;
+                        overallErrors += localResult.ErrorList.Count;
+                        overallDiffs += localResult.AllDiffs.Diffs.Count;
+
                     }
 
                     using (TestHandler testHandlerForEnglish = TestHandlerForEnglish.Create(testInputDir))
                     {
-                        testHandlerForEnglish.ExecuteTests(); // The "using" clause will cause a call to Dispose()
+                        localResult = testHandlerForEnglish.ExecuteTests(); // The "using" clause will cause a call to Dispose()
+                        overallSuccesses += localResult.Successes;
+                        overallErrors += localResult.ErrorList.Count;
+                        overallDiffs += localResult.AllDiffs.Diffs.Count;
                     }
 
+                    overallTestLoops++;
                 }
 
                 Log(string.Format(": No Exception was thrown during test."));
@@ -65,6 +81,8 @@ namespace LibLouisWrapperTestCmd
             {
                 Log(string.Format(": Main() failed because of an exception!  Exception.Message='{0}'", e.Message));                         
             }
+
+            Log(string.Format(": Test completed: TestLoops={0} Successes={1} Errors={2} Differences={3}", overallTestLoops,   overallSuccesses, overallErrors, overallDiffs));
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

@@ -17,25 +17,29 @@ namespace LibLouisWrapperTestCmd
         TestHandlerForDanish(string testInputDir) : base("da-dk-g26.ctb",testInputDir) //  Danish table for 6 dots grade 2 forward and backward translation (2022)
         {}
 
-        internal override bool ExecuteTests()
+        internal override TestResult ExecuteTests()
         {
-            if (!CheckWrapper()) return false;
+            if (!CheckWrapper())
+            {
+                testResult.Result = false;
+                return testResult;
+            }
 
             //string text = "The quick brown fox jumps over the lazy dog";
             string danishCharacters = "abcdefghijklmnopqrstuvwxyzæøå";
 
-            for (int i = 0; ((testResult) && (i < 1)); i++)
+            for (int i = 0; ((testResult.Result) && (i < 1)); i++)
             {
-                testResult &= CharsToDotsToCharsTest(danishCharacters.ToLower());     // Seems NOT to handle Capital letters !
-                testResult &= StringToDotsToStringTest(danishCharacters);               // Seems to handle Capital letters !
+                testResult.Result &= CharsToDotsToCharsTest(danishCharacters.ToLower());     // Seems NOT to handle Capital letters !
+                testResult.Result &= StringToDotsToStringTest(danishCharacters);               // Seems to handle Capital letters !
                 //testResult &= StringToDotsToStringTFETest(danishCharacters);             // Seems to handle Capital letters !       Disabled because it seems to cause strange errors        
             }
 
             // Run explicitly named testfiles
-            testResult &= RunTestFile(Path.Combine(testInputDir, "Danish.txt"));
-            testResult &= RunTestFile(Path.Combine(testInputDir, "DanishGraphics.txt")); // https://blind.dk/punktskrift-2022    Den danske punktskrift 2022    "÷" will fail       
-            testResult &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));
-            testResult &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
+            testResult.Result &= RunTestFile(Path.Combine(testInputDir, "Danish.txt"));
+            testResult.Result &= RunTestFile(Path.Combine(testInputDir, "DanishGraphics.txt")); // https://blind.dk/punktskrift-2022    Den danske punktskrift 2022    "÷" will fail       
+            testResult.Result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt"));
+            testResult.Result &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
 
 
             OnEndOfTestFiles("Danish");

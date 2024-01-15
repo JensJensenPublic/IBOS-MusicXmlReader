@@ -13,14 +13,12 @@ namespace LibLouisWrapperTestCmd
     internal abstract class TestHandler : IDisposable
     {
         private Wrapper libLouisWrapper;    
-        protected bool testResult = true; // Untill an error id found
+        //protected bool testResult = true; // Untill an error id found
         protected string testInputDir;
 
-        protected List<string> errorList = new List<string>();
-        protected int successes = 0;
-        protected DiffList allDiffs = DiffList.Create();
+        protected TestResult testResult = TestResult.Create();
 
-        internal abstract bool ExecuteTests();
+        internal abstract TestResult ExecuteTests();
 
         public void Dispose()
         {     
@@ -77,7 +75,7 @@ namespace LibLouisWrapperTestCmd
             Log(message);
             if (!equal)
             {
-                errorList.Add(Logger.GetCF(message));
+                testResult.ErrorList.Add(Logger.GetCF(message));
             }
             return equal;
         }
@@ -106,7 +104,7 @@ namespace LibLouisWrapperTestCmd
             Log(message);
             if (!equal)
             {
-                errorList.Add(Logger.GetCF(message));
+                testResult.ErrorList.Add(Logger.GetCF(message));
             }
             return equal;
         }
@@ -136,13 +134,13 @@ namespace LibLouisWrapperTestCmd
             if (equal)
             {
                 message = string.Format("{0}='{1}'", messageStart, text); // Report successes in one line
-                successes++;
+                testResult.Successes++;
             }
             else
             {
                 string diffReport = GetDiffReport(text, newText);
                 message = string.Format("{0}: {1}\r\n{2}\r\n{3}", messageStart, diffReport, text, newText); // Report failures in 3 lines
-                errorList.Add(Logger.GetCF(message));
+                testResult.ErrorList.Add(Logger.GetCF(message));
             }
             Log(message);
             return equal;
@@ -159,7 +157,7 @@ namespace LibLouisWrapperTestCmd
                     char c0 = t0[i];
                     char c1 = t1[i];
                     string diff = string.Format("(Chars:'{0}' <> '{1}')   (Integers:{2} <> {3})", c0, c1, (int)c0, (int)c1);
-                    allDiffs.Add(diff);
+                    testResult.AllDiffs.Add(diff);
                     return string.Format("First diff found at index {0}: {1}", i, diff);
 
                 }
@@ -193,13 +191,13 @@ namespace LibLouisWrapperTestCmd
         protected void OnEndOfTestFiles(string language)
         {
             Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testFiles for {0})<<<<<<<<<<\r\n", language));
-            Log(string.Format(": Test {0} ****************************************************************************************************", testResult ? "PASSED" : "FAILED"));
-            if (!testResult)
+            Log(string.Format(": Test {0} ****************************************************************************************************", testResult.Result ? "PASSED" : "FAILED"));
+            if (!testResult.Result)
             {
                 // In case of errors report any error information:
                 StringBuilder sb = new StringBuilder();
-                sb.AppendLine(string.Format(": {0} Error{1} detected:", errorList.Count, (1 == errorList.Count) ? "" : "s"));
-                foreach (string error in errorList)
+                sb.AppendLine(string.Format(": {0} Error{1} detected:", testResult.ErrorList.Count, (1 == testResult.ErrorList.Count) ? "" : "s"));
+                foreach (string error in testResult.ErrorList)
                 {
                     sb.AppendLine("  " + error);
                 }
@@ -207,12 +205,12 @@ namespace LibLouisWrapperTestCmd
                 Log(logString);
             }
 
-            foreach (Diff diff in allDiffs.Diffs)
+            foreach (Diff diff in testResult.AllDiffs.Diffs)
             {
                 string s = string.Format("{0,-45}: Count={1}", diff.Description, diff.Count);
                 Log(s);
             }
-            Log(string.Format("Successes={0} Errors={1}", successes, errorList.Count));
+            Log(string.Format("Successes={0} Errors={1}", testResult.Successes, testResult.ErrorList.Count));
         }
 
     }

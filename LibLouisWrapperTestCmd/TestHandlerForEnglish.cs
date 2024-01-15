@@ -17,23 +17,27 @@ namespace LibLouisWrapperTestCmd
         TestHandlerForEnglish(string testInputDir) : base("en-ueb-g2.ctb",testInputDir)
         {}
 
-        internal override bool ExecuteTests()
+        internal override TestResult ExecuteTests()
         {
-            if (!CheckWrapper()) return false;
-
-            string englishCharacters = "abcdefghijklmnopqrstuvwxyz"; // No æøå
-            for (int i = 0; ((testResult) && (i < 1)); i++)
+            if (!CheckWrapper())
             {
-                testResult &= CharsToDotsToCharsTest(englishCharacters.ToLower());     // Seems NOT to handle Capital letters !
-                testResult &= StringToDotsToStringTest(englishCharacters);               // Seems to handle Capital letters !
-//              testResult &= StringToDotsToStringTFETest(englishCharacters);             // Seems to handle Capital letters !         Disabled because it seems to cause strange errors           
+                testResult.Result = false;
+                return testResult;
             }
 
-            testResult &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
-            testResult &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt")); // ";" will fail !
+            string englishCharacters = "abcdefghijklmnopqrstuvwxyz"; // No æøå
+            for (int i = 0; ((testResult.Result) && (i < 1)); i++)
+            {
+                testResult.Result &= CharsToDotsToCharsTest(englishCharacters.ToLower());     // Seems NOT to handle Capital letters !
+                testResult.Result &= StringToDotsToStringTest(englishCharacters);               // Seems to handle Capital letters !
+//              testResult.Result &= StringToDotsToStringTFETest(englishCharacters);             // Seems to handle Capital letters !         Disabled because it seems to cause strange errors           
+            }
+
+            testResult.Result &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
+            testResult.Result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt")); // ";" will fail !
                                                                                                //englishResult &= RunTestFile(Path.Combine(testInputDir, "EnglishExperiment.txt"));
 
-            testResult &= RunTestFile(Path.Combine(testInputDir, "English.txt"));
+            testResult.Result &= RunTestFile(Path.Combine(testInputDir, "English.txt"));
             //englishResult &= RunTestFile(Path.Combine(testInputDir, "EnglishWithoutTabs.txt")); 
 
             OnEndOfTestFiles("English");
