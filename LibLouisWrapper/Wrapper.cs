@@ -106,7 +106,7 @@ namespace LibLouisWrapper
         private static void MyFunc(int level, string message)
         {
             globalErrorCount++;
-            if (ignoreFirstError) return; // Do not log simulated  error generated for test-purposes !
+            if (ignoreError) return; // Do not log simulated  error generated for test-purposes !
             Log(string.Format(": Received callback from LibLouis, describing an error: Level={0} Message={1}", level, message));
 
         }
@@ -299,7 +299,7 @@ namespace LibLouisWrapper
                     }
                 }
             }
-            if (1 != result) return OnError( "1 != result");          
+            if ((1 != result) && (!ignoreError)) return OnError( "1 != result");          
             if (null == outBuf) return OnError("null == outBuf");
             // Log(string.Format(": OutputLength changed from {0} to {1}", initialOutputLength, outputLength));
             output = GetOutputString(nativeFunctionEnum, outBuf, outputLength, charSize);
@@ -438,25 +438,42 @@ namespace LibLouisWrapper
         private int charSize;
         private Encoding encoding;
         private string tablePaths;
-        private static bool ignoreFirstError = false;
+        private static bool ignoreError = false; // Used by the ExecuteCallbackTest() method for not logging simulated errors.
         private bool useLogCallback = false;
 
+        private string SaveCopy(string s)
+        {
+            if (null == s) return null;
+            return string.Copy(s);        
+        }
+
+
         /// <summary>
-        /// Simple mechanism used by the constructor only.
+        /// Simple mechanism used by Constructor and  Dispose().
         /// Tests the LibLouis Log-Callback mechanism.
         /// </summary>
         private void ExecuteCallbackTest()
         {
             if (!useLogCallback) return;           
-            string testItem = " the LibLouis Log-Callback mechanism!";
-            Log(string.Format(": Simulating error in order to test{0}",testItem));
+            string testItemName = " the LibLouis Log-Callback mechanism!";
+            Log(string.Format(": Simulating error in order to test{0}",testItemName));
             string teststring;
             int oldErrorCount = globalErrorCount;
-            ignoreFirstError = true;
-            CharsToDots("x", out teststring); // Is expected to fail and thereby to increase globalErrorCount;
-            ignoreFirstError = false;
+            ignoreError = true;
+            string savedTablePaths =  SaveCopy(tablePaths);
+            try
+            {
+                tablePaths = Path.Combine(tableBase, "DoesNotExist.xxx"); // Temporarily set up a nonexisting tablepath while checking
+                bool b = CharsToDots("x", out teststring); // Is expected to fail and thereby to increase globalErrorCount;
+            }
+            catch (Exception e)
+            {
+                Log(string.Format(": Exception caught: Message='{0}'", e.Message));
+            }
+            tablePaths = SaveCopy(savedTablePaths);
+            ignoreError = false;
             bool ok = (globalErrorCount > oldErrorCount);          
-            Log(string.Format(": TEST {0}! Simulated error was {1} reported from LibLouis by{2} !", ok ? "PASSED" : "FAILED", ok ? "": "NOT", testItem));       
+            Log(string.Format(": TEST {0}! Simulated error was {1} reported from LibLouis by{2} !", ok ? "PASSED" : "FAILED", ok ? "": "NOT", testItemName));       
         }
 
         [Flags]
@@ -495,7 +512,7 @@ namespace LibLouisWrapper
             Log(string.Format(": Encoding={0}", encoding.ToString()));
 
             // Check the Logging callback mechanism:
-            tablePaths = Path.Combine(tableBase, "DoesNotExist.xxx"); // Temporarily set up a nonexisting tablepath while checking
+            //tablePaths = Path.Combine(tableBase, "DoesNotExist.xxx"); // Temporarily set up a nonexisting tablepath while checking
             ExecuteCallbackTest();  
             // Set up the real translation table
             tablePaths = Path.Combine(tableBase,tableNames); // According to the documentation only the first name needs to contain the tableBase !! 
@@ -573,6 +590,7 @@ namespace LibLouisWrapper
         {
             if (!disposed)
             {
+                ExecuteCallbackTest(); // Check that the GC has not moved the delegate while the native code has been holding its address.
                 Free();                // Clear all tables
                 UnregisterCallback();  // Prevent callbacks to delegate belonging to this object
                 disposed = true;       // HAndles later async calls from the GC 
