@@ -84,8 +84,12 @@ namespace LibLouisWrapper
         const TypeformEnum bold = TypeformEnum.emph_3;
 
 
-        private int depricatedModeParameter = 0;
-        private static int globalErrorCount = 0; // Counts errors reported from LibLouis dll and is used for checking the Logger Callback mechanism
+        private int depricatedModeParameter = 0;        
+        private static int globalLibLouisErrorCount = 0;
+        /// <summary>
+        /// // Counts errors reported from LibLouis dll and is used for checking the Logger Callback mechanism
+        /// </summary>
+        public static int GlobalLibLouisErrorCount { get { return globalLibLouisErrorCount; } }
 
         const int translationMode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille | TranslationModeEnum.DotsIO); // Common for all member functions
         const int translationMode1 = (int)(TranslationModeEnum.UnicodeBraille); // For experiment
@@ -105,7 +109,7 @@ namespace LibLouisWrapper
         private delegate void Func(int level, string message);
         private static void MyFunc(int level, string message)
         {
-            globalErrorCount++;
+            globalLibLouisErrorCount++;
             if (ignoreError) return; // Do not log simulated  error generated for test-purposes !
             Log(string.Format(": Received callback from LibLouis, describing an error: Level={0} Message={1}", level, message));
 
@@ -458,7 +462,7 @@ namespace LibLouisWrapper
             string testItemName = " the LibLouis Log-Callback mechanism!";
             Log(string.Format(": Simulating error in order to test{0}",testItemName)); 
             
-            int savedErrorCount = globalErrorCount;         // Save   before test
+            int savedErrorCount = globalLibLouisErrorCount;         // Save   before test
             bool savedIgnoreError = ignoreError;            // Save   before test
             string savedTablePaths =  SaveCopy(tablePaths); // Save   before test
 
@@ -473,9 +477,9 @@ namespace LibLouisWrapper
             {
                 Log(string.Format(": Exception thrown while calling CharsToDots(). Message='{0}'", e.Message));
             }
-            bool ok = (globalErrorCount > savedErrorCount);
+            bool ok = (globalLibLouisErrorCount > savedErrorCount);
 
-            globalErrorCount = savedErrorCount;       // Restore after test
+            globalLibLouisErrorCount = savedErrorCount;       // Restore after test
             tablePaths = SaveCopy(savedTablePaths);   // Restore after test
             ignoreError = savedIgnoreError;           // Restore after test
 

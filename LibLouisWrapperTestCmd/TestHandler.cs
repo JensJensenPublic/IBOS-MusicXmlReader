@@ -12,13 +12,15 @@ namespace LibLouisWrapperTestCmd
 {
     internal abstract class TestHandler : IDisposable
     {
-        private Wrapper libLouisWrapper;    
+        private Wrapper libLouisWrapper;
         //protected bool testResult = true; // Untill an error id found
         protected string testInputDir;
 
         protected TestResult testResult = TestResult.Create();
 
         internal abstract TestResult ExecuteTests();
+
+        internal int GlobalLibLouisErrorCount {get{ return Wrapper.GlobalLibLouisErrorCount; } }
 
         public void Dispose()
         {     

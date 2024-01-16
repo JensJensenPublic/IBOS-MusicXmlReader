@@ -46,6 +46,7 @@ namespace LibLouisWrapperTestCmd
             int overallSuccesses = 0;
             int overallErrors = 0;
             int overallDiffs = 0;
+            int overallLibLouisErrorCount = 0;
 
             TestResult localResult;
 
@@ -61,7 +62,7 @@ namespace LibLouisWrapperTestCmd
                         overallSuccesses += localResult.Successes;
                         overallErrors += localResult.ErrorList.Count;
                         overallDiffs += localResult.AllDiffs.Diffs.Count;
-
+                        overallLibLouisErrorCount += testHandlerForDanish.GlobalLibLouisErrorCount;
                     }
 
                     using (TestHandler testHandlerForEnglish = TestHandlerForEnglish.Create(testInputDir))
@@ -70,6 +71,7 @@ namespace LibLouisWrapperTestCmd
                         overallSuccesses += localResult.Successes;
                         overallErrors += localResult.ErrorList.Count;
                         overallDiffs += localResult.AllDiffs.Diffs.Count;
+                        overallLibLouisErrorCount += testHandlerForEnglish.GlobalLibLouisErrorCount;
                     }
 
                     overallTestLoops++;
@@ -83,6 +85,7 @@ namespace LibLouisWrapperTestCmd
             }
 
             Log(string.Format(": Test completed: TestLoops={0} Successes={1} Errors={2} Differences={3}", overallTestLoops,   overallSuccesses, overallErrors, overallDiffs));
+            Log(string.Format(": Number of errors reported by LibLouis={0}", overallLibLouisErrorCount));
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
