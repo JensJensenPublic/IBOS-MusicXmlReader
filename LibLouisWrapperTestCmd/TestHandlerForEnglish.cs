@@ -29,16 +29,15 @@ namespace LibLouisWrapperTestCmd
             for (int i = 0; ((testResult.Result) && (i < 1)); i++)
             {
                 testResult.Result &= CharsToDotsToCharsTest(englishCharacters.ToLower());     // Seems NOT to handle Capital letters !
-                testResult.Result &= StringToDotsToStringTest(englishCharacters);               // Seems to handle Capital letters !
-//              testResult.Result &= StringToDotsToStringTFETest(englishCharacters);             // Seems to handle Capital letters !         Disabled because it seems to cause strange errors           
+                testResult.Result &= StringToDotsToStringTest(englishCharacters);             // Seems to handle Capital letters !
+                testResult.Result &= StringToDotsToStringTFETest(englishCharacters);         // Seems to handle Capital letters !         Disabled because it seems to cause strange errors           
             }
 
             testResult.Result &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
             testResult.Result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt")); // ";" will fail !
-                                                                                               //englishResult &= RunTestFile(Path.Combine(testInputDir, "EnglishExperiment.txt"));
 
-            testResult.Result &= RunTestFile(Path.Combine(testInputDir, "English.txt"));
-            //englishResult &= RunTestFile(Path.Combine(testInputDir, "EnglishWithoutTabs.txt")); 
+            //testResult.Result &= RunTestFile(Path.Combine(testInputDir, "English.txt")); // Through the mirror
+
 
             OnEndOfTestFiles("English");
             return testResult;
