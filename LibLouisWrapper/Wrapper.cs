@@ -456,23 +456,29 @@ namespace LibLouisWrapper
         {
             if (!useLogCallback) return;           
             string testItemName = " the LibLouis Log-Callback mechanism!";
-            Log(string.Format(": Simulating error in order to test{0}",testItemName));
+            Log(string.Format(": Simulating error in order to test{0}",testItemName)); 
+            
+            int savedErrorCount = globalErrorCount;         // Save   before test
+            bool savedIgnoreError = ignoreError;            // Save   before test
+            string savedTablePaths =  SaveCopy(tablePaths); // Save   before test
+
+            ignoreError = true;                             // Modify before test
+            tablePaths = Path.Combine(tableBase, "DoesNotExist.xxx"); //  Modify before test: Temporarily set up a nonexisting tablepath
             string teststring;
-            int oldErrorCount = globalErrorCount;
-            ignoreError = true;
-            string savedTablePaths =  SaveCopy(tablePaths);
             try
-            {
-                tablePaths = Path.Combine(tableBase, "DoesNotExist.xxx"); // Temporarily set up a nonexisting tablepath while checking
+            {              
                 bool b = CharsToDots("x", out teststring); // Is expected to fail and thereby to increase globalErrorCount;
             }
             catch (Exception e)
             {
-                Log(string.Format(": Exception caught: Message='{0}'", e.Message));
+                Log(string.Format(": Exception thrown while calling CharsToDots(). Message='{0}'", e.Message));
             }
-            tablePaths = SaveCopy(savedTablePaths);
-            ignoreError = false;
-            bool ok = (globalErrorCount > oldErrorCount);          
+            bool ok = (globalErrorCount > savedErrorCount);
+
+            globalErrorCount = savedErrorCount;       // Restore after test
+            tablePaths = SaveCopy(savedTablePaths);   // Restore after test
+            ignoreError = savedIgnoreError;           // Restore after test
+
             Log(string.Format(": TEST {0}! Simulated error was {1} reported from LibLouis by{2} !", ok ? "PASSED" : "FAILED", ok ? "": "NOT", testItemName));       
         }
 
