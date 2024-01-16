@@ -247,11 +247,11 @@ namespace LibLouisWrapper
         private int GetTfeLength(int inputLength, NativeFunctionEnum nativeFunctionEnum)
         {
 #warning TODO Find out why a smaller defaultBufferSize, for instance "defaultBufferSize =(inputLength * 2)" causes ctrange crashes !!
-            int defaultBufferSize = Math.Max(1024, (inputLength * 2)); // Twice as many Typeform items as input elements, but at least 1024
+            int defaultTfeBufferSize = Math.Max(1024, (inputLength * 2)); // Twice as many Typeform items as input elements, but at least 1024
             switch (nativeFunctionEnum) 
             {
-                case NativeFunctionEnum.translateStringTfe: return defaultBufferSize;
-                case NativeFunctionEnum.backTranslateStringTfe:return defaultBufferSize;
+                case NativeFunctionEnum.translateStringTfe: return defaultTfeBufferSize;
+                case NativeFunctionEnum.backTranslateStringTfe:return defaultTfeBufferSize;
             }
             return 0; // No buffer needed i these cases
         }
