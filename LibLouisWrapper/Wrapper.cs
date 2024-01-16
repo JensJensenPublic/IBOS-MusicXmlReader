@@ -382,7 +382,11 @@ namespace LibLouisWrapper
             StringBuilder sb = new StringBuilder();
             foreach (TypeformEnum t in tfe)
             {
-                sb.Append(String.Format("{0:x} ", (int)t));
+                // When the buffer used for Typeform information in the call to native code is too small a crash seems to occur around here.
+                // For this reason we split up in small steps to illustrate that the crash has to do with the use of native code, not with this method!
+                int i = (int)t;
+                string s = String.Format("0x{0:x} ", i); // Format as HEX
+                sb.Append(s);   
             }
             return(string.Format("Length={0} HexValues={1}", tfe.Length, sb.ToString()));
         }
