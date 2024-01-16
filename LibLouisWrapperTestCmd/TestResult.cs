@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,14 @@ namespace LibLouisWrapperTestCmd
         public int Successes { get { return successes; } set { successes = value; } }
         private DiffList allDiffs = DiffList.Create();
         public DiffList AllDiffs {  get { return allDiffs; } }
+
+        public void AddRange(TestResult that)
+        {
+            this.errorList.AddRange(that.errorList);
+            this.successes += that.successes;
+            this.allDiffs.AddRange(that.allDiffs);
+        }
+
 
         private TestResult()
         { }

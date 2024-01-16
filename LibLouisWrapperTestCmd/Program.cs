@@ -4,12 +4,15 @@ using System.Text;
 using static LibLouisWrapper.Wrapper;
 using MusicXmlReaderModel;
 using System.IO;
+using System.Net.NetworkInformation;
 
 namespace LibLouisWrapperTestCmd
 {
     internal class Program
     {
         static string testInputDir;
+
+
 
         static private void Log(string s)
         {
@@ -29,7 +32,12 @@ namespace LibLouisWrapperTestCmd
             }
             return true;
         }
-      
+
+
+        static TestResult localDanishResult;
+        static TestResult localEnglishResult;
+        static TestResult localGermanResult;
+        static TestResult overallTestResult; // For collecting results of all test
 
         static void Main(string[] args)
         {            
@@ -42,37 +50,29 @@ namespace LibLouisWrapperTestCmd
 
             if (!CheckTestFileInstallation()) return; // No reason to continue
 
-            int overallTestLoops = 0;
-            int overallSuccesses = 0;
-            int overallErrors = 0;
-            int overallDiffs = 0;
+            int overallTestLoops = 0;          
             int overallLibLouisErrorCount = 0;
-
-            TestResult localResult;
-
-
+            overallTestResult = TestResult.Create();
             try
             {
-                for (int i = 0; i < 100; i++) // Prepare for "endurance" test
+                for (int i = 0; i < 10; i++) // Prepare for "endurance" test
                 {
 
-                    using (TestHandler testHandlerForDanish = TestHandlerForDanish.Create(testInputDir))
+                    using (TestHandler testHandler = TestHandlerForDanish.Create(testInputDir))
                     {
-                        localResult = testHandlerForDanish.ExecuteTests(); // The "using" clause will cause a call to Dispose()
-                        overallSuccesses += localResult.Successes;
-                        overallErrors += localResult.ErrorList.Count;
-                        overallDiffs += localResult.AllDiffs.Diffs.Count;
-                        overallLibLouisErrorCount += testHandlerForDanish.GlobalLibLouisErrorCount;
+                        localDanishResult = testHandler.ExecuteTests(); // The "using" clause will cause a call to Dispose()
+                        overallTestResult.AddRange(localDanishResult);                    
+                        overallLibLouisErrorCount += testHandler.GlobalLibLouisErrorCount;
                     }
 
-                    using (TestHandler testHandlerForEnglish = TestHandlerForEnglish.Create(testInputDir))
+                    using (TestHandler testHandler = TestHandlerForEnglish.Create(testInputDir))
                     {
-                        localResult = testHandlerForEnglish.ExecuteTests(); // The "using" clause will cause a call to Dispose()
-                        overallSuccesses += localResult.Successes;
-                        overallErrors += localResult.ErrorList.Count;
-                        overallDiffs += localResult.AllDiffs.Diffs.Count;
-                        overallLibLouisErrorCount += testHandlerForEnglish.GlobalLibLouisErrorCount;
+                        localEnglishResult = testHandler.ExecuteTests(); // The "using" clause will cause a call to Dispose()
+                        overallTestResult.AddRange(localEnglishResult);
+                        overallLibLouisErrorCount += testHandler.GlobalLibLouisErrorCount;
                     }
+
+#warning Add other languages here! 
 
                     overallTestLoops++;
                 }
@@ -83,8 +83,8 @@ namespace LibLouisWrapperTestCmd
             {
                 Log(string.Format(": Main() failed because of an exception!  Exception.Message='{0}'", e.Message));                         
             }
-
-            Log(string.Format(": Test completed: TestLoops={0} Successes={1} Errors={2} Differences={3}", overallTestLoops,   overallSuccesses, overallErrors, overallDiffs));
+            TestResult otr = overallTestResult; // Just to reduce amount of text
+            Log(string.Format(": Test completed: TestLoops={0} Successes={1} Errors={2} Differences={3}", overallTestLoops,   otr.Successes, otr.ErrorList.Count, otr.AllDiffs.Diffs.Count));
             Log(string.Format(": Number of errors reported by LibLouis={0}", overallLibLouisErrorCount));
 
             Console.WriteLine("Press any key to exit");

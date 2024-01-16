@@ -44,6 +44,15 @@ namespace LibLouisWrapperTestCmd
             return new DiffList();
         }
 
+        internal int AddRange(DiffList that)
+        {   
+            foreach (Diff diff in that.diffs)
+            {
+                this.diffs.Add(diff);  
+            }
+            return this.diffs.Count; 
+        }
+
         internal int Add(String s)
         {
             int index = diffs.FindIndex(d => d.Description.Equals(s));
