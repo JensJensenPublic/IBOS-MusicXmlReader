@@ -59,7 +59,7 @@ namespace LibLouisWrapperTestCmd
             {
                 for (int i = 0; i < 1; i++) // Prepare for "endurance" test
                 {
-#if false
+#if true
                     using (TestHandler testHandler = TestHandlerForTypeForm.Create(testInputDir))
                     {
                         localFormTypeResult = testHandler.ExecuteTests(); // The "using" clause will cause a call to Dispose()
@@ -67,7 +67,7 @@ namespace LibLouisWrapperTestCmd
                         overallLibLouisErrorCount += testHandler.GlobalLibLouisErrorCount;
                     }
 #endif
-#if true
+#if false
                     using (TestHandler testHandler = TestHandlerForDanish.Create(testInputDir))
                     {
                         localDanishResult = testHandler.ExecuteTests(); // The "using" clause will cause a call to Dispose()

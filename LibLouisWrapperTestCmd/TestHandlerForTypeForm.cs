@@ -19,6 +19,19 @@ namespace LibLouisWrapperTestCmd
         TestHandlerForTypeForm(string testInputDir) : base("en-ueb-g2.ctb",testInputDir)
         {}
 
+        private bool TranslateStringTFE(string text, out string dots, TypeformEnum[] tfs)
+        { 
+            bool result = libLouisWrapper.TranslateStringTFE(text, out dots, tfs);
+            StringBuilder sb = new StringBuilder();
+            foreach (TypeformEnum ft in tfs)
+            {
+                sb.Append(ft.ToString() + " ");
+            }
+            Log(string.Format("TranslateStringTFE({0},{1}) returned Dots={2}", text, sb.ToString(), dots));
+            return result;
+        }
+
+
         internal override TestResult ExecuteTests()
         {
             if (!CheckWrapper())
@@ -30,16 +43,18 @@ namespace LibLouisWrapperTestCmd
             string plainDots;
             string italicDots;
             string underlinedDots;
+
             string boldDots;
+            string text = "x";
 
             TypeformEnum[] plainText = new TypeformEnum[] { TypeformEnum.plain_text };
             TypeformEnum[] italicText = new TypeformEnum[] { TypeformEnum.italic};
             TypeformEnum[] underlinedText = new TypeformEnum[] { TypeformEnum.underline };
             TypeformEnum[] boldText = new TypeformEnum[] { TypeformEnum.bold };
-            testResult.Result &= libLouisWrapper.TranslateStringTFE("x", out plainDots, plainText);
-            testResult.Result &= libLouisWrapper.TranslateStringTFE("x", out italicDots, italicText);
-            testResult.Result &= libLouisWrapper.TranslateStringTFE("x", out underlinedDots, underlinedText);
-            testResult.Result &= libLouisWrapper.TranslateStringTFE("x", out boldDots, boldText);
+            testResult.Result &= TranslateStringTFE(text, out plainDots, plainText);        
+            testResult.Result &= TranslateStringTFE(text, out italicDots, italicText);
+            testResult.Result &= TranslateStringTFE(text, out underlinedDots, underlinedText);
+            testResult.Result &= TranslateStringTFE(text, out boldDots, boldText);
 
             return testResult;            
         }
