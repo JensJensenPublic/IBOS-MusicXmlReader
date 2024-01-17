@@ -327,14 +327,6 @@ namespace LibLouisWrapper
             byte[] outBuf = new byte[outputLength];
 #warning todo implement CreateOutputBuffer()
             TypeformEnum[] tfeBuf = CreateTfeBuffer(input.Length, nativeFunctionEnum, tfeInput);
-#if false
-            int tfeLength = GetTfeLength(input.Length, nativeFunctionEnum);
-            TypeformEnum[] tfeBuf = new TypeformEnum[tfeLength];         
-            if ((null != tfeInput) && (tfeInput.Length <= tfeLength))
-            { 
-                Array.Copy(tfeInput,tfeBuf,tfeInput.Length); // Copy to the common buffer to be passed to native code
-            }
-#endif
             int result = 0;
             unsafe
             {
