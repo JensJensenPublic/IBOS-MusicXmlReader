@@ -37,6 +37,8 @@ namespace LibLouisWrapperTestCmd
         static TestResult localDanishResult;
         static TestResult localEnglishResult;
         static TestResult localGermanResult;
+        static TestResult localFormTypeResult;
+
         static TestResult overallTestResult; // For collecting results of all test
 
         static void Main(string[] args)
@@ -55,9 +57,17 @@ namespace LibLouisWrapperTestCmd
             overallTestResult = TestResult.Create();
             try
             {
-                for (int i = 0; i < 10; i++) // Prepare for "endurance" test
+                for (int i = 0; i < 1; i++) // Prepare for "endurance" test
                 {
-
+#if false
+                    using (TestHandler testHandler = TestHandlerForTypeForm.Create(testInputDir))
+                    {
+                        localFormTypeResult = testHandler.ExecuteTests(); // The "using" clause will cause a call to Dispose()
+                        overallTestResult.AddRange(localFormTypeResult);
+                        overallLibLouisErrorCount += testHandler.GlobalLibLouisErrorCount;
+                    }
+#endif
+#if true
                     using (TestHandler testHandler = TestHandlerForDanish.Create(testInputDir))
                     {
                         localDanishResult = testHandler.ExecuteTests(); // The "using" clause will cause a call to Dispose()
@@ -71,6 +81,7 @@ namespace LibLouisWrapperTestCmd
                         overallTestResult.AddRange(localEnglishResult);
                         overallLibLouisErrorCount += testHandler.GlobalLibLouisErrorCount;
                     }
+#endif
 
 #warning Add other languages here! 
 

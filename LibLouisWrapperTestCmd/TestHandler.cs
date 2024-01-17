@@ -12,7 +12,8 @@ namespace LibLouisWrapperTestCmd
 {
     internal abstract class TestHandler : IDisposable
     {
-        private Wrapper libLouisWrapper;
+        protected Wrapper libLouisWrapper;
+
         //protected bool testResult = true; // Untill an error id found
         protected string testInputDir;
 
@@ -92,8 +93,8 @@ namespace LibLouisWrapperTestCmd
             string dots;
             bool ok;
 
-            TypeformEnum[] typeForms;
-            ok = libLouisWrapper.TranslateStringTFE(text, out dots, out typeForms);
+            TypeformEnum[] typeForms = new TypeformEnum[] { };
+            ok = libLouisWrapper.TranslateStringTFE(text, out dots, in typeForms);
             Log(FormatTranslateResultTFE("TranslateStringTFE", text, ok, dots, typeForms));
 
             string newText;

@@ -65,6 +65,7 @@
     <Compile Include="TestHandler.cs" />
     <Compile Include="TestHandlerForDanish.cs" />
     <Compile Include="TestHandlerForEnglish.cs" />
+    <Compile Include="TestHandlerForTypeForm.cs" />
     <Compile Include="TestResult.cs" />
   </ItemGroup>
   <ItemGroup>
