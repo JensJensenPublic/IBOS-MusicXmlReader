@@ -11,6 +11,19 @@ namespace LibLouisWrapperTestCmd
 {
     internal class TestHandlerForTypeForm : TestHandler
     {
+        //**************************************************************************************
+        //
+        // https://www.pathstoliteracy.org/ueb-lesson-4-typeform-indicators-used-ueb/
+        //
+        //                 Italics    Underline   Bold
+        // Single letter   46,23      456,23      45,23
+        // Word            46,2       456,2       45,2  
+        // Passage begin   46,2356    456,2356    45,2356
+        // Passege end     46,3       456,3       45,3
+        //
+        //**************************************************************************************
+
+
         internal static TestHandlerForTypeForm Create(string testInputDir)
         {
             return new TestHandlerForTypeForm(testInputDir);
