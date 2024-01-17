@@ -242,7 +242,16 @@ namespace LibLouisWrapper
             return defaultResult;
         }
 
-        
+        private TypeformEnum[] CreateTfeBuffer(int inputLength, NativeFunctionEnum nativeFunctionEnum, TypeformEnum[] tfeInput)
+        {         
+            int length = GetTfeLength(inputLength, nativeFunctionEnum);
+            TypeformEnum[] result = new TypeformEnum[length];
+            if ((null != tfeInput) && (tfeInput.Length <= length))
+            {
+                Array.Copy(tfeInput, result, tfeInput.Length); // Copy to the common buffer to be passed to native code
+            }
+            return result;
+        }
 
         private int GetTfeLength(int inputLength, NativeFunctionEnum nativeFunctionEnum)
         {
@@ -316,12 +325,16 @@ namespace LibLouisWrapper
             int outputLength = GetOutputLength(inBuf.Length, nativeFunctionEnum);
             int initialOutputLength = outputLength; // Only used for logging 
             byte[] outBuf = new byte[outputLength];
+#warning todo implement CreateOutputBuffer()
+            TypeformEnum[] tfeBuf = CreateTfeBuffer(input.Length, nativeFunctionEnum, tfeInput);
+#if false
             int tfeLength = GetTfeLength(input.Length, nativeFunctionEnum);
-            TypeformEnum[] tfeBuf = new TypeformEnum[tfeLength];
+            TypeformEnum[] tfeBuf = new TypeformEnum[tfeLength];         
             if ((null != tfeInput) && (tfeInput.Length <= tfeLength))
             { 
                 Array.Copy(tfeInput,tfeBuf,tfeInput.Length); // Copy to the common buffer to be passed to native code
             }
+#endif
             int result = 0;
             unsafe
             {
