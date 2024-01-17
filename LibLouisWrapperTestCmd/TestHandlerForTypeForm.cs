@@ -64,10 +64,13 @@ namespace LibLouisWrapperTestCmd
             TypeformEnum[] italicText = new TypeformEnum[] { TypeformEnum.italic};
             TypeformEnum[] underlinedText = new TypeformEnum[] { TypeformEnum.underline };
             TypeformEnum[] boldText = new TypeformEnum[] { TypeformEnum.bold };
+            TypeformEnum[] mixedText = new TypeformEnum[] { TypeformEnum.plain_text,TypeformEnum.italic,TypeformEnum.underline,TypeformEnum.bold };
+
             testResult.Result &= TranslateStringTFE(text, out plainDots, plainText);        
             testResult.Result &= TranslateStringTFE(text, out italicDots, italicText);
             testResult.Result &= TranslateStringTFE(text, out underlinedDots, underlinedText);
             testResult.Result &= TranslateStringTFE(text, out boldDots, boldText);
+            testResult.Result &= TranslateStringTFE("aaaa", out boldDots, mixedText);
 
             return testResult;            
         }
