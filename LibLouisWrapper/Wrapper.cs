@@ -242,6 +242,14 @@ namespace LibLouisWrapper
             return defaultResult;
         }
 
+        private byte[] CreateOutputBuffer(int inBufLength, NativeFunctionEnum nativeFunctionEnum)
+        {
+            int outputLength = GetOutputLength(inBufLength, nativeFunctionEnum);
+            byte[] outBuf = new byte[outputLength];
+            return outBuf;
+        }
+
+
         private TypeformEnum[] CreateTfeBuffer(int inputLength, NativeFunctionEnum nativeFunctionEnum, TypeformEnum[] tfeInput)
         {         
             int length = GetTfeLength(inputLength, nativeFunctionEnum);
@@ -317,22 +325,17 @@ namespace LibLouisWrapper
         /// <param name="tfeOutput"></param>
         /// <returns></returns>
         private bool CommonNativeCallImpl(NativeFunctionEnum nativeFunctionEnum, string input, out string output, in TypeformEnum[] tfeInput, out TypeformEnum[] tfeOutput)
-        {     
-            output = null;
-            tfeOutput = null;
+        {  
             int inputLength = input.Length;          
             byte[] inBuf = encoding.GetBytes(input);
-            int outputLength = GetOutputLength(inBuf.Length, nativeFunctionEnum);
-            int initialOutputLength = outputLength; // Only used for logging 
-            byte[] outBuf = new byte[outputLength];
-#warning todo implement CreateOutputBuffer()
+            byte[] outBuf = CreateOutputBuffer(inBuf.Length, nativeFunctionEnum);          
             TypeformEnum[] tfeBuf = CreateTfeBuffer(input.Length, nativeFunctionEnum, tfeInput);
+            int outputLength = outBuf.Length;
             int result = 0;
             unsafe
             {
                 IntPtr inPtr = new IntPtr(&inputLength);
                 IntPtr outPrt = new IntPtr(&outputLength);
-
                 fixed (byte* pInBuf = inBuf, pOutBuf = outBuf) // Prevents GarbageCollector from moving the buffers
                 {
                     fixed (TypeformEnum* pTfeBuf = tfeBuf) // Two levels are needed for fixing different types !
@@ -358,9 +361,10 @@ namespace LibLouisWrapper
                     }
                 }
             }
+            output = null; 
+            tfeOutput = null;
             if ((1 != result) && (!ignoreError)) return OnError( "1 != result");          
             if (null == outBuf) return OnError("null == outBuf");
-            // Log(string.Format(": OutputLength changed from {0} to {1}", initialOutputLength, outputLength));
             output = GetOutputString(nativeFunctionEnum, outBuf, outputLength, charSize);
             //Log(string.Format("({0},'{1}')='{2}'", nativeFunctionEnum, input, output));
             tfeOutput = GetOutputTypeForms(nativeFunctionEnum, tfeBuf, outputLength); 
