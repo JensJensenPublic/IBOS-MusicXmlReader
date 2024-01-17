@@ -74,7 +74,8 @@ namespace LibLouisWrapperTestCmd
                         overallTestResult.AddRange(localDanishResult);                    
                         overallLibLouisErrorCount += testHandler.GlobalLibLouisErrorCount;
                     }
-
+#endif
+#if true
                     using (TestHandler testHandler = TestHandlerForEnglish.Create(testInputDir))
                     {
                         localEnglishResult = testHandler.ExecuteTests(); // The "using" clause will cause a call to Dispose()

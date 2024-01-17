@@ -45,7 +45,7 @@ namespace LibLouisWrapperTestCmd
             string underlinedDots;
 
             string boldDots;
-            string text = "x";
+            string text = "a"; 
 
             TypeformEnum[] plainText = new TypeformEnum[] { TypeformEnum.plain_text };
             TypeformEnum[] italicText = new TypeformEnum[] { TypeformEnum.italic};
