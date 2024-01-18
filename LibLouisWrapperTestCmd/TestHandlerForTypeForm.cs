@@ -40,13 +40,14 @@ namespace LibLouisWrapperTestCmd
             {
                 sb.Append(ft.ToString() + " ");
             }
-            Log(string.Format("TranslateStringTFE({0},{1}) returned Dots={2}", text, sb.ToString(), dots));
+            Log(string.Format(": TranslateStringTFE({0},[ {1}]) returned Dots[{2}]={3}", text, sb.ToString(),dots.Length, dots));
             return result;
         }
 
 
         internal override TestResult ExecuteTests()
         {
+            Log("+");
             if (!CheckWrapper())
             {
                 testResult.Result = false;
@@ -56,22 +57,34 @@ namespace LibLouisWrapperTestCmd
             string plainDots;
             string italicDots;
             string underlinedDots;
-
             string boldDots;
-            string text = "a"; 
+            string dots;
 
-            TypeformEnum[] plainText = new TypeformEnum[] { TypeformEnum.plain_text };
-            TypeformEnum[] italicText = new TypeformEnum[] { TypeformEnum.italic};
-            TypeformEnum[] underlinedText = new TypeformEnum[] { TypeformEnum.underline };
-            TypeformEnum[] boldText = new TypeformEnum[] { TypeformEnum.bold };
-            TypeformEnum[] mixedText = new TypeformEnum[] { TypeformEnum.plain_text,TypeformEnum.italic,TypeformEnum.underline,TypeformEnum.bold };
+            TypeformEnum[] plainChar = new TypeformEnum[] { TypeformEnum.plain_text };
+            TypeformEnum[] italicChar = new TypeformEnum[] { TypeformEnum.italic};
+            TypeformEnum[] underlinedChar = new TypeformEnum[] { TypeformEnum.underline };
+            TypeformEnum[] boldChar = new TypeformEnum[] { TypeformEnum.bold };
+            TypeformEnum[] mixedWord = new TypeformEnum[] { TypeformEnum.plain_text, TypeformEnum.italic, TypeformEnum.underline, TypeformEnum.bold };
+            TypeformEnum[] plainWord = new TypeformEnum[] { TypeformEnum.plain_text, TypeformEnum.plain_text, TypeformEnum.plain_text, TypeformEnum.plain_text };
+            TypeformEnum[] italicWord = new TypeformEnum[] { TypeformEnum.italic, TypeformEnum.italic, TypeformEnum.italic, TypeformEnum.italic };
+            TypeformEnum[] underlinedWord = new TypeformEnum[] { TypeformEnum.underline, TypeformEnum.underline, TypeformEnum.underline, TypeformEnum.underline };
+            TypeformEnum[] boldWord = new TypeformEnum[] { TypeformEnum.bold, TypeformEnum.bold, TypeformEnum.bold, TypeformEnum.bold };
 
-            testResult.Result &= TranslateStringTFE(text, out plainDots, plainText);        
-            testResult.Result &= TranslateStringTFE(text, out italicDots, italicText);
-            testResult.Result &= TranslateStringTFE(text, out underlinedDots, underlinedText);
-            testResult.Result &= TranslateStringTFE(text, out boldDots, boldText);
-            testResult.Result &= TranslateStringTFE("aaaa", out boldDots, mixedText);
+            Log(": A single character with 5 different fonttypes");
+            testResult.Result &= TranslateStringTFE("a", out plainDots, plainChar);        
+            testResult.Result &= TranslateStringTFE("a", out italicDots, italicChar);
+            testResult.Result &= TranslateStringTFE("a", out underlinedDots, underlinedChar);
+            testResult.Result &= TranslateStringTFE("a", out boldDots, boldChar);
 
+            Log(": A 4-letter word with 4 different fonttypes");
+            testResult.Result &= TranslateStringTFE("aaaa", out dots, mixedWord);
+            Log("A 4-letter word with 4 identical fonttypes");
+            testResult.Result &= TranslateStringTFE("aaaa", out dots, plainWord);
+            testResult.Result &= TranslateStringTFE("aaaa", out dots, italicWord);
+            testResult.Result &= TranslateStringTFE("aaaa", out dots, underlinedWord);
+            testResult.Result &= TranslateStringTFE("aaaa", out dots, boldWord);
+
+            Log("-");
             return testResult;            
         }
 
