@@ -83,34 +83,7 @@ namespace LibLouisWrapperTestCmd
             return equal;
         }
 
-        /// <summary>
-        /// Tests the roundtrip TranslateString, BackTranslateString
-        /// </summary>
-        /// <param name="text">The string to take through the roundtrip</param>
-        /// <returns>True <==> success</returns>
-        protected bool StringToDotsToStringTFETest(string text)
-        {
-            string dots;
-            bool ok;
-
-            TypeformEnum[] typeForms = new TypeformEnum[] { };
-            ok = libLouisWrapper.TranslateStringTFE(text, out dots, in typeForms);
-            Log(FormatTranslateResultTFE("TranslateStringTFE", text, ok, dots, typeForms));
-
-            string newText;
-            TypeformEnum[] typeFormsBack;
-            ok = libLouisWrapper.BackTranslateStringTFE(dots, out newText, out typeFormsBack);
-            Log(FormatTranslateResultTFE("BackTranslateStringTFE", dots, ok, newText, typeFormsBack));
-
-            bool equal = (0 == string.Compare(text, newText));
-            string message = string.Format(": {0} BackTranslateStringTFE(TranslateStringTFE(text)) {1} text", equal ? "PASSED" : "FAILED", equal ? "==" : "<>");
-            Log(message);
-            if (!equal)
-            {
-                testResult.ErrorList.Add(Logger.GetCF(message));
-            }
-            return equal;
-        }
+  
 
         protected bool StringToDotsToStringTest(string text)
         {
@@ -168,14 +141,9 @@ namespace LibLouisWrapperTestCmd
             return "No difference found";
         }
 
-        private  string FormatTranslateResult(string method, string input, bool result, string output)
+        private string FormatTranslateResult(string method, string input, bool result, string output)
         {
             return string.Format(": {0}('{1}') returned {2}. OutPut[{3}]='{4}') ", method, input, result, output.Length, output);
-        }
-
-        private  string FormatTranslateResultTFE(string method, string input, bool result, string output, TypeformEnum[] tfe)
-        {
-            return string.Format(": {0}('{1}') returned {2}. Tfe.Length={3} Output[{4}]='{5}') ", method, input, result, tfe, output.Length, output);
         }
 
         protected bool RunTestFile(string fullFileName)

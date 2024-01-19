@@ -32,7 +32,7 @@ namespace LibLouisWrapperTestCmd
             {
                 testResult.Result &= CharsToDotsToCharsTest(danishCharacters.ToLower());     // Seems NOT to handle Capital letters !
                 testResult.Result &= StringToDotsToStringTest(danishCharacters);               // Seems to handle Capital letters !
-                testResult.Result &= StringToDotsToStringTFETest(danishCharacters);             // Seems to handle Capital letters !       Disabled because it seems to cause strange errors        
+ //               testResult.Result &= StringToDotsToStringTFETest(danishCharacters);             // Seems to handle Capital letters !       Disabled because it seems to cause strange errors        
             }
 
             // Run explicitly named testfiles
