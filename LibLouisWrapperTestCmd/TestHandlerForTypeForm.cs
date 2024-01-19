@@ -44,6 +44,12 @@ namespace LibLouisWrapperTestCmd
             return result;
         }
 
+        // Some simple shorthands to reduce amount of text:
+        public const TypeformEnum Plain = TypeformEnum.plain_text;
+        public const TypeformEnum Italic = TypeformEnum.italic;
+        public const TypeformEnum Underline = TypeformEnum.underline;
+        public const TypeformEnum Bold = TypeformEnum.bold;
+
 
         internal override TestResult ExecuteTests()
         {
@@ -58,31 +64,21 @@ namespace LibLouisWrapperTestCmd
             string italicDots;
             string underlinedDots;
             string boldDots;
-            string dots;
-
-            TypeformEnum[] plainChar = new TypeformEnum[] { TypeformEnum.plain_text };
-            TypeformEnum[] italicChar = new TypeformEnum[] { TypeformEnum.italic};
-            TypeformEnum[] underlinedChar = new TypeformEnum[] { TypeformEnum.underline };
-            TypeformEnum[] boldChar = new TypeformEnum[] { TypeformEnum.bold };
-            TypeformEnum[] mixedWord = new TypeformEnum[] { TypeformEnum.plain_text, TypeformEnum.italic, TypeformEnum.underline, TypeformEnum.bold };
-            TypeformEnum[] plainWord = new TypeformEnum[] { TypeformEnum.plain_text, TypeformEnum.plain_text, TypeformEnum.plain_text, TypeformEnum.plain_text };
-            TypeformEnum[] italicWord = new TypeformEnum[] { TypeformEnum.italic, TypeformEnum.italic, TypeformEnum.italic, TypeformEnum.italic };
-            TypeformEnum[] underlinedWord = new TypeformEnum[] { TypeformEnum.underline, TypeformEnum.underline, TypeformEnum.underline, TypeformEnum.underline };
-            TypeformEnum[] boldWord = new TypeformEnum[] { TypeformEnum.bold, TypeformEnum.bold, TypeformEnum.bold, TypeformEnum.bold };
+            string dots;      
 
             Log(": A single character with 5 different fonttypes");
-            testResult.Result &= TranslateStringTFE("a", out plainDots, plainChar);        
-            testResult.Result &= TranslateStringTFE("a", out italicDots, italicChar);
-            testResult.Result &= TranslateStringTFE("a", out underlinedDots, underlinedChar);
-            testResult.Result &= TranslateStringTFE("a", out boldDots, boldChar);
+            testResult.Result &= TranslateStringTFE("a", out plainDots, new TypeformEnum[] { Plain });        
+            testResult.Result &= TranslateStringTFE("a", out italicDots, new TypeformEnum[] { Italic });
+            testResult.Result &= TranslateStringTFE("a", out underlinedDots, new TypeformEnum[] { Underline });
+            testResult.Result &= TranslateStringTFE("a", out boldDots, new TypeformEnum[] { Bold });
 
             Log(": A 4-letter word with 4 different fonttypes");
-            testResult.Result &= TranslateStringTFE("aaaa", out dots, mixedWord);
+            testResult.Result &= TranslateStringTFE("aaaa", out dots, new TypeformEnum[] { Plain, Italic, Underline, Bold });
             Log("A 4-letter word with 4 identical fonttypes");
-            testResult.Result &= TranslateStringTFE("aaaa", out dots, plainWord);
-            testResult.Result &= TranslateStringTFE("aaaa", out dots, italicWord);
-            testResult.Result &= TranslateStringTFE("aaaa", out dots, underlinedWord);
-            testResult.Result &= TranslateStringTFE("aaaa", out dots, boldWord);
+            testResult.Result &= TranslateStringTFE("aaaa", out dots, new TypeformEnum[] { Plain, Plain, Plain, Plain });
+            testResult.Result &= TranslateStringTFE("aaaa", out dots, new TypeformEnum[] { Italic, Italic, Italic, Italic });
+            testResult.Result &= TranslateStringTFE("aaaa", out dots, new TypeformEnum[] { Underline, Underline, Underline, Underline });
+            testResult.Result &= TranslateStringTFE("aaaa", out dots, new TypeformEnum[] { Bold, Bold, Bold, Bold });
 
             Log("-");
             return testResult;            
