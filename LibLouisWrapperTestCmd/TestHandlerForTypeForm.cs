@@ -50,6 +50,17 @@ namespace LibLouisWrapperTestCmd
         public const TypeformEnum Underline = TypeformEnum.underline;
         public const TypeformEnum Bold = TypeformEnum.bold;
 
+        private new TypeformEnum[] repeatedTypeformEnum(TypeformEnum tfe, int count)
+        {
+
+            TypeformEnum[] result = new TypeformEnum[count];
+            for (int i = 0; (i < count); i++)
+            {
+                result[i] = tfe;
+            }
+            return result;
+        }
+
 
         internal override TestResult ExecuteTests()
         {
@@ -66,19 +77,26 @@ namespace LibLouisWrapperTestCmd
             string boldDots;
             string dots;      
 
-            Log(": A single character with 5 different fonttypes");
+            Log(": A single LETTER with 5 different fonttypes");
             testResult.Result &= TranslateStringTFE("a", out plainDots, new TypeformEnum[] { Plain });        
             testResult.Result &= TranslateStringTFE("a", out italicDots, new TypeformEnum[] { Italic });
             testResult.Result &= TranslateStringTFE("a", out underlinedDots, new TypeformEnum[] { Underline });
             testResult.Result &= TranslateStringTFE("a", out boldDots, new TypeformEnum[] { Bold });
 
-            Log(": A 4-letter word with 4 different fonttypes");
+            Log(": A 4-letter WORD with 4 different fonttypes");
             testResult.Result &= TranslateStringTFE("aaaa", out dots, new TypeformEnum[] { Plain, Italic, Underline, Bold });
-            Log("A 4-letter word with 4 identical fonttypes");
+            Log("A 4-letter WORD with identical fonttypes");
             testResult.Result &= TranslateStringTFE("aaaa", out dots, new TypeformEnum[] { Plain, Plain, Plain, Plain });
             testResult.Result &= TranslateStringTFE("aaaa", out dots, new TypeformEnum[] { Italic, Italic, Italic, Italic });
             testResult.Result &= TranslateStringTFE("aaaa", out dots, new TypeformEnum[] { Underline, Underline, Underline, Underline });
             testResult.Result &= TranslateStringTFE("aaaa", out dots, new TypeformEnum[] { Bold, Bold, Bold, Bold });
+
+            Log(": A 4-word PASSAGE with identical fonttypes");
+            string passage = "aaaa aaaa aaaa aaaa";
+            testResult.Result &= TranslateStringTFE(passage, out dots, repeatedTypeformEnum(Plain, passage.Length));
+            testResult.Result &= TranslateStringTFE(passage, out dots, repeatedTypeformEnum(Italic, passage.Length));
+            testResult.Result &= TranslateStringTFE(passage, out dots, repeatedTypeformEnum(Underline, passage.Length));
+            testResult.Result &= TranslateStringTFE(passage, out dots, repeatedTypeformEnum(Bold, passage.Length));
 
             Log("-");
             return testResult;            
