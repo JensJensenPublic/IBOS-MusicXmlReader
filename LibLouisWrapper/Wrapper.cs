@@ -34,6 +34,13 @@ namespace LibLouisWrapper
     /// https://stackoverflow.com/questions/20857649/c-dll-import-throws-marshall-directive-exception-in-c-sharp  
     /// Official LibLouis documentation is found at
     /// https://liblouis.io/documentation/liblouis.html
+    /// 
+    /// 
+    /// https://liblouis.io
+    /// https://github.com/liblouis
+    /// 
+    /// Mail: liblouis-liblouisxml@freelists.org
+    /// 
     /// </summary>
 
     public class Wrapper : IDisposable
