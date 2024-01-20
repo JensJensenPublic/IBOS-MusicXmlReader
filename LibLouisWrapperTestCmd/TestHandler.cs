@@ -22,6 +22,7 @@ namespace LibLouisWrapperTestCmd
 
         internal static readonly string UnifiedEnglishBrailleGrade2 = "en-ueb-g2.ctb";
         internal static readonly string DanishBrailleGrade2 = "da-dk-g26.ctb";
+        internal static readonly string GermanBrailleGrade2 = "de-g2-detailed.ctb";
 
 
         protected TestResult testResult = TestResult.Create();

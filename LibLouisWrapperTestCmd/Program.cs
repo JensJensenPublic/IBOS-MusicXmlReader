@@ -79,7 +79,16 @@ namespace LibLouisWrapperTestCmd
                     }
 #endif
 
-
+#if true
+                    // Test for handling FormTypeForms, now using german translation tables
+                    using (TestHandler testHandler = TestHandlerForTypeForm.Create(TestHandler.GermanBrailleGrade2, testInputDir))
+                    {
+                        localTypeFormResult = testHandler.ExecuteTests(); // The "using" clause will cause a call to Dispose()
+                        overallTestResult.AddRange(localTypeFormResult);
+                        overallLibLouisErrorCount += testHandler.GlobalLibLouisErrorCount;
+                    }
+#endif
+                    
 
 #if false
                     using (TestHandler testHandler = TestHandlerForDanish.Create(testInputDir))
