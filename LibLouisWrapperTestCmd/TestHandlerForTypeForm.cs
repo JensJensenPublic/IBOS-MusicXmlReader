@@ -75,12 +75,13 @@ namespace LibLouisWrapperTestCmd
             string dots;
             bool ok;
 
-            ok = libLouisWrapper.TranslateStringTFE(text, out dots, in typeForms);
+            ok = this.TranslateStringTFE(text, out dots, typeForms); // Add logging info before calling LibLouisWrapper
             Log(FormatTranslateResultTFE("TranslateStringTFE", text, ok, dots, typeForms));
 
             string newText;
             TypeformEnum[] typeFormsBack;
             ok = libLouisWrapper.BackTranslateStringTFE(dots, out newText, out typeFormsBack);
+#warning todo  Add logging info before calling LibLouisWrapper
             Log(FormatTranslateResultTFE("BackTranslateStringTFE", dots, ok, newText, typeFormsBack));
 
             bool equal = (0 == string.Compare(text, newText));
