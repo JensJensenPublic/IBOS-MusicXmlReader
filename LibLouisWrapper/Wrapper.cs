@@ -363,7 +363,8 @@ namespace LibLouisWrapper
             }
             output = null; 
             tfeOutput = null;
-            if ((1 != result) && (!ignoreError)) return OnError( "1 != result");          
+            if ((1 != result) && (!ignoreError)) return OnError( "1 != result");
+            if ((1 == result) && (outputLength == outBuf.Length)) return OnLengthError(outputLength);
             if (null == outBuf) return OnError("null == outBuf");
             output = GetOutputString(nativeFunctionEnum, outBuf, outputLength, charSize);
             //Log(string.Format("({0},'{1}')='{2}'", nativeFunctionEnum, input, output));
@@ -460,6 +461,14 @@ namespace LibLouisWrapper
             throw new Exception(message);
         }
 
+
+        private bool OnLengthError(int outputLength)
+        {
+            // According to footnote 2 in documentation:
+            // "When the output buffer is not big enough, lou_translateString returns a partial translation that is more or less accurate
+            // up until the returned inlen/outlen, and treats it as a successful translation, i.e. also returns 1."
+            return OnError(string.Format(" Result=1 but output may have been truncated to {0} characters to fit size of outputbuffer", outputLength));
+        }
 
         private bool OnError(string s)
         {
