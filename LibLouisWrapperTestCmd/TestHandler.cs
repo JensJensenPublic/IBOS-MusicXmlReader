@@ -10,12 +10,19 @@ using static LibLouisWrapper.Wrapper;
 
 namespace LibLouisWrapperTestCmd
 {
+
+
     internal abstract class TestHandler : IDisposable
     {
         protected Wrapper libLouisWrapper;
 
         //protected bool testResult = true; // Untill an error id found
         protected string testInputDir;
+        protected string tableName;
+
+        internal static readonly string UnifiedEnglishBrailleGrade2 = "en-ueb-g2.ctb";
+        internal static readonly string DanishBrailleGrade2 = "da-dk-g26.ctb";
+
 
         protected TestResult testResult = TestResult.Create();
 
@@ -38,6 +45,7 @@ namespace LibLouisWrapperTestCmd
         protected TestHandler(string tableName, string testInputDir)
         {
             this.testInputDir = testInputDir;
+            this.tableName = tableName; 
             libLouisWrapper = Wrapper.Create(tableName, OptionsEnum.UseLogCallback); //  Danish table for 6 dots grade 2 forward and backward translation (2022) 
         }
 

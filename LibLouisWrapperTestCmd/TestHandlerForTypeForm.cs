@@ -1,4 +1,5 @@
-﻿using MusicXmlReaderModel;
+﻿using LibLouisWrapper;
+using MusicXmlReaderModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,13 +25,14 @@ namespace LibLouisWrapperTestCmd
         //
         //**************************************************************************************
 
+  
 
-        internal static TestHandlerForTypeForm Create(string testInputDir)
+        internal static TestHandlerForTypeForm Create(string table,string testInputDir)
         {
-            return new TestHandlerForTypeForm(testInputDir);
+            return new TestHandlerForTypeForm(table,testInputDir);
         }
 
-        TestHandlerForTypeForm(string testInputDir) : base("en-ueb-g2.ctb", testInputDir)
+        TestHandlerForTypeForm(string table, string testInputDir) : base(table, testInputDir)
         { }
 
         private bool TranslateStringTFE(string text, out string dots, TypeformEnum[] tfs)
@@ -99,7 +101,7 @@ namespace LibLouisWrapperTestCmd
 
 
         internal override TestResult ExecuteTests()
-        {
+        {  
             Log("+");
             if (!CheckWrapper())
             {

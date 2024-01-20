@@ -14,11 +14,12 @@ namespace LibLouisWrapperTestCmd
             return new TestHandlerForDanish(testInputDir);
         }
 
-        TestHandlerForDanish(string testInputDir) : base("da-dk-g26.ctb",testInputDir) //  Danish table for 6 dots grade 2 forward and backward translation (2022)
+        TestHandlerForDanish(string testInputDir) : base(DanishBrailleGrade2, testInputDir) //  Danish table for 6 dots grade 2 forward and backward translation (2022)
         {}
 
         internal override TestResult ExecuteTests()
         {
+            Log("+");
             if (!CheckWrapper())
             {
                 testResult.Result = false;
@@ -44,6 +45,7 @@ namespace LibLouisWrapperTestCmd
 
             OnEndOfTestFiles("Danish");
 
+            Log("-");
             return testResult;
         }
     }

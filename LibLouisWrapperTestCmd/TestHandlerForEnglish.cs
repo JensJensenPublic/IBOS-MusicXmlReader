@@ -14,11 +14,12 @@ namespace LibLouisWrapperTestCmd
             return new TestHandlerForEnglish(testInputDir);
         }
 
-        TestHandlerForEnglish(string testInputDir) : base("en-ueb-g2.ctb",testInputDir)
+        TestHandlerForEnglish(string testInputDir) : base(UnifiedEnglishBrailleGrade2,testInputDir)
         {}
 
         internal override TestResult ExecuteTests()
         {
+            Log("+");
             if (!CheckWrapper())
             {
                 testResult.Result = false;
@@ -40,6 +41,7 @@ namespace LibLouisWrapperTestCmd
 
 
             OnEndOfTestFiles("English");
+            Log("-");
             return testResult;
             
         }

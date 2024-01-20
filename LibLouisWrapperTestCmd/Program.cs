@@ -37,7 +37,7 @@ namespace LibLouisWrapperTestCmd
         static TestResult localDanishResult;
         static TestResult localEnglishResult;
         static TestResult localGermanResult;
-        static TestResult localFormTypeResult;
+        static TestResult localTypeFormResult;
 
         static TestResult overallTestResult; // For collecting results of all test
 
@@ -60,13 +60,27 @@ namespace LibLouisWrapperTestCmd
                 for (int i = 0; i < 1; i++) // Prepare for "endurance" test
                 {
 #if true
-                    using (TestHandler testHandler = TestHandlerForTypeForm.Create(testInputDir))
+                    // Test for handling FormTypeForms
+                    using (TestHandler testHandler = TestHandlerForTypeForm.Create(TestHandler.UnifiedEnglishBrailleGrade2,testInputDir))
                     {
-                        localFormTypeResult = testHandler.ExecuteTests(); // The "using" clause will cause a call to Dispose()
-                        overallTestResult.AddRange(localFormTypeResult);
+                        localTypeFormResult = testHandler.ExecuteTests(); // The "using" clause will cause a call to Dispose()
+                        overallTestResult.AddRange(localTypeFormResult);
                         overallLibLouisErrorCount += testHandler.GlobalLibLouisErrorCount;
                     }
 #endif
+
+#if true
+                    // Test for handling FormTypeForms, now using danish translation tables
+                    using (TestHandler testHandler = TestHandlerForTypeForm.Create(TestHandler.DanishBrailleGrade2, testInputDir))
+                    {
+                        localTypeFormResult = testHandler.ExecuteTests(); // The "using" clause will cause a call to Dispose()
+                        overallTestResult.AddRange(localTypeFormResult);
+                        overallLibLouisErrorCount += testHandler.GlobalLibLouisErrorCount;
+                    }
+#endif
+
+
+
 #if false
                     using (TestHandler testHandler = TestHandlerForDanish.Create(testInputDir))
                     {
