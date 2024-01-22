@@ -177,7 +177,7 @@ namespace LibLouisWrapper
                 [In, Out] IntPtr inlen,                                // int *inlen
                 [Out] byte[] outbuf,                                   // widechar *outbuf 
                 [In, Out] IntPtr outlen,                               // int *outlen  
-                [In] TypeformEnum[] typeform,                             // formtype *typeform 
+                [In,Out] TypeformEnum[] typeform,                             // formtype *typeform 
                 [MarshalAs(UnmanagedType.LPStr)] string spacing,       // char *spacing
                 int mode                                               //  int mode 
          );
