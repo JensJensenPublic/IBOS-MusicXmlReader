@@ -14,16 +14,17 @@ namespace LibLouisWrapper
 {
     /// <summary>
     /// Simple wrapper class for using the LibLouis library (LibLouis.dll) from C#
-    /// Intensionally only contains 6 public methods:
+    /// Intensionally only exposes 8 public methods:
     ///  public static Wrapper Create()
-    ///  public bool CharsToDots(string chars, out string dots, Typeforms[] sourceTypeformMap)
-    ///  public bool DotsToChars(string dots, out string chars, Typeforms[] sourceTypeformMap)
+    ///  public bool CharsToDots(string chars, out string dots)
+    ///  public bool DotsToChars(string dots, out string chars)
+    ///  public bool TranslateString(string text, out string dots)
+    ///  public bool BackTranslateString(string inputDots, out string outputText)
     ///  public bool TranslateString(string text, out string dots, Typeforms[] sourceTypeformMap)
     ///  public bool BackTranslateString(string inputDots, out string outputText, Typeforms[] sourceTypeformMap)
     ///  public void Free()
     ///  
     /// More public methods can easily be added if needed. 
-    /// 
     /// 
     /// Some ideas were stolen from the GitHub project LibLouis.Net 
     /// Official LibLouis documentation is found at
@@ -164,7 +165,7 @@ namespace LibLouisWrapper
                 [In, Out] IntPtr inlen,                                // int *inlen
                 [Out] byte[] outbuf,                                   // widechar *outbuf 
                 [In, Out] IntPtr outlen,                               // int *outlen  
-                [In] TypeformEnum[] typeform,                             // formtype *typeform 
+                [In] TypeformEnum[] typeform,                          // formtype *typeform 
                 [MarshalAs(UnmanagedType.LPStr)] string spacing,       // char *spacing
                 int mode                                               //  int mode 
          );
@@ -177,7 +178,7 @@ namespace LibLouisWrapper
                 [In, Out] IntPtr inlen,                                // int *inlen
                 [Out] byte[] outbuf,                                   // widechar *outbuf 
                 [In, Out] IntPtr outlen,                               // int *outlen  
-                [In,Out] TypeformEnum[] typeform,                             // formtype *typeform 
+                [In,Out] TypeformEnum[] typeform,                      // formtype *typeform 
                 [MarshalAs(UnmanagedType.LPStr)] string spacing,       // char *spacing
                 int mode                                               //  int mode 
          );
@@ -190,11 +191,9 @@ namespace LibLouisWrapper
             dotsToChars,
             translateString,       // Do NOT Use the TypeFormEnum parameter
             translateStringTfe,    // Use the TypeFormEnum parameter
-            backTranslateString,    // Do NOT Use the TypeFormEnum parameter
+            backTranslateString,   // Do NOT Use the TypeFormEnum parameter
             backTranslateStringTfe // Use the TypeFormEnum parameter
         }
-
-        //private  TypeformEnum[] dummyTfe = null;
 
         public bool CharsToDots(string chars, out string dots) { return CommonNativeCall(NativeFunctionEnum.charsToDots, chars, out dots); }
         public bool DotsToChars(string dots, out string chars) { return CommonNativeCall(NativeFunctionEnum.dotsToChars, dots, out chars); }
@@ -315,10 +314,6 @@ namespace LibLouisWrapper
             }
             return CommonNativeCallImpl(nativeFunctionEnum, input, out output, in tfeInput, out tfeOutput);
         }
-
-
-
-
 
         /// <summary>
         /// The general signature, taking all possible input parameters
