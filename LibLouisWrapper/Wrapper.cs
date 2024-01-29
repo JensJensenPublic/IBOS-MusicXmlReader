@@ -198,9 +198,9 @@ namespace LibLouisWrapper
         public bool CharsToDots(string chars, out string dots) { return CommonNativeCall(NativeFunctionEnum.charsToDots, chars, out dots); }
         public bool DotsToChars(string dots, out string chars) { return CommonNativeCall(NativeFunctionEnum.dotsToChars, dots, out chars); }
         public bool TranslateString(string text, out string dots) { return CommonNativeCall(NativeFunctionEnum.translateString, text, out dots); }
-        public bool TranslateStringTFE(string text, out string dots, in TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.translateStringTfe, text, out dots, tfe); }
+        public bool TranslateStringTFE(string text, out string dots, in TypeformEnum[] tfe) { return CommonNativeCallImpl(NativeFunctionEnum.translateStringTfe, text, out dots, tfe, out TypeformEnum[] dummyTfe);}
         public bool BackTranslateString(string dots, out string text) { return CommonNativeCall(NativeFunctionEnum.backTranslateString, dots, out text); }
-        public bool BackTranslateStringTFE(string dots, out string text, out TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.backTranslateStringTfe, dots, out text, null, out tfe); }
+        public bool BackTranslateStringTFE(string dots, out string text, out TypeformEnum[] tfe) { return CommonNativeCallImpl(NativeFunctionEnum.backTranslateStringTfe, dots, out text, null, out tfe); }
 
         public string GetVersion()
         {
@@ -280,7 +280,7 @@ namespace LibLouisWrapper
         }
 
         /// <summary>
-        /// The simple signature, used by all functions not using a Typeform parameter
+        /// The simple, common signature, used by all functions not using a Typeform parameter
         /// </summary>
         private bool CommonNativeCall(NativeFunctionEnum nativeFunctionEnum, string input, out string output)
         {
@@ -292,37 +292,14 @@ namespace LibLouisWrapper
         }
 
         /// <summary>
-        /// Used only for TranslateStringTfe
-        /// </summary> 
-        private bool CommonNativeCall(NativeFunctionEnum nativeFunctionEnum, string input, out string output, in TypeformEnum[] tfeInput)
-        {
-            if (nativeFunctionEnum != NativeFunctionEnum.translateStringTfe)
-            { 
-                throw new ArgumentException(nativeFunctionEnum.ToString()); 
-            }
-            return CommonNativeCallImpl(nativeFunctionEnum, input, out output, tfeInput, out TypeformEnum[]  dummyTfe);
-        }
-
-        /// <summary>
-        /// Used only for BackTranslateStringTfe
+        /// The common, general signature, taking all possible input parameters. 
+        /// By using this common signature we only need all the unsafe code and marchalling precautions at one single location
         /// </summary>
-        private bool CommonNativeCall(NativeFunctionEnum nativeFunctionEnum, string input, out string output, in TypeformEnum[] tfeInput, out TypeformEnum[] tfeOutput)
-        {
-            if (nativeFunctionEnum != NativeFunctionEnum.backTranslateStringTfe)
-            {
-                throw new ArgumentException(nativeFunctionEnum.ToString());
-            }
-            return CommonNativeCallImpl(nativeFunctionEnum, input, out output, in tfeInput, out tfeOutput);
-        }
-
-        /// <summary>
-        /// The general signature, taking all possible input parameters
-        /// </summary>
-        /// <param name="nativeFunctionEnum"></param>
-        /// <param name="input"></param>
-        /// <param name="output"></param>
-        /// <param name="tfeInput"></param>
-        /// <param name="tfeOutput"></param>
+        /// <param name="nativeFunctionEnum">Identifies the native function to call</param>
+        /// <param name="input">Input-string for the native function, either text or Braille</param>
+        /// <param name="output">Output-string from the native function, either text or Braille</param>
+        /// <param name="tfeInput">Optional TypeForm-input for the native function. May be null</param>
+        /// <param name="tfeOutput">Optional TypeForm-output from the native function. May be null</param>
         /// <returns></returns>
         private bool CommonNativeCallImpl(NativeFunctionEnum nativeFunctionEnum, string input, out string output, in TypeformEnum[] tfeInput, out TypeformEnum[] tfeOutput)
         {  
