@@ -91,7 +91,7 @@ namespace LibLouisWrapper
         //const TypeformEnum bold = TypeformEnum.emph_3;
 
 
-        private int depricatedModeParameter = 0;        
+        private readonly int depricatedModeParameter = 0;        
         private static int globalLibLouisErrorCount = 0;
         /// <summary>
         /// // Counts errors reported from LibLouis dll and is used for checking the Logger Callback mechanism
@@ -289,8 +289,7 @@ namespace LibLouisWrapper
             {
                 throw new ArgumentException(nativeFunctionEnum.ToString());
             }
-            TypeformEnum[] dummyTfe = new TypeformEnum[0];
-            return CommonNativeCallImpl(nativeFunctionEnum, input, out output, null, out dummyTfe);
+            return CommonNativeCallImpl(nativeFunctionEnum, input, out output, null, out TypeformEnum[]  dummyTfe);
         }
 
         /// <summary>
@@ -302,8 +301,7 @@ namespace LibLouisWrapper
             { 
                 throw new ArgumentException(nativeFunctionEnum.ToString()); 
             }
-            TypeformEnum[] dummyTfe = new TypeformEnum[0];
-            return CommonNativeCallImpl(nativeFunctionEnum, input, out output, tfeInput, out dummyTfe);
+            return CommonNativeCallImpl(nativeFunctionEnum, input, out output, tfeInput, out TypeformEnum[]  dummyTfe);
         }
 
         /// <summary>
@@ -518,11 +516,11 @@ namespace LibLouisWrapper
         }
 
         // Member variables:
-        private int charSize;
-        private Encoding encoding;
+        private readonly int charSize;
+        private readonly Encoding encoding;
         private string tablePaths;
         private static bool ignoreError = false; // Used by the ExecuteCallbackTest() method for not logging simulated errors.
-        private bool useLogCallback = false;
+        private readonly bool useLogCallback = false;
 
         private string SaveCopy(string s)
         {
@@ -547,10 +545,9 @@ namespace LibLouisWrapper
 
             ignoreError = true;                             // Modify before test
             tablePaths = Path.Combine(tableBase, "DoesNotExist.xxx"); //  Modify before test: Temporarily set up a nonexisting tablepath
-            string teststring;
             try
             {              
-                bool b = CharsToDots("x", out teststring); // Is expected to fail and thereby to increase globalErrorCount;
+                bool b = CharsToDots("x", out string teststring); // Is expected to fail and thereby to increase globalErrorCount;
             }
             catch (Exception e)
             {
