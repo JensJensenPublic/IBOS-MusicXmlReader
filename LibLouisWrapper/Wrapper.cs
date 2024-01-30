@@ -198,9 +198,9 @@ namespace LibLouisWrapper
         public bool CharsToDots(string chars, out string dots) { return CommonNativeCall(NativeFunctionEnum.charsToDots, chars, out dots); }
         public bool DotsToChars(string dots, out string chars) { return CommonNativeCall(NativeFunctionEnum.dotsToChars, dots, out chars); }
         public bool TranslateString(string text, out string dots) { return CommonNativeCall(NativeFunctionEnum.translateString, text, out dots); }
-        public bool TranslateStringTFE(string text, out string dots, in TypeformEnum[] tfe) { return CommonNativeCallImpl(NativeFunctionEnum.translateStringTfe, text, out dots, tfe, out TypeformEnum[] dummyTfe);}
+        public bool TranslateStringTFE(string text, out string dots, in TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.translateStringTfe, text, out dots, tfe, out TypeformEnum[] dummyTfe);}
         public bool BackTranslateString(string dots, out string text) { return CommonNativeCall(NativeFunctionEnum.backTranslateString, dots, out text); }
-        public bool BackTranslateStringTFE(string dots, out string text, out TypeformEnum[] tfe) { return CommonNativeCallImpl(NativeFunctionEnum.backTranslateStringTfe, dots, out text, null, out tfe); }
+        public bool BackTranslateStringTFE(string dots, out string text, out TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.backTranslateStringTfe, dots, out text, null, out tfe); }
 
         public string GetVersion()
         {
@@ -288,7 +288,7 @@ namespace LibLouisWrapper
             {
                 throw new ArgumentException(nativeFunctionEnum.ToString());
             }
-            return CommonNativeCallImpl(nativeFunctionEnum, input, out output, null, out TypeformEnum[]  dummyTfe);
+            return CommonNativeCall(nativeFunctionEnum, input, out output, null, out TypeformEnum[]  dummyTfe);
         }
 
         /// <summary>
@@ -301,7 +301,7 @@ namespace LibLouisWrapper
         /// <param name="tfeInput">Optional TypeForm-input for the native function. May be null</param>
         /// <param name="tfeOutput">Optional TypeForm-output from the native function. May be null</param>
         /// <returns></returns>
-        private bool CommonNativeCallImpl(NativeFunctionEnum nativeFunctionEnum, string input, out string output, in TypeformEnum[] tfeInput, out TypeformEnum[] tfeOutput)
+        private bool CommonNativeCall(NativeFunctionEnum nativeFunctionEnum, string input, out string output, in TypeformEnum[] tfeInput, out TypeformEnum[] tfeOutput)
         {  
             int inputLength = input.Length;          
             byte[] inBuf = encoding.GetBytes(input);
