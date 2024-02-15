@@ -446,6 +446,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibLouisWrapper", "LibLouis
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "es-ES", "es-ES", "{99A17757-0749-4302-9E91-C919E4573CD5}"
 	ProjectSection(SolutionItems) = preProject
+		External Localization\es-ES\Instructions for localizers.txt = External Localization\es-ES\Instructions for localizers.txt
 		External Localization\es-ES\ResourcesForUI.es-ES.xls = External Localization\es-ES\ResourcesForUI.es-ES.xls
 	EndProjectSection
 EndProject

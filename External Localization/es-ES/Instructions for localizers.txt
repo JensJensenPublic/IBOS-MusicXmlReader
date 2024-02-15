@@ -1,0 +1,17 @@
+Please find atached the spreadsheet file "ResourcesForUI.es-ES.xls"
+
+It can be opened with for instance Excel or LibreOffice Calc.
+
+It contains 161 rows, exach representing a word or a phrase to be localized to spanish.
+
+The leftmost coloumn "Name" contains an identification of the item to be translated and may give you a hint about it's use.
+
+The middle coloumn "English text" contains the word or phrase to be localized, represented in english.
+
+The rightmost coloumn should be filled in with the "English text" translated to Spanish.
+
+All "&" characters found in the English text should be transfered to the Spanish text.
+
+This file is only one of several files to be filled in in order to make a full localization, but it is the one, and probably the best one to start with.
+
+When the right coloumn has been filled in, please return the file to us, and we will attempt to integrate it into the application. 
