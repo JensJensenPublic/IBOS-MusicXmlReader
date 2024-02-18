@@ -1,17 +1,22 @@
 Please find atached the spreadsheet file "ResourcesForUI.es-ES.xls"
 
-It can be opened with for instance Excel or LibreOffice Calc.
+The spreadsheet file can be opened and edited with for instance Excel or LibreOffice Calc.
 
-It contains 161 rows, exach representing a word or a phrase to be localized to spanish.
+It contains 161 rows, each representing a word or a phrase to be translated to spanish.
+The expressions are taken out of context and therefor may seem abstract.
 
-The leftmost coloumn "Name" contains an identification of the item to be translated and may give you a hint about it's use.
+The leftmost coloumn (A) "Name" contains the name of the variable used in the sourcecode of the program. 
+It is only mentioned to give you an idea about its use.
+This column is protected  against  editing in order to prevent changes by mistake.
+The middle coloumn (B) "English text" contains the expression used in hte user interface in the english version of the program. This is the text which must be translated .
+This column is also protected  against  editing in order to prevent changes by mistake.
 
-The middle coloumn "English text" contains the word or phrase to be localized, represented in english.
+Please enter the corresponding spanish expression in the rightmost coloumn (C) "English text" translated to Spanish.
+The maximal number of characters of the spanish text is not limited, but please note that the length of the text has influence on the layout of the shown elements in the user interface. We recommend to keep the translated texts short not exceding the characternumber of the english text by much.
+The "&" characters found in some of the English texts  define hotkeys which can be used in the menus. The &" should be inserted immediately before the character most logical of the translated expression.
 
-The rightmost coloumn should be filled in with the "English text" translated to Spanish.
 
-All "&" characters found in the English text should be transfered to the Spanish text.
+Please note that this spreadsheet file is only a part of the total list of expressions used in the program. This list is the longest and gives the best impression of the nature of the task. The complete list of expressions consists of 5 similar lists The remaining lists are not as long.
 
-This file is only one of several files to be filled in in order to make a full localization, but it is the one, and probably the best one to start with.
 
 When the right coloumn has been filled in, please return the file to us, and we will attempt to integrate it into the application. 
