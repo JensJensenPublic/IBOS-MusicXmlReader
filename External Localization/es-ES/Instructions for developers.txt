@@ -1,0 +1,10 @@
+In order to write-protect specific coloumn in a spreadsheet using LiberOffice calc:
+
+All cells are protected by default so when you apply protection to the sheet, all cells are protected.
+
+To protect specific cells, first simply select the entire sheet (click top left button above row numbers), and Format > Cells and deselect Protect to unprotect every cell in the sheet.
+Now select the cells you want to protect and then Format > Cells > Protect.
+
+Now go to Tools > Protect Document > Sheet and either supply a password or not as you wish.
+
+Now only the cells you specifically selected are protected.
