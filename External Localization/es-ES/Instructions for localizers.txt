@@ -8,11 +8,11 @@ The expressions are taken out of context and therefor may seem abstract.
 The leftmost coloumn (A) "Name" contains the name of the variable used in the sourcecode of the program. 
 It is only mentioned to give you an idea about its use.
 This column is protected  against  editing in order to prevent changes by mistake.
-The middle coloumn (B) "English text" contains the expression used in hte user interface in the english version of the program. This is the text which must be translated .
+The middle coloumn (B) "English text" contains the expression used in the user interface in the english version of the program. This is the text which must be translated .
 This column is also protected  against  editing in order to prevent changes by mistake.
 
-Please enter the corresponding spanish expression in the rightmost coloumn (C) "English text" translated to Spanish.
-The maximal number of characters of the spanish text is not limited, but please note that the length of the text has influence on the layout of the shown elements in the user interface. We recommend to keep the translated texts short not exceding the characternumber of the english text by much.
+Please enter the corresponding spanish expression in the rightmost coloumn (C) "Spanish text".
+The maximal number of characters of the spanish text is not limited, but please note that the length of the text has influence on the layout of the shown elements in the user interface. We recommend to keep the translated texts short not exceding the number of character of the english text by much.
 The "&" characters found in some of the English texts  define hotkeys which can be used in the menus. The &" should be inserted immediately before the character most logical of the translated expression.
 
 
