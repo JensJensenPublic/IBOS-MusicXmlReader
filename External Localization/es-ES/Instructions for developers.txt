@@ -8,3 +8,6 @@ Now select the cells you want to protect and then Format > Cells > Protect.
 Now go to Tools > Protect Document > Sheet and either supply a password or not as you wish.
 
 Now only the cells you specifically selected are protected.
+
+NOTE: THIS does not work if the user of the spreadsheet depends on NVDA or JAWS because the protected cells are not spoken !
+Probably the job can be done by Excel instead !! ?
