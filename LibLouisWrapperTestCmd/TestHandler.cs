@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 using LibLouisWrapper;
+using MusicXmlReaderModel;
 
 #pragma warning disable IDE0018 // Inline variable declaration
 
@@ -47,7 +48,8 @@ namespace LibLouisWrapperTestCmd
         protected void Log(string message)
         {
             string cm = Utilities.GetCallingMethod(0);
-            Console.WriteLine(string.Format("{0}{1}", cm, message));  
+            Console.WriteLine(string.Format("{0}{1}", cm, message));
+            Logger.LogCF(message);
         }
 
         /// <summary>
@@ -57,7 +59,8 @@ namespace LibLouisWrapperTestCmd
         public void OnWrapperLog(string message)
         {
             string cm = Utilities.GetCallingMethod(3);
-            Console.WriteLine(string.Format("{0}{1}",cm,message));        
+            Console.WriteLine(string.Format("{0}{1}",cm,message));
+            Logger.LogCF3(message);
         }
 
         /// <summary>
@@ -67,7 +70,8 @@ namespace LibLouisWrapperTestCmd
         public void OnLibLouisLog(string message)
         {
             string cm = Utilities.GetCallingMethod(2);
-            Console.WriteLine(string.Format("{0}{1}", cm, message));   
+            Console.WriteLine(string.Format("{0}{1}", cm, message));
+            Logger.LogCF2(message);
         }
 
         protected TestHandler(string tableName, string testInputDir)

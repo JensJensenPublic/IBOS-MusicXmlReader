@@ -50,6 +50,7 @@ namespace LibLouisWrapperTestCmd
 
         static void Main(string[] args)
         {
+            Logger.Open(@"c:\temp\Liblouis\LogFile.log");
             Log(": ---------------------------------------------------");
             Log(string.Format(": Starting {0}", Environment.CommandLine.ToString()));
             Log(string.Format(": Setting Console.OutputEncoding to {0} in order do display Braille symbols", Encoding.Unicode));

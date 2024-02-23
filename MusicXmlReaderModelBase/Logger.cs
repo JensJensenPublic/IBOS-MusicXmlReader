@@ -370,6 +370,16 @@ namespace MusicXmlReaderModel
             Log(string.Format("{0}{1}", GetCallingMethod(1), s));
         }
 
+        public static void LogCF2(string s)
+        {
+            Log(string.Format("{0}{1}", GetCallingMethod(2), s));
+        }
+
+        public static void LogCF3(string s)
+        {
+            Log(string.Format("{0}{1}", GetCallingMethod(3), s));
+        }
+
 
         /// <summary>
         /// Same as LogOnce, but automatically adds ClassName and FunctionNAme of the calling function.
