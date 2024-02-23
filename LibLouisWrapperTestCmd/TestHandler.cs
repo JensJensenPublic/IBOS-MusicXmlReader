@@ -59,7 +59,8 @@ namespace LibLouisWrapperTestCmd
                 Log(string.Format(@": 1) Assure that the PostBuild event of your main project calls 'LibLouisWrapper\publish.cmd'"));
                 Log(string.Format(@": 2) Temporarily remove the 'exit' command from 'LibLouisWrapper\publish.cmd' while rebuilding once."));
                 const int exitCode = 1;
-                Log(string.Format(": The application will now exit with an ExitCode of {0}", exitCode));
+                Log(string.Format(": Press any key to exit the application with an ExitCode of {0}", exitCode));
+                Console.ReadKey();
                 System.Environment.Exit(exitCode); // This is for a simple Console application: A simple Exit with an exitcode <> 0.  (0 means success.)
                 return false;
             }
