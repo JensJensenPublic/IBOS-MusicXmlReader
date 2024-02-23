@@ -56,8 +56,8 @@ namespace LibLouisWrapperTestCmd
             {
                 Log(string.Format(": At least one LibLouis directory or file is missing. Please see the logfile for details."));
                 Log(string.Format(": Developer: To add all relevant LibLouis directories and files to your project - do the following:"));
-                Log(string.Format(@": 1) Assure that the PostBuild event of your main project calls 'LibLouisWrapper\publish.cmd'"));
-                Log(string.Format(@": 2) Temporarily remove the 'exit' command from 'LibLouisWrapper\publish.cmd' while rebuilding once."));
+                Log(string.Format(@": 1) Assure that your project references the 'LibLouisWrapper' project "));
+                Log(string.Format(@": 2) Temporarily remove the 'exit' command from 'LibLouisWrapper\publish.cmd' while rebuilding your solution once."));
                 const int exitCode = 1;
                 Log(string.Format(": Press any key to exit the application with an ExitCode of {0}", exitCode));
                 Console.ReadKey();
