@@ -55,6 +55,7 @@ namespace LibLouisWrapperTestCmd
             if (null == libLouisWrapper)
             {
                 Log(string.Format(": LibLouis directory or file is missing. Please see logfile for details."));
+                Log(string.Format(@": Developer: To include all LibLouis files: Temporarily remove the 'exit' command from 'LibLouisWrapper\publish.cmd' while rebuilding once."));
                 return false;
             }
             return true;
