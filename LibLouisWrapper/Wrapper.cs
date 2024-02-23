@@ -3,12 +3,11 @@ using System.ComponentModel;
 using System.Diagnostics.SymbolStore;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
 using Microsoft.SqlServer.Server;
-using MusicXmlReaderModel;
 using static System.Net.Mime.MediaTypeNames;
-using static LibLouisWrapper.Wrapper;
 
 namespace LibLouisWrapper
 {
@@ -44,6 +43,44 @@ namespace LibLouisWrapper
     /// 
     /// </summary>
 
+    /// <summary>
+    /// As defined in liblouis.h
+    /// </summary>
+    public enum TypeformEnum : ushort
+    {
+        plain_text = 0x0000,
+        italic = 0x0001,
+        underline = 0x0002,
+        bold = 0x0004,
+        emph_4 = 0x0008,
+        emph_5 = 0x0010,
+        emph_6 = 0x0020,
+        emph_7 = 0x0040,
+        emph_8 = 0x0080,
+        emph_9 = 0x0100,
+        emph_10 = 0x0200,
+        computer_braille = 0x0400,
+        no_translate = 0x0800,
+        no_contract = 0x1000,
+        // SYLLABLE_MARKER_1  0x2000,
+        // SYLLABLE_MARKER_1  0x4000
+        // CAPSEMPH  0x4000
+        Hex5c5c = 0x5c5c, // NOTE: For debugging only !!
+    }
+
+    //const TypeformEnum italic = TypeformEnum.emph_1;
+    //const TypeformEnum underline = TypeformEnum.emph_2;
+    //const TypeformEnum bold = TypeformEnum.emph_3;
+
+
+    [Flags]
+    public enum OptionsEnum
+    {
+        None = 0,           // Use this for published versions!
+        UseLogCallback = 1  // Use of the LibLouis LogCallback mechanism is konwn to cause nullreference exceptions turing heavy test and should only be used in a debug situation!
+                            // The exceptionis probably caused by the Garbage Collector moving the delegate, but should of course be further investigated!
+    }
+
     public class Wrapper : IDisposable
     {
 
@@ -63,36 +100,9 @@ namespace LibLouisWrapper
             PartialTrans = 256
         }
 
-        /// <summary>
-        /// As defined in liblouis.h
-        /// </summary>
-        public enum TypeformEnum : ushort
-        {
-            plain_text = 0x0000,
-            italic = 0x0001,
-            underline = 0x0002,
-            bold = 0x0004,
-            emph_4 = 0x0008,
-            emph_5 = 0x0010,
-            emph_6 = 0x0020,
-            emph_7 = 0x0040,
-            emph_8 = 0x0080,
-            emph_9 = 0x0100,
-            emph_10 = 0x0200,
-            computer_braille = 0x0400,
-            no_translate = 0x0800,
-            no_contract = 0x1000,
-            // SYLLABLE_MARKER_1  0x2000,
-            // SYLLABLE_MARKER_1  0x4000
-            // CAPSEMPH  0x4000
-        }
-
-        //const TypeformEnum italic = TypeformEnum.emph_1;
-        //const TypeformEnum underline = TypeformEnum.emph_2;
-        //const TypeformEnum bold = TypeformEnum.emph_3;
 
 
-        private readonly int depricatedModeParameter = 0;        
+
         private static int globalLibLouisErrorCount = 0;
         /// <summary>
         /// // Counts errors reported from LibLouis dll and is used for checking the Logger Callback mechanism
@@ -100,7 +110,7 @@ namespace LibLouisWrapper
         public static int GlobalLibLouisErrorCount { get { return globalLibLouisErrorCount; } }
 
         const int translationMode = (int)(TranslationModeEnum.NoUndefined | TranslationModeEnum.UnicodeBraille | TranslationModeEnum.DotsIO); // Common for all member functions
-        const int translationMode1 = (int)(TranslationModeEnum.UnicodeBraille); // For experiment
+        const int backtranslationMode = 0; // The "mode" parameter is depricated during backtranslation and must be set to 0 !!
 
         /// <summary>
         /// Path to be combined with tableName before passing to LibLouis
@@ -119,8 +129,7 @@ namespace LibLouisWrapper
         {
             globalLibLouisErrorCount++;
             if (ignoreError) return; // Do not log simulated  error generated for test-purposes !
-            Log(string.Format(": Received callback from LibLouis, describing an error: Level={0} Message={1}", level, message));
-
+            theClient.OnLibLouisLog(string.Format(": Received callback from LibLouis, describing an error: Level={0} Message={1}", level, message));
         }
         #endregion
 
@@ -153,10 +162,10 @@ namespace LibLouisWrapper
 
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         private static extern void lou_free();
-  
+
         [DllImport(LibLouisDll, CallingConvention = CallingConvention.StdCall)]
         private static extern void lou_registerLogCallback(Func callback);
-       
+
 
         [DllImport(@"liblouis.dll", CharSet = CharSet.Unicode)]
         private static extern unsafe int lou_translateString(
@@ -178,7 +187,7 @@ namespace LibLouisWrapper
                 [In, Out] IntPtr inlen,                                // int *inlen
                 [Out] byte[] outbuf,                                   // widechar *outbuf 
                 [In, Out] IntPtr outlen,                               // int *outlen  
-                [In,Out] TypeformEnum[] typeform,                      // formtype *typeform 
+                [In, Out] TypeformEnum[] typeform,                      // formtype *typeform 
                 [MarshalAs(UnmanagedType.LPStr)] string spacing,       // char *spacing
                 int mode                                               //  int mode 
          );
@@ -198,7 +207,7 @@ namespace LibLouisWrapper
         public bool CharsToDots(string chars, out string dots) { return CommonNativeCall(NativeFunctionEnum.charsToDots, chars, out dots); }
         public bool DotsToChars(string dots, out string chars) { return CommonNativeCall(NativeFunctionEnum.dotsToChars, dots, out chars); }
         public bool TranslateString(string text, out string dots) { return CommonNativeCall(NativeFunctionEnum.translateString, text, out dots); }
-        public bool TranslateStringTFE(string text, out string dots, in TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.translateStringTfe, text, out dots, tfe, out TypeformEnum[] dummyTfe);}
+        public bool TranslateStringTFE(string text, out string dots, in TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.translateStringTfe, text, out dots, tfe, out TypeformEnum[] dummyTfe); }
         public bool BackTranslateString(string dots, out string text) { return CommonNativeCall(NativeFunctionEnum.backTranslateString, dots, out text); }
         public bool BackTranslateStringTFE(string dots, out string text, out TypeformEnum[] tfe) { return CommonNativeCall(NativeFunctionEnum.backTranslateStringTfe, dots, out text, null, out tfe); }
 
@@ -222,44 +231,37 @@ namespace LibLouisWrapper
                     {
                         if (line.StartsWith(versionPrompt))
                         {
-                            return line.Replace(versionPrompt,"");
-                        }                    
+                            return line.Replace(versionPrompt, "");
+                        }
                     }
                 }
             }
             catch (Exception e)
             {
                 Log(string.Format(": Exception caught while attempting to read LibLouis version. Message={0}", e.Message));
-            
+
             }
-            return result;            
+            return result;
         }
 
-        private int GetOutputLength(int inputLength, NativeFunctionEnum nativeFunctionEnum)
+        private byte[] CreateOutputBuffer(int inBufLength)
         {
-            int defaultResult = Math.Max((inputLength * 2), 1024);  // Twice the inputbuffer size, but at least 1kB
-            switch (nativeFunctionEnum)
-            {
-                case NativeFunctionEnum.charsToDots: break;
-                case NativeFunctionEnum.dotsToChars: break;
-                case NativeFunctionEnum.translateStringTfe: break;
-                case NativeFunctionEnum.backTranslateStringTfe: break;
-            }
-            return defaultResult;
-        }
-
-        private byte[] CreateOutputBuffer(int inBufLength, NativeFunctionEnum nativeFunctionEnum)
-        {
-            int outputLength = GetOutputLength(inBufLength, nativeFunctionEnum);
+            int outputLength = Math.Max((inBufLength * 2), 1024);  // Always twice the inputbuffer size, but at least 1kB
             byte[] outBuf = new byte[outputLength];
             return outBuf;
         }
 
 
         private TypeformEnum[] CreateTfeBuffer(int inputLength, NativeFunctionEnum nativeFunctionEnum, TypeformEnum[] tfeInput)
-        {         
+        {
+            // Developer's note: By initializing "result" to TypeformEnum.Hex5c5c instead of the default TypeFormEnum.plain_text (0x0000) it is easily verified
+            // that lou_backTranslateString() when called with  "out TypeformEnum[] tfe" where tfe != null initializes the first half of the buffer to the value 0x3030
+            // and leaves the last half of the buffer untouched.
+            // This suggests some kind of mismatch between the managed code and the native code:  Maybe the native code attempts to initialize the whole buffer to 0x30 ?
+            // (The expected behavior would be to use only the values  plain_text = 0x0000, italic = 0x0001, underline = 0x0002 and  bold = 0x0004 )
             int length = GetTfeLength(inputLength, nativeFunctionEnum);
             TypeformEnum[] result = new TypeformEnum[length];
+            for (int i = 0; i < length; i++) { result[i] = TypeformEnum.Hex5c5c; } // For debugging only !
             if ((null != tfeInput) && (tfeInput.Length <= length))
             {
                 Array.Copy(tfeInput, result, tfeInput.Length); // Copy to the common buffer to be passed to native code
@@ -271,10 +273,10 @@ namespace LibLouisWrapper
         {
 #warning TODO Find out why a smaller defaultBufferSize, for instance "defaultBufferSize =(inputLength * 2)" causes ctrange crashes !!
             int defaultTfeBufferSize = Math.Max(1024, (inputLength * 2)); // Twice as many Typeform items as input elements, but at least 1024
-            switch (nativeFunctionEnum) 
+            switch (nativeFunctionEnum)
             {
                 case NativeFunctionEnum.translateStringTfe: return defaultTfeBufferSize;
-                case NativeFunctionEnum.backTranslateStringTfe:return defaultTfeBufferSize;
+                case NativeFunctionEnum.backTranslateStringTfe: return defaultTfeBufferSize;
             }
             return 0; // No buffer needed i these cases
         }
@@ -288,7 +290,7 @@ namespace LibLouisWrapper
             {
                 throw new ArgumentException(nativeFunctionEnum.ToString());
             }
-            return CommonNativeCall(nativeFunctionEnum, input, out output, null, out TypeformEnum[]  dummyTfe);
+            return CommonNativeCall(nativeFunctionEnum, input, out output, null, out TypeformEnum[] dummyTfe);
         }
 
         /// <summary>
@@ -302,13 +304,15 @@ namespace LibLouisWrapper
         /// <param name="tfeOutput">Optional TypeForm-output from the native function. May be null</param>
         /// <returns></returns>
         private bool CommonNativeCall(NativeFunctionEnum nativeFunctionEnum, string input, out string output, in TypeformEnum[] tfeInput, out TypeformEnum[] tfeOutput)
-        {  
-            int inputLength = input.Length;          
-            byte[] inBuf = encoding.GetBytes(input);
-            byte[] outBuf = CreateOutputBuffer(inBuf.Length, nativeFunctionEnum);          
-            TypeformEnum[] tfeBuf = CreateTfeBuffer(input.Length, nativeFunctionEnum, tfeInput);
-            int outputLength = outBuf.Length;
+        {
             int result = 0;
+            // The following 3 buffers are owned by managed code and passed to native code. They are pinned by the "fixed" clause.
+            byte[] inBuf = encoding.GetBytes(input);
+            byte[] outBuf = CreateOutputBuffer(inBuf.Length);
+            TypeformEnum[] tfeBuf = CreateTfeBuffer(input.Length, nativeFunctionEnum, tfeInput);
+            // The following 2 integers are owned by managed code and passed to native code. They don't need pinning, because they are simple stack-variables.
+            int inputLength = input.Length;
+            int outputLength = outBuf.Length;
             unsafe
             {
                 IntPtr inPtr = new IntPtr(&inputLength);
@@ -320,38 +324,38 @@ namespace LibLouisWrapper
                         switch (nativeFunctionEnum)
                         {
                             case NativeFunctionEnum.charsToDots: result = lou_charToDots(tablePaths, inBuf, outBuf, inputLength, translationMode); break;
-                            case NativeFunctionEnum.dotsToChars: result = lou_dotsToChar(tablePaths, inBuf, outBuf, inputLength, depricatedModeParameter); break;
-                            case NativeFunctionEnum.translateString:        result = lou_translateString(tablePaths, inBuf, inPtr, outBuf, outPrt, null, null, translationMode); break;
-                            case NativeFunctionEnum.translateStringTfe:     result = lou_translateString(tablePaths, inBuf, inPtr, outBuf, outPrt, tfeBuf, null, translationMode); break;
-                            case NativeFunctionEnum.backTranslateString:    result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, null, null, depricatedModeParameter); break;
-                            case NativeFunctionEnum.backTranslateStringTfe: result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, tfeBuf, null, depricatedModeParameter); break;
+                            case NativeFunctionEnum.dotsToChars: result = lou_dotsToChar(tablePaths, inBuf, outBuf, inputLength, backtranslationMode); break;
+                            case NativeFunctionEnum.translateString: result = lou_translateString(tablePaths, inBuf, inPtr, outBuf, outPrt, null, null, translationMode); break;
+                            case NativeFunctionEnum.translateStringTfe: result = lou_translateString(tablePaths, inBuf, inPtr, outBuf, outPrt, tfeBuf, null, translationMode); break;
+                            case NativeFunctionEnum.backTranslateString: result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, null, null, backtranslationMode); break;
+                            case NativeFunctionEnum.backTranslateStringTfe: result = lou_backTranslateString(tablePaths, inBuf, inPtr, outBuf, outPrt, tfeBuf, null, backtranslationMode); break;
                         }
                         fixed (byte* pInBufAfter = inBuf, pOutBufAfter = outBuf)
                         {
                             CheckPinning("InBuf ", (int)pInBuf, (int)pInBufAfter);
                             CheckPinning("OutBuf", (int)pOutBuf, (int)pOutBufAfter);
                         }
-                        fixed (TypeformEnum*  pTfeBufAfter = tfeBuf)
-                        {   
-                            CheckPinning("TfeBuf ", (int)pTfeBuf, (int)pTfeBufAfter);         
+                        fixed (TypeformEnum* pTfeBufAfter = tfeBuf)
+                        {
+                            CheckPinning("TfeBuf ", (int)pTfeBuf, (int)pTfeBufAfter);
                         }
                     }
                 }
             }
-            output = null; 
+            output = null;
             tfeOutput = null;
-            if ((1 != result) && (!ignoreError)) return OnError( "1 != result");
-            if ((1 == result) && (outputLength == outBuf.Length)) return OnLengthError(outputLength);
+            if ((1 != result) && (!ignoreError)) return OnError("1 != result");
             if (null == outBuf) return OnError("null == outBuf");
+            if ((1 == result) && OutputLengthIsKnown(nativeFunctionEnum) && (outputLength == outBuf.Length)) return OnLengthError(outputLength);
             output = GetOutputString(nativeFunctionEnum, outBuf, outputLength, charSize);
             //Log(string.Format("({0},'{1}')='{2}'", nativeFunctionEnum, input, output));
-            tfeOutput = GetOutputTypeForms(nativeFunctionEnum, tfeBuf, outputLength); 
+            tfeOutput = GetOutputTypeForms(nativeFunctionEnum, tfeBuf, outputLength);
             return true;
         }
 
         /// <summary>
         /// If the length of the outputbuffer received from native code is known we use that information.
-        /// Otherwise we just remove any tariling null-vharacters.
+        /// Otherwise we just remove any trailing null-characters.
         /// </summary>
         /// <param name="nativeFunctionEnum"></param>
         /// <param name="output"></param>
@@ -421,9 +425,9 @@ namespace LibLouisWrapper
                 // For this reason we split up in small steps to illustrate that the crash has to do with the use of native code, not with this method!
                 int i = (int)t;
                 string s = String.Format("0x{0:x} ", i); // Format as HEX
-                sb.Append(s);   
+                sb.Append(s);
             }
-            return(string.Format("Length={0} HexValues={1}", tfe.Length, sb.ToString()));
+            return (string.Format("Length={0} HexValues={1}", tfe.Length, sb.ToString()));
         }
 
         private void CheckPinning(string id, int pBefore, int pAfter)
@@ -431,7 +435,7 @@ namespace LibLouisWrapper
             if (pBefore == pAfter)
             {
                 // Log(string.Format(": Passed!"));
-                return; 
+                return;
             }
             string message = string.Format(": The buffer '{0}' changed from {1} to {2} during call to native code - even if it was supposed to be pinned!", id, pBefore, pAfter);
             Log(message);
@@ -450,7 +454,7 @@ namespace LibLouisWrapper
         private bool OnError(string s)
         {
             Log(string.Format(": Error: '{0}'", s));
-            return false;        
+            return false;
         }
 
         public void Free()
@@ -466,10 +470,9 @@ namespace LibLouisWrapper
         }
 
 
-        private static void Log(string s)
+        private void Log(string s)
         {
-            Console.WriteLine(s);
-            Logger.LogCF1(s);    // Append Class and Function for the function calling Log()    
+            theClient.OnWrapperLog(s); // Call logging mechanism established by the client 
         }
 
         /// <summary>
@@ -497,7 +500,7 @@ namespace LibLouisWrapper
         private string SaveCopy(string s)
         {
             if (null == s) return null;
-            return string.Copy(s);        
+            return string.Copy(s);
         }
 
 
@@ -507,18 +510,18 @@ namespace LibLouisWrapper
         /// </summary>
         private void ExecuteCallbackTest()
         {
-            if (!useLogCallback) return;           
+            if (!useLogCallback) return;
             string testItemName = " the LibLouis Log-Callback mechanism!";
-            Log(string.Format(": Simulating error in order to test{0}",testItemName)); 
-            
+            Log(string.Format(": Simulating error in order to test{0}", testItemName));
+
             int savedErrorCount = globalLibLouisErrorCount;         // Save   before test
             bool savedIgnoreError = ignoreError;            // Save   before test
-            string savedTablePaths =  SaveCopy(tablePaths); // Save   before test
+            string savedTablePaths = SaveCopy(tablePaths); // Save   before test
 
             ignoreError = true;                             // Modify before test
             tablePaths = Path.Combine(tableBase, "DoesNotExist.xxx"); //  Modify before test: Temporarily set up a nonexisting tablepath
             try
-            {              
+            {
                 bool b = CharsToDots("x", out string teststring); // Is expected to fail and thereby to increase globalErrorCount;
             }
             catch (Exception e)
@@ -531,34 +534,29 @@ namespace LibLouisWrapper
             tablePaths = SaveCopy(savedTablePaths);   // Restore after test
             ignoreError = savedIgnoreError;           // Restore after test
 
-            Log(string.Format(": TEST {0}! Simulated error was {1} reported from LibLouis by{2} !", ok ? "PASSED" : "FAILED", ok ? "": "NOT", testItemName));       
+            Log(string.Format(": TEST {0}! Simulated error was {1} reported from LibLouis by{2} !", ok ? "PASSED" : "FAILED", ok ? "" : "NOT", testItemName));
         }
 
-        [Flags]
-        public enum OptionsEnum
-        {
-            None = 0,           // Use this for published versions!
-            UseLogCallback = 1  // Use of the LibLouis LogCallback mechanism is konwn to cause nullreference exceptions turing heavy test and should only be used in a debug situation!
-                                // The exceptionis probably caused by the Garbage Collector moving the delegate, but should of course be further investigated!
-        }
+
 
 
         /// <summary>
         /// Only for preventing GC from collecting the delegate. MUST BE STATIC to keep the GC away !!
         /// See https://stackoverflow.com/questions/75223488/delegate-getting-gc-even-after-pinning
         /// </summary>
-        private static readonly Func myFunc = MyFunc; 
+        private static readonly Func myFunc = MyFunc;
+        private string tableNames;
 
-  
         /// <summary>
         /// Private constructor. Use Wrapper.Create() from the outside.
         /// </summary>
-        private Wrapper(string tableNames,OptionsEnum options)
+        private Wrapper(string tableNames, OptionsEnum options)
         {
+            this.tableNames = tableNames;
             Log(string.Format(": TableNames='{0}'", tableNames));
             this.useLogCallback = (0 != (options & OptionsEnum.UseLogCallback));
             if (useLogCallback)
-            {       
+            {
                 Log(string.Format(": Registering LibLouis LogCallback function"));
                 lou_registerLogCallback(myFunc); // Register the static function MyFunc as a callback""
             }
@@ -571,36 +569,36 @@ namespace LibLouisWrapper
 
             // Check the Logging callback mechanism:
             //tablePaths = Path.Combine(tableBase, "DoesNotExist.xxx"); // Temporarily set up a nonexisting tablepath while checking
-            ExecuteCallbackTest();  
+            ExecuteCallbackTest();
             // Set up the real translation table
-            tablePaths = Path.Combine(tableBase,tableNames); // According to the documentation only the first name needs to contain the tableBase !! 
+            tablePaths = Path.Combine(tableBase, tableNames); // According to the documentation only the first name needs to contain the tableBase !! 
             Log(string.Format(": Tables='{0}'", tablePaths));
         }
 
         /// <summary>
         /// Pevent use of default constructor
         /// </summary>
-        private Wrapper(){ }
+        private Wrapper() { }
 
-        private static bool OnCreationError(string s)
-        {
-            Log(s);
-            return false;
-        }
+        //private static bool OnCreationError(string s)
+        //{
+        //    Log(s);
+        //    return false;
+        //}
 
-        public static bool DirectoryExists(string path)
+        public bool DirectoryExists(string path)
         {
             if (Directory.Exists(path)) return true;
             return OnMissingItem("Directory", path);
         }
 
-        private static bool FileExists(string path)
+        private bool FileExists(string path)
         {
             if (File.Exists(path)) return true;
             return OnMissingItem("File", path);
         }
 
-        private static bool OnMissingItem(string itemType, string path)
+        private bool OnMissingItem(string itemType, string path)
         {
             Log(string.Format("{0} does not exist: '{1}'", itemType, path));
             return false;
@@ -611,7 +609,7 @@ namespace LibLouisWrapper
         /// </summary>
         /// <param name="tableNames"></param>
         /// <returns></returns>
-        private static bool CheckInstallation(string tableNames)
+        private bool CheckInstallation()
         {
             string executingDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             string liblouisDir = Path.Combine(executingDirectory, "liblouis");
@@ -626,15 +624,15 @@ namespace LibLouisWrapper
             if (!DirectoryExists(libLouisDir2)) return false;
             string tablesDir = Path.Combine(libLouisDir2, "tables");
             if (!DirectoryExists(tablesDir)) return false;
-      
+
             string[] names = tableNames.Split(',');
-            {                          
+            {
                 foreach (string name in names)
                 {
                     // Only the first name contains the full path !
                     string shortName = Path.GetFileName(name);
                     string fullPath = (Path.Combine(tablesDir, shortName));
-                    if (!FileExists(fullPath)) return false;                 
+                    if (!FileExists(fullPath)) return false;
                 }
             }
             Log(string.Format(": All tables in '{0}' were found", tableNames));
@@ -652,15 +650,18 @@ namespace LibLouisWrapper
                 Free();                // Clear all tables
                 UnregisterCallback();  // Prevent callbacks to delegate belonging to this object
                 disposed = true;       // HAndles later async calls from the GC 
-            }                   
+            }
         }
 
+        private static IClient theClient = null;
 
-        public static Wrapper Create(string tableNames, OptionsEnum options)
+        public static Wrapper Create(string tableNames, OptionsEnum options, IClient client)
         {
-            if (! CheckInstallation(tableNames)) return null;        
-            Wrapper wrapper =  new Wrapper(tableNames,options);
-            return wrapper;
+            theClient = client; // Establish logging
+
+            Wrapper wrapper = new Wrapper(tableNames, options);
+            bool ok = wrapper.CheckInstallation();
+            return ok ? wrapper : null;
         }
 
     }

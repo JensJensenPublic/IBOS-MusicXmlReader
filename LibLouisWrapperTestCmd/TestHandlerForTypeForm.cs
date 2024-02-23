@@ -1,13 +1,14 @@
 ﻿using LibLouisWrapper;
-using MusicXmlReaderModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static LibLouisWrapper.Wrapper;
 using static System.Net.Mime.MediaTypeNames;
+
+#pragma warning disable IDE0018 // Inline variable declaration
+
 
 namespace LibLouisWrapperTestCmd
 {
@@ -35,6 +36,8 @@ namespace LibLouisWrapperTestCmd
         TestHandlerForTypeForm(string table, string testInputDir) : base(table, testInputDir)
         { }
 
+        internal override string GetTestSubject() { return "TypeForm"; }
+
         private bool TranslateStringTFE(string text, out string dots, TypeformEnum[] tfs)
         {
             bool result = libLouisWrapper.TranslateStringTFE(text, out dots, tfs);
@@ -53,7 +56,7 @@ namespace LibLouisWrapperTestCmd
         public const TypeformEnum Underline = TypeformEnum.underline;
         public const TypeformEnum Bold = TypeformEnum.bold;
 
-        private TypeformEnum[] repeatedTypeformEnum(TypeformEnum tfe, int count)
+        private TypeformEnum[] RepeatedTypeformEnum(TypeformEnum tfe, int count)
         {
 
             TypeformEnum[] result = new TypeformEnum[count];
@@ -89,7 +92,7 @@ namespace LibLouisWrapperTestCmd
             Log(message);
             if (!equal)
             {
-                testResult.ErrorList.Add(Logger.GetCF(message));
+                testResult.ErrorList.Add(message);
             }
             return equal;
         }
@@ -97,7 +100,7 @@ namespace LibLouisWrapperTestCmd
 
         private string FormatTranslateResultTFE(string method, string input, bool result, string output, TypeformEnum[] tfe)
         {
-            return string.Format(": {0}('{1}') returned {2}. Tfe.Length={3} Output[{4}]={5}) ", method, input, result, tfe, output.Length, output);
+            return string.Format(": {0}('{1}') returned {2}. Tfe.Length={3} Output[{4}]={5}) ", method, input, result, tfe.Length, output.Length, output);
         }
 
 

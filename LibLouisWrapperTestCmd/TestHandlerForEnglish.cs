@@ -17,6 +17,8 @@ namespace LibLouisWrapperTestCmd
         TestHandlerForEnglish(string testInputDir) : base(UnifiedEnglishBrailleGrade2,testInputDir)
         {}
 
+        internal override string GetTestSubject() { return "English "; }
+
         internal override TestResult ExecuteTests()
         {
             Log("+");
@@ -37,7 +39,7 @@ namespace LibLouisWrapperTestCmd
 
             testResult.Result &= RunTestFile(Path.Combine(testInputDir, "EscapeSequences.txt"));
             testResult.Result &= RunTestFile(Path.Combine(testInputDir, "SpecialCharacters.txt")); // ";" will fail !
-            //testResult.Result &= RunTestFile(Path.Combine(testInputDir, "English.txt")); // Through the mirror
+            testResult.Result &= RunTestFile(Path.Combine(testInputDir, "English.txt")); // Through the mirror
 
 
             OnEndOfTestFiles("English");

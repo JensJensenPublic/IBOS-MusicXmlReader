@@ -1,18 +1,19 @@
-﻿using LibLouisWrapper;
-using MusicXmlReaderModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
-using static LibLouisWrapper.Wrapper;
+using LibLouisWrapper;
+
+#pragma warning disable IDE0018 // Inline variable declaration
 
 namespace LibLouisWrapperTestCmd
 {
 
 
-    internal abstract class TestHandler : IDisposable
+    internal abstract class TestHandler : IDisposable, IClient
     {
         protected Wrapper libLouisWrapper;
 
@@ -27,7 +28,13 @@ namespace LibLouisWrapperTestCmd
 
         protected TestResult testResult = TestResult.Create();
 
+        private string currentTestFileName = "";
+        internal string CurrentTestFileName { get { return currentTestFileName; } }
+
         internal abstract TestResult ExecuteTests();
+
+
+        internal abstract string GetTestSubject(); 
 
         internal int GlobalLibLouisErrorCount {get{ return Wrapper.GlobalLibLouisErrorCount; } }
 
@@ -37,31 +44,44 @@ namespace LibLouisWrapperTestCmd
                
         }
 
-        protected void Log(string s)
+        protected void Log(string message)
         {
-            Console.WriteLine(s);
-            Logger.LogCF1(s);    // Append Class anf Function for the function calling Log()    
+            string cm = Utilities.GetCallingMethod(0);
+            Console.WriteLine(string.Format("{0}{1}", cm, message));  
+        }
+
+        /// <summary>
+        /// Called by the Wrapper on its own initiative
+        /// </summary>
+        /// <param name="message"></param>
+        public void OnWrapperLog(string message)
+        {
+            string cm = Utilities.GetCallingMethod(3);
+            Console.WriteLine(string.Format("{0}{1}",cm,message));        
+        }
+
+        /// <summary>
+        /// Called by the Wrapper on behalf of the native LibLouis code through the LibLouis Callback mechanism
+        /// </summary>
+        /// <param name="message"></param>
+        public void OnLibLouisLog(string message)
+        {
+            string cm = Utilities.GetCallingMethod(2);
+            Console.WriteLine(string.Format("{0}{1}", cm, message));   
         }
 
         protected TestHandler(string tableName, string testInputDir)
         {
             this.testInputDir = testInputDir;
             this.tableName = tableName; 
-            libLouisWrapper = Wrapper.Create(tableName, OptionsEnum.UseLogCallback); //  Danish table for 6 dots grade 2 forward and backward translation (2022) 
+            libLouisWrapper = Wrapper.Create(tableName, OptionsEnum.UseLogCallback, this as IClient); //  Danish table for 6 dots grade 2 forward and backward translation (2022) 
         }
 
         protected bool CheckWrapper()
         {
             if (null == libLouisWrapper)
             {
-                Log(string.Format(": At least one LibLouis directory or file is missing. Please see the logfile for details."));
-                Log(string.Format(": Developer: To add all relevant LibLouis directories and files to your project - do the following:"));
-                Log(string.Format(@": 1) Assure that your project references the 'LibLouisWrapper' project "));
-                Log(string.Format(@": 2) Temporarily remove the 'exit' command from 'LibLouisWrapper\publish.cmd' while rebuilding your solution once."));
-                const int exitCode = 1;
-                Log(string.Format(": Press any key to exit the application with an ExitCode of {0}", exitCode));
-                Console.ReadKey();
-                System.Environment.Exit(exitCode); // This is for a simple Console application: A simple Exit with an exitcode <> 0.  (0 means success.)
+                Log(string.Format(": LibLouis directory or file is missing. Please see logfile for details."));
                 return false;
             }
             return true;
@@ -90,11 +110,11 @@ namespace LibLouisWrapperTestCmd
             Log(FormatTranslateResult("DotsToChar", dots, ok, newText));
 
             bool equal = (0 == string.Compare(text, newText));
-            string message = string.Format(": DotsToChars(CharsToDots(text)) {0} text", equal ? "==" : "<>");
-            Log(message);
+            string message = string.Format("DotsToChars(CharsToDots(text)) {0} text", equal ? "==" : "<>");
+            Log(": " + message);
             if (!equal)
             {
-                testResult.ErrorList.Add(Logger.GetCF(message));
+                testResult.ErrorList.Add(message);
             }
             return equal;
         }
@@ -121,20 +141,21 @@ namespace LibLouisWrapperTestCmd
 
             bool equal = (0 == string.Compare(text, newText));
 
-            string messageStart = string.Format(": BackTranslateString(TranslateString(text))[{0}] {1} text[{2}]", text.Length, equal ? "==" : "<>", newText.Length);
-            string message;
+            string messageStart = string.Format("BackTranslateString(TranslateString(text))[{0}] {1} text[{2}]", text.Length, equal ? "==" : "<>", newText.Length);
+            string messageForLog;
             if (equal)
             {
-                message = string.Format("{0}='{1}'", messageStart, text); // Report successes in one line
+                messageForLog = string.Format("{0}='{1}'", messageStart, text); // Report successes in one line
                 testResult.Successes++;
             }
             else
             {
                 string diffReport = GetDiffReport(text, newText);
-                message = string.Format("{0}: {1}\r\n{2}\r\n{3}", messageStart, diffReport, text, newText); // Report failures in 3 lines
-                testResult.ErrorList.Add(Logger.GetCF(message));
+                messageForLog = string.Format("{0}: {1}\r\n{2}\r\n{3}", messageStart, diffReport, text, newText); // Report failures in 3 lines
+                string messageForList = string.Format("{0}: {1}", messageStart, diffReport); // Report failures in 1 line
+                testResult.ErrorList.Add(messageForList);
             }
-            Log(message);
+            Log(": " + messageForLog);
             return equal;
         }
 
@@ -149,7 +170,11 @@ namespace LibLouisWrapperTestCmd
                     char c0 = t0[i];
                     char c1 = t1[i];
                     string diff = string.Format("(Chars:'{0}' <> '{1}')   (Integers:{2} <> {3})", c0, c1, (int)c0, (int)c1);
-                    testResult.AllDiffs.Add(diff);
+                    // Get a variety of information for generating the string describing the difference
+                    string cf = Utilities.GetCallingMethod(0); // ClassName and FunctionName for the method calling GetDiffReport
+                    string subject = this.GetTestSubject();
+                    string fileName = Path.GetFileName(CurrentTestFileName); 
+                    testResult.AllDiffs.Add(cf + " " + subject + " " + fileName + " " + diff);
                     return string.Format("First diff found at index {0}: {1}", i, diff);
 
                 }
@@ -164,6 +189,7 @@ namespace LibLouisWrapperTestCmd
 
         protected bool RunTestFile(string fullFileName)
         {
+            this.currentTestFileName = fullFileName; 
             bool result = true;
             Log(string.Format("\r\n\r\n>>>>>>>>>>TestFileName='{0}'<<<<<<<<<<\r\n", Path.GetFileName(fullFileName)));
             string[] lines = File.ReadAllLines(fullFileName);
@@ -177,8 +203,7 @@ namespace LibLouisWrapperTestCmd
 
         protected void OnEndOfTestFiles(string language)
         {
-            Log(string.Format("\r\n\r\n>>>>>>>>>>(End of testFiles for {0})<<<<<<<<<<\r\n", language));
-            Log(string.Format(": Test {0} ****************************************************************************************************", testResult.Result ? "PASSED" : "FAILED"));
+            Log(string.Format(": >>>>>>>>>>>>>>>>>>>> End of testFiles for {0}. Test {1} <<<<<<<<<<<<<<<<<<<<", language, testResult.Result ? "PASSED" : "FAILED"));
             if (!testResult.Result)
             {
                 // In case of errors report any error information:
@@ -189,16 +214,9 @@ namespace LibLouisWrapperTestCmd
                     sb.AppendLine("  " + error);
                 }
                 string logString = sb.ToString();
-                Log(logString);
+                Log(logString.TrimEnd(new char[] { '\r', '\n' })); // Remove trailing cr lf
+              
             }
-
-            foreach (Diff diff in testResult.AllDiffs.Diffs)
-            {
-                string s = string.Format("{0,-45}: Count={1}", diff.Description, diff.Count);
-                Log(s);
-            }
-            Log(string.Format("Successes={0} Errors={1}", testResult.Successes, testResult.ErrorList.Count));
         }
-
     }
 }
