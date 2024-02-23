@@ -41,10 +41,17 @@ namespace LibLouisWrapperTestCmd
 
         static TestResult overallTestResult; // For collecting results of all test
 
+        const string LogDirectory = @"c:\temp\LibLouis";    
+
         static void Main(string[] args)
-        {            
-            //MusicXmlReaderModel.Logger.LogCF(": Starting");
-            Logger.Open(@"c:\temp\LibLouis\LibLouisWrapperTestCmd.log");
+        {   
+            if (!Directory.Exists(LogDirectory))
+            {
+                Directory.CreateDirectory(LogDirectory);  
+            }
+            string logFile = Path.Combine(LogDirectory, "LibLouisWrapperTestCmd.log");
+            Console.WriteLine(string.Format("LogFile='{0}'",logFile));
+            Logger.Open(logFile);
             Log(": ---------------------------------------------------");
             Log(string.Format(": Starting {0}",Environment.CommandLine.ToString()));
             Log(string.Format("Setting Console.OutputEncoding to {0} in order do display Braille symbols",Encoding.Unicode));
