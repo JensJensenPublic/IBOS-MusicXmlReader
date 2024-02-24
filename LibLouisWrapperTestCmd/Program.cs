@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Net.NetworkInformation;
-using MusicXmlReaderModel;
 
 namespace LibLouisWrapperTestCmd
 {
@@ -13,9 +12,7 @@ namespace LibLouisWrapperTestCmd
 
         static private void Log(string message)
         {
-            Logger.Log(message);
-            string cm = ""; // Utilities.GetCallingMethod(0);
-            Console.WriteLine(string.Format("{0}{1}", cm, message));
+            PlatformDependencies.Log(message);
         }
 
         private static bool CheckTestFileInstallation()
@@ -50,7 +47,7 @@ namespace LibLouisWrapperTestCmd
 
         static void Main(string[] args)
         {
-            Logger.Open(@"c:\temp\Liblouis\LogFile.log");
+            PlatformDependencies.OpenLogFile(@"c:\temp\Liblouis\LogFile.log");
             Log(": ---------------------------------------------------");
             Log(string.Format(": Starting {0}", Environment.CommandLine.ToString()));
             Log(string.Format(": Setting Console.OutputEncoding to {0} in order do display Braille symbols", Encoding.Unicode));
