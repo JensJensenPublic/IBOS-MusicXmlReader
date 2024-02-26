@@ -6,6 +6,9 @@ using System.Net.NetworkInformation;
 
 namespace LibLouisWrapperTestCmd
 {
+    /// <summary>
+    /// A simple sample program, illustrating use of the liblouis.CSharp.Wrapper wrapper-class.
+    /// </summary>
     internal class Program
     {
         static string testInputDir;
@@ -110,8 +113,9 @@ namespace LibLouisWrapperTestCmd
                         overallLibLouisErrorCount += testHandler.GlobalLibLouisErrorCount;
                     }
 #endif
-
-#warning Add other languages here! 
+                    /////////////////////////////////////////
+                    // Add other languages here if needed! // 
+                    /////////////////////////////////////////
 
                     overallTestLoops++;
                 }
