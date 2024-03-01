@@ -55,6 +55,7 @@
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.textBoxStatusInformation = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.openUnicodeUsingNOTAProfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +75,7 @@
             this.filesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openUsingNOTAProfileToolStripMenuItem,
             this.openUsingBrailleOrchProfileToolStripMenuItem,
+            this.openUnicodeUsingNOTAProfileToolStripMenuItem,
             this.openTestFileToolStripMenuItem,
             this.exporterSomMusicXmlToolStripMenuItem,
             this.exporterSomTextToolStripMenuItem,
@@ -291,6 +293,13 @@
             this.textBox3.TabIndex = 8;
             this.textBox3.TabStop = false;
             // 
+            // openUnicodeUsingNOTAProfileToolStripMenuItem
+            // 
+            this.openUnicodeUsingNOTAProfileToolStripMenuItem.Name = "openUnicodeUsingNOTAProfileToolStripMenuItem";
+            this.openUnicodeUsingNOTAProfileToolStripMenuItem.Size = new System.Drawing.Size(252, 22);
+            this.openUnicodeUsingNOTAProfileToolStripMenuItem.Text = "Open using NOTA Unicode profile";
+            this.openUnicodeUsingNOTAProfileToolStripMenuItem.Click += new System.EventHandler(this.openUnicodeUsingNOTAProfileToolStripMenuItem_Click);
+            // 
             // MusicBrailleReaderMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -344,6 +353,7 @@
         private System.Windows.Forms.ToolStripMenuItem jAWSSettingsDirectoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jAWSSettingsUpdateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openUnicodeUsingNOTAProfileToolStripMenuItem;
     }
 }
 

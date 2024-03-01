@@ -88,7 +88,7 @@ namespace MusicBrailleReader
         {            
             // This will cause JAWS to speak the name text from the menuItem as the Name of the FileOpen dialog.
             string menuText = LocRes.ToolStripMenuItem_Files_OpenUsingNOTA;
-            OnOpen(menuText.Replace("&", ""), DecoderOptions.RegionalOptionsEnum.Danish);
+            OnOpen(menuText.Replace("&", ""), BrailleFileHandler.FileEncoding.Unknown, DecoderOptions.RegionalOptionsEnum.Danish);
         }
 
         /// <summary>
@@ -298,15 +298,16 @@ namespace MusicBrailleReader
             // Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);     
         }
 
+  
         /// <summary>
         /// Simple UI stuff for selecting a file using standard UI mechanism.
-        /// Absolutely no Braille-related code found, except for the filename extensions!
+        ///Absolutely no Braille-related code found, except for the filename extensions!
         /// </summary>
-        /// <param name="useDefaultSettings"></param>
+        /// <param name="explicitFileEncoding">Overrides the fileEncoding generated from the fileExtension</param>
         /// <param name="useRecentFile"></param>
         /// <param name="dialogTitle"></param>
         /// <returns></returns>
-        private bool SelectFile(bool useDefaultSettings, bool useRecentFile,string dialogTitle)
+        private bool SelectFile(BrailleFileHandler.FileEncoding explicitFileEncoding, bool useRecentFile,string dialogTitle)
         {
             openFileDialog.Reset(); // Prevent survival of strange settings from latest usage of this reused OpenFileDialog
             openFileDialog.Title = dialogTitle; 
@@ -355,6 +356,12 @@ namespace MusicBrailleReader
                     return false;
         
             }
+
+            if (BrailleFileHandler.FileEncoding.Unknown != explicitFileEncoding)
+            {               
+                fileEncoding = explicitFileEncoding;
+            }
+
             this.Text = string.Format("{0} - {1}", shortFileName, this.applicationName); // Inspired by Microsoft standard way of showing this.
             creatingForm.SetLatestBrailleMusicPath(Path.GetDirectoryName(fullFileName)); // Remember the path for next time using the User preferences system in the creating form !
             return true;
@@ -909,17 +916,22 @@ namespace MusicBrailleReader
 
         private void openUsingNOTAProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OnOpenClick(sender, DecoderOptions.RegionalOptionsEnum.Danish);
+            OnOpenClick(sender, BrailleFileHandler.FileEncoding.Unknown, DecoderOptions.RegionalOptionsEnum.Danish);
+        }
+
+        private void openUnicodeUsingNOTAProfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnOpenClick(sender, BrailleFileHandler.FileEncoding.BRF_Unicode_utf16, DecoderOptions.RegionalOptionsEnum.Danish);
         }
 
         private void openUsingBrailleOrchProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OnOpenClick(sender, DecoderOptions.RegionalOptionsEnum.English);
+            OnOpenClick(sender, BrailleFileHandler.FileEncoding.Unknown, DecoderOptions.RegionalOptionsEnum.English);
         }
 
-        private void OnOpenClick(object sender, DecoderOptions.RegionalOptionsEnum regionalOptions)
+        private void OnOpenClick(object sender, BrailleFileHandler.FileEncoding fileEncoding,  DecoderOptions.RegionalOptionsEnum regionalOptions)
         {
-            OnOpen(GetOpenDialogName(sender), regionalOptions);
+            OnOpen(GetOpenDialogName(sender), fileEncoding, regionalOptions);
         }
 
         private string HandleNull(string s)
@@ -928,11 +940,11 @@ namespace MusicBrailleReader
             return s;
         }
 
-        private void OnOpen(string dialogTitle, DecoderOptions.RegionalOptionsEnum regionalOptions)
+        private void OnOpen(string dialogTitle, BrailleFileHandler.FileEncoding fileEncoding, DecoderOptions.RegionalOptionsEnum regionalOptions)
         {   
             try
             {
-                if (!SelectFile(false, useRecentFile, dialogTitle)) return;
+                if (!SelectFile(fileEncoding, useRecentFile, dialogTitle)) return;
                 ClearUI();
                 currentInterpretation = GetInterpretation(regionalOptions, UserWarningOptions.details);
              
