@@ -44,6 +44,7 @@ namespace BrailleMusicDecoder
 #warning ToDo implement   correctly taking account alter etc         
             XmlNode p1 = n1.SelectSingleNode("pitch");
             XmlNode p2 = n2.SelectSingleNode("pitch");
+            if ((null == p1) || (null == p2)) return false; // Added 2024.03.01. Prevent crashes
             XmlNode s1 = p1.SelectSingleNode("step");
             XmlNode s2 = p2.SelectSingleNode("step");
             XmlNode o1 = p1.SelectSingleNode("octave");
