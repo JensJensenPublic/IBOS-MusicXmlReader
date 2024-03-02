@@ -362,6 +362,8 @@ namespace MusicBrailleReader
                 fileEncoding = explicitFileEncoding;
             }
 
+            Logger.LogCF(string.Format(": FileEncoding={0}  FileName='{1}'", fileEncoding.ToString(), shortFileName));
+
             this.Text = string.Format("{0} - {1}", shortFileName, this.applicationName); // Inspired by Microsoft standard way of showing this.
             creatingForm.SetLatestBrailleMusicPath(Path.GetDirectoryName(fullFileName)); // Remember the path for next time using the User preferences system in the creating form !
             return true;

@@ -1197,7 +1197,7 @@ namespace BrailleMusicDecoder
         {
             //string errorMessage = string.Format("Unicode representation contains unexpected Unicode character='{0}' (Hewvalue=0x{1:x}) at Form={2} Line={3} Space={4}", c, (int)c, nFF, nCR, nSpace);
             char c = userPositionInfo.BrailleAsUnicode;
-            string logMessage = string.Format("Unicode representation contains unexpected Unicode character='{0}' (Hewvalue=0x{1:x}) Will be interpreted as Braille NoDots", c, (int)c);
+            string logMessage = string.Format("Unicode representation contains unexpected Unicode character (Hewvalue=0x{0:x}) Will be interpreted as Braille NoDots", (int)c); // Avoid outputting the invalid char itself. It may be any control character!
             // Log a warning for the user, specifying the exact values. The normal Logger.LogUserWarning(errorMessage) takes parameters by callback to the Decoder and requires that the Decoder has been created)   
             UserWarnings.LogUserWarning(logMessage, userPositionInfo, "X", "0",UserInfoFlagsEnum.InterpretationUnExpectedInput); // Use "X" for unexpected character to avoid confusion: The Console represents all 0x2900..0x28ff as "?"
             string errorMessage = string.Format(": {0} at Form={1} Line={2} Space={3}", logMessage, userPositionInfo.Form, userPositionInfo.Line, userPositionInfo.Space); // Add extra information
