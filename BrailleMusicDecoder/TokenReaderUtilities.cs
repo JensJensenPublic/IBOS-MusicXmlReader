@@ -1217,6 +1217,12 @@ namespace BrailleMusicDecoder
             }
             Logger.LogCF("-");
             nErrors++;
+
+            if (nErrors > 0)
+            {
+#warning ToDo Localize
+                throw new ApplicationException(errorMessage); // Added 2024.03.02
+            }
             return errorMessage;
         }
 
