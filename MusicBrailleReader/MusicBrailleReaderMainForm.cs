@@ -918,7 +918,7 @@ namespace MusicBrailleReader
 
         private void openUsingNOTAProfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OnOpenClick(sender, BrailleFileHandler.FileEncoding.Unknown, DecoderOptions.RegionalOptionsEnum.Danish);
+            // OnOpenClick(sender, BrailleFileHandler.FileEncoding.Unknown, DecoderOptions.RegionalOptionsEnum.Danish); // Not used anymore
         }
 
         private void openUnicodeUsingNOTAProfileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1130,6 +1130,36 @@ namespace MusicBrailleReader
                 Logger.LogCF(": Closing form.");
                 this.Close();
             } 
+        }
+
+        private void octoBraille1252ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnOpenClick(sender, BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, DecoderOptions.RegionalOptionsEnum.Danish);
+        }
+
+        private void aSCIIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnOpenClick(sender, BrailleFileHandler.FileEncoding.BRF_ASCII_Ex, DecoderOptions.RegionalOptionsEnum.Danish);
+        }
+
+        private void uft8ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnOpenClick(sender, BrailleFileHandler.FileEncoding.BRF_Unicode_utf8, DecoderOptions.RegionalOptionsEnum.Danish);
+        }
+
+        private void uft16ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnOpenClick(sender, BrailleFileHandler.FileEncoding.BRF_Unicode_utf16, DecoderOptions.RegionalOptionsEnum.Danish);
+        }
+
+        private void utf32ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnOpenClick(sender, BrailleFileHandler.FileEncoding.BRF_Unicode_utf32, DecoderOptions.RegionalOptionsEnum.Danish);
+        }
+
+        private void pEFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnOpenClick(sender, BrailleFileHandler.FileEncoding.PEF, DecoderOptions.RegionalOptionsEnum.Danish);
         }
     }
 }
