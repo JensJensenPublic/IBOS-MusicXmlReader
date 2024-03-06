@@ -40,30 +40,83 @@ namespace BrailleMusicDecoder
             this.list.Add(sequence);
         }
 
+        int separatingColons = 0;
+
         public void OnNewInput(InputInterpretation inputInterpretation, int index)
         {
             if (null == inputInterpretation) return;
             switch (inputInterpretation.Category)
             {
                 case InputCategoryEnum.ToMusicBraille:
-                    if (null == initialTextBrailleSequence)
+                    if (null == currentBrailleSequence)
                     {
-                        initialTextBrailleSequence = BrailleSubSequence.Create(fullSequence, 0, index, "Initial text");
-                        Log(initialTextBrailleSequence, inputInterpretation.Category);
-                    }                  
+                        currentBrailleSequence.ToMusicBrailleIndex = index;
+                    }
+
+                    //if (null == initialTextBrailleSequence)
+                    //{
+                    //    initialTextBrailleSequence = BrailleSubSequence.Create(fullSequence, 0, index, "Initial text");
+                    //    Log(initialTextBrailleSequence, inputInterpretation.Category);
+                    //}
+                    //if (null != currentBrailleSequence)
+                    //{
+                    //    currentBrailleSequence.UpdateEndIndex(index); // Probably the FinalDoubleBar was missing
+                    //    Log(currentBrailleSequence, inputInterpretation.Category);
+                    //}
+                    //Initially assume that the rest of the inputSequence belongs to this sequence
+                    //currentBrailleSequence = BrailleSubSequence.Create(fullSequence,index,fullSequence.Length,string.Format("Score {0}",this.list.Count));
+                    //this.Add(currentBrailleSequence);
+                    break;
+                case InputCategoryEnum.Hand:
                     if (null != currentBrailleSequence)
                     {
-                        currentBrailleSequence.UpdateEndIndex(index); // Probably the FinalDoubleBar was missing
-                        Log(currentBrailleSequence, inputInterpretation.Category);
+                        switch (inputInterpretation.SubCategory)
+                        {
+                            case InputSubCategoryEnum.HandRight: currentBrailleSequence.RightHandIndex= index; break;
+                            case InputSubCategoryEnum.HandLeft: currentBrailleSequence.LeftHandIndex= index; break;
+                            case InputSubCategoryEnum.HandPedal: currentBrailleSequence.PedalHandIndex = index; break;
+                            default: break;                        
+                        }
+                    
+                    
                     }
-                    // Initially assume that the rest of the inputSequence belongs to this sequence
-                    currentBrailleSequence = BrailleSubSequence.Create(fullSequence,index,fullSequence.Length,string.Format("Score {0}",this.list.Count));
-                    this.Add(currentBrailleSequence);
+
                     break;
+
+
                 case InputCategoryEnum.FinalDoubleBar: // Occurs for each part!!
                     //currentBrailleSequence.UpdateEndIndex(index + 2); // 2 is the length of the FinalDoubleBar, which must be included !
                     //Log(currentBrailleSequence, inputInterpretation.Category);
                     break;
+
+                case InputCategoryEnum.Character:
+                    if (inputInterpretation.FriendlyValue == ":")
+                    {
+                        separatingColons++;
+                    }
+                    else
+                    {
+                        if (separatingColons > 10)
+                        {
+                            if (null == initialTextBrailleSequence)
+                            {
+                                initialTextBrailleSequence = BrailleSubSequence.Create(fullSequence, 0, index, "Initial text");
+                                Log(initialTextBrailleSequence, inputInterpretation.Category);
+                            }                        
+
+                            Logger.LogCF(": End of separator found.");
+                            if (null != currentBrailleSequence)
+                            {
+                                currentBrailleSequence.UpdateEndIndex(index);
+                                Log(currentBrailleSequence, inputInterpretation.Category);
+                            }
+                            currentBrailleSequence = BrailleSubSequence.Create(fullSequence, index, fullSequence.Length, string.Format("Score {0}", this.list.Count));
+                            this.Add(currentBrailleSequence);
+                        }
+                        separatingColons = 0;
+                    }
+                    break;
+
 
             }
         }
@@ -109,6 +162,19 @@ namespace BrailleMusicDecoder
         private string fullSequence;
         private int startIndex;
         private int endIndex;
+
+        // The remainig index are primarily for debugging purposes:
+        private int toMusicBrailleIndex = -1;
+        public int ToMusicBrailleIndex { get { return toMusicBrailleIndex; } set { toMusicBrailleIndex = value; } }
+        private int rightHandIndex = -1;
+        public int RightHandIndex { get => rightHandIndex; set => rightHandIndex = value; }
+
+        private int leftHandIndex = -1;
+        public int LeftHandIndex { get => leftHandIndex; set => leftHandIndex = value; }
+
+        private int pedalHandIndex = -1;
+        public int PedalHandIndex { get => pedalHandIndex; set => pedalHandIndex = value; }
+
         public int Length { get { return endIndex - startIndex; } }
         private string name;
 
@@ -116,7 +182,8 @@ namespace BrailleMusicDecoder
 
         public override string ToString()
         {
-            return string.Format("StartIndex={0} EndIndex={1} Name={2}", startIndex, endIndex, name);
+            return string.Format("StartIndex={0} EndIndex={1} ToMusicBraille={2} Right={3} Left={4} Pedal={5} Name='{6}'",
+                                  startIndex,    endIndex,    toMusicBrailleIndex, rightHandIndex, leftHandIndex,pedalHandIndex,name);
         }
 
         public void UpdateEndIndex(int endIndex)
@@ -124,10 +191,13 @@ namespace BrailleMusicDecoder
             this.endIndex = endIndex;
         }
 
+ 
         public string Contents { get {
                 int i = fullSequence.Length;
                 return fullSequence.Substring(startIndex, Length); } }
-        public string Name { get { return name; } } 
+        public string Name { get { return name; } }
+
+ 
 
         public static BrailleSubSequence Create(string fullSequencem, int startIndex, int endIndex, string name)
         {
