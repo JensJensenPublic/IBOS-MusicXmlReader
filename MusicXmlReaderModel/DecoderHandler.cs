@@ -281,6 +281,14 @@ private List<DecoderItem> GetDecodedLines(Decoder brailleMusicDecoder, string br
                     latestBrailleLineNumber = brailleMusicDecoder.LineNumber;
                 }
             } while ((null != decodedLine) && (null != decodedLine.ToString()));
+         
+#if true
+            // Start new code 2024.03.05
+            brailleMusicDecoder.BrailleSubSequenceList.AfterLastInput(); // Fix the latest subesquence if needed
+            Logger.LogCF(string.Format(": {0}", brailleMusicDecoder.BrailleSubSequenceList.ToString())); // Log the whole list
+            // End new code  2024.03.05
+#endif
+
             return decodedLines;
         }
 

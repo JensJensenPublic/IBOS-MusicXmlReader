@@ -22,6 +22,9 @@ namespace BrailleMusicDecoder
         IDecoderClient decoderClient;
         DecoderSpacePositionHandler decoderSpacePositionHandler;
         TypeAmbiguityHandler typeAmbiguityHandler;
+        BrailleSubSequenceList brailleSubSequenceList;
+
+        public BrailleSubSequenceList BrailleSubSequenceList { get { return brailleSubSequenceList; } }
         readonly char[] removeStartingBlanks = new char[] { ' ' };
 
         string musicXmlGenerationError = null;
@@ -104,6 +107,9 @@ namespace BrailleMusicDecoder
             // ********************************************************** 
             InputInterpretationList filteredInputs = null;  // Receives a list of ALL POSSIBLE interpretations of the next token. Can be used for debugging etc.
             InputInterpretation inputInterpretation = ToInputInterpretation(i, out filteredInputs); // Receives THE interpretation  to be used from now on
+
+            // Update the BrailleSubSequenceList. This allows for splitting large files containing MusicBraille for several scores into the separate scores.            
+            brailleSubSequenceList.OnNewInput(inputInterpretation,i);
 
             // Update the position
             decoderSpacePositionHandler.OnNewInput(inputInterpretation);
@@ -690,6 +696,7 @@ private string ShowControlCharacters(string s)
             this.decoderDebugTools = decoderDebugTools;
             //this.developmentOptions = developmentOptions; 
             this.typeAmbiguityHandler = TypeAmbiguityHandler.Create(musicXmlBuilder,decoderDebugTools.DevelopmentOptions);
+            this.brailleSubSequenceList = BrailleSubSequenceList.Create(brailleAsUnicode);
             //Logger.ClearLocalUserWarnings();
             //UserWarnings.LocationInfo = this as IDecoderUserInfo;
         }
