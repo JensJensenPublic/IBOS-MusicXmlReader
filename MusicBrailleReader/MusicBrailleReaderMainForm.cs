@@ -64,7 +64,7 @@ namespace MusicBrailleReader
             this.textBoxBraille.AccessibleName = LocRes.TextBoxBraille_Name;
             this.textBoxStatusInformation.AccessibleName = LocRes.TextBoxStatusInformation_Name; //"Status information";
             this.textBoxText.AccessibleName = LocRes.TextBoxTextInformation_Name; //"Valgte symbol i tekstrepræsentation";
-            this.openFileDialogFilterName = LocRes.OpenDialog_FilterName; 
+            this.openFileDialogFilterName = LocRes.OpenDialog_FilterName;
         }
 
 
@@ -74,9 +74,9 @@ namespace MusicBrailleReader
         /// <param name="creatingForm">An interface to the Form (belonging to the consuming application) which called this Create-method</param>
         /// <param name="model">The MusicXmlReader.Model class (used by the consuming application) to use.</param>
         /// <returns></returns>
-        public static  MusicBrailleReaderMainForm Create(IMusicBrailleReaderClient creatingForm, Model model)
+        public static MusicBrailleReaderMainForm Create(IMusicBrailleReaderClient creatingForm, Model model)
         {
-            MusicBrailleReaderMainForm result = new MusicBrailleReaderMainForm(creatingForm,model);
+            MusicBrailleReaderMainForm result = new MusicBrailleReaderMainForm(creatingForm, model);
             return result;
         }
 
@@ -84,8 +84,8 @@ namespace MusicBrailleReader
         /// <summary>
         /// Let the owning application emulate OnOpenClick()
         /// </summary>
-        public void  OpenLatestDirectory()
-        {            
+        public void OpenLatestDirectory()
+        {
             // This will cause JAWS to speak the name text from the menuItem as the Name of the FileOpen dialog.
             string menuText = LocRes.ToolStripMenuItem_Files_OpenUsingNOTA;
             OnOpen(menuText.Replace("&", ""), BrailleFileHandler.FileEncoding.Unknown, DecoderOptions.RegionalOptionsEnum.Danish);
@@ -99,14 +99,14 @@ namespace MusicBrailleReader
         {
             // Set up for logging by opening and initializing the (static) Logger class
             string applicationName = "IBOS Punktnodelæser";
-            Logger.Open(applicationName+".Log"); // "IBOS Punktnodelæser.Log"
+            Logger.Open(applicationName + ".Log"); // "IBOS Punktnodelæser.Log"
             Logger.ShowTimeStampInLog = false; // Use false to compare logfiles while ignoring timestampe.
             Logger.LogCF(""); // An empty line to catch the eye
             Logger.LogCF(string.Format(": Starting: Date={0}", System.DateTime.Now.ToLongDateString()));
             // Get and interpret commandline arguments
             string[] arguments = Environment.GetCommandLineArgs();
             string developerModeString = AppConfigHandler.GetValue(AppConfigHandler.KeyEnum.DeveloperMode);
-            bool developerMode = ("yes" == developerModeString);        
+            bool developerMode = ("yes" == developerModeString);
             Logger.DeveloperMode = developerMode;
             Logger.LogArguments(arguments);
             // Instantiate a Model instance containing lots of common code, originally designed for the MusicXmlReader
@@ -142,7 +142,7 @@ namespace MusicBrailleReader
             }
 
             Application.ApplicationExit += Application_ApplicationExit; // Add an exit-handler to be sure all processes will be shut down on application exit !
-        
+
             LocalizeMenuStrip(); // Overwrite all items in MenuStrip with localized texts
             regressionTest = RegressionTest.Create(this as IRegressionTestClient);
 #if false
@@ -150,7 +150,7 @@ namespace MusicBrailleReader
 #endif
 
             // Create a handler for the main listbox, which lists Music Braille information ordered after Offset
-            listboxOffsetsHandler = ListBoxOffsetsHandler.Create(model, this.listBoxOffsets,developerMode);
+            listboxOffsetsHandler = ListBoxOffsetsHandler.Create(model, this.listBoxOffsets, developerMode);
 
             // Create a handler for the user settings, in this case modelled as a treeview.
             userSettingsHandler = MusicBrailleReaderUserSettingsHandler.Create(userSettingsTreeView, model, listboxOffsetsHandler);
@@ -162,7 +162,7 @@ namespace MusicBrailleReader
 
             this.userSettingsTreeView.Enter += new System.EventHandler(TreeViewEnter); // Save relevant usersettings at entry
             this.userSettingsTreeView.Leave += new System.EventHandler(TreeViewLeave); // Allow for calling Decode() again if usersettings have changed.
-         
+
 
         }
 
@@ -177,14 +177,14 @@ namespace MusicBrailleReader
             textBox.Enabled = false;
             textBox.Visible = false;
         }
-        
+
         private void HideDeveloperItems(bool developerMode)
         {
             if (developerMode) return; // All items remain visible
 
             // MenuItems under the "File" menuItem
             Hide(openUsingBrailleOrchProfileToolStripMenuItem);
-            Hide(openTestFileToolStripMenuItem);         
+            Hide(openTestFileToolStripMenuItem);
 
             // The whole "Tools" menuItem
             Hide(toolsToolStripMenuItem);
@@ -221,14 +221,14 @@ namespace MusicBrailleReader
             if (!File.Exists(fullFileName)) return; //
             if (!ListBoxReloadNeeded()) return; // If nothing has changed, that would change the Listbox we ignore 
             listboxOffsetsHandler.SavePosition();
-            listBoxOffsets.Items.Clear();        
+            listBoxOffsets.Items.Clear();
             GetInterpretation(latestRegionalOptions, UserWarningOptions.hide); // Use the latest regional options and do not show user warnings 
             listboxOffsetsHandler.RestorePosition();
         }
 
 
 
-#region IREgressionTEstClient
+        #region IREgressionTEstClient
         private delegate void SafeCallDelegate(string text);
         public void OnNewLine(String line)
         {
@@ -242,7 +242,7 @@ namespace MusicBrailleReader
             {
                 Logger.LogCF(string.Format(": {0}", line));
                 listBoxOffsets.Items.Add(line);
-            }       
+            }
         }
 
         /// <summary>
@@ -251,7 +251,7 @@ namespace MusicBrailleReader
         /// <param name="ok"></param>
         public void OnTermination(bool ok, string referenceDir)
         {
-            Logger.LogCF(string.Format(": {0} {1}",ok,referenceDir));
+            Logger.LogCF(string.Format(": {0} {1}", ok, referenceDir));
             if (!Directory.Exists(referenceDir)) return;
             Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, referenceDir);
         }
@@ -260,19 +260,19 @@ namespace MusicBrailleReader
         {
             return model.DecoderHandler.InterpretBrailleMusicFile(s, fileEncoding, out musicXmlDocument, decoderOptions);
         }
-#endregion
+        #endregion
 
-#region IDecoderUiClient
+        #region IDecoderUiClient
         public void ShowMessageBox(string caption, List<string> messageLines)
         {
             StringBuilder sb = new StringBuilder();
             foreach (string messageLine in messageLines)
             {
                 sb.Append(messageLine + "\r\n");
-            } 
+            }
             MessageBox.Show(sb.ToString(), caption);
         }
-#endregion
+        #endregion
 
 
         private void Application_ApplicationExit(object sender, EventArgs e)
@@ -284,7 +284,7 @@ namespace MusicBrailleReader
         private string GetFileOpenInitialDirectory(bool useRecentFile)
         {
             string musicBrailleDirectory = creatingForm.GetLatestBrailleMusicPath();
-            if (useRecentFile  && (musicBrailleDirectory != null) && (Directory.Exists(musicBrailleDirectory)))
+            if (useRecentFile && (musicBrailleDirectory != null) && (Directory.Exists(musicBrailleDirectory)))
             {
                 // If a preferred Braille Music directory is already set up, use it
                 // The  path can be set by either
@@ -298,7 +298,7 @@ namespace MusicBrailleReader
             // Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);     
         }
 
-  
+
         /// <summary>
         /// Simple UI stuff for selecting a file using standard UI mechanism.
         ///Absolutely no Braille-related code found, except for the filename extensions!
@@ -307,10 +307,10 @@ namespace MusicBrailleReader
         /// <param name="useRecentFile"></param>
         /// <param name="dialogTitle"></param>
         /// <returns></returns>
-        private bool SelectFile(BrailleFileHandler.FileEncoding explicitFileEncoding, bool useRecentFile,string dialogTitle)
+        private bool SelectFile(BrailleFileHandler.FileEncoding explicitFileEncoding, bool useRecentFile, string dialogTitle)
         {
             openFileDialog.Reset(); // Prevent survival of strange settings from latest usage of this reused OpenFileDialog
-            openFileDialog.Title = dialogTitle; 
+            openFileDialog.Title = dialogTitle;
             openFileDialog.FileName = ""; // No default
             openFileDialog.Filter = string.Format("{0}|*.brl;*.brf;*.txt;*.pef", openFileDialogFilterName); // "Punktnoder" or "Braille Music"
             openFileDialog.InitialDirectory = GetFileOpenInitialDirectory(useRecentFile);
@@ -341,7 +341,7 @@ namespace MusicBrailleReader
 
             fullFileName = openFileDialog.FileName;
             string shortFileName = System.IO.Path.GetFileName(fullFileName);
-            string extension = System.IO.Path.GetExtension(fullFileName);  
+            string extension = System.IO.Path.GetExtension(fullFileName);
 
             switch (extension.ToLower()) // Accept extensions such as MusicXml or XML, as does MuseScore
             {
@@ -354,11 +354,11 @@ namespace MusicBrailleReader
                     ;
                     MessageBox.Show(message, "applicationName", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
-        
+
             }
 
             if (BrailleFileHandler.FileEncoding.Unknown != explicitFileEncoding)
-            {               
+            {
                 fileEncoding = explicitFileEncoding;
             }
 
@@ -369,7 +369,7 @@ namespace MusicBrailleReader
             return true;
         }
 
-        private DecoderOptions.RegionalOptionsEnum latestRegionalOptions = DecoderOptions.RegionalOptionsEnum.Unknown;  
+        private DecoderOptions.RegionalOptionsEnum latestRegionalOptions = DecoderOptions.RegionalOptionsEnum.Unknown;
 
         /// <summary>
         /// Calls the Model to create an interpretation (in the form of a list of DecoderItems) of the currently loaded Music Braille file
@@ -404,13 +404,13 @@ namespace MusicBrailleReader
             DecoderOptions.CategoryEnum hiddenCategoryNames =
                   DecoderOptions.CategoryEnum.Note
                 | DecoderOptions.CategoryEnum.Articulation
-                | DecoderOptions.CategoryEnum.Hand ; // No "Note" or "Hand" in front of the note
+                | DecoderOptions.CategoryEnum.Hand; // No "Note" or "Hand" in front of the note
 
             DecoderOptions.CategoryEnum hiddenCategories =
                   DecoderOptions.CategoryEnum.Character // Exclude inputDescriptions containing single characters. Handled by AccumulatedText
                 | DecoderOptions.CategoryEnum.Digit;  // Exclude inputDescriptions containing single digits.  Handled by AccumulatedText
 
-            DecoderOptions decoderOptions = DecoderOptions.Create(regionalOptions,this.developerMode);
+            DecoderOptions decoderOptions = DecoderOptions.Create(regionalOptions, this.developerMode);
             decoderOptions.ExcludeSubStrings(excludedDecoderOptiones); // Exclude some substrings from the string representation
             decoderOptions.ExcludeCategoryNames(hiddenCategoryNames); // Exclude the names of some categories (The information is fully contained in friendlyString)
             decoderOptions.ExcludeCategories(hiddenCategories); // Exclude inputDescriptions cintaining single characters
@@ -425,7 +425,7 @@ namespace MusicBrailleReader
 
             ShowAsMusicXml(ShowAsMusicXmlOptions.hide); // Show the MusicXml genereted- Use "hide" to speed up
 
-            decoderOutputFileHandler = DecoderOutputFileHandler.Create(fullFileName);   
+            decoderOutputFileHandler = DecoderOutputFileHandler.Create(fullFileName);
 
             // Write the decoded output as text to the listbox
             listBoxOffsets.ClearSelected();
@@ -454,7 +454,7 @@ namespace MusicBrailleReader
             ModelBaseMessageBox.Show("Ingen MusicXmlfil er genereret for denne punktnodefil." + "\r\n"
                 + ((null == errorMessage) ? "" : errorMessage + "\r\n") // The e.Message from the exception causing the error
                 + ResourcesForMusicBrailleReaderMainForm.Message_DetailsAreFoundInTheLogFile,
-                ModelBaseMessageBoxButtons.OK,ModelBaseMessageBoxIcon.Exclamation);
+                ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Exclamation);
             return false;
         }
 
@@ -469,10 +469,10 @@ namespace MusicBrailleReader
             if (null == decoderOutputFileHandler) return OnNoMusicBrailleFileLoaded();
             if (null == musicXmlDocument) return OnNoMusicBrailleFileLoaded();
             if (model.DecoderHandler.MusicXmlGenerationFailed) return OnMusicXmlGenerationFailed(model.DecoderHandler.MusicXmlGenerationError);
-            
+
 
             DialogResult dialogResult = ShowUserWarnings(UserWarningOptions.details, UserInfoFlagsEnum.AllFlags); // Show All  warnings in a detailled format
-           // DialogResult dialogResult = ShowUserWarnings(UserWarningOptions.details, UserInfoEnum.All & ~UserInfoEnum.FailedToFixDuration); // Show some  warnings in a detailled format
+                                                                                                                  // DialogResult dialogResult = ShowUserWarnings(UserWarningOptions.details, UserInfoEnum.All & ~UserInfoEnum.FailedToFixDuration); // Show some  warnings in a detailled format
 
             if (DialogResult.OK != dialogResult)
             {
@@ -500,7 +500,7 @@ namespace MusicBrailleReader
             else
             {
                 return UserSave(fileName);
-            }          
+            }
         }
 
 
@@ -565,7 +565,7 @@ namespace MusicBrailleReader
             List<string> strings = new List<string>();
             foreach (DecoderItem decoderItem in decoderItems)
             {
-                string s = Logger.DeveloperMode ?  decoderItem.XmlToString() : "" ; // Only add the XML interpretation (which shows the attempts to fix ambiguities) in Developer mode  
+                string s = Logger.DeveloperMode ? decoderItem.XmlToString() : ""; // Only add the XML interpretation (which shows the attempts to fix ambiguities) in Developer mode  
                 strings.Add(decoderItem.ToString() + s);
             }
 
@@ -578,19 +578,19 @@ namespace MusicBrailleReader
             decoderOutputFileHandler.SaveInterpretation(strings, decoderOutputFileHandler.FullOutputFileName);
 
             string fileName = decoderOutputFileHandler.FullMusicXmlFileName;
-      
+
             // Open Explorer in the output directory.
             Utilities.RunExeWithDirArgument("Explorer", decoderOutputFileHandler.OutputDirectory);
             return true;
         }
 
 
-        private enum UserWarningOptions { hide, overview, details};
+        private enum UserWarningOptions { hide, overview, details };
 
 
 
         private DialogResult ShowUserWarnings(UserWarningOptions options, UserInfoFlagsEnum mask)
-        { 
+        {
             if (options == UserWarningOptions.hide) return DialogResult.OK;
             List<string> userWarnings = model.DecoderHandler.GetLocalUserWarnings(mask);
             if (0 == userWarnings.Count) return DialogResult.OK;
@@ -612,13 +612,13 @@ namespace MusicBrailleReader
             {
                 // Use a standard MessageBox
                 string caption = string.Format("{0} {1} {2}", userWarnings.Count, text1, text2);
-                return MessageBox.Show(caption,fileName,MessageBoxButtons.OKCancel);             
+                return MessageBox.Show(caption, fileName, MessageBoxButtons.OKCancel);
             }
         }
 
 
         private enum ShowAsMusicXmlOptions { hide, onConsole }
-        private void  ShowAsMusicXml(ShowAsMusicXmlOptions options)
+        private void ShowAsMusicXml(ShowAsMusicXmlOptions options)
         {
             switch (options)
             {
@@ -713,18 +713,18 @@ namespace MusicBrailleReader
             StringBuilder result = new StringBuilder();
             foreach (char c in s)
             {
-                if (c <  0x2800 ) continue;
-                if (c >= 0x2900 ) continue;
+                if (c < 0x2800) continue;
+                if (c >= 0x2900) continue;
                 result.Append(c);
             }
             return result.ToString();
         }
 
-        
+
         private void tactileMusicXmlReaderToolStripMenuItem_Click(object sender, EventArgs e)
-        {   
+        {
             // While running in the VS debugger  we attempt to look up an application in the same solution
-                  
+
             string thisExePath = Utilities.GetExecutingDirectory();
             string thisDirName = "MusicBrailleReader";
             string thatDirName = "MusicXmlReader";
@@ -734,7 +734,7 @@ namespace MusicBrailleReader
             {
                 string s = string.Format("Error: Path {0}\r\ndoes not contain '{1}' ", thisExePath, thisDirName);
                 MessageBox.Show(s);
-                Logger.LogCF(": "+s);
+                Logger.LogCF(": " + s);
                 return;
             }
 
@@ -746,7 +746,7 @@ namespace MusicBrailleReader
             {
                 string s = string.Format("Error: {0}\r\ndoes not exist", thatFullExePath);
                 MessageBox.Show(s);
-                Logger.LogCF(": "+s);
+                Logger.LogCF(": " + s);
                 return;
             }
 
@@ -764,11 +764,11 @@ namespace MusicBrailleReader
         {
             // First handle unusual illegal values of musicXmlPath
             string shortName = Path.GetFileName(exePath);
-            string commonWarning = string.Format("\r\nStarting {0} with no MusicXml file specified.",shortName);
+            string commonWarning = string.Format("\r\nStarting {0} with no MusicXml file specified.", shortName);
             if (string.IsNullOrEmpty(latestMusicXmlFileGenerated))
             {
                 // This happens if no MusicXml file has been genereated yet during the current session of the application
-                string s = string.Format("Warning: No MusicXml file generated yet.{0}",commonWarning);
+                string s = string.Format("Warning: No MusicXml file generated yet.{0}", commonWarning);
                 MessageBox.Show(s);
                 Logger.LogCF(": " + s);
                 musicXmlPath = ""; // Avoid trouble when we run the application without a file specified
@@ -777,7 +777,7 @@ namespace MusicBrailleReader
             {
                 if (!File.Exists(latestMusicXmlFileGenerated))
                 {
-                    string s = string.Format("Warning: File does not exist:\r\n{0}{1}", latestMusicXmlFileGenerated,commonWarning);
+                    string s = string.Format("Warning: File does not exist:\r\n{0}{1}", latestMusicXmlFileGenerated, commonWarning);
                     MessageBox.Show(s);
                     Logger.LogCF(": " + s);
                     // Warn only, no need to return
@@ -814,7 +814,7 @@ namespace MusicBrailleReader
         Thread testThread;
         static void DoTest(object o)
         {
-           (o as RegressionTest).ExecuteAll();
+            (o as RegressionTest).ExecuteAll();
         }
 
         /// <summary>
@@ -826,7 +826,7 @@ namespace MusicBrailleReader
         {
             listBoxOffsets.Items.Clear();
             testThread = new Thread(new ParameterizedThreadStart(DoTest));
-            testThread.Start(regressionTest);      
+            testThread.Start(regressionTest);
         }
 
 
@@ -846,10 +846,10 @@ namespace MusicBrailleReader
             currentInterpretation = Decode(DecoderOptions.RegionalOptionsEnum.English);
             ExportToFiles(musicXmlDocument);
 #else
-            string fullDir = Path.Combine(baseDir,currentTestDirectory);
-            fullFileName = Path.Combine(fullDir, currentTestFileName); 
+            string fullDir = Path.Combine(baseDir, currentTestDirectory);
+            fullFileName = Path.Combine(fullDir, currentTestFileName);
             fileEncoding = BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252;
-            currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.Danish,UserWarningOptions.details);
+            currentInterpretation = GetInterpretation(DecoderOptions.RegionalOptionsEnum.Danish, UserWarningOptions.details);
 #endif
         }
 
@@ -867,7 +867,7 @@ namespace MusicBrailleReader
 
         private void regressionReferenceLocationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          Logger.LogCF("");
+            Logger.LogCF("");
             // Do not place the output files under "\Temp" because such files will be deleted by the system, and we want to keep them for later reference.
             string appDataLocalDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             string s = Path.Combine(appDataLocalDir, "MusicBrailleToMusicXmlCmd");
@@ -881,11 +881,11 @@ namespace MusicBrailleReader
             RenameTool renameTool = RenameTool.Create();
             string sourceDirectory = @"C:\Users\Jens\Dropbox\Root\MusicXml sample file archive\hsbm_12_som_music_xml";
             string appDataLocalDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            string destDirectory = Path.Combine(appDataLocalDir,"Højskolesangbogen");
+            string destDirectory = Path.Combine(appDataLocalDir, "Højskolesangbogen");
             DialogResult result = MessageBox.Show("Do you really want to¨copy and rename files from Højskolesangbogen ?", "", MessageBoxButtons.YesNo);
             if (DialogResult.Yes != result) return;
             // string destDirectory = Path.Combine(sourceDirectory, "FriendlyNames");
-            renameTool.CopyRenameFiles(sourceDirectory,destDirectory);
+            renameTool.CopyRenameFiles(sourceDirectory, destDirectory);
             StartExplorer(destDirectory);
         }
 
@@ -903,7 +903,7 @@ namespace MusicBrailleReader
         {
             string appDataLocalDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             string sourceDirectory = Path.Combine(appDataLocalDir, "Højskolesangbogen");
-            DialogResult result =   MessageBox.Show("Do you really want to transscribe Højskolesangbogen ?", "", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Do you really want to transscribe Højskolesangbogen ?", "", MessageBoxButtons.YesNo);
             if (DialogResult.Yes != result) return;
             BatchTransscriber batchTransscriber = BatchTransscriber.Create(model);
             batchTransscriber.Transscribe(sourceDirectory);
@@ -931,10 +931,15 @@ namespace MusicBrailleReader
             OnOpenClick(sender, BrailleFileHandler.FileEncoding.Unknown, DecoderOptions.RegionalOptionsEnum.English);
         }
 
-        private void OnOpenClick(object sender, BrailleFileHandler.FileEncoding fileEncoding,  DecoderOptions.RegionalOptionsEnum regionalOptions)
+        private void OnOpenClick(object sender, BrailleFileHandler.FileEncoding fileEncoding, DecoderOptions.RegionalOptionsEnum regionalOptions)
         {
             OnOpen(GetOpenDialogName(sender), fileEncoding, regionalOptions);
         }
+        private void OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions)
+        {
+            model.DecoderHandler.ExportToSeparateScores(encoding, regionalOptions);
+        }
+
 
         private string HandleNull(string s)
         {
@@ -1160,6 +1165,11 @@ namespace MusicBrailleReader
         private void pEFToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OnOpenClick(sender, BrailleFileHandler.FileEncoding.PEF, DecoderOptions.RegionalOptionsEnum.Danish);
+        }
+
+        private void octoBraillebrlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, DecoderOptions.RegionalOptionsEnum.Danish);
         }
     }
 }

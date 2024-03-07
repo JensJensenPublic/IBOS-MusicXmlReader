@@ -17,9 +17,16 @@ namespace BrailleMusicDecoder
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder(); 
-            sb.Append(string.Format(": Initial textSequence: {0}", initialTextBrailleSequence.ToString()));
-            sb.Append(string.Format(": {0}{1}","\r\n",initialTextBrailleSequence.Contents));
+            StringBuilder sb = new StringBuilder();
+            if (null == initialTextBrailleSequence)
+            {
+                sb.AppendLine("Initial textSequence is null");
+            }
+            else
+            { 
+                sb.AppendLine(string.Format(": Initial textSequence: {0}", initialTextBrailleSequence.ToString()));
+                sb.AppendLine(string.Format(": {0}{1}", "\r\n", initialTextBrailleSequence.Contents));
+            }
             sb.Append(string.Format(": Number of scores = {0}", list.Count));
             foreach (BrailleSubSequence bss in list)
             {

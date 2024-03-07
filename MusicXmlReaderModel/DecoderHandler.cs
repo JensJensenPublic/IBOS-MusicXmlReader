@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Xml;
 using BrailleMusicDecoder;
 
@@ -75,6 +76,32 @@ namespace MusicXmlReaderModel
 
             Logger.LogCF(": Exit");
             return result;
+        }
+
+        public void ExportToSeparateScores(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions)
+        {
+            Logger.LogCF(string.Format("({0},{1}) ", encoding, regionalOptions));
+#warning ToDo Find out how to show messages to UI. Seeme not to work 2024.03.07
+            // Initial errorhandling
+            string caption = "?CAPTION?";
+            if ((null == brailleMusicDecoder) || (null == brailleMusicDecoder.BrailleSubSequenceList))
+            {
+#warning todo Localize message
+                string message = "No MusicBraille file is loaded.";
+                Logger.LogCF(string.Format(": Error: {0}", message));
+                this.ShowMessageBox(caption,new List<string>() { message });
+                return;
+            }
+            int numberOfScores = brailleMusicDecoder.BrailleSubSequenceList.List.Count;        
+            if (numberOfScores <= 1)
+            {
+#warning todo Localize message
+                string message = "The MusicBraille lile currently loaded does not contain multiple scores";
+                Logger.LogCF(string.Format(": Error: {0}", message));
+                this.ShowMessageBox(caption, new List<string>() { message });
+                return;
+            }
+            throw new NotImplementedException();    
         }
 
         /// <summary>
