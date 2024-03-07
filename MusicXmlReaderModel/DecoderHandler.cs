@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
@@ -101,7 +102,20 @@ namespace MusicXmlReaderModel
                 this.ShowMessageBox(caption, new List<string>() { message });
                 return;
             }
-            throw new NotImplementedException();    
+
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(encoding, 0, 0);
+            foreach (BrailleSubSequence bss in brailleMusicDecoder.BrailleSubSequenceList.List)
+            {
+                string contents = bss.Contents;
+                string fileName = bss.Name;
+                string extension = ".brl";
+                string shortFileName = bss.Name+extension;  
+                string fullFileName = Path.Combine(@"C:\temp", shortFileName);
+                brailleFileHandler.WriteToFile(contents, fullFileName,true); 
+            }
+
+
+//            throw new NotImplementedException();    
         }
 
         /// <summary>
