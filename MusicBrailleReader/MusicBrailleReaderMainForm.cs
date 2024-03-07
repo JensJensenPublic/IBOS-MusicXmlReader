@@ -937,9 +937,18 @@ namespace MusicBrailleReader
         }
         private void OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions)
         {
-            model.DecoderHandler.ExportToSeparateScores(encoding, regionalOptions);
+            int nFiles;
+            string errorMessage =  model.DecoderHandler.ExportToSeparateScores(encoding, regionalOptions,out nFiles);
+            if (string.IsNullOrEmpty(errorMessage))
+            {
+#warning Todo Localize
+                MessageBox.Show(string.Format("{0} scores succesfully exported!",nFiles), applicationName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show(errorMessage, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
-
 
         private string HandleNull(string s)
         {

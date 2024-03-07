@@ -79,43 +79,51 @@ namespace MusicXmlReaderModel
             return result;
         }
 
-        public void ExportToSeparateScores(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions)
+        public string ExportToSeparateScores(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions,out int numberOfScores)
         {
             Logger.LogCF(string.Format("({0},{1}) ", encoding, regionalOptions));
-#warning ToDo Find out how to show messages to UI. Seeme not to work 2024.03.07
+            numberOfScores = 0;
             // Initial errorhandling
-            string caption = "?CAPTION?";
             if ((null == brailleMusicDecoder) || (null == brailleMusicDecoder.BrailleSubSequenceList))
             {
 #warning todo Localize message
                 string message = "No MusicBraille file is loaded.";
                 Logger.LogCF(string.Format(": Error: {0}", message));
-                this.ShowMessageBox(caption,new List<string>() { message });
-                return;
+                // ModelBaseMessageBox.Show(message,ModelBaseMessageBoxButtons.OK,ModelBaseMessageBoxIcon.Exclamation);
+                return message;
             }
-            int numberOfScores = brailleMusicDecoder.BrailleSubSequenceList.List.Count;        
+            numberOfScores = brailleMusicDecoder.BrailleSubSequenceList.List.Count;        
             if (numberOfScores <= 1)
             {
 #warning todo Localize message
-                string message = "The MusicBraille lile currently loaded does not contain multiple scores";
+                string message = "The MusicBraille file currently loaded does not contain multiple scores";
                 Logger.LogCF(string.Format(": Error: {0}", message));
-                this.ShowMessageBox(caption, new List<string>() { message });
-                return;
+                //ModelBaseMessageBox.Show(message, ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Exclamation);
+                return message;
             }
 
-            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(encoding, 0, 0);
-            foreach (BrailleSubSequence bss in brailleMusicDecoder.BrailleSubSequenceList.List)
+            // Now for the real action:
+
+            try
             {
-                string contents = bss.Contents;
-                string fileName = bss.Name;
-                string extension = ".brl";
-                string shortFileName = bss.Name+extension;  
-                string fullFileName = Path.Combine(@"C:\temp", shortFileName);
-                brailleFileHandler.WriteToFile(contents, fullFileName,true); 
+                // throw new Exception("For test only!");
+                BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(encoding, 0, 0);
+                foreach (BrailleSubSequence bss in brailleMusicDecoder.BrailleSubSequenceList.List)
+                {
+                    string contents = bss.Contents;
+                    string fileName = bss.Name;
+                    string extension = ".brl";
+                    string shortFileName = bss.Name + extension;
+                    string fullFileName = Path.Combine(@"C:\temp", shortFileName);
+                    brailleFileHandler.WriteToFile(contents, fullFileName, true);
+                }
             }
-
-
-//            throw new NotImplementedException();    
+            catch (Exception ex)
+            {
+#warning ToDo Localize
+                return string.Format("Exception.Message='{0}'",ex.Message);
+            }
+            return ""; // Signals success   
         }
 
         /// <summary>
@@ -193,7 +201,7 @@ namespace MusicXmlReaderModel
         }
 
         public void ShowMessageBox(string caption, List<string> messageLines)
-        {
+        {       
             if (null == decoderUiClient) return;
             // Pass up to the UI. In this way the UI ownly knows the Model, not the Decoder!
             decoderUiClient.ShowMessageBox(caption, messageLines);
