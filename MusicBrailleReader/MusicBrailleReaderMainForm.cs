@@ -1171,5 +1171,30 @@ namespace MusicBrailleReader
         {
             OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, DecoderOptions.RegionalOptionsEnum.Danish);
         }
+
+        private void aSCIIToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding.BRF_ASCII_Ex, DecoderOptions.RegionalOptionsEnum.Danish);
+        }
+
+        private void utf8ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding.BRF_Unicode_utf8, DecoderOptions.RegionalOptionsEnum.Danish);
+        }
+
+        private void utf16ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding.BRF_Unicode_utf16, DecoderOptions.RegionalOptionsEnum.Danish);
+        }
+
+        private void utf32ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding.BRF_Unicode_utf16, DecoderOptions.RegionalOptionsEnum.Danish);
+        }
+
+        private void pEFToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding.PEF, DecoderOptions.RegionalOptionsEnum.Danish);
+        }
     }
 }
