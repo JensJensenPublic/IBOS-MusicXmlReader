@@ -935,18 +935,49 @@ namespace MusicBrailleReader
         {
             OnOpen(GetOpenDialogName(sender), fileEncoding, regionalOptions);
         }
-        private void OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions)
+        private void OnExportToAlternativeBrailleFileFormatClick(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions)
         {
+            Logger.LogCF(string.Format("({0},{1},FullFileName={2})", encoding, regionalOptions,fullFileName));           
             int nFiles;
-            string errorMessage =  model.DecoderHandler.ExportToSeparateScores(encoding, regionalOptions,out nFiles);
-            if (string.IsNullOrEmpty(errorMessage))
+            string errorMessage = model.DecoderHandler.GetNumberOfSeparateScores(out nFiles);
+            if (!string.IsNullOrEmpty(errorMessage))
             {
-#warning Todo Localize
-                MessageBox.Show(string.Format("{0} scores succesfully exported!",nFiles), applicationName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Logger.LogCF(string.Format(": {0}", errorMessage));
+                MessageBox.Show(errorMessage, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Always export the whole file to the format specified.
+            errorMessage = model.DecoderHandler.ExportToSingleScore(encoding, regionalOptions,fullFileName);
+            if (!string.IsNullOrEmpty(errorMessage))
+            {
+                Logger.LogCF(string.Format(": {0}", errorMessage));
+                MessageBox.Show(errorMessage, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             else
             {
-                MessageBox.Show(errorMessage, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string message = string.Format("Export to {0} succeeded for \r\n{1}", encoding.ToString(),Path.GetFileName(fullFileName)); // One line for filename alone
+                MessageBox.Show(message,applicationName,MessageBoxButtons.OK, MessageBoxIcon.None);
+            }
+
+            if (nFiles <= 1) return; // All done!
+
+            {
+                // Suggest to export as separate scores
+                string messageBoxText = String.Format("The Music Braille file contains multiple scores.\r\nDo you want to export it as separate scores as well?");
+                DialogResult dialogResult = MessageBox.Show(messageBoxText, applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                errorMessage = model.DecoderHandler.ExportToSeparateScores(encoding, regionalOptions,fullFileName);
+                if (string.IsNullOrEmpty(errorMessage))
+                {
+#warning Todo Localize
+                    MessageBox.Show(string.Format("{0} scores succesfully exported!", nFiles), applicationName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(errorMessage, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
@@ -1178,32 +1209,32 @@ namespace MusicBrailleReader
 
         private void octoBraillebrlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, DecoderOptions.RegionalOptionsEnum.Danish);
+            OnExportToAlternativeBrailleFileFormatClick(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, DecoderOptions.RegionalOptionsEnum.Danish);
         }
 
         private void aSCIIToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding.BRF_ASCII_Ex, DecoderOptions.RegionalOptionsEnum.Danish);
+            OnExportToAlternativeBrailleFileFormatClick(BrailleFileHandler.FileEncoding.BRF_ASCII_Ex, DecoderOptions.RegionalOptionsEnum.Danish);
         }
 
         private void utf8ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding.BRF_Unicode_utf8, DecoderOptions.RegionalOptionsEnum.Danish);
+            OnExportToAlternativeBrailleFileFormatClick(BrailleFileHandler.FileEncoding.BRF_Unicode_utf8, DecoderOptions.RegionalOptionsEnum.Danish);
         }
 
         private void utf16ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding.BRF_Unicode_utf16, DecoderOptions.RegionalOptionsEnum.Danish);
+            OnExportToAlternativeBrailleFileFormatClick(BrailleFileHandler.FileEncoding.BRF_Unicode_utf16, DecoderOptions.RegionalOptionsEnum.Danish);
         }
 
         private void utf32ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding.BRF_Unicode_utf16, DecoderOptions.RegionalOptionsEnum.Danish);
+            OnExportToAlternativeBrailleFileFormatClick(BrailleFileHandler.FileEncoding.BRF_Unicode_utf16, DecoderOptions.RegionalOptionsEnum.Danish);
         }
 
         private void pEFToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            OnExportToSeparateScoresClick(BrailleFileHandler.FileEncoding.PEF, DecoderOptions.RegionalOptionsEnum.Danish);
+            OnExportToAlternativeBrailleFileFormatClick(BrailleFileHandler.FileEncoding.PEF, DecoderOptions.RegionalOptionsEnum.Danish);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Xml;
 using BrailleMusicDecoder;
@@ -77,44 +78,95 @@ namespace MusicXmlReaderModel
 
             Logger.LogCF(": Exit");
             return result;
-        }
+        }        
 
-        public string ExportToSeparateScores(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions,out int numberOfScores)
+        public string GetNumberOfSeparateScores(out int numberOfScores)
         {
-            Logger.LogCF(string.Format("({0},{1}) ", encoding, regionalOptions));
+            Logger.LogCF("+");
             numberOfScores = 0;
-            // Initial errorhandling
+            string message;
             if ((null == brailleMusicDecoder) || (null == brailleMusicDecoder.BrailleSubSequenceList))
             {
 #warning todo Localize message
-                string message = "No MusicBraille file is loaded.";
+                message = "No MusicBraille file is loaded.";
                 Logger.LogCF(string.Format(": Error: {0}", message));
                 // ModelBaseMessageBox.Show(message,ModelBaseMessageBoxButtons.OK,ModelBaseMessageBoxIcon.Exclamation);
                 return message;
             }
-            numberOfScores = brailleMusicDecoder.BrailleSubSequenceList.List.Count;        
-            if (numberOfScores <= 1)
+            numberOfScores = brailleMusicDecoder.BrailleSubSequenceList.List.Count;
+            return string.Empty;
+        }
+
+        const string tempExportPath = @"C:\Temp\TempExport";
+
+        /// <summary>
+        /// Generates an informatice suffix for the filename to indicate the encoding
+        /// This is NOT a file extension, but is intended to be used as a part of the filename
+        /// </summary>
+        /// <param name="encoding"></param>
+        /// <returns></returns>
+        private string GetSuffix(BrailleFileHandler.FileEncoding encoding)
+        {
+            switch (encoding)
             {
-#warning todo Localize message
-                string message = "The MusicBraille file currently loaded does not contain multiple scores";
-                Logger.LogCF(string.Format(": Error: {0}", message));
-                //ModelBaseMessageBox.Show(message, ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Exclamation);
-                return message;
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf8: return "_Utf-8";
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf16: return "_Utf-16";
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf32: return "_Utf-32";
+                case BrailleFileHandler.FileEncoding.BRF_ASCII: return "_ASCII";
+                case BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252: return "_OctoBraille";
+                default:return "";
             }
+        }
 
-            // Now for the real action:
 
-            try
+        public string ExportToSingleScore(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions,string fullInputFileName)
+        {
+            Logger.LogCF(string.Format("({0},{1},{2})+", encoding, regionalOptions,fullInputFileName));
+            try   // And now for the real action:
             {
                 // throw new Exception("For test only!");
                 BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(encoding, 0, 0);
+                string suffix = GetSuffix(encoding);
+                string extension = brailleFileHandler.GetExtension();
+                string shortFileName = Path.GetFileNameWithoutExtension(fullInputFileName) + suffix + extension;
+                string fullFileName = Path.Combine(tempExportPath, shortFileName);
+                brailleFileHandler.WriteToFile(brailleFileAsUnicode, fullFileName, true); // Write the original contents of the file in the format specified
+            }
+            catch (Exception ex)
+            {
+#warning ToDo Localize
+                return string.Format("Exception.Message='{0}'", ex.Message);
+            }
+            Logger.LogCF(string.Format("({0},{1})-", encoding, regionalOptions));
+            return ""; // Signals success 
+        }     
+
+
+            public string ExportToSeparateScores(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions, string fullInputFileName)
+        {
+            Logger.LogCF(string.Format("({0},{1},{2}) ", encoding, regionalOptions,fullInputFileName));
+            int numberOfScores;
+            string message = GetNumberOfSeparateScores(out numberOfScores);
+            if (!string.IsNullOrEmpty(message)) return message;
+            if (numberOfScores <= 1)
+            {
+#warning todo Localize message
+                message = "The MusicBraille file currently loaded does not contain multiple scores";
+                Logger.LogCF(string.Format(": Error: {0}", message));
+                return message;
+            }
+
+            try   // And now for the real action:
+            {
+                // throw new Exception("For test only!");
+                BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(encoding, 0, 0);
+                string extension = brailleFileHandler.GetExtension();
                 foreach (BrailleSubSequence bss in brailleMusicDecoder.BrailleSubSequenceList.List)
                 {
                     string contents = bss.Contents;
-                    string fileName = bss.Name;
-                    string extension = ".brl";
+                    string fileName = bss.Name;           
                     string shortFileName = bss.Name + extension;
-                    string fullFileName = Path.Combine(@"C:\temp", shortFileName);
+                    string fullFileName = Path.Combine(tempExportPath, shortFileName);
                     brailleFileHandler.WriteToFile(contents, fullFileName, true);
                 }
             }

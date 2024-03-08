@@ -372,8 +372,8 @@
             this.uNICODEToolStripMenuItem1,
             this.pEFToolStripMenuItem1});
             this.exportAsSeparateScoresToolStripMenuItem.Name = "exportAsSeparateScoresToolStripMenuItem";
-            this.exportAsSeparateScoresToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
-            this.exportAsSeparateScoresToolStripMenuItem.Text = "Export as separate scores";
+            this.exportAsSeparateScoresToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
+            this.exportAsSeparateScoresToolStripMenuItem.Text = "Export to alternative Braille fileformat";
             // 
             // octoBraillebrlToolStripMenuItem
             // 
@@ -403,7 +403,7 @@
             // 
             this.pEFToolStripMenuItem1.Name = "pEFToolStripMenuItem1";
             this.pEFToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.pEFToolStripMenuItem1.Text = "PEF";
+            this.pEFToolStripMenuItem1.Text = "PEF (.pef)";
             this.pEFToolStripMenuItem1.Click += new System.EventHandler(this.pEFToolStripMenuItem1_Click);
             // 
             // utf8ToolStripMenuItem
