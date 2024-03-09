@@ -171,9 +171,9 @@ namespace MusicXmlReaderModel
         }     
 
 
-            public string ExportToSeparateScores(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions, string fullInputFileName)
+            public string ExportToSeparateScores(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions, string destinationPath)
         {
-            Logger.LogCF(string.Format("({0},{1},{2}) ", encoding, regionalOptions,fullInputFileName));
+            Logger.LogCF(string.Format("({0},{1},{2}) ", encoding, regionalOptions,destinationPath));
             int numberOfScores;
             string message = GetNumberOfSeparateScores(out numberOfScores);
             if (!string.IsNullOrEmpty(message)) return message;
@@ -195,7 +195,7 @@ namespace MusicXmlReaderModel
                     string contents = bss.Contents;
                     string fileName = bss.Name;           
                     string shortFileName = bss.Name + extension;
-                    string fullFileName = Path.Combine(tempExportPath, shortFileName);
+                    string fullFileName = Path.Combine(destinationPath, shortFileName);
                     brailleFileHandler.WriteToFile(contents, fullFileName, true);
                 }
             }
