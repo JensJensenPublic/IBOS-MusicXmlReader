@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Reflection;
+//using System.Text;
 using System.Xml;
 using BrailleMusicDecoder;
 
@@ -114,22 +115,50 @@ namespace MusicXmlReaderModel
                 case BrailleFileHandler.FileEncoding.BRF_Unicode_utf32: return "_Utf-32";
                 case BrailleFileHandler.FileEncoding.BRF_ASCII: return "_ASCII";
                 case BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252: return "_OctoBraille";
-                default:return "";
+                default:
+                    Logger.LogCF(string.Format(": Unsupported encoding {0}", encoding));
+                    return "";
+            }
+        }
+
+        private string GetExtension(BrailleFileHandler.FileEncoding encoding)
+        {
+            switch (encoding)
+            {
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf8: return ".txt";
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf16: return ".txt";
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf32: return ".txt";
+                case BrailleFileHandler.FileEncoding.BRF_ASCII: return ".brf";
+                case BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252: return "brl";
+                case BrailleFileHandler.FileEncoding.PEF: return ".pef";
+                default:
+                    Logger.LogCF(string.Format(": Unsupported encoding {0}", encoding));
+                    return "";
             }
         }
 
 
-        public string ExportToSingleScore(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions,string fullInputFileName)
+        public string GetSuggestedBrailleFileName(string originalFileName, BrailleFileHandler.FileEncoding encoding)
         {
-            Logger.LogCF(string.Format("({0},{1},{2})+", encoding, regionalOptions,fullInputFileName));
+            string originalDirectory = Path.GetDirectoryName(originalFileName);
+            string originalShortFileName = Path.GetFileNameWithoutExtension(originalFileName);
+            string result = Path.Combine(originalDirectory, originalShortFileName + GetSuffix(encoding) + this.GetExtension(encoding));
+            return result;   
+        }
+
+
+
+        public string ExportToSingleScore(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions,string fullFileName)
+        {
+            Logger.LogCF(string.Format("({0},{1},{2})+", encoding, regionalOptions,fullFileName));
             try   // And now for the real action:
             {
                 // throw new Exception("For test only!");
                 BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(encoding, 0, 0);
-                string suffix = GetSuffix(encoding);
-                string extension = brailleFileHandler.GetExtension();
-                string shortFileName = Path.GetFileNameWithoutExtension(fullInputFileName) + suffix + extension;
-                string fullFileName = Path.Combine(tempExportPath, shortFileName);
+                //string suffix = GetSuffix(encoding);
+                //string extension = brailleFileHandler.GetExtension();
+                //string shortFileName = Path.GetFileNameWithoutExtension(fullInputFileName) + suffix + extension;
+                //string fullFileName = Path.Combine(tempExportPath, shortFileName);
                 brailleFileHandler.WriteToFile(brailleFileAsUnicode, fullFileName, true); // Write the original contents of the file in the format specified
             }
             catch (Exception ex)
