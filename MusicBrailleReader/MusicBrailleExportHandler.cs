@@ -40,6 +40,13 @@ namespace MusicBrailleReader
         }
 
 
+        /// <summary>
+        /// Exports the currently loaded MusicBraille file to an alternative MusicBraille format
+        /// If the currently loaded file contains multiple scores it can also be split into separate scores, which are each exported separately.
+        /// </summary>
+        /// <param name="encoding">The Braille file format to export to</param>
+        /// <param name="regionalOptions">Any regioanal options, used during the export operation </param>
+        /// <param name="fullFileName">The full file name of the Music Braille file to export</param>
         public void OnExport(BrailleFileHandler.FileEncoding encoding, DecoderOptions.RegionalOptionsEnum regionalOptions, string fullFileName)
         {
             Logger.LogCF(string.Format("({0},{1},FullFileName={2})", encoding, regionalOptions, fullFileName));
