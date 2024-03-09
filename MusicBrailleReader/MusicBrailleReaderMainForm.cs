@@ -163,10 +163,10 @@ namespace MusicBrailleReader
             this.userSettingsTreeView.Enter += new System.EventHandler(TreeViewEnter); // Save relevant usersettings at entry
             this.userSettingsTreeView.Leave += new System.EventHandler(TreeViewLeave); // Allow for calling Decode() again if usersettings have changed.
 
-            brailleMusicExportHandler = BrailleMusicExportHandler.Create(model.DecoderHandler, applicationName);
+            musicBrailleExportHandler = MusicBrailleExportHandler.Create(model.DecoderHandler, applicationName);
         }
 
-        private BrailleMusicExportHandler brailleMusicExportHandler;
+        private MusicBrailleExportHandler musicBrailleExportHandler;
 
         private void Hide(ToolStripMenuItem item)
         {
@@ -1166,32 +1166,32 @@ namespace MusicBrailleReader
 
         private void octoBraillebrlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.OnExport(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, DecoderOptions.RegionalOptionsEnum.Danish,fullFileName);
+            musicBrailleExportHandler.OnExport(BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252, DecoderOptions.RegionalOptionsEnum.Danish,fullFileName);
         }
 
         private void aSCIIToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.OnExport(BrailleFileHandler.FileEncoding.BRF_ASCII_Ex, DecoderOptions.RegionalOptionsEnum.Danish, fullFileName);
+            musicBrailleExportHandler.OnExport(BrailleFileHandler.FileEncoding.BRF_ASCII_Ex, DecoderOptions.RegionalOptionsEnum.Danish, fullFileName);
         }
 
         private void utf8ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.OnExport(BrailleFileHandler.FileEncoding.BRF_Unicode_utf8, DecoderOptions.RegionalOptionsEnum.Danish, fullFileName);
+            musicBrailleExportHandler.OnExport(BrailleFileHandler.FileEncoding.BRF_Unicode_utf8, DecoderOptions.RegionalOptionsEnum.Danish, fullFileName);
         }
 
         private void utf16ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.OnExport(BrailleFileHandler.FileEncoding.BRF_Unicode_utf16, DecoderOptions.RegionalOptionsEnum.Danish, fullFileName);
+            musicBrailleExportHandler.OnExport(BrailleFileHandler.FileEncoding.BRF_Unicode_utf16, DecoderOptions.RegionalOptionsEnum.Danish, fullFileName);
         }
 
         private void utf32ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.OnExport(BrailleFileHandler.FileEncoding.BRF_Unicode_utf16, DecoderOptions.RegionalOptionsEnum.Danish, fullFileName);
+            musicBrailleExportHandler.OnExport(BrailleFileHandler.FileEncoding.BRF_Unicode_utf16, DecoderOptions.RegionalOptionsEnum.Danish, fullFileName);
         }
 
         private void pEFToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            brailleMusicExportHandler.OnExport(BrailleFileHandler.FileEncoding.PEF, DecoderOptions.RegionalOptionsEnum.Danish, fullFileName);
+            musicBrailleExportHandler.OnExport(BrailleFileHandler.FileEncoding.PEF, DecoderOptions.RegionalOptionsEnum.Danish, fullFileName);
         }
     }
 }

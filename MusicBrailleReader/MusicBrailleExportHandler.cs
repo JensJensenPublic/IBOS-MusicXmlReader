@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace MusicBrailleReader
 {
-    internal class BrailleMusicExportHandler
+    internal class MusicBrailleExportHandler
     {
         private string GetFileNameForSaving(string suggestedFileName, string filterMask)
         {
@@ -92,16 +92,16 @@ namespace MusicBrailleReader
         }
 
 
-        static public BrailleMusicExportHandler Create(DecoderHandler decoderHandler, string applicationName)
+        static public MusicBrailleExportHandler Create(DecoderHandler decoderHandler, string applicationName)
         {
-            return new BrailleMusicExportHandler(decoderHandler,applicationName);
+            return new MusicBrailleExportHandler(decoderHandler,applicationName);
         }
 
         DecoderHandler decoderHandler;
         string applicationName;
 
 
-        private BrailleMusicExportHandler(DecoderHandler decoderHandler, string applicationName)
+        private MusicBrailleExportHandler(DecoderHandler decoderHandler, string applicationName)
         {
             this.decoderHandler = decoderHandler;
             this.applicationName = applicationName;         
