@@ -56,25 +56,12 @@ namespace BrailleMusicDecoder
             switch (inputInterpretation.Category)
             {
                 case InputCategoryEnum.ToMusicBraille:
-                    if (null == currentBrailleSequence)
+                    if (null != currentBrailleSequence)
                     {
                         currentBrailleSequence.ToMusicBrailleIndex = index;
                     }
-
-                    //if (null == initialTextBrailleSequence)
-                    //{
-                    //    initialTextBrailleSequence = BrailleSubSequence.Create(fullSequence, 0, index, "Initial text");
-                    //    Log(initialTextBrailleSequence, inputInterpretation.Category);
-                    //}
-                    //if (null != currentBrailleSequence)
-                    //{
-                    //    currentBrailleSequence.UpdateEndIndex(index); // Probably the FinalDoubleBar was missing
-                    //    Log(currentBrailleSequence, inputInterpretation.Category);
-                    //}
-                    //Initially assume that the rest of the inputSequence belongs to this sequence
-                    //currentBrailleSequence = BrailleSubSequence.Create(fullSequence,index,fullSequence.Length,string.Format("Score {0}",this.list.Count));
-                    //this.Add(currentBrailleSequence);
                     break;
+
                 case InputCategoryEnum.Hand:
                     if (null != currentBrailleSequence)
                     {
