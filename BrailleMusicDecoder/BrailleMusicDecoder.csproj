@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrailleSubSequence.cs" />
+    <Compile Include="BrailleSubSequenceList.cs" />
     <Compile Include="DecoderDebugTools.cs" />
     <Compile Include="MusicXmlElements\MusicXmlDocument.cs" />
     <Compile Include="IDecoderClient.cs" />
