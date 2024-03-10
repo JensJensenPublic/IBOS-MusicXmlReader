@@ -19,17 +19,33 @@ namespace BrailleMusicDecoder
         private int startIndex;
         private int endIndex;
 
-        // The remainig index are primarily for debugging purposes:
-        private int toMusicBrailleIndex = -1;
-        public int ToMusicBrailleIndex { get { return toMusicBrailleIndex; } set { toMusicBrailleIndex = value; } }
-        private int rightHandIndex = -1;
-        public int RightHandIndex { get => rightHandIndex; set => rightHandIndex = value; }
+        public const int NotFound = -1;
 
-        private int leftHandIndex = -1;
-        public int LeftHandIndex { get => leftHandIndex; set => leftHandIndex = value; }
 
-        private int pedalHandIndex = -1;
-        public int PedalHandIndex { get => pedalHandIndex; set => pedalHandIndex = value; }
+        
+        /// <summary>
+        /// Keep first value
+        /// </summary>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        private void KeepFirstValue(ref int oldValue, int newValue)
+        {
+            if (oldValue != NotFound) return;
+            oldValue = newValue;            
+        }
+
+
+        // The remaining index are primarily for debugging purposes:
+        private int toMusicBrailleIndex = NotFound;
+        public int ToMusicBrailleIndex { get { return toMusicBrailleIndex; } set { KeepFirstValue( ref toMusicBrailleIndex, value); } }
+        private int rightHandIndex = NotFound;
+        public int RightHandIndex { get => rightHandIndex; set => KeepFirstValue(ref rightHandIndex, value); }
+
+        private int leftHandIndex = NotFound;
+        public int LeftHandIndex { get => leftHandIndex; set => KeepFirstValue(ref leftHandIndex, value); }
+
+        private int pedalHandIndex = NotFound;
+        public int PedalHandIndex { get => pedalHandIndex; set => KeepFirstValue(ref pedalHandIndex, value); }
 
         public int Length { get { return endIndex - startIndex; } }
         private string name;
