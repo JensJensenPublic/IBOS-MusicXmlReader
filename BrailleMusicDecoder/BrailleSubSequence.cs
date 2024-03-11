@@ -122,8 +122,8 @@ namespace BrailleMusicDecoder
 
         public override string ToString()
         {
-            return string.Format("StartIndex={0} EndIndex={1} ToMusicBraille={2} Right={3} Left={4} Pedal={5} Name='{6}'",
-                                  startIndex,    endIndex,    toMusicBrailleIndex, rightHandIndex, leftHandIndex,pedalHandIndex,name);
+            return string.Format("StartIndex={0} EndIndex={1} ToMusicBraille={2} Right={3} Left={4} Pedal={5} Name='{6}' TextForFileName='{7}'",
+                                  startIndex,    endIndex,    toMusicBrailleIndex, rightHandIndex, leftHandIndex,pedalHandIndex,name, TextForFileName);
         }
 
         public void UpdateEndIndex(int endIndex)
