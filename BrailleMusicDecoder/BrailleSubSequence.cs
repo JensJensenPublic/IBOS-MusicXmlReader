@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,7 +78,33 @@ namespace BrailleMusicDecoder
             }
         }
 
-        public void OnBlackText(string newText)
+        public void OnNewInput(InputInterpretation inputInterpretation, int index)
+        {
+            if (null == inputInterpretation) return;
+            switch (inputInterpretation.Category)
+            {
+                case InputCategoryEnum.ToMusicBraille:  ToMusicBrailleIndex = index; return;
+                case InputCategoryEnum.Hand:
+                    switch (inputInterpretation.SubCategory)
+                    {
+                        case InputSubCategoryEnum.HandRight: rightHandIndex = index; break;
+                        case InputSubCategoryEnum.HandLeft: leftHandIndex = index; break;
+                        case InputSubCategoryEnum.HandPedal: pedalHandIndex = index; break;
+                        default: break;
+                    }
+                    break;
+                case InputCategoryEnum.FinalDoubleBar: break; // Occurs for each part!!
+                case InputCategoryEnum.ControlCharCRLFNumber: OnBlackText("\r\n"); break;
+                case InputCategoryEnum.ControlCharCRLF: OnBlackText("\r\n"); break;
+
+                case InputCategoryEnum.Digit: OnBlackText(inputInterpretation.FriendlyValue);break;               
+
+                case InputCategoryEnum.Character: OnBlackText(inputInterpretation.FriendlyValue); break;
+                default: break;
+            }
+        }
+
+        private void OnBlackText(string newText)
         {
             // Build a string containing all text
             this.text.Append(newText);

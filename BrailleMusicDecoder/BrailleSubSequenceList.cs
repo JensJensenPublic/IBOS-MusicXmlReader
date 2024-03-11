@@ -50,63 +50,21 @@ namespace BrailleMusicDecoder
 
         int separatingColons = 0;
 
-        private void OnBlackText(string text)
-        {
-            if (null != currentBrailleSequence)
-            {
-                currentBrailleSequence.OnBlackText(text);
-            }
-        }
+        //private void OnBlackText(string text)
+        //{
+        //    if (null != currentBrailleSequence)
+        //    {
+        //        currentBrailleSequence.OnBlackText(text);
+        //    }
+        //}
 
 
         public void OnNewInput(InputInterpretation inputInterpretation, int index)
         {
             if (null == inputInterpretation) return;
             switch (inputInterpretation.Category)
-            {
-                case InputCategoryEnum.ToMusicBraille:
-                    if (null != currentBrailleSequence)
-                    {
-                        currentBrailleSequence.ToMusicBrailleIndex = index;
-                    }
-                    break;
-
-                case InputCategoryEnum.Hand:
-                    if (null != currentBrailleSequence)
-                    {
-                        switch (inputInterpretation.SubCategory)
-                        {
-                            case InputSubCategoryEnum.HandRight: currentBrailleSequence.RightHandIndex = index; break;
-                            case InputSubCategoryEnum.HandLeft: currentBrailleSequence.LeftHandIndex = index; break;
-                            case InputSubCategoryEnum.HandPedal: currentBrailleSequence.PedalHandIndex = index; break;
-                            default: break;
-                        }
-
-
-                    }
-
-                    break;
-
-
-                case InputCategoryEnum.FinalDoubleBar: // Occurs for each part!!
-                    //currentBrailleSequence.UpdateEndIndex(index + 2); // 2 is the length of the FinalDoubleBar, which must be included !
-                    //Log(currentBrailleSequence, inputInterpretation.Category);
-                    break;
-
-                case InputCategoryEnum.ControlCharCRLFNumber:
-                    this.OnBlackText("\r\n");
-                    break;
-
-                case InputCategoryEnum.ControlCharCRLF:
-                    this.OnBlackText("\r\n");
-                    break;
-
-                case InputCategoryEnum.Digit:
-                    this.OnBlackText(inputInterpretation.FriendlyValue);
-                    break;                
-
-                case InputCategoryEnum.Character:     
-//                    this.OnBlackText(inputInterpretation.FriendlyValue);
+            {    
+                case InputCategoryEnum.Character:
                     if (inputInterpretation.FriendlyValue == ":")
                     {
                         separatingColons++;
@@ -131,12 +89,13 @@ namespace BrailleMusicDecoder
                             this.Add(currentBrailleSequence);
                         }
                         separatingColons = 0;
-                    }
-                    this.OnBlackText(inputInterpretation.FriendlyValue);
+                    }                  
                     break;
 
-
+                default: break;
             }
+
+            currentBrailleSequence.OnNewInput(inputInterpretation, index);
         }
 
         public void AfterLastInput()
