@@ -532,6 +532,7 @@ namespace BrailleMusicDecoder
         /// <param name="epilogue"></param>
         private void LogInterpretations(InputInterpretationList list, string listName, string epilogue)
         {
+            if (!Logger.DeveloperMode) return;
             Logger.LogCF(string.Format(": Found {0} Interpretations in {1}{2}:", list.Count, listName, (null == epilogue) ? "" : " for " + epilogue ));
             for (int i = 0; (i < list.Count); i++)
             {
