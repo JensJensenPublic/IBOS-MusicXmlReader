@@ -72,11 +72,11 @@ namespace MusicXmlReaderModel
             // Save the MusicXml representation of the decoded file 
             brailleMusicDecoder.RemoveEmptyLinesAtEnd();
             musicXmlDocument = brailleMusicDecoder.MusicXmlDocument;
-            brailleMusicDecoder.LogStatistics(); // Log a table containing the number of state transitions that occurred during the operation. For debugging purposes only!
-            //brailleMusicDecoder.LogWarnings();
-
-            brailleMusicDecoder.LogCategories(); // Log a list of all the number of occurances of each InputCategoryEum during the operation. For debugging purposes only ! 
-
+            if (Logger.DeveloperMode)
+            {
+                brailleMusicDecoder.LogStatistics(); // Log a table containing the number of state transitions that occurred during the operation. For debugging purposes only!
+                brailleMusicDecoder.LogCategories(); // Log a list of all the number of occurances of each InputCategoryEum during the operation. For debugging purposes only ! 
+            }
             Logger.LogCF(": Exit");
             return result;
         }        
