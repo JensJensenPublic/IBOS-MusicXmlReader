@@ -222,8 +222,10 @@ namespace MusicXmlReaderModel
             foreach (UserInfoBase userInfoBase in userInfoList)
             {
                 UserInfoFlagsEnum userInfoEnum = userInfoBase.GetInfoEnum();
-                Logger.LogCF(string.Format(": UserInfoEnum={0}", userInfoEnum.ToString()));
-
+                if (Logger.DeveloperMode)
+                {
+                    Logger.LogCF(string.Format(": UserInfoEnum={0}", userInfoEnum.ToString()));
+                }
                 if (0 == (( mask) & userInfoEnum))
                 {
                     continue; // Continue with next userInfoBase, skipping this one 

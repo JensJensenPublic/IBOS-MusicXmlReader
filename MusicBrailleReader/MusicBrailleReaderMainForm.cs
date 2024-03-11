@@ -430,6 +430,7 @@ namespace MusicBrailleReader
             decoderOutputFileHandler = DecoderOutputFileHandler.Create(fullFileName);
 
             // Write the decoded output as text to the listbox
+            Logger.LogCF(": Updating main Listbox+");
             listBoxOffsets.ClearSelected();
             foreach (DecoderItem decoderItem in result)
             {
@@ -439,7 +440,7 @@ namespace MusicBrailleReader
             {
                 listBoxOffsets.SelectedIndex = 0; // Select the first item from start to avoid crashes. 
             }
-
+            Logger.LogCF(": Updating main Listbox-");
             return result;
         }
 
