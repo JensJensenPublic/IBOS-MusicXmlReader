@@ -50,6 +50,15 @@ namespace BrailleMusicDecoder
 
         int separatingColons = 0;
 
+        private void OnBlackText(string text)
+        {
+            if (null != currentBrailleSequence)
+            {
+                currentBrailleSequence.OnBlackText(text);
+            }
+        }
+
+
         public void OnNewInput(InputInterpretation inputInterpretation, int index)
         {
             if (null == inputInterpretation) return;
@@ -84,7 +93,20 @@ namespace BrailleMusicDecoder
                     //Log(currentBrailleSequence, inputInterpretation.Category);
                     break;
 
-                case InputCategoryEnum.Character:
+                case InputCategoryEnum.ControlCharCRLFNumber:
+                    this.OnBlackText("\r\n");
+                    break;
+
+                case InputCategoryEnum.ControlCharCRLF:
+                    this.OnBlackText("\r\n");
+                    break;
+
+                case InputCategoryEnum.Digit:
+                    this.OnBlackText(inputInterpretation.FriendlyValue);
+                    break;                
+
+                case InputCategoryEnum.Character:     
+//                    this.OnBlackText(inputInterpretation.FriendlyValue);
                     if (inputInterpretation.FriendlyValue == ":")
                     {
                         separatingColons++;
@@ -110,6 +132,7 @@ namespace BrailleMusicDecoder
                         }
                         separatingColons = 0;
                     }
+                    this.OnBlackText(inputInterpretation.FriendlyValue);
                     break;
 
 

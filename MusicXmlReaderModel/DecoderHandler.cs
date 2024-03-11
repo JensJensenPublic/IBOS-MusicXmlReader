@@ -183,9 +183,9 @@ namespace MusicXmlReaderModel
                 message = "The MusicBraille file currently loaded does not contain multiple scores";
                 Logger.LogCF(string.Format(": Error: {0}", message));
                 return message;
-            }
+            }       
 
-            try   // And now for the real action:
+            try   // And now for the real action: Generate an appropriate filename and save the contents:
             {
                 // throw new Exception("For test only!");
                 BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(encoding, 0, 0);
@@ -193,9 +193,10 @@ namespace MusicXmlReaderModel
                 foreach (BrailleSubSequence bss in brailleMusicDecoder.BrailleSubSequenceList.List)
                 {
                     string contents = bss.Contents;
-                    string fileName = bss.Name;           
-                    string shortFileName = bss.Name + extension;
+                    string fileName = bss.TextForFileName; // Is guaranteed not to  contain characters not usable in a path
+                    string shortFileName = bss.Name + " " + fileName + extension;
                     string fullFileName = Path.Combine(destinationPath, shortFileName);
+                    Logger.LogCF(string.Format(": Writing {0} characters to '{1}'", contents.Length, shortFileName));
                     brailleFileHandler.WriteToFile(contents, fullFileName, true);
                 }
             }

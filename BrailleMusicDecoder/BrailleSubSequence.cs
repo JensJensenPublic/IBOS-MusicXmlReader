@@ -1,6 +1,7 @@
 ﻿using MusicXmlReaderModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -15,6 +16,7 @@ namespace BrailleMusicDecoder
     /// </summary>
     public class BrailleSubSequence
     {
+        private readonly char[] invalidCharsForFileName = Path.GetInvalidFileNameChars();
         private string fullSequence;
         private int startIndex;
         private int endIndex;
@@ -50,7 +52,46 @@ namespace BrailleMusicDecoder
         public int Length { get { return endIndex - startIndex; } }
         private string name;
 
+        private StringBuilder text = new StringBuilder();
+        private StringBuilder textForFileName = new StringBuilder();
 
+        /// <summary>
+        /// Contains all normal Text Braille contained in this BrailleSubSequence 
+        /// </summary>
+        public string Text { get => text.ToString(); }
+        public string TextForFileName { get => textForFileName.ToString(); }
+
+        private bool textForFileNameFound = false;
+
+        /// <summary>
+        /// Return the first text sequence of the BrailleSubsequence, typically a caption containing the name of the score described in the Subsequence
+        /// </summary>
+        public string Caption
+        {
+            get
+            {
+                string s = text.ToString();
+                int i = s.IndexOf('\r'); // Index of first CR
+                if (-1 == i) return s; // If not found
+                return s.Substring(0, i);
+            }
+        }
+
+        public void OnBlackText(string newText)
+        {
+            // Build a string containing all text
+            this.text.Append(newText);
+            // Build a string, usable as a filename
+            textForFileNameFound |= newText.Contains('\r');
+            if (!textForFileNameFound)
+            {
+                foreach (char c in invalidCharsForFileName)
+                {
+                    newText = newText.Replace(c, '-');
+                }
+                this.textForFileName.Append(newText);
+            }
+        }
 
         public override string ToString()
         {
@@ -69,7 +110,7 @@ namespace BrailleMusicDecoder
                 return fullSequence.Substring(startIndex, Length); } }
         public string Name { get { return name; } }
 
- 
+     
 
         public static BrailleSubSequence Create(string fullSequencem, int startIndex, int endIndex, string name)
         {
