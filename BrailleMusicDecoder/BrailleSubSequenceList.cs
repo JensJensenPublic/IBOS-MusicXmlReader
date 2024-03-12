@@ -62,40 +62,60 @@ namespace BrailleMusicDecoder
         public void OnNewInput(InputInterpretation inputInterpretation, int index)
         {
             if (null == inputInterpretation) return;
-            switch (inputInterpretation.Category)
-            {    
-                case InputCategoryEnum.Character:
-                    if (inputInterpretation.FriendlyValue == ":")
-                    {
-                        separatingColons++;
-                    }
-                    else
-                    {
-                        if (separatingColons > 10)
-                        {
-                            if (null == initialTextBrailleSequence)
-                            {
-                                initialTextBrailleSequence = BrailleSubSequence.Create(fullSequence, 0, index, "Initial text");
-                                Log(initialTextBrailleSequence, inputInterpretation.Category);
-                            }
 
-                            Logger.LogCF(": End of separator found.");
-                            if (null != currentBrailleSequence)
-                            {
-                                currentBrailleSequence.UpdateEndIndex(index);
-                                Log(currentBrailleSequence, inputInterpretation.Category);
-                            }
-                            currentBrailleSequence = BrailleSubSequence.Create(fullSequence, index, fullSequence.Length, string.Format("Score {0}", this.list.Count));
-                            this.Add(currentBrailleSequence);
-                        }
-                        separatingColons = 0;
-                    }                  
-                    break;
-
-                default: break;
+            if ((inputInterpretation.Category == InputCategoryEnum.Character) && (inputInterpretation.FriendlyValue == ":"))
+            {
+                separatingColons++;
+            }
+            else
+            {
+                if (separatingColons > 10)
+                {
+                    Logger.LogCF(": End of separator found.");
+                    currentBrailleSequence.UpdateEndIndex(index);
+                    Log(currentBrailleSequence, inputInterpretation.Category);
+                    currentBrailleSequence = BrailleSubSequence.Create(fullSequence, index, fullSequence.Length, string.Format("Score {0}", this.list.Count));
+                    this.Add(currentBrailleSequence);
+                }
+                separatingColons = 0;
             }
 
             currentBrailleSequence.OnNewInput(inputInterpretation, index);
+
+            //switch (inputInterpretation.Category)
+            //{    
+            //    case InputCategoryEnum.Character:
+            //        if (inputInterpretation.FriendlyValue == ":")
+            //        {
+            //            separatingColons++;
+            //        }
+            //        else
+            //        {
+            //            if (separatingColons > 10)
+            //            {
+            //                if (null == initialTextBrailleSequence)
+            //                {
+            //                    initialTextBrailleSequence = BrailleSubSequence.Create(fullSequence, 0, index, "Initial text");
+            //                    Log(initialTextBrailleSequence, inputInterpretation.Category);
+            //                }
+
+            //                Logger.LogCF(": End of separator found.");
+            //                if (null != currentBrailleSequence)
+            //                {
+            //                    currentBrailleSequence.UpdateEndIndex(index);
+            //                    Log(currentBrailleSequence, inputInterpretation.Category);
+            //                }
+            //                currentBrailleSequence = BrailleSubSequence.Create(fullSequence, index, fullSequence.Length, string.Format("Score {0}", this.list.Count));
+            //                this.Add(currentBrailleSequence);
+            //            }
+            //            separatingColons = 0;
+            //        }                  
+            //        break;
+
+            //    default: break;
+            //}
+            //
+            //currentBrailleSequence.OnNewInput(inputInterpretation, index);
         }
 
         public void AfterLastInput()
@@ -124,6 +144,7 @@ namespace BrailleMusicDecoder
             this.list = new List<BrailleSubSequence>();
             this.fullSequence = fullSequence;
             this.currentBrailleSequence = BrailleSubSequence.Create(this.fullSequence, 0, 0, "Sequence 0");
+            this.List.Add(currentBrailleSequence);
         }
         private BrailleSubSequenceList() { }
 

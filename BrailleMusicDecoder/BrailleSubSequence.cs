@@ -59,71 +59,133 @@ namespace BrailleMusicDecoder
         /// <summary>
         /// Contains all normal Text Braille contained in this BrailleSubSequence 
         /// </summary>
-        public string Text { get => text.ToString(); }
-        public string TextForFileName { get => textForFileName.ToString(); }
+        //public string Text { get => text.ToString(); }
+        //public string TextForFileName { get => textForFileName.ToString(); }
 
-        private bool textForFileNameFound = false;
+        //private bool textForFileNameFound = false;
 
-        /// <summary>
-        /// Return the first text sequence of the BrailleSubsequence, typically a caption containing the name of the score described in the Subsequence
-        /// </summary>
-        public string Caption
+        ///// <summary>
+        ///// Return the first text sequence of the BrailleSubsequence, typically a caption containing the name of the score described in the Subsequence
+        ///// </summary>
+        //public string Caption
+        //{
+        //    get
+        //    {
+        //        string s = text.ToString();
+        //        int i = s.IndexOf('\r'); // Index of first CR
+        //        if (-1 == i) return s; // If not found
+        //        return s.Substring(0, i);
+        //    }
+        //}
+
+        private enum TitleStateEnum { Before, During, After }
+        private TitleStateEnum titleState = TitleStateEnum.Before;
+        private StringBuilder title = new StringBuilder(); // For immediate interpretating as simple uncontracted Braille
+        private StringBuilder titleAsFileName = new StringBuilder(); // For immediate interpretating as simple uncontracted Braille
+        private int titleStart; // For later interpreting as contracted Braille
+        private int titleEnd;   // For later interpreting as contracted Braille
+
+        public string Title { get { return title.ToString(); } }
+        public string TitleAsFileName { get { return ToValidFileName(Title); } }
+  
+
+        private void OnNewInput(bool isBlackText, string input, int index)
         {
-            get
+            switch (titleState)
             {
-                string s = text.ToString();
-                int i = s.IndexOf('\r'); // Index of first CR
-                if (-1 == i) return s; // If not found
-                return s.Substring(0, i);
+                case TitleStateEnum.Before:
+                    if (isBlackText)
+                    {
+                        titleStart = index;
+                        title.Append(input);
+                        titleState = TitleStateEnum.During;
+                    }
+                    break;
+                case TitleStateEnum.During:
+                    if (isBlackText)
+                    {
+                        title.Append(input);
+                    }
+                    else
+                    {
+                        titleEnd = index;
+                        titleState = TitleStateEnum.After;
+                    }
+                    break; 
+                case TitleStateEnum.After:
+                    break;
+                default: throw new NotImplementedException();   
             }
         }
+
 
         public void OnNewInput(InputInterpretation inputInterpretation, int index)
         {
             if (null == inputInterpretation) return;
             switch (inputInterpretation.Category)
             {
-                case InputCategoryEnum.ToMusicBraille:  ToMusicBrailleIndex = index; return;
-                case InputCategoryEnum.Hand:
-                    switch (inputInterpretation.SubCategory)
-                    {
-                        case InputSubCategoryEnum.HandRight: rightHandIndex = index; break;
-                        case InputSubCategoryEnum.HandLeft: leftHandIndex = index; break;
-                        case InputSubCategoryEnum.HandPedal: pedalHandIndex = index; break;
-                        default: break;
-                    }
-                    break;
-                case InputCategoryEnum.FinalDoubleBar: break; // Occurs for each part!!
-                case InputCategoryEnum.ControlCharCRLFNumber: OnBlackText("\r\n"); break;
-                case InputCategoryEnum.ControlCharCRLF: OnBlackText("\r\n"); break;
+                //case InputCategoryEnum.ToMusicBraille:  ToMusicBrailleIndex = index; return;
+                //case InputCategoryEnum.Hand:
+                //    switch (inputInterpretation.SubCategory)
+                //    {
+                //        case InputSubCategoryEnum.HandRight: rightHandIndex = index; break;
+                //        case InputSubCategoryEnum.HandLeft: leftHandIndex = index; break;
+                //        case InputSubCategoryEnum.HandPedal: pedalHandIndex = index; break;
+                //        default: break;
+                //    }
+                //    break;
+                //case InputCategoryEnum.FinalDoubleBar: break; // Occurs for each part!!
+                //case InputCategoryEnum.ControlCharCRLFNumber: OnBlackText("\r\n"); break;
+                //case InputCategoryEnum.ControlCharCRLF: OnBlackText("\r\n"); break;
 
-                case InputCategoryEnum.Digit: OnBlackText(inputInterpretation.FriendlyValue);break;               
-
-                case InputCategoryEnum.Character: OnBlackText(inputInterpretation.FriendlyValue); break;
-                default: break;
+                case InputCategoryEnum.Digit: OnNewInput(true,inputInterpretation.FriendlyValue,index);break;
+                case InputCategoryEnum.Character: OnNewInput(true,inputInterpretation.FriendlyValue,index); break;
+                case InputCategoryEnum.Space: OnNewInput(true,inputInterpretation.FriendlyValue,index); break;
+                case InputCategoryEnum.TextVersal: OnNewInput(true,"",index);break;
+                default: OnNewInput(false, inputInterpretation.FriendlyValue,index); break;
             }
         }
 
-        private void OnBlackText(string newText)
+
+        private string ToValidFileName(string s)
         {
-            // Build a string containing all text
-            this.text.Append(newText);
-            // Build a string, usable as a filename
-            textForFileNameFound |= newText.Contains('\r');
-            if (!textForFileNameFound)
+            StringBuilder result = new StringBuilder();
+            foreach (char c in s)
             {
-                foreach (char c in invalidCharsForFileName)
+                if (invalidCharsForFileName.Contains(c))
                 {
-                    newText = newText.Replace(c, '-');
+                    result.Append('-');
                 }
-                this.textForFileName.Append(newText);
+                else
+                {
+                    result.Append(c);
+                }
             }
+            return result.ToString();   
+
         }
+
+
+        //private void OnBlackText(string newText)
+        //{
+        //    // Build a string containing all text
+        //    this.text.Append(newText);
+        //    // Build a string, usable as a filename
+        //    textForFileNameFound |= newText.Contains('\r');
+        //    if (!textForFileNameFound)
+        //    {
+        //        foreach (char c in invalidCharsForFileName)
+        //        {
+        //            newText = newText.Replace(c, '-');
+        //        }
+        //        this.textForFileName.Append(newText);
+        //    }
+        //}
 
         public override string ToString()
         {
-            return string.Format("StartIndex={0} EndIndex={1} ToMusicBraille={2} Right={3} Left={4} Pedal={5} Name='{6}' TextForFileName='{7}'",
-                                  startIndex,    endIndex,    toMusicBrailleIndex, rightHandIndex, leftHandIndex,pedalHandIndex,name, TextForFileName);
+            return string.Format("StartIndex={0} EndIndex={1} ToMusicBraille={2} Right={3} Left={4} Pedal={5} Name='{6}' Title='{7}' TitleAsFileName='{8}'",
+                                  startIndex,    endIndex,    toMusicBrailleIndex, rightHandIndex, leftHandIndex,pedalHandIndex,name, Title, TitleAsFileName);
         }
 
         public void UpdateEndIndex(int endIndex)

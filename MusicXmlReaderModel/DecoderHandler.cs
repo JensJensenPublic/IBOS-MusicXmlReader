@@ -193,7 +193,7 @@ namespace MusicXmlReaderModel
                 foreach (BrailleSubSequence bss in brailleMusicDecoder.BrailleSubSequenceList.List)
                 {
                     string contents = bss.Contents;
-                    string fileName = bss.TextForFileName; // Is guaranteed not to  contain characters not usable in a path
+                    string fileName = bss.TitleAsFileName; // Is guaranteed not to  contain characters not usable in a path
                     string shortFileName = bss.Name + " " + fileName + extension;
                     string fullFileName = Path.Combine(destinationPath, shortFileName);
                     Logger.LogCF(string.Format(": Writing {0} characters to '{1}'", contents.Length, shortFileName));
