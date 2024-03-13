@@ -300,6 +300,25 @@ namespace MusicBrailleReader
             // Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);     
         }
 
+        private string GetFilterString(BrailleFileHandler.FileEncoding encoding)
+        {
+            switch(encoding)
+            {
+                // Probably needs no localization !
+                case BrailleFileHandler.FileEncoding.BRF_ASCII: return "ASCII|*.brf;*.txt";
+                case BrailleFileHandler.FileEncoding.BRF_ASCII_Ex: return "ASCII|*.brf;*.txt"; 
+                case BrailleFileHandler.FileEncoding.PEF: return "PEF|*.pef" ;
+                case BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252: return "OctoBraille|*.brl;*.txt"; ;
+                case BrailleFileHandler.FileEncoding.BRF_Unicode: return "Unicode|*.brf;*.txt"; 
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf16: return "Unicode|*.brf;*.txt";
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf8: return "Unicode|*.brf;*.txt"; 
+                case BrailleFileHandler.FileEncoding.BRF_Unicode_utf32: return "Unicode|*.brf;*.txt";
+#warning ToDo localize default value
+                default: return "All files|*.*";
+            }
+        }
+
+
 
         /// <summary>
         /// Simple UI stuff for selecting a file using standard UI mechanism.
@@ -314,7 +333,8 @@ namespace MusicBrailleReader
             openFileDialog.Reset(); // Prevent survival of strange settings from latest usage of this reused OpenFileDialog
             openFileDialog.Title = dialogTitle;
             openFileDialog.FileName = ""; // No default
-            openFileDialog.Filter = string.Format("{0}|*.brl;*.brf;*.txt;*.pef", openFileDialogFilterName); // "Punktnoder" or "Braille Music"
+            //openFileDialog.Filter = string.Format("{0}|*.brl;*.brf;*.txt;*.pef", openFileDialogFilterName); // "Punktnoder" or "Braille Music"
+            openFileDialog.Filter = GetFilterString(explicitFileEncoding);
             openFileDialog.InitialDirectory = GetFileOpenInitialDirectory(useRecentFile);
             //openFileDialog.FileName = GetFileOpenInitialFileName(useRecentFile);
 
