@@ -125,7 +125,9 @@ namespace MusicBrailleReader
             if (string.IsNullOrEmpty(errorMessage))
             {
 #warning Todo Localize
-                MessageBox.Show(string.Format("{0} scores were succesfully exported to\r\n{1}", nFiles,destinationPath),
+                DirectoryInfo di = new DirectoryInfo(destinationPath);
+                string dirName = di.Name; // Avoid to show long paths in a standard MessageBox
+                MessageBox.Show(string.Format("{0} files were succesfully exported to\r\n...{1}", nFiles,dirName),
                     applicationName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
