@@ -45,7 +45,7 @@ namespace BrailleMusicDecoder
         /// Can be used as a base for translation using Liblouis, if transltation of contracted Braille is required.
         /// After translation the result must be filtered by this.ToValidFileName(s) befoe being used as a filename !
         /// </summary>
-        public string TitleAsBraille { get { return this.fullSequence.Substring(startIndex, endIndex - startIndex);} }
+        public string TitleAsBraille { get { return this.fullSequence.Substring(titleStart, titleEnd - titleStart);} }
 
         private enum TitleStateEnum { Before, During, After }
         private TitleStateEnum titleState = TitleStateEnum.Before;
