@@ -10,73 +10,42 @@ using System.Threading.Tasks;
 
 namespace BrailleMusicDecoder
 {
- 
-
     /// <summary>
-    /// Experimental class for splítting MusicBraille files, that contain more than 1 score into scores
+    /// Experimental class for splítting MusicBraille files, containing more than 1 score, into scores
+    /// Must be used in conjunction with the BrailleSubSequenceList class
     /// </summary>
     public class BrailleSubSequence
     {
         private readonly char[] invalidCharsForFileName = Path.GetInvalidFileNameChars();
-        private string fullSequence;
-        private int startIndex;
-        private int endIndex;
+        private string fullSequence; // The full Braille-string, containing this SubSequence
+        private int startIndex;      // The startindex of this subsequence within this.fullSequence
+        private int endIndex;        // The endindex of this subsequence within this.fullSequence                                   
 
+        // Other member variables describing tyis SubSequence 
+        // Many of these variables are primarily for debugging purposes:
         public const int NotFound = -1;
-
-
-        
-        /// <summary>
-        /// Keep first value
-        /// </summary>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
-        private void KeepFirstValue(ref int oldValue, int newValue)
-        {
-            if (oldValue != NotFound) return;
-            oldValue = newValue;            
-        }
-
-
-        // The remaining index are primarily for debugging purposes:
+ 
         private int toMusicBrailleIndex = NotFound;
-        public int ToMusicBrailleIndex { get { return toMusicBrailleIndex; } set { KeepFirstValue( ref toMusicBrailleIndex, value); } }
+        public int ToMusicBrailleIndex { get { return toMusicBrailleIndex; }  }
         private int rightHandIndex = NotFound;
-        public int RightHandIndex { get => rightHandIndex; set => KeepFirstValue(ref rightHandIndex, value); }
+        public int RightHandIndex { get => rightHandIndex; }
 
         private int leftHandIndex = NotFound;
-        public int LeftHandIndex { get => leftHandIndex; set => KeepFirstValue(ref leftHandIndex, value); }
+        public int LeftHandIndex { get => leftHandIndex;  }
 
         private int pedalHandIndex = NotFound;
-        public int PedalHandIndex { get => pedalHandIndex; set => KeepFirstValue(ref pedalHandIndex, value); }
+        public int PedalHandIndex { get => pedalHandIndex; }
 
         public int Length { get { return endIndex - startIndex; } }
-        private string name;
 
-        private StringBuilder text = new StringBuilder();
-        private StringBuilder textForFileName = new StringBuilder();
+        private string name; // A unique name for this Subsequence, defined by the constructoe
 
         /// <summary>
-        /// Contains all normal Text Braille contained in this BrailleSubSequence 
+        /// The Braille representation of of the first textsequence in this.fullSequence.
+        /// Can be used as a base for translation using Liblouis, if transltation of contracted Braille is required.
+        /// After translation the result must be filtered by this.ToValidFileName(s) befoe being used as a filename !
         /// </summary>
-        //public string Text { get => text.ToString(); }
-        //public string TextForFileName { get => textForFileName.ToString(); }
-
-        //private bool textForFileNameFound = false;
-
-        ///// <summary>
-        ///// Return the first text sequence of the BrailleSubsequence, typically a caption containing the name of the score described in the Subsequence
-        ///// </summary>
-        //public string Caption
-        //{
-        //    get
-        //    {
-        //        string s = text.ToString();
-        //        int i = s.IndexOf('\r'); // Index of first CR
-        //        if (-1 == i) return s; // If not found
-        //        return s.Substring(0, i);
-        //    }
-        //}
+        public string TitleAsBraille { get { return this.fullSequence.Substring(startIndex, endIndex - startIndex);} }
 
         private enum TitleStateEnum { Before, During, After }
         private TitleStateEnum titleState = TitleStateEnum.Before;
@@ -86,15 +55,28 @@ namespace BrailleMusicDecoder
         private int titleEnd;   // For later interpreting as contracted Braille
 
         public string Title { get { return title.ToString(); } }
-        public string TitleAsFileName { get { return ToValidFileName(Title); } }
-  
+        public string TitleAsFileName { get { return ToValidFileName(Title,"-"); } }
 
-        private void OnNewInput(bool isBlackText, string input, int index)
+
+        private void KeepFirstValue(ref int oldValue, int newValue)
+        {
+            if (oldValue != NotFound) return;
+            oldValue = newValue;
+        }
+
+        /// <summary>
+        /// Simple statemachine for isolating the first sequence of the sequence as a possible title, also usable as a filename
+        /// </summary>
+        /// <param name="isTitleInput"></param>
+        /// <param name="input"></param>
+        /// <param name="index"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void OnNewInput(bool isTitleInput, string input, int index)
         {
             switch (titleState)
             {
                 case TitleStateEnum.Before:
-                    if (isBlackText)
+                    if (isTitleInput)
                     {
                         titleStart = index;
                         title.Append(input);
@@ -102,7 +84,7 @@ namespace BrailleMusicDecoder
                     }
                     break;
                 case TitleStateEnum.During:
-                    if (isBlackText)
+                    if (isTitleInput)
                     {
                         title.Append(input);
                     }
@@ -122,39 +104,46 @@ namespace BrailleMusicDecoder
         public void OnNewInput(InputInterpretation inputInterpretation, int index)
         {
             if (null == inputInterpretation) return;
+            bool isTitleInput = false;
             switch (inputInterpretation.Category)
             {
-                //case InputCategoryEnum.ToMusicBraille:  ToMusicBrailleIndex = index; return;
-                //case InputCategoryEnum.Hand:
-                //    switch (inputInterpretation.SubCategory)
-                //    {
-                //        case InputSubCategoryEnum.HandRight: rightHandIndex = index; break;
-                //        case InputSubCategoryEnum.HandLeft: leftHandIndex = index; break;
-                //        case InputSubCategoryEnum.HandPedal: pedalHandIndex = index; break;
-                //        default: break;
-                //    }
-                //    break;
-                //case InputCategoryEnum.FinalDoubleBar: break; // Occurs for each part!!
-                //case InputCategoryEnum.ControlCharCRLFNumber: OnBlackText("\r\n"); break;
-                //case InputCategoryEnum.ControlCharCRLF: OnBlackText("\r\n"); break;
+                // The following cases: Digit, Character, Space and TextVersal are all accepted as a part of a title
+                case InputCategoryEnum.Digit: isTitleInput = true; break;
+                case InputCategoryEnum.Character: isTitleInput = true; break;
+                case InputCategoryEnum.Space: isTitleInput = true; break;
+                case InputCategoryEnum.TextVersal: isTitleInput = true; break;
 
-                case InputCategoryEnum.Digit: OnNewInput(true,inputInterpretation.FriendlyValue,index);break;
-                case InputCategoryEnum.Character: OnNewInput(true,inputInterpretation.FriendlyValue,index); break;
-                case InputCategoryEnum.Space: OnNewInput(true,inputInterpretation.FriendlyValue,index); break;
-                case InputCategoryEnum.TextVersal: OnNewInput(true,"",index);break;
-                default: OnNewInput(false, inputInterpretation.FriendlyValue,index); break;
+                // The following cases are used for determining some characteristica of the sequence and are primarily used for debugging
+                case InputCategoryEnum.ToMusicBraille: KeepFirstValue(ref toMusicBrailleIndex,index); return;
+                case InputCategoryEnum.Hand:
+                    switch (inputInterpretation.SubCategory)
+                    {
+                        case InputSubCategoryEnum.HandRight: KeepFirstValue(ref rightHandIndex,index); break;
+                        case InputSubCategoryEnum.HandLeft: KeepFirstValue(ref leftHandIndex,index); break;
+                        case InputSubCategoryEnum.HandPedal: KeepFirstValue(ref pedalHandIndex,index); break;
+                        default: break;
+                    }
+                    break;
+
+                default: break;
             }
+            OnNewInput(isTitleInput, inputInterpretation.FriendlyValue, index);
         }
 
 
-        private string ToValidFileName(string s)
+        /// <summary>
+        /// Replaces all characters, that are illegal in a filename with a specified string.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public string ToValidFileName(string s, string replacement)
         {
             StringBuilder result = new StringBuilder();
             foreach (char c in s)
             {
                 if (invalidCharsForFileName.Contains(c))
                 {
-                    result.Append('-');
+                    result.Append(replacement);
                 }
                 else
                 {
@@ -166,26 +155,10 @@ namespace BrailleMusicDecoder
         }
 
 
-        //private void OnBlackText(string newText)
-        //{
-        //    // Build a string containing all text
-        //    this.text.Append(newText);
-        //    // Build a string, usable as a filename
-        //    textForFileNameFound |= newText.Contains('\r');
-        //    if (!textForFileNameFound)
-        //    {
-        //        foreach (char c in invalidCharsForFileName)
-        //        {
-        //            newText = newText.Replace(c, '-');
-        //        }
-        //        this.textForFileName.Append(newText);
-        //    }
-        //}
-
         public override string ToString()
         {
-            return string.Format("StartIndex={0} EndIndex={1} ToMusicBraille={2} Right={3} Left={4} Pedal={5} Name='{6}' Title='{7}' TitleAsFileName='{8}'",
-                                  startIndex,    endIndex,    toMusicBrailleIndex, rightHandIndex, leftHandIndex,pedalHandIndex,name, Title, TitleAsFileName);
+            return string.Format("StartIndex={0} EndIndex={1} ToMusicBraille={2} Right={3} Left={4} Pedal={5} Name='{6}' Title='{7}' TitleAsFileName='{8}' TitleAsBraille={9}",
+                                  startIndex,    endIndex,    toMusicBrailleIndex, rightHandIndex, leftHandIndex,pedalHandIndex,name, Title, TitleAsFileName, TitleAsBraille);
         }
 
         public void UpdateEndIndex(int endIndex)

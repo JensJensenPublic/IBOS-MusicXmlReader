@@ -9,25 +9,19 @@ using System.Threading.Tasks;
 
 namespace BrailleMusicDecoder
 {
+    /// <summary> 
+    /// Experimental class for splítting MusicBraille files, containing more than 1 score, into scores
+    /// Must be used in conjunction with the BrailleSubSequence class
+    /// </summary>
     public class BrailleSubSequenceList
     {
         private string fullSequence;
         private List<BrailleSubSequence> list;
         private BrailleSubSequence currentBrailleSequence;
-        //private int latestToMusicBrailleIndex;
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            if (null == initialTextBrailleSequence)
-            {
-                sb.AppendLine("Initial textSequence is null");
-            }
-            else
-            {
-                sb.AppendLine(string.Format(": Initial textSequence: {0}", initialTextBrailleSequence.ToString()));
-                sb.AppendLine(string.Format(": {0}{1}", "\r\n", initialTextBrailleSequence.Contents));
-            }
+            StringBuilder sb = new StringBuilder();       
             sb.Append(string.Format(": Number of scores = {0}", list.Count));
             foreach (BrailleSubSequence bss in list)
             {
@@ -37,10 +31,6 @@ namespace BrailleMusicDecoder
             return sb.ToString();
         }
 
-
-        private BrailleSubSequence initialTextBrailleSequence = null; // Anything before the first ToMusicBraille symbol
-        public BrailleSubSequence InitialTextBrailleSequence { get { return initialTextBrailleSequence; } }
-
         public List<BrailleSubSequence> List { get { return list; } }
 
         public void Add(BrailleSubSequence sequence)
@@ -48,28 +38,20 @@ namespace BrailleMusicDecoder
             this.list.Add(sequence);
         }
 
-        int separatingColons = 0;
-
-        //private void OnBlackText(string text)
-        //{
-        //    if (null != currentBrailleSequence)
-        //    {
-        //        currentBrailleSequence.OnBlackText(text);
-        //    }
-        //}
-
+        const string separator = ":";
+        int nSeparators = 0;
 
         public void OnNewInput(InputInterpretation inputInterpretation, int index)
         {
             if (null == inputInterpretation) return;
 
-            if ((inputInterpretation.Category == InputCategoryEnum.Character) && (inputInterpretation.FriendlyValue == ":"))
+            if ((inputInterpretation.Category == InputCategoryEnum.Character) && (inputInterpretation.FriendlyValue == separator))
             {
-                separatingColons++;
+                nSeparators++;
             }
             else
             {
-                if (separatingColons > 10)
+                if (nSeparators > 10)
                 {
                     Logger.LogCF(": End of separator found.");
                     currentBrailleSequence.UpdateEndIndex(index);
@@ -77,45 +59,10 @@ namespace BrailleMusicDecoder
                     currentBrailleSequence = BrailleSubSequence.Create(fullSequence, index, fullSequence.Length, string.Format("Score {0}", this.list.Count));
                     this.Add(currentBrailleSequence);
                 }
-                separatingColons = 0;
+                nSeparators = 0;
             }
 
-            currentBrailleSequence.OnNewInput(inputInterpretation, index);
-
-            //switch (inputInterpretation.Category)
-            //{    
-            //    case InputCategoryEnum.Character:
-            //        if (inputInterpretation.FriendlyValue == ":")
-            //        {
-            //            separatingColons++;
-            //        }
-            //        else
-            //        {
-            //            if (separatingColons > 10)
-            //            {
-            //                if (null == initialTextBrailleSequence)
-            //                {
-            //                    initialTextBrailleSequence = BrailleSubSequence.Create(fullSequence, 0, index, "Initial text");
-            //                    Log(initialTextBrailleSequence, inputInterpretation.Category);
-            //                }
-
-            //                Logger.LogCF(": End of separator found.");
-            //                if (null != currentBrailleSequence)
-            //                {
-            //                    currentBrailleSequence.UpdateEndIndex(index);
-            //                    Log(currentBrailleSequence, inputInterpretation.Category);
-            //                }
-            //                currentBrailleSequence = BrailleSubSequence.Create(fullSequence, index, fullSequence.Length, string.Format("Score {0}", this.list.Count));
-            //                this.Add(currentBrailleSequence);
-            //            }
-            //            separatingColons = 0;
-            //        }                  
-            //        break;
-
-            //    default: break;
-            //}
-            //
-            //currentBrailleSequence.OnNewInput(inputInterpretation, index);
+            currentBrailleSequence.OnNewInput(inputInterpretation, index);         
         }
 
         public void AfterLastInput()
@@ -131,13 +78,10 @@ namespace BrailleMusicDecoder
             //Logger.LogCF1(string.Format("({0}): {1}{2}", category, "\r\n",bss.Contents));
         }
 
-
-
         public static BrailleSubSequenceList Create(string fullSequence)
         {
             return new BrailleSubSequenceList(fullSequence);
         }
-
 
         private BrailleSubSequenceList(string fullSequence)
         {
