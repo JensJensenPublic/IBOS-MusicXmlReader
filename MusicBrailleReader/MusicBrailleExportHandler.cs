@@ -118,14 +118,15 @@ namespace MusicBrailleReader
 
             string destinationPath = this.BuildDestinationPath(selectedFileName);
 
-            string messageBoxText = String.Format("The Music Braille file contains multiple scores.\r\nDo you want to export it as separate scores as well?");
+            string messageBoxText = String.Format("The Music Braille file contains multiple scores.\r\nDo you want to export it as {0} separate files as well?",nFiles);
             DialogResult dialogResult = MessageBox.Show(messageBoxText, applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             errorMessage = decoderHandler.ExportToSeparateScores(encoding, regionalOptions, destinationPath);
             if (string.IsNullOrEmpty(errorMessage))
             {
 #warning Todo Localize
-                MessageBox.Show(string.Format("{0} scores succesfully exported!", nFiles), applicationName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(string.Format("{0} scores were succesfully exported to\r\n{1}", nFiles,destinationPath),
+                    applicationName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
