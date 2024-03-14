@@ -1192,7 +1192,7 @@ namespace MusicBrailleReader
 
         private void aSCIIToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            musicBrailleExportHandler.OnExport(BrailleFileHandler.FileEncoding.BRF_ASCII_Ex, DecoderOptions.RegionalOptionsEnum.Danish, fullFileName);
+            musicBrailleExportHandler.OnExport(BrailleFileHandler.FileEncoding.BRF_ASCII, DecoderOptions.RegionalOptionsEnum.Danish, fullFileName);
         }
 
         private void utf8ToolStripMenuItem_Click(object sender, EventArgs e)
