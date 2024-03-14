@@ -32,9 +32,12 @@ namespace MusicBrailleReader
                 case BrailleFileHandler.FileEncoding.BRF_Unicode_utf16: return string.Format("{0}|*{1}", "UNICODE(Utf-16)", ".txt"); // No need to localize !
                 case BrailleFileHandler.FileEncoding.BRF_Unicode_utf32: return string.Format("{0}|*{1}", "UNICODE(Utf-32)", ".txt"); // No need to localize !
                 case BrailleFileHandler.FileEncoding.BRF_ASCII: return string.Format("{0}|*{1}", "ASCII", ".brf"); // No need to localize !
+                case BrailleFileHandler.FileEncoding.BRF_ASCII_Ex: return string.Format("{0}|*{1}", "ASCII", ".brf"); // No need to localize !
                 case BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252: return string.Format("{0}|*{1}", "OctoBraille", ".brl"); // No need to localize !
                 case BrailleFileHandler.FileEncoding.PEF: return string.Format("{0}|*{1}", "PEF", ".pef"); // No need to localize !
                 default:
+#warning ToDo Localize text for MessageBox
+                    MessageBox.Show(string.Format("Unsupported encoding {0}", encoding),applicationName,MessageBoxButtons.OK,MessageBoxIcon.Error);
                     Logger.LogCF(string.Format(": Unsupported encoding {0}", encoding));
                     return string.Format("{0}|*{1}", "", ".*"); // No need to localize !
             }
