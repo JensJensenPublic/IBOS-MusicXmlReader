@@ -114,8 +114,10 @@ namespace MusicXmlReaderModel
                 case BrailleFileHandler.FileEncoding.BRF_Unicode_utf16: return "_Utf-16";
                 case BrailleFileHandler.FileEncoding.BRF_Unicode_utf32: return "_Utf-32";
                 case BrailleFileHandler.FileEncoding.BRF_ASCII: return "_ASCII";
+                case BrailleFileHandler.FileEncoding.PEF: return "_PEF";
                 case BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252: return "_OctoBraille";
                 default:
+#warning todo also show a messagebox
                     Logger.LogCF(string.Format(": Unsupported encoding {0}", encoding));
                     return "";
             }
@@ -132,6 +134,7 @@ namespace MusicXmlReaderModel
                 case BrailleFileHandler.FileEncoding.BRL_OctoBraille_1252: return "brl";
                 case BrailleFileHandler.FileEncoding.PEF: return ".pef";
                 default:
+#warning todo also show a messagebox
                     Logger.LogCF(string.Format(": Unsupported encoding {0}", encoding));
                     return "";
             }

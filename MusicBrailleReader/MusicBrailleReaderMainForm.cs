@@ -1207,7 +1207,7 @@ namespace MusicBrailleReader
 
         private void utf32ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            musicBrailleExportHandler.OnExport(BrailleFileHandler.FileEncoding.BRF_Unicode_utf16, DecoderOptions.RegionalOptionsEnum.Danish, fullFileName);
+            musicBrailleExportHandler.OnExport(BrailleFileHandler.FileEncoding.BRF_Unicode_utf32, DecoderOptions.RegionalOptionsEnum.Danish, fullFileName);
         }
 
         private void pEFToolStripMenuItem1_Click(object sender, EventArgs e)
