@@ -451,6 +451,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "es-ES", "es-ES", "{99A17757
 		External Localization\es-ES\ResourcesForUI.es-ES.xls = External Localization\es-ES\ResourcesForUI.es-ES.xls
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Various Braille Devices", "Various Braille Devices", "{BAC887ED-1C59-4972-BBD6-D075DAF917A3}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Various Braille devices\Brug af Braillant BI 20 til læsning af NOTA punktnodefiler.docx = Documentation\Various Braille devices\Brug af Braillant BI 20 til læsning af NOTA punktnodefiler.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -745,6 +750,7 @@ Global
 		{52209C59-1888-4C5B-BF02-178325883851} = {F5C0F584-5E39-48CC-B2D8-FEB09A4E6124}
 		{97831AEA-1D97-4631-91F9-565FCCBE6205} = {1B62366B-E595-454C-846D-E36240015490}
 		{99A17757-0749-4302-9E91-C919E4573CD5} = {2FD59EAC-45B9-47D1-996B-451A5CD77E3B}
+		{BAC887ED-1C59-4972-BBD6-D075DAF917A3} = {1B62366B-E595-454C-846D-E36240015490}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F56F3540-8991-49FF-BE35-F2288FD224A2}
