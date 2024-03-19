@@ -183,6 +183,12 @@ namespace BrailleMusicDecoder
             ii.Add(rawValues, new IntegerList(dot6, dot6), InputCategoryEnum.TextVersal, "", InputSubCategoryEnum.TextVersalWord);
             ii.Add(rawValues, new IntegerList(dot6, dot6, dot6), InputCategoryEnum.TextVersal, "", InputSubCategoryEnum.TextVersalPassage);
             ii.Add(rawValues, new IntegerList(dot6, dot3), InputCategoryEnum.ToMusicBraille); // In non-music contexts this symbol also means "TextVersalTerminator"
+#if false
+            // Similar values, to be used in a danish text-context. Experimantal code added 2024.03.19 Such variant cultures MUST be handled more organized later!
+            ii.Add(rawValues, new IntegerList(dot46), InputCategoryEnum.TextVersal, "", InputSubCategoryEnum.TextVersalSymbol); // 
+            ii.Add(rawValues, new IntegerList(dot456), InputCategoryEnum.TextVersal, "", InputSubCategoryEnum.TextVersalWord);
+#endif
+
 
             ii.Add(rawValues, new IntegerList(dot25, dot345), InputCategoryEnum.Chords, "");         // Refsnæs 2. page 39. Not described by BANA 2015!
             ii.Add(rawValues, new IntegerList(dot25, dot345, dot3), InputCategoryEnum.Chords, "+.");
