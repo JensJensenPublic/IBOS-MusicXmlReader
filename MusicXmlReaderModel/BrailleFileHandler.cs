@@ -349,8 +349,12 @@ namespace MusicXmlReaderModel
             string score = BrailleUtilities.Format(unicodeBrailleList,this.charsPerLine,this.linesPerForm);
             return WriteToFile(score, fullFileName, true); // Call the abstract implementation
         }
-       /// <summary>
+
+#if false
+        /// <summary>
         /// Generate a testpattern containing all 64 possible 6-point Braille glyphs and write it to a file
+        /// This is the old version from before March 2024, writing the test pattern directly to the file after formatting
+        /// by calling WriteToFile(List<string>...)
         /// </summary>
         /// <param name="directoryName"></param>
         public string GenerateTestpattern(string directoryName)
@@ -374,6 +378,41 @@ namespace MusicXmlReaderModel
             Logger.LogCF(string.Format(": Wrote testpattern to {0}", fullFileName));
             return fullFileName;
         }
+#else
+        /// <summary>
+        /// Generate a testpattern containing all 64 possible 6-point Braille glyphs and write it to a file
+        /// This is a new, simple version from March 2024, writing the test pattern directly to the file
+        /// by calling WriteToFile(string...)
+        /// </summary>
+        /// <param name="directoryName"></param>
+        public string GenerateTestpattern(string directoryName)
+        {
+            string fullFileName = Path.Combine(directoryName, "BrailleTestPattern" + "." + GetFileFormat() + GetExtension());
+            StringBuilder sb = new StringBuilder();
+            {
+                int width = 0;
+                for (int i1 = 0x2800; i1 < 0x2840; i1++) // Testpattern: All Unicode values from 0x2800 to 0x283f
+                {
+                    char c = (char)(i1);
+                    sb.Append(c);
+                    width++;
+                    if (width == this.charsPerLine) // Use the max possible linewidth, avoiding line wrapping and continuation marks
+                    {
+                        sb.Append("\r\n");
+                        width = 0;
+                    }
+                }
+            }
+            string testPattern = sb.ToString();
+            this.WriteToFile(testPattern, fullFileName, true); // true meas "AcceptControls"
+            Logger.LogCF(string.Format(": Wrote testpattern to {0}", fullFileName));
+            return fullFileName;
+        }
+#endif
+
+
+
+
 
         /// <summary>
         /// Format a Unicode string of BrailleMusic information into forms and lines, according to its contents
