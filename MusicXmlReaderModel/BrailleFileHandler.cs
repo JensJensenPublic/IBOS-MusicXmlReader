@@ -506,9 +506,9 @@ namespace MusicXmlReaderModel
                 case FileEncoding.BRL_OctoBraille_1252: return new BrailleFileHandler_BRL_OctoBraille_1252(charsPerLine, linesPerForm);
                 case FileEncoding.PEF: return new BrailleFileHandler_PEF(charsPerLine, linesPerForm,metaInformation);
                 // Uses the generic class and an Encoding parameter
-                case FileEncoding.BRF_Unicode_utf8: return new BrailleFileHandler_Generic(charsPerLine, linesPerForm, ".brf", Encoding.UTF8);
-                case FileEncoding.BRF_Unicode_utf16: return new BrailleFileHandler_Generic(charsPerLine, linesPerForm, ".brf", Encoding.Unicode);
-                case FileEncoding.BRF_Unicode_utf32: return new BrailleFileHandler_Generic(charsPerLine, linesPerForm, ".brf", Encoding.UTF32);
+                case FileEncoding.BRF_Unicode_utf8: return new BrailleFileHandler_Generic(charsPerLine, linesPerForm, ".txt", Encoding.UTF8);
+                case FileEncoding.BRF_Unicode_utf16: return new BrailleFileHandler_Generic(charsPerLine, linesPerForm, ".txt", Encoding.Unicode);
+                case FileEncoding.BRF_Unicode_utf32: return new BrailleFileHandler_Generic(charsPerLine, linesPerForm, ".txt", Encoding.UTF32);
 
 
                 default:
