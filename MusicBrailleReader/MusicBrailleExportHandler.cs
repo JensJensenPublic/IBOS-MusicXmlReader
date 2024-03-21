@@ -95,14 +95,18 @@ namespace MusicBrailleReader
                 return;
             }
 
+            // Always export the whole file to the format specified.
+            BrailleFileHandler brailleFileHandler = BrailleFileHandler.Create(encoding, 0, 0);
+
+
             // Use a standard  Windows Forma SaveFileDialog for prompting the user for the location to save to.
-            string suggestedFileName = decoderHandler.GetSuggestedBrailleFileName(fullFileName, encoding);
+            string suggestedFileName = decoderHandler.GetSuggestedBrailleFileName(fullFileName, brailleFileHandler);
             string filterMask = this.GetFilterMask(encoding);
             string selectedFileName = GetFileNameForSaving(suggestedFileName, filterMask);
             if (null == selectedFileName) return; // Cancelled by user
 
-            // Always export the whole file to the format specified.
-            errorMessage = decoderHandler.ExportToSingleScore(encoding, regionalOptions, selectedFileName);
+
+            errorMessage = decoderHandler.ExportToSingleScore(brailleFileHandler, regionalOptions, selectedFileName);
             if (!string.IsNullOrEmpty(errorMessage))
             {
                 Logger.LogCF(string.Format(": {0}", errorMessage));
@@ -124,7 +128,7 @@ namespace MusicBrailleReader
             string messageBoxText = String.Format("The Music Braille file contains multiple scores.\r\nDo you want to export it as {0} separate files as well?",nFiles);
             DialogResult dialogResult = MessageBox.Show(messageBoxText, applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            errorMessage = decoderHandler.ExportToSeparateScores(encoding, regionalOptions, destinationPath);
+            errorMessage = decoderHandler.ExportToSeparateScores(brailleFileHandler, regionalOptions, destinationPath);
             if (string.IsNullOrEmpty(errorMessage))
             {
 #warning Todo Localize
