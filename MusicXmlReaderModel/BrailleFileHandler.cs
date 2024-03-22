@@ -387,10 +387,12 @@ namespace MusicXmlReaderModel
         /// <param name="directoryName"></param>
         public string GenerateTestpattern(string directoryName)
         {
-            string fullFileName = Path.Combine(directoryName, "BrailleTestPattern" + "." + GetFileFormat() + GetExtension());
+            string shortFileName = string.Format("BrailleTestPattern_{0}x{1}_{2}{3}", charsPerLine, linesPerForm, GetFileFormat(), GetExtension());
+            string fullFileName = Path.Combine(directoryName, shortFileName);
             StringBuilder sb = new StringBuilder();
             {
                 int width = 0;
+                int height = 0;
                 for (int i1 = 0x2800; i1 < 0x2840; i1++) // Testpattern: All Unicode values from 0x2800 to 0x283f
                 {
                     char c = (char)(i1);
@@ -400,6 +402,12 @@ namespace MusicXmlReaderModel
                     {
                         sb.Append("\r\n");
                         width = 0;
+                        height++;
+                        if (height == this.linesPerForm)
+                        {
+                            sb.Append("\f");
+                            height = 0;     
+                        }
                     }
                 }
             }
