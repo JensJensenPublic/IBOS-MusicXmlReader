@@ -86,6 +86,8 @@
             this.sibeliusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startCapellaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startFinaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startPhotoScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startBrailleMusicEditor2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openLogFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openXMLFileLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -142,8 +144,7 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
-            this.startPhotoScoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.startBrailleMusicEditor2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logControlpositionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -592,7 +593,8 @@
             this.generateGraphicInformationToolStripMenuItem,
             this.interpretFileAsBrailleMusicToolStripMenuItem,
             this.userPreferencesLocationToolStripMenuItem,
-            this.analyzeLocalizationToolStripMenuItem});
+            this.analyzeLocalizationToolStripMenuItem,
+            this.logControlpositionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -631,6 +633,20 @@
             this.startFinaleToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.startFinaleToolStripMenuItem.Text = "Start Finale";
             this.startFinaleToolStripMenuItem.Click += new System.EventHandler(this.startFinaleToolStripMenuItem_Click);
+            // 
+            // startPhotoScoreToolStripMenuItem
+            // 
+            this.startPhotoScoreToolStripMenuItem.Name = "startPhotoScoreToolStripMenuItem";
+            this.startPhotoScoreToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.startPhotoScoreToolStripMenuItem.Text = "Start PhotoScore";
+            this.startPhotoScoreToolStripMenuItem.Click += new System.EventHandler(this.startPhotoScoreToolStripMenuItem_Click);
+            // 
+            // startBrailleMusicEditor2ToolStripMenuItem
+            // 
+            this.startBrailleMusicEditor2ToolStripMenuItem.Name = "startBrailleMusicEditor2ToolStripMenuItem";
+            this.startBrailleMusicEditor2ToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.startBrailleMusicEditor2ToolStripMenuItem.Text = "Start Braille Music Editor 2";
+            this.startBrailleMusicEditor2ToolStripMenuItem.Click += new System.EventHandler(this.startBrailleMusicEditor2ToolStripMenuItem_Click);
             // 
             // logfileToolStripMenuItem
             // 
@@ -1080,19 +1096,12 @@
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
             // 
-            // startPhotoScoreToolStripMenuItem
+            // logControlpositionsToolStripMenuItem
             // 
-            this.startPhotoScoreToolStripMenuItem.Name = "startPhotoScoreToolStripMenuItem";
-            this.startPhotoScoreToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
-            this.startPhotoScoreToolStripMenuItem.Text = "Start PhotoScore";
-            this.startPhotoScoreToolStripMenuItem.Click += new System.EventHandler(this.startPhotoScoreToolStripMenuItem_Click);
-            // 
-            // startBrailleMusicEditor2ToolStripMenuItem
-            // 
-            this.startBrailleMusicEditor2ToolStripMenuItem.Name = "startBrailleMusicEditor2ToolStripMenuItem";
-            this.startBrailleMusicEditor2ToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
-            this.startBrailleMusicEditor2ToolStripMenuItem.Text = "Start Braille Music Editor 2";
-            this.startBrailleMusicEditor2ToolStripMenuItem.Click += new System.EventHandler(this.startBrailleMusicEditor2ToolStripMenuItem_Click);
+            this.logControlpositionsToolStripMenuItem.Name = "logControlpositionsToolStripMenuItem";
+            this.logControlpositionsToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.logControlpositionsToolStripMenuItem.Text = "Log controlpositions";
+            this.logControlpositionsToolStripMenuItem.Click += new System.EventHandler(this.logControlpositionsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1242,6 +1251,7 @@
         private System.Windows.Forms.TextBox textBoxEmpty;
         private System.Windows.Forms.ToolStripMenuItem startPhotoScoreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startBrailleMusicEditor2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logControlpositionsToolStripMenuItem;
     }
 }
 

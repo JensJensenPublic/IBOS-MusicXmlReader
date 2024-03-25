@@ -757,6 +757,55 @@ namespace MusicXmlReader
             Utilities.RunExeWithArgument("Explorer", baseDirectory);
         }
 
+        #region controls within tools
+        private void GetControls(Control c, List<Control> list)
+        {
+            foreach (Control child in c.Controls)
+            {
+                list.Add(child);
+                GetControls(child, list);  // Recursively 
+            }
+        }
+
+        private int top(Control c1, Control c2)
+        {
+            return c1.Top - c2.Top;        
+        }
+
+        private int bottom(Control c1, Control c2)
+        {
+            return c1.Bottom - c2.Bottom;
+        }
+
+
+        private void LogControls(List<Control> controls)
+        {
+            Logger.LogCF("+");
+
+            controls.Sort(top); // Sort with respect to top coordinate
+            foreach (Control c in controls)
+            {
+                string s = string.Format("{0,-25}, Top={1,4} Bottom={2,4} Visible={3,-5} Enabled={4,-5} Focused={5,-5}", c.Name, c.Top, c.Bottom,c.Visible, c.Enabled,c.Focused);
+                Logger.Log(s);
+            
+            }
+            Logger.LogCF("-");
+        }
+
+
+        /// <summary>
+        /// For analysing the position of all controls in order to find out why <JAWS> PageDown sometimes reads from a wrong control.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void logControlpositionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<Control> allControls = new List<Control>();
+            GetControls(this,allControls);
+            LogControls(allControls);   
+        }
+        #endregion // controls within tools
+
         #endregion // tools 
 
         #region Archives
