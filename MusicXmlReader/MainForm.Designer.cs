@@ -105,6 +105,7 @@
             this.autodetectedEncodingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userPreferencesLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.analyzeLocalizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logControlpositionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -144,7 +145,6 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
-            this.logControlpositionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -771,6 +771,13 @@
             this.analyzeLocalizationToolStripMenuItem.Text = "Analyze localization";
             this.analyzeLocalizationToolStripMenuItem.Click += new System.EventHandler(this.analyzeLocalizationToolStripMenuItem_Click);
             // 
+            // logControlpositionsToolStripMenuItem
+            // 
+            this.logControlpositionsToolStripMenuItem.Name = "logControlpositionsToolStripMenuItem";
+            this.logControlpositionsToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.logControlpositionsToolStripMenuItem.Text = "Log controlpositions";
+            this.logControlpositionsToolStripMenuItem.Click += new System.EventHandler(this.logControlpositionsToolStripMenuItem_Click);
+            // 
             // archivesToolStripMenuItem
             // 
             this.archivesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1090,18 +1097,11 @@
             // textBoxEmpty
             // 
             this.textBoxEmpty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxEmpty.Location = new System.Drawing.Point(1197, 606);
+            this.textBoxEmpty.Location = new System.Drawing.Point(1197, 485);
             this.textBoxEmpty.Name = "textBoxEmpty";
             this.textBoxEmpty.Size = new System.Drawing.Size(18, 20);
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
-            // 
-            // logControlpositionsToolStripMenuItem
-            // 
-            this.logControlpositionsToolStripMenuItem.Name = "logControlpositionsToolStripMenuItem";
-            this.logControlpositionsToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
-            this.logControlpositionsToolStripMenuItem.Text = "Log controlpositions";
-            this.logControlpositionsToolStripMenuItem.Click += new System.EventHandler(this.logControlpositionsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
