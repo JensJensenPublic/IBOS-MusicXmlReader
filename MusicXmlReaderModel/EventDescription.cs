@@ -1373,7 +1373,10 @@ namespace MusicXmlReaderModel
                 clefString = "";
             }
 
-            return printFormatString + measure + soundString + timeString + keyString + clefString + repeatBackward + repeatForward + divisions + dynamicsString + wordsString + measureStyleString + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endOfScore + endEventString  ;
+           
+            string result = printFormatString + measure + soundString + timeString + keyString + clefString + repeatBackward + repeatForward + divisions + dynamicsString + wordsString + measureStyleString + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endOfScore + endEventString  ;
+
+            return result.Substring(0, Math.Min(140,result.Length));
         }
 
 
