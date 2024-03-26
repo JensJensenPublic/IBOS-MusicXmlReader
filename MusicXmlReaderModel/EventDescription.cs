@@ -1375,7 +1375,7 @@ namespace MusicXmlReaderModel
 
            
             string result = printFormatString + measure + soundString + timeString + keyString + clefString + repeatBackward + repeatForward + divisions + dynamicsString + wordsString + measureStyleString + sbNotes.ToString() + " " + sbTexts.ToString() + harmonyCode + harmony + endOfScore + endEventString  ;
-
+            return result;
             return result.Substring(0, Math.Min(140,result.Length));
         }
 
