@@ -179,7 +179,8 @@ namespace MusicXmlReaderModel
                 default:
                     // We do not know if this is Major or Minor, so we must shos both possibilities
                     string localizedOr = " " + ResourcesForModel.KeyElement_Or + " ";
-                    localizedKey = LocalizeMajorKey(fifths) + LocalizeMode(ModeEnum.major) + localizedOr + LocalizeMinorKey(fifths) + LocalizeMode(ModeEnum.minor);
+                    // Use a space character as glue between Key and mode in order to make JAWS say it properly
+                    localizedKey = LocalizeMajorKey(fifths) + " " + LocalizeMode(ModeEnum.major) + localizedOr + LocalizeMinorKey(fifths) + " " + LocalizeMode(ModeEnum.minor);
                     localizedmode = "?";
                     break;
             }

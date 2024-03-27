@@ -237,7 +237,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ResourcesForModel.da-DK.resx" />
+    <EmbeddedResource Include="ResourcesForModel.da-DK.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ResourcesForModel.nl-NL.resx" />
     <EmbeddedResource Include="ResourcesForModel.resx">
       <Generator>ResXFileCodeGenerator</Generator>

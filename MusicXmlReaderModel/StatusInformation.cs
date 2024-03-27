@@ -281,7 +281,7 @@ namespace MusicXmlReaderModel
                 Format(currentMeasureFraction), // 1
                 Format("TimeElement",currentTimeElement), // 2 
                 Format("KeyElement",currentKeyElement), // 3
-                (null == currentHarmonyElement) ? "NC" : Format("HarmonyElement",currentHarmonyElement), // 4 NC means "No Chord"
+                (null == currentHarmonyElement) ? "" : Format("HarmonyElement",currentHarmonyElement), // An empty string  means "No Chord"
                 Format("MetronomeElement",currentMetronomeElement, GetTempoString())); //5
             return s;
         }

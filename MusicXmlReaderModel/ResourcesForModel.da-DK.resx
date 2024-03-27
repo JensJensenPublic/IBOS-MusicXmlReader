@@ -136,7 +136,7 @@
     <value>Toneart</value>
   </data>
   <data name="KeyElement_major" xml:space="preserve">
-    <value> dur</value>
+    <value>dur</value>
   </data>
   <data name="KeyElement_minor" xml:space="preserve">
     <value>mol</value>
