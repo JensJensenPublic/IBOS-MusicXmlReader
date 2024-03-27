@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using NAudio.Midi;
 using System.Xml;
 using JSJ.ScreenReaderAPI;
+using System.Text;
 
 namespace MusicXmlReaderModel
 {
@@ -513,6 +514,7 @@ namespace MusicXmlReaderModel
             {
                 try
                 {
+                    Console.OutputEncoding = Encoding.Unicode; // Allow for Braille dots in Console trace
                     Console.SetWindowPosition(0, 0);
                     Console.SetWindowSize(140, 20); // Seems to be a good compromize
                 }
