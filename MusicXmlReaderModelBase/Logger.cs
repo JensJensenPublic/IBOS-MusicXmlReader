@@ -417,11 +417,12 @@ namespace MusicXmlReaderModel
             bool signaled = false;
             try
             {
-                Trace(s); // We will se repeated lines in the Trace if the file operation failes !
+                //Trace(s); // We will se repeated lines in the Trace if the file operation failes ! NOTE: 2024.03.27: Moved to inside the Mutex !!
                 string time = GetLogTime(showTimeStamp); 
                 // string r = (0 == i) ? "" : string.Format("R={0} ", i); // Illustrate that  the file write operation has been retried R times
                 string line = time + " " + s + "\r\n";
-                signaled = mutex.WaitOne(1000); // Wait up to 1000 mS 
+                signaled = mutex.WaitOne(1000); // Wait up to 1 Second to avoid overwriting the Console trace during timeconsuming operations
+                Trace(s); // We will se repeated lines in the Trace if the file operation failes !
                 if (null == cachedLines)
                 {
                     System.IO.File.AppendAllText(logFileFullName, line);
