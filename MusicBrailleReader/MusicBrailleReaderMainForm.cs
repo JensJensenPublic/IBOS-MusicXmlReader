@@ -174,6 +174,21 @@ namespace MusicBrailleReader
             item.Visible = false;
         }
 
+
+        private void Hide(ToolStripMenuItem item, bool developermode)
+        {
+            if (developermode)
+            {
+                item.ForeColor = Color.MediumVioletRed;
+            }
+            else
+            {
+                item.Visible = false;
+                item.Enabled = false;
+            }
+        }
+
+
         private void Hide(TextBox textBox)
         {
             textBox.Enabled = false;
@@ -181,16 +196,16 @@ namespace MusicBrailleReader
         }
 
         private void HideDeveloperItems(bool developerMode)
-        {
-            if (developerMode) return; // All items remain visible
-
+        {  
             // MenuItems under the "File" menuItem
-            Hide(openUsingBrailleOrchProfileToolStripMenuItem);
-            Hide(openTestFileToolStripMenuItem);
+            Hide(openUsingBrailleOrchProfileToolStripMenuItem,developerMode);
+            Hide(openTestFileToolStripMenuItem,developerMode);
+            //Hide(exportToAlternativeBrailleFileFormatToolStripMenuItem,developerMode);
 
             // The whole "Tools" menuItem
-            Hide(toolsToolStripMenuItem);
+            Hide(toolsToolStripMenuItem,developerMode);
 
+            if (developerMode) return; // All items remain visible
             // The following textboxes are found in the MainForm and could possibly be used here for similar purposes. Right now they are not used:
             Hide(textBox3);
             Hide(textBoxText);

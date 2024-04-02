@@ -235,6 +235,7 @@ namespace MusicXmlReader
             else
             {
                 item.Visible=false;
+                item.Enabled=false;
             }
         }
 
