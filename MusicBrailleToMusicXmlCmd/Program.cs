@@ -59,7 +59,7 @@ namespace MusicBrailleDecoderTest
             //Utilities.RunExeWithFileArgument("NotePad", fullOutputFileName);
 
             // Open Explorer in the output directory.
-            Utilities.RunExeWithDirArgument("Explorer", decoderOutputFileHandler.OutputDirectory);
+            Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, decoderOutputFileHandler.OutputDirectory);
 
 
             return;

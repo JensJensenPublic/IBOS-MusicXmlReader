@@ -145,6 +145,7 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
+            this.jAWSSettingsDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -588,6 +589,7 @@
             this.inspectAsXMLUsingGoogleChromeToolStripMenuItem,
             this.viewAsInterpretedXMLToolStripMenuItem,
             this.jAWSSettingsToolStripMenuItem,
+            this.jAWSSettingsDirectoryToolStripMenuItem,
             this.userSettingsToolStripMenuItem,
             this.generateMusicBrailleTestpatternToolStripMenuItem,
             this.generateGraphicInformationToolStripMenuItem,
@@ -1103,6 +1105,13 @@
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
             // 
+            // jAWSSettingsDirectoryToolStripMenuItem
+            // 
+            this.jAWSSettingsDirectoryToolStripMenuItem.Name = "jAWSSettingsDirectoryToolStripMenuItem";
+            this.jAWSSettingsDirectoryToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.jAWSSettingsDirectoryToolStripMenuItem.Text = "JAWS Settings Directory";
+            this.jAWSSettingsDirectoryToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsDirectoryToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1252,6 +1261,7 @@
         private System.Windows.Forms.ToolStripMenuItem startPhotoScoreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startBrailleMusicEditor2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logControlpositionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jAWSSettingsDirectoryToolStripMenuItem;
     }
 }
 

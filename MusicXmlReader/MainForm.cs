@@ -506,6 +506,6 @@ namespace MusicXmlReader
             this.Refresh();
         }
 
-  
+   
     }
 }

@@ -618,7 +618,7 @@ namespace MusicBrailleReader
             string fileName = decoderOutputFileHandler.FullMusicXmlFileName;
 
             // Open Explorer in the output directory.
-            Utilities.RunExeWithDirArgument("Explorer", decoderOutputFileHandler.OutputDirectory);
+            Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, decoderOutputFileHandler.OutputDirectory);
             return true;
         }
 

@@ -582,6 +582,12 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName);
         }
 
+        private void jAWSSettingsDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenJawsSettingsDirectory();
+        }
+
+
         private void generateGraphicInformationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             model.ExternalToolsHandler.GenerateGraphicInformation(model.TheMusicXmlFileName, model.Defaults, model.EventDescriptionList);
@@ -739,7 +745,7 @@ namespace MusicXmlReader
             //Utilities.RunExeWithFileArgument("NotePad", fullOutputFileName);
 
             // Open Explorer in the output directory.
-            Utilities.RunExeWithDirArgument("Explorer", decoderOutputFileHandler.OutputDirectory);
+            Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, decoderOutputFileHandler.OutputDirectory);
 
 
 

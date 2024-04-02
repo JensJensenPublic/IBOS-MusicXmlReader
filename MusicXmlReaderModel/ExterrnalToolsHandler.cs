@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace MusicXmlReaderModel
@@ -35,7 +36,7 @@ namespace MusicXmlReaderModel
 
         public void OpenLogFileLocation()
         {
-            Utilities.RunExeWithDirArgument("explorer.exe", Logger.LogFileDirectory);
+            Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, Logger.LogFileDirectory);
         }
 
         public void OpenConfigurationFileLocation(string appFullName)
@@ -60,7 +61,7 @@ namespace MusicXmlReaderModel
                     break;
                 }
             }
-            Utilities.RunExeWithDirArgument("explorer.exe", basePath);
+            Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, basePath);
         }
 
         public void OpenMusicXmlFileLocation(string theMusicXmlFileName)
@@ -76,7 +77,7 @@ namespace MusicXmlReaderModel
                 // Do not report the path "dir" in the error message, i may be very long
                 Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.DirectoryNotFound, "", "");
             }
-            Utilities.RunExeWithDirArgument("explorer.exe", dir);
+            Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, dir);
         }
 
 
@@ -232,6 +233,32 @@ namespace MusicXmlReaderModel
             return directoryName;
         }
 
+        /// <summary>
+        /// Opens Windows Explorer in the JAWS application specific configuration directory
+        /// TO DO: The language specific "dan". Fix this !!
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public string OpenJawsSettingsDirectory()
+        {
+            Logger.LogCF(": +");
+            string directoryName = GetJawsDirectoryName("");
+            if (string.IsNullOrEmpty(directoryName))
+            {
+                // This includes explicitly detected errors as wells as exceptions !
+                Utilities.ShowWarning(ModelMessageEnum.LocationNotDetermined, "", "");
+                // Show as messagebox
+            }
+            else
+            {
+                if (Utilities.CheckDirectoryExistance(directoryName,""))
+                {
+                    Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, directoryName);
+                }
+            }
+            Logger.LogCF(": -");
+            return directoryName;     
+        }
 
 
 
