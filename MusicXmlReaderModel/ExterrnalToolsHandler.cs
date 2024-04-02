@@ -268,10 +268,10 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns>The expected  directory name of the JAWS application specific configuration file</returns>
-        public string ReadJawsSettingsFile(string fileName)
+        public string ReadJawsSettingsFile(string fileName, string extension)
         {
-            string methodName = "ReadJawsSettingsFile";     
-            string extension = "JCF"; // JAWS configuration file
+            string methodName = "ReadJawsSettingsFile";   
+
             string fileNameWithExtension = Path.ChangeExtension(fileName, extension);
 
             string directoryName = GetJawsDirectoryName(fileName);

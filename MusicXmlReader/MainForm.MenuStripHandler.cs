@@ -579,13 +579,20 @@ namespace MusicXmlReader
 
         private void jAWSSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName);
+            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName,"JCF"); // JAWS Conciguration File
+        }
+
+        private void jAWSApplicationspecificScriptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS"); // JAWS Script source
         }
 
         private void jAWSSettingsDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             model.ExternalToolsHandler.OpenJawsSettingsDirectory();
         }
+
+
 
 
         private void generateGraphicInformationToolStripMenuItem_Click(object sender, EventArgs e)

@@ -224,6 +224,8 @@ namespace MusicXmlReader
             Hide(viewAsInterpretedXMLToolStripMenuItem, developerMode);
             Hide(analyzeLocalizationToolStripMenuItem, developerMode);
             Hide(logControlpositionsToolStripMenuItem, developerMode);
+            Hide(jAWSApplicationspecificScriptToolStripMenuItem, developerMode);
+            Hide(jAWSSettingsDirectoryToolStripMenuItem, developerMode);
         }
 
         private void Hide(ToolStripMenuItem item, bool developermode)
@@ -506,6 +508,6 @@ namespace MusicXmlReader
             this.Refresh();
         }
 
-   
+     
     }
 }

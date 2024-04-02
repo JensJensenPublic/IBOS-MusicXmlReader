@@ -95,6 +95,7 @@
             this.inspectAsXMLUsingGoogleChromeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAsInterpretedXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jAWSSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jAWSSettingsDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateMusicBrailleTestpatternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateGraphicInformationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -145,7 +146,7 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
-            this.jAWSSettingsDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jAWSApplicationspecificScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -589,6 +590,7 @@
             this.inspectAsXMLUsingGoogleChromeToolStripMenuItem,
             this.viewAsInterpretedXMLToolStripMenuItem,
             this.jAWSSettingsToolStripMenuItem,
+            this.jAWSApplicationspecificScriptToolStripMenuItem,
             this.jAWSSettingsDirectoryToolStripMenuItem,
             this.userSettingsToolStripMenuItem,
             this.generateMusicBrailleTestpatternToolStripMenuItem,
@@ -698,6 +700,13 @@
             this.jAWSSettingsToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.jAWSSettingsToolStripMenuItem.Text = "JAWS settings";
             this.jAWSSettingsToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsToolStripMenuItem_Click);
+            // 
+            // jAWSSettingsDirectoryToolStripMenuItem
+            // 
+            this.jAWSSettingsDirectoryToolStripMenuItem.Name = "jAWSSettingsDirectoryToolStripMenuItem";
+            this.jAWSSettingsDirectoryToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.jAWSSettingsDirectoryToolStripMenuItem.Text = "JAWS Settings Directory";
+            this.jAWSSettingsDirectoryToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsDirectoryToolStripMenuItem_Click);
             // 
             // userSettingsToolStripMenuItem
             // 
@@ -1002,7 +1011,7 @@
             this.userSettingsTreeView.CheckBoxes = true;
             this.userSettingsTreeView.Location = new System.Drawing.Point(10, 28);
             this.userSettingsTreeView.Name = "userSettingsTreeView";
-            this.userSettingsTreeView.Size = new System.Drawing.Size(250, 451);
+            this.userSettingsTreeView.Size = new System.Drawing.Size(250, 691);
             this.userSettingsTreeView.TabIndex = 1;
             // 
             // listBoxTimes
@@ -1014,7 +1023,7 @@
             this.listBoxTimes.FormattingEnabled = true;
             this.listBoxTimes.Location = new System.Drawing.Point(265, 60);
             this.listBoxTimes.Name = "listBoxTimes";
-            this.listBoxTimes.Size = new System.Drawing.Size(950, 420);
+            this.listBoxTimes.Size = new System.Drawing.Size(950, 654);
             this.listBoxTimes.TabIndex = 0;
             // 
             // textBoxBraille
@@ -1024,7 +1033,7 @@
             this.textBoxBraille.BackColor = System.Drawing.Color.Black;
             this.textBoxBraille.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxBraille.ForeColor = System.Drawing.Color.White;
-            this.textBoxBraille.Location = new System.Drawing.Point(10, 511);
+            this.textBoxBraille.Location = new System.Drawing.Point(10, 751);
             this.textBoxBraille.Name = "textBoxBraille";
             this.textBoxBraille.ReadOnly = true;
             this.textBoxBraille.Size = new System.Drawing.Size(1205, 62);
@@ -1035,7 +1044,7 @@
             // 
             this.textBoxText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxText.Location = new System.Drawing.Point(10, 579);
+            this.textBoxText.Location = new System.Drawing.Point(10, 819);
             this.textBoxText.Name = "textBoxText";
             this.textBoxText.ReadOnly = true;
             this.textBoxText.Size = new System.Drawing.Size(1205, 20);
@@ -1050,7 +1059,7 @@
             // 
             this.textBoxNormalText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxNormalText.Location = new System.Drawing.Point(11, 485);
+            this.textBoxNormalText.Location = new System.Drawing.Point(11, 725);
             this.textBoxNormalText.Name = "textBoxNormalText";
             this.textBoxNormalText.ReadOnly = true;
             this.textBoxNormalText.Size = new System.Drawing.Size(1204, 20);
@@ -1061,7 +1070,7 @@
             // 
             this.textBoxStatusInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxStatusInformation.Location = new System.Drawing.Point(10, 606);
+            this.textBoxStatusInformation.Location = new System.Drawing.Point(10, 846);
             this.textBoxStatusInformation.Name = "textBoxStatusInformation";
             this.textBoxStatusInformation.ReadOnly = true;
             this.textBoxStatusInformation.Size = new System.Drawing.Size(1205, 20);
@@ -1099,24 +1108,24 @@
             // textBoxEmpty
             // 
             this.textBoxEmpty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxEmpty.Location = new System.Drawing.Point(1197, 485);
+            this.textBoxEmpty.Location = new System.Drawing.Point(1197, 725);
             this.textBoxEmpty.Name = "textBoxEmpty";
             this.textBoxEmpty.Size = new System.Drawing.Size(18, 20);
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
             // 
-            // jAWSSettingsDirectoryToolStripMenuItem
+            // jAWSApplicationspecificScriptToolStripMenuItem
             // 
-            this.jAWSSettingsDirectoryToolStripMenuItem.Name = "jAWSSettingsDirectoryToolStripMenuItem";
-            this.jAWSSettingsDirectoryToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
-            this.jAWSSettingsDirectoryToolStripMenuItem.Text = "JAWS Settings Directory";
-            this.jAWSSettingsDirectoryToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsDirectoryToolStripMenuItem_Click);
+            this.jAWSApplicationspecificScriptToolStripMenuItem.Name = "jAWSApplicationspecificScriptToolStripMenuItem";
+            this.jAWSApplicationspecificScriptToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.jAWSApplicationspecificScriptToolStripMenuItem.Text = "JAWS application-specific script";
+            this.jAWSApplicationspecificScriptToolStripMenuItem.Click += new System.EventHandler(this.jAWSApplicationspecificScriptToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1219, 641);
+            this.ClientSize = new System.Drawing.Size(1219, 881);
             this.Controls.Add(this.textBoxEmpty);
             this.Controls.Add(this.textBoxScreenReader);
             this.Controls.Add(this.listBoxDetails);
@@ -1262,6 +1271,7 @@
         private System.Windows.Forms.ToolStripMenuItem startBrailleMusicEditor2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logControlpositionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jAWSSettingsDirectoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jAWSApplicationspecificScriptToolStripMenuItem;
     }
 }
 
