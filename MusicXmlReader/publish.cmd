@@ -1,6 +1,6 @@
 
 
-rem This file is run from SsolutionDir>\MusicXmlReader\bin\Debug
+rem This file is run from <SolutionDir>\MusicXmlReader\bin\Debug
 
 rem Copy all needed native dlls from the  ThirdPartyDlls directory (which is controlled by Git) to the Debug Directory.
 rem The managed dlls need no copying, because they are all explicitly referenced by the source code and thus copied by VS
@@ -12,6 +12,9 @@ copy ..\..\..\ThirdPartyDlls\i386\jfwapi.dll
 copy ..\..\..\ThirdPartyDlls\i386\nvdaControllerClient32.dll
 copy ..\..\..\ThirdPartyDlls\7Zip\7z.dll
 copy ..\..\..\ThirdPartyDlls\7Zip\7z.exe
+
+rem Copy the icon-file, containing the small icon shown in the upper left corner of the application
+copy ..\..\..\Documentation\icon.ico
 
 rem Create an empty directory "\MusicXmlReader\bin\Debug\MusicXml samples" and xcopy all file from ..<Solution>\Tactile MusicXmlReader\MusicXmlSamples there:
 
