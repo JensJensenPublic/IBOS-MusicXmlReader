@@ -215,16 +215,29 @@ namespace MusicXmlReader
 
         private void HideDeveloperItems(bool developerMode)
         {
-            if (developerMode) return; // Everything visible
-            generateGraphicInformationToolStripMenuItem.Visible = false;
-            interpretFileAsBrailleMusicToolStripMenuItem.Visible = false;
-            userPreferencesLocationToolStripMenuItem.Visible = false;
-            generateMusicBrailleTestpatternToolStripMenuItem.Visible = false;
-            brailleFileToolStripMenuItem.Visible = false;
-            userPreferencesLocationToolStripMenuItem.Visible = false;
-            viewAsInterpretedXMLToolStripMenuItem.Visible = false;
-            analyzeLocalizationToolStripMenuItem.Visible = false;         
+            Hide(generateGraphicInformationToolStripMenuItem, developerMode);
+            Hide(interpretFileAsBrailleMusicToolStripMenuItem, developerMode);
+            Hide(userPreferencesLocationToolStripMenuItem, developerMode);
+            Hide(generateMusicBrailleTestpatternToolStripMenuItem, developerMode);
+            Hide(brailleFileToolStripMenuItem, developerMode);
+            Hide(userPreferencesLocationToolStripMenuItem, developerMode);
+            Hide(viewAsInterpretedXMLToolStripMenuItem, developerMode);
+            Hide(analyzeLocalizationToolStripMenuItem, developerMode);
+            Hide(logControlpositionsToolStripMenuItem, developerMode);
         }
+
+        private void Hide(ToolStripMenuItem item, bool developermode)
+        {
+            if (developermode)
+            {
+                item.ForeColor = Color.MediumVioletRed;
+            }
+            else
+            {
+                item.Visible=false;
+            }
+        }
+
 
         /// <summary>
         /// Postpones the reporting of messages generated during the initialisation of Mainform 
