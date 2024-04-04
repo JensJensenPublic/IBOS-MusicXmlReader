@@ -799,13 +799,13 @@ namespace MusicXmlReader
             controls.Add(this);
             controls.Sort(top); // Sort with respect to top coordinate
             // Caption:       Name    Top   Bottom    Left   Right Visible Enabled Focused Handle Parent"
-            string format = "{0,-25} {1,6}   {2,6}   {3,8}   {4,8}   {5,8}  {6,8}  {7,8}  {8,8}  {9,8}";
-            string caption = string.Format(format, "Name", "Top", "Bottom", "Left", "Right","Visible", "Enabled", "Focused", "Handle", "Parent");
+            string format = "{0,-25} {1,6}   {2,6}   {3,8}   {4,8}   {5,8}  {6,8}  {7,8}  {8,8}  {9,8}  {10,-20}  {11,-30}";
+            string caption = string.Format(format, "Name", "Top", "Bottom", "Left", "Right","Visible", "Enabled", "Focused", "Handle", "Parent", "AccessibleName", "Text");
             Logger.Log(caption);           
             foreach (Control c in controls)
-            {
+            {        
                 string parent = (c.Parent == null) ? "None" : c.Parent.Name;
-                string s = string.Format(format, c.Name, c.Top, c.Bottom, c.Left, c.Right, c.Visible, c.Enabled,c.Focused, c.Handle, parent);
+                string s = string.Format(format, c.Name, c.Top, c.Bottom, c.Left, c.Right, c.Visible, c.Enabled,c.Focused, c.Handle, parent, c.AccessibleName, c.Text);
                 Logger.Log(s);            
             }
             Logger.LogCF("-");
