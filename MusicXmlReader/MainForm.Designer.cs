@@ -95,6 +95,7 @@
             this.inspectAsXMLUsingGoogleChromeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAsInterpretedXMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jAWSSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jAWSApplicationspecificScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jAWSSettingsDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateMusicBrailleTestpatternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -146,7 +147,6 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
-            this.jAWSApplicationspecificScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -701,6 +701,13 @@
             this.jAWSSettingsToolStripMenuItem.Text = "JAWS settings";
             this.jAWSSettingsToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsToolStripMenuItem_Click);
             // 
+            // jAWSApplicationspecificScriptToolStripMenuItem
+            // 
+            this.jAWSApplicationspecificScriptToolStripMenuItem.Name = "jAWSApplicationspecificScriptToolStripMenuItem";
+            this.jAWSApplicationspecificScriptToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.jAWSApplicationspecificScriptToolStripMenuItem.Text = "JAWS application-specific script";
+            this.jAWSApplicationspecificScriptToolStripMenuItem.Click += new System.EventHandler(this.jAWSApplicationspecificScriptToolStripMenuItem_Click);
+            // 
             // jAWSSettingsDirectoryToolStripMenuItem
             // 
             this.jAWSSettingsDirectoryToolStripMenuItem.Name = "jAWSSettingsDirectoryToolStripMenuItem";
@@ -1068,6 +1075,7 @@
             // 
             // textBoxStatusInformation
             // 
+            this.textBoxStatusInformation.AccessibleName = "textBoxStatusInformation";
             this.textBoxStatusInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxStatusInformation.Location = new System.Drawing.Point(10, 846);
@@ -1113,13 +1121,6 @@
             this.textBoxEmpty.Size = new System.Drawing.Size(18, 20);
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
-            // 
-            // jAWSApplicationspecificScriptToolStripMenuItem
-            // 
-            this.jAWSApplicationspecificScriptToolStripMenuItem.Name = "jAWSApplicationspecificScriptToolStripMenuItem";
-            this.jAWSApplicationspecificScriptToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
-            this.jAWSApplicationspecificScriptToolStripMenuItem.Text = "JAWS application-specific script";
-            this.jAWSApplicationspecificScriptToolStripMenuItem.Click += new System.EventHandler(this.jAWSApplicationspecificScriptToolStripMenuItem_Click);
             // 
             // MainForm
             // 
