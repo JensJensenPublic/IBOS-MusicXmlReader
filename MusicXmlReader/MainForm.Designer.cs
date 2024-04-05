@@ -1141,7 +1141,6 @@
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "MainForm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.MenuStrip.ResumeLayout(false);
