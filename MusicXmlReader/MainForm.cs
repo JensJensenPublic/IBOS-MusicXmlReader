@@ -152,7 +152,7 @@ namespace MusicXmlReader
                 userSettingsHandler.Reset();
                 // Create a handler for handling all Keyboard shortcuts
                 // shortCutHandler = ShortcutHandler.Create(this, model);
-            
+
                 //userPreferencesHandler.Log(); // Just to verify that the mechanism works. We mus wait until AFTER creation to do this !
                 //userPreferencesHandler.embosser.Log();
                 //userPreferencesHandler.noteTaker.Log();
@@ -162,6 +162,7 @@ namespace MusicXmlReader
 
                 // Experiments.LogRightAlignedMenus(this);
 
+                OverwriteAccessibleNames(); // Experimental code
                 LoadIcon();
 
                 this.Shown += MainForm_Shown;
@@ -182,6 +183,28 @@ namespace MusicXmlReader
                 ShowWarning((int)ModelMessageEnum.UnspecifiedInitializationError,"","");
             }
         }
+#if true
+        /// <summary>
+        /// Experimental code for experimenting with JAWS scripts, espacially the JAWS scripting functions:
+        /// "GetObjectInfoByName" which seems to always fail
+        /// "GetListOfObjects"    which seems to return an empty string
+        /// </summary>
+        private void OverwriteAccessibleNames()
+        {
+            this.AccessibleName = "FormMain";
+            this.MainMenuStrip.AccessibleName = "MenuStripMain";
+            this.userSettingsTreeView.AccessibleName = "TreeViewUserSettings";
+            this.listBoxTimes.AccessibleName = "ListBoxTimes";
+            this.listBoxDetails.AccessibleName = "ListBoxDetails";
+            this.textBoxBraille.AccessibleName = "TextBoxBraille";
+            this.textBoxEmpty.AccessibleName = "TextBoxEmpty";
+            this.textBoxNormalText.AccessibleName = "TextBoxNormalText";
+            this.textBoxScreenReader.AccessibleName = "TextBoxScreenReader";
+            this.textBoxStatusInformation.AccessibleName = "TextBoxStatusInformation";
+            this.textBoxText.AccessibleName = "TextBoxText";
+        }
+#endif
+
 
         /// <summary>
         /// 
