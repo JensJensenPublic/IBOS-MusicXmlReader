@@ -1137,7 +1137,6 @@
             this.Controls.Add(this.listBoxTimes);
             this.Controls.Add(this.userSettingsTreeView);
             this.Controls.Add(this.MenuStrip);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.MenuStrip;
             this.MinimizeBox = false;
             this.Name = "MainForm";
