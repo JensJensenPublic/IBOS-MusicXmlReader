@@ -6,6 +6,7 @@ using MusicXmlReaderModel;
 using System.Collections.Generic;
 using RawPrinterHelper;
 using System.Xml;
+using System.Drawing;
 
 namespace MusicXmlReader
 {
@@ -790,11 +791,22 @@ namespace MusicXmlReader
             return c1.Bottom - c2.Bottom;
         }
 
+        private string Format(Rectangle r)
+        {
+            string result = string.Format("(X,Y)=({0},{1}) (W,H)=({2},{3})  (L,R)=({4},{5}) (T,B)=({6},{7})", r.X, r.Y, r.Width, r.Height, r.Left, r.Height, r.Top, r.Bottom);
+            return result;
+        }
+
 
         private void LogControls()
         {
-            Logger.LogCF("+");
-            Logger.LogCF(string.Format(": MainForm location(X,Y)=({0},{1})", this.Location.X, this.Location.Y));
+            Logger.LogCF("+");   
+            string maximizedBounds = string.Format("MaximizedBounds: {0}", Format(this.MaximizedBounds));
+            Logger.Log(maximizedBounds);
+            string bounds = string.Format("Bounds:          {0}", Format(this.MaximizedBounds));
+            Logger.Log(bounds);
+            // r.Offset()
+            Logger.Log(string.Format("Location(X,Y)=({0},{1})", this.Location.X, this.Location.Y));
             List<Control> controls = new List<Control>();
             GetControls(this, controls);
             controls.Add(this);
