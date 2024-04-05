@@ -794,6 +794,7 @@ namespace MusicXmlReader
         private void LogControls()
         {
             Logger.LogCF("+");
+            Logger.LogCF(string.Format(": MainForm location(X,Y)=({0},{1})", this.Location.X, this.Location.Y));
             List<Control> controls = new List<Control>();
             GetControls(this, controls);
             controls.Add(this);
@@ -819,9 +820,9 @@ namespace MusicXmlReader
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void logControlpositionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-          
-            LogControls();   
+        {          
+            LogControls();
+            Utilities.RunExeWithFileArgument(Utilities.NotepadExe, Logger.LogFileFullName);
         }
         #endregion // controls within tools
 
