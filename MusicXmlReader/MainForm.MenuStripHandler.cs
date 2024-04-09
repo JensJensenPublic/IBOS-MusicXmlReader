@@ -594,14 +594,55 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS"); // JAWS Script source
         }
 
+
+
         private void startUsingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string JAWSAppDatadirectoryName = model.ExternalToolsHandler.GetJawsDirectoryName("");
+                string executingAssemblyDirectory = Path.GetDirectoryName(executingAssemblyFullPath);
+                string JAWSSourceDirectory = Path.Combine(executingAssemblyDirectory, "JAWS");
+                string JAWSScriptSourceDirectory = Path.Combine(JAWSSourceDirectory, "Scripts");
+                string[] Scriptfiles = Directory.GetFiles(JAWSScriptSourceDirectory);
+                bool overWrite = true;
+                foreach (string s in Scriptfiles)
+                {
+                    string shortFileName = Path.GetFileName(s);
+                    string destination = Path.Combine(JAWSAppDatadirectoryName, shortFileName);
+                    File.Copy(s,destination,overWrite);
+                    Logger.LogCF(string.Format(": Copied {0} to {1}", shortFileName, destination));
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogCFE(ex);
+                MessageBox.Show(ex.Message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);                
+            }          
         }
 
         private void stopUsingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string JAWSAppDatadirectoryName = model.ExternalToolsHandler.GetJawsDirectoryName("");
+                string[] scriptFiles = Directory.GetFiles(JAWSAppDatadirectoryName);
+                List<string> scriptExtensions = new List<string>() { ".JSS", ".JSB", ".jsb", ".JSD", ".JKM" };
+                foreach (string file in scriptFiles)
+                {
+                    string extension = Path.GetExtension(file);
+                    if (scriptExtensions.Contains(extension))
+                    {
+                        File.Delete(file);
+                        Logger.LogCF(string.Format(": Deleted {0}",file));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogCFE(ex);
+                MessageBox.Show(ex.Message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         #endregion
 
