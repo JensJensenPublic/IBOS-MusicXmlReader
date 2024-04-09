@@ -457,7 +457,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Various Braille Devices", "
 		Documentation\Various Braille devices\Brug af Braillant BI 20 til læsning af NOTA punktnodefiler.docx = Documentation\Various Braille devices\Brug af Braillant BI 20 til læsning af NOTA punktnodefiler.docx
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JAWSExperiments", "JAWSExperiments\JAWSExperiments.csproj", "{372544BF-EC8E-4CDD-9324-201896DE0776}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JAWSExperiments", "JAWSExperiments\JAWSExperiments.csproj", "{372544BF-EC8E-4CDD-9324-201896DE0776}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JAWS", "JAWS", "{53ABD27A-BB95-4CD0-8D41-D3E864E93F86}"
+	ProjectSection(SolutionItems) = preProject
+		JAWS\IBOS MusicXmlReader.JCF = JAWS\IBOS MusicXmlReader.JCF
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{F3ACA2FA-D625-4520-AA5E-9A767A88F432}"
+	ProjectSection(SolutionItems) = preProject
+		JAWS\Scripts\IBOS MusicXmlReader.JKM = JAWS\Scripts\IBOS MusicXmlReader.JKM
+		JAWS\Scripts\IBOS MusicXmlReader.jsb = JAWS\Scripts\IBOS MusicXmlReader.jsb
+		JAWS\Scripts\IBOS MusicXmlReader.JSD = JAWS\Scripts\IBOS MusicXmlReader.JSD
+		JAWS\Scripts\IBOS MusicXmlReader.JSS = JAWS\Scripts\IBOS MusicXmlReader.JSS
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -766,6 +779,7 @@ Global
 		{97831AEA-1D97-4631-91F9-565FCCBE6205} = {1B62366B-E595-454C-846D-E36240015490}
 		{99A17757-0749-4302-9E91-C919E4573CD5} = {2FD59EAC-45B9-47D1-996B-451A5CD77E3B}
 		{BAC887ED-1C59-4972-BBD6-D075DAF917A3} = {1B62366B-E595-454C-846D-E36240015490}
+		{F3ACA2FA-D625-4520-AA5E-9A767A88F432} = {53ABD27A-BB95-4CD0-8D41-D3E864E93F86}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F56F3540-8991-49FF-BE35-F2288FD224A2}
