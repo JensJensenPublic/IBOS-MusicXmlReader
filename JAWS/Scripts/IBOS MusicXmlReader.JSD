@@ -1,3 +1,8 @@
+:script SayBottomLine
+:SearchRank 1
+:Description Overwrites the dafrault implementation, which fails for very large MusicXml files, for instance "Examples\Billy Jean.musicxml"
+:Category Sig
+
 :script HelloWorld
 :SearchRank 1
 :Category Sig

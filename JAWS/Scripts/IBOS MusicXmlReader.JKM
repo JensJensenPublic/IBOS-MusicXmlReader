@@ -1,2 +1,4 @@
 [Common Keys]
 Alt+H=HelloWorld
+PageDown=SayBottomLine
+JAWSKey+PageDown=SayBottomLine
