@@ -598,6 +598,7 @@ namespace MusicXmlReader
 
         private void startUsingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            int nCopiedFiles = 0;
             try
             {
                 string JAWSAppDatadirectoryName = model.ExternalToolsHandler.GetJawsDirectoryName("");
@@ -612,29 +613,35 @@ namespace MusicXmlReader
                     string destination = Path.Combine(JAWSAppDatadirectoryName, shortFileName);
                     File.Copy(s,destination,overWrite);
                     Logger.LogCF(string.Format(": Copied {0} to {1}", shortFileName, destination));
+                    nCopiedFiles++;
                 }
             }
             catch (Exception ex)
             {
                 Logger.LogCFE(ex);
                 MessageBox.Show(ex.Message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);                
-            }          
-        }
+            }
+#warning localize
+            ShowUserMessageBox(string.Format("Copied {0} JAWS script files", nCopiedFiles), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
+        }  
 
         private void stopUsingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            int nDeletedFiles = 0;
             try
             {
                 string JAWSAppDatadirectoryName = model.ExternalToolsHandler.GetJawsDirectoryName("");
                 string[] scriptFiles = Directory.GetFiles(JAWSAppDatadirectoryName);
                 List<string> scriptExtensions = new List<string>() { ".JSS", ".JSB", ".jsb", ".JSD", ".JKM" };
+             
                 foreach (string file in scriptFiles)
                 {
                     string extension = Path.GetExtension(file);
                     if (scriptExtensions.Contains(extension))
                     {
                         File.Delete(file);
-                        Logger.LogCF(string.Format(": Deleted {0}",file));
+                        Logger.LogCF(string.Format(": Deleted {0} JAWS script files",file));
+                        nDeletedFiles++;
                     }
                 }
             }
@@ -643,6 +650,9 @@ namespace MusicXmlReader
                 Logger.LogCFE(ex);
                 MessageBox.Show(ex.Message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+#warning localize
+            ShowUserMessageBox(string.Format("Deleted {0} JAWS script files", nDeletedFiles), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
+
         }
         #endregion
 
