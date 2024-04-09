@@ -24,6 +24,11 @@ mkdir "MusicXml samples"
 
 xcopy   ..\..\..\MusicXmlSamples "MusicXml samples" /s/e/v
 
+rem Create an empty directory "\MusicXmlReader\bin\Debug\JAWS" and xcopy all file from ..<Solution>\Tactile MusicXmlReader\JAWS there:
+rmdir "JAWS" /S/Q
+mkdir "JAWS"
+xcopy   ..\..\..\JAWS "JAWS" /s/e/v
+
 
 exit
 
