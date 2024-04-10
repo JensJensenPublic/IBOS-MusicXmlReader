@@ -596,7 +596,7 @@ namespace MusicXmlReader
             int nCopiedFiles = 0;
             try
             {
-                string JAWSAppDatadirectoryName = model.ExternalToolsHandler.GetJawsDirectoryName("");
+                string JAWSAppDatadirectoryName = model.ExternalToolsHandler.GetJawsSettingsDirectory();
                 string executingAssemblyDirectory = Path.GetDirectoryName(executingAssemblyFullPath);
                 string JAWSSourceDirectory = Path.Combine(executingAssemblyDirectory, "JAWS");
                 string JAWSScriptSourceDirectory = Path.Combine(JAWSSourceDirectory, "Scripts");
@@ -625,7 +625,7 @@ namespace MusicXmlReader
             int nDeletedFiles = 0;
             try
             {
-                string JAWSAppDatadirectoryName = model.ExternalToolsHandler.GetJawsDirectoryName("");
+                string JAWSAppDatadirectoryName = model.ExternalToolsHandler.GetJawsSettingsDirectory();
                 string[] scriptFiles = Directory.GetFiles(JAWSAppDatadirectoryName);
                 List<string> scriptExtensions = new List<string>() { ".JSS", ".JSB", ".jsb", ".JSD", ".JKM" };
              

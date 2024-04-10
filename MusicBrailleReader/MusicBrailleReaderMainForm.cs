@@ -1079,7 +1079,7 @@ namespace MusicBrailleReader
         private void jAWSSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // This mechanism should be replaced with the mechanism in MusicXmlREader when the programs are merged.
-            string expectedDirectory = model.ExternalToolsHandler.GetJawsDirectoryName(executingAssemblyShortName);
+            string expectedDirectory = model.ExternalToolsHandler.GetJawsSettingsDirectory();
             if (string.IsNullOrEmpty(expectedDirectory))
             {
                 OnJAWSDirectoryNotFound();
@@ -1102,7 +1102,7 @@ namespace MusicBrailleReader
         private void jAWSSettingsDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // This mechanism should be replaced with the mechanism in MusicXmlREader when the programs are merged.
-            string expectedDirectory = model.ExternalToolsHandler.GetJawsDirectoryName(executingAssemblyShortName);
+            string expectedDirectory = model.ExternalToolsHandler.GetJawsSettingsDirectory();
             if (string.IsNullOrEmpty(expectedDirectory))
             {
                 OnJAWSDirectoryNotFound();
@@ -1113,7 +1113,7 @@ namespace MusicBrailleReader
 
         private void jAWSSettingsUpdateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string destinatinDirectory = model.ExternalToolsHandler.GetJawsDirectoryName(executingAssemblyShortName);
+            string destinatinDirectory = model.ExternalToolsHandler.GetJawsSettingsDirectory();
             if (string.IsNullOrEmpty(destinatinDirectory))
             {
                 OnJAWSDirectoryNotFound();
