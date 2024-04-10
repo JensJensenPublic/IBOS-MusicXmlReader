@@ -580,13 +580,13 @@ namespace MusicXmlReader
 
         private void jAWSSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName,"JCF"); // JAWS Conciguration File
+            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName,"JCF", model.GetJawsSettingsDirectory()); // JAWS Conciguration File
         }
         #region JAWSScript
    
         private void viewToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS"); // JAWS Script source
+            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS", model.GetJawsSettingsDirectory()); // JAWS Script source
         }
 
 
@@ -596,7 +596,7 @@ namespace MusicXmlReader
             int nCopiedFiles = 0;
             try
             {
-                string JAWSAppDatadirectoryName = model.ExternalToolsHandler.GetJawsSettingsDirectory();
+                string JAWSAppDatadirectoryName = model.GetJawsSettingsDirectory();
                 string executingAssemblyDirectory = Path.GetDirectoryName(executingAssemblyFullPath);
                 string JAWSSourceDirectory = Path.Combine(executingAssemblyDirectory, "JAWS");
                 string JAWSScriptSourceDirectory = Path.Combine(JAWSSourceDirectory, "Scripts");
@@ -625,7 +625,7 @@ namespace MusicXmlReader
             int nDeletedFiles = 0;
             try
             {
-                string JAWSAppDatadirectoryName = model.ExternalToolsHandler.GetJawsSettingsDirectory();
+                string JAWSAppDatadirectoryName = model.GetJawsSettingsDirectory();
                 string[] scriptFiles = Directory.GetFiles(JAWSAppDatadirectoryName);
                 List<string> scriptExtensions = new List<string>() { ".JSS", ".JSB", ".jsb", ".JSD", ".JKM" };
              
@@ -655,7 +655,7 @@ namespace MusicXmlReader
 
         private void jAWSSettingsDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.OpenJawsSettingsDirectory();
+            model.ExternalToolsHandler.OpenJawsSettingsDirectory(model.GetJawsSettingsDirectory());
         }
 
 

@@ -186,94 +186,6 @@ namespace MusicXmlReaderModel
         }
 
 
-        private string LogDirectories(string[] directories)
-        {
-            StringBuilder sb = new StringBuilder();       
-            foreach (string directory in directories)
-            {
-                sb.AppendLine(""); // In order to align the directorynames
-                sb.Append(" '" +  directory + "'");
-            }
-            string s = sb.ToString();
-            //if (!string.IsNullOrEmpty(s))
-            //{
-            //    Logger.Log(s);
-            //}
-            return s;
-        }
-
-        // List of locale names supported by JAWS 2024 and found at C:\Program Files\Freedom Scientific\JAWS\2024\GetVoices\Locale        
-        private List<string> JawsLocales = new List<string>() { "arb", "cht", "csy", "dan", "deu", "esn", "eti", "fin", "fra", "frc", "heb", "hun", "ita", "jpn", "kor", "lvi", "mki", "nld", "nor", "plk", "ptb", "rus", "sky", "sqi", "sve", "trk", "ukr", "enu" };
-
-        /// <summary>
-        /// Last fallback if IBOS MusicXmlReader is not localized to the language used by JAWS
-        /// Look for a directory with a valid name
-        /// </summary>
-        /// <param name="directoryName"></param>
-        /// <param name="settingsDirectory"></param>
-        /// <returns></returns>
-        private string GetJawsFallbackSettingsDirectory(string settingsDirectory)
-        {
-            string result = "";
-            string[] directories = Directory.GetDirectories(settingsDirectory);
-            List<string> localeDirectories = new List<string>();
-            foreach (string directory in directories)
-            {
-                DirectoryInfo directoryInfo = new DirectoryInfo(directory);
-                string shortName = directoryInfo.Name;
-                if (JawsLocales.Contains(shortName))
-                {
-                    localeDirectories.Add(directory);
-                    Logger.LogCF(string.Format(": Found {0}", directory));
-                }
-            }
-            if (localeDirectories.Count > 0)
-            {
-                result = localeDirectories[0];
-                Logger.LogCF(string.Format(": Using {0}", result));
-            }
-            else
-            {
-                Logger.LogCF(string.Format(": No JAWS settings directory found"));
-            }
-            return result;
-        }
-
-        public string GetJawsSettingsDirectory()
-        {
-            // TODO Consider using a link file as for MuseScore and Sibelius !
-            string methodName = "GetJawsSettingsDirectory";
-            string directoryName = "";
-            try
-            {
-                // Attempt to locate the JAWS settings file.
-                // This includes variable directory names for user, version and locale  so we need to use a little heuristics !
-                string roamingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                string jawsDirectory = Path.Combine(roamingDirectory, @"Freedom Scientific\JAWS");
-                // Find the highest version of JAWS, assuming the directories are listed in alphabetical order.
-                string[] jawsVersionDirectories = Directory.GetDirectories(jawsDirectory);
-                Logger.Log(string.Format("{0}.{1} Found {2} directories in {3}: {4}", className, methodName, jawsVersionDirectories.Length, jawsDirectory, LogDirectories(jawsVersionDirectories)));        
-                if (jawsVersionDirectories.Length != 0)
-                {
-                    string highestVersionDirectory = highestVersionDirectory = jawsVersionDirectories[jawsVersionDirectories.Length - 1];
-                    string settingsDirectory = Path.Combine(highestVersionDirectory, "Settings");
-                    string[] languageDirectories = Directory.GetDirectories(settingsDirectory);
-                    Logger.Log(string.Format("{0}.{1} Found {2} directories in {3}: {4}", className, methodName, languageDirectories.Length, settingsDirectory, LogDirectories(languageDirectories)));               
-                    directoryName = Path.Combine(settingsDirectory, ResourcesForModel.JawsSettingsLanguageName); // "dan" for Danish
-                    if (!Directory.Exists(directoryName)) // Invert the condition to test the fallback mechanism
-                    {
-                        Logger.LogCF(string.Format(": JAWS settings directory '{0}' does not exist. Looking for alternative", directoryName));
-                        directoryName = GetJawsFallbackSettingsDirectory(settingsDirectory);  
-                    }                                                                                          
-                }
-            }
-            catch (Exception e)
-            {
-                directoryName = "";
-                Logger.Log(string.Format("{0}.{1} Exception caught while attempting to locate JAWS settings directory. Message='{2}'", className, methodName, e.Message));
-            }
-            return directoryName;
-        }
 
         /// <summary>
         /// Opens Windows Explorer in the JAWS application specific configuration directory
@@ -281,10 +193,9 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public string OpenJawsSettingsDirectory()
+        public string OpenJawsSettingsDirectory(string directoryName)
         {
             Logger.LogCF(": +");
-            string directoryName = GetJawsSettingsDirectory();
             if (string.IsNullOrEmpty(directoryName))
             {
                 // This includes explicitly detected errors as wells as exceptions !
@@ -310,13 +221,12 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns>The expected  directory name of the JAWS application specific configuration file</returns>
-        public string ReadJawsSettingsFile(string fileName, string extension)
+        public string ReadJawsSettingsFile(string fileName, string extension, string directoryName)
         {
             string methodName = "ReadJawsSettingsFile";   
 
             string fileNameWithExtension = Path.ChangeExtension(fileName, extension);
-
-            string directoryName = GetJawsSettingsDirectory();
+     
 
             //string directoryName = @"C:\Users\Jens\AppData\Roaming\Freedom Scientific\JAWS\17.0\Settings\dan"; // Before version 1.0.0.0
 
