@@ -583,12 +583,7 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName,"JCF"); // JAWS Conciguration File
         }
         #region JAWSScript
-        private void jAWSApplicationspecificScriptToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS"); // JAWS Script source
-        }
-
-
+   
         private void viewToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS"); // JAWS Script source

@@ -713,7 +713,6 @@
             this.jAWSApplicationspecificScriptToolStripMenuItem.Name = "jAWSApplicationspecificScriptToolStripMenuItem";
             this.jAWSApplicationspecificScriptToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
             this.jAWSApplicationspecificScriptToolStripMenuItem.Text = "JAWS application-specific script";
-            this.jAWSApplicationspecificScriptToolStripMenuItem.Click += new System.EventHandler(this.jAWSApplicationspecificScriptToolStripMenuItem_Click);
             // 
             // jAWSSettingsDirectoryToolStripMenuItem
             // 
