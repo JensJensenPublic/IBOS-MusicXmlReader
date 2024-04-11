@@ -15,7 +15,7 @@ Include "FSLog.jsh"
 Script SayBottomLine ()
 var handle hWnd,
 	handle hChild,
-	handle hNextChild,
+	handle hNextWindow,
 	int MaxBottom,
 	handle  hMaxBottom,
     int iLeft,
@@ -30,24 +30,26 @@ else
 	let hWnd = GetAppMainWindow(GetFocus())
 EndIf
 
-hChild=GetFirstChild(hWnd)
-
-hChild = GetFirstWindow(hChild)
-
-let maxBottom = 0
-let hNextChild = hChild 
-while hNextChild != 0
-	;SayAllInfo(hNextChild)
-	GetWindowRect(hNextChild,iLeft,iRight,iTop,iBottom)	
+; Iterate through all children of the MainForm to find the bottom control
+hNextWindow=GetFirstChild(hWnd)
+let maxBottom = 0 
+while hNextWindow != 0
+	;SayAllInfo(hNextWindow)
+	GetWindowRect(hNextWindow,iLeft,iRight,iTop,iBottom)	
 	if iBottom > MaxBottom then	
 		maxBottom = iBottom
-		hMaxBottom = hNextChild
+		hMaxBottom = hNextWindow
 	endif
-	hNextChild = GetNextWindow(hNextChild)
+	hNextWindow = GetNextWindow(hNextWindow)
 EndWhile
 
+; Say the contents of the bottom control
 WindowName = GetWindowName(hMaxBottom)
 SayString(WindowName)
+EndScript
+
+Script SayScriptName ()
+SayString("Script for IBOS MusicXmlReader")
 EndScript
 
 ; For debugging:
