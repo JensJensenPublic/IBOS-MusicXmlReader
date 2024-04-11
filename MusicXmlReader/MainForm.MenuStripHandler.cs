@@ -880,7 +880,7 @@ namespace MusicXmlReader
 
         private void LogControls()
         {
-            Logger.LogCF("+");   
+            Logger.LogCF("+");  
             string maximizedBounds = string.Format("MaximizedBounds: {0}", Format(this.MaximizedBounds));
             Logger.Log(maximizedBounds);
             string bounds = string.Format("Bounds:          {0}", Format(this.MaximizedBounds));
@@ -890,16 +890,19 @@ namespace MusicXmlReader
             List<Control> controls = new List<Control>();
             GetControls(this, controls);
             controls.Add(this);
-            controls.Sort(top); // Sort with respect to top coordinate
-            // Caption:       Name    Top   Bottom    Left   Right Visible Enabled Focused Handle Parent nChildren Acc.Name Text
-            string format = "{0,-25} {1,6}   {2,6}   {3,8}   {4,8}   {5,8}  {6,8}  {7,8}  {8,8}  {9,8}  {10,10}  {11,-20}  {12,-30}";
-            string caption = string.Format(format, "Name", "Top", "Bottom", "Left", "Right","Visible", "Enabled", "Focused", "Handle", "Parent", "nChildren","AccessibleName", "Text");
+            controls.Sort(bottom); // Sort with respect to bottom coordinate        
+            // Caption:       Name   Top   Bottom Left Right Visible Enabled Focused Handle Parent nChildren Acc.Name Text
+            string format = "{0,-25} {1,6} {2,6} {3,6} {4,6} {5,8} {6,8} {7,8} {8,12} {9,10} {10,10}  {11,10}  {12,-30}  {13,-30}";
+            string caption = string.Format(format, "Name", "Top", "Bottom", "Left", "Right","Visible", "Enabled", "Focused", "HandleHex", "HandleDec", "Parent", "nChildren","AccessibleName", "Text");
             Logger.Log(caption);           
             foreach (Control c in controls)
             {
                 int nChildren = c.Controls.Count;
                 string parent = (c.Parent == null) ? "None" : c.Parent.Name;
-                string s = string.Format(format, c.Name, c.Top, c.Bottom, c.Left, c.Right, c.Visible, c.Enabled,c.Focused, c.Handle, parent, nChildren, c.AccessibleName, c.Text);
+                int handle = (int)c.Handle;
+                string handleDec = string.Format("{0:D}", handle);
+                string handleHex = string.Format("0x{0:X8}", handle);
+                string s = string.Format(format, c.Name, c.Top, c.Bottom, c.Left, c.Right, c.Visible, c.Enabled,c.Focused, handleHex, handleDec, parent, nChildren, c.AccessibleName, c.Text);
                 Logger.Log(s);            
             }
             Logger.LogCF("-");
