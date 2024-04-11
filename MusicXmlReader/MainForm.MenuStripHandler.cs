@@ -621,20 +621,20 @@ namespace MusicXmlReader
             }
 #warning localize
             if (nCopiedFiles == 0) return;
-            ShowUserMessageBox(string.Format("Copied {0} JAWS script files to \r\n{1}", nCopiedFiles, JAWSAppDatadirectoryName), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
+            ShowUserMessageBox(string.Format("Copied {0} JAWS script files for '{1}'\r\nto {2}", nCopiedFiles, executingAssemblyShortName,JAWSAppDatadirectoryName), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
         }  
 
         private void stopUsingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int nDeletedFiles = 0;
             string JAWSAppDatadirectoryName = "";
+            string fileNameForDeletion = executingAssemblyShortName;  //    For instance "IBOS MusicXmlReader" 
             try
             {
                 //throw new Exception("For test only");
                 JAWSAppDatadirectoryName =   model.GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
                 string[] scriptFiles = Directory.GetFiles(JAWSAppDatadirectoryName);
-                List<string> scriptExtensions = new List<string>() { ".JSS", ".JSB", ".jsb", ".JSD", ".JKM" };
-                string fileNameForDeletion = "IBOS MusicXmlReader";             
+                List<string> scriptExtensions = new List<string>() { ".JSS", ".JSB", ".jsb", ".JSD", ".JKM" };          
                 foreach (string file in scriptFiles)
                 {
                     if (Path.GetFileNameWithoutExtension(file) == fileNameForDeletion)
@@ -657,7 +657,7 @@ namespace MusicXmlReader
             }
 #warning localize
             if (nDeletedFiles == 0) return;
-            ShowUserMessageBox(string.Format("Deleted {0} JAWS script files from\r\n{1}", nDeletedFiles, JAWSAppDatadirectoryName), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
+            ShowUserMessageBox(string.Format("Deleted {0} JAWS script files for '{1}'\r\nfrom {2}", nDeletedFiles, fileNameForDeletion,JAWSAppDatadirectoryName), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
 
         }
         #endregion
