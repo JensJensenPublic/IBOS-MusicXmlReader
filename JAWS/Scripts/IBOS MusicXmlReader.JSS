@@ -24,6 +24,7 @@ var handle hWnd,
 	int iBottom,
 	string WindowName
 
+SayString("Status")
 if DialogActive() then
 	let hWnd = GetRealWindow(GetFocus())
 else
