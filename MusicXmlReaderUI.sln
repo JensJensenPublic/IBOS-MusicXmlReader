@@ -468,6 +468,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{F3AC
 	ProjectSection(SolutionItems) = preProject
 		JAWS\Scripts\IBOS MusicXmlReader.JKM = JAWS\Scripts\IBOS MusicXmlReader.JKM
 		JAWS\Scripts\IBOS MusicXmlReader.jsb = JAWS\Scripts\IBOS MusicXmlReader.jsb
+		JAWS\Scripts\IBOS MusicXmlReader.JSD = JAWS\Scripts\IBOS MusicXmlReader.JSD
 		JAWS\Scripts\IBOS MusicXmlReader.JSS = JAWS\Scripts\IBOS MusicXmlReader.JSS
 	EndProjectSection
 EndProject

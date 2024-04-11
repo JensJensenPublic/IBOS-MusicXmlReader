@@ -48,7 +48,7 @@ WindowName = GetWindowName(hMaxBottom)
 SayString(WindowName)
 EndScript
 
-Script SayScriptName ()
+Script SayScriptFileName ()
 SayString("Script for IBOS MusicXmlReader")
 EndScript
 
