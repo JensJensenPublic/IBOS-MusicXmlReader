@@ -1461,6 +1461,19 @@ namespace MusicXmlReaderModel
         }
 
 
+
+        /// <summary>
+        /// Returns the path to the directory holding the USER-SPECIFIC JAWS settings.
+        /// In general:
+        /// "C:\Users\{UserName}\AppData\Roaming\Freedom Scientific\JAWS\{JawsVersion}\Settings\{Locale}"
+        /// where {UserName}, {JawsVersion} and {Locale} are filled in with actual values.        /// 
+        /// For instance:
+        /// "C:\Users\holme\AppData\Roaming\Freedom Scientific\JAWS\2024\Settings\dan"
+        /// If more that one JAWS version is installed on the machine, the one with the highest version number will be returned. 
+        /// </summary>
+        /// <returns>
+        /// Returns the path to the directory holding the USER-SPECIFIC JAWS settings.
+        /// </returns>
         public string GetJawsSettingsDirectory()
         {           
             // TODO Consider using a link file as for MuseScore and Sibelius !
@@ -1498,8 +1511,16 @@ namespace MusicXmlReaderModel
         }
 
 
-
-        public string GetJawsSharedSettingsDirectory()
+        /// <summary>
+        /// Returns the path to the directory holding the SHARED JAWS script files.
+        /// For JAWS 2024 this will typically be:
+        /// "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
+        /// If more that one JAWS version is installed on the machine, the one with the highest version number will be returned. 
+        /// </summary>
+        /// <returns>
+        /// Returns the path to the directory holding the shared JAWS script files.
+        /// </returns>
+        public string GetJawsSharedScriptsDirectory()
         {
             string result = "";
             string programDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
