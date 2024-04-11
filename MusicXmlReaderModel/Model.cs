@@ -5,6 +5,7 @@ using NAudio.Midi;
 using System.Xml;
 using JSJ.ScreenReaderAPI;
 using System.Text;
+using System.Reflection;
 
 namespace MusicXmlReaderModel
 {
@@ -89,12 +90,12 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         static public Model Create()
         {
-            return new Model(null, null, null,null);
+            return new Model(null, null, null, null);
         }
 
-        static public Model Create(IObjectCollection objects, IDebugDisplayerClient ws, string menuCaption,IDecoderUiClient decoderUiClient)
+        static public Model Create(IObjectCollection objects, IDebugDisplayerClient ws, string menuCaption, IDecoderUiClient decoderUiClient)
         {
-            return new Model(objects, ws, menuCaption,decoderUiClient);
+            return new Model(objects, ws, menuCaption, decoderUiClient);
         }
 
 
@@ -373,8 +374,8 @@ namespace MusicXmlReaderModel
         private MetaInformation CreateInitialMetaInformation(string fullXmlFileName)
         {
             metaInformation = MetaInformation.Create();
-            metaInformation.FileName = MetaInfoItem.Create(ResourcesForModel.MetaInfoText_FileName,fullXmlFileName);     // Such as "Danmark nu blunder den lyse nat.musicxml"
-            metaInformation.DublinCore.Source = MetaInfoItem.Create("source",fullXmlFileName);                           // Such as "Danmark nu blunder den lyse nat.musicxml"
+            metaInformation.FileName = MetaInfoItem.Create(ResourcesForModel.MetaInfoText_FileName, fullXmlFileName);     // Such as "Danmark nu blunder den lyse nat.musicxml"
+            metaInformation.DublinCore.Source = MetaInfoItem.Create("source", fullXmlFileName);                           // Such as "Danmark nu blunder den lyse nat.musicxml"
             metaInformation.DublinCore.Date = MetaInfoItem.Create("date", System.DateTime.Now.Date.ToShortDateString()); // Such as: "dd-mm-yyyy" 
             metaInformation.DublinCore.Language = MetaInfoItem.Create("language", "Braille");                            // May contain Text-Braille as well as Music-Braille
             metaInformation.DublinCore.Publisher = MetaInfoItem.Create("publisher", System.Reflection.Assembly.GetEntryAssembly().FullName); // Such as "IBOS MusicXmlReader, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null"
@@ -581,7 +582,7 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// Constructor to be used by UI-based applications
         /// </summary>
-        private Model(IObjectCollection objects, IDebugDisplayerClient iDebugDisplayerClient, string caption,IDecoderUiClient decoderUiClient)
+        private Model(IObjectCollection objects, IDebugDisplayerClient iDebugDisplayerClient, string caption, IDecoderUiClient decoderUiClient)
         {
             string methodName = "Model";
 
@@ -600,13 +601,13 @@ namespace MusicXmlReaderModel
             debugTools = DebugTools.Create(); // Used for logging and tracing from screenReaderAPI.
             screenReaderAPI = ScreenReaderAPI.Create(is64Bit, debugTools);
             externalToolsHandler = ExternalToolsHandler.Create();
-   
+
 
             // Utilities.CheckScreenReader(screenReaderAPI.ScreenReaderName, caption); // Check for DummyScreenReader
 
             midiOut = CreateMidiOut(0);
             musicPlayer = new MusicPlayer(objects, midiOut);
-            decoderHandler = DecoderHandler.Create(musicPlayer,decoderUiClient);
+            decoderHandler = DecoderHandler.Create(musicPlayer, decoderUiClient);
             int displaySize = 40;
             brailleDisplayer = BrailleDisplayer.Create(iDebugDisplayerClient, displaySize, screenReaderAPI); // TODO Get the real displaysize from somewhere
             textDisplayer = TextDisplayer.Create(iDebugDisplayerClient);
@@ -1461,7 +1462,7 @@ namespace MusicXmlReaderModel
 
 
         public string GetJawsSettingsDirectory()
-        {
+        {           
             // TODO Consider using a link file as for MuseScore and Sibelius !
             string methodName = "GetJawsSettingsDirectory";
             string directoryName = "";
@@ -1498,6 +1499,21 @@ namespace MusicXmlReaderModel
 
 
 
+        public string GetJawsSharedSettingsDirectory()
+        {
+            string result = "";
+            string programDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            string jawsDirectory = Path.Combine(programDataDirectory, @"Freedom Scientific\JAWS");
+            // Find the highest version of JAWS, assuming the directories are listed in alphabetical order.
+            string[] jawsVersionDirectories = Directory.GetDirectories(jawsDirectory);
+            Logger.Log(string.Format(": Found {0} directories in {1}: {2}",  jawsVersionDirectories.Length, jawsDirectory, LogDirectories(jawsVersionDirectories)));
+            if (jawsVersionDirectories.Length != 0)
+            {
+                string highestVersionDirectory = jawsVersionDirectories[jawsVersionDirectories.Length - 1];
+                result = Path.Combine(highestVersionDirectory, "Scripts"); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\Scripts"
+            }
+            return result;
+        }
     }
 
 }

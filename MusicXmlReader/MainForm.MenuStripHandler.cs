@@ -586,7 +586,7 @@ namespace MusicXmlReader
    
         private void viewToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS", model.GetJawsSettingsDirectory()); // JAWS Script source
+            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS", model.GetJawsSharedSettingsDirectory()); // JAWS Script source
         }
 
 
@@ -596,7 +596,7 @@ namespace MusicXmlReader
             int nCopiedFiles = 0;
             try
             {
-                string JAWSAppDatadirectoryName = model.GetJawsSettingsDirectory();
+                string JAWSAppDatadirectoryName = model.GetJawsSharedSettingsDirectory();
                 string executingAssemblyDirectory = Path.GetDirectoryName(executingAssemblyFullPath);
                 string JAWSSourceDirectory = Path.Combine(executingAssemblyDirectory, "JAWS");
                 string JAWSScriptSourceDirectory = Path.Combine(JAWSSourceDirectory, "Scripts");
@@ -625,18 +625,21 @@ namespace MusicXmlReader
             int nDeletedFiles = 0;
             try
             {
-                string JAWSAppDatadirectoryName = model.GetJawsSettingsDirectory();
+                string JAWSAppDatadirectoryName =   model.GetJawsSharedSettingsDirectory();
                 string[] scriptFiles = Directory.GetFiles(JAWSAppDatadirectoryName);
                 List<string> scriptExtensions = new List<string>() { ".JSS", ".JSB", ".jsb", ".JSD", ".JKM" };
-             
+                string fileNameForDeletion = "IBOS MusicXmlReader";             
                 foreach (string file in scriptFiles)
                 {
-                    string extension = Path.GetExtension(file);
-                    if (scriptExtensions.Contains(extension))
+                    if (Path.GetFileNameWithoutExtension(file) == fileNameForDeletion)
                     {
-                        File.Delete(file);
-                        Logger.LogCF(string.Format(": Deleted {0} JAWS script files",file));
-                        nDeletedFiles++;
+                        string extension = Path.GetExtension(file);
+                        if (scriptExtensions.Contains(extension))
+                        {
+                            File.Delete(file);
+                            Logger.LogCF(string.Format(": Deleted {0} JAWS script files", file));
+                            nDeletedFiles++;
+                        }
                     }
                 }
             }
