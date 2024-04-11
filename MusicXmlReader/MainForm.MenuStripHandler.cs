@@ -597,6 +597,7 @@ namespace MusicXmlReader
             string JAWSAppDatadirectoryName = "";
             try
             {
+                //throw new Exception("For test only");
                 JAWSAppDatadirectoryName = model.GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
                 string executingAssemblyDirectory = Path.GetDirectoryName(executingAssemblyFullPath);
                 string JAWSSourceDirectory = Path.Combine(executingAssemblyDirectory, "JAWS");
@@ -615,9 +616,11 @@ namespace MusicXmlReader
             catch (Exception ex)
             {
                 Logger.LogCFE(ex);
-                MessageBox.Show(ex.Message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);                
+                // Use ShowUserMessageBox instead of MessageBox.Show on order to get a more uniform UI
+                ShowUserMessageBox(ex.Message, ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Warning);               
             }
 #warning localize
+            if (nCopiedFiles == 0) return;
             ShowUserMessageBox(string.Format("Copied {0} JAWS script files to \r\n{1}", nCopiedFiles, JAWSAppDatadirectoryName), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
         }  
 
@@ -627,6 +630,7 @@ namespace MusicXmlReader
             string JAWSAppDatadirectoryName = "";
             try
             {
+                //throw new Exception("For test only");
                 JAWSAppDatadirectoryName =   model.GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
                 string[] scriptFiles = Directory.GetFiles(JAWSAppDatadirectoryName);
                 List<string> scriptExtensions = new List<string>() { ".JSS", ".JSB", ".jsb", ".JSD", ".JKM" };
@@ -648,9 +652,11 @@ namespace MusicXmlReader
             catch (Exception ex)
             {
                 Logger.LogCFE(ex);
-                MessageBox.Show(ex.Message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Use ShowUserMessageBox instead of MessageBox.Show on order to get a more uniform UI
+                ShowUserMessageBox(ex.Message, ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Warning) ;
             }
 #warning localize
+            if (nDeletedFiles == 0) return;
             ShowUserMessageBox(string.Format("Deleted {0} JAWS script files from\r\n{1}", nDeletedFiles, JAWSAppDatadirectoryName), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
 
         }
