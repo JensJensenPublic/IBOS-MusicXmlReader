@@ -580,13 +580,13 @@ namespace MusicXmlReader
 
         private void jAWSSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName,"JCF", model.GetJawsSettingsDirectory()); // JAWS Conciguration File
+            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName,"JCF", model.GetJawsSettingsDirectory()); // JAWS Configuration File for instance "C:\Users\holme\AppData\Roaming\Freedom Scientific\JAWS\2024\Settings\dan"
         }
         #region JAWSScript
    
         private void viewToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS", model.GetJawsSharedScriptsDirectory()); // JAWS Script source
+            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS", model.GetJawsSharedScriptsDirectory()); // JAWS Script source, for instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
         }
 
 
@@ -594,9 +594,10 @@ namespace MusicXmlReader
         private void startUsingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int nCopiedFiles = 0;
+            string JAWSAppDatadirectoryName = "";
             try
             {
-                string JAWSAppDatadirectoryName = model.GetJawsSharedScriptsDirectory();
+                JAWSAppDatadirectoryName = model.GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
                 string executingAssemblyDirectory = Path.GetDirectoryName(executingAssemblyFullPath);
                 string JAWSSourceDirectory = Path.Combine(executingAssemblyDirectory, "JAWS");
                 string JAWSScriptSourceDirectory = Path.Combine(JAWSSourceDirectory, "Scripts");
@@ -617,15 +618,16 @@ namespace MusicXmlReader
                 MessageBox.Show(ex.Message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);                
             }
 #warning localize
-            ShowUserMessageBox(string.Format("Copied {0} JAWS script files", nCopiedFiles), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
+            ShowUserMessageBox(string.Format("Copied {0} JAWS script files to \r\n{1}", nCopiedFiles, JAWSAppDatadirectoryName), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
         }  
 
         private void stopUsingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int nDeletedFiles = 0;
+            string JAWSAppDatadirectoryName = "";
             try
             {
-                string JAWSAppDatadirectoryName =   model.GetJawsSharedScriptsDirectory();
+                JAWSAppDatadirectoryName =   model.GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
                 string[] scriptFiles = Directory.GetFiles(JAWSAppDatadirectoryName);
                 List<string> scriptExtensions = new List<string>() { ".JSS", ".JSB", ".jsb", ".JSD", ".JKM" };
                 string fileNameForDeletion = "IBOS MusicXmlReader";             
@@ -649,7 +651,7 @@ namespace MusicXmlReader
                 MessageBox.Show(ex.Message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 #warning localize
-            ShowUserMessageBox(string.Format("Deleted {0} JAWS script files", nDeletedFiles), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
+            ShowUserMessageBox(string.Format("Deleted {0} JAWS script files from\r\n{1}", nDeletedFiles, JAWSAppDatadirectoryName), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
 
         }
         #endregion
