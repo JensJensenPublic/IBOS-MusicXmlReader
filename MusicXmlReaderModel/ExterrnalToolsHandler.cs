@@ -188,10 +188,9 @@ namespace MusicXmlReaderModel
 
 
         /// <summary>
-        /// Opens Windows Explorer in the JAWS application specific configuration directory
-        /// TO DO: The language specific "dan". Fix this !!
+        /// Opens Windows Explorer in the JAWS application specific configuration or script directory
         /// </summary>
-        /// <param name="fileName"></param>
+        /// <param name="directoryName"></param>
         /// <returns></returns>
         public string OpenJawsSettingsDirectory(string directoryName)
         {

@@ -590,7 +590,6 @@ namespace MusicXmlReader
         }
 
 
-
         private void startUsingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int nCopiedFiles = 0;
@@ -669,6 +668,11 @@ namespace MusicXmlReader
             model.ExternalToolsHandler.OpenJawsSettingsDirectory(model.GetJawsSettingsDirectory());
         }
 
+
+        private void viewDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            model.ExternalToolsHandler.OpenJawsSettingsDirectory(model.GetJawsSharedScriptsDirectory());
+        }
 
 
 
