@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -142,8 +143,64 @@ namespace MusicXmlReaderModel
             return result;
         }
 
+        /// <summary>
+        /// For automatic installation of the JAWS script distributed with IBOS MusicXmlReader.
+        /// </summary>
+        public void OnProgramStart()
+        {
+            string scriptDirectory = GetJawsSharedScriptsDirectory(); // We want to install the script as shared bewtween all users.
+            if (string.IsNullOrEmpty(scriptDirectory)) return; // If JAWS is not installed on the machine the directory does not exist.
+#warning TODO Implement !
+            Logger.LogCF(": Implement !");
+        }
 
-        private ScriptHandlerForJAWS() { }
+        public int CopyAllScriptFiles(string executingAssemblyFullPath)
+        {
+            int nCopiedFiles = 0;
+            //throw new Exception("For test only");
+            string JAWSScriptDirectoryName = GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
+            string executingAssemblyDirectory = Path.GetDirectoryName(executingAssemblyFullPath);
+            string JAWSSourceDirectory = Path.Combine(executingAssemblyDirectory, "JAWS");
+            string JAWSScriptSourceDirectory = Path.Combine(JAWSSourceDirectory, "Scripts");
+            string[] Scriptfiles = Directory.GetFiles(JAWSScriptSourceDirectory);
+            bool overWrite = true;
+            foreach (string s in Scriptfiles)
+            {
+                string shortFileName = Path.GetFileName(s);
+                string destination = Path.Combine(JAWSScriptDirectoryName, shortFileName);
+                File.Copy(s, destination, overWrite);
+                Logger.LogCF(string.Format(": Copied {0} to {1}", shortFileName, destination));
+                nCopiedFiles++;
+            }
+            return nCopiedFiles;
+        }
+
+
+        public int DeleteAllScriptFiles(string fileNameForDeletion)
+        {
+            int nDeletedFiles = 0;
+            string JAWSScriptDirectoryName = GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
+            string[] scriptFiles = Directory.GetFiles(JAWSScriptDirectoryName);
+            List<string> scriptExtensions = new List<string>() { ".JSS", ".JSB", ".jsb", ".JSD", ".JKM" };
+            foreach (string file in scriptFiles)
+            {
+                if (Path.GetFileNameWithoutExtension(file) == fileNameForDeletion)
+                {
+                    string extension = Path.GetExtension(file);
+                    if (scriptExtensions.Contains(extension))
+                    {
+                        File.Delete(file);
+                        Logger.LogCF(string.Format(": Deleted {0} JAWS script files", file));
+                        nDeletedFiles++;
+                    }
+                }
+            }
+            return nDeletedFiles;
+        }
+
+
+
+    private ScriptHandlerForJAWS() { }
 
 
         public static ScriptHandlerForJAWS Create() { return new ScriptHandlerForJAWS(); } 

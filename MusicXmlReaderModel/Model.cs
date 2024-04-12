@@ -610,6 +610,7 @@ namespace MusicXmlReaderModel
             musicPlayer = new MusicPlayer(objects, midiOut);
             decoderHandler = DecoderHandler.Create(musicPlayer, decoderUiClient);
             scriptHandlerForJAWS = ScriptHandlerForJAWS.Create();
+            scriptHandlerForJAWS.OnProgramStart();
             int displaySize = 40;
             brailleDisplayer = BrailleDisplayer.Create(iDebugDisplayerClient, displaySize, screenReaderAPI); // TODO Get the real displaysize from somewhere
             textDisplayer = TextDisplayer.Create(iDebugDisplayerClient);

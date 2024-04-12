@@ -593,24 +593,10 @@ namespace MusicXmlReader
         private void startUsingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int nCopiedFiles = 0;
-            string JAWSAppDatadirectoryName = "";
             try
             {
                 //throw new Exception("For test only");
-                JAWSAppDatadirectoryName = model.scriptHandlerForJAWS.GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
-                string executingAssemblyDirectory = Path.GetDirectoryName(executingAssemblyFullPath);
-                string JAWSSourceDirectory = Path.Combine(executingAssemblyDirectory, "JAWS");
-                string JAWSScriptSourceDirectory = Path.Combine(JAWSSourceDirectory, "Scripts");
-                string[] Scriptfiles = Directory.GetFiles(JAWSScriptSourceDirectory);
-                bool overWrite = true;
-                foreach (string s in Scriptfiles)
-                {
-                    string shortFileName = Path.GetFileName(s);
-                    string destination = Path.Combine(JAWSAppDatadirectoryName, shortFileName);
-                    File.Copy(s,destination,overWrite);
-                    Logger.LogCF(string.Format(": Copied {0} to {1}", shortFileName, destination));
-                    nCopiedFiles++;
-                }
+                nCopiedFiles = model.scriptHandlerForJAWS.CopyAllScriptFiles(executingAssemblyFullPath);
             }
             catch (Exception ex)
             {
@@ -620,33 +606,17 @@ namespace MusicXmlReader
             }
 #warning localize
             if (nCopiedFiles == 0) return;
-            ShowUserMessageBox(string.Format("Copied {0} JAWS script files for '{1}'\r\nto {2}", nCopiedFiles, executingAssemblyShortName,JAWSAppDatadirectoryName), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
+            ShowUserMessageBox(string.Format("Copied {0} JAWS script files for '{1}'", nCopiedFiles, executingAssemblyShortName), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
         }  
 
         private void stopUsingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int nDeletedFiles = 0;
-            string JAWSAppDatadirectoryName = "";
             string fileNameForDeletion = executingAssemblyShortName;  //    For instance "IBOS MusicXmlReader" 
             try
             {
                 //throw new Exception("For test only");
-                JAWSAppDatadirectoryName =   model.scriptHandlerForJAWS.GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
-                string[] scriptFiles = Directory.GetFiles(JAWSAppDatadirectoryName);
-                List<string> scriptExtensions = new List<string>() { ".JSS", ".JSB", ".jsb", ".JSD", ".JKM" };          
-                foreach (string file in scriptFiles)
-                {
-                    if (Path.GetFileNameWithoutExtension(file) == fileNameForDeletion)
-                    {
-                        string extension = Path.GetExtension(file);
-                        if (scriptExtensions.Contains(extension))
-                        {
-                            File.Delete(file);
-                            Logger.LogCF(string.Format(": Deleted {0} JAWS script files", file));
-                            nDeletedFiles++;
-                        }
-                    }
-                }
+                nDeletedFiles = model.scriptHandlerForJAWS.DeleteAllScriptFiles(fileNameForDeletion);
             }
             catch (Exception ex)
             {
@@ -656,7 +626,7 @@ namespace MusicXmlReader
             }
 #warning localize
             if (nDeletedFiles == 0) return;
-            ShowUserMessageBox(string.Format("Deleted {0} JAWS script files for '{1}'\r\nfrom {2}", nDeletedFiles, fileNameForDeletion,JAWSAppDatadirectoryName), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
+            ShowUserMessageBox(string.Format("Deleted {0} JAWS script files for '{1}'", nDeletedFiles, fileNameForDeletion), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
 
         }
         #endregion
