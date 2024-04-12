@@ -580,13 +580,13 @@ namespace MusicXmlReader
 
         private void jAWSSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName,"JCF", model.GetJawsSettingsDirectory()); // JAWS Configuration File for instance "C:\Users\holme\AppData\Roaming\Freedom Scientific\JAWS\2024\Settings\dan"
+            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName,"JCF", model.scriptHandlerForJAWS.GetJawsSettingsDirectory()); // JAWS Configuration File for instance "C:\Users\holme\AppData\Roaming\Freedom Scientific\JAWS\2024\Settings\dan"
         }
         #region JAWSScript
    
         private void viewToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS", model.GetJawsSharedScriptsDirectory()); // JAWS Script source, for instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
+            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS", model.scriptHandlerForJAWS.GetJawsSharedScriptsDirectory()); // JAWS Script source, for instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
         }
 
 
@@ -597,7 +597,7 @@ namespace MusicXmlReader
             try
             {
                 //throw new Exception("For test only");
-                JAWSAppDatadirectoryName = model.GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
+                JAWSAppDatadirectoryName = model.scriptHandlerForJAWS.GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
                 string executingAssemblyDirectory = Path.GetDirectoryName(executingAssemblyFullPath);
                 string JAWSSourceDirectory = Path.Combine(executingAssemblyDirectory, "JAWS");
                 string JAWSScriptSourceDirectory = Path.Combine(JAWSSourceDirectory, "Scripts");
@@ -631,7 +631,7 @@ namespace MusicXmlReader
             try
             {
                 //throw new Exception("For test only");
-                JAWSAppDatadirectoryName =   model.GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
+                JAWSAppDatadirectoryName =   model.scriptHandlerForJAWS.GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
                 string[] scriptFiles = Directory.GetFiles(JAWSAppDatadirectoryName);
                 List<string> scriptExtensions = new List<string>() { ".JSS", ".JSB", ".jsb", ".JSD", ".JKM" };          
                 foreach (string file in scriptFiles)
@@ -665,13 +665,13 @@ namespace MusicXmlReader
 
         private void jAWSSettingsDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.OpenJawsSettingsDirectory(model.GetJawsSettingsDirectory());
+            model.ExternalToolsHandler.OpenJawsSettingsDirectory(model.scriptHandlerForJAWS.GetJawsSettingsDirectory());
         }
 
 
         private void viewDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.OpenJawsSettingsDirectory(model.GetJawsSharedScriptsDirectory());
+            model.ExternalToolsHandler.OpenJawsSettingsDirectory(model.scriptHandlerForJAWS.GetJawsSharedScriptsDirectory());
         }
 
 

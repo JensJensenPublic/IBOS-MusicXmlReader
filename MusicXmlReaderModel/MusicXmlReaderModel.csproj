@@ -195,6 +195,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourcesForModel.resx</DependentUpon>
     </Compile>
+    <Compile Include="ScriptHandlerForJAWS.cs" />
     <Compile Include="Staff.cs" />
     <Compile Include="StaffList.cs" />
     <Compile Include="StaffSelector.cs" />
