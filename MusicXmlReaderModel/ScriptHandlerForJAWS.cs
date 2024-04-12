@@ -146,12 +146,14 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// For automatic installation of the JAWS script distributed with IBOS MusicXmlReader.
         /// </summary>
-        public void OnProgramStart()
+        public void OnProgramStart(string executingAssemblyFullPath)
         {
             string scriptDirectory = GetJawsSharedScriptsDirectory(); // We want to install the script as shared bewtween all users.
             if (string.IsNullOrEmpty(scriptDirectory)) return; // If JAWS is not installed on the machine the directory does not exist.
-#warning TODO Implement !
-            Logger.LogCF(": Implement !");
+            int nCopied = CopyAllScriptFiles(executingAssemblyFullPath);
+            Logger.LogCF(string.Format(": Copied {0} files", nCopied));
+#warning TODO Implement more sophisticated rules for copying: Only copy nower files, Do not copy when files have explicitly been deleted.
+
         }
 
         public int CopyAllScriptFiles(string executingAssemblyFullPath)
