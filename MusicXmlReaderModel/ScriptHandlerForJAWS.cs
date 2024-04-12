@@ -134,7 +134,7 @@ namespace MusicXmlReaderModel
             string jawsDirectory = Path.Combine(programDataDirectory, @"Freedom Scientific\JAWS");
             // Find the highest version of JAWS, assuming the directories are listed in alphabetical order.
             string[] jawsVersionDirectories = Directory.GetDirectories(jawsDirectory);
-            Logger.Log(string.Format(": Found {0} directories in {1}: {2}", jawsVersionDirectories.Length, jawsDirectory, LogDirectories(jawsVersionDirectories)));
+            Logger.LogCF(string.Format(": Found {0} directories in {1}: {2}", jawsVersionDirectories.Length, jawsDirectory, LogDirectories(jawsVersionDirectories)));
             if (jawsVersionDirectories.Length != 0)
             {
                 string highestVersionDirectory = jawsVersionDirectories[jawsVersionDirectories.Length - 1];
@@ -146,32 +146,52 @@ namespace MusicXmlReaderModel
         /// <summary>
         /// For automatic installation of the JAWS script distributed with IBOS MusicXmlReader.
         /// </summary>
-        public void OnProgramStart(string executingAssemblyFullPath)
+        public void OnProgramStart(string mainProgramFullPath)
         {
             string scriptDirectory = GetJawsSharedScriptsDirectory(); // We want to install the script as shared bewtween all users.
             if (string.IsNullOrEmpty(scriptDirectory)) return; // If JAWS is not installed on the machine the directory does not exist.
-            int nCopied = CopyAllScriptFiles(executingAssemblyFullPath);
+            int nCopied = CopyAllScriptFiles(mainProgramFullPath, false); // unconditionally = false : Only copy when ALL new files are newer than the existing files
             Logger.LogCF(string.Format(": Copied {0} files", nCopied));
-#warning TODO Implement more sophisticated rules for copying: Only copy nower files, Do not copy when files have explicitly been deleted.
-
         }
 
-        public int CopyAllScriptFiles(string executingAssemblyFullPath)
+        public int CopyAllScriptFiles(string mainProgramFullPath, bool unConditionally)
         {
             int nCopiedFiles = 0;
             //throw new Exception("For test only");
             string JAWSScriptDirectoryName = GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
-            string executingAssemblyDirectory = Path.GetDirectoryName(executingAssemblyFullPath);
+            string executingAssemblyDirectory = Path.GetDirectoryName(mainProgramFullPath);
             string JAWSSourceDirectory = Path.Combine(executingAssemblyDirectory, "JAWS");
             string JAWSScriptSourceDirectory = Path.Combine(JAWSSourceDirectory, "Scripts");
             string[] Scriptfiles = Directory.GetFiles(JAWSScriptSourceDirectory);
+            if (!unConditionally)
+            {
+                bool copyCondition = true;
+                // Either copy none or all!
+                foreach (string sourceFile in Scriptfiles)
+                {
+                    string shortFileName = Path.GetFileName(sourceFile);
+                    string destination = Path.Combine(JAWSScriptDirectoryName, shortFileName);
+                    if (File.Exists(destination))
+                    {
+                        DateTime sourceTime = new FileInfo(sourceFile).LastWriteTimeUtc;
+                        DateTime destTime = new FileInfo(destination).LastWriteTimeUtc;
+                        if ( destTime >= sourceTime)
+                        {
+                            copyCondition = false;
+                            Logger.LogCF(string.Format(": New JAWS Script files were not installed because same or newer version of '{0}' is allready installed. S={1} D={2}",
+                                shortFileName,sourceTime,destTime));
+                        }
+                    }  
+                }
+                if (!copyCondition) return 0;
+            }
             bool overWrite = true;
             foreach (string s in Scriptfiles)
             {
                 string shortFileName = Path.GetFileName(s);
                 string destination = Path.Combine(JAWSScriptDirectoryName, shortFileName);
                 File.Copy(s, destination, overWrite);
-                Logger.LogCF(string.Format(": Copied {0} to {1}", shortFileName, destination));
+                Logger.LogCF(string.Format(": Copied '{0}' to '{1}'", shortFileName, destination));
                 nCopiedFiles++;
             }
             return nCopiedFiles;

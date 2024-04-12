@@ -107,6 +107,7 @@ namespace MusicXmlReader
 
                 Utilities.UtilityClient = (this as IUtilityClient); //Decide how to show error messages and warnings
                 model = Model.Create((this as IObjectCollection), (this as IDebugDisplayerClient), applicationName,null);
+                model.scriptHandlerForJAWS.OnProgramStart(executingAssemblyFullPath); // Install JAWS scripts if needed
 
                 #region Configuration
 #warning refactor all configuration stuff into separate methode somewhere

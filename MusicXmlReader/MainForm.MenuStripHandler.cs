@@ -596,7 +596,7 @@ namespace MusicXmlReader
             try
             {
                 //throw new Exception("For test only");
-                nCopiedFiles = model.scriptHandlerForJAWS.CopyAllScriptFiles(executingAssemblyFullPath);
+                nCopiedFiles = model.scriptHandlerForJAWS.CopyAllScriptFiles(executingAssemblyFullPath,true); // Unconditionally = true : Always copy all files
             }
             catch (Exception ex)
             {
