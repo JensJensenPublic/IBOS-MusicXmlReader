@@ -197,13 +197,25 @@ namespace MusicXmlReaderModel
             return nCopiedFiles;
         }
 
+        public enum DeletionOption { allFiles, jsbOnly }
 
-        public int DeleteAllScriptFiles(string fileNameForDeletion)
+        private List<string> GetExtensions(DeletionOption option)
+        {
+            switch (option)
+            {
+                case DeletionOption.allFiles: return new List<string>() { ".JSS", ".JSB", ".jsb", ".JSD", ".JKM" };
+                case DeletionOption.jsbOnly: return new List<string> { ".jsb" };
+                default: throw new NotImplementedException();  
+            }
+        }
+
+
+        public int DeleteScriptFiles(string fileNameForDeletion, DeletionOption option)
         {
             int nDeletedFiles = 0;
             string JAWSScriptDirectoryName = GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
             string[] scriptFiles = Directory.GetFiles(JAWSScriptDirectoryName);
-            List<string> scriptExtensions = new List<string>() { ".JSS", ".JSB", ".jsb", ".JSD", ".JKM" };
+            List<string> scriptExtensions = GetExtensions(option);
             foreach (string file in scriptFiles)
             {
                 if (Path.GetFileNameWithoutExtension(file) == fileNameForDeletion)

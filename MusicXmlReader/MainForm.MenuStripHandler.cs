@@ -616,7 +616,12 @@ namespace MusicXmlReader
             try
             {
                 //throw new Exception("For test only");
-                nDeletedFiles = model.scriptHandlerForJAWS.DeleteAllScriptFiles(fileNameForDeletion);
+                //
+                // By only deleting the .jsb (binary) file file we achive 2 things:
+                // 1) Disable the use of the script by JAWS,
+                // 2) By leaving the other files we prevent that the script is enabled again by the next start of the program.
+                // Yhe script can be enabled again by calling the  CopyAllScriptFiles(path, unconditionally) with unconditionally set to true.
+                nDeletedFiles = model.scriptHandlerForJAWS.DeleteScriptFiles(fileNameForDeletion,ScriptHandlerForJAWS.DeletionOption.jsbOnly);
             }
             catch (Exception ex)
             {
