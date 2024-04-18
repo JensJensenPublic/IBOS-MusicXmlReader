@@ -606,7 +606,7 @@ namespace MusicXmlReader
             }
 #warning localize
             if (nCopiedFiles == 0) return;
-            ShowUserMessageBox(string.Format("Copied {0} JAWS script files for '{1}'", nCopiedFiles, executingAssemblyShortName), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
+            ShowUserMessageBox(string.Format("Copied {0} JAWS script files for '{1} {2}'", nCopiedFiles, executingAssemblyShortName, pleaseRestart), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
         }  
 
         private void stopUsingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -631,9 +631,13 @@ namespace MusicXmlReader
             }
 #warning localize
             if (nDeletedFiles == 0) return;
-            ShowUserMessageBox(string.Format("Deleted {0} JAWS script files for '{1}'", nDeletedFiles, fileNameForDeletion), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
+         
+            ShowUserMessageBox(string.Format("Deleted {0} JAWS script files for '{1} {2}'", nDeletedFiles, fileNameForDeletion,pleaseRestart), ModelBaseMessageBoxButtons.OK, ModelBaseMessageBoxIcon.Information);
 
         }
+
+        const string pleaseRestart = "\r\nPlease restart the program for the change to take effect!";
+
         #endregion
 
 
