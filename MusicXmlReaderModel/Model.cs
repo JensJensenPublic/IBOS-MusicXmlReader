@@ -1298,7 +1298,7 @@ namespace MusicXmlReaderModel
             try
             {
                 string fileName = brailleFileHandler.GenerateTestpattern(directoryName);
-                Utilities.CloneFile(fileName, "bin"); // Generate a copy of the file, but with the ".bin" extension (For inspection of binary contents)
+                // Utilities.CloneFile(fileName, "bin"); // Generate a copy of the file, but with the ".bin" extension (For inspection of binary contents)
                 result = brailleFileHandler.IsValidBrailleMusic(fileName);
             }
             catch (Exception e)
