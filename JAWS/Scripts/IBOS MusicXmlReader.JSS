@@ -1,17 +1,4 @@
 
-Include "hjconst.jsh"
-Include "hjglobal.jsh"
-include "MSAAConst.jsh"
-include "UIA.jsh"
-include "XMLDom.jsh"
-include "FSIMouseSpeech.jsh"
-Include "HjHelp.jsh" ; Help Topic Constants
-include "locale.jsh"
-Include "magic.jsh"
-Include "magcodes.jsh"
-include "WinStyles.jsh"; Win Style Bits Constants used by the GetWindowStyleBits function
-Include "FSLog.jsh"
-
 Script SayBottomLine ()
 var handle hWnd,
 	handle hChild,
