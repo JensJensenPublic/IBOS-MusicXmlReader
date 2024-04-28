@@ -69,8 +69,9 @@ namespace MusicXmlReaderModel
             // Use the Decoder to create the decoded lines and always add contents formatted as decoded lines of MusicBraille         
             result.AddRange(GetDecodedLines(brailleMusicDecoder, brailleFileAsUnicode, decoderOptions));
 
-            // Save the MusicXml representation of the decoded file 
+            // Save the MusicXml representation of the decoded file after cleaning it up in order to please MuseScore 
             brailleMusicDecoder.RemoveEmptyLinesAtEnd();
+            brailleMusicDecoder.RemoveEmptyParts();
             musicXmlDocument = brailleMusicDecoder.MusicXmlDocument;
             if (Logger.DeveloperMode)
             {

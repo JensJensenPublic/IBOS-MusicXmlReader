@@ -508,8 +508,6 @@ namespace MusicBrailleReader
             if (null == musicXmlDocument) return OnNoMusicBrailleFileLoaded();
             if (model.DecoderHandler.MusicXmlGenerationFailed) return OnMusicXmlGenerationFailed(model.DecoderHandler.MusicXmlGenerationError);
 
-            RemoveEmptyParts(musicXmlDocument); //  Fixes error 1022
-
             DialogResult dialogResult = ShowUserWarnings(UserWarningOptions.details, UserInfoFlagsEnum.AllFlags); // Show All  warnings in a detailled format
                                                                                                                   // DialogResult dialogResult = ShowUserWarnings(UserWarningOptions.details, UserInfoEnum.All & ~UserInfoEnum.FailedToFixDuration); // Show some  warnings in a detailled format
 
@@ -541,69 +539,6 @@ namespace MusicBrailleReader
                 return UserSave(fileName);
             }
         }
-        #region RemoveEmptyparts
-        /// <summary>
-        /// The current implementation sometimes generates a MusicXml file with an empty part (intended to represent the Chord-representation)
-        /// This will be reported by MuseScore as a serious error.
-        /// This method removes such empty 
-        /// Fixes error 1022
-        /// </summary>
-        /// <param name="musicXmlDocument"></param>
-        private void RemoveEmptyParts(XmlDocument musicXmlDocument)
-        {      
-            XmlNode scorePartwise = musicXmlDocument.SelectSingleNode("score-partwise");
-            XmlNode partList = scorePartwise.SelectSingleNode("part-list");
-
-            // Find all empty parts
-            XmlNodeList parts = scorePartwise.SelectNodes("part");
-            List<XmlNode> emptyParts = new List<XmlNode>();
-            foreach (XmlNode part in parts)
-            {
-                // Avoid manipulting inside foreach!
-                if (part.ChildNodes.Count == 0)
-                {
-                    emptyParts.Add(part);
-                }
-            }      
-            
-
-            // Remove all empty parts
-            foreach (XmlNode emptyPart in emptyParts)
-            {
-                string id = GetId(emptyPart);
-                Logger.LogCF(string.Format(": Removing part '{0}'",id));
-                // Remove the empty part itself
-                scorePartwise.RemoveChild(emptyPart);
-                // Remove parts with the same id from the partlist           
-                RemoveNamedChildNodes(partList, id);
-            }
-        }
-
-        private string GetId(XmlNode node)
-        {
-            return node.Attributes.GetNamedItem("id").Value;
-        }
-
-        private void RemoveNamedChildNodes(XmlNode node, string name)
-        {
-            // Remove empty parts from the partlist
-            List<XmlNode> nodesToRemove = new List<XmlNode>();
-            foreach (XmlNode child in node)
-            {
-                string id = GetId(child);
-                if (id == name)
-                {
-                    nodesToRemove.Add(child);   
-                }
-            }
-            foreach (XmlNode child in nodesToRemove)
-            { 
-                node.RemoveChild(child);    
-            }
-        }
-
-        #endregion // RemoveEmptyParts
-
 
         /// <summary>
         /// Let the user decide where to save the MusicXml file generated and wether or not to open an Explorer at the location. 
