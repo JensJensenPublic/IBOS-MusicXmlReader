@@ -42,10 +42,9 @@ namespace BrailleMusicDecoder
         int nSeparators = 0;
 
         public void OnNewInput(InputInterpretation inputInterpretation, int index)
-        {
-            if (null == inputInterpretation) return;
-
-            if ((inputInterpretation.Category == InputCategoryEnum.Character) && (inputInterpretation.FriendlyValue == separator))
+        {      
+            char c = fullSequence[index];    
+            if (c == 0x2812)
             {
                 nSeparators++;
             }

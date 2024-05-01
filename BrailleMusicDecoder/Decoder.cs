@@ -109,7 +109,7 @@ namespace BrailleMusicDecoder
             InputInterpretation inputInterpretation = ToInputInterpretation(i, out filteredInputs); // Receives THE interpretation  to be used from now on
 
             // Update the BrailleSubSequenceList. This allows for splitting large files containing MusicBraille for several scores into the separate scores.            
-            brailleSubSequenceList.OnNewInput(inputInterpretation,i);
+            brailleSubSequenceList.OnNewInput(inputInterpretation, i);
 
             // Update the position
             decoderSpacePositionHandler.OnNewInput(inputInterpretation);
