@@ -175,6 +175,7 @@
       <LastGenOutput>ResourcesForSettings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ResourcesForUI.da-DK.resx" />
+    <EmbeddedResource Include="ResourcesForUI.es-ES.resx" />
     <EmbeddedResource Include="ResourcesForUI.nl-NL.resx" />
     <EmbeddedResource Include="ResourcesForUI.resx">
       <Generator>ResXFileCodeGenerator</Generator>
