@@ -474,6 +474,7 @@ namespace BrailleMusicDecoder
             InputInterpretation inputInterpretation = null;
             switch (nPrioritized)
             {
+#warning TODO consider returning an InputInterpreatation object with "Category = None" in case 0 in order to avoid handling the null value
                 case 0: break; //ShowWarning(decoderClient, filteredInputValues); // Warn through UI if desired
                 case 1: inputInterpretation = prioritizedInputValues.InputInterpretations[0];break; // The normal case
                 default: inputInterpretation = prioritizedInputValues.InputInterpretations[0]; break;

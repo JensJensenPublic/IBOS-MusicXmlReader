@@ -54,7 +54,7 @@ namespace BrailleMusicDecoder
                 {
                     Logger.LogCF(": End of separator found.");
                     currentBrailleSequence.UpdateEndIndex(index);
-                    Log(currentBrailleSequence, inputInterpretation.Category);
+                    Log(currentBrailleSequence,  (null == inputInterpretation) ? InputCategoryEnum.None  : inputInterpretation.Category); // Avoid nullreference !
                     currentBrailleSequence = BrailleSubSequence.Create(fullSequence, index, fullSequence.Length, string.Format("Score {0}", this.list.Count));
                     this.Add(currentBrailleSequence);
                 }
