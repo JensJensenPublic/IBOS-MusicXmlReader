@@ -115,7 +115,7 @@ namespace MusicBrailleReader
             }
             else
             {
-                string message = string.Format("Export to {0} succeeded for \r\n{1}", encoding.ToString(), Path.GetFileName(selectedFileName)); // One line for filename alone
+                string message = string.Format("Export to {0} succeeded for\r\n\r\n{1}", encoding.ToString(), Path.GetFileName(selectedFileName)); // One line for filename alone
                 MessageBox.Show(message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.None);
             }
 
@@ -125,21 +125,29 @@ namespace MusicBrailleReader
 
             string destinationPath = this.BuildDestinationPath(selectedFileName);
 
-            string messageBoxText = String.Format("The Music Braille file contains multiple scores.\r\nDo you want to export it as {0} separate files as well?",nFiles);
+            string messageBoxText = String.Format("The Music Braille file contains multiple scores.\r\n\r\nDo you want to export it as {0} separate files as well?",nFiles);
             DialogResult dialogResult = MessageBox.Show(messageBoxText, applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             errorMessage = decoderHandler.ExportToSeparateScores(brailleFileHandler, regionalOptions, destinationPath);
+
+            //errorMessage = "Simulated Error"; // For debugging only
+
+            string openPrompt = "Do you want to open the destination directory?";
             if (string.IsNullOrEmpty(errorMessage))
             {
 #warning Todo Localize
                 DirectoryInfo di = new DirectoryInfo(destinationPath);
                 string dirName = di.Name; // Avoid to show long paths in a standard MessageBox
-                MessageBox.Show(string.Format("{0} files were succesfully exported to\r\n...{1}", nFiles,dirName),
-                    applicationName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dialogResult = MessageBox.Show(string.Format("{0} files were succesfully exported to\r\n\r\n...{1}\r\n\r\n{2}", nFiles,dirName,openPrompt),
+                    applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show(errorMessage, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dialogResult = MessageBox.Show(string.Format("{0}\r\n\r\n{1}", errorMessage , openPrompt), applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            }
+            if (dialogResult == DialogResult.Yes)
+            {
+                Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, destinationPath);            
             }
 
         }
