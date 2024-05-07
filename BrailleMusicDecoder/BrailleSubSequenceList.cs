@@ -38,13 +38,22 @@ namespace BrailleMusicDecoder
             this.list.Add(sequence);
         }
 
-        const string separator = ":";
+        // Unicode 0x2812 represents Braille DOT2 + DOT5 which is used by NOTA as separating character because a sequence of there forms a horisontal line
+        // When interpreted as a (Danish) letter it becomes the ":" (Colon)
+        const char separator = (char) 0x2812;
         int nSeparators = 0;
 
+        /// <summary>
+        /// Ad hoc code for splitting NOTA's large file "Koralbog_til_Den_danske_salmebog_2003__bind_1" (in .brf, .brf or Unicode) into 
+        /// more than 500 separate files, each containing a single score or an explaining text.
+        /// Each score is temporarily repsesented as BrailleSubSequence object within a BrailleSubSequenceList.
+        /// </summary>
+        /// <param name="inputInterpretation">The next interpretated value to handle</param>
+        /// <param name="index">The index within the "fullSequence" string, where the interpretation starts</param>
         public void OnNewInput(InputInterpretation inputInterpretation, int index)
         {      
             char c = fullSequence[index];    
-            if (c == 0x2812)
+            if (c == separator)
             {
                 nSeparators++;
             }
