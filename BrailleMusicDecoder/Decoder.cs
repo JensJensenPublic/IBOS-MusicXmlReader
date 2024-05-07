@@ -16,6 +16,7 @@ namespace BrailleMusicDecoder
     /// </summary>
     public class Decoder // : IDecoderUserInfo
     {
+        private bool Verbose = false;
         DecoderStateMachine decoderStateMachine;
         MusicXmlBuilder musicXmlBuilder;
         Options rawOptions;
@@ -514,7 +515,7 @@ namespace BrailleMusicDecoder
                 UserWarnings.LogUserWarning(message + "  " + epilogue,UserInfoFlagsEnum.InterpretationMoreThanOneFound);
             }
 
-            if (Logger.DeveloperMode)
+            if (Logger.DeveloperMode && this.Verbose)
             {
                 string newStateText = stateChanged ? string.Format("NewState={0} ", newStateName) : "";
                 string inputString = ToString(inputInterpretation, brailleIntegers.List);

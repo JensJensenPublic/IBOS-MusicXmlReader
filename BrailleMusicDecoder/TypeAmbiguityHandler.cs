@@ -36,7 +36,9 @@ namespace BrailleMusicDecoder
 
         private DevelopmentOptionEnum developmentOptions = DevelopmentOptionEnum.None;
 
-        private bool EnableLogging = Logger.DeveloperMode;
+        private static bool Verbose = false;
+
+        private bool EnableLogging = (Logger.DeveloperMode && Verbose);
 
         /// <summary>
         /// Simple mechanism for turning all local logging on or off
