@@ -105,19 +105,25 @@ namespace MusicBrailleReader
             string selectedFileName = GetFileNameForSaving(suggestedFileName, filterMask);
             if (null == selectedFileName) return; // Cancelled by user
 
-
+            DialogResult dialogResult;
+            string openPrompt = "Do you want to open the destination directory?";
             errorMessage = decoderHandler.ExportToSingleScore(brailleFileHandler, regionalOptions, selectedFileName);
             if (!string.IsNullOrEmpty(errorMessage))
             {
                 Logger.LogCF(string.Format(": {0}", errorMessage));
-                MessageBox.Show(errorMessage, applicationName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                dialogResult = MessageBox.Show(string.Format("{0}\r\n\r\n{1}",errorMessage,openPrompt), applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             }
             else
             {
                 string message = string.Format("Export to {0} succeeded for\r\n\r\n{1}", encoding.ToString(), Path.GetFileName(selectedFileName)); // One line for filename alone
-                MessageBox.Show(message, applicationName, MessageBoxButtons.OK, MessageBoxIcon.None);
+                dialogResult = MessageBox.Show(string.Format("{0}\r\n\r\n{1}",message,openPrompt), applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.None);
             }
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, Path.GetDirectoryName(selectedFileName));
+            }
+
 
             if (nFiles <= 1) return; // All done!
 
@@ -126,13 +132,15 @@ namespace MusicBrailleReader
             string destinationPath = this.BuildDestinationPath(selectedFileName);
 
             string messageBoxText = String.Format("The Music Braille file contains multiple scores.\r\n\r\nDo you want to export it as {0} separate files as well?",nFiles);
-            DialogResult dialogResult = MessageBox.Show(messageBoxText, applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            dialogResult = MessageBox.Show(messageBoxText, applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (DialogResult.Yes != dialogResult) return;
 
             errorMessage = decoderHandler.ExportToSeparateScores(brailleFileHandler, regionalOptions, destinationPath);
 
             //errorMessage = "Simulated Error"; // For debugging only
 
-            string openPrompt = "Do you want to open the destination directory?";
+      
             if (string.IsNullOrEmpty(errorMessage))
             {
 #warning Todo Localize
