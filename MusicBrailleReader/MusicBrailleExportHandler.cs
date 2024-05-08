@@ -160,6 +160,25 @@ namespace MusicBrailleReader
 
         }
 
+        /// <summary>
+        /// Common messagebox for showing either an errormessage or an ok-message and prompting the user if he wants to open the destinationdirectory
+        /// </summary>
+        /// <param name="errorMessage">The errormessage to show. Is null or empty if the ooperation succeeded</param>
+        /// <param name="okMessage">The message to show if the the operation succeeded</param>
+        /// <param name="destinationDirectory">The directory to open if requested by the user</param>
+        private void ShowExportMessageBox(string errorMessage, string okMessage, string destinationDirectory)
+        {
+            bool ok = string.IsNullOrEmpty(errorMessage);
+            bool pathOk = (!string.IsNullOrEmpty(destinationDirectory)) && Directory.Exists(destinationDirectory); 
+            string message = ok ? okMessage : errorMessage;
+            string prompt = pathOk ? "\r\n\r\nDo you want to open the destination directory?" : "";
+            MessageBoxButtons buttons = pathOk ? MessageBoxButtons.YesNo : MessageBoxButtons.OK;
+            MessageBoxIcon icon = ok ? MessageBoxIcon.Information : MessageBoxIcon.Error;
+            DialogResult dialogResult = MessageBox.Show(string.Format("{0}{1}", message, prompt, applicationName, buttons, icon));
+            if (DialogResult.Yes != dialogResult) return;
+            Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, destinationDirectory);
+        }
+
 
         static public MusicBrailleExportHandler Create(DecoderHandler decoderHandler, string applicationName)
         {
