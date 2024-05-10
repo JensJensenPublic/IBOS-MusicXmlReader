@@ -105,25 +105,10 @@ namespace MusicBrailleReader
             string selectedFileName = GetFileNameForSaving(suggestedFileName, filterMask);
             if (null == selectedFileName) return; // Cancelled by user
 
-            DialogResult dialogResult;
-            string openPrompt = "Do you want to open the destination directory?";
             errorMessage = decoderHandler.ExportToSingleScore(brailleFileHandler, regionalOptions, selectedFileName);
-            if (!string.IsNullOrEmpty(errorMessage))
-            {
-                Logger.LogCF(string.Format(": {0}", errorMessage));
-                dialogResult = MessageBox.Show(string.Format("{0}\r\n\r\n{1}",errorMessage,openPrompt), applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                string message = string.Format("Export to {0} succeeded for\r\n\r\n{1}", encoding.ToString(), Path.GetFileName(selectedFileName)); // One line for filename alone
-                dialogResult = MessageBox.Show(string.Format("{0}\r\n\r\n{1}",message,openPrompt), applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.None);
-            }
+            string okMessage = string.Format("Export to {0} succeeded for\r\n\r\n{1}", encoding.ToString(), Path.GetFileName(selectedFileName)); // One line for filename alone
 
-            if (dialogResult == DialogResult.Yes)
-            {
-                Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, Path.GetDirectoryName(selectedFileName));
-            }
-
+            ShowExportMessageBox(errorMessage, okMessage, Path.GetDirectoryName(selectedFileName));
 
             if (nFiles <= 1) return; // All done!
 
@@ -132,32 +117,15 @@ namespace MusicBrailleReader
             string destinationPath = this.BuildDestinationPath(selectedFileName);
 
             string messageBoxText = String.Format("The Music Braille file contains multiple scores.\r\n\r\nDo you want to export it as {0} separate files as well?",nFiles);
-            dialogResult = MessageBox.Show(messageBoxText, applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MessageBox.Show(messageBoxText, applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (DialogResult.Yes != dialogResult) return;
 
+            DirectoryInfo di = new DirectoryInfo(destinationPath);
+            string dirName = di.Name; // Avoid to show long paths in a standard MessageBox
             errorMessage = decoderHandler.ExportToSeparateScores(brailleFileHandler, regionalOptions, destinationPath);
-
-            //errorMessage = "Simulated Error"; // For debugging only
-
-      
-            if (string.IsNullOrEmpty(errorMessage))
-            {
-#warning Todo Localize
-                DirectoryInfo di = new DirectoryInfo(destinationPath);
-                string dirName = di.Name; // Avoid to show long paths in a standard MessageBox
-                dialogResult = MessageBox.Show(string.Format("{0} files were succesfully exported to\r\n\r\n...{1}\r\n\r\n{2}", nFiles,dirName,openPrompt),
-                    applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            }
-            else
-            {
-                dialogResult = MessageBox.Show(string.Format("{0}\r\n\r\n{1}", errorMessage , openPrompt), applicationName, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            }
-            if (dialogResult == DialogResult.Yes)
-            {
-                Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, destinationPath);            
-            }
-
+            okMessage = string.Format("{0} files were succesfully exported to\r\n\r\n...{1}", nFiles, dirName);
+            ShowExportMessageBox(errorMessage, okMessage, Path.GetDirectoryName(selectedFileName));
         }
 
         /// <summary>
@@ -174,7 +142,7 @@ namespace MusicBrailleReader
             string prompt = pathOk ? "\r\n\r\nDo you want to open the destination directory?" : "";
             MessageBoxButtons buttons = pathOk ? MessageBoxButtons.YesNo : MessageBoxButtons.OK;
             MessageBoxIcon icon = ok ? MessageBoxIcon.Information : MessageBoxIcon.Error;
-            DialogResult dialogResult = MessageBox.Show(string.Format("{0}{1}", message, prompt, applicationName, buttons, icon));
+            DialogResult dialogResult = MessageBox.Show(string.Format("{0}{1}", message, prompt), applicationName, buttons, icon);
             if (DialogResult.Yes != dialogResult) return;
             Utilities.RunExeWithDirArgument(Utilities.ExplorerExe, destinationDirectory);
         }
