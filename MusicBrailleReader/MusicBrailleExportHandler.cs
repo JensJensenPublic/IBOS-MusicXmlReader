@@ -125,7 +125,7 @@ namespace MusicBrailleReader
             string dirName = di.Name; // Avoid to show long paths in a standard MessageBox
             errorMessage = decoderHandler.ExportToSeparateScores(brailleFileHandler, regionalOptions, destinationPath);
             okMessage = string.Format("{0} files were succesfully exported to\r\n\r\n...{1}", nFiles, dirName);
-            ShowExportMessageBox(errorMessage, okMessage, Path.GetDirectoryName(selectedFileName));
+            ShowExportMessageBox(errorMessage, okMessage, destinationPath);
         }
 
         /// <summary>
