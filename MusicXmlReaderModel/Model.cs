@@ -168,24 +168,14 @@ namespace MusicXmlReaderModel
             }
         }
 
-        public void Speak(string s)
+        /// <summary>
+        ///  Calls the "Speak" method in th ScreenReaderAPI which maps to different methods depending in the current screenreader.
+        ///  No need to handle exceptions here! They are handled in ScreenReaderAPI
+        /// </summary>
+        /// <param name="s">The text to speak</param>
+        public bool Speak(string s)
         {
-            try
-            {
-                //throw new Exception("test");
-                if (null != screenReaderAPI)
-                {
-                    screenReaderAPI.Speak(s); 
-                }
-                else
-                {
-                    Logger.LogCFOnce(string.Format(": screenReaderAPI=null"));
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.LogOnce(string.Format("Exception.Message={0}",e.Message));
-            }
+            return screenReaderAPI.Speak(s);      
         }
 
         /// <summary>
