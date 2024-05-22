@@ -782,8 +782,8 @@ namespace MusicXmlReader
                 string text = ( null == bottomControl.Text) ? "" : bottomControl.Text ;            
                 Logger.LogCF(string.Format(": Bottom line of window contains the text '{0}'",text));
                 // Insert code here to speak through any acailable screen reader, for instance JAWS.
+                model.Speak(text);
             }
-
         }
 
 

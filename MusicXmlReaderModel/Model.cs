@@ -168,6 +168,26 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public void Speak(string s)
+        {
+            try
+            {
+                //throw new Exception("test");
+                if (null != screenReaderAPI)
+                {
+                    screenReaderAPI.Speak(s); 
+                }
+                else
+                {
+                    Logger.LogCFOnce(string.Format(": screenReaderAPI=null"));
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.LogOnce(string.Format("Exception.Message={0}",e.Message));
+            }
+        }
+
         /// <summary>
         /// Writes the text to the status line in the UI handling X-thread issues etc!
         /// </summary>
