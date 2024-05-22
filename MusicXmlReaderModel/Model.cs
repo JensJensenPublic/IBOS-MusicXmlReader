@@ -175,7 +175,12 @@ namespace MusicXmlReaderModel
         /// <param name="s">The text to speak</param>
         public bool Speak(string s)
         {
-            return screenReaderAPI.Speak(s);      
+            if (null != screenReaderAPI)
+            {
+                return screenReaderAPI.Speak(s);
+            }
+            Logger.LogCFOnce(": screenReaderAPI=null");
+            return false;
         }
 
         /// <summary>
