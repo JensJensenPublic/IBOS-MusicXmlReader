@@ -97,9 +97,9 @@
             this.jAWSSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jAWSApplicationspecificScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startUsingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopUsingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jAWSSettingsDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateMusicBrailleTestpatternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -151,6 +151,7 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
+            this.sayBottolLineOfWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -602,7 +603,8 @@
             this.interpretFileAsBrailleMusicToolStripMenuItem,
             this.userPreferencesLocationToolStripMenuItem,
             this.analyzeLocalizationToolStripMenuItem,
-            this.logControlpositionsToolStripMenuItem});
+            this.logControlpositionsToolStripMenuItem,
+            this.sayBottolLineOfWindowToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -719,30 +721,30 @@
             // viewToolStripMenuItem1
             // 
             this.viewToolStripMenuItem1.Name = "viewToolStripMenuItem1";
-            this.viewToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.viewToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
             this.viewToolStripMenuItem1.Text = "View";
             this.viewToolStripMenuItem1.Click += new System.EventHandler(this.viewToolStripMenuItem1_Click);
+            // 
+            // viewDirectoryToolStripMenuItem
+            // 
+            this.viewDirectoryToolStripMenuItem.Name = "viewDirectoryToolStripMenuItem";
+            this.viewDirectoryToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.viewDirectoryToolStripMenuItem.Text = "View directory";
+            this.viewDirectoryToolStripMenuItem.Click += new System.EventHandler(this.viewDirectoryToolStripMenuItem_Click);
             // 
             // startUsingToolStripMenuItem
             // 
             this.startUsingToolStripMenuItem.Name = "startUsingToolStripMenuItem";
-            this.startUsingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.startUsingToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.startUsingToolStripMenuItem.Text = "Start using";
             this.startUsingToolStripMenuItem.Click += new System.EventHandler(this.startUsingToolStripMenuItem_Click);
             // 
             // stopUsingToolStripMenuItem
             // 
             this.stopUsingToolStripMenuItem.Name = "stopUsingToolStripMenuItem";
-            this.stopUsingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stopUsingToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.stopUsingToolStripMenuItem.Text = "Stop using";
             this.stopUsingToolStripMenuItem.Click += new System.EventHandler(this.stopUsingToolStripMenuItem_Click);
-            // 
-            // viewDirectoryToolStripMenuItem
-            // 
-            this.viewDirectoryToolStripMenuItem.Name = "viewDirectoryToolStripMenuItem";
-            this.viewDirectoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.viewDirectoryToolStripMenuItem.Text = "View directory";
-            this.viewDirectoryToolStripMenuItem.Click += new System.EventHandler(this.viewDirectoryToolStripMenuItem_Click);
             // 
             // jAWSSettingsDirectoryToolStripMenuItem
             // 
@@ -1158,6 +1160,13 @@
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
             // 
+            // sayBottolLineOfWindowToolStripMenuItem
+            // 
+            this.sayBottolLineOfWindowToolStripMenuItem.Name = "sayBottolLineOfWindowToolStripMenuItem";
+            this.sayBottolLineOfWindowToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.sayBottolLineOfWindowToolStripMenuItem.Text = "Say Bottol Line Of Window";
+            this.sayBottolLineOfWindowToolStripMenuItem.Click += new System.EventHandler(this.sayBottolLineOfWindowToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1311,6 +1320,7 @@
         private System.Windows.Forms.ToolStripMenuItem startUsingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stopUsingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewDirectoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sayBottolLineOfWindowToolStripMenuItem;
     }
 }
 

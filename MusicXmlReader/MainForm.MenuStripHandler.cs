@@ -654,6 +654,19 @@ namespace MusicXmlReader
         }
 
 
+        /// <summary>
+        /// For emulating the execution of the code in the script "SayBottomLineOfWindow" in the Application-specific JAWS script "IBOS_MusicXmlReader.JSS"
+        /// The application-specific script is used because the default JAWS script for "SayBottomLineOfWindow" sometimes failes.
+        /// The code in the function below is ONLY intended for test and debus ourposes, not fur end user usage!!
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void sayBottolLineOfWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Logger.LogCF("+");
+            SayBottomLineOfWindow();
+            Logger.LogCF("-");
+        }
 
         private void generateGraphicInformationToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -746,6 +759,32 @@ namespace MusicXmlReader
             MessageBox.Show(message, applicationName, MessageBoxButtons.OK);
         }
 
+
+        private void SayBottomLineOfWindow()
+        {
+            int maxBottom = 0;
+            Control bottomControl = null;
+            // Iterate through all children of the MainForm to find the bottom control
+            foreach (Control control in this.Controls)
+            {
+                if (control.Bottom > maxBottom)
+                {
+                    maxBottom = control.Bottom;
+                    bottomControl = control;
+                }
+            }
+            if (null == bottomControl)
+            {
+                Logger.LogCF(": No bottom control found");
+            }
+            else
+            { 
+                string text = ( null == bottomControl.Text) ? "" : bottomControl.Text ;            
+                Logger.LogCF(string.Format(": Bottom line of window contains the text '{0}'",text));
+                // Insert code here to speak through any acailable screen reader, for instance JAWS.
+            }
+
+        }
 
 
         private bool SelectBrailleMusicFile(BrailleFileHandler.FileEncoding fileEncoding)
@@ -900,7 +939,7 @@ namespace MusicXmlReader
         }
         #endregion // controls within tools
 
-        #endregion // tools 
+#endregion // tools 
 
         #region Archives
 
