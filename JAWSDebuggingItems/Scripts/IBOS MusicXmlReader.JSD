@@ -1,0 +1,5 @@
+:script SayBottomLine
+:SearchRank 1
+:Description Overwrites the default implementation, which fails for very large MusicXml files, for instance Billy Jean.musicxml from the example directory
+:Category Sig
+

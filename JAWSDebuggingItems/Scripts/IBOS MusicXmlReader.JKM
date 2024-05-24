@@ -1,0 +1,3 @@
+[Common Keys]
+JAWSKey+PageDown=SayBottomLine
+Alt+JAWSKey+PageDown=SayScriptFileName 
