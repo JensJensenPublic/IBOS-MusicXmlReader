@@ -1,7 +1,5 @@
-
 Script SayBottomLine ()
 var handle hWnd,
-	handle hChild,
 	handle hNextWindow,
 	int MaxBottom,
 	handle  hMaxBottom,
@@ -11,7 +9,6 @@ var handle hWnd,
 	int iBottom,
 	string WindowName
 
-SayString("Status")
 if DialogActive() then
 	let hWnd = GetRealWindow(GetFocus())
 else
@@ -22,7 +19,6 @@ EndIf
 hNextWindow=GetFirstChild(hWnd)
 let maxBottom = 0 
 while hNextWindow != 0
-	;SayAllInfo(hNextWindow)
 	GetWindowRect(hNextWindow,iLeft,iRight,iTop,iBottom)	
 	if iBottom > MaxBottom then	
 		maxBottom = iBottom
@@ -37,33 +33,5 @@ SayString(WindowName)
 EndScript
 
 Script SayScriptFileName ()
-SayString("Script for IBOS MusicXmlReader")
+SayString("IBOS MusicXmlReader.JSS")
 EndScript
-
-; For debugging:
-void function SayAllInfo(handle hWnd)
-var
-	int iLeft,
-	int iTop,
-	int iRight,
-	int iBottom,
-	int iLast,
-	string WindowName
-SayString("SayAllInfo for hWnd")
-SayInteger(hWnd)
-WindowName = GetWindowName(hWnd)
-SayString("WindowName=")
-SayString(WindowName)	
-GetWindowRect(hWnd,iLeft,iRight,iTop,iBottom)
-; Start debug info
-SayString("Left=")
-SayInteger(iLeft)
-SayString("Right=")
-SayInteger(iRight)
-SayString("Top=")
-SayInteger(iTop)
-SayString("Bottom=")
-SayInteger(iBottom)
-; End debug info
-return iBottom
-EndFunction
