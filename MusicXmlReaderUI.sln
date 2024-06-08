@@ -489,6 +489,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JAWS", "JAWS", "{EC5547ED-1092-407B-A59E-CA103A88DB82}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Third party documentation\JAWS\Freedom Scientific Scripting Standards.pdf = Documentation\Third party documentation\JAWS\Freedom Scientific Scripting Standards.pdf
+		Documentation\Third party documentation\JAWS\Localization. JAWS Folder Restructure.pdf = Documentation\Third party documentation\JAWS\Localization. JAWS Folder Restructure.pdf
 		Documentation\Third party documentation\JAWS\ReadMe.txt = Documentation\Third party documentation\JAWS\ReadMe.txt
 	EndProjectSection
 EndProject

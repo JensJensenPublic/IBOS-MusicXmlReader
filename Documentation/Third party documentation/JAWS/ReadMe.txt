@@ -7,3 +7,6 @@ Freedom Scientific Developer Network.chm
   General scripting concepts
     Book Topics
       Freedom Scientific Scripting Standards
+
+
+The file "Localization. JAWS Folder Restructure.pdf" in a asimila way contains the article "Localization: JAWS Folder Restructure"
