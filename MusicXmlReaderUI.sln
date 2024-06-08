@@ -486,6 +486,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{3438
 		JAWSDebuggingItems\Scripts\IBOS MusicXmlReader.JSS = JAWSDebuggingItems\Scripts\IBOS MusicXmlReader.JSS
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JAWS", "JAWS", "{EC5547ED-1092-407B-A59E-CA103A88DB82}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation\Third party documentation\JAWS\Freedom Scientific Scripting Standards.pdf = Documentation\Third party documentation\JAWS\Freedom Scientific Scripting Standards.pdf
+		Documentation\Third party documentation\JAWS\ReadMe.txt = Documentation\Third party documentation\JAWS\ReadMe.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -795,6 +801,7 @@ Global
 		{BAC887ED-1C59-4972-BBD6-D075DAF917A3} = {1B62366B-E595-454C-846D-E36240015490}
 		{F3ACA2FA-D625-4520-AA5E-9A767A88F432} = {53ABD27A-BB95-4CD0-8D41-D3E864E93F86}
 		{34383959-2147-4E17-8718-8DB9FC7DAF12} = {A236F2E4-63F0-4480-8EAC-2AFBBB08885F}
+		{EC5547ED-1092-407B-A59E-CA103A88DB82} = {DCD9E9C9-E80A-4979-ABD9-0E19AB23E73B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F56F3540-8991-49FF-BE35-F2288FD224A2}
