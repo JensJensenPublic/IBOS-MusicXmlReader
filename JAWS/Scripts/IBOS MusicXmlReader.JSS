@@ -30,9 +30,9 @@ EndWhile
 
 ; Say the contents of the bottom control
 msgBottomLine = GetWindowText(hMaxBottom)
-SayString(msgBottomLine)
+SayMessage(OT_USER_REQUESTED_INFORMATION,msgBottomLine)
 EndScript
 
 Script SayScriptFileName ()
-SayString("IBOS MusicXmlReader.JSS")
+SayMessage(OT_USER_REQUESTED_INFORMATION,"IBOS MusicXmlReader.JSS")
 EndScript
