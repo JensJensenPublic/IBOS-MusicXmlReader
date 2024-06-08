@@ -1,13 +1,14 @@
-Script SayBottomLine ()
-var handle hWnd,
+Script SayBottomLineOfWindow ()
+var
+	handle hWnd,
 	handle hNextWindow,
 	int MaxBottom,
 	handle  hMaxBottom,
-    int iLeft,
+	int iLeft,
 	int iTop,
 	int iRight,
 	int iBottom,
-	string WindowName
+	string msgBottomLine
 
 if DialogActive() then
 	let hWnd = GetRealWindow(GetFocus())
@@ -28,8 +29,8 @@ while hNextWindow != 0
 EndWhile
 
 ; Say the contents of the bottom control
-WindowName = GetWindowName(hMaxBottom)
-SayString(WindowName)
+msgBottomLine = GetWindowText(hMaxBottom)
+SayString(msgBottomLine)
 EndScript
 
 Script SayScriptFileName ()
