@@ -34,5 +34,5 @@ SayMessage(OT_USER_REQUESTED_INFORMATION,msgBottomLine)
 EndScript
 
 Script SayScriptFileName ()
-SayMessage(OT_USER_REQUESTED_INFORMATION,"IBOS MusicXmlReader.JSS")
+SayMessage(OT_USER_REQUESTED_INFORMATION,GetScriptFileName(true)")
 EndScript
