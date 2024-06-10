@@ -17,7 +17,8 @@ namespace MusicXmlReaderModel
         // List of locale names supported by JAWS 2024 and found at C:\Program Files\Freedom Scientific\JAWS\2024\GetVoices\Locale        
         private List<string> JawsLocales = new List<string>() { "arb", "cht", "csy", "dan", "deu", "esn", "eti", "fin", "fra", "frc", "heb", "hun", "ita", "jpn", "kor", "lvi", "mki", "nld", "nor", "plk", "ptb", "rus", "sky", "sqi", "sve", "trk", "ukr", "enu" };
 
-        private string JawsSharedScriptDirectoryName = ""; // Initialized on program start
+        private string jawsSharedScriptDirectoryName = ""; // Initialized on program start
+        public string JawsSharedScriptDirectoryName { get { return jawsSharedScriptDirectoryName; } }
 
         /// <summary>
         /// Last fallback if IBOS MusicXmlReader is not localized to the language used by JAWS
@@ -142,7 +143,7 @@ namespace MusicXmlReaderModel
         /// <returns>
         /// Returns the path to the directory holding the shared JAWS script files.
         /// </returns>
-        public string GetJawsSharedScriptsDirectory()
+        private string GetJawsSharedScriptsDirectory()
         {
             string result = "";
             string programDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
@@ -155,7 +156,7 @@ namespace MusicXmlReaderModel
             {
                 string highestVersionDirectory = jawsVersionDirectories[jawsVersionDirectories.Length - 1];
                 result = Path.Combine(highestVersionDirectory, "Scripts"); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\Scripts"
-            }
+            }     
             return result;
         }
 
@@ -164,8 +165,10 @@ namespace MusicXmlReaderModel
         /// </summary>
         public void OnProgramStart(string mainProgramFullPath)
         {
-            JawsSharedScriptDirectoryName = GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts" (For shared scripts, common for all users.)
-            if (string.IsNullOrEmpty(JawsSharedScriptDirectoryName)) return; // If JAWS is not installed on the machine the directory does not exist.
+            jawsSharedScriptDirectoryName = GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts" (For shared scripts, common for all users.)
+            Logger.LogCF(string.Format(": JawsSharedScriptDirectoryName was initialized to '{0}'", jawsSharedScriptDirectoryName));
+            if (string.IsNullOrEmpty(jawsSharedScriptDirectoryName)) return; // If JAWS is not installed on the machine the directory does not exist.
+            if (!Directory.Exists(jawsSharedScriptDirectoryName)) return; 
             int nCopied = CopyAllScriptFiles(mainProgramFullPath, false); // unconditionally = false : Only copy when ALL new files are newer than the existing files
             Logger.LogCF(string.Format(": Copied {0} files", nCopied));
         }
@@ -174,7 +177,7 @@ namespace MusicXmlReaderModel
         {
             int nCopiedFiles = 0;
             //throw new Exception("For test only");
-            string JAWSScriptDirectoryName = JawsSharedScriptDirectoryName; //  "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts" (For shared scripts, common for all users.)
+            string JAWSScriptDirectoryName = jawsSharedScriptDirectoryName; //  "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts" (For shared scripts, common for all users.)
             string executingAssemblyDirectory = Path.GetDirectoryName(mainProgramFullPath);
             string JAWSSourceDirectory = Path.Combine(executingAssemblyDirectory, "JAWS");
             string JAWSScriptSourceDirectory = Path.Combine(JAWSSourceDirectory, "Scripts");

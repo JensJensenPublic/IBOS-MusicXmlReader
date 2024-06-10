@@ -586,7 +586,7 @@ namespace MusicXmlReader
    
         private void viewToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS", model.scriptHandlerForJAWS.GetJawsSharedScriptsDirectory()); // JAWS Script source, for instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
+            model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS", model.scriptHandlerForJAWS.JawsSharedScriptDirectoryName); // JAWS Script source, for instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
         }
 
 
@@ -650,7 +650,7 @@ namespace MusicXmlReader
 
         private void viewDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            model.ExternalToolsHandler.OpenJawsSettingsDirectory(model.scriptHandlerForJAWS.GetJawsSharedScriptsDirectory());
+            model.ExternalToolsHandler.OpenJawsSettingsDirectory(model.scriptHandlerForJAWS.JawsSharedScriptDirectoryName);
         }
 
 
