@@ -638,6 +638,20 @@ namespace MusicXmlReader
 
         const string pleaseRestart = "\r\nPlease restart the program for the change to take effect!";
 
+
+        private void viewToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Logger.LogCF(": NOt implemented yet!");
+            //model.ExternalToolsHandler.OpenJawsSettingsDirectory(model.scriptHandlerForJAWS.JawsUserSpecificScriptDirectoryName);
+        }
+
+        private void viewDirectoryToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Logger.LogCF(": NOt implemented yet!");
+            //model.ExternalToolsHandler.ReadJawsSettingsFile(executingAssemblyShortName, "JSS", model.scriptHandlerForJAWS.JawsUserSpecificScriptDirectoryName);
+        }
+
+
         #endregion
 
 

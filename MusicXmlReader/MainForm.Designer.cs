@@ -112,6 +112,7 @@
             this.userPreferencesLocationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.analyzeLocalizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logControlpositionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sayBottolLineOfWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -151,7 +152,9 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
-            this.sayBottolLineOfWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewDirectoryToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -596,6 +599,7 @@
             this.viewAsInterpretedXMLToolStripMenuItem,
             this.jAWSSettingsToolStripMenuItem,
             this.jAWSApplicationspecificScriptToolStripMenuItem,
+            this.jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem,
             this.jAWSSettingsDirectoryToolStripMenuItem,
             this.userSettingsToolStripMenuItem,
             this.generateMusicBrailleTestpatternToolStripMenuItem,
@@ -612,98 +616,98 @@
             // musicBrailleReaderToolStripMenuItem
             // 
             this.musicBrailleReaderToolStripMenuItem.Name = "musicBrailleReaderToolStripMenuItem";
-            this.musicBrailleReaderToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.musicBrailleReaderToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.musicBrailleReaderToolStripMenuItem.Text = "Music Braille Reader";
             this.musicBrailleReaderToolStripMenuItem.Click += new System.EventHandler(this.musicBrailleReaderToolStripMenuItem_Click);
             // 
             // museScoreToolStripMenuItem
             // 
             this.museScoreToolStripMenuItem.Name = "museScoreToolStripMenuItem";
-            this.museScoreToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.museScoreToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.museScoreToolStripMenuItem.Text = "Start MuseScore";
             this.museScoreToolStripMenuItem.Click += new System.EventHandler(this.museScoreToolStripMenuItem_Click);
             // 
             // sibeliusToolStripMenuItem
             // 
             this.sibeliusToolStripMenuItem.Name = "sibeliusToolStripMenuItem";
-            this.sibeliusToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.sibeliusToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.sibeliusToolStripMenuItem.Text = "Start Sibelius";
             this.sibeliusToolStripMenuItem.Click += new System.EventHandler(this.sibeliusToolStripMenuItem_Click);
             // 
             // startCapellaToolStripMenuItem
             // 
             this.startCapellaToolStripMenuItem.Name = "startCapellaToolStripMenuItem";
-            this.startCapellaToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.startCapellaToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.startCapellaToolStripMenuItem.Text = "Start Capella";
             this.startCapellaToolStripMenuItem.Click += new System.EventHandler(this.startCapellaToolStripMenuItem_Click);
             // 
             // startFinaleToolStripMenuItem
             // 
             this.startFinaleToolStripMenuItem.Name = "startFinaleToolStripMenuItem";
-            this.startFinaleToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.startFinaleToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.startFinaleToolStripMenuItem.Text = "Start Finale";
             this.startFinaleToolStripMenuItem.Click += new System.EventHandler(this.startFinaleToolStripMenuItem_Click);
             // 
             // startPhotoScoreToolStripMenuItem
             // 
             this.startPhotoScoreToolStripMenuItem.Name = "startPhotoScoreToolStripMenuItem";
-            this.startPhotoScoreToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.startPhotoScoreToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.startPhotoScoreToolStripMenuItem.Text = "Start PhotoScore";
             this.startPhotoScoreToolStripMenuItem.Click += new System.EventHandler(this.startPhotoScoreToolStripMenuItem_Click);
             // 
             // startBrailleMusicEditor2ToolStripMenuItem
             // 
             this.startBrailleMusicEditor2ToolStripMenuItem.Name = "startBrailleMusicEditor2ToolStripMenuItem";
-            this.startBrailleMusicEditor2ToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.startBrailleMusicEditor2ToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.startBrailleMusicEditor2ToolStripMenuItem.Text = "Start Braille Music Editor 2";
             this.startBrailleMusicEditor2ToolStripMenuItem.Click += new System.EventHandler(this.startBrailleMusicEditor2ToolStripMenuItem_Click);
             // 
             // logfileToolStripMenuItem
             // 
             this.logfileToolStripMenuItem.Name = "logfileToolStripMenuItem";
-            this.logfileToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.logfileToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.logfileToolStripMenuItem.Text = "Log file";
             this.logfileToolStripMenuItem.Click += new System.EventHandler(this.logfileToolStripMenuItem_Click);
             // 
             // openLogFileLocationToolStripMenuItem
             // 
             this.openLogFileLocationToolStripMenuItem.Name = "openLogFileLocationToolStripMenuItem";
-            this.openLogFileLocationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.openLogFileLocationToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.openLogFileLocationToolStripMenuItem.Text = "Log file location";
             this.openLogFileLocationToolStripMenuItem.Click += new System.EventHandler(this.openLogFileLocationToolStripMenuItem_Click);
             // 
             // openXMLFileLocationToolStripMenuItem
             // 
             this.openXMLFileLocationToolStripMenuItem.Name = "openXMLFileLocationToolStripMenuItem";
-            this.openXMLFileLocationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.openXMLFileLocationToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.openXMLFileLocationToolStripMenuItem.Text = "MusicXml file location";
             this.openXMLFileLocationToolStripMenuItem.Click += new System.EventHandler(this.openXMLFileLocationToolStripMenuItem_Click);
             // 
             // inspectAsXMLToolStripMenuItem
             // 
             this.inspectAsXMLToolStripMenuItem.Name = "inspectAsXMLToolStripMenuItem";
-            this.inspectAsXMLToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.inspectAsXMLToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.inspectAsXMLToolStripMenuItem.Text = "MusicXml file as raw XML";
             this.inspectAsXMLToolStripMenuItem.Click += new System.EventHandler(this.inspectAsXMLToolStripMenuItem_Click);
             // 
             // inspectAsXMLUsingGoogleChromeToolStripMenuItem
             // 
             this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Name = "inspectAsXMLUsingGoogleChromeToolStripMenuItem";
-            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Text = "MusicXml file as raw XML using Google Chrome";
             this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Click += new System.EventHandler(this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem_Click);
             // 
             // viewAsInterpretedXMLToolStripMenuItem
             // 
             this.viewAsInterpretedXMLToolStripMenuItem.Name = "viewAsInterpretedXMLToolStripMenuItem";
-            this.viewAsInterpretedXMLToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.viewAsInterpretedXMLToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.viewAsInterpretedXMLToolStripMenuItem.Text = "MusicXml file interpreted";
             this.viewAsInterpretedXMLToolStripMenuItem.Click += new System.EventHandler(this.viewAsInterpretedXMLToolStripMenuItem_Click);
             // 
             // jAWSSettingsToolStripMenuItem
             // 
             this.jAWSSettingsToolStripMenuItem.Name = "jAWSSettingsToolStripMenuItem";
-            this.jAWSSettingsToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.jAWSSettingsToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.jAWSSettingsToolStripMenuItem.Text = "JAWS settings";
             this.jAWSSettingsToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsToolStripMenuItem_Click);
             // 
@@ -715,62 +719,62 @@
             this.startUsingToolStripMenuItem,
             this.stopUsingToolStripMenuItem});
             this.jAWSApplicationspecificScriptToolStripMenuItem.Name = "jAWSApplicationspecificScriptToolStripMenuItem";
-            this.jAWSApplicationspecificScriptToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
-            this.jAWSApplicationspecificScriptToolStripMenuItem.Text = "JAWS application-specific script";
+            this.jAWSApplicationspecificScriptToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.jAWSApplicationspecificScriptToolStripMenuItem.Text = "JAWS application-specific script shared among all users";
             // 
             // viewToolStripMenuItem1
             // 
             this.viewToolStripMenuItem1.Name = "viewToolStripMenuItem1";
-            this.viewToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
+            this.viewToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.viewToolStripMenuItem1.Text = "View";
             this.viewToolStripMenuItem1.Click += new System.EventHandler(this.viewToolStripMenuItem1_Click);
             // 
             // viewDirectoryToolStripMenuItem
             // 
             this.viewDirectoryToolStripMenuItem.Name = "viewDirectoryToolStripMenuItem";
-            this.viewDirectoryToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.viewDirectoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewDirectoryToolStripMenuItem.Text = "View directory";
             this.viewDirectoryToolStripMenuItem.Click += new System.EventHandler(this.viewDirectoryToolStripMenuItem_Click);
             // 
             // startUsingToolStripMenuItem
             // 
             this.startUsingToolStripMenuItem.Name = "startUsingToolStripMenuItem";
-            this.startUsingToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.startUsingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.startUsingToolStripMenuItem.Text = "Start using";
             this.startUsingToolStripMenuItem.Click += new System.EventHandler(this.startUsingToolStripMenuItem_Click);
             // 
             // stopUsingToolStripMenuItem
             // 
             this.stopUsingToolStripMenuItem.Name = "stopUsingToolStripMenuItem";
-            this.stopUsingToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.stopUsingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.stopUsingToolStripMenuItem.Text = "Stop using";
             this.stopUsingToolStripMenuItem.Click += new System.EventHandler(this.stopUsingToolStripMenuItem_Click);
             // 
             // jAWSSettingsDirectoryToolStripMenuItem
             // 
             this.jAWSSettingsDirectoryToolStripMenuItem.Name = "jAWSSettingsDirectoryToolStripMenuItem";
-            this.jAWSSettingsDirectoryToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.jAWSSettingsDirectoryToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.jAWSSettingsDirectoryToolStripMenuItem.Text = "JAWS Settings Directory";
             this.jAWSSettingsDirectoryToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsDirectoryToolStripMenuItem_Click);
             // 
             // userSettingsToolStripMenuItem
             // 
             this.userSettingsToolStripMenuItem.Name = "userSettingsToolStripMenuItem";
-            this.userSettingsToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.userSettingsToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.userSettingsToolStripMenuItem.Text = "User Settings";
             this.userSettingsToolStripMenuItem.Click += new System.EventHandler(this.userSettingsToolStripMenuItem_Click);
             // 
             // generateMusicBrailleTestpatternToolStripMenuItem
             // 
             this.generateMusicBrailleTestpatternToolStripMenuItem.Name = "generateMusicBrailleTestpatternToolStripMenuItem";
-            this.generateMusicBrailleTestpatternToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.generateMusicBrailleTestpatternToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.generateMusicBrailleTestpatternToolStripMenuItem.Text = "Generate Music Braille testpattern";
             this.generateMusicBrailleTestpatternToolStripMenuItem.Click += new System.EventHandler(this.generateMusicBrailleTestpatternToolStripMenuItem_Click);
             // 
             // generateGraphicInformationToolStripMenuItem
             // 
             this.generateGraphicInformationToolStripMenuItem.Name = "generateGraphicInformationToolStripMenuItem";
-            this.generateGraphicInformationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.generateGraphicInformationToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.generateGraphicInformationToolStripMenuItem.Text = "Generate graphic information";
             this.generateGraphicInformationToolStripMenuItem.Click += new System.EventHandler(this.generateGraphicInformationToolStripMenuItem_Click);
             // 
@@ -782,7 +786,7 @@
             this.unicodeToolStripMenuItem,
             this.autodetectedEncodingToolStripMenuItem});
             this.interpretFileAsBrailleMusicToolStripMenuItem.Name = "interpretFileAsBrailleMusicToolStripMenuItem";
-            this.interpretFileAsBrailleMusicToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.interpretFileAsBrailleMusicToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.interpretFileAsBrailleMusicToolStripMenuItem.Text = "Interpret file as Braille Music";
             // 
             // octoBraille1252ToolStripMenuItem
@@ -816,23 +820,30 @@
             // userPreferencesLocationToolStripMenuItem
             // 
             this.userPreferencesLocationToolStripMenuItem.Name = "userPreferencesLocationToolStripMenuItem";
-            this.userPreferencesLocationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.userPreferencesLocationToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.userPreferencesLocationToolStripMenuItem.Text = "User Preferences location";
             this.userPreferencesLocationToolStripMenuItem.Click += new System.EventHandler(this.userPreferencesLocationToolStripMenuItem_Click);
             // 
             // analyzeLocalizationToolStripMenuItem
             // 
             this.analyzeLocalizationToolStripMenuItem.Name = "analyzeLocalizationToolStripMenuItem";
-            this.analyzeLocalizationToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.analyzeLocalizationToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.analyzeLocalizationToolStripMenuItem.Text = "Analyze localization";
             this.analyzeLocalizationToolStripMenuItem.Click += new System.EventHandler(this.analyzeLocalizationToolStripMenuItem_Click);
             // 
             // logControlpositionsToolStripMenuItem
             // 
             this.logControlpositionsToolStripMenuItem.Name = "logControlpositionsToolStripMenuItem";
-            this.logControlpositionsToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
+            this.logControlpositionsToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.logControlpositionsToolStripMenuItem.Text = "Log controlpositions";
             this.logControlpositionsToolStripMenuItem.Click += new System.EventHandler(this.logControlpositionsToolStripMenuItem_Click);
+            // 
+            // sayBottolLineOfWindowToolStripMenuItem
+            // 
+            this.sayBottolLineOfWindowToolStripMenuItem.Name = "sayBottolLineOfWindowToolStripMenuItem";
+            this.sayBottolLineOfWindowToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.sayBottolLineOfWindowToolStripMenuItem.Text = "Say Bottol Line Of Window";
+            this.sayBottolLineOfWindowToolStripMenuItem.Click += new System.EventHandler(this.sayBottolLineOfWindowToolStripMenuItem_Click);
             // 
             // archivesToolStripMenuItem
             // 
@@ -1160,12 +1171,28 @@
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
             // 
-            // sayBottolLineOfWindowToolStripMenuItem
+            // jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem
             // 
-            this.sayBottolLineOfWindowToolStripMenuItem.Name = "sayBottolLineOfWindowToolStripMenuItem";
-            this.sayBottolLineOfWindowToolStripMenuItem.Size = new System.Drawing.Size(328, 22);
-            this.sayBottolLineOfWindowToolStripMenuItem.Text = "Say Bottol Line Of Window";
-            this.sayBottolLineOfWindowToolStripMenuItem.Click += new System.EventHandler(this.sayBottolLineOfWindowToolStripMenuItem_Click);
+            this.jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewToolStripMenuItem2,
+            this.viewDirectoryToolStripMenuItem1});
+            this.jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem.Name = "jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem";
+            this.jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem.Text = "JAWS application-specific script for current user";
+            // 
+            // viewToolStripMenuItem2
+            // 
+            this.viewToolStripMenuItem2.Name = "viewToolStripMenuItem2";
+            this.viewToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.viewToolStripMenuItem2.Text = "View";
+            this.viewToolStripMenuItem2.Click += new System.EventHandler(this.viewToolStripMenuItem2_Click);
+            // 
+            // viewDirectoryToolStripMenuItem1
+            // 
+            this.viewDirectoryToolStripMenuItem1.Name = "viewDirectoryToolStripMenuItem1";
+            this.viewDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.viewDirectoryToolStripMenuItem1.Text = "View Directory";
+            this.viewDirectoryToolStripMenuItem1.Click += new System.EventHandler(this.viewDirectoryToolStripMenuItem1_Click);
             // 
             // MainForm
             // 
@@ -1321,6 +1348,9 @@
         private System.Windows.Forms.ToolStripMenuItem stopUsingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewDirectoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sayBottolLineOfWindowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem viewDirectoryToolStripMenuItem1;
     }
 }
 

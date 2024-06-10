@@ -249,6 +249,7 @@ namespace MusicXmlReader
             Hide(analyzeLocalizationToolStripMenuItem, developerMode);
             Hide(logControlpositionsToolStripMenuItem, developerMode);
             Hide(jAWSApplicationspecificScriptToolStripMenuItem, developerMode);
+            Hide(jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem, developerMode);
             Hide(jAWSSettingsDirectoryToolStripMenuItem, developerMode);
         }
 
