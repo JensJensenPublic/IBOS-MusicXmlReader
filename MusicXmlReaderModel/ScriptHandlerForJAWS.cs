@@ -17,6 +17,8 @@ namespace MusicXmlReaderModel
         // List of locale names supported by JAWS 2024 and found at C:\Program Files\Freedom Scientific\JAWS\2024\GetVoices\Locale        
         private List<string> JawsLocales = new List<string>() { "arb", "cht", "csy", "dan", "deu", "esn", "eti", "fin", "fra", "frc", "heb", "hun", "ita", "jpn", "kor", "lvi", "mki", "nld", "nor", "plk", "ptb", "rus", "sky", "sqi", "sve", "trk", "ukr", "enu" };
 
+        private string JawsSharedScriptDirectoryName = ""; // Initialized on program start
+
         /// <summary>
         /// Last fallback if IBOS MusicXmlReader is not localized to the language used by JAWS
         /// Look for a directory with a valid name
@@ -52,20 +54,31 @@ namespace MusicXmlReaderModel
         }
 
 
+        
+        /// <summary>
+        /// Simpel, commonly used formatting of a directory and its subdirectories for logging
+        /// </summary>
+        /// <param name="subDirectories"></param>
+        /// <param name="baseDirectory"></param>
+        /// <returns></returns>
+        private string LogDirectories(string[] subDirectories, string baseDirectory)
+        {
+            int n = subDirectories.Length;
+            string noun = (n == 1) ? "subdirectory" : "subdirectories";
+            string subDirectoryNames = LogDirectories(subDirectories);
+            string s = string.Format(": Found {0} {1} in {2}: {3}", n, noun , baseDirectory, subDirectoryNames);
+            return s;
+        }
+
         private string LogDirectories(string[] directories)
         {
             StringBuilder sb = new StringBuilder();
             foreach (string directory in directories)
             {
-                sb.AppendLine(""); // In order to align the directorynames
-                sb.Append(" '" + directory + "'");
+                DirectoryInfo di = new DirectoryInfo(directory); // Append only the name of the subdirectory, not the full directoryname
+                sb.Append(" '" + di.Name + "'");
             }
-            string s = sb.ToString();
-            //if (!string.IsNullOrEmpty(s))
-            //{
-            //    Logger.Log(s);
-            //}
-            return s;
+            return sb.ToString();
         }
 
 
@@ -94,13 +107,15 @@ namespace MusicXmlReaderModel
                 string jawsDirectory = Path.Combine(roamingDirectory, @"Freedom Scientific\JAWS");
                 // Find the highest version of JAWS, assuming the directories are listed in alphabetical order.
                 string[] jawsVersionDirectories = Directory.GetDirectories(jawsDirectory);
-                Logger.LogCF(string.Format(": Found {0} directories in {1}: {2}", jawsVersionDirectories.Length, jawsDirectory, LogDirectories(jawsVersionDirectories)));
+                Logger.LogCF(LogDirectories(jawsVersionDirectories, jawsDirectory));
+                //Logger.LogCF(string.Format(": Found {0} directories in {1}: {2}", jawsVersionDirectories.Length, jawsDirectory, LogDirectories(jawsVersionDirectories)));
                 if (jawsVersionDirectories.Length != 0)
                 {
                     string highestVersionDirectory = highestVersionDirectory = jawsVersionDirectories[jawsVersionDirectories.Length - 1];
                     string settingsDirectory = Path.Combine(highestVersionDirectory, "Settings");
                     string[] languageDirectories = Directory.GetDirectories(settingsDirectory);
-                    Logger.LogCF(string.Format(": Found {0} directories in {1}: {2}", languageDirectories.Length, settingsDirectory, LogDirectories(languageDirectories)));
+                    Logger.LogCF(LogDirectories(languageDirectories, settingsDirectory));
+                    //Logger.LogCF(string.Format(": Found {0} directories in {1}: {2}", languageDirectories.Length, settingsDirectory, LogDirectories(languageDirectories)));
                     directoryName = Path.Combine(settingsDirectory, ResourcesForModel.JawsSettingsLanguageName); // "dan" for Danish
                     if (!Directory.Exists(directoryName)) // Invert the condition to test the fallback mechanism
                     {
@@ -134,7 +149,8 @@ namespace MusicXmlReaderModel
             string jawsDirectory = Path.Combine(programDataDirectory, @"Freedom Scientific\JAWS");
             // Find the highest version of JAWS, assuming the directories are listed in alphabetical order.
             string[] jawsVersionDirectories = Directory.GetDirectories(jawsDirectory);
-            Logger.LogCF(string.Format(": Found {0} directories in {1}: {2}", jawsVersionDirectories.Length, jawsDirectory, LogDirectories(jawsVersionDirectories)));
+            Logger.LogCF(LogDirectories(jawsVersionDirectories, jawsDirectory));
+            //Logger.LogCF(string.Format(": Found {0} directories in {1}: {2}", jawsVersionDirectories.Length, jawsDirectory, LogDirectories(jawsVersionDirectories)));
             if (jawsVersionDirectories.Length != 0)
             {
                 string highestVersionDirectory = jawsVersionDirectories[jawsVersionDirectories.Length - 1];
@@ -148,8 +164,8 @@ namespace MusicXmlReaderModel
         /// </summary>
         public void OnProgramStart(string mainProgramFullPath)
         {
-            string scriptDirectory = GetJawsSharedScriptsDirectory(); // We want to install the script as shared bewtween all users.
-            if (string.IsNullOrEmpty(scriptDirectory)) return; // If JAWS is not installed on the machine the directory does not exist.
+            JawsSharedScriptDirectoryName = GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts" (For shared scripts, common for all users.)
+            if (string.IsNullOrEmpty(JawsSharedScriptDirectoryName)) return; // If JAWS is not installed on the machine the directory does not exist.
             int nCopied = CopyAllScriptFiles(mainProgramFullPath, false); // unconditionally = false : Only copy when ALL new files are newer than the existing files
             Logger.LogCF(string.Format(": Copied {0} files", nCopied));
         }
@@ -158,7 +174,7 @@ namespace MusicXmlReaderModel
         {
             int nCopiedFiles = 0;
             //throw new Exception("For test only");
-            string JAWSScriptDirectoryName = GetJawsSharedScriptsDirectory(); // For instance "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts"
+            string JAWSScriptDirectoryName = JawsSharedScriptDirectoryName; //  "C:\ProgramData\Freedom Scientific\JAWS\2024\scripts" (For shared scripts, common for all users.)
             string executingAssemblyDirectory = Path.GetDirectoryName(mainProgramFullPath);
             string JAWSSourceDirectory = Path.Combine(executingAssemblyDirectory, "JAWS");
             string JAWSScriptSourceDirectory = Path.Combine(JAWSSourceDirectory, "Scripts");
