@@ -149,6 +149,11 @@ namespace MusicXmlReaderModel
             string programDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             string jawsDirectory = Path.Combine(programDataDirectory, @"Freedom Scientific\JAWS");
             // Find the highest version of JAWS, assuming the directories are listed in alphabetical order.
+            if (!Directory.Exists(jawsDirectory))
+            {
+                Logger.LogCF(string.Format(": Directory {0} does not exist. JAWS is probably not installed!", jawsDirectory));
+                return result;
+            }
             string[] jawsVersionDirectories = Directory.GetDirectories(jawsDirectory);
             Logger.LogCF(LogDirectories(jawsVersionDirectories, jawsDirectory));
             //Logger.LogCF(string.Format(": Found {0} directories in {1}: {2}", jawsVersionDirectories.Length, jawsDirectory, LogDirectories(jawsVersionDirectories)));
