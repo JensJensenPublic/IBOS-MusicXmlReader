@@ -175,6 +175,7 @@ namespace MusicXmlReader
         public const Keys tempoIncrement = Keys.Control | Keys.PageUp;
         public const Keys tempoDecrement = Keys.Control | Keys.PageDown;
 
+        public const Keys SayStatusLine = Keys.Alt | Keys.PageDown;
 
         // UserSettingsTreeview:
 

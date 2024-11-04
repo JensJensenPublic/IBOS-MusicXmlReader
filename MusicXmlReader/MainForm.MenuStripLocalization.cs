@@ -140,7 +140,11 @@ namespace MusicXmlReader
             jAWSSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_JAWS_Settings;
             userSettingsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_User_Settings;
             generateMusicBrailleTestpatternToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern;
-      
+
+#warning todo Fill in the next line
+            // sayStatuslineToolStripMenuItem.Text = ResourcesforUI......
+            sayStatuslineToolStripMenuItem.ShortcutKeys = ShortcutHandler.SayStatusLine; // Cannot be specified in Designer
+
 
             // Children of  helpToolStripMenuItem
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = string.Format("{0} {1}", ResourcesForUI.ToolStripMenuItem_Help_About, applicationName);

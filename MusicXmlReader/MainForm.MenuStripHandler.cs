@@ -682,6 +682,17 @@ namespace MusicXmlReader
             Logger.LogCF("-");
         }
 
+        /// <summary>
+        /// Simple implementation of a replacement for the JAWS "SayBottomLineoFWindow" which in some special cases fails.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void sayStatuslineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string text = model.LatestStatusInformation;
+            model.Speak(text); 
+        }
+
         private void generateGraphicInformationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             model.ExternalToolsHandler.GenerateGraphicInformation(model.TheMusicXmlFileName, model.Defaults, model.EventDescriptionList);

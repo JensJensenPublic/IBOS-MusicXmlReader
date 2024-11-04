@@ -61,6 +61,8 @@ namespace MusicXmlReaderModel
         string executingAssembly;
         string executingDirectory;
 
+        private string latestStatusInformation = "";
+        public string LatestStatusInformation { get => latestStatusInformation; set => latestStatusInformation = value; }
 
         #region Configuration
         // The following configuration values are found in App.Config for the main .Exe program
@@ -1413,6 +1415,7 @@ namespace MusicXmlReaderModel
             }
         }
 
+       
 
         public string AnalyzeLocalization()
         {

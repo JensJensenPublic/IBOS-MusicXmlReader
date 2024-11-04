@@ -387,6 +387,7 @@ namespace MusicXmlReader
                     textBoxStatusInformation.Text = s;
                     textBoxStatusInformation.Refresh();
                     latestStatusInformation = s;
+                    model.LatestStatusInformation = latestStatusInformation;   // Make accessible for all model users  
                 }
                 else
                 {
