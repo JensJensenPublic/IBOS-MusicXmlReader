@@ -1,4 +1,26 @@
-In order to write-protect specific coloumn in a spreadsheet using LiberOffice calc:
+In order to generate an .xls file containing data from a .resx file:
+---------------------------------------------------------------------
+
+First download and install the "ResX Manager" tool as a plugin to Visual Studio 2022.
+
+In VS2022: 
+Open the solution
+Click "Tools->Resx Manager" This will open the Resource manager
+In the leftmost pane: Uncheck all files except the relevant one
+Click the "Choose columns" in the upper bar and select "All Languages" and "Neutral" ()The # column can not be removed"
+Assure alphabetic sorting by the "Key" column by clicking the "Key" header
+Select all by  CTRL-A
+Export the selection by clicking the green "X" symbol, then "Export selection"
+The .xlsx is write protected, so 
+In the .xlsx select the first 4 columns
+Copy-paste them into an existing empty .xls file
+Delete the 2 leftmost columns 
+Save the result under an appropriate file name.
+
+
+
+In order to write-protect specific column in a spreadsheet using LibreOffice calc:
+--------------------------------------------------------------------------------------------------
 
 All cells are protected by default so when you apply protection to the sheet, all cells are protected.
 

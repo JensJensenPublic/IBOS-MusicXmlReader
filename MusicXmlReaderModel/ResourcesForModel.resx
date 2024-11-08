@@ -313,7 +313,7 @@
     <value>accent</value>
   </data>
   <data name="ArticulationsElement_BreathMark" xml:space="preserve">
-    <value>breathmark</value>
+    <value></value>
   </data>
   <data name="ArticulationsElement_Caesura" xml:space="preserve">
     <value>caesura</value>

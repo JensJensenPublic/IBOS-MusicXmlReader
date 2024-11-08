@@ -214,7 +214,7 @@ namespace MusicXmlReaderModel {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to breathmark.
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string ArticulationsElement_BreathMark {
             get {
