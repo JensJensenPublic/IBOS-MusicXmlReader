@@ -1,22 +1,27 @@
-Please find atached the spreadsheet file "ResourcesForUI.es-ES.xls"
+Please find attached the spreadsheet file "ResourcesForModel.es-ES.xls"
 
 The spreadsheet file can be opened and edited with for instance Excel or LibreOffice Calc.
 
-It contains 161 rows, each representing a word or a phrase to be translated to spanish.
-The expressions are taken out of context and therefor may seem abstract.
+It contains a large number of rows, each representing a word or a phrase to be translated to Spanish.
+(The expressions are taken out of their context and therefor may seem a little abstract.)
 
-The leftmost coloumn (A) "Name" contains the name of the variable used in the sourcecode of the program. 
+The leftmost column (A) "Name" contains the name of the variable used in the source code of the program. 
 It is only mentioned to give you an idea about its use.
 This column is protected  against  editing in order to prevent changes by mistake.
-The middle coloumn (B) "English text" contains the expression used in the user interface in the english version of the program. This is the text which must be translated .
+The middle column (B) "English text" contains the expression used in the user interface in the English version of the program. 
+This is the text which must be translated .
 This column is also protected  against  editing in order to prevent changes by mistake.
 
-Please enter the corresponding spanish expression in the rightmost coloumn (C) "Spanish text".
-The maximal number of characters of the spanish text is not limited, but please note that the length of the text has influence on the layout of the shown elements in the user interface. We recommend to keep the translated texts short not exceding the number of character of the english text by much.
-The "&" characters found in some of the English texts  define hotkeys which can be used in the menus. The &" should be inserted immediately before the character most logical of the translated expression.
+Please enter the corresponding Spanish expression in the rightmost column (C) "Spanish text".
+The maximal number of characters of the Spanish text is not limited, but please note that the length of the text has influence on the layout of the shown elements in the user interface.
+We recommend to keep the translated texts short, preferably not exceeding the number of character of the English text.
+The "&" characters found in some of the English texts define hotkeys which can be used in the menus.
+The "&" should be inserted immediately before the character most logical of the translated expression.
 
 
-Please note that this spreadsheet file is only a part of the total list of expressions used in the program. This list is the longest and gives the best impression of the nature of the task. The complete list of expressions consists of 5 similar lists The remaining lists are not as long.
+Please note that this spreadsheet file is only a part of the total list of expressions used in the program.
+This list is the longest and gives the best impression of the nature of the task.
+The complete list of expressions consists of 5 similar lists. The remaining lists are not as long as this one.
 
 
-When the right coloumn has been filled in, please return the file to us, and we will attempt to integrate it into the application. 
+When the right column has been filled in, please return the file to us, and we will attempt to integrate it into the application. 
