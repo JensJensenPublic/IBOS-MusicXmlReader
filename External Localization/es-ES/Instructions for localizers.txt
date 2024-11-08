@@ -1,6 +1,6 @@
 Please find attached the spreadsheet file "ResourcesForModel.es-ES.xls"
 
-The spreadsheet file can be opened and edited with for instance Excel or LibreOffice Calc.
+The spreadsheet file can be opened and edited with Microsoft Office Excel.
 
 It contains a large number of rows, each representing a word or a phrase to be translated to Spanish.
 (The expressions are taken out of their context and therefor may seem a little abstract.)
