@@ -116,6 +116,7 @@
             this.analyzeLocalizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logControlpositionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sayBottolLineOfWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sayStatuslineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -155,7 +156,7 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
-            this.sayStatuslineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportLyricsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -191,7 +192,8 @@
             this.printMusicBrailleToolStripMenuItem,
             this.copyMusicBrailleToolStripMenuItem,
             this.toolStripSeparator1,
-            this.exitToolStripMenuItem});
+            this.exitToolStripMenuItem,
+            this.exportLyricsToolStripMenuItem});
             this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
             this.filesToolStripMenuItem.Size = new System.Drawing.Size(42, 22);
             this.filesToolStripMenuItem.Text = "&Files";
@@ -870,6 +872,13 @@
             this.sayBottolLineOfWindowToolStripMenuItem.Text = "Say Bottol Line Of Window";
             this.sayBottolLineOfWindowToolStripMenuItem.Click += new System.EventHandler(this.sayBottolLineOfWindowToolStripMenuItem_Click);
             // 
+            // sayStatuslineToolStripMenuItem
+            // 
+            this.sayStatuslineToolStripMenuItem.Name = "sayStatuslineToolStripMenuItem";
+            this.sayStatuslineToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.sayStatuslineToolStripMenuItem.Text = "Say Statusline";
+            this.sayStatuslineToolStripMenuItem.Click += new System.EventHandler(this.sayStatuslineToolStripMenuItem_Click);
+            // 
             // archivesToolStripMenuItem
             // 
             this.archivesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1196,12 +1205,12 @@
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
             // 
-            // sayStatuslineToolStripMenuItem
+            // exportLyricsToolStripMenuItem
             // 
-            this.sayStatuslineToolStripMenuItem.Name = "sayStatuslineToolStripMenuItem";
-            this.sayStatuslineToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
-            this.sayStatuslineToolStripMenuItem.Text = "Say Statusline";
-            this.sayStatuslineToolStripMenuItem.Click += new System.EventHandler(this.sayStatuslineToolStripMenuItem_Click);
+            this.exportLyricsToolStripMenuItem.Name = "exportLyricsToolStripMenuItem";
+            this.exportLyricsToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.exportLyricsToolStripMenuItem.Text = "Export Lyrics";
+            this.exportLyricsToolStripMenuItem.Click += new System.EventHandler(this.exportLyricsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1361,6 +1370,7 @@
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem viewDirectoryToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem sayStatuslineToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportLyricsToolStripMenuItem;
     }
 }
 

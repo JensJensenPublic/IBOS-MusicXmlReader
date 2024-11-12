@@ -1358,6 +1358,13 @@ namespace MusicXmlReader
             return result.ToString();
 
         }
+        #region Export Lyrics
+        private void exportLyricsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!model.ScoreIsLoaded()) return; 
+            string lyrics = model.GetLyrics();
+        }
+        #endregion
 
 
         #region Print

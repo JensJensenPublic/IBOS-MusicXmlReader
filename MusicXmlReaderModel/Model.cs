@@ -18,7 +18,7 @@ namespace MusicXmlReaderModel
     /// </summary>
     public class Model
     {
-
+        XmlDocument doc; // The XmlDocument currently holding the MusicXml file // Changed to a member variable 2024.11.12 in order to handle lyrics
         static public string TheStaticXmlFileName = "";
         string className = "Model";
         string theMusicXmlFileName = "";
@@ -57,6 +57,7 @@ namespace MusicXmlReaderModel
         public DefaultsElement Defaults { get { return defaults; } }
         //private LoggerProxy loggerProxy;
         MetaInformation metaInformation = null; // Holds filename, title, composer, arranger etc. related to a specific score
+        LyricsHandler lyricsHandler = null;
 
         string executingAssembly;
         string executingDirectory;
@@ -277,7 +278,7 @@ namespace MusicXmlReaderModel
                 xmlFileName = System.IO.Path.GetFileName(fullXmlFileName); // Report a filename even if an exception is thrown during conversion !
                 TheStaticXmlFileName = xmlFileName; // Make the filename globally available without a reference to a Model instance.
 
-                XmlDocument doc = new XmlDocument();
+                doc = new XmlDocument();
                 reader = new XmlTextReader(fullXmlFileName);
                 reader.WhitespaceHandling = WhitespaceHandling.None;
                 string progressLoading = string.Format("{0} {1}", ResourcesForModel.Progress_LoadingFile, xmlFileName);
@@ -1423,6 +1424,26 @@ namespace MusicXmlReaderModel
             LocalizationAnalyzer.Analyzer analyzer = LocalizationAnalyzer.Analyzer.Create(baseDirectory, LocalizationAnalyzer.Analyzer.noOptions); // NoOptions: Do not use Console
             analyzer.Execute();
             return baseDirectory;
+        }
+
+        public string GetLyrics()
+        {
+            lyricsHandler = LyricsHandler.Create();
+            // We don't know yet what method is best !
+            string s0 = lyricsHandler.GetLyrics(eventDescriptionList);
+            string s1 = lyricsHandler.GetLyrics(doc);
+            return s1;
+        }
+
+        public bool ScoreIsLoaded()
+        {
+            if (null == EventDescriptionList)
+            {
+                Logger.LogCF(": No MusicXml file is currently loaded!");
+                Utilities.UtilityClient.ShowWarning((int)ModelMessageEnum.UnspecifiedMusicXmlFile, "", "");
+                return false;
+            }
+            return true;
         }
 
 
