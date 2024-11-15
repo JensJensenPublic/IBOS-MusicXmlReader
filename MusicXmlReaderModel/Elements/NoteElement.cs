@@ -791,6 +791,8 @@ namespace MusicXmlReaderModel
             }
         }
 
+        public LyricElementList LyricElementList { get => lyricElementList; }
+
 
         //public string TupleDurationString()
         //{

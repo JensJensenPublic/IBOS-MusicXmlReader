@@ -79,6 +79,8 @@ namespace MusicXmlReaderModel
     {  
         private List<LyricElement> list = new List<LyricElement>();
 
+        public List<LyricElement> List { get => list; }
+
         public void AddElement(LyricElement lyricElement)
         {
             list.Add(lyricElement);

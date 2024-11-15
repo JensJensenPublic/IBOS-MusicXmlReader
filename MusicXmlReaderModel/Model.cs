@@ -1430,7 +1430,7 @@ namespace MusicXmlReaderModel
         {
             lyricsHandler = LyricsHandler.Create();
             // We don't know yet what method is best !
-            string s0 = lyricsHandler.GetLyrics(eventDescriptionList);
+            string s0 = lyricsHandler.GetLyrics(eventDescriptionList,partList);
             string s1 = lyricsHandler.GetLyrics(doc);
             return s1;
         }

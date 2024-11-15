@@ -12,11 +12,49 @@ namespace MusicXmlReaderModel
     internal class LyricsHandler
     {
           
-        internal string GetLyrics(EventDescriptionList events)
+        /// <summary>
+        /// Primitive, initial implementation !!!!!!!!!!!!!!!!!!!!
+        /// </summary>
+        /// <param name="events"></param>
+        /// <param name="partList"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        internal string GetLyrics(EventDescriptionList events,PartlistElement partList)
         {
             Logger.LogCF("(events)+");
             if (events == null) throw new ArgumentNullException();
-            // This is whre the code goes !!
+
+            int numberOfParts = partList.NumberOfParts();  
+            for (int partNumber = 0; partNumber < numberOfParts; partNumber++)
+            {
+                // This is whre the code goes !!
+                foreach (EventDescription e in events.Events)
+                {
+                    NoteElementList allNotesForEvent = e.GetAllSelectedNotes(); // For a single event
+                    foreach (NoteElement noteElement in allNotesForEvent.NoteElements)
+                    {
+                        if (partNumber == noteElement.PartNumber)
+                        {
+                            foreach (LyricElement lyricElement in noteElement.LyricElementList.List)
+                            {
+                                for (int verseNumber = 1; verseNumber < 10; verseNumber++)
+                                {
+                                    if (verseNumber == lyricElement.Number)
+                                    {
+                                        Logger.LogCF(string.Format(": Part={0} Verse={1} Text={2}", partNumber, verseNumber, lyricElement.Text));
+                                    }
+
+                                }
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+
+
             Logger.LogCF("(events)-");
             return "";
         }
@@ -26,6 +64,7 @@ namespace MusicXmlReaderModel
         {
             Logger.LogCF("(doc)+");
             if (doc == null) throw new ArgumentNullException();
+        
             // This is whre the code goes !!
             Logger.LogCF("(doc)-");
             return "";

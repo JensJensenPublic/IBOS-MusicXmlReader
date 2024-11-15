@@ -62,7 +62,7 @@ namespace MusicXmlReaderModel
 
         private StatusInformation statusInformation; // Contains Status information valid for this eventdescription
 
-        private NoteElementList GetAllNotes()
+        public NoteElementList GetAllNotes()
         {
             NoteElementList result = NoteElementList.Create();
             foreach (NoteElementList nel in NoteLists)
@@ -75,7 +75,7 @@ namespace MusicXmlReaderModel
             return result;
         }
 
-        private NoteElementList GetAllSelectedNotes()
+        public NoteElementList GetAllSelectedNotes()
         {
             NoteElementList result = NoteElementList.Create();
             foreach (NoteElementList nel in NoteLists)
