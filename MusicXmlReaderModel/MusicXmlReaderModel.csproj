@@ -80,6 +80,7 @@
     <Compile Include="Elements\DirectionTypeElement.cs" />
     <Compile Include="Elements\EmptyFontElement.cs" />
     <Compile Include="Elements\FormattedTextElement.cs" />
+    <Compile Include="Elements\LyricElement.cs" />
     <Compile Include="Elements\LyricFontElement.cs" />
     <Compile Include="Elements\LyricLanguageElement.cs" />
     <Compile Include="Elements\MeasureNumberingElement.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Elements\SlashElement.cs" />
     <Compile Include="Elements\StaffLayoutElement.cs" />
     <Compile Include="Elements\StavesElement.cs" />
+    <Compile Include="Elements\SyllabicElement.cs" />
     <Compile Include="Elements\SystemDevidersElement.cs" />
     <Compile Include="Elements\SystemLayoutElement.cs" />
     <Compile Include="Elements\SystemMarginsElement.cs" />
