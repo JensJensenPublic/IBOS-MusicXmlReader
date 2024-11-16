@@ -1365,8 +1365,8 @@ namespace MusicXmlReader
             if (!model.ScoreIsLoaded()) return; 
             List<string> parts = model.GetLyricsForParts();
             foreach (string part in parts)
-            {
-                Logger.Log(part);
+            {               
+                Logger.Log("\r\n" + part + "\r\n");             
             }
             Logger.LogCF(": -");
         }

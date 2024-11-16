@@ -25,8 +25,11 @@ namespace MusicXmlReaderModel
         private int number;
         public  int Number     {  get => number; }
         public  string Text { get => text; }
+       
+
         private string text;
         private SyllabicElement syllabicElement;
+        public SyllabicElement SyllabicElement { get => syllabicElement; }
 
         private LyricElement() { }
         private LyricElement(XmlNode node)
@@ -116,7 +119,22 @@ namespace MusicXmlReaderModel
             StringBuilder sb = new StringBuilder();
             foreach (LyricElement lyricElement in this.list)
             {
-                sb.Append(lyricElement.Text);
+                // Set up default prefix and postfix
+                string prefix = " ";
+                string postfix = " ";
+                if (null != lyricElement.SyllabicElement)
+                {
+                    switch (lyricElement.SyllabicElement.SyllabicEnum)
+                    {
+                        case SyllabicEnum.unknown: break;
+                        case SyllabicEnum.begin: postfix = ""; break;
+                        case SyllabicEnum.end: prefix = ""; break;
+                        case SyllabicEnum.middle: prefix = ""; postfix = ""; break;
+                        case SyllabicEnum.single: break;
+                        default: Logger.LogCF(string.Format(": Unexpected value of SybellicEnum={0}", lyricElement.SyllabicElement.SyllabicEnum)); break;
+                    }
+                }
+                sb.Append(prefix + lyricElement.Text + postfix);
             }
             return sb.ToString();
         }
