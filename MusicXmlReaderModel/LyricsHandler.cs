@@ -11,15 +11,15 @@ namespace MusicXmlReaderModel
 {
     internal class LyricsHandler
     {
-        internal List<string> GetLyrics(PartDescriptionList partDescriptions)
+        internal List<string> GetLyricsForParts(PartDescriptionList partDescriptions)
         {
+            Logger.LogCF(":+");
             int nParts = partDescriptions.parts.Count;
             List<string> result = new List<string>();
-            //List<LyricElementList> lists = new List<LyricElementList>(nParts);
+            // Simplify by handling one part at a time!
             foreach (PartDescription partDescription in partDescriptions.parts)
             {
-                LyricElementList lyricsForCurrentPart = LyricElementList.Create(partDescription.Id); 
-                //lists.Add(lyricsForCurrentPart);    
+                LyricElementList lyricsForCurrentPart = LyricElementList.Create(partDescription.Id);              
                 Logger.LogCF(string.Format(": Part={0}", partDescription.Id));
                 // Collect all LyricElements related to this part
                 foreach (Element element in partDescription.Elements)
@@ -30,6 +30,7 @@ namespace MusicXmlReaderModel
                         lyricsForCurrentPart.Append(lyrics); 
                     }
                 }
+
                 // lyricsForCurrentPart contains all lyrics for all verses within part
                 // We need to split it into each verse.
                 List<LyricElementList> verses = new List<LyricElementList>(lyricsForCurrentPart.LastVerse+1);
@@ -43,15 +44,17 @@ namespace MusicXmlReaderModel
                 {
                     verses[lyricElement.Number].Append(lyricElement);
                 }
+
                 // Convert the lyric for each verse into a string
                 StringBuilder sb = new StringBuilder();
                 foreach (LyricElementList verse in verses)
                 { 
                     sb.Append(verse.ToString());                
                 }
-                result.Add(sb.ToString()); // Add the string representation for all verses within the current part
+                // Add the string representation for all verses within the current part
+                result.Add(sb.ToString());
             }
-
+            Logger.LogCF(":-");
             return result;
         }
 
