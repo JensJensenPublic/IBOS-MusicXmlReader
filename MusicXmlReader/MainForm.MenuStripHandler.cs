@@ -1362,7 +1362,7 @@ namespace MusicXmlReader
         private void exportLyricsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!model.ScoreIsLoaded()) return; 
-            string lyrics = model.GetLyrics();
+            List<string> lyrics = model.GetLyrics();
         }
         #endregion
 

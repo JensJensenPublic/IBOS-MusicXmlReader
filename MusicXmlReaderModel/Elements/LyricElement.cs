@@ -79,21 +79,59 @@ namespace MusicXmlReaderModel
     {  
         private List<LyricElement> list = new List<LyricElement>();
 
+        private string id;
+
+        private int firstVerse = int.MaxValue;
+        public int FirstVerse { get => firstVerse; }
+        private int lastVerse = 0;
+        public int LastVerse { get => lastVerse;  }
+
         public List<LyricElement> List { get => list; }
+    
 
         public void AddElement(LyricElement lyricElement)
         {
             list.Add(lyricElement);
+            firstVerse = Math.Min(firstVerse, lyricElement.Number);
+            lastVerse = Math.Max(lastVerse, lyricElement.Number);
+        }
+
+        public void Append(LyricElementList that)
+        {
+            this.list.AddRange(that.list);
+            this.firstVerse = Math.Min(this.firstVerse, that.firstVerse);
+            this.lastVerse = Math.Max(this.lastVerse, that.lastVerse);
+        }
+
+
+        public void Append(LyricElement lyricElement)
+        {
+            this.list.Add(lyricElement);
+            this.firstVerse = Math.Min(this.firstVerse, lyricElement.Number);
+            this.lastVerse = Math.Max(this.lastVerse, lyricElement.Number);
+        }
+
+        public override string ToString()
+        { 
+            StringBuilder sb = new StringBuilder();
+            foreach (LyricElement lyricElement in this.list)
+            {
+                sb.Append(lyricElement.Text);
+            }
+            return sb.ToString();
         }
 
         private LyricElementList()
+        {}
+
+        private LyricElementList(string id)
         {
-   
+            this.id = id;
         }
 
-        public static LyricElementList Create()
+        public static LyricElementList Create(string id)
         {
-            return new LyricElementList();
+            return new LyricElementList(id);
         }
     }
 

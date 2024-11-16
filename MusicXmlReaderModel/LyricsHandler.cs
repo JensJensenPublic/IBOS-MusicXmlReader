@@ -11,64 +11,109 @@ namespace MusicXmlReaderModel
 {
     internal class LyricsHandler
     {
-          
-        /// <summary>
-        /// Primitive, initial implementation !!!!!!!!!!!!!!!!!!!!
-        /// </summary>
-        /// <param name="events"></param>
-        /// <param name="partList"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        internal string GetLyrics(EventDescriptionList events,PartlistElement partList)
+        internal List<string> GetLyrics(PartDescriptionList partDescriptions)
         {
-            Logger.LogCF("(events)+");
-            if (events == null) throw new ArgumentNullException();
-
-            int numberOfParts = partList.NumberOfParts();  
-            for (int partNumber = 0; partNumber < numberOfParts; partNumber++)
+            int nParts = partDescriptions.parts.Count;
+            List<string> result = new List<string>();
+            //List<LyricElementList> lists = new List<LyricElementList>(nParts);
+            foreach (PartDescription partDescription in partDescriptions.parts)
             {
-                // This is whre the code goes !!
-                foreach (EventDescription e in events.Events)
+                LyricElementList lyricsForCurrentPart = LyricElementList.Create(partDescription.Id); 
+                //lists.Add(lyricsForCurrentPart);    
+                Logger.LogCF(string.Format(": Part={0}", partDescription.Id));
+                // Collect all LyricElements related to this part
+                foreach (Element element in partDescription.Elements)
                 {
-                    NoteElementList allNotesForEvent = e.GetAllSelectedNotes(); // For a single event
-                    foreach (NoteElement noteElement in allNotesForEvent.NoteElements)
+                    if (element is NoteElement)
                     {
-                        if (partNumber == noteElement.PartNumber)
-                        {
-                            foreach (LyricElement lyricElement in noteElement.LyricElementList.List)
-                            {
-                                for (int verseNumber = 1; verseNumber < 10; verseNumber++)
-                                {
-                                    if (verseNumber == lyricElement.Number)
-                                    {
-                                        Logger.LogCF(string.Format(": Part={0} Verse={1} Text={2}", partNumber, verseNumber, lyricElement.Text));
-                                    }
-
-                                }
-                            }
-
-                        }
-
+                        LyricElementList lyrics =  (element as NoteElement).LyricElementList;
+                        lyricsForCurrentPart.Append(lyrics); 
                     }
-
                 }
+                // lyricsForCurrentPart contains all lyrics for all verses within part
+                // We need to split it into each verse.
+                List<LyricElementList> verses = new List<LyricElementList>(lyricsForCurrentPart.LastVerse+1);
+                for (int i = 0; i < lyricsForCurrentPart.LastVerse+1; i++)
+                {
+                    verses.Add( LyricElementList.Create(i.ToString()));
+                }
+
+                // Distribute the lyricElements with respect to verse number
+                foreach (LyricElement lyricElement in lyricsForCurrentPart.List)
+                {
+                    verses[lyricElement.Number].Append(lyricElement);
+                }
+                // Convert the lyric for each verse into a string
+                StringBuilder sb = new StringBuilder();
+                foreach (LyricElementList verse in verses)
+                { 
+                    sb.Append(verse.ToString());                
+                }
+                result.Add(sb.ToString()); // Add the string representation for all verses within the current part
             }
 
-
-            Logger.LogCF("(events)-");
-            return "";
+            return result;
         }
 
 
-        internal string GetLyrics(XmlDocument doc)
-        {
-            Logger.LogCF("(doc)+");
-            if (doc == null) throw new ArgumentNullException();
+
+        ///// <summary>
+        ///// Primitive, initial implementation !!!!!!!!!!!!!!!!!!!!
+        ///// </summary>
+        ///// <param name="events"></param>
+        ///// <param name="partList"></param>
+        ///// <returns></returns>
+        ///// <exception cref="ArgumentNullException"></exception>
+        //internal string GetLyrics(EventDescriptionList events,PartlistElement partList)
+        //{
+        //    Logger.LogCF("(events)+");
+        //    if (events == null) throw new ArgumentNullException();
+
+        //    int numberOfParts = partList.NumberOfParts();  
+        //    for (int partNumber = 0; partNumber < numberOfParts; partNumber++)
+        //    {
+        //        // This is whre the code goes !!
+        //        foreach (EventDescription e in events.Events)
+        //        {
+        //            NoteElementList allNotesForEvent = e.GetAllSelectedNotes(); // For a single event
+        //            foreach (NoteElement noteElement in allNotesForEvent.NoteElements)
+        //            {
+        //                if (partNumber == noteElement.PartNumber)
+        //                {
+        //                    foreach (LyricElement lyricElement in noteElement.LyricElementList.List)
+        //                    {
+        //                        for (int verseNumber = 1; verseNumber < 10; verseNumber++)
+        //                        {
+        //                            if (verseNumber == lyricElement.Number)
+        //                            {
+        //                                Logger.LogCF(string.Format(": Part={0} Verse={1} Text={2}", partNumber, verseNumber, lyricElement.Text));
+        //                            }
+
+        //                        }
+        //                    }
+
+        //                }
+
+        //            }
+
+        //        }
+        //    }
+
+
+        //    Logger.LogCF("(events)-");
+        //    return "";
+        //}
+
+
+        //internal string GetLyrics(XmlDocument doc)
+        //{
+        //    Logger.LogCF("(doc)+");
+        //    if (doc == null) throw new ArgumentNullException();
         
-            // This is whre the code goes !!
-            Logger.LogCF("(doc)-");
-            return "";
-        }
+        //    // This is whre the code goes !!
+        //    Logger.LogCF("(doc)-");
+        //    return "";
+        //}
 
         private LyricsHandler()
         {         

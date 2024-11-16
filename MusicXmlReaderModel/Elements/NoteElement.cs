@@ -77,7 +77,7 @@ namespace MusicXmlReaderModel
         TransposeElement transposeElement; // Used if the cuttent scorepart describes an "non-C" instrument such as an A-clarinet.
         string syllabic; // Child of lyric
         string text;     // Child of lyric
-        LyricElementList lyricElementList = LyricElementList.Create();
+        LyricElementList lyricElementList = LyricElementList.Create("");
         string staffString = "";
         int staff = 1;
         //string articulations = "";
@@ -1004,7 +1004,7 @@ namespace MusicXmlReaderModel
                         syllabic = Utilities.GetChildValue(child, "syllabic");
                         #region New code November 2024
                         LyricElement lyricElement = LyricElement.Create(child);
-                        lyricElementList.AddElement(lyricElement);
+                        lyricElementList.AddElement(lyricElement);                    
                         #endregion
                         break;
                     case "staff":
