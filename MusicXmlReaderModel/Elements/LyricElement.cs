@@ -120,7 +120,7 @@ namespace MusicXmlReaderModel
             foreach (LyricElement lyricElement in this.list)
             {
                 // Set up default prefix and postfix
-                string prefix = " ";
+                string prefix = "";
                 string postfix = " ";
                 if (null != lyricElement.SyllabicElement)
                 {
@@ -128,9 +128,9 @@ namespace MusicXmlReaderModel
                     {
                         case SyllabicEnum.unknown: break;
                         case SyllabicEnum.begin: postfix = ""; break;
-                        case SyllabicEnum.end: prefix = ""; break;
-                        case SyllabicEnum.middle: prefix = ""; postfix = ""; break;
-                        case SyllabicEnum.single: break;
+                        case SyllabicEnum.end:  break;
+                        case SyllabicEnum.middle: postfix = ""; break;
+                        case SyllabicEnum.single:   break;
                         default: Logger.LogCF(string.Format(": Unexpected value of SybellicEnum={0}", lyricElement.SyllabicElement.SyllabicEnum)); break;
                     }
                 }
