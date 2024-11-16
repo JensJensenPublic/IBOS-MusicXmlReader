@@ -53,6 +53,7 @@ namespace MusicXmlReaderModel
                     sb.Append("\r\n"); // Empty line between verses
                 }
                 // Add the string representation for all verses within the current part
+                result.Add(partDescription.Id); // Identifies the part
                 result.Add(sb.ToString());
             }
             Logger.LogCF(":-");

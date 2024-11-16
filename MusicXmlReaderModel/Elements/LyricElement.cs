@@ -116,7 +116,7 @@ namespace MusicXmlReaderModel
 
         public override string ToString()
         { 
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();     
             foreach (LyricElement lyricElement in this.list)
             {
                 // Set up default prefix and postfix

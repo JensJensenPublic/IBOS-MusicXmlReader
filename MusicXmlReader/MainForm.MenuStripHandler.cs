@@ -1361,13 +1361,15 @@ namespace MusicXmlReader
         #region Export Lyrics
         private void exportLyricsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Logger.LogCF(": +");
+            Logger.LogCF(": +");      
             if (!model.ScoreIsLoaded()) return; 
             List<string> parts = model.GetLyricsForParts();
+            StringBuilder sb = new StringBuilder();        
             foreach (string part in parts)
             {               
-                Logger.Log("\r\n" + part + "\r\n");             
+                sb.Append("\r\n" + part);             
             }
+            Logger.Log("\r\n" + sb.ToString());
             Logger.LogCF(": -");
         }
         #endregion
