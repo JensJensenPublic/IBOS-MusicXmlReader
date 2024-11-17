@@ -1429,7 +1429,7 @@ namespace MusicXmlReaderModel
         public List<string> GetLyricsForParts()
         {
             lyricsHandler = LyricsHandler.Create();
-            List<string> lyricsForParts = lyricsHandler.GetLyricsForParts(partDescriptionList);
+            List<string> lyricsForParts = lyricsHandler.GetLyricsForParts(partDescriptionList,partList);
             return lyricsForParts;
         }
 

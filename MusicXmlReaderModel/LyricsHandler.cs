@@ -11,7 +11,7 @@ namespace MusicXmlReaderModel
 {
     internal class LyricsHandler
     {
-        internal List<string> GetLyricsForParts(PartDescriptionList partDescriptions)
+        internal List<string> GetLyricsForParts(PartDescriptionList partDescriptions, PartlistElement partlistElement)
         {
             Logger.LogCF(":+");
             int nParts = partDescriptions.parts.Count;
@@ -53,7 +53,8 @@ namespace MusicXmlReaderModel
                     sb.Append("\r\n"); // Empty line between verses
                 }
                 // Add the string representation for all verses within the current part
-                result.Add(partDescription.Id); // Identifies the part
+                ScorePartElement scorePartElement = partlistElement.GetPartFromId(partDescription.Id); // For obtaining Partname Instrumentname etc.
+                result.Add(partDescription.Id + " " + scorePartElement.PartName); // Identifies the part   . for instance "P1 Soprano"        
                 result.Add(sb.ToString());
             }
             Logger.LogCF(":-");
