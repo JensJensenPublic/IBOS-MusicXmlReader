@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MusicXmlReaderModel
 {
     /// <summary>
-    /// Represents the full lyrics of a score, including app parts, each part including all verses
+    /// Represents the full lyrics of a score, including all parts, each part including all verses
     /// </summary>
     internal class LyricsScore
     {
@@ -25,8 +25,6 @@ namespace MusicXmlReaderModel
                 LyricsPart part = LyricsPart.Create(partDescription, partlistElement);
                 lyricsParts.Add(part);
             }
-
-
         }
 
         public override string ToString()
