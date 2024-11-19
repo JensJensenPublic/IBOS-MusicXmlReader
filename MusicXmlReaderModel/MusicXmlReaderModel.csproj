@@ -118,7 +118,6 @@
     <Compile Include="LoggerDelayCounter.cs" />
     <Compile Include="LoggerProxy.cs" />
     <Compile Include="LyricElementList.cs" />
-    <Compile Include="LyricsHandler.cs" />
     <Compile Include="LyricsPart.cs" />
     <Compile Include="LyricsScore.cs" />
     <Compile Include="LyricsVerse.cs" />
