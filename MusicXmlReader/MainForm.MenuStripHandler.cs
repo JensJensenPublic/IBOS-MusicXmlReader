@@ -1362,18 +1362,13 @@ namespace MusicXmlReader
         private void exportLyricsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Logger.LogCF(": +");      
-            if (!model.ScoreIsLoaded()) return; 
-            List<string> parts = model.GetLyricsForParts();
-            StringBuilder sb = new StringBuilder();        
-            foreach (string part in parts)
-            {               
-                sb.Append("\r\n" + part);             
-            }
-            Logger.Log("\r\n" + sb.ToString());
+            if (!model.ScoreIsLoaded()) return;
+            string s = model.GetLyricsForScore();
+            Logger.Log("\r\n" + s);
             model.ExternalToolsHandler.ReadLogFile(); // During debugging inspect the outcome by viewing the logfile.
             Logger.LogCF(": -");
         }
-        #endregion
+#endregion
 
 
         #region Print

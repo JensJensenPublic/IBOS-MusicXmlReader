@@ -77,6 +77,7 @@ namespace MusicXmlReaderModel
     //****************************************************************************************************************************
 
 
+#if false
 
     public class LyricElementList
     {  
@@ -152,5 +153,6 @@ namespace MusicXmlReaderModel
             return new LyricElementList(id);
         }
     }
+#endif
 
 } // NameSpace

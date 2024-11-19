@@ -117,7 +117,11 @@
     <Compile Include="LogFormatter.cs" />
     <Compile Include="LoggerDelayCounter.cs" />
     <Compile Include="LoggerProxy.cs" />
+    <Compile Include="LyricElementList.cs" />
     <Compile Include="LyricsHandler.cs" />
+    <Compile Include="LyricsPart.cs" />
+    <Compile Include="LyricsScore.cs" />
+    <Compile Include="LyricsVerse.cs" />
     <Compile Include="MeasureFraction.cs" />
     <Compile Include="MeasureFraction.Logger.cs" />
     <Compile Include="MeasureFractionHistory.cs" />

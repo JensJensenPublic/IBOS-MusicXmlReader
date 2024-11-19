@@ -1426,11 +1426,11 @@ namespace MusicXmlReaderModel
             return baseDirectory;
         }
 
-        public List<string> GetLyricsForParts()
+        public string GetLyricsForScore()
         {
-            lyricsHandler = LyricsHandler.Create();
-            List<string> lyricsForParts = lyricsHandler.GetLyricsForParts(partDescriptionList,partList);
-            return lyricsForParts;
+            LyricsScore lyricsScore = LyricsScore.Create(partDescriptionList, partList);
+            string lyrics = lyricsScore.ToString();
+            return lyrics;  
         }
 
         public bool ScoreIsLoaded()
