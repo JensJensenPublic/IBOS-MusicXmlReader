@@ -1370,6 +1370,7 @@ namespace MusicXmlReader
                 sb.Append("\r\n" + part);             
             }
             Logger.Log("\r\n" + sb.ToString());
+            model.ExternalToolsHandler.ReadLogFile(); // During debugging inspect the outcome by viewing the logfile.
             Logger.LogCF(": -");
         }
         #endregion

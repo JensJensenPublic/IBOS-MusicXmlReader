@@ -52,7 +52,7 @@ namespace MusicXmlReaderModel
                 {
                     case "text": text=child.InnerText; break; // No need complicate things by looking at text as a "TextElement"
                     case "syllabic": syllabicElement = SyllabicElement.Create(child);   break;
-                    case "extend":
+                    case "extend": break; // Represents an extension shown as one or more graphics underscores "___" which we choose to omit here.
                     case "humming":
                     case "laughing":
                     case "eliason": Logger.LogCF(string.Format(": Unsupported element: {0}", name)); break;
@@ -62,7 +62,7 @@ namespace MusicXmlReaderModel
             }
 
             string syllabicString = (null == syllabicElement) ? "" : string.Format("Syllabic={0}", syllabicElement.SyllabicEnum);
-            Logger.LogCF(string.Format(": Number={0} Text={1} {2}", number, text, syllabicString));
+            // Logger.LogCF(string.Format(": Number={0} Text={1} {2}", number, text, syllabicString)); // Only during debugging
         }
    
 
