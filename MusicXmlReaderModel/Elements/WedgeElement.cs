@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using static MusicXmlReaderModel.PitchElementBase;
 
 namespace MusicXmlReaderModel
 {
@@ -17,25 +18,32 @@ namespace MusicXmlReaderModel
         private WedgeEnum wedge = WedgeEnum.unknown;
         public WedgeEnum Wedge { get { return wedge; } }
 
+        private int number = 1; // 	When a number-level value is implied, the value is 1 by default.
+        public int Number { get { return number; } }
+
+        private int spread;
+        public int Spread { get { return spread; } } // Spread values are measured in tenths; those at the start of a crescendo wedge or end of a diminuendo wedge are ignored.
+
         private WedgeElement(XmlNode node)
         {
             // Attributes. 
             foreach (XmlAttribute a in node.Attributes)
             {
-                if (a.Name == "type")
+                switch (a.Name)
                 {
-                    switch (a.Value)
-                    {
-                        case "diminuendo": wedge = WedgeEnum.diminuendo;  break;
-                        case "crescendo": wedge = WedgeEnum.crescendo; break;
-                        case "stop": wedge = WedgeEnum.stopWwedge; break;
-                        case "continue": wedge = WedgeEnum.continueWedge; break;
-                        default: Logger.LogCF(string.Format("Unknown attribute value={0}", a.Value)); break;
-                    }
-                }
-                else
-                {
-                    Logger.LogCF(string.Format("Unknown attribute name={0}", a.Name)); break;
+                    case "type":
+                        switch (a.Value)
+                        {
+                            case "diminuendo": wedge = WedgeEnum.diminuendo; break;
+                            case "crescendo": wedge = WedgeEnum.crescendo; break;
+                            case "stop": wedge = WedgeEnum.stopWwedge; break;
+                            case "continue": wedge = WedgeEnum.continueWedge; break;
+                            default: Logger.LogCF(string.Format("Unknown attribute value={0}", a.Value)); break;
+                        }
+                        break;
+                    case "number": number = int.Parse(a.Value); break; // When a number-level value is implied, the value is 1 by default.
+                    case "spread": spread = int.Parse(a.Value); break; 
+                    default: Logger.LogCF(string.Format("Unknown attribute name={0}", a.Name)); break;
                 }
             }
 
