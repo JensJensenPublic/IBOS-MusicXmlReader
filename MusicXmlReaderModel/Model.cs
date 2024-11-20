@@ -6,6 +6,7 @@ using System.Xml;
 using JSJ.ScreenReaderAPI;
 using System.Text;
 using System.Reflection;
+using PlatformDependencies;
 
 namespace MusicXmlReaderModel
 {
@@ -63,6 +64,22 @@ namespace MusicXmlReaderModel
 
         private string latestStatusInformation = "";
         public string LatestStatusInformation { get => latestStatusInformation; set => latestStatusInformation = value; }
+
+        public bool RegisterForFileExtension(string extension, string applicationPath)
+        {
+            try
+            {
+                StaticFunctions.RegisterForFileExtension(extension, applicationPath);
+                Logger.LogCF(string.Format("({0},{1} succeeded)",extension,applicationPath));
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.LogCF(string.Format("({0},{1} failed:)", extension, applicationPath));
+                Logger.LogCFE(e);
+                return false;
+            }
+        }
 
         #region Configuration
         // The following configuration values are found in App.Config for the main .Exe program

@@ -693,6 +693,14 @@ namespace MusicXmlReader
             model.Speak(text); 
         }
 
+
+        private void associateWithMusicXmlFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            bool b = model.RegisterForFileExtension(".musicxml", executingAssemblyFullPath);        // The initial "." is needed!     
+        }
+
+
         private void generateGraphicInformationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             model.ExternalToolsHandler.GenerateGraphicInformation(model.TheMusicXmlFileName, model.Defaults, model.EventDescriptionList);

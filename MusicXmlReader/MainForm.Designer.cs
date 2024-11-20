@@ -51,6 +51,7 @@
             this.copyMusicBrailleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportLyricsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -156,7 +157,7 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
-            this.exportLyricsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.associateWithMusicXmlFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -362,6 +363,13 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // exportLyricsToolStripMenuItem
+            // 
+            this.exportLyricsToolStripMenuItem.Name = "exportLyricsToolStripMenuItem";
+            this.exportLyricsToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.exportLyricsToolStripMenuItem.Text = "Export Lyrics";
+            this.exportLyricsToolStripMenuItem.Click += new System.EventHandler(this.exportLyricsToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -612,7 +620,8 @@
             this.analyzeLocalizationToolStripMenuItem,
             this.logControlpositionsToolStripMenuItem,
             this.sayBottolLineOfWindowToolStripMenuItem,
-            this.sayStatuslineToolStripMenuItem});
+            this.sayStatuslineToolStripMenuItem,
+            this.associateWithMusicXmlFilesToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -1205,12 +1214,12 @@
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
             // 
-            // exportLyricsToolStripMenuItem
+            // associateWithMusicXmlFilesToolStripMenuItem
             // 
-            this.exportLyricsToolStripMenuItem.Name = "exportLyricsToolStripMenuItem";
-            this.exportLyricsToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
-            this.exportLyricsToolStripMenuItem.Text = "Export Lyrics";
-            this.exportLyricsToolStripMenuItem.Click += new System.EventHandler(this.exportLyricsToolStripMenuItem_Click);
+            this.associateWithMusicXmlFilesToolStripMenuItem.Name = "associateWithMusicXmlFilesToolStripMenuItem";
+            this.associateWithMusicXmlFilesToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.associateWithMusicXmlFilesToolStripMenuItem.Text = "Associate with .MusicXml files";
+            this.associateWithMusicXmlFilesToolStripMenuItem.Click += new System.EventHandler(this.associateWithMusicXmlFilesToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1371,6 +1380,7 @@
         private System.Windows.Forms.ToolStripMenuItem viewDirectoryToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem sayStatuslineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportLyricsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem associateWithMusicXmlFilesToolStripMenuItem;
     }
 }
 

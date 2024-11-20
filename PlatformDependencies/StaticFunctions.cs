@@ -67,7 +67,20 @@ namespace PlatformDependencies
 #endif
         }
 
-
+        /// <summary>
+        /// Associate the estension with the application
+        /// </summary>
+        /// <param name="extension"></param>
+        /// <param name="applicationPath"></param>
+        /// <returns></returns>
+        public static void RegisterForFileExtension(string extension, string applicationPath)
+        {
+#if Windows
+            NativeMethods.RegisterForFileExtension(extension, applicationPath);
+#elif android
+#else
+#error Compiling for unknown platform
+#endif
+        }
     }
-
 }

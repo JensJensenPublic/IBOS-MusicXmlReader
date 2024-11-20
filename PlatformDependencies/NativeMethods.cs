@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -66,7 +67,27 @@ namespace PlatformDependencies
         [DllImport("kernel32.dll")]
         private static extern int FormatMessage(int dwFlags, IntPtr lpSource, int dwMessageId,
         int dwLanguageId, StringBuilder lpBuffer, int nSize, IntPtr Arguments);
-#endregion
+        #endregion
+
+        #region RegisterForFileExtension
+
+        // Link:
+        // c# - Associate File Extension with Application - Stack Overflow
+        //
+
+        internal static void RegisterForFileExtension(string extension, string applicationPath)
+        {
+                RegistryKey FileReg = Registry.CurrentUser.CreateSubKey("Software\\Classes\\" + extension);
+                FileReg.CreateSubKey("shell\\open\\command").SetValue("", $"\"{applicationPath}\" \"%1\"");
+                FileReg.Close();
+                SHChangeNotify(0x08000000, 0x0000, IntPtr.Zero, IntPtr.Zero);
+        }
+        [DllImport("shell32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern void SHChangeNotify(uint wEventId, uint uFlags, IntPtr dwItem1, IntPtr dwItem2);
+
+
+        #endregion
+
 
     }
 }
