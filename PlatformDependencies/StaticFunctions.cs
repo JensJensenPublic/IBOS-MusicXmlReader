@@ -96,11 +96,19 @@ namespace PlatformDependencies
 #if Windows   
   
             List<string> result = new List<string>();
-            RegistryKey FileReg;
-            
-            FileReg = Registry.CurrentUser.CreateSubKey("Software\\Classes\\" + extension);
-            string HKCU_value = FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
-            FileReg.Close();
+            RegistryKey FileReg = null;
+
+            string HKCU_value = "";
+            try
+            {
+                FileReg = Registry.CurrentUser.CreateSubKey("Software\\Classes\\" + extension);
+                HKCU_value = FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
+            }
+            catch (Exception e)
+            {
+                HKCU_value = "Can not be read! Message=" + e.Message;
+            }
+            if (null != FileReg) {FileReg.Close();}
 
             string HKLM_value = "";
             try
@@ -110,13 +118,23 @@ namespace PlatformDependencies
             }
             catch (Exception e)
             {
-                HKLM_value = "Can not be read! Requires administrative rights! Message=" + e.Message;
+                HKLM_value = "Can not be read! Message=" + e.Message;
             }
-            FileReg.Close();
+            if (null != FileReg) { FileReg.Close(); }
 
-            FileReg = Registry.ClassesRoot.CreateSubKey("" + extension);
-            string HKCR_value = FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
-            FileReg.Close();
+
+            string HKCR_value = "";
+            try
+            {
+                FileReg = Registry.ClassesRoot.CreateSubKey("" + extension);
+                HKCR_value = FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
+            }
+            catch (Exception e)
+            {
+                HKCR_value = "Can not be read! Message=" + e.Message;
+            }
+            if (null != FileReg) { FileReg.Close(); }
+      
 
             result.Add("HKCU: " + HKCU_value);
             result.Add("HKLM: " + HKLM_value);
