@@ -33,6 +33,7 @@ namespace MusicXmlReader
         string myMusicXmlDirectory; // Default location for MusicXml files belonging to thos user. Will be populated with sample files!
         private OrganisationDependencies organisationDependencies;
         private bool is64Bit = (IntPtr.Size == 8);
+        private Version assemblyVersion;
 
         Model model;        // The Model containing all of the business logic.
 
@@ -56,6 +57,7 @@ namespace MusicXmlReader
                 UiUtilities.Beep(); // To easily check if the Beep() function works as expected!
                 executingAssemblyFullPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
                 executingAssemblyShortName = System.IO.Path.GetFileNameWithoutExtension(executingAssemblyFullPath);
+                assemblyVersion = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
                 arguments = Environment.GetCommandLineArgs();
                 InitializeComponent();
                 Logger.Open(null); // null => Use the default logfile name
@@ -131,7 +133,7 @@ namespace MusicXmlReader
                 brailleMusicExportHandler = BrailleMusicExportHandler.Create(model, parameterInputHandler, messageHandler, saveBrailleFileDialog, developerMode, userPreferencesHandler);
                 embosserHandler = EmbosserHandler.Create(this.openFileDialog, this.printDialog, this.applicationName);
 
-                this.Text = applicationName;
+                this.Text = applicationName + " " + assemblyVersion.ToString();
                 WriteStatusInformation(model.ScreenReaderName);
 
                 // XCopy MusicXml samples from the "MusicXml samples" directory in the installation files to myMusicXmlDirectory during first activation ! 

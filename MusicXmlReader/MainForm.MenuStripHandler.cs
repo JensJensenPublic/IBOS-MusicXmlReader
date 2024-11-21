@@ -380,9 +380,9 @@ namespace MusicXmlReader
         #region Help
         private void aboutIBOSMusicXmlReaderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Version version = System.Reflection.Assembly.GetEntryAssembly().GetName().Version;
+         
             string caption = applicationName;
-            string text = string.Format("{0}={1}", ResourcesForUI.ToolStripMenuItem_Help_About_Version, version.ToString());
+            string text = string.Format("{0}={1}", ResourcesForUI.ToolStripMenuItem_Help_About_Version, assemblyVersion.ToString());
             switch (model.ScreenReaderName)
             {
                 case "JAWS": break; // JAWS is the default screenreader
