@@ -242,12 +242,13 @@ namespace MusicXmlReader
         /// Defines the contents of the title-line
         /// </summary>
         /// <returns></returns>
-        public static string GetTitleInfo(string applicationName,Model model)
+        public static string GetTitleInfo(string applicationName,Version assemblyVersion,Model model)
         {
-            string result = string.Format("{0}  {1}  {2}"
+            string result = string.Format("{0}  {1}  {2}  {3}"
                                             , applicationName // 0
-                                            , model.MetaInformation.FileName // 1
-                                            , model.MetaInformation.MovementTitle // 2
+                                            , assemblyVersion.ToString() // 1
+                                            , model.MetaInformation.FileName // 2
+                                            , model.MetaInformation.MovementTitle // 3
                                             );
             return result;
         }

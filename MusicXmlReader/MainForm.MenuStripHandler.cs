@@ -239,7 +239,7 @@ namespace MusicXmlReader
             }
 
             Logger.DumpStatistics(); // Dump all statistics collected by LogOnce() during parsing, interpreting and rendering the file
-            this.Text = UiUtilities.GetTitleInfo(applicationName, model);
+            this.Text = UiUtilities.GetTitleInfo(applicationName, assemblyVersion,  model);
             model.SetUserTempo(100); // Play at 100% of tempo specified in MusicXml file
             return true;
         }
@@ -704,10 +704,11 @@ namespace MusicXmlReader
             return result.ToString();
         }
 
+        const string extension = ".musicxml"; // The initial "." is needed!
 
         private void associateWithMusicXmlFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string extension = ".musicxml"; // The initial "." is needed!
+         
             List<string> before = model.GetAssociationInformation(extension);
             Logger.LogCF(string.Format(": Before:{0}", ToString(before)));
             bool b = model.RegisterForFileExtension(extension, executingAssemblyFullPath);
@@ -715,6 +716,11 @@ namespace MusicXmlReader
             Logger.LogCF(string.Format(": After:{0}", ToString(after)));
         }
 
+        private void logFileassociationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<string> before = model.GetAssociationInformation(extension);
+            Logger.LogCF(string.Format(":{0}", ToString(before)));
+        }
 
         private void generateGraphicInformationToolStripMenuItem_Click(object sender, EventArgs e)
         {
