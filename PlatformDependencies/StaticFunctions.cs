@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -82,5 +83,51 @@ namespace PlatformDependencies
 #error Compiling for unknown platform
 #endif
         }
+
+
+        /// <summary>
+        /// Primarily for debugging: 
+        /// Lists the assocations for a given file extension, as found in CurrentUser, LocalMAchine and ClassesRoot
+        /// </summary>
+        /// <param name="extension">The extension to look for</param>
+        /// <returns></returns>
+        public static List<string> GetAssociationInformation(string extension)
+        {
+#if Windows   
+  
+            List<string> result = new List<string>();
+            RegistryKey FileReg;
+            
+            FileReg = Registry.CurrentUser.CreateSubKey("Software\\Classes\\" + extension);
+            string HKCU_value = FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
+            FileReg.Close();
+
+            string HKLM_value = "";
+            try
+            {
+                FileReg = Registry.LocalMachine.CreateSubKey("Software\\Classes\\" + extension); 
+                HKLM_value = FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
+            }
+            catch (Exception e)
+            {
+                HKLM_value = "Can not be read! Requires administrative rights! Message=" + e.Message;
+            }
+            FileReg.Close();
+
+            FileReg = Registry.ClassesRoot.CreateSubKey("" + extension);
+            string HKCR_value = FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
+            FileReg.Close();
+
+            result.Add("HKCU: " + HKCU_value);
+            result.Add("HKLM: " + HKLM_value);
+            result.Add("HKCR: " + HKCR_value);
+            return result;
+        }
+#elif android
+return  new List<string>();;
+#else
+#error Compiling for unknown platform
+#endif
     }
+
 }

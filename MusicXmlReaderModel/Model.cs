@@ -81,6 +81,18 @@ namespace MusicXmlReaderModel
             }
         }
 
+        /// <summary>
+        /// Primarily for debugging !!
+        /// </summary>
+        /// <param name="extension"></param>
+        /// <returns></returns>
+        public List<string> GetAssociationInformation(string extension)
+        {
+            return StaticFunctions.GetAssociationInformation(extension);
+        }
+            
+
+
         #region Configuration
         // The following configuration values are found in App.Config for the main .Exe program
 

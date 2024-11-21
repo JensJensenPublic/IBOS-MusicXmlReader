@@ -693,11 +693,26 @@ namespace MusicXmlReader
             model.Speak(text); 
         }
 
+        private string ToString(List<string> strings)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach  (string s in strings)
+            {
+                result.Append("\r\n  ");
+                result.Append(s);                
+            }
+            return result.ToString();
+        }
+
 
         private void associateWithMusicXmlFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            bool b = model.RegisterForFileExtension(".musicxml", executingAssemblyFullPath);        // The initial "." is needed!     
+            string extension = ".musicxml"; // The initial "." is needed!
+            List<string> before = model.GetAssociationInformation(extension);
+            Logger.LogCF(string.Format(": Before:{0}", ToString(before)));
+            bool b = model.RegisterForFileExtension(extension, executingAssemblyFullPath);
+            List<string> after = model.GetAssociationInformation(extension);
+            Logger.LogCF(string.Format(": After:{0}", ToString(after)));
         }
 
 
