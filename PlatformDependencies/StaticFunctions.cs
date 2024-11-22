@@ -77,7 +77,8 @@ namespace PlatformDependencies
         public static void RegisterForFileExtension(string extension, string applicationPath)
         {
 #if Windows
-            NativeMethods.RegisterForFileExtension(extension, applicationPath);
+            NativeMethods.AssociateFileExtension(extension, "IBOS_MusicXmlReader", applicationPath);
+            //NativeMethods.RegisterForFileExtension(extension, applicationPath);
 #elif android
 #else
 #error Compiling for unknown platform

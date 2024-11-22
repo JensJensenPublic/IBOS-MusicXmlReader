@@ -88,6 +88,7 @@ namespace MusicXmlReaderModel
         /// <returns></returns>
         public List<string> GetAssociationInformation(string extension)
         {
+            return new List<string>();
             return StaticFunctions.GetAssociationInformation(extension);
         }
             
