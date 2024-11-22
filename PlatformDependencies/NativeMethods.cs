@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PlatformDependencies
 {
-    internal class NativeMethods
+    public class NativeMethods
     {
 #if false
 #region FSBrlDspAPI

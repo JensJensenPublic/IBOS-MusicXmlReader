@@ -110,6 +110,7 @@
     <Compile Include="Elements\WedgeElement.cs" />
     <Compile Include="Elements\WordsElement.cs" />
     <Compile Include="Exceptions.cs" />
+    <Compile Include="FileAssociations.cs" />
     <Compile Include="IDecoderUiClient.cs" />
     <Compile Include="IntegerFraction.cs" />
     <Compile Include="KnownFolders.cs" />

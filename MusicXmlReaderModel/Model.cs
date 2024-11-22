@@ -69,7 +69,7 @@ namespace MusicXmlReaderModel
         {
             try
             {
-                StaticFunctions.RegisterForFileExtension(extension, "IBOS_MusicXmlReader",applicationPath);
+                FileAssociations.RegisterForFileExtension(extension, "IBOS_MusicXmlReader",applicationPath);
                 Logger.LogCF(string.Format("({0},{1} succeeded)",extension,applicationPath));
                 return true;
             }
@@ -89,7 +89,7 @@ namespace MusicXmlReaderModel
         public List<string> GetAssociationInformation(string extension)
         {
             return new List<string>();
-            return StaticFunctions.GetAssociationInformation(extension);
+            return FileAssociations.GetAssociationInformation(extension);
         }
             
 
