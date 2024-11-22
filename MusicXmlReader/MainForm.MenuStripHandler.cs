@@ -706,19 +706,21 @@ namespace MusicXmlReader
 
         const string extension = ".musicxml"; // The initial "." is needed!
 
+        const string progId = "IBOS_MusicXmlReader";
+
         private void associateWithMusicXmlFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
          
-            List<string> before = model.GetAssociationInformation(extension);
+            List<string> before = model.GetAssociationInformation(progId);
             Logger.LogCF(string.Format(": Before:{0}", ToString(before)));
             bool b = model.RegisterForFileExtension(extension, executingAssemblyFullPath);
-            List<string> after = model.GetAssociationInformation(extension);
+            List<string> after = model.GetAssociationInformation(progId);
             Logger.LogCF(string.Format(": After:{0}", ToString(after)));
         }
 
         private void logFileassociationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<string> before = model.GetAssociationInformation(extension);
+            List<string> before = model.GetAssociationInformation(progId);
             Logger.LogCF(string.Format(":{0}", ToString(before)));
         }
 

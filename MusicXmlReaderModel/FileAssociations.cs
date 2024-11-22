@@ -16,16 +16,17 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="extension">The extension to look for</param>
         /// <returns></returns>
-        public static List<string> GetAssociationInformation(string extension)
+        public static List<string> GetAssociationInformation(string progId)
         {
             List<string> result = new List<string>();
             RegistryKey FileReg = null;
 
+ 
             string HKCU_value = "";
             try
             {
-                FileReg = Registry.CurrentUser.CreateSubKey("Software\\Classes\\" + extension);
-                HKCU_value = FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
+                FileReg = Registry.CurrentUser.CreateSubKey("Software\\Classes\\" + progId);
+                HKCU_value = FileReg.Name + " = " + FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
             }
             catch (Exception e)
             {
@@ -36,8 +37,8 @@ namespace MusicXmlReaderModel
             string HKLM_value = "";
             try
             {
-                FileReg = Registry.LocalMachine.CreateSubKey("Software\\Classes\\" + extension);
-                HKLM_value = FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
+                FileReg = Registry.LocalMachine.CreateSubKey("Software\\Classes\\" + progId);
+                HKLM_value = FileReg.Name + " = " + FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
             }
             catch (Exception e)
             {
@@ -49,8 +50,8 @@ namespace MusicXmlReaderModel
             string HKCR_value = "";
             try
             {
-                FileReg = Registry.ClassesRoot.CreateSubKey("" + extension);
-                HKCR_value = FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
+                FileReg = Registry.ClassesRoot.CreateSubKey("" + progId);
+                HKCR_value = FileReg.Name + " = " + FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
             }
             catch (Exception e)
             {

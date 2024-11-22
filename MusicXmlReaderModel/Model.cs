@@ -86,10 +86,9 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="extension"></param>
         /// <returns></returns>
-        public List<string> GetAssociationInformation(string extension)
-        {
-            return new List<string>();
-            return FileAssociations.GetAssociationInformation(extension);
+        public List<string> GetAssociationInformation(string progId)
+        {        
+            return FileAssociations.GetAssociationInformation(progId);
         }
             
 
