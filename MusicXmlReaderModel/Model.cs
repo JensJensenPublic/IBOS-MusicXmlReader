@@ -69,7 +69,7 @@ namespace MusicXmlReaderModel
         {
             try
             {
-                StaticFunctions.RegisterForFileExtension(extension, applicationPath);
+                StaticFunctions.RegisterForFileExtension(extension, "IBOS_MusicXmlReader",applicationPath);
                 Logger.LogCF(string.Format("({0},{1} succeeded)",extension,applicationPath));
                 return true;
             }
