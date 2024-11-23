@@ -65,17 +65,17 @@ namespace MusicXmlReaderModel
         private string latestStatusInformation = "";
         public string LatestStatusInformation { get => latestStatusInformation; set => latestStatusInformation = value; }
 
-        public bool RegisterForFileExtension(string extension, string applicationPath)
+        public bool RegisterForFileExtension(string extension, string progId,string applicationPath)
         {
             try
             {
-                FileAssociations.RegisterForFileExtension(extension, "IBOS_MusicXmlReader",applicationPath);
-                Logger.LogCF(string.Format("({0},{1} succeeded)",extension,applicationPath));
+                FileAssociations.RegisterForFileExtension(extension, progId,applicationPath);
+                Logger.LogCF(string.Format("({0},{1},{2} succeeded)",extension,progId,applicationPath));
                 return true;
             }
             catch (Exception e)
             {
-                Logger.LogCF(string.Format("({0},{1} failed:)", extension, applicationPath));
+                Logger.LogCF(string.Format("({0},{1},{2} failed:)", extension, progId,applicationPath));
                 Logger.LogCFE(e);
                 return false;
             }
