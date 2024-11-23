@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
+using NAudio.Gui;
 using PlatformDependencies;
+using static MusicXmlReaderModel.BrailleBuilderForMusic;
 
 namespace MusicXmlReaderModel
 {
@@ -95,8 +99,35 @@ namespace MusicXmlReaderModel
             FileReg.CreateSubKey("shell\\open\\command").SetValue("", $"\"{applicationPath}\" \"%1\"");
             FileReg.Close();
 #endif
+            DeleteExplorerAssociation(extension); // See comment below
             NativeMethods.ShellChangeNotify();
         }
+
+
+        /// <summary>
+        /// Another method inspired by 
+        ///  https://stackoverflow.com/questions/2681878/associate-file-extension-with-application/2697804#2697804
+        /// where the author says:
+        /// "The answer was a lot simpler than I expected.
+        ///  Windows Explorer has its own override for the open with application, and I was trying to modify it in the last lines of code.
+        ///  If you just delete the Explorer override, then the file association will work.
+        ///  I also told explorer that I had changed a file association by calling the unmanaged function"
+        /// </summary>
+        /// <param name="Extension"></param>
+        public static void DeleteExplorerAssociation(string Extension)
+        {
+            // The stuff that was above here is basically the same
+
+            // Delete the key instead of trying to change it
+            var CurrentUser = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + Extension, true);
+            CurrentUser.DeleteSubKey("UserChoice", false);
+            CurrentUser.Close();
+
+            // Tell explorer the file association has been changed
+            NativeMethods.ShellChangeNotify();
+        }
+
+
 
     }
 }
