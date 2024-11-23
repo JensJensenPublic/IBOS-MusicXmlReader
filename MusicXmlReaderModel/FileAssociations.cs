@@ -99,7 +99,7 @@ namespace MusicXmlReaderModel
             FileReg.CreateSubKey("shell\\open\\command").SetValue("", $"\"{applicationPath}\" \"%1\"");
             FileReg.Close();
 #endif
-            DeleteExplorerAssociation(extension); // See comment below
+            ChangeExplorerAssociation(extension,progId); // See comment below
             NativeMethods.ShellChangeNotify();
         }
 
@@ -114,13 +114,16 @@ namespace MusicXmlReaderModel
         ///  I also told explorer that I had changed a file association by calling the unmanaged function"
         /// </summary>
         /// <param name="Extension"></param>
-        public static void DeleteExplorerAssociation(string Extension)
+        public static void ChangeExplorerAssociation(string Extension,string progId)
         {
             // The stuff that was above here is basically the same
+
 
             // Delete the key instead of trying to change it
             var CurrentUser = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + Extension, true);
             CurrentUser.DeleteSubKey("UserChoice", false);
+            // Create a new subkey 
+            CurrentUser.CreateSubKey("UserChoise").SetValue("",progId);
             CurrentUser.Close();
 
             // Tell explorer the file association has been changed
