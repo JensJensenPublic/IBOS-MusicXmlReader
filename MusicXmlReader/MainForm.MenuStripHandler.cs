@@ -717,22 +717,29 @@ namespace MusicXmlReader
 
         private void associateInstalledVersionWithMusicXmlFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {   
-            if (!File.Exists(installedVersionFullPath))
-            {
-                Logger.LogCF(string.Format(": File {0} not found!", installedVersionFullPath));
-#warning decide how to report this error! 
-                return;            
-            }
+        
             Associate(musicXmlExtension, progIdInstalled, installedVersionFullPath);          
         }
 
-        private void Associate(string extension, string progId, string installedVersionFullPath)
+#warning todo Localize Associate
+        private void Associate(string extension, string progId, string applicationExeFullPath)
         {
-            List<string> before = model.GetAssociationInformation(progId);
-            Logger.LogCF(string.Format(": Before:{0}", ToString(before)));
-            bool b = model.RegisterForFileExtension(extension, progId,installedVersionFullPath);
-            List<string> after = model.GetAssociationInformation(progId);
-            Logger.LogCF(string.Format(": After:{0}", ToString(after)));
+            bool result = false;
+            if (!File.Exists(applicationExeFullPath))
+            {
+                Logger.LogCF(string.Format(": File {0} not found!", installedVersionFullPath));
+            }
+            else
+            {
+                List<string> before = model.GetAssociationInformation(progId);
+                Logger.LogCF(string.Format(": Before:{0}", ToString(before)));
+                result = model.RegisterForFileExtension(extension, progId, applicationExeFullPath);
+                List<string> after = model.GetAssociationInformation(progId);
+                Logger.LogCF(string.Format(": After:{0}", ToString(after)));               
+            }
+            MessageBoxIcon icon = result ? MessageBoxIcon.Information : MessageBoxIcon.Error;   
+            string message = string.Format("Association of extension '{0}' {1}", extension, result ? "succeeded." : "failed!");
+            MessageBox.Show(message, applicationName, MessageBoxButtons.OK, icon);           
         }
 
         private void logFileassociationsToolStripMenuItem_Click(object sender, EventArgs e)

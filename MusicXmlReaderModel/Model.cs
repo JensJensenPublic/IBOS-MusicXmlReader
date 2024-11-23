@@ -67,15 +67,17 @@ namespace MusicXmlReaderModel
 
         public bool RegisterForFileExtension(string extension, string progId,string applicationPath)
         {
+            string commonFormat = "('{0}','{1}','{2}') {3}";
+            Logger.LogCF(string.Format( commonFormat, extension, progId, applicationPath, "started"));
             try
             {
                 FileAssociations.RegisterForFileExtension(extension, progId,applicationPath);
-                Logger.LogCF(string.Format("({0},{1},{2} succeeded)",extension,progId,applicationPath));
+                Logger.LogCF(string.Format(commonFormat ,extension,progId,applicationPath, "succeeded"));
                 return true;
             }
             catch (Exception e)
             {
-                Logger.LogCF(string.Format("({0},{1},{2} failed:)", extension, progId,applicationPath));
+                Logger.LogCF(string.Format(commonFormat , extension, progId,applicationPath, "failed"));
                 Logger.LogCFE(e);
                 return false;
             }
