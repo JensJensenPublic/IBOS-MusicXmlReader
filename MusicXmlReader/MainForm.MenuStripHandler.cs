@@ -707,15 +707,39 @@ namespace MusicXmlReader
         const string musicXmlExtension = ".musicxml"; // The initial "." is needed!
         const string progIdInstalled = "IBOS_MusicXmlReader";
         const string progIdDebug = "IBOS_MusicXmlReader.Debug";
-        const string installedVersionFullPath = @"C:\Program Files(x86)\IBOS MusicXmlReader\IBOS MusicXmlReader.exe";
-
+        const string installedVersionFullPath = "C:\\Program Files (x86)\\IBOS MusicXmlReader\\IBOS MusicXmlReader.exe";
+ 
         private void associateWithMusicXmlFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Associate(musicXmlExtension, progIdDebug, executingAssemblyFullPath);           
         }
 
         private void associateInstalledVersionWithMusicXmlFilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {          
+        {
+            //string dir;
+            //dir = "C:\\Program Files (x86)";
+            //if (!Directory.Exists(dir))
+            //{
+            //    Logger.LogCF(string.Format(": Directory {0} not found!", dir));
+            //}
+
+            //dir = "C:\\Program Files (x86)\\IBOS MusicXmlReader";
+            //if (!Directory.Exists(dir))
+            //{
+            //    Logger.LogCF(string.Format(": Directory {0} not found!", dir));
+            //}
+
+            //dir = Path.GetDirectoryName(installedVersionFullPath);
+            //if (!Directory.Exists(dir))
+            //{
+            //    Logger.LogCF(string.Format(": Directory {0} not found!", dir));
+            //    return;
+            //};
+            if (!File.Exists(installedVersionFullPath))
+            {
+                Logger.LogCF(string.Format(": File {0} not found!", installedVersionFullPath));
+                return;            
+            }
             Associate(musicXmlExtension, progIdInstalled, installedVersionFullPath);          
         }
 
