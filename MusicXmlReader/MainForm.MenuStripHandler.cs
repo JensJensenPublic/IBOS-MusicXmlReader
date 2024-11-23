@@ -709,11 +709,22 @@ namespace MusicXmlReader
         const string progId = "IBOS_MusicXmlReader";
 
         private void associateWithMusicXmlFilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-         
+        {         
             List<string> before = model.GetAssociationInformation(progId);
             Logger.LogCF(string.Format(": Before:{0}", ToString(before)));
             bool b = model.RegisterForFileExtension(extension, executingAssemblyFullPath);
+            List<string> after = model.GetAssociationInformation(progId);
+            Logger.LogCF(string.Format(": After:{0}", ToString(after)));
+        }
+
+#warning todo refactor methods above and below !
+
+        private void associateInstalledVersionWithMusicXmlFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            const string installedVersionFullPath = @"C:\Program Files(x86)\IBOS MusicXmlReader\IBOS MusicXmlReader.exe";
+            List<string> before = model.GetAssociationInformation(progId);
+            Logger.LogCF(string.Format(": Before:{0}", ToString(before)));
+            bool b = model.RegisterForFileExtension(extension, installedVersionFullPath);
             List<string> after = model.GetAssociationInformation(progId);
             Logger.LogCF(string.Format(": After:{0}", ToString(after)));
         }
