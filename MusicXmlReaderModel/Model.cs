@@ -92,7 +92,11 @@ namespace MusicXmlReaderModel
         {        
             return FileAssociations.GetAssociationInformation(progId);
         }
-            
+
+        public void GetAssociationInformation(string extension,string progId)
+        {
+            FileAssociations.GetAssociationInformation(extension,progId);
+        }
 
 
         #region Configuration

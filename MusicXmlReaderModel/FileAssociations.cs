@@ -70,6 +70,28 @@ namespace MusicXmlReaderModel
             return result;
         }
 
+        public static void GetAssociationInformation(string extension, string progId)
+        {
+            List<string> result = new List<string>();   // Not used anymore
+            string value = string.Empty;
+
+            RegistryKey key = Registry.CurrentUser.CreateSubKey($"Software\\Classes\\{extension}");
+            value=key.GetValue("").ToString();
+            Logger.Log(string.Format(": KeyName={0} KeyValue={1}", key.Name, value));
+            key.Close();
+
+            RegistryKey progIdKey = Registry.CurrentUser.CreateSubKey($"Software\\Classes\\{progId}");
+            value=(progIdKey.GetValue("").ToString());
+            Logger.Log(string.Format(": KeyName={0} KeyValue={1}", progIdKey.Name, value));
+  
+            RegistryKey commandKey = progIdKey.CreateSubKey(@"shell\open\command");
+            value = commandKey.GetValue("").ToString();
+            Logger.Log(string.Format(": KeyName={0} KeyValue={1}", commandKey.Name, value));
+
+            progIdKey.Close();
+            commandKey.Close();
+        }
+
 
         /// <summary>
         /// Associate the extension with the application
@@ -92,6 +114,7 @@ namespace MusicXmlReaderModel
             // Create a new key for the application
             RegistryKey commandKey = progIdKey.CreateSubKey(@"shell\open\command");
             commandKey.SetValue("", $"\"{applicationPath}\" \"%1\"");
+#warning todo close all keys !
 #else
             // Older method
             //  // c# - Associate File Extension with Application - Stack Overflow
