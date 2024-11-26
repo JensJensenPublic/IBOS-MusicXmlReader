@@ -12,6 +12,31 @@ using static MusicXmlReaderModel.BrailleBuilderForMusic;
 
 namespace MusicXmlReaderModel
 {
+    /// <summary>
+    /// Class for setting up filetype associations allowing the end user to open the MusicXmlReader applicationby clicking ant .musicxml file.
+    /// Note that these operations do NOT require administrative rights!
+    /// The following information assumes that the following parameters are used:
+    ///  extension=         ".musicxml" 
+    ///  progId=            "IBOS MusicXmlReader" 
+    ///  applicationPath =  "C:\Program Files (x86)\IBOS MusicXmlReader\IBOS MusicXmlReader.exe"
+    ///  
+    /// Manipulates and inspects a number of registry keys, all subkeys to HKEY_CURRENT_USER\SOFTWARE:
+    /// 
+    ///  \Classes:                              Creates subkey ".musicxml\shell\open\command" if not already found.
+    ///  \Classes\.musicxml:                    Changes standard value to "IBOS MusicXmlReader"
+    ///  \Classes\.musicxml\shell\open\command: Changes standard value to "C:\Program Files (x86)\IBOS MusicXmlReader\IBOS MusicXmlReader.exe" "%1"
+    ///  
+    ///  \Classes:                                          Creates subkey "IBOS_MusicXmlReader\shell\open\command" if not already found
+    ///  \Classes\IBOS_MusicXmlReader:                      Changes standard value to ""
+    ///  \Classes\IBOS_MusicXmlReader\shell\open\command:   Changes standard value to "C:\Program Files (x86)\IBOS MusicXmlReader\IBOS MusicXmlReader.exe" "%1"
+    ///  
+    ///  \Microsoft\Windows\CurrentVersion\Explorer\FileExts\.musicxml: Deletes subkey "UserChoise"   
+    /// 
+    /// The changes below HKEY_CURRENT_USER\SOFTWARE\Classes will map the ".musicxml" extension to progId="IBOS_MusicXmlReader" and to the default installation path for MusicXmlReader.exe.
+    /// The changes below HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.musicxml will force Windows Explorer to recalculate the association for ".musicxml" files.
+    /// 
+    /// After each change NativeMethods.ShellChangeNotify() is called in order to notify the shall that changes have been made.
+    /// </summary>
     internal class FileAssociations
     {
  
@@ -113,7 +138,7 @@ namespace MusicXmlReaderModel
 
 
         /// <summary>
-        /// The plase where Windows Explorer casches information about User expensin preferences!
+        /// The place where Windows Explorer casches information about User expensin preferences!
         /// </summary>
         private const string ExplorerFileExtsKeyName = "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\";
         private const string UserChoiseSubKeyName = "UserChoice";
