@@ -732,9 +732,9 @@ namespace MusicXmlReader
             }
             else
             {
-                model.GetAssociationInformation(extension,progId);  
+                model.LogAssociationInformation(extension,progId);  
                 result = model.RegisterForFileExtension(extension, progId, applicationExeFullPath);
-                model.GetAssociationInformation(extension,progId);              
+                model.LogAssociationInformation(extension,progId);              
             }
             MessageBoxIcon icon = result ? MessageBoxIcon.Information : MessageBoxIcon.Error;   
             string message = string.Format("Association of extension '{0}' {1}", extension, result ? "succeeded." : "failed!");
@@ -744,10 +744,10 @@ namespace MusicXmlReader
 
         private void logFileassociationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<string> beforeInstalled = model.GetAssociationInformation(progIdInstalled);
-            Logger.LogCF(string.Format(":{0}", ToString(beforeInstalled)));
-            List<string> beforeDebug = model.GetAssociationInformation(progIdDebug);
-            Logger.LogCF(string.Format(":{0}", ToString(beforeDebug)));
+            Logger.LogCF(":+");
+            model.LogAssociationInformation(musicXmlExtension, progIdInstalled);
+            model.LogAssociationInformation(musicXmlExtension, progIdDebug);
+            Logger.LogCF(":+");
         }
 
         private void generateGraphicInformationToolStripMenuItem_Click(object sender, EventArgs e)

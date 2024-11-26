@@ -83,17 +83,8 @@ namespace MusicXmlReaderModel
             }
         }
 
-        /// <summary>
-        /// Primarily for debugging !!
-        /// </summary>
-        /// <param name="extension"></param>
-        /// <returns></returns>
-        public List<string> GetAssociationInformation(string progId)
-        {        
-            return FileAssociations.GetAssociationInformation(progId);
-        }
-
-        public void GetAssociationInformation(string extension,string progId)
+ 
+        public void LogAssociationInformation(string extension,string progId)
         {
             FileAssociations.LogAssociationInformation(extension,progId);
         }
