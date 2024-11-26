@@ -14,62 +14,7 @@ namespace MusicXmlReaderModel
 {
     internal class FileAssociations
     {
-        ///// <summary>
-        ///// Primarily for debugging: 
-        ///// Lists the assocations for a given file extension, as found in CurrentUser, LocalMAchine and ClassesRoot
-        ///// </summary>
-        ///// <param name="extension">The extension to look for</param>
-        ///// <returns></returns>
-        //public static List<string> GetAssociationInformation(string progId)
-        //{
-        //    List<string> result = new List<string>();
-        //    RegistryKey FileReg = null;
-
  
-        //    string HKCU_value = "";
-        //    try
-        //    {
-        //        FileReg = Registry.CurrentUser.CreateSubKey("Software\\Classes\\" + progId);
-        //        HKCU_value = FileReg.Name + " = " + FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        HKCU_value = "Can not be read! Message=" + e.Message;
-        //    }
-        //    if (null != FileReg) { FileReg.Close(); }
-
-        //    string HKLM_value = "";
-        //    try
-        //    {
-        //        FileReg = Registry.LocalMachine.CreateSubKey("Software\\Classes\\" + progId);
-        //        HKLM_value = FileReg.Name + " = " + FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        HKLM_value = "Can not be read! Message=" + e.Message;
-        //    }
-        //    if (null != FileReg) { FileReg.Close(); }
-
-
-        //    string HKCR_value = "";
-        //    try
-        //    {
-        //        FileReg = Registry.ClassesRoot.CreateSubKey("" + progId);
-        //        HKCR_value = FileReg.Name + " = " + FileReg.OpenSubKey("shell\\open\\command").GetValue("").ToString();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        HKCR_value = "Can not be read! Message=" + e.Message;
-        //    }
-        //    if (null != FileReg) { FileReg.Close(); }
-
-
-        //    result.Add("HKCU: " + HKCU_value);
-        //    result.Add("HKLM: " + HKLM_value);
-        //    result.Add("HKCR: " + HKCR_value);            
-        //    return result;
-        //}
-
         private static void LogRegistryInformation(RegistryKey key)
         {
             object o = key.GetValue("");
@@ -147,6 +92,7 @@ namespace MusicXmlReaderModel
             if (null != commandKey) commandKey.Close();
 
             ChangeExplorerAssociation(extension,progId); // See comment below
+
             NativeMethods.ShellChangeNotify();          
         }
 
@@ -171,19 +117,21 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="Extension"></param>
         public static void ChangeExplorerAssociation(string Extension,string progId)
-        {
-            // The stuff that was above here is basically the same
-
-
-            // Delete the key instead of trying to change it
-            var CurrentUser = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + Extension, true);
-            CurrentUser.DeleteSubKey("UserChoice", false);
-            // Create a new subkey 
-            CurrentUser.CreateSubKey("UserChoise").SetValue("",progId);
-            CurrentUser.Close();
-
-            // Tell explorer the file association has been changed
-            NativeMethods.ShellChangeNotify();
+        {       
+            RegistryKey key = null;
+            try
+            {
+                // Delete the key instead of trying to change it
+                key = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + Extension, true);
+                key.DeleteSubKey("UserChoice", false);
+                // Create a new subkey 
+                key.CreateSubKey("UserChoise").SetValue("", progId);
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+            key.Close();
         }
 
 
