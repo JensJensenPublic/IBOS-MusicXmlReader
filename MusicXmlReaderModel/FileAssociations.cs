@@ -70,26 +70,45 @@ namespace MusicXmlReaderModel
             return result;
         }
 
-        public static void GetAssociationInformation(string extension, string progId)
+        private static void LogRegistryInformation(RegistryKey key)
         {
-            List<string> result = new List<string>();   // Not used anymore
-            string value = string.Empty;
+            object o = key.GetValue("");
+            if (null == o)
+            {
+                Logger.LogCF1(string.Format(": KeyName={0} DOES NOT EXTST!", key.Name));
+            }
+            else
+            {
+                Logger.LogCF1(string.Format(": KeyName={0} KeyValue={1}", key.Name, o.ToString()));
+            }               
 
-            RegistryKey key = Registry.CurrentUser.CreateSubKey($"Software\\Classes\\{extension}");
-            value=key.GetValue("").ToString();
-            Logger.Log(string.Format(": KeyName={0} KeyValue={1}", key.Name, value));
-            key.Close();
+        }
 
-            RegistryKey progIdKey = Registry.CurrentUser.CreateSubKey($"Software\\Classes\\{progId}");
-            value=(progIdKey.GetValue("").ToString());
-            Logger.Log(string.Format(": KeyName={0} KeyValue={1}", progIdKey.Name, value));
-  
-            RegistryKey commandKey = progIdKey.CreateSubKey(@"shell\open\command");
-            value = commandKey.GetValue("").ToString();
-            Logger.Log(string.Format(": KeyName={0} KeyValue={1}", commandKey.Name, value));
 
-            progIdKey.Close();
-            commandKey.Close();
+        public static void LogAssociationInformation(string extension, string progId)
+        {
+            RegistryKey key = null;
+            RegistryKey progIdKey = null;
+            RegistryKey commandKey = null;
+            try // Be sure to leave all registry keys closed !
+            {
+                key = Registry.CurrentUser.CreateSubKey($"Software\\Classes\\{extension}");
+                LogRegistryInformation(key);
+
+                progIdKey = Registry.CurrentUser.CreateSubKey($"Software\\Classes\\{progId}");
+                LogRegistryInformation(progIdKey);
+
+                commandKey = progIdKey.CreateSubKey(@"shell\open\command");
+                LogRegistryInformation(commandKey);
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+
+            if (null != key) key.Close();
+            if (null != progIdKey) progIdKey.Close();
+            if (null != commandKey) commandKey.Close();
         }
 
 

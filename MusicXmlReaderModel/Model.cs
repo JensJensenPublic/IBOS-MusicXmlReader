@@ -95,7 +95,7 @@ namespace MusicXmlReaderModel
 
         public void GetAssociationInformation(string extension,string progId)
         {
-            FileAssociations.GetAssociationInformation(extension,progId);
+            FileAssociations.LogAssociationInformation(extension,progId);
         }
 
 
