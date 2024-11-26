@@ -20,11 +20,11 @@ namespace MusicXmlReaderModel
             object o = key.GetValue("");
             if (null == o)
             {
-                Logger.LogCF1(string.Format(": KeyName={0} DOES NOT EXTST!", key.Name));
+                Logger.Log(string.Format("  KeyName={0} DOES NOT EXTST!", key.Name));
             }
             else
             {
-                Logger.LogCF1(string.Format(": KeyName={0} KeyValue={1}", key.Name, o.ToString()));
+                Logger.Log(string.Format("  KeyName={0} KeyValue={1}", key.Name, o.ToString()));
             }               
 
         }
@@ -32,9 +32,10 @@ namespace MusicXmlReaderModel
 
         public static void LogAssociationInformation(string extension, string progId)
         {
+            Logger.LogCF(string.Format("({0},{1})+", extension, progId));
             RegistryKey key = null;
             RegistryKey progIdKey = null;
-            RegistryKey commandKey = null;    
+            RegistryKey commandKey = null;
             RegistryKey userChoiseKey = null;
             try // Be sure to leave all registry keys closed !
             {
@@ -46,9 +47,9 @@ namespace MusicXmlReaderModel
 
                 commandKey = progIdKey.CreateSubKey(@"shell\open\command");
                 LogRegistryInformation(commandKey);
-  
+
                 userChoiseKey = Registry.CurrentUser.OpenSubKey(ExplorerFileExtsKeyName + extension + "\\" + UserChoiseSubKeyName, true);
-                LogRegistryInformation(userChoiseKey);       
+                LogRegistryInformation(userChoiseKey);
             }
             catch (Exception e)
             {
@@ -59,6 +60,7 @@ namespace MusicXmlReaderModel
             if (null != progIdKey) progIdKey.Close();
             if (null != commandKey) commandKey.Close();
             if (null != userChoiseKey) userChoiseKey.Close();
+            Logger.LogCF("()-");
         }
 
 
