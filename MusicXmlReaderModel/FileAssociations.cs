@@ -40,7 +40,7 @@ namespace MusicXmlReaderModel
     internal class FileAssociations
     {
  
-        private static void LogRegistryInformation(RegistryKey key)
+        private  void LogRegistryInformation(RegistryKey key)
         {
             object o = key.GetValue("");
             if (null == o)
@@ -55,7 +55,7 @@ namespace MusicXmlReaderModel
         }
 
 
-        public static void LogAssociationInformation(string extension, string progId)
+        public void LogAssociationInformation(string extension, string progId)
         {
             Logger.LogCF(string.Format("({0},{1})+", extension, progId));
             RegistryKey key = null;
@@ -95,7 +95,7 @@ namespace MusicXmlReaderModel
         /// <param name="extension"></param>
         /// <param name="applicationPath"></param>
         /// <returns></returns>
-        public static void RegisterForFileExtension(string extension, string progId, string applicationPath)
+        public void RegisterForFileExtension(string extension, string progId, string applicationPath)
         {
             RegistryKey key = null;
             RegistryKey progIdKey = null;
@@ -153,7 +153,7 @@ namespace MusicXmlReaderModel
         ///  I also told explorer that I had changed a file association by calling the unmanaged function"
         /// </summary>
         /// <param name="Extension"></param>
-        public static void ChangeExplorerAssociation(string Extension,string progId)
+        public void ChangeExplorerAssociation(string Extension,string progId)
         {       
             RegistryKey key = null;
             try
@@ -175,7 +175,14 @@ namespace MusicXmlReaderModel
             if (null != key) key.Close();
         }
 
+        private FileAssociations()
+        { }
 
+
+        public static FileAssociations Create()
+        {
+            return new FileAssociations();
+        }
 
     }
 }

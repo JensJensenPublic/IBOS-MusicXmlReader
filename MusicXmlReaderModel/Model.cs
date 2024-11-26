@@ -57,7 +57,8 @@ namespace MusicXmlReaderModel
         DefaultsElement defaults; // Score-wide defaults for scaling, layout and appearance. Exactly one DefaultElement is expected per score.
         public DefaultsElement Defaults { get { return defaults; } }
         //private LoggerProxy loggerProxy;
-        MetaInformation metaInformation = null; // Holds filename, title, composer, arranger etc. related to a specific score     
+        MetaInformation metaInformation = null; // Holds filename, title, composer, arranger etc. related to a specific score
+        FileAssociations fileAssociations = FileAssociations.Create();
 
         string executingAssembly;
         string executingDirectory;
@@ -71,7 +72,7 @@ namespace MusicXmlReaderModel
             Logger.LogCF(string.Format( commonFormat, extension, progId, applicationPath, "started"));
             try
             {
-                FileAssociations.RegisterForFileExtension(extension, progId,applicationPath);
+                fileAssociations.RegisterForFileExtension(extension, progId,applicationPath);
                 Logger.LogCF(string.Format(commonFormat ,extension,progId,applicationPath, "succeeded"));
                 return true;
             }
@@ -86,7 +87,7 @@ namespace MusicXmlReaderModel
  
         public void LogAssociationInformation(string extension,string progId)
         {
-            FileAssociations.LogAssociationInformation(extension,progId);
+            fileAssociations.LogAssociationInformation(extension,progId);
         }
 
 
