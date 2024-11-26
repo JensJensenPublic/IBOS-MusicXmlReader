@@ -47,7 +47,7 @@ namespace MusicXmlReaderModel
                 commandKey = progIdKey.CreateSubKey(@"shell\open\command");
                 LogRegistryInformation(commandKey);
   
-                userChoiseKey = Registry.CurrentUser.OpenSubKey(ExplorerFileExtsKeyName + extension + "\\UserChoise", true);
+                userChoiseKey = Registry.CurrentUser.OpenSubKey(ExplorerFileExtsKeyName + extension + "\\" + UserChoiseSubKeyName, true);
                 LogRegistryInformation(userChoiseKey);       
             }
             catch (Exception e)
