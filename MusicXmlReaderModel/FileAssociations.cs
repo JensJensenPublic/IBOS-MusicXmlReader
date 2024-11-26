@@ -34,7 +34,8 @@ namespace MusicXmlReaderModel
         {
             RegistryKey key = null;
             RegistryKey progIdKey = null;
-            RegistryKey commandKey = null;
+            RegistryKey commandKey = null;    
+            RegistryKey userChoiseKey = null;
             try // Be sure to leave all registry keys closed !
             {
                 key = Registry.CurrentUser.CreateSubKey($"Software\\Classes\\{extension}");
@@ -45,6 +46,9 @@ namespace MusicXmlReaderModel
 
                 commandKey = progIdKey.CreateSubKey(@"shell\open\command");
                 LogRegistryInformation(commandKey);
+  
+                userChoiseKey = Registry.CurrentUser.OpenSubKey(ExplorerFileExtsKeyName + extension + "\\UserChoise", true);
+                LogRegistryInformation(userChoiseKey);       
             }
             catch (Exception e)
             {
@@ -54,6 +58,7 @@ namespace MusicXmlReaderModel
             if (null != key) key.Close();
             if (null != progIdKey) progIdKey.Close();
             if (null != commandKey) commandKey.Close();
+            if (null != userChoiseKey) userChoiseKey.Close();
         }
 
 
@@ -98,13 +103,18 @@ namespace MusicXmlReaderModel
 
 
 
-            //// Older method
-            ////  // c# - Associate File Extension with Application - Stack Overflow
-            //RegistryKey FileReg = Registry.CurrentUser.CreateSubKey("Software\\Classes\\" + extension);
-            //FileReg.CreateSubKey("shell\\open\\command").SetValue("", $"\"{applicationPath}\" \"%1\"");
-            //FileReg.Close();
+        //// Older method
+        ////  // c# - Associate File Extension with Application - Stack Overflow
+        //RegistryKey FileReg = Registry.CurrentUser.CreateSubKey("Software\\Classes\\" + extension);
+        //FileReg.CreateSubKey("shell\\open\\command").SetValue("", $"\"{applicationPath}\" \"%1\"");
+        //FileReg.Close();
 
 
+        /// <summary>
+        /// The plase where Windows Explorer casches information about User expensin preferences!
+        /// </summary>
+        private const string ExplorerFileExtsKeyName = "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\";
+        private const string UserChoiseSubKeyName = "UserChoice";
 
         /// <summary>
         /// Another method inspired by 
@@ -121,17 +131,21 @@ namespace MusicXmlReaderModel
             RegistryKey key = null;
             try
             {
+                // The key will typically be: "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\.musicXml"
                 // Delete the key instead of trying to change it
-                key = Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\" + Extension, true);
-                key.DeleteSubKey("UserChoice", false);
-                // Create a new subkey 
-                key.CreateSubKey("UserChoise").SetValue("", progId);
+                key = Registry.CurrentUser.OpenSubKey(ExplorerFileExtsKeyName + Extension, true);
+                if (null != key)
+                {
+                    key.DeleteSubKey(UserChoiseSubKeyName, false);
+                    // Create a new subkey 
+                    key.CreateSubKey(UserChoiseSubKeyName).SetValue("", progId); // "UserChoice";
+                }
             }
             catch (Exception e)
             {
                 Logger.LogCFE(e);
             }
-            key.Close();
+            if (null != key) key.Close();
         }
 
 
