@@ -736,9 +736,12 @@ namespace MusicXmlReader
                 result = model.RegisterForFileExtension(extension, progId, applicationExeFullPath);
                 model.LogAssociationInformation(extension,progId);              
             }
-            MessageBoxIcon icon = result ? MessageBoxIcon.Information : MessageBoxIcon.Error;   
+            // result = false; // For debugging !
+            MessageBoxIcon icon = result ? MessageBoxIcon.Information : MessageBoxIcon.Error;
+#warning todo Localize: 
             string message = string.Format("Association of extension '{0}' {1}", extension, result ? "succeeded." : "failed!");
-            MessageBox.Show(message, applicationName, MessageBoxButtons.OK, icon);
+            string extraInfo = result ? string.Format("\r\n\r\nPath='{0}'", applicationExeFullPath) :  string.Format("\r\n\r\n{0}",ResourcesForUI.Message_PleaseSeeLogFile);
+            MessageBox.Show(message + extraInfo, applicationName, MessageBoxButtons.OK, icon);
             Logger.LogCF(string.Format("(Extension={0} ProgId={1} applicationExeFullPath={2}) completed", extension, progId, applicationExeFullPath));
         }
 
