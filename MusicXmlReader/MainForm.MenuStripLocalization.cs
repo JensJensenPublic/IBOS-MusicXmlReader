@@ -35,6 +35,7 @@ namespace MusicXmlReader
             importDownloadsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ImportDownloads;
             importNewestDownloadsToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ImportNewestDownloads;
             importNewSampleFilesToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_ImportNewestSamples;
+            makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem.Text = string.Format(ResourcesForUI.ToolStripMenuItem_Files_MakeMusicXmlReaderDefaultAppForMusicXml,ResourcesForUI.MainForm_ApplicationName);
             exitToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Files_Exit;
             exitToolStripMenuItem.ShortcutKeys = ShortcutHandler.exitApplication;
             GenerateAccessibleName(ref exitToolStripMenuItem);

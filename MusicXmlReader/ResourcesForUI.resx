@@ -644,4 +644,10 @@
     <value>&amp;PhotoScore</value>
     <comment>NO NL</comment>
   </data>
+  <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ToolStripMenuItem_Files_MakeMusicXmlReaderDefaultAppForMusicXml" xml:space="preserve">
+    <value>Make {0} the default app for .&amp;MusicXml files</value>
+  </data>
 </root>

@@ -477,9 +477,6 @@
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
     <value>Åbn MusicXml fil med &amp;standard instillinger</value>
   </data>
-  <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram" xml:space="preserve">
-    <value>Udskriv punktnodefil på punktprinter ved hjælp af externt program</value>
-  </data>
   <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
     <value>Udskriv punktnodefil på punkt&amp;printer</value>
   </data>
@@ -660,5 +657,11 @@
   <data name="ToolStripMenuItem_Tools_PhotoScore" xml:space="preserve">
     <value>PhotoScore</value>
     <comment>NO NL</comment>
+  </data>
+  <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram" xml:space="preserve">
+    <value>Udskriv punktnodefil på punktprinter ved hjælp af externt program</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_MakeMusicXmlReaderDefaultAppForMusicXml" xml:space="preserve">
+    <value>Gør {0} til standard-app for .&amp;MusicXml filer</value>
   </data>
 </root>

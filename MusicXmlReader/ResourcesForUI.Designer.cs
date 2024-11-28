@@ -952,6 +952,15 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Make {0} the default app for .&amp;MusicXml files.
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_MakeMusicXmlReaderDefaultAppForMusicXml {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_MakeMusicXmlReaderDefaultAppForMusicXml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Open MusicXml File.
         /// </summary>
         internal static string ToolStripMenuItem_Files_OpenMusicXmlFile {
@@ -1002,6 +1011,15 @@ namespace MusicXmlReader {
         internal static string ToolStripMenuItem_Files_PrintMusicBraille {
             get {
                 return ResourceManager.GetString("ToolStripMenuItem_Files_PrintMusicBraille", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram", resourceCulture);
             }
         }
         
