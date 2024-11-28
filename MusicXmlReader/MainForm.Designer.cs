@@ -49,6 +49,7 @@
             this.viaWindowsPrintDialogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usingExternalProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyMusicBrailleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportLyricsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -160,7 +161,6 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
-            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -177,8 +177,8 @@
             this.helpToolStripMenuItem});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.MenuStrip.Size = new System.Drawing.Size(1219, 24);
+            this.MenuStrip.Padding = new System.Windows.Forms.Padding(5, 1, 0, 1);
+            this.MenuStrip.Size = new System.Drawing.Size(1625, 26);
             this.MenuStrip.TabIndex = 3;
             this.MenuStrip.Text = "menuStrip1";
             this.MenuStrip.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MenuStrip_KeyDown);
@@ -200,21 +200,21 @@
             this.exitToolStripMenuItem,
             this.exportLyricsToolStripMenuItem});
             this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
-            this.filesToolStripMenuItem.Size = new System.Drawing.Size(42, 22);
+            this.filesToolStripMenuItem.Size = new System.Drawing.Size(52, 24);
             this.filesToolStripMenuItem.Text = "&Files";
             // 
             // openMusicXmlFileToolStripMenuItem
             // 
             this.openMusicXmlFileToolStripMenuItem.Name = "openMusicXmlFileToolStripMenuItem";
             this.openMusicXmlFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openMusicXmlFileToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.openMusicXmlFileToolStripMenuItem.Size = new System.Drawing.Size(485, 26);
             this.openMusicXmlFileToolStripMenuItem.Text = "&Open MusicXml File";
             this.openMusicXmlFileToolStripMenuItem.Click += new System.EventHandler(this.openMusicXmlFileToolStripMenuItem_Click);
             // 
             // openRecentMusicXmlFileToolStripMenuItem
             // 
             this.openRecentMusicXmlFileToolStripMenuItem.Name = "openRecentMusicXmlFileToolStripMenuItem";
-            this.openRecentMusicXmlFileToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.openRecentMusicXmlFileToolStripMenuItem.Size = new System.Drawing.Size(485, 26);
             this.openRecentMusicXmlFileToolStripMenuItem.Text = "Open recent MusicXml File";
             this.openRecentMusicXmlFileToolStripMenuItem.Click += new System.EventHandler(this.openRecentMusicXmlFileToolStripMenuItem_Click);
             // 
@@ -223,28 +223,28 @@
             this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.Name = "openMusicXmlFileUsingDefaultSettingsToolStripMenuItem";
             this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.O)));
-            this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.Size = new System.Drawing.Size(485, 26);
             this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.Text = "Open MusicXml File using default settings";
             this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem.Click += new System.EventHandler(this.openMusicXmlFileUsingDefaultSettingsToolStripMenuItem_Click);
             // 
             // importDownloadsToolStripMenuItem
             // 
             this.importDownloadsToolStripMenuItem.Name = "importDownloadsToolStripMenuItem";
-            this.importDownloadsToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.importDownloadsToolStripMenuItem.Size = new System.Drawing.Size(485, 26);
             this.importDownloadsToolStripMenuItem.Text = "&Import Downloads";
             this.importDownloadsToolStripMenuItem.Click += new System.EventHandler(this.importDownloadsToolStripMenuItem_Click);
             // 
             // importNewestDownloadsToolStripMenuItem
             // 
             this.importNewestDownloadsToolStripMenuItem.Name = "importNewestDownloadsToolStripMenuItem";
-            this.importNewestDownloadsToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.importNewestDownloadsToolStripMenuItem.Size = new System.Drawing.Size(485, 26);
             this.importNewestDownloadsToolStripMenuItem.Text = "&Import Newest Downloads";
             this.importNewestDownloadsToolStripMenuItem.Click += new System.EventHandler(this.importNewestDownloadsToolStripMenuItem_Click);
             // 
             // importNewSampleFilesToolStripMenuItem
             // 
             this.importNewSampleFilesToolStripMenuItem.Name = "importNewSampleFilesToolStripMenuItem";
-            this.importNewSampleFilesToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.importNewSampleFilesToolStripMenuItem.Size = new System.Drawing.Size(485, 26);
             this.importNewSampleFilesToolStripMenuItem.Text = "Import New Sample files";
             this.importNewSampleFilesToolStripMenuItem.Click += new System.EventHandler(this.importNewSampleFilesToolStripMenuItem_Click);
             // 
@@ -257,35 +257,35 @@
             this.toGenericDeviceToolStripMenuItem,
             this.inOptionalFormatToolStripMenuItem});
             this.exportMusicBrailleToolStripMenuItem.Name = "exportMusicBrailleToolStripMenuItem";
-            this.exportMusicBrailleToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.exportMusicBrailleToolStripMenuItem.Size = new System.Drawing.Size(485, 26);
             this.exportMusicBrailleToolStripMenuItem.Text = "Export Music Braille";
             this.exportMusicBrailleToolStripMenuItem.Paint += new System.Windows.Forms.PaintEventHandler(this.exportMusicBrailleToolStripMenuItem_Paint);
             // 
             // toNotetakerToolStripMenuItem
             // 
             this.toNotetakerToolStripMenuItem.Name = "toNotetakerToolStripMenuItem";
-            this.toNotetakerToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.toNotetakerToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
             this.toNotetakerToolStripMenuItem.Text = "to notetaker";
             this.toNotetakerToolStripMenuItem.Click += new System.EventHandler(this.toNotetakerToolStripMenuItem_Click);
             // 
             // toEmbosserToolStripMenuItem
             // 
             this.toEmbosserToolStripMenuItem.Name = "toEmbosserToolStripMenuItem";
-            this.toEmbosserToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.toEmbosserToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
             this.toEmbosserToolStripMenuItem.Text = "to embosser";
             this.toEmbosserToolStripMenuItem.Click += new System.EventHandler(this.toEmbosserToolStripMenuItem_Click);
             // 
             // toHighSpeedEmbosserToolStripMenuItem
             // 
             this.toHighSpeedEmbosserToolStripMenuItem.Name = "toHighSpeedEmbosserToolStripMenuItem";
-            this.toHighSpeedEmbosserToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.toHighSpeedEmbosserToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
             this.toHighSpeedEmbosserToolStripMenuItem.Text = "to high speed embosser";
             this.toHighSpeedEmbosserToolStripMenuItem.Click += new System.EventHandler(this.toHighSpeedEmbosserToolStripMenuItem_Click);
             // 
             // toGenericDeviceToolStripMenuItem
             // 
             this.toGenericDeviceToolStripMenuItem.Name = "toGenericDeviceToolStripMenuItem";
-            this.toGenericDeviceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.toGenericDeviceToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
             this.toGenericDeviceToolStripMenuItem.Text = "to generic device";
             this.toGenericDeviceToolStripMenuItem.Click += new System.EventHandler(this.toIbosGenericDeviceToolStripMenuItem_Click);
             // 
@@ -296,28 +296,28 @@
             this.brfASCIIToolStripMenuItem1,
             this.brfUnicodeToolStripMenuItem1});
             this.inOptionalFormatToolStripMenuItem.Name = "inOptionalFormatToolStripMenuItem";
-            this.inOptionalFormatToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.inOptionalFormatToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
             this.inOptionalFormatToolStripMenuItem.Text = "in optional format";
             this.inOptionalFormatToolStripMenuItem.Click += new System.EventHandler(this.inOptionalFormatToolStripMenuItem_Click);
             // 
             // txtOctoBraille1252ToolStripMenuItem
             // 
             this.txtOctoBraille1252ToolStripMenuItem.Name = "txtOctoBraille1252ToolStripMenuItem";
-            this.txtOctoBraille1252ToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.txtOctoBraille1252ToolStripMenuItem.Size = new System.Drawing.Size(236, 26);
             this.txtOctoBraille1252ToolStripMenuItem.Text = ".txt (OctoBraille 1252)";
             this.txtOctoBraille1252ToolStripMenuItem.Click += new System.EventHandler(this.txtOctoBraille1252ToolStripMenuItem_Click);
             // 
             // brfASCIIToolStripMenuItem1
             // 
             this.brfASCIIToolStripMenuItem1.Name = "brfASCIIToolStripMenuItem1";
-            this.brfASCIIToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
+            this.brfASCIIToolStripMenuItem1.Size = new System.Drawing.Size(236, 26);
             this.brfASCIIToolStripMenuItem1.Text = ".brf (ASCII)";
             this.brfASCIIToolStripMenuItem1.Click += new System.EventHandler(this.brfASCIIToolStripMenuItem1_Click);
             // 
             // brfUnicodeToolStripMenuItem1
             // 
             this.brfUnicodeToolStripMenuItem1.Name = "brfUnicodeToolStripMenuItem1";
-            this.brfUnicodeToolStripMenuItem1.Size = new System.Drawing.Size(187, 22);
+            this.brfUnicodeToolStripMenuItem1.Size = new System.Drawing.Size(236, 26);
             this.brfUnicodeToolStripMenuItem1.Text = ".brf (Unicode)";
             this.brfUnicodeToolStripMenuItem1.Click += new System.EventHandler(this.brfUnicodeToolStripMenuItem1_Click);
             // 
@@ -327,7 +327,7 @@
             this.viaWindowsPrintDialogToolStripMenuItem,
             this.usingExternalProgramToolStripMenuItem});
             this.printMusicBrailleToolStripMenuItem.Name = "printMusicBrailleToolStripMenuItem";
-            this.printMusicBrailleToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.printMusicBrailleToolStripMenuItem.Size = new System.Drawing.Size(485, 26);
             this.printMusicBrailleToolStripMenuItem.Text = "Print Music Braille";
             this.printMusicBrailleToolStripMenuItem.Click += new System.EventHandler(this.printMusicBrailleToolStripMenuItem_Click);
             // 
@@ -335,7 +335,7 @@
             // 
             this.viaWindowsPrintDialogToolStripMenuItem.Name = "viaWindowsPrintDialogToolStripMenuItem";
             this.viaWindowsPrintDialogToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.viaWindowsPrintDialogToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
+            this.viaWindowsPrintDialogToolStripMenuItem.Size = new System.Drawing.Size(336, 26);
             this.viaWindowsPrintDialogToolStripMenuItem.Text = "using Windows Print dialog";
             this.viaWindowsPrintDialogToolStripMenuItem.Click += new System.EventHandler(this.viaWindowsPrintDialogToolStripMenuItem_Click);
             // 
@@ -344,34 +344,41 @@
             this.usingExternalProgramToolStripMenuItem.Name = "usingExternalProgramToolStripMenuItem";
             this.usingExternalProgramToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.P)));
-            this.usingExternalProgramToolStripMenuItem.Size = new System.Drawing.Size(270, 22);
+            this.usingExternalProgramToolStripMenuItem.Size = new System.Drawing.Size(336, 26);
             this.usingExternalProgramToolStripMenuItem.Text = "using external program";
             this.usingExternalProgramToolStripMenuItem.Click += new System.EventHandler(this.usingExternalProgramToolStripMenuItem_Click);
             // 
             // copyMusicBrailleToolStripMenuItem
             // 
             this.copyMusicBrailleToolStripMenuItem.Name = "copyMusicBrailleToolStripMenuItem";
-            this.copyMusicBrailleToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.copyMusicBrailleToolStripMenuItem.Size = new System.Drawing.Size(485, 26);
             this.copyMusicBrailleToolStripMenuItem.Text = "Copy Music Braille";
             this.copyMusicBrailleToolStripMenuItem.Click += new System.EventHandler(this.copyMusicBrailleToolStripMenuItem_Click);
+            // 
+            // makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem
+            // 
+            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem.Name = "makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem";
+            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem.Size = new System.Drawing.Size(485, 26);
+            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem.Text = "Make IBOS MusicXmlReader default app for .&MusicXml files";
+            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem.Click += new System.EventHandler(this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(368, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(482, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(485, 26);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // exportLyricsToolStripMenuItem
             // 
             this.exportLyricsToolStripMenuItem.Name = "exportLyricsToolStripMenuItem";
-            this.exportLyricsToolStripMenuItem.Size = new System.Drawing.Size(371, 22);
+            this.exportLyricsToolStripMenuItem.Size = new System.Drawing.Size(485, 26);
             this.exportLyricsToolStripMenuItem.Text = "Export Lyrics";
             this.exportLyricsToolStripMenuItem.Click += new System.EventHandler(this.exportLyricsToolStripMenuItem_Click);
             // 
@@ -395,97 +402,97 @@
             this.goToToolStripMenuItem,
             this.ofNominalTempoToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
             this.editToolStripMenuItem.Text = "&Edit";
             // 
             // allItemsToolStripMenuItem
             // 
             this.allItemsToolStripMenuItem.Name = "allItemsToolStripMenuItem";
-            this.allItemsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.allItemsToolStripMenuItem.Size = new System.Drawing.Size(277, 26);
             this.allItemsToolStripMenuItem.Text = "All filter items";
             this.allItemsToolStripMenuItem.Click += new System.EventHandler(this.allItemsToolStripMenuItem_Click);
             // 
             // filterItemsToolStripMenuItem
             // 
             this.filterItemsToolStripMenuItem.Name = "filterItemsToolStripMenuItem";
-            this.filterItemsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.filterItemsToolStripMenuItem.Size = new System.Drawing.Size(277, 26);
             this.filterItemsToolStripMenuItem.Text = "Filter items";
             this.filterItemsToolStripMenuItem.Click += new System.EventHandler(this.filterItemsToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(219, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(274, 6);
             // 
             // musicRepresentationToolStripMenuItem
             // 
             this.musicRepresentationToolStripMenuItem.Name = "musicRepresentationToolStripMenuItem";
-            this.musicRepresentationToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.musicRepresentationToolStripMenuItem.Size = new System.Drawing.Size(277, 26);
             this.musicRepresentationToolStripMenuItem.Text = "Music representation";
             this.musicRepresentationToolStripMenuItem.Click += new System.EventHandler(this.musicRepresentationToolStripMenuItem_Click);
             // 
             // textRepresentationToolStripMenuItem
             // 
             this.textRepresentationToolStripMenuItem.Name = "textRepresentationToolStripMenuItem";
-            this.textRepresentationToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.textRepresentationToolStripMenuItem.Size = new System.Drawing.Size(277, 26);
             this.textRepresentationToolStripMenuItem.Text = "Text representation";
             this.textRepresentationToolStripMenuItem.Click += new System.EventHandler(this.textRepresentationToolStripMenuItem_Click);
             // 
             // brailleRepresentationToolStripMenuItem
             // 
             this.brailleRepresentationToolStripMenuItem.Name = "brailleRepresentationToolStripMenuItem";
-            this.brailleRepresentationToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.brailleRepresentationToolStripMenuItem.Size = new System.Drawing.Size(277, 26);
             this.brailleRepresentationToolStripMenuItem.Text = "Braille Music representation";
             this.brailleRepresentationToolStripMenuItem.Click += new System.EventHandler(this.brailleRepresentationToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(219, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(274, 6);
             // 
             // partsToolStripMenuItem
             // 
             this.partsToolStripMenuItem.Name = "partsToolStripMenuItem";
-            this.partsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.partsToolStripMenuItem.Size = new System.Drawing.Size(277, 26);
             this.partsToolStripMenuItem.Text = "Parts";
             this.partsToolStripMenuItem.Click += new System.EventHandler(this.partsToolStripMenuItem_Click);
             // 
             // detailsToolStripMenuItem
             // 
             this.detailsToolStripMenuItem.Name = "detailsToolStripMenuItem";
-            this.detailsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.detailsToolStripMenuItem.Size = new System.Drawing.Size(277, 26);
             this.detailsToolStripMenuItem.Text = "Details";
             this.detailsToolStripMenuItem.Click += new System.EventHandler(this.detailsToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(219, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(274, 6);
             // 
             // uncheckAllToolStripMenuItem
             // 
             this.uncheckAllToolStripMenuItem.Name = "uncheckAllToolStripMenuItem";
-            this.uncheckAllToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.uncheckAllToolStripMenuItem.Size = new System.Drawing.Size(277, 26);
             this.uncheckAllToolStripMenuItem.Text = "0: Uncheck all";
             this.uncheckAllToolStripMenuItem.Click += new System.EventHandler(this.uncheckAllToolStripMenuItem_Click);
             // 
             // checkAllToolStripMenuItem
             // 
             this.checkAllToolStripMenuItem.Name = "checkAllToolStripMenuItem";
-            this.checkAllToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.checkAllToolStripMenuItem.Size = new System.Drawing.Size(277, 26);
             this.checkAllToolStripMenuItem.Text = "1: Check all";
             this.checkAllToolStripMenuItem.Click += new System.EventHandler(this.checkAllToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(219, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(274, 6);
             // 
             // repeatToolStripMenuItem
             // 
             this.repeatToolStripMenuItem.Name = "repeatToolStripMenuItem";
             this.repeatToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.repeatToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.repeatToolStripMenuItem.Size = new System.Drawing.Size(277, 26);
             this.repeatToolStripMenuItem.Text = "&Repeat";
             this.repeatToolStripMenuItem.Click += new System.EventHandler(this.repeatToolStripMenuItem_Click);
             // 
@@ -493,7 +500,7 @@
             // 
             this.goToToolStripMenuItem.Name = "goToToolStripMenuItem";
             this.goToToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-            this.goToToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.goToToolStripMenuItem.Size = new System.Drawing.Size(277, 26);
             this.goToToolStripMenuItem.Text = "&GoTo";
             this.goToToolStripMenuItem.Click += new System.EventHandler(this.goToToolStripMenuItem_Click);
             // 
@@ -501,7 +508,7 @@
             // 
             this.ofNominalTempoToolStripMenuItem.Name = "ofNominalTempoToolStripMenuItem";
             this.ofNominalTempoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.ofNominalTempoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.ofNominalTempoToolStripMenuItem.Size = new System.Drawing.Size(277, 26);
             this.ofNominalTempoToolStripMenuItem.Text = "% of &Normal tempo";
             this.ofNominalTempoToolStripMenuItem.Click += new System.EventHandler(this.ofNominalTempoToolStripMenuItem_Click);
             // 
@@ -511,21 +518,21 @@
             this.instrumentsToolStripMenuItem,
             this.brailleFileToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 22);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
             this.viewToolStripMenuItem.Text = "&View";
             // 
             // instrumentsToolStripMenuItem
             // 
             this.instrumentsToolStripMenuItem.Name = "instrumentsToolStripMenuItem";
             this.instrumentsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.instrumentsToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.instrumentsToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.instrumentsToolStripMenuItem.Text = "&Instruments";
             this.instrumentsToolStripMenuItem.Click += new System.EventHandler(this.instrumentsToolStripMenuItem_Click);
             // 
             // brailleFileToolStripMenuItem
             // 
             this.brailleFileToolStripMenuItem.Name = "brailleFileToolStripMenuItem";
-            this.brailleFileToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.brailleFileToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.brailleFileToolStripMenuItem.Text = "BrailleFile";
             this.brailleFileToolStripMenuItem.Click += new System.EventHandler(this.brailleFileToolStripMenuItem_Click);
             // 
@@ -541,58 +548,58 @@
             this.toolStripSeparator7,
             this.resetAllUserSettingsToDefaultValuesToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // generelSettingsToolStripMenuItem
             // 
             this.generelSettingsToolStripMenuItem.Name = "generelSettingsToolStripMenuItem";
-            this.generelSettingsToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+            this.generelSettingsToolStripMenuItem.Size = new System.Drawing.Size(348, 26);
             this.generelSettingsToolStripMenuItem.Text = "General settings";
             this.generelSettingsToolStripMenuItem.Click += new System.EventHandler(this.generelSettingsToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(273, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(345, 6);
             // 
             // notetakerSettingsToolStripMenuItem
             // 
             this.notetakerSettingsToolStripMenuItem.Name = "notetakerSettingsToolStripMenuItem";
-            this.notetakerSettingsToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+            this.notetakerSettingsToolStripMenuItem.Size = new System.Drawing.Size(348, 26);
             this.notetakerSettingsToolStripMenuItem.Text = "Notetaker settings";
             this.notetakerSettingsToolStripMenuItem.Click += new System.EventHandler(this.notetakerSettingsToolStripMenuItem_Click);
             // 
             // embosserSettingsToolStripMenuItem
             // 
             this.embosserSettingsToolStripMenuItem.Name = "embosserSettingsToolStripMenuItem";
-            this.embosserSettingsToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+            this.embosserSettingsToolStripMenuItem.Size = new System.Drawing.Size(348, 26);
             this.embosserSettingsToolStripMenuItem.Text = "Embosser settings";
             this.embosserSettingsToolStripMenuItem.Click += new System.EventHandler(this.embosserSettingsToolStripMenuItem_Click);
             // 
             // highSpeedEmbosserSettingsToolStripMenuItem
             // 
             this.highSpeedEmbosserSettingsToolStripMenuItem.Name = "highSpeedEmbosserSettingsToolStripMenuItem";
-            this.highSpeedEmbosserSettingsToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+            this.highSpeedEmbosserSettingsToolStripMenuItem.Size = new System.Drawing.Size(348, 26);
             this.highSpeedEmbosserSettingsToolStripMenuItem.Text = "HighSpeed Embosser Settings";
             this.highSpeedEmbosserSettingsToolStripMenuItem.Click += new System.EventHandler(this.highSpeedEmbosserSettingsToolStripMenuItem_Click);
             // 
             // musicBrailleSettingsToolStripMenuItem
             // 
             this.musicBrailleSettingsToolStripMenuItem.Name = "musicBrailleSettingsToolStripMenuItem";
-            this.musicBrailleSettingsToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+            this.musicBrailleSettingsToolStripMenuItem.Size = new System.Drawing.Size(348, 26);
             this.musicBrailleSettingsToolStripMenuItem.Text = "Generic Braille device settings";
             this.musicBrailleSettingsToolStripMenuItem.Click += new System.EventHandler(this.musicBrailleSettingsToolStripMenuItem_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(273, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(345, 6);
             // 
             // resetAllUserSettingsToDefaultValuesToolStripMenuItem
             // 
             this.resetAllUserSettingsToDefaultValuesToolStripMenuItem.Name = "resetAllUserSettingsToDefaultValuesToolStripMenuItem";
-            this.resetAllUserSettingsToDefaultValuesToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+            this.resetAllUserSettingsToDefaultValuesToolStripMenuItem.Size = new System.Drawing.Size(348, 26);
             this.resetAllUserSettingsToDefaultValuesToolStripMenuItem.Text = "Reset all user settings to default values";
             this.resetAllUserSettingsToDefaultValuesToolStripMenuItem.Click += new System.EventHandler(this.resetAllUserSettingsToDefaultValuesToolStripMenuItem_Click);
             // 
@@ -629,104 +636,104 @@
             this.associateInstalledVersionWithMusicXmlFilesToolStripMenuItem,
             this.logFileassociationsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // musicBrailleReaderToolStripMenuItem
             // 
             this.musicBrailleReaderToolStripMenuItem.Name = "musicBrailleReaderToolStripMenuItem";
-            this.musicBrailleReaderToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.musicBrailleReaderToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.musicBrailleReaderToolStripMenuItem.Text = "Music Braille Reader";
             this.musicBrailleReaderToolStripMenuItem.Click += new System.EventHandler(this.musicBrailleReaderToolStripMenuItem_Click);
             // 
             // museScoreToolStripMenuItem
             // 
             this.museScoreToolStripMenuItem.Name = "museScoreToolStripMenuItem";
-            this.museScoreToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.museScoreToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.museScoreToolStripMenuItem.Text = "Start MuseScore";
             this.museScoreToolStripMenuItem.Click += new System.EventHandler(this.museScoreToolStripMenuItem_Click);
             // 
             // sibeliusToolStripMenuItem
             // 
             this.sibeliusToolStripMenuItem.Name = "sibeliusToolStripMenuItem";
-            this.sibeliusToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.sibeliusToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.sibeliusToolStripMenuItem.Text = "Start Sibelius";
             this.sibeliusToolStripMenuItem.Click += new System.EventHandler(this.sibeliusToolStripMenuItem_Click);
             // 
             // startCapellaToolStripMenuItem
             // 
             this.startCapellaToolStripMenuItem.Name = "startCapellaToolStripMenuItem";
-            this.startCapellaToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.startCapellaToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.startCapellaToolStripMenuItem.Text = "Start Capella";
             this.startCapellaToolStripMenuItem.Click += new System.EventHandler(this.startCapellaToolStripMenuItem_Click);
             // 
             // startFinaleToolStripMenuItem
             // 
             this.startFinaleToolStripMenuItem.Name = "startFinaleToolStripMenuItem";
-            this.startFinaleToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.startFinaleToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.startFinaleToolStripMenuItem.Text = "Start Finale";
             this.startFinaleToolStripMenuItem.Click += new System.EventHandler(this.startFinaleToolStripMenuItem_Click);
             // 
             // startPhotoScoreToolStripMenuItem
             // 
             this.startPhotoScoreToolStripMenuItem.Name = "startPhotoScoreToolStripMenuItem";
-            this.startPhotoScoreToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.startPhotoScoreToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.startPhotoScoreToolStripMenuItem.Text = "Start PhotoScore";
             this.startPhotoScoreToolStripMenuItem.Click += new System.EventHandler(this.startPhotoScoreToolStripMenuItem_Click);
             // 
             // startBrailleMusicEditor2ToolStripMenuItem
             // 
             this.startBrailleMusicEditor2ToolStripMenuItem.Name = "startBrailleMusicEditor2ToolStripMenuItem";
-            this.startBrailleMusicEditor2ToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.startBrailleMusicEditor2ToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.startBrailleMusicEditor2ToolStripMenuItem.Text = "Start Braille Music Editor 2";
             this.startBrailleMusicEditor2ToolStripMenuItem.Click += new System.EventHandler(this.startBrailleMusicEditor2ToolStripMenuItem_Click);
             // 
             // logfileToolStripMenuItem
             // 
             this.logfileToolStripMenuItem.Name = "logfileToolStripMenuItem";
-            this.logfileToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.logfileToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.logfileToolStripMenuItem.Text = "Log file";
             this.logfileToolStripMenuItem.Click += new System.EventHandler(this.logfileToolStripMenuItem_Click);
             // 
             // openLogFileLocationToolStripMenuItem
             // 
             this.openLogFileLocationToolStripMenuItem.Name = "openLogFileLocationToolStripMenuItem";
-            this.openLogFileLocationToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.openLogFileLocationToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.openLogFileLocationToolStripMenuItem.Text = "Log file location";
             this.openLogFileLocationToolStripMenuItem.Click += new System.EventHandler(this.openLogFileLocationToolStripMenuItem_Click);
             // 
             // openXMLFileLocationToolStripMenuItem
             // 
             this.openXMLFileLocationToolStripMenuItem.Name = "openXMLFileLocationToolStripMenuItem";
-            this.openXMLFileLocationToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.openXMLFileLocationToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.openXMLFileLocationToolStripMenuItem.Text = "MusicXml file location";
             this.openXMLFileLocationToolStripMenuItem.Click += new System.EventHandler(this.openXMLFileLocationToolStripMenuItem_Click);
             // 
             // inspectAsXMLToolStripMenuItem
             // 
             this.inspectAsXMLToolStripMenuItem.Name = "inspectAsXMLToolStripMenuItem";
-            this.inspectAsXMLToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.inspectAsXMLToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.inspectAsXMLToolStripMenuItem.Text = "MusicXml file as raw XML";
             this.inspectAsXMLToolStripMenuItem.Click += new System.EventHandler(this.inspectAsXMLToolStripMenuItem_Click);
             // 
             // inspectAsXMLUsingGoogleChromeToolStripMenuItem
             // 
             this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Name = "inspectAsXMLUsingGoogleChromeToolStripMenuItem";
-            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Text = "MusicXml file as raw XML using Google Chrome";
             this.inspectAsXMLUsingGoogleChromeToolStripMenuItem.Click += new System.EventHandler(this.musicXmlFileAsRawXMLUsingGoogleChromeToolStripMenuItem_Click);
             // 
             // viewAsInterpretedXMLToolStripMenuItem
             // 
             this.viewAsInterpretedXMLToolStripMenuItem.Name = "viewAsInterpretedXMLToolStripMenuItem";
-            this.viewAsInterpretedXMLToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.viewAsInterpretedXMLToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.viewAsInterpretedXMLToolStripMenuItem.Text = "MusicXml file interpreted";
             this.viewAsInterpretedXMLToolStripMenuItem.Click += new System.EventHandler(this.viewAsInterpretedXMLToolStripMenuItem_Click);
             // 
             // jAWSSettingsToolStripMenuItem
             // 
             this.jAWSSettingsToolStripMenuItem.Name = "jAWSSettingsToolStripMenuItem";
-            this.jAWSSettingsToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.jAWSSettingsToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.jAWSSettingsToolStripMenuItem.Text = "JAWS settings";
             this.jAWSSettingsToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsToolStripMenuItem_Click);
             // 
@@ -738,34 +745,34 @@
             this.startUsingToolStripMenuItem,
             this.stopUsingToolStripMenuItem});
             this.jAWSApplicationspecificScriptToolStripMenuItem.Name = "jAWSApplicationspecificScriptToolStripMenuItem";
-            this.jAWSApplicationspecificScriptToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.jAWSApplicationspecificScriptToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.jAWSApplicationspecificScriptToolStripMenuItem.Text = "JAWS application-specific script shared among all users";
             // 
             // viewToolStripMenuItem1
             // 
             this.viewToolStripMenuItem1.Name = "viewToolStripMenuItem1";
-            this.viewToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
+            this.viewToolStripMenuItem1.Size = new System.Drawing.Size(187, 26);
             this.viewToolStripMenuItem1.Text = "View";
             this.viewToolStripMenuItem1.Click += new System.EventHandler(this.viewToolStripMenuItem1_Click);
             // 
             // viewDirectoryToolStripMenuItem
             // 
             this.viewDirectoryToolStripMenuItem.Name = "viewDirectoryToolStripMenuItem";
-            this.viewDirectoryToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.viewDirectoryToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
             this.viewDirectoryToolStripMenuItem.Text = "View directory";
             this.viewDirectoryToolStripMenuItem.Click += new System.EventHandler(this.viewDirectoryToolStripMenuItem_Click);
             // 
             // startUsingToolStripMenuItem
             // 
             this.startUsingToolStripMenuItem.Name = "startUsingToolStripMenuItem";
-            this.startUsingToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.startUsingToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
             this.startUsingToolStripMenuItem.Text = "Start using";
             this.startUsingToolStripMenuItem.Click += new System.EventHandler(this.startUsingToolStripMenuItem_Click);
             // 
             // stopUsingToolStripMenuItem
             // 
             this.stopUsingToolStripMenuItem.Name = "stopUsingToolStripMenuItem";
-            this.stopUsingToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.stopUsingToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
             this.stopUsingToolStripMenuItem.Text = "Stop using";
             this.stopUsingToolStripMenuItem.Click += new System.EventHandler(this.stopUsingToolStripMenuItem_Click);
             // 
@@ -775,48 +782,48 @@
             this.viewToolStripMenuItem2,
             this.viewDirectoryToolStripMenuItem1});
             this.jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem.Name = "jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem";
-            this.jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem.Text = "JAWS application-specific script for current user";
             // 
             // viewToolStripMenuItem2
             // 
             this.viewToolStripMenuItem2.Name = "viewToolStripMenuItem2";
-            this.viewToolStripMenuItem2.Size = new System.Drawing.Size(150, 22);
+            this.viewToolStripMenuItem2.Size = new System.Drawing.Size(189, 26);
             this.viewToolStripMenuItem2.Text = "View";
             this.viewToolStripMenuItem2.Click += new System.EventHandler(this.viewToolStripMenuItem2_Click);
             // 
             // viewDirectoryToolStripMenuItem1
             // 
             this.viewDirectoryToolStripMenuItem1.Name = "viewDirectoryToolStripMenuItem1";
-            this.viewDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
+            this.viewDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(189, 26);
             this.viewDirectoryToolStripMenuItem1.Text = "View Directory";
             this.viewDirectoryToolStripMenuItem1.Click += new System.EventHandler(this.viewDirectoryToolStripMenuItem1_Click);
             // 
             // jAWSSettingsDirectoryToolStripMenuItem
             // 
             this.jAWSSettingsDirectoryToolStripMenuItem.Name = "jAWSSettingsDirectoryToolStripMenuItem";
-            this.jAWSSettingsDirectoryToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.jAWSSettingsDirectoryToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.jAWSSettingsDirectoryToolStripMenuItem.Text = "JAWS Settings Directory";
             this.jAWSSettingsDirectoryToolStripMenuItem.Click += new System.EventHandler(this.jAWSSettingsDirectoryToolStripMenuItem_Click);
             // 
             // userSettingsToolStripMenuItem
             // 
             this.userSettingsToolStripMenuItem.Name = "userSettingsToolStripMenuItem";
-            this.userSettingsToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.userSettingsToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.userSettingsToolStripMenuItem.Text = "User Settings";
             this.userSettingsToolStripMenuItem.Click += new System.EventHandler(this.userSettingsToolStripMenuItem_Click);
             // 
             // generateMusicBrailleTestpatternToolStripMenuItem
             // 
             this.generateMusicBrailleTestpatternToolStripMenuItem.Name = "generateMusicBrailleTestpatternToolStripMenuItem";
-            this.generateMusicBrailleTestpatternToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.generateMusicBrailleTestpatternToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.generateMusicBrailleTestpatternToolStripMenuItem.Text = "Generate Music Braille testpattern";
             this.generateMusicBrailleTestpatternToolStripMenuItem.Click += new System.EventHandler(this.generateMusicBrailleTestpatternToolStripMenuItem_Click);
             // 
             // generateGraphicInformationToolStripMenuItem
             // 
             this.generateGraphicInformationToolStripMenuItem.Name = "generateGraphicInformationToolStripMenuItem";
-            this.generateGraphicInformationToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.generateGraphicInformationToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.generateGraphicInformationToolStripMenuItem.Text = "Generate graphic information";
             this.generateGraphicInformationToolStripMenuItem.Click += new System.EventHandler(this.generateGraphicInformationToolStripMenuItem_Click);
             // 
@@ -828,90 +835,90 @@
             this.unicodeToolStripMenuItem,
             this.autodetectedEncodingToolStripMenuItem});
             this.interpretFileAsBrailleMusicToolStripMenuItem.Name = "interpretFileAsBrailleMusicToolStripMenuItem";
-            this.interpretFileAsBrailleMusicToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.interpretFileAsBrailleMusicToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.interpretFileAsBrailleMusicToolStripMenuItem.Text = "Interpret file as Braille Music";
             // 
             // octoBraille1252ToolStripMenuItem
             // 
             this.octoBraille1252ToolStripMenuItem.Name = "octoBraille1252ToolStripMenuItem";
-            this.octoBraille1252ToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.octoBraille1252ToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.octoBraille1252ToolStripMenuItem.Text = "OctoBraille 1252";
             this.octoBraille1252ToolStripMenuItem.Click += new System.EventHandler(this.octoBraille1252ToolStripMenuItem_Click);
             // 
             // aSCIIToolStripMenuItem
             // 
             this.aSCIIToolStripMenuItem.Name = "aSCIIToolStripMenuItem";
-            this.aSCIIToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.aSCIIToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.aSCIIToolStripMenuItem.Text = "ASCII";
             this.aSCIIToolStripMenuItem.Click += new System.EventHandler(this.aSCIIToolStripMenuItem_Click);
             // 
             // unicodeToolStripMenuItem
             // 
             this.unicodeToolStripMenuItem.Name = "unicodeToolStripMenuItem";
-            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.unicodeToolStripMenuItem.Text = "Unicode";
             this.unicodeToolStripMenuItem.Click += new System.EventHandler(this.unicodeToolStripMenuItem_Click);
             // 
             // autodetectedEncodingToolStripMenuItem
             // 
             this.autodetectedEncodingToolStripMenuItem.Name = "autodetectedEncodingToolStripMenuItem";
-            this.autodetectedEncodingToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.autodetectedEncodingToolStripMenuItem.Size = new System.Drawing.Size(255, 26);
             this.autodetectedEncodingToolStripMenuItem.Text = "Auto-detected encoding";
             this.autodetectedEncodingToolStripMenuItem.Click += new System.EventHandler(this.autodetectedEncodingToolStripMenuItem_Click);
             // 
             // userPreferencesLocationToolStripMenuItem
             // 
             this.userPreferencesLocationToolStripMenuItem.Name = "userPreferencesLocationToolStripMenuItem";
-            this.userPreferencesLocationToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.userPreferencesLocationToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.userPreferencesLocationToolStripMenuItem.Text = "User Preferences location";
             this.userPreferencesLocationToolStripMenuItem.Click += new System.EventHandler(this.userPreferencesLocationToolStripMenuItem_Click);
             // 
             // analyzeLocalizationToolStripMenuItem
             // 
             this.analyzeLocalizationToolStripMenuItem.Name = "analyzeLocalizationToolStripMenuItem";
-            this.analyzeLocalizationToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.analyzeLocalizationToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.analyzeLocalizationToolStripMenuItem.Text = "Analyze localization";
             this.analyzeLocalizationToolStripMenuItem.Click += new System.EventHandler(this.analyzeLocalizationToolStripMenuItem_Click);
             // 
             // logControlpositionsToolStripMenuItem
             // 
             this.logControlpositionsToolStripMenuItem.Name = "logControlpositionsToolStripMenuItem";
-            this.logControlpositionsToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.logControlpositionsToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.logControlpositionsToolStripMenuItem.Text = "Log controlpositions";
             this.logControlpositionsToolStripMenuItem.Click += new System.EventHandler(this.logControlpositionsToolStripMenuItem_Click);
             // 
             // sayBottolLineOfWindowToolStripMenuItem
             // 
             this.sayBottolLineOfWindowToolStripMenuItem.Name = "sayBottolLineOfWindowToolStripMenuItem";
-            this.sayBottolLineOfWindowToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.sayBottolLineOfWindowToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.sayBottolLineOfWindowToolStripMenuItem.Text = "Say Bottol Line Of Window";
             this.sayBottolLineOfWindowToolStripMenuItem.Click += new System.EventHandler(this.sayBottolLineOfWindowToolStripMenuItem_Click);
             // 
             // sayStatuslineToolStripMenuItem
             // 
             this.sayStatuslineToolStripMenuItem.Name = "sayStatuslineToolStripMenuItem";
-            this.sayStatuslineToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.sayStatuslineToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.sayStatuslineToolStripMenuItem.Text = "Say Statusline";
             this.sayStatuslineToolStripMenuItem.Click += new System.EventHandler(this.sayStatuslineToolStripMenuItem_Click);
             // 
             // associateWithMusicXmlFilesToolStripMenuItem
             // 
             this.associateWithMusicXmlFilesToolStripMenuItem.Name = "associateWithMusicXmlFilesToolStripMenuItem";
-            this.associateWithMusicXmlFilesToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.associateWithMusicXmlFilesToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.associateWithMusicXmlFilesToolStripMenuItem.Text = "Associate running version with .MusicXml files";
             this.associateWithMusicXmlFilesToolStripMenuItem.Click += new System.EventHandler(this.associateWithMusicXmlFilesToolStripMenuItem_Click);
             // 
             // associateInstalledVersionWithMusicXmlFilesToolStripMenuItem
             // 
             this.associateInstalledVersionWithMusicXmlFilesToolStripMenuItem.Name = "associateInstalledVersionWithMusicXmlFilesToolStripMenuItem";
-            this.associateInstalledVersionWithMusicXmlFilesToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.associateInstalledVersionWithMusicXmlFilesToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.associateInstalledVersionWithMusicXmlFilesToolStripMenuItem.Text = "Associate installed version with .MusicXml files";
             this.associateInstalledVersionWithMusicXmlFilesToolStripMenuItem.Click += new System.EventHandler(this.associateInstalledVersionWithMusicXmlFilesToolStripMenuItem_Click);
             // 
             // logFileassociationsToolStripMenuItem
             // 
             this.logFileassociationsToolStripMenuItem.Name = "logFileassociationsToolStripMenuItem";
-            this.logFileassociationsToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.logFileassociationsToolStripMenuItem.Size = new System.Drawing.Size(459, 26);
             this.logFileassociationsToolStripMenuItem.Text = "Log file-associations";
             this.logFileassociationsToolStripMenuItem.Click += new System.EventHandler(this.logFileassociationsToolStripMenuItem_Click);
             // 
@@ -940,153 +947,153 @@
             this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem,
             this.httpwwwhausmusikchToolStripMenuItem});
             this.archivesToolStripMenuItem.Name = "archivesToolStripMenuItem";
-            this.archivesToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
+            this.archivesToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
             this.archivesToolStripMenuItem.Text = "&NoteArchives";
             // 
             // httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem
             // 
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem.Name = "httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem";
-            this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem.Text = "https://www.musicxml.com/music-in-musicxml/";
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem.Click += new System.EventHandler(this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem_Click);
             // 
             // httpsmusescorecomsheetmusicToolStripMenuItem1
             // 
             this.httpsmusescorecomsheetmusicToolStripMenuItem1.Name = "httpsmusescorecomsheetmusicToolStripMenuItem1";
-            this.httpsmusescorecomsheetmusicToolStripMenuItem1.Size = new System.Drawing.Size(502, 22);
+            this.httpsmusescorecomsheetmusicToolStripMenuItem1.Size = new System.Drawing.Size(623, 26);
             this.httpsmusescorecomsheetmusicToolStripMenuItem1.Text = "https://musescore.com/sheetmusic";
             this.httpsmusescorecomsheetmusicToolStripMenuItem1.Click += new System.EventHandler(this.httpsmusescorecomsheetmusicToolStripMenuItem_Click);
             // 
             // httpwwwmusicalioncomToolStripMenuItem
             // 
             this.httpwwwmusicalioncomToolStripMenuItem.Name = "httpwwwmusicalioncomToolStripMenuItem";
-            this.httpwwwmusicalioncomToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwmusicalioncomToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpwwwmusicalioncomToolStripMenuItem.Text = "http://www.musicalion.com/";
             this.httpwwwmusicalioncomToolStripMenuItem.Click += new System.EventHandler(this.httpwwwmusicalioncomToolStripMenuItem_Click);
             // 
             // httpimslporgwikiMainPageToolStripMenuItem
             // 
             this.httpimslporgwikiMainPageToolStripMenuItem.Name = "httpimslporgwikiMainPageToolStripMenuItem";
-            this.httpimslporgwikiMainPageToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpimslporgwikiMainPageToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpimslporgwikiMainPageToolStripMenuItem.Text = "http://imslp.org/wiki/Main_Page";
             this.httpimslporgwikiMainPageToolStripMenuItem.Click += new System.EventHandler(this.httpimslporgwikiMainPageToolStripMenuItem_Click);
             // 
             // httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem
             // 
             this.httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem.Name = "httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem";
-            this.httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem.Text = "http://www1.cpdl.org/wiki/index.php/Main_Page";
             this.httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem.Click += new System.EventHandler(this.httpwww1cpdlorgwikiindexphpMainPageToolStripMenuItem_Click);
             // 
             // httpickingmusicarchiveorgindexphpToolStripMenuItem
             // 
             this.httpickingmusicarchiveorgindexphpToolStripMenuItem.Name = "httpickingmusicarchiveorgindexphpToolStripMenuItem";
-            this.httpickingmusicarchiveorgindexphpToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpickingmusicarchiveorgindexphpToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpickingmusicarchiveorgindexphpToolStripMenuItem.Text = "http://icking-music-archive.org/index.php";
             this.httpickingmusicarchiveorgindexphpToolStripMenuItem.Click += new System.EventHandler(this.httpickingmusicarchiveorgindexphpToolStripMenuItem_Click);
             // 
             // httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem
             // 
             this.httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem.Name = "httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem";
-            this.httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem.Text = "http://folkopedia.efdss.org/wiki/Take_6_Transcription_Programme";
             this.httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem.Click += new System.EventHandler(this.httpfolkopediaefdssorgwikiTake6TranscriptionProgrammeToolStripMenuItem_Click);
             // 
             // httpjosquinstanfordeduToolStripMenuItem
             // 
             this.httpjosquinstanfordeduToolStripMenuItem.Name = "httpjosquinstanfordeduToolStripMenuItem";
-            this.httpjosquinstanfordeduToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpjosquinstanfordeduToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpjosquinstanfordeduToolStripMenuItem.Text = "http://josquin.stanford.edu/";
             this.httpjosquinstanfordeduToolStripMenuItem.Click += new System.EventHandler(this.httpjosquinstanfordeduToolStripMenuItem_Click);
             // 
             // httpneumahumanumfrToolStripMenuItem
             // 
             this.httpneumahumanumfrToolStripMenuItem.Name = "httpneumahumanumfrToolStripMenuItem";
-            this.httpneumahumanumfrToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpneumahumanumfrToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpneumahumanumfrToolStripMenuItem.Text = "http://neuma.huma-num.fr/";
             this.httpneumahumanumfrToolStripMenuItem.Click += new System.EventHandler(this.httpneumahumanumfrToolStripMenuItem_Click);
             // 
             // httpwwwhymnaryorgToolStripMenuItem
             // 
             this.httpwwwhymnaryorgToolStripMenuItem.Name = "httpwwwhymnaryorgToolStripMenuItem";
-            this.httpwwwhymnaryorgToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwhymnaryorgToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpwwwhymnaryorgToolStripMenuItem.Text = "http://www.hymnary.org/";
             this.httpwwwhymnaryorgToolStripMenuItem.Click += new System.EventHandler(this.httpwwwhymnaryorgToolStripMenuItem_Click);
             // 
             // httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem
             // 
             this.httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem.Name = "httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem";
-            this.httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem.Text = "http://www.shsu.edu/academics/music/ponchielli/index.html";
             this.httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem.Click += new System.EventHandler(this.httpwwwshsueduacademicsmusicponchielliindexhtmlToolStripMenuItem_Click);
             // 
             // httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem
             // 
             this.httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem.Name = "httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem";
-            this.httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem.Text = "https://github.com/MTG/SymbTr/releases/tag/v2.0.0";
             this.httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem.Click += new System.EventHandler(this.httpsgithubcomMTGSymbTrreleasestagv200ToolStripMenuItem_Click);
             // 
             // httpwwwvisaudiodesignscomToolStripMenuItem
             // 
             this.httpwwwvisaudiodesignscomToolStripMenuItem.Name = "httpwwwvisaudiodesignscomToolStripMenuItem";
-            this.httpwwwvisaudiodesignscomToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwvisaudiodesignscomToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpwwwvisaudiodesignscomToolStripMenuItem.Text = "http://www.visaudiodesigns.com/";
             this.httpwwwvisaudiodesignscomToolStripMenuItem.Click += new System.EventHandler(this.httpwwwvisaudiodesignscomToolStripMenuItem_Click);
             // 
             // httpwwwlamadeguidocomToolStripMenuItem
             // 
             this.httpwwwlamadeguidocomToolStripMenuItem.Name = "httpwwwlamadeguidocomToolStripMenuItem";
-            this.httpwwwlamadeguidocomToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwlamadeguidocomToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpwwwlamadeguidocomToolStripMenuItem.Text = "http://www.lamadeguido.com/";
             this.httpwwwlamadeguidocomToolStripMenuItem.Click += new System.EventHandler(this.httpwwwlamadeguidocomToolStripMenuItem_Click);
             // 
             // httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem
             // 
             this.httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem.Name = "httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem";
-            this.httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem.Text = "http://lusthof-der-muziek.blogspot.dk/2010/11/garden-of-musical-delights.html";
             this.httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem.Click += new System.EventHandler(this.httplusthofdermuziekblogspotdk201011gardenofmusicaldelightshtmlToolStripMenuItem_Click);
             // 
             // httpwwwfolkotecagalegacomToolStripMenuItem
             // 
             this.httpwwwfolkotecagalegacomToolStripMenuItem.Name = "httpwwwfolkotecagalegacomToolStripMenuItem";
-            this.httpwwwfolkotecagalegacomToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwfolkotecagalegacomToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpwwwfolkotecagalegacomToolStripMenuItem.Text = "http://www.folkotecagalega.com/";
             this.httpwwwfolkotecagalegacomToolStripMenuItem.Click += new System.EventHandler(this.httpwwwfolkotecagalegacomToolStripMenuItem_Click);
             // 
             // httpopenmusicscoreorgToolStripMenuItem
             // 
             this.httpopenmusicscoreorgToolStripMenuItem.Name = "httpopenmusicscoreorgToolStripMenuItem";
-            this.httpopenmusicscoreorgToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpopenmusicscoreorgToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpopenmusicscoreorgToolStripMenuItem.Text = "http://openmusicscore.org/";
             this.httpopenmusicscoreorgToolStripMenuItem.Click += new System.EventHandler(this.httpopenmusicscoreorgToolStripMenuItem_Click);
             // 
             // httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem
             // 
             this.httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem.Name = "httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem";
-            this.httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem.Text = "http://www.gutenberg.org/wiki/Gutenberg:The_Sheet_Music_Project";
             this.httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem.Click += new System.EventHandler(this.httpwwwgutenbergorgwikiGutenbergTheSheetMusicProjectToolStripMenuItem_Click);
             // 
             // httpwwwnewhymnsorgToolStripMenuItem
             // 
             this.httpwwwnewhymnsorgToolStripMenuItem.Name = "httpwwwnewhymnsorgToolStripMenuItem";
-            this.httpwwwnewhymnsorgToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwnewhymnsorgToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpwwwnewhymnsorgToolStripMenuItem.Text = "http://www.newhymns.org/";
             this.httpwwwnewhymnsorgToolStripMenuItem.Click += new System.EventHandler(this.httpwwwnewhymnsorgToolStripMenuItem_Click);
             // 
             // httpwwwhymnsandcarolsofchristmascomToolStripMenuItem
             // 
             this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem.Name = "httpwwwhymnsandcarolsofchristmascomToolStripMenuItem";
-            this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem.Text = "http://www.hymnsandcarolsofchristmas.com/";
             this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem.Click += new System.EventHandler(this.httpwwwhymnsandcarolsofchristmascomToolStripMenuItem_Click);
             // 
             // httpwwwhausmusikchToolStripMenuItem
             // 
             this.httpwwwhausmusikchToolStripMenuItem.Name = "httpwwwhausmusikchToolStripMenuItem";
-            this.httpwwwhausmusikchToolStripMenuItem.Size = new System.Drawing.Size(502, 22);
+            this.httpwwwhausmusikchToolStripMenuItem.Size = new System.Drawing.Size(623, 26);
             this.httpwwwhausmusikchToolStripMenuItem.Text = "http://www.hausmusik.ch/";
             this.httpwwwhausmusikchToolStripMenuItem.Click += new System.EventHandler(this.httpwwwhausmusikchToolStripMenuItem_Click);
             // 
@@ -1098,34 +1105,34 @@
             this.linkToNewestSoftwareToolStripMenuItem,
             this.usersManualToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 22);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // aboutIBOSMusicXmlReaderToolStripMenuItem
             // 
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Name = "aboutIBOSMusicXmlReaderToolStripMenuItem";
-            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.aboutIBOSMusicXmlReaderToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = "About ";
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Click += new System.EventHandler(this.aboutIBOSMusicXmlReaderToolStripMenuItem_Click);
             // 
             // keyboardShortcutsToolStripMenuItem
             // 
             this.keyboardShortcutsToolStripMenuItem.Name = "keyboardShortcutsToolStripMenuItem";
-            this.keyboardShortcutsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.keyboardShortcutsToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
             this.keyboardShortcutsToolStripMenuItem.Text = "Keyboard shortcuts";
             this.keyboardShortcutsToolStripMenuItem.Click += new System.EventHandler(this.keyboardShortcutsToolStripMenuItem_Click);
             // 
             // linkToNewestSoftwareToolStripMenuItem
             // 
             this.linkToNewestSoftwareToolStripMenuItem.Name = "linkToNewestSoftwareToolStripMenuItem";
-            this.linkToNewestSoftwareToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.linkToNewestSoftwareToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
             this.linkToNewestSoftwareToolStripMenuItem.Text = "Link to newest software";
             this.linkToNewestSoftwareToolStripMenuItem.Click += new System.EventHandler(this.linkToNewestSoftwareToolStripMenuItem_Click);
             // 
             // usersManualToolStripMenuItem
             // 
             this.usersManualToolStripMenuItem.Name = "usersManualToolStripMenuItem";
-            this.usersManualToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.usersManualToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
             this.usersManualToolStripMenuItem.Text = "User´s manual";
             this.usersManualToolStripMenuItem.Click += new System.EventHandler(this.usersManualToolStripMenuItem_Click);
             // 
@@ -1135,9 +1142,10 @@
             this.userSettingsTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.userSettingsTreeView.CheckBoxes = true;
-            this.userSettingsTreeView.Location = new System.Drawing.Point(10, 28);
+            this.userSettingsTreeView.Location = new System.Drawing.Point(13, 34);
+            this.userSettingsTreeView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.userSettingsTreeView.Name = "userSettingsTreeView";
-            this.userSettingsTreeView.Size = new System.Drawing.Size(250, 691);
+            this.userSettingsTreeView.Size = new System.Drawing.Size(332, 850);
             this.userSettingsTreeView.TabIndex = 1;
             // 
             // listBoxTimes
@@ -1147,9 +1155,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxTimes.FormattingEnabled = true;
-            this.listBoxTimes.Location = new System.Drawing.Point(265, 60);
+            this.listBoxTimes.ItemHeight = 16;
+            this.listBoxTimes.Location = new System.Drawing.Point(353, 74);
+            this.listBoxTimes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBoxTimes.Name = "listBoxTimes";
-            this.listBoxTimes.Size = new System.Drawing.Size(950, 654);
+            this.listBoxTimes.Size = new System.Drawing.Size(1265, 804);
             this.listBoxTimes.TabIndex = 0;
             // 
             // textBoxBraille
@@ -1159,10 +1169,11 @@
             this.textBoxBraille.BackColor = System.Drawing.Color.Black;
             this.textBoxBraille.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxBraille.ForeColor = System.Drawing.Color.White;
-            this.textBoxBraille.Location = new System.Drawing.Point(10, 751);
+            this.textBoxBraille.Location = new System.Drawing.Point(13, 924);
+            this.textBoxBraille.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxBraille.Name = "textBoxBraille";
             this.textBoxBraille.ReadOnly = true;
-            this.textBoxBraille.Size = new System.Drawing.Size(1205, 62);
+            this.textBoxBraille.Size = new System.Drawing.Size(1605, 75);
             this.textBoxBraille.TabIndex = 5;
             this.textBoxBraille.TabStop = false;
             // 
@@ -1170,10 +1181,11 @@
             // 
             this.textBoxText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxText.Location = new System.Drawing.Point(10, 819);
+            this.textBoxText.Location = new System.Drawing.Point(13, 1008);
+            this.textBoxText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxText.Name = "textBoxText";
             this.textBoxText.ReadOnly = true;
-            this.textBoxText.Size = new System.Drawing.Size(1205, 20);
+            this.textBoxText.Size = new System.Drawing.Size(1605, 22);
             this.textBoxText.TabIndex = 6;
             this.textBoxText.TabStop = false;
             // 
@@ -1185,10 +1197,11 @@
             // 
             this.textBoxNormalText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxNormalText.Location = new System.Drawing.Point(11, 725);
+            this.textBoxNormalText.Location = new System.Drawing.Point(15, 892);
+            this.textBoxNormalText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxNormalText.Name = "textBoxNormalText";
             this.textBoxNormalText.ReadOnly = true;
-            this.textBoxNormalText.Size = new System.Drawing.Size(1204, 20);
+            this.textBoxNormalText.Size = new System.Drawing.Size(1604, 22);
             this.textBoxNormalText.TabIndex = 8;
             this.textBoxNormalText.TabStop = false;
             // 
@@ -1197,10 +1210,11 @@
             this.textBoxStatusInformation.AccessibleName = "textBoxStatusInformation";
             this.textBoxStatusInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxStatusInformation.Location = new System.Drawing.Point(10, 846);
+            this.textBoxStatusInformation.Location = new System.Drawing.Point(13, 1041);
+            this.textBoxStatusInformation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxStatusInformation.Name = "textBoxStatusInformation";
             this.textBoxStatusInformation.ReadOnly = true;
-            this.textBoxStatusInformation.Size = new System.Drawing.Size(1205, 20);
+            this.textBoxStatusInformation.Size = new System.Drawing.Size(1605, 22);
             this.textBoxStatusInformation.TabIndex = 10;
             this.textBoxStatusInformation.TabStop = false;
             this.textBoxStatusInformation.Text = "Status Information";
@@ -1210,9 +1224,11 @@
             this.listBoxDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxDetails.FormattingEnabled = true;
-            this.listBoxDetails.Location = new System.Drawing.Point(265, 28);
+            this.listBoxDetails.ItemHeight = 16;
+            this.listBoxDetails.Location = new System.Drawing.Point(353, 34);
+            this.listBoxDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBoxDetails.Name = "listBoxDetails";
-            this.listBoxDetails.Size = new System.Drawing.Size(950, 30);
+            this.listBoxDetails.Size = new System.Drawing.Size(1265, 36);
             this.listBoxDetails.TabIndex = 11;
             this.listBoxDetails.TabStop = false;
             // 
@@ -1223,9 +1239,10 @@
             this.textBoxScreenReader.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.textBoxScreenReader.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxScreenReader.Location = new System.Drawing.Point(281, 34);
+            this.textBoxScreenReader.Location = new System.Drawing.Point(375, 42);
+            this.textBoxScreenReader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxScreenReader.Name = "textBoxScreenReader";
-            this.textBoxScreenReader.Size = new System.Drawing.Size(926, 20);
+            this.textBoxScreenReader.Size = new System.Drawing.Size(1233, 22);
             this.textBoxScreenReader.TabIndex = 12;
             // 
             // printDialog
@@ -1235,24 +1252,18 @@
             // textBoxEmpty
             // 
             this.textBoxEmpty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxEmpty.Location = new System.Drawing.Point(1197, 725);
+            this.textBoxEmpty.Location = new System.Drawing.Point(1596, 892);
+            this.textBoxEmpty.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxEmpty.Name = "textBoxEmpty";
-            this.textBoxEmpty.Size = new System.Drawing.Size(18, 20);
+            this.textBoxEmpty.Size = new System.Drawing.Size(23, 22);
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
             // 
-            // makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem
-            // 
-            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem.Name = "makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem";
-            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
-            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem.Text = "Make IBOS MusicXmlReader default app for .&MusicXml files";
-            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem.Click += new System.EventHandler(this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1219, 862);
+            this.ClientSize = new System.Drawing.Size(1625, 1061);
             this.Controls.Add(this.textBoxEmpty);
             this.Controls.Add(this.textBoxScreenReader);
             this.Controls.Add(this.listBoxDetails);
@@ -1264,7 +1275,7 @@
             this.Controls.Add(this.userSettingsTreeView);
             this.Controls.Add(this.MenuStrip);
             this.MainMenuStrip = this.MenuStrip;
-            this.MinimizeBox = false;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
