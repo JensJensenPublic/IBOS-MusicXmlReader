@@ -728,7 +728,6 @@ namespace MusicXmlReader
             Associate(musicXmlExtension, progIdInstalled, installedVersionFullPath);          
         }
 
-#warning todo Localize Associate
         private void Associate(string extension, string progId, string applicationExeFullPath)
         {
             Logger.LogCF(string.Format("(Extension={0} ProgId={1} applicationExeFullPath={2}) started", extension, progId, applicationExeFullPath));
@@ -745,9 +744,8 @@ namespace MusicXmlReader
             }
             // result = false; // For debugging !
             MessageBoxIcon icon = result ? MessageBoxIcon.Information : MessageBoxIcon.Error;
-#warning todo Localize: 
-            string message = string.Format("Association of extension '{0}' {1}", extension, result ? "succeeded." : "failed!");
-            string extraInfo = result ? string.Format("\r\n\r\nPath='{0}'", applicationExeFullPath) :  string.Format("\r\n\r\n{0}",ResourcesForUI.Message_PleaseSeeLogFile);
+            string message = string.Format("{0} {1}", ResourcesForUI.Message_Files_SetupOfDefaultAppForMusicXmlFiles, result ? ResourcesForUI.Message_Succeeded : ResourcesForUI.Message_Failed);
+            string extraInfo = result ? string.Format("\r\n\r\n{0}='{1}'", ResourcesForUI.Message_Files_Path,applicationExeFullPath) :  string.Format("\r\n\r\n{0}",ResourcesForUI.Message_PleaseSeeLogFile);
             MessageBox.Show(message + extraInfo, applicationName, MessageBoxButtons.OK, icon);
             Logger.LogCF(string.Format("(Extension={0} ProgId={1} applicationExeFullPath={2}) completed", extension, progId, applicationExeFullPath));
         }

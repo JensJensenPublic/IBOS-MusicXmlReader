@@ -650,4 +650,10 @@
   <data name="ToolStripMenuItem_Files_MakeMusicXmlReaderDefaultAppForMusicXml" xml:space="preserve">
     <value>Make {0} the default app for .&amp;MusicXml files</value>
   </data>
+  <data name="Message_Files_SetupOfDefaultAppForMusicXmlFiles" xml:space="preserve">
+    <value>Setup of default app for .MusicXml files</value>
+  </data>
+  <data name="Message_Files_Path" xml:space="preserve">
+    <value>Path</value>
+  </data>
 </root>

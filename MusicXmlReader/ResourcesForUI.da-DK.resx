@@ -664,4 +664,10 @@
   <data name="ToolStripMenuItem_Files_MakeMusicXmlReaderDefaultAppForMusicXml" xml:space="preserve">
     <value>Gør {0} til standard-app for .&amp;MusicXml filer</value>
   </data>
+  <data name="Message_Files_SetupOfDefaultAppForMusicXmlFiles" xml:space="preserve">
+    <value>Opsætning af standard-app for .MusicXml filer</value>
+  </data>
+  <data name="Message_Files_Path" xml:space="preserve">
+    <value>Sti</value>
+  </data>
 </root>

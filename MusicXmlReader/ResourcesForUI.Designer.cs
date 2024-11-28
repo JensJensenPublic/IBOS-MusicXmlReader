@@ -448,6 +448,24 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Path.
+        /// </summary>
+        internal static string Message_Files_Path {
+            get {
+                return ResourceManager.GetString("Message_Files_Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Setup of default app for .MusicXml files.
+        /// </summary>
+        internal static string Message_Files_SetupOfDefaultAppForMusicXmlFiles {
+            get {
+                return ResourceManager.GetString("Message_Files_SetupOfDefaultAppForMusicXmlFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to JAWS screenreader is not running.
         /// </summary>
         internal static string Message_JAWSScreenReaderIsNotRunning {
