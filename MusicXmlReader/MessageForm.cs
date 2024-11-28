@@ -27,8 +27,12 @@ namespace MusicXmlReader
         public MessageForm(string caption,string question)
         {
             InitializeComponent();
+            this.checkBoxDontShowAgain.Text = ResourcesForUI.CheckBox_Caption_DoNotShowThisAgain;
+            this.buttonNo.Text = ResourcesForUI.Button_Text_No;
+            this.buttonYes.Text = ResourcesForUI.Button_Text_Yes;
             this.Text = caption;
-            this.textBoxMessage.Text = question;    
+            this.labelQuestion.Text = question; 
+          
         }
 
         private void checkBoxDontShowAgain_CheckedChanged(object sender, EventArgs e)

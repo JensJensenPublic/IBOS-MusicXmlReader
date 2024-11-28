@@ -125,79 +125,21 @@
     <value>stop afspelen</value>
     <comment>start, stop is the same in Dutch</comment>
   </data>
-  <data name="DetailsState_Bottom" xml:space="preserve">
-    <value>onderaan scherm</value>
-  </data>
-  <data name="DetailsState_Top" xml:space="preserve">
-    <value>bovenaan scherm</value>
-  </data>
-  <data name="DetailState_AllParts" xml:space="preserve">
-    <value>alle delen</value>
-  </data>
-  <data name="DetailState_Harmonies" xml:space="preserve">
-    <value>accoord symbolen</value>
-    <comment>not with double k, that means something different</comment>
-  </data>
-  <data name="DetailState_Instruments" xml:space="preserve">
-    <value>instrumenten</value>
-  </data>
-  <data name="DetailState_SingleNotes" xml:space="preserve">
-    <value>enkele noot</value>
-  </data>
-  <data name="DetailState_SingleParts" xml:space="preserve">
-    <value>enkel deel</value>
-  </data>
-  <data name="DetailState_Status" xml:space="preserve">
-    <value>status</value>
-    <comment>english and dutch is the same</comment>
-  </data>
-  <data name="DirectoryNames_CultureString" xml:space="preserve">
-    <value>nl-NL</value>
-    <comment>Used tolookup this resource file !</comment>
-  </data>
-  <data name="DirectoryNames_Downloads" xml:space="preserve">
-    <value>Muziek XML downloads</value>
-    <comment>it is the same</comment>
-  </data>
-  <data name="DirectoryNames_Samples" xml:space="preserve">
-    <value>fragmenten</value>
-  </data>
-  <data name="FileNames_UsersManual" xml:space="preserve">
-    <value>Gebruikershandleiding.docx</value>
-    <comment>Gebruikers handleiding = dutch for users manual </comment>
-  </data>
-  <data name="ListBoxDetails_NoDetailsFound" xml:space="preserve">
-    <value>Geen details gevonden</value>
-  </data>
-  <data name="ListView_Accessible_Name" xml:space="preserve">
-    <value>notenlijst</value>
-  </data>
   <data name="MainForm_ApplicationName" xml:space="preserve">
     <value>IBOS muziek lezer</value>
   </data>
   <data name="Message_ConnectedToNonDefaultScreenReader" xml:space="preserve">
     <value>Verbonden met een screenreader die niet ondersteund wordt</value>
   </data>
-  <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
-    <value>Overweeg een voor een te exporteren</value>
-    <comment>NL Obsolete</comment>
-  </data>
   <data name="Message_DirectoryNotFound" xml:space="preserve">
     <value>Bestandsmap niet gevonden</value>
     <comment>Directory = map</comment>
   </data>
-  <data name="Message_DoYouWantToExitTheProgram" xml:space="preserve">
-    <value>Wilt u het programma verlaten?</value>
-  </data>
-  <data name="Message_ExportOfMultiplePartsNotSupported" xml:space="preserve">
-    <value>Wanneer verschillende bestanden tegelijkertijd zijn geëxporteerd, kunnen de noten gemixt worden en kunnen later niet meer gescheiden worden.</value>
+  <data name="Message_JAWSScreenReaderIsNotRunning" xml:space="preserve">
+    <value>JAWS screenreader werkt niet</value>
   </data>
   <data name="Message_FailedToReadMusicXmlFile" xml:space="preserve">
     <value>Fout bij het lezen van het  Muziek XML bestand</value>
-  </data>
-  <data name="Message_FailedToShow" xml:space="preserve">
-    <value>Fout bij het tonen</value>
-    <comment>Fout bij het laten zien</comment>
   </data>
   <data name="Message_FailedToStartProgram" xml:space="preserve">
     <value>Kan programma niet starten</value>
@@ -205,37 +147,17 @@
   <data name="Message_FileNotFound" xml:space="preserve">
     <value>Bestand niet gevonden</value>
   </data>
-  <data name="Message_JAWSScreenReaderIsNotRunning" xml:space="preserve">
-    <value>JAWS screenreader werkt niet</value>
-  </data>
-  <data name="Message_LocationNotDetermined" xml:space="preserve">
-    <value>Locatie van het bestand is niet gevonden</value>
-  </data>
   <data name="Message_MayNotWorkAsExpected" xml:space="preserve">
     <value>Het programma werkt  niet zoals verwacht werd.</value>
   </data>
   <data name="Message_MissingProgramFile" xml:space="preserve">
     <value>Ontbrekend programmabestand</value>
   </data>
-  <data name="Message_NotAllowedWhilePlaying" xml:space="preserve">
-    <value>Niet toegestaan tijdens afspelen muziek</value>
-  </data>
   <data name="Message_PleaseSeeLogFile" xml:space="preserve">
     <value>Kijkt u  bij het log-bestand</value>
   </data>
-  <data name="Message_RightAlignedMenus" xml:space="preserve">
-    <value>Ga naar het bedieningspanaal - apparaten - pen en Winows inkt en wijzig keuze van de hand waarmee u schrijft van rechter- naar linkerhand.</value>
-    <comment>pen is the same word in dutch</comment>
-  </data>
-  <data name="Message_StopPlayingFirst" xml:space="preserve">
-    <value>Stop eerst het afspelen</value>
-    <comment>in English should be playing </comment>
-  </data>
   <data name="Message_UndefinedMessage" xml:space="preserve">
     <value>Ongedefinieerd bericht</value>
-  </data>
-  <data name="Message_UnspecifiedInitializationError" xml:space="preserve">
-    <value>Fout gedurende het initialiseren van het programma</value>
   </data>
   <data name="Message_UnspecifiedMusicXmlFile" xml:space="preserve">
     <value>Geen  Muziek XML bestand gekozen</value>
@@ -247,50 +169,6 @@
   <data name="OpenFileDialog_Filter_mxl" xml:space="preserve">
     <value>Gecomprimeerde XML bestanden</value>
   </data>
-  <data name="ParameterInputForm_BrailleFormatting" xml:space="preserve">
-    <value>Voeg papierformaat is zoals aantal tekens per regel comma aantal regels per pagina</value>
-    <comment>NL MISSING translation of "comma"</comment>
-  </data>
-  <data name="ParameterInputForm_GoTo" xml:space="preserve">
-    <value>&amp;Ga naar maat</value>
-  </data>
-  <data name="ParameterInputForm_PctOfNominalTempo" xml:space="preserve">
-    <value>% normaal tempo</value>
-  </data>
-  <data name="ParameterInputForm_Repeat" xml:space="preserve">
-    <value>&amp;herhaal maten</value>
-  </data>
-  <data name="ResourceFileName" xml:space="preserve">
-    <value>ResourcesForUI.nl-NL.resx</value>
-    <comment>Resource in dutch:  bron</comment>
-  </data>
-  <data name="SelectDownloadFileImportDialog_Title" xml:space="preserve">
-    <value>Selecteer de gedownloade bestanden om te importeren</value>
-  </data>
-  <data name="StatusLine_Accessible_Name" xml:space="preserve">
-    <value>status regel</value>
-  </data>
-  <data name="Status_file" xml:space="preserve">
-    <value>bestand</value>
-    <comment>bestand is singularis</comment>
-  </data>
-  <data name="Status_files" xml:space="preserve">
-    <value>bestanden</value>
-    <comment>betanden is plural</comment>
-  </data>
-  <data name="Status_Imported" xml:space="preserve">
-    <value>geïmporteerd</value>
-  </data>
-  <data name="Status_ImportingSampleFiles" xml:space="preserve">
-    <value>bezig met importeren geluidsfragmenten</value>
-    <comment>we think the sample file is  a music sample from e.g the piano </comment>
-  </data>
-  <data name="Status_ImportingSelectedFiles" xml:space="preserve">
-    <value>bezig met importeren van de geselecteerde bestanden</value>
-  </data>
-  <data name="TextBox_Messages_FailedToConvert_File" xml:space="preserve">
-    <value>fout bij het converteren</value>
-  </data>
   <data name="TextBox_Messages_FailedToRead_File" xml:space="preserve">
     <value>Fout bij het lezen van het XML bestand</value>
   </data>
@@ -300,17 +178,8 @@
   <data name="TextBox_Messages_TheProgramIsExiting" xml:space="preserve">
     <value>Het programma sluit af</value>
   </data>
-  <data name="TextBox_Messages_ToMusicXml" xml:space="preserve">
-    <value>naar  Muziek XML (.XML)</value>
-  </data>
-  <data name="TextBox_Messages_UnsupportedFileFormat" xml:space="preserve">
-    <value>Bestandsformaat wordt niet ondersteund</value>
-  </data>
   <data name="ToolsStripMenuItem_Archives" xml:space="preserve">
     <value>&amp;XML-bibliotheken</value>
-  </data>
-  <data name="ToolsStripMenuItem_View_Instruments" xml:space="preserve">
-    <value>&amp;Details MIDI instrumenten</value>
   </data>
   <data name="ToolStripMenuItem_Edit" xml:space="preserve">
     <value>&amp;Wijzig</value>
@@ -318,90 +187,23 @@
   <data name="ToolStripMenuItem_Files" xml:space="preserve">
     <value>&amp;Bestanden</value>
   </data>
-  <data name="ToolStripMenuItem_Files_BrfASCII" xml:space="preserve">
-    <value>.brf (ASCII)</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_BrfUnicode" xml:space="preserve">
-    <value>.brf (Uniecode)</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_brf_ASCII" xml:space="preserve">
-    <value>.brf (&amp;ASCII)</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_brf_Unicode" xml:space="preserve">
-    <value>.brf (&amp;Unicode)</value>
-  </data>
   <data name="ToolStripMenuItem_Files_Exit" xml:space="preserve">
     <value>&amp;sluiten</value>
     <comment>Exit in dutch: sluiten</comment>
   </data>
-  <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
-    <value>E&amp;xporteer Braille muziek </value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
-    <value>Importeer &amp;downloads</value>
-    <comment>Is this true: import all  downloads?</comment>
-  </data>
-  <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
-    <value>Importeer downloads van &amp;vandaag</value>
-    <comment>Import only today's downloads</comment>
-  </data>
-  <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
-    <value>Importeer de &amp;nieuwste Muziek XML bestanden</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_InOptionalFormat" xml:space="preserve">
-    <value>in formaat naar keuze</value>
-  </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFile" xml:space="preserve">
     <value>&amp;Open  Muziek XML bestand</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
-    <value>Open  Muziek XML bestand en gebruik standaard &amp;instellingen</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ToEmbosser" xml:space="preserve">
-    <value>naar printer</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ToNoteTaker" xml:space="preserve">
-    <value>naar Notetaker</value>
-    <comment>we think Notetaker is the name of a programm or the name of hardware equipment?</comment>
-  </data>
-  <data name="ToolStripMenuItem_Files_TxtOctoBraille1252" xml:space="preserve">
-    <value>.txt (OctoBraille 1252)</value>
   </data>
   <data name="ToolStripMenuItem_Help" xml:space="preserve">
     <value>&amp;Help</value>
     <comment>is the same in Dutch</comment>
   </data>
-  <data name="ToolStripMenuItem_Help_About" xml:space="preserve">
-    <value>&amp;over</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_About_Version" xml:space="preserve">
-    <value>&amp;Versie</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
-    <value>&amp;Sneltoetsen</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_ShowUsersManual" xml:space="preserve">
-    <value>&amp;Toon gebruikershandleiding</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_SoftwareUpdate" xml:space="preserve">
-    <value>&amp;Link naar de nieuwste software</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
-    <value>https://ibos.dk/index.php/engelsk-side/ibos-musicxml-reader/</value>
-    <comment>Explicitly use english version</comment>
-  </data>
   <data name="ToolStripMenuItem_Tools" xml:space="preserve">
     <value>Bewer&amp;k</value>
     <comment>things as copy, paste, delete, insert</comment>
   </data>
-  <data name="ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern" xml:space="preserve">
-    <value>Maak braillemuziek testpatroon</value>
-  </data>
   <data name="ToolStripMenuItem_Tools_InspectAsXml" xml:space="preserve">
     <value>Braillemuziek als onbewerkt &amp;XML</value>
-  </data>
-  <data name="ToolStripMenuItem_Tools_JAWS_Settings" xml:space="preserve">
-    <value>&amp;JAWS instellingen</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Logfile" xml:space="preserve">
     <value>&amp;Log bestand</value>
@@ -423,9 +225,6 @@
     <value>&amp;Sibelius</value>
     <comment>name of Programm (not to be translated)</comment>
   </data>
-  <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
-    <value>Gebruikers&amp;instellingen</value>
-  </data>
   <data name="ToolStripMenuItem_Tools_ViewAsInterpretedXml" xml:space="preserve">
     <value>Braillemuziek als geinterpreteerd XML</value>
     <comment>intrerpreted is almost a dutch wordrd</comment>
@@ -433,24 +232,8 @@
   <data name="ToolStripMenuItem_View" xml:space="preserve">
     <value>Beki&amp;jk</value>
   </data>
-  <data name="ToolStripMenuItem_View_MusicBrailleForNoteTaker" xml:space="preserve">
-    <value>Braillemuziek voor Notetaker </value>
-  </data>
-  <data name="TreeView_Accessible_Name" xml:space="preserve">
-    <value>Noot filter</value>
-    <comment>filter is in dutch the same as in englisch</comment>
-  </data>
   <data name="TreeView_All_Items" xml:space="preserve">
     <value>&amp;Alle items</value>
-  </data>
-  <data name="TreeView_CheckAll" xml:space="preserve">
-    <value>&amp;1: Alles selecteren</value>
-  </data>
-  <data name="TreeView_CheckOthers" xml:space="preserve">
-    <value>&amp;Selecteren andere delen of details</value>
-  </data>
-  <data name="Treeview_for" xml:space="preserve">
-    <value>voor</value>
   </data>
   <data name="TreeView_MusicAsBraille" xml:space="preserve">
     <value>&amp;BrailleMuziek</value>
@@ -481,14 +264,231 @@
   <data name="TreeView_MusicAsSpeech_Parts" xml:space="preserve">
     <value>&amp;Partijen</value>
   </data>
+  <data name="TreeWiew_Items" xml:space="preserve">
+    <value>Alle geselecteerde &amp;items</value>
+  </data>
+  <data name="Message_NotAllowedWhilePlaying" xml:space="preserve">
+    <value>Niet toegestaan tijdens afspelen muziek</value>
+  </data>
+  <data name="Message_StopPlayingFirst" xml:space="preserve">
+    <value>Stop eerst het afspelen</value>
+    <comment>in English should be playing </comment>
+  </data>
+  <data name="Treeview_for" xml:space="preserve">
+    <value>voor</value>
+  </data>
+  <data name="ListView_Accessible_Name" xml:space="preserve">
+    <value>notenlijst</value>
+  </data>
+  <data name="TreeView_Accessible_Name" xml:space="preserve">
+    <value>Noot filter</value>
+    <comment>filter is in dutch the same as in englisch</comment>
+  </data>
+  <data name="ToolStripMenuItem_Help_About" xml:space="preserve">
+    <value>&amp;over</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_About_Version" xml:space="preserve">
+    <value>&amp;Versie</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_JAWS_Settings" xml:space="preserve">
+    <value>&amp;JAWS instellingen</value>
+  </data>
+  <data name="DirectoryNames_Samples" xml:space="preserve">
+    <value>fragmenten</value>
+  </data>
+  <data name="StatusLine_Accessible_Name" xml:space="preserve">
+    <value>status regel</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
+    <value>&amp;Sneltoetsen</value>
+  </data>
+  <data name="Message_LocationNotDetermined" xml:space="preserve">
+    <value>Locatie van het bestand is niet gevonden</value>
+  </data>
+  <data name="Message_UnspecifiedInitializationError" xml:space="preserve">
+    <value>Fout gedurende het initialiseren van het programma</value>
+  </data>
+  <data name="Message_DoYouWantToExitTheProgram" xml:space="preserve">
+    <value>Wilt u het programma verlaten?</value>
+  </data>
+  <data name="Status_file" xml:space="preserve">
+    <value>bestand</value>
+    <comment>bestand is singularis</comment>
+  </data>
+  <data name="Status_files" xml:space="preserve">
+    <value>bestanden</value>
+    <comment>betanden is plural</comment>
+  </data>
+  <data name="Status_Imported" xml:space="preserve">
+    <value>geïmporteerd</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
+    <value>Importeer downloads van &amp;vandaag</value>
+    <comment>Import only today's downloads</comment>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
+    <value>Importeer de &amp;nieuwste Muziek XML bestanden</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_SoftwareUpdate" xml:space="preserve">
+    <value>&amp;Link naar de nieuwste software</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
+    <value>https://ibos.dk/index.php/engelsk-side/ibos-musicxml-reader/</value>
+    <comment>Explicitly use english version</comment>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
+    <value>Importeer &amp;downloads</value>
+    <comment>Is this true: import all  downloads?</comment>
+  </data>
+  <data name="ListBoxDetails_NoDetailsFound" xml:space="preserve">
+    <value>Geen details gevonden</value>
+  </data>
+  <data name="TextBox_Messages_FailedToConvert_File" xml:space="preserve">
+    <value>fout bij het converteren</value>
+  </data>
+  <data name="TextBox_Messages_ToMusicXml" xml:space="preserve">
+    <value>naar  Muziek XML (.XML)</value>
+  </data>
+  <data name="TextBox_Messages_UnsupportedFileFormat" xml:space="preserve">
+    <value>Bestandsformaat wordt niet ondersteund</value>
+  </data>
+  <data name="DirectoryNames_Downloads" xml:space="preserve">
+    <value>Muziek XML downloads</value>
+    <comment>it is the same</comment>
+  </data>
+  <data name="Status_ImportingSampleFiles" xml:space="preserve">
+    <value>bezig met importeren geluidsfragmenten</value>
+    <comment>we think the sample file is  a music sample from e.g the piano </comment>
+  </data>
+  <data name="Status_ImportingSelectedFiles" xml:space="preserve">
+    <value>bezig met importeren van de geselecteerde bestanden</value>
+  </data>
+  <data name="ResourceFileName" xml:space="preserve">
+    <value>ResourcesForUI.nl-NL.resx</value>
+    <comment>Resource in dutch:  bron</comment>
+  </data>
+  <data name="SelectDownloadFileImportDialog_Title" xml:space="preserve">
+    <value>Selecteer de gedownloade bestanden om te importeren</value>
+  </data>
+  <data name="ToolsStripMenuItem_View_Instruments" xml:space="preserve">
+    <value>&amp;Details MIDI instrumenten</value>
+  </data>
+  <data name="TreeView_CheckAll" xml:space="preserve">
+    <value>&amp;1: Alles selecteren</value>
+  </data>
   <data name="TreeView_UncheckAll" xml:space="preserve">
     <value>&amp;0: alle selecties ongedaan maken</value>
+  </data>
+  <data name="DirectoryNames_CultureString" xml:space="preserve">
+    <value>nl-NL</value>
+    <comment>Used tolookup this resource file !</comment>
+  </data>
+  <data name="FileNames_UsersManual" xml:space="preserve">
+    <value>Gebruikershandleiding.docx</value>
+    <comment>Gebruikers handleiding = dutch for users manual </comment>
+  </data>
+  <data name="Message_FailedToShow" xml:space="preserve">
+    <value>Fout bij het tonen</value>
+    <comment>Fout bij het laten zien</comment>
+  </data>
+  <data name="ToolStripMenuItem_Help_ShowUsersManual" xml:space="preserve">
+    <value>&amp;Toon gebruikershandleiding</value>
+  </data>
+  <data name="ParameterInputForm_GoTo" xml:space="preserve">
+    <value>&amp;Ga naar maat</value>
+  </data>
+  <data name="ParameterInputForm_PctOfNominalTempo" xml:space="preserve">
+    <value>% normaal tempo</value>
+  </data>
+  <data name="ParameterInputForm_Repeat" xml:space="preserve">
+    <value>&amp;herhaal maten</value>
+  </data>
+  <data name="DetailState_AllParts" xml:space="preserve">
+    <value>alle delen</value>
+  </data>
+  <data name="DetailState_Harmonies" xml:space="preserve">
+    <value>accoord symbolen</value>
+    <comment>not with double k, that means something different</comment>
+  </data>
+  <data name="DetailState_Instruments" xml:space="preserve">
+    <value>instrumenten</value>
+  </data>
+  <data name="DetailState_SingleNotes" xml:space="preserve">
+    <value>enkele noot</value>
+  </data>
+  <data name="DetailState_SingleParts" xml:space="preserve">
+    <value>enkel deel</value>
+  </data>
+  <data name="Message_RightAlignedMenus" xml:space="preserve">
+    <value>Ga naar het bedieningspanaal - apparaten - pen en Winows inkt en wijzig keuze van de hand waarmee u schrijft van rechter- naar linkerhand.</value>
+    <comment>pen is the same word in dutch</comment>
+  </data>
+  <data name="DetailsState_Bottom" xml:space="preserve">
+    <value>onderaan scherm</value>
+  </data>
+  <data name="DetailsState_Top" xml:space="preserve">
+    <value>bovenaan scherm</value>
+  </data>
+  <data name="DetailState_Status" xml:space="preserve">
+    <value>status</value>
+    <comment>english and dutch is the same</comment>
+  </data>
+  <data name="TreeView_CheckOthers" xml:space="preserve">
+    <value>&amp;Selecteren andere delen of details</value>
   </data>
   <data name="TreeView_UncheckOthers" xml:space="preserve">
     <value>andere delen of details &amp;ongedaan worden</value>
   </data>
-  <data name="TreeWiew_Items" xml:space="preserve">
-    <value>Alle geselecteerde &amp;items</value>
+  <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
+    <value>Gebruikers&amp;instellingen</value>
+  </data>
+  <data name="ParameterInputForm_BrailleFormatting" xml:space="preserve">
+    <value>Voeg papierformaat is zoals aantal tekens per regel comma aantal regels per pagina</value>
+    <comment>NL MISSING translation of "comma"</comment>
+  </data>
+  <data name="ToolStripMenuItem_Files_brf_ASCII" xml:space="preserve">
+    <value>.brf (&amp;ASCII)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_brf_Unicode" xml:space="preserve">
+    <value>.brf (&amp;Unicode)</value>
+  </data>
+  <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
+    <value>Overweeg een voor een te exporteren</value>
+    <comment>NL Obsolete</comment>
+  </data>
+  <data name="Message_ExportOfMultiplePartsNotSupported" xml:space="preserve">
+    <value>Wanneer verschillende bestanden tegelijkertijd zijn geëxporteerd, kunnen de noten gemixt worden en kunnen later niet meer gescheiden worden.</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_BrfASCII" xml:space="preserve">
+    <value>.brf (ASCII)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_BrfUnicode" xml:space="preserve">
+    <value>.brf (Uniecode)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_InOptionalFormat" xml:space="preserve">
+    <value>in formaat naar keuze</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToEmbosser" xml:space="preserve">
+    <value>naar printer</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToNoteTaker" xml:space="preserve">
+    <value>naar Notetaker</value>
+    <comment>we think Notetaker is the name of a programm or the name of hardware equipment?</comment>
+  </data>
+  <data name="ToolStripMenuItem_Files_TxtOctoBraille1252" xml:space="preserve">
+    <value>.txt (OctoBraille 1252)</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern" xml:space="preserve">
+    <value>Maak braillemuziek testpatroon</value>
+  </data>
+  <data name="ToolStripMenuItem_View_MusicBrailleForNoteTaker" xml:space="preserve">
+    <value>Braillemuziek voor Notetaker </value>
+  </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
+    <value>Open  Muziek XML bestand en gebruik standaard &amp;instellingen</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
+    <value>&amp;Print Braille muziek bestand</value>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
     <value>Open &amp;laatst geopende Muziek XML bestand</value>
@@ -498,6 +498,80 @@
   </data>
   <data name="ToolStripMenuItem_Settings" xml:space="preserve">
     <value>&amp;Instellingen</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
+    <value>E&amp;xporteer Braille muziek </value>
+  </data>
+  <data name="ToolStripMenuItem_Files_CopyMusicBraille" xml:space="preserve">
+    <value>Kopieer Braille muziek bestand naar Braille apparaat met Windows Verkenner</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_Print_using_External" xml:space="preserve">
+    <value>met e&amp;xtern programma</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_Print_via_Windows" xml:space="preserve">
+    <value>met &amp;Windows printprogramma</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToGenericDevice" xml:space="preserve">
+    <value>Naar algemeen Braille apparaat</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_Embosser" xml:space="preserve">
+    <value>Instellingen voor Braille &amp;printer</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_General" xml:space="preserve">
+    <value>Al&amp;gemene instellingen</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_MusicBraille" xml:space="preserve">
+    <value>Instellingen voor &amp;algemeen Braille apparaat</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_NoteTaker" xml:space="preserve">
+    <value>Instellingen voor &amp;notetaker</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_ResetAll" xml:space="preserve">
+    <value>&amp;Zet alle instellingen naar standaardwaarden</value>
+  </data>
+  <data name="Message_Directory" xml:space="preserve">
+    <value>Bestandmap</value>
+  </data>
+  <data name="Message_ExportToMusicBraille" xml:space="preserve">
+    <value>Exporteer als Braille muziek</value>
+    <comment>*** MISSING, Guessed by JSJ ***</comment>
+  </data>
+  <data name="Message_Failed" xml:space="preserve">
+    <value>Fout</value>
+    <comment>*** MISSING, Guessed by JSJ ** Should be usable for all textboxes ! </comment>
+  </data>
+  <data name="Message_Files" xml:space="preserve">
+    <value>bestanden</value>
+  </data>
+  <data name="Message_Succeeded" xml:space="preserve">
+    <value>succeeded</value>
+    <comment>*** MISSING, Explicitly used english phrase. Need fix !! ***</comment>
+  </data>
+  <data name="Message_File_EmbossedMusicBrailleFile" xml:space="preserve">
+    <value>Geprinted Braille muziekbestand</value>
+  </data>
+  <data name="Message_File_ErrorMessage" xml:space="preserve">
+    <value>Foutmelding</value>
+  </data>
+  <data name="Message_File_FailedToEmbossFileOn" xml:space="preserve">
+    <value>Geen printbestand gevonden bij deze bestandsnaam</value>
+  </data>
+  <data name="Message_File_FileName" xml:space="preserve">
+    <value>Bestand name</value>
+    <comment>*** MISSING, Guessed by JSJ ***</comment>
+  </data>
+  <data name="Message_File_OnEmbosser" xml:space="preserve">
+    <value>op de printer</value>
+  </data>
+  <data name="Message_Settings_DoYouReallyWantToReset" xml:space="preserve">
+    <value>Do you really want to reset all settings to default values?</value>
+    <comment>*** MISSING, Explicitly used english phrase. Need fix !! ***</comment>
+  </data>
+  <data name="Message_File_ExternalProgramNotFound" xml:space="preserve">
+    <value>Externe programma is niet gevonden</value>
+  </data>
+  <data name="Message_File_PleaseEnterValidPathIn" xml:space="preserve">
+    <value>Voer alstublieft het juiste pad in bij de bestanden</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Capella" xml:space="preserve">
     <value>&amp;Capella</value>
@@ -521,81 +595,11 @@
     <value>NoteTaker</value>
     <comment>NL MISSING</comment>
   </data>
-  <data name="ToolStripMenuItem_Files_CopyMusicBraille" xml:space="preserve">
-    <value>Kopieer Braille muziek bestand naar Braille apparaat met Windows Verkenner</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
-    <value>&amp;Print Braille muziek bestand</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_Print_using_External" xml:space="preserve">
-    <value>met e&amp;xtern programma</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_Print_via_Windows" xml:space="preserve">
-    <value>met &amp;Windows printprogramma</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ToGenericDevice" xml:space="preserve">
-    <value>Naar algemeen Braille apparaat</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_Embosser" xml:space="preserve">
-    <value>Instellingen voor Braille &amp;printer</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_MusicBraille" xml:space="preserve">
-    <value>Instellingen voor &amp;algemeen Braille apparaat</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_NoteTaker" xml:space="preserve">
-    <value>Instellingen voor &amp;notetaker</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_ResetAll" xml:space="preserve">
-    <value>&amp;Zet alle instellingen naar standaardwaarden</value>
-  </data>
   <data name="ToolStripMenuItem_Tools_InspectAsXml_Using_Chrome" xml:space="preserve">
     <value>Braillemuziek als onbewerkt XML (&amp;Google Chrome)</value>
   </data>
-  <data name="Message_Files" xml:space="preserve">
-    <value>bestanden</value>
-  </data>
-  <data name="Message_File_EmbossedMusicBrailleFile" xml:space="preserve">
-    <value>Geprinted Braille muziekbestand</value>
-  </data>
-  <data name="Message_File_ErrorMessage" xml:space="preserve">
-    <value>Foutmelding</value>
-  </data>
-  <data name="Message_File_ExternalProgramNotFound" xml:space="preserve">
-    <value>Externe programma is niet gevonden</value>
-  </data>
-  <data name="Message_File_FailedToEmbossFileOn" xml:space="preserve">
-    <value>Geen printbestand gevonden bij deze bestandsnaam</value>
-  </data>
-  <data name="Message_File_OnEmbosser" xml:space="preserve">
-    <value>op de printer</value>
-  </data>
-  <data name="Message_File_PleaseEnterValidPathIn" xml:space="preserve">
-    <value>Voer alstublieft het juiste pad in bij de bestanden</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_General" xml:space="preserve">
-    <value>Al&amp;gemene instellingen</value>
-  </data>
-  <data name="Message_Directory" xml:space="preserve">
-    <value>Bestandmap</value>
-  </data>
-  <data name="Message_ExportToMusicBraille" xml:space="preserve">
-    <value>Exporteer als Braille muziek</value>
-    <comment>*** MISSING, Guessed by JSJ ***</comment>
-  </data>
-  <data name="Message_Failed" xml:space="preserve">
-    <value>Fout</value>
-    <comment>*** MISSING, Guessed by JSJ ** Should be usable for all textboxes ! </comment>
-  </data>
-  <data name="Message_File_FileName" xml:space="preserve">
-    <value>Bestand name</value>
-    <comment>*** MISSING, Guessed by JSJ ***</comment>
-  </data>
-  <data name="Message_Settings_DoYouReallyWantToReset" xml:space="preserve">
-    <value>Do you really want to reset all settings to default values?</value>
-    <comment>*** MISSING, Explicitly used english phrase. Need fix !! ***</comment>
-  </data>
-  <data name="Message_Succeeded" xml:space="preserve">
-    <value>succeeded</value>
-    <comment>*** MISSING, Explicitly used english phrase. Need fix !! ***</comment>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Question_DoYouWantToMakeIBOSMusicXmlreaderDefaultAppForMusicXml" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
 </root>

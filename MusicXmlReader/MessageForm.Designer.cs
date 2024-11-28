@@ -28,25 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.buttonYes = new System.Windows.Forms.Button();
             this.buttonNo = new System.Windows.Forms.Button();
             this.checkBoxDontShowAgain = new System.Windows.Forms.CheckBox();
+            this.labelQuestion = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // textBoxMessage
-            // 
-            this.textBoxMessage.Enabled = false;
-            this.textBoxMessage.Location = new System.Drawing.Point(72, 74);
-            this.textBoxMessage.Name = "textBoxMessage";
-            this.textBoxMessage.Size = new System.Drawing.Size(585, 22);
-            this.textBoxMessage.TabIndex = 0;
-            this.textBoxMessage.Text = "Do you want to make IBOS MusicXmlReader the default app for .MusicXml files ?";
             // 
             // buttonYes
             // 
             this.buttonYes.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.buttonYes.Location = new System.Drawing.Point(354, 156);
+            this.buttonYes.Location = new System.Drawing.Point(271, 90);
             this.buttonYes.Name = "buttonYes";
             this.buttonYes.Size = new System.Drawing.Size(75, 23);
             this.buttonYes.TabIndex = 1;
@@ -56,7 +47,7 @@
             // buttonNo
             // 
             this.buttonNo.DialogResult = System.Windows.Forms.DialogResult.No;
-            this.buttonNo.Location = new System.Drawing.Point(582, 155);
+            this.buttonNo.Location = new System.Drawing.Point(454, 90);
             this.buttonNo.Name = "buttonNo";
             this.buttonNo.Size = new System.Drawing.Size(75, 23);
             this.buttonNo.TabIndex = 2;
@@ -66,23 +57,34 @@
             // checkBoxDontShowAgain
             // 
             this.checkBoxDontShowAgain.AutoSize = true;
-            this.checkBoxDontShowAgain.Location = new System.Drawing.Point(90, 158);
+            this.checkBoxDontShowAgain.Location = new System.Drawing.Point(72, 90);
             this.checkBoxDontShowAgain.Name = "checkBoxDontShowAgain";
-            this.checkBoxDontShowAgain.Size = new System.Drawing.Size(189, 25);
+            this.checkBoxDontShowAgain.Size = new System.Drawing.Size(154, 20);
             this.checkBoxDontShowAgain.TabIndex = 3;
-            this.checkBoxDontShowAgain.Text = "Don\'t show this agan";
+            this.checkBoxDontShowAgain.Text = "Don\'t show this again";
             this.checkBoxDontShowAgain.UseVisualStyleBackColor = true;
             this.checkBoxDontShowAgain.CheckedChanged += new System.EventHandler(this.checkBoxDontShowAgain_CheckedChanged);
+            // 
+            // labelQuestion
+            // 
+            this.labelQuestion.AutoSize = true;
+            this.labelQuestion.Location = new System.Drawing.Point(69, 44);
+            this.labelQuestion.Name = "labelQuestion";
+            this.labelQuestion.Size = new System.Drawing.Size(596, 20);
+            this.labelQuestion.TabIndex = 0;
+            this.labelQuestion.Text = "Do you want to make IBOS MusicXmlReader the default app for .MusicXml files?";
             // 
             // MessageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(711, 231);
+            this.ClientSize = new System.Drawing.Size(618, 145);
+            this.Controls.Add(this.labelQuestion);
             this.Controls.Add(this.checkBoxDontShowAgain);
             this.Controls.Add(this.buttonNo);
             this.Controls.Add(this.buttonYes);
-            this.Controls.Add(this.textBoxMessage);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MessageForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MessageForm";
@@ -92,10 +94,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBoxMessage;
         private System.Windows.Forms.Button buttonYes;
         private System.Windows.Forms.Button buttonNo;
         private System.Windows.Forms.CheckBox checkBoxDontShowAgain;
+        private System.Windows.Forms.Label labelQuestion;
     }
 }

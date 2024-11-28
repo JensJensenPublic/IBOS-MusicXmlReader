@@ -117,68 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BrailleDevice_EmbosserName" xml:space="preserve">
-    <value>Impresora</value>
-  </data>
-  <data name="BrailleDevice_GenericName" xml:space="preserve">
-    <value>Universal</value>
-  </data>
-  <data name="BrailleDevice_HighSpeedEmbosserName" xml:space="preserve">
-    <value>Impresora de alta velocidad</value>
-  </data>
-  <data name="BrailleDevice_NoteTakerName" xml:space="preserve">
-    <value>Anotador</value>
-  </data>
-  <data name="BrailleMusicExportHandler_Invalid_Input" xml:space="preserve">
-    <value>Entrada no válida</value>
-  </data>
   <data name="ButtonStart_StartPlaying" xml:space="preserve">
     <value>Iniciar reproducción</value>
   </data>
   <data name="ButtonStart_StopPlaying" xml:space="preserve">
     <value>Parar</value>
-  </data>
-  <data name="DetailsState_Bottom" xml:space="preserve">
-    <value>abajo</value>
-  </data>
-  <data name="DetailsState_Top" xml:space="preserve">
-    <value>arriba</value>
-  </data>
-  <data name="DetailState_AllParts" xml:space="preserve">
-    <value>todas las partes</value>
-  </data>
-  <data name="DetailState_Harmonies" xml:space="preserve">
-    <value>Símbolos de acorde</value>
-  </data>
-  <data name="DetailState_Instruments" xml:space="preserve">
-    <value>Instrumentos</value>
-  </data>
-  <data name="DetailState_SingleNotes" xml:space="preserve">
-    <value>notas simples</value>
-  </data>
-  <data name="DetailState_SingleParts" xml:space="preserve">
-    <value>partes simples</value>
-  </data>
-  <data name="DetailState_Status" xml:space="preserve">
-    <value>estado</value>
-  </data>
-  <data name="DirectoryNames_CultureString" xml:space="preserve">
-    <value>es-ES</value>
-  </data>
-  <data name="DirectoryNames_Downloads" xml:space="preserve">
-    <value>Descargas de MusicXml</value>
-  </data>
-  <data name="DirectoryNames_Samples" xml:space="preserve">
-    <value>Ejemplos</value>
-  </data>
-  <data name="FileNames_UsersManual" xml:space="preserve">
-    <value>Manual de usuario.docx</value>
-  </data>
-  <data name="ListBoxDetails_NoDetailsFound" xml:space="preserve">
-    <value>No se encontraron detalles</value>
-  </data>
-  <data name="ListView_Accessible_Name" xml:space="preserve">
-    <value>Lista de notas</value>
   </data>
   <data name="MainForm_ApplicationName" xml:space="preserve">
     <value>Lector musical IBOS</value>
@@ -186,35 +129,14 @@
   <data name="Message_ConnectedToNonDefaultScreenReader" xml:space="preserve">
     <value>Conectado a un lector de pantalla no soportado</value>
   </data>
-  <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
-    <value>Considere exportar una parte cada vez o a través de un perfil con "diseño"=BANA 2015"</value>
-  </data>
-  <data name="Message_ConversionToMusicBrailleSucceeded" xml:space="preserve">
-    <value>Conversión a Braille musical con éxito</value>
-  </data>
-  <data name="Message_Directory" xml:space="preserve">
-    <value>Directorio</value>
-  </data>
   <data name="Message_DirectoryNotFound" xml:space="preserve">
     <value>Directorio no encontrado</value>
   </data>
-  <data name="Message_DoYouWantToExitTheProgram" xml:space="preserve">
-    <value>¿Desea salir del programa?</value>
-  </data>
-  <data name="Message_ExportOfMultiplePartsNotSupported" xml:space="preserve">
-    <value>Cuando se exportan muchas partes a la vez a través de "formato opcional", las notas de las diferentes partes se mezclarán y no se podrán separar después</value>
-  </data>
-  <data name="Message_ExportToMusicBraille" xml:space="preserve">
-    <value>Exportar a Braille musical</value>
-  </data>
-  <data name="Message_Failed" xml:space="preserve">
-    <value>Fallo</value>
+  <data name="Message_JAWSScreenReaderIsNotRunning" xml:space="preserve">
+    <value>El lector de pantalla Jaws no se está ejecutando</value>
   </data>
   <data name="Message_FailedToReadMusicXmlFile" xml:space="preserve">
     <value>Fallo al leer archivo MusicXml</value>
-  </data>
-  <data name="Message_FailedToShow" xml:space="preserve">
-    <value>Fallo al mostrar</value>
   </data>
   <data name="Message_FailedToStartProgram" xml:space="preserve">
     <value>Fallo al iniciar el programa</value>
@@ -222,137 +144,26 @@
   <data name="Message_FileNotFound" xml:space="preserve">
     <value>Archivo no encontrado</value>
   </data>
-  <data name="Message_Files" xml:space="preserve">
-    <value>Archivos</value>
-  </data>
-  <data name="Message_File_EmbossedMusicBrailleFile" xml:space="preserve">
-    <value>Fichero de Braille Musical impreso</value>
-  </data>
-  <data name="Message_File_ErrorMessage" xml:space="preserve">
-    <value>Mensaje de error</value>
-  </data>
-  <data name="Message_File_ExternalProgramNotFound" xml:space="preserve">
-    <value>Programa externo no encontrado</value>
-  </data>
-  <data name="Message_File_FailedToEmbossFileOn" xml:space="preserve">
-    <value>Fallo al imprimir el archivo en</value>
-  </data>
-  <data name="Message_File_FileName" xml:space="preserve">
-    <value>Nombre de archivo</value>
-  </data>
-  <data name="Message_File_OnEmbosser" xml:space="preserve">
-    <value>en impresora</value>
-  </data>
-  <data name="Message_File_PleaseEnterValidPathIn" xml:space="preserve">
-    <value>Por favor, introduzca la ruta válida en</value>
-  </data>
-  <data name="Message_JAWSScreenReaderIsNotRunning" xml:space="preserve">
-    <value>El lector de pantalla Jaws no se está ejecutando</value>
-  </data>
-  <data name="Message_LocationNotDetermined" xml:space="preserve">
-    <value>No se ha podido determinar la ubicación del archivo</value>
-  </data>
   <data name="Message_MayNotWorkAsExpected" xml:space="preserve">
     <value>El programa puede no funcionar como se espera</value>
   </data>
   <data name="Message_MissingProgramFile" xml:space="preserve">
     <value>Archivo de programa no encontrado</value>
   </data>
-  <data name="Message_NotAllowedWhilePlaying" xml:space="preserve">
-    <value>No permitido mientras se reproduce música</value>
-  </data>
-  <data name="Message_OperationFailed" xml:space="preserve">
-    <value>¡Operación fallida!</value>
-  </data>
   <data name="Message_PleaseSeeLogFile" xml:space="preserve">
     <value>Por favor, lea el archivo de registro</value>
-  </data>
-  <data name="Message_PressCancelToCancelTheOperation" xml:space="preserve">
-    <value>Pulse cancelar para cancelar la operación</value>
-  </data>
-  <data name="Message_PressCancelToRemain" xml:space="preserve">
-    <value>Pulse cancelar para permanecer en el Lector de Música Xml IBOS</value>
-  </data>
-  <data name="Message_PressNoToSelectAnotherDirectory" xml:space="preserve">
-    <value>Pulse no para seleccionar otro directorio</value>
-  </data>
-  <data name="Message_PressOkToOpen" xml:space="preserve">
-    <value>Pulse OK para abrir los archivos de Música Braille en el Lector de Música Braille IBOS</value>
-  </data>
-  <data name="Message_PressYesToSaveTheResultInDefault" xml:space="preserve">
-    <value>Pulse Sí para guardar el resultado en el directorio por defecto</value>
-  </data>
-  <data name="Message_RightAlignedMenus" xml:space="preserve">
-    <value>Por favor, vaya al Panel de control-Dispositivos-Lápiz y Windows Ink y cambie "Elegir con qué mano escribe: " "mano derecha" o "Mano izquierda"</value>
-  </data>
-  <data name="Message_Settings_DoYouReallyWantToReset" xml:space="preserve">
-    <value>¿Seguro que quiere resetear todos los ajustes a los valores predeterminados?</value>
-  </data>
-  <data name="Message_StopPlayingFirst" xml:space="preserve">
-    <value>Detenga la música primero</value>
-  </data>
-  <data name="Message_Succeeded" xml:space="preserve">
-    <value>Éxito</value>
   </data>
   <data name="Message_UndefinedMessage" xml:space="preserve">
     <value>Mensaje no definido</value>
   </data>
-  <data name="Message_UnspecifiedInitializationError" xml:space="preserve">
-    <value>Error durante la inicialización del programa</value>
-  </data>
   <data name="Message_UnspecifiedMusicXmlFile" xml:space="preserve">
     <value>No se ha especificado el archivo de Música Xml</value>
-  </data>
-  <data name="Messsage_UnexpectedProgramFile" xml:space="preserve">
-    <value>Archivo de programa no esperado</value>
   </data>
   <data name="OpenFileDialog_Filter" xml:space="preserve">
     <value>archivos de MúsicXml</value>
   </data>
   <data name="OpenFileDialog_Filter_mxl" xml:space="preserve">
     <value>Archivos MusicXml comprimidos</value>
-  </data>
-  <data name="OpenFileDialog_Title" xml:space="preserve">
-    <value>Abrir</value>
-  </data>
-  <data name="ParameterInputForm_BrailleFormatting" xml:space="preserve">
-    <value>insertar el tamaño del formulario como caracteres por línea líneas de coma por formulario</value>
-  </data>
-  <data name="ParameterInputForm_GoTo" xml:space="preserve">
-    <value>&amp;Ir a medida</value>
-  </data>
-  <data name="ParameterInputForm_PctOfNominalTempo" xml:space="preserve">
-    <value>%de &amp;Normal tempo</value>
-  </data>
-  <data name="ParameterInputForm_Repeat" xml:space="preserve">
-    <value>&amp;Repetir medidas</value>
-  </data>
-  <data name="ResourceFileName" xml:space="preserve">
-    <value>Recursos para UI.resx</value>
-  </data>
-  <data name="SelectDownloadFileImportDialog_Title" xml:space="preserve">
-    <value>Seleccione los archivos descargados para importar</value>
-  </data>
-  <data name="StatusLine_Accessible_Name" xml:space="preserve">
-    <value>Línea de estado</value>
-  </data>
-  <data name="Status_file" xml:space="preserve">
-    <value>Archivo</value>
-  </data>
-  <data name="Status_files" xml:space="preserve">
-    <value>Archivos</value>
-  </data>
-  <data name="Status_Imported" xml:space="preserve">
-    <value>Importado</value>
-  </data>
-  <data name="Status_ImportingSampleFiles" xml:space="preserve">
-    <value>Importando archivos de muestra</value>
-  </data>
-  <data name="Status_ImportingSelectedFiles" xml:space="preserve">
-    <value>Importando archivos seleccionados</value>
-  </data>
-  <data name="TextBox_Messages_FailedToConvert_File" xml:space="preserve">
-    <value>Fallo al convertir</value>
   </data>
   <data name="TextBox_Messages_FailedToRead_File" xml:space="preserve">
     <value>Fallo al leer</value>
@@ -363,17 +174,8 @@
   <data name="TextBox_Messages_TheProgramIsExiting" xml:space="preserve">
     <value>Saliendo del programa</value>
   </data>
-  <data name="TextBox_Messages_ToMusicXml" xml:space="preserve">
-    <value>a MusicXml (.xml)</value>
-  </data>
-  <data name="TextBox_Messages_UnsupportedFileFormat" xml:space="preserve">
-    <value>Formato de archivo no admitido</value>
-  </data>
   <data name="ToolsStripMenuItem_Archives" xml:space="preserve">
     <value>&amp;Archivos de notas</value>
-  </data>
-  <data name="ToolsStripMenuItem_View_Instruments" xml:space="preserve">
-    <value>&amp;Detalles de instrumento</value>
   </data>
   <data name="ToolStripMenuItem_Edit" xml:space="preserve">
     <value>&amp;Editar</value>
@@ -381,137 +183,20 @@
   <data name="ToolStripMenuItem_Files" xml:space="preserve">
     <value>&amp;Archivos</value>
   </data>
-  <data name="ToolStripMenuItem_Files_BrfASCII" xml:space="preserve">
-    <value>.brf (ASCII)</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_BrfUnicode" xml:space="preserve">
-    <value>.brf (Unicode)</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_brf_ASCII" xml:space="preserve">
-    <value>.brf (&amp;ASCII)</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_brf_Unicode" xml:space="preserve">
-    <value>.brf (&amp;Unicode)</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_CopyMusicBraille" xml:space="preserve">
-    <value>&amp;Copiar el archivo de música en braille al dispositivo braille usando el explorador de Windows</value>
-  </data>
   <data name="ToolStripMenuItem_Files_Exit" xml:space="preserve">
     <value>&amp;Salir</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
-    <value>&amp;Exportar la música en braille al archivo</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
-    <value>Importados y descargas</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
-    <value>Importados y descargas de hoy</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
-    <value>Importados recientes y ejemplos</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_InOptionalFormat" xml:space="preserve">
-    <value>en formato opcional</value>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFile" xml:space="preserve">
     <value>&amp;Abrir el archivo MusicXml</value>
   </data>
-  <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
-    <value>Abrir archivo de MusicXml desde la ruta más reciente</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
-    <value>Abrir archivo MusicXml usando &amp;configuración por defecto</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
-    <value>&amp;Imprimir archivo de música braille en la impresora</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_Print_using_External" xml:space="preserve">
-    <value>vía &amp;programa externo</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_Print_via_Windows" xml:space="preserve">
-    <value>vía &amp;Diálogo de impresión de Windows</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ToEmbosser" xml:space="preserve">
-    <value>a impresora</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ToGenericDevice" xml:space="preserve">
-    <value>a un dispositivo de braille universal</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ToHighSpeedEmbosser" xml:space="preserve">
-    <value>a una impresora de alta velocidad</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ToNoteTaker" xml:space="preserve">
-    <value>a anotador</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_TxtOctoBraille1252" xml:space="preserve">
-    <value>.txt (OctoBraille 1252)</value>
-  </data>
   <data name="ToolStripMenuItem_Help" xml:space="preserve">
     <value>&amp;Ayuda</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_About" xml:space="preserve">
-    <value>&amp;Acerca de</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_About_Version" xml:space="preserve">
-    <value>Versión</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
-    <value>&amp;Atajos de teclado</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_ShowUsersManual" xml:space="preserve">
-    <value>Mostrar &amp;manual de usuario</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_SoftwareUpdate" xml:space="preserve">
-    <value>Enlace a más reciente &amp;software</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
-    <value>https://ibos.dk/index.php/engelsk-side/ibos-musicxml-reader/</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings" xml:space="preserve">
-    <value>&amp;Configuración</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_Embosser" xml:space="preserve">
-    <value>Configuración para &amp;perfil de la impresora</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_General" xml:space="preserve">
-    <value>&amp;Configuración general</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_HighspeedEmbosser" xml:space="preserve">
-    <value>Configuración para &amp;perfil de la impresora de alta velocidad</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_MusicBraille" xml:space="preserve">
-    <value>Configuración para &amp;perfil del dispositivo universal Braille</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_NoteTaker" xml:space="preserve">
-    <value>Configuración para &amp;perfil de anotador</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_ResetAll" xml:space="preserve">
-    <value>&amp;Resetear todas las configuraciones por defecto</value>
   </data>
   <data name="ToolStripMenuItem_Tools" xml:space="preserve">
     <value>&amp;Herramientas</value>
   </data>
-  <data name="ToolStripMenuItem_Tools_BrailleMusicEditor2" xml:space="preserve">
-    <value>Música Braille &amp;Editor 2</value>
-  </data>
-  <data name="ToolStripMenuItem_Tools_Capella" xml:space="preserve">
-    <value>&amp;Capela</value>
-  </data>
-  <data name="ToolStripMenuItem_Tools_Finale" xml:space="preserve">
-    <value>&amp;Finale</value>
-  </data>
-  <data name="ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern" xml:space="preserve">
-    <value>Generar Braille musical &amp;patrón de prueba</value>
-  </data>
   <data name="ToolStripMenuItem_Tools_InspectAsXml" xml:space="preserve">
     <value>Archivo MusicXml como raw &amp;Xml</value>
-  </data>
-  <data name="ToolStripMenuItem_Tools_InspectAsXml_Using_Chrome" xml:space="preserve">
-    <value>Archivo MusicXml como raw Xml usando &amp;Google Chrome</value>
-  </data>
-  <data name="ToolStripMenuItem_Tools_JAWS_Settings" xml:space="preserve">
-    <value>&amp;Configuración de Jaws</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Logfile" xml:space="preserve">
     <value>&amp;Archivo de registro</value>
@@ -522,14 +207,8 @@
   <data name="ToolStripMenuItem_Tools_MuseScore" xml:space="preserve">
     <value>&amp;MuseScore</value>
   </data>
-  <data name="ToolStripMenuItem_Tools_MusicBrailleReader" xml:space="preserve">
-    <value>&amp;Lector musical braille IBOS</value>
-  </data>
   <data name="ToolStripMenuItem_Tools_OpenXmlFileLocation" xml:space="preserve">
     <value>Ubicación del archivo Xml</value>
-  </data>
-  <data name="ToolStripMenuItem_Tools_PhotoScore" xml:space="preserve">
-    <value>&amp;PhotoScore</value>
   </data>
   <data name="ToolStripMenuItem_Tools_SaveAsText" xml:space="preserve">
     <value>Guardar como &amp;texto</value>
@@ -537,32 +216,14 @@
   <data name="ToolStripMenuItem_Tools_Sibelius" xml:space="preserve">
     <value>&amp;Sibelius</value>
   </data>
-  <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
-    <value>&amp;Configuración de usuario para este archivo MusicXml</value>
-  </data>
   <data name="ToolStripMenuItem_Tools_ViewAsInterpretedXml" xml:space="preserve">
     <value>Archivo de MusicXml como Xml interpretado</value>
   </data>
   <data name="ToolStripMenuItem_View" xml:space="preserve">
     <value>&amp;Vista</value>
   </data>
-  <data name="ToolStripMenuItem_View_MusicBrailleForNoteTaker" xml:space="preserve">
-    <value>Braille Musical para anotador</value>
-  </data>
-  <data name="TreeView_Accessible_Name" xml:space="preserve">
-    <value>Filtro de notas</value>
-  </data>
   <data name="TreeView_All_Items" xml:space="preserve">
     <value>&amp; todos los elementos filtrados</value>
-  </data>
-  <data name="TreeView_CheckAll" xml:space="preserve">
-    <value>&amp;1:Marcar todo</value>
-  </data>
-  <data name="TreeView_CheckOthers" xml:space="preserve">
-    <value>&amp;Marcar otras partes o detalles</value>
-  </data>
-  <data name="Treeview_for" xml:space="preserve">
-    <value>Para</value>
   </data>
   <data name="TreeView_MusicAsBraille" xml:space="preserve">
     <value>&amp;Representación de braille musical</value>
@@ -591,13 +252,356 @@
   <data name="TreeView_MusicAsSpeech_Parts" xml:space="preserve">
     <value>&amp;Partes</value>
   </data>
+  <data name="TreeWiew_Items" xml:space="preserve">
+    <value>&amp;Filtrar elementos</value>
+  </data>
+  <data name="Message_NotAllowedWhilePlaying" xml:space="preserve">
+    <value>No permitido mientras se reproduce música</value>
+  </data>
+  <data name="Message_StopPlayingFirst" xml:space="preserve">
+    <value>Detenga la música primero</value>
+  </data>
+  <data name="Treeview_for" xml:space="preserve">
+    <value>Para</value>
+  </data>
+  <data name="ListView_Accessible_Name" xml:space="preserve">
+    <value>Lista de notas</value>
+  </data>
+  <data name="TreeView_Accessible_Name" xml:space="preserve">
+    <value>Filtro de notas</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_About" xml:space="preserve">
+    <value>&amp;Acerca de</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_About_Version" xml:space="preserve">
+    <value>Versión</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_JAWS_Settings" xml:space="preserve">
+    <value>&amp;Configuración de Jaws</value>
+  </data>
+  <data name="DirectoryNames_Samples" xml:space="preserve">
+    <value>Ejemplos</value>
+  </data>
+  <data name="StatusLine_Accessible_Name" xml:space="preserve">
+    <value>Línea de estado</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
+    <value>&amp;Atajos de teclado</value>
+  </data>
+  <data name="Message_LocationNotDetermined" xml:space="preserve">
+    <value>No se ha podido determinar la ubicación del archivo</value>
+  </data>
+  <data name="Message_UnspecifiedInitializationError" xml:space="preserve">
+    <value>Error durante la inicialización del programa</value>
+  </data>
+  <data name="Message_DoYouWantToExitTheProgram" xml:space="preserve">
+    <value>¿Desea salir del programa?</value>
+  </data>
+  <data name="Status_file" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="Status_files" xml:space="preserve">
+    <value>Archivos</value>
+  </data>
+  <data name="Status_Imported" xml:space="preserve">
+    <value>Importado</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
+    <value>Importados y descargas de hoy</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
+    <value>Importados recientes y ejemplos</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_SoftwareUpdate" xml:space="preserve">
+    <value>Enlace a más reciente &amp;software</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
+    <value>https://ibos.dk/index.php/engelsk-side/ibos-musicxml-reader/</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
+    <value>Importados y descargas</value>
+  </data>
+  <data name="ListBoxDetails_NoDetailsFound" xml:space="preserve">
+    <value>No se encontraron detalles</value>
+  </data>
+  <data name="TextBox_Messages_FailedToConvert_File" xml:space="preserve">
+    <value>Fallo al convertir</value>
+  </data>
+  <data name="TextBox_Messages_ToMusicXml" xml:space="preserve">
+    <value>a MusicXml (.xml)</value>
+  </data>
+  <data name="TextBox_Messages_UnsupportedFileFormat" xml:space="preserve">
+    <value>Formato de archivo no admitido</value>
+  </data>
+  <data name="DirectoryNames_Downloads" xml:space="preserve">
+    <value>Descargas de MusicXml</value>
+  </data>
+  <data name="Status_ImportingSampleFiles" xml:space="preserve">
+    <value>Importando archivos de muestra</value>
+  </data>
+  <data name="Status_ImportingSelectedFiles" xml:space="preserve">
+    <value>Importando archivos seleccionados</value>
+  </data>
+  <data name="ResourceFileName" xml:space="preserve">
+    <value>Recursos para UI.resx</value>
+  </data>
+  <data name="SelectDownloadFileImportDialog_Title" xml:space="preserve">
+    <value>Seleccione los archivos descargados para importar</value>
+  </data>
+  <data name="ToolsStripMenuItem_View_Instruments" xml:space="preserve">
+    <value>&amp;Detalles de instrumento</value>
+  </data>
+  <data name="TreeView_CheckAll" xml:space="preserve">
+    <value>&amp;1:Marcar todo</value>
+  </data>
   <data name="TreeView_UncheckAll" xml:space="preserve">
     <value>&amp;0: Desmarcar todo</value>
+  </data>
+  <data name="DirectoryNames_CultureString" xml:space="preserve">
+    <value>es-ES</value>
+  </data>
+  <data name="FileNames_UsersManual" xml:space="preserve">
+    <value>Manual de usuario.docx</value>
+  </data>
+  <data name="Message_FailedToShow" xml:space="preserve">
+    <value>Fallo al mostrar</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_ShowUsersManual" xml:space="preserve">
+    <value>Mostrar &amp;manual de usuario</value>
+  </data>
+  <data name="ParameterInputForm_GoTo" xml:space="preserve">
+    <value>&amp;Ir a medida</value>
+  </data>
+  <data name="ParameterInputForm_PctOfNominalTempo" xml:space="preserve">
+    <value>%de &amp;Normal tempo</value>
+  </data>
+  <data name="ParameterInputForm_Repeat" xml:space="preserve">
+    <value>&amp;Repetir medidas</value>
+  </data>
+  <data name="DetailState_AllParts" xml:space="preserve">
+    <value>todas las partes</value>
+  </data>
+  <data name="DetailState_Harmonies" xml:space="preserve">
+    <value>Símbolos de acorde</value>
+  </data>
+  <data name="DetailState_Instruments" xml:space="preserve">
+    <value>Instrumentos</value>
+  </data>
+  <data name="DetailState_SingleNotes" xml:space="preserve">
+    <value>notas simples</value>
+  </data>
+  <data name="DetailState_SingleParts" xml:space="preserve">
+    <value>partes simples</value>
+  </data>
+  <data name="Message_RightAlignedMenus" xml:space="preserve">
+    <value>Por favor, vaya al Panel de control-Dispositivos-Lápiz y Windows Ink y cambie "Elegir con qué mano escribe: " "mano derecha" o "Mano izquierda"</value>
+  </data>
+  <data name="DetailsState_Bottom" xml:space="preserve">
+    <value>abajo</value>
+  </data>
+  <data name="DetailsState_Top" xml:space="preserve">
+    <value>arriba</value>
+  </data>
+  <data name="DetailState_Status" xml:space="preserve">
+    <value>estado</value>
+  </data>
+  <data name="TreeView_CheckOthers" xml:space="preserve">
+    <value>&amp;Marcar otras partes o detalles</value>
   </data>
   <data name="TreeView_UncheckOthers" xml:space="preserve">
     <value>&amp;Desmarcar otras partes o detalles</value>
   </data>
-  <data name="TreeWiew_Items" xml:space="preserve">
-    <value>&amp;Filtrar elementos</value>
+  <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
+    <value>&amp;Configuración de usuario para este archivo MusicXml</value>
+  </data>
+  <data name="ParameterInputForm_BrailleFormatting" xml:space="preserve">
+    <value>insertar el tamaño del formulario como caracteres por línea líneas de coma por formulario</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_brf_ASCII" xml:space="preserve">
+    <value>.brf (&amp;ASCII)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_brf_Unicode" xml:space="preserve">
+    <value>.brf (&amp;Unicode)</value>
+  </data>
+  <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
+    <value>Considere exportar una parte cada vez o a través de un perfil con "diseño"=BANA 2015"</value>
+  </data>
+  <data name="Message_ExportOfMultiplePartsNotSupported" xml:space="preserve">
+    <value>Cuando se exportan muchas partes a la vez a través de "formato opcional", las notas de las diferentes partes se mezclarán y no se podrán separar después</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_BrfASCII" xml:space="preserve">
+    <value>.brf (ASCII)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_BrfUnicode" xml:space="preserve">
+    <value>.brf (Unicode)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_InOptionalFormat" xml:space="preserve">
+    <value>en formato opcional</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToEmbosser" xml:space="preserve">
+    <value>a impresora</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToNoteTaker" xml:space="preserve">
+    <value>a anotador</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_TxtOctoBraille1252" xml:space="preserve">
+    <value>.txt (OctoBraille 1252)</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern" xml:space="preserve">
+    <value>Generar Braille musical &amp;patrón de prueba</value>
+  </data>
+  <data name="ToolStripMenuItem_View_MusicBrailleForNoteTaker" xml:space="preserve">
+    <value>Braille Musical para anotador</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
+    <value>Abrir archivo MusicXml usando &amp;configuración por defecto</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
+    <value>&amp;Imprimir archivo de música braille en la impresora</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
+    <value>Abrir archivo de MusicXml desde la ruta más reciente</value>
+  </data>
+  <data name="OpenFileDialog_Title" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings" xml:space="preserve">
+    <value>&amp;Configuración</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
+    <value>&amp;Exportar la música en braille al archivo</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_CopyMusicBraille" xml:space="preserve">
+    <value>&amp;Copiar el archivo de música en braille al dispositivo braille usando el explorador de Windows</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_Print_using_External" xml:space="preserve">
+    <value>vía &amp;programa externo</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_Print_via_Windows" xml:space="preserve">
+    <value>vía &amp;Diálogo de impresión de Windows</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToGenericDevice" xml:space="preserve">
+    <value>a un dispositivo de braille universal</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_Embosser" xml:space="preserve">
+    <value>Configuración para &amp;perfil de la impresora</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_General" xml:space="preserve">
+    <value>&amp;Configuración general</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_MusicBraille" xml:space="preserve">
+    <value>Configuración para &amp;perfil del dispositivo universal Braille</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_NoteTaker" xml:space="preserve">
+    <value>Configuración para &amp;perfil de anotador</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_ResetAll" xml:space="preserve">
+    <value>&amp;Resetear todas las configuraciones por defecto</value>
+  </data>
+  <data name="Message_Directory" xml:space="preserve">
+    <value>Directorio</value>
+  </data>
+  <data name="Message_ExportToMusicBraille" xml:space="preserve">
+    <value>Exportar a Braille musical</value>
+  </data>
+  <data name="Message_Failed" xml:space="preserve">
+    <value>Fallo</value>
+  </data>
+  <data name="Message_Files" xml:space="preserve">
+    <value>Archivos</value>
+  </data>
+  <data name="Message_Succeeded" xml:space="preserve">
+    <value>Éxito</value>
+  </data>
+  <data name="Message_File_EmbossedMusicBrailleFile" xml:space="preserve">
+    <value>Fichero de Braille Musical impreso</value>
+  </data>
+  <data name="Message_File_ErrorMessage" xml:space="preserve">
+    <value>Mensaje de error</value>
+  </data>
+  <data name="Message_File_FailedToEmbossFileOn" xml:space="preserve">
+    <value>Fallo al imprimir el archivo en</value>
+  </data>
+  <data name="Message_File_FileName" xml:space="preserve">
+    <value>Nombre de archivo</value>
+  </data>
+  <data name="Message_File_OnEmbosser" xml:space="preserve">
+    <value>en impresora</value>
+  </data>
+  <data name="Message_Settings_DoYouReallyWantToReset" xml:space="preserve">
+    <value>¿Seguro que quiere resetear todos los ajustes a los valores predeterminados?</value>
+  </data>
+  <data name="Message_File_ExternalProgramNotFound" xml:space="preserve">
+    <value>Programa externo no encontrado</value>
+  </data>
+  <data name="Message_File_PleaseEnterValidPathIn" xml:space="preserve">
+    <value>Por favor, introduzca la ruta válida en</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_Capella" xml:space="preserve">
+    <value>&amp;Capela</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_Finale" xml:space="preserve">
+    <value>&amp;Finale</value>
+  </data>
+  <data name="BrailleMusicExportHandler_Invalid_Input" xml:space="preserve">
+    <value>Entrada no válida</value>
+  </data>
+  <data name="BrailleDevice_EmbosserName" xml:space="preserve">
+    <value>Impresora</value>
+  </data>
+  <data name="BrailleDevice_GenericName" xml:space="preserve">
+    <value>Universal</value>
+  </data>
+  <data name="BrailleDevice_NoteTakerName" xml:space="preserve">
+    <value>Anotador</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_InspectAsXml_Using_Chrome" xml:space="preserve">
+    <value>Archivo MusicXml como raw Xml usando &amp;Google Chrome</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_MusicBrailleReader" xml:space="preserve">
+    <value>&amp;Lector musical braille IBOS</value>
+  </data>
+  <data name="BrailleDevice_HighSpeedEmbosserName" xml:space="preserve">
+    <value>Impresora de alta velocidad</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToHighSpeedEmbosser" xml:space="preserve">
+    <value>a una impresora de alta velocidad</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_HighspeedEmbosser" xml:space="preserve">
+    <value>Configuración para &amp;perfil de la impresora de alta velocidad</value>
+  </data>
+  <data name="Messsage_UnexpectedProgramFile" xml:space="preserve">
+    <value>Archivo de programa no esperado</value>
+  </data>
+  <data name="Message_PressCancelToRemain" xml:space="preserve">
+    <value>Pulse cancelar para permanecer en el Lector de Música Xml IBOS</value>
+  </data>
+  <data name="Message_PressOkToOpen" xml:space="preserve">
+    <value>Pulse OK para abrir los archivos de Música Braille en el Lector de Música Braille IBOS</value>
+  </data>
+  <data name="Message_OperationFailed" xml:space="preserve">
+    <value>¡Operación fallida!</value>
+  </data>
+  <data name="Message_ConversionToMusicBrailleSucceeded" xml:space="preserve">
+    <value>Conversión a Braille musical con éxito</value>
+  </data>
+  <data name="Message_PressCancelToCancelTheOperation" xml:space="preserve">
+    <value>Pulse cancelar para cancelar la operación</value>
+  </data>
+  <data name="Message_PressNoToSelectAnotherDirectory" xml:space="preserve">
+    <value>Pulse no para seleccionar otro directorio</value>
+  </data>
+  <data name="Message_PressYesToSaveTheResultInDefault" xml:space="preserve">
+    <value>Pulse Sí para guardar el resultado en el directorio por defecto</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_BrailleMusicEditor2" xml:space="preserve">
+    <value>Música Braille &amp;Editor 2</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_PhotoScore" xml:space="preserve">
+    <value>&amp;PhotoScore</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Question_DoYouWantToMakeIBOSMusicXmlreaderDefaultAppForMusicXml" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
 </root>
