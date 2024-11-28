@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using MusicXmlReaderModel;
 using MusicBrailleReader;
+using System.Runtime.Remoting.Messaging;
 
 namespace MusicXmlReader
 {
@@ -268,6 +269,14 @@ namespace MusicXmlReader
             }
         }
 
+        private void ShowFileAssociationDialog()
+        {
+            MessageForm mf = new MessageForm(ResourcesForUI.MainForm_ApplicationName,"Do you want to make..");
+            DialogResult dr = mf.ShowDialog();
+            bool dontShowAgain = mf.DontShowAgain;
+            Associate(musicXmlExtension, progIdExecuting, executingAssemblyFullPath);
+        }
+
 
         /// <summary>
         /// Postpones the reporting of messages generated during the initialisation of Mainform 
@@ -278,6 +287,11 @@ namespace MusicXmlReader
         /// <param name="e"></param>
         private void MainForm_Shown(object sender, EventArgs e)
         {
+            ShowFileAssociationDialog(); // Allow user to set up file association for .MusicXml files
+
+            // Postpone the reporting of messages generated during the initialisation of Mainform 
+            /// to the time when Mainform is first shown.
+            /// This will for instance allow of localisation of these messages if wanted.
             if (string.IsNullOrEmpty(localizationMessage)) return;
             messageHandler.ShowMessage(localizationMessage);
         }
