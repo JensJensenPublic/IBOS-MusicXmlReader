@@ -248,7 +248,7 @@ namespace MusicXmlReader
         //////////////
 
 
-
+        #region Files
 
 
         /// <summary>
@@ -327,6 +327,12 @@ namespace MusicXmlReader
 
         }
 
+        private void makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Associate(musicXmlExtension, progIdExecuting, executingAssemblyFullPath); // Associate with the currently running .exe file 
+        }
+
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string message = ResourcesForUI.TextBox_Messages_TheProgramIsExiting;
@@ -335,6 +341,7 @@ namespace MusicXmlReader
             // In this way the Model will always be shut down no matter why the application exits.
             Application.Exit();
         }
+        #endregion // Files
 
         #region Edit
         // Items above the delimiter line are represented by level 0 nodes in the tree
@@ -705,14 +712,14 @@ namespace MusicXmlReader
         }
 
         const string musicXmlExtension = ".musicxml"; // The initial "." is needed!
-        const string progIdInstalled = "IBOS_MusicXmlReader";
-        const string progIdDebug = "IBOS_MusicXmlReader.Debug";       
+        const string progIdInstalled = "IBOS_MusicXmlReader.Installed"; // Always represents the installed vesion
+        const string progIdExecuting = "IBOS_MusicXmlReader";           // May repreent either a debug version or an installed version 
         readonly string installedVersionFullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"IBOS MusicXmlReader\IBOS MusicXmlReader.exe");
     
  
         private void associateWithMusicXmlFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Associate(musicXmlExtension, progIdDebug, executingAssemblyFullPath);           
+            Associate(musicXmlExtension, progIdExecuting, executingAssemblyFullPath);           
         }
 
         private void associateInstalledVersionWithMusicXmlFilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -749,7 +756,7 @@ namespace MusicXmlReader
         {
             Logger.LogCF(":+");
             model.LogAssociationInformation(musicXmlExtension, progIdInstalled);
-            model.LogAssociationInformation(musicXmlExtension, progIdDebug);
+            model.LogAssociationInformation(musicXmlExtension, progIdExecuting);
             Logger.LogCF(":+");
         }
 

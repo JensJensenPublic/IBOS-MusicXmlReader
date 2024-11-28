@@ -119,8 +119,8 @@
             this.sayBottolLineOfWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sayStatuslineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.associateWithMusicXmlFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logFileassociationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.associateInstalledVersionWithMusicXmlFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logFileassociationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpswwwmusicxmlcommusicinmusicxmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpsmusescorecomsheetmusicToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -160,6 +160,7 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
+            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -194,6 +195,7 @@
             this.exportMusicBrailleToolStripMenuItem,
             this.printMusicBrailleToolStripMenuItem,
             this.copyMusicBrailleToolStripMenuItem,
+            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem,
             this.exportLyricsToolStripMenuItem});
@@ -899,19 +901,19 @@
             this.associateWithMusicXmlFilesToolStripMenuItem.Text = "Associate running version with .MusicXml files";
             this.associateWithMusicXmlFilesToolStripMenuItem.Click += new System.EventHandler(this.associateWithMusicXmlFilesToolStripMenuItem_Click);
             // 
-            // logFileassociationsToolStripMenuItem
-            // 
-            this.logFileassociationsToolStripMenuItem.Name = "logFileassociationsToolStripMenuItem";
-            this.logFileassociationsToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
-            this.logFileassociationsToolStripMenuItem.Text = "Log file-associations";
-            this.logFileassociationsToolStripMenuItem.Click += new System.EventHandler(this.logFileassociationsToolStripMenuItem_Click);
-            // 
             // associateInstalledVersionWithMusicXmlFilesToolStripMenuItem
             // 
             this.associateInstalledVersionWithMusicXmlFilesToolStripMenuItem.Name = "associateInstalledVersionWithMusicXmlFilesToolStripMenuItem";
             this.associateInstalledVersionWithMusicXmlFilesToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
             this.associateInstalledVersionWithMusicXmlFilesToolStripMenuItem.Text = "Associate installed version with .MusicXml files";
             this.associateInstalledVersionWithMusicXmlFilesToolStripMenuItem.Click += new System.EventHandler(this.associateInstalledVersionWithMusicXmlFilesToolStripMenuItem_Click);
+            // 
+            // logFileassociationsToolStripMenuItem
+            // 
+            this.logFileassociationsToolStripMenuItem.Name = "logFileassociationsToolStripMenuItem";
+            this.logFileassociationsToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.logFileassociationsToolStripMenuItem.Text = "Log file-associations";
+            this.logFileassociationsToolStripMenuItem.Click += new System.EventHandler(this.logFileassociationsToolStripMenuItem_Click);
             // 
             // archivesToolStripMenuItem
             // 
@@ -1239,6 +1241,13 @@
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
             // 
+            // makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem
+            // 
+            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem.Name = "makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem";
+            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem.Size = new System.Drawing.Size(387, 22);
+            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem.Text = "Make IBOS MusicXmlReader default app for .&MusicXml files";
+            this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem.Click += new System.EventHandler(this.makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1401,6 +1410,7 @@
         private System.Windows.Forms.ToolStripMenuItem associateWithMusicXmlFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logFileassociationsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem associateInstalledVersionWithMusicXmlFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem;
     }
 }
 

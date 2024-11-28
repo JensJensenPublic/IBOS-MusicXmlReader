@@ -535,6 +535,7 @@ namespace MusicXmlReader
             this.textBoxStatusInformation.Text = latestStatusInformation; // Restore prevopus contents after resize !!
             this.Refresh();
         }
-         
+
+
     }
 }
