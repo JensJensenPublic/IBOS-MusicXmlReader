@@ -167,7 +167,6 @@ namespace MusicXmlReader
 
                 // Experiments.LogRightAlignedMenus(this);
 
-                OverwriteAccessibleNames(); // Experimental code
                 LoadIcon();
 
                 this.Shown += MainForm_Shown;
@@ -188,7 +187,7 @@ namespace MusicXmlReader
                 ShowWarning((int)ModelMessageEnum.UnspecifiedInitializationError,"","");
             }
         }
-#if true
+#if false
         /// <summary>
         /// Experimental code for experimenting with JAWS scripts, espacially the JAWS scripting functions:
         /// "GetObjectInfoByName" which seems to always fail
@@ -196,6 +195,7 @@ namespace MusicXmlReader
         /// </summary>
         private void OverwriteAccessibleNames()
         {
+            return;
             this.AccessibleName = "FormMain";
             this.MainMenuStrip.AccessibleName = "MenuStripMain";
             this.userSettingsTreeView.AccessibleName = "TreeViewUserSettings";
