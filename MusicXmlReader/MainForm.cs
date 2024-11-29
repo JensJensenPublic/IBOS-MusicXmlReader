@@ -4,6 +4,7 @@ using System.Drawing;
 using MusicXmlReaderModel;
 using MusicBrailleReader;
 using System.Runtime.Remoting.Messaging;
+using MusicXmlReader.Properties;
 
 namespace MusicXmlReader
 {
@@ -271,19 +272,33 @@ namespace MusicXmlReader
 
         private void ShowFileAssociationDialog()
         {
-            bool dontShowAgain; // Should be retrieved from applicationSettings !!
 
-            MessageForm mf = new MessageForm(ResourcesForUI.MainForm_ApplicationName,string.Format(ResourcesForUI.Question_DoYouWantToMakeIBOSMusicXmlreaderDefaultAppForMusicXml,ResourcesForUI.MainForm_ApplicationName));
-            DialogResult dr = mf.ShowDialog();
-            if (dr == DialogResult.Yes)
+#if false // For test: Reset the settint in order to show the dialog again
+            Properties.Settings.Default.DoNotShowFileAssociationDialog = false;
+            Properties.Settings.Default.Save();
+#endif
+            bool dontShowAgain = Properties.Settings.Default.DoNotShowFileAssociationDialog;
+            Logger.LogCF(string.Format("+: Properties.Settings.Default.DoNotShowFileAssociationDialog = {0}",dontShowAgain));
+
+            if (!dontShowAgain)
             {
-                Associate(musicXmlExtension, progIdExecuting, executingAssemblyFullPath);
-                dontShowAgain = true;
+                MessageForm mf = new MessageForm(ResourcesForUI.MainForm_ApplicationName, string.Format(ResourcesForUI.Question_DoYouWantToMakeIBOSMusicXmlreaderDefaultAppForMusicXml, ResourcesForUI.MainForm_ApplicationName));
+                DialogResult dr = mf.ShowDialog();
+                if (dr == DialogResult.Yes)
+                {
+                    Associate(musicXmlExtension, progIdExecuting, executingAssemblyFullPath);
+                    dontShowAgain = true;
+
+                }
+                //if ((dontShowAgain) || mf.DontShowAgain) // Probably the best for normal use
+                if (mf.DontShowAgain) // Allowing test
+                {
+                    Properties.Settings.Default.DoNotShowFileAssociationDialog = true;
+                    Properties.Settings.Default.Save();
+                }
+                dontShowAgain = Properties.Settings.Default.DoNotShowFileAssociationDialog;
             }
-            else
-            {
-                dontShowAgain = mf.DontShowAgain;
-            }
+            Logger.LogCF(string.Format("-: Properties.Settings.Default.DoNotShowFileAssociationDialog = {0}", dontShowAgain));
         }
 
 

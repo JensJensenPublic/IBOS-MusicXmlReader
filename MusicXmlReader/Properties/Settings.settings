@@ -125,5 +125,8 @@
     <Setting Name="BrailleMusicEditor2Exe" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Program Files (x86)\Bme2\bme2.exe</Value>
     </Setting>
+    <Setting Name="DoNotShowFileAssociationDialog" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
