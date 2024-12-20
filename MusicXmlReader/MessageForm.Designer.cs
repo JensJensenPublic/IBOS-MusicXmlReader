@@ -40,7 +40,7 @@
             this.buttonYes.Location = new System.Drawing.Point(271, 90);
             this.buttonYes.Name = "buttonYes";
             this.buttonYes.Size = new System.Drawing.Size(75, 23);
-            this.buttonYes.TabIndex = 2;
+            this.buttonYes.TabIndex = 1;
             this.buttonYes.Text = "YES";
             this.buttonYes.UseVisualStyleBackColor = true;
             // 
@@ -50,7 +50,7 @@
             this.buttonNo.Location = new System.Drawing.Point(454, 90);
             this.buttonNo.Name = "buttonNo";
             this.buttonNo.Size = new System.Drawing.Size(75, 23);
-            this.buttonNo.TabIndex = 3;
+            this.buttonNo.TabIndex = 2;
             this.buttonNo.Text = "NO";
             this.buttonNo.UseVisualStyleBackColor = true;
             // 
@@ -60,7 +60,7 @@
             this.checkBoxDontShowAgain.Location = new System.Drawing.Point(72, 90);
             this.checkBoxDontShowAgain.Name = "checkBoxDontShowAgain";
             this.checkBoxDontShowAgain.Size = new System.Drawing.Size(154, 20);
-            this.checkBoxDontShowAgain.TabIndex = 4;
+            this.checkBoxDontShowAgain.TabIndex = 3;
             this.checkBoxDontShowAgain.Text = "Don\'t show this again";
             this.checkBoxDontShowAgain.UseVisualStyleBackColor = true;
             this.checkBoxDontShowAgain.CheckedChanged += new System.EventHandler(this.checkBoxDontShowAgain_CheckedChanged);
@@ -71,7 +71,7 @@
             this.labelQuestion.Location = new System.Drawing.Point(69, 44);
             this.labelQuestion.Name = "labelQuestion";
             this.labelQuestion.Size = new System.Drawing.Size(596, 20);
-            this.labelQuestion.TabIndex = 1;
+            this.labelQuestion.TabIndex = 0;
             this.labelQuestion.Text = "Do you want to make IBOS MusicXmlReader the default app for .MusicXml files?";
             // 
             // MessageForm
