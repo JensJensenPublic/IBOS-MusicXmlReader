@@ -149,6 +149,7 @@
             this.keyboardShortcutsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.linkToNewestSoftwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.listBoxTimes = new System.Windows.Forms.ListBox();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
@@ -161,7 +162,7 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
-            this.extraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extra1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1138,6 +1139,14 @@
             this.usersManualToolStripMenuItem.Text = "User´s manual";
             this.usersManualToolStripMenuItem.Click += new System.EventHandler(this.usersManualToolStripMenuItem_Click);
             // 
+            // extraToolStripMenuItem
+            // 
+            this.extraToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.extra1ToolStripMenuItem});
+            this.extraToolStripMenuItem.Name = "extraToolStripMenuItem";
+            this.extraToolStripMenuItem.Size = new System.Drawing.Size(45, 22);
+            this.extraToolStripMenuItem.Text = "Extra";
+            // 
             // userSettingsTreeView
             // 
             this.userSettingsTreeView.AccessibleName = "Note filter";
@@ -1250,11 +1259,11 @@
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
             // 
-            // extraToolStripMenuItem
+            // extra1ToolStripMenuItem
             // 
-            this.extraToolStripMenuItem.Name = "extraToolStripMenuItem";
-            this.extraToolStripMenuItem.Size = new System.Drawing.Size(45, 22);
-            this.extraToolStripMenuItem.Text = "Extra";
+            this.extra1ToolStripMenuItem.Name = "extra1ToolStripMenuItem";
+            this.extra1ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.extra1ToolStripMenuItem.Text = "Extra1";
             // 
             // MainForm
             // 
@@ -1419,6 +1428,7 @@
         private System.Windows.Forms.ToolStripMenuItem associateInstalledVersionWithMusicXmlFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem extraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem extra1ToolStripMenuItem;
     }
 }
 
