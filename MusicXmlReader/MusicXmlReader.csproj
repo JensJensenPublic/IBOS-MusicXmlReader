@@ -185,17 +185,13 @@
       <LastGenOutput>ResourcesForSettings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ResourcesForUI.da-DK.resx" />
-    <EmbeddedResource Include="ResourcesForUI.es-ES.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <EmbeddedResource Include="ResourcesForUI.es-ES.resx" />
     <EmbeddedResource Include="ResourcesForUI.nl-NL.resx" />
     <EmbeddedResource Include="ResourcesForUI.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesForUI.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ResourcesForUI.ru-RU.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <EmbeddedResource Include="ResourcesForUI.ru-RU.resx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

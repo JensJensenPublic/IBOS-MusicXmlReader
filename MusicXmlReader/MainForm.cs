@@ -271,19 +271,10 @@ namespace MusicXmlReader
 
         private void ShowFileAssociationDialog()
         {
-            bool dontShowAgain; // Should be retrieved from applicationSettings !!
-
-            MessageForm mf = new MessageForm(ResourcesForUI.MainForm_ApplicationName,string.Format(ResourcesForUI.Question_DoYouWantToMakeIBOSMusicXmlreaderDefaultAppForMusicXml,ResourcesForUI.MainForm_ApplicationName));
+            MessageForm mf = new MessageForm(ResourcesForUI.MainForm_ApplicationName,"Do you want to make..");
             DialogResult dr = mf.ShowDialog();
-            if (dr == DialogResult.Yes)
-            {
-                Associate(musicXmlExtension, progIdExecuting, executingAssemblyFullPath);
-                dontShowAgain = true;
-            }
-            else
-            {
-                dontShowAgain = mf.DontShowAgain;
-            }
+            bool dontShowAgain = mf.DontShowAgain;
+            Associate(musicXmlExtension, progIdExecuting, executingAssemblyFullPath);
         }
 
 

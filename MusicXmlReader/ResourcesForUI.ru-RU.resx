@@ -117,11 +117,65 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BrailleDevice_EmbosserName" xml:space="preserve">
+    <value>Embosser</value>
+  </data>
+  <data name="BrailleDevice_GenericName" xml:space="preserve">
+    <value>Universal</value>
+  </data>
+  <data name="BrailleDevice_NoteTakerName" xml:space="preserve">
+    <value>NoteTaker</value>
+  </data>
+  <data name="BrailleMusicExportHandler_Invalid_Input" xml:space="preserve">
+    <value>Ошибка ввода</value>
+  </data>
   <data name="ButtonStart_StartPlaying" xml:space="preserve">
     <value>Воспроизвести</value>
   </data>
   <data name="ButtonStart_StopPlaying" xml:space="preserve">
     <value>Остановить</value>
+  </data>
+  <data name="DetailsState_Bottom" xml:space="preserve">
+    <value>bottom</value>
+  </data>
+  <data name="DetailsState_Top" xml:space="preserve">
+    <value>top</value>
+  </data>
+  <data name="DetailState_AllParts" xml:space="preserve">
+    <value>Все партии</value>
+  </data>
+  <data name="DetailState_Harmonies" xml:space="preserve">
+    <value>Символы аккордов</value>
+  </data>
+  <data name="DetailState_Instruments" xml:space="preserve">
+    <value>Инструменты</value>
+  </data>
+  <data name="DetailState_SingleNotes" xml:space="preserve">
+    <value>Одиночные ноты</value>
+  </data>
+  <data name="DetailState_SingleParts" xml:space="preserve">
+    <value>Одиночные партии</value>
+  </data>
+  <data name="DetailState_Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="DirectoryNames_CultureString" xml:space="preserve">
+    <value>ru-RU</value>
+  </data>
+  <data name="DirectoryNames_Downloads" xml:space="preserve">
+    <value>MusicXml загрузки</value>
+  </data>
+  <data name="DirectoryNames_Samples" xml:space="preserve">
+    <value>Семплы</value>
+  </data>
+  <data name="FileNames_UsersManual" xml:space="preserve">
+    <value>User's manual.docx</value>
+  </data>
+  <data name="ListBoxDetails_NoDetailsFound" xml:space="preserve">
+    <value>Детали не найдены</value>
+  </data>
+  <data name="ListView_Accessible_Name" xml:space="preserve">
+    <value>Список нот</value>
   </data>
   <data name="MainForm_ApplicationName" xml:space="preserve">
     <value>IBOS MusicReader</value>
@@ -129,14 +183,32 @@
   <data name="Message_ConnectedToNonDefaultScreenReader" xml:space="preserve">
     <value>Соединение с неподдерживаемой программой чтения экрана</value>
   </data>
+  <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
+    <value>Попытайтесь экспортировать по одной партии</value>
+  </data>
+  <data name="Message_Directory" xml:space="preserve">
+    <value>Директория</value>
+  </data>
   <data name="Message_DirectoryNotFound" xml:space="preserve">
     <value>Директория не найдена</value>
   </data>
-  <data name="Message_JAWSScreenReaderIsNotRunning" xml:space="preserve">
-    <value>JAWS не запущен</value>
+  <data name="Message_DoYouWantToExitTheProgram" xml:space="preserve">
+    <value>Вы действительно хотите выйти из программы?</value>
+  </data>
+  <data name="Message_ExportOfMultiplePartsNotSupported" xml:space="preserve">
+    <value>При экспорте нескольких партий различных форматов, возможно смешивание нот из этих партий.</value>
+  </data>
+  <data name="Message_ExportToMusicBraille" xml:space="preserve">
+    <value>Экспорт в Music Braille</value>
+  </data>
+  <data name="Message_Failed" xml:space="preserve">
+    <value>ошибка</value>
   </data>
   <data name="Message_FailedToReadMusicXmlFile" xml:space="preserve">
     <value>Ошибка чтения файла MusicXml</value>
+  </data>
+  <data name="Message_FailedToShow" xml:space="preserve">
+    <value>Ошибка отображения</value>
   </data>
   <data name="Message_FailedToStartProgram" xml:space="preserve">
     <value>Ошибка запуска программы</value>
@@ -144,17 +216,65 @@
   <data name="Message_FileNotFound" xml:space="preserve">
     <value>Файл не найден</value>
   </data>
+  <data name="Message_Files" xml:space="preserve">
+    <value>Файлы</value>
+  </data>
+  <data name="Message_File_EmbossedMusicBrailleFile" xml:space="preserve">
+    <value>Файл Embossed Music Braille</value>
+  </data>
+  <data name="Message_File_ErrorMessage" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="Message_File_ExternalProgramNotFound" xml:space="preserve">
+    <value>Внешняя программа не найдена</value>
+  </data>
+  <data name="Message_File_FailedToEmbossFileOn" xml:space="preserve">
+    <value>Failed to emboss file on</value>
+  </data>
+  <data name="Message_File_FileName" xml:space="preserve">
+    <value>Имя файла</value>
+  </data>
+  <data name="Message_File_OnEmbosser" xml:space="preserve">
+    <value>on embosser</value>
+  </data>
+  <data name="Message_File_PleaseEnterValidPathIn" xml:space="preserve">
+    <value>Пожалуйста, введите корректный путь</value>
+  </data>
+  <data name="Message_JAWSScreenReaderIsNotRunning" xml:space="preserve">
+    <value>JAWS не запущен</value>
+  </data>
+  <data name="Message_LocationNotDetermined" xml:space="preserve">
+    <value>Расположение файла не определено</value>
+  </data>
   <data name="Message_MayNotWorkAsExpected" xml:space="preserve">
     <value>Программа может работать не так, как ожидалось</value>
   </data>
   <data name="Message_MissingProgramFile" xml:space="preserve">
     <value>Отсутствует компонент программы</value>
   </data>
+  <data name="Message_NotAllowedWhilePlaying" xml:space="preserve">
+    <value>Не допускается во время воспроизведения</value>
+  </data>
   <data name="Message_PleaseSeeLogFile" xml:space="preserve">
     <value>Пожалуйста, ознакомьтесь с лог-файлом (Инструменты-&gt;Лог-файл)</value>
   </data>
+  <data name="Message_RightAlignedMenus" xml:space="preserve">
+    <value>Please go to Control Panel - Devices - Pen &amp; Windows Ink and change 'Choose which hand you write with' from 'Right Hand' to 'Left Hand' </value>
+  </data>
+  <data name="Message_Settings_DoYouReallyWantToReset" xml:space="preserve">
+    <value>Вы действительно хотите установить настройки по умолчанию?</value>
+  </data>
+  <data name="Message_StopPlayingFirst" xml:space="preserve">
+    <value>Остановить</value>
+  </data>
+  <data name="Message_Succeeded" xml:space="preserve">
+    <value>Успешно</value>
+  </data>
   <data name="Message_UndefinedMessage" xml:space="preserve">
     <value>(Undefined Message)</value>
+  </data>
+  <data name="Message_UnspecifiedInitializationError" xml:space="preserve">
+    <value>Ошибка во время инициализации программы</value>
   </data>
   <data name="Message_UnspecifiedMusicXmlFile" xml:space="preserve">
     <value>No MusicXml file was specified </value>
@@ -165,6 +285,48 @@
   <data name="OpenFileDialog_Filter_mxl" xml:space="preserve">
     <value>Сжатые MusicXml файлы</value>
   </data>
+  <data name="OpenFileDialog_Title" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="ParameterInputForm_BrailleFormatting" xml:space="preserve">
+    <value>Insert form size as characters per line comma lines per form</value>
+  </data>
+  <data name="ParameterInputForm_GoTo" xml:space="preserve">
+    <value>&amp;Перейти на такт</value>
+  </data>
+  <data name="ParameterInputForm_PctOfNominalTempo" xml:space="preserve">
+    <value> % от &amp;основного темпа</value>
+  </data>
+  <data name="ParameterInputForm_Repeat" xml:space="preserve">
+    <value>&amp;Повтор тактов</value>
+  </data>
+  <data name="ResourceFileName" xml:space="preserve">
+    <value>ResourcesForUI.resx</value>
+  </data>
+  <data name="SelectDownloadFileImportDialog_Title" xml:space="preserve">
+    <value>Выбор загруженных файлов для импорта</value>
+  </data>
+  <data name="StatusLine_Accessible_Name" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Status_file" xml:space="preserve">
+    <value>файл</value>
+  </data>
+  <data name="Status_files" xml:space="preserve">
+    <value>файлы</value>
+  </data>
+  <data name="Status_Imported" xml:space="preserve">
+    <value>Импорт</value>
+  </data>
+  <data name="Status_ImportingSampleFiles" xml:space="preserve">
+    <value>Импорт семплов</value>
+  </data>
+  <data name="Status_ImportingSelectedFiles" xml:space="preserve">
+    <value>Импорт выбранных файлов</value>
+  </data>
+  <data name="TextBox_Messages_FailedToConvert_File" xml:space="preserve">
+    <value>Ошибка конвертирования</value>
+  </data>
   <data name="TextBox_Messages_FailedToRead_File" xml:space="preserve">
     <value>Ошибка чтения</value>
   </data>
@@ -174,8 +336,17 @@
   <data name="TextBox_Messages_TheProgramIsExiting" xml:space="preserve">
     <value>Выход из программы</value>
   </data>
+  <data name="TextBox_Messages_ToMusicXml" xml:space="preserve">
+    <value>в MusicXml (.xml)</value>
+  </data>
+  <data name="TextBox_Messages_UnsupportedFileFormat" xml:space="preserve">
+    <value>Не поддерживаемый формат файла</value>
+  </data>
   <data name="ToolsStripMenuItem_Archives" xml:space="preserve">
     <value>&amp;Нотные архивы</value>
+  </data>
+  <data name="ToolsStripMenuItem_View_Instruments" xml:space="preserve">
+    <value>&amp;Информация об инструменте</value>
   </data>
   <data name="ToolStripMenuItem_Edit" xml:space="preserve">
     <value>&amp;Правка</value>
@@ -183,20 +354,131 @@
   <data name="ToolStripMenuItem_Files" xml:space="preserve">
     <value>&amp;Файлы</value>
   </data>
+  <data name="ToolStripMenuItem_Files_BrfASCII" xml:space="preserve">
+    <value>.brf (ASCII)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_BrfUnicode" xml:space="preserve">
+    <value>.brf (Unicode)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_brf_ASCII" xml:space="preserve">
+    <value>.brf (&amp;ASCII)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_brf_Unicode" xml:space="preserve">
+    <value>.brf (&amp;Unicode)</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_CopyMusicBraille" xml:space="preserve">
+    <value>&amp;Копировать файл Music Braille на устройство, используя проводник</value>
+  </data>
   <data name="ToolStripMenuItem_Files_Exit" xml:space="preserve">
     <value>&amp;Выход</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
+    <value>&amp;Экспорт Music Braille в файл</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
+    <value>Импорт &amp;загрузки</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
+    <value>Импорт &amp;ежедневные загрузки</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
+    <value>Import newest &amp;samples</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_InOptionalFormat" xml:space="preserve">
+    <value>in optional format</value>
   </data>
   <data name="ToolStripMenuItem_Files_OpenMusicXmlFile" xml:space="preserve">
     <value>&amp;Открыть MusicXml файл</value>
   </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
+    <value>Open MusicXml file from most recent path</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
+    <value>Открыть MusicXml файл, &amp;используя настройки по умолчанию</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
+    <value>&amp;Print Music Braille file on embosser</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram" xml:space="preserve">
+    <value>Emboss Music Braille file using External program</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_Print_using_External" xml:space="preserve">
+    <value>via e&amp;xternal program</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_Print_via_Windows" xml:space="preserve">
+    <value>via &amp;Windows Print-dialog</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToEmbosser" xml:space="preserve">
+    <value>to Embosser</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToGenericDevice" xml:space="preserve">
+    <value>To universal Braille-device</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_ToNoteTaker" xml:space="preserve">
+    <value>to NoteTaker</value>
+  </data>
+  <data name="ToolStripMenuItem_Files_TxtOctoBraille1252" xml:space="preserve">
+    <value>.txt (OctoBraille 1252)</value>
+  </data>
   <data name="ToolStripMenuItem_Help" xml:space="preserve">
     <value>&amp;Помощь</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_About" xml:space="preserve">
+    <value>&amp;О программе</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_About_Version" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
+    <value>&amp;Горячие клавиши</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_ShowUsersManual" xml:space="preserve">
+    <value>Показать &amp;руководство пользователя</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_SoftwareUpdate" xml:space="preserve">
+    <value>Link to newest &amp;software</value>
+  </data>
+  <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
+    <value>http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings" xml:space="preserve">
+    <value>&amp;Настройки</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_Embosser" xml:space="preserve">
+    <value>Настройки для профиля &amp;embosser</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_General" xml:space="preserve">
+    <value>?Общие настройки</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_MusicBraille" xml:space="preserve">
+    <value>Настройки профиля &amp;universal braille-device</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_NoteTaker" xml:space="preserve">
+    <value>Настройки профиля &amp;notetaker</value>
+  </data>
+  <data name="ToolStripMenuItem_Settings_ResetAll" xml:space="preserve">
+    <value>&amp;Установить настройки по умолчанию</value>
   </data>
   <data name="ToolStripMenuItem_Tools" xml:space="preserve">
     <value>&amp;Инструменты</value>
   </data>
+  <data name="ToolStripMenuItem_Tools_Capella" xml:space="preserve">
+    <value>&amp;Capella</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_Finale" xml:space="preserve">
+    <value>&amp;Finale</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern" xml:space="preserve">
+    <value>Сгенерировать Music Braille &amp;тестовый патерн</value>
+  </data>
   <data name="ToolStripMenuItem_Tools_InspectAsXml" xml:space="preserve">
     <value>MusicXml file  as raw &amp;Xml</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_InspectAsXml_Using_Chrome" xml:space="preserve">
+    <value>MusicXml file  as raw Xml Using &amp;Google Chrome</value>
+  </data>
+  <data name="ToolStripMenuItem_Tools_JAWS_Settings" xml:space="preserve">
+    <value>Настройки &amp;JAWS</value>
   </data>
   <data name="ToolStripMenuItem_Tools_Logfile" xml:space="preserve">
     <value>&amp;Лог-файл</value>
@@ -216,14 +498,32 @@
   <data name="ToolStripMenuItem_Tools_Sibelius" xml:space="preserve">
     <value>&amp;Sibelius</value>
   </data>
+  <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
+    <value>&amp;Пользовательские настройки для текущего MusicXml файла</value>
+  </data>
   <data name="ToolStripMenuItem_Tools_ViewAsInterpretedXml" xml:space="preserve">
     <value>MusicXml file as &amp;interpreted Xml</value>
   </data>
   <data name="ToolStripMenuItem_View" xml:space="preserve">
     <value>&amp;Вид</value>
   </data>
+  <data name="ToolStripMenuItem_View_MusicBrailleForNoteTaker" xml:space="preserve">
+    <value>Music Braille for notetaker</value>
+  </data>
+  <data name="TreeView_Accessible_Name" xml:space="preserve">
+    <value>Фильтр нот</value>
+  </data>
   <data name="TreeView_All_Items" xml:space="preserve">
     <value>&amp;Фильтровать события</value>
+  </data>
+  <data name="TreeView_CheckAll" xml:space="preserve">
+    <value>&amp;1: Выделить всё</value>
+  </data>
+  <data name="TreeView_CheckOthers" xml:space="preserve">
+    <value>&amp;Выделить другие партии или детали</value>
+  </data>
+  <data name="Treeview_for" xml:space="preserve">
+    <value>для</value>
   </data>
   <data name="TreeView_MusicAsBraille" xml:space="preserve">
     <value>&amp;Braille Music representation</value>
@@ -252,317 +552,13 @@
   <data name="TreeView_MusicAsSpeech_Parts" xml:space="preserve">
     <value>&amp;Партии</value>
   </data>
-  <data name="TreeWiew_Items" xml:space="preserve">
-    <value>&amp;Фильтр событий</value>
-  </data>
-  <data name="Message_NotAllowedWhilePlaying" xml:space="preserve">
-    <value>Не допускается во время воспроизведения</value>
-  </data>
-  <data name="Message_StopPlayingFirst" xml:space="preserve">
-    <value>Остановить</value>
-  </data>
-  <data name="Treeview_for" xml:space="preserve">
-    <value>для</value>
-  </data>
-  <data name="ListView_Accessible_Name" xml:space="preserve">
-    <value>Список нот</value>
-  </data>
-  <data name="TreeView_Accessible_Name" xml:space="preserve">
-    <value>Фильтр нот</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_About" xml:space="preserve">
-    <value>&amp;О программе</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_About_Version" xml:space="preserve">
-    <value>Версия</value>
-  </data>
-  <data name="ToolStripMenuItem_Tools_JAWS_Settings" xml:space="preserve">
-    <value>Настройки &amp;JAWS</value>
-  </data>
-  <data name="DirectoryNames_Samples" xml:space="preserve">
-    <value>Семплы</value>
-  </data>
-  <data name="StatusLine_Accessible_Name" xml:space="preserve">
-    <value>Статус</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_Shortcuts" xml:space="preserve">
-    <value>&amp;Горячие клавиши</value>
-  </data>
-  <data name="Message_LocationNotDetermined" xml:space="preserve">
-    <value>Расположение файла не определено</value>
-  </data>
-  <data name="Message_UnspecifiedInitializationError" xml:space="preserve">
-    <value>Ошибка во время инициализации программы</value>
-  </data>
-  <data name="Message_DoYouWantToExitTheProgram" xml:space="preserve">
-    <value>Вы действительно хотите выйти из программы?</value>
-  </data>
-  <data name="Status_file" xml:space="preserve">
-    <value>файл</value>
-  </data>
-  <data name="Status_files" xml:space="preserve">
-    <value>файлы</value>
-  </data>
-  <data name="Status_Imported" xml:space="preserve">
-    <value>Импорт</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ImportNewestDownloads" xml:space="preserve">
-    <value>Импорт &amp;ежедневные загрузки</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ImportNewestSamples" xml:space="preserve">
-    <value>Import newest &amp;samples</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_SoftwareUpdate" xml:space="preserve">
-    <value>Link to newest &amp;software</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_SoftwareUpdateLink" xml:space="preserve">
-    <value>http://www.ibos.dk/hjaelpemidler/ibos-nodelaeser.html</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ImportDownloads" xml:space="preserve">
-    <value>Импорт &amp;загрузки</value>
-  </data>
-  <data name="ListBoxDetails_NoDetailsFound" xml:space="preserve">
-    <value>Детали не найдены</value>
-  </data>
-  <data name="TextBox_Messages_FailedToConvert_File" xml:space="preserve">
-    <value>Ошибка конвертирования</value>
-  </data>
-  <data name="TextBox_Messages_ToMusicXml" xml:space="preserve">
-    <value>в MusicXml (.xml)</value>
-  </data>
-  <data name="TextBox_Messages_UnsupportedFileFormat" xml:space="preserve">
-    <value>Не поддерживаемый формат файла</value>
-  </data>
-  <data name="DirectoryNames_Downloads" xml:space="preserve">
-    <value>MusicXml загрузки</value>
-  </data>
-  <data name="Status_ImportingSampleFiles" xml:space="preserve">
-    <value>Импорт семплов</value>
-  </data>
-  <data name="Status_ImportingSelectedFiles" xml:space="preserve">
-    <value>Импорт выбранных файлов</value>
-  </data>
-  <data name="ResourceFileName" xml:space="preserve">
-    <value>ResourcesForUI.resx</value>
-  </data>
-  <data name="SelectDownloadFileImportDialog_Title" xml:space="preserve">
-    <value>Выбор загруженных файлов для импорта</value>
-  </data>
-  <data name="ToolsStripMenuItem_View_Instruments" xml:space="preserve">
-    <value>&amp;Информация об инструменте</value>
-  </data>
-  <data name="TreeView_CheckAll" xml:space="preserve">
-    <value>&amp;1: Выделить всё</value>
-  </data>
   <data name="TreeView_UncheckAll" xml:space="preserve">
     <value>&amp;0: Снять выделение</value>
-  </data>
-  <data name="DirectoryNames_CultureString" xml:space="preserve">
-    <value>ru-RU</value>
-  </data>
-  <data name="FileNames_UsersManual" xml:space="preserve">
-    <value>User's manual.docx</value>
-  </data>
-  <data name="Message_FailedToShow" xml:space="preserve">
-    <value>Ошибка отображения</value>
-  </data>
-  <data name="ToolStripMenuItem_Help_ShowUsersManual" xml:space="preserve">
-    <value>Показать &amp;руководство пользователя</value>
-  </data>
-  <data name="ParameterInputForm_GoTo" xml:space="preserve">
-    <value>&amp;Перейти на такт</value>
-  </data>
-  <data name="ParameterInputForm_PctOfNominalTempo" xml:space="preserve">
-    <value> % от &amp;основного темпа</value>
-  </data>
-  <data name="ParameterInputForm_Repeat" xml:space="preserve">
-    <value>&amp;Повтор тактов</value>
-  </data>
-  <data name="DetailState_AllParts" xml:space="preserve">
-    <value>Все партии</value>
-  </data>
-  <data name="DetailState_Harmonies" xml:space="preserve">
-    <value>Символы аккордов</value>
-  </data>
-  <data name="DetailState_Instruments" xml:space="preserve">
-    <value>Инструменты</value>
-  </data>
-  <data name="DetailState_SingleNotes" xml:space="preserve">
-    <value>Одиночные ноты</value>
-  </data>
-  <data name="DetailState_SingleParts" xml:space="preserve">
-    <value>Одиночные партии</value>
-  </data>
-  <data name="Message_RightAlignedMenus" xml:space="preserve">
-    <value>Please go to Control Panel - Devices - Pen &amp; Windows Ink and change 'Choose which hand you write with' from 'Right Hand' to 'Left Hand' </value>
-  </data>
-  <data name="DetailsState_Bottom" xml:space="preserve">
-    <value>bottom</value>
-  </data>
-  <data name="DetailsState_Top" xml:space="preserve">
-    <value>top</value>
-  </data>
-  <data name="DetailState_Status" xml:space="preserve">
-    <value>Статус</value>
-  </data>
-  <data name="TreeView_CheckOthers" xml:space="preserve">
-    <value>&amp;Выделить другие партии или детали</value>
   </data>
   <data name="TreeView_UncheckOthers" xml:space="preserve">
     <value>&amp;Снять выделение с остальных партий или деталей</value>
   </data>
-  <data name="ToolStripMenuItem_Tools_User_Settings" xml:space="preserve">
-    <value>&amp;Пользовательские настройки для текущего MusicXml файла</value>
-  </data>
-  <data name="ParameterInputForm_BrailleFormatting" xml:space="preserve">
-    <value>Insert form size as characters per line comma lines per form</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_brf_ASCII" xml:space="preserve">
-    <value>.brf (&amp;ASCII)</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_brf_Unicode" xml:space="preserve">
-    <value>.brf (&amp;Unicode)</value>
-  </data>
-  <data name="Message_ConsiderExportingOnePartAtATime" xml:space="preserve">
-    <value>Попытайтесь экспортировать по одной партии</value>
-  </data>
-  <data name="Message_ExportOfMultiplePartsNotSupported" xml:space="preserve">
-    <value>При экспорте нескольких партий различных форматов, возможно смешивание нот из этих партий.</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_BrfASCII" xml:space="preserve">
-    <value>.brf (ASCII)</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_BrfUnicode" xml:space="preserve">
-    <value>.brf (Unicode)</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_InOptionalFormat" xml:space="preserve">
-    <value>in optional format</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ToEmbosser" xml:space="preserve">
-    <value>to Embosser</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ToNoteTaker" xml:space="preserve">
-    <value>to NoteTaker</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_TxtOctoBraille1252" xml:space="preserve">
-    <value>.txt (OctoBraille 1252)</value>
-  </data>
-  <data name="ToolStripMenuItem_Tools_GenerateMusicBrailleTestPattern" xml:space="preserve">
-    <value>Сгенерировать Music Braille &amp;тестовый патерн</value>
-  </data>
-  <data name="ToolStripMenuItem_View_MusicBrailleForNoteTaker" xml:space="preserve">
-    <value>Music Braille for notetaker</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_OpenMusicXmlFile_DefaultSettings" xml:space="preserve">
-    <value>Открыть MusicXml файл, &amp;используя настройки по умолчанию</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
-    <value>&amp;Print Music Braille file on embosser</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_OpenMusicXmlFileRecent" xml:space="preserve">
-    <value>Open MusicXml file from most recent path</value>
-  </data>
-  <data name="OpenFileDialog_Title" xml:space="preserve">
-    <value>Открыть</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings" xml:space="preserve">
-    <value>&amp;Настройки</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ExportMusicBrailleToFile" xml:space="preserve">
-    <value>&amp;Экспорт Music Braille в файл</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_CopyMusicBraille" xml:space="preserve">
-    <value>&amp;Копировать файл Music Braille на устройство, используя проводник</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_Print_using_External" xml:space="preserve">
-    <value>via e&amp;xternal program</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_Print_via_Windows" xml:space="preserve">
-    <value>via &amp;Windows Print-dialog</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_ToGenericDevice" xml:space="preserve">
-    <value>To universal Braille-device</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_Embosser" xml:space="preserve">
-    <value>Настройки для профиля &amp;embosser</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_General" xml:space="preserve">
-    <value>?Общие настройки</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_MusicBraille" xml:space="preserve">
-    <value>Настройки профиля &amp;universal braille-device</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_NoteTaker" xml:space="preserve">
-    <value>Настройки профиля &amp;notetaker</value>
-  </data>
-  <data name="ToolStripMenuItem_Settings_ResetAll" xml:space="preserve">
-    <value>&amp;Установить настройки по умолчанию</value>
-  </data>
-  <data name="Message_Directory" xml:space="preserve">
-    <value>Директория</value>
-  </data>
-  <data name="Message_ExportToMusicBraille" xml:space="preserve">
-    <value>Экспорт в Music Braille</value>
-  </data>
-  <data name="Message_Failed" xml:space="preserve">
-    <value>ошибка</value>
-  </data>
-  <data name="Message_Files" xml:space="preserve">
-    <value>Файлы</value>
-  </data>
-  <data name="Message_Succeeded" xml:space="preserve">
-    <value>Успешно</value>
-  </data>
-  <data name="Message_File_EmbossedMusicBrailleFile" xml:space="preserve">
-    <value>Файл Embossed Music Braille</value>
-  </data>
-  <data name="Message_File_ErrorMessage" xml:space="preserve">
-    <value>Ошибка</value>
-  </data>
-  <data name="Message_File_FailedToEmbossFileOn" xml:space="preserve">
-    <value>Failed to emboss file on</value>
-  </data>
-  <data name="Message_File_FileName" xml:space="preserve">
-    <value>Имя файла</value>
-  </data>
-  <data name="Message_File_OnEmbosser" xml:space="preserve">
-    <value>on embosser</value>
-  </data>
-  <data name="Message_Settings_DoYouReallyWantToReset" xml:space="preserve">
-    <value>Вы действительно хотите установить настройки по умолчанию?</value>
-  </data>
-  <data name="Message_File_ExternalProgramNotFound" xml:space="preserve">
-    <value>Внешняя программа не найдена</value>
-  </data>
-  <data name="Message_File_PleaseEnterValidPathIn" xml:space="preserve">
-    <value>Пожалуйста, введите корректный путь</value>
-  </data>
-  <data name="ToolStripMenuItem_Tools_Capella" xml:space="preserve">
-    <value>&amp;Capella</value>
-  </data>
-  <data name="ToolStripMenuItem_Tools_Finale" xml:space="preserve">
-    <value>&amp;Finale</value>
-  </data>
-  <data name="BrailleMusicExportHandler_Invalid_Input" xml:space="preserve">
-    <value>Ошибка ввода</value>
-  </data>
-  <data name="BrailleDevice_EmbosserName" xml:space="preserve">
-    <value>Embosser</value>
-  </data>
-  <data name="BrailleDevice_GenericName" xml:space="preserve">
-    <value>Universal</value>
-  </data>
-  <data name="BrailleDevice_NoteTakerName" xml:space="preserve">
-    <value>NoteTaker</value>
-  </data>
-  <data name="ToolStripMenuItem_Tools_InspectAsXml_Using_Chrome" xml:space="preserve">
-    <value>MusicXml file  as raw Xml Using &amp;Google Chrome</value>
-  </data>
-  <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram" xml:space="preserve">
-    <value>Emboss Music Braille file using External program</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Question_DoYouWantToMakeIBOSMusicXmlreaderDefaultAppForMusicXml" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="TreeWiew_Items" xml:space="preserve">
+    <value>&amp;Фильтр событий</value>
   </data>
 </root>
