@@ -399,9 +399,6 @@
   <data name="ToolStripMenuItem_Files_PrintMusicBraille" xml:space="preserve">
     <value>&amp;Print Music Braille file on embosser</value>
   </data>
-  <data name="ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram" xml:space="preserve">
-    <value>Emboss Music Braille file using External program</value>
-  </data>
   <data name="ToolStripMenuItem_Files_Print_using_External" xml:space="preserve">
     <value>via e&amp;xternal program</value>
   </data>

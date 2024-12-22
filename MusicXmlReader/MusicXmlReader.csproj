@@ -194,7 +194,9 @@
       <LastGenOutput>ResourcesForUI.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ResourcesForUI.ru-RU.resx" />
+    <EmbeddedResource Include="ResourcesForUI.ru-RU.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

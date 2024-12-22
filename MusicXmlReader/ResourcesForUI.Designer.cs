@@ -1069,7 +1069,7 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Emboss Music Braille file using External program.
         /// </summary>
         internal static string ToolStripMenuItem_Files_PrintMusicBrailleUsingProgram {
             get {
