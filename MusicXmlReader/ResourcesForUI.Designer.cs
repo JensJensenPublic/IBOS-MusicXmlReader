@@ -106,6 +106,24 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string Button_Text_No {
+            get {
+                return ResourceManager.GetString("Button_Text_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string Button_Text_Yes {
+            get {
+                return ResourceManager.GetString("Button_Text_Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start playing.
         /// </summary>
         internal static string ButtonStart_StartPlaying {
@@ -120,6 +138,15 @@ namespace MusicXmlReader {
         internal static string ButtonStart_StopPlaying {
             get {
                 return ResourceManager.GetString("ButtonStart_StopPlaying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not show this again.
+        /// </summary>
+        internal static string CheckBox_Caption_DoNotShowThisAgain {
+            get {
+                return ResourceManager.GetString("CheckBox_Caption_DoNotShowThisAgain", resourceCulture);
             }
         }
         
@@ -705,6 +732,15 @@ namespace MusicXmlReader {
         internal static string ParameterInputForm_Repeat {
             get {
                 return ResourceManager.GetString("ParameterInputForm_Repeat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to make this app the standard app for MusicXml files ?.
+        /// </summary>
+        internal static string Question_Standard_App {
+            get {
+                return ResourceManager.GetString("Question_Standard_App", resourceCulture);
             }
         }
         

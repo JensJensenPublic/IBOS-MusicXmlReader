@@ -150,6 +150,7 @@
             this.linkToNewestSoftwareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extra1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.listBoxTimes = new System.Windows.Forms.ListBox();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
@@ -162,7 +163,7 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
-            this.extra1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extra2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1142,10 +1143,17 @@
             // extraToolStripMenuItem
             // 
             this.extraToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.extra1ToolStripMenuItem});
+            this.extra1ToolStripMenuItem,
+            this.extra2ToolStripMenuItem});
             this.extraToolStripMenuItem.Name = "extraToolStripMenuItem";
             this.extraToolStripMenuItem.Size = new System.Drawing.Size(45, 22);
             this.extraToolStripMenuItem.Text = "Extra";
+            // 
+            // extra1ToolStripMenuItem
+            // 
+            this.extra1ToolStripMenuItem.Name = "extra1ToolStripMenuItem";
+            this.extra1ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.extra1ToolStripMenuItem.Text = "Extra1";
             // 
             // userSettingsTreeView
             // 
@@ -1259,11 +1267,11 @@
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
             // 
-            // extra1ToolStripMenuItem
+            // extra2ToolStripMenuItem
             // 
-            this.extra1ToolStripMenuItem.Name = "extra1ToolStripMenuItem";
-            this.extra1ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.extra1ToolStripMenuItem.Text = "Extra1";
+            this.extra2ToolStripMenuItem.Name = "extra2ToolStripMenuItem";
+            this.extra2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.extra2ToolStripMenuItem.Text = "Extra2";
             // 
             // MainForm
             // 
@@ -1429,6 +1437,7 @@
         private System.Windows.Forms.ToolStripMenuItem makeIBOSMusicXmlReaderDefaultAppFormusicxmlFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem extraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem extra1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem extra2ToolStripMenuItem;
     }
 }
 

@@ -670,4 +670,16 @@
   <data name="Message_Files_Path" xml:space="preserve">
     <value>Sti</value>
   </data>
+  <data name="Button_Text_Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="Button_Text_No" xml:space="preserve">
+    <value>Nej</value>
+  </data>
+  <data name="CheckBox_Caption_DoNotShowThisAgain" xml:space="preserve">
+    <value>Spørg ikke igen</value>
+  </data>
+  <data name="Question_Standard_App" xml:space="preserve">
+    <value>Ønsker du at gøre denne app til standard app for MusicXml filer?</value>
+  </data>
 </root>

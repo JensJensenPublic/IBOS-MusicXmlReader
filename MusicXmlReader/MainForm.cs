@@ -237,7 +237,7 @@ namespace MusicXmlReader
 
         private void ShowFileAssociationDialog()
         {
-            MessageForm mf = new MessageForm(ResourcesForUI.MainForm_ApplicationName,"Do you want to make..");
+            MessageForm mf = new MessageForm(ResourcesForUI.MainForm_ApplicationName,ResourcesForUI.Question_Standard_App);
             DialogResult dr = mf.ShowDialog();
             bool dontShowAgain = mf.DontShowAgain;
             Associate(musicXmlExtension, progIdExecuting, executingAssemblyFullPath);
