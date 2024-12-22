@@ -943,8 +943,8 @@
             // showCurrentStandardAppToolStripMenuItem
             // 
             this.showCurrentStandardAppToolStripMenuItem.Name = "showCurrentStandardAppToolStripMenuItem";
-            this.showCurrentStandardAppToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.showCurrentStandardAppToolStripMenuItem.Text = "Show current standard app";
+            this.showCurrentStandardAppToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.showCurrentStandardAppToolStripMenuItem.Text = "Log current standard app settings";
             this.showCurrentStandardAppToolStripMenuItem.Click += new System.EventHandler(this.showCurrentStandardAppToolStripMenuItem_Click);
             // 
             // archivesToolStripMenuItem
