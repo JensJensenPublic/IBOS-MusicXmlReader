@@ -240,7 +240,14 @@ namespace MusicXmlReader
             MessageForm mf = new MessageForm(ResourcesForUI.MainForm_ApplicationName,ResourcesForUI.Question_Standard_App);
             DialogResult dr = mf.ShowDialog();
             bool dontShowAgain = mf.DontShowAgain;
-            Associate(musicXmlExtension, progIdExecuting, executingAssemblyFullPath);
+            if (dr == DialogResult.Yes)
+            {
+                if (Associate(musicXmlExtension, progIdExecuting, executingAssemblyFullPath))
+                { 
+                dontShowAgain = true;
+                }
+            }
+#warning todo save dontShowAgain as a setting
         }
 
 

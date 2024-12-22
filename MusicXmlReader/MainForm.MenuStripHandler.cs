@@ -728,7 +728,7 @@ namespace MusicXmlReader
             Associate(musicXmlExtension, progIdInstalled, installedVersionFullPath);          
         }
 
-        private void Associate(string extension, string progId, string applicationExeFullPath)
+        private bool Associate(string extension, string progId, string applicationExeFullPath)
         {
             Logger.LogCF(string.Format("(Extension={0} ProgId={1} applicationExeFullPath={2}) started", extension, progId, applicationExeFullPath));
             bool result = false;
@@ -748,6 +748,7 @@ namespace MusicXmlReader
             string extraInfo = result ? string.Format("\r\n\r\n{0}='{1}'", ResourcesForUI.Message_Files_Path,applicationExeFullPath) :  string.Format("\r\n\r\n{0}",ResourcesForUI.Message_PleaseSeeLogFile);
             MessageBox.Show(message + extraInfo, applicationName, MessageBoxButtons.OK, icon);
             Logger.LogCF(string.Format("(Extension={0} ProgId={1} applicationExeFullPath={2}) completed", extension, progId, applicationExeFullPath));
+            return result;
         }
 
         private void logFileassociationsToolStripMenuItem_Click(object sender, EventArgs e)
