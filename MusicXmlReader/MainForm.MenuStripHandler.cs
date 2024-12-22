@@ -717,16 +717,34 @@ namespace MusicXmlReader
         readonly string installedVersionFullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"IBOS MusicXmlReader\IBOS MusicXmlReader.exe");
     
  
-        private void associateWithMusicXmlFilesToolStripMenuItem_Click(object sender, EventArgs e)
+
+
+        private void useInstalledVersionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Associate(musicXmlExtension, progIdExecuting, executingAssemblyFullPath);           
+            Associate(musicXmlExtension, progIdInstalled, installedVersionFullPath);
         }
 
-        private void associateInstalledVersionWithMusicXmlFilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {   
-        
-            Associate(musicXmlExtension, progIdInstalled, installedVersionFullPath);          
+        private void useCurrentlyRunningVersionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Associate(musicXmlExtension, progIdExecuting, executingAssemblyFullPath);
         }
+
+        private void showDialogAtStartupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Logger.LogCF("+: Forcing the Messageform(StandardApp) to be shown");
+            Properties.Settings.Default.DoNotShowFileAssociationDialog = false;
+            Properties.Settings.Default.Save();
+            Logger.LogCF("-: Forcing the Messageform(StandardApp) to be shown");
+        }
+
+        private void showCurrentStandardAppToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Logger.LogCF(":+");
+            model.LogAssociationInformation(musicXmlExtension, progIdInstalled);
+            model.LogAssociationInformation(musicXmlExtension, progIdExecuting);
+            Logger.LogCF(":+");
+        }
+
 
         private bool Associate(string extension, string progId, string applicationExeFullPath)
         {
@@ -751,13 +769,6 @@ namespace MusicXmlReader
             return result;
         }
 
-        private void logFileassociationsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Logger.LogCF(":+");
-            model.LogAssociationInformation(musicXmlExtension, progIdInstalled);
-            model.LogAssociationInformation(musicXmlExtension, progIdExecuting);
-            Logger.LogCF(":+");
-        }
 
         private void generateGraphicInformationToolStripMenuItem_Click(object sender, EventArgs e)
         {
