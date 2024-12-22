@@ -152,6 +152,7 @@
             this.extraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extra1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extra2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extra3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userSettingsTreeView = new System.Windows.Forms.TreeView();
             this.listBoxTimes = new System.Windows.Forms.ListBox();
             this.textBoxBraille = new System.Windows.Forms.TextBox();
@@ -164,7 +165,7 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
-            this.extra3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extra4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1146,7 +1147,8 @@
             this.extraToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.extra1ToolStripMenuItem,
             this.extra2ToolStripMenuItem,
-            this.extra3ToolStripMenuItem});
+            this.extra3ToolStripMenuItem,
+            this.extra4ToolStripMenuItem});
             this.extraToolStripMenuItem.Name = "extraToolStripMenuItem";
             this.extraToolStripMenuItem.Size = new System.Drawing.Size(45, 22);
             this.extraToolStripMenuItem.Text = "Extra";
@@ -1162,6 +1164,12 @@
             this.extra2ToolStripMenuItem.Name = "extra2ToolStripMenuItem";
             this.extra2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.extra2ToolStripMenuItem.Text = "Extra2";
+            // 
+            // extra3ToolStripMenuItem
+            // 
+            this.extra3ToolStripMenuItem.Name = "extra3ToolStripMenuItem";
+            this.extra3ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.extra3ToolStripMenuItem.Text = "Extra3";
             // 
             // userSettingsTreeView
             // 
@@ -1275,11 +1283,11 @@
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
             // 
-            // extra3ToolStripMenuItem
+            // extra4ToolStripMenuItem
             // 
-            this.extra3ToolStripMenuItem.Name = "extra3ToolStripMenuItem";
-            this.extra3ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.extra3ToolStripMenuItem.Text = "Extra3";
+            this.extra4ToolStripMenuItem.Name = "extra4ToolStripMenuItem";
+            this.extra4ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.extra4ToolStripMenuItem.Text = "Extra4";
             // 
             // MainForm
             // 
@@ -1447,6 +1455,7 @@
         private System.Windows.Forms.ToolStripMenuItem extra1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem extra2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem extra3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem extra4ToolStripMenuItem;
     }
 }
 

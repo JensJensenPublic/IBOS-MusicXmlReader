@@ -235,19 +235,32 @@ namespace MusicXmlReader
             }
         }
 
+        private void ShowAgain()
+        {
+            Logger.LogCF(": Forcing the Messageform(StandardApp) to be shown");
+            Properties.Settings.Default.DoNotShowFileAssociationDialog = false;
+            Properties.Settings.Default.Save();
+        }
+
         private void ShowFileAssociationDialog()
         {
-            MessageForm mf = new MessageForm(ResourcesForUI.MainForm_ApplicationName,ResourcesForUI.Question_Standard_App);
+            // ShowAgain(); // For test
+            bool dontShowAgain = Properties.Settings.Default.DoNotShowFileAssociationDialog;
+            Logger.LogCF(string.Format("+: Properties.Settings.Default.DoNotShowFileAssociationDialog = {0}", dontShowAgain));
+            if (dontShowAgain) { return; }
+
+            MessageForm mf = new MessageForm(ResourcesForUI.MainForm_ApplicationName, ResourcesForUI.Question_Standard_App);
             DialogResult dr = mf.ShowDialog();
-            bool dontShowAgain = mf.DontShowAgain;
+            dontShowAgain = mf.DontShowAgain;
             if (dr == DialogResult.Yes)
             {
                 if (Associate(musicXmlExtension, progIdExecuting, executingAssemblyFullPath))
-                { 
-                dontShowAgain = true;
+                {
+                    dontShowAgain = true;
                 }
-            }
-#warning todo save dontShowAgain as a setting
+            }         
+            Properties.Settings.Default.DoNotShowFileAssociationDialog = dontShowAgain;
+            Properties.Settings.Default.Save();
         }
 
 
