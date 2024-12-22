@@ -743,6 +743,7 @@ namespace MusicXmlReader
             model.LogAssociationInformation(musicXmlExtension, progIdInstalled);
             model.LogAssociationInformation(musicXmlExtension, progIdExecuting);
             Logger.LogCF(":+");
+            model.ExternalToolsHandler.ReadLogFile();
         }
 
 
