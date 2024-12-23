@@ -1384,6 +1384,42 @@ namespace MusicXmlReader {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (Currently running version).
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_Select_Currently_Running_Version {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_Select_Currently_Running_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Installed version).
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_Select_Installed_Version {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_Select_Installed_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select standard app for MusicXml files.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_Select_Standard_App_For_MusicXml_Files {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_Select_Standard_App_For_MusicXml_Files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show dialog at startup.
+        /// </summary>
+        internal static string ToolStripMenuItem_Tools_Show_Dialog_At_Start {
+            get {
+                return ResourceManager.GetString("ToolStripMenuItem_Tools_Show_Dialog_At_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Sibelius.
         /// </summary>
         internal static string ToolStripMenuItem_Tools_Sibelius {

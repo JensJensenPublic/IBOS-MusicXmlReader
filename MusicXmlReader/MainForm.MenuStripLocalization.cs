@@ -145,7 +145,10 @@ namespace MusicXmlReader
 #warning todo Fill in the next line
             // sayStatuslineToolStripMenuItem.Text = ResourcesforUI......
             sayStatuslineToolStripMenuItem.ShortcutKeys = ShortcutHandler.SayStatusLine; // Cannot be specified in Designer
-
+            selectStandardAppForMusicXmlFilesToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Select_Standard_App_For_MusicXml_Files;
+            useCurrentlyRunningVersionToolStripMenuItem.Text = applicationName + " " + ResourcesForUI.ToolStripMenuItem_Tools_Select_Currently_Running_Version; // Such as "IBOS Nodelæser (Kørende version)"
+            useInstalledVersionToolStripMenuItem.Text = applicationName + " " + ResourcesForUI.ToolStripMenuItem_Tools_Select_Installed_Version; // Such as "IBOS Nodelæser (Installed version)"
+            showDialogAtStartupToolStripMenuItem.Text = ResourcesForUI.ToolStripMenuItem_Tools_Show_Dialog_At_Start;
 
             // Children of  helpToolStripMenuItem
             this.aboutIBOSMusicXmlReaderToolStripMenuItem.Text = string.Format("{0} {1}", ResourcesForUI.ToolStripMenuItem_Help_About, applicationName);

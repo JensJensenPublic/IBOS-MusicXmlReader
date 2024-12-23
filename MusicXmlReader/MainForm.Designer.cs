@@ -119,9 +119,9 @@
             this.logControlpositionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sayBottolLineOfWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sayStatuslineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uSeAsStandardAppForMusicXmlFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.useInstalledVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectStandardAppForMusicXmlFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useCurrentlyRunningVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useInstalledVersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showDialogAtStartupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showCurrentStandardAppToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.archivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -641,7 +641,7 @@
             this.logControlpositionsToolStripMenuItem,
             this.sayBottolLineOfWindowToolStripMenuItem,
             this.sayStatuslineToolStripMenuItem,
-            this.uSeAsStandardAppForMusicXmlFilesToolStripMenuItem});
+            this.selectStandardAppForMusicXmlFilesToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -908,35 +908,35 @@
             this.sayStatuslineToolStripMenuItem.Text = "Say Statusline";
             this.sayStatuslineToolStripMenuItem.Click += new System.EventHandler(this.sayStatuslineToolStripMenuItem_Click);
             // 
-            // uSeAsStandardAppForMusicXmlFilesToolStripMenuItem
+            // selectStandardAppForMusicXmlFilesToolStripMenuItem
             // 
-            this.uSeAsStandardAppForMusicXmlFilesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.useInstalledVersionToolStripMenuItem,
+            this.selectStandardAppForMusicXmlFilesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.useCurrentlyRunningVersionToolStripMenuItem,
+            this.useInstalledVersionToolStripMenuItem,
             this.showDialogAtStartupToolStripMenuItem,
             this.showCurrentStandardAppToolStripMenuItem});
-            this.uSeAsStandardAppForMusicXmlFilesToolStripMenuItem.Name = "uSeAsStandardAppForMusicXmlFilesToolStripMenuItem";
-            this.uSeAsStandardAppForMusicXmlFilesToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
-            this.uSeAsStandardAppForMusicXmlFilesToolStripMenuItem.Text = "Use as standard app for MusicXml files";
-            // 
-            // useInstalledVersionToolStripMenuItem
-            // 
-            this.useInstalledVersionToolStripMenuItem.Name = "useInstalledVersionToolStripMenuItem";
-            this.useInstalledVersionToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.useInstalledVersionToolStripMenuItem.Text = "Use installed version";
-            this.useInstalledVersionToolStripMenuItem.Click += new System.EventHandler(this.useInstalledVersionToolStripMenuItem_Click);
+            this.selectStandardAppForMusicXmlFilesToolStripMenuItem.Name = "selectStandardAppForMusicXmlFilesToolStripMenuItem";
+            this.selectStandardAppForMusicXmlFilesToolStripMenuItem.Size = new System.Drawing.Size(365, 22);
+            this.selectStandardAppForMusicXmlFilesToolStripMenuItem.Text = "Select standard app for MusicXml files";
             // 
             // useCurrentlyRunningVersionToolStripMenuItem
             // 
             this.useCurrentlyRunningVersionToolStripMenuItem.Name = "useCurrentlyRunningVersionToolStripMenuItem";
-            this.useCurrentlyRunningVersionToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.useCurrentlyRunningVersionToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
             this.useCurrentlyRunningVersionToolStripMenuItem.Text = "Use currently running version";
             this.useCurrentlyRunningVersionToolStripMenuItem.Click += new System.EventHandler(this.useCurrentlyRunningVersionToolStripMenuItem_Click);
+            // 
+            // useInstalledVersionToolStripMenuItem
+            // 
+            this.useInstalledVersionToolStripMenuItem.Name = "useInstalledVersionToolStripMenuItem";
+            this.useInstalledVersionToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.useInstalledVersionToolStripMenuItem.Text = "Use installed version";
+            this.useInstalledVersionToolStripMenuItem.Click += new System.EventHandler(this.useInstalledVersionToolStripMenuItem_Click);
             // 
             // showDialogAtStartupToolStripMenuItem
             // 
             this.showDialogAtStartupToolStripMenuItem.Name = "showDialogAtStartupToolStripMenuItem";
-            this.showDialogAtStartupToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.showDialogAtStartupToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
             this.showDialogAtStartupToolStripMenuItem.Text = "Show dialog at startup";
             this.showDialogAtStartupToolStripMenuItem.Click += new System.EventHandler(this.showDialogAtStartupToolStripMenuItem_Click);
             // 
@@ -1484,7 +1484,7 @@
         private System.Windows.Forms.ToolStripMenuItem useCurrentlyRunningVersionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showDialogAtStartupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showCurrentStandardAppToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem uSeAsStandardAppForMusicXmlFilesToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem selectStandardAppForMusicXmlFilesToolStripMenuItem;
     }
 }
 
