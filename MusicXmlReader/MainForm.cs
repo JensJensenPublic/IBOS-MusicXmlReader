@@ -220,6 +220,8 @@ namespace MusicXmlReader
             Hide(jAWSApplicationspecificScriptToolStripMenuItem, developerMode);
             Hide(jAWSApplicationspecificScriptForCurrentUserToolStripMenuItem, developerMode);
             Hide(jAWSSettingsDirectoryToolStripMenuItem, developerMode);
+            Hide(useInstalledVersionToolStripMenuItem, developerMode);
+            Hide(showCurrentStandardAppToolStripMenuItem, developerMode);
         }
 
         private void Hide(ToolStripMenuItem item, bool developermode)
