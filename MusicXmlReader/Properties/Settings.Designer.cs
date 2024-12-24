@@ -313,7 +313,7 @@ namespace MusicXmlReader.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files\\MuseScore 3\\bin\\MuseScore3.exe")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Program Files\\MuseScore 4\\bin\\MuseScore4.exe")]
         public string MuseScoreExe {
             get {
                 return ((string)(this["MuseScoreExe"]));

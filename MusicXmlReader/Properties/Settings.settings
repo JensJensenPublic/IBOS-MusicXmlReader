@@ -75,7 +75,7 @@
       <Value Profile="(Default)">C:\Program Files (x86)\Index Braille\IbPrint\IbPrint.exe</Value>
     </Setting>
     <Setting Name="MuseScoreExe" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Program Files\MuseScore 3\bin\MuseScore3.exe</Value>
+      <Value Profile="(Default)">C:\Program Files\MuseScore 4\bin\MuseScore4.exe</Value>
     </Setting>
     <Setting Name="SibeliusExe" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Program Files\Avid\Sibelius\Sibelius.exe</Value>
