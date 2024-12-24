@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using RawPrinterHelper;
 using System.Xml;
 using System.Drawing;
+using MusicXmlReader.Properties;
 
 namespace MusicXmlReader
 {
@@ -715,8 +716,10 @@ namespace MusicXmlReader
         const string progIdInstalled = "IBOS_MusicXmlReader.Installed"; // Always represents the installed vesion
         const string progIdExecuting = "IBOS_MusicXmlReader";           // May repreent either a debug version or an installed version 
         readonly string installedVersionFullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"IBOS MusicXmlReader\IBOS MusicXmlReader.exe");
-    
- 
+        readonly string museScoreStudioFullPath = Settings.Default.MuseScoreExe;
+#warning todo check if we get the right path if settings are changed by application
+
+        const string progIdMuseScoreStudio = "MuseScoreStudio"; // No spaces
 
 
         private void useInstalledVersionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -727,6 +730,11 @@ namespace MusicXmlReader
         private void useCurrentlyRunningVersionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Associate(musicXmlExtension, progIdExecuting, executingAssemblyFullPath);
+        }
+
+        private void museScoreStudioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Associate(musicXmlExtension, progIdMuseScoreStudio, museScoreStudioFullPath);
         }
 
         private void showDialogAtStartupToolStripMenuItem_Click(object sender, EventArgs e)

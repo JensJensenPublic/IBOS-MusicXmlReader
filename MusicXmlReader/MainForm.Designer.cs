@@ -169,6 +169,7 @@
             this.saveBrailleFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
             this.textBoxEmpty = new System.Windows.Forms.TextBox();
+            this.museScoreStudioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -913,6 +914,7 @@
             this.selectStandardAppForMusicXmlFilesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.useCurrentlyRunningVersionToolStripMenuItem,
             this.useInstalledVersionToolStripMenuItem,
+            this.museScoreStudioToolStripMenuItem,
             this.showDialogAtStartupToolStripMenuItem,
             this.showCurrentStandardAppToolStripMenuItem});
             this.selectStandardAppForMusicXmlFilesToolStripMenuItem.Name = "selectStandardAppForMusicXmlFilesToolStripMenuItem";
@@ -922,28 +924,28 @@
             // useCurrentlyRunningVersionToolStripMenuItem
             // 
             this.useCurrentlyRunningVersionToolStripMenuItem.Name = "useCurrentlyRunningVersionToolStripMenuItem";
-            this.useCurrentlyRunningVersionToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.useCurrentlyRunningVersionToolStripMenuItem.Text = "Use currently running version";
+            this.useCurrentlyRunningVersionToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
+            this.useCurrentlyRunningVersionToolStripMenuItem.Text = "MusicXmlReader (running version)";
             this.useCurrentlyRunningVersionToolStripMenuItem.Click += new System.EventHandler(this.useCurrentlyRunningVersionToolStripMenuItem_Click);
             // 
             // useInstalledVersionToolStripMenuItem
             // 
             this.useInstalledVersionToolStripMenuItem.Name = "useInstalledVersionToolStripMenuItem";
-            this.useInstalledVersionToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.useInstalledVersionToolStripMenuItem.Text = "Use installed version";
+            this.useInstalledVersionToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
+            this.useInstalledVersionToolStripMenuItem.Text = "MusicXmlReader (installed version)";
             this.useInstalledVersionToolStripMenuItem.Click += new System.EventHandler(this.useInstalledVersionToolStripMenuItem_Click);
             // 
             // showDialogAtStartupToolStripMenuItem
             // 
             this.showDialogAtStartupToolStripMenuItem.Name = "showDialogAtStartupToolStripMenuItem";
-            this.showDialogAtStartupToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.showDialogAtStartupToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
             this.showDialogAtStartupToolStripMenuItem.Text = "Show dialog at startup";
             this.showDialogAtStartupToolStripMenuItem.Click += new System.EventHandler(this.showDialogAtStartupToolStripMenuItem_Click);
             // 
             // showCurrentStandardAppToolStripMenuItem
             // 
             this.showCurrentStandardAppToolStripMenuItem.Name = "showCurrentStandardAppToolStripMenuItem";
-            this.showCurrentStandardAppToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.showCurrentStandardAppToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
             this.showCurrentStandardAppToolStripMenuItem.Text = "Log current standard app settings";
             this.showCurrentStandardAppToolStripMenuItem.Click += new System.EventHandler(this.showCurrentStandardAppToolStripMenuItem_Click);
             // 
@@ -1315,6 +1317,13 @@
             this.textBoxEmpty.TabIndex = 13;
             this.textBoxEmpty.Visible = false;
             // 
+            // museScoreStudioToolStripMenuItem
+            // 
+            this.museScoreStudioToolStripMenuItem.Name = "museScoreStudioToolStripMenuItem";
+            this.museScoreStudioToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
+            this.museScoreStudioToolStripMenuItem.Text = "MuseScore Studio";
+            this.museScoreStudioToolStripMenuItem.Click += new System.EventHandler(this.museScoreStudioToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1485,6 +1494,7 @@
         private System.Windows.Forms.ToolStripMenuItem showDialogAtStartupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showCurrentStandardAppToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem selectStandardAppForMusicXmlFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem museScoreStudioToolStripMenuItem;
     }
 }
 
