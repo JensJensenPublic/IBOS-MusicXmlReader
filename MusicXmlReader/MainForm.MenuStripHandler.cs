@@ -754,9 +754,9 @@ namespace MusicXmlReader
             Logger.LogCF(":+");
             StringBuilder sb = new StringBuilder();
             foreach (string s in result) { sb.AppendLine(s); };
-#warning todo Use a wider version of MessageBox
-            MessageBox.Show(sb.ToString());
-            model.ExternalToolsHandler.ReadLogFile();
+            LargeMessageBox lmb = new LargeMessageBox(applicationName,sb.ToString());      
+            lmb.ShowDialog();
+            // model.ExternalToolsHandler.ReadLogFile();
         }
 
 

@@ -91,6 +91,12 @@
       <DependentUpon>HelpForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ImportHandler.cs" />
+    <Compile Include="LargeMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LargeMessageBox.Designer.cs">
+      <DependentUpon>LargeMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListboxTimesHandler.cs" />
     <Compile Include="LocalizationAnalysis.cs" />
     <Compile Include="MainForm.MenuStripHandler.cs">
@@ -151,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HelpForm.resx">
       <DependentUpon>HelpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LargeMessageBox.resx">
+      <DependentUpon>LargeMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
