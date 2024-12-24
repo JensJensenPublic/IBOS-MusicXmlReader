@@ -747,10 +747,15 @@ namespace MusicXmlReader
 
         private void showCurrentStandardAppToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            List<string> result = new List<string>();
             Logger.LogCF(":+");
-            model.LogAssociationInformation(musicXmlExtension, progIdInstalled);
-            model.LogAssociationInformation(musicXmlExtension, progIdExecuting);
+            result.AddRange(model.LogAssociationInformation(musicXmlExtension, progIdInstalled));
+            result.AddRange(model.LogAssociationInformation(musicXmlExtension, progIdExecuting));           
             Logger.LogCF(":+");
+            StringBuilder sb = new StringBuilder();
+            foreach (string s in result) { sb.AppendLine(s); };
+#warning todo Use a wider version of MessageBox
+            MessageBox.Show(sb.ToString());
             model.ExternalToolsHandler.ReadLogFile();
         }
 

@@ -85,9 +85,10 @@ namespace MusicXmlReaderModel
         }
 
  
-        public void LogAssociationInformation(string extension,string progId)
+        public List<string> LogAssociationInformation(string extension,string progId)
         {
-            fileAssociations.LogAssociationInformation(extension,progId);
+            List<string> result = fileAssociations.LogAssociationInformation(extension,progId);
+            return result;
         }
 
 
