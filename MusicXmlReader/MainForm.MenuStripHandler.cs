@@ -715,6 +715,7 @@ namespace MusicXmlReader
         const string musicXmlExtension = ".musicxml"; // The initial "." is needed!
         const string progIdInstalled = "IBOS_MusicXmlReader.Installed"; // Always represents the installed vesion
         const string progIdExecuting = "IBOS_MusicXmlReader";           // May repreent either a debug version or an installed version 
+        const string progIdMuseScore = "musicxml_auto_file"; // ??
         readonly string installedVersionFullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"IBOS MusicXmlReader\IBOS MusicXmlReader.exe");
         readonly string museScoreStudioFullPath = Settings.Default.MuseScoreExe;
 #warning todo check if we get the right path if settings are changed by application
@@ -752,6 +753,8 @@ namespace MusicXmlReader
             result.AddRange(model.LogAssociationInformation(musicXmlExtension, progIdInstalled));
             result.Add(""); // Add an empty line
             result.AddRange(model.LogAssociationInformation(musicXmlExtension, progIdExecuting));
+            result.Add("");  // Add an empty line
+            result.AddRange(model.LogAssociationInformation(musicXmlExtension, progIdMuseScore));
             result.Add("");  // Add an empty line
             Logger.LogCF(":+");
             StringBuilder sb = new StringBuilder();
