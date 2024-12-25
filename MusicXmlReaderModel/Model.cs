@@ -87,7 +87,9 @@ namespace MusicXmlReaderModel
  
         public List<string> LogAssociationInformation(string extension,string progId)
         {
-            List<string> result = fileAssociations.LogAssociationInformation(extension,progId);
+            List<string> result = new List<string>();
+            result.Add(String.Format("Associations( Extension='{0}'  ProgId='{1}')", extension, progId));  // A caption
+            result.AddRange(fileAssociations.LogAssociationInformation(extension,progId));                // The contents
             return result;
         }
 

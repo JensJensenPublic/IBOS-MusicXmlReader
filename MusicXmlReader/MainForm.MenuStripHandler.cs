@@ -750,7 +750,9 @@ namespace MusicXmlReader
             List<string> result = new List<string>();
             Logger.LogCF(":+");
             result.AddRange(model.LogAssociationInformation(musicXmlExtension, progIdInstalled));
-            result.AddRange(model.LogAssociationInformation(musicXmlExtension, progIdExecuting));           
+            result.Add(""); // Add an empty line
+            result.AddRange(model.LogAssociationInformation(musicXmlExtension, progIdExecuting));
+            result.Add("");  // Add an empty line
             Logger.LogCF(":+");
             StringBuilder sb = new StringBuilder();
             foreach (string s in result) { sb.AppendLine(s); };
