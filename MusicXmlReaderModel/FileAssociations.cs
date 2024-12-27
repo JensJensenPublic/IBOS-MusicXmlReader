@@ -56,28 +56,32 @@ namespace MusicXmlReaderModel
             return result;
         }
 
-
-        public List<string> LogAssociationInformation(string extension, string progId)
+        public List<string> LogAssociationInformation(string extension, List<string> progIds)
         {
-            Logger.LogCF(string.Format("({0},{1})+", extension, progId));
+            List<string> result = new List<string>();
+            result.Add("Extension= " + extension+ ":");
+            result.AddRange(LogExtensionInformation(extension));
+            foreach (string progId in progIds)
+            {
+                result.Add("ProgId= " + progId + ":");
+                result.AddRange(LogProgIdInformation(progId));
+            }
+            return result;
+        }
+
+        public List<string> LogExtensionInformation(string extension)
+        {
+            Logger.LogCF(string.Format("({0})+", extension));
             List<string> result = new List<string>();
             RegistryKey key = null;
-            RegistryKey progIdKey = null;
-            RegistryKey commandKey = null;
             RegistryKey userChoiseKey = null;
             try // Be sure to leave all registry keys closed !
             {
                 key = Registry.CurrentUser.CreateSubKey($"Software\\Classes\\{extension}");
                 result.Add(LogRegistryInformation(key));
 
-                progIdKey = Registry.CurrentUser.CreateSubKey($"Software\\Classes\\{progId}");
-                result.Add(LogRegistryInformation(progIdKey));
-
-                commandKey = progIdKey.CreateSubKey(@"shell\open\command");
-                result.Add(LogRegistryInformation(commandKey));
-
                 userChoiseKey = Registry.CurrentUser.OpenSubKey(ExplorerFileExtsKeyName + extension + "\\" + UserChoiseSubKeyName, true);
-                result.Add(LogRegistryInformation(userChoiseKey));
+                result.Add(LogRegistryInformation(userChoiseKey));  
             }
             catch (Exception e)
             {
@@ -86,9 +90,32 @@ namespace MusicXmlReaderModel
             }
 
             if (null != key) key.Close();
+            if (null != userChoiseKey) userChoiseKey.Close();
+            Logger.LogCF("()-");
+            return result;
+        }
+
+        public List<string> LogProgIdInformation(string progId)
+        {
+            Logger.LogCF(string.Format("({0})+", progId));
+            List<string> result = new List<string>();
+            RegistryKey progIdKey = null;
+            RegistryKey commandKey = null;
+            try // Be sure to leave all registry keys closed !
+            {
+                progIdKey = Registry.CurrentUser.CreateSubKey($"Software\\Classes\\{progId}");
+                result.Add(LogRegistryInformation(progIdKey));
+
+                commandKey = progIdKey.CreateSubKey(@"shell\open\command");
+                result.Add(LogRegistryInformation(commandKey));
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+                result.Add("The operation failed witn an exception. Please see LogFile");
+            }
             if (null != progIdKey) progIdKey.Close();
             if (null != commandKey) commandKey.Close();
-            if (null != userChoiseKey) userChoiseKey.Close();
             Logger.LogCF("()-");
             return result;
         }

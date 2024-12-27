@@ -84,12 +84,26 @@ namespace MusicXmlReaderModel
             }
         }
 
- 
-        public List<string> LogAssociationInformation(string extension,string progId)
+        private string ListToString(List<string> strings)
+        {
+            StringBuilder sb = new StringBuilder();
+            string delimiter = "";
+            sb.Append("{ ");
+            foreach (string s in strings)
+            {
+                sb.Append(delimiter + s);
+                delimiter = "  ,  ";
+                
+            }
+            sb.Append(" }");
+            return sb.ToString();   
+        }
+
+        public List<string> LogAssociationInformation(string extension,List<string> progIds)
         {
             List<string> result = new List<string>();
-            result.Add(String.Format("Associations( Extension='{0}'  ProgId='{1}')", extension, progId));  // A caption
-            result.AddRange(fileAssociations.LogAssociationInformation(extension,progId));                // The contents
+            result.Add(String.Format("Associations( Extension='{0}'  ProgIds={1})", extension, ListToString(progIds)));  // A caption
+            result.AddRange(fileAssociations.LogAssociationInformation(extension,progIds));                // The contents
             return result;
         }
 

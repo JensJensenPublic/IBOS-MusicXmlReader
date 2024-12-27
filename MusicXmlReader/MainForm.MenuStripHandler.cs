@@ -748,20 +748,14 @@ namespace MusicXmlReader
 
         private void showCurrentStandardAppToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<string> result = new List<string>();
             Logger.LogCF(":+");
-            result.AddRange(model.LogAssociationInformation(musicXmlExtension, progIdInstalled));
-            result.Add(""); // Add an empty line
-            result.AddRange(model.LogAssociationInformation(musicXmlExtension, progIdExecuting));
-            result.Add("");  // Add an empty line
-            result.AddRange(model.LogAssociationInformation(musicXmlExtension, progIdMuseScore));
-            result.Add("");  // Add an empty line
-            Logger.LogCF(":+");
+            List<string> result = new List<string>();          
+            result.AddRange(model.LogAssociationInformation(musicXmlExtension, new List<string>() { progIdInstalled, progIdExecuting, progIdMuseScore }));        
             StringBuilder sb = new StringBuilder();
             foreach (string s in result) { sb.AppendLine(s); };
             LargeMessageBox lmb = new LargeMessageBox(applicationName,sb.ToString());      
             lmb.ShowDialog();
-            // model.ExternalToolsHandler.ReadLogFile();
+            Logger.LogCF(":-");
         }
 
 
@@ -775,9 +769,9 @@ namespace MusicXmlReader
             }
             else
             {
-                model.LogAssociationInformation(extension,progId);  
+                model.LogAssociationInformation(extension,new List<string>() { progId });               // Before registration
                 result = model.RegisterForFileExtension(extension, progId, applicationExeFullPath);
-                model.LogAssociationInformation(extension,progId);              
+                model.LogAssociationInformation(extension, new List<string>() { progId });              // After  registration       
             }
             // result = false; // For debugging !
             MessageBoxIcon icon = result ? MessageBoxIcon.Information : MessageBoxIcon.Error;
