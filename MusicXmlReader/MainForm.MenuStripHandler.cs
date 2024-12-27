@@ -714,13 +714,14 @@ namespace MusicXmlReader
 
         const string musicXmlExtension = ".musicxml"; // The initial "." is needed!
         const string progIdInstalled = "IBOS_MusicXmlReader.Installed"; // Always represents the installed vesion
-        const string progIdExecuting = "IBOS_MusicXmlReader";           // May repreent either a debug version or an installed version 
-        const string progIdMuseScore = "musicxml_auto_file"; // ??
+        const string progIdExecuting = "IBOS_MusicXmlReader";           // May repreent either a debug version or an installed version
+        const string progIdMuseScoreStudio = "MuseScoreStudio"; // No spaces. Still does not work as desired!
+        //const string progIdMuseScore = "musicxml_auto_file"; // ?? This value was found in an actual registry 
         readonly string installedVersionFullPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), @"IBOS MusicXmlReader\IBOS MusicXmlReader.exe");
         readonly string museScoreStudioFullPath = Settings.Default.MuseScoreExe;
 #warning todo check if we get the right path if settings are changed by application
 
-        const string progIdMuseScoreStudio = "MuseScoreStudio"; // No spaces
+      
 
 
         private void useInstalledVersionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -750,7 +751,7 @@ namespace MusicXmlReader
         {
             Logger.LogCF(":+");
             List<string> result = new List<string>();          
-            result.AddRange(model.LogAssociationInformation(musicXmlExtension, new List<string>() { progIdInstalled, progIdExecuting, progIdMuseScore }));        
+            result.AddRange(model.LogAssociationInformation(musicXmlExtension, new List<string>() { progIdInstalled, progIdExecuting, progIdMuseScoreStudio }));        
             StringBuilder sb = new StringBuilder();
             foreach (string s in result) { sb.AppendLine(s); };
             LargeMessageBox lmb = new LargeMessageBox(applicationName,sb.ToString());      
