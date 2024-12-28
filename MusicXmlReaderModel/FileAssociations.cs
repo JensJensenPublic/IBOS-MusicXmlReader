@@ -207,6 +207,17 @@ namespace MusicXmlReaderModel
             if (null != key) key.Close();
         }
 
+        //***********************************************************************************************************************************************
+        //
+        // The following code assumes that Windows Explorer works in the following way:
+        //
+        // 1: Read HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.musicxml\UserChoise\ProgId for instance "MuseScore Studio"
+        // 2: Read HKCU\Software\Classes\MuseScore Studio\shell\open\command                                    for instance "C:\Program Files\MuseScore4\bin\MuseScore4.exe" "%1"
+        // 3: Run the latest command
+        //
+        //***************************************************************************************************************************************************
+
+
         private FileAssociations()
         { }
 
