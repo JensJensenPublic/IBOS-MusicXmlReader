@@ -190,27 +190,29 @@ namespace MusicXmlReaderModel
         {       
             RegistryKey key = null;
             RegistryKey newKey = null;
+            RegistryKey newSubKey = null; // UserChoise
             try
             {
                 // The key will typically be: "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\.musicXml"
                 // Delete the key instead of trying to change it
-                key = Registry.CurrentUser.OpenSubKey(ExplorerFileExtsKeyName + Extension, true);
+                key = Registry.CurrentUser.OpenSubKey(ExplorerFileExtsKeyName, true);
                 if (null != key)
-                {
-                    key.DeleteSubKey(UserChoiseSubKeyName, false);
-                    key.DeleteSubKey("OpenWithList", false);
-                    key.DeleteSubKey("OpenWithProgids", false);
-                    // Create a new subkey 
-                    newKey = key.CreateSubKey(UserChoiseSubKeyName); // "UserChoice";
-                    newKey.SetValue("ProgId", progIdValue); // Create a valuepair: {Name="prigId" , Value=<progIdValue>} where <progIdValue is for instance "IBOS MusicXmlReader">                
+                {   
+                    key.DeleteSubKeyTree(Extension, false); // Delete recursively. (Typically the .musicxml key)
                 }
+                newKey = key.CreateSubKey(Extension);
+                // Create a new subkey for UserChoise
+                newSubKey = key.CreateSubKey(UserChoiseSubKeyName); // "UserChoice";
+                newSubKey.SetValue("ProgId", progIdValue); // Create a valuepair: {Name="prigId" , Value=<progIdValue>} where <progIdValue is for instance "IBOS MusicXmlReader">                
+                
             }
             catch (Exception e)
             {
                 Logger.LogCFE(e);
             }
             if (null != key) key.Close();
-            if (null != newKey) newKey.Close(); 
+            if (null != newKey) newKey.Close();
+            if (null != newSubKey) newSubKey.Close();
         }
 
         //***********************************************************************************************************************************************
