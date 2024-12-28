@@ -183,11 +183,13 @@ namespace MusicXmlReaderModel
         ///  Windows Explorer has its own override for the open with application, and I was trying to modify it in the last lines of code.
         ///  If you just delete the Explorer override, then the file association will work.
         ///  I also told explorer that I had changed a file association by calling the unmanaged function"
+        ///  JSJ: The Explorer also needs a manual refresh (For instance by pressing F5) afterwards !!!!!!!!!!!!!
         /// </summary>
         /// <param name="Extension"></param>
-        public void ChangeExplorerAssociation(string Extension,string progId)
+        public void ChangeExplorerAssociation(string Extension,string progIdValue)
         {       
             RegistryKey key = null;
+            RegistryKey newKey = null;
             try
             {
                 // The key will typically be: "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\.musicXml"
@@ -196,8 +198,11 @@ namespace MusicXmlReaderModel
                 if (null != key)
                 {
                     key.DeleteSubKey(UserChoiseSubKeyName, false);
+                    key.DeleteSubKey("OpenWithList", false);
+                    key.DeleteSubKey("OpenWithProgids", false);
                     // Create a new subkey 
-                    key.CreateSubKey(UserChoiseSubKeyName).SetValue("", progId); // "UserChoice";
+                    newKey = key.CreateSubKey(UserChoiseSubKeyName); // "UserChoice";
+                    newKey.SetValue("ProgId", progIdValue); // Create a valuepair: {Name="prigId" , Value=<progIdValue>} where <progIdValue is for instance "IBOS MusicXmlReader">                
                 }
             }
             catch (Exception e)
@@ -205,11 +210,12 @@ namespace MusicXmlReaderModel
                 Logger.LogCFE(e);
             }
             if (null != key) key.Close();
+            if (null != newKey) newKey.Close(); 
         }
 
         //***********************************************************************************************************************************************
         //
-        // The following code assumes that Windows Explorer works in the following way:
+        // The above code assumes that Windows Explorer works in the following way:
         //
         // 1: Read HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.musicxml\UserChoise\ProgId for instance "MuseScore Studio"
         // 2: Read HKCU\Software\Classes\MuseScore Studio\shell\open\command                                    for instance "C:\Program Files\MuseScore4\bin\MuseScore4.exe" "%1"
