@@ -191,8 +191,8 @@ namespace MusicXmlReaderModel
                 progIdKey.SetValue("", ""); // Could be used for supplementary information
 
                 // Create a new key for the application
-                commandKey = progIdKey.CreateSubKey(@"shell\open\command");
-                string value = $"\"{applicationPath}\" \"%1\""; // For instance:  "C:\Program Files\MuseScore 4\bin\MuseScore4.exe" "%1"
+                commandKey = progIdKey.CreateSubKey(@"shell\open\command");          
+                string value = "\""+applicationPath+"\" \"%1\""; // For instance:  "C:\Program Files\MuseScore 4\bin\MuseScore4.exe" "%1"
                 commandKey.SetValue("",value);  
 
             }
