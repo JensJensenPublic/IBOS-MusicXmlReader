@@ -111,6 +111,19 @@ namespace MusicXmlReaderModel
             return @"Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\" + extension + @"\UserChoice";
         }
 
+        /// <summary>
+        ///  Return the name of the Registry key generally used for looking up the execution-command for the specified progId
+        /// (For instance "Software\Classes\MuseScore Studio\shell\open\command"
+        /// </summary>
+        /// <param name="progId"></param>
+        /// <returns></returns>
+        private string GetSoftwareClassesProgIdShellOpenCommandKeyName(string progId)
+        {
+            return @"Software\Classes\" + progId + @"\shell\open\command";
+        }
+
+        private const string exceptionMessage = "The operation failed with an exception. Please see LogFile";
+
         public List<string> LogExtensionInformation(string extension)
         {
             Logger.LogCF(string.Format("({0})+", extension));
@@ -118,18 +131,16 @@ namespace MusicXmlReaderModel
             string keyName = null;
             try // Be sure to leave all registry keys closed !
             {
-                //keyName = "Software\\Classes\\" + extension ; // Typically HKCU\Software\\Classes\.musicxml
                 keyName = GetSoftwareClassesKeyName(extension);    
                 result.Add(LogRegistryInformation(keyName,""));
 
-                //keyName = ExplorerFileExtsKeyName + extension + "\\" + UserChoiseSubKeyName;
                 keyName = GetExplorerFileExtsUserChoiseKeyName(extension);
                 result.Add(LogRegistryInformation(keyName,""));  
             }
             catch (Exception e)
             {
                 Logger.LogCFE(e);
-                result.Add("The operation failed witn an exception. Please see LogFile");
+                result.Add(exceptionMessage);
             }
             Logger.LogCF("()-");
             return result;
@@ -140,14 +151,14 @@ namespace MusicXmlReaderModel
             Logger.LogCF(string.Format("({0})+", progId));
             List<string> result = new List<string>();
             try // Be sure to leave all registry keys closed !
-            {
-                string keyName = @"Software\Classes\" + progId + @"\shell\open\command";
+            {          
+                string keyName = GetSoftwareClassesProgIdShellOpenCommandKeyName(progId);
                 result.Add(LogRegistryInformation(keyName,""));
             }
             catch (Exception e)
             {
                 Logger.LogCFE(e);
-                result.Add("The operation failed witn an exception. Please see LogFile");
+                result.Add(exceptionMessage);
             }
             Logger.LogCF("()-");
             return result;
