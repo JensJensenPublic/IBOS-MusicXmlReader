@@ -39,20 +39,39 @@ namespace MusicXmlReaderModel
     /// </summary>
     internal class FileAssociations
     {
- 
-        private  string LogRegistryInformation(RegistryKey key)
+
+
+
+        private  string LogRegistryInformation(string keyName,string valueName)
         {
-            object o = key.GetValue("");
             string result = "";
-            if (null == o)
+            RegistryKey key = null;
+            try
             {
-                result = string.Format("  KeyName={0} DOES NOT EXTST!", key.Name);
+                key = Registry.CurrentUser.OpenSubKey(keyName);
+                if (null == key)
+                {
+                    result = string.Format("  Key{0} DOES NOT EXIST!", keyName);
+                }
+                else
+                {
+                    object o = key.GetValue(valueName);
+                    if (null == o)
+                    {
+                        result = string.Format("  Key {0} ValueName={1} DOES NOT EXIST!", key.Name, valueName);
+                    }
+                    else
+                    {
+                        result = string.Format("  Key {0} ValueName={1}  Value={2}", key.Name, valueName, o.ToString());
+                    }
+                }
+                Logger.Log(result);
             }
-            else
-            {
-                result = string.Format("  KeyName={0} KeyValue={1}", key.Name, o.ToString());
+            catch (Exception e)
+            { 
+                Logger.LogCFE(e);   
             }
-            Logger.Log(result);
+            if (null != key) key.Close();   
             return result;
         }
 
@@ -73,24 +92,20 @@ namespace MusicXmlReaderModel
         {
             Logger.LogCF(string.Format("({0})+", extension));
             List<string> result = new List<string>();
-            RegistryKey key = null;
-            RegistryKey userChoiseKey = null;
+            string keyName = null;
             try // Be sure to leave all registry keys closed !
             {
-                key = Registry.CurrentUser.CreateSubKey($"Software\\Classes\\{extension}");
-                result.Add(LogRegistryInformation(key));
+                keyName = "Software\\Classes\\" + extension ; // Typically HKCU\Software\\Classes\.musicxml
+                result.Add(LogRegistryInformation(keyName,""));
 
-                userChoiseKey = Registry.CurrentUser.OpenSubKey(ExplorerFileExtsKeyName + extension + "\\" + UserChoiseSubKeyName, true);
-                result.Add(LogRegistryInformation(userChoiseKey));  
+                keyName = ExplorerFileExtsKeyName + extension + "\\" + UserChoiseSubKeyName;
+                result.Add(LogRegistryInformation(keyName,""));  
             }
             catch (Exception e)
             {
                 Logger.LogCFE(e);
                 result.Add("The operation failed witn an exception. Please see LogFile");
             }
-
-            if (null != key) key.Close();
-            if (null != userChoiseKey) userChoiseKey.Close();
             Logger.LogCF("()-");
             return result;
         }
@@ -99,23 +114,16 @@ namespace MusicXmlReaderModel
         {
             Logger.LogCF(string.Format("({0})+", progId));
             List<string> result = new List<string>();
-            RegistryKey progIdKey = null;
-            RegistryKey commandKey = null;
             try // Be sure to leave all registry keys closed !
             {
-                progIdKey = Registry.CurrentUser.CreateSubKey($"Software\\Classes\\{progId}");
-                result.Add(LogRegistryInformation(progIdKey));
-
-                commandKey = progIdKey.CreateSubKey(@"shell\open\command");
-                result.Add(LogRegistryInformation(commandKey));
+                string keyName = @"Software\Classes\" + progId + @"\shell\open\command";
+                result.Add(LogRegistryInformation(keyName,""));
             }
             catch (Exception e)
             {
                 Logger.LogCFE(e);
                 result.Add("The operation failed witn an exception. Please see LogFile");
             }
-            if (null != progIdKey) progIdKey.Close();
-            if (null != commandKey) commandKey.Close();
             Logger.LogCF("()-");
             return result;
         }
