@@ -39,9 +39,6 @@ namespace MusicXmlReaderModel
     /// </summary>
     internal class FileAssociations
     {
-
-
-
         private  string LogRegistryInformation(string keyName,string valueName)
         {
             string result = "";
@@ -122,6 +119,11 @@ namespace MusicXmlReaderModel
             return @"Software\Classes\" + progId + @"\shell\open\command";
         }
 
+        private void CloseOpenKeys(List<RegistryKey> keys)
+        {
+            foreach (RegistryKey key in keys) {key.Close();}    
+        }
+
         private const string exceptionMessage = "The operation failed with an exception. Please see LogFile";
 
         public List<string> LogExtensionInformation(string extension)
@@ -200,9 +202,8 @@ namespace MusicXmlReaderModel
             {
                 Logger.LogCFE(e);
             }
-            if (null != key) key.Close() ;
-            if (null != progIdKey) progIdKey.Close();
-            if (null != commandKey) commandKey.Close();
+
+            CloseOpenKeys(new List<RegistryKey> { key, progIdKey, commandKey });
 
             ChangeExplorerAssociation(extension,progId); // See comment below
 
@@ -232,7 +233,6 @@ namespace MusicXmlReaderModel
         ///  Windows Explorer has its own override for the open with application, and I was trying to modify it in the last lines of code.
         ///  If you just delete the Explorer override, then the file association will work.
         ///  I also told explorer that I had changed a file association by calling the unmanaged function"
-        ///  JSJ: The Explorer also needs a manual refresh (For instance by pressing F5) afterwards !!!!!!!!!!!!!
         /// </summary>
         /// <param name="Extension"></param>
         public void ChangeExplorerAssociation(string Extension,string progIdValue)
@@ -259,9 +259,7 @@ namespace MusicXmlReaderModel
             {
                 Logger.LogCFE(e);
             }
-            if (null != key) key.Close();
-            if (null != newKey) newKey.Close();
-            if (null != newSubKey) newSubKey.Close();
+            CloseOpenKeys(new List<RegistryKey>() { key, newKey, newSubKey });
         }
 
         //***********************************************************************************************************************************************
