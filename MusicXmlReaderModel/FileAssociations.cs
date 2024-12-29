@@ -69,7 +69,8 @@ namespace MusicXmlReaderModel
             }
             catch (Exception e)
             { 
-                Logger.LogCFE(e);   
+                Logger.LogCFE(e);
+                result = "The operation failed witn an exception. Please see LogFile";
             }
             if (null != key) key.Close();   
             return result;
