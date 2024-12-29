@@ -88,6 +88,28 @@ namespace MusicXmlReaderModel
             return result;
         }
 
+        /// <summary>
+        /// Return the name of the Registry key generally used for looking up the ProgId for the specified extension
+        /// (Typically HKCU\Software\\Classes\.musicxml)
+        /// </summary>
+        /// <param name="extension"></param>
+        /// <returns></returns>
+        private string GetSoftwareClassesKeyName(string extension)
+        { 
+            return @"Software\Classes\" + extension;
+        }
+
+        /// <summary>
+        /// Return the name of the Registry key used by Windows Explorer for looking up the ProgId chosen by the user for the specified extension
+        /// (Typically "Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.musicxml\UserChoise")
+        /// </summary>
+        /// <param name="extension"></param>
+        /// <returns></returns>
+        private string GetExplorerFileExtsUserChoiseKeyName(string extension)
+        {
+            return @"Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\" + extension + @"\UserChoice";
+        }
+
         public List<string> LogExtensionInformation(string extension)
         {
             Logger.LogCF(string.Format("({0})+", extension));
@@ -95,10 +117,12 @@ namespace MusicXmlReaderModel
             string keyName = null;
             try // Be sure to leave all registry keys closed !
             {
-                keyName = "Software\\Classes\\" + extension ; // Typically HKCU\Software\\Classes\.musicxml
+                //keyName = "Software\\Classes\\" + extension ; // Typically HKCU\Software\\Classes\.musicxml
+                keyName = GetSoftwareClassesKeyName(extension);    
                 result.Add(LogRegistryInformation(keyName,""));
 
-                keyName = ExplorerFileExtsKeyName + extension + "\\" + UserChoiseSubKeyName;
+                //keyName = ExplorerFileExtsKeyName + extension + "\\" + UserChoiseSubKeyName;
+                keyName = GetExplorerFileExtsUserChoiseKeyName(extension);
                 result.Add(LogRegistryInformation(keyName,""));  
             }
             catch (Exception e)
