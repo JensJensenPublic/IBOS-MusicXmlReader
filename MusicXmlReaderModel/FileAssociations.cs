@@ -249,8 +249,15 @@ namespace MusicXmlReaderModel
                 // Delete the key instead of trying to change it
                 key = Registry.CurrentUser.OpenSubKey(ExplorerFileExtsKeyName, true);
                 if (null != key)
-                {   
-                    key.DeleteSubKeyTree(Extension, false); // Delete recursively. (Typically the .musicxml key)
+                {
+                    try
+                    {
+                        key.DeleteSubKeyTree(Extension, false); // Delete recursively. (Typically the .musicxml key). Falese => Do not throw on missing subkeykey (But may throw on other reasons!)
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.LogCF(e.Message);
+                    }
                 }
                 newKey = key.CreateSubKey(Extension);
                 // Create a new subkey for UserChoise
