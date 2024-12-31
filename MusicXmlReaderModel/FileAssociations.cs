@@ -261,7 +261,7 @@ namespace MusicXmlReaderModel
                 }
                 newKey = key.CreateSubKey(Extension);
                 // Create a new subkey for UserChoise
-                newSubKey = key.CreateSubKey(UserChoiseSubKeyName); // "UserChoice";
+                newSubKey = newKey.CreateSubKey(UserChoiseSubKeyName); // "UserChoice";
                 newSubKey.SetValue("ProgId", progIdValue); // Create a valuepair: {Name="prigId" , Value=<progIdValue>} where <progIdValue is for instance "IBOS MusicXmlReader">                
                 
             }
