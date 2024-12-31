@@ -121,7 +121,10 @@ namespace MusicXmlReaderModel
 
         private void CloseOpenKeys(List<RegistryKey> keys)
         {
-            foreach (RegistryKey key in keys) {key.Close();}    
+            foreach (RegistryKey key in keys)
+            {
+                if (null != key) key.Close();
+            }    
         }
 
         private const string exceptionMessage = "The operation failed with an exception. Please see LogFile";
