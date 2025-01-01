@@ -212,6 +212,48 @@ namespace MusicXmlReaderModel
 
             NativeMethods.ShellChangeNotify();          
         }
+        /// <summary>
+        /// EXPERIMENTARY CODE !
+        /// Replacement for RegistryKey.DeleteSubtree(), which is very little informative when it fails
+        /// </summary>
+        /// <param name="key">Key for which to delete a subkey</param>
+        /// <param name="subtreeName">Name of subkey to delete</param>
+        /// <returns></returns>
+        private string DeleteSubTree(RegistryKey key, string subtreeName)
+        {       
+            string result = "";
+            if (null == key) return result;
+            Logger.LogCF(string.Format("({0},{1}", key.Name, subtreeName));
+            RegistryKey subKey = key.OpenSubKey(subtreeName);
+            if (null == subKey) return result;
+            string[] keyNames = subKey.GetSubKeyNames();
+            string[] valueNames = subKey.GetValueNames();
+            foreach (string keyName in keyNames)
+            {                
+               DeleteSubTree(subKey, keyName); // Delete recursively
+            }
+            foreach (string valueName in valueNames)
+            {
+                try
+                {
+                    subKey.DeleteValue(valueName);
+                }
+                catch (Exception e)
+                {
+                    Logger.LogCFE(e);
+                }
+            }
+            try
+            {
+                key.DeleteSubKey(subtreeName);
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e);
+            }
+            return result;
+        }
+
 
 
 
