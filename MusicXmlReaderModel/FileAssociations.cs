@@ -217,6 +217,9 @@ namespace MusicXmlReaderModel
 
 
         /// <summary>
+        /// When this key was set up by Windows Explorer->OpenWith->Choose another App->Always it can not be removed by normal means.
+        /// Thie mechanism overcomes this.
+        /// Inspired by
         /// https://stackoverflow.com/questions/6108128/remove-a-deny-rule-permission-from-the-userchoice-key-in-the-registry-via/41290208#41290208
         /// </summary>
         /// <param name="extensionKey"></param>
@@ -252,57 +255,9 @@ namespace MusicXmlReaderModel
             }
 
             extensionKey.DeleteSubKeyTree(userChoiceKeyName, true);
+            
+            Logger.LogCF(string.Format(": Deleted {0}", extensionKey.Name));
         }
-
-
-
-
-
-
-
-        ///// <summary>
-        ///// EXPERIMENTARY CODE !
-        ///// Replacement for RegistryKey.DeleteSubtree(), which is very little informative when it fails
-        ///// </summary>
-        ///// <param name="key">Key for which to delete a subkey</param>
-        ///// <param name="subtreeName">Name of subkey to delete</param>
-        ///// <returns></returns>
-        //private string DeleteSubTree(RegistryKey key, string subtreeName)
-        //{       
-        //    string result = "";
-        //    if (null == key) return result;
-        //    Logger.LogCF(string.Format("({0},{1}", key.Name, subtreeName));
-        //    RegistryKey subKey = key.OpenSubKey(subtreeName);
-        //    if (null == subKey) return result;
-        //    string[] keyNames = subKey.GetSubKeyNames();
-        //    string[] valueNames = subKey.GetValueNames();
-        //    foreach (string keyName in keyNames)
-        //    {                
-        //       DeleteSubTree(subKey, keyName); // Delete recursively
-        //    }
-        //    foreach (string valueName in valueNames)
-        //    {
-        //        try
-        //        {
-        //            subKey.DeleteValue(valueName);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Logger.LogCFE(e);
-        //        }
-        //    }
-        //    try
-        //    {
-        //        key.DeleteSubKey(subtreeName);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Logger.LogCFE(e);
-        //    }
-        //    return result;
-        //}
-
-
 
 
         //// Older method
@@ -344,7 +299,7 @@ namespace MusicXmlReaderModel
                     RegistryKey extensionKey = key.OpenSubKey(Extension, true);
                     if (null != extensionKey)
                     {
-                        this.DeleteUserChoiceKey(extensionKey);
+                        this.DeleteUserChoiceKey(extensionKey);                
                     }
 #else
                     try
