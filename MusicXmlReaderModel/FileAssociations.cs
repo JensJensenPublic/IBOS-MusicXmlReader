@@ -72,11 +72,11 @@ namespace MusicXmlReaderModel
         public List<string> LogAssociationInformation(string extension, List<string> progIds)
         {
             List<string> result = new List<string>();
-            result.Add("Extension= " + extension+ ":");
+            //result.Add("Extension= " + extension+ ":");
             result.AddRange(LogExtensionInformation(extension));
             foreach (string progId in progIds)
             {
-                result.Add("ProgId= " + progId + ":");
+                // result.Add("ProgId= " + progId + ":");
                 result.AddRange(LogProgIdInformation(progId));
             }
             return result;
