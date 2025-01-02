@@ -55,14 +55,8 @@ namespace MusicXmlReaderModel
                 else
                 {
                     object o = key.GetValue(valueName);
-                    if (null == o)
-                    {
-                        result = string.Format("  Key {0} ValueName='{1}' DOES NOT EXIST!", key.Name, valueName);
-                    }
-                    else
-                    {
-                        result = string.Format("  Key {0} ValueName='{1}'  Value='{2}'", key.Name, valueName, o.ToString());
-                    }
+                    string value = (null == o) ? "DOES NOT EXIST!" : string.Format("Value='{0}", o.ToString());
+                    result = string.Format("  Key {0} ValueName='{1}' {2}", key.Name, valueName,value);                 
                 }
                 Logger.Log(result);
             }
