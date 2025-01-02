@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Security.Policy;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
@@ -212,47 +214,93 @@ namespace MusicXmlReaderModel
 
             NativeMethods.ShellChangeNotify();          
         }
+
+
         /// <summary>
-        /// EXPERIMENTARY CODE !
-        /// Replacement for RegistryKey.DeleteSubtree(), which is very little informative when it fails
+        /// https://stackoverflow.com/questions/6108128/remove-a-deny-rule-permission-from-the-userchoice-key-in-the-registry-via/41290208#41290208
         /// </summary>
-        /// <param name="key">Key for which to delete a subkey</param>
-        /// <param name="subtreeName">Name of subkey to delete</param>
-        /// <returns></returns>
-        private string DeleteSubTree(RegistryKey key, string subtreeName)
-        {       
-            string result = "";
-            if (null == key) return result;
-            Logger.LogCF(string.Format("({0},{1}", key.Name, subtreeName));
-            RegistryKey subKey = key.OpenSubKey(subtreeName);
-            if (null == subKey) return result;
-            string[] keyNames = subKey.GetSubKeyNames();
-            string[] valueNames = subKey.GetValueNames();
-            foreach (string keyName in keyNames)
-            {                
-               DeleteSubTree(subKey, keyName); // Delete recursively
-            }
-            foreach (string valueName in valueNames)
+        /// <param name="extensionKey"></param>
+        private void DeleteUserChoiceKey(RegistryKey extensionKey)
+        {
+            const string userChoiceKeyName = "UserChoice";
+
+            using (RegistryKey userChoiceKey =
+                extensionKey.OpenSubKey(userChoiceKeyName,
+                    RegistryKeyPermissionCheck.ReadWriteSubTree,
+                    RegistryRights.ChangePermissions))
             {
-                try
+                if (userChoiceKey == null) { return; }
+                string userName = WindowsIdentity.GetCurrent().Name;
+                RegistrySecurity security = userChoiceKey.GetAccessControl();
+
+                AuthorizationRuleCollection accRules =
+                    security.GetAccessRules(true, true, typeof(NTAccount));
+
+                foreach (RegistryAccessRule ar in accRules)
                 {
-                    subKey.DeleteValue(valueName);
+                    if (0 == string.Compare(ar.IdentityReference.Value.ToLower(), userName.ToLower()))
+                    {
+                        if (ar.AccessControlType == AccessControlType.Deny)
+                        {
+                            security.RemoveAccessRuleSpecific(ar); // remove the 'Deny' permission
+                        }
+                    }
                 }
-                catch (Exception e)
-                {
-                    Logger.LogCFE(e);
-                }
+
+                userChoiceKey.SetAccessControl(security); // restore all original permissions
+                                                          // *except* for the 'Deny' permission
             }
-            try
-            {
-                key.DeleteSubKey(subtreeName);
-            }
-            catch (Exception e)
-            {
-                Logger.LogCFE(e);
-            }
-            return result;
+
+            extensionKey.DeleteSubKeyTree(userChoiceKeyName, true);
         }
+
+
+
+
+
+
+
+        ///// <summary>
+        ///// EXPERIMENTARY CODE !
+        ///// Replacement for RegistryKey.DeleteSubtree(), which is very little informative when it fails
+        ///// </summary>
+        ///// <param name="key">Key for which to delete a subkey</param>
+        ///// <param name="subtreeName">Name of subkey to delete</param>
+        ///// <returns></returns>
+        //private string DeleteSubTree(RegistryKey key, string subtreeName)
+        //{       
+        //    string result = "";
+        //    if (null == key) return result;
+        //    Logger.LogCF(string.Format("({0},{1}", key.Name, subtreeName));
+        //    RegistryKey subKey = key.OpenSubKey(subtreeName);
+        //    if (null == subKey) return result;
+        //    string[] keyNames = subKey.GetSubKeyNames();
+        //    string[] valueNames = subKey.GetValueNames();
+        //    foreach (string keyName in keyNames)
+        //    {                
+        //       DeleteSubTree(subKey, keyName); // Delete recursively
+        //    }
+        //    foreach (string valueName in valueNames)
+        //    {
+        //        try
+        //        {
+        //            subKey.DeleteValue(valueName);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Logger.LogCFE(e);
+        //        }
+        //    }
+        //    try
+        //    {
+        //        key.DeleteSubKey(subtreeName);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Logger.LogCFE(e);
+        //    }
+        //    return result;
+        //}
 
 
 
@@ -292,6 +340,13 @@ namespace MusicXmlReaderModel
                 key = Registry.CurrentUser.OpenSubKey(ExplorerFileExtsKeyName, true);
                 if (null != key)
                 {
+#if true
+                    RegistryKey extensionKey = key.OpenSubKey(Extension, true);
+                    if (null != extensionKey)
+                    {
+                        this.DeleteUserChoiceKey(extensionKey);
+                    }
+#else
                     try
                     {
                         key.DeleteSubKeyTree(Extension, false); // Delete recursively. (Typically the .musicxml key). Falese => Do not throw on missing subkeykey (But may throw on other reasons!)
@@ -300,6 +355,7 @@ namespace MusicXmlReaderModel
                     {
                         Logger.LogCF(e.Message);
                     }
+#endif
                 }
                 newKey = key.CreateSubKey(Extension);
                 // Create a new subkey for UserChoise
