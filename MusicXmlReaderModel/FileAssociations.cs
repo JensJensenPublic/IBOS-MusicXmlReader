@@ -57,11 +57,11 @@ namespace MusicXmlReaderModel
                     object o = key.GetValue(valueName);
                     if (null == o)
                     {
-                        result = string.Format("  Key {0} ValueName={1} DOES NOT EXIST!", key.Name, valueName);
+                        result = string.Format("  Key {0} ValueName='{1}' DOES NOT EXIST!", key.Name, valueName);
                     }
                     else
                     {
-                        result = string.Format("  Key {0} ValueName={1}  Value={2}", key.Name, valueName, o.ToString());
+                        result = string.Format("  Key {0} ValueName='{1}'  Value='{2}'", key.Name, valueName, o.ToString());
                     }
                 }
                 Logger.Log(result);
@@ -131,6 +131,8 @@ namespace MusicXmlReaderModel
 
         private const string exceptionMessage = "The operation failed with an exception. Please see LogFile";
 
+        private const string progIdValueName = "ProgId";
+
         public List<string> LogExtensionInformation(string extension)
         {
             Logger.LogCF(string.Format("({0})+", extension));
@@ -142,7 +144,7 @@ namespace MusicXmlReaderModel
                 result.Add(LogRegistryInformation(keyName,""));
 
                 keyName = GetExplorerFileExtsUserChoiseKeyName(extension);
-                result.Add(LogRegistryInformation(keyName,""));  
+                result.Add(LogRegistryInformation(keyName, progIdValueName));  
             }
             catch (Exception e)
             {
@@ -319,8 +321,8 @@ namespace MusicXmlReaderModel
                 newKey = key.CreateSubKey(Extension);
                 // Create a new subkey for UserChoise
                 newSubKey = newKey.CreateSubKey(UserChoiseSubKeyName); // "UserChoice";
-                newSubKey.SetValue("ProgId", progIdValue); // Create a valuepair: {Name="prigId" , Value=<progIdValue>} where <progIdValue is for instance "IBOS MusicXmlReader">                
-                
+                newSubKey.SetValue(progIdValueName, progIdValue); // Create a valuepair: {Name="prigId" , Value=<progIdValue>} where <progIdValue is for instance "IBOS MusicXmlReader">              
+        
             }
             catch (Exception e)
             {
