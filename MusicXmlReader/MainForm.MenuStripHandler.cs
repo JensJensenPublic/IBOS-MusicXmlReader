@@ -750,11 +750,13 @@ namespace MusicXmlReader
         private void showCurrentStandardAppToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Logger.LogCF(":+");
+            const string commonKeyName = @"HKEY_CURRENT_USER\Software"; // All relevant keys start with this
             List<string> result = new List<string>();          
             result.AddRange(model.LogAssociationInformation(musicXmlExtension, new List<string>() { progIdInstalled, progIdExecuting, progIdMuseScoreStudio }));        
             StringBuilder sb = new StringBuilder();
-            foreach (string s in result) { sb.AppendLine(s); };
-            LargeMessageBox lmb = new LargeMessageBox(applicationName,sb.ToString());      
+            foreach (string s in result) { sb.AppendLine(s.Replace(commonKeyName,"..")); };
+            string caption = string.Format("{0} {1} {2}", applicationName , ": Relevant registry keys under", commonKeyName);
+            LargeMessageBox lmb = new LargeMessageBox(caption,sb.ToString());      
             lmb.ShowDialog();
             Logger.LogCF(":-");
         }
