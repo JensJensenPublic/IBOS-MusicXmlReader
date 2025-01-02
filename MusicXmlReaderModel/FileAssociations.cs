@@ -178,8 +178,9 @@ namespace MusicXmlReaderModel
         /// <param name="extension"></param>
         /// <param name="applicationPath"></param>
         /// <returns></returns>
-        public void RegisterForFileExtension(string extension, string progId, string applicationPath)
+        public bool RegisterForFileExtension(string extension, string progId, string applicationPath)
         {
+            bool classesOK = true;
             RegistryKey key = null;
             RegistryKey progIdKey = null;
             RegistryKey commandKey = null;
@@ -206,13 +207,15 @@ namespace MusicXmlReaderModel
             catch (Exception e)
             {
                 Logger.LogCFE(e);
+                classesOK = false;
             }
 
             CloseOpenKeys(new List<RegistryKey> { key, progIdKey, commandKey });
 
-            ChangeExplorerAssociation(extension,progId); // See comment below
+            bool explorerOK = ChangeExplorerAssociation(extension,progId); // See comment below
 
-            NativeMethods.ShellChangeNotify();          
+            NativeMethods.ShellChangeNotify();
+            return (classesOK && explorerOK);
         }
 
 
@@ -283,8 +286,9 @@ namespace MusicXmlReaderModel
         ///  I also told explorer that I had changed a file association by calling the unmanaged function"
         /// </summary>
         /// <param name="Extension"></param>
-        public void ChangeExplorerAssociation(string Extension,string progIdValue)
-        {       
+        public bool ChangeExplorerAssociation(string Extension,string progIdValue)
+        {
+            bool result = true;
             RegistryKey key = null;
             RegistryKey newKey = null;
             RegistryKey newSubKey = null; // UserChoise
@@ -321,8 +325,10 @@ namespace MusicXmlReaderModel
             catch (Exception e)
             {
                 Logger.LogCFE(e);
+                result = false;
             }
             CloseOpenKeys(new List<RegistryKey>() { key, newKey, newSubKey });
+            return result;
         }
 
         //***********************************************************************************************************************************************
