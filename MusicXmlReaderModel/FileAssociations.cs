@@ -202,7 +202,7 @@ namespace MusicXmlReaderModel
         /// https://stackoverflow.com/questions/6108128/remove-a-deny-rule-permission-from-the-userchoice-key-in-the-registry-via/41290208#41290208
         /// </summary>
         /// <param name="extensionKey"></param>
-        private void DeleteUserChoiceKey(RegistryKey extensionKey)
+        private bool DeleteUserChoiceKey(RegistryKey extensionKey)
         {
             const string userChoiceKeyName = "UserChoice";
 
@@ -211,7 +211,7 @@ namespace MusicXmlReaderModel
                     RegistryKeyPermissionCheck.ReadWriteSubTree,
                     RegistryRights.ChangePermissions))
             {
-                if (userChoiceKey == null) { return; }
+                if (userChoiceKey == null) { return true; }
                 string userName = WindowsIdentity.GetCurrent().Name;
                 RegistrySecurity security = userChoiceKey.GetAccessControl();
 
@@ -234,8 +234,12 @@ namespace MusicXmlReaderModel
             }
 
             extensionKey.DeleteSubKeyTree(userChoiceKeyName, true);
-            
-            Logger.LogCF(string.Format(": Deleted {0}", extensionKey.Name));
+
+            string[] subKeys = extensionKey.GetSubKeyNames();
+            bool wasDeleted = !subKeys.Contains(userChoiceKeyName);
+            string message =  string.Format("{0} SubKey={1} within Key={2}",  wasDeleted ? "Deleted" : "Failed to delete",userChoiceKeyName,extensionKey.Name);
+            Logger.LogCF(": " + message);
+            return wasDeleted;
         }
 
 
