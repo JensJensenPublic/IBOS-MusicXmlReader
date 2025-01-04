@@ -56,7 +56,7 @@ namespace MusicXmlReaderModel
                 {
                     object o = key.GetValue(valueName);
                     string value = (null == o) ? "DOES NOT EXIST!" : string.Format("Value='{0}", o.ToString());
-                    result = string.Format("  Key {0} ValueName='{1}' {2}", key.Name, valueName,value);                 
+                    result = string.Format("  {0} ValueName='{1}' {2}", key.Name, valueName,value);                 
                 }
                 Logger.Log(result);
             }
@@ -73,12 +73,14 @@ namespace MusicXmlReaderModel
         {
             List<string> result = new List<string>();
             //result.Add("Extension= " + extension+ ":");
-            result.AddRange(LogExtensionInformation(extension));
+            result.Add(LogRegistryInformation(GetSoftwareClassesKeyName(extension),""));
             foreach (string progId in progIds)
             {
                 // result.Add("ProgId= " + progId + ":");
                 result.AddRange(LogProgIdInformation(progId));
             }
+
+            result.Add(LogRegistryInformation(GetExplorerFileExtsUserChoiseKeyName(extension), progIdValueName));
             return result;
         }
 
@@ -125,29 +127,7 @@ namespace MusicXmlReaderModel
 
         private const string exceptionMessage = "The operation failed with an exception. Please see LogFile";
 
-        private const string progIdValueName = "ProgId";
-
-        public List<string> LogExtensionInformation(string extension)
-        {
-            Logger.LogCF(string.Format("({0})+", extension));
-            List<string> result = new List<string>();
-            string keyName = null;
-            try // Be sure to leave all registry keys closed !
-            {
-                keyName = GetSoftwareClassesKeyName(extension);    
-                result.Add(LogRegistryInformation(keyName,""));
-
-                keyName = GetExplorerFileExtsUserChoiseKeyName(extension);
-                result.Add(LogRegistryInformation(keyName, progIdValueName));  
-            }
-            catch (Exception e)
-            {
-                Logger.LogCFE(e);
-                result.Add(exceptionMessage);
-            }
-            Logger.LogCF("()-");
-            return result;
-        }
+        private const string progIdValueName = "ProgId";  
 
         public List<string> LogProgIdInformation(string progId)
         {
