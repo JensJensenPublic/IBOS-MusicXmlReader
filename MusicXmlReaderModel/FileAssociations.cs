@@ -275,27 +275,16 @@ namespace MusicXmlReaderModel
                 key = Registry.CurrentUser.OpenSubKey(ExplorerFileExtsKeyName, true);
                 if (null != key)
                 {
-#if true
                     RegistryKey extensionKey = key.OpenSubKey(Extension, true);
                     if (null != extensionKey)
                     {
                         this.DeleteUserChoiceKey(extensionKey);                
                     }
-#else
-                    try
-                    {
-                        key.DeleteSubKeyTree(Extension, false); // Delete recursively. (Typically the .musicxml key). Falese => Do not throw on missing subkeykey (But may throw on other reasons!)
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.LogCF(e.Message);
-                    }
-#endif
                 }
                 newKey = key.CreateSubKey(Extension);
                 // Create a new subkey for UserChoise
                 newSubKey = newKey.CreateSubKey(UserChoiseSubKeyName); // "UserChoice";
-                newSubKey.SetValue(progIdValueName, progIdValue); // Create a valuepair: {Name="prigId" , Value=<progIdValue>} where <progIdValue is for instance "IBOS MusicXmlReader">              
+                newSubKey.SetValue(progIdValueName, progIdValue); // Create a valuepair: {Name="progId" , Value=<progIdValue>} where <progIdValue is for instance "IBOS MusicXmlReader">              
         
             }
             catch (Exception e)
