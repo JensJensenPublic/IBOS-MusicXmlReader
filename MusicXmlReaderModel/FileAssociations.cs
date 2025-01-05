@@ -50,13 +50,13 @@ namespace MusicXmlReaderModel
                 key = Registry.CurrentUser.OpenSubKey(keyName);
                 if (null == key)
                 {
-                    result = string.Format("  Key{0} DOES NOT EXIST!", keyName);
+                    result = string.Format(@"  {0} DOES NOT EXIST!", keyName);
                 }
                 else
                 {
                     object o = key.GetValue(valueName);
                     string value = (null == o) ? "DOES NOT EXIST!" : string.Format("Value='{0}", o.ToString());
-                    result = string.Format("  {0} ValueName='{1}' {2}", key.Name, valueName,value);                 
+                    result = string.Format(@" {0} ValueName='{1}' {2}", key.Name, valueName,value);                 
                 }
                 Logger.Log(result);
             }
@@ -77,7 +77,7 @@ namespace MusicXmlReaderModel
             foreach (string progId in progIds)
             {
                 // result.Add("ProgId= " + progId + ":");
-                result.AddRange(LogProgIdInformation(progId));
+                result.Add(LogProgIdInformation(progId));
             }
 
             result.Add(LogRegistryInformation(GetExplorerFileExtsUserChoiseKeyName(extension), progIdValueName));
@@ -129,21 +129,22 @@ namespace MusicXmlReaderModel
 
         private const string progIdValueName = "ProgId";  
 
-        public List<string> LogProgIdInformation(string progId)
+        public string LogProgIdInformation(string progId)
         {
-            Logger.LogCF(string.Format("({0})+", progId));
-            List<string> result = new List<string>();
+            //Logger.LogCF(string.Format("({0})+", progId));
+            string result;
             try // Be sure to leave all registry keys closed !
             {          
                 string keyName = GetSoftwareClassesProgIdShellOpenCommandKeyName(progId);
-                result.Add(LogRegistryInformation(keyName,""));
+                result=LogRegistryInformation(keyName,"");
             }
             catch (Exception e)
             {
                 Logger.LogCFE(e);
-                result.Add(exceptionMessage);
+                result = exceptionMessage;
             }
-            Logger.LogCF("()-");
+            Logger.LogCF(": " + result);
+            //Logger.LogCF("()-");
             return result;
         }
 
