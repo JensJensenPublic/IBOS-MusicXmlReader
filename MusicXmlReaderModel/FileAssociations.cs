@@ -201,13 +201,11 @@ namespace MusicXmlReaderModel
         /// Inspired by
         /// https://stackoverflow.com/questions/6108128/remove-a-deny-rule-permission-from-the-userchoice-key-in-the-registry-via/41290208#41290208
         /// </summary>
-        /// <param name="extensionKey"></param>
-        private bool DeleteUserChoiceKey(RegistryKey extensionKey)
-        {
-            const string userChoiceKeyName = "UserChoice";
-
+        /// <param name="key"></param>
+        private bool DeleteSubKey(RegistryKey key,string subKeyName)
+        {          
             using (RegistryKey userChoiceKey =
-                extensionKey.OpenSubKey(userChoiceKeyName,
+                key.OpenSubKey(subKeyName,
                     RegistryKeyPermissionCheck.ReadWriteSubTree,
                     RegistryRights.ChangePermissions))
             {
@@ -233,11 +231,11 @@ namespace MusicXmlReaderModel
                                                           // *except* for the 'Deny' permission
             }
 
-            extensionKey.DeleteSubKeyTree(userChoiceKeyName, true);
+            key.DeleteSubKeyTree(subKeyName, true);
 
-            string[] subKeys = extensionKey.GetSubKeyNames();
-            bool wasDeleted = !subKeys.Contains(userChoiceKeyName);
-            string message =  string.Format("{0} SubKey={1} within Key={2}",  wasDeleted ? "Deleted" : "Failed to delete",userChoiceKeyName,extensionKey.Name);
+            string[] subKeys = key.GetSubKeyNames();
+            bool wasDeleted = !subKeys.Contains(subKeyName);
+            string message =  string.Format("{0} SubKey={1} within Key={2}",  wasDeleted ? "Deleted" : "Failed to delete", subKeyName, key.Name);
             Logger.LogCF(": " + message);
             return wasDeleted;
         }
@@ -282,7 +280,11 @@ namespace MusicXmlReaderModel
                     RegistryKey extensionKey = key.OpenSubKey(Extension, true);
                     if (null != extensionKey)
                     {
-                        this.DeleteUserChoiceKey(extensionKey);                
+                        string[] subkeyNames = extensionKey.GetSubKeyNames();
+                        foreach (string subkeyName in subkeyNames)
+                        {
+                            this.DeleteSubKey(extensionKey, subkeyName  ); // Typically: UserChoise, OpenWithList, OpenWithProgids
+                        }
                     }
                 }
 #if false
