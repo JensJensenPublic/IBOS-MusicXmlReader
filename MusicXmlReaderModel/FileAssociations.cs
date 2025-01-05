@@ -285,11 +285,13 @@ namespace MusicXmlReaderModel
                         this.DeleteUserChoiceKey(extensionKey);                
                     }
                 }
+#if false
+                // The new key seems not to be needed. Delsting the old one will suffice !
                 newKey = key.CreateSubKey(Extension);
                 // Create a new subkey for UserChoise
                 newSubKey = newKey.CreateSubKey(UserChoiseSubKeyName); // "UserChoice";
                 newSubKey.SetValue(progIdValueName, progIdValue); // Create a valuepair: {Name="progId" , Value=<progIdValue>} where <progIdValue is for instance "IBOS MusicXmlReader">              
-        
+#endif
             }
             catch (Exception e)
             {
