@@ -77,7 +77,7 @@ namespace MusicXmlReaderModel
             foreach (string progId in progIds)
             {
                 // result.Add("ProgId= " + progId + ":");
-                result.Add(LogProgIdInformation(progId));
+                result.Add(GetProgIdInformation(progId));
             }
 
             result.Add(LogRegistryInformation(GetExplorerFileExtsUserChoiseKeyName(extension), progIdValueName));
@@ -129,7 +129,7 @@ namespace MusicXmlReaderModel
 
         private const string progIdValueName = "ProgId";  
 
-        public string LogProgIdInformation(string progId)
+        public string GetProgIdInformation(string progId)
         {
             //Logger.LogCF(string.Format("({0})+", progId));
             string result;
@@ -143,7 +143,7 @@ namespace MusicXmlReaderModel
                 Logger.LogCFE(e);
                 result = exceptionMessage;
             }
-            Logger.LogCF(": " + result);
+            //Logger.LogCF(": " + result);
             //Logger.LogCF("()-");
             return result;
         }
@@ -288,6 +288,8 @@ namespace MusicXmlReaderModel
                         }
                     }
                 }
+                //  Might also take a look at
+                // "Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\App Paths\MuseScore4stable.exe" where info about MuseScore4 seems to be stored !
 #if false
                 // The new key seems not to be needed. Delsting the old one will suffice !
                 newKey = key.CreateSubKey(Extension);
