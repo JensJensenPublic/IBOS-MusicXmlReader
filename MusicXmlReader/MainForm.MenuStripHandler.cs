@@ -756,7 +756,7 @@ namespace MusicXmlReader
             StringBuilder sb = new StringBuilder();
             foreach (string s in result) { sb.AppendLine(s.Replace(commonKeyName,"..")); };
             string caption = string.Format("{0} {1} {2}", applicationName , ": Relevant registry keys under", commonKeyName);
-            LargeMessageBox lmb = new LargeMessageBox(caption,sb.ToString());      
+            LargeMessageBox lmb = new LargeMessageBox(caption,sb.ToString(), true);  // true => Fixed fond    
             lmb.ShowDialog();
             Logger.LogCF(":-");
         }
