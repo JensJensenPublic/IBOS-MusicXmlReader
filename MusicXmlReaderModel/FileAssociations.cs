@@ -99,6 +99,7 @@ namespace MusicXmlReaderModel
             }
 
             result.Add(LogRegistryInformation(GetExplorerFileExtsUserChoiseKeyName(extension), progIdValueName));
+            result.Add(LogRegistryInformation(GetExplorerFileAppPathKeyName("MuseScore4stable.exe"), ""));
             return result;
         }
 
@@ -122,6 +123,10 @@ namespace MusicXmlReaderModel
         private string GetExplorerFileExtsUserChoiseKeyName(string extension)
         {
             return @"Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\" + extension + @"\UserChoice";
+        }
+        private string GetExplorerFileAppPathKeyName(string programName)
+        {
+            return @"Software\Microsoft\Windows\CurrentVersion\App Paths\" + programName;
         }
 
         /// <summary>
