@@ -41,6 +41,8 @@ namespace MusicXmlReaderModel
     /// </summary>
     internal class FileAssociations
     {
+
+      
         private  string LogRegistryInformation(string keyName,string valueName)
         {
             string result = "";
@@ -50,13 +52,13 @@ namespace MusicXmlReaderModel
                 key = Registry.CurrentUser.OpenSubKey(keyName);
                 if (null == key)
                 {
-                    result = string.Format(@" {0} DOES NOT EXIST!", @"HKEY_CURRENT_USER\" + keyName); // Add "HKEY_CURRENT_USER" because it is implic to Registry.CurrentUser.OpenSubKey()
+                    result = string.Format(@" {0} DOES NOT EXIST!", Pad( @"HKEY_CURRENT_USER\" + keyName)); // Add "HKEY_CURRENT_USER" because it is implic to Registry.CurrentUser.OpenSubKey()
                 }
                 else
                 {
                     object o = key.GetValue(valueName);
                     string value = (null == o) ? "DOES NOT EXIST!" : string.Format("Value='{0}", o.ToString());
-                    result = string.Format(@" {0} ValueName='{1}' {2}", key.Name, valueName,value);                 
+                    result = string.Format(@" {0} ValueName='{1}' {2}", Pad(key.Name), valueName,value);                 
                 }
                 Logger.Log(result);
             }
@@ -68,6 +70,18 @@ namespace MusicXmlReaderModel
             if (null != key) key.Close();   
             return result;
         }
+
+        /// <summary>
+        /// Simple mechanism for aligning multiline occurances, Will not always give the nicest possible result, but is simple !
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        private string Pad(string s)
+        {
+            return string.Format("{0,-100}", s);
+        }
+
+
 
         public List<string> LogAssociationInformation(string extension, List<string> progIds)
         {
