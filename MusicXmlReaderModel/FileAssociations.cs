@@ -50,7 +50,7 @@ namespace MusicXmlReaderModel
                 key = Registry.CurrentUser.OpenSubKey(keyName);
                 if (null == key)
                 {
-                    result = string.Format(@"  {0} DOES NOT EXIST!", keyName);
+                    result = string.Format(@" {0} DOES NOT EXIST!", @"HKEY_CURRENT_USER\" + keyName); // Add "HKEY_CURRENT_USER" because it is implic to Registry.CurrentUser.OpenSubKey()
                 }
                 else
                 {
@@ -289,7 +289,7 @@ namespace MusicXmlReaderModel
                     }
                 }
                 //  Might also take a look at
-                // "Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\App Paths\MuseScore4stable.exe" where info about MuseScore4 seems to be stored !
+                // "Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\App Paths\MuseScore4stable.exe" where info about MuseScore4 seems to be stored 
 #if false
                 // The new key seems not to be needed. Delsting the old one will suffice !
                 newKey = key.CreateSubKey(Extension);
