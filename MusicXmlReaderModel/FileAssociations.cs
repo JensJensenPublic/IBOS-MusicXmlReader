@@ -52,13 +52,13 @@ namespace MusicXmlReaderModel
                 key = Registry.CurrentUser.OpenSubKey(keyName);
                 if (null == key)
                 {
-                    result = string.Format(@" {0} DOES NOT EXIST!", Pad( @"HKEY_CURRENT_USER\" + keyName)); // Add "HKEY_CURRENT_USER" because it is implic to Registry.CurrentUser.OpenSubKey()
+                    result = string.Format(@" {0} DOES NOT EXIST!", PadRight100( @"HKEY_CURRENT_USER\" + keyName)); // Add "HKEY_CURRENT_USER" because it is implic to Registry.CurrentUser.OpenSubKey()
                 }
                 else
                 {
                     object o = key.GetValue(valueName);
-                    string value = (null == o) ? "DOES NOT EXIST!" : string.Format("Value='{0}", o.ToString());
-                    result = string.Format(@" {0} ValueName='{1}' {2}", Pad(key.Name), valueName,value);                 
+                    string value = (null == o) ? "DOES NOT EXIST!" : string.Format("Value={0}", o.ToString());
+                    result = string.Format(@" {0} ValueName={1} {2}", PadRight100(key.Name), PadRight10(valueName),value);                 
                 }
                 Logger.Log(result);
             }
@@ -76,11 +76,15 @@ namespace MusicXmlReaderModel
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        private string Pad(string s)
+        private string PadRight100(string s)
         {
             return string.Format("{0,-100}", s);
         }
 
+        private string PadRight10(string s)
+        {
+            return string.Format("{0,-10}", s);
+        }
 
 
         public List<string> LogAssociationInformation(string extension, List<string> progIds)
