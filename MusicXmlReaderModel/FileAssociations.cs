@@ -220,23 +220,27 @@ namespace MusicXmlReaderModel
         }
 
 
+
         /// <summary>
-        /// When this key was set up by Windows Explorer->OpenWith->Choose another App->Always it can not be removed by normal means.
-        /// Thie mechanism overcomes this.
+        /// Returns true iff it was possible to modify the subkey.
+        /// Assumes that neither parameter is null.
         /// Inspired by
         /// https://stackoverflow.com/questions/6108128/remove-a-deny-rule-permission-from-the-userchoice-key-in-the-registry-via/41290208#41290208
         /// </summary>
         /// <param name="key"></param>
-        private bool DeleteSubKey(RegistryKey key,string subKeyName)
-        {          
-            using (RegistryKey userChoiceKey =
-                key.OpenSubKey(subKeyName,
-                    RegistryKeyPermissionCheck.ReadWriteSubTree,
-                    RegistryRights.ChangePermissions))
+        /// <param name="subKeyName"></param>
+        /// <returns></returns>
+        private bool ModifyAccessRules(RegistryKey key, string subKeyName)
+        {    
+            RegistryKey subKey = null;
+            bool result = true;
+            try
             {
-                if (userChoiceKey == null) { return true; }
+                subKey = key.OpenSubKey(subKeyName, RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.ChangePermissions);
+
+                if (subKey == null) { return false; } // Failed to modify access rules
                 string userName = WindowsIdentity.GetCurrent().Name;
-                RegistrySecurity security = userChoiceKey.GetAccessControl();
+                RegistrySecurity security = subKey.GetAccessControl();
 
                 AuthorizationRuleCollection accRules =
                     security.GetAccessRules(true, true, typeof(NTAccount));
@@ -251,13 +255,39 @@ namespace MusicXmlReaderModel
                         }
                     }
                 }
-
-                userChoiceKey.SetAccessControl(security); // restore all original permissions
-                                                          // *except* for the 'Deny' permission
+                subKey.SetAccessControl(security); // restore all original permissions *except* for the 'Deny' permission
             }
+            catch (Exception e)
+            {              
+                Logger.LogCFE(e); // Write details to the logfile
+                result = false; 
+            }
+            if (null != subKey) subKey.Close();   
+            return result;
+        }
 
-            key.DeleteSubKeyTree(subKeyName, true);
 
+
+
+        /// <summary>
+        /// When this key was set up by Windows Explorer->OpenWith->Choose another App->Always it can not be removed by normal means.
+        /// Thie mechanism overcomes this.
+        /// Inspired by
+        /// https://stackoverflow.com/questions/6108128/remove-a-deny-rule-permission-from-the-userchoice-key-in-the-registry-via/41290208#41290208
+        /// </summary>
+        /// <param name="key"></param>
+        private bool DeleteSubKey(RegistryKey key,string subKeyName)
+        {
+            if (!key.GetSubKeyNames().Contains(subKeyName)) { return true; } // The sudkey does not exist. Nothing to delete.
+            ModifyAccessRules(key, subKeyName);
+            try
+            {
+                key.DeleteSubKeyTree(subKeyName, true);
+            }
+            catch (Exception e)
+            {
+                Logger.LogCFE(e); // Write details to the logfile
+            }
             string[] subKeys = key.GetSubKeyNames();
             bool wasDeleted = !subKeys.Contains(subKeyName);
             string message =  string.Format("{0} SubKey={1} within Key={2}",  wasDeleted ? "Deleted" : "Failed to delete", subKeyName, key.Name);
