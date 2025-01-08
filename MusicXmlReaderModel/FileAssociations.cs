@@ -222,6 +222,7 @@ namespace MusicXmlReaderModel
 
 
         /// <summary>
+        /// Modifies the access rules for the specified subkey in order to make it writable for the current user, even if the useer is not an administrator
         /// Returns true iff it was possible to modify the subkey.
         /// Assumes that neither parameter is null.
         /// Inspired by
@@ -237,17 +238,14 @@ namespace MusicXmlReaderModel
             try
             {
                 subKey = key.OpenSubKey(subKeyName, RegistryKeyPermissionCheck.ReadWriteSubTree, RegistryRights.ChangePermissions);
-
                 if (subKey == null) { return false; } // Failed to modify access rules
-                string userName = WindowsIdentity.GetCurrent().Name;
+
+                string upperCaseUserName = WindowsIdentity.GetCurrent().Name.ToUpper(); 
                 RegistrySecurity security = subKey.GetAccessControl();
-
-                AuthorizationRuleCollection accRules =
-                    security.GetAccessRules(true, true, typeof(NTAccount));
-
+                AuthorizationRuleCollection accRules = security.GetAccessRules(true, true, typeof(NTAccount));
                 foreach (RegistryAccessRule ar in accRules)
                 {
-                    if (0 == string.Compare(ar.IdentityReference.Value.ToLower(), userName.ToLower()))
+                    if (0 == string.Compare(ar.IdentityReference.Value.ToUpper(), upperCaseUserName)) // Be sure the case matches!
                     {
                         if (ar.AccessControlType == AccessControlType.Deny)
                         {
