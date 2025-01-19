@@ -179,9 +179,9 @@ namespace MusicXmlReaderModel
         /// <param name="extension"></param>
         /// <param name="applicationPath"></param>
         /// <returns></returns>
-        public bool RegisterForFileExtension(string extension, string progId, string applicationPath)
+        public bool ChangeGlobalAssociation(string extension, string progId, string applicationPath)
         {
-            bool classesOK = true;
+            bool result = false;
             RegistryKey key = null;
             RegistryKey progIdKey = null;
             RegistryKey commandKey = null;
@@ -202,21 +202,18 @@ namespace MusicXmlReaderModel
                 // Create a new key for the application
                 commandKey = progIdKey.CreateSubKey(@"shell\open\command");          
                 string value = "\""+applicationPath+"\" \"%1\""; // For instance:  "C:\Program Files\MuseScore 4\bin\MuseScore4.exe" "%1"
-                commandKey.SetValue("",value);  
+                commandKey.SetValue("",value);
+                result = true;
 
             }
             catch (Exception e)
             {
                 Logger.LogCFE(e);
-                classesOK = false;
             }
 
-            CloseOpenKeys(new List<RegistryKey> { key, progIdKey, commandKey });
-
-            bool explorerOK = ChangeExplorerAssociation(extension,progId); // See comment below
-
-            NativeMethods.ShellChangeNotify();
-            return (classesOK && explorerOK);
+            CloseOpenKeys(new List<RegistryKey> { key, progIdKey, commandKey }); 
+ 
+            return result;
         }
 
 
@@ -317,7 +314,7 @@ namespace MusicXmlReaderModel
         ///  I also told explorer that I had changed a file association by calling the unmanaged function"
         /// </summary>
         /// <param name="Extension"></param>
-        public bool ChangeExplorerAssociation(string Extension,string progIdValue)
+        public bool ChangeExplorerAssociation(string Extension,string progIdValue, string applicationPath)
         {
             bool result = true;
             RegistryKey key = null;

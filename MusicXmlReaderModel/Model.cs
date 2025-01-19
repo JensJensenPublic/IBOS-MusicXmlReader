@@ -68,20 +68,14 @@ namespace MusicXmlReaderModel
 
         public bool RegisterForFileExtension(string extension, string progId,string applicationPath)
         {
-            bool result = false;
+            // NOTE: All exceptions are handled in the FileAssociations class.
+            bool result = true;
             string commonFormat = "('{0}','{1}','{2}') {3}";
-            Logger.LogCF(string.Format( commonFormat, extension, progId, applicationPath, "started"));
-            try
-            {
-                result = fileAssociations.RegisterForFileExtension(extension, progId,applicationPath);
-                Logger.LogCF(string.Format(commonFormat ,extension,progId,applicationPath, result? "succeeded" : "failed"));          
-            }
-            catch (Exception e)
-            {
-                Logger.LogCF(string.Format(commonFormat , extension, progId,applicationPath, "failed"));
-                Logger.LogCFE(e);
-                result = false;
-            }
+            Logger.LogCF(string.Format(commonFormat, extension, progId, applicationPath, "started"));
+            result &= fileAssociations.ChangeGlobalAssociation(extension, progId, applicationPath); // Change registry-settings global for all applications
+            result &= fileAssociations.ChangeExplorerAssociation(extension, progId, applicationPath); // Change registry-settings local for Windows Explorer           
+            Logger.LogCF(string.Format(commonFormat, extension, progId, applicationPath, result ? "succeeded" : "failed"));
+            NativeMethods.ShellChangeNotify(); // Notify Windows Explorer that some settings have been changed and a refresh is needed
             return result;
         }
 
