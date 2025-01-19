@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Security.Policy;
@@ -320,6 +321,8 @@ namespace MusicXmlReaderModel
             RegistryKey key = null;
             RegistryKey newKey = null;
             RegistryKey newSubKey = null; // UserChoise
+            RegistryKey pathKey = null;
+            RegistryKey newPathKey = null;
             try
             {
                 // The key will typically be: "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\.musicXml"
@@ -337,14 +340,20 @@ namespace MusicXmlReaderModel
                         }
                     }
                 }
-                //  Might also take a look at
+#if true
+                // The following code is inspired by looking at
                 // "Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\App Paths\MuseScore4stable.exe" where info about MuseScore4 seems to be stored 
-#if false
-                // The new key seems not to be needed. Delsting the old one will suffice !
+                // The new key actually does not seem not to be needed. Deleting the old one will suffice ! But we create it anyway !
                 newKey = key.CreateSubKey(Extension);
-                // Create a new subkey for UserChoise
+                // Create a new subkey "progIdValue"  for UserChoise
                 newSubKey = newKey.CreateSubKey(UserChoiseSubKeyName); // "UserChoice";
-                newSubKey.SetValue(progIdValueName, progIdValue); // Create a valuepair: {Name="progId" , Value=<progIdValue>} where <progIdValue is for instance "IBOS MusicXmlReader">              
+                newSubKey.SetValue(progIdValueName, progIdValue); // Create a valuepair: {Name="progId" , Value=<progIdValue>} where <progIdValue is for instance "IBOS MusicXmlReader">
+
+                // Create a subKey "progIdValue" under "Computer\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\App Paths" and fill it in
+                pathKey = Registry.CurrentUser.OpenSubKey(ExplorerAppPathsKeyName, true);
+                newPathKey = pathKey.CreateSubKey(progIdValue);
+                newPathKey.SetValue("",applicationPath);
+                newPathKey.SetValue(PathValueName, Path.GetDirectoryName(applicationPath));
 #endif
             }
             catch (Exception e)
@@ -352,9 +361,12 @@ namespace MusicXmlReaderModel
                 Logger.LogCFE(e);
                 result = false;
             }
-            CloseOpenKeys(new List<RegistryKey>() { key, newKey, newSubKey });
+            CloseOpenKeys(new List<RegistryKey>() { key, newKey, newSubKey, pathKey, newPathKey });
             return result;
         }
+
+        const string ExplorerAppPathsKeyName = "Software\\Microsoft\\Windows\\CurrentVersion\\App Paths";
+        const string PathValueName = "Path";
 
         //***********************************************************************************************************************************************
         //
