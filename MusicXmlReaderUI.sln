@@ -459,8 +459,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Various Braille Devices", "
 		Documentation\Various Braille devices\Brug af Braillant BI 20 til læsning af NOTA punktnodefiler.docx = Documentation\Various Braille devices\Brug af Braillant BI 20 til læsning af NOTA punktnodefiler.docx
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JAWSExperiments", "JAWSExperiments\JAWSExperiments.csproj", "{372544BF-EC8E-4CDD-9324-201896DE0776}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JAWS", "JAWS", "{53ABD27A-BB95-4CD0-8D41-D3E864E93F86}"
 	ProjectSection(SolutionItems) = preProject
 		JAWS\IBOS MusicXmlReader.JCF = JAWS\IBOS MusicXmlReader.JCF
@@ -744,18 +742,6 @@ Global
 		{6F225350-2083-400C-980F-B1BC6C537D2D}.Release|x64.Build.0 = Release|Any CPU
 		{6F225350-2083-400C-980F-B1BC6C537D2D}.Release|x86.ActiveCfg = Release|Any CPU
 		{6F225350-2083-400C-980F-B1BC6C537D2D}.Release|x86.Build.0 = Release|Any CPU
-		{372544BF-EC8E-4CDD-9324-201896DE0776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{372544BF-EC8E-4CDD-9324-201896DE0776}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{372544BF-EC8E-4CDD-9324-201896DE0776}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{372544BF-EC8E-4CDD-9324-201896DE0776}.Debug|x64.Build.0 = Debug|Any CPU
-		{372544BF-EC8E-4CDD-9324-201896DE0776}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{372544BF-EC8E-4CDD-9324-201896DE0776}.Debug|x86.Build.0 = Debug|Any CPU
-		{372544BF-EC8E-4CDD-9324-201896DE0776}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{372544BF-EC8E-4CDD-9324-201896DE0776}.Release|Any CPU.Build.0 = Release|Any CPU
-		{372544BF-EC8E-4CDD-9324-201896DE0776}.Release|x64.ActiveCfg = Release|Any CPU
-		{372544BF-EC8E-4CDD-9324-201896DE0776}.Release|x64.Build.0 = Release|Any CPU
-		{372544BF-EC8E-4CDD-9324-201896DE0776}.Release|x86.ActiveCfg = Release|Any CPU
-		{372544BF-EC8E-4CDD-9324-201896DE0776}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
