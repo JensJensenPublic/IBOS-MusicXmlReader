@@ -41,6 +41,7 @@ namespace MusicXmlReaderModel
                     case "default-x": break; // Explicitly ignore some graphical attributes 
                     case "directive": break;
                     case "placement": break;
+                    case "system": Logger.LogCF(string.Format(": Found unsupported attribute with name='{0}' and value='{1}'", a.Name, a.Value)); break; // Distinguishes elements that are associated with a system rather than the particular part where the element appears. 
                     default:
                     Logger.LogOnce(string.Format("{0}.{1}: Found unexpected attribute={2}", className,functionName,a.Name));
                     break;
