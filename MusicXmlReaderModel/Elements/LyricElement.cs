@@ -20,7 +20,7 @@ namespace MusicXmlReaderModel
     // Common values are a no-break space (Unicode 00A0), an underscore (Unicode 005F), or an undertie (Unicode 203F).
 
 
-    public class LyricElement
+    public class LyricElement : Element
     {
         private int number;
         public  int Number     {  get => number; }
@@ -40,7 +40,8 @@ namespace MusicXmlReaderModel
                 switch (a.Name)
                 {
                     case "number": number = int.Parse(a.Value); break;
-                    default: Logger.LogCF(string.Format(": Usupported element: {0}", a.Name)); break;
+                    default: if (IsUnsupportedGraphicsAttribute(a.Name)) break;
+                        Logger.LogCF(string.Format(": Usupported element: {0}", a.Name)); break;
                 }
             }
 
@@ -57,7 +58,7 @@ namespace MusicXmlReaderModel
                     case "laughing":
                     case "eliason": Logger.LogCF(string.Format(": Unsupported element: {0}", name)); break;
 
-                    default: Logger.LogCF(string.Format(": Unexpected element: {0}", name)); break;
+                    default:  Logger.LogCF(string.Format(": Unexpected element: {0}", name)); break;
                 }
             }
 

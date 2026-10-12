@@ -1,4 +1,6 @@
-﻿namespace MusicXmlReaderModel
+﻿using System.Collections;
+
+namespace MusicXmlReaderModel
 {
     
     public abstract class Element : MusicXmlObject
@@ -25,6 +27,24 @@
         protected const LogFormatter.LogOptions quiet = LogFormatter.LogOptions.Quiet;
         protected const LogFormatter.LogOptions dumb = LogFormatter.LogOptions.Dumb;
         protected const LogFormatter.LogOptions verbose = LogFormatter.LogOptions.Verbose;
+
+
+        // Simple convenience methods for reducing amount of logging caused by graphical attributes which are not supported by the application
+
+        protected bool IsUnsupportedGraphicsAttribute(string attributeName)
+        {
+            switch (attributeName)
+            {
+                case "default-x":
+                case "default-y":
+                case "relative-x":
+                case "relative-y":
+                case "halign":
+                case "valign":
+                    return true;
+                default: return false;  
+            }            
+        }
 
 
     }
